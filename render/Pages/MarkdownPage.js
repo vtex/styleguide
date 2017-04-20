@@ -28,8 +28,7 @@ export default class MarkdownPage extends Component {
     }
 
     try {
-      console.log('../../patterns/' + page + '.md')
-      let markdown = require('../../patterns/' + page + '.md')
+      let markdown = require('../patterns/' + page + '.md')
 
       this.setState({
         title: page,

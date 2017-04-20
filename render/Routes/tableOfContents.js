@@ -3,7 +3,7 @@ import reduce from 'lodash/reduce'
 import startCase from 'lodash/startCase'
 
 function getPatternsPages() {
-  const patternsContext = require.context('../../patterns', false, /()*.md$/)
+  const patternsContext = require.context('../patterns', false, /()*.md$/)
   const allpatternsMDFiles = patternsContext.keys()
 
   const patterns = allpatternsMDFiles.map(function(patternName) {
