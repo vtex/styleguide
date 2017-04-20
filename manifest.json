@@ -17,7 +17,7 @@
     "npm:markdown-to-react-components": "zehfernandes/markdown-to-react-components",
     "npm:react-syntax-highlighter": "^4.0.1",
     "npm:react-jsx": "^1.0.0",
-    "npm:vtex-tachyons": "^0.1.0"
+    "npm:vtex-tachyons": "^0.1.1"
   },
   "registries": [
     "smartcheckout"
