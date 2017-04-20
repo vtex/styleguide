@@ -1,0 +1,8 @@
+/* @import 'http://io.vtex.com.br/fonts/stylesheet.css'; */
+@import '~vtex-tachyons';
+
+p code,
+table code,
+li code {
+  color: rgb(0, 151, 157);
+}

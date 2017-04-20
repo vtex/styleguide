@@ -1,0 +1,11 @@
+node_modules
+**/*.log
+discussions/**/*
+scripts/**/*
+.babelrc
+.editorconfig
+.eslintrc
+.gitignore
+gulpfile.babel.js
+lerna.json
+NPM_OWNERS

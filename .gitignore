@@ -1,0 +1,17 @@
+# dependencies
+node_modules
+
+# testing
+coverage
+
+# production
+build
+lib
+docs
+
+# misc
+.DS_Store
+.env
+*.log
+
+.eslintrc

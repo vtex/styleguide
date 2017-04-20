@@ -1,0 +1,28 @@
+{
+  "name": "styleguide",
+  "vendor": "vtex",
+  "version": "0.0.1",
+  "title": "VTEX Styleguide",
+  "description": "",
+  "mustUpdateAt": "2017-09-26",
+  "categories": [
+    "styleguide"
+  ],
+  "settingsSchema": {},
+  "dependencies": {
+    "vtex.render-runtime": "0.x",
+    "vtex.render-builder": "0.x",
+    "vtex.onda": "0.x",
+    "npm:lodash": "4.17.4",
+    "npm:markdown-to-react-components": "zehfernandes/markdown-to-react-components",
+    "npm:react-syntax-highlighter": "^4.0.1",
+    "npm:react-jsx": "^1.0.0",
+    "npm:vtex-tachyons": "^0.1.0"
+  },
+  "registries": [
+    "smartcheckout"
+  ],
+  "scripts": {
+    "postreleasy": "vtex publish"
+  }
+}
