@@ -8,6 +8,9 @@ class Template extends Component {
     return (
       <div className="font-body">
         <Helmet
+          script={[
+            {src: 'https://unpkg.com/react-dom@15.4.2/dist/react-dom-server.min.js'}
+          ]}
           link={[
               {rel: "stylesheet", href: "http://io.vtex.com.br/fonts/stylesheet.css"},
           ]}
