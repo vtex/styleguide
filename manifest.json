@@ -11,7 +11,7 @@
   "settingsSchema": {},
   "dependencies": {
     "vtex.render-runtime": "0.x",
-    "vtex.render-builder": "0.x",
+    "vtex.render-builder": "1.x",
     "vtex.onda": "0.x",
     "npm:lodash": "4.17.4",
     "npm:markdown-to-react-components": "zehfernandes/markdown-to-react-components",
