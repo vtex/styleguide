@@ -9,7 +9,16 @@ class Template extends Component {
       <div className="font-body">
         <Helmet
           script={[
-            {src: 'https://unpkg.com/react-dom@15.4.2/dist/react-dom-server.min.js'}
+            {
+              type: 'text/javascript',
+              innerHTML: `
+                window.onload = function () {
+                  var rdom = document.createElement('script')
+                  rdom.src = 'https://unpkg.com/react-dom@15.5.4/dist/react-dom-server.min.js'
+                  document.body.appendChild(rdom)
+                }
+              `
+            }
           ]}
           link={[
               {rel: "stylesheet", href: "http://io.vtex.com.br/fonts/stylesheet.css"},
