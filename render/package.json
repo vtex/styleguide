@@ -1,6 +1,6 @@
 {
   "name": "vtex.styleguide",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "vtexDependencies": {
     "vtex.onda": "0.x"
   },
