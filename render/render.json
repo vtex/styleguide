@@ -1,0 +1,59 @@
+{
+  "routes": {
+    "root": {
+      "path": "/",
+      "component": "./Pages/Principles.js",
+      "theme": "./theme.css"
+    },
+    "principles": {
+      "path": "/principles",
+      "component": "./Pages/Principles.js",
+      "theme": "./theme.css"
+    },
+    "howto": {
+      "path": "/howto",
+      "component": "./Pages/GettingStarted.js",
+      "theme": "./theme.css"
+    },
+    "first-steps": {
+      "path": "/howto/first-steps",
+      "component": "./Pages/GettingStarted.js",
+      "theme": "./theme.css"
+    },
+    "grid-system": {
+      "path": "/howto/grid-system",
+      "component": "./Pages/GridSystem.js",
+      "theme": "./theme.css"
+    },
+    "element": {
+      "path": "/elements/:element",
+      "component": "./Pages/ComponentPage.js",
+      "theme": "./theme.css"
+    },
+    "elementExample": {
+      "path": "/elements/:element/example",
+      "component": "./Pages/DevPage.js",
+      "theme": "./theme.css"
+    },
+    "component": {
+      "path": "/components/:component",
+      "component": "./Pages/ComponentPage.js",
+      "theme": "./theme.css"
+    },
+    "componentExample": {
+      "path": "/components/:component/example",
+      "component": "./Pages/DevPage.js",
+      "theme": "./theme.css"
+    },
+    "pattern": {
+      "path": "/patterns/:page",
+      "component": "./Pages/MarkdownPage.js",
+      "theme": "./theme.css"
+    },
+    "notFound": {
+      "path": "/*",
+      "component": "./Pages/PageNotFound.js",
+      "theme": "./theme.css"
+    }
+  }
+}

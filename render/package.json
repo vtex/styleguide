@@ -1,0 +1,14 @@
+{
+  "name": "vtex.styleguide",
+  "version": "0.0.3",
+  "vtexDependencies": {
+    "vtex.onda": "0.x"
+  },
+  "dependencies": {
+    "lodash": "4.17.4",
+    "markdown-to-react-components": "zehfernandes/markdown-to-react-components",
+    "react-syntax-highlighter": "^4.0.1",
+    "react-jsx": "^1.0.0",
+    "vtex-tachyons": "^0.1.1"
+  }
+}

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import Link from 'vtex.render-runtime/components/Link'
+import Link from 'render/components/Link'
 import NavList from './NavList'
 
 //eslint-disable-next-line

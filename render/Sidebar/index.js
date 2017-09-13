@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import map from 'lodash/map'
-import Link from 'vtex.render-runtime/components/Link'
+import Link from 'render/components/Link'
 import NavSection from './NavSection.js'
 import NavItem from './NavItem.js'
 import tableOfContents from '../Routes/tableOfContents.js'
