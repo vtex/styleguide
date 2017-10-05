@@ -16,6 +16,6 @@
     "smartcheckout"
   ],
   "scripts": {
-    "postreleasy": "vtex publish"
+    "postreleasy": "vtex publish --public"
   }
 }
