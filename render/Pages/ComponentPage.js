@@ -1,7 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 import MarkdownRender from '../Component/MarkdownRender'
 import CodeEmbed from '../Component/CodeEmbed'
-import Template from '../Template'
 
 export default class ComponentPage extends Component {
   constructor (props) {
@@ -103,7 +102,7 @@ export default class ComponentPage extends Component {
     const status = 'Stable'
 
     return (
-      <Template>
+      <div>
         <section className="w-100 pa4 pa5-l bg-dark-gray white">
           <h1 className="mb0 pb0">{title}</h1>
           <p className="ma0 pa0 mt1">v{version} <span>{status}</span></p>
@@ -122,7 +121,7 @@ export default class ComponentPage extends Component {
         <section className="pl4 pr4 pl5-l pr5-l">
           <MarkdownRender {...this.props} markdown={markdown} />
         </section>
-      </Template>
+      </div>
     )
   }
 }

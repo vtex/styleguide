@@ -1,5 +1,4 @@
 import React, { PropTypes, Component } from 'react'
-import Template from '../Template'
 
 export default class DevPage extends Component {
   constructor (props) {
@@ -52,28 +51,16 @@ export default class DevPage extends Component {
   render () {
     const {ExampleComponent, errorLoadingComponent} = this.state
     if (!ExampleComponent) {
-      return (
-        <Template>
-          Loading
-        </Template>
-      )
+      return <span>Loading</span>
     }
 
     if (errorLoadingComponent) {
-      return (
-        <Template>
-          {JSON.stringify(errorLoadingComponent, null, 2)}
-        </Template>
-      )
+      return <span>JSON.stringify(errorLoadingComponent, null, 2)</span>
     }
 
     const Component = ExampleComponent.default
 
-    return (
-      <Template className="ph4 pv2 mt6-ns">
-        <Component />
-      </Template>
-    )
+    return <Component />
   }
 }
 
