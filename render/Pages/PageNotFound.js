@@ -1,10 +1,7 @@
 import React from 'react'
-import Template from '../Template'
 
 export default function PageNotFound () {
   return (
-    <Template>
-      <div>Not found</div>
-    </Template>
+    <h1 className="pa4 pa5-l cf">Oops! The page you were looking for doesn't exist.</h1>
   )
 }

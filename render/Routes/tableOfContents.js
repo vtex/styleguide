@@ -59,40 +59,36 @@ export default {
     },
     {
       name: 'How-to',
-      href: '/howto',
       children: [
         {
           name: 'Instalação',
-          href: '/first-steps',
+          href: '/howto/first-steps',
         },
         {
           name: 'Grid System',
-          href: '/grid-system',
+          href: '/howto/grid-system',
         },
       ],
     },
     {
       name: 'Elements',
-      href: '/elements',
       children: map(elements, (name) => ({
         name: startCase(name),
-        href: '/' + startCase(name).replace(' ', ''),
+        href: '/elements/' + startCase(name).replace(' ', ''),
       })),
     },
     {
       name: 'Componentes',
-      href: '/components',
       children: map(components, (name) => ({
         name: startCase(name).replace('Onda ', ''),
-        href: '/' + name,
+        href: '/components/' + name,
       })),
     },
     {
       name: 'Patterns',
-      href: '/patterns',
       children: map(patterns, (name) => ({
         name: startCase(name).replace('-', ' '),
-        href: '/' + name,
+        href: '/patterns/' + name,
       })),
     },
   ],

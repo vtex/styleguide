@@ -1,6 +1,5 @@
 import React, { PropTypes, Component } from 'react'
 import MarkdownRender from '../Component/MarkdownRender'
-import Template from '../Template'
 
 export default class MarkdownPage extends Component {
   constructor (props) {
@@ -71,11 +70,9 @@ export default class MarkdownPage extends Component {
     }
 
     return (
-      <Template>
-        <section className="pt5 pl4 pr4 pl5-l pr5-l">
-            <MarkdownRender {...this.props} markdown={markdown} />
-        </section>
-      </Template>
+      <section className="pt5 pl4 pr4 pl5-l pr5-l">
+          <MarkdownRender {...this.props} markdown={markdown} />
+      </section>
     )
   }
 }

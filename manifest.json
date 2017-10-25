@@ -10,7 +10,7 @@
   ],
   "settingsSchema": {},
   "builders": {
-    "render": "3.x"
+    "render": "4.x"
   },
   "registries": [
     "smartcheckout"

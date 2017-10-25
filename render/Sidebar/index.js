@@ -12,11 +12,11 @@ class Sidebar extends Component {
     return content.map((section) => {
       const {href: sectionHref, name: sectionName, children: sectionChildren} = section
       const regex = new RegExp(`^${sectionHref}`)
+      const path = global.__pathname__ || window.location.pathname
       return (
         <NavSection
           href={sectionHref}
-          current={window && window.location ? regex.test(window.location.pathname) : false}
-          disabled={!sectionHref}
+          current={regex.test(path)}
           name={sectionName}
           key={sectionName}>
           {
@@ -24,7 +24,7 @@ class Sidebar extends Component {
               const {href: itemHref, name: itemName} = sectionItem
               return (
                 <NavItem
-                  hash={itemHref ? sectionHref + itemHref : '#'}
+                  hash={itemHref ? itemHref : '#'}
                   disabled={!itemHref}
                   name={itemName}
                   key={itemName}
