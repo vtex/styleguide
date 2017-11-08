@@ -7,6 +7,12 @@
         "path": "/*path"
       }
     },
+    "styleguide/home": {
+      "component": "./Pages/Principles.js",
+      "route": {
+        "path": "/"
+      }
+    },
     "styleguide/principles": {
       "component": "./Pages/Principles.js",
       "route": {
