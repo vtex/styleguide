@@ -9,6 +9,7 @@
 # production
 /build
 /lib
+/styleguide
 
 # misc
 .DS_Store
