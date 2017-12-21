@@ -1,0 +1,28 @@
+{
+  "name": "styleguide-1",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-scripts": "1.0.17",
+    "react-styleguidist": "^6.1.0"
+  },
+  "scripts": {
+    "test": "react-scripts test --env=jsdom",
+    "predeploy": "npm run styleguide:build",
+    "deploy": "gh-pages -d build",
+    "styleguide": "styleguidist server",
+    "styleguide:build": "styleguidist build",
+    "compile": "NODE_ENV=production babel ./src/components --out-dir ./lib --ignore '__tests__,*.spec.js'",
+    "prepublish": "npm run compile",
+    "develop": "npm link && watch 'npm run compile' src"
+  },
+  "homepage": "https://vtex.github.io/styleguide",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "gh-pages": "^1.1.0",
+    "vtex-tachyons": "^0.2.8",
+    "watch": "^1.0.2"
+  }
+}
