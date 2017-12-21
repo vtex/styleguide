@@ -1,5 +1,7 @@
 ### Styleguide
 
+https://vtex.github.io/styleguide
+
 ### Setup
 
 ```sh
