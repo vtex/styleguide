@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 class Button extends Component {
   render() {
-    return <button className="h5 bg-red" />
+    return <button className="h5 bg-blue" />
   }
 }
 
