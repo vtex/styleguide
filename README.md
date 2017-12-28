@@ -17,11 +17,13 @@ yarn styleguide
 ### Developing using another project
 
 Run this in this repo:
+
 ```sh
 yarn develop
 ```
 
 In your project run:
+
 ```
 npm link @vtex/styleguide
 ```
