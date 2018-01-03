@@ -25,6 +25,10 @@ In your project run:
 ```
 npm link @vtex/styleguide
 ```
+Import (case a `<Button>` component in lib):
+```
+import Button from '@vtex/styleguide/lib/Button'
+```
 
 ### Publishing to npm
 
