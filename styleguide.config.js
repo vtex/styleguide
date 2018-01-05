@@ -24,20 +24,21 @@ module.exports = {
     },
     {
       name: 'Bundled components',
-      components: 'src/components/**/*.js',
+      components: 'src/components/**/*.{tsx,js}',
     },
     {
       name: 'Standalone components',
       content: 'docs/standalone-components.md',
     },
   ],
+  propsParser: function(filePath, source, resolver, handlers) {
+    if (filePath.includes('.tsx')) return require('react-docgen-typescript').parse(filePath)
+    return require('react-docgen').parse(source, resolver, handlers)
+  },
   getComponentPathLine(componentPath) {
     const pathArray = path.dirname(componentPath).split(path.sep)
     const componentName = pathArray[pathArray.length - 1]
-    const dir = path.relative(
-      path.join('src', 'components'),
-      path.dirname(componentPath)
-    )
+    const dir = path.relative(path.join('src', 'components'), path.dirname(componentPath))
     return `import ${componentName} from '@vtex/styleguide/lib/${dir}';`
   },
 }

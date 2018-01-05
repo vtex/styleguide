@@ -1,19 +1,9 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import * as React from 'react'
 
-class Button extends Component {
+class Button extends React.Component {
   render() {
-    return (
-      <button className={`bg-black ${this.props.primary ? 'red' : 'silver'}`}>
-        XAU {this.props.children}
-      </button>
-    )
+    return <button className="h5 bg-red" />
   }
-}
-
-Button.propTypes = {
-  primary: PropTypes.bool,
-  children: PropTypes.node.isRequired,
 }
 
 export default Button

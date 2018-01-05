@@ -2,27 +2,37 @@
   "name": "@vtex/styleguide",
   "version": "2.0.0",
   "scripts": {
-    "test": "react-scripts test --env=jsdom",
+    "start": "tsc && styleguidist server --config styleguide.config.js",
+    "prepublishOnly": "tsc",
+    "styleguide:build": "styleguidist build",
     "predeploy": "npm run styleguide:build",
     "deploy": "gh-pages -d styleguide",
-    "styleguide": "styleguidist server",
-    "styleguide:build": "styleguidist build",
-    "compile": "NODE_ENV=production babel ./src/components --out-dir ./lib --ignore '__tests__,*.spec.js'",
-    "prepublishOnly": "npm run compile",
-    "develop": "npm link && watch 'npm run compile' src"
+    "develop": "npm link && tsc --watch"
   },
+  "repository": "https://github.com/vtex/styleguide/",
   "homepage": "https://vtex.github.io/styleguide",
+  "license": "MIT",
   "devDependencies": {
-    "babel-cli": "^6.26.0",
+    "@babel/core": "^7.0.0-beta.36",
+    "@babel/preset-env": "^7.0.0-beta.36",
+    "@types/react": "^16.0.31",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.0.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.7",
+    "eslint": "^4.7.2",
     "eslint-config-vtex": "^7.0.0",
-    "eslint-config-vtex-react": "^3.0.3",
-    "eslint-config-vtex-react-app": "^3.1.1",
+    "eslint-config-vtex-react": "^3.0.2",
     "gh-pages": "^1.1.0",
     "react": "^16.2.0",
+    "react-docgen-typescript": "^0.0.11",
     "react-dom": "^16.2.0",
-    "react-scripts": "1.0.17",
     "react-styleguidist": "^6.1.0",
+    "ts-loader": "^2.1.0",
+    "typescript": "^2.4.1",
     "vtex-tachyons": "^0.2.8",
-    "watch": "^1.0.2"
+    "webpack": "^2.6.1"
   }
 }
