@@ -30,7 +30,7 @@ class Button extends Component {
     }
 
     return (
-      <button className={`${classes}`}>
+      <button className={`${classes}`} {...this.props.htmlProps} disabled={disabled}>
         {this.props.children}
       </button>
     )
