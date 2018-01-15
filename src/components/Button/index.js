@@ -9,10 +9,10 @@ class Button extends Component {
       throw new Error('Button component cannot be primary AND secondary')
     }
 
-    let classes = 'ph4 pv2 ttu br2 fw4 f7 '
+    let classes = 'fw5 ph5 pv3 ttu br2 fw4 f7 '
 
     if (!secondary && !primary && !disabled) {
-      classes += 'bw0 blue hover-bg-light-gray bg-animate '
+      classes += 'bw1 ba b--white blue hover-bg-light-silver hover-b--light-silver bg-animate '
     }
 
     if (secondary && !disabled) {
@@ -20,11 +20,11 @@ class Button extends Component {
     }
 
     if (primary && !disabled) {
-      classes += 'bw1 ba b--blue bg-blue white hover-bg-dark-blue hover-b-dark-blue bg-animate '
+      classes += 'bw1 ba b--blue bg-blue white hover-bg-heavy-blue hover-b--heavy-blue bg-animate '
     }
 
     if (disabled) {
-      classes += 'bw0 bg-moon-gray gray '
+      classes += 'bw1 ba b--light-gray bg-light-gray gray '
     } else {
       classes += 'pointer '
     }
