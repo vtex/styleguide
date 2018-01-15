@@ -2,7 +2,7 @@ Button
 
 Default
 ```js
-<Button>Cancel</Button>
+<Button>Save</Button>
 ```
 
 Secondary
@@ -23,7 +23,7 @@ Disabled
 Side by side
 ```js
 <div>
-  <Button>Cancel</Button>
+  <Button>Save</Button>
   <Button secondary>Save</Button>
   <Button primary>Save</Button>
   <Button disabled>Save</Button>
