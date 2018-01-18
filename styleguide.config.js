@@ -3,6 +3,7 @@ const path = require('path')
 module.exports = {
   require: ['vtex-tachyons'],
   showUsage: true,
+  title: 'VTEX Styleguide',
   getComponentPathLine(componentPath) {
     const pathArray = path.dirname(componentPath).split(path.sep)
     const componentName = pathArray[pathArray.length - 1]
