@@ -22,7 +22,7 @@
     "react-dom": "^16.2.0",
     "react-scripts": "1.0.17",
     "react-styleguidist": "^6.1.0",
-    "vtex-tachyons": "^0.2.8",
+    "vtex-tachyons": "^1.0.1",
     "watch": "^1.0.2"
   }
 }
