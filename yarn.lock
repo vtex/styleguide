@@ -7289,9 +7289,9 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
-"vtex-tachyons@git+https://github.com/vtex/vtex-tachyons.git#v1.0.0-beta.0":
-  version "1.0.0"
-  resolved "git+https://github.com/vtex/vtex-tachyons.git#bcf95154794956cdf43135ba211d9d7bf45a219a"
+vtex-tachyons@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/vtex-tachyons/-/vtex-tachyons-1.0.1.tgz#3abe2162679d54352af19555f425fe4397eed9c2"
 
 walker@~1.0.5:
   version "1.0.7"
