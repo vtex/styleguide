@@ -12,15 +12,15 @@ class Button extends Component {
     let classes = 'fw5 ph5 pv3 ttu br2 fw4 f7 '
 
     if (!secondary && !primary && !disabled) {
-      classes += 'bw1 ba b--white blue hover-bg-light-silver hover-b--light-silver bg-animate '
+      classes += 'bw1 ba b--white blue hover-bg-light-silver hover-b--light-silver '
     }
 
     if (secondary && !disabled) {
-      classes += 'bw1 ba b--blue blue hover-bg-blue hover-white bg-animate '
+      classes += 'bw1 ba b--blue blue hover-bg-blue hover-white '
     }
 
     if (primary && !disabled) {
-      classes += 'bw1 ba b--blue bg-blue white hover-bg-heavy-blue hover-b--heavy-blue bg-animate '
+      classes += 'bw1 ba b--blue bg-blue white hover-bg-heavy-blue hover-b--heavy-blue '
     }
 
     if (disabled) {
