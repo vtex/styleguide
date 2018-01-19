@@ -27,12 +27,16 @@ class Input extends Component {
     }
 
     const size = 'w-100 '
-    const box = 'pa3 ma0 '
+    const box = 'pa3 ma0 border-box '
     const border = 'bw1 br2 b--solid outline-0 '
-    const typography = 'f6 '
-
+    const typography = 'f6 near-black'
     let classes = `${size} ${box} ${border} ${typography} `
-    const errorMessageClasses = 'f6 bg-washed-red red '
+
+    const ebox = 'pa2 '
+    const eborder = 'bw3 br2 b--solid b--washed-red '
+    const etypography = 'f7 dark-gray '
+    const ebackground = 'bg-washed-red '
+    const errorMessageClasses = `${ebox} ${eborder} ${etypography} ${ebackground}`
 
     if (active) {
       classes += 'b--dark-gray '
@@ -41,7 +45,7 @@ class Input extends Component {
     }
 
     if (error) {
-      classes += 'b--red '
+      classes += 'b--red mb3 '
     }
 
     if (disabled) {
@@ -51,7 +55,7 @@ class Input extends Component {
     }
 
     return (
-      <div>
+      <div {...this.props.htmlProps}>
         <input
           onClick={this.handleSetActive}
           onBlur={this.handleBlur}
@@ -60,7 +64,6 @@ class Input extends Component {
           placeholder={placeholder}
           disabled={disabled}
           className={classes}
-          {...this.props.htmlProps}
         />
         {errorMessage && (
           <div className={errorMessageClasses}>{errorMessage}</div>
@@ -95,7 +98,7 @@ Input.propTypes = {
   disabled: PropTypes.bool,
   error: PropTypes.bool,
   errorMessage: PropTypes.string,
-  /** Extra attributes to be passed to the input */
+  /** Extra attributes for the container */
   htmlProps: PropTypes.object,
 }
 
