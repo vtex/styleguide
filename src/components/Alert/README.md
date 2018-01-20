@@ -1,5 +1,3 @@
-Alert
-
 Info
 
 ```js
