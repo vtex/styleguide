@@ -1,59 +1,61 @@
 #### Default with placeholder
 
 ```js
-<Input id="placeholder" placeholder="Type me…" />
+<Input htmlProps={{ placeholder: 'Type me…' }} />
+```
+
+#### Default value
+
+```js
+<Input htmlProps={{ value: '007', class: 'test-class' }} />
 ```
 
 #### Disabled
 
 ```js
-<Input id="disabled" disabled placeholder="Disabled text" />
+<Input disabled htmlProps={{ placeholder: 'Disabled text' }} />
 ```
 
 #### Error
 
 ```js
-<Input
-  id="error"
-  error
-  errorMessage="Sorry, the code you provided does not match."
-/>
+<Input error errorMessage="Sorry, the code you provided does not match." />
 ```
 
 #### Types
 
-**Number**
+**Number, step 2**
 
 ```js
-<Input id="number" type="number" placeholder="Numbers only…" />
+<Input htmlProps={{ type: 'number', step: '2' }} placeholder="Numbers only…" />
 ```
 
 **Date**
 
 ```js
-<Input id="date" type="date" />
+<Input htmlProps={{ type: 'date' }} />
 ```
 
 **File**
 
 ```js
-<Input id="file" type="file" />
+<Input htmlProps={{ type: 'file' }} />
 ```
 
 **Month**
 
 ```js
-<Input id="month" type="month" />
+<Input htmlProps={{ type: 'month' }} />
 ```
 
 **Password**
 
 ```js
-<Input id="password" type="password" />
+<Input htmlProps={{ type: 'password' }} />
 ```
 
 **Time**
 
 ```js
-<Input id="time" type="time" />
+<Input htmlProps={{ type: 'time' }} />
 ```

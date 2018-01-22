@@ -2,15 +2,22 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 class Input extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
 
     this.state = {
       active: false,
+      value: props.htmlProps.value || '',
     }
   }
 
-  handleSetActive = () => {
+  handleChange = event => {
+    const value = event.target.value
+    this.setState({ value })
+    this.props.onChange && this.props.onChange(value)
+  }
+
+  handleFocus = () => {
     this.setState({ active: true })
   }
 
@@ -19,24 +26,21 @@ class Input extends Component {
   }
 
   render() {
-    const { disabled, id, type, placeholder, error, errorMessage } = this.props
-    const { active } = this.state
+    const { error, errorMessage, disabled, htmlProps } = this.props
+    const { active, value } = this.state
 
-    if (!id) {
-      throw new Error('Input component must have an id attibute')
-    }
-
-    const size = 'w-100 '
-    const box = 'pa3 ma0 border-box '
-    const border = 'bw1 br2 b--solid outline-0 '
+    const size = 'w-100'
+    const box = 'pa3 ma0 border-box'
+    const border = 'bw1 br2 b--solid outline-0'
     const typography = 'f6 near-black'
-    let classes = `${size} ${box} ${border} ${typography} `
+    const customClasses = htmlProps.class || ''
+    let classes = `${size} ${box} ${border} ${typography} ${customClasses} `
 
-    const ebox = 'pa2 '
-    const eborder = 'bw3 br2 b--solid b--washed-red '
-    const etypography = 'f7 dark-gray '
-    const ebackground = 'bg-washed-red '
-    const errorMessageClasses = `${ebox} ${eborder} ${etypography} ${ebackground}`
+    const eBox = 'pa2 '
+    const eBorder = 'bw3 br2 b--solid b--washed-red '
+    const eTypography = 'f7 dark-gray '
+    const eBackground = 'bg-washed-red '
+    const errorMessageClasses = `${eBox} ${eBorder} ${eTypography} ${eBackground}`
 
     if (active) {
       classes += 'b--dark-gray '
@@ -55,15 +59,15 @@ class Input extends Component {
     }
 
     return (
-      <div {...this.props.htmlProps}>
+      <div>
         <input
-          onClick={this.handleSetActive}
+          {...htmlProps}
           onBlur={this.handleBlur}
-          type={type}
-          id={id}
-          placeholder={placeholder}
-          disabled={disabled}
+          onFocus={this.handleFocus}
+          onChange={this.handleChange}
           className={classes}
+          disabled={disabled}
+          value={value}
         />
         {errorMessage && (
           <div className={errorMessageClasses}>{errorMessage}</div>
@@ -76,30 +80,17 @@ class Input extends Component {
 Input.defaultProps = {
   disabled: false,
   htmlProps: {},
-  placeholder: '',
-  type: 'text',
   error: false,
   errorMessage: '',
 }
 
 Input.propTypes = {
-  /** A unique id for the input. To be used with a label */
-  id: PropTypes.string.isRequired,
-  placeholder: PropTypes.string,
-  type: PropTypes.oneOf([
-    'text',
-    'number',
-    'date',
-    'file',
-    'month',
-    'password',
-    'time',
-  ]),
   disabled: PropTypes.bool,
   error: PropTypes.bool,
   errorMessage: PropTypes.string,
-  /** Extra attributes for the container */
+  /** Extra attributes for the input */
   htmlProps: PropTypes.object,
+  onChange: PropTypes.func,
 }
 
 export default Input
