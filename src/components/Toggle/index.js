@@ -22,9 +22,9 @@ class Toggle extends Component {
     const { checked } = this.state
 
     let classes = 'flex items-center relative h2 w3 ph1 br4 '
-    let circleclasses = 'absolute br-100 pa3 mh2 '
-    let icondenyclasses = 'absolute mh2 left-2 dn '
-    let iconcheckclasses = 'absolute mh3 dn '
+    let circleClasses = 'absolute br-100 pa3 mh2 '
+    let iconDenyClasses = 'absolute mh2 left-2 dn '
+    let iconCheckClasses = 'absolute mh3 dn '
 
     if (secondary && primary) {
       throw new Error('Toggle component cannot be primary AND secondary')
@@ -32,26 +32,26 @@ class Toggle extends Component {
 
     if (!secondary && !primary && !disabled && !checked) {
       classes += 'bg-red '
-      icondenyclasses += 'flex o-30 '
-      iconcheckclasses += 'flex o-0 '
+      iconDenyClasses += 'flex o-30 '
+      iconCheckClasses += 'flex o-0 '
     }
 
     if (!secondary && !primary && !disabled && checked) {
       classes += 'bg-green '
-      icondenyclasses += 'flex o-0 '
-      iconcheckclasses += 'flex o-30 '
+      iconDenyClasses += 'flex o-0 '
+      iconCheckClasses += 'flex o-30 '
     }
 
     if (primary && !checked) {
       classes += 'bg-red '
-      iconcheckclasses += 'flex o-0 '
-      icondenyclasses += 'flex o-30 '
+      iconCheckClasses += 'flex o-0 '
+      iconDenyClasses += 'flex o-30 '
     }
 
     if (primary && checked) {
       classes += 'bg-green '
-      iconcheckclasses += 'flex o-30 '
-      icondenyclasses += 'flex o-0 '
+      iconCheckClasses += 'flex o-30 '
+      iconDenyClasses += 'flex o-0 '
     }
 
     if (secondary && !checked) {
@@ -63,14 +63,14 @@ class Toggle extends Component {
     }
 
     if (checked) {
-      circleclasses += 'left-2 '
+      circleClasses += 'left-2 '
     }
 
     if (disabled) {
-      circleclasses += 'bg-mid-gray '
+      circleClasses += 'bg-mid-gray '
       classes += 'bg-silver '
     } else {
-      circleclasses += 'bg-white '
+      circleClasses += 'bg-white '
     }
 
     return (
@@ -86,12 +86,12 @@ class Toggle extends Component {
               height: '1.5rem',
               width: '1.5rem',
             }}
-            className={`${circleclasses}`}
+            className={`${circleClasses}`}
           />
-          <div className={icondenyclasses}>
+          <div className={iconDenyClasses}>
             <Deny />
           </div>
-          <div className={iconcheckclasses}>
+          <div className={iconCheckClasses}>
             <Check />
           </div>
         </div>
