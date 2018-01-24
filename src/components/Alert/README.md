@@ -1,7 +1,7 @@
 Info
 
 ```js
-<Alert onClose={() => console.log("Closed!")}>
+<Alert>
   Congrats! Your recovery code was printed and the app authenticator was
   sucessfully validated.
 </Alert>

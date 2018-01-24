@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import Close from '../Icons/Close'
+import Success from '../Icons/Success'
+import Error from '../Icons/Error'
+import Warning from '../Icons/Warning'
 
 class Alert extends Component {
   componentDidMount() {
-    if (this.props.autoClose) {
+    if (this.props.autoClose && this.props.onClose) {
       this.timeout = setTimeout(this.props.onClose, this.props.autoClose)
     }
   }
@@ -17,21 +21,25 @@ class Alert extends Component {
     let classes = 'pa5 br2 '
     let closeClass = ''
     let showIcon = false
+    let Icon = <div />
 
     switch (type) {
       case 'success': {
         showIcon = true
         classes += 'bg-washed-green '
+        Icon = Success
         break
       }
       case 'error': {
         showIcon = true
         classes += 'bg-washed-red '
+        Icon = Error
         break
       }
       case 'warning': {
         showIcon = true
         classes += 'bg-washed-yellow '
+        Icon = Warning
         break
       }
       case 'info-dark': {
@@ -48,16 +56,18 @@ class Alert extends Component {
     return (
       <div className={`flex justify-between ${classes}`}>
         <div className="flex">
-          {showIcon && <div className="">O</div>}
+          {showIcon && <Icon />}
 
           <div className={`${showIcon ? 'ph5' : 'pr5'}`}>
             {this.props.children}
           </div>
         </div>
 
-        <div className={`pointer ${closeClass}`} onClick={onClose}>
-          X
-        </div>
+        {onClose && (
+          <div className={`pointer ${closeClass}`} onClick={onClose}>
+            <Close />
+          </div>
+        )}
       </div>
     )
   }
@@ -66,7 +76,7 @@ class Alert extends Component {
 Alert.propTypes = {
   type: PropTypes.oneOf(['success', 'error', 'warning', 'info', 'info-dark']),
   children: PropTypes.node.isRequired,
-  onClose: PropTypes.func.isRequired,
+  onClose: PropTypes.func,
   autoClose: PropTypes.number,
 }
 
