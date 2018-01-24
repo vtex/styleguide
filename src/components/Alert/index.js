@@ -55,10 +55,14 @@ class Alert extends Component {
 
     return (
       <div className={`flex justify-between ${classes}`}>
-        <div className="flex">
-          {showIcon && <Icon />}
+        <div className="flex items-center">
+          {showIcon && (
+            <div className="flex">
+              <Icon />
+            </div>
+          )}
 
-          <div className={`${showIcon ? 'ph5' : 'pr5'}`}>
+          <div className={`${showIcon ? 'ph5 flex' : 'pr5'}`}>
             {this.props.children}
           </div>
         </div>
