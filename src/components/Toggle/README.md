@@ -7,19 +7,28 @@ Default
 Primary
 
 ```js
-<Toggle primary />
+<div>
+  <Toggle primary />
+  <Toggle primary checked />
+</div>
 ```
 
 Secondary
 
 ```js
-<Toggle secondary />
+<div>
+  <Toggle secondary />
+  <Toggle secondary checked />
+</div>
 ```
 
 Disabled
 
 ```js
-<Toggle disabled />
+<div>
+  <Toggle disabled />
+  <Toggle disabled checked />
+</div>
 ```
 
 Side by side
@@ -27,12 +36,13 @@ Side by side
 ```js
 <div>
   <Toggle />
+  <Toggle checked />
   <br />
   <Toggle secondary />
-  <br />
-  <Toggle primary />
+  <Toggle secondary checked />
   <br />
   <Toggle disabled />
+  <Toggle disabled checked />
   <br />
 </div>
 ```
