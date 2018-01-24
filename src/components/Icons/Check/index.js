@@ -15,7 +15,7 @@ export default class Check extends Component {
 }
 
 Check.defaultProps = {
-  fill: '#fff',
+  fill: '#000',
 }
 
 Check.propTypes = {
