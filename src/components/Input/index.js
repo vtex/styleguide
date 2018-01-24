@@ -17,12 +17,14 @@ class Input extends Component {
     this.props.onChange && this.props.onChange(value)
   }
 
-  handleFocus = () => {
+  handleFocus = event => {
     this.setState({ active: true })
+    this.props.onFocus && this.props.onFocus(event)
   }
 
-  handleBlur = () => {
+  handleBlur = event => {
     this.setState({ active: false })
+    this.props.onBlur && this.props.onBlur(event)
   }
 
   render() {
@@ -91,6 +93,8 @@ Input.propTypes = {
   /** Extra attributes for the input */
   htmlProps: PropTypes.object,
   onChange: PropTypes.func,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
 }
 
 export default Input
