@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import Deny from '../Icons/deny'
-import Check from '../Icons/check'
+import Deny from '../Icons/Deny'
+import Check from '../Icons/Check'
 
 class Toggle extends Component {
   constructor(props) {
