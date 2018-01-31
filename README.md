@@ -26,7 +26,7 @@ In your project run:
 npm link @vtex/styleguide
 ```
 Import (case a `<Button>` component in lib):
-```
+```js
 import Button from '@vtex/styleguide/lib/Button'
 ```
 
