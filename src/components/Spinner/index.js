@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Loader = () => (
+const Spinner = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 100 100"
@@ -30,4 +30,4 @@ const Loader = () => (
   </svg>
 )
 
-export default Loader
+export default Spinner
