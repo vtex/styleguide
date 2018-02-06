@@ -7,7 +7,7 @@
 #### Default value
 
 ```js
-<Input htmlProps={{ value: '007', class: 'test-class' }} />
+<Input htmlProps={{ value: '007' }} />
 ```
 
 #### Disabled
