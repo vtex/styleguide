@@ -7,12 +7,13 @@
     "deploy": "gh-pages -d styleguide",
     "styleguide": "styleguidist server",
     "styleguide:build": "styleguidist build",
-    "compile":
-      "NODE_ENV=production babel --plugins transform-es2015-modules-commonjs ./src/components --out-dir ./lib --ignore '__tests__,*.spec.js'",
+    "compile": "NODE_ENV=production babel --plugins transform-es2015-modules-commonjs ./src/components --out-dir ./lib --ignore '__tests__,*.spec.js'",
     "prepublishOnly": "npm run compile",
     "develop": "npm link && watch 'npm run compile' src"
   },
-  "files": ["lib/"],
+  "files": [
+    "lib/"
+  ],
   "homepage": "https://vtex.github.io/styleguide",
   "devDependencies": {
     "babel-cli": "^6.26.0",

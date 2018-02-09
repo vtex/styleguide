@@ -1,33 +1,32 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import './index.css'
 
-const Spinner = () => (
+const Spinner = ({ secondary }) => (
   <svg
+    className="spinner"
+    viewBox="0 0 66 66"
     xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 100 100"
-    preserveAspectRatio="xMidYMid"
   >
     <circle
-      cx="50"
-      cy="50"
+      className="path"
+      stroke={secondary ? 'white' : '#3791e6'}
       fill="none"
-      stroke="#3791E6"
-      strokeWidth="10"
-      r="40"
-      strokeDasharray="188.49555921538757 64.83185307179586"
-      transform="rotate(96 50 50)"
-    >
-      <animateTransform
-        attributeName="transform"
-        type="rotate"
-        calcMode="linear"
-        values="0 50 50;360 50 50"
-        keyTimes="0;1"
-        dur="1s"
-        begin="0s"
-        repeatCount="indefinite"
-      />
-    </circle>
+      strokeWidth="6"
+      strokeLinecap="round"
+      cx="33"
+      cy="33"
+      r="30"
+    />
   </svg>
 )
+
+Spinner.defaultProps = {
+  secondary: false,
+}
+
+Spinner.propTypes = {
+  secondary: PropTypes.bool,
+}
 
 export default Spinner

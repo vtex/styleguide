@@ -1,12 +1,9 @@
 #### Default
 
-```js
-<table style={{ height: '40px', width: '40px' }}>
-  <Spinner />
-</table>
+```
+<Spinner />
 ```
 
-_Notes:_
+_Note:_
 
-* The `table` is only used to contain the svg for the demo.
 * The spinner has no width, meaning its parent will have to deal with it.
