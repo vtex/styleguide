@@ -1,24 +1,14 @@
 Default
 
 ```js
-<Toggle />
+<Toggle id='toggle1'/>
 ```
 
-Primary
+Semantic
 
 ```js
 <div>
-  <Toggle primary />
-  <Toggle primary checked />
-</div>
-```
-
-Secondary
-
-```js
-<div>
-  <Toggle secondary />
-  <Toggle secondary checked />
+  <Toggle semantic id='toggle2'/>  
 </div>
 ```
 
@@ -26,8 +16,7 @@ Disabled
 
 ```js
 <div>
-  <Toggle disabled />
-  <Toggle disabled checked />
+  <Toggle disabled id='toggle4'/>
 </div>
 ```
 
@@ -35,14 +24,11 @@ Side by side
 
 ```js
 <div>
-  <Toggle />
-  <Toggle checked />
+  <Toggle id='toggle5'/>
   <br />
-  <Toggle secondary />
-  <Toggle secondary checked />
+  <Toggle semantic id='toggle6'/>
   <br />
-  <Toggle disabled />
-  <Toggle disabled checked />
+  <Toggle disabled id='toggle7'/>
   <br />
 </div>
 ```

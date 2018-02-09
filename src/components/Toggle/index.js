@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import Deny from '../Icons/Deny'
-import Check from '../Icons/Check'
-
 class Toggle extends Component {
   constructor(props) {
     super(props)
@@ -17,58 +14,44 @@ class Toggle extends Component {
     !this.props.disabled && this.setState({ checked: !this.state.checked })
 
   render() {
-    const { primary, secondary, disabled, id } = this.props
+    const { semantic, disabled, id } = this.props
 
     const { checked } = this.state
 
-    let classes = 'flex items-center relative h2 w3 ph1 br4 '
+    let classes = 'flex items-center relative h2 w3 ph1 br4 bg-animate '
     let circleClasses = 'absolute br-100 pa3 mh2 '
-    let iconDenyClasses = 'absolute mh2 left-2 dn '
-    let iconCheckClasses = 'absolute mh3 dn '
 
-    if (secondary && primary) {
-      throw new Error('Toggle component cannot be primary AND secondary')
+    // Background
+    if (semantic) {
+      if (!disabled && !checked) {
+        classes += 'bg-red '
+      }
+
+      if (!disabled && checked) {
+        classes += 'bg-green '
+      }
+     
+    } else if (disabled) {
+      classes += 'bg-near-white '
+    } else {
+       if (!checked) {
+        classes += 'bg-gray '
+      }
+
+      if (checked) {
+        classes += 'bg-blue '
+      }
     }
 
-    if (!secondary && !primary && !disabled && !checked) {
-      classes += 'bg-red '
-      iconDenyClasses += 'flex o-30 '
-      iconCheckClasses += 'flex o-0 '
-    }
-
-    if (!secondary && !primary && !disabled && checked) {
-      classes += 'bg-green '
-      iconDenyClasses += 'flex o-0 '
-      iconCheckClasses += 'flex o-30 '
-    }
-
-    if (primary && !checked) {
-      classes += 'bg-red '
-      iconCheckClasses += 'flex o-0 '
-      iconDenyClasses += 'flex o-30 '
-    }
-
-    if (primary && checked) {
-      classes += 'bg-green '
-      iconCheckClasses += 'flex o-30 '
-      iconDenyClasses += 'flex o-0 '
-    }
-
-    if (secondary && !checked) {
-      classes += 'bg-gray '
-    }
-
-    if (secondary && checked) {
-      classes += 'bg-blue '
-    }
-
+    // Circle
     if (checked) {
       circleClasses += 'left-2 '
+    } else {
+      circleClasses += 'left-0 '
     }
 
     if (disabled) {
-      circleClasses += 'bg-mid-gray '
-      classes += 'bg-silver '
+      circleClasses += 'bg-light-gray '
     } else {
       circleClasses += 'bg-white '
     }
@@ -76,30 +59,26 @@ class Toggle extends Component {
     return (
       <label
         htmlFor={`toggle-${id}`}
-        className="flex flex-row items-center"
+        className="flex flex-row items-center pointer" 
         {...this.props.htmlProps}
       >
         {this.props.children}
         <div className={`${classes}`}>
-          <div
+          <div 
             style={{
               height: '1.5rem',
               width: '1.5rem',
+              transition: 'all .2s ease-out',
+              boxShadow: disabled ? 'none' : '0 0 10px rgba(0,0,0,0.2)'
             }}
             className={`${circleClasses}`}
-          />
-          <div className={iconDenyClasses}>
-            <Deny />
-          </div>
-          <div className={iconCheckClasses}>
-            <Check />
+          >
           </div>
         </div>
         <input
-          id={id}
+          id={`toggle-${id}`} 
           type="checkbox"
-          className="dn"
-          name={`toggle-${id}`}
+          className="o-0" 
           disabled={disabled}
           checked={this.state.checked}
           onClick={this.handleCheck}
