@@ -1,22 +1,22 @@
 {
   "name": "@vtex/styleguide",
-  "version": "2.0.0-rc.4",
+  "version": "2.0.0-rc.5",
   "scripts": {
     "test": "react-scripts test --env=jsdom",
     "predeploy": "npm run styleguide:build",
     "deploy": "gh-pages -d styleguide",
     "styleguide": "styleguidist server",
     "styleguide:build": "styleguidist build",
-    "compile": "NODE_ENV=production babel ./src/components --out-dir ./lib --ignore '__tests__,*.spec.js'",
+    "compile":
+      "NODE_ENV=production babel --plugins transform-es2015-modules-commonjs ./src/components --out-dir ./lib --ignore '__tests__,*.spec.js'",
     "prepublishOnly": "npm run compile",
     "develop": "npm link && watch 'npm run compile' src"
   },
-  "files": [
-    "lib/"
-  ],
+  "files": ["lib/"],
   "homepage": "https://vtex.github.io/styleguide",
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
     "eslint-config-vtex": "^7.0.0",
     "eslint-config-vtex-react": "^3.0.3",
     "eslint-config-vtex-react-app": "^3.1.1",
