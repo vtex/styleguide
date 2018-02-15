@@ -1,6 +1,6 @@
 {
   "name": "@vtex/styleguide",
-  "version": "2.0.0-rc.5",
+  "version": "2.0.0-rc.4",
   "scripts": {
     "test": "react-scripts test --env=jsdom",
     "predeploy": "npm run styleguide:build",
