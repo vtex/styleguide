@@ -7,7 +7,9 @@
     "deploy": "gh-pages -d styleguide",
     "styleguide": "styleguidist server",
     "styleguide:build": "styleguidist build",
-    "compile": "NODE_ENV=production babel --plugins transform-es2015-modules-commonjs ./src/components --out-dir ./lib --ignore '__tests__,*.spec.js'",
+    "compile": "npm run cleanlib && NODE_ENV=production babel --plugins transform-es2015-modules-commonjs ./src/components --out-dir ./lib --ignore '__tests__,*.spec.js' && npm run copycss",
+    "copycss": "copyfiles -u 2 src/**/*.css lib",
+    "cleanlib": "sudo rm -rf lib",
     "prepublishOnly": "npm run compile",
     "develop": "npm link && watch 'npm run compile' src"
   },
@@ -18,6 +20,7 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
+    "copyfiles": "^1.2.0",
     "eslint-config-vtex": "^7.0.0",
     "eslint-config-vtex-react": "^3.0.3",
     "eslint-config-vtex-react-app": "^3.1.1",
