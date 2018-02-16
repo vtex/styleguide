@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import Deny from '../Icons/Deny'
+import Check from '../Icons/Check'
+
 class Toggle extends Component {
   constructor(props) {
     super(props)
@@ -20,15 +23,21 @@ class Toggle extends Component {
 
     let classes = 'flex items-center relative h2 w3 ph1 br4 bg-animate '
     let circleClasses = 'absolute br-100 pa3 mh2 '
+    let iconDenyClasses = 'absolute mh2 dn '
+    let iconCheckClasses = 'absolute mh3 dn '
 
     // Background
     if (semantic) {
-      if (!disabled && !checked) {
+      if (!disabled && !checked) { 
         classes += 'bg-red '
+        iconDenyClasses += 'flex o-100 ' 
+        iconCheckClasses += 'flex o-0 '
       }
 
       if (!disabled && checked) {
         classes += 'bg-green '
+        iconDenyClasses += 'flex o-0 '
+        iconCheckClasses += 'flex o-100 '
       }
      
     } else if (disabled) {
@@ -46,8 +55,12 @@ class Toggle extends Component {
     // Circle
     if (checked) {
       circleClasses += 'left-2 '
+      iconDenyClasses += 'left-2 '
+      iconCheckClasses += 'left-2 '
     } else {
       circleClasses += 'left-0 '
+      iconDenyClasses += 'left-0 '
+      iconCheckClasses += 'left-0 '
     }
 
     if (disabled) {
@@ -58,8 +71,8 @@ class Toggle extends Component {
 
     return (
       <label
-        htmlFor={`toggle-${id}`}
-        className="flex flex-row items-center pointer" 
+        htmlFor={`${id}`}
+        className={`flex flex-row items-center ${!disabled && 'pointer'}`}
         {...this.props.htmlProps}
       >
         {this.props.children}
@@ -71,12 +84,29 @@ class Toggle extends Component {
               transition: 'all .2s ease-out',
               boxShadow: disabled ? 'none' : '0 0 10px rgba(0,0,0,0.2)'
             }}
-            className={`${circleClasses}`}
-          >
+            className={`${circleClasses}`} 
+          > 
+          </div> 
+          <div
+            className={iconDenyClasses}
+            style={{
+              marginLeft: '.4rem',
+              transition: 'left .2s ease-out' 
+            }}>
+            {/* @todo hardcoded color because Tachyons doesn't expose these as variables */}
+            <Deny fill="#ff8080"/>
+          </div>
+          <div
+            className={iconCheckClasses}
+            style={{
+              transition: 'left .2s ease-out'
+            }}>
+            {/* @todo hardcoded color because Tachyons doesn't expose these as variables */}
+            <Check fill="#8bc34a"/> 
           </div>
         </div>
         <input
-          id={`toggle-${id}`} 
+          id={`${id}`} 
           type="checkbox"
           className="o-0" 
           disabled={disabled}
@@ -98,10 +128,9 @@ Toggle.defaultProps = {
 
 Toggle.propTypes = {
   checked: PropTypes.bool,
-  children: PropTypes.node.isRequired,
   disabled: PropTypes.bool,
   id: PropTypes.string,
-  htmlProps: PropTypes.object,
+  htmlProps: PropTypes.object, 
   primary: PropTypes.bool,
   secondary: PropTypes.bool,
 }

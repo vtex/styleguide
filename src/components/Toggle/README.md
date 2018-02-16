@@ -15,7 +15,7 @@ Semantic
 Disabled
 
 ```js
-<div>
+<div> 
   <Toggle disabled id='toggle4'/>
 </div>
 ```
