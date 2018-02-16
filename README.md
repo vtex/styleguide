@@ -30,13 +30,11 @@ Import (case a `<Button>` component in lib):
 import Button from '@vtex/styleguide/lib/Button'
 ```
 
-#### Known issue
-Your project has to run with webpack >= 2. Here's a [guide](https://webpack.js.org/guides/migrating/) for upgrading Webpack to v2. 
-
-### Publishing to npm
+### Creating a new release and publishing on NPM
 
 ```sh
-npm publish
+releasy pre
+npm publish 
 ```
 
 ### Publishing Styleguide page
@@ -44,3 +42,6 @@ npm publish
 ```sh
 yarn deploy
 ```
+
+#### Known issues
+Your project has to run with webpack >= 2. Here's a [guide](https://webpack.js.org/guides/migrating/) for upgrading Webpack to v2. 
