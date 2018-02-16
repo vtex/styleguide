@@ -43,7 +43,7 @@ class Success extends Component {
 }
 
 Success.defaultProps = {
-  fill: '#00CCA0',
+  fill: '#8bc34a',
 }
 
 Success.propTypes = {
