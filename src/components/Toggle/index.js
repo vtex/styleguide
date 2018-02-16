@@ -17,89 +17,98 @@ class Toggle extends Component {
     !this.props.disabled && this.setState({ checked: !this.state.checked })
 
   render() {
-    const { primary, secondary, disabled, id } = this.props
+    const { semantic, disabled, id } = this.props
 
     const { checked } = this.state
 
-    let classes = 'flex items-center relative h2 w3 ph1 br4 '
+    let classes = 'flex items-center relative h2 w3 ph1 br4 bg-animate '
     let circleClasses = 'absolute br-100 pa3 mh2 '
-    let iconDenyClasses = 'absolute mh2 left-2 dn '
+    let iconDenyClasses = 'absolute mh2 dn '
     let iconCheckClasses = 'absolute mh3 dn '
 
-    if (secondary && primary) {
-      throw new Error('Toggle component cannot be primary AND secondary')
+    // Background
+    if (semantic) {
+      if (!disabled && !checked) { 
+        classes += 'bg-red '
+        iconDenyClasses += 'flex o-100 ' 
+        iconCheckClasses += 'flex o-0 '
+      }
+
+      if (!disabled && checked) {
+        classes += 'bg-green '
+        iconDenyClasses += 'flex o-0 '
+        iconCheckClasses += 'flex o-100 '
+      }
+     
+    } else if (disabled) {
+      classes += 'bg-near-white '
+    } else {
+       if (!checked) {
+        classes += 'bg-gray '
+      }
+
+      if (checked) {
+        classes += 'bg-blue '
+      }
     }
 
-    if (!secondary && !primary && !disabled && !checked) {
-      classes += 'bg-red '
-      iconDenyClasses += 'flex o-30 '
-      iconCheckClasses += 'flex o-0 '
-    }
-
-    if (!secondary && !primary && !disabled && checked) {
-      classes += 'bg-green '
-      iconDenyClasses += 'flex o-0 '
-      iconCheckClasses += 'flex o-30 '
-    }
-
-    if (primary && !checked) {
-      classes += 'bg-red '
-      iconCheckClasses += 'flex o-0 '
-      iconDenyClasses += 'flex o-30 '
-    }
-
-    if (primary && checked) {
-      classes += 'bg-green '
-      iconCheckClasses += 'flex o-30 '
-      iconDenyClasses += 'flex o-0 '
-    }
-
-    if (secondary && !checked) {
-      classes += 'bg-gray '
-    }
-
-    if (secondary && checked) {
-      classes += 'bg-blue '
-    }
-
+    // Circle
     if (checked) {
       circleClasses += 'left-2 '
+      iconDenyClasses += 'left-2 '
+      iconCheckClasses += 'left-2 '
+    } else {
+      circleClasses += 'left-0 '
+      iconDenyClasses += 'left-0 '
+      iconCheckClasses += 'left-0 '
     }
 
     if (disabled) {
-      circleClasses += 'bg-mid-gray '
-      classes += 'bg-silver '
+      circleClasses += 'bg-light-gray '
     } else {
       circleClasses += 'bg-white '
     }
 
     return (
       <label
-        htmlFor={`toggle-${id}`}
-        className="flex flex-row items-center"
+        htmlFor={`${id}`}
+        className={`flex flex-row items-center ${!disabled && 'pointer'}`}
         {...this.props.htmlProps}
       >
         {this.props.children}
         <div className={`${classes}`}>
-          <div
+          <div 
             style={{
               height: '1.5rem',
               width: '1.5rem',
+              transition: 'all .2s ease-out',
+              boxShadow: disabled ? 'none' : '0 0 10px rgba(0,0,0,0.2)'
             }}
-            className={`${circleClasses}`}
-          />
-          <div className={iconDenyClasses}>
-            <Deny />
+            className={`${circleClasses}`} 
+          > 
+          </div> 
+          <div
+            className={iconDenyClasses}
+            style={{
+              marginLeft: '.4rem',
+              transition: 'left .2s ease-out' 
+            }}>
+            {/* @todo hardcoded color because Tachyons doesn't expose these as variables */}
+            <Deny fill="#ff8080"/>
           </div>
-          <div className={iconCheckClasses}>
-            <Check />
+          <div
+            className={iconCheckClasses}
+            style={{
+              transition: 'left .2s ease-out'
+            }}>
+            {/* @todo hardcoded color because Tachyons doesn't expose these as variables */}
+            <Check fill="#8bc34a"/> 
           </div>
         </div>
         <input
-          id={id}
+          id={`${id}`} 
           type="checkbox"
-          className="dn"
-          name={`toggle-${id}`}
+          className="o-0" 
           disabled={disabled}
           checked={this.state.checked}
           onClick={this.handleCheck}
@@ -119,10 +128,9 @@ Toggle.defaultProps = {
 
 Toggle.propTypes = {
   checked: PropTypes.bool,
-  children: PropTypes.node.isRequired,
   disabled: PropTypes.bool,
   id: PropTypes.string,
-  htmlProps: PropTypes.object,
+  htmlProps: PropTypes.object, 
   primary: PropTypes.bool,
   secondary: PropTypes.bool,
 }
