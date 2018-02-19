@@ -5,21 +5,8 @@ import Deny from '../Icons/Deny'
 import Check from '../Icons/Check'
 
 class Toggle extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      checked: props.checked,
-    }
-  }
-
-  handleCheck = () =>
-    !this.props.disabled && this.setState({ checked: !this.state.checked })
-
   render() {
-    const { semantic, disabled, id } = this.props
-
-    const { checked } = this.state
+    const { semantic, disabled, id, checked } = this.props
 
     let classes = 'flex items-center relative h2 w3 ph1 br4 bg-animate '
     let circleClasses = 'absolute br-100 pa3 mh2 '
@@ -28,9 +15,9 @@ class Toggle extends Component {
 
     // Background
     if (semantic) {
-      if (!disabled && !checked) { 
+      if (!disabled && !checked) {
         classes += 'bg-red '
-        iconDenyClasses += 'flex o-100 ' 
+        iconDenyClasses += 'flex o-100 '
         iconCheckClasses += 'flex o-0 '
       }
 
@@ -39,11 +26,10 @@ class Toggle extends Component {
         iconDenyClasses += 'flex o-0 '
         iconCheckClasses += 'flex o-100 '
       }
-     
     } else if (disabled) {
       classes += 'bg-near-white '
     } else {
-       if (!checked) {
+      if (!checked) {
         classes += 'bg-gray '
       }
 
@@ -69,49 +55,55 @@ class Toggle extends Component {
       circleClasses += 'bg-white '
     }
 
+    const eventHandlers = {
+      onClick: this.props.onClick ? this.props.onClick : undefined,
+      onChange: this.props.onChange ? this.props.onChange : undefined,
+    }
+
     return (
       <label
         htmlFor={`${id}`}
         className={`flex flex-row items-center ${!disabled && 'pointer'}`}
-        {...this.props.htmlProps}
+        {...eventHandlers}
       >
-        {this.props.children}
+        {this.props.children ? this.props.children : ''}
         <div className={`${classes}`}>
-          <div 
+          <div
             style={{
               height: '1.5rem',
               width: '1.5rem',
               transition: 'all .2s ease-out',
-              boxShadow: disabled ? 'none' : '0 0 10px rgba(0,0,0,0.2)'
+              boxShadow: disabled ? 'none' : '0 0 10px rgba(0,0,0,0.2)',
             }}
-            className={`${circleClasses}`} 
-          > 
-          </div> 
+            className={`${circleClasses}`}
+          />
           <div
             className={iconDenyClasses}
             style={{
               marginLeft: '.4rem',
-              transition: 'left .2s ease-out' 
-            }}>
+              transition: 'left .2s ease-out',
+            }}
+          >
             {/* @todo hardcoded color because Tachyons doesn't expose these as variables */}
-            <Deny fill="#ff8080"/>
+            <Deny fill="#ff8080" />
           </div>
           <div
             className={iconCheckClasses}
             style={{
-              transition: 'left .2s ease-out'
-            }}>
+              transition: 'left .2s ease-out',
+            }}
+          >
             {/* @todo hardcoded color because Tachyons doesn't expose these as variables */}
-            <Check fill="#8bc34a"/> 
+            <Check fill="#8bc34a" />
           </div>
         </div>
         <input
-          id={`${id}`} 
+          id={`${id}`}
           type="checkbox"
-          className="o-0" 
+          className="o-0"
           disabled={disabled}
-          checked={this.state.checked}
-          onClick={this.handleCheck}
+          checked={checked}
+          {...eventHandlers}
         />
       </label>
     )
@@ -121,18 +113,17 @@ class Toggle extends Component {
 Toggle.defaultProps = {
   checked: false,
   disabled: false,
-  htmlProps: {},
-  primary: false,
-  secondary: false,
+  semantic: false,
 }
 
 Toggle.propTypes = {
   checked: PropTypes.bool,
+  semantic: PropTypes.bool,
   disabled: PropTypes.bool,
   id: PropTypes.string,
-  htmlProps: PropTypes.object, 
-  primary: PropTypes.bool,
-  secondary: PropTypes.bool,
+  children: PropTypes.node,
+  onChange: PropTypes.func,
+  onClick: PropTypes.func,
 }
 
 export default Toggle
