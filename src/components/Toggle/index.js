@@ -4,6 +4,8 @@ import PropTypes from 'prop-types'
 import Deny from '../Icons/Deny'
 import Check from '../Icons/Check'
 
+const noop = () => {}
+
 class Toggle extends Component {
   render() {
     const { semantic, disabled, id, checked } = this.props
@@ -56,15 +58,14 @@ class Toggle extends Component {
     }
 
     const eventHandlers = {
-      onClick: this.props.onClick ? this.props.onClick : undefined,
-      onChange: this.props.onChange ? this.props.onChange : undefined,
+      onClick: this.props.onClick ? this.props.onClick : noop,
+      onChange: this.props.onChange ? this.props.onChange : noop,
     }
 
     return (
       <label
         htmlFor={`${id}`}
         className={`flex flex-row items-center ${!disabled && 'pointer'}`}
-        {...eventHandlers}
       >
         {this.props.children ? this.props.children : ''}
         <div className={`${classes}`}>
