@@ -1,15 +1,58 @@
 Default
 
 ```js
-<Toggle id='toggle1'/>
+class ToggleExample extends React.Component {
+  constructor() {
+    super()
+    this.state = { checked: true }
+
+    this.onClick = this.onClick.bind(this)
+  }
+
+  onClick() {
+    this.setState((prevState) => ({
+      checked: !prevState.checked
+    }))
+  }
+
+  render() {
+    return (
+      <Toggle id='toggle5'
+        checked={this.state.checked}
+        onClick={this.onClick}/>
+    )
+  }
+};
+<ToggleExample />
 ```
 
 Semantic
 
 ```js
-<div>
-  <Toggle semantic id='toggle2'/>  
-</div>
+class ToggleSemanticExample extends React.Component {
+  constructor() {
+    super()
+    this.state = { checked: false }
+
+    this.onClick = this.onClick.bind(this)
+  }
+
+  onClick() {
+    this.setState((prevState) => ({
+      checked: !prevState.checked
+    }))
+  }
+
+  render() {
+    return (
+      <Toggle id='toggle6'
+        semantic
+        checked={this.state.checked}
+        onClick={this.onClick}/>
+    )
+  }
+};
+<ToggleSemanticExample />
 ```
 
 Disabled
@@ -23,10 +66,55 @@ Disabled
 Side by side
 
 ```js
+class ToggleExample extends React.Component {
+  constructor() {
+    super()
+    this.state = { checked: true }
+
+    this.onClick = this.onClick.bind(this)
+  }
+
+  onClick() {
+    this.setState((prevState) => ({
+      checked: !prevState.checked
+    }))
+  }
+
+  render() {
+    return (
+      <Toggle id='toggle5'
+        checked={this.state.checked}
+        onClick={this.onClick}/>
+    )
+  }
+};
+class ToggleSemanticExample extends React.Component {
+  constructor() {
+    super()
+    this.state = { checked: false }
+
+    this.onClick = this.onClick.bind(this)
+  }
+
+  onClick() {
+    this.setState((prevState) => ({
+      checked: !prevState.checked
+    }))
+  }
+
+  render() {
+    return (
+      <Toggle id='toggle6'
+        semantic
+        checked={this.state.checked}
+        onClick={this.onClick}/>
+    )
+  }
+};
 <div>
-  <Toggle id='toggle5'/>
+  <ToggleExample />
   <br />
-  <Toggle semantic id='toggle6'/>
+  <ToggleSemanticExample />
   <br />
   <Toggle disabled id='toggle7'/>
   <br />
