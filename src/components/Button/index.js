@@ -4,6 +4,10 @@ import PropTypes from 'prop-types'
 import Spinner from '../Spinner'
 
 class Button extends Component {
+  handleClick = () => {
+    this.props.onClick && this.props.onClick()
+  }
+
   render() {
     const { primary, secondary, disabled, isLoading } = this.props
 
@@ -42,6 +46,7 @@ class Button extends Component {
         className={`${classes}`}
         {...this.props.htmlProps}
         disabled={disabled}
+        onClick={this.handleClick}
       >
         {isLoading ? (
           <Spinner width={11} height={11} secondary={primary} />
@@ -68,6 +73,7 @@ Button.propTypes = {
   htmlProps: PropTypes.object,
   children: PropTypes.node.isRequired,
   isLoading: PropTypes.bool,
+  onClick: PropTypes.func,
 }
 
 export default Button
