@@ -9,7 +9,7 @@ class Button extends Component {
   }
 
   render() {
-    const { primary, secondary, disabled, isLoading } = this.props
+    const { primary, secondary, disabled, isLoading, isSubmit } = this.props
 
     if (secondary && primary) {
       throw new Error('Button component cannot be primary AND secondary')
@@ -42,7 +42,7 @@ class Button extends Component {
 
     return (
       <button
-        type="button"
+        type={isSubmit ? 'submit' : 'button'}
         className={`${classes}`}
         {...this.props.htmlProps}
         disabled={disabled}
@@ -63,6 +63,7 @@ Button.defaultProps = {
   secondary: false,
   disabled: false,
   isLoading: false,
+  isSubmit: false,
   htmlProps: {},
 }
 
@@ -74,6 +75,7 @@ Button.propTypes = {
   children: PropTypes.node.isRequired,
   isLoading: PropTypes.bool,
   onClick: PropTypes.func,
+  isSubmit: PropTypes.bool,
 }
 
 export default Button
