@@ -5,7 +5,7 @@ import Spinner from '../Spinner'
 
 class Button extends Component {
   handleClick = () => {
-    this.props.onClick()
+    this.props.onClick && this.props.onClick()
   }
 
   render() {
