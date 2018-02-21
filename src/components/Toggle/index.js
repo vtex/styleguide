@@ -4,6 +4,8 @@ import PropTypes from 'prop-types'
 import Deny from '../Icons/Deny'
 import Check from '../Icons/Check'
 
+import config from 'vtex-tachyons/config.json'
+
 const noop = () => {}
 
 class Toggle extends Component {
@@ -85,8 +87,7 @@ class Toggle extends Component {
               transition: 'left .2s ease-out',
             }}
           >
-            {/* @todo hardcoded color because Tachyons doesn't expose these as variables */}
-            <Deny fill="#ff8080" />
+            <Deny fill={config.colors.red} />
           </div>
           <div
             className={iconCheckClasses}
@@ -94,8 +95,7 @@ class Toggle extends Component {
               transition: 'left .2s ease-out',
             }}
           >
-            {/* @todo hardcoded color because Tachyons doesn't expose these as variables */}
-            <Check fill="#8bc34a" />
+            <Check fill={config.colors.green} />
           </div>
         </div>
         <input
