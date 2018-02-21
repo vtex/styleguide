@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import Spinner from '../Spinner'
+
 class Button extends Component {
   render() {
-    const { primary, secondary, disabled } = this.props
+    const { primary, secondary, disabled, isLoading } = this.props
 
     if (secondary && primary) {
       throw new Error('Button component cannot be primary AND secondary')
@@ -12,15 +14,20 @@ class Button extends Component {
     let classes = 'fw5 ph5 pv3 ttu br2 fw4 f7 '
 
     if (!secondary && !primary && !disabled) {
-      classes += 'bw1 ba b--white blue hover-bg-light-silver hover-b--light-silver '
+      classes +=
+        'bw1 ba b--white blue hover-bg-light-silver hover-b--light-silver '
     }
 
     if (secondary && !disabled) {
-      classes += 'bw1 ba b--blue blue hover-bg-blue hover-white '
+      classes += 'bw1 ba b--blue blue hover-white '
+    }
+    if (secondary && !isLoading) {
+      classes += 'hover-bg-blue '
     }
 
     if (primary && !disabled) {
-      classes += 'bw1 ba b--blue bg-blue white hover-bg-heavy-blue hover-b--heavy-blue '
+      classes +=
+        'bw1 ba b--blue bg-blue white hover-bg-heavy-blue hover-b--heavy-blue '
     }
 
     if (disabled) {
@@ -30,8 +37,17 @@ class Button extends Component {
     }
 
     return (
-      <button type="button" className={`${classes}`} {...this.props.htmlProps} disabled={disabled}>
-        {this.props.children}
+      <button
+        type="button"
+        className={`${classes}`}
+        {...this.props.htmlProps}
+        disabled={disabled}
+      >
+        {isLoading ? (
+          <Spinner width={11} height={11} secondary={primary} />
+        ) : (
+          this.props.children
+        )}
       </button>
     )
   }
@@ -41,6 +57,7 @@ Button.defaultProps = {
   primary: false,
   secondary: false,
   disabled: false,
+  isLoading: false,
   htmlProps: {},
 }
 
@@ -50,6 +67,7 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   htmlProps: PropTypes.object,
   children: PropTypes.node.isRequired,
+  isLoading: PropTypes.bool,
 }
 
 export default Button

@@ -32,3 +32,20 @@ Side by side
   <Button disabled>Save</Button>
 </div>
 ```
+
+With spinner
+
+```js
+<div>
+  <Button isLoading>Save</Button>
+  <Button primary isLoading>
+    Save
+  </Button>
+  <Button secondary isLoading>
+    Save
+  </Button>
+  <Button disabled isLoading>
+    Save
+  </Button>
+</div>
+```
