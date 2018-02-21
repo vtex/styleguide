@@ -31,8 +31,6 @@ Spinner.propTypes = {
 
 Spinner.defaultProps = {
   secondary: false,
-  width: '',
-  height: '',
 }
 
 export default Spinner
