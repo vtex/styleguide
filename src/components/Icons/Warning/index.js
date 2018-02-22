@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-class Warning extends Component {
+export default class Warning extends Component {
   render() {
     return (
       <svg
@@ -55,5 +55,3 @@ Warning.defaultProps = {
 Warning.propTypes = {
   fill: PropTypes.string,
 }
-
-export default Warning

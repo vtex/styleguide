@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-class Success extends Component {
+export default class Success extends Component {
   render() {
     return (
       <svg
@@ -49,5 +49,3 @@ Success.defaultProps = {
 Success.propTypes = {
   fill: PropTypes.string,
 }
-
-export default Success

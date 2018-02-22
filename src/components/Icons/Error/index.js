@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-class Error extends Component {
+export default class Error extends Component {
   render() {
     return (
       <svg
@@ -52,5 +52,3 @@ Error.defaultProps = {
 Error.propTypes = {
   fill: PropTypes.string,
 }
-
-export default Error

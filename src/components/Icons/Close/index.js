@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-class Close extends Component {
+export default class Close extends Component {
   render() {
     return (
       <svg
@@ -45,5 +45,3 @@ Close.defaultProps = {
 Close.propTypes = {
   fill: PropTypes.string,
 }
-
-export default Close
