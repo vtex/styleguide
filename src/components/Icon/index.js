@@ -19,7 +19,7 @@ export default class Icon extends Component {
   }
 
   componentWillUnmount() {
-    this.mounted = true
+    this.mounted = false
   }
 
   formatHexValue(value) {

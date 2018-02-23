@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import Deny from '../Icons/Deny'
-import Check from '../Icons/Check'
+import Deny from '../Icon/Deny'
+import Check from '../Icon/Check'
 
 import config from 'vtex-tachyons/config.json'
 

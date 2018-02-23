@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Icon from '../Icons'
+import Icon from '../Icon'
 
 import Spinner from '../Spinner'
 
