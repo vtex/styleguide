@@ -5,6 +5,7 @@
     "test": "react-scripts test --env=jsdom",
     "predeploy": "npm run styleguide:build",
     "deploy": "gh-pages -d styleguide",
+    "styleguide": "styleguidist server",
     "start": "styleguidist server",
     "styleguide:build": "styleguidist build",
     "compile": "npm run cleanlib && NODE_ENV=production babel --plugins transform-es2015-modules-commonjs ./src/components --out-dir ./lib --ignore '__tests__,*.spec.js' && npm run copycss",

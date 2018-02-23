@@ -11,7 +11,7 @@ yarn install
 ### Developing using Styleguidist
 
 ```sh
-yarn start
+yarn styleguide
 ```
 
 ### Developing using another project
