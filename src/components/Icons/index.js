@@ -11,6 +11,17 @@ export default class Icon extends Component {
     }
   }
 
+  componentDidMount() {
+    this.mounted = true
+    import(`./${this.toTitleCase(this.props.type)}`).then(
+      module => this.mounted && this.setState({ module: module.default })
+    )
+  }
+
+  componentWillUnmount() {
+    this.mounted = true
+  }
+
   formatHexValue(value) {
     const HEX_COLOR = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/
     const formatedValue = value.indexOf('#') === -1 ? `#${value}` : value
@@ -24,14 +35,6 @@ export default class Icon extends Component {
     return str.replace(/\w\S*/g, function(txt) {
       return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
     })
-  }
-
-  componentDidMount() {
-    const { type } = this.props
-
-    import(`./${this.toTitleCase(type)}`).then(module =>
-      this.setState({ module: module.default })
-    )
   }
 
   render() {
