@@ -29,7 +29,9 @@
     "react-dom": "^16.2.0",
     "react-scripts": "1.0.17",
     "react-styleguidist": "^6.2.5",
-    "vtex-tachyons": "^1.0.3",
     "watch": "^1.0.2"
+  },
+  "dependencies": {
+    "vtex-tachyons": "^1.0.3"
   }
 }
