@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Close from '../Icons/Close'
-import Success from '../Icons/Success'
-import Error from '../Icons/Error'
-import Warning from '../Icons/Warning'
+import Icon from '../Icon'
+import config from 'vtex-tachyons/config.json'
 
 class Alert extends Component {
   componentDidMount() {
@@ -21,29 +19,44 @@ class Alert extends Component {
     let classes = 'pa5 br2 '
     let closeClass = ''
     let showIcon = false
-    let Icon = <div />
+    let icon = ''
+    let width
+    let height
+    let color = config.colors['serious-black']
 
     switch (type) {
       case 'success': {
         showIcon = true
         classes += 'bg-washed-green '
-        Icon = Success
+        icon = 'success'
+        color = config.colors['green']
+        width = 14
+        height = 14
         break
       }
       case 'error': {
         showIcon = true
         classes += 'bg-washed-red '
-        Icon = Error
+        icon = 'failure'
+        color = config.colors['red']
+        width = 14
+        height = 14
         break
       }
       case 'warning': {
         showIcon = true
         classes += 'bg-washed-yellow '
-        Icon = Warning
+        icon = 'warning'
+        color = config.colors['yellow']
+        width = 14
+        height = 14
         break
       }
       case 'info-dark': {
         classes += 'bg-serious-black light-silver '
+        color = config.colors['white']
+        width = 8
+        height = 8
         break
       }
       default: {
@@ -57,9 +70,7 @@ class Alert extends Component {
       <div className={`flex justify-between ${classes}`}>
         <div className="flex items-center">
           {showIcon && (
-            <div className="flex">
-              <Icon />
-            </div>
+            <Icon type={icon} fill={color} height={height} width={width} />
           )}
 
           <div className={`${showIcon ? 'ph5 flex' : 'pr5'}`}>
@@ -69,7 +80,7 @@ class Alert extends Component {
 
         {onClose && (
           <div className={`pointer ${closeClass}`} onClick={onClose}>
-            <Close />
+            <Icon type="close" height={height} width={width} fill={color} />
           </div>
         )}
       </div>

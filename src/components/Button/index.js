@@ -1,21 +1,26 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import Icon from '../Icon'
 
 import Spinner from '../Spinner'
 
 class Button extends Component {
   handleClick = () => {
-    this.props.onClick && this.props.onClick()
+    !this.props.disabled && this.props.onClick && this.props.onClick()
   }
 
   render() {
-    const { primary, secondary, disabled, isLoading } = this.props
+    const { primary, secondary, disabled, isLoading, children } = this.props
+    const isIconButton = children.type === Icon
+    const CustomTag = isIconButton ? 'div' : 'button'
 
     if (secondary && primary) {
       throw new Error('Button component cannot be primary AND secondary')
     }
 
-    let classes = 'fw5 ph5 pv3 ttu br2 fw4 f7 '
+    let classes = 'fw5 ttu br2 fw4 f7 '
+
+    classes += isIconButton ? 'icon-button pa3 ' : 'pv3 ph5 '
 
     if (!secondary && !primary && !disabled) {
       classes +=
@@ -41,19 +46,18 @@ class Button extends Component {
     }
 
     return (
-      <button
-        type="button"
+      <CustomTag
         className={`${classes}`}
         {...this.props.htmlProps}
-        disabled={disabled}
         onClick={this.handleClick}
+        disabled={!isIconButton && disabled}
       >
         {isLoading ? (
           <Spinner width={11} height={11} secondary={primary} />
         ) : (
           this.props.children
         )}
-      </button>
+      </CustomTag>
     )
   }
 }

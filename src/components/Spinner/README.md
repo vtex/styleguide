@@ -2,7 +2,13 @@
 
 ```js
 <table style={{ height: '40px', width: '40px' }}>
-  <Spinner />
+  <tbody>
+    <tr>
+      <td>
+        <Spinner />
+      </td>
+    </tr>
+  </tbody>
 </table>
 ```
 
@@ -10,7 +16,13 @@
 
 ```js
 <table style={{ height: '40px', width: '40px', background: '#368df7' }}>
-  <Spinner secondary />
+  <tbody>
+    <tr>
+      <td>
+        <Spinner secondary />
+      </td>
+    </tr>
+  </tbody>
 </table>
 ```
 
