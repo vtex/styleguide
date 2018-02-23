@@ -49,3 +49,19 @@ With spinner
   </Button>
 </div>
 ```
+
+With icon
+
+```js
+<table height="50" width="50">
+  <tbody>
+    <tr>
+      <td>
+        <Button primary>
+          <Icon type="check" fill="fff" />
+        </Button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+```
