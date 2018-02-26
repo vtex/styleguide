@@ -53,15 +53,7 @@ With spinner
 With icon
 
 ```js
-<table height="50" width="50">
-  <tbody>
-    <tr>
-      <td>
-        <Button primary>
-          <Icon type="check" fill="fff" />
-        </Button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<Button primary>
+  <Icon type="close" fill="fff" width={20} heigth={20} />
+</Button>
 ```

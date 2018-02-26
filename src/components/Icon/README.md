@@ -1,125 +1,41 @@
 Close
 
 ```js
-<table height="50" width="50">
-  <tbody>
-    <tr>
-      <td>
-        <Icon type="close" />
-        <Icon type="close" fill="ff0000" />
-        <Button primary>
-          <Icon type="close" fill="fff" />
-        </Button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<Icon type="close" width={40} />
 ```
 
 Edit
 
 ```js
-<table height="50" width="50">
-  <tbody>
-    <tr>
-      <td>
-        <Icon type="edit" />
-        <Icon type="edit" fill="ccc" />
-        <Button primary>
-          <Icon type="edit" fill="fff" />
-        </Button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<Icon type="edit" width={40} />
 ```
 
 Check
 
 ```js
-<table height="50" width="50">
-  <tbody>
-    <tr>
-      <td>
-        <Icon type="check" />
-        <Icon type="check" fill="00ff00" />
-        <Button primary>
-          <Icon type="check" fill="fff" />
-        </Button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<Icon type="check" width={40} />
 ```
 
 Deny
 
 ```js
-<table height="50" width="50">
-  <tbody>
-    <tr>
-      <td>
-        <Icon type="deny" />
-        <Icon type="deny" fill="ff0000" />
-        <Button primary>
-          <Icon type="deny" fill="fff" />
-        </Button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<Icon type="deny" width={40} />
 ```
 
 Failure
 
 ```js
-<table height="50" width="50">
-  <tbody>
-    <tr>
-      <td>
-        <Icon type="failure" />
-        <Icon type="failure" fill="FF8080" />
-        <Button primary>
-          <Icon type="failure" fill="fff" />
-        </Button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<Icon type="failure" width={40} />
 ```
 
 Success
 
 ```js
-<table height="50" width="50">
-  <tbody>
-    <tr>
-      <td>
-        <Icon type="success" />
-        <Icon type="success" fill="8bc34a" />
-        <Button primary>
-          <Icon type="success" fill="fff" />
-        </Button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<Icon type="success" width={40} />
 ```
 
 Warning
 
 ```js
-<table height="50" width="50">
-  <tbody>
-    <tr>
-      <td>
-        <Icon type="Warning" />
-        <Icon type="Warning" fill="FFB100" />
-        <Button primary>
-          <Icon type="Warning" fill="fff" />
-        </Button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<Icon type="Warning" width={40} />
 ```

@@ -20,7 +20,7 @@ class Button extends Component {
 
     let classes = 'fw5 ttu br2 fw4 f7 '
 
-    classes += isIconButton ? 'icon-button pa3 ' : 'pv3 ph5 '
+    classes += isIconButton ? 'icon-button pa3 dib ' : 'pv3 ph5 '
 
     if (!secondary && !primary && !disabled) {
       classes +=
@@ -47,8 +47,8 @@ class Button extends Component {
 
     return (
       <CustomTag
-        className={`${classes}`}
         {...this.props.htmlProps}
+        className={`${classes}`}
         onClick={this.handleClick}
         disabled={!isIconButton && disabled}
       >

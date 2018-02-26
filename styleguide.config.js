@@ -9,29 +9,25 @@ module.exports = {
     {
       name: 'Introduction',
       content: './docs/introduction.md',
-      //components: './src/Chart.js'
-    }, {
+    },
+    {
       name: 'VTEX Tachyons',
       content: './docs/vtex-tachyons.md',
-      //components: './src/Chart.js'
-    }, {
+    },
+    {
       name: 'Components',
       content: './docs/components.md',
-      components: function() { return [
-        './src/components/Alert/index.js',
-        './src/components/Button/index.js',
-        './src/components/Input/index.js',
-        './src/components/Spinner/index.js',
-        './src/components/Toggle/index.js',
-        './src/components/Icons/Check/index.js',
-        './src/components/Icons/Close/index.js',
-        './src/components/Icons/Deny/index.js',
-        './src/components/Icons/Error/index.js',
-        './src/components/Icons/Success/index.js',
-        './src/components/Icons/Warning/index.js',
-        ];
-      }
-    }
+      components: function() {
+        return [
+          './src/components/Alert/index.js',
+          './src/components/Button/index.js',
+          './src/components/Icon/index.js',
+          './src/components/Input/index.js',
+          './src/components/Spinner/index.js',
+          './src/components/Toggle/index.js',
+        ]
+      },
+    },
   ],
   getComponentPathLine(componentPath) {
     const pathArray = path.dirname(componentPath).split(path.sep)
