@@ -53,7 +53,7 @@ With spinner
 With icon
 
 ```js
-<Button primary htmlProps={{ className: 'dib' }}>
+<Button primary>
   <Icon type="close" fill="fff" width={20} heigth={20} />
 </Button>
 ```
