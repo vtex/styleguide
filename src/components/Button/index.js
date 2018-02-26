@@ -10,7 +10,14 @@ class Button extends Component {
   }
 
   render() {
-    const { primary, secondary, disabled, isLoading, children } = this.props
+    const {
+      primary,
+      secondary,
+      disabled,
+      isLoading,
+      children,
+      htmlProps,
+    } = this.props
     const isIconButton = children.type === Icon
     const CustomTag = isIconButton ? 'div' : 'button'
 
@@ -45,10 +52,12 @@ class Button extends Component {
       classes += 'pointer '
     }
 
+    classes += ` ${htmlProps.className}`
+
     return (
       <CustomTag
-        className={`${classes}`}
         {...this.props.htmlProps}
+        className={`${classes}`}
         onClick={this.handleClick}
         disabled={!isIconButton && disabled}
       >
