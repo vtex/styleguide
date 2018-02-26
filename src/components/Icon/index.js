@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import config from 'vtex-tachyons/config.json'
 
+const env = process.env.BABEL_ENV || process.env.NODE_ENV
+const isEnvTest = env === 'test'
+
 export default class Icon extends Component {
   constructor() {
     super()
@@ -13,7 +16,7 @@ export default class Icon extends Component {
 
   componentDidMount() {
     this.mounted = true
-    process.env.NODE_ENV !== 'test' &&
+    !isEnvTest &&
       import(`./${this.toTitleCase(this.props.type)}`).then(
         module => this.mounted && this.setState({ module: module.default })
       )
