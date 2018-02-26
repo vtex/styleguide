@@ -13,9 +13,10 @@ export default class Icon extends Component {
 
   componentDidMount() {
     this.mounted = true
-    import(`./${this.toTitleCase(this.props.type)}`).then(
-      module => this.mounted && this.setState({ module: module.default })
-    )
+    process.env.NODE_ENV !== 'test' &&
+      import(`./${this.toTitleCase(this.props.type)}`).then(
+        module => this.mounted && this.setState({ module: module.default })
+      )
   }
 
   componentWillUnmount() {
