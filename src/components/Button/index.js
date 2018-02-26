@@ -5,8 +5,8 @@ import Icon from '../Icon'
 import Spinner from '../Spinner'
 
 class Button extends Component {
-  handleClick = () => {
-    !this.props.disabled && this.props.onClick && this.props.onClick()
+  handleClick = event => {
+    !this.props.disabled && this.props.onClick && this.props.onClick(event)
   }
 
   render() {
