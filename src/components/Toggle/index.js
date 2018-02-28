@@ -101,7 +101,7 @@ class Toggle extends Component {
         <input
           id={`${id}`}
           type="checkbox"
-          className="o-0"
+          className="dn"
           disabled={disabled}
           checked={checked}
           {...eventHandlers}
