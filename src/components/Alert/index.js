@@ -23,6 +23,7 @@ class Alert extends Component {
     let width
     let height
     let color = config.colors['serious-black']
+    let closeBtnColor = 'near-black'
 
     switch (type) {
       case 'success': {
@@ -30,8 +31,6 @@ class Alert extends Component {
         classes += 'bg-washed-green '
         icon = 'success'
         color = config.colors['green']
-        width = 14
-        height = 14
         break
       }
       case 'error': {
@@ -39,8 +38,6 @@ class Alert extends Component {
         classes += 'bg-washed-red '
         icon = 'failure'
         color = config.colors['red']
-        width = 14
-        height = 14
         break
       }
       case 'warning': {
@@ -48,20 +45,16 @@ class Alert extends Component {
         classes += 'bg-washed-yellow '
         icon = 'warning'
         color = config.colors['yellow']
-        width = 14
-        height = 14
         break
       }
       case 'info-dark': {
         classes += 'bg-serious-black light-silver '
         color = config.colors['white']
-        width = 8
-        height = 8
+        closeBtnColor = config.colors['white']
         break
       }
       default: {
         classes += 'bg-near-white '
-        closeClass += 'blue '
         break
       }
     }
@@ -70,7 +63,7 @@ class Alert extends Component {
       <div className={`flex justify-between ${classes}`}>
         <div className="flex items-center">
           {showIcon && (
-            <Icon type={icon} fill={color} height={height} width={width} />
+            <Icon type={icon} fill={color} height={14} width={14} />
           )}
 
           <div className={`${showIcon ? 'ph5 flex' : 'pr5'}`}>
@@ -80,7 +73,7 @@ class Alert extends Component {
 
         {onClose && (
           <div className={`pointer ${closeClass}`} onClick={onClose}>
-            <Icon type="close" height={height} width={width} fill={color} />
+            <Icon type="close" height={8} width={8} fill={closeBtnColor} />
           </div>
         )}
       </div>
