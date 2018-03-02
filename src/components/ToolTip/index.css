@@ -1,0 +1,24 @@
+/* variables */
+:root {
+  --main-bg-color: #3d3e40;
+}
+
+/* main element */
+.tippy-popper .tippy-tooltip {
+  padding: 8px 14px;
+  background-color: var(--main-bg-color)
+}
+
+/* arrows */
+.tippy-popper[x-placement^=top] [x-arrow] {
+  border-top-color: var(--main-bg-color)
+}
+.tippy-popper[x-placement^=bottom] [x-arrow] {
+  border-bottom-color: var(--main-bg-color)
+}
+.tippy-popper[x-placement^=left] [x-arrow] {
+  border-left-color: var(--main-bg-color)
+}
+.tippy-popper[x-placement^=right] [x-arrow] {
+  border-right-color: var(--main-bg-color)
+}
