@@ -72,8 +72,8 @@ class Alert extends Component {
         </div>
 
         {onClose && (
-          <div className={`pointer flex items-center ${closeClass}`} onClick={onClose}>
-            <Icon type="close" height={8} width={8} fill={closeBtnColor} />
+          <div className={`pointer flex items-center pv2 ${closeClass}`} onClick={onClose}>
+            <Icon type="close" height={10} width={10} fill={closeBtnColor} />
           </div>
         )}
       </div>
