@@ -57,7 +57,7 @@ class Input extends Component {
     if (disabled) {
       classes += 'bg-light-gray bg-silver silver '
     } else {
-      classes += 'pointer bg-white '
+      classes += 'bg-white '
     }
 
     return (
