@@ -63,7 +63,7 @@ class Alert extends Component {
       <div className={`flex justify-between ${classes}`}>
         <div className="flex items-center">
           {showIcon && (
-            <Icon type={icon} fill={color} height={14} width={14} />
+            <Icon type={icon} fill={color} height={18} width={18} />
           )}
 
           <div className={`${showIcon ? 'ph5 flex' : 'pr5'}`}>
@@ -72,7 +72,7 @@ class Alert extends Component {
         </div>
 
         {onClose && (
-          <div className={`pointer ${closeClass}`} onClick={onClose}>
+          <div className={`pointer flex items-center ${closeClass}`} onClick={onClose}>
             <Icon type="close" height={8} width={8} fill={closeBtnColor} />
           </div>
         )}
