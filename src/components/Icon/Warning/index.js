@@ -6,14 +6,15 @@ class Warning extends PureComponent {
     const { fill, width, height } = this.props
     return (
       <svg
-        viewBox="0 0 14 14"
+        viewBox="0 0 16 16"
         xmlns="http://www.w3.org/2000/svg"
         width={width}
         height={height}
       >
         <g fill={fill}>
-          <path d="M3.5 6.125h7v1.75h-7z" />
-          <path d="M7 0C3.15 0 0 3.15 0 7s3.15 7 7 7 7-3.15 7-7-3.15-7-7-7zm0 12.25c-2.888 0-5.25-2.363-5.25-5.25 0-2.888 2.362-5.25 5.25-5.25 2.887 0 5.25 2.362 5.25 5.25 0 2.887-2.363 5.25-5.25 5.25z" />
+          <path d="M8,0C3.6,0,0,3.6,0,8s3.6,8,8,8s8-3.6,8-8S12.4,0,8,0z M8,14c-3.3,0-6-2.7-6-6s2.7-6,6-6s6,2.7,6,6 S11.3,14,8,14z"></path>
+          <rect x="7" y="4" width="2" height="5"></rect>
+          <circle cx="8" cy="11" r="1"></circle>
         </g>
       </svg>
     )
