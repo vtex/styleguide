@@ -18,13 +18,13 @@ class Button extends Component {
       throw new Error('Button component cannot be primary AND secondary')
     }
 
-    let classes = 'fw5 ttu br2 fw4 f7 '
+    let classes = 'fw5 ttu br2 fw4 f6 '
 
     classes += isIconButton ? 'icon-button pa3 dib ' : 'pv3 ph5 '
 
     if (!secondary && !primary && !disabled) {
       classes +=
-        'bw1 ba b--white blue hover-bg-light-silver hover-b--light-silver '
+        'bn blue bg-transparent hover-heavy-blue '
     }
 
     if (secondary && !disabled) {
