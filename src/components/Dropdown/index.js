@@ -42,10 +42,13 @@ class Dropdown extends Component {
   }
 
   renderArrow = () => {
+    const color = this.props.disabled ? '#969799' : '#368DF7'
     return (
-      <svg width='10' height='6' viewBox='-2.5 -5 75 60' preserveAspectRatio='none'>
-        <path d='M0,0 l35,50 l35,-50' fill='none' stroke='#368DF7' stroke-width='8' />
-      </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+        <g class="nc-icon-wrapper" fill={color}>
+            <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"></path>
+        </g>
+    </svg>
     )
   }
 
@@ -56,8 +59,9 @@ class Dropdown extends Component {
       options.map(option => {
         return (
           <button 
-            className='flex w-100 right bn pa3 hover-bg-light-silver near-black'
-            onClick={() => this.handleOptionClick(option)}>
+            className='flex w-100 right pa4 hover-bg-near-white near-black'
+            onClick={() => this.handleOptionClick(option)}
+            style={{height: '44px', 'border': '0px', 'borderBottom': '1px solid #F5F7FA'}}>
             {option}
           </button>
         )
@@ -65,35 +69,48 @@ class Dropdown extends Component {
     )
   }
 
+  getButtonClass = () => {
+    const { disabled } = this.props
+    let className
+    if (disabled) {
+      className = 'pa4 w-100 bn br2 bg-light-gray gray'
+    } else {
+      const textColor = this.state.selectedValue ? 'near-black' : 'gray'
+      className = `pa4 w-100 ba bw1 br2 ${textColor} bg-white b--near-white hover-bg-near-white hover-blue`
+    }
+    return className
+  }
+
   render() {
-    const { placeholder } = this.props
+    const { placeholder, disabled } = this.props
     const { selectedValue, menuOpen } = this.state
     const value = selectedValue ? selectedValue : placeholder
-    const buttonAttr = 'w-100 ba bw1 br2 bg-white b--light-silver'
-
+    const optionsStyle = {'overflowY': 'scroll', 'height': '120px'}
+    if (menuOpen) {
+      optionsStyle['boxShadow'] = '0px 0px 4px 0px rgba( 0, 0, 0, .15)'
+    }
     return (
       <div ref={this.setWrapperRef}>
-        { !menuOpen &&
           <button
+            disabled={disabled}
             id={'select'}
-            className={`${buttonAttr} mid-gray hover-bg-light-silver hover-blue`}
+            className={this.getButtonClass()}
             onClick={this.handleClick}
-            style={{outline: 'none'}}>
-            <div className='flex items-center justify-between pa3'>
+            style={{outline: 'none', height: '44px'}}>
+            <div className='flex items-center justify-between'>
               { value }
-              { !menuOpen && this.renderArrow() }
+              { this.renderArrow() }
             </div>
           </button>
-        }
-        { menuOpen && 
-          (
-            <div 
-              className={`${buttonAttr} near-black flex-column`} 
-              style={{'overflowY': 'scroll', 'height': '100px'}}> 
-                { this.renderMenu() }
-            </div>
-          )
-        }
+          { menuOpen && 
+            (
+              <div 
+                className={'w-100 ba br2 b--near-white bg-white flex-column'}
+                style={optionsStyle}> 
+                  { this.renderMenu() }
+              </div>
+            )
+          }
       </div>
     )
   }
