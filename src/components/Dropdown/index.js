@@ -33,12 +33,9 @@ class Dropdown extends Component {
   }
 
   handleOptionClick = (option) => {
+    !this.props.disabled && this.props.onChange && this.props.onChange(option)
     this.setState({menuOpen: false})
     this.setState({selectedValue: option})
-  }
-
-  handleChange = event => {
-    !this.props.disabled && this.props.onChange && this.props.onChange(event)
   }
 
   renderArrow = () => {
