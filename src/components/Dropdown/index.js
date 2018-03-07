@@ -73,10 +73,10 @@ class Dropdown extends Component {
     const { disabled } = this.props
     let className
     if (disabled) {
-      className = 'pa4 w-100 bn br2 bg-light-gray gray'
+      className = 'pa4 bn br2 bg-light-gray gray'
     } else {
       const textColor = this.state.selectedValue ? 'near-black' : 'gray'
-      className = `pa4 w-100 ba bw1 br2 ${textColor} bg-white b--near-white hover-bg-near-white hover-blue`
+      className = `pa4 ba bw1 br2 ${textColor} bg-white b--near-white hover-bg-near-white hover-blue`
     }
     return className
   }
@@ -97,15 +97,15 @@ class Dropdown extends Component {
             className={this.getButtonClass()}
             onClick={this.handleClick}
             style={{outline: 'none', height: '44px'}}>
-            <div className='flex items-center justify-between'>
+            <div className='flex justify-between'>
               { value }
-              { this.renderArrow() }
+              <div className='flex items-center pl6'> { this.renderArrow() } </div>
             </div>
           </button>
           { menuOpen && 
             (
               <div 
-                className={'w-100 ba br2 b--near-white bg-white flex-column'}
+                className={'w-100 mw6 ba br2 b--near-white bg-white flex-column'}
                 style={optionsStyle}> 
                   { this.renderMenu() }
               </div>
