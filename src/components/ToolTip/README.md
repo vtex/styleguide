@@ -12,9 +12,9 @@
           textDecorationStyle: "dotted",
           textDecorationLine: "underline",
           textDecorationSkipInk: "none",
-          webkitTextDecorationStyle: "dotted",
-          webkitTextDecorationLine: "underline",
-          webkitTextDecorationSkipInk: "none"
+          WebkitTextDecorationStyle: "dotted",
+          WebkitTextDecorationLine: "underline",
+          WebkitTextDecorationSkipInk: "none"
         }}
         href="#"
       >
@@ -24,22 +24,29 @@
     dummy text ever since the 1500s, when an unknown printer took a galley of
     type and scrambled it to make a type specimen book.
   </p>
-  <p>
-    Lorem Ipsum is simply dummy text of the{" "}
+  <p style={{position: 'relative'}}>
+    Lorem Ipsum is simply dummy text{" "}
     <ToolTip html={"Some text"}>
-      <Icon type="warning" />
+      <span style={{
+        display: 'inline-block',
+        transform: 'rotate(180deg)',
+        transformOrigin: 'center',
+        marginLeft: '2px'
+      }}>
+        <Icon type="warning" width="14" fill="368DF7" />
+      </span>
     </ToolTip>
   </p>
 </div>
 ```
 
-#### Opened & interactive
+#### Interactive
 
 ```js
 class TipExample extends React.Component {
   constructor() {
     super()
-    this.state = { value: "I am open & interactive" }
+    this.state = { value: "I am interactive" }
     this.handleChange = this.handleChange.bind(this)
   }
 
