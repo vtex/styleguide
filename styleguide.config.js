@@ -25,6 +25,7 @@ module.exports = {
           './src/components/Input/index.js',
           './src/components/Spinner/index.js',
           './src/components/Toggle/index.js',
+          './src/components/Dropdown/index.js',
         ]
       },
     },
