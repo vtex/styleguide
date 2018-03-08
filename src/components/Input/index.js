@@ -1,16 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-let warned = false
-
 class Input extends Component {
   constructor(props) {
     super(props)
-
-    if (!warned && props.htmlProps) {
-      console.warn('Input prop `htmlProps` is deprecated.')
-      warned = true
-    }
 
     this.state = {
       active: false,
@@ -35,7 +28,6 @@ class Input extends Component {
     const {
       errorMessage,
       error,
-      htmlProps,
     } = this.props
     const { active } = this.state
 
@@ -43,14 +35,12 @@ class Input extends Component {
     const box = 'pa3 ma0 border-box'
     const border = 'bw1 br2 b--solid outline-0'
     const typography = 'f6 near-black'
-    const customClasses = htmlProps.class || ''
-    let classes = `${size} ${box} ${border} ${typography} ${customClasses} `
+    let classes = `${size} ${box} ${border} ${typography} `
 
     const eBox = 'pa2 '
     const eBorder = 'bw3 br2 b--solid b--washed-red '
     const eTypography = 'f7 dark-gray '
     const eBackground = 'bg-washed-red '
-    const errorMessageClasses = `${eBox} ${eBorder} ${eTypography} ${eBackground}`
 
     if (active) {
       classes += 'b--dark-gray '
@@ -71,7 +61,6 @@ class Input extends Component {
     return (
       <div>
         <input
-          {...htmlProps}
           onBlur={this.handleBlur}
           onFocus={this.handleFocus}
           onChange={this.handleChange}
@@ -89,20 +78,22 @@ class Input extends Component {
           min={this.props.min}
           minLength={this.props.minLength}
           multiple={this.props.multiple}
+          name={this.props.name}
           pattern={this.props.pattern}
+          placeholder={this.props.placeholder}
           readOnly={this.props.readOnly}
           required={this.props.required}
           spellCheck={this.props.spellCheck}
           src={this.props.src}
+          step={this.props.step}
           tabIndex={this.props.tabIndex}
-          placeholder={htmlProps.placeholder || this.props.placeholder}
-          name={htmlProps.name || this.props.name}
-          type={htmlProps.type || this.props.type}
-          step={htmlProps.step || this.props.step}
-          value={htmlProps.value || this.props.value}
+          type={this.props.type}
+          value={this.props.value}
         />
         {errorMessage &&
-          <div className={errorMessageClasses}>{errorMessage}</div>}
+          <div className={`${eBox} ${eBorder} ${eTypography} ${eBackground}`}>
+            {errorMessage}
+          </div>}
       </div>
     )
   }
@@ -110,8 +101,6 @@ class Input extends Component {
 
 Input.defaultProps = {
   disabled: false,
-  htmlProps: {},
-  errorMessage: '',
 }
 
 Input.propTypes = {
@@ -165,8 +154,6 @@ Input.propTypes = {
   tabIndex: PropTypes.string,
   /** (Input spec attribute) */
   value: PropTypes.string,
-  /** Deprecated */
-  htmlProps: PropTypes.object,
   /** onChange event */
   onChange: PropTypes.func,
   /** onFocus event */
