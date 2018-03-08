@@ -17,11 +17,8 @@ class Alert extends Component {
   render() {
     const { type, onClose } = this.props
     let classes = 'pa5 br2 '
-    let closeClass = ''
     let showIcon = false
     let icon = ''
-    let width
-    let height
     let color = config.colors['serious-black']
     let closeBtnColor = 'near-black'
 
@@ -62,20 +59,17 @@ class Alert extends Component {
     return (
       <div className={`flex justify-between ${classes}`}>
         <div className="flex items-center">
-          {showIcon && (
-            <Icon type={icon} fill={color} height={18} width={18} />
-          )}
+          {showIcon && <Icon type={icon} fill={color} height={18} width={18} />}
 
           <div className={`${showIcon ? 'ph5 flex' : 'pr5'}`}>
             {this.props.children}
           </div>
         </div>
 
-        {onClose && (
-          <div className={`pointer flex items-center pv2 ${closeClass}`} onClick={onClose}>
+        {onClose &&
+          <div className="pointer flex items-center pv2" onClick={onClose}>
             <Icon type="close" height={10} width={10} fill={closeBtnColor} />
-          </div>
-        )}
+          </div>}
       </div>
     )
   }
