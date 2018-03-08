@@ -34,11 +34,7 @@ class Input extends Component {
   render() {
     const {
       errorMessage,
-      disabled,
-      value,
-      type,
-      step,
-      placeholder,
+      error,
       htmlProps,
     } = this.props
     const { active } = this.state
@@ -62,11 +58,11 @@ class Input extends Component {
       classes += 'b--light-gray '
     }
 
-    if (errorMessage) {
+    if (error || errorMessage) {
       classes += 'b--red mb3 '
     }
 
-    if (disabled) {
+    if (this.props.disabled) {
       classes += 'bg-light-gray bg-silver silver '
     } else {
       classes += 'bg-white '
@@ -80,11 +76,30 @@ class Input extends Component {
           onFocus={this.handleFocus}
           onChange={this.handleChange}
           className={classes}
-          disabled={disabled}
-          placeholder={htmlProps.placeholder || placeholder}
-          type={htmlProps.type || type}
-          step={htmlProps.step || step}
-          value={htmlProps.value || value}
+          disabled={this.props.disabled}
+          accept={this.props.accept}
+          autoComplete={this.props.autoComplete}
+          autoCorrect={this.props.autoCorrect}
+          autoFocus={this.props.autoFocus}
+          autoSave={this.props.autoSave}
+          inputMode={this.props.inputMode}
+          list={this.props.list}
+          max={this.props.max}
+          maxLength={this.props.maxLength}
+          min={this.props.min}
+          minLength={this.props.minLength}
+          multiple={this.props.multiple}
+          pattern={this.props.pattern}
+          readOnly={this.props.readOnly}
+          required={this.props.required}
+          spellCheck={this.props.spellCheck}
+          src={this.props.src}
+          tabIndex={this.props.tabIndex}
+          placeholder={htmlProps.placeholder || this.props.placeholder}
+          name={htmlProps.name || this.props.name}
+          type={htmlProps.type || this.props.type}
+          step={htmlProps.step || this.props.step}
+          value={htmlProps.value || this.props.value}
         />
         {errorMessage &&
           <div className={errorMessageClasses}>{errorMessage}</div>}
@@ -100,18 +115,68 @@ Input.defaultProps = {
 }
 
 Input.propTypes = {
+  /** (Input spec attribute) */
   id: PropTypes.string,
-  value: PropTypes.string,
-  placeholder: PropTypes.string,
+  /** (Input spec attribute) */
   type: PropTypes.string,
-  step: PropTypes.string,
+  /** (Input spec attribute) */
+  accept: PropTypes.string,
+  /** (Input spec attribute) */
   disabled: PropTypes.bool,
-  onChange: PropTypes.func,
-  onFocus: PropTypes.func,
-  onBlur: PropTypes.func,
-  errorMessage: PropTypes.string,
+  /** (Input spec attribute) */
+  autoComplete: PropTypes.string,
+  /** (Input spec attribute) */
+  autoCorrect: PropTypes.string,
+  /** (Input spec attribute) */
+  autoFocus: PropTypes.string,
+  /** (Input spec attribute) */
+  autoSave: PropTypes.string,
+  /** (Input spec attribute) */
+  inputMode: PropTypes.string,
+  /** (Input spec attribute) */
+  list: PropTypes.string,
+  /** (Input spec attribute) */
+  max: PropTypes.string,
+  /** (Input spec attribute) */
+  maxLength: PropTypes.string,
+  /** (Input spec attribute) */
+  min: PropTypes.string,
+  /** (Input spec attribute) */
+  minLength: PropTypes.string,
+  /** (Input spec attribute) */
+  multiple: PropTypes.string,
+  /** (Input spec attribute) */
+  name: PropTypes.string,
+  /** (Input spec attribute) */
+  pattern: PropTypes.string,
+  /** (Input spec attribute) */
+  placeholder: PropTypes.string,
+  /** (Input spec attribute) */
+  readOnly: PropTypes.string,
+  /** (Input spec attribute) */
+  required: PropTypes.string,
+  /** (Input spec attribute) */
+  spellCheck: PropTypes.string,
+  /** (Input spec attribute) */
+  src: PropTypes.string,
+  /** (Input spec attribute) */
+  step: PropTypes.string,
+  /** (Input spec attribute) */
+  tabIndex: PropTypes.string,
+  /** (Input spec attribute) */
+  value: PropTypes.string,
   /** Deprecated */
   htmlProps: PropTypes.object,
+  /** onChange event */
+  onChange: PropTypes.func,
+  /** onFocus event */
+  onFocus: PropTypes.func,
+  /** onBlur event */
+  onBlur: PropTypes.func,
+  /** If the input has an error, you can hightlight it */
+  error: PropTypes.bool,
+  /** If the input has an error, you can pass an error message */
+  errorMessage: PropTypes.string,
 }
 
 export default Input
