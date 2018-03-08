@@ -1,25 +1,70 @@
 #### Default with placeholder
 
 ```js
-<Input htmlProps={{ placeholder: 'Type me…' }} />
-```
+class ExampleInput extends React.Component {
+  constructor(props) {
+    super(props)
 
-#### Default value
+    this.state = { value: '' }
 
-```js
-<Input htmlProps={{ value: '007' }} />
+    this.handleChange = this.handleChange.bind(this)
+  }
+
+  handleChange(value) {
+    this.setState({ value })
+  }
+
+  render() {
+    return <Input {...this.props} onChange={this.handleChange} value={this.state.value} />
+  }
+};
+<ExampleInput placeholder="Type me…"/>
 ```
 
 #### Disabled
 
 ```js
-<Input disabled htmlProps={{ placeholder: 'Disabled text' }} />
+class ExampleInput extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = { value: '' }
+
+    this.handleChange = this.handleChange.bind(this)
+  }
+
+  handleChange(value) {
+    this.setState({ value })
+  }
+
+  render() {
+    return <Input {...this.props} onChange={this.handleChange} value={this.state.value} />
+  }
+};
+<ExampleInput placeholder="Disabled text" disabled/>
 ```
 
 #### Error
 
 ```js
-<Input error errorMessage="Sorry, the code you provided does not match." />
+class ExampleInput extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = { value: '' }
+
+    this.handleChange = this.handleChange.bind(this)
+  }
+
+  handleChange(value) {
+    this.setState({ value })
+  }
+
+  render() {
+    return <Input {...this.props} onChange={this.handleChange} value={this.state.value} />
+  }
+};
+<ExampleInput errorMessage="Invalid field"/>
 ```
 
 #### Types
@@ -27,35 +72,35 @@
 **Number, step 2**
 
 ```js
-<Input htmlProps={{ type: 'number', step: '2' }} placeholder="Numbers only…" />
+<Input type="number" step="2" placeholder="Numbers only…" />
 ```
 
 **Date**
 
 ```js
-<Input htmlProps={{ type: 'date' }} />
+<Input type="date" />
 ```
 
 **File**
 
 ```js
-<Input htmlProps={{ type: 'file' }} />
+<Input type="file" />
 ```
 
 **Month**
 
 ```js
-<Input htmlProps={{ type: 'month' }} />
+<Input type="month" />
 ```
 
 **Password**
 
 ```js
-<Input htmlProps={{ type: 'password' }} />
+<Input type="password" />
 ```
 
 **Time**
 
 ```js
-<Input htmlProps={{ type: 'time' }} />
+<Input type="time" />
 ```

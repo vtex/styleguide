@@ -1,35 +1,47 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+let warned = false
+
 class Input extends Component {
   constructor(props) {
     super(props)
 
+    if (!warned && props.htmlProps) {
+      console.warn('Input prop `htmlProps` is deprecated.')
+      warned = true
+    }
+
     this.state = {
       active: false,
-      value: props.htmlProps.value || '',
     }
   }
 
   handleChange = event => {
-    const value = event.target.value
-    this.setState({ value })
-    this.props.onChange && this.props.onChange(value)
-  }
+    this.props.onChange && this.props.onChange(event.target.value)
+  };
 
   handleFocus = event => {
     this.setState({ active: true })
     this.props.onFocus && this.props.onFocus(event)
-  }
+  };
 
   handleBlur = event => {
     this.setState({ active: false })
     this.props.onBlur && this.props.onBlur(event)
-  }
+  };
 
   render() {
-    const { error, errorMessage, disabled, htmlProps } = this.props
-    const { active, value } = this.state
+    const {
+      errorMessage,
+      disabled,
+      value,
+      type,
+      step,
+      placeholder,
+      htmlProps,
+    } = this.props
+    const { active } = this.state
 
     const size = 'w-100'
     const box = 'pa3 ma0 border-box'
@@ -50,7 +62,7 @@ class Input extends Component {
       classes += 'b--light-gray '
     }
 
-    if (error) {
+    if (errorMessage) {
       classes += 'b--red mb3 '
     }
 
@@ -69,11 +81,13 @@ class Input extends Component {
           onChange={this.handleChange}
           className={classes}
           disabled={disabled}
-          value={value}
+          placeholder={htmlProps.placeholder || placeholder}
+          type={htmlProps.type || type}
+          step={htmlProps.step || step}
+          value={htmlProps.value || value}
         />
-        {errorMessage && (
-          <div className={errorMessageClasses}>{errorMessage}</div>
-        )}
+        {errorMessage &&
+          <div className={errorMessageClasses}>{errorMessage}</div>}
       </div>
     )
   }
@@ -82,19 +96,22 @@ class Input extends Component {
 Input.defaultProps = {
   disabled: false,
   htmlProps: {},
-  error: false,
   errorMessage: '',
 }
 
 Input.propTypes = {
+  id: PropTypes.string,
+  value: PropTypes.string,
+  placeholder: PropTypes.string,
+  type: PropTypes.string,
+  step: PropTypes.string,
   disabled: PropTypes.bool,
-  error: PropTypes.bool,
-  errorMessage: PropTypes.string,
-  /** Extra attributes for the input */
-  htmlProps: PropTypes.object,
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
+  errorMessage: PropTypes.string,
+  /** Deprecated */
+  htmlProps: PropTypes.object,
 }
 
 export default Input
