@@ -17,7 +17,7 @@ class ToggleExample extends React.Component {
 
   render() {
     return (
-      <Toggle id='toggle5'
+      <Toggle id='toggle1'
         checked={this.state.checked}
         onClick={this.onClick}/>
     )
@@ -45,7 +45,7 @@ class ToggleSemanticExample extends React.Component {
 
   render() {
     return (
-      <Toggle id='toggle6'
+      <Toggle id='toggle2'
         semantic
         checked={this.state.checked}
         onClick={this.onClick}/>
@@ -59,7 +59,7 @@ Disabled
 
 ```js
 <div> 
-  <Toggle disabled id='toggle4'/>
+  <Toggle disabled id='toggle3'/>
 </div>
 ```
 
@@ -82,7 +82,7 @@ class ToggleExample extends React.Component {
 
   render() {
     return (
-      <Toggle id='toggle5'
+      <Toggle id='toggle4'
         checked={this.state.checked}
         onClick={this.onClick}/>
     )
@@ -104,7 +104,7 @@ class ToggleSemanticExample extends React.Component {
 
   render() {
     return (
-      <Toggle id='toggle6'
+      <Toggle id='toggle5'
         semantic
         checked={this.state.checked}
         onClick={this.onClick}/>
@@ -116,7 +116,7 @@ class ToggleSemanticExample extends React.Component {
   <br />
   <ToggleSemanticExample />
   <br />
-  <Toggle disabled id='toggle7'/>
+  <Toggle disabled id='toggle6'/>
   <br />
 </div>
 ```
