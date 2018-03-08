@@ -100,8 +100,11 @@ class Input extends Component {
 }
 
 Input.defaultProps = {
+  autoFocus: false,
   disabled: false,
   multiple: false,
+  readOnly: false,
+  error: false,
 }
 
 Input.propTypes = {
@@ -118,7 +121,7 @@ Input.propTypes = {
   /** (Input spec attribute) */
   autoCorrect: PropTypes.string,
   /** (Input spec attribute) */
-  autoFocus: PropTypes.string,
+  autoFocus: PropTypes.bool,
   /** (Input spec attribute) */
   autoSave: PropTypes.string,
   /** (Input spec attribute) */
@@ -134,7 +137,7 @@ Input.propTypes = {
   /** (Input spec attribute) */
   minLength: PropTypes.string,
   /** (Input spec attribute) */
-  multiple: PropTypes.string,
+  multiple: PropTypes.bool,
   /** (Input spec attribute) */
   name: PropTypes.string,
   /** (Input spec attribute) */
@@ -142,7 +145,7 @@ Input.propTypes = {
   /** (Input spec attribute) */
   placeholder: PropTypes.string,
   /** (Input spec attribute) */
-  readOnly: PropTypes.string,
+  readOnly: PropTypes.bool,
   /** (Input spec attribute) */
   required: PropTypes.string,
   /** (Input spec attribute) */
