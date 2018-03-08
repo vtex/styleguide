@@ -101,6 +101,7 @@ class Input extends Component {
 
 Input.defaultProps = {
   disabled: false,
+  multiple: false,
 }
 
 Input.propTypes = {
