@@ -18,7 +18,7 @@ class Input extends Component {
   }
 
   handleChange = event => {
-    this.props.onChange && this.props.onChange(event.target.value)
+    this.props.onChange && this.props.onChange(event)
   };
 
   handleFocus = event => {

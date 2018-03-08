@@ -10,8 +10,8 @@ class ExampleInput extends React.Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
-  handleChange(value) {
-    this.setState({ value })
+  handleChange(e) {
+    this.setState({ value: e.target.value })
   }
 
   render() {
@@ -33,8 +33,8 @@ class ExampleInput extends React.Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
-  handleChange(value) {
-    this.setState({ value })
+  handleChange(e) {
+    this.setState({ value: e.target.value })
   }
 
   render() {
@@ -56,8 +56,8 @@ class ExampleInput extends React.Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
-  handleChange(value) {
-    this.setState({ value })
+  handleChange(e) {
+    this.setState({ value: e.target.value })
   }
 
   render() {
