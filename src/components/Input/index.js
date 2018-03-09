@@ -89,6 +89,7 @@ class Input extends Component {
           tabIndex={this.props.tabIndex}
           type={this.props.type}
           value={this.props.value}
+          id={this.props.id}
         />
         {errorMessage &&
           <div className={`${eBox} ${eBorder} ${eTypography} ${eBackground}`}>
