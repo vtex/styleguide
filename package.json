@@ -10,7 +10,7 @@
     "styleguide:build": "styleguidist build",
     "compile": "npm run cleanlib && NODE_ENV=production babel ./src/components --out-dir ./lib --ignore '__tests__,*.spec.js' && npm run copycss",
     "copycss": "copyfiles -u 2 src/**/*.css lib",
-    "cleanlib": "sudo rm -rf lib",
+    "cleanlib": "rm -rf lib",
     "prepublishOnly": "npm run compile",
     "develop": "npm link && watch 'npm run compile' src"
   },
