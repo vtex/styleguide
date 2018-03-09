@@ -8,6 +8,7 @@ class Dropdown extends Component {
       open: false,
     }
   }
+
   componentDidMount() {
     document.addEventListener('mousedown', this.handleClickOutside)
   }
@@ -21,9 +22,11 @@ class Dropdown extends Component {
   };
 
   handleClickOutside = e => {
-    if (this.wrapperRef && !this.wrapperRef.contains(e.target)) {
-      this.props.onClose && this.props.onClose(e)
-    }
+    // TODO: fix
+    // if (this.wrapperRef && !this.wrapperRef.contains(e.target)) {
+    //   this.props.onClose && this.props.onClose(e)
+    //   this.setState({ open: false })
+    // }
   };
 
   handleClick = e => {
@@ -60,10 +63,10 @@ class Dropdown extends Component {
     }
 
     return (
-      <div className="relative" ref={this.setWrapperRef}>
+      <div ref={this.setWrapperRef}>
         <button
           disabled={disabled}
-          ref={(el) => (this.select = el)}
+          ref={el => this.select = el}
           className={this.getButtonClass()}
           onClick={this.handleClick}
           style={{ outline: 'none', height: '44px' }}
@@ -86,13 +89,13 @@ class Dropdown extends Component {
         </button>
         {open &&
           <div
-            className="absolute w-100 mw6 ba br2 b--near-white bg-white flex-column"
+            className="absolute w-auto mw6 ba br2 b--near-white bg-white flex-column z-max"
             style={optionsStyle}
           >
             {options.map(option => (
               <button
                 key={option}
-                className="flex w-100 right pa4 hover-bg-near-white near-black"
+                className="flex w-100 right pa4 hover-bg-near-white near-black tl"
                 onClick={e => this.handleOptionClick(e, option)}
                 style={{
                   height: '44px',
