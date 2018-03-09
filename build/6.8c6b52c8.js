@@ -1,1 +1,0 @@
-webpackJsonp([6],{"./src/components/Icon/README.md":function(c,n,o){c.exports=o.p+"static/media/README.4be63fc4.md"}});
