@@ -71,6 +71,7 @@ class Input extends Component {
           autoCorrect={this.props.autoCorrect}
           autoFocus={this.props.autoFocus}
           autoSave={this.props.autoSave}
+          defaultValue={this.props.defaultValue}
           inputMode={this.props.inputMode}
           list={this.props.list}
           max={this.props.max}
@@ -125,6 +126,8 @@ Input.propTypes = {
   autoFocus: PropTypes.bool,
   /** (Input spec attribute) */
   autoSave: PropTypes.string,
+  /** (Input spec attribute) */
+  defaultValue: PropTypes.string,
   /** (Input spec attribute) */
   inputMode: PropTypes.string,
   /** (Input spec attribute) */
