@@ -10,7 +10,7 @@ class Button extends Component {
   }
 
   render() {
-    const { primary, secondary, disabled, isLoading, children } = this.props
+    const { submit, primary, secondary, disabled, isLoading, children } = this.props
     const isIconButton = children.type === Icon
     const CustomTag = isIconButton ? 'div' : 'button'
 
@@ -51,6 +51,7 @@ class Button extends Component {
         className={`${classes}`}
         onClick={this.handleClick}
         disabled={!isIconButton && disabled}
+        type={submit ? 'submit' : 'button'}
       >
         {isLoading ? (
           <Spinner width={11} height={11} secondary={primary} />
@@ -68,6 +69,7 @@ Button.defaultProps = {
   disabled: false,
   isLoading: false,
   htmlProps: {},
+  submit: false,
 }
 
 Button.propTypes = {
@@ -78,6 +80,7 @@ Button.propTypes = {
   children: PropTypes.node.isRequired,
   isLoading: PropTypes.bool,
   onClick: PropTypes.func,
+  submit: false,
 }
 
 export default Button
