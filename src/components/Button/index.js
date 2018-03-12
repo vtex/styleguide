@@ -1,86 +1,148 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Icon from '../Icon'
 
 import Spinner from '../Spinner'
 
 class Button extends Component {
   handleClick = event => {
     !this.props.disabled && this.props.onClick && this.props.onClick(event)
-  }
+  };
 
   render() {
-    const { submit, primary, secondary, disabled, isLoading, children } = this.props
-    const isIconButton = children.type === Icon
-    const CustomTag = isIconButton ? 'div' : 'button'
+    const {
+      small,
+      large,
+      xLarge,
+      block,
+      primary,
+      secondary,
+      disabled,
+      isLoading,
+      icon,
+    } = this.props
+    const Tag = icon ? 'div' : 'button'
 
     if (secondary && primary) {
       throw new Error('Button component cannot be primary AND secondary')
     }
 
-    let classes = 'fw5 ttu br2 fw4 f6 '
+    if ((small && large) || (small && xLarge) || (large && xLarge)) {
+      throw new Error(
+        'Button component cannot have two sizes at the same time'
+      )
+    }
 
-    classes += isIconButton ? 'icon-button pa3 dib ' : 'pv3 ph5 '
+    let classes = 'bw1 ba fw5 ttu br2 fw4 '
+
+    classes += icon ? 'icon-button dib ' : ''
+
+    if (small) {
+      classes += icon ? 'pa1 ' : 'pv1 ph3 '
+      classes += 'f7 '
+    } else if (large) {
+      classes += icon ? 'pa4 ' : 'pv4 ph6 '
+      classes += 'f5 '
+    } else if (xLarge) {
+      classes += icon ? 'pa5 ' : 'pv5 ph7 '
+      classes += 'f4 '
+    } else {
+      classes += icon ? 'pa3 ' : 'pv3 ph5 '
+      classes += 'f6 '
+    }
 
     if (!secondary && !primary && !disabled) {
-      classes +=
-        'bn blue bg-transparent hover-heavy-blue '
+      classes += 'b--transparent blue bg-transparent hover-heavy-blue hover-b--transparent '
     }
 
     if (secondary && !disabled) {
-      classes += 'bw1 ba b--blue blue hover-white '
+      classes += 'b--blue blue hover-white '
     }
     if (secondary && !isLoading) {
       classes += 'hover-bg-blue '
     }
 
     if (primary && !disabled) {
-      classes +=
-        'bw1 ba b--blue bg-blue white hover-bg-heavy-blue hover-b--heavy-blue '
+      classes += 'b--blue bg-blue white hover-bg-heavy-blue hover-b--heavy-blue '
     }
 
     if (disabled) {
-      classes += 'bw1 ba b--light-gray bg-light-gray gray '
+      classes += 'b--light-gray bg-light-gray gray '
     } else {
       classes += 'pointer '
     }
 
+    if (block) {
+      classes += 'w-100 '
+    }
+
     return (
-      <CustomTag
-        {...this.props.htmlProps}
-        className={`${classes}`}
+      <Tag
+        id={this.props.id}
+        autoFocus={icon ? undefined : this.props.autoFocus}
+        disabled={icon ? undefined : this.props.disabled}
+        name={icon ? undefined : this.props.name}
+        type={icon ? undefined : this.props.type}
+        value={icon ? undefined : this.props.value}
+        className={classes}
         onClick={this.handleClick}
-        disabled={!isIconButton && disabled}
-        type={submit ? 'submit' : 'button'}
       >
-        {isLoading ? (
-          <Spinner width={11} height={11} secondary={primary} />
-        ) : (
-          this.props.children
-        )}
-      </CustomTag>
+        {isLoading
+          ? <Spinner width={11} height={11} secondary={primary} />
+          : this.props.children}
+      </Tag>
     )
   }
 }
 
 Button.defaultProps = {
+  small: false,
+  large: false,
+  xLarge: false,
+  block: false,
   primary: false,
   secondary: false,
   disabled: false,
   isLoading: false,
-  htmlProps: {},
-  submit: false,
+  autoFocus: false,
+  icon: false,
+  type: 'button',
 }
 
 Button.propTypes = {
+  /** Small style */
+  small: PropTypes.bool,
+  /** Large style */
+  large: PropTypes.bool,
+  /** xLarge style */
+  xLarge: PropTypes.bool,
+  /** Block style */
+  block: PropTypes.bool,
+  /** Primary style */
   primary: PropTypes.bool,
+  /** Secondary style */
   secondary: PropTypes.bool,
-  disabled: PropTypes.bool,
-  htmlProps: PropTypes.object,
-  children: PropTypes.node.isRequired,
+  /** Add loading spinner */
   isLoading: PropTypes.bool,
+  /** If you are using just an Icon component inside, use this as true */
+  icon: PropTypes.bool,
+  /** (Button spec attribute) */
+  id: PropTypes.string,
+  /** (Button spec attribute) */
+  autoFocus: PropTypes.bool,
+  /** (Button spec attribute) */
+  autoComplete: PropTypes.string,
+  /** (Button spec attribute) */
+  disabled: PropTypes.bool,
+  /** (Button spec attribute) */
+  name: PropTypes.string,
+  /** (Button spec attribute) */
+  type: PropTypes.string,
+  /** (Button spec attribute) */
+  value: PropTypes.string,
+  /** Label of the Button */
+  children: PropTypes.node.isRequired,
+  /** onClick event */
   onClick: PropTypes.func,
-  submit: false,
 }
 
 export default Button
