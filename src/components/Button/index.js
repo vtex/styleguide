@@ -81,6 +81,7 @@ class Button extends Component {
         value={icon ? undefined : this.props.value}
         className={classes}
         onClick={this.handleClick}
+        ref={this.props.ref}
       >
         {isLoading
           ? <Spinner width={11} height={11} secondary={primary} />
@@ -136,6 +137,8 @@ Button.propTypes = {
   children: PropTypes.node.isRequired,
   /** onClick event */
   onClick: PropTypes.func,
+  /** ref function */
+  ref: PropTypes.func,
 }
 
 export default Button
