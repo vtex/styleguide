@@ -10,7 +10,6 @@ class Button extends Component {
 
   render() {
     const {
-      small,
       large,
       xLarge,
       block,
@@ -26,7 +25,7 @@ class Button extends Component {
       throw new Error('Button component cannot be primary AND secondary')
     }
 
-    if ((small && large) || (small && xLarge) || (large && xLarge)) {
+    if ((large && xLarge)) {
       throw new Error(
         'Button component cannot have two sizes at the same time'
       )
@@ -36,10 +35,7 @@ class Button extends Component {
 
     classes += icon ? 'icon-button dib ' : ''
 
-    if (small) {
-      classes += icon ? 'pa1 ' : 'pv1 ph3 '
-      classes += 'f7 '
-    } else if (large) {
+    if (large) {
       classes += icon ? 'pa4 ' : 'pv4 ph6 '
       classes += 'f5 '
     } else if (xLarge) {
@@ -95,7 +91,6 @@ class Button extends Component {
 }
 
 Button.defaultProps = {
-  small: false,
   large: false,
   xLarge: false,
   block: false,
@@ -109,8 +104,6 @@ Button.defaultProps = {
 }
 
 Button.propTypes = {
-  /** Small style */
-  small: PropTypes.bool,
   /** Large style */
   large: PropTypes.bool,
   /** xLarge style */
