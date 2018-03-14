@@ -51,7 +51,7 @@ class Alert extends Component {
         break
       }
       default: {
-        classes += 'bg-near-white '
+        classes += 'bg-washed-blue '
         break
       }
     }
