@@ -51,50 +51,83 @@ class Dropdown extends Component {
   };
 
   render() {
-    const { value, placeholder, disabled, options } = this.props
+    const {
+      value,
+      placeholder,
+      disabled,
+      options,
+      short,
+      long,
+      xLong,
+    } = this.props
     const { open } = this.state
-    const optionsStyle = { overflowY: 'scroll', height: '120px' }
+
+    let width
+    if (short) {
+      width = '60px'
+    } else if (long) {
+      width = '350px'
+    } else {
+      width = '200px'
+    }
+
+    const classes = 'pa3 br2 ba bw1 bg-white bn w-100 '
+    let containerClasses = 'f6 br2 bw1 '
+    let optionsClasses = 'absolute mw6 bl br bb bw1 br2 br--bottom bg-white flex-column z-max '
+
+    const containerStyle = { width: width }
+    const optionsStyle = { overflowY: 'auto', maxHeight: '140px', width: width }
+
     if (open) {
-      optionsStyle['boxShadow'] = '0px 0px 4px 0px rgba( 0, 0, 0, .15)'
+      containerClasses += 'b--silver br--top bl br bt '
+      optionsClasses += 'b--silver '
+      // optionsStyle['boxShadow'] = '0px 0px 4px 0px rgba( 0, 0, 0, .15)'
+    } else {
+      containerClasses += 'ba b--light-gray hover-b--silver'
+      optionsClasses += 'pointer b--light-gray'
     }
 
     return (
-      <div ref={this.setWrapperRef}>
-        <button
-          disabled={disabled}
-          ref={this.setSelectRef}
-          onClick={this.handleClick}
-          className={
-            this.props.disabled
-              ? 'pa4 bn br2 bg-light-silver gray'
-              : `pa4 ba bw1 br2 bg-white b--light-gray hover-bg-near-white hover-blue hover-b--near-white ${value ? 'near-black' : 'gray'}`
-          }
-        >
-          <div className="flex justify-between">
-            {value || placeholder}
-            <div className="flex items-center pl6">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-              >
-                <g fill={disabled ? '#969799' : '#368DF7'}>
-                  <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z" />
-                </g>
-              </svg>
+      <div ref={this.setWrapperRef} className="dib">
+        <div className={containerClasses} style={containerStyle}>
+          <button
+            disabled={disabled}
+            ref={this.setSelectRef}
+            onClick={this.handleClick}
+            className={
+              this.props.disabled
+                ? `bg-white ${classes}`
+                : `pointer ${classes} ${value ? 'near-black' : 'gray'}`
+            }
+          >
+            <div className="flex">
+              <div className="flex-auto tl">
+                {value || placeholder || '\xa0'}
+              </div>
+              <div className="flex-none flex items-center pl6">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                >
+                  <g fill={disabled ? '#969799' : '#368DF7'}>
+                    <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z" />
+                  </g>
+                </svg>
+              </div>
             </div>
-          </div>
-        </button>
+          </button>
+        </div>
         {open &&
           <div
-            className="absolute w-auto mw6 ba br2 b--near-white bg-white flex-column z-max"
+            className={optionsClasses}
             style={optionsStyle}
           >
             {options.map(option => (
               <button
                 key={option}
-                className="flex w-100 pa4 bg-white hover-bg-near-white near-black tl bt-0 bl-0 br-0 bb b--near-white"
+                className="f6 pointer flex w-100 pa3 bg-white hover-bg-near-white near-black tl bb-0 bl-0 br-0 bt b--near-white"
                 onClick={e => this.handleOptionClick(e, option)}
               >
                 {option}
@@ -114,6 +147,9 @@ Dropdown.propTypes = {
   onClose: PropTypes.func,
   options: PropTypes.array.isRequired,
   disabled: PropTypes.bool,
+  short: PropTypes.bool,
+  long: PropTypes.bool,
+  xLong: PropTypes.bool,
 }
 
 export default Dropdown

@@ -1,4 +1,33 @@
-Dropdown
+Widths
+```js
+<div>
+  <div className="mb5">
+    <div className="mb3">Short</div>
+    <Dropdown
+      short
+      options={['10', '11', '12']}
+      onChange={() => {}}
+      value={'10'} />
+  </div>
+
+  <div className="mb5">
+    <div className="mb3">Regular (default)</div>
+    <Dropdown
+      options={['Rottweiler', 'Pincher', 'Bulldog', 'Dalmata']}
+      onChange={() => {}}
+      value={''} />
+  </div>
+
+  <div className="mb5">
+    <div className="mb3">Long</div>
+    <Dropdown
+      long
+      options={['512 Academy Ave, Sanger, CA 93657, USA', '765 N Temperance Ave, Clovis, CA 93611, USA', '1845 Herndon Ave F, Clovis, CA 93611, USA', '1845 Herndon Ave F, Clovis, CA 93611, USA']}
+      onChange={() => {}}
+      value={'1845 Herndon Ave F, Clovis, CA 93611, USA'} />
+  </div>
+</div>
+```
 
 Active
 ```js
@@ -16,10 +45,10 @@ class Example extends React.Component {
   handleChange(e, value) {
     this.setState({ value })
   }
-    
+
   render() {
     return (
-      <Dropdown 
+      <Dropdown
         placeholder='Placeholder'
         options={['Value 1', 'Value 2', 'Value 3', 'Value 4']}
         onChange={this.handleChange}
@@ -48,10 +77,10 @@ class Example extends React.Component {
   handleChange(e, value) {
     this.setState({ value })
   }
-    
+
   render() {
     return (
-      <Dropdown 
+      <Dropdown
         placeholder='Placeholder'
         options={['Value 1', 'Value 2', 'Value 3', 'Value 4']}
         onChange={this.handleChange}
