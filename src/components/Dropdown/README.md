@@ -1,3 +1,34 @@
+Sizes
+```js
+<div>
+  <div className="mb5">
+    <div className="mb3">Default</div>
+    <Dropdown
+    options={['Rottweiler', 'Pincher', 'Bulldog', 'Dalmata']}
+      onChange={() => {}}
+      value={'Rottweiler'} />
+  </div>
+
+  <div className="mb5">
+    <div className="mb3">Large</div>
+    <Dropdown
+      large
+      options={['Rottweiler', 'Pincher', 'Bulldog', 'Dalmata']}
+      onChange={() => {}}
+      value={'Rottweiler'} />
+  </div>
+
+  <div className="mb5">
+    <div className="mb3">Extra large</div>
+    <Dropdown
+      xLarge
+      options={['Rottweiler', 'Pincher', 'Bulldog', 'Dalmata']}
+      onChange={() => {}}
+      value={'Rottweiler'} />
+  </div>
+</div>
+```
+
 Widths
 ```js
 <div>
@@ -11,11 +42,11 @@ Widths
   </div>
 
   <div className="mb5">
-    <div className="mb3">Regular (default)</div>
+    <div className="mb3">Default</div>
     <Dropdown
       options={['Rottweiler', 'Pincher', 'Bulldog', 'Dalmata']}
       onChange={() => {}}
-      value={''} />
+      value={'Rottweiler'} />
   </div>
 
   <div className="mb5">

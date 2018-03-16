@@ -58,30 +58,64 @@ class Dropdown extends Component {
       options,
       short,
       long,
-      xLong,
+      large,
+      xLarge,
     } = this.props
     const { open } = this.state
 
     let width
-    if (short) {
-      width = '60px'
-    } else if (long) {
-      width = '350px'
+    let maxHeight
+    let iconSize
+
+    let classes = 'br2 bw1 bg-white bn w-100 '
+    let containerClasses = 'br2 bw1 '
+    let optionsClasses = 'absolute mw6 bl br bb bw1 br2 br--bottom bg-white flex-column z-max '
+    let optionClasses = 'pointer flex w-100 bg-white hover-bg-near-white near-black tl bb-0 bl-0 br-0 bt b--near-white '
+
+    if (large) {
+      classes += 'f5 pv4 ph6 '
+      optionClasses += 'f5 pv4 ph6 '
+      maxHeight = '180px'
+      iconSize = 18
+      if (short) {
+        width = '100px'
+      } else if (long) {
+        width = '420px'
+      } else {
+        width = '250px'
+      }
+    } else if (xLarge) {
+      classes += 'f4 pv5 ph7 '
+      optionClasses += 'f4 pv5 ph7 '
+      maxHeight = '300px'
+      iconSize = 22
+      if (short) {
+        width = '150px'
+      } else if (long) {
+        width = '520px'
+      } else {
+        width = '320px'
+      }
     } else {
-      width = '200px'
+      classes += 'f6 pv3 ph5 '
+      optionClasses += 'f6 pv3 ph5 '
+      maxHeight = '140px'
+      iconSize = 16
+      if (short) {
+        width = '70px'
+      } else if (long) {
+        width = '350px'
+      } else {
+        width = '200px'
+      }
     }
 
-    const classes = 'pa3 br2 ba bw1 bg-white bn w-100 '
-    let containerClasses = 'f6 br2 bw1 '
-    let optionsClasses = 'absolute mw6 bl br bb bw1 br2 br--bottom bg-white flex-column z-max '
-
     const containerStyle = { width: width }
-    const optionsStyle = { overflowY: 'auto', maxHeight: '140px', width: width }
+    const optionsStyle = { overflowY: 'auto', maxHeight: maxHeight, width: width }
 
     if (open) {
-      containerClasses += 'b--silver br--top bl br bt '
+      containerClasses += 'bl br bt pb1 b--silver br--top '
       optionsClasses += 'b--silver '
-      // optionsStyle['boxShadow'] = '0px 0px 4px 0px rgba( 0, 0, 0, .15)'
     } else {
       containerClasses += 'ba b--light-gray hover-b--silver'
       optionsClasses += 'pointer b--light-gray'
@@ -107,8 +141,8 @@ class Dropdown extends Component {
               <div className="flex-none flex items-center pl6">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
+                  width={iconSize}
+                  height={iconSize}
                   viewBox="0 0 24 24"
                 >
                   <g fill={disabled ? '#969799' : '#368DF7'}>
@@ -127,7 +161,7 @@ class Dropdown extends Component {
             {options.map(option => (
               <button
                 key={option}
-                className="f6 pointer flex w-100 pa3 bg-white hover-bg-near-white near-black tl bb-0 bl-0 br-0 bt b--near-white"
+                className={optionClasses}
                 onClick={e => this.handleOptionClick(e, option)}
               >
                 {option}
@@ -140,6 +174,10 @@ class Dropdown extends Component {
 }
 
 Dropdown.propTypes = {
+  /** Large style */
+  large: PropTypes.bool,
+  /** xLarge style */
+  xLarge: PropTypes.bool,
   value: PropTypes.string,
   placeholder: PropTypes.string.isRequired,
   onChange: PropTypes.func,
