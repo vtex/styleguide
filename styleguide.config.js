@@ -21,6 +21,7 @@ module.exports = {
         return [
           './src/components/Alert/index.js',
           './src/components/Button/index.js',
+          './src/components/Card/index.js',
           './src/components/Icon/index.js',
           './src/components/Input/index.js',
           './src/components/Spinner/index.js',
