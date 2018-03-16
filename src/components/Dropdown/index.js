@@ -65,7 +65,7 @@ class Dropdown extends Component {
           ref={this.setSelectRef}
           onClick={this.handleClick}
           className={
-            this.props.disabled
+            disabled
               ? 'pa4 bn br2 bg-light-silver gray'
               : `pa4 ba bw1 br2 bg-white b--light-gray hover-bg-near-white hover-blue hover-b--near-white ${value ? 'near-black' : 'gray'}`
           }
@@ -93,11 +93,11 @@ class Dropdown extends Component {
           >
             {options.map(option => (
               <button
-                key={option}
-                className="flex w-100 pa4 bg-white hover-bg-near-white near-black tl bt-0 bl-0 br-0 bb b--near-white"
+                key={option.value}
+                className="flex w-100 pa4 mr6 bg-white hover-bg-near-white near-black tl bt-0 bl-0 br-0 bb b--near-white"
                 onClick={e => this.handleOptionClick(e, option)}
               >
-                {option}
+                {option.label}
               </button>
             ))}
           </div>}
