@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 
 import { Tooltip } from 'react-tippy'
 import 'react-tippy/dist/tippy.css'
-import './index.css'
 
 class ToolTip extends Component {
   render() {
