@@ -48,12 +48,12 @@ class Input extends Component {
     } else {
       classes += 'b--light-gray '
       if (!this.props.disabled) {
-      classes += 'hover-b--silver '
+        classes += 'hover-b--silver '
       }
     }
 
     if (error || errorMessage) {
-      classes += 'b--red hover-b--red mb3 '  
+      classes += 'b--red hover-b--red mb3 '
     }
 
     if (this.props.disabled) {
