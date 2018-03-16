@@ -18,8 +18,8 @@ class Card extends React.Component {
 }
 
 Card.propTypes = {
-  children: PropTypes.node,
-  /** Padding `pl6 pr6` should be used for inner items that require space. */
+  children: PropTypes.node.isRequired,
+  /** Use the full width of the card. Respect the default padding (pl6 pr6) for elements that do not fill the full width. */
   fullWidth: PropTypes.bool,
 }
 
