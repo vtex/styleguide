@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import Alert from '../Alert'
 
 class Input extends Component {
   constructor(props) {
@@ -43,17 +44,20 @@ class Input extends Component {
     const eBackground = 'bg-washed-red '
 
     if (active) {
-      classes += 'b--dark-gray '
+      classes += 'b--gray '
     } else {
       classes += 'b--light-gray '
+      if (!this.props.disabled) {
+        classes += 'hover-b--silver '
+      }
     }
 
     if (error || errorMessage) {
-      classes += 'b--red mb3 '
+      classes += 'b--red hover-b--red mb3 '
     }
 
     if (this.props.disabled) {
-      classes += 'bg-light-gray bg-silver silver '
+      classes += 'bg-light-gray bg-light-silver b--light-silver silver '
     } else {
       classes += 'bg-white '
     }
@@ -92,10 +96,7 @@ class Input extends Component {
           value={this.props.value}
           id={this.props.id}
         />
-        {errorMessage &&
-          <div className={`${eBox} ${eBorder} ${eTypography} ${eBackground}`}>
-            {errorMessage}
-          </div>}
+        {errorMessage && <Alert type="error">{errorMessage}</Alert>}
       </div>
     )
   }
