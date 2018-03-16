@@ -60,6 +60,30 @@ Widths
 </div>
 ```
 
+Box types
+
+```js
+<div>
+  <div className="mb5">
+    <div className="mb3">Default</div>
+    <Dropdown
+      xLarge
+      options={['Rottweiler', 'Pincher', 'Bulldog', 'Dalmata']}
+      onChange={() => {}}
+      value={'Rottweiler'} />
+  </div>
+  <div className="">
+    <div className="mb3">Block</div>
+    <Dropdown
+      block
+      xLarge
+      options={['Rottweiler', 'Pincher', 'Bulldog', 'Dalmata']}
+      onChange={() => {}}
+      value={'Rottweiler'} />
+  </div>
+</div>
+```
+
 Active
 ```js
 class Example extends React.Component {

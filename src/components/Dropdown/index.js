@@ -52,14 +52,15 @@ class Dropdown extends Component {
 
   render() {
     const {
-      value,
-      placeholder,
-      disabled,
-      options,
       short,
       long,
       large,
       xLarge,
+      block,
+      value,
+      placeholder,
+      disabled,
+      options,
     } = this.props
     const { open } = this.state
 
@@ -72,41 +73,49 @@ class Dropdown extends Component {
     let optionsClasses = 'absolute mw6 bl br bb bw1 br2 br--bottom bg-white flex-column z-max '
     let optionClasses = 'pointer flex w-100 bg-white hover-bg-near-white near-black tl bb-0 bl-0 br-0 bt b--near-white '
 
+    if (block) width = '100%'
+
     if (large) {
       classes += 'f5 pv4 ph6 '
       optionClasses += 'f5 pv4 ph6 '
       maxHeight = '180px'
       iconSize = 18
-      if (short) {
-        width = '100px'
-      } else if (long) {
-        width = '420px'
-      } else {
-        width = '250px'
+      if (!block) {
+        if (short) {
+          width = '100px'
+        } else if (long) {
+          width = '420px'
+        } else {
+          width = '250px'
+        }
       }
     } else if (xLarge) {
       classes += 'f4 pv5 ph7 '
       optionClasses += 'f4 pv5 ph7 '
       maxHeight = '300px'
       iconSize = 22
-      if (short) {
-        width = '150px'
-      } else if (long) {
-        width = '520px'
-      } else {
-        width = '320px'
+      if (!block) {
+        if (short) {
+          width = '150px'
+        } else if (long) {
+          width = '520px'
+        } else {
+          width = '320px'
+        }
       }
     } else {
       classes += 'f6 pv3 ph5 '
       optionClasses += 'f6 pv3 ph5 '
       maxHeight = '140px'
       iconSize = 16
-      if (short) {
-        width = '70px'
-      } else if (long) {
-        width = '350px'
-      } else {
-        width = '200px'
+      if (!block) {
+        if (short) {
+          width = '70px'
+        } else if (long) {
+          width = '350px'
+        } else {
+          width = '200px'
+        }
       }
     }
 
@@ -122,7 +131,7 @@ class Dropdown extends Component {
     }
 
     return (
-      <div ref={this.setWrapperRef} className="dib">
+      <div ref={this.setWrapperRef} className={block ? 'db' : 'dib'}>
         <div className={containerClasses} style={containerStyle}>
           <button
             disabled={disabled}
@@ -174,20 +183,24 @@ class Dropdown extends Component {
 }
 
 Dropdown.propTypes = {
-  /** Large style */
+  /** Size: Large style */
   large: PropTypes.bool,
-  /** xLarge style */
+  /** Size: xLarge style */
   xLarge: PropTypes.bool,
+  /** Width: Short style */
+  short: PropTypes.bool,
+  /** Width: Long style */
+  long: PropTypes.bool,
+  /** Block style */
+  block: PropTypes.bool,
   value: PropTypes.string,
+  xLong: PropTypes.bool,
   placeholder: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   onOpen: PropTypes.func,
   onClose: PropTypes.func,
   options: PropTypes.array.isRequired,
   disabled: PropTypes.bool,
-  short: PropTypes.bool,
-  long: PropTypes.bool,
-  xLong: PropTypes.bool,
 }
 
 export default Dropdown
