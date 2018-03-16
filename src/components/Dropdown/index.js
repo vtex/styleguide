@@ -21,12 +21,16 @@ class Dropdown extends Component {
     this.wrapperRef = node
   };
 
+  setSelectRef = el => {
+    this.select = el
+  };
+
   handleClickOutside = e => {
-    // TODO: fix
-    // if (this.wrapperRef && !this.wrapperRef.contains(e.target)) {
-    //   this.props.onClose && this.props.onClose(e)
-    //   this.setState({ open: false })
-    // }
+    if (this.wrapperRef && !this.wrapperRef.contains(e.target)) {
+      this.setState({ open: false }, () => {
+        this.props.onClose && this.props.onClose(e)
+      })
+    }
   };
 
   handleClick = e => {
@@ -46,14 +50,6 @@ class Dropdown extends Component {
     })
   };
 
-  getButtonClass = () => {
-    if (this.props.disabled) {
-      return 'pa4 bn br2 bg-light-gray gray'
-    }
-    const textColor = this.state.selectedValue ? 'near-black' : 'gray'
-    return `pa4 ba bw1 br2 ${textColor} bg-white b--near-white hover-bg-near-white hover-blue`
-  };
-
   render() {
     const { value, placeholder, disabled, options } = this.props
     const { open } = this.state
@@ -66,10 +62,13 @@ class Dropdown extends Component {
       <div ref={this.setWrapperRef}>
         <button
           disabled={disabled}
-          ref={el => this.select = el}
-          className={this.getButtonClass()}
+          ref={this.setSelectRef}
           onClick={this.handleClick}
-          style={{ outline: 'none', height: '44px' }}
+          className={
+            this.props.disabled
+              ? 'pa4 bn br2 bg-light-silver gray'
+              : `pa4 ba bw1 br2 bg-white b--light-gray hover-bg-near-white hover-blue hover-b--near-white ${value ? 'near-black' : 'gray'}`
+          }
         >
           <div className="flex justify-between">
             {value || placeholder}
@@ -95,13 +94,8 @@ class Dropdown extends Component {
             {options.map(option => (
               <button
                 key={option}
-                className="flex w-100 right pa4 hover-bg-near-white near-black tl"
+                className="flex w-100 pa4 bg-white hover-bg-near-white near-black tl bt-0 bl-0 br-0 bb b--near-white"
                 onClick={e => this.handleOptionClick(e, option)}
-                style={{
-                  height: '44px',
-                  border: '0px',
-                  borderBottom: '1px solid #F5F7FA',
-                }}
               >
                 {option}
               </button>
