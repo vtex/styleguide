@@ -18,10 +18,16 @@ class Example extends React.Component {
   }
     
   render() {
+    const options = [
+      {value: 'v1', label: 'Value 1'},
+      {value: 'v2', label: 'Value 2'},
+      {value: 'v3', label: 'Value 3'},
+      {value: 'v4', label: 'Value 4'}
+    ]
     return (
       <Dropdown 
         placeholder='Placeholder'
-        options={['Value 1', 'Value 2', 'Value 3', 'Value 4']}
+        options={options}
         onChange={this.handleChange}
         value={this.state.value}
         {...this.props}
@@ -50,10 +56,16 @@ class Example extends React.Component {
   }
     
   render() {
+    const options = [
+      {value: 'v1', label: 'Value 1'},
+      {value: 'v2', label: 'Value 2'},
+      {value: 'v3', label: 'Value 3'},
+      {value: 'v4', label: 'Value 4'}
+    ]
     return (
       <Dropdown 
         placeholder='Placeholder'
-        options={['Value 1', 'Value 2', 'Value 3', 'Value 4']}
+        options={options}
         onChange={this.handleChange}
         value={this.state.value}
         {...this.props}
