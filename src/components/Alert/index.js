@@ -57,7 +57,7 @@ class Alert extends Component {
     }
 
     return (
-      <div className={`flex justify-between ${classes}`}>
+      <div className={`flex justify-between f6 near-black ${classes}`}>
         <div className="flex items-center">
           {showIcon && <Icon type={icon} fill={color} height={18} width={18} />}
 
