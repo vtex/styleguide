@@ -3,12 +3,13 @@ import PropTypes from 'prop-types'
 
 class Card extends React.Component {
   render() {
-    const { children, className } = this.props
+    const { children, fullWidth } = this.props
+    const padding = fullWidth ? 'pt6 pb6' : 'pa6'
 
     return (
       <div
-        style={{ boxShadow: '0 20px 30px 0 rgba(0, 0, 0, 0.15)' }}
-        className={`"card pa6 b2 br3 bg-white ${className}`}
+        style={{ boxShadow: '0 3px 9px 0 rgba(61, 62, 64, 0.2)' }}
+        className={`"card b2 br3 bg-white ${padding}`}
       >
         {children}
       </div>
@@ -18,7 +19,8 @@ class Card extends React.Component {
 
 Card.propTypes = {
   children: PropTypes.node,
-  className: PropTypes.string,
+  /** Padding `pl6 pr6` should be used for inner items that require space. */
+  fullWidth: PropTypes.bool,
 }
 
 export default Card
