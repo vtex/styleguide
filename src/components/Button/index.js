@@ -51,7 +51,7 @@ class Button extends Component {
     }
 
     if (secondary && !disabled) {
-      classes += 'b--blue blue hover-white '
+      classes += 'bg-white b--blue blue hover-white '
     }
     if (secondary && !isLoading) {
       classes += 'hover-bg-blue '
