@@ -76,7 +76,7 @@ class Dropdown extends Component {
     if (block) width = '100%'
 
     if (large) {
-      classes += 'f5 pv4 ph6 '
+      classes += 'f5 pv4 pl6 pr5 '
       optionClasses += 'f5 pv4 ph6 '
       maxHeight = '180px'
       iconSize = 18
@@ -90,7 +90,7 @@ class Dropdown extends Component {
         }
       }
     } else if (xLarge) {
-      classes += 'f4 pv5 ph7 '
+      classes += 'f4 pv5 pl7 pr6 '
       optionClasses += 'f4 pv5 ph7 '
       maxHeight = '300px'
       iconSize = 22
@@ -104,7 +104,7 @@ class Dropdown extends Component {
         }
       }
     } else {
-      classes += 'f6 pv3 ph5 '
+      classes += 'f6 pv3 pl5 pr4 '
       optionClasses += 'f6 pv3 ph5 '
       maxHeight = '140px'
       iconSize = 16
