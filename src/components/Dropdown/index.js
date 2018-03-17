@@ -78,7 +78,7 @@ class Dropdown extends Component {
     if (large) {
       classes += 'f5 pv4 pl6 pr5 '
       optionClasses += 'f5 pv4 ph6 '
-      maxHeight = '180px'
+      maxHeight = '200px'
       iconSize = 18
       if (!block) {
         if (short) {
@@ -92,7 +92,7 @@ class Dropdown extends Component {
     } else if (xLarge) {
       classes += 'f4 pv5 pl7 pr6 '
       optionClasses += 'f4 pv5 ph7 '
-      maxHeight = '300px'
+      maxHeight = '260px'
       iconSize = 22
       if (!block) {
         if (short) {
@@ -106,7 +106,7 @@ class Dropdown extends Component {
     } else {
       classes += 'f6 pv3 pl5 pr4 '
       optionClasses += 'f6 pv3 ph5 '
-      maxHeight = '140px'
+      maxHeight = '150px'
       iconSize = 16
       if (!block) {
         if (short) {

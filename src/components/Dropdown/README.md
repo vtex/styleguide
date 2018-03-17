@@ -4,27 +4,27 @@ Sizes
   <div className="mb5">
     <div className="mb3">Default</div>
     <Dropdown
-    options={['Rottweiler', 'Pincher', 'Bulldog', 'Dalmata']}
+    options={['Chagall', 'Dali', 'Goya', 'Monet', 'Picasso', 'Toulouse-Lautrec']}
       onChange={() => {}}
-      value={'Rottweiler'} />
+      value={'Toulouse-Lautrec'} />
   </div>
 
   <div className="mb5">
     <div className="mb3">Large</div>
     <Dropdown
       large
-      options={['Rottweiler', 'Pincher', 'Bulldog', 'Dalmata']}
+      options={['Chagall', 'Dali', 'Goya', 'Monet', 'Picasso', 'Toulouse-Lautrec']}
       onChange={() => {}}
-      value={'Rottweiler'} />
+      value={'Toulouse-Lautrec'} />
   </div>
 
   <div className="mb5">
     <div className="mb3">Extra large</div>
     <Dropdown
       xLarge
-      options={['Rottweiler', 'Pincher', 'Bulldog', 'Dalmata']}
+      options={['Chagall', 'Dali', 'Goya', 'Monet', 'Picasso', 'Toulouse-Lautrec']}
       onChange={() => {}}
-      value={'Rottweiler'} />
+      value={'Toulouse-Lautrec'} />
   </div>
 </div>
 ```
@@ -44,9 +44,9 @@ Widths
   <div className="mb5">
     <div className="mb3">Default</div>
     <Dropdown
-      options={['Rottweiler', 'Pincher', 'Bulldog', 'Dalmata']}
+    options={['Chagall', 'Dali', 'Goya', 'Monet', 'Picasso', 'Toulouse-Lautrec']}
       onChange={() => {}}
-      value={'Rottweiler'} />
+      value={'Toulouse-Lautrec'} />
   </div>
 
   <div className="mb5">
