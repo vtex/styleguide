@@ -209,9 +209,9 @@ class Dropdown extends Component {
 }
 
 Dropdown.propTypes = {
-  /** (Input spec attribute) */
+  /** Dropdown Id */
   id: PropTypes.string,
-  /** Element Label */
+  /** Dropdown Label */
   label: PropTypes.string,
   /** Size: Large style */
   large: PropTypes.bool,
@@ -223,12 +223,17 @@ Dropdown.propTypes = {
   long: PropTypes.bool,
   /** Block style */
   block: PropTypes.bool,
+  /** Dropdown value */
   value: PropTypes.string,
-  xLong: PropTypes.bool,
+  /** onChange event */
   onChange: PropTypes.func,
+  /** onOpen event */
   onOpen: PropTypes.func,
+  /** onClose event */
   onClose: PropTypes.func,
+  /** Dropdown options list */
   options: PropTypes.array.isRequired,
+  /** Dropdown disabled */
   disabled: PropTypes.bool,
 }
 
