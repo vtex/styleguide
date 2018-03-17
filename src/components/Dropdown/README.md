@@ -68,18 +68,18 @@ Box types
     <div className="mb3">Default</div>
     <Dropdown
       xLarge
-      options={['Rottweiler', 'Pincher', 'Bulldog', 'Dalmata']}
+      options={['Chagall', 'Dali', 'Goya', 'Monet', 'Picasso', 'Toulouse-Lautrec']}
       onChange={() => {}}
-      value={'Rottweiler'} />
+      value={'Toulouse-Lautrec'} />
   </div>
   <div className="">
     <div className="mb3">Block</div>
     <Dropdown
       block
       xLarge
-      options={['Rottweiler', 'Pincher', 'Bulldog', 'Dalmata']}
+      options={['Chagall', 'Dali', 'Goya', 'Monet', 'Picasso', 'Toulouse-Lautrec']}
       onChange={() => {}}
-      value={'Rottweiler'} />
+      value={'Toulouse-Lautrec'} />
   </div>
 </div>
 ```

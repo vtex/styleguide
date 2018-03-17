@@ -6,11 +6,13 @@ class Dropdown extends Component {
     super(props)
     this.state = {
       open: false,
+      optionsWidth: 0,
     }
   }
 
   componentDidMount() {
     document.addEventListener('mousedown', this.handleClickOutside)
+    this.setState({ optionsWidth: this.wrapperRef.clientWidth })
   }
 
   componentWillUnmount() {
@@ -70,8 +72,8 @@ class Dropdown extends Component {
 
     let classes = 'br2 bw1 bg-white bn w-100 '
     let containerClasses = 'br2 bw1 '
-    let optionsClasses = 'absolute mw6 bl br bb bw1 br2 br--bottom bg-white flex-column z-max '
-    let optionClasses = 'pointer flex w-100 bg-white hover-bg-near-white near-black tl bb-0 bl-0 br-0 bt b--near-white '
+    let optionsClasses = 'absolute bl br bb bw1 br2 br--bottom bg-white flex-column z-max '
+    let optionClasses = 'w-100 pointer flex bg-white hover-bg-near-white near-black tl bb-0 bl-0 br-0 bt b--near-white '
 
     if (block) width = '100%'
 
@@ -120,7 +122,7 @@ class Dropdown extends Component {
     }
 
     const containerStyle = { width: width }
-    const optionsStyle = { overflowY: 'auto', maxHeight: maxHeight, width: width }
+    const optionsStyle = { overflowY: 'auto', maxHeight: maxHeight, width: this.state.optionsWidth }
 
     if (open) {
       containerClasses += 'bl br bt pb1 b--silver br--top '
