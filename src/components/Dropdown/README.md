@@ -2,16 +2,18 @@ Sizes
 ```js
 <div>
   <div className="mb5">
-    <div className="mb3">Default</div>
     <Dropdown
-    options={['Chagall', 'Dali', 'Goya', 'Monet', 'Picasso', 'Toulouse-Lautrec']}
+      id="sizeDefault"
+      label="Default"
+      options={['Chagall', 'Dali', 'Goya', 'Monet', 'Picasso', 'Toulouse-Lautrec']}
       onChange={() => {}}
       value={'Toulouse-Lautrec'} />
   </div>
 
   <div className="mb5">
-    <div className="mb3">Large</div>
     <Dropdown
+      id="sizeLarge"
+      label="Large"
       large
       options={['Chagall', 'Dali', 'Goya', 'Monet', 'Picasso', 'Toulouse-Lautrec']}
       onChange={() => {}}
@@ -19,8 +21,9 @@ Sizes
   </div>
 
   <div className="mb5">
-    <div className="mb3">Extra large</div>
     <Dropdown
+      id="sizeExtraLarge"
+      label="Extra Large"
       xLarge
       options={['Chagall', 'Dali', 'Goya', 'Monet', 'Picasso', 'Toulouse-Lautrec']}
       onChange={() => {}}
@@ -33,8 +36,9 @@ Widths
 ```js
 <div>
   <div className="mb5">
-    <div className="mb3">Short</div>
     <Dropdown
+      id="widthShort"
+      label="Short"
       short
       options={['10', '11', '12']}
       onChange={() => {}}
@@ -42,16 +46,18 @@ Widths
   </div>
 
   <div className="mb5">
-    <div className="mb3">Default</div>
     <Dropdown
-    options={['Chagall', 'Dali', 'Goya', 'Monet', 'Picasso', 'Toulouse-Lautrec']}
+      id="widthDefault"
+      label="Default"
+      options={['Chagall', 'Dali', 'Goya', 'Monet', 'Picasso', 'Toulouse-Lautrec']}
       onChange={() => {}}
       value={'Toulouse-Lautrec'} />
   </div>
 
   <div className="mb5">
-    <div className="mb3">Long</div>
     <Dropdown
+      id="widthLong"
+      label="Long"
       long
       options={['512 Academy Ave, Sanger, CA 93657, USA', '765 N Temperance Ave, Clovis, CA 93611, USA', '1845 Herndon Ave F, Clovis, CA 93611, USA', '1845 Herndon Ave F, Clovis, CA 93611, USA']}
       onChange={() => {}}
@@ -65,16 +71,18 @@ Box types
 ```js
 <div>
   <div className="mb5">
-    <div className="mb3">Default</div>
     <Dropdown
+      id="boxDefault"
+      label="Default"
       xLarge
       options={['Chagall', 'Dali', 'Goya', 'Monet', 'Picasso', 'Toulouse-Lautrec']}
       onChange={() => {}}
       value={'Toulouse-Lautrec'} />
   </div>
   <div className="">
-    <div className="mb3">Block</div>
     <Dropdown
+      id="boxBlock"
+      label="Block"
       block
       xLarge
       options={['Chagall', 'Dali', 'Goya', 'Monet', 'Picasso', 'Toulouse-Lautrec']}

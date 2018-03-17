@@ -54,6 +54,8 @@ class Dropdown extends Component {
 
   render() {
     const {
+      label,
+      id,
       short,
       long,
       large,
@@ -64,6 +66,18 @@ class Dropdown extends Component {
       options,
     } = this.props
     const { open } = this.state
+
+    if (label && !id) {
+      throw new Error('Dropdown component with Label must have an Id')
+    }
+
+    if (short && long) {
+      throw new Error('Dropdown component cannot be short AND long at the same time')
+    }
+
+    if (large && xLarge) {
+      throw new Error('Dropdown component cannot be large AND extra large at the same time')
+    }
 
     let width
     let maxHeight
@@ -142,8 +156,10 @@ class Dropdown extends Component {
 
     return (
       <div ref={this.setWrapperRef} className={block ? 'db' : 'dib'}>
+        { label && <label htmlFor={id} className={`dib mb3 ${block && 'w-100'}`}>{label}</label> }
         <div className={containerClasses} style={containerStyle}>
           <button
+            id={id}
             disabled={disabled}
             ref={this.setSelectRef}
             onClick={this.handleClick}
@@ -193,6 +209,10 @@ class Dropdown extends Component {
 }
 
 Dropdown.propTypes = {
+  /** (Input spec attribute) */
+  id: PropTypes.string,
+  /** Element Label */
+  label: PropTypes.string,
   /** Size: Large style */
   large: PropTypes.bool,
   /** Size: xLarge style */
