@@ -154,6 +154,15 @@ class Dropdown extends Component {
       }
     }
 
+    let selectedOptionLabel = '\xa0'
+    if (value) {
+      for (const option of options) {
+        if (option.value === value) {
+          selectedOptionLabel = option.label
+        }
+      }
+    }
+
     return (
       <div ref={this.setWrapperRef} className={block ? 'db' : 'dib'}>
         { label && <label htmlFor={id} className={`dib mb3 ${block && 'w-100'}`}>{label}</label> }
@@ -171,7 +180,7 @@ class Dropdown extends Component {
           >
             <div className="flex">
               <div className="flex-auto tl">
-                {value || '\xa0'}
+                {selectedOptionLabel}
               </div>
               <div className="flex-none flex items-center pl6">
                 <svg
@@ -195,11 +204,11 @@ class Dropdown extends Component {
           >
             {options.map(option => (
               <button
-                key={option}
+                key={option.value}
                 className={optionClasses}
                 onClick={e => this.handleOptionClick(e, option)}
               >
-                {option}
+                {option.label}
               </button>
             ))}
           </div>}
