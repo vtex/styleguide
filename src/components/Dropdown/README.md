@@ -165,30 +165,43 @@ class Example extends React.Component {
     super(props)
 
     this.state = {
-        selectedOption: {},
+        selectedPainter: {},
     }
     this.handleChange = this.handleChange.bind(this)
   }
 
-  handleChange(e, option) {
-    this.setState({ selectedOption: option })
+  handleChange(e, painter) {
+    this.setState({ selectedPainter: painter })
   }
 
   render() {
     return (
-      <Dropdown
-        options={[
-          {value: 'chagall', label: 'Chagall'},
-          {value: 'dali', label: 'Dali'},
-          {value: 'goya', label: 'Goya'},
-          {value: 'monet', label: 'Monet'},
-          {value: 'picasso', label: 'Picasso'},
-          {value: 'tolouseLautrec', label: 'Toulouse-Lautrec'}
-        ]}
-        onChange={this.handleChange}
-        value={this.state.selectedOption.value}
-        {...this.props}
-      />
+      <div>
+        <div>
+          <Dropdown
+            label="Painter"
+            id="painter"
+            options={[
+              {value: 'painterChagall', label: 'Chagall'},
+              {value: 'painterDali', label: 'Dali'},
+              {value: 'painterGoya', label: 'Goya'},
+              {value: 'painterMonet', label: 'Monet'},
+              {value: 'painterPicasso', label: 'Picasso'},
+              {value: 'painterTolouseLautrec', label: 'Toulouse-Lautrec'}
+            ]}
+            onChange={this.handleChange}
+            value={this.state.selectedPainter.value}
+            {...this.props}
+          />
+        </div>
+        <div className="mt6">
+          <div className="fw5 mb3">
+            Selected Painter
+          </div>
+          <p>Label: {this.state.selectedPainter.label || <span className="gray">undefined</span>}</p>
+          <p>Value: {this.state.selectedPainter.value || <span className="gray">undefined</span>}</p>
+        </div>
+      </div>
     )
   }
 };
