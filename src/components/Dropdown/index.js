@@ -69,7 +69,7 @@ class Dropdown extends Component {
     let maxHeight
     let iconSize
 
-    let classes = 'br2 bw1 bn w-100 '
+    let classes = 'bg-transparent bn w-100 '
     let containerClasses = 'br2 bw1 '
     let optionsClasses = 'absolute bl br bb bw1 br2 br--bottom bg-white flex-column z-max '
     let optionClasses = 'w-100 pointer flex bg-white hover-bg-near-white near-black tl bb-0 bl-0 br-0 bt b--near-white '
@@ -124,9 +124,9 @@ class Dropdown extends Component {
     const optionsStyle = { overflowY: 'auto', maxHeight: maxHeight, width: this.state.optionsWidth }
 
     if (disabled) {
-      classes += 'bg-light-gray '
+      containerClasses += 'bg-light-gray '
     } else {
-      classes += 'bg-white '
+      containerClasses += 'bg-white '
     }
 
     if (open) {
