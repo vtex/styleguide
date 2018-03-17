@@ -104,7 +104,6 @@ class Example extends React.Component {
   render() {
     return (
       <Dropdown
-        placeholder='Placeholder'
         options={['Value 1', 'Value 2', 'Value 3', 'Value 4']}
         onChange={this.handleChange}
         value={this.state.value}
@@ -136,7 +135,6 @@ class Example extends React.Component {
   render() {
     return (
       <Dropdown
-        placeholder='Placeholder'
         options={['Value 1', 'Value 2', 'Value 3', 'Value 4']}
         onChange={this.handleChange}
         value={this.state.value}

@@ -60,7 +60,6 @@ class Dropdown extends Component {
       xLarge,
       block,
       value,
-      placeholder,
       disabled,
       options,
     } = this.props
@@ -156,7 +155,7 @@ class Dropdown extends Component {
           >
             <div className="flex">
               <div className="flex-auto tl">
-                {value || placeholder || '\xa0'}
+                {value || '\xa0'}
               </div>
               <div className="flex-none flex items-center pl6">
                 <svg
@@ -206,7 +205,6 @@ Dropdown.propTypes = {
   block: PropTypes.bool,
   value: PropTypes.string,
   xLong: PropTypes.bool,
-  placeholder: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   onOpen: PropTypes.func,
   onClose: PropTypes.func,
