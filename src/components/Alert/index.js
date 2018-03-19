@@ -76,9 +76,13 @@ class Alert extends Component {
 }
 
 Alert.propTypes = {
+  /** Style of the alert */
   type: PropTypes.oneOf(['success', 'error', 'warning', 'info', 'info-dark']),
+  /** Content of the alert */
   children: PropTypes.node.isRequired,
+  /** If this function is defined, a close icon will appear and this function will be called when alert is closed. */
   onClose: PropTypes.func,
+  /** Time in ms to auto close the alert */
   autoClose: PropTypes.number,
 }
 

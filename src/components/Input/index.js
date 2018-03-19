@@ -164,7 +164,7 @@ Input.propTypes = {
   onFocus: PropTypes.func,
   /** onBlur event */
   onBlur: PropTypes.func,
-  /** If the input has an error, you can hightlight it */
+  /** If the input has an error, you can highlight it */
   error: PropTypes.bool,
   /** If the input has an error, you can pass an error message */
   errorMessage: PropTypes.string,

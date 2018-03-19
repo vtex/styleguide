@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
-class Card extends React.Component {
+class Card extends PureComponent {
   render() {
     const { children, fullWidth } = this.props
     const padding = fullWidth ? 'pt6 pb6' : 'pa6'
@@ -18,8 +18,9 @@ class Card extends React.Component {
 }
 
 Card.propTypes = {
+  /** Content of the card */
   children: PropTypes.node.isRequired,
-  /** Use the full width of the card. Respect the default padding (pl6 pr6) for elements that do not fill the full width. */
+  /** Use the full width of the card. Respect the default padding (`pl6 pr6`) for elements that do not fill the full width. */
   fullWidth: PropTypes.bool,
 }
 

@@ -6,8 +6,6 @@ import Check from '../Icon/Check'
 
 import config from 'vtex-tachyons/config.json'
 
-const noop = () => {}
-
 class Toggle extends Component {
   render() {
     const { semantic, disabled, id, checked } = this.props
@@ -59,11 +57,6 @@ class Toggle extends Component {
       circleClasses += 'bg-white '
     }
 
-    const eventHandlers = {
-      onClick: this.props.onClick ? this.props.onClick : noop,
-      onChange: this.props.onChange ? this.props.onChange : noop,
-    }
-
     return (
       <label
         htmlFor={`${id}`}
@@ -104,7 +97,8 @@ class Toggle extends Component {
           className="dn"
           disabled={disabled}
           checked={checked}
-          {...eventHandlers}
+          onClick={this.props.onClick}
+          onChange={this.props.onChange}
         />
       </label>
     )
