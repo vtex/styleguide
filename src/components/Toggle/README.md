@@ -6,10 +6,10 @@ class ToggleExample extends React.Component {
     super()
     this.state = { checked: true }
 
-    this.onClick = this.onClick.bind(this)
+    this.onChange = this.onChange.bind(this)
   }
 
-  onClick() {
+  onChange() {
     this.setState((prevState) => ({
       checked: !prevState.checked
     }))
@@ -19,7 +19,7 @@ class ToggleExample extends React.Component {
     return (
       <Toggle id='toggle1'
         checked={this.state.checked}
-        onClick={this.onClick}/>
+        onChange={this.onChange}/>
     )
   }
 };
@@ -34,10 +34,10 @@ class ToggleSemanticExample extends React.Component {
     super()
     this.state = { checked: false }
 
-    this.onClick = this.onClick.bind(this)
+    this.onChange = this.onChange.bind(this)
   }
 
-  onClick() {
+  onChange() {
     this.setState((prevState) => ({
       checked: !prevState.checked
     }))
@@ -48,7 +48,7 @@ class ToggleSemanticExample extends React.Component {
       <Toggle id='toggle2'
         semantic
         checked={this.state.checked}
-        onClick={this.onClick}/>
+        onChange={this.onChange}/>
     )
   }
 };
@@ -71,10 +71,10 @@ class ToggleExample extends React.Component {
     super()
     this.state = { checked: true }
 
-    this.onClick = this.onClick.bind(this)
+    this.onChange = this.onChange.bind(this)
   }
 
-  onClick() {
+  onChange() {
     this.setState((prevState) => ({
       checked: !prevState.checked
     }))
@@ -84,7 +84,7 @@ class ToggleExample extends React.Component {
     return (
       <Toggle id='toggle4'
         checked={this.state.checked}
-        onClick={this.onClick}/>
+        onChange={this.onChange}/>
     )
   }
 };
@@ -93,10 +93,10 @@ class ToggleSemanticExample extends React.Component {
     super()
     this.state = { checked: false }
 
-    this.onClick = this.onClick.bind(this)
+    this.onChange = this.onChange.bind(this)
   }
 
-  onClick() {
+  onChange() {
     this.setState((prevState) => ({
       checked: !prevState.checked
     }))
@@ -107,7 +107,7 @@ class ToggleSemanticExample extends React.Component {
       <Toggle id='toggle5'
         semantic
         checked={this.state.checked}
-        onClick={this.onClick}/>
+        onChange={this.onChange}/>
     )
   }
 };

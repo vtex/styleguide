@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import config from 'vtex-tachyons/config.json'
 
 class Edit extends PureComponent {
   render() {
@@ -18,6 +19,12 @@ class Edit extends PureComponent {
       </svg>
     )
   }
+}
+
+Edit.defaultProps = {
+  fill: config.colors['serious-black'],
+  width: 16,
+  height: 16,
 }
 
 Edit.propTypes = {

@@ -1,38 +1,45 @@
 ```js
+const Check = require('./Check').default;
+const Close = require('./Close').default;
+const Deny = require('./Deny').default;
+const Edit = require('./Edit').default;
+const Failure = require('./Failure').default;
+const Success = require('./Success').default;
+const Warning = require('./Warning').default;
 <div className="flex justify-between tl">
     <div>
         <div className="pb3 ttu gray">Close</div>
-        <Icon type="close" width={40} />
+        <Close width={40} />
     </div>
 
     <div>
         <div className="pb3 ttu gray">Edit</div>
-        <Icon type="edit" width={40} />
+        <Edit width={40} />
     </div>
 
     <div>
         <div className="pb3 ttu gray">Check</div>
-        <Icon type="check" width={40} />
+        <Check width={40} />
     </div>
 
     <div>
         <div className="pb3 ttu gray">Deny</div>
-        <Icon type="deny" width={40} />
+        <Deny width={40} />
     </div>
 
     <div>
         <div className="pb3 ttu gray">Failure</div>
-        <Icon type="failure" width={40} />
+        <Failure width={40} />
     </div>
 
     <div>
         <div className="pb3 ttu gray">Success</div>
-        <Icon type="success" width={40} />
+        <Success width={40} />
     </div>
 
     <div>
         <div className="pb3 ttu gray">Warning</div>
-        <Icon type="Warning" width={40} />
+        <Warning width={40} />
     </div>
 </div>
 ```

@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import config from 'vtex-tachyons/config.json'
 
 class Failure extends PureComponent {
   render() {
@@ -18,6 +19,12 @@ class Failure extends PureComponent {
       </svg>
     )
   }
+}
+
+Failure.defaultProps = {
+  fill: config.colors['serious-black'],
+  width: 16,
+  height: 16,
 }
 
 Failure.propTypes = {
