@@ -80,11 +80,15 @@ class Dropdown extends Component {
     }
 
     if (short && long) {
-      throw new Error('Dropdown component cannot be short AND long at the same time')
+      throw new Error(
+        'Dropdown component cannot be short AND long at the same time'
+      )
     }
 
     if (large && xLarge) {
-      throw new Error('Dropdown component cannot be large AND extra large at the same time')
+      throw new Error(
+        'Dropdown component cannot be large AND extra large at the same time'
+      )
     }
 
     let width
@@ -93,10 +97,13 @@ class Dropdown extends Component {
 
     let classes = 'bg-transparent bn w-100 '
     let containerClasses = 'br2 bw1 '
-    let optionsClasses = 'absolute bl br bb bw1 br2 br--bottom bg-white flex-column z-max '
+    let optionsClasses = 'absolute bl br bb bw1 br2 br--bottom bg-white flex-column z-max overflow-y-auto '
     let optionClasses = 'w-100 pointer flex bg-white hover-bg-near-white near-black tl bb-0 bl-0 br-0 bt b--near-white '
 
     if (block) width = '100%'
+
+    classes += (disabled ? 'bg-light-gray ' : 'pointer ')
+    classes += (!disabled && value ? 'near-black ' : 'gray ')
 
     if (large) {
       classes += 'f5 pv4 pl6 pr5 '
@@ -143,7 +150,10 @@ class Dropdown extends Component {
     }
 
     const containerStyle = { width: width }
-    const optionsStyle = { overflowY: 'auto', maxHeight: maxHeight, width: this.state.optionsWidth }
+    const optionsStyle = {
+      maxHeight: maxHeight,
+      width: this.state.optionsWidth,
+    }
 
     if (disabled) {
       containerClasses += 'bg-light-gray '
@@ -164,18 +174,17 @@ class Dropdown extends Component {
 
     return (
       <div ref={this.setWrapperRef} className={block ? 'db' : 'dib'}>
-        { label && <label htmlFor={id} className={`dib mb3 ${block && 'w-100'}`}>{label}</label> }
+        {label &&
+          <label htmlFor={id} className={`dib mb3 ${block ? 'w-100' : ''}`}>
+            {label}
+          </label>}
         <div className={containerClasses} style={containerStyle}>
           <button
             id={id}
             disabled={disabled}
             ref={this.setSelectRef}
             onClick={this.handleClick}
-            className={
-              this.props.disabled
-                ? `bg-light-gray ${classes}`
-                : `pointer ${classes} ${value ? 'near-black' : 'gray'}`
-            }
+            className={classes}
           >
             <div className="flex">
               <div className="flex-auto tl">
@@ -191,10 +200,7 @@ class Dropdown extends Component {
           </button>
         </div>
         {open &&
-          <div
-            className={optionsClasses}
-            style={optionsStyle}
-          >
+          <div className={optionsClasses} style={optionsStyle}>
             {options.map(option => (
               <button
                 key={option.value}
@@ -234,7 +240,10 @@ Dropdown.propTypes = {
   /** onClose event */
   onClose: PropTypes.func,
   /** Dropdown options list */
-  options: PropTypes.array.isRequired,
+  options: PropTypes.arrayOf(PropTypes.shape({
+    value: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+  })),
   /** Dropdown disabled */
   disabled: PropTypes.bool,
 }
