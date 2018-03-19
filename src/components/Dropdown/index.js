@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import ArrowDownIcon from './ArrowDownIcon'
+import config from 'vtex-tachyons/config'
 
 class Dropdown extends Component {
   constructor(props) {
@@ -183,16 +185,10 @@ class Dropdown extends Component {
                 {selectedOptionLabel}
               </div>
               <div className="flex-none flex items-center pl6">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width={iconSize}
-                  height={iconSize}
-                  viewBox="0 0 24 24"
-                >
-                  <g fill={disabled ? '#969799' : '#368DF7'}>
-                    <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z" />
-                  </g>
-                </svg>
+                <ArrowDownIcon
+                  size={iconSize}
+                  fill={disabled ? config.colors['gray'] : config.colors.blue}
+                />
               </div>
             </div>
           </button>
