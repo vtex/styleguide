@@ -2,19 +2,56 @@
 
 https://vtex.github.io/styleguide
 
+1. [Usage](#Usage)
+2. [Developing](#Developing)
+  2.1 [Setup](#Setup)
+  2.2 [Running](#Running)
+  2.3 [Snapshots](#Snapshots)
+3. [Developing using npm link](#Developing using npm link)
+4. [Publishing](#Publishing)
+5. [Docs](#Docs)
+
+## Usage
+
+```sh
+yarn add @vtex/styleguide --exact
+# or
+npm install @vtex/styleguide --save-exact
+```
+
+```js
+import Button from '@vtex/styleguide/lib/Button'
+```
+
+## Developing
+
 ### Setup
 
 ```sh
 yarn install
 ```
 
-### Developing using Styleguidist
+### Running
 
 ```sh
 yarn styleguide
 ```
 
-### Developing using another project
+### Snapshots
+
+To save the components snapshots use:
+
+```
+yarn snap:test
+```
+
+Check the snapshots and to approve the changes use:
+
+```
+yarn snap:approve
+```
+
+## Developing using `npm link`
 
 Run this in this repo:
 
@@ -34,14 +71,16 @@ Import (case a `<Button>` component in lib):
 import Button from '@vtex/styleguide/lib/Button'
 ```
 
-### Creating a new release and publishing on NPM
+### Publishing
 
 ```sh
 releasy pre
 npm publish
 ```
 
-### Publishing Styleguide page
+### Docs
+
+To update the docs:
 
 ```sh
 yarn deploy
