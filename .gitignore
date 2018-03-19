@@ -5,6 +5,7 @@
 
 # testing
 /coverage
+styleguide-visual/*.new.png
 
 # production
 /build
