@@ -2,14 +2,14 @@
 
 https://vtex.github.io/styleguide
 
-1. [Usage](#Usage)
-2. [Developing](#Developing)
-  2.1 [Setup](#Setup)
-  2.2 [Running](#Running)
-  2.3 [Snapshots](#Snapshots)
-3. [Developing using npm link](#Developing using npm link)
-4. [Publishing](#Publishing)
-5. [Docs](#Docs)
+- [Usage](#usage)
+- [Developing](#developing)
+  -  [Setup](#setup)
+  -  [Running](#running)
+  -  [Snapshots](#snapshots)
+- [Developing using npm link](#developing-using-npm-link)
+- [Publishing](#publishing)
+- [Docs](#docs)
 
 ## Usage
 
