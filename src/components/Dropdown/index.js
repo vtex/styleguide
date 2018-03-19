@@ -54,6 +54,12 @@ class Dropdown extends Component {
     })
   };
 
+  getValueLabel() {
+    const option = this.props.options.find(option => option.value === this.props.value)
+    if (!option) return '\xa0'
+    return option.label
+  }
+
   render() {
     const {
       label,
@@ -156,15 +162,6 @@ class Dropdown extends Component {
       }
     }
 
-    let selectedOptionLabel = '\xa0'
-    if (value) {
-      for (const option of options) {
-        if (option.value === value) {
-          selectedOptionLabel = option.label
-        }
-      }
-    }
-
     return (
       <div ref={this.setWrapperRef} className={block ? 'db' : 'dib'}>
         { label && <label htmlFor={id} className={`dib mb3 ${block && 'w-100'}`}>{label}</label> }
@@ -182,7 +179,7 @@ class Dropdown extends Component {
           >
             <div className="flex">
               <div className="flex-auto tl">
-                {selectedOptionLabel}
+                {this.getValueLabel()}
               </div>
               <div className="flex-none flex items-center pl6">
                 <ArrowDownIcon
