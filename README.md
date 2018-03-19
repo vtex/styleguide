@@ -1,6 +1,6 @@
 ### Styleguide
 
-https://vtex.github.io/styleguide
+> VTEX Styleguide React components ([Docs](https://vtex.github.io/styleguide))
 
 - [Usage](#usage)
 - [Developing](#developing)
@@ -41,14 +41,20 @@ yarn styleguide
 
 To save the components snapshots use:
 
-```
+```sh
 yarn snap:test
 ```
 
 Check the snapshots and to approve the changes use:
 
-```
+```sh
 yarn snap:approve
+```
+
+You can use the option `--filter` to just test or approve a specific component. Example:
+
+```sh
+yarn snap:approve --filter "Button"
 ```
 
 ## Developing using `npm link`
