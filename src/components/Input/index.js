@@ -38,11 +38,6 @@ class Input extends Component {
     const typography = 'f6 near-black'
     let classes = `${size} ${box} ${border} ${typography} `
 
-    const eBox = 'pa2 '
-    const eBorder = 'bw3 br2 b--solid b--washed-red '
-    const eTypography = 'f7 dark-gray '
-    const eBackground = 'bg-washed-red '
-
     if (active) {
       classes += 'b--gray '
     } else {
