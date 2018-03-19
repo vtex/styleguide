@@ -81,6 +81,12 @@ class Button extends Component {
         value={icon ? undefined : this.props.value}
         className={classes}
         onClick={this.handleClick}
+        onMouseEnter={this.props.onMouseEnter}
+        onMouseLeave={this.props.onMouseLeave}
+        onMouseOver={this.props.onMouseOver}
+        onMouseOut={this.props.onMouseOut}
+        onMouseUp={this.props.onMouseUp}
+        onMouseDown={this.props.onMouseDown}
         ref={this.props.ref}
       >
         {isLoading
@@ -137,6 +143,18 @@ Button.propTypes = {
   children: PropTypes.node.isRequired,
   /** onClick event */
   onClick: PropTypes.func,
+  /** onMouseEnter event */
+  onMouseEnter: PropTypes.func,
+  /** onMouseLeave event */
+  onMouseLeave: PropTypes.func,
+  /** onMouseOver event */
+  onMouseOver: PropTypes.func,
+  /** onMouseOut event */
+  onMouseOut: PropTypes.func,
+  /** onMouseUp event */
+  onMouseUp: PropTypes.func,
+  /** onMouseDown event */
+  onMouseDown: PropTypes.func,
   /** ref function */
   ref: PropTypes.func,
 }
