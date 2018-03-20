@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import ArrowDownIcon from './ArrowDownIcon'
-import config from 'vtex-tachyons/config'
+import config from 'vtex-tachyons/config.json'
 
 class Dropdown extends Component {
   constructor(props) {
