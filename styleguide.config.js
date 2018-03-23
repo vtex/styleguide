@@ -36,4 +36,5 @@ module.exports = {
     )
     return `import ${componentName} from '@vtex/styleguide/lib/${dir}';`
   },
+  webpackConfig: require('@vtex/react-scripts/config/webpack.config.dev.js'),
 }
