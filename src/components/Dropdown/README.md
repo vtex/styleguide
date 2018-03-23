@@ -32,7 +32,7 @@ Sizes
       onChange={() => {}} />
   </div>
 
-  <div className="mb5">
+  <div>
     <Dropdown
       label="Extra Large"
       xLarge
@@ -81,7 +81,7 @@ Widths
       onChange={() => {}} />
   </div>
 
-  <div className="mb5">
+  <div>
     <Dropdown
       label="Long"
       long
@@ -115,7 +115,7 @@ Box types
       value="tolouseLautrec"
       onChange={() => {}} />
   </div>
-  <div className="">
+  <div>
     <Dropdown
       label="Block"
       block
