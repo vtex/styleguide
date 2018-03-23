@@ -9,7 +9,7 @@ Sizes
     <Input placeholder="Ej. Hayao Miyazaki" large label="Large" />
   </div>
 
-  <div className="mb5">
+  <div>
     <Input placeholder="Ej. Hayao Miyazaki" xLarge label="Extra Large" />
   </div>
 </div>
@@ -26,7 +26,7 @@ Widths
     <Input placeholder="Ej. Hayao Miyazaki" label="Default" />
   </div>
 
-  <div className="mb5">
+  <div>
     <Input placeholder="Ej. Eternal Sunshine of the Spotless Mind" long label="Long" />
   </div>
 </div>
