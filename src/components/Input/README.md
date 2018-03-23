@@ -1,106 +1,72 @@
-#### Default with placeholder
-
+Sizes
 ```js
-class ExampleInput extends React.Component {
-  constructor(props) {
-    super(props)
+<div>
+  <div className="mb5">
+    <Input placeholder="Placeholder" label="Default" />
+  </div>
 
-    this.state = { value: '' }
+  <div className="mb5">
+    <Input placeholder="Placeholder" large label="Large" />
+  </div>
 
-    this.handleChange = this.handleChange.bind(this)
-  }
-
-  handleChange(e) {
-    this.setState({ value: e.target.value })
-  }
-
-  render() {
-    return <Input {...this.props} onChange={this.handleChange} value={this.state.value} />
-  }
-};
-<ExampleInput placeholder="Type me…"/>
+  <div>
+    <Input placeholder="Placeholder" xLarge label="Extra Large" />
+  </div>
+</div>
 ```
 
-#### Disabled
-
+Widths
 ```js
-class ExampleInput extends React.Component {
-  constructor(props) {
-    super(props)
+<div>
+  <div className="mb5">
+    <Input placeholder="Plchldr" short label="Short" />
+  </div>
 
-    this.state = { value: '' }
+  <div className="mb5">
+    <Input placeholder="Placeholder" label="Default" />
+  </div>
 
-    this.handleChange = this.handleChange.bind(this)
-  }
-
-  handleChange(e) {
-    this.setState({ value: e.target.value })
-  }
-
-  render() {
-    return <Input {...this.props} onChange={this.handleChange} value={this.state.value} />
-  }
-};
-<ExampleInput placeholder="Disabled text" disabled/>
+  <div>
+    <Input placeholder="Placeholder" long label="Long" />
+  </div>
+</div>
 ```
 
-#### Error
-
+Widths
 ```js
-class ExampleInput extends React.Component {
-  constructor(props) {
-    super(props)
+<div>
+  <div className="mb5">
+    <Input xLarge label="Default" placeholder="Placeholder" />
+  </div>
 
-    this.state = { value: '' }
-
-    this.handleChange = this.handleChange.bind(this)
-  }
-
-  handleChange(e) {
-    this.setState({ value: e.target.value })
-  }
-
-  render() {
-    return <Input {...this.props} onChange={this.handleChange} value={this.state.value} />
-  }
-};
-<ExampleInput errorMessage="Invalid field"/>
+  <div>
+    <Input xLarge block long label="Block" placeholder="Placeholder" />
+  </div>
+</div>
 ```
 
-#### Types
-
-**Number, step 2**
-
+Variations
 ```js
-<Input type="number" step="2" placeholder="Numbers only…" />
-```
+<div>
+  <div className="mb5">
+    <Input disabled value="Hayao Miyazaki" label="Disabled" />
+  </div>
 
-**Date**
+  <div className="mb5">
+    <Input type="password" label="Type Password" value="hunter2" />
+  </div>
 
-```js
-<Input type="date" />
-```
+  <div className="mb5">
+    <Input label="Token" token value="DUq0xuJZAD7Rvezv" />
+  </div>
 
-**File**
+  <div className="mb5">
+    <Input label="Error" value="43" errorMessage="Invalid field value" />
+  </div>
 
-```js
-<Input type="file" />
-```
-
-**Month**
-
-```js
-<Input type="month" />
-```
-
-**Password**
-
-```js
-<Input type="password" />
-```
-
-**Time**
-
-```js
-<Input type="time" />
+  <div>
+    <Input label="Help text" placeholder="Placeholder"
+      helpText={<span>Yout help text goes here!</span>} />
+  </div>
+</div>
 ```

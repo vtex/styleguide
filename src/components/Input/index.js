@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Alert from '../Alert'
 
 class Input extends Component {
   constructor(props) {
@@ -29,14 +28,26 @@ class Input extends Component {
     const {
       errorMessage,
       error,
+      label,
+      block,
+      large,
+      xLarge,
+      short,
+      long,
+      token,
+      helpText,
     } = this.props
     const { active } = this.state
 
     const size = 'w-100'
-    const box = 'pa3 ma0 border-box'
+    const box = 'ma0 border-box'
     const border = 'bw1 br2 b--solid outline-0'
-    const typography = 'f6 near-black'
+    const typography = 'near-black'
     let classes = `${size} ${box} ${border} ${typography} `
+
+    if (token) {
+      classes += 'code '
+    }
 
     if (active) {
       classes += 'b--gray '
@@ -48,7 +59,7 @@ class Input extends Component {
     }
 
     if (error || errorMessage) {
-      classes += 'b--red hover-b--red mb3 '
+      classes += 'b--red hover-b--red '
     }
 
     if (this.props.disabled) {
@@ -57,8 +68,53 @@ class Input extends Component {
       classes += 'bg-white '
     }
 
+    let width = '100%'
+
+    if (large) {
+      classes += 'f5 pv4 ph6 '
+      // iconSize = 18
+      if (!block) {
+        if (short) {
+          width = '130px'
+        } else if (long) {
+          width = '420px'
+        } else {
+          width = '250px'
+        }
+      }
+    } else if (xLarge) {
+      classes += 'f4 pv5 ph7 '
+      // iconSize = 22
+      if (!block) {
+        if (short) {
+          width = '180px'
+        } else if (long) {
+          width = '520px'
+        } else {
+          width = '320px'
+        }
+      }
+    } else {
+      classes += 'f6 pv3 ph5 '
+      // iconSize = 16
+      if (!block) {
+        if (short) {
+          width = '110px'
+        } else if (long) {
+          width = '350px'
+        } else {
+          width = '200px'
+        }
+      }
+    }
+
+    const style = { width: width }
+
     return (
-      <div>
+      <label className="dib" style={style}>
+        <span className={`db mb3 ${block ? 'w-100' : ''}`}>
+          {label}
+        </span>
         <input
           onBlur={this.handleBlur}
           onFocus={this.handleFocus}
@@ -91,14 +147,17 @@ class Input extends Component {
           value={this.props.value}
           id={this.props.id}
         />
-        {errorMessage && <Alert type="error">{errorMessage}</Alert>}
-      </div>
+        {errorMessage &&
+          <div className="red f6 mt3 lh-title">{errorMessage}</div>}
+        {helpText && <div className="mid-gray f6 mt3 lh-title">{helpText}</div>}
+      </label>
     )
   }
 }
 
 Input.defaultProps = {
   autoFocus: false,
+  token: false,
   disabled: false,
   multiple: false,
   readOnly: false,
@@ -106,57 +165,77 @@ Input.defaultProps = {
 }
 
 Input.propTypes = {
-  /** (Input spec attribute) */
-  id: PropTypes.string,
-  /** (Input spec attribute) */
-  type: PropTypes.string,
-  /** (Input spec attribute) */
+  /** Block style */
+  block: PropTypes.bool,
+  /** Error highlight */
+  error: PropTypes.bool,
+  /** Error message */
+  errorMessage: PropTypes.string,
+  /** If the input is an API Key, App Key or App Token */
+  token: PropTypes.bool,
+  /** Help text */
+  helpText: PropTypes.node,
+  /** Large style (size) */
+  large: PropTypes.bool,
+  /** Long style */
+  long: PropTypes.bool,
+  /** Short style (width) */
+  short: PropTypes.bool,
+  /** xLarge style (size) */
+  xLarge: PropTypes.bool,
+  /** Label */
+  label: PropTypes.string,
+  /** Spec attribute */
   accept: PropTypes.string,
-  /** (Input spec attribute) */
+  /** Spec attribute */
   disabled: PropTypes.bool,
-  /** (Input spec attribute) */
+  /** Spec attribute */
   autoComplete: PropTypes.string,
-  /** (Input spec attribute) */
+  /** Spec attribute */
   autoCorrect: PropTypes.string,
-  /** (Input spec attribute) */
+  /** Spec attribute */
   autoFocus: PropTypes.bool,
-  /** (Input spec attribute) */
+  /** Spec attribute */
   autoSave: PropTypes.string,
-  /** (Input spec attribute) */
+  /** Spec attribute */
   defaultValue: PropTypes.string,
-  /** (Input spec attribute) */
+  /** Spec attribute */
+  id: PropTypes.string,
+  /** Spec attribute */
   inputMode: PropTypes.string,
-  /** (Input spec attribute) */
+  /** Spec attribute */
   list: PropTypes.string,
-  /** (Input spec attribute) */
+  /** Spec attribute */
   max: PropTypes.string,
-  /** (Input spec attribute) */
+  /** Spec attribute */
   maxLength: PropTypes.string,
-  /** (Input spec attribute) */
+  /** Spec attribute */
   min: PropTypes.string,
-  /** (Input spec attribute) */
+  /** Spec attribute */
   minLength: PropTypes.string,
-  /** (Input spec attribute) */
+  /** Spec attribute */
   multiple: PropTypes.bool,
-  /** (Input spec attribute) */
+  /** Spec attribute */
   name: PropTypes.string,
-  /** (Input spec attribute) */
+  /** Spec attribute */
   pattern: PropTypes.string,
-  /** (Input spec attribute) */
+  /** Spec attribute */
   placeholder: PropTypes.string,
-  /** (Input spec attribute) */
+  /** Spec attribute */
   readOnly: PropTypes.bool,
-  /** (Input spec attribute) */
+  /** Spec attribute */
   required: PropTypes.string,
-  /** (Input spec attribute) */
+  /** Spec attribute */
   spellCheck: PropTypes.string,
-  /** (Input spec attribute) */
+  /** Spec attribute */
   src: PropTypes.string,
-  /** (Input spec attribute) */
+  /** Spec attribute */
   step: PropTypes.string,
-  /** (Input spec attribute) */
+  /** Spec attribute */
   tabIndex: PropTypes.string,
-  /** (Input spec attribute) */
+  /** Spec attribute */
+  type: PropTypes.string,
+  /** Spec attribute */
   value: PropTypes.string,
   /** onChange event */
   onChange: PropTypes.func,
@@ -164,10 +243,6 @@ Input.propTypes = {
   onFocus: PropTypes.func,
   /** onBlur event */
   onBlur: PropTypes.func,
-  /** If the input has an error, you can highlight it */
-  error: PropTypes.bool,
-  /** If the input has an error, you can pass an error message */
-  errorMessage: PropTypes.string,
 }
 
 export default Input
