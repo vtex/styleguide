@@ -159,61 +159,73 @@ Input.defaultProps = {
 }
 
 Input.propTypes = {
-  /** (Input spec attribute) */
-  id: PropTypes.string,
-  /** Dropdown Label */
-  label: PropTypes.string,
-  /** (Input spec attribute) */
-  type: PropTypes.string,
-  /** (Input spec attribute) */
-  accept: PropTypes.string,
-  /** (Input spec attribute) */
-  disabled: PropTypes.bool,
-  /** (Input spec attribute) */
-  autoComplete: PropTypes.string,
-  /** (Input spec attribute) */
-  autoCorrect: PropTypes.string,
-  /** (Input spec attribute) */
-  autoFocus: PropTypes.bool,
-  /** (Input spec attribute) */
-  autoSave: PropTypes.string,
   /** Block style */
   block: PropTypes.bool,
-  /** (Input spec attribute) */
+  /** Error highlight */
+  error: PropTypes.bool,
+  /** Error message */
+  errorMessage: PropTypes.string,
+  /** Help text */
+  helpText: PropTypes.node,
+  /** Large style (size) */
+  large: PropTypes.bool,
+  /** Long style */
+  long: PropTypes.bool,
+  /** Short style (width) */
+  short: PropTypes.bool,
+  /** xLarge style (size) */
+  xLarge: PropTypes.bool,
+  /** Spec attribute */
+  accept: PropTypes.string,
+  /** Spec attribute */
+  disabled: PropTypes.bool,
+  /** Spec attribute */
+  autoComplete: PropTypes.string,
+  /** Spec attribute */
+  autoCorrect: PropTypes.string,
+  /** Spec attribute */
+  autoFocus: PropTypes.bool,
+  /** Spec attribute */
+  autoSave: PropTypes.string,
+  /** Spec attribute */
   defaultValue: PropTypes.string,
-  /** (Input spec attribute) */
+  /** Spec attribute */
+  id: PropTypes.string,
+  /** Spec attribute */
   inputMode: PropTypes.string,
-  /** (Input spec attribute) */
+  /** Spec attribute */
   list: PropTypes.string,
-  /** (Input spec attribute) */
+  /** Spec attribute */
   max: PropTypes.string,
-  /** (Input spec attribute) */
+  /** Spec attribute */
   maxLength: PropTypes.string,
-  /** (Input spec attribute) */
+  /** Spec attribute */
   min: PropTypes.string,
-  /** (Input spec attribute) */
+  /** Spec attribute */
   minLength: PropTypes.string,
-  /** (Input spec attribute) */
+  /** Spec attribute */
   multiple: PropTypes.bool,
-  /** (Input spec attribute) */
+  /** Spec attribute */
   name: PropTypes.string,
-  /** (Input spec attribute) */
+  /** Spec attribute */
   pattern: PropTypes.string,
-  /** (Input spec attribute) */
+  /** Spec attribute */
   placeholder: PropTypes.string,
-  /** (Input spec attribute) */
+  /** Spec attribute */
   readOnly: PropTypes.bool,
-  /** (Input spec attribute) */
+  /** Spec attribute */
   required: PropTypes.string,
-  /** (Input spec attribute) */
+  /** Spec attribute */
   spellCheck: PropTypes.string,
-  /** (Input spec attribute) */
+  /** Spec attribute */
   src: PropTypes.string,
-  /** (Input spec attribute) */
+  /** Spec attribute */
   step: PropTypes.string,
-  /** (Input spec attribute) */
+  /** Spec attribute */
   tabIndex: PropTypes.string,
-  /** (Input spec attribute) */
+  /** Spec attribute */
+  type: PropTypes.string,
+  /** Spec attribute */
   value: PropTypes.string,
   /** onChange event */
   onChange: PropTypes.func,
@@ -221,20 +233,6 @@ Input.propTypes = {
   onFocus: PropTypes.func,
   /** onBlur event */
   onBlur: PropTypes.func,
-  /** If the input has an error, you can highlight it */
-  error: PropTypes.bool,
-  /** If the input has an error, you can pass an error message */
-  errorMessage: PropTypes.string,
-  /** Size: Large style */
-  large: PropTypes.bool,
-  /** Size: xLarge style */
-  xLarge: PropTypes.bool,
-  /** Width: Short style */
-  short: PropTypes.bool,
-  /** Width: Long style */
-  long: PropTypes.bool,
-  /** Help text */
-  helpText: PropTypes.node,
 }
 
 export default Input
