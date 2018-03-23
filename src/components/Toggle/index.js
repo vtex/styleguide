@@ -62,7 +62,6 @@ class Toggle extends Component {
         htmlFor={`${id}`}
         className={`flex flex-row items-center ${!disabled && 'pointer'}`}
       >
-        {this.props.children ? this.props.children : ''}
         <div className={`${classes}`}>
           <div
             style={{
@@ -100,6 +99,7 @@ class Toggle extends Component {
           onClick={this.props.onClick}
           onChange={this.props.onChange}
         />
+        {this.props.children && <span className="ml4">{this.props.children}</span>}
       </label>
     )
   }

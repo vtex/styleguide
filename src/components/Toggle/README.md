@@ -4,22 +4,30 @@ Default
 class ToggleExample extends React.Component {
   constructor() {
     super()
-    this.state = { checked: true }
+    this.state = { checked: true, checked2: true }
 
-    this.onChange = this.onChange.bind(this)
+    this.onClick = this.onClick.bind(this)
+    this.onClick2 = this.onClick2.bind(this)
   }
 
-  onChange() {
-    this.setState((prevState) => ({
-      checked: !prevState.checked
-    }))
+  onClick() {
+    this.setState((prevState) => ({ checked: !prevState.checked }))
+  }
+  onClick2() {
+    this.setState((prevState) => ({ checked2: !prevState.checked2 }))
   }
 
   render() {
     return (
-      <Toggle id='toggle1'
-        checked={this.state.checked}
-        onChange={this.onChange}/>
+      <div className="flex flex-row">
+        <Toggle id='toggleNoLabel'
+          checked={this.state.checked}
+          onClick={this.onClick}/>
+        <span className="mr8" />
+        <Toggle id='toggleWithLabel'
+          checked={this.state.checked2}
+          onClick={this.onClick2}>With label</Toggle>
+      </div>
     )
   }
 };
@@ -27,7 +35,6 @@ class ToggleExample extends React.Component {
 ```
 
 Semantic
-
 ```js
 class ToggleSemanticExample extends React.Component {
   constructor() {
@@ -58,65 +65,9 @@ class ToggleSemanticExample extends React.Component {
 Disabled
 
 ```js
-<div> 
-  <Toggle disabled id='toggle3'/>
-</div>
-```
-
-Side by side
-
-```js
-class ToggleExample extends React.Component {
-  constructor() {
-    super()
-    this.state = { checked: true }
-
-    this.onChange = this.onChange.bind(this)
-  }
-
-  onChange() {
-    this.setState((prevState) => ({
-      checked: !prevState.checked
-    }))
-  }
-
-  render() {
-    return (
-      <Toggle id='toggle4'
-        checked={this.state.checked}
-        onChange={this.onChange}/>
-    )
-  }
-};
-class ToggleSemanticExample extends React.Component {
-  constructor() {
-    super()
-    this.state = { checked: false }
-
-    this.onChange = this.onChange.bind(this)
-  }
-
-  onChange() {
-    this.setState((prevState) => ({
-      checked: !prevState.checked
-    }))
-  }
-
-  render() {
-    return (
-      <Toggle id='toggle5'
-        semantic
-        checked={this.state.checked}
-        onChange={this.onChange}/>
-    )
-  }
-};
-<div>
-  <ToggleExample />
-  <br />
-  <ToggleSemanticExample />
-  <br />
-  <Toggle disabled id='toggle6'/>
-  <br />
-</div>
+  <div className="flex flex-row">
+    <Toggle disabled id='toggle3'/>
+    <span className="mr8" />
+    <Toggle disabled id='toggle3.3'><span className="silver">With label</span></Toggle>
+  </div>
 ```
