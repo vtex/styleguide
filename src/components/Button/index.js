@@ -99,7 +99,6 @@ Button.defaultProps = {
   primary: false,
   secondary: false,
   disabled: false,
-  isLoading: false,
   autoFocus: false,
   icon: false,
   type: 'button',
