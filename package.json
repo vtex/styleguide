@@ -43,6 +43,7 @@
     "watch": "^1.0.2"
   },
   "dependencies": {
+    "react-tippy": "^1.2.2",
     "vtex-tachyons": "^2.3.0"
   }
 }

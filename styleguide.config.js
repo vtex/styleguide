@@ -13,7 +13,7 @@ module.exports = {
     {
       name: 'Components',
       content: './docs/components.md',
-      components: function() {
+      components: function () {
         return [
           './src/components/Alert/index.js',
           './src/components/Button/index.js',
@@ -22,6 +22,7 @@ module.exports = {
           './src/components/Input/index.js',
           './src/components/Spinner/index.js',
           './src/components/Toggle/index.js',
+          './src/components/ToolTip/index.js',
           './src/components/Dropdown/index.js',
         ]
       },
