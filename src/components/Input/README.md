@@ -2,15 +2,15 @@ Sizes
 ```js
 <div>
   <div className="mb5">
-    <Input placeholder="Ej. Hayao Miyazaki" label="Default" />
+    <Input placeholder="Placeholder" label="Default" />
   </div>
 
   <div className="mb5">
-    <Input placeholder="Ej. Hayao Miyazaki" large label="Large" />
+    <Input placeholder="Placeholder" large label="Large" />
   </div>
 
   <div>
-    <Input placeholder="Ej. Hayao Miyazaki" xLarge label="Extra Large" />
+    <Input placeholder="Placeholder" xLarge label="Extra Large" />
   </div>
 </div>
 ```
@@ -19,15 +19,15 @@ Widths
 ```js
 <div>
   <div className="mb5">
-    <Input placeholder="Ej. 99" short label="Short" />
+    <Input placeholder="Plchldr" short label="Short" />
   </div>
 
   <div className="mb5">
-    <Input placeholder="Ej. Hayao Miyazaki" label="Default" />
+    <Input placeholder="Placeholder" label="Default" />
   </div>
 
   <div>
-    <Input placeholder="Ej. Eternal Sunshine of the Spotless Mind" long label="Long" />
+    <Input placeholder="Placeholder" long label="Long" />
   </div>
 </div>
 ```
@@ -36,11 +36,11 @@ Widths
 ```js
 <div>
   <div className="mb5">
-    <Input xLarge label="Default" />
+    <Input xLarge label="Default" placeholder="Placeholder" />
   </div>
 
   <div>
-    <Input xLarge block long label="Block" />
+    <Input xLarge block long label="Block" placeholder="Placeholder" />
   </div>
 </div>
 ```
@@ -53,7 +53,7 @@ Variations
   </div>
 
   <div className="mb5">
-    <Input type="password" label="Type Password" value="closeyreyes" />
+    <Input type="password" label="Type Password" value="hunter2" />
   </div>
 
   <div className="mb5">
@@ -61,7 +61,8 @@ Variations
   </div>
 
   <div>
-    <Input label="Help text" helpText={<span>Yout help text goes here!</span>} />
+    <Input label="Help text" placeholder="Placeholder"
+      helpText={<span>Yout help text goes here!</span>} />
   </div>
 </div>
 ```
