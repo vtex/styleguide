@@ -32,7 +32,7 @@ Sizes
       onChange={() => {}} />
   </div>
 
-  <div className="mb5">
+  <div>
     <Dropdown
       label="Extra Large"
       xLarge
@@ -81,7 +81,7 @@ Widths
       onChange={() => {}} />
   </div>
 
-  <div className="mb5">
+  <div>
     <Dropdown
       label="Long"
       long
@@ -115,7 +115,7 @@ Box types
       value="tolouseLautrec"
       onChange={() => {}} />
   </div>
-  <div className="">
+  <div>
     <Dropdown
       label="Block"
       block
@@ -134,20 +134,70 @@ Box types
 </div>
 ```
 
-Disabled
+Variations
 ```js
-  <Dropdown
-    disabled
-    options={[
-      {value: 'chagall', label: 'Chagall'},
-      {value: 'dali', label: 'Dali'},
-      {value: 'goya', label: 'Goya'},
-      {value: 'monet', label: 'Monet'},
-      {value: 'picasso', label: 'Picasso'},
-      {value: 'tolouseLautrec', label: 'Toulouse-Lautrec'}
-    ]}
-    value="tolouseLautrec"
-    onChange={() => {}} />
+<div>
+  <div className="mb5">
+    <Dropdown
+      label="Caption"
+      optionsCaption="Select an artist"
+      options={[
+        {value: 'chagall', label: 'Chagall'},
+        {value: 'dali', label: 'Dali'},
+        {value: 'goya', label: 'Goya'},
+        {value: 'monet', label: 'Monet'},
+        {value: 'picasso', label: 'Picasso'},
+        {value: 'tolouseLautrec', label: 'Toulouse-Lautrec'}
+      ]}
+      value=""
+      onChange={() => {}} />
+  </div>
+  <div className="mb5">
+    <Dropdown
+      label="Disabled"
+      disabled
+      options={[
+        {value: 'chagall', label: 'Chagall'},
+        {value: 'dali', label: 'Dali'},
+        {value: 'goya', label: 'Goya'},
+        {value: 'monet', label: 'Monet'},
+        {value: 'picasso', label: 'Picasso'},
+        {value: 'tolouseLautrec', label: 'Toulouse-Lautrec'}
+      ]}
+      value="tolouseLautrec"
+      onChange={() => {}} />
+  </div>
+  <div className="mb5">
+    <Dropdown
+      label="Error"
+      errorMessage="Required field"
+      options={[
+        {value: 'chagall', label: 'Chagall'},
+        {value: 'dali', label: 'Dali'},
+        {value: 'goya', label: 'Goya'},
+        {value: 'monet', label: 'Monet'},
+        {value: 'picasso', label: 'Picasso'},
+        {value: 'tolouseLautrec', label: 'Toulouse-Lautrec'}
+      ]}
+      value="tolouseLautrec"
+      onChange={() => {}} />
+  </div>
+  <div>
+    <Dropdown
+      label="Help text"
+      helpText={<span>Your help text goes here!</span>}
+      options={[
+        {value: 'chagall', label: 'Chagall'},
+        {value: 'dali', label: 'Dali'},
+        {value: 'goya', label: 'Goya'},
+        {value: 'monet', label: 'Monet'},
+        {value: 'picasso', label: 'Picasso'},
+        {value: 'tolouseLautrec', label: 'Toulouse-Lautrec'}
+      ]}
+      value="tolouseLautrec"
+      onChange={() => {}} />
+  </div>
+</div>
 ```
 
 Example: Working React Component
