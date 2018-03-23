@@ -26,7 +26,8 @@ class ToggleExample extends React.Component {
         <span className="mr8" />
         <Toggle id='toggleWithLabel'
           checked={this.state.checked2}
-          onClick={this.onClick2}>With label</Toggle>
+          onClick={this.onClick2}
+          label="With label" />
       </div>
     )
   }
@@ -68,6 +69,6 @@ Disabled
   <div className="flex flex-row">
     <Toggle disabled id='toggle3'/>
     <span className="mr8" />
-    <Toggle disabled id='toggle3.3'><span className="silver">With label</span></Toggle>
+    <Toggle disabled id='toggle3.3' label="With label"/>
   </div>
 ```

@@ -8,7 +8,7 @@ import config from 'vtex-tachyons/config.json'
 
 class Toggle extends Component {
   render() {
-    const { semantic, disabled, id, checked } = this.props
+    const { semantic, disabled, id, checked, label } = this.props
 
     let classes = 'flex items-center relative h2 w3 ph1 br4 bg-animate '
     let circleClasses = 'absolute br-100 pa3 mh2 '
@@ -99,7 +99,7 @@ class Toggle extends Component {
           onClick={this.props.onClick}
           onChange={this.props.onChange}
         />
-        {this.props.children && <span className="ml4">{this.props.children}</span>}
+        {label && <span className="ml5">{label}</span>}
       </label>
     )
   }
@@ -109,6 +109,7 @@ Toggle.defaultProps = {
   checked: false,
   disabled: false,
   semantic: false,
+  label: '',
 }
 
 Toggle.propTypes = {
@@ -116,7 +117,7 @@ Toggle.propTypes = {
   semantic: PropTypes.bool,
   disabled: PropTypes.bool,
   id: PropTypes.string,
-  children: PropTypes.node,
+  label: PropTypes.string,
   onChange: PropTypes.func,
   onClick: PropTypes.func,
 }
