@@ -11,10 +11,6 @@ module.exports = {
       content: './docs/introduction.md',
     },
     {
-      name: 'VTEX Tachyons',
-      content: './docs/vtex-tachyons.md',
-    },
-    {
       name: 'Components',
       content: './docs/components.md',
       components: function() {
