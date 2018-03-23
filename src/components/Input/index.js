@@ -34,6 +34,7 @@ class Input extends Component {
       xLarge,
       short,
       long,
+      token,
       helpText,
     } = this.props
     const { active } = this.state
@@ -43,6 +44,10 @@ class Input extends Component {
     const border = 'bw1 br2 b--solid outline-0'
     const typography = 'near-black'
     let classes = `${size} ${box} ${border} ${typography} `
+
+    if (token) {
+      classes += 'code '
+    }
 
     if (active) {
       classes += 'b--gray '
@@ -152,6 +157,7 @@ class Input extends Component {
 
 Input.defaultProps = {
   autoFocus: false,
+  token: false,
   disabled: false,
   multiple: false,
   readOnly: false,
@@ -165,6 +171,8 @@ Input.propTypes = {
   error: PropTypes.bool,
   /** Error message */
   errorMessage: PropTypes.string,
+  /** If the input is an API Key, App Key or App Token */
+  token: PropTypes.bool,
   /** Help text */
   helpText: PropTypes.node,
   /** Large style (size) */

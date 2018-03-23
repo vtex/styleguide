@@ -57,7 +57,11 @@ Variations
   </div>
 
   <div className="mb5">
-    <Input label="Error" errorMessage="Invalid field value" />
+    <Input label="Token" token value="DUq0xuJZAD7Rvezv" />
+  </div>
+
+  <div className="mb5">
+    <Input label="Error" value="43" errorMessage="Invalid field value" />
   </div>
 
   <div>
