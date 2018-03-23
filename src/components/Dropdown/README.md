@@ -139,6 +139,7 @@ Variations
 <div>
   <div className="mb5">
     <Dropdown
+    label="Disabled"
       disabled
       options={[
         {value: 'chagall', label: 'Chagall'},
@@ -153,6 +154,7 @@ Variations
   </div>
   <div className="mb5">
     <Dropdown
+      label="Error"
       errorMessage="Required field"
       options={[
         {value: 'chagall', label: 'Chagall'},
@@ -167,6 +169,7 @@ Variations
   </div>
   <div>
     <Dropdown
+      label="Help text"
       helpText={<span>Your help text goes here!</span>}
       options={[
         {value: 'chagall', label: 'Chagall'},
