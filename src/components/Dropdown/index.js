@@ -55,8 +55,10 @@ class Dropdown extends Component {
   };
 
   getValueLabel() {
-    const option = this.props.options.find(option => option.value === this.props.value)
-    if (!option) return '\xa0'
+    const option = this.props.options.find(
+      option => option.value === this.props.value
+    )
+    if (!option) return null
     return option.label
   }
 
@@ -69,7 +71,6 @@ class Dropdown extends Component {
       large,
       xLarge,
       block,
-      value,
       disabled,
       options,
       error,
@@ -101,8 +102,11 @@ class Dropdown extends Component {
 
     if (block) width = '100%'
 
-    classes += (disabled ? 'bg-light-gray ' : 'pointer ')
-    classes += (!disabled && value ? 'near-black ' : 'gray ')
+    const valueLabel = this.getValueLabel()
+    const showCaption = !valueLabel
+
+    classes += disabled ? 'bg-light-gray ' : 'pointer '
+    classes += !disabled && valueLabel ? 'near-black ' : 'gray '
 
     if (large) {
       classes += 'f5 pv4 pl6 pr5 '
@@ -192,12 +196,14 @@ class Dropdown extends Component {
             >
               <div className="flex">
                 <div className="flex-auto tl">
-                  {this.getValueLabel()}
+                  {showCaption ? this.props.optionsCaption : valueLabel}
                 </div>
                 <div className="flex-none flex items-center pl6">
                   <ArrowDownIcon
                     size={iconSize}
-                    color={disabled ? config.colors['gray'] : config.colors.blue}
+                    color={
+                      disabled ? config.colors['gray'] : config.colors.blue
+                    }
                   />
                 </div>
               </div>
@@ -216,7 +222,8 @@ class Dropdown extends Component {
               </button>
             ))}
           </div>}
-        {errorMessage && <div className="red f6 mt3 lh-title">{errorMessage}</div>}
+        {errorMessage &&
+          <div className="red f6 mt3 lh-title">{errorMessage}</div>}
         {helpText && <div className="mid-gray f6 mt3 lh-title">{helpText}</div>}
       </div>
     )
@@ -243,10 +250,14 @@ Dropdown.propTypes = {
   /** xLarge style (size) */
   xLarge: PropTypes.bool,
   /** Dropdown options list */
-  options: PropTypes.arrayOf(PropTypes.shape({
-    value: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
-  })),
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+    })
+  ),
+  /** Dropdown placeholder value */
+  optionsCaption: PropTypes.string,
   /** Spec attribute */
   id: PropTypes.string,
   /** Spec attribute */

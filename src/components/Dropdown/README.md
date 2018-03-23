@@ -139,7 +139,22 @@ Variations
 <div>
   <div className="mb5">
     <Dropdown
-    label="Disabled"
+      label="Caption"
+      optionsCaption="Select an artist"
+      options={[
+        {value: 'chagall', label: 'Chagall'},
+        {value: 'dali', label: 'Dali'},
+        {value: 'goya', label: 'Goya'},
+        {value: 'monet', label: 'Monet'},
+        {value: 'picasso', label: 'Picasso'},
+        {value: 'tolouseLautrec', label: 'Toulouse-Lautrec'}
+      ]}
+      value=""
+      onChange={() => {}} />
+  </div>
+  <div className="mb5">
+    <Dropdown
+      label="Disabled"
       disabled
       options={[
         {value: 'chagall', label: 'Chagall'},
