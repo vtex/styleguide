@@ -11,7 +11,7 @@ class ArrowDownIcon extends PureComponent {
         height={this.props.size}
         viewBox="0 0 24 24"
       >
-        <g fill={this.props.fill}>
+        <g fill={this.props.color}>
           <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z" />
         </g>
       </svg>
@@ -21,12 +21,12 @@ class ArrowDownIcon extends PureComponent {
 
 ArrowDownIcon.defaultProps = {
   size: 16,
-  fill: config.colors.blue,
+  color: config.colors.blue,
 }
 
 ArrowDownIcon.propTypes = {
   size: PropTypes.number.isRequired,
-  fill: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired,
 }
 
 export default ArrowDownIcon
