@@ -23,7 +23,6 @@ class Alert extends Component {
     let showIcon = false
     let Icon = 'div'
     let color = config.colors['serious-black']
-    let closeBtnColor = 'near-black'
 
     switch (type) {
       case 'success': {
@@ -47,12 +46,6 @@ class Alert extends Component {
         color = config.colors['yellow']
         break
       }
-      case 'info-dark': {
-        classes += 'bg-serious-black light-silver '
-        color = config.colors['white']
-        closeBtnColor = config.colors['white']
-        break
-      }
       default: {
         classes += 'bg-washed-blue '
         break
@@ -60,7 +53,7 @@ class Alert extends Component {
     }
 
     return (
-      <div className={`flex justify-between f6 near-black ${classes}`}>
+      <div className={`flex justify-between f5 near-black ${classes}`}>
         <div className="flex items-center">
           {showIcon && <Icon color={color} size={18} />}
 
@@ -71,7 +64,7 @@ class Alert extends Component {
 
         {onClose &&
           <div className="pointer flex items-center pv2" onClick={onClose}>
-            <CloseIcon color={closeBtnColor} size={10} />
+            <CloseIcon color={config.colors['near-black']} size={10} />
           </div>}
       </div>
     )
@@ -80,7 +73,7 @@ class Alert extends Component {
 
 Alert.propTypes = {
   /** Style of the alert */
-  type: PropTypes.oneOf(['success', 'error', 'warning', 'info', 'info-dark']),
+  type: PropTypes.oneOf(['success', 'error', 'warning', 'info']),
   /** Content of the alert */
   children: PropTypes.node.isRequired,
   /** If this function is defined, a close icon will appear and this function will be called when alert is closed. */
