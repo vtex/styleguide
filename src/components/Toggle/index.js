@@ -59,10 +59,10 @@ class Toggle extends Component {
 
     return (
       <label
-        htmlFor={`${id}`}
+        htmlFor={id || undefined}
         className={`flex flex-row items-center ${!disabled && 'pointer'}`}
       >
-        <div className={`${classes}`}>
+        <div className={classes}>
           <div
             style={{
               height: '1.5rem',
@@ -91,7 +91,7 @@ class Toggle extends Component {
           </div>
         </div>
         <input
-          id={`${id}`}
+          id={id || undefined}
           type="checkbox"
           className="dn"
           disabled={disabled}
