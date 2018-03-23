@@ -1,122 +1,56 @@
 Default
 
 ```js
-class ToggleExample extends React.Component {
-  constructor() {
-    super()
-    this.state = { checked: true }
-
-    this.onChange = this.onChange.bind(this)
-  }
-
-  onChange() {
-    this.setState((prevState) => ({
-      checked: !prevState.checked
-    }))
-  }
-
-  render() {
-    return (
-      <Toggle id='toggle1'
-        checked={this.state.checked}
-        onChange={this.onChange}/>
-    )
-  }
-};
-<ToggleExample />
+initialState = { checked: true, checked2: false };
+<div>
+  <div className="dib">
+    <Toggle
+      label="Checked"
+      checked={state.checked}
+      onClick={(e) => setState((prevState) => ({ checked: !prevState.checked }))} />
+  </div>
+  <br />
+  <div className="mt2 dib">
+    <Toggle
+      label="Unchecked"
+      checked={state.checked2}
+      onClick={(e) => setState((prevState) => ({ checked2: !prevState.checked2 }))} />
+  </div>
+</div>
 ```
 
 Semantic
-
 ```js
-class ToggleSemanticExample extends React.Component {
-  constructor() {
-    super()
-    this.state = { checked: false }
-
-    this.onChange = this.onChange.bind(this)
-  }
-
-  onChange() {
-    this.setState((prevState) => ({
-      checked: !prevState.checked
-    }))
-  }
-
-  render() {
-    return (
-      <Toggle id='toggle2'
-        semantic
-        checked={this.state.checked}
-        onChange={this.onChange}/>
-    )
-  }
-};
-<ToggleSemanticExample />
+initialState = { checked: true, checked2: false };
+<div>
+  <div className="dib">
+    <Toggle
+      label="Checked"
+      semantic
+      checked={state.checked}
+      onClick={(e) => setState((prevState) => ({ checked: !prevState.checked }))} />
+  </div>
+  <br />
+  <div className="mt2 dib">
+    <Toggle
+      label="Unchecked"
+      semantic
+      checked={state.checked2}
+      onClick={(e) => setState((prevState) => ({ checked2: !prevState.checked2 }))} />
+  </div>
+</div>
 ```
 
 Disabled
 
 ```js
-<div> 
-  <Toggle disabled id='toggle3'/>
-</div>
-```
-
-Side by side
-
-```js
-class ToggleExample extends React.Component {
-  constructor() {
-    super()
-    this.state = { checked: true }
-
-    this.onChange = this.onChange.bind(this)
-  }
-
-  onChange() {
-    this.setState((prevState) => ({
-      checked: !prevState.checked
-    }))
-  }
-
-  render() {
-    return (
-      <Toggle id='toggle4'
-        checked={this.state.checked}
-        onChange={this.onChange}/>
-    )
-  }
-};
-class ToggleSemanticExample extends React.Component {
-  constructor() {
-    super()
-    this.state = { checked: false }
-
-    this.onChange = this.onChange.bind(this)
-  }
-
-  onChange() {
-    this.setState((prevState) => ({
-      checked: !prevState.checked
-    }))
-  }
-
-  render() {
-    return (
-      <Toggle id='toggle5'
-        semantic
-        checked={this.state.checked}
-        onChange={this.onChange}/>
-    )
-  }
-};
 <div>
-  <ToggleExample />
-  <br />
-  <ToggleSemanticExample />
-  <br />
-  <Toggle disabled id='toggle6'/>
-  <br />
+  <div className="dib">
+    <Toggle disabled checked label="Checked" />
+  </div>
+  <br/>
+  <div className="dib">
+    <Toggle disabled label="Unchecked"/>
+  </div>
 </div>
 ```

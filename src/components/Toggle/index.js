@@ -8,7 +8,7 @@ import config from 'vtex-tachyons/config.json'
 
 class Toggle extends Component {
   render() {
-    const { semantic, disabled, id, checked } = this.props
+    const { semantic, disabled, id, checked, label } = this.props
 
     let classes = 'flex items-center relative h2 w3 ph1 br4 bg-animate '
     let circleClasses = 'absolute br-100 pa3 mh2 '
@@ -59,11 +59,10 @@ class Toggle extends Component {
 
     return (
       <label
-        htmlFor={`${id}`}
+        htmlFor={id || undefined}
         className={`flex flex-row items-center ${!disabled && 'pointer'}`}
       >
-        {this.props.children ? this.props.children : ''}
-        <div className={`${classes}`}>
+        <div className={classes}>
           <div
             style={{
               height: '1.5rem',
@@ -92,7 +91,7 @@ class Toggle extends Component {
           </div>
         </div>
         <input
-          id={`${id}`}
+          id={id || undefined}
           type="checkbox"
           className="dn"
           disabled={disabled}
@@ -100,6 +99,7 @@ class Toggle extends Component {
           onClick={this.props.onClick}
           onChange={this.props.onChange}
         />
+        {label && <span className="ml5">{label}</span>}
       </label>
     )
   }
@@ -109,6 +109,7 @@ Toggle.defaultProps = {
   checked: false,
   disabled: false,
   semantic: false,
+  label: '',
 }
 
 Toggle.propTypes = {
@@ -116,7 +117,7 @@ Toggle.propTypes = {
   semantic: PropTypes.bool,
   disabled: PropTypes.bool,
   id: PropTypes.string,
-  children: PropTypes.node,
+  label: PropTypes.string,
   onChange: PropTypes.func,
   onClick: PropTypes.func,
 }
