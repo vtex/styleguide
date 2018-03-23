@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import Deny from '../Icon/Deny'
-import Check from '../Icon/Check'
+import DenyIcon from '../icon/Deny'
+import CheckIcon from '../icon/Check'
 
 import config from 'vtex-tachyons/config.json'
 
@@ -76,11 +76,11 @@ class Toggle extends Component {
           <div
             className={iconDenyClasses}
             style={{
-              marginLeft: '.4rem',
+              marginLeft: '.5rem',
               transition: 'left .2s ease-out',
             }}
           >
-            <Deny fill={config.colors.red} />
+            <DenyIcon color={config.colors.red} />
           </div>
           <div
             className={iconCheckClasses}
@@ -88,7 +88,7 @@ class Toggle extends Component {
               transition: 'left .2s ease-out',
             }}
           >
-            <Check fill={config.colors.green} />
+            <CheckIcon color={config.colors.green} />
           </div>
         </div>
         <input

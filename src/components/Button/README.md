@@ -59,7 +59,8 @@ Colored container background
 With icon
 
 ```js
+const CloseIcon = require('../icon/Close').default;
 <Button icon primary>
-  <Icon type="close" fill="fff" width={20} heigth={20} />
+  <CloseIcon color="#fff" />
 </Button>
 ```

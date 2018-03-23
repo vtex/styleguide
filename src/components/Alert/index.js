@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Icon from '../Icon'
+import SuccessIcon from '../icon/Success'
+import FailureIcon from '../icon/Failure'
+import WarningIcon from '../icon/Warning'
+import CloseIcon from '../icon/Close'
 import config from 'vtex-tachyons/config.json'
 
 class Alert extends Component {
@@ -18,7 +21,7 @@ class Alert extends Component {
     const { type, onClose } = this.props
     let classes = 'pa5 br2 '
     let showIcon = false
-    let icon = ''
+    let Icon = 'div'
     let color = config.colors['serious-black']
     let closeBtnColor = 'near-black'
 
@@ -26,21 +29,21 @@ class Alert extends Component {
       case 'success': {
         showIcon = true
         classes += 'bg-washed-green '
-        icon = 'success'
+        Icon = SuccessIcon
         color = config.colors['green']
         break
       }
       case 'error': {
         showIcon = true
         classes += 'bg-washed-red '
-        icon = 'failure'
+        Icon = FailureIcon
         color = config.colors['red']
         break
       }
       case 'warning': {
         showIcon = true
         classes += 'bg-washed-yellow '
-        icon = 'warning'
+        Icon = WarningIcon
         color = config.colors['yellow']
         break
       }
@@ -59,7 +62,7 @@ class Alert extends Component {
     return (
       <div className={`flex justify-between f6 near-black ${classes}`}>
         <div className="flex items-center">
-          {showIcon && <Icon type={icon} fill={color} height={18} width={18} />}
+          {showIcon && <Icon color={color} size={18} />}
 
           <div className={`${showIcon ? 'ph5 flex' : 'pr5'}`}>
             {this.props.children}
@@ -68,7 +71,7 @@ class Alert extends Component {
 
         {onClose &&
           <div className="pointer flex items-center pv2" onClick={onClose}>
-            <Icon type="close" height={10} width={10} fill={closeBtnColor} />
+            <CloseIcon color={closeBtnColor} size={10} />
           </div>}
       </div>
     )
