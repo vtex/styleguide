@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Alert from '../Alert'
 
 class Input extends Component {
   constructor(props) {
@@ -143,7 +142,8 @@ class Input extends Component {
           value={this.props.value}
           id={this.props.id}
         />
-        {errorMessage && <div className="red f6 mt3 lh-title">{errorMessage}</div>}
+        {errorMessage &&
+          <div className="red f6 mt3 lh-title">{errorMessage}</div>}
         {helpText && <div className="mid-gray f6 mt3 lh-title">{helpText}</div>}
       </label>
     )
@@ -175,6 +175,8 @@ Input.propTypes = {
   short: PropTypes.bool,
   /** xLarge style (size) */
   xLarge: PropTypes.bool,
+  /** Label */
+  label: PropTypes.string,
   /** Spec attribute */
   accept: PropTypes.string,
   /** Spec attribute */
