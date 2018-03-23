@@ -29,13 +29,20 @@ class Input extends Component {
     const {
       errorMessage,
       error,
+      label,
+      block,
+      large,
+      xLarge,
+      short,
+      long,
+      helpText,
     } = this.props
     const { active } = this.state
 
     const size = 'w-100'
-    const box = 'pa3 ma0 border-box'
+    const box = 'ma0 border-box'
     const border = 'bw1 br2 b--solid outline-0'
-    const typography = 'f6 near-black'
+    const typography = 'near-black'
     let classes = `${size} ${box} ${border} ${typography} `
 
     if (active) {
@@ -48,7 +55,7 @@ class Input extends Component {
     }
 
     if (error || errorMessage) {
-      classes += 'b--red hover-b--red mb3 '
+      classes += 'b--red hover-b--red '
     }
 
     if (this.props.disabled) {
@@ -57,8 +64,53 @@ class Input extends Component {
       classes += 'bg-white '
     }
 
+    let width = '100%'
+
+    if (large) {
+      classes += 'f5 pv4 ph6 '
+      // iconSize = 18
+      if (!block) {
+        if (short) {
+          width = '130px'
+        } else if (long) {
+          width = '420px'
+        } else {
+          width = '250px'
+        }
+      }
+    } else if (xLarge) {
+      classes += 'f4 pv5 ph7 '
+      // iconSize = 22
+      if (!block) {
+        if (short) {
+          width = '180px'
+        } else if (long) {
+          width = '520px'
+        } else {
+          width = '320px'
+        }
+      }
+    } else {
+      classes += 'f6 pv3 ph5 '
+      // iconSize = 16
+      if (!block) {
+        if (short) {
+          width = '110px'
+        } else if (long) {
+          width = '350px'
+        } else {
+          width = '200px'
+        }
+      }
+    }
+
+    const style = { width: width }
+
     return (
-      <div>
+      <label className="dib" style={style}>
+        <span className={`db mb3 ${block ? 'w-100' : ''}`}>
+          {label}
+        </span>
         <input
           onBlur={this.handleBlur}
           onFocus={this.handleFocus}
@@ -91,8 +143,20 @@ class Input extends Component {
           value={this.props.value}
           id={this.props.id}
         />
-        {errorMessage && <Alert type="error">{errorMessage}</Alert>}
-      </div>
+        {errorMessage &&
+          <div className="f6 flex mt3">
+            <svg className="flex-none mr3" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 18 18" width="20" height="20">
+              <circle fill="none" strokeWidth="2" stroke="#FF4C4C" cx="8.5" cy="8.5" r="7"></circle>
+              <circle fill="#FF4C4C" cx="8.5" cy="12" r="1"></circle>
+              <line fill="none" strokeWidth="2" stroke="#FF4C4C" x1="8.5" y1="4.5" x2="8.5" y2="9"></line>
+            </svg>
+            <div className="flex-auto lh-title">
+              {errorMessage}
+            </div>
+          </div>
+        }
+        {helpText && <div className="mid-gray f6 mt3 lh-title">{helpText}</div>}
+      </label>
     )
   }
 }
@@ -108,6 +172,8 @@ Input.defaultProps = {
 Input.propTypes = {
   /** (Input spec attribute) */
   id: PropTypes.string,
+  /** Dropdown Label */
+  label: PropTypes.string,
   /** (Input spec attribute) */
   type: PropTypes.string,
   /** (Input spec attribute) */
@@ -122,6 +188,8 @@ Input.propTypes = {
   autoFocus: PropTypes.bool,
   /** (Input spec attribute) */
   autoSave: PropTypes.string,
+  /** Block style */
+  block: PropTypes.bool,
   /** (Input spec attribute) */
   defaultValue: PropTypes.string,
   /** (Input spec attribute) */
@@ -168,6 +236,16 @@ Input.propTypes = {
   error: PropTypes.bool,
   /** If the input has an error, you can pass an error message */
   errorMessage: PropTypes.string,
+  /** Size: Large style */
+  large: PropTypes.bool,
+  /** Size: xLarge style */
+  xLarge: PropTypes.bool,
+  /** Width: Short style */
+  short: PropTypes.bool,
+  /** Width: Long style */
+  long: PropTypes.bool,
+  /** Help text */
+  helpText: PropTypes.node,
 }
 
 export default Input
