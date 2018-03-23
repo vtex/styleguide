@@ -1,11 +1,12 @@
 #### Default
 
 ```js
+const spinnerStyle = require('./style.css');
 <table style={{ height: '40px', width: '40px' }}>
   <tbody>
     <tr>
       <td>
-        <Spinner />
+        <Spinner style={spinnerStyle}/>
       </td>
     </tr>
   </tbody>
@@ -15,11 +16,12 @@
 #### Secondary
 
 ```js
+const spinnerStyle = require('./style.css');
 <table style={{ height: '40px', width: '40px', background: '#368df7' }}>
   <tbody>
     <tr>
       <td>
-        <Spinner secondary />
+        <Spinner secondary style={spinnerStyle}/>
       </td>
     </tr>
   </tbody>

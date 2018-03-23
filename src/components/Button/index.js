@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import Spinner from '../Spinner'
-
 class Button extends Component {
   handleClick = event => {
     !this.props.disabled && this.props.onClick && this.props.onClick(event)
@@ -16,7 +14,6 @@ class Button extends Component {
       primary,
       secondary,
       disabled,
-      isLoading,
       icon,
     } = this.props
     const Tag = icon ? 'div' : 'button'
@@ -25,7 +22,7 @@ class Button extends Component {
       throw new Error('Button component cannot be primary AND secondary')
     }
 
-    if ((large && xLarge)) {
+    if (large && xLarge) {
       throw new Error(
         'Button component cannot have two sizes at the same time'
       )
@@ -53,7 +50,7 @@ class Button extends Component {
     if (secondary && !disabled) {
       classes += 'bg-white b--blue blue hover-white '
     }
-    if (secondary && !isLoading) {
+    if (secondary) {
       classes += 'hover-bg-blue '
     }
 
@@ -89,9 +86,7 @@ class Button extends Component {
         onMouseDown={this.props.onMouseDown}
         ref={this.props.ref}
       >
-        {isLoading
-          ? <Spinner width={11} height={11} secondary={primary} />
-          : this.props.children}
+        {this.props.children}
       </Tag>
     )
   }
@@ -121,8 +116,6 @@ Button.propTypes = {
   primary: PropTypes.bool,
   /** Secondary style */
   secondary: PropTypes.bool,
-  /** Add loading spinner */
-  isLoading: PropTypes.bool,
   /** If you are using just an Icon component inside, use this as true */
   icon: PropTypes.bool,
   /** (Button spec attribute) */

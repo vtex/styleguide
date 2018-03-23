@@ -56,17 +56,6 @@ Colored container background
 </div>
 ```
 
-With spinner
-
-```js
-<div>
-  <span className="mr4"><Button isLoading>Save</Button></span>
-  <span className="mr4"><Button primary isLoading>Save</Button></span>
-  <span className="mr4"><Button secondary isLoading>Save</Button></span>
-  <span className="mr4"><Button disabled isLoading>Save</Button></span>
-</div>
-```
-
 With icon
 
 ```js

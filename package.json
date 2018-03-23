@@ -21,6 +21,7 @@
   ],
   "homepage": "https://vtex.github.io/styleguide",
   "devDependencies": {
+    "@vtex/react-scripts": "1.1.10",
     "babel-cli": "^6.26.0",
     "babel-eslint": "7",
     "babel-plugin-dynamic-import-node": "^1.2.0",
@@ -37,7 +38,6 @@
     "gh-pages": "^1.1.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-scripts": "1.0.17",
     "react-styleguidist": "^6.2.5",
     "react-styleguidist-visual": "^0.3.1",
     "watch": "^1.0.2"
