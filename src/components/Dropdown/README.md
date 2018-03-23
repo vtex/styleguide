@@ -3,7 +3,6 @@ Sizes
 <div>
   <div className="mb5">
     <Dropdown
-      id="sizeDefault"
       label="Default"
       options={[
         {value: 'chagall', label: 'Chagall'},
@@ -19,7 +18,6 @@ Sizes
 
   <div className="mb5">
     <Dropdown
-      id="sizeLarge"
       label="Large"
       large
       options={[
@@ -36,7 +34,6 @@ Sizes
 
   <div className="mb5">
     <Dropdown
-      id="sizeExtraLarge"
       label="Extra Large"
       xLarge
       options={[
@@ -58,7 +55,6 @@ Widths
 <div>
   <div className="mb5">
     <Dropdown
-      id="widthShort"
       label="Short"
       short
       options={[
@@ -72,7 +68,6 @@ Widths
 
   <div className="mb5">
     <Dropdown
-      id="widthDefault"
       label="Default"
       options={[
         {value: 'chagall', label: 'Chagall'},
@@ -88,7 +83,6 @@ Widths
 
   <div className="mb5">
     <Dropdown
-      id="widthLong"
       label="Long"
       long
       options={[
@@ -108,7 +102,6 @@ Box types
 <div>
   <div className="mb5">
     <Dropdown
-      id="boxDefault"
       label="Default"
       xLarge
       options={[
@@ -124,7 +117,6 @@ Box types
   </div>
   <div className="">
     <Dropdown
-      id="boxBlock"
       label="Block"
       block
       xLarge
@@ -180,7 +172,6 @@ class Example extends React.Component {
         <div>
           <Dropdown
             label="Painter"
-            id="painter"
             options={[
               {value: 'painterChagall', label: 'Chagall'},
               {value: 'painterDali', label: 'Dali'},

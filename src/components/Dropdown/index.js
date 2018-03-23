@@ -75,10 +75,6 @@ class Dropdown extends Component {
     } = this.props
     const { open } = this.state
 
-    if (label && !id) {
-      throw new Error('Dropdown component with Label must have an Id')
-    }
-
     if (short && long) {
       throw new Error(
         'Dropdown component cannot be short AND long at the same time'
@@ -174,31 +170,33 @@ class Dropdown extends Component {
 
     return (
       <div ref={this.setWrapperRef} className={block ? 'db' : 'dib'}>
-        {label &&
-          <label htmlFor={id} className={`dib mb3 ${block ? 'w-100' : ''}`}>
-            {label}
-          </label>}
-        <div className={containerClasses} style={containerStyle}>
-          <button
-            id={id}
-            disabled={disabled}
-            ref={this.setSelectRef}
-            onClick={this.handleClick}
-            className={classes}
-          >
-            <div className="flex">
-              <div className="flex-auto tl">
-                {this.getValueLabel()}
+        <label>
+          {label &&
+            <span className={`dib mb3 ${block ? 'w-100' : ''}`}>
+              {label}
+            </span>}
+          <div className={containerClasses} style={containerStyle}>
+            <button
+              id={id}
+              disabled={disabled}
+              ref={this.setSelectRef}
+              onClick={this.handleClick}
+              className={classes}
+            >
+              <div className="flex">
+                <div className="flex-auto tl">
+                  {this.getValueLabel()}
+                </div>
+                <div className="flex-none flex items-center pl6">
+                  <ArrowDownIcon
+                    size={iconSize}
+                    fill={disabled ? config.colors['gray'] : config.colors.blue}
+                  />
+                </div>
               </div>
-              <div className="flex-none flex items-center pl6">
-                <ArrowDownIcon
-                  size={iconSize}
-                  fill={disabled ? config.colors['gray'] : config.colors.blue}
-                />
-              </div>
-            </div>
-          </button>
-        </div>
+            </button>
+          </div>
+        </label>
         {open &&
           <div className={optionsClasses} style={optionsStyle}>
             {options.map(option => (
