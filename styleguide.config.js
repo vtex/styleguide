@@ -1,8 +1,9 @@
 const path = require('path')
+const config = require('vtex-tachyons/config.json')
 
 module.exports = {
   require: ['vtex-tachyons'],
-  showUsage: true,
+  showUsage: false,
   title: 'VTEX Styleguide',
   skipComponentsWithoutExample: true,
   sections: [
@@ -13,17 +14,7 @@ module.exports = {
     {
       name: 'Components',
       content: './docs/components.md',
-      components: function() {
-        return [
-          './src/components/Alert/index.js',
-          './src/components/Button/index.js',
-          './src/components/Card/index.js',
-          './src/components/Input/index.js',
-          './src/components/Spinner/index.js',
-          './src/components/Toggle/index.js',
-          './src/components/Dropdown/index.js',
-        ]
-      },
+      components: 'src/components/**/index.js',
     },
   ],
   getComponentPathLine(componentPath) {
@@ -36,4 +27,24 @@ module.exports = {
     return `import ${componentName} from '@vtex/styleguide/lib/${dir}';`
   },
   webpackConfig: require('@vtex/react-scripts/config/webpack.config.dev.js'),
+  theme: {
+    color: {
+      link: config.colors.blue,
+      linkHover: config.colors['heavy-blue'],
+    },
+    fontSize: {
+      h1: 36,
+      h2: 24,
+    },
+  },
+  styles: {
+    TabButton: {
+      button: {
+        color: config.colors['near-black'],
+        fontWeight: 'normal',
+        borderBottom: `1px solid ${config.colors.blue}`,
+        textTransform: 'initial',
+      },
+    },
+  },
 }
