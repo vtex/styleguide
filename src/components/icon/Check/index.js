@@ -4,17 +4,17 @@ import config from 'vtex-tachyons/config.json'
 
 class Check extends PureComponent {
   render() {
-    const { fill, width, height } = this.props
+    const { color, size } = this.props
     return (
       <svg
         viewBox="0 0 18 18"
         xmlns="http://www.w3.org/2000/svg"
-        width={width}
-        height={height}
+        width={size}
+        height={size}
       >
         <path
           d="M6.61 11.89L3.5 8.78 2.44 9.84 6.61 14l8.95-8.95L14.5 4z"
-          fill={fill}
+          fill={color}
         />
       </svg>
     )
@@ -22,15 +22,13 @@ class Check extends PureComponent {
 }
 
 Check.defaultProps = {
-  fill: config.colors['serious-black'],
-  width: 16,
-  height: 16,
+  color: config.colors['serious-black'],
+  size: 16,
 }
 
 Check.propTypes = {
-  fill: PropTypes.string,
-  width: PropTypes.number,
-  height: PropTypes.number,
+  color: PropTypes.string,
+  size: PropTypes.number,
 }
 
 export default Check

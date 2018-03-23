@@ -80,7 +80,7 @@ class Toggle extends Component {
               transition: 'left .2s ease-out',
             }}
           >
-            <DenyIcon fill={config.colors.red} />
+            <DenyIcon color={config.colors.red} />
           </div>
           <div
             className={iconCheckClasses}
@@ -88,7 +88,7 @@ class Toggle extends Component {
               transition: 'left .2s ease-out',
             }}
           >
-            <CheckIcon fill={config.colors.green} />
+            <CheckIcon color={config.colors.green} />
           </div>
         </div>
         <input

@@ -61,6 +61,6 @@ With icon
 ```js
 const CloseIcon = require('../icon/Close').default;
 <Button icon primary>
-  <CloseIcon fill="#fff" width={20} heigth={20} />
+  <CloseIcon color="#fff" />
 </Button>
 ```

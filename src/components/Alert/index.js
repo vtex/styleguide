@@ -62,7 +62,7 @@ class Alert extends Component {
     return (
       <div className={`flex justify-between f6 near-black ${classes}`}>
         <div className="flex items-center">
-          {showIcon && <Icon fill={color} height={18} width={18} />}
+          {showIcon && <Icon color={color} size={18} />}
 
           <div className={`${showIcon ? 'ph5 flex' : 'pr5'}`}>
             {this.props.children}
@@ -71,7 +71,7 @@ class Alert extends Component {
 
         {onClose &&
           <div className="pointer flex items-center pv2" onClick={onClose}>
-            <CloseIcon height={10} width={10} fill={closeBtnColor} />
+            <CloseIcon color={closeBtnColor} size={10} />
           </div>}
       </div>
     )
