@@ -190,7 +190,7 @@ class Dropdown extends Component {
                 <div className="flex-none flex items-center pl6">
                   <ArrowDownIcon
                     size={iconSize}
-                    fill={disabled ? config.colors['gray'] : config.colors.blue}
+                    color={disabled ? config.colors['gray'] : config.colors.blue}
                   />
                 </div>
               </div>
