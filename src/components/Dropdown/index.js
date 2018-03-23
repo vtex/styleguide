@@ -72,6 +72,9 @@ class Dropdown extends Component {
       value,
       disabled,
       options,
+      error,
+      errorMessage,
+      helpText,
     } = this.props
     const { open } = this.state
 
@@ -161,7 +164,11 @@ class Dropdown extends Component {
       containerClasses += 'bl br bt pb1 b--silver br--top '
       optionsClasses += 'b--silver '
     } else {
-      containerClasses += 'ba b--light-gray '
+      if (error || errorMessage) {
+        containerClasses += 'ba b--red hover-b--red '
+      } else {
+        containerClasses += 'ba b--light-gray '
+      }
       optionsClasses += 'pointer b--light-gray'
       if (!disabled) {
         containerClasses += 'hover-b--silver '
@@ -209,41 +216,49 @@ class Dropdown extends Component {
               </button>
             ))}
           </div>}
+        {errorMessage && <div className="red f6 mt3 lh-title">{errorMessage}</div>}
+        {helpText && <div className="mid-gray f6 mt3 lh-title">{helpText}</div>}
       </div>
     )
   }
 }
 
 Dropdown.propTypes = {
-  /** Dropdown Id */
-  id: PropTypes.string,
-  /** Dropdown Label */
-  label: PropTypes.string,
-  /** Size: Large style */
-  large: PropTypes.bool,
-  /** Size: xLarge style */
-  xLarge: PropTypes.bool,
-  /** Width: Short style */
-  short: PropTypes.bool,
-  /** Width: Long style */
-  long: PropTypes.bool,
   /** Block style */
   block: PropTypes.bool,
-  /** Dropdown value */
-  value: PropTypes.string,
-  /** onChange event */
-  onChange: PropTypes.func,
-  /** onOpen event */
-  onOpen: PropTypes.func,
-  /** onClose event */
-  onClose: PropTypes.func,
+  /** Error highlight */
+  error: PropTypes.bool,
+  /** Error message */
+  errorMessage: PropTypes.string,
+  /** Help text */
+  helpText: PropTypes.node,
+  /** Dropdown Label */
+  label: PropTypes.string,
+  /** Large style (size) */
+  large: PropTypes.bool,
+  /** Long style (width) */
+  long: PropTypes.bool,
+  /** Short style (width) */
+  short: PropTypes.bool,
+  /** xLarge style (size) */
+  xLarge: PropTypes.bool,
   /** Dropdown options list */
   options: PropTypes.arrayOf(PropTypes.shape({
     value: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
   })),
-  /** Dropdown disabled */
+  /** Spec attribute */
+  id: PropTypes.string,
+  /** Spec attribute */
+  value: PropTypes.string,
+  /** Spec attribute */
   disabled: PropTypes.bool,
+  /** onChange event */
+  onChange: PropTypes.func,
+  /** onClose event */
+  onClose: PropTypes.func,
+  /** onOpen event */
+  onOpen: PropTypes.func,
 }
 
 export default Dropdown

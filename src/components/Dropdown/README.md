@@ -134,20 +134,52 @@ Box types
 </div>
 ```
 
-Disabled
+Variations
 ```js
-  <Dropdown
-    disabled
-    options={[
-      {value: 'chagall', label: 'Chagall'},
-      {value: 'dali', label: 'Dali'},
-      {value: 'goya', label: 'Goya'},
-      {value: 'monet', label: 'Monet'},
-      {value: 'picasso', label: 'Picasso'},
-      {value: 'tolouseLautrec', label: 'Toulouse-Lautrec'}
-    ]}
-    value="tolouseLautrec"
-    onChange={() => {}} />
+<div>
+  <div className="mb5">
+    <Dropdown
+      disabled
+      options={[
+        {value: 'chagall', label: 'Chagall'},
+        {value: 'dali', label: 'Dali'},
+        {value: 'goya', label: 'Goya'},
+        {value: 'monet', label: 'Monet'},
+        {value: 'picasso', label: 'Picasso'},
+        {value: 'tolouseLautrec', label: 'Toulouse-Lautrec'}
+      ]}
+      value="tolouseLautrec"
+      onChange={() => {}} />
+  </div>
+  <div className="mb5">
+    <Dropdown
+      errorMessage="Required field"
+      options={[
+        {value: 'chagall', label: 'Chagall'},
+        {value: 'dali', label: 'Dali'},
+        {value: 'goya', label: 'Goya'},
+        {value: 'monet', label: 'Monet'},
+        {value: 'picasso', label: 'Picasso'},
+        {value: 'tolouseLautrec', label: 'Toulouse-Lautrec'}
+      ]}
+      value="tolouseLautrec"
+      onChange={() => {}} />
+  </div>
+  <div>
+    <Dropdown
+      helpText={<span>Your help text goes here!</span>}
+      options={[
+        {value: 'chagall', label: 'Chagall'},
+        {value: 'dali', label: 'Dali'},
+        {value: 'goya', label: 'Goya'},
+        {value: 'monet', label: 'Monet'},
+        {value: 'picasso', label: 'Picasso'},
+        {value: 'tolouseLautrec', label: 'Toulouse-Lautrec'}
+      ]}
+      value="tolouseLautrec"
+      onChange={() => {}} />
+  </div>
+</div>
 ```
 
 Example: Working React Component
