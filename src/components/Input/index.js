@@ -143,18 +143,7 @@ class Input extends Component {
           value={this.props.value}
           id={this.props.id}
         />
-        {errorMessage &&
-          <div className="f6 flex mt3">
-            <svg className="flex-none mr3" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 18 18" width="20" height="20">
-              <circle fill="none" strokeWidth="2" stroke="#FF4C4C" cx="8.5" cy="8.5" r="7"></circle>
-              <circle fill="#FF4C4C" cx="8.5" cy="12" r="1"></circle>
-              <line fill="none" strokeWidth="2" stroke="#FF4C4C" x1="8.5" y1="4.5" x2="8.5" y2="9"></line>
-            </svg>
-            <div className="flex-auto lh-title">
-              {errorMessage}
-            </div>
-          </div>
-        }
+        {errorMessage && <div className="red f6 mt3 lh-title">{errorMessage}</div>}
         {helpText && <div className="mid-gray f6 mt3 lh-title">{helpText}</div>}
       </label>
     )
