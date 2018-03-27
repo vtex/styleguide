@@ -25,10 +25,10 @@ class Modal extends PureComponent {
         isOpen={isOpen}
         shouldCloseOnOverlayClick
         onRequestClose={handleClose}
-        overlayClassName={`fixed ${
+        overlayClassName={`fixed bg-transparent ${
           style.modaloverlay
         } z-4 top-0 bottom-0 right-0 left-0 flex items-center justify-center`}
-        className={`absolute ${
+        className={`fixed z-5 ${
           style.modalheight
         } overflow-auto outline-0 w-50 mw7 bg-white o-100 b--light-gray br2`}
       >
@@ -72,14 +72,22 @@ class Modal extends PureComponent {
 
 Modal.propTypes = {
   title: PropTypes.string,
-  innerText: PropTypes.string.isRequired,
-  isOpen: PropTypes.bool.isRequired,
+  innerText: PropTypes.node.isRequired,
+  isOpen: PropTypes.bool,
   handleClose: PropTypes.func.isRequired,
-  style: PropTypes.object.isRequired,
+  style: PropTypes.object,
   handlePrimaryAction: PropTypes.func,
   primaryActionTitle: PropTypes.string,
   handleSecondaryAction: PropTypes.func,
   secondaryActionTitle: PropTypes.string,
+}
+
+Modal.defaultProps = {
+  isOpen: false,
+  style: {
+    modalheight: '',
+    modaloverlay: '',
+  },
 }
 
 export default Modal
