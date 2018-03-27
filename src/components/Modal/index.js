@@ -11,14 +11,12 @@ class Modal extends PureComponent {
   render() {
     const {
       title,
-      innerText,
+      content,
       isOpen,
       handleClose,
       style,
-      handlePrimaryAction,
-      primaryActionTitle,
-      handleSecondaryAction,
-      secondaryActionTitle,
+      primaryAction,
+      secondaryAction,
     } = this.props
     return (
       <ReactModal
@@ -44,26 +42,23 @@ class Modal extends PureComponent {
               </button>
             </div>
           </div>
-          <div className="f5 fw4 near-black">{innerText}</div>
-          {((handleSecondaryAction && secondaryActionTitle) ||
-            (handlePrimaryAction && primaryActionTitle)) && (
-              <div className="flex justify-around fr mv8">
-                {handleSecondaryAction &&
-                  secondaryActionTitle && (
-                    <div className="mr5">
-                      <Button secondary onClick={handleSecondaryAction}>
-                        {secondaryActionTitle}
-                      </Button>
-                    </div>
-                  )}
-                {handlePrimaryAction &&
-                  primaryActionTitle && (
-                    <Button primary onClick={handlePrimaryAction}>
-                      {primaryActionTitle}
-                    </Button>
-                  )}
-              </div>
-            )}
+          <div className="f5 fw4 near-black">{content}</div>
+          {(primaryAction || secondaryAction) && (
+            <div className="flex justify-around fr mv8">
+              {secondaryAction && (
+                <div className="mr5">
+                  <Button secondary onClick={secondaryAction.handleClick}>
+                    {secondaryAction.label}
+                  </Button>
+                </div>
+              )}
+              {primaryAction && (
+                <Button primary onClick={primaryAction.handleClick}>
+                  {primaryAction.label}
+                </Button>
+              )}
+            </div>
+          )}
         </div>
       </ReactModal>
     )
@@ -72,22 +67,25 @@ class Modal extends PureComponent {
 
 Modal.propTypes = {
   title: PropTypes.string,
-  innerText: PropTypes.node.isRequired,
+  content: PropTypes.node.isRequired,
   isOpen: PropTypes.bool,
   handleClose: PropTypes.func.isRequired,
-  style: PropTypes.object,
-  handlePrimaryAction: PropTypes.func,
-  primaryActionTitle: PropTypes.string,
-  handleSecondaryAction: PropTypes.func,
-  secondaryActionTitle: PropTypes.string,
+  style: PropTypes.shape({
+    modalheight: PropTypes.string.isRequired,
+    modaloverlay: PropTypes.string.isRequired,
+  }).isRequired,
+  primaryAction: PropTypes.shape({
+    label: PropTypes.string.isRequired,
+    handleClick: PropTypes.func.isRequired,
+  }),
+  secondaryAction: PropTypes.shape({
+    label: PropTypes.string.isRequired,
+    handleClick: PropTypes.func.isRequired,
+  }),
 }
 
 Modal.defaultProps = {
   isOpen: false,
-  style: {
-    modalheight: '',
-    modaloverlay: '',
-  },
 }
 
 export default Modal
