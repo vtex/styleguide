@@ -6,11 +6,11 @@ Sizes
   </div>
 
   <div className="mb5">
-    <Input placeholder="Placeholder" large label="Large" />
+    <Input placeholder="Placeholder" size="large" label="Large" />
   </div>
 
   <div>
-    <Input placeholder="Placeholder" xLarge label="Extra Large" />
+    <Input placeholder="Placeholder" size="x-large" label="Extra Large" />
   </div>
 </div>
 ```
@@ -36,11 +36,11 @@ Widths
 ```js
 <div>
   <div className="mb5">
-    <Input xLarge label="Default" placeholder="Placeholder" />
+    <Input size="x-large" label="Default" placeholder="Placeholder" />
   </div>
 
   <div>
-    <Input xLarge block long label="Block" placeholder="Placeholder" />
+    <Input size="x-large" block long label="Block" placeholder="Placeholder" />
   </div>
 </div>
 ```

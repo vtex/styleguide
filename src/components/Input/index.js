@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { SIZES } from '../../constants'
 
 class Input extends Component {
   constructor(props) {
@@ -69,42 +70,46 @@ class Input extends Component {
 
     let width = '100%'
 
-    if (large) {
-      classes += 'f5 pv4 ph6 '
-      // iconSize = 18
-      if (!block) {
-        if (short) {
-          width = '130px'
-        } else if (long) {
-          width = '420px'
-        } else {
-          width = '250px'
+    switch (size) {
+      case SIZES.LARGE:
+        classes += 'f5 pv4 ph6 '
+        // iconSize = 18
+        if (!block) {
+          if (short) {
+            width = '130px'
+          } else if (long) {
+            width = '420px'
+          } else {
+            width = '250px'
+          }
         }
-      }
-    } else if (xLarge) {
-      classes += 'f4 pv5 ph7 '
-      // iconSize = 22
-      if (!block) {
-        if (short) {
-          width = '180px'
-        } else if (long) {
-          width = '520px'
-        } else {
-          width = '320px'
+        break
+      case SIZES.X_LARGE:
+        classes += 'f4 pv5 ph7 '
+        // iconSize = 22
+        if (!block) {
+          if (short) {
+            width = '180px'
+          } else if (long) {
+            width = '520px'
+          } else {
+            width = '320px'
+          }
         }
-      }
-    } else {
-      classes += 'f6 pv3 ph5 '
-      // iconSize = 16
-      if (!block) {
-        if (short) {
-          width = '110px'
-        } else if (long) {
-          width = '350px'
-        } else {
-          width = '200px'
+        break
+      default:
+        classes += 'f6 pv3 ph5 '
+        // iconSize = 16
+        if (!block) {
+          if (short) {
+            width = '110px'
+          } else if (long) {
+            width = '350px'
+          } else {
+            width = '200px'
+          }
         }
-      }
+        break
     }
 
     const style = { width }
@@ -161,6 +166,7 @@ Input.defaultProps = {
   multiple: false,
   readOnly: false,
   error: false,
+  size: SIZES.REGULAR,
 }
 
 Input.propTypes = {
@@ -174,14 +180,12 @@ Input.propTypes = {
   token: PropTypes.bool,
   /** Help text */
   helpText: PropTypes.node,
-  /** Large style (size) */
-  large: PropTypes.bool,
+  /** Size */
+  size: PropTypes.oneOf(SIZES),
   /** Long style */
   long: PropTypes.bool,
   /** Short style (width) */
   short: PropTypes.bool,
-  /** xLarge style (size) */
-  xLarge: PropTypes.bool,
   /** Label */
   label: PropTypes.string,
   /** Spec attribute */
