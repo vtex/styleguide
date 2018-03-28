@@ -19,7 +19,7 @@ Sizes
   <div className="mb5">
     <Dropdown
       label="Large"
-      large
+      size="large"
       options={[
         {value: 'chagall', label: 'Chagall'},
         {value: 'dali', label: 'Dali'},
@@ -35,7 +35,7 @@ Sizes
   <div>
     <Dropdown
       label="Extra Large"
-      xLarge
+      size="x-large"
       options={[
         {value: 'chagall', label: 'Chagall'},
         {value: 'dali', label: 'Dali'},
@@ -103,7 +103,7 @@ Box types
   <div className="mb5">
     <Dropdown
       label="Default"
-      xLarge
+      size="x-large"
       options={[
         {value: 'chagall', label: 'Chagall'},
         {value: 'dali', label: 'Dali'},
@@ -119,7 +119,7 @@ Box types
     <Dropdown
       label="Block"
       block
-      xLarge
+      size="x-large"
       options={[
         {value: 'chagall', label: 'Chagall'},
         {value: 'dali', label: 'Dali'},
