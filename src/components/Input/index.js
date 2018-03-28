@@ -30,20 +30,19 @@ class Input extends Component {
       error,
       label,
       block,
-      large,
-      xLarge,
-      short,
+      size,
       long,
+      short,
       token,
       helpText,
     } = this.props
     const { active } = this.state
 
-    const size = 'w-100'
+    const widthClass = 'w-100'
     const box = 'ma0 border-box'
     const border = 'bw1 br2 b--solid outline-0'
     const typography = 'near-black'
-    let classes = `${size} ${box} ${border} ${typography} `
+    let classes = `${widthClass} ${box} ${border} ${typography} `
 
     if (token) {
       classes += 'code '
@@ -108,7 +107,7 @@ class Input extends Component {
       }
     }
 
-    const style = { width: width }
+    const style = { width }
 
     return (
       <label className="dib" style={style}>

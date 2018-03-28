@@ -150,7 +150,7 @@ class Dropdown extends Component {
         break
     }
 
-    const containerStyle = { width: width }
+    const containerStyle = { width }
     const optionsStyle = {
       maxHeight: maxHeight,
       width: this.state.optionsWidth,
