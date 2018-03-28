@@ -102,7 +102,7 @@ Button.defaultProps = {
 }
 
 Button.propTypes = {
-  /** Size */
+  /** Button Size */
   size: PropTypes.oneOf(SIZES),
   /** Block style */
   block: PropTypes.bool,
