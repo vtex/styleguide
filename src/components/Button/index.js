@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { SIZES } from '../../constants'
 
 class Button extends Component {
   handleClick = event => {
@@ -8,8 +9,7 @@ class Button extends Component {
 
   render() {
     const {
-      large,
-      xLarge,
+      size,
       block,
       primary,
       secondary,
@@ -22,25 +22,23 @@ class Button extends Component {
       throw new Error('Button component cannot be primary AND secondary')
     }
 
-    if (large && xLarge) {
-      throw new Error(
-        'Button component cannot have two sizes at the same time'
-      )
-    }
-
     let classes = 'bw1 ba fw5 ttu br2 fw4 '
 
     classes += icon ? 'icon-button dib ' : ''
 
-    if (large) {
-      classes += icon ? 'pa4 ' : 'pv4 ph6 '
-      classes += 'f5 '
-    } else if (xLarge) {
-      classes += icon ? 'pa5 ' : 'pv5 ph7 '
-      classes += 'f4 '
-    } else {
-      classes += icon ? 'pa3 ' : 'pv3 ph5 '
-      classes += 'f6 '
+    switch (size) {
+      case SIZES.LARGE:
+        classes += icon ? 'pa4 ' : 'pv4 ph6 '
+        classes += 'f5 '
+        break
+      case SIZES.X_LARGE:
+        classes += icon ? 'pa5 ' : 'pv5 ph7 '
+        classes += 'f4 '
+        break
+      default:
+        classes += icon ? 'pa3 ' : 'pv3 ph5 '
+        classes += 'f6 '
+        break
     }
 
     if (!secondary && !primary && !disabled) {
@@ -93,8 +91,7 @@ class Button extends Component {
 }
 
 Button.defaultProps = {
-  large: false,
-  xLarge: false,
+  size: SIZES.REGULAR,
   block: false,
   primary: false,
   secondary: false,
@@ -105,10 +102,8 @@ Button.defaultProps = {
 }
 
 Button.propTypes = {
-  /** Large style */
-  large: PropTypes.bool,
-  /** xLarge style */
-  xLarge: PropTypes.bool,
+  /** Size */
+  size: PropTypes.oneOf(SIZES),
   /** Block style */
   block: PropTypes.bool,
   /** Primary style */

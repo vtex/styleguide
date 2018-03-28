@@ -15,23 +15,23 @@ Sizes
 <div>
   <div className="mb4">
     <span className="mr4"><Button>Default</Button></span>
-    <span className="mr4"><Button large>Large</Button></span>
-    <span className="mr4"><Button xLarge>Extra large</Button></span>
+    <span className="mr4"><Button size="large">Large</Button></span>
+    <span className="mr4"><Button size="x-large">Extra large</Button></span>
   </div>
   <div className="mb4">
     <span className="mr4"><Button primary>Default</Button></span>
-    <span className="mr4"><Button primary large>Large</Button></span>
-    <span className="mr4"><Button primary xLarge>Extra large</Button></span>
+    <span className="mr4"><Button primary size="large">Large</Button></span>
+    <span className="mr4"><Button primary size="x-large">Extra large</Button></span>
   </div>
   <div className="mb4">
     <span className="mr4"><Button secondary>Default</Button></span>
-    <span className="mr4"><Button secondary large>Large</Button></span>
-    <span className="mr4"><Button secondary xLarge>Extra large</Button></span>
+    <span className="mr4"><Button secondary size="large">Large</Button></span>
+    <span className="mr4"><Button secondary size="x-large">Extra large</Button></span>
   </div>
   <div>
     <span className="mr4"><Button disabled>Default</Button></span>
-    <span className="mr4"><Button disabled large>Large</Button></span>
-    <span className="mr4"><Button disabled xLarge>Extra large</Button></span>
+    <span className="mr4"><Button disabled size="large">Large</Button></span>
+    <span className="mr4"><Button disabled size="x-large">Extra large</Button></span>
   </div>
 </div>
 ```
