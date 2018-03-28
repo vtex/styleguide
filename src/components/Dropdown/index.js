@@ -103,7 +103,7 @@ class Dropdown extends Component {
     classes += !disabled && valueLabel ? 'near-black ' : 'gray '
 
     switch (size) {
-      case SIZES.LARGE:
+      case LARGE:
         classes += 'f5 pv4 pl6 pr5 '
         optionClasses += 'f5 pv4 ph6 '
         maxHeight = '200px'
@@ -118,7 +118,7 @@ class Dropdown extends Component {
           }
         }
         break
-      case SIZES.X_LARGE:
+      case X_LARGE:
         classes += 'f4 pv5 pl7 pr6 '
         optionClasses += 'f4 pv5 ph7 '
         maxHeight = '260px'
@@ -229,7 +229,7 @@ class Dropdown extends Component {
 }
 
 Dropdown.defaultProps = {
-  size: SIZES.REGULAR,
+  size: REGULAR,
 }
 
 Dropdown.propTypes = {

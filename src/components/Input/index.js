@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { SIZES } from '../../constants'
+import { REGULAR, LARGE, X_LARGE, SIZES } from '../../constants/size'
 
 class Input extends Component {
   constructor(props) {
@@ -71,7 +71,7 @@ class Input extends Component {
     let width = '100%'
 
     switch (size) {
-      case SIZES.LARGE:
+      case LARGE:
         classes += 'f5 pv4 ph6 '
         // iconSize = 18
         if (!block) {
@@ -84,7 +84,7 @@ class Input extends Component {
           }
         }
         break
-      case SIZES.X_LARGE:
+      case X_LARGE:
         classes += 'f4 pv5 ph7 '
         // iconSize = 22
         if (!block) {
@@ -166,7 +166,7 @@ Input.defaultProps = {
   multiple: false,
   readOnly: false,
   error: false,
-  size: SIZES.REGULAR,
+  size: REGULAR,
 }
 
 Input.propTypes = {
