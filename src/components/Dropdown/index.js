@@ -243,7 +243,7 @@ Dropdown.propTypes = {
   helpText: PropTypes.node,
   /** Dropdown Label */
   label: PropTypes.string,
-  /** Element Size */
+  /** Element size (`regular`, `large`, or `x-large`) */
   size: PropTypes.oneOf(SIZES),
   /** Long style (width) */
   long: PropTypes.bool,

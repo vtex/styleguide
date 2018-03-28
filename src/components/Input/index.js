@@ -180,7 +180,7 @@ Input.propTypes = {
   token: PropTypes.bool,
   /** Help text */
   helpText: PropTypes.node,
-  /** Input Size */
+  /** Input size (`regular`, `large`, or `x-large`) */
   size: PropTypes.oneOf(SIZES),
   /** Long style */
   long: PropTypes.bool,
