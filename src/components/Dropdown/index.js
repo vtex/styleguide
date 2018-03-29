@@ -4,23 +4,6 @@ import ArrowDownIcon from './ArrowDownIcon'
 import config from 'vtex-tachyons/config.json'
 
 class Dropdown extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      open: false,
-      optionsWidth: 0,
-    }
-  }
-
-  componentDidMount() {
-    document.addEventListener('mousedown', this.handleClickOutside)
-    this.setState({ optionsWidth: this.wrapperRef.clientWidth })
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handleClickOutside)
-  }
-
   setWrapperRef = node => {
     this.wrapperRef = node
   };
@@ -29,30 +12,12 @@ class Dropdown extends Component {
     this.select = el
   };
 
-  handleClickOutside = e => {
-    if (this.wrapperRef && !this.wrapperRef.contains(e.target)) {
-      this.setState({ open: false }, () => {
-        this.props.onClose && this.props.onClose(e)
-      })
-    }
-  };
+  handleChange = e => {
+    const { disabled, onChange } = this.props
+    const { target: { value } } = e
 
-  handleClick = e => {
-    const { onOpen, onClose } = this.props
-    this.select && this.select.blur()
-    this.setState({ open: !this.state.open }, () => {
-      this.state.open ? onOpen && onOpen(e) : onClose && onClose(e)
-    })
-  };
-
-  handleOptionClick = (e, option) => {
-    const { disabled, onChange, onClose } = this.props
-
-    !disabled && onChange && onChange(e, option)
-    this.setState({ open: false }, () => {
-      onClose && onClose(e)
-    })
-  };
+    !disabled && onChange && onChange(value)
+  }
 
   getValueLabel() {
     const option = this.props.options.find(
@@ -66,6 +31,7 @@ class Dropdown extends Component {
     const {
       label,
       id,
+      value,
       size,
       disabled,
       options,
@@ -73,15 +39,15 @@ class Dropdown extends Component {
       errorMessage,
       helpText,
     } = this.props
-    const { open } = this.state
 
     let width
     let maxHeight
     let iconSize
 
     let classes = 'bg-transparent bn w-100 '
-    let containerClasses = 'br2 bw1 '
-    let optionsClasses = 'absolute bl br bb bw1 br2 br--bottom bg-white flex-column z-max overflow-y-auto '
+    let containerClasses = 'br2 bw1 relative '
+    let selectClasses = 'o-0 absolute top-0 left-0 w-100 bottom-0 '
+    const optionsClasses = 'absolute bl br bb bw1 br2 br--bottom bg-white flex-column z-max overflow-y-auto '
     let optionClasses = 'w-100 pointer flex bg-white hover-bg-near-white near-black tl bb-0 bl-0 br-0 bt b--near-white '
 
     const valueLabel = this.getValueLabel()
@@ -93,12 +59,14 @@ class Dropdown extends Component {
     switch (size) {
       case 'large':
         classes += 'f5 pv4 pl6 pr5 '
+        selectClasses += 'f5 '
         optionClasses += 'f5 pv4 ph6 '
         maxHeight = '200px'
         iconSize = 18
         break
       case 'x-large':
         classes += 'f4 pv5 pl7 pr6 '
+        selectClasses += 'f4 '
         optionClasses += 'f4 pv5 ph7 '
         maxHeight = '260px'
         iconSize = 22
@@ -106,36 +74,18 @@ class Dropdown extends Component {
       default:
         classes += 'f6 pv3 pl5 pr4 '
         optionClasses += 'f6 pv3 ph5 '
+        selectClasses += 'f6 '
         maxHeight = '150px'
         iconSize = 16
         break
     }
 
     const containerStyle = { width }
-    const optionsStyle = {
-      maxHeight: maxHeight,
-      width: this.state.optionsWidth,
-    }
 
     if (disabled) {
       containerClasses += 'bg-light-gray '
     } else {
       containerClasses += 'bg-white '
-    }
-
-    if (open) {
-      containerClasses += 'bl br bt pb1 b--silver br--top '
-      optionsClasses += 'b--silver '
-    } else {
-      if (error || errorMessage) {
-        containerClasses += 'ba b--red hover-b--red '
-      } else {
-        containerClasses += 'ba b--light-gray '
-      }
-      optionsClasses += 'pointer b--light-gray'
-      if (!disabled) {
-        containerClasses += 'hover-b--silver '
-      }
     }
 
     return (
@@ -146,11 +96,9 @@ class Dropdown extends Component {
               {label}
             </span>}
           <div className={containerClasses} style={containerStyle}>
-            <button
+            <div
               id={id}
-              disabled={disabled}
               ref={this.setSelectRef}
-              onClick={this.handleClick}
               className={`vtex-dropdown__button ${classes}`}
             >
               <div className="flex">
@@ -166,24 +114,27 @@ class Dropdown extends Component {
                   />
                 </div>
               </div>
-            </button>
+            </div>
+
+            <select
+              disabled={disabled}
+              className={selectClasses}
+              onChange={this.handleChange}
+              value={value}
+            >
+              {options.map(option => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+
           </div>
         </label>
-        {open &&
-          <div className={`vtex-dropdown__options ${optionsClasses}`} style={optionsStyle}>
-            {options.map(option => (
-              <button
-                key={option.value}
-                className={optionClasses}
-                onClick={e => this.handleOptionClick(e, option)}
-              >
-                {option.label}
-              </button>
-            ))}
-          </div>}
         {errorMessage &&
           <div className="red f6 mt3 lh-title">{errorMessage}</div>}
         {helpText && <div className="mid-gray f6 mt3 lh-title">{helpText}</div>}
+
       </div>
     )
   }
@@ -216,9 +167,17 @@ Dropdown.propTypes = {
   /** Spec attribute */
   id: PropTypes.string,
   /** Spec attribute */
+  autofocus: PropTypes.bool,
+  /** Spec attribute */
   value: PropTypes.string,
   /** Spec attribute */
   disabled: PropTypes.bool,
+  /** Spec attribute */
+  form: PropTypes.string,
+  /** Spec attribute */
+  name: PropTypes.string,
+  /** Spec attribute */
+  required: PropTypes.bool,
   /** onChange event */
   onChange: PropTypes.func,
   /** onClose event */
