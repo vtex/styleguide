@@ -7,4 +7,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Changed
-- Input prop `large` and `xLarge` now are `size="large"` and `size="x-large"
+- Input props `large` and `xLarge` are now `size="large"` and `size="x-large"``.
+- Dropdown and Input props `short` and `long` were removed. Their widths should be defined by their parents.
+- Dropdown and Input prop `block` was removed. They are always block.
