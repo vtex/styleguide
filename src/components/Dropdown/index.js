@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import ArrowDownIcon from './ArrowDownIcon'
 import config from 'vtex-tachyons/config.json'
-import { REGULAR, LARGE, X_LARGE, SIZES } from '../../constants/size'
 
 class Dropdown extends Component {
   constructor(props) {
@@ -103,7 +102,7 @@ class Dropdown extends Component {
     classes += !disabled && valueLabel ? 'near-black ' : 'gray '
 
     switch (size) {
-      case LARGE:
+      case 'large':
         classes += 'f5 pv4 pl6 pr5 '
         optionClasses += 'f5 pv4 ph6 '
         maxHeight = '200px'
@@ -118,7 +117,7 @@ class Dropdown extends Component {
           }
         }
         break
-      case X_LARGE:
+      case 'x-large':
         classes += 'f4 pv5 pl7 pr6 '
         optionClasses += 'f4 pv5 ph7 '
         maxHeight = '260px'
@@ -229,7 +228,7 @@ class Dropdown extends Component {
 }
 
 Dropdown.defaultProps = {
-  size: REGULAR,
+  size: 'regular',
 }
 
 Dropdown.propTypes = {
@@ -241,10 +240,10 @@ Dropdown.propTypes = {
   errorMessage: PropTypes.string,
   /** Help text */
   helpText: PropTypes.node,
-  /** Dropdown Label */
+  /** Dropdown label */
   label: PropTypes.string,
-  /** Element size (`regular`, `large`, or `x-large`) */
-  size: PropTypes.oneOf(SIZES),
+  /** Dropdown size */
+  size: PropTypes.oneOf(['regular', 'large', 'x-large']),
   /** Long style (width) */
   long: PropTypes.bool,
   /** Short style (width) */

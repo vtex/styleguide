@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { REGULAR, LARGE, X_LARGE, SIZES } from '../../constants/size'
 
 class Button extends Component {
   handleClick = event => {
@@ -27,11 +26,11 @@ class Button extends Component {
     classes += icon ? 'icon-button dib ' : ''
 
     switch (size) {
-      case LARGE:
+      case 'large':
         classes += icon ? 'pa4 ' : 'pv4 ph6 '
         classes += 'f5 '
         break
-      case X_LARGE:
+      case 'x-large':
         classes += icon ? 'pa5 ' : 'pv5 ph7 '
         classes += 'f4 '
         break
@@ -91,7 +90,7 @@ class Button extends Component {
 }
 
 Button.defaultProps = {
-  size: REGULAR,
+  size: 'regular',
   block: false,
   primary: false,
   secondary: false,
@@ -102,8 +101,8 @@ Button.defaultProps = {
 }
 
 Button.propTypes = {
-  /** Button size (`regular`, `large`, or `x-large`) */
-  size: PropTypes.oneOf(SIZES),
+  /** Button size  */
+  size: PropTypes.oneOf(['regular', 'large', 'x-large']),
   /** Block style */
   block: PropTypes.bool,
   /** Primary style */

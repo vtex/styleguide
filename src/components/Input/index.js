@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { REGULAR, LARGE, X_LARGE, SIZES } from '../../constants/size'
 
 class Input extends Component {
   constructor(props) {
@@ -71,7 +70,7 @@ class Input extends Component {
     let width = '100%'
 
     switch (size) {
-      case LARGE:
+      case 'large':
         classes += 'f5 pv4 ph6 '
         // iconSize = 18
         if (!block) {
@@ -84,7 +83,7 @@ class Input extends Component {
           }
         }
         break
-      case X_LARGE:
+      case 'x-large':
         classes += 'f4 pv5 ph7 '
         // iconSize = 22
         if (!block) {
@@ -166,7 +165,7 @@ Input.defaultProps = {
   multiple: false,
   readOnly: false,
   error: false,
-  size: REGULAR,
+  size: 'regular',
 }
 
 Input.propTypes = {
@@ -180,8 +179,8 @@ Input.propTypes = {
   token: PropTypes.bool,
   /** Help text */
   helpText: PropTypes.node,
-  /** Input size (`regular`, `large`, or `x-large`) */
-  size: PropTypes.oneOf(SIZES),
+  /** Input size */
+  size: PropTypes.oneOf(['regular', 'large', 'x-large']),
   /** Long style */
   long: PropTypes.bool,
   /** Short style (width) */
