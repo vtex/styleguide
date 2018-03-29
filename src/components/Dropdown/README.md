@@ -123,31 +123,36 @@ class Example extends React.Component {
     super(props)
 
     this.state = {
-        selectedPainter: {},
+      options: [
+        {value: 'painterChagall', label: 'Chagall'},
+        {value: 'painterDali', label: 'Dali'},
+        {value: 'painterGoya', label: 'Goya'},
+        {value: 'painterMonet', label: 'Monet'},
+        {value: 'painterPicasso', label: 'Picasso'},
+        {value: 'painterTolouseLautrec', label: 'Toulouse-Lautrec'}
+      ],
+      selectedPainter: '',
     }
     this.handleChange = this.handleChange.bind(this)
   }
 
-  handleChange(e, painter) {
-    this.setState({ selectedPainter: painter })
+  handleChange(e, value) {
+    this.setState({ selectedPainter: value })
   }
 
   render() {
+    const selectedPainter = this.state.options.find(painter => painter.value === this.state.selectedPainter)
+
+    const { label, value } = selectedPainter || {}
+
     return (
       <div className="w-40">
         <div>
           <Dropdown
             label="Painter"
-            options={[
-              {value: 'painterChagall', label: 'Chagall'},
-              {value: 'painterDali', label: 'Dali'},
-              {value: 'painterGoya', label: 'Goya'},
-              {value: 'painterMonet', label: 'Monet'},
-              {value: 'painterPicasso', label: 'Picasso'},
-              {value: 'painterTolouseLautrec', label: 'Toulouse-Lautrec'}
-            ]}
+            options={this.state.options}
             onChange={this.handleChange}
-            value={this.state.selectedPainter.value}
+            value={this.state.selectedPainter}
             {...this.props}
           />
         </div>
@@ -155,8 +160,8 @@ class Example extends React.Component {
           <div className="fw5 mb3">
             Selected Painter
           </div>
-          <p>Label: {this.state.selectedPainter.label || <span className="gray">undefined</span>}</p>
-          <p>Value: {this.state.selectedPainter.value || <span className="gray">undefined</span>}</p>
+          <p>Label: {label || <span className="gray">undefined</span>}</p>
+          <p>Value: {value || <span className="gray">undefined</span>}</p>
         </div>
       </div>
     )
