@@ -15,39 +15,9 @@ Sizes
 </div>
 ```
 
-Widths
-```js
-<div>
-  <div className="mb5">
-    <Input placeholder="Plchldr" short label="Short" />
-  </div>
-
-  <div className="mb5">
-    <Input placeholder="Placeholder" label="Default" />
-  </div>
-
-  <div>
-    <Input placeholder="Placeholder" long label="Long" />
-  </div>
-</div>
-```
-
-Widths
-```js
-<div>
-  <div className="mb5">
-    <Input size="x-large" label="Default" placeholder="Placeholder" />
-  </div>
-
-  <div>
-    <Input size="x-large" block long label="Block" placeholder="Placeholder" />
-  </div>
-</div>
-```
-
 Variations
 ```js
-<div>
+<div className="w-40">
   <div className="mb5">
     <Input disabled value="Hayao Miyazaki" label="Disabled" />
   </div>

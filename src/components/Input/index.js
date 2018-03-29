@@ -29,10 +29,7 @@ class Input extends Component {
       errorMessage,
       error,
       label,
-      block,
       size,
-      long,
-      short,
       token,
       helpText,
     } = this.props
@@ -67,55 +64,24 @@ class Input extends Component {
       classes += 'bg-white '
     }
 
-    let width = '100%'
-
     switch (size) {
       case 'large':
         classes += 'f5 pv4 ph6 '
         // iconSize = 18
-        if (!block) {
-          if (short) {
-            width = '130px'
-          } else if (long) {
-            width = '420px'
-          } else {
-            width = '250px'
-          }
-        }
         break
       case 'x-large':
         classes += 'f4 pv5 ph7 '
         // iconSize = 22
-        if (!block) {
-          if (short) {
-            width = '180px'
-          } else if (long) {
-            width = '520px'
-          } else {
-            width = '320px'
-          }
-        }
         break
       default:
         classes += 'f6 pv3 ph5 '
         // iconSize = 16
-        if (!block) {
-          if (short) {
-            width = '110px'
-          } else if (long) {
-            width = '350px'
-          } else {
-            width = '200px'
-          }
-        }
         break
     }
 
-    const style = { width }
-
     return (
-      <label className="dib" style={style}>
-        <span className={`db mb3 ${block ? 'w-100' : ''}`}>
+      <label>
+        <span className="db mb3 w-100">
           {label}
         </span>
         <input
@@ -169,8 +135,6 @@ Input.defaultProps = {
 }
 
 Input.propTypes = {
-  /** Block style */
-  block: PropTypes.bool,
   /** Error highlight */
   error: PropTypes.bool,
   /** Error message */
@@ -181,10 +145,6 @@ Input.propTypes = {
   helpText: PropTypes.node,
   /** Input size */
   size: PropTypes.oneOf(['regular', 'large', 'x-large']),
-  /** Long style */
-  long: PropTypes.bool,
-  /** Short style (width) */
-  short: PropTypes.bool,
   /** Label */
   label: PropTypes.string,
   /** Spec attribute */
