@@ -79,6 +79,16 @@ class Dropdown extends Component {
       containerClasses += 'bg-white '
     }
 
+    if (error || errorMessage) {
+      containerClasses += 'ba b--red hover-b--red '
+    } else {
+      containerClasses += 'ba b--light-gray '
+    }
+
+    if (!disabled) {
+      containerClasses += 'hover-b--silver '
+    }
+
     return (
       <div className="vtex-dropdown" ref={this.setWrapperRef}>
         <label>
