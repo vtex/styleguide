@@ -50,93 +50,9 @@ Sizes
 </div>
 ```
 
-Widths
-```js
-<div>
-  <div className="mb5">
-    <Dropdown
-      label="Short"
-      short
-      options={[
-        {value: '10', label: '10'},
-        {value: '11', label: '11'},
-        {value: '12', label: '12'}
-      ]}
-      value="10"
-      onChange={() => {}} />
-  </div>
-
-  <div className="mb5">
-    <Dropdown
-      label="Default"
-      options={[
-        {value: 'chagall', label: 'Chagall'},
-        {value: 'dali', label: 'Dali'},
-        {value: 'goya', label: 'Goya'},
-        {value: 'monet', label: 'Monet'},
-        {value: 'picasso', label: 'Picasso'},
-        {value: 'tolouseLautrec', label: 'Toulouse-Lautrec'}
-      ]}
-      value="tolouseLautrec"
-      onChange={() => {}} />
-  </div>
-
-  <div>
-    <Dropdown
-      label="Long"
-      long
-      options={[
-        {value: 'address01', label: '512 Academy Ave, Sanger, CA 93657, USA'},
-        {value: 'address02', label: '765 N Temperance Ave, Clovis, CA 93611, USA'},
-        {value: 'address03', label: '1845 Herndon Ave F, Clovis, CA 93611, USA'},
-      ]}
-      value="address03"
-      onChange={() => {}} />
-  </div>
-</div>
-```
-
-Box types
-
-```js
-<div>
-  <div className="mb5">
-    <Dropdown
-      label="Default"
-      size="x-large"
-      options={[
-        {value: 'chagall', label: 'Chagall'},
-        {value: 'dali', label: 'Dali'},
-        {value: 'goya', label: 'Goya'},
-        {value: 'monet', label: 'Monet'},
-        {value: 'picasso', label: 'Picasso'},
-        {value: 'tolouseLautrec', label: 'Toulouse-Lautrec'}
-      ]}
-      value="tolouseLautrec"
-      onChange={() => {}} />
-  </div>
-  <div>
-    <Dropdown
-      label="Block"
-      block
-      size="x-large"
-      options={[
-        {value: 'chagall', label: 'Chagall'},
-        {value: 'dali', label: 'Dali'},
-        {value: 'goya', label: 'Goya'},
-        {value: 'monet', label: 'Monet'},
-        {value: 'picasso', label: 'Picasso'},
-        {value: 'tolouseLautrec', label: 'Toulouse-Lautrec'}
-      ]}
-      value="tolouseLautrec"
-      onChange={() => {}} />
-  </div>
-</div>
-```
-
 Variations
 ```js
-<div>
+<div className="w-40">
   <div className="mb5">
     <Dropdown
       label="Caption"
@@ -218,7 +134,7 @@ class Example extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="w-40">
         <div>
           <Dropdown
             label="Painter"

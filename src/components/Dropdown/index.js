@@ -66,10 +66,7 @@ class Dropdown extends Component {
     const {
       label,
       id,
-      short,
-      long,
       size,
-      block,
       disabled,
       options,
       error,
@@ -77,12 +74,6 @@ class Dropdown extends Component {
       helpText,
     } = this.props
     const { open } = this.state
-
-    if (short && long) {
-      throw new Error(
-        'Dropdown component cannot be short AND long at the same time'
-      )
-    }
 
     let width
     let maxHeight
@@ -92,8 +83,6 @@ class Dropdown extends Component {
     let containerClasses = 'br2 bw1 '
     let optionsClasses = 'absolute bl br bb bw1 br2 br--bottom bg-white flex-column z-max overflow-y-auto '
     let optionClasses = 'w-100 pointer flex bg-white hover-bg-near-white near-black tl bb-0 bl-0 br-0 bt b--near-white '
-
-    if (block) width = '100%'
 
     const valueLabel = this.getValueLabel()
     const showCaption = !valueLabel
@@ -107,45 +96,18 @@ class Dropdown extends Component {
         optionClasses += 'f5 pv4 ph6 '
         maxHeight = '200px'
         iconSize = 18
-        if (!block) {
-          if (short) {
-            width = '100px'
-          } else if (long) {
-            width = '420px'
-          } else {
-            width = '250px'
-          }
-        }
         break
       case 'x-large':
         classes += 'f4 pv5 pl7 pr6 '
         optionClasses += 'f4 pv5 ph7 '
         maxHeight = '260px'
         iconSize = 22
-        if (!block) {
-          if (short) {
-            width = '150px'
-          } else if (long) {
-            width = '520px'
-          } else {
-            width = '320px'
-          }
-        }
         break
       default:
         classes += 'f6 pv3 pl5 pr4 '
         optionClasses += 'f6 pv3 ph5 '
         maxHeight = '150px'
         iconSize = 16
-        if (!block) {
-          if (short) {
-            width = '70px'
-          } else if (long) {
-            width = '350px'
-          } else {
-            width = '200px'
-          }
-        }
         break
     }
 
@@ -177,10 +139,10 @@ class Dropdown extends Component {
     }
 
     return (
-      <div ref={this.setWrapperRef} className={block ? 'db' : 'dib'}>
+      <div ref={this.setWrapperRef}>
         <label>
           {label &&
-            <span className={`dib mb3 ${block ? 'w-100' : ''}`}>
+            <span className="dib mb3 w-100">
               {label}
             </span>}
           <div className={containerClasses} style={containerStyle}>
@@ -232,8 +194,6 @@ Dropdown.defaultProps = {
 }
 
 Dropdown.propTypes = {
-  /** Block style */
-  block: PropTypes.bool,
   /** Error highlight */
   error: PropTypes.bool,
   /** Error message */
@@ -244,10 +204,6 @@ Dropdown.propTypes = {
   label: PropTypes.string,
   /** Dropdown size */
   size: PropTypes.oneOf(['regular', 'large', 'x-large']),
-  /** Long style (width) */
-  long: PropTypes.bool,
-  /** Short style (width) */
-  short: PropTypes.bool,
   /** Dropdown options list */
   options: PropTypes.arrayOf(
     PropTypes.shape({
