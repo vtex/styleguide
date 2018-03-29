@@ -68,8 +68,7 @@ class Dropdown extends Component {
       id,
       short,
       long,
-      large,
-      xLarge,
+      size,
       block,
       disabled,
       options,
@@ -82,12 +81,6 @@ class Dropdown extends Component {
     if (short && long) {
       throw new Error(
         'Dropdown component cannot be short AND long at the same time'
-      )
-    }
-
-    if (large && xLarge) {
-      throw new Error(
-        'Dropdown component cannot be large AND extra large at the same time'
       )
     }
 
@@ -108,51 +101,55 @@ class Dropdown extends Component {
     classes += disabled ? 'bg-light-gray ' : 'pointer '
     classes += !disabled && valueLabel ? 'near-black ' : 'gray '
 
-    if (large) {
-      classes += 'f5 pv4 pl6 pr5 '
-      optionClasses += 'f5 pv4 ph6 '
-      maxHeight = '200px'
-      iconSize = 18
-      if (!block) {
-        if (short) {
-          width = '100px'
-        } else if (long) {
-          width = '420px'
-        } else {
-          width = '250px'
+    switch (size) {
+      case 'large':
+        classes += 'f5 pv4 pl6 pr5 '
+        optionClasses += 'f5 pv4 ph6 '
+        maxHeight = '200px'
+        iconSize = 18
+        if (!block) {
+          if (short) {
+            width = '100px'
+          } else if (long) {
+            width = '420px'
+          } else {
+            width = '250px'
+          }
         }
-      }
-    } else if (xLarge) {
-      classes += 'f4 pv5 pl7 pr6 '
-      optionClasses += 'f4 pv5 ph7 '
-      maxHeight = '260px'
-      iconSize = 22
-      if (!block) {
-        if (short) {
-          width = '150px'
-        } else if (long) {
-          width = '520px'
-        } else {
-          width = '320px'
+        break
+      case 'x-large':
+        classes += 'f4 pv5 pl7 pr6 '
+        optionClasses += 'f4 pv5 ph7 '
+        maxHeight = '260px'
+        iconSize = 22
+        if (!block) {
+          if (short) {
+            width = '150px'
+          } else if (long) {
+            width = '520px'
+          } else {
+            width = '320px'
+          }
         }
-      }
-    } else {
-      classes += 'f6 pv3 pl5 pr4 '
-      optionClasses += 'f6 pv3 ph5 '
-      maxHeight = '150px'
-      iconSize = 16
-      if (!block) {
-        if (short) {
-          width = '70px'
-        } else if (long) {
-          width = '350px'
-        } else {
-          width = '200px'
+        break
+      default:
+        classes += 'f6 pv3 pl5 pr4 '
+        optionClasses += 'f6 pv3 ph5 '
+        maxHeight = '150px'
+        iconSize = 16
+        if (!block) {
+          if (short) {
+            width = '70px'
+          } else if (long) {
+            width = '350px'
+          } else {
+            width = '200px'
+          }
         }
-      }
+        break
     }
 
-    const containerStyle = { width: width }
+    const containerStyle = { width }
     const optionsStyle = {
       maxHeight: maxHeight,
       width: this.state.optionsWidth,
@@ -230,6 +227,10 @@ class Dropdown extends Component {
   }
 }
 
+Dropdown.defaultProps = {
+  size: 'regular',
+}
+
 Dropdown.propTypes = {
   /** Block style */
   block: PropTypes.bool,
@@ -239,16 +240,14 @@ Dropdown.propTypes = {
   errorMessage: PropTypes.string,
   /** Help text */
   helpText: PropTypes.node,
-  /** Dropdown Label */
+  /** Dropdown label */
   label: PropTypes.string,
-  /** Large style (size) */
-  large: PropTypes.bool,
+  /** Dropdown size */
+  size: PropTypes.oneOf(['regular', 'large', 'x-large']),
   /** Long style (width) */
   long: PropTypes.bool,
   /** Short style (width) */
   short: PropTypes.bool,
-  /** xLarge style (size) */
-  xLarge: PropTypes.bool,
   /** Dropdown options list */
   options: PropTypes.arrayOf(
     PropTypes.shape({
