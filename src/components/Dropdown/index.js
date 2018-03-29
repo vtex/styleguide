@@ -16,7 +16,7 @@ class Dropdown extends Component {
     const { disabled, onChange } = this.props
     const { target: { value } } = e
 
-    !disabled && onChange && onChange(value)
+    !disabled && onChange && onChange(e, value)
   }
 
   getValueLabel() {
