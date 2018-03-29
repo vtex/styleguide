@@ -41,14 +41,11 @@ class Dropdown extends Component {
     } = this.props
 
     let width
-    let maxHeight
     let iconSize
 
     let classes = 'bg-transparent bn w-100 '
     let containerClasses = 'br2 bw1 relative '
     let selectClasses = 'o-0 absolute top-0 left-0 w-100 bottom-0 '
-    const optionsClasses = 'absolute bl br bb bw1 br2 br--bottom bg-white flex-column z-max overflow-y-auto '
-    let optionClasses = 'w-100 pointer flex bg-white hover-bg-near-white near-black tl bb-0 bl-0 br-0 bt b--near-white '
 
     const valueLabel = this.getValueLabel()
     const showCaption = !valueLabel
@@ -60,22 +57,16 @@ class Dropdown extends Component {
       case 'large':
         classes += 'f5 pv4 pl6 pr5 '
         selectClasses += 'f5 '
-        optionClasses += 'f5 pv4 ph6 '
-        maxHeight = '200px'
         iconSize = 18
         break
       case 'x-large':
         classes += 'f4 pv5 pl7 pr6 '
         selectClasses += 'f4 '
-        optionClasses += 'f4 pv5 ph7 '
-        maxHeight = '260px'
         iconSize = 22
         break
       default:
         classes += 'f6 pv3 pl5 pr4 '
-        optionClasses += 'f6 pv3 ph5 '
         selectClasses += 'f6 '
-        maxHeight = '150px'
         iconSize = 16
         break
     }
