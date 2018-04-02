@@ -81,9 +81,9 @@ class Input extends Component {
 
     return (
       <label>
-        <span className="db mb3 w-100">
+        {label && <span className="db mb3 w-100">
           {label}
-        </span>
+        </span>}
         <input
           onBlur={this.handleBlur}
           onFocus={this.handleFocus}
@@ -128,6 +128,7 @@ Input.defaultProps = {
   autoFocus: false,
   token: false,
   disabled: false,
+  label: '',
   multiple: false,
   readOnly: false,
   error: false,
