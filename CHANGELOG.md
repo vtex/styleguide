@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **Input** `dataAttributes` prop to pass data attributes
 
 ### Changed
+- **Modal** Replaced `react-modal` for `react-responsive-modal`
 - **Input** if the prop `label` is not passed, no HTML for label is rendered.
 - **Input** props `large` and `xLarge` are now `size="large"` and `size="x-large"`.
 
