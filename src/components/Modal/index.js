@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import ResponsiveModal from 'react-responsive-modal'
 
-class Modal extends Component {
+class Modal extends PureComponent {
   render() {
-    const { isOpen, centered, wide, onClose } = this.props
+    const { isOpen, centered, onClose } = this.props
 
     return (
       <ResponsiveModal
@@ -22,7 +22,6 @@ class Modal extends Component {
           },
           modal: {
             padding: '3rem',
-            maxWidth: wide ? '90%' : '800px',
           },
           closeIcon: {
             top: '30px',
@@ -43,13 +42,11 @@ Modal.defaultProps = {
 
 Modal.propTypes = {
   /** Content of the modal */
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
   /** Center the modal (for small content) */
   centered: PropTypes.bool,
   /** Show or hide the modal */
   isOpen: PropTypes.bool.isRequired,
-  /** 90% screen wide modal */
-  wide: PropTypes.bool,
 
   onClose: PropTypes.func.isRequired,
 }
