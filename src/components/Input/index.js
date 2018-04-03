@@ -24,8 +24,6 @@ class Input extends Component {
     this.props.onBlur && this.props.onBlur(event)
   };
 
-  camelCaseToDash = str => str.replace(/([a-zA-Z])(?=[A-Z])/g, '$1-').toLowerCase()
-
   render() {
     const {
       errorMessage,
@@ -40,9 +38,7 @@ class Input extends Component {
 
     const dataAttrs = {}
     for (const key of Object.keys(dataAttributes)) {
-      const k = this.camelCaseToDash(`data-${key}`)
-      const v = dataAttributes[key]
-      dataAttrs[k] = v
+      dataAttrs[`data-${key}`] = dataAttributes[key]
     }
 
     const widthClass = 'w-100'
