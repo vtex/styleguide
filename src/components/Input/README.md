@@ -2,7 +2,10 @@ Sizes
 ```js
 <div>
   <div className="mb5">
-    <Input placeholder="Placeholder" label="Default" />
+    <Input
+      placeholder="Default with data-attributes"
+      label="Default"
+      dataAttributes={{dataHjWhitelist: true, dataTest: 'string'}} />
   </div>
 
   <div className="mb5">

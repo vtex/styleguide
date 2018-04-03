@@ -24,6 +24,8 @@ class Input extends Component {
     this.props.onBlur && this.props.onBlur(event)
   };
 
+  camelCaseToDash = str => str.replace(/([a-zA-Z])(?=[A-Z])/g, '$1-').toLowerCase()
+
   render() {
     const {
       errorMessage,
@@ -32,8 +34,18 @@ class Input extends Component {
       size,
       token,
       helpText,
+      dataAttributes,
     } = this.props
     const { active } = this.state
+
+    const dataAttrs = {}
+    for (const key of Object.keys(dataAttributes)) {
+      if (key.substring(0, 4) === 'data') {
+        const k = this.camelCaseToDash(key)
+        const v = dataAttributes[key]
+        dataAttrs[k] = v
+      }
+    }
 
     const widthClass = 'w-100'
     const box = 'ma0 border-box'
@@ -85,6 +97,7 @@ class Input extends Component {
           {label}
         </span>}
         <input
+          {...dataAttrs}
           onBlur={this.handleBlur}
           onFocus={this.handleFocus}
           onChange={this.handleChange}
@@ -127,6 +140,7 @@ class Input extends Component {
 Input.defaultProps = {
   autoFocus: false,
   token: false,
+  dataAttributes: {},
   disabled: false,
   label: '',
   multiple: false,
@@ -160,6 +174,8 @@ Input.propTypes = {
   autoFocus: PropTypes.bool,
   /** Spec attribute */
   autoSave: PropTypes.string,
+  /** List of data attributes as a object with _camelCase_ keys starting with `data`*/
+  dataAttributes: PropTypes.object,
   /** Spec attribute */
   defaultValue: PropTypes.string,
   /** Spec attribute */
