@@ -6,8 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+### Added
+- **Input** `dataAttributes` prop to pass data attributes
+
 ### Changed
-- **Input**: if the prop `label` is not passed, no HTML for label is rendered.
+- **Input** if the prop `label` is not passed, no HTML for label is rendered.
 - **Input** props `large` and `xLarge` are now `size="large"` and `size="x-large"`.
 
 ### Removed

@@ -32,8 +32,14 @@ class Input extends Component {
       size,
       token,
       helpText,
+      dataAttributes,
     } = this.props
     const { active } = this.state
+
+    const dataAttrs = {}
+    for (const key of Object.keys(dataAttributes)) {
+      dataAttrs[`data-${key}`] = dataAttributes[key]
+    }
 
     const widthClass = 'w-100'
     const box = 'ma0 border-box'
@@ -85,6 +91,7 @@ class Input extends Component {
           {label}
         </span>}
         <input
+          {...dataAttrs}
           onBlur={this.handleBlur}
           onFocus={this.handleFocus}
           onChange={this.handleChange}
@@ -127,6 +134,7 @@ class Input extends Component {
 Input.defaultProps = {
   autoFocus: false,
   token: false,
+  dataAttributes: {},
   disabled: false,
   label: '',
   multiple: false,
@@ -160,6 +168,8 @@ Input.propTypes = {
   autoFocus: PropTypes.bool,
   /** Spec attribute */
   autoSave: PropTypes.string,
+  /** List of data attributes as a object like `{'locale': 'en-US'}` */
+  dataAttributes: PropTypes.object,
   /** Spec attribute */
   defaultValue: PropTypes.string,
   /** Spec attribute */
