@@ -5,7 +5,7 @@ Sizes
     <Input
       placeholder="Default with data-attributes"
       label="Default"
-      dataAttributes={{dataHjWhitelist: true, dataTest: 'string'}} />
+      dataAttributes={{'hj-white-list': true, 'test': 'string'}} />
   </div>
 
   <div className="mb5">

@@ -40,11 +40,9 @@ class Input extends Component {
 
     const dataAttrs = {}
     for (const key of Object.keys(dataAttributes)) {
-      if (key.substring(0, 4) === 'data') {
-        const k = this.camelCaseToDash(key)
-        const v = dataAttributes[key]
-        dataAttrs[k] = v
-      }
+      const k = this.camelCaseToDash(`data-${key}`)
+      const v = dataAttributes[key]
+      dataAttrs[k] = v
     }
 
     const widthClass = 'w-100'
@@ -174,7 +172,7 @@ Input.propTypes = {
   autoFocus: PropTypes.bool,
   /** Spec attribute */
   autoSave: PropTypes.string,
-  /** List of data attributes as a object with _camelCase_ keys starting with `data`*/
+  /** List of data attributes as a object like `{'locale': 'en-US'}` */
   dataAttributes: PropTypes.object,
   /** Spec attribute */
   defaultValue: PropTypes.string,
