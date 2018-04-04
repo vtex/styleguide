@@ -11,10 +11,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **Input** `dataAttributes` prop to pass data attributes
 
 ### Changed
-- **Modal** Replaced `react-modal` for `react-responsive-modal`
+- **Modal** prop `content` renamed to `children`
 - **Input** if the prop `label` is not passed, no HTML for label is rendered.
 - **Input** props `large` and `xLarge` are now `size="large"` and `size="x-large"`.
 
 ### Removed
+- **Modal** props `title` & `style`
 - **Dropdown** and **Input** prop `block`. They are always block.
 - **Dropdown** and **Input** props `short` and `long`. Their widths should be defined by their parents.
