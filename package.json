@@ -8,17 +8,16 @@
     "styleguide": "styleguidist server",
     "start": "styleguidist server",
     "styleguide:build": "styleguidist build",
-    "compile": "npm run cleanlib && NODE_ENV=production babel ./src/components --out-dir ./lib --ignore '__tests__,*.spec.js' && npm run copycss",
+    "compile":
+      "npm run cleanlib && NODE_ENV=production babel ./src/components --out-dir ./lib --ignore '__tests__,*.spec.js' && npm run copycss",
     "copycss": "copyfiles -u 2 src/**/*.css lib",
     "cleanlib": "rm -rf lib",
     "prepublishOnly": "npm run compile && npm run deploy",
-    "snap:test": "styleguidist-visual test --url \"http:localhost:6060/#!/Components\"",
+    "snap:test": "styleguidist-visual test --url \"http:localhost:6060\"",
     "snap:approve": "styleguidist-visual approve",
     "develop": "npm link && watch 'npm run compile' src"
   },
-  "files": [
-    "lib/"
-  ],
+  "files": ["lib/"],
   "homepage": "https://vtex.github.io/styleguide",
   "devDependencies": {
     "@vtex/react-scripts": "1.1.10",
