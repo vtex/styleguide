@@ -22,7 +22,7 @@ module.exports = {
     const componentName = pathArray[pathArray.length - 1]
     const dir = path.relative(
       path.join('src', 'components'),
-      path.dirname(componentPath)
+      path.dirname(componentPath),
     )
     return `import ${componentName} from '@vtex/styleguide/lib/${dir}';`
   },

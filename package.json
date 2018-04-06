@@ -1,6 +1,6 @@
 {
   "name": "@vtex/styleguide",
-  "version": "2.0.0-rc.34",
+  "version": "2.0.0-rc.35",
   "scripts": {
     "test": "react-scripts test --env=jsdom",
     "predeploy": "npm run styleguide:build",
@@ -8,7 +8,8 @@
     "styleguide": "styleguidist server",
     "start": "styleguidist server",
     "styleguide:build": "styleguidist build",
-    "compile": "npm run cleanlib && NODE_ENV=production babel ./src/components --out-dir ./lib --ignore '__tests__,*.spec.js' && npm run copycss",
+    "compile":
+      "npm run cleanlib && NODE_ENV=production babel ./src/components --out-dir ./lib --ignore '__tests__,*.spec.js' && npm run copycss",
     "copycss": "copyfiles -u 2 src/**/*.css lib",
     "cleanlib": "rm -rf lib",
     "prepublishOnly": "npm run compile && npm run deploy",
@@ -16,30 +17,28 @@
     "snap:approve": "styleguidist-visual approve",
     "develop": "npm link && watch 'npm run compile' src"
   },
-  "files": [
-    "lib/"
-  ],
+  "files": ["lib/"],
   "homepage": "https://vtex.github.io/styleguide",
   "devDependencies": {
     "@vtex/react-scripts": "1.1.10",
     "babel-cli": "^6.26.0",
-    "babel-eslint": "7",
+    "babel-eslint": "8.2.2",
     "babel-plugin-dynamic-import-node": "^1.2.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
     "copyfiles": "^1.2.0",
     "eslint": "4",
-    "eslint-config-vtex": "^7.0.0",
+    "eslint-config-vtex": "8.0.0",
     "eslint-config-vtex-react": "^3.0.3",
     "eslint-config-vtex-react-app": "^3.1.1",
     "eslint-plugin-flowtype": "2",
-    "eslint-plugin-import": "2",
-    "eslint-plugin-jsx-a11y": "5",
+    "eslint-plugin-import": "2.10.0",
+    "eslint-plugin-jsx-a11y": "6.0.3",
     "eslint-plugin-react": "^7.7.0",
     "gh-pages": "^1.1.0",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-styleguidist": "^6.2.5",
-    "react-styleguidist-visual": "^0.3.1",
+    "react": "16.3.1",
+    "react-dom": "16.3.1",
+    "react-styleguidist": "6.5.3",
+    "react-styleguidist-visual": "0.4.0",
     "watch": "^1.0.2"
   },
   "dependencies": {
