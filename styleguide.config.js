@@ -2,6 +2,7 @@ const path = require('path')
 const config = require('vtex-tachyons/config.json')
 
 module.exports = {
+  pagePerSection: true,
   require: ['vtex-tachyons'],
   showUsage: false,
   title: 'VTEX Styleguide',
@@ -22,7 +23,7 @@ module.exports = {
     const componentName = pathArray[pathArray.length - 1]
     const dir = path.relative(
       path.join('src', 'components'),
-      path.dirname(componentPath)
+      path.dirname(componentPath),
     )
     return `import ${componentName} from '@vtex/styleguide/lib/${dir}';`
   },
