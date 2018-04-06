@@ -2,7 +2,6 @@ const path = require('path')
 const config = require('vtex-tachyons/config.json')
 
 module.exports = {
-  pagePerSection: false,
   require: ['vtex-tachyons'],
   showUsage: false,
   title: 'VTEX Styleguide',
