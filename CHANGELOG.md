@@ -11,7 +11,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-* Structure: page per section
 * **Input** `dataAttributes` prop to pass data attributes
 
 ### Changed
