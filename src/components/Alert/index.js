@@ -53,8 +53,8 @@ class Alert extends Component {
     }
 
     return (
-      <div className={`flex justify-between f5 near-black ${classes}`}>
-        <div className="flex items-center">
+      <div className={`vtex-alert flex justify-between f5 near-black ${classes}`}>
+        <div className="vtex-alert__icon flex items-center">
           {showIcon && <Icon color={color} size={18} />}
 
           <div className={`${showIcon ? 'ph5 flex' : 'pr5'}`}>
@@ -63,7 +63,7 @@ class Alert extends Component {
         </div>
 
         {onClose &&
-          <div className="pointer flex items-center pv2" onClick={onClose}>
+          <div className="vtex-alert__close-icon pointer flex items-center pv2" onClick={onClose}>
             <CloseIcon color={config.colors['near-black']} size={10} />
           </div>}
       </div>
