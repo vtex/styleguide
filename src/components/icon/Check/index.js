@@ -7,6 +7,7 @@ class Check extends PureComponent {
     const { color, size } = this.props
     return (
       <svg
+        className="vtex-icon__check"
         viewBox="0 0 18 18"
         xmlns="http://www.w3.org/2000/svg"
         width={size}
