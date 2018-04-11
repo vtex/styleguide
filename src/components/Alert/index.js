@@ -55,7 +55,7 @@ class Alert extends Component {
     return (
       <div className={`vtex-alert flex justify-between f5 near-black ${classes}`}>
         <div className="flex items-center">
-          {showIcon && <Icon className="vtex-alert__icon" color={color} size={18} />}
+          {showIcon && <Icon color={color} size={18} />}
 
           <div className={`${showIcon ? 'ph5 flex' : 'pr5'}`}>
             {this.props.children}
