@@ -21,7 +21,7 @@ class Button extends Component {
       throw new Error('Button component cannot be primary AND secondary')
     }
 
-    let classes = 'bw1 ba fw5 ttu br2 fw4 v-mid '
+    let classes = 'vtex-button bw1 ba fw5 ttu br2 fw4 v-mid '
 
     classes += icon ? 'icon-button dib ' : ''
 

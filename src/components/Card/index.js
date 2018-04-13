@@ -9,7 +9,7 @@ class Card extends PureComponent {
     return (
       <div
         style={{ boxShadow: '0 3px 9px 0 rgba(61, 62, 64, 0.2)' }}
-        className={`"card b2 br3 bg-white ${padding}`}
+        className={`vtex-card card b2 br3 bg-white ${padding}`}
       >
         {children}
       </div>

@@ -7,13 +7,27 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.0.0-rc.36] - 2018-04-11
+
 ### Added
-- **Input** `dataAttributes` prop to pass data attributes
+
+* Namespaces to make components customizable
+
+## [2.0.0-rc.35] - 2018-04-06
+
+### Added
+
+* **Input** `dataAttributes` prop to pass data attributes
 
 ### Changed
-- **Input** if the prop `label` is not passed, no HTML for label is rendered.
-- **Input** props `large` and `xLarge` are now `size="large"` and `size="x-large"`.
+
+* Dependencies update
+* **Modal** prop `content` renamed to `children`
+* **Input** if the prop `label` is not passed, no HTML for label is rendered.
+* **Input** props `large` and `xLarge` are now `size="large"` and `size="x-large"`.
 
 ### Removed
-- **Dropdown** and **Input** prop `block`. They are always block.
-- **Dropdown** and **Input** props `short` and `long`. Their widths should be defined by their parents.
+
+* **Modal** props `title` & `style`
+* **Dropdown** and **Input** prop `block`. They are always block.
+* **Dropdown** and **Input** props `short` and `long`. Their widths should be defined by their parents.

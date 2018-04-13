@@ -139,10 +139,10 @@ class Dropdown extends Component {
     }
 
     return (
-      <div ref={this.setWrapperRef}>
+      <div className="vtex-dropdown" ref={this.setWrapperRef}>
         <label>
           {label &&
-            <span className="dib mb3 w-100">
+            <span className="vtex-dropdown__label dib mb3 w-100">
               {label}
             </span>}
           <div className={containerClasses} style={containerStyle}>
@@ -151,13 +151,13 @@ class Dropdown extends Component {
               disabled={disabled}
               ref={this.setSelectRef}
               onClick={this.handleClick}
-              className={classes}
+              className={`vtex-dropdown__button ${classes}`}
             >
               <div className="flex">
-                <div className="flex-auto tl">
+                <div className="vtex-dropdown__caption flex-auto tl">
                   {showCaption ? this.props.optionsCaption : valueLabel}
                 </div>
-                <div className="flex-none flex items-center pl6">
+                <div className="vtex-dropdown__arrow flex-none flex items-center pl6">
                   <ArrowDownIcon
                     size={iconSize}
                     color={
@@ -170,7 +170,7 @@ class Dropdown extends Component {
           </div>
         </label>
         {open &&
-          <div className={optionsClasses} style={optionsStyle}>
+          <div className={`vtex-dropdown__options ${optionsClasses}`} style={optionsStyle}>
             {options.map(option => (
               <button
                 key={option.value}

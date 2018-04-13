@@ -5,12 +5,12 @@ const Spinner = ({ style, secondary, width, height }) => (
   <svg
     width={width}
     height={height}
-    className={style.spinner}
+    className={`vtex-spinner ${style.spinner}`}
     viewBox="0 0 66 66"
     xmlns="http://www.w3.org/2000/svg"
   >
     <circle
-      className={style.path}
+      className={`vtex-spinner__circle ${style.path}`}
       stroke={secondary ? 'white' : '#368df7'}
       fill="none"
       strokeWidth="6"
