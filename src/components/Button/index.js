@@ -21,7 +21,7 @@ class Button extends Component {
       throw new Error('Button component cannot be primary AND secondary')
     }
 
-    let classes = 'bw1 ba fw5 ttu br2 fw4 '
+    let classes = 'bw1 ba fw5 ttu br2 fw4 v-mid '
 
     classes += icon ? 'icon-button dib ' : ''
 
@@ -82,6 +82,7 @@ class Button extends Component {
         onMouseUp={this.props.onMouseUp}
         onMouseDown={this.props.onMouseDown}
         ref={this.props.ref}
+        style={icon ? { fontSize: 0 } : {}}
       >
         {this.props.children}
       </Tag>
