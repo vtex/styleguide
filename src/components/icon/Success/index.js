@@ -7,6 +7,7 @@ class Success extends PureComponent {
     const { color, size } = this.props
     return (
       <svg
+        className="vtex-icon__success"
         viewBox="0 0 14 14"
         xmlns="http://www.w3.org/2000/svg"
         width={size}

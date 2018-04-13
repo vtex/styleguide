@@ -12,17 +12,17 @@ class Input extends Component {
 
   handleChange = event => {
     this.props.onChange && this.props.onChange(event)
-  };
+  }
 
   handleFocus = event => {
     this.setState({ active: true })
     this.props.onFocus && this.props.onFocus(event)
-  };
+  }
 
   handleBlur = event => {
     this.setState({ active: false })
     this.props.onBlur && this.props.onBlur(event)
-  };
+  }
 
   render() {
     const {
@@ -86,10 +86,10 @@ class Input extends Component {
     }
 
     return (
-      <label>
-        {label && <span className="db mb3 w-100">
-          {label}
-        </span>}
+      <label className="vtex-input">
+        {label && (
+          <span className="vtex-input__label db mb3 w-100">{label}</span>
+        )}
         <input
           {...dataAttrs}
           onBlur={this.handleBlur}

@@ -62,7 +62,7 @@ class Toggle extends Component {
         htmlFor={id || undefined}
         className={`flex flex-row items-center ${!disabled && 'pointer'}`}
       >
-        <div className={classes}>
+        <div className={`vtex-toggle ${classes}`}>
           <div
             style={{
               height: '1.5rem',

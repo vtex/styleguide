@@ -12,9 +12,9 @@ class Modal extends PureComponent {
         little={centered}
         onClose={onClose}
         classNames={{
-          overlay: '',
-          modal: 'br2',
-          closeIcon: '',
+          overlay: 'vtex-modal__overlay',
+          modal: 'vtex-modal__modal br2',
+          closeIcon: 'vtex-modal__close-icon',
         }}
         styles={{
           overlay: {
