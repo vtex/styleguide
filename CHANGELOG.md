@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.0.0-rc.37] - 2018-04-11
+
+### Fixed
+
+* Remove extra space in button with icon, and fix alignment between buttons
+
 ## [2.0.0-rc.36] - 2018-04-11
 
 ### Added
