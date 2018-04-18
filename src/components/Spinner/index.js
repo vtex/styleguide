@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import config from 'vtex-tachyons/config.json'
 
 const Spinner = ({ secondary, size }) => (
   <svg
@@ -13,7 +14,7 @@ const Spinner = ({ secondary, size }) => (
       cx="50"
       cy="50"
       fill="none"
-      stroke={`${secondary ? '#fff' : '#3791E6'}`}
+      stroke={secondary ? config.colors.white : config.colors.blue}
       strokeWidth="10"
       r="40"
       strokeDasharray="188.49555921538757 64.83185307179586"
