@@ -98,7 +98,7 @@ Variations
       value="tolouseLautrec"
       onChange={() => {}} />
   </div>
-  <div>
+  <div className="mb5">
     <Dropdown
       label="Help text"
       helpText={<span>Your help text goes here!</span>}
@@ -109,6 +109,21 @@ Variations
         {value: 'monet', label: 'Monet'},
         {value: 'picasso', label: 'Picasso'},
         {value: 'tolouseLautrec', label: 'Toulouse-Lautrec'}
+      ]}
+      value="tolouseLautrec"
+      onChange={() => {}} />
+  </div>
+  <div>
+    <Dropdown
+      label="Prevent truncate"
+      preventTruncate
+      options={[
+        {value: 'chagall', label: 'Marc Zakharovich Chagall, born Moishe Zakharovich Shagal'},
+        {value: 'dali', label: 'Salvador Domingo Felipe Jacinto Dalí i Domènech, Marquis of Dalí de Púbol, known professionally as Salvador Dalí'},
+        {value: 'goya', label: 'Francisco José de Goya y Lucientes'},
+        {value: 'monet', label: 'Oscar-Claude Monet'},
+        {value: 'picasso', label: 'Pablo Picasso'},
+        {value: 'tolouseLautrec', label: 'Henri Marie Raymond de Toulouse-Lautrec-Monfa, also known as Henri de Toulouse-Lautrec'}
       ]}
       value="tolouseLautrec"
       onChange={() => {}} />
