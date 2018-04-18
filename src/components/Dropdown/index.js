@@ -40,6 +40,10 @@ class Dropdown extends Component {
       helpText,
       placeholder,
       preventTruncate,
+      autofocus,
+      form,
+      name,
+      required,
     } = this.props
 
     let width
@@ -125,6 +129,10 @@ class Dropdown extends Component {
               className={selectClasses}
               onChange={this.handleChange}
               value={value}
+              autofocus={autofocus}
+              form={form}
+              name={name}
+              required={required}
             >
               {preventTruncate && (
                 <optgroup label={placeholder || label || helpText || ''}></optgroup>
