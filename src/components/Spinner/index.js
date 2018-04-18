@@ -1,36 +1,47 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import config from 'vtex-tachyons/config.json'
 
-const Spinner = ({ style, secondary, width, height }) => (
+const Spinner = ({ secondary, size }) => (
   <svg
-    width={width}
-    height={height}
-    className={`vtex-spinner ${style.spinner}`}
-    viewBox="0 0 66 66"
     xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 100 100"
+    preserveAspectRatio="xMidYMid"
+    height={size}
+    width={size}
   >
     <circle
-      className={`vtex-spinner__circle ${style.path}`}
-      stroke={secondary ? 'white' : '#368df7'}
+      cx="50"
+      cy="50"
       fill="none"
-      strokeWidth="6"
-      strokeLinecap="round"
-      cx="33"
-      cy="33"
-      r="30"
-    />
+      stroke={secondary ? config.colors.white : config.colors.blue}
+      strokeWidth="10"
+      r="40"
+      strokeDasharray="188.49555921538757 64.83185307179586"
+      transform="rotate(96 50 50)"
+    >
+      <animateTransform
+        attributeName="transform"
+        type="rotate"
+        calcMode="linear"
+        values="0 50 50;360 50 50"
+        keyTimes="0;1"
+        dur="1s"
+        begin="0s"
+        repeatCount="indefinite"
+      />
+    </circle>
   </svg>
 )
 
 Spinner.propTypes = {
-  style: PropTypes.object.isRequired,
   secondary: PropTypes.bool,
-  width: PropTypes.number,
-  height: PropTypes.number,
+  size: PropTypes.number,
 }
 
 Spinner.defaultProps = {
   secondary: false,
+  size: 40,
 }
 
 export default Spinner
