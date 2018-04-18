@@ -39,6 +39,7 @@ class Dropdown extends Component {
       errorMessage,
       helpText,
       placeholder,
+      preventTruncate,
     } = this.props
 
     let width
@@ -124,6 +125,9 @@ class Dropdown extends Component {
               onChange={this.handleChange}
               value={value}
             >
+              {preventTruncate && (
+                <optgroup label={placeholder || label || helpText || ''}></optgroup>
+              )}
               {options.map(option => (
                 <option key={option.value} value={option.value}>
                   {option.label}
@@ -166,6 +170,8 @@ Dropdown.propTypes = {
       label: PropTypes.string.isRequired,
     })
   ),
+  /** Prevent truncating large options texts on some devices/browsers, such as iOS */
+  preventTruncate: PropTypes.bool,
   /** Spec attribute */
   id: PropTypes.string,
   /** Spec attribute */
