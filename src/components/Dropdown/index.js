@@ -106,10 +106,10 @@ class Dropdown extends Component {
               className={`vtex-dropdown__button ${classes}`}
             >
               <div className="flex">
-                <div className="vtex-dropdown__caption flex-auto tl">
+                <div className="vtex-dropdown__caption flex-auto tl truncate">
                   {showCaption ? placeholder : valueLabel}
                 </div>
-                <div className="vtex-dropdown__arrow flex-none flex items-center pl6">
+                <div className="vtex-dropdown__arrow flex-none flex items-center pl2">
                   <ArrowDownIcon
                     size={iconSize}
                     color={
