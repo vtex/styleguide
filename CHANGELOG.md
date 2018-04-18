@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.0.0-rc.38] - 2018-04-18
+
+### Fixed
+
+* Remove css from spinner
+
 ## [2.0.0-rc.37] - 2018-04-11
 
 ### Fixed
