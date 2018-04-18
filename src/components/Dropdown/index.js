@@ -94,10 +94,11 @@ class Dropdown extends Component {
     return (
       <div className="vtex-dropdown" ref={this.setWrapperRef}>
         <label>
-          {label &&
+          {label && (
             <span className="vtex-dropdown__label dib mb3 w-100">
               {label}
-            </span>}
+            </span>
+          )}
           <div className={containerClasses} style={containerStyle}>
             <div
               id={id}
