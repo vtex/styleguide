@@ -38,6 +38,7 @@ class Dropdown extends Component {
       error,
       errorMessage,
       helpText,
+      placeholder,
     } = this.props
 
     let width
@@ -104,7 +105,7 @@ class Dropdown extends Component {
             >
               <div className="flex">
                 <div className="vtex-dropdown__caption flex-auto tl">
-                  {showCaption ? this.props.optionsCaption : valueLabel}
+                  {showCaption ? placeholder : valueLabel}
                 </div>
                 <div className="vtex-dropdown__arrow flex-none flex items-center pl6">
                   <ArrowDownIcon
@@ -154,6 +155,8 @@ Dropdown.propTypes = {
   helpText: PropTypes.node,
   /** Dropdown label */
   label: PropTypes.string,
+  /** Dropdown placeholder value */
+  placeholder: PropTypes.string,
   /** Dropdown size */
   size: PropTypes.oneOf(['regular', 'large', 'x-large']),
   /** Dropdown options list */
@@ -163,8 +166,6 @@ Dropdown.propTypes = {
       label: PropTypes.string.isRequired,
     })
   ),
-  /** Dropdown placeholder value */
-  optionsCaption: PropTypes.string,
   /** Spec attribute */
   id: PropTypes.string,
   /** Spec attribute */
