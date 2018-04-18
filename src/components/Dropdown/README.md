@@ -55,8 +55,8 @@ Variations
 <div className="w-40">
   <div className="mb5">
     <Dropdown
-      label="Caption"
-      optionsCaption="Select an artist"
+      label="Placeholder"
+      placeholder="Select an artist"
       options={[
         {value: 'chagall', label: 'Chagall'},
         {value: 'dali', label: 'Dali'},
