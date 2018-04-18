@@ -138,9 +138,12 @@ class Dropdown extends Component {
 
           </div>
         </label>
-        {errorMessage &&
-          <div className="red f6 mt3 lh-title">{errorMessage}</div>}
-        {helpText && <div className="mid-gray f6 mt3 lh-title">{helpText}</div>}
+        {errorMessage && (
+          <div className="red f6 mt3 lh-title">{errorMessage}</div>
+        )}
+        {helpText && (
+          <div className="mid-gray f6 mt3 lh-title">{helpText}</div>
+        )}
 
       </div>
     )
