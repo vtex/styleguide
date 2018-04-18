@@ -40,7 +40,7 @@ class Dropdown extends Component {
       helpText,
       placeholder,
       preventTruncate,
-      autofocus,
+      autoFocus,
       form,
       name,
       required,
@@ -129,7 +129,7 @@ class Dropdown extends Component {
               className={selectClasses}
               onChange={this.handleChange}
               value={value}
-              autofocus={autofocus}
+              autoFocus={autoFocus}
               form={form}
               name={name}
               required={required}
@@ -187,7 +187,7 @@ Dropdown.propTypes = {
   /** Spec attribute */
   id: PropTypes.string,
   /** Spec attribute */
-  autofocus: PropTypes.bool,
+  autoFocus: PropTypes.bool,
   /** Spec attribute */
   value: PropTypes.string,
   /** Spec attribute */
