@@ -57,6 +57,7 @@ class Dropdown extends Component {
     const showCaption = !valueLabel
 
     classes += disabled ? 'bg-light-gray ' : 'pointer '
+    selectClasses += disabled ? '' : 'pointer '
     classes += !disabled && valueLabel ? 'near-black ' : 'gray '
 
     switch (size) {
