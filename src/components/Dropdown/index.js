@@ -4,14 +4,6 @@ import ArrowDownIcon from './ArrowDownIcon'
 import config from 'vtex-tachyons/config.json'
 
 class Dropdown extends Component {
-  setWrapperRef = node => {
-    this.wrapperRef = node
-  };
-
-  setSelectRef = el => {
-    this.select = el
-  };
-
   handleChange = e => {
     const { disabled, onChange } = this.props
     const { target: { value } } = e
@@ -97,7 +89,7 @@ class Dropdown extends Component {
     }
 
     return (
-      <div className="vtex-dropdown" ref={this.setWrapperRef}>
+      <div className="vtex-dropdown">
         <label>
           {label && (
             <span className="vtex-dropdown__label dib mb3 w-100">
@@ -107,7 +99,6 @@ class Dropdown extends Component {
           <div className={containerClasses} style={containerStyle}>
             <div
               id={id}
-              ref={this.setSelectRef}
               className={`vtex-dropdown__button ${classes}`}
             >
               <div className="flex">
@@ -157,7 +148,6 @@ class Dropdown extends Component {
         {helpText && (
           <div className="mid-gray f6 mt3 lh-title">{helpText}</div>
         )}
-
       </div>
     )
   }
