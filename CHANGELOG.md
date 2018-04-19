@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+* **Dropdown** Changed prop `optionsCaption` to `placeholder`
+* **Dropdown** Uses the native `select` instead of a custom one
+* **Dropdown** Allows for `node` and `string` on the props `helpText` and `errorMessage`
+
 ## [2.0.0-rc.38] - 2018-04-18
 
 ### Fixed
