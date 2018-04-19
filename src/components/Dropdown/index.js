@@ -134,6 +134,10 @@ class Dropdown extends Component {
               form={form}
               name={name}
               required={required}
+              style={{
+                // safari select height fix
+                webkitAppearance: 'menulist-button',
+              }}
             >
               {preventTruncate && (
                 <optgroup label={label || helpText || placeholder || ''}></optgroup>
