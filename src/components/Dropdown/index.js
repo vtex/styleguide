@@ -155,15 +155,16 @@ class Dropdown extends Component {
 
 Dropdown.defaultProps = {
   size: 'regular',
+  options: [],
 }
 
 Dropdown.propTypes = {
   /** Error highlight */
   error: PropTypes.bool,
   /** Error message */
-  errorMessage: PropTypes.string,
+  errorMessage: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
   /** Help text */
-  helpText: PropTypes.node,
+  helpText: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
   /** Dropdown label */
   label: PropTypes.string,
   /** Dropdown placeholder value */
