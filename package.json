@@ -43,6 +43,7 @@
   },
   "dependencies": {
     "react-responsive-modal": "^2.0.1",
+    "react-tooltip": "^3.4.1",
     "vtex-tachyons": "^2.3.0"
   }
 }
