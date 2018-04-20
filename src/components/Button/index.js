@@ -4,17 +4,10 @@ import PropTypes from 'prop-types'
 class Button extends Component {
   handleClick = event => {
     !this.props.disabled && this.props.onClick && this.props.onClick(event)
-  };
+  }
 
   render() {
-    const {
-      size,
-      block,
-      primary,
-      secondary,
-      disabled,
-      icon,
-    } = this.props
+    const { size, block, primary, secondary, disabled, icon } = this.props
     const Tag = icon ? 'div' : 'button'
 
     if (secondary && primary) {
@@ -41,7 +34,8 @@ class Button extends Component {
     }
 
     if (!secondary && !primary && !disabled) {
-      classes += 'b--transparent blue bg-transparent hover-heavy-blue hover-b--transparent '
+      classes +=
+        'b--transparent blue bg-transparent hover-bg-light-silver hover-heavy-blue hover-b--transparent '
     }
 
     if (secondary && !disabled) {
@@ -52,7 +46,8 @@ class Button extends Component {
     }
 
     if (primary && !disabled) {
-      classes += 'b--blue bg-blue white hover-bg-heavy-blue hover-b--heavy-blue '
+      classes +=
+        'b--blue bg-blue white hover-bg-heavy-blue hover-b--heavy-blue '
     }
 
     if (disabled) {
