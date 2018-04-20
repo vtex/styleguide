@@ -1,15 +1,11 @@
 Active
 
 ```js
-<Badge type="active">
-  Active
-</Badge>
+<Badge variation="active">Active</Badge>
 ```
 
 Inactive
 
 ```js
-<Badge type="inactive">
-  Inactive
-</Badge>
+<Badge variation="inactive">Inactive</Badge>
 ```
