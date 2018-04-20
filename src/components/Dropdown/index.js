@@ -131,7 +131,7 @@ class Dropdown extends Component {
               }}
             >
               {preventTruncate && (
-                <optgroup label={label || helpText || placeholder || ''}></optgroup>
+                <optgroup label={label || helpText || placeholder || ''} />
               )}
               {options.map(option => (
                 <option key={option.value} value={option.value}>
