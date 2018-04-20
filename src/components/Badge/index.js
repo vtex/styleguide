@@ -9,7 +9,11 @@ const variations = {
 class Badge extends PureComponent {
   render() {
     return (
-      <div className={`br-pill ${variations[this.props.variation]} f6 pv2 ph3 dib fw5`}>
+      <div
+        className={`br-pill ${
+          variations[this.props.variation]
+        } f6 pv2 ph3 dib fw5`}
+      >
         {this.props.children}
       </div>
     )
@@ -22,7 +26,7 @@ Badge.propTypes = {
 
 Badge.propTypes = {
   children: PropTypes.node.isRequired,
-  variation: PropTypes.oneOf(['active', 'inactive']),
+  variation: PropTypes.oneOf(['active', 'inactive']).isRequired,
 }
 
 export default Badge
