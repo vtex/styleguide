@@ -2,8 +2,8 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
 const variations = {
-  active: 'bg-washed-blue blue',
-  inactive: 'bg-near-white mid-gray',
+  active: 'bg-near-black white',
+  inactive: 'bg-light-gray near-black',
 }
 
 class Badge extends PureComponent {
