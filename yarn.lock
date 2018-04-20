@@ -7280,6 +7280,13 @@ react-styleguidist@6.5.3:
     webpack-dev-server "^2.9.7"
     webpack-merge "^4.1.2"
 
+react-tooltip@^3.4.1:
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/react-tooltip/-/react-tooltip-3.4.1.tgz#c72e2c0114537109dc400c75ba8963fe3205ce8a"
+  dependencies:
+    classnames "^2.2.5"
+    prop-types "^15.6.0"
+
 react-transition-group@^2.2.1:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-2.3.0.tgz#8dd1af58f6af284b19fd057f512e74f20438ad31"

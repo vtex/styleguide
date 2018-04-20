@@ -1,6 +1,6 @@
 {
   "name": "@vtex/styleguide",
-  "version": "2.0.0-rc.39",
+  "version": "2.0.0-rc.40",
   "scripts": {
     "test": "react-scripts test --env=jsdom",
     "predeploy": "npm run styleguide:build",
@@ -8,16 +8,15 @@
     "styleguide": "styleguidist server",
     "start": "styleguidist server",
     "styleguide:build": "styleguidist build",
-    "compile": "npm run cleanlib && NODE_ENV=production babel ./src/components --out-dir ./lib --ignore '__tests__,*.spec.js'",
+    "compile":
+      "npm run cleanlib && NODE_ENV=production babel ./src/components --out-dir ./lib --ignore '__tests__,*.spec.js'",
     "cleanlib": "rm -rf lib",
     "prepublishOnly": "npm run compile && npm run deploy",
     "snap:test": "styleguidist-visual test --url \"http:localhost:6060\"",
     "snap:approve": "styleguidist-visual approve",
     "develop": "npm link && watch 'npm run compile' src"
   },
-  "files": [
-    "lib/"
-  ],
+  "files": ["lib/"],
   "homepage": "https://vtex.github.io/styleguide",
   "devDependencies": {
     "@vtex/react-scripts": "1.1.10",
@@ -43,6 +42,7 @@
   },
   "dependencies": {
     "react-responsive-modal": "^2.0.1",
+    "react-tooltip": "^3.4.1",
     "vtex-tachyons": "^2.3.0"
   }
 }
