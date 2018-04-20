@@ -7,7 +7,7 @@ class Button extends Component {
   }
 
   render() {
-    const { size, block, primary, secondary, disabled, icon } = this.props
+    const { size, block, primary, secondary, outline, disabled, icon } = this.props
     const Tag = icon ? 'div' : 'button'
 
     if (secondary && primary) {
@@ -33,15 +33,22 @@ class Button extends Component {
         break
     }
 
-    if (!secondary && !primary && !disabled) {
+    if (!outline && !secondary && !primary && !disabled) {
       classes +=
-        'b--transparent blue bg-transparent hover-bg-light-silver hover-heavy-blue hover-b--transparent '
+        'b--transparent blue bg-transparent hover-bg-black-10 hover-heavy-blue hover-b--transparent '
     }
 
     if (secondary && !disabled) {
-      classes += 'bg-white b--blue blue hover-white '
+      classes += 'bg-light-silver blue b--transparent hover-heavy-blue '
     }
     if (secondary) {
+      classes += 'hover-bg-light-gray '
+    }
+
+    if (outline && !disabled) {
+      classes += 'bg-transparent b--blue blue hover-white '
+    }
+    if (outline) {
       classes += 'hover-bg-blue '
     }
 
@@ -90,6 +97,7 @@ Button.defaultProps = {
   block: false,
   primary: false,
   secondary: false,
+  outline: false,
   disabled: false,
   autoFocus: false,
   icon: false,
@@ -105,6 +113,8 @@ Button.propTypes = {
   primary: PropTypes.bool,
   /** Secondary style */
   secondary: PropTypes.bool,
+  /** Outline style */
+  outline: PropTypes.bool,
   /** If you are using just an Icon component inside, use this as true */
   icon: PropTypes.bool,
   /** (Button spec attribute) */

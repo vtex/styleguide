@@ -5,6 +5,7 @@ Types
   <span className="mr4"><Button>Default</Button></span>
   <span className="mr4"><Button primary>Primary</Button></span>
   <span className="mr4"><Button secondary>Secondary</Button></span>
+  <span className="mr4"><Button outline>Outline</Button></span>
   <span className="mr4"><Button disabled>Disabled</Button></span>
 </div>
 ```
@@ -28,6 +29,11 @@ Sizes
     <span className="mr4"><Button secondary size="large">Large</Button></span>
     <span className="mr4"><Button secondary size="x-large">Extra large</Button></span>
   </div>
+   <div className="mb4">
+    <span className="mr4"><Button outline>Default</Button></span>
+    <span className="mr4"><Button outline size="large">Large</Button></span>
+    <span className="mr4"><Button outline size="x-large">Extra large</Button></span>
+  </div>
   <div>
     <span className="mr4"><Button disabled>Default</Button></span>
     <span className="mr4"><Button disabled size="large">Large</Button></span>
@@ -48,10 +54,11 @@ Box types
 Colored container background
 
 ```js
-<div className="bg-washed-blue pa5">
+<div className="bg-near-black pa5">
   <span className="mr4"><Button>Default</Button></span>
   <span className="mr4"><Button primary>Primary</Button></span>
   <span className="mr4"><Button secondary>Secondary</Button></span>
+  <span className="mr4"><Button outline>Outline</Button></span>
   <span className="mr4"><Button disabled>Disabled</Button></span>
 </div>
 ```
