@@ -168,7 +168,7 @@ Dropdown.propTypes = {
   /** Dropdown label */
   label: PropTypes.node,
   /** Dropdown placeholder value */
-  placeholder: PropTypes.string,
+  placeholder: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /** Dropdown size */
   size: PropTypes.oneOf(['regular', 'large', 'x-large']),
   /** Dropdown options list */
