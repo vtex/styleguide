@@ -174,8 +174,8 @@ Dropdown.propTypes = {
   /** Dropdown options list */
   options: PropTypes.arrayOf(
     PropTypes.shape({
-      value: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired,
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      label: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     })
   ),
   /** Prevent truncating large options texts on some devices/browsers, such as iOS */
