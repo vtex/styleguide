@@ -127,7 +127,7 @@ class Dropdown extends Component {
               required={required}
               style={{
                 // safari select height fix
-                webkitAppearance: 'menulist-button',
+                WebkitAppearance: 'menulist-button',
               }}
             >
               {preventTruncate && (
