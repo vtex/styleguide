@@ -166,7 +166,7 @@ Dropdown.propTypes = {
   /** Help text */
   helpText: PropTypes.node,
   /** Dropdown label */
-  label: PropTypes.string,
+  label: PropTypes.node,
   /** Dropdown placeholder value */
   placeholder: PropTypes.string,
   /** Dropdown size */
