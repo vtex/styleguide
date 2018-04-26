@@ -162,9 +162,9 @@ Dropdown.propTypes = {
   /** Error highlight */
   error: PropTypes.bool,
   /** Error message */
-  errorMessage: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
+  errorMessage: PropTypes.node,
   /** Help text */
-  helpText: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
+  helpText: PropTypes.node,
   /** Dropdown label */
   label: PropTypes.string,
   /** Dropdown placeholder value */
