@@ -45,10 +45,10 @@ class Button extends Component {
     }
 
     if (secondary && !disabled) {
-      classes += 'bg-white b--blue blue hover-white '
+      classes += 'bg-light-silver blue hover-heavy-blue b--light-silver '
     }
     if (secondary) {
-      classes += 'hover-bg-blue '
+      classes += 'hover-b--light-gray hover-bg-light-gray '
     }
 
     if (primary && !disabled) {
