@@ -162,20 +162,20 @@ Dropdown.propTypes = {
   /** Error highlight */
   error: PropTypes.bool,
   /** Error message */
-  errorMessage: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
+  errorMessage: PropTypes.node,
   /** Help text */
-  helpText: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
+  helpText: PropTypes.node,
   /** Dropdown label */
-  label: PropTypes.string,
+  label: PropTypes.node,
   /** Dropdown placeholder value */
-  placeholder: PropTypes.string,
+  placeholder: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /** Dropdown size */
   size: PropTypes.oneOf(['regular', 'large', 'x-large']),
   /** Dropdown options list */
   options: PropTypes.arrayOf(
     PropTypes.shape({
-      value: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired,
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      label: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     })
   ),
   /** Prevent truncating large options texts on some devices/browsers, such as iOS */
