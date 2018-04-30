@@ -2,7 +2,7 @@ Types
 
 ```js
 <div>
-  <span className="mr4"><Button>Default</Button></span>
+  <span className="mr4"><Button>Neutral</Button></span>
   <span className="mr4"><Button primary>Primary</Button></span>
   <span className="mr4"><Button secondary>Secondary</Button></span>
   <span className="mr4"><Button disabled>Disabled</Button></span>
@@ -49,7 +49,7 @@ Colored container background
 
 ```js
 <div className="bg-washed-blue pa5">
-  <span className="mr4"><Button>Default</Button></span>
+  <span className="mr4"><Button>Neutral</Button></span>
   <span className="mr4"><Button primary>Primary</Button></span>
   <span className="mr4"><Button secondary>Secondary</Button></span>
   <span className="mr4"><Button disabled>Disabled</Button></span>
