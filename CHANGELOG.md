@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.0.0-rc.41] - 2018-04-30
+
+### Changed
+
+* **Button** Change secondary button style, remove outline and change color
+
 ### Added
 
 * **Dropdown:** Allows using numbers as items values and labels, and nodes as labels
