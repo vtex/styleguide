@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+* **Input:** Adds prop `onKeyPress` for event handling
+
 ## [2.0.0-rc.41] - 2018-04-30
 
 ### Changed
