@@ -14,6 +14,10 @@ class Input extends Component {
     this.props.onChange && this.props.onChange(event)
   }
 
+  handleKeyPress = event => {
+    this.props.onKeyPress && this.props.onKeyPress(event)
+  }
+
   handleFocus = event => {
     this.setState({ active: true })
     this.props.onFocus && this.props.onFocus(event)
@@ -95,6 +99,7 @@ class Input extends Component {
           onBlur={this.handleBlur}
           onFocus={this.handleFocus}
           onChange={this.handleChange}
+          onKeyPress={this.handleKeyPress}
           className={classes}
           disabled={this.props.disabled}
           accept={this.props.accept}
@@ -212,6 +217,8 @@ Input.propTypes = {
   value: PropTypes.string,
   /** onChange event */
   onChange: PropTypes.func,
+  /** onKeyPress event */
+  onKeyPress: PropTypes.func,
   /** onFocus event */
   onFocus: PropTypes.func,
   /** onBlur event */
