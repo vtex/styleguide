@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * **Input:** Adds prop `onKeyPress` for event handling
 
+### Changed
+
+* **Modal:** Move close button into the modal padding, and increase its hit area.
+
 ## [2.0.0-rc.41] - 2018-04-30
 
 ### Changed
