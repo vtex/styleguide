@@ -24,8 +24,8 @@ class Modal extends PureComponent {
             padding: '3rem',
           },
           closeIcon: {
-            top: '10px',
-            right: '10px',
+            top: '8px',
+            right: '8px',
             padding: '10px',
           },
         }}
