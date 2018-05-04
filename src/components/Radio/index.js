@@ -4,15 +4,7 @@ import classNames from 'classnames'
 
 class Radio extends PureComponent {
   render() {
-    const {
-      checked,
-      disabled,
-      id,
-      label,
-      name,
-      onChange,
-      value,
-    } = this.props
+    const { checked, disabled, id, label, name, onChange, value } = this.props
 
     return (
       <div
@@ -25,8 +17,8 @@ class Radio extends PureComponent {
             'fake-radio relative ba br-100 mr3 flex justify-center items-center',
             {
               'b--light-gray pointer': !disabled,
-              'b--light-silver': disabled,
-            },
+              'b--light-silver bg-near-white': disabled,
+            }
           )}
           style={{
             borderWidth: '3px',
@@ -36,7 +28,10 @@ class Radio extends PureComponent {
         >
           {value === checked && (
             <div
-              className="br-100 bg-blue"
+              className={classNames('br-100', {
+                'bg-blue': !disabled,
+                'bg-silver': disabled,
+              })}
               style={{
                 height: '0.75rem',
                 width: '0.75rem',
@@ -50,17 +45,14 @@ class Radio extends PureComponent {
             pointer: !disabled,
           })}
           disabled={disabled}
-          onChange={e => onChange(e, e.target.value)}
           id={id}
           name={name}
+          onChange={e => onChange(e, e.target.value)}
           type="radio"
           value={value}
         />
         <label
-          className={classNames(
-            { silver: disabled },
-            { pointer: !disabled },
-          )}
+          className={classNames({ silver: disabled }, { pointer: !disabled })}
           htmlFor={id}
         >
           {label}
@@ -72,7 +64,7 @@ class Radio extends PureComponent {
 
 Radio.propTypes = {
   /** (Button spec attribute) */
-  checked: PropTypes.string,
+  checked: PropTypes.bool,
   /** (Button spec attribute) */
   disabled: PropTypes.bool,
   /** (Button spec attribute) */
