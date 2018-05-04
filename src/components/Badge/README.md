@@ -1,11 +1,27 @@
-Active
+Default
 
 ```js
-<Badge variation="active">Active</Badge>
+<Badge>Pending</Badge>
 ```
 
-Inactive
+Colors
 
 ```js
-<Badge variation="inactive">Inactive</Badge>
+<div>
+  <span className="mr4">
+    <Badge bgColor="#F71963" color="#fff">
+      Rebel pink
+    </Badge>
+  </span>
+  <span className="mr4">
+    <Badge bgColor="#00BBD4" color="#fff">
+      Young blue
+    </Badge>
+  </span>
+  <span className="mr4">
+    <Badge bgColor="orange" color="#fff">
+      Warning
+    </Badge>
+  </span>
+</div>
 ```

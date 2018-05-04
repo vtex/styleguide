@@ -1,18 +1,16 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-
-const variations = {
-  active: 'bg-near-black white',
-  inactive: 'bg-light-gray near-black',
-}
+import config from 'vtex-tachyons/config.json'
 
 class Badge extends PureComponent {
   render() {
     return (
       <div
-        className={`br-pill ${
-          variations[this.props.variation]
-        } f6 pv2 ph3 dib fw5`}
+        className="br-pill f6 pv2 ph3 dib fw5"
+        style={{
+          backgroundColor: this.props.bgColor,
+          color: this.props.color,
+        }}
       >
         {this.props.children}
       </div>
@@ -20,13 +18,15 @@ class Badge extends PureComponent {
   }
 }
 
-Badge.propTypes = {
-  variation: 'active',
+Badge.defaultProps = {
+  color: config.colors['dark-gray'],
+  bgColor: config.colors['light-gray'],
 }
 
 Badge.propTypes = {
   children: PropTypes.node.isRequired,
-  variation: PropTypes.oneOf(['active', 'inactive']).isRequired,
+  color: PropTypes.string,
+  bgColor: PropTypes.string,
 }
 
 export default Badge
