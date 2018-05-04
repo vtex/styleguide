@@ -74,6 +74,8 @@ class Radio extends PureComponent {
 
 Radio.defaultProps = {
   checked: false,
+  disabled: false,
+  required: false,
 }
 
 Radio.propTypes = {
