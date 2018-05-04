@@ -40,6 +40,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * **Dropdown** Fix inline vendor prefix
 
+## [2.0.1] - 2018-05-04
+
+### Added
+
+* **Button** prop `isLoading`
+
 ## [2.0.0-rc.39] - 2018-04-19
 
 ### Changed
