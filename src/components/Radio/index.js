@@ -4,7 +4,16 @@ import classNames from 'classnames'
 
 class Radio extends PureComponent {
   render() {
-    const { checked, disabled, id, label, name, onChange, value } = this.props
+    const {
+      checked,
+      disabled,
+      id,
+      label,
+      name,
+      onChange,
+      required,
+      value,
+    } = this.props
 
     return (
       <div
@@ -45,6 +54,7 @@ class Radio extends PureComponent {
             pointer: !disabled,
           })}
           disabled={disabled}
+          required={required}
           id={id}
           name={name}
           onChange={e => onChange(e, e.target.value)}
@@ -75,6 +85,8 @@ Radio.propTypes = {
   name: PropTypes.string.isRequired,
   /** onChange event */
   onChange: PropTypes.func.isRequired,
+  /** (Button spec attribute) */
+  required: PropTypes.bool,
   /** (Button spec attribute) */
   value: PropTypes.string.isRequired,
 }
