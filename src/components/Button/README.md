@@ -59,8 +59,46 @@ Colored container background
 With icon
 
 ```js
-const CloseIcon = require('../icon/Close').default;
-<Button icon primary>
-  <CloseIcon color="#fff" />
-</Button>
+const CloseIcon = require('../icon/Close').default
+
+class ButtonIconExample extends React.Component {
+  constructor() {
+    super()
+    this.state = { hover: false }
+    this.handleMouseEnter = this.handleMouseEnter.bind(this)
+    this.handleMouseLeave = this.handleMouseLeave.bind(this)
+  }
+
+  handleMouseEnter() {
+    this.setState({ hover: true })
+  }
+  handleMouseLeave() {
+    this.setState({ hover: false })
+  }
+
+  render() {
+    const { hover } = this.state
+    return (
+      <div>
+        <span className="mr4">
+          <Button icon primary>
+            <CloseIcon color="#fff" />
+          </Button>
+        </span>
+        <span>
+          <Button
+            icon
+            secondary
+            onMouseEnter={this.handleMouseEnter}
+            onMouseLeave={this.handleMouseLeave}
+          >
+            <CloseIcon color={hover ? '#fff' : '#368df7'} />
+          </Button>
+        </span>
+      </div>
+    )
+  }
+}
+
+;<ButtonIconExample />
 ```
