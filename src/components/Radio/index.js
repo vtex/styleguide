@@ -72,6 +72,10 @@ class Radio extends PureComponent {
   }
 }
 
+Radio.defaultProps = {
+  checked: false,
+}
+
 Radio.propTypes = {
   /** (Button spec attribute) */
   checked: PropTypes.bool,
