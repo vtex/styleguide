@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import Spinner from '../Spinner'
+
 class Button extends Component {
   handleClick = event => {
     !this.props.disabled && this.props.onClick && this.props.onClick(event)
-  };
+  }
 
   render() {
     const {
@@ -14,6 +16,7 @@ class Button extends Component {
       secondary,
       disabled,
       icon,
+      children,
     } = this.props
     const Tag = icon ? 'div' : 'button'
 
@@ -21,7 +24,8 @@ class Button extends Component {
       throw new Error('Button component cannot be primary AND secondary')
     }
 
-    let classes = 'vtex-button bw1 ba fw5 ttu br2 fw4 v-mid '
+    let classes = 'vtex-button bw1 ba fw5 ttu br2 fw4 v-mid relative '
+    let loaderSize = 12
 
     classes += icon ? 'icon-button dib ' : ''
 
@@ -29,10 +33,12 @@ class Button extends Component {
       case 'large':
         classes += icon ? 'pa4 ' : 'pv4 ph6 '
         classes += 'f5 '
+        loaderSize = 20
         break
       case 'x-large':
         classes += icon ? 'pa5 ' : 'pv5 ph7 '
         classes += 'f4 '
+        loaderSize = 25
         break
       default:
         classes += icon ? 'pa3 ' : 'pv3 ph5 '
@@ -41,7 +47,8 @@ class Button extends Component {
     }
 
     if (!secondary && !primary && !disabled) {
-      classes += 'b--transparent blue bg-transparent hover-heavy-blue hover-b--transparent '
+      classes +=
+        'b--transparent blue bg-transparent hover-heavy-blue hover-b--transparent '
     }
 
     if (secondary && !disabled) {
@@ -52,7 +59,8 @@ class Button extends Component {
     }
 
     if (primary && !disabled) {
-      classes += 'b--blue bg-blue white hover-bg-heavy-blue hover-b--heavy-blue '
+      classes +=
+        'b--blue bg-blue white hover-bg-heavy-blue hover-b--heavy-blue '
     }
 
     if (disabled) {
@@ -84,7 +92,16 @@ class Button extends Component {
         ref={this.props.ref}
         style={icon ? { fontSize: 0 } : {}}
       >
-        {this.props.children}
+        {this.props.isLoading ? (
+          <span>
+            <span className="left-0 w-100 absolute flex justify-center items-baseline">
+              <Spinner secondary={primary} size={loaderSize} />
+            </span>
+            <span style={{ opacity: 0 }}>{children}</span>
+          </span>
+        ) : (
+          children
+        )}
       </Tag>
     )
   }
@@ -99,6 +116,7 @@ Button.defaultProps = {
   autoFocus: false,
   icon: false,
   type: 'button',
+  isLoading: false,
 }
 
 Button.propTypes = {
@@ -106,6 +124,8 @@ Button.propTypes = {
   size: PropTypes.oneOf(['regular', 'large', 'x-large']),
   /** Block style */
   block: PropTypes.bool,
+  /** Loading state */
+  isLoading: PropTypes.bool,
   /** Primary style */
   primary: PropTypes.bool,
   /** Secondary style */
