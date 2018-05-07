@@ -11,6 +11,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * **Badge:**
 
+## [2.0.2] - 2018-05-04
+
+### Added
+
+* **Radio:** New component
+
+## [2.0.0-rc.41] - 2018-04-30
+
 ### Changed
 
 * **Modal:** Move close button into the modal padding, and increase its hit area.
