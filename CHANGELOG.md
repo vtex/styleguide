@@ -5,11 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [2.0.0] - 2018-05-04
+## [2.1.0] - 2018-05-04
 
 ### Added
 
-* **Badge:**
+* **Button** prop `isLoading`
 
 ## [2.0.2] - 2018-05-04
 
@@ -17,13 +17,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * **Radio:** New component
 
+## [2.0.1] - 2018-05-04
+
+### Added
+
+* **Badge:**
+
 ## [2.0.0-rc.41] - 2018-04-30
 
 ### Changed
 
 * **Modal:** Move close button into the modal padding, and increase its hit area.
-
-## [2.0.0-rc.41] - 2018-04-30
 
 ### Added
 
@@ -39,12 +43,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 * **Dropdown** Fix inline vendor prefix
-
-## [2.1.0] - 2018-05-04
-
-### Added
-
-* **Button** prop `isLoading`
 
 ## [2.0.0-rc.39] - 2018-04-19
 
