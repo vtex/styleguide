@@ -6,9 +6,13 @@ class Download extends PureComponent {
   render() {
     const { color, size } = this.props
     return (
-      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size}>
+      <svg
+        className="vtex-icon__download"
+        xmlns="http://www.w3.org/2000/svg"
+        width={size}
+        height={size}
+      >
         <g
-          className="vtex-icon__download"
           fill="none"
           stroke={color}
           strokeLinecap="round"

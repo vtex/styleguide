@@ -2,39 +2,33 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import config from 'vtex-tachyons/config.json'
 
-class Upload extends PureComponent {
+class Plus extends PureComponent {
   render() {
     const { color, size } = this.props
     return (
       <svg
-        className="vtex-icon__upload"
+        className="vtex-icon__plus"
         xmlns="http://www.w3.org/2000/svg"
         width={size}
         height={size}
       >
-        <g
-          fill="none"
-          stroke={color}
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeMiterlimit="10"
-        >
-          <path d="M8.5 11.5V.5M13.5 5.5l-5-5-5 5" />
-          <path data-color="color-2" d="M15.5 15.5h-14" />
-        </g>
+        <path
+          d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm4 9H9v3H7V9H4V7h3V4h2v3h3v2z"
+          fill={color}
+        />
       </svg>
     )
   }
 }
 
-Upload.defaultProps = {
+Plus.defaultProps = {
   color: config.colors['serious-black'],
   size: 16,
 }
 
-Upload.propTypes = {
+Plus.propTypes = {
   color: PropTypes.string,
   size: PropTypes.number,
 }
 
-export default Upload
+export default Plus
