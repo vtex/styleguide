@@ -2,34 +2,39 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import config from 'vtex-tachyons/config.json'
 
-class Deny extends PureComponent {
+class Upload extends PureComponent {
   render() {
     const { color, size } = this.props
     return (
       <svg
-        className="vtex-icon__deny"
-        viewBox="0 0 18 18"
+        className="vtex-icon__upload"
         xmlns="http://www.w3.org/2000/svg"
         width={size}
         height={size}
       >
-        <path
-          d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
-          fill={color}
-        />
+        <g
+          fill="none"
+          stroke={color}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeMiterlimit="10"
+        >
+          <path d="M8.5 11.5V.5M13.5 5.5l-5-5-5 5" />
+          <path data-color="color-2" d="M15.5 15.5h-14" />
+        </g>
       </svg>
     )
   }
 }
 
-Deny.defaultProps = {
+Upload.defaultProps = {
   color: config.colors['serious-black'],
   size: 16,
 }
 
-Deny.propTypes = {
+Upload.propTypes = {
   color: PropTypes.string,
   size: PropTypes.number,
 }
 
-export default Deny
+export default Upload

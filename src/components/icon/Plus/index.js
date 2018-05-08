@@ -2,19 +2,18 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import config from 'vtex-tachyons/config.json'
 
-class Deny extends PureComponent {
+class Plus extends PureComponent {
   render() {
     const { color, size } = this.props
     return (
       <svg
-        className="vtex-icon__deny"
-        viewBox="0 0 18 18"
+        className="vtex-icon__plus"
         xmlns="http://www.w3.org/2000/svg"
         width={size}
         height={size}
       >
         <path
-          d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+          d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm4 9H9v3H7V9H4V7h3V4h2v3h3v2z"
           fill={color}
         />
       </svg>
@@ -22,14 +21,14 @@ class Deny extends PureComponent {
   }
 }
 
-Deny.defaultProps = {
+Plus.defaultProps = {
   color: config.colors['serious-black'],
   size: 16,
 }
 
-Deny.propTypes = {
+Plus.propTypes = {
   color: PropTypes.string,
   size: PropTypes.number,
 }
 
-export default Deny
+export default Plus
