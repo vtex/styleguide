@@ -12,15 +12,9 @@ class Upload extends PureComponent {
         width={size}
         height={size}
       >
-        <g
-          fill="none"
-          stroke={color}
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeMiterlimit="10"
-        >
-          <path d="M8.5 11.5V.5M13.5 5.5l-5-5-5 5" />
-          <path data-color="color-2" d="M15.5 15.5h-14" />
+        <g fill={color}>
+          <path d="M7 3.4V12h2V3.4l4 4L14.4 6 8.7.3c-.4-.4-1-.4-1.4 0L1.6 6 3 7.4l4-4z" />
+          <path data-color="color-2" d="M1 14h14v2H1z" />
         </g>
       </svg>
     )

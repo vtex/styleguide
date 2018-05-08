@@ -12,15 +12,9 @@ class Download extends PureComponent {
         width={size}
         height={size}
       >
-        <g
-          fill="none"
-          stroke={color}
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeMiterlimit="10"
-        >
-          <path d="M8.5.5v11M13.5 6.5l-5 5-5-5" />
-          <path data-color="color-2" d="M15.5 15.5h-14" />
+        <g fill={color}>
+          <path d="M8 12c.3 0 .5-.1.7-.3L14.4 6 13 4.6l-4 4V0H7v8.6l-4-4L1.6 6l5.7 5.7c.2.2.4.3.7.3z" />
+          <path data-color="color-2" d="M1 14h14v2H1z" />
         </g>
       </svg>
     )
