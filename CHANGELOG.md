@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * **Radio** `checked` prop as `boolean`
 * **Toggle** demo prop `onClick` to `onChange`
+* **Input** `label` container to 100% width
 
 ## [2.3.0] - 2018-05-08
 
