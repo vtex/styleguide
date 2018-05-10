@@ -27,7 +27,7 @@ class Radio extends PureComponent {
             {
               'b--light-gray pointer': !disabled,
               'b--light-silver bg-near-white': disabled,
-            }
+            },
           )}
           style={{
             borderWidth: '3px',
@@ -35,7 +35,7 @@ class Radio extends PureComponent {
             width: '1.5rem',
           }}
         >
-          {value === checked && (
+          {checked && (
             <div
               className={classNames('br-100', {
                 'bg-blue': !disabled,
@@ -49,7 +49,7 @@ class Radio extends PureComponent {
           )}
         </div>
         <input
-          checked={value === checked}
+          checked={checked}
           className={classNames('absolute o-0', {
             pointer: !disabled,
           })}
