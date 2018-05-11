@@ -4,6 +4,11 @@ import ArrowDownIcon from './ArrowDownIcon'
 import config from 'vtex-tachyons/config.json'
 
 class Dropdown extends Component {
+  constructor(props) {
+    super(props)
+    this.initialValue = props.value
+  }
+
   handleChange = e => {
     const { disabled, onChange } = this.props
     const { target: { value } } = e
@@ -11,12 +16,27 @@ class Dropdown extends Component {
     !disabled && onChange && onChange(e, value)
   }
 
-  getValueLabel() {
-    const option = this.props.options.find(
-      option => option.value === this.props.value
-    )
+  getOptionFromValue=value => {
+    const { options } = this.props
+    const option = options.filter(
+      option => option.value === value
+    )[0]
     if (!option) return null
-    return option.label
+    return option
+  }
+
+  getPlaceholder=() => {
+    const { placeholder, label, helpText } = this.props
+    return placeholder || label || helpText || ''
+  }
+
+  getSelectedOption=() => {
+    return this.getOptionFromValue(this.props.value)
+  }
+
+  getValueLabel() {
+    const selectedOption = this.getSelectedOption()
+    return selectedOption ? selectedOption.label : this.getPlaceholder()
   }
 
   render() {
@@ -38,6 +58,8 @@ class Dropdown extends Component {
       required,
     } = this.props
 
+    const hasValidInitialValue = this.getOptionFromValue(this.initialValue) !== null
+    const isPlaceholder = this.getSelectedOption() === null
     let width
     let iconSize
 
@@ -51,6 +73,7 @@ class Dropdown extends Component {
     classes += disabled ? 'bg-light-gray ' : 'pointer '
     selectClasses += disabled ? '' : 'pointer '
     classes += !disabled && valueLabel ? 'near-black ' : 'gray '
+    classes += isPlaceholder ? 'gray ' : ''
 
     switch (size) {
       case 'large':
@@ -131,7 +154,12 @@ class Dropdown extends Component {
               }}
             >
               {preventTruncate && (
-                <optgroup label={label || helpText || placeholder || ''} />
+                <optgroup label={label || helpText || ''} />
+              )}
+              {(!hasValidInitialValue || placeholder) && (
+                <option disabled value={!hasValidInitialValue ? this.initialValue : null}>
+                  {this.getPlaceholder()}
+                </option>
               )}
               {options.map(option => (
                 <option key={option.value} value={option.value}>

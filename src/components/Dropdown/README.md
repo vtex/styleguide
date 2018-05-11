@@ -168,6 +168,7 @@ class Example extends React.Component {
             options={this.state.options}
             onChange={this.handleChange}
             value={this.state.selectedPainter}
+            placeholder='Select a painter'
             {...this.props}
           />
         </div>
