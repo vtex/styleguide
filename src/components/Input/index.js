@@ -90,7 +90,7 @@ class Input extends Component {
     }
 
     return (
-      <label className="vtex-input">
+      <label className="vtex-input w-100">
         {label && (
           <span className="vtex-input__label db mb3 w-100">{label}</span>
         )}
@@ -128,8 +128,9 @@ class Input extends Component {
           value={this.props.value}
           id={this.props.id}
         />
-        {errorMessage &&
-          <div className="red f6 mt3 lh-title">{errorMessage}</div>}
+        {errorMessage && (
+          <div className="red f6 mt3 lh-title">{errorMessage}</div>
+        )}
         {helpText && <div className="mid-gray f6 mt3 lh-title">{helpText}</div>}
       </label>
     )
