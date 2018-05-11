@@ -16,6 +16,10 @@ module.exports = {
       content: './docs/components.md',
       components: 'src/components/**/index.js',
     },
+    {
+      name: 'Icons',
+      content: 'src/components/icon/README.md',
+    },
   ],
   getComponentPathLine(componentPath) {
     const pathArray = path.dirname(componentPath).split(path.sep)
