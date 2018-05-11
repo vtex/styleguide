@@ -18,9 +18,9 @@ class Dropdown extends Component {
 
   getOptionFromValue=value => {
     const { options } = this.props
-    const option = options.find(
+    const option = options.filter(
       option => option.value === value
-    )
+    )[0]
     if (!option) return null
     return option
   }
