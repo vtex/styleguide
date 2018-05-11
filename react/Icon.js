@@ -11,6 +11,7 @@ import Upload from './components/icon/Upload/index'
 import Warning from './components/icon/Warning/index'
 
 export default {
+  Check,
   Close,
   Deny,
   Download,
