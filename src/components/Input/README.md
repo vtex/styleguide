@@ -1,11 +1,13 @@
 Sizes
+
 ```js
 <div>
   <div className="mb5">
     <Input
       placeholder="Default with data-attributes"
       label="Default"
-      dataAttributes={{'hj-white-list': true, 'test': 'string'}} />
+      dataAttributes={{ 'hj-white-list': true, test: 'string' }}
+    />
   </div>
 
   <div className="mb5">
@@ -19,6 +21,7 @@ Sizes
 ```
 
 Variations
+
 ```js
 <div className="w-40">
   <div className="mb5">
@@ -37,9 +40,34 @@ Variations
     <Input label="Error" value="43" errorMessage="Invalid field value" />
   </div>
 
-  <div>
-    <Input label="Help text" placeholder="Placeholder"
-      helpText={<span>Yout help text goes here!</span>} />
+  <div className="mb5">
+    <Input
+      label="Help text"
+      placeholder="Placeholder"
+      helpText={<span>Yout help text goes here!</span>}
+    />
+  </div>
+
+  <div className="mb5">
+    <Input label="With prefix" prefix="R$" type="number" />
+  </div>
+
+  <div className="mb5">
+    <Input
+      label="With prefix, size large"
+      size="large"
+      prefix="R$"
+      type="number"
+    />
+  </div>
+
+  <div className="mb5">
+    <Input
+      label="With prefix, size x-large"
+      type="number"
+      size="x-large"
+      prefix="R$"
+    />
   </div>
 </div>
 ```
