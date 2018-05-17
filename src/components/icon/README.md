@@ -14,7 +14,7 @@ const Warning = require('./Warning').default;
 <div className="flex flex-wrap tl">
   <div class="mr6 mb6">
     <div className="pb3 ttu gray">Check</div>
-      <Check width={40} />
+    <Check width={40} />
   </div>
   <div class="mr6 mb6">
     <div className="pb3 ttu gray">BoldCheck</div>
@@ -24,27 +24,27 @@ const Warning = require('./Warning').default;
     <div className="pb3 ttu gray">Close</div>
     <Close width={40} />
   </div>
-  <div class="mr6 mb6">
+  <div className="mr6 mb6">
     <div className="pb3 ttu gray">Deny</div>
     <Deny width={40} />
   </div>
-  <div class="mr6 mb6">
+  <div className="mr6 mb6">
     <div className="pb3 ttu gray">Download</div>
     <Download width={40} />
   </div>
-  <div class="mr6 mb6">
+  <div className="mr6 mb6">
     <div className="pb3 ttu gray">Edit</div>
     <Edit width={40} />
   </div>
-  <div class="mr6 mb6">
+  <div className="mr6 mb6">
     <div className="pb3 ttu gray">Failure</div>
     <Failure width={40} />
   </div>
-  <div class="mr6 mb6">
+  <div className="mr6 mb6">
     <div className="pb3 ttu gray">Plus</div>
     <Plus width={40} />
   </div>
-  <div class="mr6 mb6">
+  <div className="mr6 mb6">
     <div className="pb3 ttu gray">Search</div>
     <Search width={40} />
   </div>
