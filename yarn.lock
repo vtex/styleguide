@@ -8964,9 +8964,9 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
-vtex-tachyons@^2.3.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/vtex-tachyons/-/vtex-tachyons-2.4.0.tgz#c95ba2303bef179826058997d1bc578468669ff2"
+vtex-tachyons@^2.5.1:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/vtex-tachyons/-/vtex-tachyons-2.5.1.tgz#a56ec6d33417886c0e8755da383088b88bf437fe"
 
 walker@~1.0.5:
   version "1.0.7"
