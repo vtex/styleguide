@@ -29,7 +29,7 @@ class Toggle extends Component {
         iconCheckClasses += 'flex o-100 '
       }
     } else if (disabled) {
-      classes += 'bg-near-white '
+      classes += 'bg-light-gray '
     } else {
       if (!checked) {
         classes += 'bg-gray '
@@ -52,7 +52,7 @@ class Toggle extends Component {
     }
 
     if (disabled) {
-      circleClasses += 'bg-light-gray '
+      circleClasses += 'bg-silver '
     } else {
       circleClasses += 'bg-white '
     }
