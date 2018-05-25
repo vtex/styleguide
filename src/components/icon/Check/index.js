@@ -5,18 +5,25 @@ import config from 'vtex-tachyons/config.json'
 class Check extends PureComponent {
   render() {
     const { color, size } = this.props
+
     return (
       <svg
         className="vtex-icon__check"
-        viewBox="0 0 18 18"
-        xmlns="http://www.w3.org/2000/svg"
-        width={size}
         height={size}
+        width={size}
+        version="1.1"
+        viewBox="0 0 16 16"
+        xmlns="http://www.w3.org/2000/svg"
+        x="0px"
+        y="0px"
+        xmlSpace="preserve"
       >
-        <path
-          d="M6.61 11.89L3.5 8.78 2.44 9.84 6.61 14l8.95-8.95L14.5 4z"
-          fill={color}
-        />
+        <g className="nc-icon-wrapper" fill={color}>
+          <polygon
+            fill={color}
+            points="12.4,6 11,4.6 7,8.6 5,6.6 3.6,8 7,11.4 "
+          />
+        </g>
       </svg>
     )
   }
@@ -24,12 +31,12 @@ class Check extends PureComponent {
 
 Check.defaultProps = {
   color: config.colors['serious-black'],
-  size: 16,
+  size: '1.3rem',
 }
 
 Check.propTypes = {
   color: PropTypes.string,
-  size: PropTypes.number,
+  size: PropTypes.string,
 }
 
 export default Check
