@@ -15,9 +15,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * **Tabs** New component
 * **Input** `prefix` prop
 * **Emptystate** New component
+* Provide codemod script to automatically transform `Button` deprecated props. To run it:
+  ```sh
+    yarn global add jscodeshift
+    jscodeshift -t node_modules/@vtex/styleguide/codemod/button-v4.js <path>
+  ```
 
 ### Changed
-
+* **[BREAKING] Button** change `primary` and `secondary` to `variation="primary"` and `variation="secondary"`
+* **[BREAKING] Button** change default variation from tertiary to primary
+* **[BREAKING] Button** change size values to "small", "regular" and "large"
+* **[BREAKING] Button** change default size to "regular"
 * **Toggle** fix disabled contrast
 * **Button** fix secondary button colors to blue tones
 * **Dropdown** fix `value` prop type
