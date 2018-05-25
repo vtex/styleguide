@@ -20,7 +20,7 @@ class Card extends PureComponent {
 Card.propTypes = {
   /** Content of the card */
   children: PropTypes.node.isRequired,
-  /** Use the full size of the card, without any padding. */
+  /** Use the full size of the card. */
   noPadding: PropTypes.bool,
 }
 

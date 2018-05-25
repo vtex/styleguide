@@ -15,7 +15,7 @@ Full width
 
 ```js
 <div style={{padding: '80px', color: '#585959', background: '#fafafa'}}>
-  <Card noPadding={true}>
+  <Card noPadding >
     <h3 className="pl6 pr6 pt6">Spider</h3>
     <img
     width="100%"
