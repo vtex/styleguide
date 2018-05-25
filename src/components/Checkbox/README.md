@@ -3,37 +3,20 @@ Master
 ```js
 class MasterCheckboxExample extends React.Component {
   constructor() {
-    super()
-
     this.state = {
-      masterCheckboxes: ['option-0'],
+      isChecked: true,
     }
-
-    this.handleChange = this.handleChange.bind(this)
-  }
-
-  handleChange(e, value){
-    let checkBoxes;
-    let valueIndex = this.state.masterCheckboxes.indexOf(value)
-    if (valueIndex === -1) {
-      checkBoxes = this.state.masterCheckboxes.concat(value)
-    } else {
-      checkBoxes = []
-    }
-    this.setState({
-      masterCheckboxes: checkBoxes,
-    })
   }
 
   render() {
     return (
       <div>
         <Checkbox
-          checked={this.state.masterCheckboxes.indexOf('option-0') !== -1}
+          checked={this.state.isChecked}
           id="master-checkbox-0"
           label="Checked"
           name="master-checkbox-group"
-          onChange={this.handleChange}
+          onChange={() => this.setState({isChecked: !this.state.isChecked})}
           value="option-0"
         />
       </div>
@@ -101,16 +84,9 @@ Disabled
 ```js
 class DisabledCheckboxExample extends React.Component {
   constructor() {
-    super()
-
     this.state = {
       disabledCheckboxes: ['option-0'],
     }
-
-    this.handleChange = this.handleChange.bind(this)
-  }
-
-  handleChange(e, value) {
   }
 
   render() {
@@ -122,7 +98,7 @@ class DisabledCheckboxExample extends React.Component {
           id="disabled-checkbox-0"
           label="Option 0"
           name="disabledcheckbox-group"
-          onChange={this.handleChange}
+          onChange={() => {}}
           value="option-0"
         />
         <Checkbox
@@ -131,7 +107,7 @@ class DisabledCheckboxExample extends React.Component {
           id="disabled-checkbox-1"
           label="Option 1"
           name="disabled-checkbox-group"
-          onChange={this.handleChange}
+          onChange={() => {}}
           value="option-1"
         />
       </div>
