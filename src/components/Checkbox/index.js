@@ -4,7 +4,7 @@ import classNames from 'classnames'
 import BoldCheckIcon from '../icon/BoldCheck'
 
 class Checkbox extends PureComponent {
-  handleChange = e => !this.props.disabled && this.props.onChange(e, e.target.value)
+  handleChange = e => !this.props.disabled && this.props.onChange(e)
 
   render() {
     const {
