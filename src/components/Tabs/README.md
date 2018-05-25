@@ -1,37 +1,25 @@
 Default
 
 ```js
-class TabsExample extends React.Component {
-  constructor() {
-    super()
+const Tab = require('./Tab').default
+;<div>
+  <Tabs>
+    <Tab label="label 1">content 1</Tab>
+    <Tab label="label 2">content 2</Tab>
+    <Tab label="label 3">content 3</Tab>
+  </Tabs>
+</div>
+```
 
-    this.state = {
-      checkedRadioValue: 'option-1',
-    }
+Start at specific index
 
-    // this.handleChange = this.handleChange.bind(this)
-  }
-
-  // handleChange(e, value) {
-  //   this.setState({
-  //     checkedRadioValue: value,
-  //   })
-  // }
-
-  render() {
-    return (
-      <div>
-        <Tabs>
-          <Tab label="tab1" value="v1">
-            <p>Some content</p>
-          </Tab>
-          <Tab label="tab2" value="v2">
-            <p>Some content</p>
-          </Tab>
-        </Tabs>
-      </div>
-    )
-  }
-}
-;<TabsExample />
+```js
+const Tab = require('./Tab').default
+;<div>
+  <Tabs activeIndex={1}>
+    <Tab label="label 1">content 1</Tab>
+    <Tab label="label 2">content 2</Tab>
+    <Tab label="label 3">content 3</Tab>
+  </Tabs>
+</div>
 ```
