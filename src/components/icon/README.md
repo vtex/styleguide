@@ -1,5 +1,6 @@
 ```js
 const Check = require('./Check').default;
+const BoldCheck = require('./BoldCheck').default;
 const Close = require('./Close').default;
 const Deny = require('./Deny').default;
 const Download = require('./Download').default;
@@ -14,6 +15,10 @@ const Warning = require('./Warning').default;
   <div class="mr6 mb6">
     <div className="pb3 ttu gray">Check</div>
       <Check width={40} />
+  </div>
+  <div class="mr6 mb6">
+    <div className="pb3 ttu gray">BoldCheck</div>
+    <BoldCheck width={40} />
   </div>
   <div class="mr6 mb6">
     <div className="pb3 ttu gray">Close</div>
@@ -44,12 +49,12 @@ const Warning = require('./Warning').default;
     <Search width={40} />
   </div>
   <div class="mr6 mb6">
-    <div className="pb3 ttu gray">Success</div>
-    <Success width={40} />
-  </div>
-  <div class="mr6 mb6">
     <div className="pb3 ttu gray">Upload</div>
     <Upload width={40} />
+  </div>
+  <div class="mr6 mb6">
+    <div className="pb3 ttu gray">Success</div>
+    <Success width={40} />
   </div>
   <div class="mr6 mb6">
     <div className="pb3 ttu gray">Warning</div>
