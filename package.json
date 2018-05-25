@@ -15,10 +15,10 @@
     "prepublishOnly": "run-s compile deploy",
     "snap:test": "styleguidist-visual test --url \"http:localhost:6060\"",
     "snap:approve": "styleguidist-visual approve",
-    "version": "node ./scripts/version.js",
     "entrypoints": "node ./scripts/entrypoints.js",
-    "vtex-publish": "vtex publish",
-    "postreleasy": "run-s version vtex-publish"
+    "manifest-version": "node ./scripts/version.js",
+    "prereleasy": "run-s entrypoints manifest-version",
+    "postreleasy": "vtex publish --public --verbose"
   },
   "files": [
     "lib/",

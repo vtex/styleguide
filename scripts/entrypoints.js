@@ -19,7 +19,7 @@ fs.readdir(componentsFolder, (err, files) => {
 
   files.filter(isComponentFolder).forEach(file => {
     const entrypointPath = path.join(entrypointsFolder, `${file}.js`)
-    console.log(`writing ${entrypointPath}`)
+    console.log(`Writing ${entrypointPath}`)
     fs.writeFileSync(entrypointPath, entrypointTemplate(file, false))
   })
 })
@@ -31,7 +31,7 @@ fs.readdir(iconsFolder, (err, files) => {
 
   files.filter(isComponentFolder).forEach(file => {
     const entrypointPath = path.join(entrypointsFolder, `Icon${file}.js`)
-    console.log(`writing ${entrypointPath}`)
+    console.log(`Writing ${entrypointPath}`)
     fs.writeFileSync(entrypointPath, entrypointTemplate(file, true))
   })
 })
