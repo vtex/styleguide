@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 * **Toggle** fix disabled contrast
+* **Button** fix secondary button colors to blue tones
 
 ## [3.0.2] - 2018-05-11
 
