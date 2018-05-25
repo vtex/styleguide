@@ -78,7 +78,7 @@ Checkbox.propTypes = {
   /** (Input spec attribute) */
   disabled: PropTypes.bool,
   /** (Input spec attribute) */
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   /** Checkbox label */
   label: PropTypes.string.isRequired,
   /** (Input spec attribute) */
