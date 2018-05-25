@@ -11,26 +11,26 @@ class Dropdown extends Component {
 
   handleChange = e => {
     const { disabled, onChange } = this.props
-    const { target: { value } } = e
+    const {
+      target: { value },
+    } = e
 
     !disabled && onChange && onChange(e, value)
   }
 
-  getOptionFromValue=value => {
+  getOptionFromValue = value => {
     const { options } = this.props
-    const option = options.filter(
-      option => option.value === value
-    )[0]
+    const option = options.filter(option => option.value === value)[0]
     if (!option) return null
     return option
   }
 
-  getPlaceholder=() => {
+  getPlaceholder = () => {
     const { placeholder, label, helpText } = this.props
     return placeholder || label || helpText || ''
   }
 
-  getSelectedOption=() => {
+  getSelectedOption = () => {
     return this.getOptionFromValue(this.props.value)
   }
 
@@ -58,7 +58,8 @@ class Dropdown extends Component {
       required,
     } = this.props
 
-    const hasValidInitialValue = this.getOptionFromValue(this.initialValue) !== null
+    const hasValidInitialValue =
+      this.getOptionFromValue(this.initialValue) !== null
     const isPlaceholder = this.getSelectedOption() === null
     let width
     let iconSize
@@ -115,15 +116,10 @@ class Dropdown extends Component {
       <div className="vtex-dropdown">
         <label>
           {label && (
-            <span className="vtex-dropdown__label dib mb3 w-100">
-              {label}
-            </span>
+            <span className="vtex-dropdown__label dib mb3 w-100">{label}</span>
           )}
           <div className={containerClasses} style={containerStyle}>
-            <div
-              id={id}
-              className={`vtex-dropdown__button ${classes}`}
-            >
+            <div id={id} className={`vtex-dropdown__button ${classes}`}>
               <div className="flex">
                 <div className="vtex-dropdown__caption flex-auto tl truncate">
                   {showCaption ? placeholder : valueLabel}
@@ -153,11 +149,12 @@ class Dropdown extends Component {
                 WebkitAppearance: 'menulist-button',
               }}
             >
-              {preventTruncate && (
-                <optgroup label={label || helpText || ''} />
-              )}
+              {preventTruncate && <optgroup label={label || helpText || ''} />}
               {(!hasValidInitialValue || placeholder) && (
-                <option disabled value={!hasValidInitialValue ? this.initialValue : null}>
+                <option
+                  disabled
+                  value={!hasValidInitialValue ? this.initialValue : null}
+                >
                   {this.getPlaceholder()}
                 </option>
               )}
@@ -167,15 +164,12 @@ class Dropdown extends Component {
                 </option>
               ))}
             </select>
-
           </div>
         </label>
         {errorMessage && (
           <div className="red f6 mt3 lh-title">{errorMessage}</div>
         )}
-        {helpText && (
-          <div className="mid-gray f6 mt3 lh-title">{helpText}</div>
-        )}
+        {helpText && <div className="mid-gray f6 mt3 lh-title">{helpText}</div>}
       </div>
     )
   }
@@ -202,9 +196,11 @@ Dropdown.propTypes = {
   /** Dropdown options list */
   options: PropTypes.arrayOf(
     PropTypes.shape({
-      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-      label: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-    })
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+        .isRequired,
+      label: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+        .isRequired,
+    }),
   ),
   /** Prevent truncating large options texts on some devices/browsers, such as iOS */
   preventTruncate: PropTypes.bool,
@@ -213,7 +209,7 @@ Dropdown.propTypes = {
   /** Spec attribute */
   autoFocus: PropTypes.bool,
   /** Spec attribute */
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /** Spec attribute */
   disabled: PropTypes.bool,
   /** Spec attribute */

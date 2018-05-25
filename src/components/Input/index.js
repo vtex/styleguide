@@ -203,7 +203,7 @@ Input.propTypes = {
   /** Spec attribute */
   readOnly: PropTypes.bool,
   /** Spec attribute */
-  required: PropTypes.string,
+  required: PropTypes.bool,
   /** Spec attribute */
   spellCheck: PropTypes.string,
   /** Spec attribute */
