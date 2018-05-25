@@ -56,7 +56,7 @@ class Toggle extends Component {
       circleClasses += 'bg-white '
     }
 
-    let checkedOffsetClass, style
+    let checkedOffsetClass, labelClass, style
 
     switch (size) {
       case 'small':
@@ -75,6 +75,8 @@ class Toggle extends Component {
           width: '1.25rem',
         }
 
+        labelClass = 'ml3'
+
         checkedOffsetClass = 'left-1'
 
         break
@@ -83,6 +85,8 @@ class Toggle extends Component {
         circleClasses += 'h2 w2 '
         iconDenyClasses += 'w2 '
         iconCheckClasses += 'w2 '
+
+        labelClass = 'ml5'
 
         checkedOffsetClass = 'left-2'
     }
@@ -124,7 +128,7 @@ class Toggle extends Component {
           onClick={this.props.onClick}
           onChange={this.props.onChange}
         />
-        {label && <span className="ml5">{label}</span>}
+        {label && <span className={labelClass}>{label}</span>}
       </label>
     )
   }
