@@ -12,27 +12,30 @@ class Toggle extends Component {
 
     let classes = 'flex items-center relative br4 bg-animate '
     let circleClasses = 'absolute br-100 '
-    let iconDenyClasses = 'absolute mh2 dn '
-    let iconCheckClasses = 'absolute mh3 dn '
+    let iconDenyClasses = 'absolute flex justify-center '
+    let iconCheckClasses = 'absolute flex justify-center '
 
     let circleStyle = {
       boxShadow: disabled ? 'none' : '0 0 10px rgba(0,0,0,0.2)',
       transform: 'scale(0.7)',
       transition: 'all .2s ease-out',
     }
+    let iconStyle = {
+      transition: 'left .2s ease-out',
+    }
 
     // Background
     if (semantic) {
       if (!disabled && !checked) {
         classes += 'bg-red '
-        iconDenyClasses += 'flex o-100 '
-        iconCheckClasses += 'flex o-0 '
+        iconDenyClasses += 'o-100 '
+        iconCheckClasses += 'o-0 '
       }
 
       if (!disabled && checked) {
         classes += 'bg-green '
-        iconDenyClasses += 'flex o-0 '
-        iconCheckClasses += 'flex o-100 '
+        iconDenyClasses += 'o-0 '
+        iconCheckClasses += 'o-100 '
       }
     } else if (disabled) {
       classes += 'bg-light-gray '
@@ -61,10 +64,14 @@ class Toggle extends Component {
           height: '1.25rem',
           width: '2.25rem',
         }
-
         circleStyle = {
           ...circleStyle,
           height: '1.25rem',
+          width: '1.25rem',
+        }
+        iconStyle = {
+          ...iconStyle,
+          transform: 'scale(0.7)',
           width: '1.25rem',
         }
 
@@ -74,6 +81,8 @@ class Toggle extends Component {
       default:
         classes += 'h2 w3 '
         circleClasses += 'h2 w2 '
+        iconDenyClasses += 'w2 '
+        iconCheckClasses += 'w2 '
 
         checkedOffsetClass = 'left-2'
     }
@@ -95,23 +104,16 @@ class Toggle extends Component {
       >
         <div className={`vtex-toggle ${classes}`} style={style}>
           <div className={circleClasses} style={circleStyle} />
-          <div
-            className={iconDenyClasses}
-            style={{
-              marginLeft: '.5rem',
-              transition: 'left .2s ease-out',
-            }}
-          >
-            <DenyIcon color={config.colors.red} />
-          </div>
-          <div
-            className={iconCheckClasses}
-            style={{
-              transition: 'left .2s ease-out',
-            }}
-          >
-            <CheckIcon color={config.colors.green} />
-          </div>
+          {semantic && (
+            <div className={iconDenyClasses} style={iconStyle}>
+              <DenyIcon color={config.colors.red} />
+            </div>
+          )}
+          {semantic && (
+            <div className={iconCheckClasses} style={iconStyle}>
+              <CheckIcon color={config.colors.green} />
+            </div>
+          )}
         </div>
         <input
           id={id || undefined}
