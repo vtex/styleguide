@@ -8,12 +8,18 @@ import config from 'vtex-tachyons/config.json'
 
 class Toggle extends Component {
   render() {
-    const { semantic, disabled, id, checked, label } = this.props
+    const { semantic, disabled, id, checked, label, size } = this.props
 
-    let classes = 'flex items-center relative h2 w3 ph1 br4 bg-animate '
-    let circleClasses = 'absolute br-100 pa3 mh2 '
+    let classes = 'flex items-center relative br4 bg-animate '
+    let circleClasses = 'absolute br-100 '
     let iconDenyClasses = 'absolute mh2 dn '
     let iconCheckClasses = 'absolute mh3 dn '
+
+    let circleStyle = {
+      boxShadow: disabled ? 'none' : '0 0 10px rgba(0,0,0,0.2)',
+      transform: 'scale(0.7)',
+      transition: 'all .2s ease-out',
+    }
 
     // Background
     if (semantic) {
@@ -41,20 +47,45 @@ class Toggle extends Component {
     }
 
     // Circle
-    if (checked) {
-      circleClasses += 'left-2 '
-      iconDenyClasses += 'left-2 '
-      iconCheckClasses += 'left-2 '
-    } else {
-      circleClasses += 'left-0 '
-      iconDenyClasses += 'left-0 '
-      iconCheckClasses += 'left-0 '
-    }
-
     if (disabled) {
       circleClasses += 'bg-silver '
     } else {
       circleClasses += 'bg-white '
+    }
+
+    let checkedOffsetClass, style
+
+    switch (size) {
+      case 'small':
+        style = {
+          height: '1.25rem',
+          width: '2.25rem',
+        }
+
+        circleStyle = {
+          ...circleStyle,
+          height: '1.25rem',
+          width: '1.25rem',
+        }
+
+        checkedOffsetClass = 'left-1'
+
+        break
+      default:
+        classes += 'h2 w3 '
+        circleClasses += 'h2 w2 '
+
+        checkedOffsetClass = 'left-2'
+    }
+
+    if (checked) {
+      circleClasses += `${checkedOffsetClass} `
+      iconDenyClasses += `${checkedOffsetClass} `
+      iconCheckClasses += `${checkedOffsetClass} `
+    } else {
+      circleClasses += 'left-0 '
+      iconDenyClasses += 'left-0 '
+      iconCheckClasses += 'left-0 '
     }
 
     return (
@@ -62,16 +93,8 @@ class Toggle extends Component {
         htmlFor={id || undefined}
         className={`flex flex-row items-center ${!disabled && 'pointer'}`}
       >
-        <div className={`vtex-toggle ${classes}`}>
-          <div
-            style={{
-              height: '1.5rem',
-              width: '1.5rem',
-              transition: 'all .2s ease-out',
-              boxShadow: disabled ? 'none' : '0 0 10px rgba(0,0,0,0.2)',
-            }}
-            className={`${circleClasses}`}
-          />
+        <div className={`vtex-toggle ${classes}`} style={style}>
+          <div className={circleClasses} style={circleStyle} />
           <div
             className={iconDenyClasses}
             style={{
@@ -110,6 +133,7 @@ Toggle.defaultProps = {
   disabled: false,
   semantic: false,
   label: '',
+  size: 'regular',
 }
 
 Toggle.propTypes = {
@@ -120,6 +144,8 @@ Toggle.propTypes = {
   label: PropTypes.string,
   onChange: PropTypes.func,
   onClick: PropTypes.func,
+  /* Element size */
+  size: PropTypes.oneOf(['small', 'regular']),
 }
 
 export default Toggle
