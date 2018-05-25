@@ -213,7 +213,7 @@ Dropdown.propTypes = {
   /** Spec attribute */
   autoFocus: PropTypes.bool,
   /** Spec attribute */
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /** Spec attribute */
   disabled: PropTypes.bool,
   /** Spec attribute */
