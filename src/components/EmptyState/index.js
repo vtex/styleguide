@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
 
 class EmptyState extends PureComponent {
   render() {
@@ -17,8 +16,22 @@ class EmptyState extends PureComponent {
 }
 
 EmptyState.propTypes = {
-  children: PropTypes.node,
-  title: PropTypes.bool,
+  /** Title of the component (String) */
+  title: (props, propName, componentName) => {
+    if (!props.title && !props.children) {
+      return new Error(
+        `Prop 'title' or 'children' was not specified in '${componentName}'.`,
+      )
+    }
+  },
+  /** node */
+  children: (props, propName, componentName) => {
+    if (!props.title && !props.children) {
+      return new Error(
+        `Prop 'title' or 'children' was not specified in '${componentName}'.`,
+      )
+    }
+  },
 }
 
 export default EmptyState
