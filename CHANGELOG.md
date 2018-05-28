@@ -7,12 +7,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+* **Togle** add `size` prop: `small` or `regular` (default)
+
 ### Changed
 
 * **Toggle** fix disabled contrast
 * **Button** fix secondary button colors to blue tones
-* **Dropdown** fix `value` propType
-* **Input** fix `required` propType
+* **Dropdown** fix `value` prop type
+* **Input** fix `required` prop type
+* **Check icon** change SVG and `size` prop type
+* **Deny icon** change SVG and `size` prop type
 
 ## [3.0.2] - 2018-05-11
 
