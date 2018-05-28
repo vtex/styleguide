@@ -60,6 +60,10 @@ class Radio extends PureComponent {
           onChange={e => onChange(e, e.target.value)}
           type="radio"
           value={value}
+          style={{
+            height: '1.5rem',
+            width: '1.5rem',
+          }}
         />
         <label
           className={classNames({ silver: disabled }, { pointer: !disabled })}
