@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   ```
 
 ### Changed
+
 * **[BREAKING] Button** change `primary` and `secondary` to `variation="primary"` and `variation="secondary"`
 * **[BREAKING] Button** change default variation from tertiary to primary
 * **[BREAKING] Button** change size values to "small", "regular" and "large"
