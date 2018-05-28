@@ -5,7 +5,12 @@ Use a toggle whenever you're dealing with a feature that can be activated or dea
 ## Default
 
 ```js
-initialState = { checked: true, checked2: false }
+initialState = {
+  checked: true,
+  checked2: false,
+  checkedSmall1: true,
+  checkedSmall2: false,
+}
 ;<div>
   <div className="dib">
     <Toggle
@@ -20,6 +25,28 @@ initialState = { checked: true, checked2: false }
       label="Label"
       checked={state.checked2}
       onChange={e => setState(prevState => ({ checked2: !prevState.checked2 }))}
+    />
+  </div>
+  <br />
+  <div className="mt6 dib">
+    <Toggle
+      label="Label (small)"
+      size="small"
+      checked={state.checkedSmall1}
+      onChange={e =>
+        setState(prevState => ({ checkedSmall1: !prevState.checkedSmall1 }))
+      }
+    />
+  </div>
+  <br />
+  <div className="mt2 dib">
+    <Toggle
+      label="Label (small)"
+      size="small"
+      checked={state.checkedSmall2}
+      onChange={e =>
+        setState(prevState => ({ checkedSmall2: !prevState.checkedSmall2 }))
+      }
     />
   </div>
 </div>
@@ -36,7 +63,12 @@ Example: when configuring Security settings, you might want to signal to the use
 **To do:** make this more visual with an actual interface example that demonstrates this.
 
 ```js
-initialState = { checked: true, checked2: false }
+initialState = {
+  checked: true,
+  checked2: false,
+  checkedSmall1: true,
+  checkedSmall2: false,
+}
 ;<div>
   <div className="dib">
     <Toggle
@@ -53,6 +85,30 @@ initialState = { checked: true, checked2: false }
       semantic
       checked={state.checked2}
       onChange={e => setState(prevState => ({ checked2: !prevState.checked2 }))}
+    />
+  </div>
+  <br />
+  <div className="mt6 dib">
+    <Toggle
+      label="Label (small)"
+      size="small"
+      semantic
+      checked={state.checkedSmall1}
+      onChange={e =>
+        setState(prevState => ({ checkedSmall1: !prevState.checkedSmall1 }))
+      }
+    />
+  </div>
+  <br />
+  <div className="mt2 dib">
+    <Toggle
+      label="Label (small)"
+      size="small"
+      semantic
+      checked={state.checkedSmall2}
+      onChange={e =>
+        setState(prevState => ({ checkedSmall2: !prevState.checkedSmall2 }))
+      }
     />
   </div>
 </div>
