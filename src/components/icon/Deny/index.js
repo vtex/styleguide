@@ -5,18 +5,25 @@ import config from 'vtex-tachyons/config.json'
 class Deny extends PureComponent {
   render() {
     const { color, size } = this.props
+
     return (
       <svg
         className="vtex-icon__deny"
-        viewBox="0 0 18 18"
-        xmlns="http://www.w3.org/2000/svg"
-        width={size}
         height={size}
+        width={size}
+        version="1.1"
+        viewBox="0 0 16 16"
+        xmlns="http://www.w3.org/2000/svg"
+        x="0px"
+        y="0px"
+        xmlSpace="preserve"
       >
-        <path
-          d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
-          fill={color}
-        />
+        <g className="nc-icon-wrapper" fill={color}>
+          <polygon
+            fill={color}
+            points="12.2,0.9 8,5.2 3.8,0.9 0.9,3.8 5.2,8 0.9,12.2 3.8,15.1 8,10.8 12.2,15.1 15.1,12.2 10.8,8 15.1,3.8 "
+          />
+        </g>
       </svg>
     )
   }
@@ -24,12 +31,12 @@ class Deny extends PureComponent {
 
 Deny.defaultProps = {
   color: config.colors['serious-black'],
-  size: 16,
+  size: '0.7rem',
 }
 
 Deny.propTypes = {
   color: PropTypes.string,
-  size: PropTypes.number,
+  size: PropTypes.string,
 }
 
 export default Deny
