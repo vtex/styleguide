@@ -59,7 +59,7 @@ class Input extends Component {
     let classes = `${widthClass} ${box} ${border} ${typography} `
 
     let prefixClasses =
-      'vtex-input__prefix absolute gray fw5 flex items-center bg-light-gray '
+      'vtex-input__prefix absolute gray fw5 flex items-center '
 
     if (token) {
       classes += 'code '
@@ -86,17 +86,17 @@ class Input extends Component {
 
     switch (size) {
       case 'large':
-        classes += `f5 pv4 ${prefix ? 'pl9 pr6' : 'ph6'}`
+        classes += `f5 pv4 ${prefix ? 'pl8 pr6' : 'ph6'}`
         prefixClasses += 'ph4 f5'
         // iconSize = 18
         break
       case 'x-large':
-        classes += `f4 pv5 ${prefix ? 'pl9 pr7' : 'ph7'}`
+        classes += `f4 pv5 ${prefix ? 'pl8 pr7' : 'ph7'}`
         prefixClasses += 'ph5 f4 '
         // iconSize = 22
         break
       default:
-        classes += `f6 pv3 ${prefix ? 'pl8 pr5' : 'ph5'}`
+        classes += `f6 pv3 ${prefix ? 'pl7 pr5' : 'ph5'}`
         prefixClasses += 'ph3 fw5 f6 '
         // iconSize = 16
         break
