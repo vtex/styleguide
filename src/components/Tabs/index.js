@@ -3,57 +3,37 @@ import PropTypes from 'prop-types'
 
 import config from 'vtex-tachyons/config.json'
 
-class Tabs extends Component {
-  constructor(props) {
-    super()
-
-    this.state = {
-      activeIndex: props.activeIndex,
-    }
-  }
-
-  handleClick = activeIndex => {
-    this.setState({ activeIndex })
+class Tab extends Component {
+  handleClick = () => {
+    this.props.onClick && this.props.onClick()
   }
 
   render() {
-    const { activeIndex } = this.state
-    const { children } = this.props
+    const style = this.props.active
+      ? { boxShadow: `0 2px ${config.colors['red']}` }
+      : {}
 
     return (
-      <div className="vtex-tabs__container">
-        <div className="vtex-tabs__buttons">
-          {React.Children.map(children, (child, index) => {
-            const style =
-              index === activeIndex
-                ? { boxShadow: `0 2px ${config.colors['red']}` }
-                : {}
-
-            return (
-              <button
-                type="button"
-                onClick={() => this.handleClick(index)}
-                className="vtex-tabs__button bw1 ba fw5 fw4 v-mid relative pv5 ph4 f5 b--transparent bg-transparent"
-                style={style}
-              >
-                {child.props.label}
-              </button>
-            )
-          })}
-        </div>
-        {children[activeIndex]}
-      </div>
+      <button
+        type="button"
+        onClick={this.handleClick}
+        className="vtex-tab__button bw1 ba fw5 fw4 v-mid relative pv5 ph4 f5 b--transparent bg-transparent"
+        style={style}
+      >
+        {this.props.label}
+      </button>
     )
   }
 }
 
-Tabs.defaultProps = {
-  activeIndex: 0,
+Tab.defaultProps = {
+  active: false,
 }
 
-Tabs.propTypes = {
-  activeIndex: PropTypes.number,
-  children: PropTypes.node,
+Tab.propTypes = {
+  label: PropTypes.any.isRequired,
+  onClick: PropTypes.func.isRequired,
+  active: PropTypes.bool,
 }
 
-export default Tabs
+export default Tab
