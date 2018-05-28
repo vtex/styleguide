@@ -11,39 +11,27 @@ Default
 Working example
 
 ```js
-class TabsExample extends React.Component {
-  constructor() {
-    super()
-    this.state = { active: 1 }
-  }
-
-  render() {
-    const { active } = this.state
-    return (
-      <div>
-        <div>
-          <Tab
-            label="label 1"
-            active={active === 1}
-            onClick={() => this.setState({ active: 1 })}
-          />
-          <Tab
-            label="label 2"
-            active={active === 2}
-            onClick={() => this.setState({ active: 2 })}
-          />
-          <Tab
-            label="label 3"
-            active={active === 3}
-            onClick={() => this.setState({ active: 3 })}
-          />
-        </div>
-        {active === 1 && <p>Content 1</p>}
-        {active === 2 && <p>Content 2</p>}
-        {active === 3 && <p>Content 3</p>}
-      </div>
-    )
-  }
-}
-;<TabsExample />
+initialState = { active: 1 }
+;<div>
+  <div>
+    <Tab
+      label="label 1"
+      active={state.active === 1}
+      onClick={() => setState({ active: 1 })}
+    />
+    <Tab
+      label="label 2"
+      active={state.active === 2}
+      onClick={() => setState({ active: 2 })}
+    />
+    <Tab
+      label="label 3"
+      active={state.active === 3}
+      onClick={() => setState({ active: 3 })}
+    />
+  </div>
+  {state.active === 1 && <p>Content 1</p>}
+  {state.active === 2 && <p>Content 2</p>}
+  {state.active === 3 && <p>Content 3</p>}
+</div>
 ```
