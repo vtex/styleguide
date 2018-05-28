@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [4.0.0] - 2018-05-28
 
 ### Added
 
@@ -27,18 +27,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * **[BREAKING] Button** change default variation from tertiary to primary
 * **[BREAKING] Button** change size values to "small", "regular" and "large"
 * **[BREAKING] Button** change default size to "regular"
-* **Toggle** fix disabled contrast
 * **Button** fix secondary button colors to blue tones
-* **Dropdown** fix `value` prop type
-* **Input** fix `required` prop type
-* **Check icon** change SVG and `size` prop type
-* **Deny icon** change SVG and `size` prop type
-* **Radio** increase radio input area
-
-## [4.0.0] - 2018-05-25
-
 * **Card** Container to 100% width
 * **Card** change prop `fullWidth` to `noPadding`
+* **Check icon** change SVG and `size` prop type
+* **Deny icon** change SVG and `size` prop type
+* **Dropdown** fix `value` prop type
+* **Input** fix `required` prop type
+* **Radio** increase radio input area
+* **Toggle** fix disabled contrast
 
 ## [3.0.2] - 2018-05-11
 
