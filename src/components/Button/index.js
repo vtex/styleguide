@@ -6,23 +6,19 @@ import Spinner from '../Spinner'
 class Button extends Component {
   handleClick = event => {
     !this.props.disabled && this.props.onClick && this.props.onClick(event)
-  }
+  };
 
   render() {
     const {
       size,
       block,
-      primary,
-      secondary,
+      variation,
       disabled,
       icon,
       children,
+      isLoading,
     } = this.props
     const Tag = icon ? 'div' : 'button'
-
-    if (secondary && primary) {
-      throw new Error('Button component cannot be primary AND secondary')
-    }
 
     let classes = 'vtex-button bw1 ba fw5 ttu br2 fw4 v-mid relative '
     let loaderSize = 12
@@ -30,42 +26,52 @@ class Button extends Component {
     classes += icon ? 'icon-button dib ' : ''
 
     switch (size) {
-      case 'large':
+      case 'small':
+        classes += icon ? 'pa3 ' : 'pv3 ph5 '
+        classes += 'f6 '
+        break
+      default:
+      case 'regular':
         classes += icon ? 'pa4 ' : 'pv4 ph6 '
         classes += 'f5 '
         loaderSize = 20
         break
-      case 'x-large':
+      case 'large':
         classes += icon ? 'pa5 ' : 'pv5 ph7 '
         classes += 'f4 '
         loaderSize = 25
         break
+    }
+
+    switch (variation) {
       default:
-        classes += icon ? 'pa3 ' : 'pv3 ph5 '
-        classes += 'f6 '
+      case 'primary': {
+        if (disabled) {
+          classes += 'bg-light-gray b--light-gray gray '
+        } else {
+          classes += 'bg-blue b--blue white hover-bg-heavy-blue hover-b--heavy-blue '
+        }
         break
+      }
+      case 'secondary': {
+        if (disabled) {
+          classes += 'bg-light-silver silver b--light-silver '
+        } else {
+          classes += 'bg-washed-blue b--washed-blue blue hover-bg-light-blue hover-b--light-blue hover-heavy-blue '
+        }
+        break
+      }
+      case 'tertiary': {
+        if (disabled) {
+          classes += 'bg-transparent b--transparent silver '
+        } else {
+          classes += 'bg-transparent b--transparent blue hover-b--transparent hover-heavy-blue '
+        }
+        break
+      }
     }
 
-    if (!secondary && !primary && !disabled) {
-      classes +=
-        'b--transparent blue bg-transparent hover-heavy-blue hover-b--transparent '
-    }
-
-    if (secondary && !disabled) {
-      classes += 'bg-washed-blue blue hover-blue b--washed-blue '
-    }
-    if (secondary) {
-      classes += 'hover-b--light-blue hover-bg-light-blue '
-    }
-
-    if (primary && !disabled) {
-      classes +=
-        'b--blue bg-blue white hover-bg-heavy-blue hover-b--heavy-blue '
-    }
-
-    if (disabled) {
-      classes += 'b--light-gray bg-light-gray gray '
-    } else {
+    if (!disabled) {
       classes += 'pointer '
     }
 
@@ -92,16 +98,19 @@ class Button extends Component {
         ref={this.props.ref}
         style={icon ? { fontSize: 0 } : {}}
       >
-        {this.props.isLoading ? (
-          <span>
-            <span className="left-0 w-100 absolute flex justify-center items-baseline">
-              <Spinner secondary={primary} size={loaderSize} />
+        {isLoading
+          ? <React.Fragment>
+            <span
+              className="left-0 w-100 absolute flex justify-center items-baseline"
+            >
+              <Spinner
+                secondary={variation === 'primary'}
+                size={loaderSize}
+              />
             </span>
             <span style={{ opacity: 0 }}>{children}</span>
-          </span>
-        ) : (
-          children
-        )}
+          </React.Fragment>
+          : children}
       </Tag>
     )
   }
@@ -110,8 +119,7 @@ class Button extends Component {
 Button.defaultProps = {
   size: 'regular',
   block: false,
-  primary: false,
-  secondary: false,
+  variation: 'primary',
   disabled: false,
   autoFocus: false,
   icon: false,
@@ -121,15 +129,13 @@ Button.defaultProps = {
 
 Button.propTypes = {
   /** Button size  */
-  size: PropTypes.oneOf(['regular', 'large', 'x-large']),
+  size: PropTypes.oneOf(['small', 'regular', 'large']),
+  /** Button prominence variation */
+  variation: PropTypes.oneOf(['primary', 'secondary', 'tertiary']),
   /** Block style */
   block: PropTypes.bool,
   /** Loading state */
   isLoading: PropTypes.bool,
-  /** Primary style */
-  primary: PropTypes.bool,
-  /** Secondary style */
-  secondary: PropTypes.bool,
   /** If you are using just an Icon component inside, use this as true */
   icon: PropTypes.bool,
   /** (Button spec attribute) */
