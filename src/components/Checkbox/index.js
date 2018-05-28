@@ -57,8 +57,7 @@ class Checkbox extends PureComponent {
         />
         <label
           className={classNames('near-black', { gray: disabled }, { pointer: !disabled })}
-          htmlFor={id}
-        >
+          htmlFor={id}>
           {label}
         </label>
       </div>
