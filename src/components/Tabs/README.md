@@ -14,41 +14,33 @@ Working example
 class TabsExample extends React.Component {
   constructor() {
     super()
-
-    this.state = {
-      active: 1,
-    }
-
-    this.handleClick = this.handleClick.bind(this)
-  }
-
-  handleClick(value) {
-    this.setState({ active: value })
+    this.state = { active: 1 }
   }
 
   render() {
+    const { active } = this.state
     return (
       <div>
         <div>
           <Tab
             label="label 1"
-            active={this.state.active === 1}
-            onClick={() => this.handleClick(1)}
+            active={active === 1}
+            onClick={() => this.setState({ active: 1 })}
           />
           <Tab
             label="label 2"
-            active={this.state.active === 2}
-            onClick={() => this.handleClick(2)}
+            active={active === 2}
+            onClick={() => this.setState({ active: 2 })}
           />
           <Tab
             label="label 3"
-            active={this.state.active === 3}
-            onClick={() => this.handleClick(3)}
+            active={active === 3}
+            onClick={() => this.setState({ active: 3 })}
           />
         </div>
-        {this.state.active === 1 && <p>Content 1</p>}
-        {this.state.active === 2 && <p>Content 2</p>}
-        {this.state.active === 3 && <p>Content 3</p>}
+        {active === 1 && <p>Content 1</p>}
+        {active === 2 && <p>Content 2</p>}
+        {active === 3 && <p>Content 3</p>}
       </div>
     )
   }

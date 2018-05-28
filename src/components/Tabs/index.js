@@ -1,13 +1,9 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
 import config from 'vtex-tachyons/config.json'
 
-class Tab extends Component {
-  handleClick = () => {
-    this.props.onClick && this.props.onClick()
-  }
-
+class Tab extends PureComponent {
   render() {
     const style = this.props.active
       ? { boxShadow: `0 2px ${config.colors['red']}` }
@@ -16,7 +12,7 @@ class Tab extends Component {
     return (
       <button
         type="button"
-        onClick={this.handleClick}
+        onClick={this.props.onClick}
         className="vtex-tab__button bw1 ba fw5 fw4 v-mid relative pv5 ph4 f5 b--transparent bg-transparent"
         style={style}
       >
