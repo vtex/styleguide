@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * **Checkbox:** New component
 * **Tabs** New component
 * **Input** `prefix` prop
-* **Emptystate**
+* **Emptystate** New component
 
 ### Changed
 
