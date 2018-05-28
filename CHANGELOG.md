@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * **Togle** add `size` prop: `small` or `regular` (default)
 * **Icon** `BoldCheck`
 * **Checkbox:** New component
-* **Tabs**
+* **Tabs** New component
 
 ### Changed
 
