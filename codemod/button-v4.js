@@ -78,7 +78,7 @@ function getNewSize(value) {
   }
 }
 
-export default (file, { jscodeshift: j }) => {
+module.exports = function(file, { jscodeshift: j }) {
   let { source } = file
   source = replace(source, j, 'Button')
 
