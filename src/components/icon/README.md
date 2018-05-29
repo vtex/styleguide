@@ -1,6 +1,5 @@
 ```js
 const Check = require('./Check').default;
-const BoldCheck = require('./BoldCheck').default;
 const Close = require('./Close').default;
 const Deny = require('./Deny').default;
 const Download = require('./Download').default;
