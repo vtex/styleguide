@@ -31,6 +31,7 @@ class Input extends Component {
 
   render() {
     const {
+      className,
       errorMessage,
       error,
       label,
@@ -56,7 +57,7 @@ class Input extends Component {
     const prefixPosition = `${config.borderRadius[1]}rem`
     const calcPrefixHeight = `calc(100% - ${topBottomHeight}rem)`
     const typography = 'near-black'
-    let classes = `${widthClass} ${box} ${border} ${typography} `
+    let classes = `${className} ${widthClass} ${box} ${border} ${typography} `
 
     let prefixClasses =
       'vtex-input__prefix absolute gray fw5 flex items-center '
@@ -175,6 +176,7 @@ Input.defaultProps = {
   error: false,
   size: 'regular',
   prefix: '',
+  className: '',
 }
 
 Input.propTypes = {
@@ -204,6 +206,8 @@ Input.propTypes = {
   autoFocus: PropTypes.bool,
   /** Spec attribute */
   autoSave: PropTypes.string,
+  /** Spec attribute */
+  className: PropTypes.string,
   /** List of data attributes as a object like `{'locale': 'en-US'}` */
   dataAttributes: PropTypes.object,
   /** Spec attribute */
