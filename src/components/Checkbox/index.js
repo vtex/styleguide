@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import BoldCheckIcon from '../icon/BoldCheck'
+import CheckIcon from '../icon/Check'
 
 class Checkbox extends PureComponent {
   handleChange = e => !this.props.disabled && this.props.onChange(e)
@@ -39,7 +39,7 @@ class Checkbox extends PureComponent {
           <div
             className="absolute flex o-100 left-0"
           >
-            <BoldCheckIcon size={16} color={disabled ? 'gray' : 'white'} />
+            <CheckIcon size="16" color={disabled ? 'gray' : 'white'} />
           </div>
         }
         <input
