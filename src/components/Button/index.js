@@ -10,6 +10,7 @@ class Button extends Component {
 
   render() {
     const {
+      className,
       size,
       block,
       variation,
@@ -20,7 +21,7 @@ class Button extends Component {
     } = this.props
     const Tag = icon ? 'div' : 'button'
 
-    let classes = 'vtex-button bw1 ba fw5 ttu br2 fw4 v-mid relative '
+    let classes = `${className} vtex-button bw1 ba fw5 ttu br2 fw4 v-mid relative `
     let loaderSize = 12
 
     classes += icon ? 'icon-button dib ' : ''
@@ -125,6 +126,7 @@ Button.defaultProps = {
   icon: false,
   type: 'button',
   isLoading: false,
+  className: '',
 }
 
 Button.propTypes = {
@@ -152,6 +154,8 @@ Button.propTypes = {
   type: PropTypes.string,
   /** (Button spec attribute) */
   value: PropTypes.string,
+  /** (Button spec attribute) */
+  className: PropTypes.string,
   /** Label of the Button */
   children: PropTypes.node.isRequired,
   /** onClick event */
