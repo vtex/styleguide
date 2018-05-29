@@ -22,7 +22,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * Provide codemod script to automatically transform `Button` deprecated props. To run it:
   ```sh
     yarn global add jscodeshift
-    jscodeshift -t node_modules/@vtex/styleguide/codemod/button-v4.js <path>
+    jscodeshift -t node_modules/@vtex/styleguide/codemod/button-v4.js --ignore-pattern node_modules <path>
   ```
 
 ### Changed
