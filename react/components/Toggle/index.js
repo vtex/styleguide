@@ -63,11 +63,13 @@ class Toggle extends Component {
         style = {
           height: '1.25rem',
           width: '2.25rem',
+          'min-width': '2.25rem',
         }
         circleStyle = {
           ...circleStyle,
           height: '1.25rem',
           width: '1.25rem',
+          'min-width': '1.25rem',
         }
         iconStyle = {
           ...iconStyle,
@@ -89,6 +91,13 @@ class Toggle extends Component {
         labelClass = 'ml5'
 
         checkedOffsetClass = 'left-2'
+        style = {
+          'min-width': '4rem',
+        }
+        circleStyle = {
+          ...circleStyle,
+          'min-width': '2rem',
+        }
     }
 
     if (checked) {
