@@ -34,7 +34,7 @@ module.exports = {
     },
     {
       name: 'Icons',
-      content: 'src/components/icon/README.md',
+      content: 'react/components/icon/README.md',
     },
   ],
   getComponentPathLine(componentPath) {
