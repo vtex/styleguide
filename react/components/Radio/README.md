@@ -1,8 +1,8 @@
 Default
 
 ```js
-initialState = { checkedRadioValue: 'option-1' },
-<div>
+initialState = { checkedRadioValue: 'option-1' }
+;<div>
   <Radio
    checked={state.checkedRadioValue === 'option-0'}
    id="radio-0"
@@ -12,7 +12,7 @@ initialState = { checkedRadioValue: 'option-1' },
    value="option-0"
   />
   <Radio
-   checked={!state.checkedRadioValue || state.checkedRadioValue === 'option-1'}
+   checked={state.checkedRadioValue === 'option-1'}
    id="radio-1"
    label="Opção 1"
    name="radio-group"

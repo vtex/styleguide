@@ -13,7 +13,7 @@ class Tab extends PureComponent {
       <button
         type="button"
         onClick={this.props.onClick}
-        className="vtex-tab__button bw1 ba fw5 fw4 v-mid relative pv5 ph4 f5 b--transparent bg-transparent"
+        className="vtex-tab__button pointer hover-blue bw1 ba fw5 fw4 v-mid relative pv5 ph4 f5 b--transparent bg-transparent"
         style={style}
       >
         {this.props.label}
