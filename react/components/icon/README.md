@@ -1,59 +1,79 @@
 ```js
-const Check = require('./Check').default;
-const Close = require('./Close').default;
-const Deny = require('./Deny').default;
-const Download = require('./Download').default;
-const Edit = require('./Edit').default;
-const Failure = require('./Failure').default;
-const Plus = require('./Plus').default;
-const Search = require('./Search').default;
-const Success = require('./Success').default;
-const Upload = require('./Upload').default;
-const Warning = require('./Warning').default;
-<div className="flex flex-wrap tl">
+const ArrowBack = require('./ArrowBack').default
+const ArrowDown = require('./ArrowDown').default
+const ArrowLeft = require('./ArrowLeft').default
+const ArrowUp = require('./ArrowUp').default
+const Check = require('./Check').default
+const Close = require('./Close').default
+const Deny = require('./Deny').default
+const Download = require('./Download').default
+const Edit = require('./Edit').default
+const Failure = require('./Failure').default
+const Plus = require('./Plus').default
+const Search = require('./Search').default
+const Success = require('./Success').default
+const Upload = require('./Upload').default
+const Warning = require('./Warning').default
+;<div className="flex flex-wrap tl">
+  <div className="mr6 mb6">
+    <div className="pb3 ttu gray">ArrowBack</div>
+    <ArrowBack size={16} />
+  </div>
+  <div className="mr6 mb6">
+    <div className="pb3 ttu gray">ArrowDown</div>
+    <ArrowDown size={16} />
+  </div>
+  <div className="mr6 mb6">
+    <div className="pb3 ttu gray">ArrowLeft</div>
+    <ArrowLeft size={16} />
+  </div>
+  <div className="mr6 mb6">
+    <div className="pb3 ttu gray">ArrowUp</div>
+    <ArrowUp size={16} />
+  </div>
   <div className="mr6 mb6">
     <div className="pb3 ttu gray">Check</div>
-    <Check width={40} />
+    <Check size={16} />
   </div>
   <div className="mr6 mb6">
     <div className="pb3 ttu gray">Close</div>
-    <Close width={40} />
+    <Close size={16} />
   </div>
   <div className="mr6 mb6">
     <div className="pb3 ttu gray">Deny</div>
-    <Deny width={40} />
+    <Deny size={16} />
   </div>
   <div className="mr6 mb6">
     <div className="pb3 ttu gray">Download</div>
-    <Download width={40} />
+    <Download size={16} />
   </div>
   <div className="mr6 mb6">
     <div className="pb3 ttu gray">Edit</div>
-    <Edit width={40} />
+    <Edit size={16} />
   </div>
   <div className="mr6 mb6">
     <div className="pb3 ttu gray">Failure</div>
-    <Failure width={40} />
+    <Failure size={16} />
   </div>
   <div className="mr6 mb6">
     <div className="pb3 ttu gray">Plus</div>
-    <Plus width={40} />
+    <Plus size={16} />
   </div>
   <div className="mr6 mb6">
     <div className="pb3 ttu gray">Search</div>
-    <Search width={40} />
+    <Search size={16} />
   </div>
   <div className="mr6 mb6">
     <div className="pb3 ttu gray">Upload</div>
-    <Upload width={40} />
+    <Upload size={16} />
   </div>
   <div className="mr6 mb6">
     <div className="pb3 ttu gray">Success</div>
-    <Success width={40} />
+    <Success size={16} />
   </div>
   <div className="mr6 mb6">
     <div className="pb3 ttu gray">Warning</div>
-    <Warning width={40} />
+    <Warning size={16} />
   </div>
 </div>
 ```
