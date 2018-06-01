@@ -116,8 +116,6 @@ initialState = {
 
 ## Disabled
 
-**To do:** fix this contrast, and make the label look disabled as well.
-
 ```js
 <div>
   <div className="dib">
