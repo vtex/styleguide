@@ -7,9 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-### Changed
+### Fixed
 
-* **Tabs** hover style added
+* **Tabs** hover style added - Issue #135
 
 ## [4.0.2] - 2018-05-29
 
