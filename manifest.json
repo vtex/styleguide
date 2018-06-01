@@ -1,0 +1,16 @@
+{
+  "vendor": "vtex",
+  "name": "styleguide",
+  "version": "4.0.2",
+  "title": "VTEX Styleguide",
+  "description": "The VTEX Styleguide components for the Render framework",
+  "builders": {
+    "react": "2.x"
+  },
+  "mustUpdateAt": "2018-09-05",
+  "categories": [],
+  "registries": [
+    "smartcheckout"
+  ],
+  "settingsSchema": {}
+}

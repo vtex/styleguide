@@ -9,12 +9,17 @@
     "styleguide": "styleguidist server",
     "start": "styleguidist server",
     "styleguide:build": "styleguidist build",
-    "compile": "npm run cleanlib && NODE_ENV=production babel ./src/components --out-dir ./lib --ignore '__tests__,*.spec.js'",
+    "babel": "NODE_ENV=production babel ./react/components --out-dir ./lib --ignore '__tests__,*.spec.js'",
+    "compile": "run-s cleanlib babel",
     "cleanlib": "rm -rf lib",
-    "prepublishOnly": "npm run compile && npm run deploy",
+    "prepublishOnly": "run-s compile deploy",
     "snap:test": "styleguidist-visual test --url \"http:localhost:6060\"",
     "snap:approve": "styleguidist-visual approve",
-    "develop": "npm link && watch 'npm run compile' src"
+    "entrypoints": "node ./scripts/entrypoints.js",
+    "manifest-version": "node ./scripts/version.js",
+    "vtex-io": "run-s entrypoints manifest-version",
+    "prereleasy": "npm run vtex-io",
+    "postreleasy": "vtex publish --public --verbose"
   },
   "files": [
     "lib/",
@@ -38,6 +43,7 @@
     "eslint-plugin-react": "^7.7.0",
     "gh-pages": "^1.1.0",
     "jscodeshift": "^0.5.0",
+    "npm-run-all": "^4.1.3",
     "react": "16.3.1",
     "react-dom": "16.3.1",
     "react-styleguidist": "6.5.3",
