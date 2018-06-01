@@ -7,8 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.0.3] - 2018-06-01
+
 ### Fixed
 
+* **Toggle** add label disabled style - Issue #136
+* **Toggle** add `min-width` - Issue #134
 * **Tabs** hover style added - Issue #135
 
 ## [4.0.2] - 2018-05-29

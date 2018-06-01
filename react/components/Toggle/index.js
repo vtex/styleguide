@@ -10,6 +10,7 @@ class Toggle extends Component {
   render() {
     const { semantic, disabled, id, checked, label, size } = this.props
 
+    let labelClass = 'near-black '
     let classes = 'flex items-center relative br4 bg-animate '
     let circleClasses = 'absolute br-100 '
     let iconDenyClasses = 'absolute flex justify-center '
@@ -39,6 +40,7 @@ class Toggle extends Component {
       }
     } else if (disabled) {
       classes += 'bg-light-gray '
+      labelClass += 'gray '
     } else {
       if (!checked) {
         classes += 'bg-gray '
@@ -56,18 +58,20 @@ class Toggle extends Component {
       circleClasses += 'bg-white '
     }
 
-    let checkedOffsetClass, labelClass, style
+    let checkedOffsetClass, style
 
     switch (size) {
       case 'small':
         style = {
           height: '1.25rem',
           width: '2.25rem',
+          'min-width': '2.25rem',
         }
         circleStyle = {
           ...circleStyle,
           height: '1.25rem',
           width: '1.25rem',
+          'min-width': '1.25rem',
         }
         iconStyle = {
           ...iconStyle,
@@ -75,7 +79,7 @@ class Toggle extends Component {
           width: '1.25rem',
         }
 
-        labelClass = 'ml3'
+        labelClass += 'ml3 '
 
         checkedOffsetClass = 'left-1'
 
@@ -86,9 +90,16 @@ class Toggle extends Component {
         iconDenyClasses += 'w2 '
         iconCheckClasses += 'w2 '
 
-        labelClass = 'ml5'
+        labelClass += 'ml5 '
 
         checkedOffsetClass = 'left-2'
+        style = {
+          'min-width': '4rem',
+        }
+        circleStyle = {
+          ...circleStyle,
+          'min-width': '2rem',
+        }
     }
 
     if (checked) {
