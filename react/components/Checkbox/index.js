@@ -27,8 +27,8 @@ class Checkbox extends PureComponent {
           )}
         />
         {checked && (
-          <div className="absolute flex o-100 left-0">
-            <CheckIcon size={16} color={disabled ? 'gray' : 'white'} />
+          <div className="absolute flex o-100" style={{ left: '2px' }}>
+            <CheckIcon size={11} color={disabled ? 'gray' : 'white'} />
           </div>
         )}
         <input
