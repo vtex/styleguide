@@ -8,7 +8,7 @@ const iconBase = {
   height: 14,
 }
 
-class Deny extends PureComponent {
+class ExternalLinkMini extends PureComponent {
   render() {
     const { color, size } = this.props
     const newSize = calcIconSize(iconBase, size)
@@ -22,7 +22,7 @@ class Deny extends PureComponent {
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
-          d="M11.9071 0.707107C11.5166 0.316582 10.8834 0.316582 10.4929 0.707107L7 4.2L3.50711 0.707107C3.11658 0.316582 2.48342 0.316583 2.09289 0.707107L0.707107 2.09289C0.316582 2.48342 0.316583 3.11658 0.707107 3.50711L4.2 7L0.707107 10.4929C0.316582 10.8834 0.316583 11.5166 0.707107 11.9071L2.09289 13.2929C2.48342 13.6834 3.11658 13.6834 3.50711 13.2929L7 9.8L10.4929 13.2929C10.8834 13.6834 11.5166 13.6834 11.9071 13.2929L13.2929 11.9071C13.6834 11.5166 13.6834 10.8834 13.2929 10.4929L9.8 7L13.2929 3.50711C13.6834 3.11658 13.6834 2.48342 13.2929 2.09289L11.9071 0.707107Z"
+          d="M12.5567 0H2.45361V2.8866H9.09278L0 11.9794L2.02062 14L11.1134 4.90722V11.5464H14V1.4433C14 0.57732 13.4227 0 12.5567 0Z"
           fill={color}
         />
       </svg>
@@ -30,14 +30,14 @@ class Deny extends PureComponent {
   }
 }
 
-Deny.defaultProps = {
+ExternalLinkMini.defaultProps = {
   color: config.colors['serious-black'],
   size: 16,
 }
 
-Deny.propTypes = {
+ExternalLinkMini.propTypes = {
   color: PropTypes.string,
   size: PropTypes.number,
 }
 
-export default Deny
+export default ExternalLinkMini

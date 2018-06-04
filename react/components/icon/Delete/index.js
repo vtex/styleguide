@@ -8,7 +8,7 @@ const iconBase = {
   height: 16,
 }
 
-class Search extends PureComponent {
+class Delete extends PureComponent {
   render() {
     const { color, size } = this.props
     const newSize = calcIconSize(iconBase, size)
@@ -21,8 +21,10 @@ class Search extends PureComponent {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
+        <path d="M2 0H0V6H2V0Z" transform="translate(5 7)" fill={color} />
+        <path d="M2 0H0V6H2V0Z" transform="translate(9 7)" fill={color} />
         <path
-          d="M15.707 13.293L13 10.586C13.63 9.536 14 8.311 14 7C14 3.14 10.859 0 7 0C3.141 0 0 3.14 0 7C0 10.86 3.141 14 7 14C8.312 14 9.536 13.631 10.586 13L13.293 15.707C13.488 15.902 13.744 16 14 16C14.256 16 14.512 15.902 14.707 15.707L15.707 14.707C16.098 14.316 16.098 13.684 15.707 13.293ZM7 12C4.239 12 2 9.761 2 7C2 4.239 4.239 2 7 2C9.761 2 12 4.239 12 7C12 9.761 9.761 12 7 12Z"
+          d="M12 1C12 0.4 11.6 0 11 0H5C4.4 0 4 0.4 4 1V3H0V5H1V15C1 15.6 1.4 16 2 16H14C14.6 16 15 15.6 15 15V5H16V3H12V1ZM6 2H10V3H6V2ZM13 5V14H3V5H13Z"
           fill={color}
         />
       </svg>
@@ -30,14 +32,14 @@ class Search extends PureComponent {
   }
 }
 
-Search.defaultProps = {
+Delete.defaultProps = {
   color: config.colors['serious-black'],
   size: 16,
 }
 
-Search.propTypes = {
+Delete.propTypes = {
   color: PropTypes.string,
   size: PropTypes.number,
 }
 
-export default Search
+export default Delete

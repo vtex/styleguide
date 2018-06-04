@@ -8,7 +8,7 @@ const iconBase = {
   height: 16,
 }
 
-class Search extends PureComponent {
+class Clock extends PureComponent {
   render() {
     const { color, size } = this.props
     const newSize = calcIconSize(iconBase, size)
@@ -22,22 +22,23 @@ class Search extends PureComponent {
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
-          d="M15.707 13.293L13 10.586C13.63 9.536 14 8.311 14 7C14 3.14 10.859 0 7 0C3.141 0 0 3.14 0 7C0 10.86 3.141 14 7 14C8.312 14 9.536 13.631 10.586 13L13.293 15.707C13.488 15.902 13.744 16 14 16C14.256 16 14.512 15.902 14.707 15.707L15.707 14.707C16.098 14.316 16.098 13.684 15.707 13.293ZM7 12C4.239 12 2 9.761 2 7C2 4.239 4.239 2 7 2C9.761 2 12 4.239 12 7C12 9.761 9.761 12 7 12Z"
+          d="M8 0C3.6 0 0 3.6 0 8C0 12.4 3.6 16 8 16C12.4 16 16 12.4 16 8C16 3.6 12.4 0 8 0ZM8 14C4.7 14 2 11.3 2 8C2 4.7 4.7 2 8 2C11.3 2 14 4.7 14 8C14 11.3 11.3 14 8 14Z"
           fill={color}
         />
+        <path d="M2 0H0V5H5V3H2V0Z" transform="translate(7 4)" fill={color} />
       </svg>
     )
   }
 }
 
-Search.defaultProps = {
+Clock.defaultProps = {
   color: config.colors['serious-black'],
   size: 16,
 }
 
-Search.propTypes = {
+Clock.propTypes = {
   color: PropTypes.string,
   size: PropTypes.number,
 }
 
-export default Search
+export default Clock
