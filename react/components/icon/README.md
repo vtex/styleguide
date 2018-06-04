@@ -1,12 +1,11 @@
 ```js
 const ArrowBack = require('./ArrowBack').default
 const ArrowDown = require('./ArrowDown').default
-const ArrowLeft = require('./ArrowLeft').default
 const ArrowUp = require('./ArrowUp').default
-const CarretDown = require('./CarretDown').default
-const CarretLeft = require('./CarretLeft').default
-const CarretRight = require('./CarretRight').default
-const CarretUp = require('./CarretUp').default
+const CaretDown = require('./CaretDown').default
+const CaretLeft = require('./CaretLeft').default
+const CaretRight = require('./CaretRight').default
+const CaretUp = require('./CaretUp').default
 const Check = require('./Check').default
 const Clock = require('./Clock').default
 const Close = require('./Close').default
@@ -43,30 +42,26 @@ const demoLabel = 'pb3 ttu gray f6'
         <ArrowDown size={demoSize} />
       </td>
       <td>
-        <div className={demoLabel}>Arrow Left</div>
-        <ArrowLeft size={demoSize} />
-      </td>
-      <td>
         <div className={demoLabel}>Arrow Up</div>
         <ArrowUp size={demoSize} />
       </td>
       <td>
-        <div className={demoLabel}>Carret Down</div>
-        <CarretDown size={demoSize} />
+        <div className={demoLabel}>Caret Down</div>
+        <CaretDown size={demoSize} />
       </td>
       <td>
-        <div className={demoLabel}>Carret Left</div>
-        <CarretLeft size={demoSize} />
+        <div className={demoLabel}>Caret Left</div>
+        <CaretLeft size={demoSize} />
+      </td>
+      <td>
+        <div className={demoLabel}>Caret Right</div>
+        <CaretRight size={demoSize} />
       </td>
     </tr>
     <tr>
       <td>
-        <div className={demoLabel}>Carret Right</div>
-        <CarretRight size={demoSize} />
-      </td>
-      <td>
-        <div className={demoLabel}>Carret Up</div>
-        <CarretUp size={demoSize} />
+        <div className={demoLabel}>Caret Up</div>
+        <CaretUp size={demoSize} />
       </td>
       <td>
         <div className={demoLabel}>Check</div>
@@ -84,12 +79,12 @@ const demoLabel = 'pb3 ttu gray f6'
         <div className={demoLabel}>Cog</div>
         <Cog size={demoSize} />
       </td>
-    </tr>
-    <tr>
       <td>
         <div className={demoLabel}>Copy</div>
         <Copy size={demoSize} />
       </td>
+    </tr>
+    <tr>
       <td>
         <div className={demoLabel}>Delete</div>
         <Delete size={demoSize} />
@@ -110,12 +105,12 @@ const demoLabel = 'pb3 ttu gray f6'
         <div className={demoLabel}>Edit solid</div>
         <Edit solid size={demoSize} />
       </td>
-    </tr>
-    <tr>
       <td>
         <div className={demoLabel}>External Link</div>
         <ExternalLink size={demoSize} />
       </td>
+    </tr>
+    <tr>
       <td>
         <div className={demoLabel}>External Link Mini</div>
         <ExternalLinkMini size={demoSize} />
@@ -136,12 +131,12 @@ const demoLabel = 'pb3 ttu gray f6'
         <div className={demoLabel}>Filter solid</div>
         <Filter solid size={demoSize} />
       </td>
-    </tr>
-    <tr>
       <td>
         <div className={demoLabel}>Help Outline</div>
         <Help size={demoSize} />
       </td>
+    </tr>
+    <tr>
       <td>
         <div className={demoLabel}>Help Solid</div>
         <Help solid size={demoSize} />
@@ -162,12 +157,12 @@ const demoLabel = 'pb3 ttu gray f6'
         <div className={demoLabel}>Search</div>
         <Search size={demoSize} />
       </td>
-    </tr>
-    <tr>
       <td>
         <div className={demoLabel}>Upload</div>
         <Upload size={demoSize} />
       </td>
+    </tr>
+    <tr>
       <td>
         <div className={demoLabel}>Success outline</div>
         <Success size={demoSize} />
