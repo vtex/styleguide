@@ -1,20 +1,28 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import config from 'vtex-tachyons/config.json'
+import { calcIconSize } from '../utils'
+
+const iconBase = {
+  width: 16,
+  height: 16,
+}
 
 class Search extends PureComponent {
   render() {
     const { color, size } = this.props
+    const newSize = calcIconSize(iconBase, size)
+
     return (
       <svg
-        className="vtex-icon__search"
-        viewBox="0 0 18 18"
+        width={newSize.width}
+        height={newSize.height}
+        viewBox="0 0 16 16"
+        fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        width={size}
-        height={size}
       >
         <path
-          d="M12.7 11.3c.9-1.2 1.4-2.6 1.4-4.2 0-3.9-3.1-7.1-7-7.1S0 3.2 0 7.1c0 3.9 3.2 7.1 7.1 7.1 1.6 0 3.1-.5 4.2-1.4l3 3c.2.2.5.3.7.3s.5-.1.7-.3c.4-.4.4-1 0-1.4l-3-3.1zm-5.6.8c-2.8 0-5.1-2.2-5.1-5S4.3 2 7.1 2s5.1 2.3 5.1 5.1-2.3 5-5.1 5z"
+          d="M15.707 13.293L13 10.586C13.63 9.536 14 8.311 14 7C14 3.14 10.859 0 7 0C3.141 0 0 3.14 0 7C0 10.86 3.141 14 7 14C8.312 14 9.536 13.631 10.586 13L13.293 15.707C13.488 15.902 13.744 16 14 16C14.256 16 14.512 15.902 14.707 15.707L15.707 14.707C16.098 14.316 16.098 13.684 15.707 13.293ZM7 12C4.239 12 2 9.761 2 7C2 4.239 4.239 2 7 2C9.761 2 12 4.239 12 7C12 9.761 9.761 12 7 12Z"
           fill={color}
         />
       </svg>

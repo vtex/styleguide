@@ -7,15 +7,7 @@ class Checkbox extends PureComponent {
   handleChange = e => !this.props.disabled && this.props.onChange(e)
 
   render() {
-    const {
-      checked,
-      disabled,
-      id,
-      label,
-      name,
-      required,
-      value,
-    } = this.props
+    const { checked, disabled, id, label, name, required, value } = this.props
 
     return (
       <div
@@ -33,15 +25,12 @@ class Checkbox extends PureComponent {
               'b--silver bg-silver': checked && disabled,
             },
           )}
-        >
-        </div>
-        {checked &&
-          <div
-            className="absolute flex o-100 left-0"
-          >
-            <CheckIcon size="16" color={disabled ? 'gray' : 'white'} />
+        />
+        {checked && (
+          <div className="absolute flex o-100" style={{ left: '2px' }}>
+            <CheckIcon size={11} color={disabled ? 'gray' : 'white'} />
           </div>
-        }
+        )}
         <input
           checked={checked}
           className={classNames('h1 w1 absolute o-0', {
@@ -56,8 +45,13 @@ class Checkbox extends PureComponent {
           value={value}
         />
         <label
-          className={classNames('near-black', { gray: disabled }, { pointer: !disabled })}
-          htmlFor={id}>
+          className={classNames(
+            'near-black',
+            { gray: disabled },
+            { pointer: !disabled },
+          )}
+          htmlFor={id}
+        >
           {label}
         </label>
       </div>

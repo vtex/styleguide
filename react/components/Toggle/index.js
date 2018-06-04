@@ -121,12 +121,18 @@ class Toggle extends Component {
           <div className={circleClasses} style={circleStyle} />
           {semantic && (
             <div className={iconDenyClasses} style={iconStyle}>
-              <DenyIcon color={config.colors.red} />
+              <DenyIcon
+                size={size === 'regular' ? 14 : 12}
+                color={config.colors.red}
+              />
             </div>
           )}
           {semantic && (
             <div className={iconCheckClasses} style={iconStyle}>
-              <CheckIcon color={config.colors.green} />
+              <CheckIcon
+                size={size === 'regular' ? 15 : 13}
+                color={config.colors.green}
+              />
             </div>
           )}
         </div>
