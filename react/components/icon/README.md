@@ -125,16 +125,16 @@ const demoLabel = 'pb3 ttu gray f6'
         <Failure size={demoSize} />
       </td>
       <td>
+        <div className={demoLabel}>Failure Solid</div>
+        <Failure solid size={demoSize} />
+      </td>
+      <td>
         <div className={demoLabel}>Filter outline</div>
         <Filter size={demoSize} />
       </td>
       <td>
         <div className={demoLabel}>Filter solid</div>
         <Filter solid size={demoSize} />
-      </td>
-      <td>
-        <div className={demoLabel}>Failure Solid</div>
-        <Failure solid size={demoSize} />
       </td>
     </tr>
     <tr>
@@ -169,12 +169,12 @@ const demoLabel = 'pb3 ttu gray f6'
         <Upload size={demoSize} />
       </td>
       <td>
-        <div className={demoLabel}>Success solid</div>
-        <Success solid size={demoSize} />
-      </td>
-      <td>
         <div className={demoLabel}>Success outline</div>
         <Success size={demoSize} />
+      </td>
+      <td>
+        <div className={demoLabel}>Success solid</div>
+        <Success solid size={demoSize} />
       </td>
       <td>
         <div className={demoLabel}>Warning outline</div>
