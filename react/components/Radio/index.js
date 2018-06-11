@@ -74,7 +74,7 @@ class Radio extends PureComponent {
           ref={el => { this.radio = el }}
         />
         <label
-          className={classNames({ silver: disabled }, { pointer: !disabled })}
+          className={classNames({ silver: disabled }, { pointer: !disabled }, 'flex flex-auto')}
           htmlFor={id}
         >
           {label}
