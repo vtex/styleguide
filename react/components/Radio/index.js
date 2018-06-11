@@ -8,12 +8,14 @@ class Radio extends PureComponent {
     this.radio = React.createRef()
     this.container = React.createRef()
   }
+
   handleContainerClick = e => {
     const { disabled } = this.props
     if (!disabled && e.target === this.container.current) {
       this.radio.current.click()
     }
   }
+
   render() {
     const {
       checked,
