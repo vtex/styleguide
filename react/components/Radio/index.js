@@ -35,18 +35,18 @@ class Radio extends PureComponent {
             width: '1.5rem',
           }}
         >
-          {checked && (
-            <div
-              className={classNames('br-100', {
-                'bg-blue': !disabled,
-                'bg-silver': disabled,
-              })}
-              style={{
-                height: '0.75rem',
-                width: '0.75rem',
-              }}
-            />
-          )}
+          <div
+            className={classNames('br-100', {
+              'bg-blue': !disabled,
+              'bg-silver': disabled,
+            })}
+            style={{
+              height: '0.75rem',
+              width: '0.75rem',
+              transform: `scale(${checked ? 1 : 0})`,
+              transition: 'transform 80ms',
+            }}
+          />
         </div>
         <input
           checked={checked}
