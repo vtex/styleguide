@@ -27,7 +27,7 @@ const Spinner = ({ secondary, size }) => (
         calcMode="linear"
         values="0 50 50;360 50 50"
         keyTimes="0;1"
-        dur="1s"
+        dur="0.75s"
         begin="0s"
         repeatCount="indefinite"
       />
