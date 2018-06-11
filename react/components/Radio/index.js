@@ -106,7 +106,7 @@ Radio.propTypes = {
   /** (Button spec attribute) */
   id: PropTypes.string.isRequired,
   /** Radio label */
-  label: PropTypes.string.isRequired,
+  label: PropTypes.node.isRequired,
   /** (Button spec attribute) */
   name: PropTypes.string.isRequired,
   /** onChange event */

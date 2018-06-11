@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - **Radio** Make the entire container clickable instead of just the label and the radio button itself
 
+### Changed
+
+- **Radio** Change label proptype from `string` to `node`
+
 ## [4.1.0] - 2018-06-04
 
 ### Added
