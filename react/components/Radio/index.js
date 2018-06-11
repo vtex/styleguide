@@ -3,10 +3,15 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
 class Radio extends PureComponent {
-  handleContainerClick=e => {
-    const { disabled, checked } = this.props
-    if (!disabled && !checked) {
-      this.radio.click()
+  constructor(props) {
+    super(props)
+    this.radio = React.createRef()
+    this.container = React.createRef()
+  }
+  handleContainerClick = e => {
+    const { disabled } = this.props
+    if (!disabled && e.target === this.container.current) {
+      this.radio.current.click()
     }
   }
   render() {
@@ -26,6 +31,7 @@ class Radio extends PureComponent {
         className={classNames('flex items-center mb3 relative', {
           pointer: !disabled,
         })}
+        ref={this.container}
         onClick={this.handleContainerClick}
       >
         <div
@@ -71,7 +77,7 @@ class Radio extends PureComponent {
             height: '1.5rem',
             width: '1.5rem',
           }}
-          ref={el => { this.radio = el }}
+          ref={this.radio}
         />
         <label
           className={classNames({ silver: disabled }, { pointer: !disabled }, 'flex flex-auto')}
