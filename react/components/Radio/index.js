@@ -3,6 +3,12 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
 class Radio extends PureComponent {
+  handleContainerClick=e => {
+    const { disabled, checked } = this.props
+    if (!disabled && !checked) {
+      this.radio.click()
+    }
+  }
   render() {
     const {
       checked,
@@ -20,6 +26,7 @@ class Radio extends PureComponent {
         className={classNames('flex items-center mb3 relative', {
           pointer: !disabled,
         })}
+        onClick={this.handleContainerClick}
       >
         <div
           className={classNames(
@@ -64,6 +71,7 @@ class Radio extends PureComponent {
             height: '1.5rem',
             width: '1.5rem',
           }}
+          ref={el => { this.radio = el }}
         />
         <label
           className={classNames({ silver: disabled }, { pointer: !disabled })}
