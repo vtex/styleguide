@@ -25,12 +25,22 @@ class Checkbox extends PureComponent {
               'b--silver bg-silver': checked && disabled,
             },
           )}
+          style={{
+            transition: 'background 50ms, border 200ms',
+          }}
         />
-        {checked && (
-          <div className="absolute flex o-100" style={{ left: '2px' }}>
+        <div className="absolute w1 h1 flex o-100" style={{ left: '2px', top: -1 }}>
+          <div className="absolute" style={{
+            overflow: 'hidden',
+            left: 0,
+            right: checked ? 0 : '100%',
+            top: 0,
+            bottom: 0,
+            transition: 'right 180ms ease-in-out 50ms',
+          }}>
             <CheckIcon size={11} color={disabled ? 'gray' : 'white'} />
           </div>
-        )}
+        </div>
         <input
           checked={checked}
           className={classNames('h1 w1 absolute o-0', {
