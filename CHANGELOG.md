@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 - **Radio** Change label proptype from `string` to `node`
+- **Radio** Add animation on toggle
 
 ## [4.1.0] - 2018-06-04
 
