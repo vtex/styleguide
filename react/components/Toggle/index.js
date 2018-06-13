@@ -22,7 +22,7 @@ class Toggle extends Component {
       transition: 'all .1s ease-out',
     }
     let iconStyle = {
-      transition: 'left .1s ease-out',
+      transition: 'left .1s ease-out, opacity .1s ease-in-out',
     }
 
     // Background
@@ -101,14 +101,14 @@ class Toggle extends Component {
 
         style = {
           ...style,
-          'min-width': '3.25rem',
+          'min-width': '3.5rem',
         }
         circleStyle = {
           ...circleStyle,
           'min-width': '2rem',
         }
         checkedStyle = {
-          left: '1.25rem',
+          left: '1.5rem',
         }
     }
 
