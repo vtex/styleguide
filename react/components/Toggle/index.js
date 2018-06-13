@@ -11,18 +11,18 @@ class Toggle extends Component {
     const { semantic, disabled, id, checked, label, size } = this.props
 
     let labelClass = 'near-black '
-    let classes = 'flex items-center relative br4 bg-animate '
+    let classes = 'flex items-center relative br4 '
     let circleClasses = 'absolute br-100 '
     let iconDenyClasses = 'absolute flex justify-center '
     let iconCheckClasses = 'absolute flex justify-center '
 
     let circleStyle = {
       boxShadow: disabled ? 'none' : '0 0 10px rgba(0,0,0,0.2)',
-      transform: 'scale(0.7)',
-      transition: 'all .2s ease-out',
+      transform: 'scale(0.75)',
+      transition: 'all .1s ease-out',
     }
     let iconStyle = {
-      transition: 'left .2s ease-out',
+      transition: 'left .1s ease-out',
     }
 
     // Background
@@ -58,11 +58,16 @@ class Toggle extends Component {
       circleClasses += 'bg-white '
     }
 
-    let checkedOffsetClass, style
+    let style = {
+      transition: 'background 100ms ease-out',
+    }
+
+    let checkedStyle
 
     switch (size) {
       case 'small':
         style = {
+          ...style,
           height: '1.25rem',
           width: '2.25rem',
           'min-width': '2.25rem',
@@ -81,36 +86,38 @@ class Toggle extends Component {
 
         labelClass += 'ml3 '
 
-        checkedOffsetClass = 'left-1'
+        checkedStyle = {
+          left: '1rem',
+        }
 
         break
       default:
-        classes += 'h2 w3 '
+        classes += 'h2 '
         circleClasses += 'h2 w2 '
         iconDenyClasses += 'w2 '
         iconCheckClasses += 'w2 '
 
         labelClass += 'ml5 '
 
-        checkedOffsetClass = 'left-2'
         style = {
-          'min-width': '4rem',
+          ...style,
+          'min-width': '3.25rem',
         }
         circleStyle = {
           ...circleStyle,
           'min-width': '2rem',
         }
+        checkedStyle = {
+          left: '1.25rem',
+        }
     }
 
-    if (checked) {
-      circleClasses += `${checkedOffsetClass} `
-      iconDenyClasses += `${checkedOffsetClass} `
-      iconCheckClasses += `${checkedOffsetClass} `
-    } else {
-      circleClasses += 'left-0 '
-      iconDenyClasses += 'left-0 '
-      iconCheckClasses += 'left-0 '
+    if (!checked) {
+      checkedStyle = { left: 0 }
     }
+
+    circleStyle = { ...circleStyle, ...checkedStyle }
+    iconStyle = { ...iconStyle, ...checkedStyle }
 
     return (
       <label
