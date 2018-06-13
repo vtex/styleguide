@@ -27,8 +27,8 @@ const Spinner = ({ secondary, size }) => (
     >
       <animate
         attributeName="stroke-dasharray"
-        id="anim2"
-        dur="3s"
+        dur="2s"
+        keySplines="0.1 0.8 0.9 0.1"
         repeatCount="indefinite"
         values={`0 0 2 ${circ};
           0 0 ${circ * 0.75} ${circ};
