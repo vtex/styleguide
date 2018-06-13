@@ -20,8 +20,8 @@ const Spinner = ({ secondary, size }) => (
       r={radius}
       stroke={secondary ? config.colors.white : config.colors.blue}
       strokeWidth="10"
+      strokeDasharray={`0 0 2 ${circ}`}
       strokeLinecap="round"
-      strokeDasharray="188.49555921538757 64.83185307179586"
       strokeDashoffset="1"
       transform="rotate(96 50 50)"
     >
