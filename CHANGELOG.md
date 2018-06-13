@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.2.0] - 2018-06-12
+
 ### Fixed
 
 - **Radio** Make the entire container clickable instead of just the label and the radio button itself
@@ -15,6 +17,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - **Radio** Change label proptype from `string` to `node`
 - **Radio** Add animation on toggle
+- **Spinner** Add round linecap and make it spin a little faster
 
 ## [4.1.0] - 2018-06-04
 
