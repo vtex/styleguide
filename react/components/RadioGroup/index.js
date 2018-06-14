@@ -3,15 +3,7 @@ import PropTypes from 'prop-types'
 import Radio from '../Radio'
 
 class RadioGroup extends React.Component {
-  handleContainerClick=event => {
-    if (event.target.classList.contains('vtex-radio-group-item-container')) {
-      event.preventDefault()
-      event.stopPropagation()
-      event.currentTarget.querySelector('input').click()
-    }
-  }
-
-  handleChange=event => {
+  handleChange = event => {
     this.props.onChange(event, event.currentTarget.value)
   }
 
@@ -23,11 +15,12 @@ class RadioGroup extends React.Component {
         {options.map((option, i) => {
           const isFirst = i === 0
           const isLast = i === options.length - 1
+          const id = `${name}-${i}`
           return (
-            <div
-              className="vtex-radio-group-item-container pv2 ph3 ba b--light-gray br3 pointer"
-              onClick={this.handleContainerClick}
-              key={`${name}-${i}`}
+            <label
+              className="db pv2 ph3 ba b--light-gray br3 pointer"
+              htmlFor={id}
+              key={id}
               style={{
                 ...(!isFirst &&
                   {
@@ -45,7 +38,7 @@ class RadioGroup extends React.Component {
               }}>
               <div className="mt3">
                 <Radio
-                  id={`${name}-${i}`}
+                  id={id}
                   name={name}
                   onChange={this.handleChange}
                   label={option.label}
@@ -53,7 +46,7 @@ class RadioGroup extends React.Component {
                   checked={value === option.value}
                 />
               </div>
-            </div>
+            </label>
           )
         })}
       </div>)
