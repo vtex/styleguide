@@ -18,7 +18,7 @@ class Toggle extends Component {
 
     let circleStyle = {
       boxShadow: disabled ? 'none' : '0 0 10px rgba(0,0,0,0.2)',
-      transform: 'scale(0.75)',
+      transform: 'scale(0.8)',
       transition: 'all .1s ease-out',
     }
     let iconStyle = {
@@ -78,6 +78,7 @@ class Toggle extends Component {
           width: '1.25rem',
           'min-width': '1.25rem',
         }
+
         iconStyle = {
           ...iconStyle,
           transform: 'scale(0.7)',
