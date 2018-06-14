@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **Spinner** Update animation
 - **Icon** Updated documentation
 - **Radio** Add blue border on checked radio buttons
+- **Checkbox** Add animation on toggle
 
 ## [4.2.1] - 2018-06-14
 
