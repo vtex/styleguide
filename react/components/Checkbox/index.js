@@ -30,12 +30,8 @@ class Checkbox extends PureComponent {
           }}
         />
         <div className="absolute w1 h1 flex o-100" style={{ left: 2, top: -1.5 }}>
-          <div className="absolute" style={{
-            overflow: 'hidden',
-            left: 0,
+          <div className="absolute top-0 left-0 bottom-0 overflow-hidden" style={{
             right: checked ? 0 : '100%',
-            top: 0,
-            bottom: 0,
             transition: 'right 110ms ease-in-out 30ms',
           }}>
             <CheckIcon size={11} color={disabled ? 'gray' : 'white'} />
