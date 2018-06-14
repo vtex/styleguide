@@ -61,7 +61,7 @@ class Radio extends PureComponent {
               height: '0.75rem',
               width: '0.75rem',
               transform: `scale(${checked ? 1 : 0})`,
-              transition: 'transform 80ms',
+              transition: `transform 80ms ${checked ? 'ease-out' : 'ease-in'}`,
             }}
           />
         </div>
