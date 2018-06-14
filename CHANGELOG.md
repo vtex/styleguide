@@ -7,12 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+- **Checkbox** Export Checkbox component as an app to render. 
+
 ## [4.2.0] - 2018-06-12
 
 ### Fixed
 
 - **Radio** Make the entire container clickable instead of just the label and the radio button itself
-- **Checkbox** Export Checkbox component as an app to render. 
 
 ### Changed
 
