@@ -17,6 +17,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **Radio** Add blue border on checked radio buttons
 - **Checkbox** Add animation on toggle
 
+### Added
+
+- **RadioGroup** Create RadioGroup component
+
 ## [4.2.1] - 2018-06-14
 
 ### Fixed
