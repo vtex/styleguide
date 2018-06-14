@@ -62,7 +62,7 @@ class Toggle extends Component {
       transition: 'background 100ms ease-out',
     }
 
-    let checkedStyle
+    let checkedOffset
 
     switch (size) {
       case 'small':
@@ -87,9 +87,7 @@ class Toggle extends Component {
 
         labelClass += 'ml3 '
 
-        checkedStyle = {
-          left: '1rem',
-        }
+        checkedOffset = '1rem'
 
         break
       default:
@@ -108,13 +106,12 @@ class Toggle extends Component {
           ...circleStyle,
           'min-width': '2rem',
         }
-        checkedStyle = {
-          left: '1.5rem',
-        }
+
+        checkedOffset = '1.5rem'
     }
 
-    if (!checked) {
-      checkedStyle = { left: 0 }
+    const checkedStyle = {
+      left: checked ? checkedOffset : 0,
     }
 
     circleStyle = { ...circleStyle, ...checkedStyle }
