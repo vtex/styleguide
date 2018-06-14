@@ -21,7 +21,7 @@ class Example extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      value: 'value1',
+      value: 'leonardo',
     }
 
     this.handleChange = this.handleChange.bind(this)
