@@ -7,7 +7,7 @@
   "builders": {
     "react": "2.x"
   },
- "scripts": {
+  "scripts": {
     "postreleasy": "vtex publish --verbose"
   },
   "mustUpdateAt": "2018-09-05",
