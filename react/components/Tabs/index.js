@@ -1,35 +1,45 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
-import config from 'vtex-tachyons/config.json'
+class Tabs extends PureComponent {
+  handleClick = e => {
+    this.props.onClick && this.props.onClick(e)
+  }
 
-class Tab extends PureComponent {
   render() {
-    const style = this.props.active
-      ? { boxShadow: `0 2px ${config.colors['red']}` }
-      : {}
-
+    const { options, active } = this.props
     return (
-      <button
-        type="button"
-        onClick={this.props.onClick}
-        className="vtex-tab__button pointer hover-blue bw1 ba fw5 fw4 v-mid relative pv5 ph4 f5 b--transparent bg-transparent"
-        style={style}
-      >
-        {this.props.label}
-      </button>
+      <div className="bb b--light-gray mid-gray">
+        <div className="flex flex-row">
+          {options.map(option => (
+            <button
+              id={option}
+              key={option}
+              type="button"
+              onClick={this.handleClick}
+              className={`vtex-tab__button pointer bt-0 bl-0 br-0 bw1 ${
+                active === option
+                  ? 'near-black b--rebel-pink'
+                  : 'mid-gray b--transparent'
+              } hover-near-black fw5 fw4 v-mid relative pv5 ph4 f5 bg-transparent outline-0`}
+            >
+              {option}
+            </button>
+          ))}
+        </div>
+      </div>
     )
   }
 }
 
-Tab.defaultProps = {
-  active: false,
+Tabs.defaultProps = {
+  options: [],
 }
 
-Tab.propTypes = {
-  label: PropTypes.any.isRequired,
+Tabs.propTypes = {
   onClick: PropTypes.func.isRequired,
-  active: PropTypes.bool,
+  active: PropTypes.string,
+  options: PropTypes.arrayOf(PropTypes.string),
 }
 
-export default Tab
+export default Tabs
