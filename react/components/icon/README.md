@@ -1,3 +1,5 @@
+Usage: <span className="gray">`import <IconName> from '@vtex/styleguide/lib/icon/<IconName>'`</span>
+
 ```js
 const ArrowBack = require('./ArrowBack').default
 const ArrowDown = require('./ArrowDown').default
@@ -29,38 +31,39 @@ const Upload = require('./Upload').default
 const Warning = require('./Warning').default
 
 const demoSize = 20
-const demoLabel = 'pb3 ttu gray f6'
-;<table className="flex flex-wrap tl">
+const demoLabel = 'pb3 code gray f6'
+
+;<table className="w-100">
   <tbody>
     <tr>
       <td>
-        <div className={demoLabel}>Arrow Back</div>
+        <div className={demoLabel}>ArrowBack</div>
         <ArrowBack size={demoSize} />
       </td>
       <td>
-        <div className={demoLabel}>Arrow Down</div>
+        <div className={demoLabel}>ArrowDown</div>
         <ArrowDown size={demoSize} />
       </td>
       <td>
-        <div className={demoLabel}>Arrow Up</div>
+        <div className={demoLabel}>ArrowUp</div>
         <ArrowUp size={demoSize} />
       </td>
       <td>
-        <div className={demoLabel}>Caret Down</div>
+        <div className={demoLabel}>CaretDown</div>
         <CaretDown size={demoSize} />
       </td>
       <td>
-        <div className={demoLabel}>Caret Left</div>
+        <div className={demoLabel}>CaretLeft</div>
         <CaretLeft size={demoSize} />
       </td>
       <td>
-        <div className={demoLabel}>Caret Right</div>
+        <div className={demoLabel}>CaretRight</div>
         <CaretRight size={demoSize} />
       </td>
     </tr>
     <tr>
       <td>
-        <div className={demoLabel}>Caret Up</div>
+        <div className={demoLabel}>CaretUp</div>
         <CaretUp size={demoSize} />
       </td>
       <td>
@@ -98,47 +101,47 @@ const demoLabel = 'pb3 ttu gray f6'
         <Download size={demoSize} />
       </td>
       <td>
-        <div className={demoLabel}>Edit Outline</div>
+        <div className={demoLabel}>Edit</div>
         <Edit size={demoSize} />
       </td>
       <td>
-        <div className={demoLabel}>Edit solid</div>
+        <div className={demoLabel}>Edit (solid)</div>
         <Edit solid size={demoSize} />
       </td>
       <td>
-        <div className={demoLabel}>External Link</div>
+        <div className={demoLabel}>ExternalLink</div>
         <ExternalLink size={demoSize} />
       </td>
     </tr>
     <tr>
       <td>
-        <div className={demoLabel}>External Link Mini</div>
+        <div className={demoLabel}>ExternalLinkMini</div>
         <ExternalLinkMini size={demoSize} />
       </td>
       <td>
-        <div className={demoLabel}>Failure outline</div>
+        <div className={demoLabel}>Failure</div>
         <Failure size={demoSize} />
       </td>
       <td>
-        <div className={demoLabel}>Failure Solid</div>
+        <div className={demoLabel}>Failure (solid)</div>
         <Failure solid size={demoSize} />
       </td>
       <td>
-        <div className={demoLabel}>Filter outline</div>
+        <div className={demoLabel}>Filter</div>
         <Filter size={demoSize} />
       </td>
       <td>
-        <div className={demoLabel}>Filter solid</div>
+        <div className={demoLabel}>Filter (solid)</div>
         <Filter solid size={demoSize} />
       </td>
       <td>
-        <div className={demoLabel}>Help Outline</div>
+        <div className={demoLabel}>Help</div>
         <Help size={demoSize} />
       </td>
     </tr>
     <tr>
       <td>
-        <div className={demoLabel}>Help Solid</div>
+        <div className={demoLabel}>Help (solid)</div>
         <Help solid size={demoSize} />
       </td>
       <td>
@@ -164,19 +167,19 @@ const demoLabel = 'pb3 ttu gray f6'
     </tr>
     <tr>
       <td>
-        <div className={demoLabel}>Success outline</div>
+        <div className={demoLabel}>Success</div>
         <Success size={demoSize} />
       </td>
       <td>
-        <div className={demoLabel}>Success solid</div>
+        <div className={demoLabel}>Success (solid)</div>
         <Success solid size={demoSize} />
       </td>
       <td>
-        <div className={demoLabel}>Warning outline</div>
+        <div className={demoLabel}>Warning</div>
         <Warning size={demoSize} />
       </td>
       <td>
-        <div className={demoLabel}>Warning solid</div>
+        <div className={demoLabel}>Warning (solid)</div>
         <Warning solid size={demoSize} />
       </td>
       <td />
