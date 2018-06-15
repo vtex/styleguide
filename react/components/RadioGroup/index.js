@@ -64,7 +64,7 @@ RadioGroup.propTypes = {
       label: PropTypes.node.isRequired,
       disabled: PropTypes.bool,
     }),
-  ),
+  ).isRequired,
   /** Name attribute for the radio inputs, which will also be used to generate ids */
   name: PropTypes.string.isRequired,
   /** Current selected value */
