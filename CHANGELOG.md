@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.3.1] - 2018-06-15
+
+### Changed
+
+- Export the following components to render: `EmptyState`, `IconArrowBack`, `IconArrowDown`, `IconArrowUp`, `IconCaretDown`, `IconCaretUp`, `IconClock`, `IconCog`, `IconCopy`, `IconDelete`, `IconExternalLink`, `IconExternalLinkMini`, `IconFilter`, `IconHelp`, `IconLink`, `IconSave`, `Tabs`,
+
 ## [4.3.0] - 2018-06-15
 
 ### Added
