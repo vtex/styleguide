@@ -16,10 +16,11 @@ class RadioGroup extends React.Component {
         {options.map((option, i) => {
           const isFirst = i === 0
           const isLast = i === options.length - 1
+          const isDisabled = disabled || option.disabled
           const id = `${name}-${i}`
           return (
             <label
-              className={`db pv2 ph4 ba b--light-gray br3 ${classNames({ pointer: !disabled })}`}
+              className={`db pv2 ph4 ba b--light-gray br3 ${classNames({ pointer: !isDisabled })}`}
               key={id}
               style={{
                 ...(!isFirst &&
@@ -40,7 +41,7 @@ class RadioGroup extends React.Component {
                 <Radio
                   id={id}
                   name={name}
-                  disabled={disabled || option.disabled}
+                  disabled={isDisabled}
                   onChange={this.handleChange}
                   label={option.label}
                   value={option.value}
