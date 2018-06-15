@@ -7,12 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
 - **CaretLeft** Export CaretLeft component as an app to render.
 - **CaretRight** Export CaretRight component as an app to render.
+- **Toggle** Decrease the width and adjust the animation.
 
 ## [4.2.1] - 2018-06-14
 
-- **Checkbox** Export Checkbox component as an app to render.
+### Fixed
+
+- **Checkbox** Export Checkbox component as an app to render. 
 
 ## [4.2.0] - 2018-06-12
 
