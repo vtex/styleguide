@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Radio from '../Radio'
+import classNames from 'classnames'
 
 class RadioGroup extends React.Component {
   handleChange = event => {
@@ -8,7 +9,7 @@ class RadioGroup extends React.Component {
   }
 
   render() {
-    const { options, value, name } = this.props
+    const { options, value, name, disabled } = this.props
 
     return (
       <div>
@@ -18,7 +19,7 @@ class RadioGroup extends React.Component {
           const id = `${name}-${i}`
           return (
             <label
-              className="db pv2 ph3 ba b--light-gray br3 pointer"
+              className={`db pv2 ph3 ba b--light-gray br3 ${classNames({ pointer: !disabled })}`}
               key={id}
               style={{
                 ...(!isFirst &&
@@ -39,7 +40,7 @@ class RadioGroup extends React.Component {
                 <Radio
                   id={id}
                   name={name}
-                  disabled={option.disabled}
+                  disabled={disabled || option.disabled}
                   onChange={this.handleChange}
                   label={option.label}
                   value={option.value}
@@ -70,11 +71,14 @@ RadioGroup.propTypes = {
   value: PropTypes.string,
   /** onChange event handler */
   onChange: PropTypes.func,
+  /** Disable the entire group */
+  disabled: PropTypes.bool,
 }
 
 RadioGroup.defaultProps = {
   onChange: () => {},
   value: null,
+  disabled: false,
 }
 
 export default RadioGroup
