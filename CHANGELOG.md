@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **CaretLeft** Export CaretLeft component as an app to render.
 - **CaretRight** Export CaretRight component as an app to render.
 - **Toggle** Decrease the width and adjust the animation.
+- **Spinner** Update animation
 
 ## [4.2.1] - 2018-06-14
 
