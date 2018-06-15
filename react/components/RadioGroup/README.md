@@ -19,9 +19,24 @@ Default
   <RadioGroup
     name="radioGroupExample2"
     options={[
-      {value:'value1', label: 'Lightness'},
-      {value:'value2', label: 'Green–Red', disabled: true},
-      {value:'value3', label: 'Blue–Yellow'},
+      {value:'value1', label: (
+        <div>
+          <div className="b">L</div>
+          <div className="gray">Lightness</div>
+        </div>
+      )},
+      {value:'value2', label: (
+        <div>
+          <div className="b">a*</div>
+          <div className="gray">Green–Red</div>
+        </div>
+      ), disabled: true},
+      {value:'value3', label: (
+        <div>
+          <div className="b">b*</div>
+          <div className="gray">Blue–Yellow</div>
+        </div>
+      )},
     ]}
     value="value1"
   />
@@ -46,38 +61,17 @@ Default
 Example: Working React Component
 
 ```js
-class Example extends React.Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      value: 'cyan',
-    }
+initialState = { value: 'cyan' };
 
-    this.handleChange = this.handleChange.bind(this)
-  }
-   
-  handleChange(event,value){
-    this.setState({
-      value,
-    })
-  }
-
-  render(){
-    return (
-      <RadioGroup
-        name="painters"
-        options={[
-          {value: 'cyan', label: 'Cyan'},
-          {value: 'magenta', label: 'Magenta'},
-          {value: 'yellow', label: 'Yellow'},
-          {value: 'key', label: 'Black'},
-        ]}
-        value={this.state.value}
-        onChange={this.handleChange}
-      />
-    )
-  }
-}
-
-<Example/>
+<RadioGroup
+  name="colors"
+  options={[
+    {value: 'cyan', label: 'Cyan'},
+    {value: 'magenta', label: 'Magenta'},
+    {value: 'yellow', label: 'Yellow'},
+    {value: 'key', label: 'Black'},
+  ]}
+  value={state.value}
+  onChange={e=>setState({value:e.currentTarget.value})}
+/>
 ```
