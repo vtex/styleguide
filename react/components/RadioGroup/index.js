@@ -76,7 +76,6 @@ RadioGroup.propTypes = {
 }
 
 RadioGroup.defaultProps = {
-  onChange: () => {},
   disabled: false,
 }
 
