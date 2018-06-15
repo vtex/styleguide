@@ -5,7 +5,7 @@ Default
   name="test"
   options={[
     {value:'value1', label: 'Option 1'},
-    {value:'value2', label: 'Option 2'},
+    {value:'value2', label: 'Option 2', disabled: true},
     {value:'value3', label: 'Option 3'},
   ]}
   value="value1"
