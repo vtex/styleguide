@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- **RadioGroup** Create RadioGroup component
+
 ### Changed
 
 - **CaretLeft** Export CaretLeft component as an app to render.
@@ -16,10 +20,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **Icon** Updated documentation
 - **Radio** Add blue border on checked radio buttons
 - **Checkbox** Add animation on toggle
-
-### Added
-
-- **RadioGroup** Create RadioGroup component
 
 ## [4.2.1] - 2018-06-14
 
