@@ -116,7 +116,7 @@ Radio.propTypes = {
   /** (Button spec attribute) */
   required: PropTypes.bool,
   /** (Button spec attribute) */
-  value: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 }
 
 export default Radio
