@@ -19,9 +19,9 @@ Default
   <RadioGroup
     name="radioGroupExample2"
     options={[
-      {value:'value1', label: 'Cyan'},
-      {value:'value2', label: 'Magenta', disabled: true},
-      {value:'value3', label: 'Yellow'},
+      {value:'value1', label: 'Lightness'},
+      {value:'value2', label: 'Green–Red', disabled: true},
+      {value:'value3', label: 'Blue–Yellow'},
     ]}
     value="value1"
   />
@@ -50,7 +50,7 @@ class Example extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      value: 'leonardo',
+      value: 'cyan',
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -67,10 +67,10 @@ class Example extends React.Component {
       <RadioGroup
         name="painters"
         options={[
-          {value: 'leonardo', label: 'Leonardo'},
-          {value: 'donatello', label: 'Donatello'},
-          {value: 'michelangelo', label: 'Michelangelo'},
-          {value: 'raphael', label: 'Raphael'},
+          {value: 'cyan', label: 'Cyan'},
+          {value: 'magenta', label: 'Magenta'},
+          {value: 'yellow', label: 'Yellow'},
+          {value: 'key', label: 'Black'},
         ]}
         value={this.state.value}
         onChange={this.handleChange}
