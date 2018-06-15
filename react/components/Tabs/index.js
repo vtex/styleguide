@@ -9,24 +9,22 @@ class Tabs extends PureComponent {
   render() {
     const { options, active } = this.props
     return (
-      <div className="bb b--light-gray mid-gray">
-        <div className="flex flex-row">
-          {options.map(option => (
-            <button
-              id={option}
-              key={option}
-              type="button"
-              onClick={this.handleClick}
-              className={`vtex-tab__button pointer bt-0 bl-0 br-0 bw1 ${
-                active === option
-                  ? 'near-black b--rebel-pink'
-                  : 'mid-gray b--transparent'
-              } hover-near-black fw5 fw4 v-mid relative pv5 ph4 f5 bg-transparent outline-0`}
-            >
-              {option}
-            </button>
-          ))}
-        </div>
+      <div className="flex flex-row bb b--light-gray mid-gray">
+        {options.map(option => (
+          <button
+            id={option}
+            key={option}
+            type="button"
+            onClick={this.handleClick}
+            className={`vtex-tab__button pointer bt-0 bl-0 br-0 bw1 ${
+              active === option
+                ? 'near-black b--rebel-pink'
+                : 'mid-gray b--transparent'
+            } hover-near-black fw5 fw4 v-mid relative pv5 ph4 f5 bg-transparent outline-0`}
+          >
+            {option}
+          </button>
+        ))}
       </div>
     )
   }
