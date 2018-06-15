@@ -40,7 +40,8 @@ class Radio extends PureComponent {
           className={classNames(
             'fake-radio relative ba br-100 mr3 flex justify-center items-center',
             {
-              'b--light-gray pointer': !disabled,
+              'b--light-gray pointer': !disabled && !checked,
+              'b--blue pointer': !disabled && checked,
               'b--light-silver bg-near-white': disabled,
             },
           )}
@@ -48,6 +49,7 @@ class Radio extends PureComponent {
             borderWidth: '3px',
             height: '1.5rem',
             width: '1.5rem',
+            transition: 'border 100ms ease-in-out',
           }}
         >
           <div
@@ -59,7 +61,7 @@ class Radio extends PureComponent {
               height: '0.75rem',
               width: '0.75rem',
               transform: `scale(${checked ? 1 : 0})`,
-              transition: 'transform 80ms',
+              transition: `transform 80ms ${checked ? 'ease-out' : 'ease-in'}`,
             }}
           />
         </div>
