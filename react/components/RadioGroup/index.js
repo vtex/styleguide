@@ -19,7 +19,6 @@ class RadioGroup extends React.Component {
           return (
             <label
               className="db pv2 ph3 ba b--light-gray br3 pointer"
-              htmlFor={id}
               key={id}
               style={{
                 ...(!isFirst &&
@@ -40,6 +39,7 @@ class RadioGroup extends React.Component {
                 <Radio
                   id={id}
                   name={name}
+                  disabled={option.disabled}
                   onChange={this.handleChange}
                   label={option.label}
                   value={option.value}
@@ -61,6 +61,7 @@ RadioGroup.propTypes = {
         .isRequired,
       label: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
         .isRequired,
+      disabled: PropTypes.bool,
     }),
   ),
   /** Name attribute for the radio inputs, which will also be used to generate ids */
