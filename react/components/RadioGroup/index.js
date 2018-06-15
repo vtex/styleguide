@@ -5,7 +5,7 @@ import classNames from 'classnames'
 
 class RadioGroup extends React.Component {
   handleChange = event => {
-    this.props.onChange(event, event.currentTarget.value)
+    this.props.onChange(event)
   }
 
   render() {
