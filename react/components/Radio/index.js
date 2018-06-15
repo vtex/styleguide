@@ -110,13 +110,13 @@ Radio.propTypes = {
   /** Radio label */
   label: PropTypes.node.isRequired,
   /** (Button spec attribute) */
-  name: PropTypes.string.isRequired,
+  name: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   /** onChange event */
   onChange: PropTypes.func.isRequired,
   /** (Button spec attribute) */
   required: PropTypes.bool,
   /** (Button spec attribute) */
-  value: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 }
 
 export default Radio

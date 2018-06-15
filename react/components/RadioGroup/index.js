@@ -60,24 +60,22 @@ RadioGroup.propTypes = {
     PropTypes.shape({
       value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
         .isRequired,
-      label: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-        .isRequired,
+      label: PropTypes.node.isRequired,
       disabled: PropTypes.bool,
     }),
   ),
   /** Name attribute for the radio inputs, which will also be used to generate ids */
   name: PropTypes.string.isRequired,
   /** Current selected value */
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /** onChange event handler */
-  onChange: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
   /** Disable the entire group */
   disabled: PropTypes.bool,
 }
 
 RadioGroup.defaultProps = {
   onChange: () => {},
-  value: null,
   disabled: false,
 }
 
