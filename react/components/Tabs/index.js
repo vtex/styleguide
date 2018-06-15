@@ -9,7 +9,7 @@ class Tabs extends PureComponent {
   render() {
     const { options, active } = this.props
     return (
-      <div className="flex flex-row bb b--light-gray mid-gray">
+      <div className="flex flex-row bb b--light-gray mid-gray overflow-y-auto">
         {options.map(option => (
           <button
             id={option}
