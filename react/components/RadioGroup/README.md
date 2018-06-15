@@ -7,8 +7,6 @@ Default
     {value:'value1', label: 'Option 1'},
     {value:'value2', label: 'Option 2'},
     {value:'value3', label: 'Option 3'},
-    {value:'value4', label: 'Option 4'},
-    {value:'value5', label: 'Option 5'},
   ]}
   value="value1"
 />
