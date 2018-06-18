@@ -30,17 +30,13 @@ class Tabs extends PureComponent {
   }
 }
 
-Tabs.defaultProps = {
-  options: [],
-}
-
 Tabs.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   active: PropTypes.string,
   options: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     value: PropTypes.any,
-  })),
+  })).isRequired,
 }
 
 export default Tabs
