@@ -12,17 +12,17 @@ class Tabs extends PureComponent {
       <div className="flex flex-row bb b--light-gray mid-gray overflow-y-auto">
         {options.map(option => (
           <button
-            id={option}
-            key={option}
+            id={option.id}
+            key={option.id}
             type="button"
             onClick={this.handleClick}
             className={`vtex-tab__button pointer bt-0 bl-0 br-0 bw1 ${
-              active === option
+              active === option.id
                 ? 'near-black b--rebel-pink'
                 : 'mid-gray b--transparent'
             } hover-near-black fw5 fw4 v-mid relative pv5 ph4 f5 bg-transparent outline-0`}
           >
-            {option}
+            {option.value}
           </button>
         ))}
       </div>
@@ -37,7 +37,10 @@ Tabs.defaultProps = {
 Tabs.propTypes = {
   onClick: PropTypes.func.isRequired,
   active: PropTypes.string,
-  options: PropTypes.arrayOf(PropTypes.string),
+  options: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    value: PropTypes.any,
+  })),
 }
 
 export default Tabs
