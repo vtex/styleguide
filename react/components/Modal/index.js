@@ -4,13 +4,15 @@ import ResponsiveModal from 'react-responsive-modal'
 
 class Modal extends PureComponent {
   render() {
-    const { isOpen, centered, onClose } = this.props
+    const { isOpen, centered, onClose, closeOnEsc, closeOnOverlayClick } = this.props
 
     return (
       <ResponsiveModal
         open={isOpen}
         little={centered}
         onClose={onClose}
+        closeOnEsc={closeOnEsc}
+        closeOnOverlayClick={closeOnOverlayClick}
         classNames={{
           overlay: 'vtex-modal__overlay',
           modal: 'vtex-modal__modal br2',
@@ -39,6 +41,8 @@ class Modal extends PureComponent {
 
 Modal.defaultProps = {
   isOpen: false,
+  closeOnEsc: true,
+  closeOnOverlayClick: true,
 }
 
 Modal.propTypes = {
@@ -50,6 +54,11 @@ Modal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
 
   onClose: PropTypes.func.isRequired,
+
+  /** Close the modal on ESC key press (default true) */
+  closeOnEsc: PropTypes.bool,
+  /** Close the modal on overlay click (default true) */
+  closeOnOverlayClick: PropTypes.bool,
 }
 
 export default Modal
