@@ -4,9 +4,9 @@ Default
 <div>
   <Tabs
     options={[
-      { id: "1", label: "label 1", active: true },
-      { id: "2", label: "label 2", active: false },
-      { id: "3", label: "label 3", active: false }
+      { id: "1", label: "label 1", onClick: () => {} },
+      { id: "2", label: "label 2", onClick: () => {} },
+      { id: "3", label: "label 3", onClick: () => {} }
     ]}
     active="1" />
 </div>
