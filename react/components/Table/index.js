@@ -51,14 +51,14 @@ class Table extends PureComponent {
                       className=""
                       headerRenderer={headerRenderer || function ({ label }) {
                         return (
-                          <div className="">
+                          <div className="truncate ph4">
                             {label}
                           </div>
                         )
                       }}
                       cellRenderer={cellRenderer || function ({ cellData }) {
                         return (
-                          <div className="truncate">
+                          <div className="truncate ph4">
                             {cellData}
                           </div>
                         )
