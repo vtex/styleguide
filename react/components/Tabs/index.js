@@ -2,10 +2,6 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
 class Tabs extends PureComponent {
-  handleClick = e => {
-    this.props.onClick && this.props.onClick(e)
-  }
-
   render() {
     const { options, active } = this.props
     return (
@@ -15,14 +11,14 @@ class Tabs extends PureComponent {
             id={option.id}
             key={option.id}
             type="button"
-            onClick={this.handleClick}
+            onClick={e => option.onClick(e)}
             className={`vtex-tab__button pointer bt-0 bl-0 br-0 bw1 ${
-              active === option.id
+              option.id === active
                 ? 'near-black b--rebel-pink'
                 : 'mid-gray b--transparent'
             } hover-near-black fw5 fw4 v-mid relative pv5 ph4 f5 bg-transparent outline-0`}
           >
-            {option.value}
+            {option.label}
           </button>
         ))}
       </div>
@@ -31,11 +27,11 @@ class Tabs extends PureComponent {
 }
 
 Tabs.propTypes = {
-  onClick: PropTypes.func,
   active: PropTypes.string,
   options: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
-    value: PropTypes.any,
+    label: PropTypes.any.isRequired,
+    onClick: PropTypes.func,
   })).isRequired,
 }
 
