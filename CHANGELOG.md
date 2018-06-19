@@ -7,7 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [4.3.2] - 2018-6-18
+## [4.3.3] - 2018-6-19
+
+### Fixed
+
+- **RadioGroup** add onChange mock function to examples
+- **Toggle** replace `min-width` with `minWidth` - Issue #163
 
 ## [4.3.2] - 2018-06-18
 

@@ -70,13 +70,13 @@ class Toggle extends Component {
           ...style,
           height: '1.25rem',
           width: '2.25rem',
-          'min-width': '2.25rem',
+          minWidth: '2.25rem',
         }
         circleStyle = {
           ...circleStyle,
           height: '1.25rem',
           width: '1.25rem',
-          'min-width': '1.25rem',
+          minWidth: '1.25rem',
         }
 
         iconStyle = {
@@ -100,11 +100,11 @@ class Toggle extends Component {
 
         style = {
           ...style,
-          'min-width': '3.5rem',
+          minWidth: '3.5rem',
         }
         circleStyle = {
           ...circleStyle,
-          'min-width': '2rem',
+          minWidth: '2rem',
         }
 
         checkedOffset = '1.5rem'

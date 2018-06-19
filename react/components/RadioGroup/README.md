@@ -9,6 +9,7 @@ Default
     {value:'value3', label: 'Blue'},
   ]}
   value="value1"
+  onChange={() => {}}
 />
 ```
 
@@ -38,6 +39,7 @@ One option disabled
     )},
   ]}
   value="value1"
+  onChange={() => {}}
 />
 ```
 
@@ -53,6 +55,7 @@ Entire group disabled
     {value:'value3', label: 'Value'},
   ]}
   value="value1"
+  onChange={() => {}}
 />
 ```
 
