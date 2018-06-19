@@ -1,32 +1,27 @@
 Default
 
 ```js
+const { Tab } = require('./index');
 <div>
-  <Tabs
-    options={[
-      { id: "1", label: "label 1", onClick: () => {} },
-      { id: "2", label: "label 2", onClick: () => {} },
-      { id: "3", label: "label 3", onClick: () => {} }
-    ]}
-    active="1" />
+  <Tabs>
+    <Tab label="label 1" active onClick={() => {}} />
+    <Tab label="label 2" onClick={() => {}} />
+    <Tab label="label 3" onClick={() => {}} />
+  </Tabs>
 </div>
 ```
 
 Working example
 
 ```js
+const { Tab } = require('./index');
 class TabsExample extends React.Component {
   constructor() {
     super()
-    this.handleTabClick = this.handleTabClick.bind(this)
-    this.state = { active: "1",
-      options: 
-      [
-        { id: "1", label: "label 1", onClick: this.handleTabClick },
-        { id: "2", label: "label 2", onClick: this.handleTabClick },
-        { id: "3", label: "label 3", onClick: this.handleTabClick },
-      ]
+    this.state = {
+      active: 'label 1'
     }
+    this.handleTabClick = this.handleTabClick.bind(this)
   }
 
   handleTabClick(e) {
@@ -36,15 +31,17 @@ class TabsExample extends React.Component {
   render() {
     return (
       <div>
-        <div>
-          <Tabs
-            options={this.state.options}
-            active={this.state.active}
-          />
-        </div>
-        {this.state.active === "1" && <p>Content 1</p>}
-        {this.state.active === "2" && <p>Content 2</p>}
-        {this.state.active === "3" && <p>Content 3</p>}
+          <Tabs>
+            <Tab label="label 1" active={this.state.active === "label 1"} onClick={this.handleTabClick}>
+              <p>Content 1</p>
+            </Tab>
+            <Tab label="label 2" active={this.state.active === "label 2"} onClick={this.handleTabClick}>
+              <p>Content 2</p>
+            </Tab>
+            <Tab label="label 3" active={this.state.active === "label 3"} onClick={this.handleTabClick}>
+              <p>Content 3</p>
+            </Tab>
+          </Tabs>
       </div>
     )
   }
