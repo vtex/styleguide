@@ -1,6 +1,28 @@
 /* eslint-disable */
 import React from 'react'
-import Toggle from '../Toggle'
+import Badge from '../Badge'
+import Button from '../Button'
+import CaretDown from '../icon/CaretDown'
+
+const badgeData = [
+  {
+    color: '#F71963',
+    label: 'Rebel pink',
+  },
+  {
+    color: '#00BBD4',
+    label: 'Young blue',
+  },
+  {
+    color: '#D6D8E0',
+    label: 'Cold gray',
+  },
+  {
+    color: '#142032',
+    label: 'Serious black',
+  },
+]
+
 export default {
   defaultSchema: {
     properties: {
@@ -10,7 +32,6 @@ export default {
       },
       email: {
         type: 'string',
-        format: 'email',
         title: 'Email',
         width: 350,
       },
@@ -25,21 +46,33 @@ export default {
       name: {
         type: 'string',
         title: 'Name',
+        headerRenderer: ({ label }) => {
+          return (
+            <Button
+              block
+              variation="secondary"
+              onClick={() => alert('You can customize header components. For example, call an external sort function')}>
+              <span className="mr3">{label}</span>
+              <CaretDown color="#368df7" />
+            </Button>
+          )
+        },
       },
       email: {
         type: 'string',
-        format: 'email',
         title: 'Email',
+        width: 350,
       },
-      number: {
-        type: 'number',
-        title: 'Number',
-        headerRenderer: () => <button className="mh4">custom component</button>,
-      },
-      active: {
-        type: 'boolean',
-        title: 'Active',
-        cellRenderer: ({ cellData }) => <Toggle checked={cellData} label="custom cell component" />,
+      color: {
+        type: 'object',
+        title: 'Color',
+        cellRenderer: ({ cellData }) => {
+          return (
+            <div className="mh4">
+              <Badge bgColor={cellData.color} color="#fff">{cellData.label}</Badge>
+            </div>
+          )
+        },
       },
     },
   },
@@ -48,351 +81,301 @@ export default {
       email: 'olen.stamm21@yahoo.com',
       name: 'Patrick Rothfuss',
       number: 52725,
-      index: 0,
-      active: true,
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'junius0@gmail.com',
       name: 'Hurricane Skywalker IV',
       number: 84639,
-      index: 1,
-      active: true,
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'hailee.botsford24@gmail.com',
       name: 'Mr. Ron Smith',
       number: 23851,
-      index: 2,
-      active: false,
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'judd_gulgowski22@yahoo.com',
       name: 'Tom Braddy',
       number: 10182,
-      index: 3,
-      active: true,
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'gaetano.mayert71@yahoo.com',
       name: 'Norris Murazik',
       number: 33725,
-      index: 4,
-      active: false,
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'catharine.leuschke62@hotmail.com',
       name: 'Momochi Zabuza',
       number: 33245,
-      index: 5,
-      active: false,
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'candido_ryan@hotmail.com',
       name: 'Isaac Mayert IV',
       number: 96637,
-      index: 6,
-      active: true,
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'freda_ritchie26@yahoo.com',
       name: 'Dr. Lempi Mosciski',
       number: 42623,
-      index: 7,
-      active: true,
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'elissa28@gmail.com',
       name: 'Nikita Feeney',
       number: 11769,
-      index: 8,
-      active: false,
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'reginald1@yahoo.com',
       name: 'Janick Lesch',
       number: 85311,
-      index: 9,
-      active: true,
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'jerad_hyatt@hotmail.com',
       name: 'Golda Carter',
       number: 44288,
-      index: 10,
-      active: false
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'jaquan.fisher61@yahoo.com',
       name: 'Dr. Cassandra Jerde',
       number: 73372,
-      index: 11,
-      active: false
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'marlee_ziemann@yahoo.com',
       name: 'Kvothe Kshlerin',
       number: 62416,
-      index: 12,
-      active: false
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'erman_Beier@yahoo.com',
       name: 'Arch Hegmann',
       number: 82120,
-      index: 13,
-      active: true
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'arturo_schroeder30@yahoo.com',
       name: 'Alejandro Strosin',
       number: 73701,
-      index: 14,
-      active: false
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'santos_doyle36@gmail.com',
       name: 'Zidane Vandervort',
       number: 26124,
-      index: 15,
-      active: true
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'yvonne.gleason@hotmail.com',
       name: 'Tonny Balistreri',
       number: 79484,
-      index: 16,
-      active: false
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'michaela51@hotmail.com',
       name: 'Emanuel Ullrich',
       number: 57879,
-      index: 17,
-      active: false
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'erik_kuvalis41@hotmail.com',
       name: 'Beto',
       number: 87262,
-      index: 18,
-      active: true
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'edwardo_kuvalis@hotmail.com',
       name: 'Mrs. Deion Beahan',
       number: 13464,
-      index: 19,
-      active: true
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'alexa_ondricka45@hotmail.com',
       name: 'Trent Kerluke',
       number: 9677,
-      index: 20,
-      active: false
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'darron_brakus63@yahoo.com',
       name: 'Jacquelyn Flatley Jr.',
       number: 55405,
-      index: 21,
-      active: true
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'jamie.hermann60@gmail.com',
       name: 'Ervin Kuphal',
       number: 76965,
-      index: 22,
-      active: true
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'cleo.klein@hotmail.com',
       name: 'Terrence Gutmann',
       number: 55731,
-      index: 23,
-      active: false
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'Alicia.Ullrich@yahoo.com',
       name: 'Oren Beatty V',
       number: 6073,
-      index: 24,
-      active: false
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'Maynard.Kulas@hotmail.com',
       name: 'Dr. Colby Gottlieb',
       number: 27670,
-      index: 25,
-      active: false
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'Madonna_Feeney@yahoo.com',
       name: 'Ernestina Rempel',
       number: 75422,
-      index: 26,
-      active: true
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'Pearlie_Ondricka@hotmail.com',
       name: 'Kathryne Graham',
       number: 46363,
-      index: 27,
-      active: false
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'Elise21@yahoo.com',
       name: 'Cecelia Marquardt',
       number: 49598,
-      index: 28,
-      active: false
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'Willis.Cremin@hotmail.com',
       name: 'Bradford Stanton',
       number: 21061,
-      index: 29,
-      active: true
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'Marcus31@gmail.com',
       name: 'Zachary Bednar',
       number: 35011,
-      index: 30,
-      active: true
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'Morris15@gmail.com',
       name: 'Roxanne Kozey',
       number: 54952,
-      index: 31,
-      active: true
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'Marge_Veum47@hotmail.com',
       name: 'Amelia Gutmann',
       number: 41825,
-      index: 32,
-      active: false
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'Zack27@gmail.com',
       name: 'Armani Kuhic',
       number: 230,
-      index: 33,
-      active: false
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'Betty.Pouros48@hotmail.com',
       name: 'Antonietta Koch',
       number: 62524,
-      index: 34,
-      active: false
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'Soledad.Huel@gmail.com',
       name: 'Pansy Kuphal',
       number: 3655,
-      index: 35,
-      active: true
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'Vaughn_Huel42@yahoo.com',
       name: 'Brody Mohr',
       number: 70076,
-      index: 36,
-      active: true
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'Thurman24@gmail.com',
       name: 'Gustave Grady',
       number: 32633,
-      index: 37,
-      active: false
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'Antonette.Aufderhar@hotmail.com',
       name: 'Ms. Neva Thompson',
       number: 15857,
-      index: 38,
-      active: true
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'Ryan_Kub@gmail.com',
       name: 'Clarissa Boyer',
       number: 46555,
-      index: 39,
-      active: false
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'Mable_Wilkinson24@hotmail.com',
       name: 'Marcelle Orn',
       number: 19603,
-      index: 40,
-      active: true
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'Adeline36@yahoo.com',
       name: 'Domenico Olson V',
       number: 37333,
-      index: 41,
-      active: false
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'Arno.Hegmann@gmail.com',
       name: 'Ms. Marcos Bechtelar',
       number: 82189,
-      index: 42,
-      active: false
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'Israel.Boyle2@gmail.com',
       name: 'Devon Mante',
       number: 27772,
-      index: 43,
-      active: true
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'Maxime.Auer@hotmail.com',
       name: 'Isabelle Keeling',
       number: 94458,
-      index: 44,
-      active: false
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'Jalen.Schmeler7@yahoo.com',
       name: 'Francisco Rodriguez',
       number: 89358,
-      index: 45,
-      active: false
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'Robin_Dach43@gmail.com',
       name: 'Destany Farrell',
       number: 67488,
-      index: 46,
-      active: false
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'Sid64@gmail.com',
       name: 'Miss Haylee Sporer',
       number: 11384,
-      index: 47,
-      active: false
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'Barney_Batz85@gmail.com',
       name: 'Alisa Bayer',
       number: 25164,
-      index: 48,
-      active: true
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
     {
       email: 'Darien.Yundt66@gmail.com',
       name: 'Bernhard Weissnat',
       number: 39351,
-      index: 49,
-      active: false
+      color: badgeData[Math.floor(Math.random() * badgeData.length)],
     },
   ],
 }
