@@ -33,7 +33,7 @@ export default {
       email: {
         type: 'string',
         title: 'Email',
-        width: 350,
+        width: 35,
       },
       number: {
         type: 'number',
@@ -61,7 +61,7 @@ export default {
       email: {
         type: 'string',
         title: 'Email',
-        width: 350,
+        width: 35,
       },
       color: {
         type: 'object',

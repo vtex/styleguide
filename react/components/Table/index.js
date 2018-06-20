@@ -8,8 +8,18 @@ import {
 
 class Table extends PureComponent {
   render() {
-    const { schema, items, indexColumn, indexColumnLabel } = this.props
+    const {
+      schema,
+      items,
+      indexColumn,
+      indexColumnLabel,
+      disableHeader,
+      onRowClick,
+      onRowMouseOver,
+      onRowMouseOut,
+    } = this.props
     const properties = Object.keys(schema.properties)
+    // hydrate items with index when 'indexColumn' prop is true
     let newItems = items
     if (indexColumn) {
       newItems = items.map((item, index) => {
@@ -32,6 +42,16 @@ class Table extends PureComponent {
               rowGetter={({ index }) => newItems[index]}
               className="flex flex-column"
               headerClassName="b pv4"
+              disableHeader={disableHeader}
+              onRowClick={({ event, index, rowData }) => {
+                onRowClick({ event, index, rowData })
+              }}
+              onRowMouseOver={({ event, index, rowData }) => {
+                onRowMouseOver({ event, index, rowData })
+              }}
+              onRowMouseOut={({ event, index, rowData }) => {
+                onRowMouseOut({ event, index, rowData })
+              }}
               rowClassName={({ index }) =>
                 `flex flex-row items-center pv4 ${index === -1 ? 'bt bb' : 'bb'} b--light-gray`
               }
@@ -42,14 +62,15 @@ class Table extends PureComponent {
                     headerRenderer={() => <React.Fragment>Index</React.Fragment>}
                     dataKey="_reactVirtualizedIndex"
                     label={indexColumnLabel}
-                    width={70}
+                    width={width / 10} // 10%
                   />
                   : null
               }
               {
                 properties.map((key, index) => {
                   const label = schema.properties[key].title
-                  const cellWidth = schema.properties[key].width || 200
+                  const cellWidthPercent = schema.properties[key].width || 25
+                  const cellWidth = (width * cellWidthPercent) / 100
                   const headerRenderer = schema.properties[key].headerRenderer
                   const cellRenderer = schema.properties[key].cellRenderer
                   return (
@@ -84,7 +105,12 @@ class Table extends PureComponent {
   }
 }
 Table.defaultProps = {
+  indexColumn: false,
   indexColumnLabel: 'Index',
+  disableHeader: false,
+  onRowClick: () => {},
+  onRowMouseOut: () => {},
+  onRowMouseOver: () => {},
 }
 Table.propTypes = {
   /** Array of objects with data */
@@ -95,6 +121,14 @@ Table.propTypes = {
   indexColumn: PropTypes.bool,
   /** Row index column label */
   indexColumnLabel: PropTypes.string,
+  /** Do not render the table header (only the rows) */
+  disableHeader: PropTypes.bool,
+  /** Callback invoked when a user clicks on a table row. ({ event: Event, index: number, rowData: any }): void */
+  onRowClick: PropTypes.func,
+  /** Callback invoked when a user moves the mouse over a table row. ({ event: Event, index: number, rowData: any }): void */
+  onRowMouseOver: PropTypes.func,
+  /** Callback invoked when the mouse leaves a table row. ({ event: Event, index: number, rowData: any }): void */
+  onRowMouseOut: PropTypes.func,
 }
 
 export default Table
