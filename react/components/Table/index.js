@@ -53,8 +53,12 @@ class Table extends PureComponent {
             >
               {indexColumn ? (
                 <Column
-                  headerRenderer={() => <span className="ph4">Index</span>}
-                  cellRenderer={({ cellData }) => <span className="ph4">{cellData}</span>}
+                  headerRenderer={() => (
+                    <span className="ph4">{indexColumnLabel || 'Index'}</span>
+                  )}
+                  cellRenderer={({ cellData }) => (
+                    <span className="ph4">{cellData}</span>
+                  )}
                   dataKey="_reactVirtualizedIndex"
                   label={indexColumnLabel}
                   width={width / 10} // 10%
