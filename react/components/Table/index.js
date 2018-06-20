@@ -92,6 +92,7 @@ class Table extends PureComponent {
     )
   }
 }
+
 Table.defaultProps = {
   indexColumn: false,
   indexColumnLabel: 'Index',
@@ -100,6 +101,7 @@ Table.defaultProps = {
   onRowMouseOut: () => {},
   onRowMouseOver: () => {},
 }
+
 Table.propTypes = {
   /** Array of objects with data */
   items: PropTypes.array.isRequired,
