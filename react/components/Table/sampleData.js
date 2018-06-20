@@ -69,7 +69,11 @@ export default {
         cellRenderer: ({ cellData }) => {
           return (
             <div className="mh4">
-              <Badge bgColor={cellData.color} color="#fff">{cellData.label}</Badge>
+              <Badge bgColor={cellData.color} color="#fff">
+                <span className="nowrap">
+                  {cellData.label}
+                </span>
+              </Badge>
             </div>
           )
         },
