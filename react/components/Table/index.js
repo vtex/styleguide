@@ -1,10 +1,24 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { Column, Table as VirtualTable, AutoSizer } from 'react-virtualized'
+import {
+  Column,
+  Table as VirtualTable,
+  AutoSizer,
+} from 'react-virtualized'
 
 class Table extends PureComponent {
   render() {
-    const { schema, items, indexColumn } = this.props
+    const { schema, items, indexColumn, indexColumnLabel } = this.props
+    const properties = Object.keys(schema.properties)
+    let newItems = items
+    if (indexColumn) {
+      newItems = items.map((item, index) => {
+        return {
+          ...item,
+          _reactVirtualizedIndex: index,
+        }
+      })
+    }
     return (
       <div className="vh-50">
         <AutoSizer>
@@ -14,41 +28,33 @@ class Table extends PureComponent {
               height={height}
               headerHeight={40}
               rowHeight={50}
-              rowCount={items.length}
-              rowGetter={({ index }) => items[index]}
+              rowCount={newItems.length}
+              rowGetter={({ index }) => newItems[index]}
               className="flex flex-column"
-              headerClassName="flex flex-row items-center b pv4 bt bb b--light-silver"
-              rowClassName="flex flex-row items-center pv4 bb b--light-silver"
+              headerClassName="b pv4"
+              rowClassName={({ index }) =>
+                `flex flex-row items-center pv4 ${index === -1 ? 'bt bb' : 'bb'} b--light-gray`
+              }
             >
               {
                 indexColumn
                   ? <Column
-                    className=""
-                    headerRenderer={() => {
-                      return (
-                        <React.Fragment>
-                          <div className="">
-                            Index
-                          </div>
-                        </React.Fragment>
-                      )
-                    }}
-                    dataKey="index"
-                    label="Index"
+                    headerRenderer={() => <React.Fragment>Index</React.Fragment>}
+                    dataKey="_reactVirtualizedIndex"
+                    label={indexColumnLabel}
                     width={70}
                   />
                   : null
               }
               {
-                Object.keys(schema.properties).map((key, index) => {
+                properties.map((key, index) => {
                   const label = schema.properties[key].title
-                  const width = schema.properties[key].width || 200
+                  const cellWidth = schema.properties[key].width || 200
                   const headerRenderer = schema.properties[key].headerRenderer
                   const cellRenderer = schema.properties[key].cellRenderer
                   return (
                     <Column
                       key={index}
-                      className=""
                       headerRenderer={headerRenderer || function ({ label }) {
                         return (
                           <div className="truncate ph4">
@@ -65,7 +71,7 @@ class Table extends PureComponent {
                       }}
                       dataKey={key}
                       label={label}
-                      width={width}
+                      width={cellWidth}
                     />
                   )
                 })
@@ -77,7 +83,9 @@ class Table extends PureComponent {
     )
   }
 }
-
+Table.defaultProps = {
+  indexColumnLabel: 'Index',
+}
 Table.propTypes = {
   /** Array of objects with data */
   items: PropTypes.array.isRequired,
@@ -85,6 +93,8 @@ Table.propTypes = {
   schema: PropTypes.object.isRequired,
   /** Should first column be row index */
   indexColumn: PropTypes.bool,
+  /** Row index column label */
+  indexColumnLabel: PropTypes.string,
 }
 
 export default Table
