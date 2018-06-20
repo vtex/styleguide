@@ -17,9 +17,10 @@ class Table extends PureComponent {
     const properties = Object.keys(schema.properties)
     // hydrate items with index when 'indexColumn' prop is true
     const newItems = indexColumn
-      ? items.map((item, index) => {
-        return { ...item, _reactVirtualizedIndex: index }
-      })
+      ? items.map((item, index) => ({
+        ...item,
+        _reactVirtualizedIndex: index + 1,
+      }))
       : items
     return (
       <div className="vh-50">
@@ -52,7 +53,8 @@ class Table extends PureComponent {
             >
               {indexColumn ? (
                 <Column
-                  headerRenderer={() => <React.Fragment>Index</React.Fragment>}
+                  headerRenderer={() => <span className="ph4">Index</span>}
+                  cellRenderer={({ cellData }) => <span className="ph4">{cellData}</span>}
                   dataKey="_reactVirtualizedIndex"
                   label={indexColumnLabel}
                   width={width / 10} // 10%
