@@ -1,10 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import {
-  Column,
-  Table as VirtualTable,
-  AutoSizer,
-} from 'react-virtualized'
+import { Column, Table as VirtualTable, AutoSizer } from 'react-virtualized'
 
 class Table extends PureComponent {
   render() {
@@ -20,15 +16,11 @@ class Table extends PureComponent {
     } = this.props
     const properties = Object.keys(schema.properties)
     // hydrate items with index when 'indexColumn' prop is true
-    let newItems = items
-    if (indexColumn) {
-      newItems = items.map((item, index) => {
-        return {
-          ...item,
-          _reactVirtualizedIndex: index,
-        }
+    const newItems = indexColumn
+      ? items.map((item, index) => {
+        return { ...item, _reactVirtualizedIndex: index }
       })
-    }
+      : items
     return (
       <div className="vh-50">
         <AutoSizer>
@@ -53,50 +45,46 @@ class Table extends PureComponent {
                 onRowMouseOut({ event, index, rowData })
               }}
               rowClassName={({ index }) =>
-                `flex flex-row items-center pv4 ${index === -1 ? 'bt bb' : 'bb'} b--light-gray`
+                `flex flex-row items-center pv4 ${
+                  index === -1 ? 'bt bb' : 'bb'
+                } b--light-gray`
               }
             >
-              {
-                indexColumn
-                  ? <Column
-                    headerRenderer={() => <React.Fragment>Index</React.Fragment>}
-                    dataKey="_reactVirtualizedIndex"
-                    label={indexColumnLabel}
-                    width={width / 10} // 10%
+              {indexColumn ? (
+                <Column
+                  headerRenderer={() => <React.Fragment>Index</React.Fragment>}
+                  dataKey="_reactVirtualizedIndex"
+                  label={indexColumnLabel}
+                  width={width / 10} // 10%
+                />
+              ) : null}
+              {properties.map((key, index) => {
+                const label = schema.properties[key].title
+                const cellWidthPercent = schema.properties[key].width || 25
+                const cellWidth = (width * cellWidthPercent) / 100
+                const headerRenderer = schema.properties[key].headerRenderer
+                const cellRenderer = schema.properties[key].cellRenderer
+                return (
+                  <Column
+                    key={index}
+                    headerRenderer={
+                      headerRenderer ||
+                      function({ label }) {
+                        return <div className="truncate ph4">{label}</div>
+                      }
+                    }
+                    cellRenderer={
+                      cellRenderer ||
+                      function({ cellData }) {
+                        return <div className="truncate ph4">{cellData}</div>
+                      }
+                    }
+                    dataKey={key}
+                    label={label}
+                    width={cellWidth}
                   />
-                  : null
-              }
-              {
-                properties.map((key, index) => {
-                  const label = schema.properties[key].title
-                  const cellWidthPercent = schema.properties[key].width || 25
-                  const cellWidth = (width * cellWidthPercent) / 100
-                  const headerRenderer = schema.properties[key].headerRenderer
-                  const cellRenderer = schema.properties[key].cellRenderer
-                  return (
-                    <Column
-                      key={index}
-                      headerRenderer={headerRenderer || function ({ label }) {
-                        return (
-                          <div className="truncate ph4">
-                            {label}
-                          </div>
-                        )
-                      }}
-                      cellRenderer={cellRenderer || function ({ cellData }) {
-                        return (
-                          <div className="truncate ph4">
-                            {cellData}
-                          </div>
-                        )
-                      }}
-                      dataKey={key}
-                      label={label}
-                      width={cellWidth}
-                    />
-                  )
-                })
-              }
+                )
+              })}
             </VirtualTable>
           )}
         </AutoSizer>
