@@ -12,6 +12,9 @@ Types
     <span className="mr4">
       <Button variation="tertiary">Tertiary</Button>
     </span>
+    <span className="mr4">
+      <Button variation="danger">Danger</Button>
+    </span>
   </div>
   <div className="mt4">
     <span className="mr4">
@@ -22,6 +25,9 @@ Types
     </span>
     <span className="mr4">
       <Button variation="tertiary" disabled>Tertiary</Button>
+    </span>
+    <span className="mr4">
+      <Button variation="danger" disabled>Danger</Button>
     </span>
   </div>
 </div>
@@ -78,6 +84,23 @@ Sizes
     </span>
     <span className="mr4">
       <Button variation="tertiary" size="large">
+        Large
+      </Button>
+    </span>
+  </div>
+  <div className="mb4">
+    <span className="mr4">
+      <Button variation="danger" size="small">
+        Small
+      </Button>
+    </span>
+    <span className="mr4">
+      <Button variation="danger" size="regular">
+        Default
+      </Button>
+    </span>
+    <span className="mr4">
+      <Button variation="danger" size="large">
         Large
       </Button>
     </span>
