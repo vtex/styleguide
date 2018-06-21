@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- **Alert** wrap icon in a div to always maintain its size
+
 ## [4.3.4] - 2018-6-20
 
 ### Added
