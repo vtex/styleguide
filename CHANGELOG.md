@@ -7,11 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [4.3.6] - 2018-6-25
+## [5.0.0] - 2018-6-25
 
 ### Changed
 
-- **Tabs** Group tabs in a single component
+- **[BREAKING] Tabs** Group tabs in a single component
 
 ## [4.3.5] - 2018-6-21
 
