@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.3.6] - 2018-6-25
+
+### Changed
+
+- **Tabs** Group tabs in a single component
+
 ## [4.3.5] - 2018-6-21
 
 ### Fixed
@@ -58,7 +64,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- **Checkbox** Export Checkbox component as an app to render. 
+- **Checkbox** Export Checkbox component as an app to render.
 
 ## [4.2.0] - 2018-06-12
 

@@ -1,35 +1,26 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import config from 'vtex-tachyons/config.json'
-
-class Tab extends PureComponent {
+class Tabs extends Component {
   render() {
-    const style = this.props.active
-      ? { boxShadow: `0 2px ${config.colors['red']}` }
-      : {}
-
+    const { children } = this.props
+    const selectedTab = children.find(child => child.props.active)
+    const content = selectedTab && selectedTab.props.children
     return (
-      <button
-        type="button"
-        onClick={this.props.onClick}
-        className="vtex-tab__button pointer hover-blue bw1 ba fw5 fw4 v-mid relative pv5 ph4 f5 b--transparent bg-transparent"
-        style={style}
-      >
-        {this.props.label}
-      </button>
+      <div className="w-100">
+        <div className="flex flex-row bb b--light-gray mid-gray overflow-y-auto">
+          {children.map(child => child)}
+        </div>
+        <div className="w-100">
+          {content}
+        </div>
+      </div>
     )
   }
 }
 
-Tab.defaultProps = {
-  active: false,
+Tabs.propTypes = {
+  children: PropTypes.arrayOf(PropTypes.node),
 }
 
-Tab.propTypes = {
-  label: PropTypes.any.isRequired,
-  onClick: PropTypes.func.isRequired,
-  active: PropTypes.bool,
-}
-
-export default Tab
+export default Tabs
