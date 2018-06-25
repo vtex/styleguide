@@ -7,7 +7,7 @@ class Tab extends Component {
   }
 
   render() {
-    const { active, label } = this.props
+    const { active, block, label } = this.props
     return (
       <button
         type="button"
@@ -16,7 +16,9 @@ class Tab extends Component {
           active
             ? 'near-black b--rebel-pink'
             : 'mid-gray b--transparent'}
-          hover-near-black fw5 fw4 v-mid relative pv5 ph4 f5 bg-transparent outline-0`}
+          ${block ? 'w-100' : ''}
+          hover-near-black fw5 fw4 v-mid relative pv5 ph4 f5 bg-transparent outline-0
+        `}
       >
         {label}
       </button>
@@ -24,8 +26,13 @@ class Tab extends Component {
   }
 }
 
+Tab.defaultProps = {
+  block: false,
+}
+
 Tab.propTypes = {
   active: PropTypes.bool,
+  block: PropTypes.bool,
   children: PropTypes.node,
   label: PropTypes.any.isRequired,
   onClick: PropTypes.func,

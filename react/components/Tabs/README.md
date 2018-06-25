@@ -11,6 +11,19 @@ const Tab = require('./Tab').default;
 </div>
 ```
 
+Block
+
+```js
+const Tab = require('./Tab');
+<div>
+  <Tabs>
+    <Tab label="block 1" active onClick={() => {}} block />
+    <Tab label="block 2" onClick={() => {}} block />
+    <Tab label="block 3" onClick={() => {}} block />
+  </Tabs>
+</div>
+```
+
 Working example
 
 ```js
