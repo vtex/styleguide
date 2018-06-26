@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [5.0.1] - 2018-6-25
+
+### Changed
+
+- Export the `Tab` component to render
+
 ## [5.0.0] - 2018-6-25
 
 ### Changed

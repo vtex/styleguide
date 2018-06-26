@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-export class Tab extends Component {
+class Tab extends Component {
   handleClick = e => {
     this.props.onClick && this.props.onClick(e)
   }
@@ -30,3 +30,5 @@ Tab.propTypes = {
   label: PropTypes.any.isRequired,
   onClick: PropTypes.func,
 }
+
+export default Tab

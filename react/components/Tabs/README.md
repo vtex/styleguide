@@ -1,7 +1,7 @@
 Default
 
 ```js
-const { Tab } = require('./Tab');
+const Tab = require('./Tab').default;
 <div>
   <Tabs>
     <Tab label="label 1" active onClick={() => {}} />
@@ -14,7 +14,7 @@ const { Tab } = require('./Tab');
 Working example
 
 ```js
-const { Tab } = require('./Tab');
+const Tab = require('./Tab').default;
 class TabsExample extends React.Component {
   constructor() {
     super()
