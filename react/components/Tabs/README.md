@@ -14,7 +14,7 @@ const Tab = require('./Tab').default;
 Block
 
 ```js
-const Tab = require('./Tab');
+const Tab = require('./Tab').default;
 <div>
   <Tabs>
     <Tab label="block 1" active onClick={() => {}} block />
