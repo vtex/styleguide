@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - **Textarea** Add `value` and `defaultValue` props to enable control
 
+### Changed
+
+- **Input** Add `getWrappedInstace` method to get the ref of a input field.
+
 ## [5.0.1] - 2018-6-25
 
 ### Changed
