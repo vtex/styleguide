@@ -74,14 +74,15 @@ Variations
 
 Using ref
 ```js
-  const handleFocusClick=()=>{
-    const instance=this.input.getWrappedInstance()
+  const handleFocusClick = () => {
+    const instance = this.input.getWrappedInstance()
     instance && instance.focus()
   }
+
   <div>
     <Input ref={el=>{this.input=el}} placeholder="Placeholder" label="Click on the button below to focus on this input" />
     <div className="pt2">
-      <Button onClick={handleFocusClick}>Focus on input</Button>
+      <Button size="small" onClick={handleFocusClick}>Focus on input</Button>
     </div>
   </div>
 ```
