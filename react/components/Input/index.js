@@ -9,6 +9,8 @@ class Input extends Component {
     this.state = {
       active: false,
     }
+
+    this.inputRef = React.createRef()
   }
 
   handleChange = event => {
@@ -27,6 +29,10 @@ class Input extends Component {
   handleBlur = event => {
     this.setState({ active: false })
     this.props.onBlur && this.props.onBlur(event)
+  }
+
+  getWrappedInstance = () => {
+    return this.inputRef && this.inputRef.current
   }
 
   render() {
@@ -122,6 +128,7 @@ class Input extends Component {
           )}
           <input
             {...dataAttrs}
+            ref={this.inputRef}
             onBlur={this.handleBlur}
             onFocus={this.handleFocus}
             onChange={this.handleChange}
