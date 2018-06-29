@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
-- **Input** Add `getWrappedInstace` method to get the ref of a input field.
+- **Input** Ref now points to the input element itself
 
 ## [5.0.1] - 2018-6-25
 
