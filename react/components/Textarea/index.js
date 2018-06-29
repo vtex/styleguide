@@ -89,8 +89,11 @@ class Textarea extends Component {
           spellCheck={this.props.spellCheck}
           id={this.props.id}
           rows={this.props.rows}
-          defaultValue={children}
-        />
+          defaultValue={this.props.defaultValue}
+          value={this.props.value}
+        >
+          {children}
+        </textarea>
 
         {errorMessage && (
           <div className="red f6 mt3 lh-title">{errorMessage}</div>
@@ -102,7 +105,6 @@ class Textarea extends Component {
 }
 
 Textarea.defaultProps = {
-  children: '',
   autoFocus: false,
   dataAttributes: {},
   disabled: false,
@@ -115,6 +117,10 @@ Textarea.defaultProps = {
 Textarea.propTypes = {
   /** Content of the textarea */
   children: PropTypes.string,
+  /** Controlled content of the textarea */
+  value: PropTypes.string,
+  /** Default content of the textarea */
+  defaultValue: PropTypes.string,
   /** Error highlight */
   error: PropTypes.bool,
   /** Error message */
