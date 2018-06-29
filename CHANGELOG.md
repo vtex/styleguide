@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - **[BREAKING]** **Alert** Remove default value of `type` prop
 - **[BREAKING]** **Alert** Remove value `info` from `type` prop
+- **[BREAKING]** Icons default color is now `currentColor`, which is the current text color
 
 ### Fixed
 - Spinner proptypes
