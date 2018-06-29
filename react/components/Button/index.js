@@ -69,6 +69,14 @@ class Button extends Component {
         }
         break
       }
+      case 'danger': {
+        if (disabled) {
+          classes += 'bg-light-silver silver b--light-silver '
+        } else {
+          classes += 'bg-red b--red white '
+        }
+        break
+      }
     }
 
     if (!disabled) {
@@ -131,7 +139,7 @@ Button.propTypes = {
   /** Button size  */
   size: PropTypes.oneOf(['small', 'regular', 'large']),
   /** Button prominence variation */
-  variation: PropTypes.oneOf(['primary', 'secondary', 'tertiary']),
+  variation: PropTypes.oneOf(['primary', 'secondary', 'tertiary', 'danger']),
   /** Block style */
   block: PropTypes.bool,
   /** Loading state */
