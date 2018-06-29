@@ -71,3 +71,21 @@ Variations
   </div>
 </div>
 ```
+
+Using ref
+```js
+  this.input = React.createRef()
+
+  const handleFocusClick = () => {
+    this.input.current.focus()
+  }
+
+  <div>
+    <Input ref={this.input} placeholder="Placeholder" label="Click on the button below to focus on this input" />
+    <div className="pt2">
+      <Button size="small" onClick={handleFocusClick}>
+        Focus on input
+      </Button>
+    </div>
+  </div>
+```

@@ -122,6 +122,7 @@ class Input extends Component {
           )}
           <input
             {...dataAttrs}
+            ref={this.props.forwardedRef}
             onBlur={this.handleBlur}
             onFocus={this.handleFocus}
             onChange={this.handleChange}
@@ -192,6 +193,8 @@ Input.propTypes = {
   label: PropTypes.string,
   /** Prefix */
   prefix: PropTypes.string,
+  /** Internal prop used for ref forwarding */
+  forwardedRef: PropTypes.func,
   /** Spec attribute */
   accept: PropTypes.string,
   /** Spec attribute */
@@ -256,4 +259,6 @@ Input.propTypes = {
   onBlur: PropTypes.func,
 }
 
-export default Input
+export default React.forwardRef((props, ref) =>
+  <Input {...props} forwardedRef={ref} />
+)
