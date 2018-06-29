@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import config from 'vtex-tachyons/config.json'
 import { calcIconSize, baseClassname } from '../utils'
 
 const iconBase = {
@@ -33,7 +32,7 @@ class ArrowBack extends PureComponent {
 }
 
 ArrowBack.defaultProps = {
-  color: config.colors['serious-black'],
+  color: 'currentColor',
   size: 16,
   block: false,
 }
