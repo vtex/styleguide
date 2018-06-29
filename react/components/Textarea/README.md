@@ -1,6 +1,9 @@
 Default
 
 ```js
+initialState = {
+  value: ""
+};
 <div>
   <div className="mb6">
     <Textarea label="With a label">I haz content</Textarea>
@@ -14,12 +17,17 @@ Default
     <Textarea
       label="With helper"
       helpText={<span>Your help text goes here!</span>}
-    >
-      I content, shall be readable.
-    </Textarea>
+    />
   </div>
-  <div>
+  <div className="mb6">
     <Textarea label="With error" error errorMessage="Somehow wrong" />
   </div>
-</div>
+  <div className="mb6">
+    <Textarea
+      label="Controlling text"
+      onChange={e => setState({ value: e.target.value.trim() })}
+      value={state.value}
+    />
+  </div>
+</div>;
 ```

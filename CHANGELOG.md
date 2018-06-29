@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- **Textarea** Add `value` and `defaultValue` props to enable control
+
 ## [5.0.1] - 2018-6-25
 
 ### Changed
