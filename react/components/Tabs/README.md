@@ -11,7 +11,7 @@ const Tab = require('./Tab').default;
 </div>
 ```
 
-Block
+Full width tabs
 
 ```js
 const Tab = require('./Tab').default;
