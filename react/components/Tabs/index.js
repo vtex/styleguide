@@ -10,7 +10,7 @@ class Tabs extends Component {
       <div className="w-100">
         <div className="flex flex-row bb b--light-gray mid-gray overflow-y-auto">
           {children.map(child =>
-            cloneElement(child, { fullWidth, key: child.props.label })
+            cloneElement(child, { fullWidth, key: child.props.label.toString() })
           )}
         </div>
         <div className="w-100">
