@@ -8,7 +8,15 @@ import config from 'vtex-tachyons/config.json'
 
 class Toggle extends Component {
   render() {
-    const { semantic, disabled, id, checked, label, size } = this.props
+    const {
+      semantic,
+      disabled,
+      id,
+      checked,
+      label,
+      size,
+      helpText,
+    } = this.props
 
     let labelClass = 'near-black '
     let classes = 'flex items-center relative br4 '
@@ -118,39 +126,39 @@ class Toggle extends Component {
     iconStyle = { ...iconStyle, ...checkedStyle }
 
     return (
-      <label
-        htmlFor={id || undefined}
-        className={`flex flex-row items-center ${!disabled && 'pointer'}`}
-      >
-        <div className={`vtex-toggle ${classes}`} style={style}>
-          <div className={circleClasses} style={circleStyle} />
-          {semantic && (
-            <div className={iconDenyClasses} style={iconStyle}>
-              <DenyIcon
-                size={size === 'regular' ? 14 : 12}
-                color={config.colors.red}
-              />
-            </div>
-          )}
-          {semantic && (
-            <div className={iconCheckClasses} style={iconStyle}>
-              <CheckIcon
-                size={size === 'regular' ? 15 : 13}
-                color={config.colors.green}
-              />
-            </div>
-          )}
+      <label htmlFor={id || undefined}>
+        <div className={`flex flex-row items-center ${!disabled && 'pointer'}`}>
+          <div className={`vtex-toggle ${classes}`} style={style}>
+            <div className={circleClasses} style={circleStyle} />
+            {semantic && (
+              <div className={iconDenyClasses} style={iconStyle}>
+                <DenyIcon
+                  size={size === 'regular' ? 14 : 12}
+                  color={config.colors.red}
+                />
+              </div>
+            )}
+            {semantic && (
+              <div className={iconCheckClasses} style={iconStyle}>
+                <CheckIcon
+                  size={size === 'regular' ? 15 : 13}
+                  color={config.colors.green}
+                />
+              </div>
+            )}
+          </div>
+          <input
+            id={id || undefined}
+            type="checkbox"
+            className="dn"
+            disabled={disabled}
+            checked={checked}
+            onClick={this.props.onClick}
+            onChange={this.props.onChange}
+          />
+          {label && <span className={labelClass}>{label}</span>}
         </div>
-        <input
-          id={id || undefined}
-          type="checkbox"
-          className="dn"
-          disabled={disabled}
-          checked={checked}
-          onClick={this.props.onClick}
-          onChange={this.props.onChange}
-        />
-        {label && <span className={labelClass}>{label}</span>}
+        {helpText && <div className="mid-gray f6 mt3 lh-title">{helpText}</div>}
       </label>
     )
   }
@@ -173,6 +181,7 @@ Toggle.propTypes = {
   onChange: PropTypes.func,
   onClick: PropTypes.func,
   size: PropTypes.oneOf(['small', 'regular']),
+  helpText: PropTypes.node,
 }
 
 export default Toggle

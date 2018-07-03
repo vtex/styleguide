@@ -9,9 +9,9 @@ initialState = {
   checked: true,
   checked2: false,
   checkedSmall1: true,
-  checkedSmall2: false,
-}
-;<div>
+  checkedSmall2: false
+};
+<div>
   <div className="dib">
     <Toggle
       label="Label"
@@ -47,9 +47,10 @@ initialState = {
       onChange={e =>
         setState(prevState => ({ checkedSmall2: !prevState.checkedSmall2 }))
       }
+      helpText="You can add help text!"
     />
   </div>
-</div>
+</div>;
 ```
 
 ## Semantic
@@ -67,9 +68,9 @@ initialState = {
   checked: true,
   checked2: false,
   checkedSmall1: true,
-  checkedSmall2: false,
-}
-;<div>
+  checkedSmall2: false
+};
+<div>
   <div className="dib">
     <Toggle
       label="Label"
@@ -111,7 +112,7 @@ initialState = {
       }
     />
   </div>
-</div>
+</div>;
 ```
 
 ## Disabled
