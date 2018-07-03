@@ -16,10 +16,10 @@ Block
 ```js
 const Tab = require('./Tab').default;
 <div>
-  <Tabs>
-    <Tab label="block 1" active onClick={() => {}} block />
-    <Tab label="block 2" onClick={() => {}} block />
-    <Tab label="block 3" onClick={() => {}} block />
+  <Tabs fullWidth>
+    <Tab label="full width 1" active onClick={() => {}} />
+    <Tab label="full width 2" onClick={() => {}} />
+    <Tab label="full width 3" onClick={() => {}} />
   </Tabs>
 </div>
 ```
