@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - **PageHeader**
 
+### Changed
+
+- Modal's `z-index` to appear above the topbar
+
 ## [5.1.0] - 2018-07-03
 
 ### Added
