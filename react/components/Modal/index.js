@@ -4,7 +4,13 @@ import ResponsiveModal from 'react-responsive-modal'
 
 class Modal extends PureComponent {
   render() {
-    const { isOpen, centered, onClose, closeOnEsc, closeOnOverlayClick } = this.props
+    const {
+      isOpen,
+      centered,
+      onClose,
+      closeOnEsc,
+      closeOnOverlayClick,
+    } = this.props
 
     return (
       <ResponsiveModal
@@ -21,6 +27,7 @@ class Modal extends PureComponent {
         styles={{
           overlay: {
             backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            zIndex: 10000,
           },
           modal: {
             padding: '3rem',
