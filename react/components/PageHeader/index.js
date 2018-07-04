@@ -6,39 +6,40 @@ import Button from '../Button'
 
 class PageHeader extends PureComponent {
   handleClick = e => {
-    this.props.backClick && this.props.backClick(e)
+    this.props.linkClick && this.props.linkClick(e)
   }
 
   render() {
-    const { backLabel } = this.props
+    const { linkLabel } = this.props
 
     return (
-      <div className="bg-near-white pa5">
-        {backLabel && (
-          <Button
-            size="small"
-            variation="tertiary"
-            neutral
-            onClick={this.handleClick}
-          >
-            <span
-              className="flex align-baseline relative"
-              style={{ marginLeft: '-16px' }}
+      <div
+        className={`vtex-pageHeader__container bg-light-silver ph6 pv5 ${
+          linkLabel ? 'pt5' : 'pt8'
+        }`}
+      >
+        {linkLabel && (
+          <div className="vtex-pageHeader-link__container">
+            <Button
+              size="small"
+              variation="tertiary"
+              neutral
+              onClick={this.handleClick}
             >
-              <span className="mr3">
-                <ArrowBack color="currentColor" />
+              <span
+                className="flex align-baseline relative"
+                style={{ marginLeft: '-16px' }}
+              >
+                <span className="mr3">
+                  <ArrowBack color="currentColor" />
+                </span>
+                {linkLabel}
               </span>
-
-              {backLabel}
-            </span>
-          </Button>
+            </Button>
+          </div>
         )}
 
-        <div
-          className={`near-black f2 fw6 mt2 mb7 ${
-            backLabel ? 'mt2' : 'mb2 mt8'
-          }`}
-        >
+        <div className="vtex-pageHeader__title near-black f2 fw6">
           {this.props.title}
         </div>
       </div>
@@ -48,8 +49,8 @@ class PageHeader extends PureComponent {
 
 PageHeader.propTypes = {
   title: PropTypes.string.isRequired,
-  backLabel: PropTypes.string,
-  backClick: PropTypes.func,
+  linkLabel: PropTypes.string,
+  linkClick: PropTypes.func,
 }
 
 export default PageHeader
