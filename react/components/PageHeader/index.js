@@ -10,12 +10,11 @@ class PageHeader extends PureComponent {
   }
 
   render() {
-    const { backLabel, backUrl } = this.props
-    const backButton = backLabel && backUrl
+    const { backLabel } = this.props
 
     return (
       <div className="bg-near-white pa5">
-        {backButton && (
+        {backLabel && (
           <Button
             size="small"
             variation="tertiary"
@@ -37,7 +36,7 @@ class PageHeader extends PureComponent {
 
         <div
           className={`near-black f2 fw6 mt2 mb7 ${
-            backButton ? 'mt2' : 'mb2 mt8'
+            backLabel ? 'mt2' : 'mb2 mt8'
           }`}
         >
           {this.props.title}
@@ -50,7 +49,6 @@ class PageHeader extends PureComponent {
 PageHeader.propTypes = {
   title: PropTypes.string.isRequired,
   backLabel: PropTypes.string,
-  backUrl: PropTypes.string,
   backClick: PropTypes.func,
 }
 

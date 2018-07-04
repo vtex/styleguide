@@ -10,7 +10,7 @@ With back link
 <PageHeader
   title="Invoice"
   backLabel="Back"
-  backUrl="javascript:;"
+  backUrl="http://wikipedia.com"
   backClick={e => {
     console.log(e)
   }}
