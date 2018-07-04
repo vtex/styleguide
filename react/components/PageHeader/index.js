@@ -13,11 +13,7 @@ class PageHeader extends PureComponent {
     const { linkLabel } = this.props
 
     return (
-      <div
-        className={`vtex-pageHeader__container bg-light-silver ph6 pv5 ${
-          linkLabel ? 'pt5' : 'pt8'
-        }`}
-      >
+      <div className="vtex-pageHeader__container bg-light-silver pa7">
         {linkLabel && (
           <div className="vtex-pageHeader-link__container">
             <Button
@@ -39,7 +35,11 @@ class PageHeader extends PureComponent {
           </div>
         )}
 
-        <div className="vtex-pageHeader__title near-black f2 fw6">
+        <div
+          className={`vtex-pageHeader__title near-black f2 fw6 ${
+            linkLabel ? 'mt0' : 'mt7'
+          }`}
+        >
           {this.props.title}
         </div>
       </div>
