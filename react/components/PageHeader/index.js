@@ -14,7 +14,7 @@ class PageHeader extends PureComponent {
     const backButton = backLabel && backUrl
 
     return (
-      <div className="bg-near-white pt4 pb4 pl5 pr5">
+      <div className="bg-near-white pa5">
         {backButton && (
           <Button
             size="small"
