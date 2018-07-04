@@ -37,7 +37,7 @@ class PageHeader extends PureComponent {
 
         <div
           className={`near-black f2 fw6 mt2 mb7 ${
-            backButton ? 'mt2 mb7' : 'mb2 mt8'
+            backButton ? 'mt2' : 'mb2 mt8'
           }`}
         >
           {this.props.title}
