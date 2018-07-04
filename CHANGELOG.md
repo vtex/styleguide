@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 - **Input** Ref now points to the input element itself
+- **Tabs** add `fullWidth` display
 
 ## [5.0.1] - 2018-6-25
 

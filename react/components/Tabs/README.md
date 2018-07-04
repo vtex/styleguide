@@ -11,6 +11,19 @@ const Tab = require('./Tab').default;
 </div>
 ```
 
+Full width tabs
+
+```js
+const Tab = require('./Tab').default;
+<div>
+  <Tabs fullWidth>
+    <Tab label="full width 1" active onClick={() => {}} />
+    <Tab label="full width 2" onClick={() => {}} />
+    <Tab label="full width 3" onClick={() => {}} />
+  </Tabs>
+</div>
+```
+
 Working example
 
 ```js
