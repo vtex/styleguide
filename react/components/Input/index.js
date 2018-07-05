@@ -176,6 +176,7 @@ Input.defaultProps = {
   error: false,
   size: 'regular',
   prefix: '',
+  type: 'text',
 }
 
 Input.propTypes = {
@@ -259,6 +260,6 @@ Input.propTypes = {
   onBlur: PropTypes.func,
 }
 
-export default React.forwardRef((props, ref) =>
+export default React.forwardRef((props, ref) => (
   <Input {...props} forwardedRef={ref} />
-)
+))
