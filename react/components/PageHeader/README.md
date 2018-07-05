@@ -10,7 +10,7 @@ With link
 <PageHeader
   title="Invoice"
   linkLabel="Invoices"
-  linkClick={e => {
+  onLinkClick={e => {
     console.log(e)
   }}
 />
