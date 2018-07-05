@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - **PageHeader** prop `linkClick` to `onLinkClick`
 
+### Fixed
+
+- **PageHeader** Exports component
+
 ## [5.2.2] - 2018-07-05
 
 ### Changed
