@@ -6,7 +6,7 @@ import Button from '../Button'
 
 class PageHeader extends PureComponent {
   handleClick = e => {
-    this.props.linkClick && this.props.linkClick(e)
+    this.props.onLinkClick && this.props.onLinkClick(e)
   }
 
   render() {
@@ -50,7 +50,7 @@ class PageHeader extends PureComponent {
 PageHeader.propTypes = {
   title: PropTypes.string.isRequired,
   linkLabel: PropTypes.string,
-  linkClick: PropTypes.func,
+  onLinkClick: PropTypes.func,
 }
 
 export default PageHeader
