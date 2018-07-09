@@ -1,20 +1,28 @@
-Default with title
+A component to shows _something_ when there's nothing to show.
+Use a component copy that explains what should be in that space and encourages the user to take the most appropriate action.
+
+
+Default with title and children
 
 ```js
-<div style={{ padding: '80px' }}>
-  <EmptyState title="Nothing to display" />
-</div>
-```
-
-Default with children
-
-```js
-<div style={{ padding: '80px' }}>
-  <EmptyState>
+<div>
+  <EmptyState
+    title="A big headline"
+  >
     <p>
-      It is simply dummy text of the printing and typesetting industry. Lorem
-      Ipsum has been the industry's standard dummy text ever since the 1500s.
+      A longer explanation of what should be here, and why should I care about what should be here.
     </p>
+
+    <div className="pt5">
+      <Button
+        variation="secondary"
+        size="small"
+      >
+        <span className="flex align-baseline">
+          Suggested action
+        </span>
+      </Button>
+    </div>
   </EmptyState>
 </div>
 ```

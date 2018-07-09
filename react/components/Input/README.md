@@ -51,24 +51,6 @@ Variations
   <div className="mb5">
     <Input label="With prefix" prefix="R$" type="number" />
   </div>
-
-  <div className="mb5">
-    <Input
-      label="With prefix, size large"
-      size="large"
-      prefix="R$"
-      type="number"
-    />
-  </div>
-
-  <div className="mb5">
-    <Input
-      label="With prefix, size x-large"
-      type="number"
-      size="x-large"
-      prefix="R$"
-    />
-  </div>
 </div>
 ```
 

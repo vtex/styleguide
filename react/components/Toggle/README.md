@@ -53,15 +53,13 @@ initialState = {
 </div>;
 ```
 
-## Semantic
+## Semantic Toggle
 
-The field this toggle controls has more meaning than just on/off: it carries an inherent right/wrong judgement of its controlled value.
+The semantic toggle is more opinative than a regular toggle, and it conveys an inherent right/wrong judgement of its controlled value.
 
 Use this toggle if turning it ON is highly recommended from your application standpoint. In doubt, use the Default one.
 
 Example: when configuring Security settings, you might want to signal to the user that turning ON double-authentication feature is highly recommended.
-
-**To do:** make this more visual with an actual interface example that demonstrates this.
 
 ```js
 initialState = {
