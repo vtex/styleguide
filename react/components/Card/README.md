@@ -1,6 +1,6 @@
 A Card is a powerful solution for a visual container, improving the scannabiliy and overall visual organization of a design when well used. Use it to group related groups of information.
 
-It performs best when repeated and when each instance shared a similar structure. Avoid using it to encompass the entirety of a page, prefer small to medium sizes.
+It performs best when repeated and when each instance shares a similar structure among each other. Avoid using it to encompass the entirety of a page. Prefer small to medium sizes.
 
 Do use call-to-actions, but avoid having too many of them inside the same card.
 

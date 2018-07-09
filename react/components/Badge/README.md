@@ -1,4 +1,4 @@
-Use badges for a visual representation status. It's most powerful when used with semantic colors that have a clear and contextualized meaning in your application, such as _green_ for success and _red_ for errors. However, if your application employs a more rich palette with unambiguous usage of colors don't hesitate to apply use your badges with them.
+Use badges for a visual representation status. It's most powerful when used with semantic colors that have a clear and contextualized meaning in your application, such as _green_ for success and _red_ for errors. However, if your application employs a richer palette with unambiguous usage of colors don't hesitate to use your badges with them.
 
 The component is agnostic in respect to color combinations, so be mindful of potential accessibility issues concerning color contrast. After identifying accessible contrast combinations, feel free to play with them to convey the proeminence you want the badges to have in your design: high contrast for high proeminence, and low contrast for low proeminence.
 
