@@ -1,48 +1,62 @@
 ---
-name: Request for new component
-about: A suggested approach on designing and documenting new Styleguide components.
+name: (A) Request for new component
+about: A guide for requesting, designing and documenting new Styleguide components.
 
 ---
 
-_Don't take this template as a rigid form to fill out, it's more like an inspirational guide to help get your mental juices flowing ;) Scrape everything if you want to._
+<!-- This is a guide to help get your mental juices flowing, and NOT a rigid and bureaucratic form to be filled out. Scrape everything and start from scratch if it doesn't work for you ;)
 
-_Try to fill the more sections you can, but don't worry if you can't feel them all, this is a collaborative process and other might join to help you ;)_ 
+Try to go as far as you can don't worry if you don't fill out all sections. This is a collaborative process and others will join to help you ;)_ -->
 
 # 1. Request
 
-_Let's try to collect as much information as possible about your needs to make sure we design the best solution._
-
 ## Overview
 
-_Explain objectively in a few sentences what this component is about. This is the component's greeting card._
+<!-- Explain objectively in a few sentences what this component is about. This is like the component's greeting card. -->
 
 ## Purpose
 
-- _Which problems were you trying to solve when you came up with this?_
-- _What use cases would it cover that other components don't?_
-- _Are there existing Styleguide components that might be similar but that don't work for you?_
+<!-- 
+- Which problems were you trying to solve when you came up with this?
+- What use cases would it cover that other components don't?
+- Are there existing Styleguide components that might be similar but that don't work for you? Why?
+-->
 
-## Examples
+## Examples & Context
 
-_Show where you're already using it or where you envision it being used. Don't worry about cropping your screenshot, it's good if you capture the full context of your application._
+<!--
+It's screenshot time! Don't worry about cropping it, it's good if you capture the full context of your application.
+-->
 
 ## Benchmark
 
-_Can you point out to other Design Systems' solutions that you think would work for you?_
+<!--
+Can you point out to existing solutions in other products that you think would work for you?
+Feel free to explore some great Design Systems listed in our References doc: https://docs.google.com/document/d/1-L3xllgWx1nF6mhOryHMw4o8d1_3-AKtC9pGO2VywBg/edit
+-->
+
 
 # 2. Process
 
 ## Design decisions
 
-_Try to justify each and every decision you took while designing this component. Why did it end up looking and behaving this way, and not somehow else?
-This section is very important for the design process, but it doesn't need be part of the final documentation._
+<!--
+- Which directions you chose to take in this component's design and why?
+- Why did it end up looking and behaving this way, and not somehow else?
+- Are there possible variations?
+- Are there non-obvious "props" (React customizable attributes) you foresee this component will need? An obvious prop would be a button text or a card title and content.
+-->
 
 ## Do's and dont's
 
-_Can you already identify some non-obvious guidelines that may lead users to use this component at its best?_
+<!--
+Can you already identify some non-obvious guidelines that may orient designers and developers to employ this component at its best?
+-->
 
 ## Figma link
 
-_Link to the working draft of this component on Figma._
+<!--
+Link to the working draft of this component on Figma.
 
-_Pro tip: Figma allows deeplinking, which means you can create a link that opens the project directly focusing the selected element. To do this just select the component and copy the URL, which should end up with a `node-id` (something like `/VTEX-Styleguide?node-id=0%3A1`)._
+Pro tip: Figma allows deeplinking, which means you can create a link that opens the project directly focusing the selected element. To do this just select the component and copy the URL, which should end up with a `node-id` (something like `/VTEX-Styleguide?node-id=0%3A1`).
+-->
