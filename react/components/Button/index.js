@@ -17,6 +17,7 @@ class Button extends Component {
       icon,
       children,
       isLoading,
+      title,
     } = this.props
     const Tag = icon ? 'div' : 'button'
 
@@ -96,6 +97,7 @@ class Button extends Component {
         type={icon ? undefined : this.props.type}
         value={icon ? undefined : this.props.value}
         className={classes}
+        title={title}
         onClick={this.handleClick}
         onMouseEnter={this.props.onMouseEnter}
         onMouseLeave={this.props.onMouseLeave}
@@ -133,6 +135,7 @@ Button.defaultProps = {
   icon: false,
   type: 'button',
   isLoading: false,
+  title: null,
 }
 
 Button.propTypes = {
@@ -156,6 +159,8 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   /** (Button spec attribute) */
   name: PropTypes.string,
+  /** (Button spec attribute) */
+  title: PropTypes.string,
   /** (Button spec attribute) */
   type: PropTypes.string,
   /** (Button spec attribute) */
