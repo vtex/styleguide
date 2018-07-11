@@ -1,5 +1,5 @@
 ---
-name: Other
+name: (C) Other
 about: Something else
 
 ---
