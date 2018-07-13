@@ -31,6 +31,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - **NumericStepper** Create component
 
+## [5.3.0] - 2018-07-13
+
+### Added
+
+- **Pagination**
+
 ## [5.2.3] - 2018-07-05
 
 ### Changed
