@@ -1,8 +1,7 @@
 /* eslint-disable */
 import React from 'react'
 import Badge from '../Badge'
-import Button from '../Button'
-import CaretDown from '../icon/CaretDown'
+import ArrowDown from '../icon/ArrowDown'
 
 const badgeData = [
   {
@@ -48,13 +47,14 @@ export default {
         title: 'Name',
         headerRenderer: ({ label }) => {
           return (
-            <Button
-              block
-              variation="secondary"
-              onClick={() => alert('You can customize header components. For example, call an external sort function')}>
-              <span className="mr3">{label}</span>
-              <CaretDown color="#368df7" />
-            </Button>
+            <div
+              className="truncate ph4">
+              <span
+                className="pointer"
+                onClick={() => alert('You can customize header components. For example, call an external sort function')}>
+                {`${label} `}<ArrowDown size={11} />
+              </span>
+            </div>
           )
         },
       },
