@@ -13,9 +13,15 @@ Default
   textOf="of"
   textShowRows="show rows"
   totalItems={32}
-  onRowsChange={() => {}}
-  onNextClick={() => {}}
-  onPrevClick={() => {}}
+  onRowsChange={(event, value) => {
+    console.log('event: ', event, 'value: ', value)
+  }}
+  onNextClick={event => {
+    console.log(event)
+  }}
+  onPrevClick={event => {
+    console.log(event)
+  }}
 />
 ```
 
@@ -28,7 +34,11 @@ Without row options
   textOf="of"
   textShowRows="show rows"
   totalItems={32}
-  onNextClick={() => {}}
-  onPrevClick={() => {}}
+  onNextClick={event => {
+    console.log(event)
+  }}
+  onPrevClick={event => {
+    console.log(event)
+  }}
 />
 ```
