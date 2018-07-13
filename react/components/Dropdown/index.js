@@ -56,6 +56,7 @@ class Dropdown extends Component {
       form,
       name,
       required,
+      onliner,
     } = this.props
 
     const hasValidInitialValue =
@@ -114,9 +115,19 @@ class Dropdown extends Component {
 
     return (
       <div className="vtex-dropdown">
-        <label>
+        <label
+          className={`${
+            onliner ? 'flex flex-row items-baseline justify-start' : ''
+          }`}
+        >
           {label && (
-            <span className="vtex-dropdown__label dib mb3 w-100">{label}</span>
+            <span
+              className={`vtex-dropdown__label dib mb3 ${
+                onliner ? 'mr4' : 'w-100'
+              }`}
+            >
+              {label}
+            </span>
           )}
           <div className={containerClasses} style={containerStyle}>
             <div id={id} className={`vtex-dropdown__button ${classes}`}>
@@ -177,6 +188,7 @@ class Dropdown extends Component {
 
 Dropdown.defaultProps = {
   size: 'regular',
+  onliner: false,
   options: [],
 }
 
@@ -216,6 +228,8 @@ Dropdown.propTypes = {
   form: PropTypes.string,
   /** Spec attribute */
   name: PropTypes.string,
+  /** Spec attribute */
+  onliner: PropTypes.bool,
   /** Spec attribute */
   required: PropTypes.bool,
   /** onChange event */
