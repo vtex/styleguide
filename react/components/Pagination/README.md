@@ -2,12 +2,7 @@ Default
 
 ```js
 <Pagination
-  rowsOptions={[
-    { value: 5, label: 5 },
-    { value: 10, label: 10 },
-    { value: 15, label: 15 },
-    { label: 20, value: 20 },
-  ]}
+  rowsOptions={[5, 10, 15, 20]}
   currentItemFrom={1}
   currentItemTo={10}
   textOf="of"

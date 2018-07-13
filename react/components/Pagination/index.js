@@ -19,8 +19,19 @@ class Pagination extends PureComponent {
     this.props.onNextClick && this.props.onNextClick(e)
   }
 
+  createRowOptions = rowsOptions => {
+    if (rowsOptions) {
+      const opts = []
+      rowsOptions.forEach(o => opts.push({ label: o, value: o }))
+      return opts
+    }
+    return null
+  }
+
   render() {
     const { rowsOptions } = this.props
+    const dropdownOptions = this.createRowOptions(rowsOptions)
+
     const isPrevDisabled = this.props.currentItemFrom === 1
     const isNextDisabled = this.props.currentItemTo === this.props.totalItems
 
@@ -30,13 +41,13 @@ class Pagination extends PureComponent {
           rowsOptions ? 'justify-between' : 'justify-end'
         }`}
       >
-        {rowsOptions && (
+        {dropdownOptions && (
           <div className="flex flex-row items-baseline">
             <span className="mr4">{this.props.textShowRows}</span>
             <Dropdown
               label=""
-              options={rowsOptions}
-              value={rowsOptions[0].value}
+              options={dropdownOptions}
+              value={dropdownOptions[0].label}
               onChange={this.handleRowsChange}
             />
           </div>
@@ -88,14 +99,7 @@ Pagination.defaultProps = {
 }
 
 Pagination.propTypes = {
-  rowsOptions: PropTypes.arrayOf(
-    PropTypes.shape({
-      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-        .isRequired,
-      label: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-        .isRequired,
-    }),
-  ),
+  rowsOptions: PropTypes.array,
   currentItemFrom: PropTypes.number.isRequired,
   currentItemTo: PropTypes.number.isRequired,
   textOf: PropTypes.string.isRequired,
