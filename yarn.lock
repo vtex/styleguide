@@ -202,6 +202,12 @@
   optionalDependencies:
     fsevents "1.1.2"
 
+"@vxna/mini-html-webpack-template@^0.1.7":
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/@vxna/mini-html-webpack-template/-/mini-html-webpack-template-0.1.7.tgz#2a8270e513ee14f395cc17c2ce22ced383c45d22"
+  dependencies:
+    common-tags "^1.7.2"
+
 abab@^1.0.3:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/abab/-/abab-1.0.4.tgz#5faad9c2c07f60dd76770f71cf025b62a63cfd4e"
@@ -258,6 +264,10 @@ acorn@^4.0.3, acorn@^4.0.4:
 acorn@^5.0.0, acorn@^5.0.3, acorn@^5.4.1, acorn@^5.5.0:
   version "5.5.3"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.5.3.tgz#f473dd47e0277a08e28e9bec5aeeb04751f0b8c9"
+
+acorn@^5.5.3:
+  version "5.7.1"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.7.1.tgz#f095829297706a7c9776958c0afc8930a9b9d9d8"
 
 address@1.0.3, address@^1.0.1:
   version "1.0.3"
@@ -2197,6 +2207,10 @@ common-tags@1.4.0:
   resolved "https://registry.yarnpkg.com/common-tags/-/common-tags-1.4.0.tgz#1187be4f3d4cf0c0427d43f74eef1f73501614c0"
   dependencies:
     babel-runtime "^6.18.0"
+
+common-tags@^1.7.2:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/common-tags/-/common-tags-1.8.0.tgz#8e3153e542d4a39e9b10554434afaaf98956a937"
 
 commondir@^1.0.1:
   version "1.0.1"
@@ -4431,17 +4445,6 @@ html-webpack-plugin@2.29.0:
     pretty-error "^2.0.2"
     toposort "^1.0.0"
 
-html-webpack-plugin@^2.30.1:
-  version "2.30.1"
-  resolved "https://registry.yarnpkg.com/html-webpack-plugin/-/html-webpack-plugin-2.30.1.tgz#7f9c421b7ea91ec460f56527d78df484ee7537d5"
-  dependencies:
-    bluebird "^3.4.7"
-    html-minifier "^3.2.3"
-    loader-utils "^0.2.16"
-    lodash "^4.17.3"
-    pretty-error "^2.0.2"
-    toposort "^1.0.0"
-
 htmlparser2@~3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/htmlparser2/-/htmlparser2-3.3.0.tgz#cc70d05a59f6542e43f0e685c982e14c924a9efe"
@@ -5852,6 +5855,10 @@ lowercase-keys@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/lowercase-keys/-/lowercase-keys-1.0.0.tgz#4e3366b39e7f5457e35f1324bdf6f88d0bfc7306"
 
+lowercase-keys@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/lowercase-keys/-/lowercase-keys-1.0.1.tgz#6f9e30b47084d971a7c820ff15a6c5167b74c26f"
+
 lru-cache@^4.0.0, lru-cache@^4.0.1:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-4.1.2.tgz#45234b2e6e2f2b33da125624c4664929a0224c3f"
@@ -5918,9 +5925,9 @@ markdown-table@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/markdown-table/-/markdown-table-1.1.1.tgz#4b3dd3a133d1518b8ef0dbc709bf2a1b4824bc8c"
 
-markdown-to-jsx@^6.5.2:
-  version "6.6.1"
-  resolved "https://registry.yarnpkg.com/markdown-to-jsx/-/markdown-to-jsx-6.6.1.tgz#858b37f8a92526b1f3407593ff77c95927720bef"
+markdown-to-jsx@^6.6.3:
+  version "6.6.9"
+  resolved "https://registry.yarnpkg.com/markdown-to-jsx/-/markdown-to-jsx-6.6.9.tgz#d1afea3b3194b3c9f0accf2bbb2b8594de46748d"
   dependencies:
     prop-types "^15.5.10"
     unquote "^1.1.0"
@@ -6055,6 +6062,12 @@ mime@^1.3.4, mime@^1.4.1, mime@^1.5.0:
 mimic-fn@^1.0.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/mimic-fn/-/mimic-fn-1.2.0.tgz#820c86a39334640e99516928bd03fca88057d022"
+
+mini-html-webpack-plugin@^0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/mini-html-webpack-plugin/-/mini-html-webpack-plugin-0.2.3.tgz#2dfbdc3f35f6ae03864a608808381f8137311ea0"
+  dependencies:
+    webpack-sources "^1.1.0"
 
 minimalistic-assert@^1.0.0:
   version "1.0.0"
@@ -7390,7 +7403,7 @@ react-docgen-displayname-handler@^1.0.1:
   dependencies:
     recast "0.12.6"
 
-react-docgen@^3.0.0-beta9:
+react-docgen@^3.0.0-beta12:
   version "3.0.0-beta9"
   resolved "https://registry.yarnpkg.com/react-docgen/-/react-docgen-3.0.0-beta9.tgz#6be987e640786ecb10ce2dd22157a022c8285e95"
   dependencies:
@@ -7478,11 +7491,12 @@ react-styleguidist-visual@0.4.0:
     term-img "^2.1.0"
     yargs "^11.0.0"
 
-react-styleguidist@6.5.3:
-  version "6.5.3"
-  resolved "https://registry.yarnpkg.com/react-styleguidist/-/react-styleguidist-6.5.3.tgz#17abbfd14cfc4e0eb8921bb03d7cbd74836b0b5b"
+react-styleguidist@~7.0.0:
+  version "7.0.20"
+  resolved "https://registry.yarnpkg.com/react-styleguidist/-/react-styleguidist-7.0.20.tgz#b221b108e85bcd4c0852059dfbf4da2e3673732d"
   dependencies:
-    acorn "^5.4.1"
+    "@vxna/mini-html-webpack-template" "^0.1.7"
+    acorn "^5.5.3"
     ast-types "^0.11.3"
     buble "^0.19.3"
     chalk "^2.3.2"
@@ -7503,7 +7517,6 @@ react-styleguidist@6.5.3:
     glob "^7.1.2"
     glogg "^1.0.1"
     highlight.js "^9.12.0"
-    html-webpack-plugin "^2.30.1"
     is-directory "^0.3.1"
     javascript-stringify "^1.6.0"
     jss "^9.8.1"
@@ -7517,27 +7530,28 @@ react-styleguidist@6.5.3:
     listify "^1.0.0"
     loader-utils "^1.1.0"
     lodash "^4.17.5"
-    lowercase-keys "^1.0.0"
-    markdown-to-jsx "^6.5.2"
+    lowercase-keys "^1.0.1"
+    markdown-to-jsx "^6.6.3"
+    mini-html-webpack-plugin "^0.2.3"
     minimist "^1.2.0"
     ora "^2.0.0"
     prop-types "^15.6.1"
     q-i "^2.0.1"
     react-codemirror2 "^4.2.1"
     react-dev-utils "^5.0.0"
-    react-docgen "^3.0.0-beta9"
+    react-docgen "^3.0.0-beta12"
     react-docgen-annotation-resolver "^1.0.0"
     react-docgen-displayname-handler "^1.0.1"
     react-group "^1.0.5"
     react-icons "^2.2.7"
+    react-lifecycles-compat "^3.0.4"
     remark "^9.0.0"
-    semver-utils "^1.1.1"
     style-loader "^0.20.3"
     to-ast "^1.0.0"
     type-detect "^4.0.8"
     uglifyjs-webpack-plugin "1.2.4"
     unist-util-visit "^1.3.0"
-    webpack-dev-server "^2.9.7"
+    webpack-dev-server "^2.11.2"
     webpack-merge "^4.1.2"
 
 react-transition-group@^2.2.1:
@@ -8106,10 +8120,6 @@ semver-diff@^2.0.0:
   resolved "https://registry.yarnpkg.com/semver-diff/-/semver-diff-2.1.0.tgz#4bbb8437c8d37e4b0cf1a68fd726ec6d645d6d36"
   dependencies:
     semver "^5.0.3"
-
-semver-utils@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/semver-utils/-/semver-utils-1.1.1.tgz#27d92fec34d27cfa42707d3b40d025ae9855f2df"
 
 "semver@2 || 3 || 4 || 5", semver@^5.0.3, semver@^5.1.0, semver@^5.3.0, semver@^5.4.1, semver@^5.5.0:
   version "5.5.0"
@@ -9419,7 +9429,7 @@ webpack-dev-server@2.9.4:
     webpack-dev-middleware "^1.11.0"
     yargs "^6.6.0"
 
-webpack-dev-server@^2.9.7:
+webpack-dev-server@^2.11.2:
   version "2.11.2"
   resolved "https://registry.yarnpkg.com/webpack-dev-server/-/webpack-dev-server-2.11.2.tgz#1f4f4c78bf1895378f376815910812daf79a216f"
   dependencies:
