@@ -26,17 +26,20 @@ class Pagination extends PureComponent {
 
     return (
       <div
-        className={`flex flex-row ${
+        className={`flex flex-row items-center ${
           rowsOptions ? 'justify-between' : 'justify-end'
         }`}
       >
         {rowsOptions && (
-          <Dropdown
-            label={this.props.textShowRows}
-            options={rowsOptions}
-            value={rowsOptions[0].value}
-            onChange={this.handleRowsChange}
-          />
+          <div className="flex flex-row items-baseline">
+            <span className="mr4">{this.props.textShowRows}</span>
+            <Dropdown
+              label=""
+              options={rowsOptions}
+              value={rowsOptions[0].value}
+              onChange={this.handleRowsChange}
+            />
+          </div>
         )}
 
         <div className="flex flex-row items-center">
