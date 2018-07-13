@@ -67,4 +67,16 @@ module.exports = {
       },
     },
   },
+  template: {
+    head: {
+      scripts: [
+        {
+          src: 'https://www.googletagmanager.com/gtag/js?id=UA-43760863-25',
+        },
+        {
+          src: './analytics.js',
+        },
+      ],
+    },
+  },
 }
