@@ -136,13 +136,13 @@ export default class NumericStepper extends React.Component {
         <div className="flex self-start">
           <input
             type="tel"
-            className={`order-1 w3 tc bw1 ba b--light-gray br0 ${inputSizeClasses[size]}`}
+            className={`z-1 order-1 w3 tc bw1 ba b--light-gray br0 ${inputSizeClasses[size]}`}
             value={displayValue}
             onChange={this.handleTypeQuantity}
             onFocus={this.handleFocusInput}
             onBlur={this.handleBlurInput}
           />
-          <div className="order-0 flex-none">
+          <div className="z-2 order-0 flex-none">
             <button
               className={`br2 ph0 ba br-0 bw1 b--light-gray ${buttonSizeClasses[size]} ${
                 isMin
@@ -162,7 +162,7 @@ export default class NumericStepper extends React.Component {
               </span>
             </button>
           </div>
-          <div className="order-2 flex-none">
+          <div className="z-2 order-2 flex-none">
             <button
               className={`br2 ph0 tc ba bl-0 bw1 b--light-gray ${buttonSizeClasses[size]} ${
                 isMax
