@@ -66,7 +66,7 @@ export default class NumericStepper extends React.Component {
     }
   }
 
-  changeValue = value => {
+  changeValue = (value, event) => {
     const parsedValue = parseInt(value, 10)
 
     const { minValue, maxValue, defaultValue, onChange } = this.props
@@ -80,21 +80,27 @@ export default class NumericStepper extends React.Component {
       displayValue,
     })
 
-    if (this.state.value !== validatedValue) {
-      onChange && onChange(validatedValue)
+    if (this.state.value !== validatedValue && onChange) {
+      // React synthetic events are reused for performance reasons.
+      // New properties added to it are never released.
+      // Calling event.persist() releases it from the pool
+      // https://reactjs.org/docs/events.html#event-pooling
+      event.persist()
+      event.value = validatedValue
+      onChange(event)
     }
   }
 
-  handleTypeQuantity = e => {
-    this.changeValue(e.target.value)
+  handleTypeQuantity = event => {
+    this.changeValue(event.target.value, event)
   }
 
-  handleIncreaseValue = () => {
-    this.changeValue(this.state.value + 1)
+  handleIncreaseValue = event => {
+    this.changeValue(this.state.value + 1, event)
   }
 
-  handleDecreaseValue = () => {
-    this.changeValue(this.state.value - 1)
+  handleDecreaseValue = event => {
+    this.changeValue(this.state.value - 1, event)
   }
 
   handleFocusInput = e => {
