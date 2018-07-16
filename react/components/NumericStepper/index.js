@@ -41,7 +41,7 @@ const validateDisplayValue = (value, min, max) => {
   if (isNaN(parsedValue)) {
     return ''
   }
-  if (parsedValue < min) {
+  if (parsedValue < min && min === 1) {
     return min
   }
   if (parsedValue > max) {
