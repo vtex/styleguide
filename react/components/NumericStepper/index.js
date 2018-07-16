@@ -5,6 +5,8 @@ const normalizeMin = min => min == null ? -Infinity : min
 const normalizeMax = max => max == null ? Infinity : max
 
 const validateValue = (value, min, max, defaultValue) => {
+  // This function always return a valid numeric value from the current input.
+  // Compare with the function validateDisplayValue
   min = normalizeMin(min)
   max = normalizeMax(max)
 
@@ -21,6 +23,10 @@ const validateValue = (value, min, max, defaultValue) => {
 }
 
 const validateDisplayValue = (value, min, max) => {
+  // This function validates the input as the user types
+  // It allows for temporarily invalid values (namely, empty string and minus sign without a number following it)
+  // However, it prevents values out of boundaries, and invalid characters, e.g. letters
+
   min = normalizeMin(min)
   max = normalizeMax(max)
 
