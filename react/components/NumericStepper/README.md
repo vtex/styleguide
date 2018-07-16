@@ -12,7 +12,7 @@ initialState = {
     <NumericStepper
       label="Regular"
       value={state.value1}
-      onChange={value => setState({ value1: value })}
+      onChange={event => setState({ value1: event.value })}
     />
   </div>
   <div className="mb5 flex">
@@ -20,7 +20,7 @@ initialState = {
       label="Large"
       size="large"
       value={state.value2}
-      onChange={value => setState({ value2: value })}
+      onChange={event => setState({ value2: event.value })}
     />
   </div>
   <div className="mb5 flex">
@@ -28,7 +28,7 @@ initialState = {
       label="Extra large"
       size="x-large"
       value={state.value3}
-      onChange={value => setState({ value3: value })}
+      onChange={event => setState({ value3: event.value })}
     />
   </div>
 </React.Fragment>
@@ -48,7 +48,7 @@ initialState = {
       label="Minimum value = 1"
       minValue={1} 
       value={state.value1}
-      onChange={value => setState({ value1: value })}
+      onChange={event => setState({ value1: event.value })}
     />
   </div>
   <div className="mb5">
@@ -57,7 +57,7 @@ initialState = {
       minValue={2}
       maxValue={6}
       value={state.value2}
-      onChange={value => setState({ value2: value })}
+      onChange={event => setState({ value2: event.value })}
     />
   </div>
   <div className="mb5">
@@ -65,7 +65,7 @@ initialState = {
       label="No minimum value (allows negative values)"
       minValue={null}
       value={state.value3}
-      onChange={value => setState({ value3: value })}
+      onChange={event => setState({ value3: event.value })}
     />
   </div>
 </React.Fragment>
@@ -79,6 +79,7 @@ Box types
       label="Default"
       size="x-large"
       value={1}
+      onChange={()=>{}}
     />
   </div>
   <div className="mb5">
@@ -87,6 +88,7 @@ Box types
       size="x-large"
       value={1}
       block
+      onChange={()=>{}}
     />
   </div>
 </React.Fragment>
