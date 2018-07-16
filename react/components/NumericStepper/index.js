@@ -89,7 +89,7 @@ export default class NumericStepper extends React.Component {
     if (this.state.value !== validatedValue && onChange) {
       // React synthetic events are reused for performance reasons.
       // New properties added to it are never released.
-      // Calling event.persist() releases it from the pool
+      // Calling event.persist() releases the event from the pool
       // https://reactjs.org/docs/events.html#event-pooling
       event.persist()
       event.value = validatedValue
