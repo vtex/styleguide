@@ -17,7 +17,7 @@ const validateValue = (value, min, max, defaultValue) => {
   } else if (value > max) {
     return max
   }
-  return value
+  return parseInt(value, 10)
 }
 
 const validateDisplayValue = (value, min, max) => {
