@@ -177,6 +177,7 @@ export default class NumericStepper extends React.Component {
               }}
               disabled={isMin}
               aria-label="−"
+              {...{/* This is a minus sign (U+2212), not a regular hyphen (-, U+002D). Used for screen readers. */}}
               onClick={this.handleDecreaseValue}>
               <span className="b">
                 {/* fullwidth hyphen-minus (U+FF0D) http://graphemica.com/%EF%BC%8D */}
