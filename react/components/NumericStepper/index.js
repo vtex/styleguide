@@ -27,6 +27,12 @@ const validateDisplayValue = (value, min, max) => {
   const parsedValue = parseInt(value, 10)
 
   if (value === '') {
+    return value
+  }
+  if (value === '-' && min < 0) {
+    return value
+  }
+  if (isNaN(parsedValue)) {
     return ''
   }
   if (parsedValue < min) {
@@ -35,7 +41,7 @@ const validateDisplayValue = (value, min, max) => {
   if (parsedValue > max) {
     return max
   }
-  return value
+  return parsedValue
 }
 
 export default class NumericStepper extends React.Component {
@@ -48,9 +54,9 @@ export default class NumericStepper extends React.Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    const { value, minValue, maxValue } = props
+    const { value, minValue, maxValue, defaultValue } = props
 
-    const validatedValue = validateValue(value, minValue, maxValue)
+    const validatedValue = validateValue(value, minValue, maxValue, defaultValue)
 
     return {
       value: validatedValue,
@@ -61,14 +67,13 @@ export default class NumericStepper extends React.Component {
   }
 
   changeValue(value) {
-    const valueDigits = String(value).replace(/[^\d]/g, '')
-    const parsedValue = parseInt(valueDigits, 10)
+    const parsedValue = parseInt(value, 10)
 
-    const { minValue, maxValue } = this.props
+    const { minValue, maxValue, defaultValue } = this.props
 
-    const validatedValue = validateValue(parsedValue, minValue, maxValue)
+    const validatedValue = validateValue(parsedValue, minValue, maxValue, defaultValue)
 
-    const displayValue = validateDisplayValue(valueDigits, minValue, maxValue)
+    const displayValue = validateDisplayValue(value, minValue, maxValue)
 
     this.setState({
       value: validatedValue,
@@ -159,13 +164,17 @@ export default class NumericStepper extends React.Component {
           />
           <div className="flex-none">
             <button
-              className={`br2 ba bl-0 bw1 b--light-gray ${buttonSizeClasses[size]} ${
-                value >= maxValue
+              className={`br2 ph0 tc ba bl-0 bw1 b--light-gray ${buttonSizeClasses[size]} ${
+                isMax
                   ? 'bg-light-silver silver'
                   : 'pointer bg-white blue'
               }`}
-              style={{ borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }}
-              disabled={value >= maxValue}
+              style={{
+                borderTopLeftRadius: 0,
+                borderBottomLeftRadius: 0,
+                width: '3em',
+              }}
+              disabled={isMax}
               onClick={this.handleIncreaseValue}>
               <span className="b">
                 {/* fullwidth plus sign (U+FF0B) http://graphemica.com/%EF%BC%8B */}
@@ -182,6 +191,7 @@ export default class NumericStepper extends React.Component {
 NumericStepper.propTypes = {
   value: PropTypes.number,
   onChange: PropTypes.func,
+  defaultValue: PropTypes.number,
   minValue: PropTypes.number,
   maxValue: PropTypes.number,
   size: PropTypes.oneOf(['regular', 'large', 'x-large']),
@@ -192,6 +202,7 @@ NumericStepper.propTypes = {
 NumericStepper.defaultProps = {
   minValue: 0,
   maxValue: Infinity,
+  defaultValue: 0,
   size: 'regular',
   block: false,
 }
