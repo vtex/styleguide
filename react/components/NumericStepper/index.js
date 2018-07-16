@@ -193,13 +193,23 @@ export default class NumericStepper extends React.Component {
 }
 
 NumericStepper.propTypes = {
+  /** Value of the input */
   value: PropTypes.number,
+  /** onChange event handler */
   onChange: PropTypes.func.isRequired,
-  defaultValue: PropTypes.number,
+  /** Minimum value (will be the default value in case of invalid input, e.g. letters).
+    Set to null or -Infinity in case there is no miminum. Default is 0.
+  */
   minValue: PropTypes.number,
+  /** Maximum value (null or Infinity in case there is no maximum. Default is Infinity) */
   maxValue: PropTypes.number,
+  /** Default value in case of invalid input (e.g. letters) and there is no minimum value */
+  defaultValue: PropTypes.number,
+  /** Input size */
   size: PropTypes.oneOf(['regular', 'large', 'x-large']),
+  /** Block or default size. */
   block: PropTypes.bool,
+  /** Input label */
   label: PropTypes.string,
 }
 
