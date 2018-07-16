@@ -1,8 +1,18 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 
-const validateValue = (value, min, max) => {
-  if (value < min || isNaN(value) || value == null) {
+const normalizeMin = min => min == null ? -Infinity : min
+const normalizeMax = max => max == null ? Infinity : max
+
+const validateValue = (value, min, max, defaultValue) => {
+  min = normalizeMin(min)
+  max = normalizeMax(max)
+
+  if (isNaN(value) || value == null) {
+    if (defaultValue < min) return min
+    if (defaultValue > max) return max
+    return defaultValue
+  } else if (value < min) {
     return min
   } else if (value > max) {
     return max
@@ -11,6 +21,9 @@ const validateValue = (value, min, max) => {
 }
 
 const validateDisplayValue = (value, min, max) => {
+  min = normalizeMin(min)
+  max = normalizeMax(max)
+
   const parsedValue = parseInt(value, 10)
 
   if (value === '') {
@@ -95,6 +108,9 @@ export default class NumericStepper extends React.Component {
     const { value, displayValue } = this.state
     const { maxValue, minValue, size, block, label } = this.props
 
+    const isMin = value <= normalizeMin(minValue)
+    const isMax = value >= normalizeMax(maxValue)
+
     const buttonSizeClasses = {
       'regular': 'pv3 ph5 f6',
       'large': 'pv4 ph5 f5',
@@ -115,13 +131,17 @@ export default class NumericStepper extends React.Component {
         <div className="flex self-start">
           <div className="flex-none">
             <button
-              className={`br2 ba br-0 bw1 b--light-gray ${buttonSizeClasses[size]} ${
-                value <= minValue
+              className={`br2 ph0 ba br-0 bw1 b--light-gray ${buttonSizeClasses[size]} ${
+                isMin
                   ? 'bg-light-silver silver'
                   : 'pointer bg-white blue'
               }`}
-              style={{ borderTopRightRadius: 0, borderBottomRightRadius: 0 }}
-              disabled={value <= minValue}
+              style={{
+                borderTopRightRadius: 0,
+                borderBottomRightRadius: 0,
+                width: '3em',
+              }}
+              disabled={isMin}
               onClick={this.handleDecreaseValue}>
               <span className="b">
                 {/* fullwidth hyphen-minus (U+FF0D) http://graphemica.com/%EF%BC%8D */}
