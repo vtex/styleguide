@@ -142,27 +142,6 @@ export default class NumericStepper extends React.Component {
             onFocus={this.handleFocusInput}
             onBlur={this.handleBlurInput}
           />
-          <div className="z-2 order-0 flex-none">
-            <button
-              className={`br2 ph0 ba br-0 bw1 b--light-gray ${buttonSizeClasses[size]} ${
-                isMin
-                  ? 'bg-light-silver silver'
-                  : 'pointer bg-white blue'
-              }`}
-              style={{
-                borderTopRightRadius: 0,
-                borderBottomRightRadius: 0,
-                width: '3em',
-              }}
-              disabled={isMin}
-              aria-label="−"
-              onClick={this.handleDecreaseValue}>
-              <span className="b">
-                {/* fullwidth hyphen-minus (U+FF0D) http://graphemica.com/%EF%BC%8D */}
-                &#xFF0D;
-              </span>
-            </button>
-          </div>
           <div className="z-2 order-2 flex-none">
             <button
               className={`br2 ph0 tc ba bl-0 bw1 b--light-gray ${buttonSizeClasses[size]} ${
@@ -181,6 +160,27 @@ export default class NumericStepper extends React.Component {
               <span className="b">
                 {/* fullwidth plus sign (U+FF0B) http://graphemica.com/%EF%BC%8B */}
                 &#xFF0B;
+              </span>
+            </button>
+          </div>
+          <div className="z-2 order-0 flex-none">
+            <button
+              className={`br2 ph0 ba br-0 bw1 b--light-gray ${buttonSizeClasses[size]} ${
+                isMin
+                  ? 'bg-light-silver silver'
+                  : 'pointer bg-white blue'
+              }`}
+              style={{
+                borderTopRightRadius: 0,
+                borderBottomRightRadius: 0,
+                width: '3em',
+              }}
+              disabled={isMin}
+              aria-label="−"
+              onClick={this.handleDecreaseValue}>
+              <span className="b">
+                {/* fullwidth hyphen-minus (U+FF0D) http://graphemica.com/%EF%BC%8D */}
+                &#xFF0D;
               </span>
             </button>
           </div>
