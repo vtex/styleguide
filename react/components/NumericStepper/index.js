@@ -35,12 +35,15 @@ const validateDisplayValue = (value, min, max) => {
   if (value === '') {
     return value
   }
+  // Only allows typing the negative sign if negative values are allowed
   if (value === '-' && min < 0) {
     return value
   }
   if (isNaN(parsedValue)) {
     return ''
   }
+  // Only limit by lower bounds if the min value is 1
+  // Otherwise, it could prevent typing, for example, 10 if the min value is 2
   if (parsedValue < min && min === 1) {
     return min
   }
