@@ -155,6 +155,7 @@ export default class NumericStepper extends React.Component {
                 width: '3em',
               }}
               disabled={isMin}
+              aria-label="−"
               onClick={this.handleDecreaseValue}>
               <span className="b">
                 {/* fullwidth hyphen-minus (U+FF0D) http://graphemica.com/%EF%BC%8D */}
@@ -175,6 +176,7 @@ export default class NumericStepper extends React.Component {
                 width: '3em',
               }}
               disabled={isMax}
+              aria-label="+"
               onClick={this.handleIncreaseValue}>
               <span className="b">
                 {/* fullwidth plus sign (U+FF0B) http://graphemica.com/%EF%BC%8B */}
