@@ -190,7 +190,7 @@ export default class NumericStepper extends React.Component {
 
 NumericStepper.propTypes = {
   value: PropTypes.number,
-  onChange: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
   defaultValue: PropTypes.number,
   minValue: PropTypes.number,
   maxValue: PropTypes.number,
