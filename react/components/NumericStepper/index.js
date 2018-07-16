@@ -66,10 +66,10 @@ export default class NumericStepper extends React.Component {
     }
   }
 
-  changeValue(value) {
+  changeValue = value => {
     const parsedValue = parseInt(value, 10)
 
-    const { minValue, maxValue, defaultValue } = this.props
+    const { minValue, maxValue, defaultValue, onChange } = this.props
 
     const validatedValue = validateValue(parsedValue, minValue, maxValue, defaultValue)
 
@@ -81,7 +81,7 @@ export default class NumericStepper extends React.Component {
     })
 
     if (this.state.value !== validatedValue) {
-      this.props.onChange(validatedValue)
+      onChange && onChange(validatedValue)
     }
   }
 
