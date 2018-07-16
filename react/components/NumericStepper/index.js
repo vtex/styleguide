@@ -117,9 +117,9 @@ export default class NumericStepper extends React.Component {
     const isMax = value >= normalizeMax(maxValue)
 
     const buttonSizeClasses = {
-      'regular': 'pv3 ph5 f6',
-      'large': 'pv4 ph5 f5',
-      'x-large': 'pv5 ph6 f4',
+      'regular': 'pv3 f6',
+      'large': 'pv4 f5',
+      'x-large': 'pv5 f4',
     }
 
     const inputSizeClasses = {
@@ -150,7 +150,7 @@ export default class NumericStepper extends React.Component {
               onClick={this.handleDecreaseValue}>
               <span className="b">
                 {/* fullwidth hyphen-minus (U+FF0D) http://graphemica.com/%EF%BC%8D */}
-              &#xFF0D;
+                &#xFF0D;
               </span>
             </button>
           </div>
@@ -178,7 +178,7 @@ export default class NumericStepper extends React.Component {
               onClick={this.handleIncreaseValue}>
               <span className="b">
                 {/* fullwidth plus sign (U+FF0B) http://graphemica.com/%EF%BC%8B */}
-              &#xFF0B;
+                &#xFF0B;
               </span>
             </button>
           </div>
