@@ -47,8 +47,8 @@ class Radio extends PureComponent {
           )}
           style={{
             borderWidth: '3px',
-            height: '1.5rem',
-            width: '1.5rem',
+            height: '1.25rem',
+            width: '1.25rem',
             transition: 'border 100ms ease-in-out',
           }}
         >
@@ -58,8 +58,8 @@ class Radio extends PureComponent {
               'bg-silver': disabled,
             })}
             style={{
-              height: '0.75rem',
-              width: '0.75rem',
+              height: '0.5rem',
+              width: '0.5rem',
               transform: `scale(${checked ? 1 : 0})`,
               transition: `transform 80ms ${checked ? 'ease-out' : 'ease-in'}`,
             }}
@@ -84,7 +84,11 @@ class Radio extends PureComponent {
           ref={this.radio}
         />
         <label
-          className={classNames({ silver: disabled }, { pointer: !disabled }, 'flex flex-auto')}
+          className={classNames(
+            { silver: disabled },
+            { pointer: !disabled },
+            'flex flex-auto',
+          )}
           htmlFor={id}
         >
           {label}
