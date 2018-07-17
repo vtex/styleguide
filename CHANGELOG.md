@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [5.3.1] - 2018-7-17
+
+### Changed
+
+- Disable script to update `manifest.json` temporarily
+
+## [5.3.0] - 2018-07-17
+
+### Added
+
+- **NumericStepper** Create component
+
 ## [5.2.3] - 2018-07-05
 
 ### Changed
