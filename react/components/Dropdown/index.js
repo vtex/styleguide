@@ -33,9 +33,29 @@ class Dropdown extends Component {
     return option
   }
 
+  getDropdownIdentification = () => {
+    const { label, id, options } = this.props
+    if (label) {
+      return `Dropdown with the label "${label}"`
+    } else if (id) {
+      return `Dropdown #${id}`
+    }
+    return `Dropdown with the options ${options.map(option => option.label).join(', ')}`
+  }
+
   getPlaceholder = () => {
     const { placeholder, label, helpText } = this.props
-    return placeholder || label || helpText || ''
+    const placeholderValue = placeholder || label || helpText || ''
+
+    if (placeholderValue === '' && !this.sentPlaceholderWarning) {
+      console.warn(`The following dropdown has a placeholder option, but no placeholder text. Please use at least one of these props: placeholder, label, or helpText.
+
+${this.getDropdownIdentification()}`)
+
+      this.sentPlaceholderWarning = true
+    }
+
+    return placeholderValue
   }
 
   getSelectedOption = () => {
