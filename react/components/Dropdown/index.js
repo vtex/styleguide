@@ -179,7 +179,10 @@ ${this.getDropdownIdentification()}`)
                 WebkitAppearance: 'menulist-button',
               }}
             >
+              {/* iOS hack to optionally prevent truncating options */}
               {preventTruncate && <optgroup label={label || helpText || ''} />}
+
+              {/* Creates a disabled first option in case the first value is invalid or empty */}
               {(!hasValidInitialValue || placeholder) && (
                 <option
                   disabled
