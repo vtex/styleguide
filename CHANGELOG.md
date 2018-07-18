@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [5.3.3] - 2018-07-18
+
+### Fixed
+
+- **Dropdown** Works with `null`/`undefined` values
+
 ## [5.3.2] - 2018-07-17
 
 ### Changed

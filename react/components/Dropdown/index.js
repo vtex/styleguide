@@ -6,7 +6,15 @@ import config from 'vtex-tachyons/config.json'
 class Dropdown extends Component {
   constructor(props) {
     super(props)
-    this.initialValue = props.value
+
+    // The initial value sent to the dropdown is kept in order to know
+    // whether or not to create and keep a first disabled option.
+    // If the initial value is invalid/empty, an empty option is kept
+    // so the select will have an empty state. Otherwise, the first
+    // value would automatically be chosen.
+    // However, you can't select a null/undefined option, so nil values
+    // are transformed to empty string.
+    this.initialValue = props.value == null ? '' : props.value
   }
 
   handleChange = e => {
@@ -25,9 +33,29 @@ class Dropdown extends Component {
     return option
   }
 
+  getDropdownIdentification = () => {
+    const { label, id, options } = this.props
+    if (label) {
+      return `Dropdown with the label "${label}"`
+    } else if (id) {
+      return `Dropdown #${id}`
+    }
+    return `Dropdown with the options ${options.map(option => option.label).join(', ')}`
+  }
+
   getPlaceholder = () => {
     const { placeholder, label, helpText } = this.props
-    return placeholder || label || helpText || ''
+    const placeholderValue = placeholder || label || helpText || ''
+
+    if (placeholderValue === '' && !this.sentPlaceholderWarning) {
+      console.warn(`The following dropdown has a placeholder option, but no placeholder text. Please use at least one of these props: placeholder, label, or helpText.
+
+${this.getDropdownIdentification()}`)
+
+      this.sentPlaceholderWarning = true
+    }
+
+    return placeholderValue
   }
 
   getSelectedOption = () => {
@@ -60,6 +88,7 @@ class Dropdown extends Component {
 
     const hasValidInitialValue =
       this.getOptionFromValue(this.initialValue) !== null
+
     const isPlaceholder = this.getSelectedOption() === null
     let width
     let iconSize
@@ -139,7 +168,8 @@ class Dropdown extends Component {
               disabled={disabled}
               className={selectClasses}
               onChange={this.handleChange}
-              value={value}
+              {...{/* Check the comment on the constructor regarding nil values */}}
+              value={value == null ? '' : value}
               autoFocus={autoFocus}
               form={form}
               name={name}
@@ -149,7 +179,10 @@ class Dropdown extends Component {
                 WebkitAppearance: 'menulist-button',
               }}
             >
+              {/* iOS hack to optionally prevent truncating options */}
               {preventTruncate && <optgroup label={label || helpText || ''} />}
+
+              {/* Creates a disabled first option in case the first value is invalid or empty */}
               {(!hasValidInitialValue || placeholder) && (
                 <option
                   disabled
