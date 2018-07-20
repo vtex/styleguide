@@ -111,6 +111,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - `SuffixIcon` to `Input` component.
 
+### Added
+
+- **Textarea** character countdown (optional)
+
 ## [5.4.1] - 2018-07-20
 
 ### Changed

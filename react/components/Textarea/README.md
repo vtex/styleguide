@@ -24,9 +24,11 @@ initialState = {
   </div>
   <div className="mb6">
     <Textarea
-      label="Controlling text"
+      label="Controlling text (no spaces) with character countdown"
       onChange={e => setState({ value: e.target.value.trim() })}
       value={state.value}
+      maxLength={100}
+      characterCountdown
     />
   </div>
 </div>;
