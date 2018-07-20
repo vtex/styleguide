@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [5.4.1] - 2018-07-20
+
+### Changed
+
+- **Tabs** border color
+
 ## [5.4.0] - 2018-07-20
 
 ### Added
