@@ -39,6 +39,7 @@ class Input extends Component {
       helpText,
       dataAttributes,
       prefix,
+      suffixIcon
     } = this.props
     const { active } = this.state
 
@@ -54,11 +55,11 @@ class Input extends Component {
 
     const topBottomHeight = config.borderRadius[1] * 2 // 2 is top AND BOTTOM
     const prefixPosition = `${config.borderRadius[1]}rem`
-    const calcPrefixHeight = `calc(100% - ${topBottomHeight}rem)`
+    const calcPrefixAndSuffixHeight = `calc(100% - ${topBottomHeight}rem)`
     const typography = 'near-black'
     let classes = `${widthClass} ${box} ${border} ${typography} `
 
-    let prefixClasses =
+    let prefixAndSuffixClasses =
       'vtex-input__prefix absolute gray fw5 flex items-center '
 
     if (token) {
@@ -86,18 +87,18 @@ class Input extends Component {
 
     switch (size) {
       case 'large':
-        classes += `f5 pv4 ${prefix ? 'pl8 pr6' : 'ph6'}`
-        prefixClasses += 'ph4 f5'
+        classes += `f5 pv4 ${prefix ? 'pl8 pr6' : 'ph6'} ${suffixIcon ? 'pr8' : ''}`
+        prefixAndSuffixClasses += 'ph4 f5'
         // iconSize = 18
         break
       case 'x-large':
-        classes += `f4 pv5 ${prefix ? 'pl8 pr7' : 'ph7'}`
-        prefixClasses += 'ph5 f4 '
+        classes += `f4 pv5 ${prefix ? 'pl8 pr7' : 'ph7'} ${suffixIcon ? 'pr8' : ''}`
+        prefixAndSuffixClasses += 'ph5 f4 '
         // iconSize = 22
         break
       default:
-        classes += `f6 pv3 ${prefix ? 'pl7 pr5' : 'ph5'}`
-        prefixClasses += 'ph3 fw5 f6 '
+        classes += `f6 pv3 ${prefix ? 'pl7 pr5' : 'ph5'} ${suffixIcon ? 'pr7' : ''}`
+        prefixAndSuffixClasses += 'ph3 fw5 f6 '
         // iconSize = 16
         break
     }
@@ -111,11 +112,11 @@ class Input extends Component {
           {prefix && (
             <span
               style={{
-                height: calcPrefixHeight,
+                height: calcPrefixAndSuffixHeight,
                 top: prefixPosition,
                 left: prefixPosition,
               }}
-              className={prefixClasses}
+              className={prefixAndSuffixClasses}
             >
               {prefix}
             </span>
@@ -156,6 +157,18 @@ class Input extends Component {
             id={this.props.id}
           />
         </div>
+        {suffixIcon && (
+          <span
+            style={{
+              height: calcPrefixAndSuffixHeight,
+              top: "0.35rem",
+              right: "1rem",
+            }}
+            className={prefixAndSuffixClasses}
+          >
+            {suffixIcon}
+          </span>
+        )}
         {errorMessage && (
           <div className="red f6 mt3 lh-title">{errorMessage}</div>
         )}
@@ -244,6 +257,8 @@ Input.propTypes = {
   src: PropTypes.string,
   /** Spec attribute */
   step: PropTypes.string,
+  /** SuffixIcon attribute */
+  suffixIcon: PropTypes.element,
   /** Spec attribute */
   tabIndex: PropTypes.string,
   /** Spec attribute */
