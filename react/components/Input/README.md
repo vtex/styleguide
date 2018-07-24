@@ -57,7 +57,7 @@ Variations
       <span>
         Your Icon Here!
       </span>
-    )} type="text" />
+    )} />
   </div>
 </div>
 ```
