@@ -51,6 +51,14 @@ Variations
   <div className="mb5">
     <Input label="With prefix" prefix="R$" type="number" />
   </div>
+
+  <div className="mb5">
+    <Input label="With suffixIcon" suffixIcon={(
+      <span>
+        Your Icon Here!
+      </span>
+    )} type="text" />
+  </div>
 </div>
 ```
 
