@@ -131,6 +131,7 @@ Textarea.defaultProps = {
   label: '',
   readOnly: false,
   error: false,
+  characterCountdownText: 'characters left',
   rows: 5,
 }
 
