@@ -4,13 +4,11 @@ Use a component copy that explains what should be in that space and encourages t
 According to [Swetha Suresh](https://medium.com/@swethasuresh1108/the-empty-states-design-mantra-91c56eb88b3b), an Empty State:
 
 - Informs about the empty screen, the whats, whys, and hows
-- Prompt towards taking an action to populate the platform
+- Prompts towards taking an action to populate the platform
 - Educates about the platform and all its features
 
-The idea is that all fields (heading, body and call-to-action) are
-optional, however at least a heading or a body should be present for it to
-make sense. Optionally the call-to-action can be a link, let's say to a
-VTEX Help article for example.
+All fields are optional, however at least a heading or a body should be present for it to
+make sense. Optionally the call-to-action can be a link, e.g. to a VTEX Help article.
 
 Default with title and children
 
