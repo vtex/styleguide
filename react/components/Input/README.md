@@ -23,7 +23,9 @@ Sizes
 Variations
 
 ```js
-<div className="w-40">
+const IconHelp = require('./Help').default
+
+;<div className="w-40">
   <div className="mb5">
     <Input disabled value="Hayao Miyazaki" label="Disabled" />
   </div>
@@ -54,8 +56,8 @@ Variations
 
   <div className="mb5">
     <Input label="With suffixIcon" suffixIcon={(
-      <span>
-        Your Icon Here!
+      <span className="pointer">
+        <IconHelp />
       </span>
     )} />
   </div>

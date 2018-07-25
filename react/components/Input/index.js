@@ -161,7 +161,7 @@ class Input extends Component {
           <span
             style={{
               height: calcPrefixAndSuffixHeight,
-              top: "0.35rem",
+              top: "0.4rem",
               right: "1rem",
             }}
             className={prefixAndSuffixClasses}
