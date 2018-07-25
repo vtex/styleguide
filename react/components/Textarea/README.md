@@ -29,6 +29,7 @@ initialState = {
       value={state.value}
       maxLength={100}
       characterCountdown
+      characterCountdownText="characters left"
     />
   </div>
 </div>;

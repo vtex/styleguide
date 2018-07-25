@@ -11,11 +11,11 @@ class Textarea extends Component {
   }
 
   static CharacterCountdown = props => {
-    let classes = 'mid-gray f6 mt3 '
+    let classes = 'mid-gray f6 '
     if (props.value <= 10) {
       classes += 'red'
     }
-    return <div className={classes}>{props.value}</div>
+    return <div className={classes}>{props.value} {props.text}</div>
   }
 
   handleChange = event => {
@@ -115,6 +115,7 @@ class Textarea extends Component {
           {this.props.characterCountdown && (
             <Textarea.CharacterCountdown
               value={this.props.maxLength - this.props.value.length}
+              text={this.props.characterCountdownText}
             />
           )}
         </div>
@@ -184,6 +185,8 @@ Textarea.propTypes = {
   onBlur: PropTypes.func,
   /** Character countdown at the bottom right */
   characterCountdown: PropTypes.bool,
+  /** Helper text for character countdown (X characters left) */
+  characterCountdownText: PropTypes.string,
 }
 
 export default Textarea
