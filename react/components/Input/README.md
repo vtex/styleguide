@@ -23,7 +23,7 @@ Sizes
 Variations
 
 ```js
-const IconHelp = require('./Help').default
+const IconHelp = require('../icon/Help').default
 
 ;<div className="w-40">
   <div className="mb5">
