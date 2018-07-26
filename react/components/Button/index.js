@@ -112,7 +112,7 @@ class Button extends Component {
               className="left-0 w-100 absolute flex justify-center items-baseline"
             >
               <Spinner
-                secondary={variation === 'primary'}
+                secondary={variation === 'primary' || variation === 'danger'}
                 size={loaderSize}
               />
             </span>
