@@ -54,7 +54,7 @@ class Input extends Component {
     // On bw1 change, update config.borderRadius[1] below accordingly
 
     const topBottomHeight = config.borderRadius[1] * 2 // 2 is top AND BOTTOM
-    const prefixPosition = `${config.borderRadius[1]}rem`
+    const prefixAndSuffixPosition = `${config.borderRadius[1]}rem`
     const calcPrefixAndSuffixHeight = `calc(100% - ${topBottomHeight}rem)`
     const typography = 'near-black'
     let classes = `${widthClass} ${box} ${border} ${typography} `
@@ -113,8 +113,8 @@ class Input extends Component {
             <span
               style={{
                 height: calcPrefixAndSuffixHeight,
-                top: prefixPosition,
-                left: prefixPosition,
+                top: prefixAndSuffixPosition,
+                left: prefixAndSuffixPosition,
               }}
               className={prefixAndSuffixClasses}
             >
@@ -156,19 +156,19 @@ class Input extends Component {
             value={this.props.value}
             id={this.props.id}
           />
+          {suffixIcon && (
+            <span
+              style={{
+                height: calcPrefixAndSuffixHeight,
+                top: prefixAndSuffixPosition,
+                right: prefixAndSuffixPosition,
+              }}
+              className={prefixAndSuffixClasses}
+            >
+              {suffixIcon}
+            </span>
+          )}
         </div>
-        {suffixIcon && (
-          <span
-            style={{
-              height: calcPrefixAndSuffixHeight,
-              top: "0.4rem",
-              right: "1rem",
-            }}
-            className={prefixAndSuffixClasses}
-          >
-            {suffixIcon}
-          </span>
-        )}
         {errorMessage && (
           <div className="red f6 mt3 lh-title">{errorMessage}</div>
         )}
