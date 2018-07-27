@@ -39,7 +39,7 @@ class Input extends Component {
       helpText,
       dataAttributes,
       prefix,
-      suffixIcon
+      suffixIcon,
     } = this.props
     const { active } = this.state
 
