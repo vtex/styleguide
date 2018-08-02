@@ -234,7 +234,7 @@ Input.propTypes = {
   /** Spec attribute */
   max: PropTypes.string,
   /** Spec attribute */
-  maxLength: PropTypes.number,
+  maxLength: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /** Spec attribute */
   min: PropTypes.string,
   /** Spec attribute */
