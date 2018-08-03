@@ -11,3 +11,6 @@ export const calcIconSize = (iconBase, newSize) => {
 
   return { width, height }
 }
+
+export const baseClassname = (name, variation) =>
+  `vtex__icon-${name} ${variation ? `vtex__icon-${name}--${variation}` : ''}`

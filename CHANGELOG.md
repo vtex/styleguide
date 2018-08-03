@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Add CSS classes to all icon components
+
 ## [5.5.1] - 2018-08-13
 
 ## [5.5.0] - 2018-08-13
