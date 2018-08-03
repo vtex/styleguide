@@ -59,6 +59,8 @@ class Input extends Component {
     const typography = 'near-black'
     let classes = `${widthClass} ${box} ${border} ${typography} `
 
+    let labelClasses = 'vtex-input__label db mb3 w-100 '
+
     let prefixAndSuffixClasses =
       'vtex-input__prefix absolute gray fw5 flex items-center '
 
@@ -88,16 +90,19 @@ class Input extends Component {
     switch (size) {
       case 'large':
         classes += `f5 pv4 ${prefix ? 'pl8 pr6' : 'ph6'} ${suffixIcon ? 'pr8' : ''}`
+        labelClasses += 'f5 '
         prefixAndSuffixClasses += 'ph4 f5'
         // iconSize = 18
         break
       case 'x-large':
         classes += `f4 pv5 ${prefix ? 'pl8 pr7' : 'ph7'} ${suffixIcon ? 'pr8' : ''}`
+        labelClasses += 'f5 '
         prefixAndSuffixClasses += 'ph5 f4 '
         // iconSize = 22
         break
       default:
         classes += `f6 pv3 ${prefix ? 'pl7 pr5' : 'ph5'} ${suffixIcon ? 'pr7' : ''}`
+        labelClasses += 'f6 '
         prefixAndSuffixClasses += 'ph3 fw5 f6 '
         // iconSize = 16
         break
@@ -106,7 +111,7 @@ class Input extends Component {
     return (
       <label className="vtex-input w-100">
         {label && (
-          <span className="vtex-input__label db mb3 w-100">{label}</span>
+          <span className={labelClasses}>{label}</span>
         )}
         <div className="flex vtex-input-prefix__group relative">
           {prefix && (
