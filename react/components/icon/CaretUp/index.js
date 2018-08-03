@@ -8,7 +8,7 @@ const iconBase = {
   height: 10,
 }
 
-class CarretUp extends PureComponent {
+class CaretUp extends PureComponent {
   render() {
     const { color, size } = this.props
     const newSize = calcIconSize(iconBase, size)
@@ -31,14 +31,14 @@ class CarretUp extends PureComponent {
   }
 }
 
-CarretUp.defaultProps = {
+CaretUp.defaultProps = {
   color: config.colors['serious-black'],
   size: 16,
 }
 
-CarretUp.propTypes = {
+CaretUp.propTypes = {
   color: PropTypes.string,
   size: PropTypes.number,
 }
 
-export default CarretUp
+export default CaretUp
