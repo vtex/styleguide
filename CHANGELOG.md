@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- **Dropdown** Decrease default label's font size
+
 ## [5.4.6] - 2018-08-03
 
 ## [5.4.5] - 2018-08-03
