@@ -151,7 +151,12 @@ export default class NumericStepper extends React.Component {
         <div className="flex self-start">
           <input
             type="tel"
-            className={`z-1 order-1 w3 tc bw1 ba b--light-gray br0 ${inputSizeClasses[size]}`}
+            className={`z-1 order-1 tc bw1 ba b--light-gray br0 ${inputSizeClasses[size]}`}
+            style={{
+              ...(block && {
+                width: 0,
+              }),
+            }}
             value={displayValue}
             onChange={this.handleTypeQuantity}
             onFocus={this.handleFocusInput}
