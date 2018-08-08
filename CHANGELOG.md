@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - **Dropdown** Decrease default label's font size
 
+### Fixed
+
+- **NumericStepper** Fix width on block mode
+
 ## [5.4.6] - 2018-08-03
 
 ## [5.4.5] - 2018-08-03
