@@ -164,11 +164,12 @@ const CloseIcon = require('../icon/Close').default
 Loading state
 
 ```js
-initialState = { isLoading1: false, isLoading2: true };
+initialState = { isLoading1: true, isLoading2: true, isLoading3: true  };
 <div>
   <div>
     <Button
-      variation="primary"
+      variation="danger"
+      size="small"
       onClick={() => setState({ isLoading1: !state.isLoading1 })}
       isLoading={state.isLoading1}
     >
@@ -180,6 +181,16 @@ initialState = { isLoading1: false, isLoading2: true };
       variation="primary"
       onClick={() => setState({ isLoading2: !state.isLoading2 })}
       isLoading={state.isLoading2}
+    >
+      Toggle loading state
+    </Button>
+  </div>
+  <div className="mt4">
+    <Button
+      variation="secondary"
+      size="large"
+      onClick={() => setState({ isLoading3: !state.isLoading3 })}
+      isLoading={state.isLoading3}
     >
       Toggle loading state
     </Button>

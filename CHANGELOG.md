@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [5.4.7] - 2018-08-08
+
 ### Changed
 
 - **Dropdown** Decrease default label's font size
@@ -14,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - **NumericStepper** Fix width on block mode
+- **Button** Update spinner size on small buttons and spinner color on the `danger` variation
 
 ## [5.4.6] - 2018-08-03
 
@@ -32,6 +35,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [5.4.3] - 2018-07-27
 
 ## [5.4.2] - 2018-07-26
+
 ### Added
 - `SuffixIcon` to `Input` component.
 
