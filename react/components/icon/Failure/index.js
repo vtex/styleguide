@@ -10,13 +10,13 @@ const iconBase = {
 
 class Failure extends PureComponent {
   render() {
-    const { color, size, solid } = this.props
+    const { color, size, solid, block } = this.props
     const newSize = calcIconSize(iconBase, size)
 
     if (solid) {
       return (
         <svg
-          className={baseClassname('failure', 'solid')}
+          className={`${baseClassname('failure', 'solid')} ${block ? 'db' : ''}`}
           width={newSize.width}
           height={newSize.height}
           viewBox="0 0 16 16"
@@ -58,12 +58,14 @@ Failure.defaultProps = {
   color: config.colors['serious-black'],
   size: 16,
   solid: false,
+  block: false,
 }
 
 Failure.propTypes = {
   color: PropTypes.string,
   size: PropTypes.number,
   solid: PropTypes.bool,
+  block: PropTypes.bool,
 }
 
 export default Failure

@@ -10,12 +10,12 @@ const iconBase = {
 
 class Save extends PureComponent {
   render() {
-    const { color, size } = this.props
+    const { color, size, block } = this.props
     const newSize = calcIconSize(iconBase, size)
 
     return (
       <svg
-        className={baseClassname('save')}
+        className={`${baseClassname('save')} ${block ? 'db' : ''}`}
         width={newSize.width}
         height={newSize.height}
         viewBox="0 0 16 16"
@@ -35,11 +35,13 @@ class Save extends PureComponent {
 Save.defaultProps = {
   color: config.colors['serious-black'],
   size: 16,
+  block: false,
 }
 
 Save.propTypes = {
   color: PropTypes.string,
   size: PropTypes.number,
+  block: PropTypes.bool,
 }
 
 export default Save

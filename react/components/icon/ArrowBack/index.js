@@ -35,6 +35,7 @@ class ArrowBack extends PureComponent {
 ArrowBack.defaultProps = {
   color: config.colors['serious-black'],
   size: 16,
+  block: false,
 }
 
 ArrowBack.propTypes = {

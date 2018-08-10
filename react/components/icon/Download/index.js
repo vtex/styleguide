@@ -10,12 +10,12 @@ const iconBase = {
 
 class Download extends PureComponent {
   render() {
-    const { color, size } = this.props
+    const { color, size, block } = this.props
     const newSize = calcIconSize(iconBase, size)
 
     return (
       <svg
-        className={baseClassname('download')}
+        className={`${baseClassname('download')} ${block ? 'db' : ''}`}
         width={newSize.width}
         height={newSize.height}
         viewBox="0 0 14 16"
@@ -36,11 +36,13 @@ class Download extends PureComponent {
 Download.defaultProps = {
   color: config.colors['serious-black'],
   size: 16,
+  block: false,
 }
 
 Download.propTypes = {
   color: PropTypes.string,
   size: PropTypes.number,
+  block: PropTypes.bool,
 }
 
 export default Download
