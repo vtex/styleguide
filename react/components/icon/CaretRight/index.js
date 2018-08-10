@@ -15,7 +15,7 @@ class CaretRight extends PureComponent {
 
     return (
       <svg
-        className={baseClassname('carret-right')}
+        className={baseClassname('caret-right')}
         width={newSize.width}
         height={newSize.height}
         viewBox="0 0 10 14"

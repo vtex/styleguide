@@ -15,7 +15,7 @@ class CaretDown extends PureComponent {
 
     return (
       <svg
-        className={baseClassname('carret-down')}
+        className={baseClassname('caret-down')}
         width={newSize.width}
         height={newSize.height}
         viewBox="0 0 14 10"
