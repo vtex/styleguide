@@ -59,7 +59,7 @@ class Alert extends Component {
           <div className="flex items-center flex-grow-1">
             {showIcon &&
               <div className={color}>
-                <Icon color="currentColor" size={18} />
+                <Icon block color="currentColor" size={18} />
               </div>}
 
             <div className={`${showIcon ? 'ph5 flex' : 'pr5'}`}>
@@ -83,7 +83,7 @@ class Alert extends Component {
             onClick={onClose}
             tabIndex={0}
           >
-            <CloseIcon color="currentColor" size={10} />
+            <CloseIcon block color="currentColor" size={16} />
           </div>}
       </div>
     )
