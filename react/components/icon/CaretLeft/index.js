@@ -15,7 +15,11 @@ class CaretLeft extends PureComponent {
 
     return (
       <svg
+<<<<<<< HEAD
         className={baseClassname('caret-left')}
+=======
+        className={baseClassname('carret-left')}
+>>>>>>> Add CSS hook classes to icons
         width={newSize.width}
         height={newSize.height}
         viewBox="0 0 10 14"
