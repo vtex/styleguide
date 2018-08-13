@@ -2,7 +2,6 @@ Alerts are used to inform about important changes or persistent conditions. They
 
 Don't use Alerts for asynchronous notifications, such as giving user feedback about an API request's success of failure. In this case a Toast would be more appropriate (work in progress).
 
-
 Default
 
 ```js
@@ -10,9 +9,10 @@ Default
   <div className="mb5">
     <Alert
       autoClose={3000}
-      onClose={() => console.log("Auto closed after 3000ms!")}
+      onClose={() => console.log('Auto closed after 3000ms!')}
     >
-      Your recovery code was printed and the app authenticator was sucessfully validated.
+      Your recovery code was printed and the app authenticator was sucessfully
+      validated.
     </Alert>
   </div>
 </div>
@@ -23,22 +23,29 @@ Alerts
 ```js
 <div>
   <div className="mb5">
-    <Alert type="success" onClose={() => console.log("Closed!")}>
+    <Alert type="success" onClose={() => console.log('Closed!')}>
       Your action was complete.
     </Alert>
   </div>
-  
+
   <div className="mb5">
-    <Alert type="warning" onClose={() => console.log("Closed!")}>
+    <Alert type="warning" onClose={() => console.log('Closed!')}>
       This action is irreversible.
     </Alert>
   </div>
-  
+  <div className="mb5">
+    <Alert type="error" onClose={() => console.log('Closed!')}>
+      You can't delete this item.
+    </Alert>
+  </div>
   <div>
-    <Alert type="error" onClose={() => console.log("Closed!")}>
+    <Alert
+      type="error"
+      action={{ label: 'Go back', onClick: () => console.log('Went back!') }}
+      onClose={() => console.log('Closed!')}
+    >
       You can't delete this item.
     </Alert>
   </div>
 </div>
 ```
-

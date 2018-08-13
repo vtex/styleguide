@@ -5,6 +5,7 @@ import FailureIcon from '../icon/Failure'
 import WarningIcon from '../icon/Warning'
 import CloseIcon from '../icon/Close'
 import config from 'vtex-tachyons/config.json'
+import Button from '../../Button'
 
 class Alert extends Component {
   componentDidMount() {
@@ -18,11 +19,12 @@ class Alert extends Component {
   }
 
   render() {
-    const { type, onClose } = this.props
+    const { type, onClose, action } = this.props
     let classes = 'pa5 br2 '
     let showIcon = false
     let Icon = 'div'
     let color = config.colors['serious-black']
+    const handleActionClick = (action && action.onClick) || undefined
 
     switch (type) {
       case 'success': {
@@ -53,19 +55,42 @@ class Alert extends Component {
     }
 
     return (
-      <div className={`vtex-alert flex justify-between f5 near-black ${classes}`}>
-        <div className="flex items-center">
-          {showIcon && <div><Icon color={color} size={18} /></div>}
+      <div
+        className={`vtex-alert flex justify-between f5 near-black ${classes}`}
+      >
+        <div className="flex-ns flex-grow-1">
+          <div className="flex items-center flex-grow-1">
+            {showIcon && (
+              <div>
+                <Icon color={color} size={18} />
+              </div>
+            )}
 
-          <div className={`${showIcon ? 'ph5 flex' : 'pr5'}`}>
-            {this.props.children}
+            <div className={`${showIcon ? 'ph5 flex' : 'pr5'}`}>
+              {this.props.children}
+            </div>
           </div>
-        </div>
 
-        {onClose &&
-          <div className="vtex-alert__close-icon pointer flex items-center pv2" onClick={onClose}>
+          {action &&
+            action.onClick &&
+            action.label && (
+              <div className="flex flex-grow-1 justify-end">
+                <div className="nt4-ns nb4">
+                  <Button variation="tertiary" onClick={handleActionClick}>
+                    {action.label}
+                  </Button>
+                </div>
+              </div>
+            )}
+        </div>
+        {onClose && (
+          <div
+            className="vtex-alert__close-icon pointer flex items-center pv2"
+            onClick={onClose}
+          >
             <CloseIcon color={config.colors['near-black']} size={10} />
-          </div>}
+          </div>
+        )}
       </div>
     )
   }
@@ -80,6 +105,11 @@ Alert.propTypes = {
   onClose: PropTypes.func,
   /** Time in ms to auto close the alert */
   autoClose: PropTypes.number,
+  /** If this object is defined, an action button will appear on the right side of the alert. */
+  action: PropTypes.shape({
+    onClick: PropTypes.func.isRequired,
+    label: PropTypes.string.isRequired,
+  }),
 }
 
 Alert.defaultProps = {
