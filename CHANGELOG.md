@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [5.4.8] - 2018-08-13
+
+### Changed
+
+- **Alert** Add action button
+
 ## [5.4.7] - 2018-08-08
 
 ### Changed
@@ -37,6 +43,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [5.4.2] - 2018-07-26
 
 ### Added
+
 - `SuffixIcon` to `Input` component.
 
 ## [5.4.1] - 2018-07-20
