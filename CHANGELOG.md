@@ -7,9 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [5.4.8] - 2018-08-13
-
-### Changed
+### Added
 
 - **Alert** Add action button
 
