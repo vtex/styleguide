@@ -41,7 +41,7 @@ Alerts
   <div>
     <Alert
       type="error"
-      actionLabel={'Voltar'}
+      action={{ label: 'Go back', onClick: () => console.log('Went back!') }}
       onClose={() => console.log('Closed!')}
     >
       You can't delete this item.

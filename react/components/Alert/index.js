@@ -19,11 +19,12 @@ class Alert extends Component {
   }
 
   render() {
-    const { type, onClose, onActionClick, actionLabel } = this.props
+    const { type, onClose, action } = this.props
     let classes = 'pa5 br2 '
     let showIcon = false
     let Icon = 'div'
     let color = config.colors['serious-black']
+    const handleActionClick = (action && action.onClick) || undefined
 
     switch (type) {
       case 'success': {
@@ -70,12 +71,13 @@ class Alert extends Component {
             </div>
           </div>
 
-          {actionLabel &&
-            onActionClick && (
+          {action &&
+            action.onClick &&
+            action.label && (
               <div className="flex flex-grow-1 justify-end">
                 <div className="nt4-ns nb4">
-                  <Button variation="tertiary" onClick={onActionClick}>
-                    {actionLabel}
+                  <Button variation="tertiary" onClick={handleActionClick}>
+                    {action.label}
                   </Button>
                 </div>
               </div>
@@ -103,10 +105,11 @@ Alert.propTypes = {
   onClose: PropTypes.func,
   /** Time in ms to auto close the alert */
   autoClose: PropTypes.number,
-  /** If this string is defined, an action button will appear on the right side of the alert. */
-  actionLabel: PropTypes.string,
-  /** If this function is defined, it will be called when the button is clicked. */
-  onActionClick: PropTypes.func,
+  /** If this object is defined, an action button will appear on the right side of the alert. */
+  action: PropTypes.shape({
+    onClick: PropTypes.func.isRequired,
+    label: PropTypes.string.isRequired,
+  }),
 }
 
 Alert.defaultProps = {
