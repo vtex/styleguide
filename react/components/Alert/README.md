@@ -33,7 +33,6 @@ Alerts
       This action is irreversible.
     </Alert>
   </div>
-
   <div className="mb5">
     <Alert type="error" onClose={() => console.log('Closed!')}>
       You can't delete this item.
