@@ -5,7 +5,7 @@ import FailureIcon from '../icon/Failure'
 import WarningIcon from '../icon/Warning'
 import CloseIcon from '../icon/Close'
 import config from 'vtex-tachyons/config.json'
-import Button from '../../Button'
+import Button from '../Button'
 
 class Alert extends Component {
   componentDidMount() {
