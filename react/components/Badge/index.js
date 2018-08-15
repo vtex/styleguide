@@ -6,7 +6,7 @@ class Badge extends PureComponent {
   render() {
     return (
       <div
-        className="br-pill f6 pv2 ph3 dib fw5"
+        className="br-pill f7 pv2 ph3 dib fw5"
         style={{
           backgroundColor: this.props.bgColor,
           color: this.props.color,
