@@ -53,6 +53,6 @@
   "dependencies": {
     "react-responsive-modal": "^2.0.1",
     "react-virtualized": "^9.19.1",
-    "vtex-tachyons": "^2.6.0"
+    "vtex-tachyons": "^2.7.0"
   }
 }
