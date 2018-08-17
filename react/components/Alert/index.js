@@ -29,27 +29,24 @@ class Alert extends Component {
     switch (type) {
       case 'success': {
         showIcon = true
-        classes += 'bg-washed-green '
+        classes += 'bg-success--faded '
         Icon = SuccessIcon
-        color = config.colors['green']
+        color = config.semanticColors.text.success
         break
       }
       case 'error': {
         showIcon = true
-        classes += 'bg-washed-red '
+        classes += 'bg-danger--faded '
         Icon = FailureIcon
-        color = config.colors['red']
+        color = config.semanticColors.text.danger
         break
       }
+      default:
       case 'warning': {
         showIcon = true
-        classes += 'bg-washed-yellow '
+        classes += 'bg-warning--faded '
         Icon = WarningIcon
-        color = config.colors['yellow']
-        break
-      }
-      default: {
-        classes += 'bg-washed-blue '
+        color = config.semanticColors.text.warning
         break
       }
     }
@@ -98,7 +95,7 @@ class Alert extends Component {
 
 Alert.propTypes = {
   /** Style of the alert */
-  type: PropTypes.oneOf(['success', 'error', 'warning', 'info']),
+  type: PropTypes.oneOf(['success', 'error', 'warning']).isRequired,
   /** Content of the alert */
   children: PropTypes.node.isRequired,
   /** If this function is defined, a close icon will appear and this function will be called when alert is closed. */
@@ -110,10 +107,6 @@ Alert.propTypes = {
     onClick: PropTypes.func.isRequired,
     label: PropTypes.string.isRequired,
   }),
-}
-
-Alert.defaultProps = {
-  type: 'info',
 }
 
 export default Alert
