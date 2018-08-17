@@ -1,12 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import config from 'vtex-tachyons/config.json'
+import { baseClassname } from '../utils'
 
 const radius = 40
 const circ = 2 * radius * Math.PI
 
-const Spinner = ({ secondary, size }) => (
+const Spinner = ({ secondary, size, block }) => (
   <svg
+    className={`${baseClassname('spinner')} ${block ? 'db' : ''}`}
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 100 100"
     preserveAspectRatio="xMidYMid"
@@ -50,11 +52,13 @@ const Spinner = ({ secondary, size }) => (
 Spinner.propTypes = {
   secondary: PropTypes.bool,
   size: PropTypes.number,
+  block: false,
 }
 
 Spinner.defaultProps = {
   secondary: false,
   size: 40,
+  block: PropTypes.bool,
 }
 
 export default Spinner
