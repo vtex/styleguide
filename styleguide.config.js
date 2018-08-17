@@ -44,7 +44,7 @@ module.exports = {
       path.join('react', 'components'),
       path.dirname(componentPath),
     )
-    return `import ${componentName} from '@vtex/styleguide/lib/${dir}';`
+    return `import ${componentName} from '@vtex/styleguide/lib/${dir}'`
   },
   webpackConfig: require('@vtex/react-scripts/config/webpack.config.dev.js'),
   theme: {
