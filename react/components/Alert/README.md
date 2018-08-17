@@ -2,24 +2,6 @@ Alerts are used to inform about important changes or persistent conditions. They
 
 Don't use Alerts for asynchronous notifications, such as giving user feedback about an API request's success of failure. In this case a Toast would be more appropriate (work in progress).
 
-Default
-
-```js
-<div>
-  <div className="mb5">
-    <Alert
-      autoClose={3000}
-      onClose={() => console.log('Auto closed after 3000ms!')}
-    >
-      Your recovery code was printed and the app authenticator was sucessfully
-      validated.
-    </Alert>
-  </div>
-</div>
-```
-
-Alerts
-
 ```js
 <div>
   <div className="mb5">
