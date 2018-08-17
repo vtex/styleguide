@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import config from 'vtex-tachyons/config.json'
-import { calcIconSize } from '../utils'
+import { calcIconSize, baseClassname } from '../utils'
 
 const iconBase = {
   width: 17,
@@ -15,6 +15,7 @@ class ArrowDown extends PureComponent {
 
     return (
       <svg
+        className={baseClassname('arrow-down')}
         width={newSize.width}
         height={newSize.height}
         viewBox="0 0 17 16"

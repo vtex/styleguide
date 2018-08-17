@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import config from 'vtex-tachyons/config.json'
-import { calcIconSize } from '../utils'
+import { calcIconSize, baseClassname } from '../utils'
 
 class Filter extends PureComponent {
   render() {
@@ -15,6 +15,7 @@ class Filter extends PureComponent {
     if (solid) {
       return (
         <svg
+          className={baseClassname('filter', 'solid')}
           width={newSize.width}
           height={newSize.height}
           viewBox="0 0 16 16"
@@ -30,6 +31,7 @@ class Filter extends PureComponent {
     }
     return (
       <svg
+        className={baseClassname('filter')}
         width={newSize.width}
         height={newSize.height}
         viewBox="0 0 18 21"
