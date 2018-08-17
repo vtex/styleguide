@@ -1,12 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import config from 'vtex-tachyons/config.json'
 import { baseClassname } from '../icon/utils'
 
 const radius = 40
 const circ = 2 * radius * Math.PI
 
-const Spinner = ({ secondary, size, block }) => (
+const Spinner = ({ color, size, block }) => (
   <svg
     className={`${baseClassname('spinner')} ${block ? 'db' : ''}`}
     xmlns="http://www.w3.org/2000/svg"
@@ -20,7 +19,7 @@ const Spinner = ({ secondary, size, block }) => (
       cy="50"
       fill="none"
       r={radius}
-      stroke={secondary ? config.colors.white : config.colors.blue}
+      stroke={color}
       strokeWidth="10"
       strokeDasharray={`0 0 2 ${circ}`}
       strokeLinecap="round"
@@ -31,9 +30,11 @@ const Spinner = ({ secondary, size, block }) => (
         attributeName="stroke-dasharray"
         dur="1.5s"
         repeatCount="indefinite"
-        values={`0 0 2 ${circ};
+        values={
+          `0 0 2 ${circ};
           0 0 ${circ * 0.75} ${circ};
-          0 ${circ - 2} ${circ * 0.75} ${circ}`}
+          0 ${circ - 2} ${circ * 0.75} ${circ}`
+        }
       />
       <animateTransform
         attributeName="transform"
@@ -50,14 +51,14 @@ const Spinner = ({ secondary, size, block }) => (
 )
 
 Spinner.propTypes = {
-  secondary: PropTypes.bool,
   block: PropTypes.bool,
+  color: PropTypes.string,
   size: PropTypes.number,
 }
 
 Spinner.defaultProps = {
-  secondary: false,
   block: false,
+  color: 'currentColor',
   size: 40,
 }
 
