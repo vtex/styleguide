@@ -9,8 +9,12 @@ class PageHeader extends PureComponent {
     this.props.onLinkClick && this.props.onLinkClick(e)
   }
 
+  handleButtonClick = e => {
+    this.props.onButtonClick && this.props.onButtonClick(e)
+  }
+
   render() {
-    const { linkLabel } = this.props
+    const { linkLabel, buttonLabel } = this.props
 
     return (
       <div className="vtex-pageHeader__container bg-light-silver pa7">
@@ -36,11 +40,21 @@ class PageHeader extends PureComponent {
         )}
 
         <div
-          className={`vtex-pageHeader__title near-black f2 fw6 ${
+          className={`vtex-pageHeader__title near-black f2 fw6 flex flex-row justify-between ${
             linkLabel ? 'mt0' : 'mt7'
           }`}
         >
-          {this.props.title}
+          <span>{this.props.title}</span>
+          {buttonLabel && (
+            <Button
+              size="small"
+              variation="primary"
+              neutral
+              onClick={this.handleButtonClick}
+            >
+              {buttonLabel}
+            </Button>
+          )}
         </div>
       </div>
     )
@@ -51,6 +65,8 @@ PageHeader.propTypes = {
   title: PropTypes.string.isRequired,
   linkLabel: PropTypes.string,
   onLinkClick: PropTypes.func,
+  buttonLabel: PropTypes.string,
+  onButtonClick: PropTypes.func,
 }
 
 export default PageHeader
