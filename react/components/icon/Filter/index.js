@@ -5,7 +5,7 @@ import { calcIconSize, baseClassname } from '../utils'
 
 class Filter extends PureComponent {
   render() {
-    const { color, size, solid } = this.props
+    const { color, size, solid, block } = this.props
     const iconBase = {
       width: solid ? 16 : 18,
       height: solid ? 16 : 21,
@@ -15,7 +15,7 @@ class Filter extends PureComponent {
     if (solid) {
       return (
         <svg
-          className={baseClassname('filter', 'solid')}
+          className={`${baseClassname('filter', 'solid')} ${block ? 'db' : ''}`}
           width={newSize.width}
           height={newSize.height}
           viewBox="0 0 16 16"
@@ -55,12 +55,14 @@ Filter.defaultProps = {
   color: config.colors['serious-black'],
   size: 16,
   solid: false,
+  block: false,
 }
 
 Filter.propTypes = {
   color: PropTypes.string,
   size: PropTypes.number,
   solid: PropTypes.bool,
+  block: PropTypes.bool,
 }
 
 export default Filter

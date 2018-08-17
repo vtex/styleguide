@@ -10,12 +10,12 @@ const iconBase = {
 
 class ExternalLink extends PureComponent {
   render() {
-    const { color, size } = this.props
+    const { color, size, block } = this.props
     const newSize = calcIconSize(iconBase, size)
 
     return (
       <svg
-        className={baseClassname('external-link')}
+        className={`${baseClassname('external-link')} ${block ? 'db' : ''}`}
         width={newSize.width}
         height={newSize.height}
         viewBox="0 0 16 16"
@@ -40,11 +40,13 @@ class ExternalLink extends PureComponent {
 ExternalLink.defaultProps = {
   color: config.colors['serious-black'],
   size: 16,
+  block: false,
 }
 
 ExternalLink.propTypes = {
   color: PropTypes.string,
   size: PropTypes.number,
+  block: PropTypes.bool,
 }
 
 export default ExternalLink

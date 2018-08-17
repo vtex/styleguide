@@ -10,12 +10,12 @@ const iconBase = {
 
 class Copy extends PureComponent {
   render() {
-    const { color, size } = this.props
+    const { color, size, block } = this.props
     const newSize = calcIconSize(iconBase, size)
 
     return (
       <svg
-        className={baseClassname('copy')}
+        className={`${baseClassname('copy')} ${block ? 'db' : ''}`}
         width={newSize.width}
         height={newSize.height}
         viewBox="0 0 18 18"
@@ -46,11 +46,13 @@ class Copy extends PureComponent {
 Copy.defaultProps = {
   color: config.colors['serious-black'],
   size: 16,
+  block: false,
 }
 
 Copy.propTypes = {
   color: PropTypes.string,
   size: PropTypes.number,
+  block: PropTypes.bool,
 }
 
 export default Copy

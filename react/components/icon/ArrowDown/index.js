@@ -10,12 +10,12 @@ const iconBase = {
 
 class ArrowDown extends PureComponent {
   render() {
-    const { color, size } = this.props
+    const { color, size, block } = this.props
     const newSize = calcIconSize(iconBase, size)
 
     return (
       <svg
-        className={baseClassname('arrow-down')}
+        className={`${baseClassname('arrow-down')} ${block ? 'db' : ''}`}
         width={newSize.width}
         height={newSize.height}
         viewBox="0 0 17 16"
@@ -34,11 +34,13 @@ class ArrowDown extends PureComponent {
 ArrowDown.defaultProps = {
   color: config.colors['serious-black'],
   size: 16,
+  block: false,
 }
 
 ArrowDown.propTypes = {
   color: PropTypes.string,
   size: PropTypes.number,
+  block: PropTypes.bool,
 }
 
 export default ArrowDown

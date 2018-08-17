@@ -10,12 +10,12 @@ const iconBase = {
 
 class Delete extends PureComponent {
   render() {
-    const { color, size } = this.props
+    const { color, size, block } = this.props
     const newSize = calcIconSize(iconBase, size)
 
     return (
       <svg
-        className={baseClassname('delete')}
+        className={`${baseClassname('delete')} ${block ? 'db' : ''}`}
         width={newSize.width}
         height={newSize.height}
         viewBox="0 0 16 16"
@@ -36,11 +36,13 @@ class Delete extends PureComponent {
 Delete.defaultProps = {
   color: config.colors['serious-black'],
   size: 16,
+  block: false,
 }
 
 Delete.propTypes = {
   color: PropTypes.string,
   size: PropTypes.number,
+  block: PropTypes.bool,
 }
 
 export default Delete

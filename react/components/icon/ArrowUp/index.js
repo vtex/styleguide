@@ -10,12 +10,12 @@ const iconBase = {
 
 class ArrowUp extends PureComponent {
   render() {
-    const { color, size } = this.props
+    const { color, size, block } = this.props
     const newSize = calcIconSize(iconBase, size)
 
     return (
       <svg
-        className={baseClassname('arrow-up')}
+        className={`${baseClassname('arrow-up')} ${block ? 'db' : ''}`}
         width={newSize.width}
         height={newSize.height}
         viewBox="0 0 17 16"
@@ -35,11 +35,13 @@ class ArrowUp extends PureComponent {
 ArrowUp.defaultProps = {
   color: config.colors['serious-black'],
   size: 16,
+  block: false,
 }
 
 ArrowUp.propTypes = {
   color: PropTypes.string,
   size: PropTypes.number,
+  block: PropTypes.bool,
 }
 
 export default ArrowUp

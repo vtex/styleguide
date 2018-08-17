@@ -10,12 +10,12 @@ const iconBase = {
 
 class CaretDown extends PureComponent {
   render() {
-    const { color, size } = this.props
+    const { color, size, block } = this.props
     const newSize = calcIconSize(iconBase, size)
 
     return (
       <svg
-        className={baseClassname('caret-down')}
+        className={`${baseClassname('caret-down')} ${block ? 'db' : ''}`}
         width={newSize.width}
         height={newSize.height}
         viewBox="0 0 14 10"
@@ -34,11 +34,13 @@ class CaretDown extends PureComponent {
 CaretDown.defaultProps = {
   color: config.colors['serious-black'],
   size: 16,
+  block: false,
 }
 
 CaretDown.propTypes = {
   color: PropTypes.string,
   size: PropTypes.number,
+  block: PropTypes.bool,
 }
 
 export default CaretDown
