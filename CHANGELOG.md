@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **PageHeader** Add action button
 - Add CSS classes to all icon components
 - Add `block` prop to display icons as block
+- `tabindex` to several components
 - **Input** `onKeyUp` and `onKeyDown` hooks
 - **Input** `groupBottom` prop
 
