@@ -11,8 +11,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - **PageHeader** Add action button
 - Add CSS classes to all icon components
+- Add `block` prop to display icons as block
 
-<<<<<<< HEAD
 ## [5.5.1] - 2018-08-13
 
 ## [5.5.0] - 2018-08-13
@@ -21,8 +21,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - **Alert** Add action button
 
-=======
->>>>>>> Add CSS hook classes to icons
 ## [5.4.7] - 2018-08-08
 
 ### Changed
