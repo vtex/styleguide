@@ -23,6 +23,12 @@ Add the styleguide to dependencies on `manifest.json`:
 },
 ```
 
+Importing components:
+
+```js
+import { Button } from 'vtex.styleguide'
+```
+
 ### Other Projects
 
 ```sh
@@ -30,6 +36,8 @@ yarn add @vtex/styleguide --exact
 # or
 npm install @vtex/styleguide --save-exact
 ```
+
+Importing components:
 
 ```js
 import Button from '@vtex/styleguide/lib/Button'
