@@ -7,11 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [5.6.0] - 2018-08-17
+
 ### Added
 
 - **PageHeader** Add action button
 - Add CSS classes to all icon components
 - Add `block` prop to display icons as block
+- **Input** `onKeyUp` and `onKeyDown` hooks
+- **Input** `groupBottom` prop
 
 ## [5.5.1] - 2018-08-13
 

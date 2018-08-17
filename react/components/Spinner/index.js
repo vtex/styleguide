@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import config from 'vtex-tachyons/config.json'
-import { baseClassname } from '../utils'
+import { baseClassname } from '../icon/utils'
 
 const radius = 40
 const circ = 2 * radius * Math.PI

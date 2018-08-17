@@ -19,6 +19,14 @@ class Input extends Component {
     this.props.onKeyPress && this.props.onKeyPress(event)
   }
 
+  handleKeyDown = event => {
+    this.props.onKeyDown && this.props.onKeyDown(event)
+  }
+
+  handleKeyUp = event => {
+    this.props.onKeyUp && this.props.onKeyUp(event)
+  }
+
   handleFocus = event => {
     this.setState({ active: true })
     this.props.onFocus && this.props.onFocus(event)
@@ -40,6 +48,7 @@ class Input extends Component {
       dataAttributes,
       prefix,
       suffixIcon,
+      groupBottom,
     } = this.props
     const { active } = this.state
 
@@ -50,7 +59,8 @@ class Input extends Component {
 
     const widthClass = 'w-100'
     const box = 'ma0 border-box'
-    const border = 'bw1 br2 b--solid outline-0'
+    const borderRadius = `br2 ${groupBottom ? 'br--top' : ''}`
+    const border = `bw1 ${borderRadius} b--solid outline-0`
     // On bw1 change, update config.borderRadius[1] below accordingly
 
     const topBottomHeight = config.borderRadius[1] * 2 // 2 is top AND BOTTOM
@@ -133,6 +143,8 @@ class Input extends Component {
             onFocus={this.handleFocus}
             onChange={this.handleChange}
             onKeyPress={this.handleKeyPress}
+            onKeyDown={this.handleKeyDown}
+            onKeyUp={this.handleKeyUp}
             className={classes}
             disabled={this.props.disabled}
             accept={this.props.accept}
@@ -230,6 +242,8 @@ Input.propTypes = {
   dataAttributes: PropTypes.object,
   /** Spec attribute */
   defaultValue: PropTypes.string,
+  /** Whether the border should join with an element below */
+  groupBottom: PropTypes.bool,
   /** Spec attribute */
   id: PropTypes.string,
   /** Spec attribute */
@@ -272,8 +286,12 @@ Input.propTypes = {
   value: PropTypes.string,
   /** onChange event */
   onChange: PropTypes.func,
+  /** onKeyDown event */
+  onKeyDown: PropTypes.func,
   /** onKeyPress event */
   onKeyPress: PropTypes.func,
+  /** onKeyUp event */
+  onKeyUp: PropTypes.func,
   /** onFocus event */
   onFocus: PropTypes.func,
   /** onBlur event */
