@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 
-const normalizeMin = min => min == null ? -Infinity : min
-const normalizeMax = max => max == null ? Infinity : max
+const normalizeMin = min => (min == null ? -Infinity : min)
+const normalizeMax = max => (max == null ? Infinity : max)
 
 const validateValue = (value, min, max, defaultValue) => {
   // This function always return a valid numeric value from the current input.
@@ -65,7 +65,12 @@ export default class NumericStepper extends React.Component {
   static getDerivedStateFromProps(props, state) {
     const { value, minValue, maxValue, defaultValue } = props
 
-    const validatedValue = validateValue(value, minValue, maxValue, defaultValue)
+    const validatedValue = validateValue(
+      value,
+      minValue,
+      maxValue,
+      defaultValue,
+    )
 
     return {
       value: validatedValue,
@@ -80,7 +85,12 @@ export default class NumericStepper extends React.Component {
 
     const { minValue, maxValue, defaultValue, onChange } = this.props
 
-    const validatedValue = validateValue(parsedValue, minValue, maxValue, defaultValue)
+    const validatedValue = validateValue(
+      parsedValue,
+      minValue,
+      maxValue,
+      defaultValue,
+    )
 
     const displayValue = validateDisplayValue(value, minValue, maxValue)
 
@@ -132,26 +142,26 @@ export default class NumericStepper extends React.Component {
     const isMax = value >= normalizeMax(maxValue)
 
     const buttonSizeClasses = {
-      'regular': 'pv3 f6',
-      'large': 'pv4 f5',
+      regular: 'pv3 f6',
+      large: 'pv4 f5',
       'x-large': 'pv5 f4',
     }
 
     const inputSizeClasses = {
-      'regular': `pv3 f6 ${block ? 'flex-grow-1' : 'w3'}`,
-      'large': `pv4 f5 ${block ? 'flex-grow-1' : 'w3'}`,
+      regular: `pv3 f6 ${block ? 'flex-grow-1' : 'w3'}`,
+      large: `pv4 f5 ${block ? 'flex-grow-1' : 'w3'}`,
       'x-large': `pv5 f4 ${block ? 'flex-grow-1' : 'w4'}`,
     }
 
     return (
       <label>
-        {label && (
-          <span className="db mb3 w-100">{label}</span>
-        )}
+        {label && <span className="db mb3 w-100">{label}</span>}
         <div className="flex self-start">
           <input
             type="tel"
-            className={`z-1 order-1 tc bw1 ba b--light-gray br0 ${inputSizeClasses[size]}`}
+            className={`z-1 order-1 tc bw1 ba b--light-gray br0 ${
+              inputSizeClasses[size]
+            }`}
             style={{
               ...(block && {
                 width: 0,
@@ -164,11 +174,9 @@ export default class NumericStepper extends React.Component {
           />
           <div className="z-2 order-2 flex-none">
             <button
-              className={`br2 ph0 tc ba bl-0 bw1 b--light-gray ${buttonSizeClasses[size]} ${
-                isMax
-                  ? 'bg-light-silver silver'
-                  : 'pointer bg-white blue'
-              }`}
+              className={`br2 ph0 tc ba bl-0 bw1 b--light-gray ${
+                buttonSizeClasses[size]
+              } ${isMax ? 'bg-light-silver silver' : 'pointer bg-white blue'}`}
               style={{
                 borderTopLeftRadius: 0,
                 borderBottomLeftRadius: 0,
@@ -176,7 +184,9 @@ export default class NumericStepper extends React.Component {
               }}
               disabled={isMax}
               aria-label="+"
-              onClick={this.handleIncreaseValue}>
+              tabIndex={0}
+              onClick={this.handleIncreaseValue}
+            >
               <span className="b">
                 {/* fullwidth plus sign (U+FF0B) http://graphemica.com/%EF%BC%8B */}
                 &#xFF0B;
@@ -185,11 +195,9 @@ export default class NumericStepper extends React.Component {
           </div>
           <div className="z-2 order-0 flex-none">
             <button
-              className={`br2 ph0 ba br-0 bw1 b--light-gray ${buttonSizeClasses[size]} ${
-                isMin
-                  ? 'bg-light-silver silver'
-                  : 'pointer bg-white blue'
-              }`}
+              className={`br2 ph0 ba br-0 bw1 b--light-gray ${
+                buttonSizeClasses[size]
+              } ${isMin ? 'bg-light-silver silver' : 'pointer bg-white blue'}`}
               style={{
                 borderTopRightRadius: 0,
                 borderBottomRightRadius: 0,
@@ -197,9 +205,12 @@ export default class NumericStepper extends React.Component {
               }}
               disabled={isMin}
               aria-label="−"
-              {...{/* This is a minus sign (U+2212), not a regular hyphen (-, U+002D), which is the default keyboard character.
-                Used for screen readers. */}}
-              onClick={this.handleDecreaseValue}>
+              tabIndex={0}
+              // This is a minus sign (U+2212), not a regular hyphen (-, U+002D),
+              // which is the default keyboard character.
+              // Used for screen readers.
+              onClick={this.handleDecreaseValue}
+            >
               <span className="b">
                 {/* fullwidth hyphen-minus (U+FF0D) http://graphemica.com/%EF%BC%8D */}
                 &#xFF0D;
@@ -240,4 +251,3 @@ NumericStepper.defaultProps = {
   size: 'regular',
   block: false,
 }
-

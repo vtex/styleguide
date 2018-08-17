@@ -6,7 +6,7 @@ import Spinner from '../Spinner'
 class Button extends Component {
   handleClick = event => {
     !this.props.disabled && this.props.onClick && this.props.onClick(event)
-  };
+  }
 
   render() {
     const {
@@ -49,7 +49,8 @@ class Button extends Component {
         if (disabled) {
           classes += 'bg-light-gray b--light-gray gray '
         } else {
-          classes += 'bg-blue b--blue white hover-bg-heavy-blue hover-b--heavy-blue '
+          classes +=
+            'bg-blue b--blue white hover-bg-heavy-blue hover-b--heavy-blue '
         }
         break
       }
@@ -57,7 +58,8 @@ class Button extends Component {
         if (disabled) {
           classes += 'bg-light-silver silver b--light-silver '
         } else {
-          classes += 'bg-washed-blue b--washed-blue blue hover-bg-light-blue hover-b--light-blue hover-heavy-blue '
+          classes +=
+            'bg-washed-blue b--washed-blue blue hover-bg-light-blue hover-b--light-blue hover-heavy-blue '
         }
         break
       }
@@ -65,7 +67,8 @@ class Button extends Component {
         if (disabled) {
           classes += 'bg-transparent b--transparent silver '
         } else {
-          classes += 'bg-transparent b--transparent blue hover-b--transparent hover-heavy-blue '
+          classes +=
+            'bg-transparent b--transparent blue hover-b--transparent hover-heavy-blue '
         }
         break
       }
@@ -95,6 +98,7 @@ class Button extends Component {
         name={icon ? undefined : this.props.name}
         type={icon ? undefined : this.props.type}
         value={icon ? undefined : this.props.value}
+        tabIndex={0}
         className={classes}
         onClick={this.handleClick}
         onMouseEnter={this.props.onMouseEnter}
@@ -106,11 +110,9 @@ class Button extends Component {
         ref={this.props.ref}
         style={icon ? { fontSize: 0 } : {}}
       >
-        {isLoading
-          ? <React.Fragment>
-            <span
-              className="left-0 w-100 absolute flex justify-center items-baseline"
-            >
+        {isLoading ? (
+          <React.Fragment>
+            <span className="left-0 w-100 absolute flex justify-center items-baseline">
               <Spinner
                 secondary={variation === 'primary' || variation === 'danger'}
                 size={loaderSize}
@@ -118,7 +120,9 @@ class Button extends Component {
             </span>
             <span style={{ opacity: 0 }}>{children}</span>
           </React.Fragment>
-          : children}
+        ) : (
+          children
+        )}
       </Tag>
     )
   }
