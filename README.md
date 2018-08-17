@@ -13,6 +13,18 @@
 
 ## Usage
 
+### VTEX IO Apps
+
+Add the styleguide to dependencies on `manifest.json`:
+
+```sh
+"dependencies": {
+  "vtex.styleguide": "5.x"
+},
+```
+
+### Other Projects
+
 ```sh
 yarn add @vtex/styleguide --exact
 # or
