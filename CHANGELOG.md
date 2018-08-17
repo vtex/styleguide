@@ -26,7 +26,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
-- **Alert** Add semantic colors and remove default Alert
+- **[BREAKING]** **Alert** Remove default type prop
+- **Alert** Add semantic colors 
 
 ## [5.5.1] - 2018-08-13
 
