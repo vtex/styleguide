@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [5.6.1] - 2018-08-17
 
+### Changed
+
+- **[BREAKING]** **Alert** Remove default type prop
+
 ## [5.6.0] - 2018-08-17
 
 ### Added
@@ -23,11 +27,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `tabindex` to several components
 - **Input** `onKeyUp` and `onKeyDown` hooks
 - **Input** `groupBottom` prop
-
-### Changed
-
-- **[BREAKING]** **Alert** Remove default type prop
-- **Alert** Add semantic colors 
 
 ## [5.5.1] - 2018-08-13
 
