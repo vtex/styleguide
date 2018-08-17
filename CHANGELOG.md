@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
+- **PageHeader** Add action button
 - Add CSS classes to all icon components
 
 ## [5.5.1] - 2018-08-13
