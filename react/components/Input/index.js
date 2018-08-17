@@ -48,7 +48,7 @@ class Input extends Component {
       dataAttributes,
       prefix,
       suffixIcon,
-      hasOpenMenu,
+      groupBottom,
     } = this.props
     const { active } = this.state
 
@@ -59,7 +59,7 @@ class Input extends Component {
 
     const widthClass = 'w-100'
     const box = 'ma0 border-box'
-    const borderRadius = `br2 ${hasOpenMenu ? 'br--top' : ''}`
+    const borderRadius = `br2 ${groupBottom ? 'br--top' : ''}`
     const border = `bw1 ${borderRadius} b--solid outline-0`
     // On bw1 change, update config.borderRadius[1] below accordingly
 
@@ -242,8 +242,8 @@ Input.propTypes = {
   dataAttributes: PropTypes.object,
   /** Spec attribute */
   defaultValue: PropTypes.string,
-  /** Whether there is an open suggestions menu below */
-  hasOpenMenu: PropTypes.bool,
+  /** Whether the border should join with an element below */
+  groupBottom: PropTypes.bool,
   /** Spec attribute */
   id: PropTypes.string,
   /** Spec attribute */
