@@ -25,6 +25,7 @@ class Alert extends Component {
     let Icon = 'div'
     let color = config.colors['serious-black']
     const handleActionClick = (action && action.onClick) || undefined
+    const displayAction = action && action.onClick && action.label
 
     switch (type) {
       case 'success': {
@@ -71,22 +72,22 @@ class Alert extends Component {
             </div>
           </div>
 
-          {action &&
-            action.onClick &&
-            action.label && (
-              <div className="flex flex-grow-1 justify-end">
-                <div className="nt4-ns nb4">
-                  <Button variation="tertiary" onClick={handleActionClick}>
-                    {action.label}
-                  </Button>
-                </div>
+          {displayAction && (
+            <div className="flex flex-grow-1 justify-end">
+              <div className="nt4-ns nb4">
+                <Button variation="tertiary" onClick={handleActionClick}>
+                  {action.label}
+                </Button>
               </div>
-            )}
+            </div>
+          )}
         </div>
+
         {onClose && (
           <div
             className="vtex-alert__close-icon pointer flex items-center pv2"
             onClick={onClose}
+            tabIndex={0}
           >
             <CloseIcon color={config.colors['near-black']} size={10} />
           </div>
