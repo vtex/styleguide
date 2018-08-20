@@ -43,7 +43,7 @@ class ResourceList extends PureComponent {
           currentItemTo={pagination.currentItemTo}
           textOf={pagination.textOf}
           textShowRows="show rows"
-          totalItems={32}
+          totalItems={pagination.totalItems}
           onNextClick={this.handlePaginationNext}
           onPrevClick={this.handlePaginationPrev}
         />
@@ -70,6 +70,7 @@ ResourceList.propTypes = {
     currentItemFrom: PropTypes.number.isRequired,
     currentItemTo: PropTypes.number.isRequired,
     textOf: PropTypes.string,
+    totalItems: PropTypes.number.isRequired,
   }),
 }
 
