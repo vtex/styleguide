@@ -172,42 +172,42 @@ export default {
     {
       email: 'michaela51@hotmail.com',
       name: 'Emanuel Ullrich',
-      number: 57879,
+      number: 18.57879,
     },
     {
       email: 'erik_kuvalis41@hotmail.com',
       name: 'Beto',
-      number: 87262,
+      number: 19.87262,
     },
     {
       email: 'edwardo_kuvalis@hotmail.com',
       name: 'Mrs. Deion Beahan',
-      number: 13464,
+      number: 20.13464,
     },
     {
       email: 'alexa_ondricka45@hotmail.com',
       name: 'Trent Kerluke',
-      number: 9677,
+      number: 21.9677,
     },
     {
       email: 'darron_brakus63@yahoo.com',
       name: 'Jacquelyn Flatley Jr.',
-      number: 55405,
+      number: 22.55405,
     },
     {
       email: 'jamie.hermann60@gmail.com',
       name: 'Ervin Kuphal',
-      number: 76965,
+      number: 23.76965,
     },
     {
       email: 'cleo.klein@hotmail.com',
       name: 'Terrence Gutmann',
-      number: 55731,
+      number: 24.55731,
     },
     {
       email: 'Alicia.Ullrich@yahoo.com',
       name: 'Oren Beatty V',
-      number: 6073,
+      number: 25.6073,
     },
   ],
 }
