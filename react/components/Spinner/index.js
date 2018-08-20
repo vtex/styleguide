@@ -51,14 +51,14 @@ const Spinner = ({ secondary, size, block }) => (
 
 Spinner.propTypes = {
   secondary: PropTypes.bool,
+  block: PropTypes.bool,
   size: PropTypes.number,
-  block: false,
 }
 
 Spinner.defaultProps = {
   secondary: false,
+  block: false,
   size: 40,
-  block: PropTypes.bool,
 }
 
 export default Spinner
