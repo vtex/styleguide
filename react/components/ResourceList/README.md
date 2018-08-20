@@ -2,7 +2,7 @@ Working example
 
 ```js
 const sampleData = require('./sampleData').default
-const tableLength = 5
+const tableLength = 10
 
 class ResourceListExample extends React.Component {
   constructor() {
@@ -60,6 +60,7 @@ class ResourceListExample extends React.Component {
           currentItemFrom: this.state.currentItemFrom,
           currentItemTo: this.state.currentItemTo,
           textOf: 'de',
+          totalItems: sampleData.items.length,
         }}
       />
     )
