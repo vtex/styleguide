@@ -66,7 +66,7 @@ class Input extends Component {
     const topBottomHeight = config.borderRadius[1] * 2 // 2 is top AND BOTTOM
     const prefixAndSuffixPosition = `${config.borderRadius[1]}rem`
     const calcPrefixAndSuffixHeight = `calc(100% - ${topBottomHeight}rem)`
-    const typography = 'near-black'
+    const typography = 'on-base'
     let classes = `${widthClass} ${box} ${border} ${typography} `
 
     let labelClasses = 'vtex-input__label db mb3 w-100 '
@@ -78,23 +78,18 @@ class Input extends Component {
       classes += 'code '
     }
 
-    if (active) {
-      classes += 'b--gray '
-    } else {
-      classes += 'b--light-gray '
-      if (!this.props.disabled) {
-        classes += 'hover-b--silver '
-      }
-    }
-
-    if (error || errorMessage) {
-      classes += 'b--red hover-b--red '
-    }
-
     if (this.props.disabled) {
-      classes += 'bg-light-gray bg-light-silver b--light-silver silver '
+      classes += 'bg-disabled b--disabled c-disabled '
     } else {
-      classes += 'bg-white '
+      classes += 'bg-on-base '
+
+      if (error || errorMessage) {
+        classes += 'b--danger hover-b--danger '
+      } else if (active) {
+        classes += 'b--muted-2 '
+      } else {
+        classes += 'b--muted-4 hover-b--muted-3 '
+      }
     }
 
     switch (size) {
