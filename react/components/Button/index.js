@@ -6,7 +6,7 @@ import Spinner from '../Spinner'
 class Button extends Component {
   handleClick = event => {
     !this.props.disabled && this.props.onClick && this.props.onClick(event)
-  }
+  };
 
   render() {
     const {
@@ -47,36 +47,33 @@ class Button extends Component {
       default:
       case 'primary': {
         if (disabled) {
-          classes += 'bg-light-gray b--light-gray gray '
+          classes += 'bg-disabled b--disabled c-on-disabled '
         } else {
-          classes +=
-            'bg-blue b--blue white hover-bg-heavy-blue hover-b--heavy-blue '
+          classes += 'bg-action-primary b--action-primary c-on-action-primary hover-bg-action-primary hover-b--action-primary hover-c-on-action-primary '
         }
         break
       }
       case 'secondary': {
         if (disabled) {
-          classes += 'bg-light-silver silver b--light-silver '
+          classes += 'bg-disabled b--disabled c-on-disabled '
         } else {
-          classes +=
-            'bg-washed-blue b--washed-blue blue hover-bg-light-blue hover-b--light-blue hover-heavy-blue '
+          classes += 'bg-action-secondary b--action-secondary c-on-action-secondary hover-bg-action-secondary hover-b--action-secondary hover-c-on-action-secondary '
         }
         break
       }
       case 'tertiary': {
         if (disabled) {
-          classes += 'bg-transparent b--transparent silver '
+          classes += 'bg-transparent b--transparent c-disabled '
         } else {
-          classes +=
-            'bg-transparent b--transparent blue hover-b--transparent hover-heavy-blue '
+          classes += 'bg-transparent b--transparent c-action-primary hover-b--transparent hover-c-action-primary '
         }
         break
       }
       case 'danger': {
         if (disabled) {
-          classes += 'bg-light-silver silver b--light-silver '
+          classes += 'bg-disabled b--disabled c-on-disabled '
         } else {
-          classes += 'bg-red b--red white '
+          classes += 'bg-danger b--danger c-on-danger hover-bg-danger hover-b--danger hover-c-on-danger '
         }
         break
       }
@@ -110,9 +107,11 @@ class Button extends Component {
         ref={this.props.ref}
         style={icon ? { fontSize: 0 } : {}}
       >
-        {isLoading ? (
-          <React.Fragment>
-            <span className="left-0 w-100 absolute flex justify-center items-baseline">
+        {isLoading
+          ? <React.Fragment>
+            <span
+              className="left-0 w-100 absolute flex justify-center items-baseline"
+            >
               <Spinner
                 secondary={variation === 'primary' || variation === 'danger'}
                 size={loaderSize}
@@ -120,9 +119,7 @@ class Button extends Component {
             </span>
             <span style={{ opacity: 0 }}>{children}</span>
           </React.Fragment>
-        ) : (
-          children
-        )}
+          : children}
       </Tag>
     )
   }
