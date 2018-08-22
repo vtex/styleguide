@@ -40,9 +40,9 @@ class Radio extends PureComponent {
           className={classNames(
             'fake-radio relative ba br-100 mr3 flex justify-center items-center',
             {
-              'b--light-gray pointer': !disabled && !checked,
-              'b--blue pointer': !disabled && checked,
-              'b--light-silver bg-near-white': disabled,
+              'b--muted-4 pointer': !disabled && !checked,
+              'b--action-primary pointer': !disabled && checked,
+              'b--muted-4 bg-muted-5': disabled,
             },
           )}
           style={{
@@ -54,8 +54,8 @@ class Radio extends PureComponent {
         >
           <div
             className={classNames('br-100', {
-              'bg-blue': !disabled,
-              'bg-silver': disabled,
+              'bg-action-primary': !disabled,
+              'bg-muted-3': disabled,
             })}
             style={{
               height: '0.5rem',
@@ -85,8 +85,8 @@ class Radio extends PureComponent {
         />
         <label
           className={classNames(
-            { silver: disabled },
-            { pointer: !disabled },
+            { 'c-disabled': disabled },
+            { 'c-on-base pointer': !disabled },
             'flex flex-auto',
           )}
           htmlFor={id}

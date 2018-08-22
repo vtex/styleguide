@@ -20,7 +20,7 @@ class RadioGroup extends React.Component {
           const id = `${name}-${i}`
           return (
             <label
-              className={`db pv2 ph4 ba b--light-gray br3 ${classNames({ pointer: !isDisabled })}`}
+              className={`db pv2 ph4 ba b--muted-4 br3 ${classNames({ pointer: !isDisabled })}`}
               key={id}
               style={{
                 ...(!isFirst &&
