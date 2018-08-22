@@ -18,7 +18,7 @@ class Toggle extends Component {
       helpText,
     } = this.props
 
-    let labelClass = 'near-black '
+    let labelClass = disabled ? 'c-disabled ' : 'c-on-base '
     let classes = 'flex items-center relative br4 '
     let circleClasses = 'absolute br-100 '
     let iconDenyClasses = 'absolute flex justify-center '
@@ -36,34 +36,33 @@ class Toggle extends Component {
     // Background
     if (semantic) {
       if (!disabled && !checked) {
-        classes += 'bg-red '
+        classes += 'bg-danger '
         iconDenyClasses += 'o-100 '
         iconCheckClasses += 'o-0 '
       }
 
       if (!disabled && checked) {
-        classes += 'bg-green '
+        classes += 'bg-success '
         iconDenyClasses += 'o-0 '
         iconCheckClasses += 'o-100 '
       }
     } else if (disabled) {
-      classes += 'bg-light-gray '
-      labelClass += 'gray '
+      classes += 'bg-disabled '
     } else {
       if (!checked) {
-        classes += 'bg-gray '
+        classes += 'bg-muted-2 '
       }
 
       if (checked) {
-        classes += 'bg-blue '
+        classes += 'bg-action-primary '
       }
     }
 
     // Circle
     if (disabled) {
-      circleClasses += 'bg-silver '
+      circleClasses += 'bg-muted-3 '
     } else {
-      circleClasses += 'bg-white '
+      circleClasses += 'bg-base '
     }
 
     let style = {
@@ -159,7 +158,7 @@ class Toggle extends Component {
           />
           {label && <span className={labelClass}>{label}</span>}
         </div>
-        {helpText && <div className="mid-gray f6 mt3 lh-title">{helpText}</div>}
+        {helpText && <div className="c-muted-2 f6 mt3 lh-title">{helpText}</div>}
       </label>
     )
   }
