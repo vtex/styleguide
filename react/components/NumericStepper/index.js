@@ -142,12 +142,14 @@ export default class NumericStepper extends React.Component {
     const isMax = value >= normalizeMax(maxValue)
 
     const buttonSizeClasses = {
+      small: 'pv2 f7',
       regular: 'pv3 f6',
       large: 'pv4 f5',
       'x-large': 'pv5 f4',
     }
 
     const inputSizeClasses = {
+      small: `pv2 f7 ${block ? 'flex-grow-1' : 'w2'}`,
       regular: `pv3 f6 ${block ? 'flex-grow-1' : 'w3'}`,
       large: `pv4 f5 ${block ? 'flex-grow-1' : 'w3'}`,
       'x-large': `pv5 f4 ${block ? 'flex-grow-1' : 'w4'}`,
@@ -161,7 +163,7 @@ export default class NumericStepper extends React.Component {
             type="tel"
             className={`z-1 order-1 tc bw1 ba b--light-gray br0 ${
               inputSizeClasses[size]
-            }`}
+              }`}
             style={{
               ...(block && {
                 width: 0,
@@ -176,7 +178,7 @@ export default class NumericStepper extends React.Component {
             <button
               className={`br2 ph0 tc ba bl-0 bw1 b--light-gray ${
                 buttonSizeClasses[size]
-              } ${isMax ? 'bg-light-silver silver' : 'pointer bg-white blue'}`}
+                } ${isMax ? 'bg-light-silver silver' : 'pointer bg-white blue'}`}
               style={{
                 borderTopLeftRadius: 0,
                 borderBottomLeftRadius: 0,
@@ -197,7 +199,7 @@ export default class NumericStepper extends React.Component {
             <button
               className={`br2 ph0 ba br-0 bw1 b--light-gray ${
                 buttonSizeClasses[size]
-              } ${isMin ? 'bg-light-silver silver' : 'pointer bg-white blue'}`}
+                } ${isMin ? 'bg-light-silver silver' : 'pointer bg-white blue'}`}
               style={{
                 borderTopRightRadius: 0,
                 borderBottomRightRadius: 0,
@@ -237,7 +239,7 @@ NumericStepper.propTypes = {
   /** Default value in case of invalid input (e.g. letters) and there is no minimum value */
   defaultValue: PropTypes.number,
   /** Input size */
-  size: PropTypes.oneOf(['regular', 'large', 'x-large']),
+  size: PropTypes.oneOf(['small', 'regular', 'large', 'x-large']),
   /** Block or default size. */
   block: PropTypes.bool,
   /** Input label */
