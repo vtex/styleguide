@@ -159,9 +159,7 @@ export default class NumericStepper extends React.Component {
         <div className="flex self-start">
           <input
             type="tel"
-            className={`z-1 order-1 tc bw1 ba b--light-gray br0 ${
-              inputSizeClasses[size]
-            }`}
+            className={`z-1 order-1 tc bw1 ba b--muted-4 br0 ${inputSizeClasses[size]}`}
             style={{
               ...(block && {
                 width: 0,
@@ -174,9 +172,11 @@ export default class NumericStepper extends React.Component {
           />
           <div className="z-2 order-2 flex-none">
             <button
-              className={`br2 ph0 tc ba bl-0 bw1 b--light-gray ${
-                buttonSizeClasses[size]
-              } ${isMax ? 'bg-light-silver silver' : 'pointer bg-white blue'}`}
+              className={`br2 ph0 tc ba bl-0 bw1 b--muted-4 ${buttonSizeClasses[size]} ${
+                isMax
+                  ? 'bg-muted-5 silver'
+                  : 'pointer bg-base c-action-primary'
+              }`}
               style={{
                 borderTopLeftRadius: 0,
                 borderBottomLeftRadius: 0,
@@ -195,9 +195,11 @@ export default class NumericStepper extends React.Component {
           </div>
           <div className="z-2 order-0 flex-none">
             <button
-              className={`br2 ph0 ba br-0 bw1 b--light-gray ${
-                buttonSizeClasses[size]
-              } ${isMin ? 'bg-light-silver silver' : 'pointer bg-white blue'}`}
+              className={`br2 ph0 ba br-0 bw1 b--muted-4 ${buttonSizeClasses[size]} ${
+                isMin
+                  ? 'bg-muted-5 c-disabled'
+                  : 'pointer bg-white c-action-primary'
+              }`}
               style={{
                 borderTopRightRadius: 0,
                 borderBottomRightRadius: 0,
