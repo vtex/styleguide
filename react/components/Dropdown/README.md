@@ -176,8 +176,8 @@ class Example extends React.Component {
           <div className="fw5 mb3">
             Selected Painter
           </div>
-          <p>Label: {label || <span className="gray">undefined</span>}</p>
-          <p>Value: {value || <span className="gray">undefined</span>}</p>
+          <p>Label: {label || <span className="c-muted-1">undefined</span>}</p>
+          <p>Value: {value || <span className="c-muted-1">undefined</span>}</p>
         </div>
       </div>
     )

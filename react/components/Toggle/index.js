@@ -21,8 +21,8 @@ class Toggle extends Component {
     let labelClass = disabled ? 'c-disabled ' : 'c-on-base '
     let classes = 'flex items-center relative br4 '
     let circleClasses = 'absolute br-100 '
-    let iconDenyClasses = 'absolute flex justify-center '
-    let iconCheckClasses = 'absolute flex justify-center '
+    let iconDenyClasses = 'absolute flex justify-center c-danger '
+    let iconCheckClasses = 'absolute flex justify-center c-success '
 
     let circleStyle = {
       boxShadow: disabled ? 'none' : '0 0 10px rgba(0,0,0,0.2)',
@@ -129,22 +129,20 @@ class Toggle extends Component {
         <div className={`flex flex-row items-center ${!disabled && 'pointer'}`}>
           <div className={`vtex-toggle ${classes}`} style={style}>
             <div className={circleClasses} style={circleStyle} />
-            {semantic && (
+            {semantic &&
               <div className={iconDenyClasses} style={iconStyle}>
                 <DenyIcon
                   size={size === 'regular' ? 14 : 12}
-                  color={config.colors.red}
+                  color="currentColor"
                 />
-              </div>
-            )}
-            {semantic && (
+              </div>}
+            {semantic &&
               <div className={iconCheckClasses} style={iconStyle}>
                 <CheckIcon
                   size={size === 'regular' ? 15 : 13}
-                  color={config.colors.green}
+                  color="currentColor"
                 />
-              </div>
-            )}
+              </div>}
           </div>
           <input
             id={id || undefined}
@@ -158,7 +156,8 @@ class Toggle extends Component {
           />
           {label && <span className={labelClass}>{label}</span>}
         </div>
-        {helpText && <div className="c-muted-2 f6 mt3 lh-title">{helpText}</div>}
+        {helpText &&
+          <div className="c-muted-1 f6 mt3 lh-title">{helpText}</div>}
       </label>
     )
   }

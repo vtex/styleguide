@@ -23,7 +23,7 @@ class Alert extends Component {
     let classes = 'pa5 br2 '
     let showIcon = false
     let Icon = 'div'
-    let color = config.colors['serious-black']
+    let color = 'c-on-base'
     const handleActionClick = (action && action.onClick) || undefined
     const displayAction = action && action.onClick && action.label
 
@@ -32,14 +32,14 @@ class Alert extends Component {
         showIcon = true
         classes += 'bg-success--faded '
         Icon = SuccessIcon
-        color = config.semanticColors.text.success
+        color = 'c-success'
         break
       }
       case 'error': {
         showIcon = true
         classes += 'bg-danger--faded '
         Icon = FailureIcon
-        color = config.semanticColors.text.danger
+        color = 'c-danger'
         break
       }
       default:
@@ -47,48 +47,45 @@ class Alert extends Component {
         showIcon = true
         classes += 'bg-warning--faded '
         Icon = WarningIcon
-        color = config.semanticColors.text.warning
+        color = 'c-warning'
         break
       }
     }
 
     return (
       <div
-        className={`vtex-alert flex justify-between f5 near-black ${classes}`}
+        className={`vtex-alert flex justify-between f5 c-on-base ${classes}`}
       >
         <div className="flex-ns flex-grow-1">
           <div className="flex items-center flex-grow-1">
-            {showIcon && (
-              <div>
-                <Icon color={color} size={18} />
-              </div>
-            )}
+            {showIcon &&
+              <div className={color}>
+                <Icon color="currentColor" size={18} />
+              </div>}
 
             <div className={`${showIcon ? 'ph5 flex' : 'pr5'}`}>
               {this.props.children}
             </div>
           </div>
 
-          {displayAction && (
+          {displayAction &&
             <div className="flex flex-grow-1 justify-end">
               <div className="nt4-ns nb4">
                 <Button variation="tertiary" onClick={handleActionClick}>
                   {action.label}
                 </Button>
               </div>
-            </div>
-          )}
+            </div>}
         </div>
 
-        {onClose && (
+        {onClose &&
           <div
-            className="vtex-alert__close-icon pointer flex items-center pv2"
+            className="vtex-alert__close-icon pointer flex items-center pv2 c-on-base"
             onClick={onClose}
             tabIndex={0}
           >
-            <CloseIcon color={config.colors['near-black']} size={10} />
-          </div>
-        )}
+            <CloseIcon color="currentColor" size={10} />
+          </div>}
       </div>
     )
   }

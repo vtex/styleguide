@@ -126,7 +126,7 @@ Box types
 Colored container background
 
 ```js
-<div className="bg-washed-blue pa5">
+<div className="bg-warning--faded pa5">
   <div>
     <span className="mr4">
       <Button variation="primary">Primary</Button>
