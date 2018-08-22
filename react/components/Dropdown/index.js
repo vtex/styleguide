@@ -102,10 +102,13 @@ ${this.getDropdownIdentification()}`)
     const valueLabel = this.getValueLabel()
     const showCaption = !valueLabel
 
-    classes += disabled ? 'bg-light-gray ' : 'pointer '
+    classes += disabled ? 'bg-disabled ' : 'pointer '
     selectClasses += disabled ? '' : 'pointer '
-    classes += !disabled && valueLabel ? 'near-black ' : 'gray '
-    classes += isPlaceholder ? 'gray ' : ''
+    classes += !disabled && valueLabel
+      ? !isPlaceholder
+        ? 'c-on-base '
+        : 'c-muted-2 '
+      : 'c-disabled '
 
     switch (size) {
       case 'large':
@@ -131,19 +134,11 @@ ${this.getDropdownIdentification()}`)
     const containerStyle = { width }
 
     if (disabled) {
-      containerClasses += 'bg-light-gray '
+      containerClasses += 'bg-disabled '
+    } else if (error || errorMessage) {
+      containerClasses += 'ba b--danger hover-b--danger '
     } else {
-      containerClasses += 'bg-white '
-    }
-
-    if (error || errorMessage) {
-      containerClasses += 'ba b--red hover-b--red '
-    } else {
-      containerClasses += 'ba b--light-gray '
-    }
-
-    if (!disabled) {
-      containerClasses += 'hover-b--silver '
+      containerClasses += 'bg-base hover-b--muted-3 ba b--muted-4 '
     }
 
     return (
