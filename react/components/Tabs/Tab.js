@@ -14,8 +14,8 @@ class Tab extends Component {
         onClick={this.handleClick}
         className={`vtex-tab__button bt-0 bl-0 br-0 bw1 ${fullWidth ? 'w-100' : ''} ${
           active
-            ? 'near-black b--rebel-pink'
-            : 'mid-gray b--transparent hover-blue pointer'}
+            ? 'c-on-muted b--emphasis'
+            : 'c-muted-1 b--transparent hover-c-action-primary pointer'}
           fw5 fw4 v-mid relative pv5 ph4 f5 bg-transparent outline-0
         `}
       >
