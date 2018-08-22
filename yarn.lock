@@ -9362,7 +9362,7 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
-vtex-tachyons@^2.6.0:
+vtex-tachyons@^2.7.0:
   version "2.7.0"
   resolved "https://registry.yarnpkg.com/vtex-tachyons/-/vtex-tachyons-2.7.0.tgz#a4dcb53d09f80fb5ce2a583d77e09c33b4e48805"
 
