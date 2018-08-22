@@ -13,56 +13,42 @@ Default
 <Badge>Pending</Badge>
 ```
 
-High contrast examples
+Type examples
 
 ```js
-<div>
-  <span className="mr4">
-    <Badge bgColor="#FF4C4C" color="#fff">
-      Error
-    </Badge>
-  </span>
-  <span className="mr4">
-    <Badge bgColor="#FFB100" color="#fff">
-      Warning
-    </Badge>
-  </span>
-  <span className="mr4">
-    <Badge bgColor="#8BC34A" color="#fff">
-      Success
-    </Badge>
-  </span>
-  <span className="mr4">
-    <Badge bgColor="#979899" color="#fff">
-      Neutral
-    </Badge>
-  </span>
-</div>
+<span className="mr4">
+  <Badge type="error">
+    Error
+  </Badge>
+</span>
+<span className="mr4">
+  <Badge type="warning">
+    Warning
+  </Badge>
+</span>
+<span className="mr4">
+  <Badge type="success">
+    Success
+  </Badge>
+</span>
 ```
 
-Low contrast examples
+Custom colors examples
 
 ```js
-<div>
-  <span className="mr4">
-    <Badge bgColor="#FFE6E6" color="#FF4C4C">
-      Error
-    </Badge>
-  </span>
-  <span className="mr4">
-    <Badge bgColor="#FFF6E0" color="#FFB100">
-      Warning
-    </Badge>
-  </span>
-  <span className="mr4">
-    <Badge bgColor="#EAFCE3" color="#8BC34A">
-      Success
-    </Badge>
-  </span>
-  <span className="mr4">
-    <Badge bgColor="#E3E4E6" color="#979899">
-      Neutral
-    </Badge>
-  </span>
-</div>
+<span className="mr4">
+  <Badge bgColor="#F71963" color="#FFFFFF">
+    New
+  </Badge>
+</span>
+<span className="mr4">
+  <Badge bgColor="#142032" color="#D6D8E0">
+    New
+  </Badge>
+</span>
+<span className="mr4">
+  <Badge bgColor="#00BBD4" color="#FFFFFF">
+    New
+  </Badge>
+</span>
 ```
