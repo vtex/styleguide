@@ -166,9 +166,8 @@ ${this.getDropdownIdentification()}`
               disabled={disabled}
               className={selectClasses}
               onChange={this.handleChange}
-              {...{
-                /* Check the comment on the constructor regarding nil values */
-              }}
+              ref={this.props.forwardedRef}
+              {...{/* Check the comment on the constructor regarding nil values */}}
               value={value == null ? '' : value}
               autoFocus={autoFocus}
               form={form}
@@ -207,12 +206,18 @@ ${this.getDropdownIdentification()}`
   }
 }
 
-Dropdown.defaultProps = {
+const DropdownWithRef = React.forwardRef((props, ref) => (
+  <Dropdown {...props} forwardedRef={ref} />
+))
+
+DropdownWithRef.displayName = 'Dropdown'
+
+DropdownWithRef.defaultProps = {
   size: 'regular',
   options: [],
 }
 
-Dropdown.propTypes = {
+DropdownWithRef.propTypes = {
   /** Error highlight */
   error: PropTypes.bool,
   /** Error message */
@@ -260,6 +265,11 @@ Dropdown.propTypes = {
   onClose: PropTypes.func,
   /** onOpen event */
   onOpen: PropTypes.func,
+  /** Internal prop used for ref forwarding */
+  forwardedRef: PropTypes.func,
 }
 
-export default Dropdown
+Dropdown.propTypes = DropdownWithRef.propTypes
+Dropdown.defaultProps = DropdownWithRef.defaultProps
+
+export default DropdownWithRef
