@@ -9,11 +9,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 - **Badge** add prop `type`
+- **Spinner** add prop `color`
+- **Spinner** add default color of `.c-action-primary`
 
 ### Changed
 
 - **[BREAKING]** **Alert** Remove default value of `type` prop
 - **[BREAKING]** **Alert** Remove value `info` from `type` prop
+- **[BREAKING]** Icons default color is now `currentColor`, which is the current text color
+- **[BREAKING]** **Spinner** remove prop `secondary`
 
 ### Fixed
 - Spinner proptypes

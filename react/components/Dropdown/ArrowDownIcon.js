@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import config from 'vtex-tachyons/config.json'
 
 class ArrowDownIcon extends PureComponent {
   render() {
@@ -21,7 +20,7 @@ class ArrowDownIcon extends PureComponent {
 
 ArrowDownIcon.defaultProps = {
   size: 16,
-  color: config.colors.blue,
+  color: 'currentColor',
 }
 
 ArrowDownIcon.propTypes = {
