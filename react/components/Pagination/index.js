@@ -4,20 +4,19 @@ import CaretLeft from '../icon/CaretLeft'
 import CaretRight from '../icon/CaretRight'
 import Button from '../Button'
 import Dropdown from '../Dropdown'
-import config from 'vtex-tachyons/config.json'
 
 class Pagination extends PureComponent {
   handleRowsChange = (e, value) => {
     this.props.onRowsChange && this.props.onRowsChange(e, value)
-  }
+  };
 
   handlePrevPage = e => {
     this.props.onPrevClick && this.props.onPrevClick(e)
-  }
+  };
 
   handleNextPage = e => {
     this.props.onNextClick && this.props.onNextClick(e)
-  }
+  };
 
   createRowOptions = rowsOptions => {
     if (rowsOptions) {
@@ -26,7 +25,7 @@ class Pagination extends PureComponent {
       return opts
     }
     return null
-  }
+  };
 
   render() {
     const { rowsOptions } = this.props
@@ -37,11 +36,11 @@ class Pagination extends PureComponent {
 
     return (
       <div
-        className={`flex flex-row items-center ${
-          rowsOptions ? 'justify-between' : 'justify-end'
-        }`}
+        className={
+          `flex flex-row items-center ${rowsOptions ? 'justify-between' : 'justify-end'}`
+        }
       >
-        {dropdownOptions && (
+        {dropdownOptions &&
           <div className="flex flex-row items-baseline">
             <span className="mr4">{this.props.textShowRows}</span>
             <Dropdown
@@ -50,8 +49,7 @@ class Pagination extends PureComponent {
               value={dropdownOptions[0].label}
               onChange={this.handleRowsChange}
             />
-          </div>
-        )}
+          </div>}
 
         <div className="flex flex-row items-center">
           <div>
@@ -66,13 +64,7 @@ class Pagination extends PureComponent {
             disabled={isPrevDisabled}
             onClick={this.handlePrevPage}
           >
-            <CaretLeft
-              color={
-                isPrevDisabled
-                  ? config.colors['light-gray']
-                  : config.colors.blue
-              }
-            />
+            <CaretLeft color="currentColor" />
           </Button>
           <Button
             icon
@@ -80,13 +72,7 @@ class Pagination extends PureComponent {
             disabled={isNextDisabled}
             onClick={this.handleNextPage}
           >
-            <CaretRight
-              color={
-                isNextDisabled
-                  ? config.colors['light-gray']
-                  : config.colors.blue
-              }
-            />
+            <CaretRight color="currentColor" />
           </Button>
         </div>
       </div>

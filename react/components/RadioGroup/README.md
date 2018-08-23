@@ -22,19 +22,19 @@ One option disabled
     {value:'value1', label: (
       <div>
         <div className="b">L</div>
-        <div className="gray">Lightness</div>
+        <div className="c-muted-1">Lightness</div>
       </div>
     )},
     {value:'value2', label: (
       <div>
         <div className="b">a*</div>
-        <div className="gray">Green–Red</div>
+        <div className="c-muted-1">Green–Red</div>
       </div>
     ), disabled: true},
     {value:'value3', label: (
       <div>
         <div className="b">b*</div>
-        <div className="gray">Blue–Yellow</div>
+        <div className="c-muted-1">Blue–Yellow</div>
       </div>
     )},
   ]}

@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 
-const normalizeMin = min => (min == null ? -Infinity : min)
-const normalizeMax = max => (max == null ? Infinity : max)
+const normalizeMin = min => min == null ? -Infinity : min
+const normalizeMax = max => max == null ? Infinity : max
 
 const validateValue = (value, min, max, defaultValue) => {
   // This function always return a valid numeric value from the current input.
@@ -60,7 +60,7 @@ export default class NumericStepper extends React.Component {
     value: 0,
     // used for temporarily invalid values during typing--specifically, when it's empty
     displayValue: 0,
-  }
+  };
 
   static getDerivedStateFromProps(props, state) {
     const { value, minValue, maxValue, defaultValue } = props
@@ -69,7 +69,7 @@ export default class NumericStepper extends React.Component {
       value,
       minValue,
       maxValue,
-      defaultValue,
+      defaultValue
     )
 
     return {
@@ -89,7 +89,7 @@ export default class NumericStepper extends React.Component {
       parsedValue,
       minValue,
       maxValue,
-      defaultValue,
+      defaultValue
     )
 
     const displayValue = validateDisplayValue(value, minValue, maxValue)
@@ -108,31 +108,31 @@ export default class NumericStepper extends React.Component {
       event.value = validatedValue
       onChange(event)
     }
-  }
+  };
 
   handleTypeQuantity = event => {
     this.changeValue(event.target.value, event)
-  }
+  };
 
   handleIncreaseValue = event => {
     this.changeValue(this.state.value + 1, event)
-  }
+  };
 
   handleDecreaseValue = event => {
     this.changeValue(this.state.value - 1, event)
-  }
+  };
 
   handleFocusInput = e => {
     e.target.select()
     this.setState({ inputFocused: true })
-  }
+  };
 
   handleBlurInput = () => {
     this.setState({
       displayValue: this.state.value,
       inputFocused: false,
     })
-  }
+  };
 
   render() {
     const { value, displayValue } = this.state
@@ -159,7 +159,9 @@ export default class NumericStepper extends React.Component {
         <div className="flex self-start">
           <input
             type="tel"
-            className={`z-1 order-1 tc bw1 ba b--muted-4 br0 ${inputSizeClasses[size]}`}
+            className={
+              `z-1 order-1 tc bw1 ba b--muted-4 br0 ${inputSizeClasses[size]}`
+            }
             style={{
               ...(block && {
                 width: 0,
@@ -172,11 +174,9 @@ export default class NumericStepper extends React.Component {
           />
           <div className="z-2 order-2 flex-none">
             <button
-              className={`br2 ph0 tc ba bl-0 bw1 b--muted-4 ${buttonSizeClasses[size]} ${
-                isMax
-                  ? 'bg-muted-5 silver'
-                  : 'pointer bg-base c-action-primary'
-              }`}
+              className={
+                `br2 ph0 tc ba bl-0 bw1 b--muted-4 ${buttonSizeClasses[size]} ${isMax ? 'bg-muted-5 c-disabled' : 'pointer bg-base c-action-primary'}`
+              }
               style={{
                 borderTopLeftRadius: 0,
                 borderBottomLeftRadius: 0,
@@ -189,17 +189,15 @@ export default class NumericStepper extends React.Component {
             >
               <span className="b">
                 {/* fullwidth plus sign (U+FF0B) http://graphemica.com/%EF%BC%8B */}
-                &#xFF0B;
+                ＋
               </span>
             </button>
           </div>
           <div className="z-2 order-0 flex-none">
             <button
-              className={`br2 ph0 ba br-0 bw1 b--muted-4 ${buttonSizeClasses[size]} ${
-                isMin
-                  ? 'bg-muted-5 c-disabled'
-                  : 'pointer bg-white c-action-primary'
-              }`}
+              className={
+                `br2 ph0 ba br-0 bw1 b--muted-4 ${buttonSizeClasses[size]} ${isMin ? 'bg-muted-5 c-disabled' : 'pointer bg-white c-action-primary'}`
+              }
               style={{
                 borderTopRightRadius: 0,
                 borderBottomRightRadius: 0,
@@ -215,7 +213,7 @@ export default class NumericStepper extends React.Component {
             >
               <span className="b">
                 {/* fullwidth hyphen-minus (U+FF0D) http://graphemica.com/%EF%BC%8D */}
-                &#xFF0D;
+                －
               </span>
             </button>
           </div>
