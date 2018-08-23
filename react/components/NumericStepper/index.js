@@ -175,7 +175,7 @@ export default class NumericStepper extends React.Component {
           <div className="z-2 order-2 flex-none">
             <button
               className={
-                `br2 ph0 tc ba bl-0 bw1 b--muted-4 ${buttonSizeClasses[size]} ${isMax ? 'bg-muted-5 c-disabled' : 'pointer bg-base c-action-primary'}`
+                `br2 ph0 h-100 tc ba bl-0 bw1 b--muted-4 ${buttonSizeClasses[size]} ${isMax ? 'bg-muted-5 c-disabled' : 'pointer bg-base c-action-primary'}`
               }
               style={{
                 borderTopLeftRadius: 0,
@@ -196,7 +196,7 @@ export default class NumericStepper extends React.Component {
           <div className="z-2 order-0 flex-none">
             <button
               className={
-                `br2 ph0 ba br-0 bw1 b--muted-4 ${buttonSizeClasses[size]} ${isMin ? 'bg-muted-5 c-disabled' : 'pointer bg-white c-action-primary'}`
+                `br2 ph0 h-100 ba br-0 bw1 b--muted-4 ${buttonSizeClasses[size]} ${isMin ? 'bg-muted-5 c-disabled' : 'pointer bg-white c-action-primary'}`
               }
               style={{
                 borderTopRightRadius: 0,
