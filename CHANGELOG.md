@@ -6,6 +6,21 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [6.0.0] - 2018-08-23
+
+### Added
+- **Badge** add prop `type`
+- **Spinner** add prop `color`
+- **Spinner** add default color of `.c-action-primary`
+
+### Changed
+
+- **[BREAKING]** **Alert** Remove default value of `type` prop
+- **[BREAKING]** **Alert** Remove value `info` from `type` prop
+- **[BREAKING]** Icons default color is now `currentColor`, which is the current text color
+- **[BREAKING]** **Spinner** remove prop `secondary`
+
 ### Fixed
 - Spinner proptypes
 

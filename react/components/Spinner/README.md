@@ -4,10 +4,10 @@
 <Spinner />
 ```
 
-#### Secondary with custom size
+#### Custom color
 
 ```js
-<span className="dib" style={{ background: '#368df7' }}>
-  <Spinner secondary size={20} />
+<span className="dib c-muted-1">
+  <Spinner color="currentColor" size={20} />
 </span>
 ```

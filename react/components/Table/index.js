@@ -48,7 +48,7 @@ class Table extends PureComponent {
               rowClassName={({ index }) =>
                 `flex flex-row items-center pv4 ${
                   index === -1 ? 'bt bb' : 'bb'
-                } b--light-gray`
+                } b--muted-4`
               }
             >
               {indexColumn ? (

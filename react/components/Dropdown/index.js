@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import ArrowDownIcon from './ArrowDownIcon'
-import config from 'vtex-tachyons/config.json'
 
 class Dropdown extends Component {
   constructor(props) {
@@ -24,14 +23,14 @@ class Dropdown extends Component {
     } = e
 
     !disabled && onChange && onChange(e, value)
-  }
+  };
 
   getOptionFromValue = value => {
     const { options } = this.props
     const option = options.filter(option => option.value === value)[0]
     if (!option) return null
     return option
-  }
+  };
 
   getDropdownIdentification = () => {
     const { label, id, options } = this.props
@@ -40,27 +39,31 @@ class Dropdown extends Component {
     } else if (id) {
       return `Dropdown #${id}`
     }
-    return `Dropdown with the options ${options.map(option => option.label).join(', ')}`
-  }
+    return `Dropdown with the options ${options
+      .map(option => option.label)
+      .join(', ')}`
+  };
 
   getPlaceholder = () => {
     const { placeholder, label, helpText } = this.props
     const placeholderValue = placeholder || label || helpText || ''
 
     if (placeholderValue === '' && !this.sentPlaceholderWarning) {
-      console.warn(`The following dropdown has a placeholder option, but no placeholder text. Please use at least one of these props: placeholder, label, or helpText.
+      console.warn(
+        `The following dropdown has a placeholder option, but no placeholder text. Please use at least one of these props: placeholder, label, or helpText.
 
-${this.getDropdownIdentification()}`)
+${this.getDropdownIdentification()}`
+      )
 
       this.sentPlaceholderWarning = true
     }
 
     return placeholderValue
-  }
+  };
 
   getSelectedOption = () => {
     return this.getOptionFromValue(this.props.value)
-  }
+  };
 
   getValueLabel() {
     const selectedOption = this.getSelectedOption()
@@ -86,8 +89,8 @@ ${this.getDropdownIdentification()}`)
       required,
     } = this.props
 
-    const hasValidInitialValue =
-      this.getOptionFromValue(this.initialValue) !== null
+    const hasValidInitialValue = this.getOptionFromValue(this.initialValue) !==
+      null
 
     const isPlaceholder = this.getSelectedOption() === null
     let width
@@ -102,10 +105,11 @@ ${this.getDropdownIdentification()}`)
     const valueLabel = this.getValueLabel()
     const showCaption = !valueLabel
 
-    classes += disabled ? 'bg-light-gray ' : 'pointer '
+    classes += disabled ? 'bg-disabled ' : 'pointer '
     selectClasses += disabled ? '' : 'pointer '
-    classes += !disabled && valueLabel ? 'near-black ' : 'gray '
-    classes += isPlaceholder ? 'gray ' : ''
+    classes += !disabled && valueLabel
+      ? !isPlaceholder ? 'c-on-base ' : 'c-muted-2 '
+      : 'c-disabled '
 
     switch (size) {
       case 'large':
@@ -131,40 +135,29 @@ ${this.getDropdownIdentification()}`)
     const containerStyle = { width }
 
     if (disabled) {
-      containerClasses += 'bg-light-gray '
+      containerClasses += 'bg-disabled '
+    } else if (error || errorMessage) {
+      containerClasses += 'ba b--danger hover-b--danger '
     } else {
-      containerClasses += 'bg-white '
-    }
-
-    if (error || errorMessage) {
-      containerClasses += 'ba b--red hover-b--red '
-    } else {
-      containerClasses += 'ba b--light-gray '
-    }
-
-    if (!disabled) {
-      containerClasses += 'hover-b--silver '
+      containerClasses += 'bg-base hover-b--muted-3 ba b--muted-4 '
     }
 
     return (
       <div className="vtex-dropdown">
         <label>
-          {label && (
-            <span className={labelClasses}>{label}</span>
-          )}
+          {label && <span className={labelClasses}>{label}</span>}
           <div className={containerClasses} style={containerStyle}>
             <div id={id} className={`vtex-dropdown__button ${classes}`}>
               <div className="flex">
                 <div className="vtex-dropdown__caption flex-auto tl truncate">
                   {showCaption ? placeholder : valueLabel}
                 </div>
-                <div className="vtex-dropdown__arrow flex-none flex items-center pl2">
-                  <ArrowDownIcon
-                    size={iconSize}
-                    color={
-                      disabled ? config.colors['gray'] : config.colors.blue
-                    }
-                  />
+                <div
+                  className={
+                    `vtex-dropdown__arrow flex-none flex items-center pl2 ${disabled ? 'c-on-disabled' : 'c-action-primary'}`
+                  }
+                >
+                  <ArrowDownIcon size={iconSize} />
                 </div>
               </div>
             </div>
@@ -173,7 +166,9 @@ ${this.getDropdownIdentification()}`)
               disabled={disabled}
               className={selectClasses}
               onChange={this.handleChange}
-              {...{/* Check the comment on the constructor regarding nil values */}}
+              {...{
+                /* Check the comment on the constructor regarding nil values */
+              }}
               value={value == null ? '' : value}
               autoFocus={autoFocus}
               form={form}
@@ -188,14 +183,13 @@ ${this.getDropdownIdentification()}`)
               {preventTruncate && <optgroup label={label || helpText || ''} />}
 
               {/* Creates a disabled first option in case the first value is invalid or empty */}
-              {(!hasValidInitialValue || placeholder) && (
+              {(!hasValidInitialValue || placeholder) &&
                 <option
                   disabled
                   value={!hasValidInitialValue ? this.initialValue : null}
                 >
                   {this.getPlaceholder()}
-                </option>
-              )}
+                </option>}
               {options.map(option => (
                 <option key={option.value} value={option.value}>
                   {option.label}
@@ -204,10 +198,10 @@ ${this.getDropdownIdentification()}`)
             </select>
           </div>
         </label>
-        {errorMessage && (
-          <div className="red f6 mt3 lh-title">{errorMessage}</div>
-        )}
-        {helpText && <div className="mid-gray f6 mt3 lh-title">{helpText}</div>}
+        {errorMessage &&
+          <div className="c-danger f6 mt3 lh-title">{errorMessage}</div>}
+        {helpText &&
+          <div className="c-muted-1 f6 mt3 lh-title">{helpText}</div>}
       </div>
     )
   }
@@ -234,11 +228,15 @@ Dropdown.propTypes = {
   /** Dropdown options list */
   options: PropTypes.arrayOf(
     PropTypes.shape({
-      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-        .isRequired,
-      label: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-        .isRequired,
-    }),
+      value: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+      ]).isRequired,
+      label: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+      ]).isRequired,
+    })
   ),
   /** Prevent truncating large options texts on some devices/browsers, such as iOS */
   preventTruncate: PropTypes.bool,

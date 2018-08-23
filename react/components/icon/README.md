@@ -1,4 +1,4 @@
-Usage: <span className="gray">`import <IconName> from '@vtex/styleguide/lib/icon/<IconName>'`</span>
+Usage: <span className="c-muted-1">`import <IconName> from '@vtex/styleguide/lib/icon/<IconName>'`</span>
 
 ```js
 const ArrowBack = require('./ArrowBack').default
@@ -31,7 +31,7 @@ const Upload = require('./Upload').default
 const Warning = require('./Warning').default
 
 const demoSize = 20
-const demoLabel = 'pb3 code gray f6'
+const demoLabel = 'pb3 code c-muted-1 f6'
 
 ;<table className="w-100">
   <tbody>

@@ -13,29 +13,29 @@ class Input extends Component {
 
   handleChange = event => {
     this.props.onChange && this.props.onChange(event)
-  }
+  };
 
   handleKeyPress = event => {
     this.props.onKeyPress && this.props.onKeyPress(event)
-  }
+  };
 
   handleKeyDown = event => {
     this.props.onKeyDown && this.props.onKeyDown(event)
-  }
+  };
 
   handleKeyUp = event => {
     this.props.onKeyUp && this.props.onKeyUp(event)
-  }
+  };
 
   handleFocus = event => {
     this.setState({ active: true })
     this.props.onFocus && this.props.onFocus(event)
-  }
+  };
 
   handleBlur = event => {
     this.setState({ active: false })
     this.props.onBlur && this.props.onBlur(event)
-  }
+  };
 
   render() {
     const {
@@ -66,35 +66,29 @@ class Input extends Component {
     const topBottomHeight = config.borderRadius[1] * 2 // 2 is top AND BOTTOM
     const prefixAndSuffixPosition = `${config.borderRadius[1]}rem`
     const calcPrefixAndSuffixHeight = `calc(100% - ${topBottomHeight}rem)`
-    const typography = 'near-black'
+    const typography = 'c-on-base'
     let classes = `${widthClass} ${box} ${border} ${typography} `
 
     let labelClasses = 'vtex-input__label db mb3 w-100 '
 
-    let prefixAndSuffixClasses =
-      'vtex-input__prefix absolute gray fw5 flex items-center '
+    let prefixAndSuffixClasses = 'vtex-input__prefix absolute c-muted-1 fw5 flex items-center '
 
     if (token) {
       classes += 'code '
     }
 
-    if (active) {
-      classes += 'b--gray '
-    } else {
-      classes += 'b--light-gray '
-      if (!this.props.disabled) {
-        classes += 'hover-b--silver '
-      }
-    }
-
-    if (error || errorMessage) {
-      classes += 'b--red hover-b--red '
-    }
-
     if (this.props.disabled) {
-      classes += 'bg-light-gray bg-light-silver b--light-silver silver '
+      classes += 'bg-disabled b--disabled c-disabled '
     } else {
-      classes += 'bg-white '
+      classes += 'bg-on-base '
+
+      if (error || errorMessage) {
+        classes += 'b--danger hover-b--danger '
+      } else if (active) {
+        classes += 'b--muted-2 '
+      } else {
+        classes += 'b--muted-4 hover-b--muted-3 '
+      }
     }
 
     switch (size) {
@@ -120,11 +114,9 @@ class Input extends Component {
 
     return (
       <label className="vtex-input w-100">
-        {label && (
-          <span className={labelClasses}>{label}</span>
-        )}
+        {label && <span className={labelClasses}>{label}</span>}
         <div className="flex vtex-input-prefix__group relative">
-          {prefix && (
+          {prefix &&
             <span
               style={{
                 height: calcPrefixAndSuffixHeight,
@@ -134,8 +126,7 @@ class Input extends Component {
               className={prefixAndSuffixClasses}
             >
               {prefix}
-            </span>
-          )}
+            </span>}
           <input
             {...dataAttrs}
             ref={this.props.forwardedRef}
@@ -173,7 +164,7 @@ class Input extends Component {
             value={this.props.value}
             id={this.props.id}
           />
-          {suffixIcon && (
+          {suffixIcon &&
             <span
               style={{
                 height: calcPrefixAndSuffixHeight,
@@ -183,13 +174,12 @@ class Input extends Component {
               className={prefixAndSuffixClasses}
             >
               {suffixIcon}
-            </span>
-          )}
+            </span>}
         </div>
-        {errorMessage && (
-          <div className="red f6 mt3 lh-title">{errorMessage}</div>
-        )}
-        {helpText && <div className="mid-gray f6 mt3 lh-title">{helpText}</div>}
+        {errorMessage &&
+          <div className="c-danger f6 mt3 lh-title">{errorMessage}</div>}
+        {helpText &&
+          <div className="c-muted-1 f6 mt3 lh-title">{helpText}</div>}
       </label>
     )
   }

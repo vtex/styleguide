@@ -4,8 +4,6 @@ import PropTypes from 'prop-types'
 import DenyIcon from '../icon/Deny'
 import CheckIcon from '../icon/Check'
 
-import config from 'vtex-tachyons/config.json'
-
 class Toggle extends Component {
   render() {
     const {
@@ -18,11 +16,11 @@ class Toggle extends Component {
       helpText,
     } = this.props
 
-    let labelClass = 'near-black '
+    let labelClass = disabled ? 'c-disabled ' : 'c-on-base '
     let classes = 'flex items-center relative br4 '
     let circleClasses = 'absolute br-100 '
-    let iconDenyClasses = 'absolute flex justify-center '
-    let iconCheckClasses = 'absolute flex justify-center '
+    let iconDenyClasses = 'absolute flex justify-center c-danger '
+    let iconCheckClasses = 'absolute flex justify-center c-success '
 
     let circleStyle = {
       boxShadow: disabled ? 'none' : '0 0 10px rgba(0,0,0,0.2)',
@@ -36,34 +34,33 @@ class Toggle extends Component {
     // Background
     if (semantic) {
       if (!disabled && !checked) {
-        classes += 'bg-red '
+        classes += 'bg-danger '
         iconDenyClasses += 'o-100 '
         iconCheckClasses += 'o-0 '
       }
 
       if (!disabled && checked) {
-        classes += 'bg-green '
+        classes += 'bg-success '
         iconDenyClasses += 'o-0 '
         iconCheckClasses += 'o-100 '
       }
     } else if (disabled) {
-      classes += 'bg-light-gray '
-      labelClass += 'gray '
+      classes += 'bg-disabled '
     } else {
       if (!checked) {
-        classes += 'bg-gray '
+        classes += 'bg-muted-2 '
       }
 
       if (checked) {
-        classes += 'bg-blue '
+        classes += 'bg-action-primary '
       }
     }
 
     // Circle
     if (disabled) {
-      circleClasses += 'bg-silver '
+      circleClasses += 'bg-muted-3 '
     } else {
-      circleClasses += 'bg-white '
+      circleClasses += 'bg-base '
     }
 
     let style = {
@@ -130,22 +127,20 @@ class Toggle extends Component {
         <div className={`flex flex-row items-center ${!disabled && 'pointer'}`}>
           <div className={`vtex-toggle ${classes}`} style={style}>
             <div className={circleClasses} style={circleStyle} />
-            {semantic && (
+            {semantic &&
               <div className={iconDenyClasses} style={iconStyle}>
                 <DenyIcon
                   size={size === 'regular' ? 14 : 12}
-                  color={config.colors.red}
+                  color="currentColor"
                 />
-              </div>
-            )}
-            {semantic && (
+              </div>}
+            {semantic &&
               <div className={iconCheckClasses} style={iconStyle}>
                 <CheckIcon
                   size={size === 'regular' ? 15 : 13}
-                  color={config.colors.green}
+                  color="currentColor"
                 />
-              </div>
-            )}
+              </div>}
           </div>
           <input
             id={id || undefined}
@@ -159,7 +154,8 @@ class Toggle extends Component {
           />
           {label && <span className={labelClass}>{label}</span>}
         </div>
-        {helpText && <div className="mid-gray f6 mt3 lh-title">{helpText}</div>}
+        {helpText &&
+          <div className="c-muted-1 f6 mt3 lh-title">{helpText}</div>}
       </label>
     )
   }

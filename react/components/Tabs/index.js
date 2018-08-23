@@ -8,7 +8,7 @@ class Tabs extends Component {
     const content = selectedTab && selectedTab.props.children
     return (
       <div className="w-100">
-        <div className="flex flex-row bb b--light-gray mid-gray overflow-y-auto">
+        <div className="flex flex-row bb b--muted-4 overflow-y-auto">
           {children.map(child =>
             cloneElement(child, { fullWidth, key: child.props.label.toString() })
           )}

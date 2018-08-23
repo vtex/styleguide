@@ -12,17 +12,17 @@ class Textarea extends Component {
 
   handleChange = event => {
     this.props.onChange && this.props.onChange(event)
-  }
+  };
 
   handleFocus = event => {
     this.setState({ active: true })
     this.props.onFocus && this.props.onFocus(event)
-  }
+  };
 
   handleBlur = event => {
     this.setState({ active: false })
     this.props.onBlur && this.props.onBlur(event)
-  }
+  };
 
   render() {
     const {
@@ -43,34 +43,33 @@ class Textarea extends Component {
     const widthClass = 'w-100'
     const box = 'ma0 border-box'
     const border = 'bw1 br2 b--solid outline-0'
-    const typography = 'near-black f6'
+    const typography = 'c-on-base f6'
     const padding = 'pv3 ph5'
     let classes = `${widthClass} ${box} ${padding} ${border} ${typography} `
 
     if (active) {
-      classes += 'b--gray '
+      classes += 'b--muted-2 '
     } else {
-      classes += 'b--light-gray '
+      classes += 'b--muted-4 '
       if (!this.props.disabled) {
-        classes += 'hover-b--silver '
+        classes += 'hover-b--muted-3 '
       }
     }
 
     if (error || errorMessage) {
-      classes += 'b--red hover-b--red '
+      classes += 'b--danger hover-b--danger '
     }
 
     if (this.props.disabled) {
-      classes += 'bg-light-gray bg-light-silver b--light-silver silver '
+      classes += 'bg-disabled b--disabled c-disabled '
     } else {
-      classes += 'bg-white '
+      classes += 'bg-on-base '
     }
 
     return (
       <label className="vtex-textarea">
-        {label && (
-          <span className="vtex-textarea__label db mb3 w-100">{label}</span>
-        )}
+        {label &&
+          <span className="vtex-textarea__label db mb3 w-100">{label}</span>}
         <textarea
           {...dataAttrs}
           onBlur={this.handleBlur}
@@ -95,10 +94,10 @@ class Textarea extends Component {
           {children}
         </textarea>
 
-        {errorMessage && (
-          <div className="red f6 mt3 lh-title">{errorMessage}</div>
-        )}
-        {helpText && <div className="mid-gray f6 mt3 lh-title">{helpText}</div>}
+        {errorMessage &&
+          <div className="c-danger f6 mt3 lh-title">{errorMessage}</div>}
+        {helpText &&
+          <div className="c-muted-1 f6 mt3 lh-title">{helpText}</div>}
       </label>
     )
   }

@@ -4,7 +4,6 @@ import SuccessIcon from '../icon/Success'
 import FailureIcon from '../icon/Failure'
 import WarningIcon from '../icon/Warning'
 import CloseIcon from '../icon/Close'
-import config from 'vtex-tachyons/config.json'
 import Button from '../Button'
 
 class Alert extends Component {
@@ -23,75 +22,69 @@ class Alert extends Component {
     let classes = 'pa5 br2 '
     let showIcon = false
     let Icon = 'div'
-    let color = config.colors['serious-black']
+    let color = 'c-on-base'
     const handleActionClick = (action && action.onClick) || undefined
     const displayAction = action && action.onClick && action.label
 
     switch (type) {
       case 'success': {
         showIcon = true
-        classes += 'bg-washed-green '
+        classes += 'bg-success--faded '
         Icon = SuccessIcon
-        color = config.colors['green']
+        color = 'c-success'
         break
       }
       case 'error': {
         showIcon = true
-        classes += 'bg-washed-red '
+        classes += 'bg-danger--faded '
         Icon = FailureIcon
-        color = config.colors['red']
+        color = 'c-danger'
         break
       }
+      default:
       case 'warning': {
         showIcon = true
-        classes += 'bg-washed-yellow '
+        classes += 'bg-warning--faded '
         Icon = WarningIcon
-        color = config.colors['yellow']
-        break
-      }
-      default: {
-        classes += 'bg-washed-blue '
+        color = 'c-warning'
         break
       }
     }
 
     return (
       <div
-        className={`vtex-alert flex justify-between f5 near-black ${classes}`}
+        className={`vtex-alert flex justify-between f5 c-on-base ${classes}`}
       >
         <div className="flex-ns flex-grow-1">
           <div className="flex items-center flex-grow-1">
-            {showIcon && (
-              <div>
-                <Icon color={color} size={18} />
-              </div>
-            )}
+            {showIcon &&
+              <div className={color}>
+                <Icon color="currentColor" size={18} />
+              </div>}
 
             <div className={`${showIcon ? 'ph5 flex' : 'pr5'}`}>
               {this.props.children}
             </div>
           </div>
 
-          {displayAction && (
+          {displayAction &&
             <div className="flex flex-grow-1 justify-end">
               <div className="nt4-ns nb4">
                 <Button variation="tertiary" onClick={handleActionClick}>
                   {action.label}
                 </Button>
               </div>
-            </div>
-          )}
+            </div>}
         </div>
 
-        {onClose && (
+        {onClose &&
           <div
-            className="vtex-alert__close-icon pointer flex items-center pv2"
+            className="vtex-alert__close-icon pointer flex items-center pv2 c-on-base"
             onClick={onClose}
             tabIndex={0}
           >
-            <CloseIcon color={config.colors['near-black']} size={10} />
-          </div>
-        )}
+            <CloseIcon color="currentColor" size={10} />
+          </div>}
       </div>
     )
   }
@@ -99,7 +92,7 @@ class Alert extends Component {
 
 Alert.propTypes = {
   /** Style of the alert */
-  type: PropTypes.oneOf(['success', 'error', 'warning', 'info']),
+  type: PropTypes.oneOf(['success', 'error', 'warning']).isRequired,
   /** Content of the alert */
   children: PropTypes.node.isRequired,
   /** If this function is defined, a close icon will appear and this function will be called when alert is closed. */
@@ -111,10 +104,6 @@ Alert.propTypes = {
     onClick: PropTypes.func.isRequired,
     label: PropTypes.string.isRequired,
   }),
-}
-
-Alert.defaultProps = {
-  type: 'info',
 }
 
 export default Alert

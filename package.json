@@ -1,6 +1,6 @@
 {
   "name": "@vtex/styleguide",
-  "version": "5.6.2",
+  "version": "6.0.0",
   "scripts": {
     "test": "react-scripts test --env=jsdom",
     "test:codemod": "jest codemod",
@@ -53,6 +53,6 @@
   "dependencies": {
     "react-responsive-modal": "^2.0.1",
     "react-virtualized": "^9.19.1",
-    "vtex-tachyons": "^2.6.0"
+    "vtex-tachyons": "^2.7.0"
   }
 }
