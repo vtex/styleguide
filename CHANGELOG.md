@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [6.0.0] - 2018-08-23
+
 ### Added
 - **Badge** add prop `type`
 - **Spinner** add prop `color`
