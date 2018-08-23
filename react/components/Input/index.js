@@ -213,7 +213,6 @@ InputWithRef.defaultProps = {
   error: false,
   size: 'regular',
   prefix: '',
-  suffix: '',
   type: 'text',
 }
 
@@ -232,8 +231,6 @@ InputWithRef.propTypes = {
   label: PropTypes.string,
   /** Prefix */
   prefix: PropTypes.string,
-  /** Suffix */
-  suffix: PropTypes.string,
   /** Internal prop used for ref forwarding */
   forwardedRef: PropTypes.func,
   /** Spec attribute */
