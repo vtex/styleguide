@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import config from 'vtex-tachyons/config.json'
-// import SearchIcon from '../icon/Search'
-// import DenyIcon from '../icon/Deny'
 
 class Input extends Component {
   constructor(props) {
@@ -15,32 +13,28 @@ class Input extends Component {
 
   handleChange = event => {
     this.props.onChange && this.props.onChange(event)
-  };
+  }
 
   handleKeyPress = event => {
     this.props.onKeyPress && this.props.onKeyPress(event)
-  };
+  }
 
   handleKeyDown = event => {
     this.props.onKeyDown && this.props.onKeyDown(event)
-  };
+  }
 
   handleKeyUp = event => {
     this.props.onKeyUp && this.props.onKeyUp(event)
-  };
+  }
 
   handleFocus = event => {
     this.setState({ active: true })
     this.props.onFocus && this.props.onFocus(event)
-  };
+  }
 
   handleBlur = event => {
     this.setState({ active: false })
     this.props.onBlur && this.props.onBlur(event)
-  };
-
-  handleSubmit = event => {
-    this.props.onSubmit && this.props.onSubmit(event, this.props.value)
   }
 
   render() {
@@ -77,7 +71,8 @@ class Input extends Component {
 
     let labelClasses = 'vtex-input__label db mb3 w-100 '
 
-    let prefixAndSuffixClasses = 'vtex-input__prefix absolute c-muted-1 fw5 flex items-center '
+    let prefixAndSuffixClasses =
+      'vtex-input__prefix absolute c-muted-1 fw5 flex items-center '
 
     if (token) {
       classes += 'code '
@@ -128,7 +123,7 @@ class Input extends Component {
       <label className="vtex-input w-100">
         {label && <span className={labelClasses}>{label}</span>}
         <div className="flex vtex-input-prefix__group relative">
-          {prefix &&
+          {prefix && (
             <span
               style={{
                 height: calcPrefixAndSuffixHeight,
@@ -138,7 +133,8 @@ class Input extends Component {
               className={prefixAndSuffixClasses}
             >
               {prefix}
-            </span>}
+            </span>
+          )}
           <input
             {...dataAttrs}
             ref={this.props.forwardedRef}
@@ -176,7 +172,7 @@ class Input extends Component {
             value={this.props.value}
             id={this.props.id}
           />
-          {suffixIcon &&
+          {suffixIcon && (
             <span
               style={{
                 height: calcPrefixAndSuffixHeight,
@@ -186,12 +182,15 @@ class Input extends Component {
               className={prefixAndSuffixClasses}
             >
               {suffixIcon}
-            </span>}
+            </span>
+          )}
         </div>
-        {errorMessage &&
-          <div className="c-danger f6 mt3 lh-title">{errorMessage}</div>}
-        {helpText &&
-          <div className="c-muted-1 f6 mt3 lh-title">{helpText}</div>}
+        {errorMessage && (
+          <div className="c-danger f6 mt3 lh-title">{errorMessage}</div>
+        )}
+        {helpText && (
+          <div className="c-muted-1 f6 mt3 lh-title">{helpText}</div>
+        )}
       </label>
     )
   }
@@ -307,8 +306,6 @@ InputWithRef.propTypes = {
   onFocus: PropTypes.func,
   /** onBlur event */
   onBlur: PropTypes.func,
-  /** onSubmit event */
-  onSubmit: PropTypes.func,
 }
 
 Input.propTypes = InputWithRef.propTypes

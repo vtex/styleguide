@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Input from '../Input'
 import config from 'vtex-tachyons/config.json'
+import Input from '../Input'
 import SearchIcon from '../icon/Search'
 import DenyIcon from '../icon/Deny'
 
