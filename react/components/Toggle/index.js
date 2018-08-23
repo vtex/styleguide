@@ -4,8 +4,6 @@ import PropTypes from 'prop-types'
 import DenyIcon from '../icon/Deny'
 import CheckIcon from '../icon/Check'
 
-import config from 'vtex-tachyons/config.json'
-
 class Toggle extends Component {
   render() {
     const {
