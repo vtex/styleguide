@@ -63,6 +63,28 @@ const IconHelp = require('../icon/Help').default
       }
     />
   </div>
+  <div className="mb5">
+    <Input
+      label="Large with suffixIcon"
+      suffixIcon={
+        <span className="pointer">
+          <IconHelp size={18} />
+        </span>
+      }
+      size="large"
+    />
+  </div>
+  <div className="mb5">
+    <Input
+      label="X-large with suffixIcon"
+      suffixIcon={
+        <span className="pointer">
+          <IconHelp size={20} />
+        </span>
+      }
+      size="x-large"
+    />
+  </div>
 </div>
 ```
 
@@ -83,50 +105,4 @@ Using ref
       </Button>
     </div>
   </div>
-```
-
-Search
-
-```js
-initialState = { value1: '', value2: '', value3: '' }
-;<div className="w-40">
-  <div className="mb5">
-    <Input
-      placeholder="Search..."
-      type="search"
-      value={state.value1}
-      onChange={e => setState({ value1: e.target.value })}
-      onSubmit={(e, v) => {
-        e.preventDefault()
-        console.log(v)
-      }}
-    />
-  </div>
-  <div className="mb5">
-    <Input
-      placeholder="Search..."
-      type="search"
-      value={state.value2}
-      onChange={e => setState({ value2: e.target.value })}
-      onSubmit={(e, v) => {
-        e.preventDefault()
-        console.log(v)
-      }}
-      size="large"
-    />
-  </div>
-  <div className="mb5">
-    <Input
-      placeholder="Search..."
-      type="search"
-      value={state.value3}
-      onChange={e => setState({ value3: e.target.value })}
-      onSubmit={(e, v) => {
-        e.preventDefault()
-        console.log(v)
-      }}
-      size="x-large"
-    />
-  </div>
-</div>
 ```
