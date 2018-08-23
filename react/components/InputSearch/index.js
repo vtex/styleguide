@@ -36,12 +36,14 @@ class InputSearch extends Component {
                 <span
                   tabIndex={0}
                   onClick={this.handleClickClear}
-                  className="pointer"
+                  className="pointer c-link"
                 >
-                  <DenyIcon color={config.colors.blue} size={iconSize} />
+                  <DenyIcon size={iconSize} />
                 </span>
               ) : (
-                <SearchIcon color={config.colors.blue} size={iconSize} />
+                <span className="c-link">
+                  <SearchIcon size={iconSize} />
+                </span>
               )}
             </span>
           }
