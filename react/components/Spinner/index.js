@@ -7,7 +7,9 @@ const circ = 2 * radius * Math.PI
 
 const Spinner = ({ color, size, block }) => (
   <svg
-    className={`${baseClassname('spinner')} ${block ? 'db' : ''}`}
+    className={
+      `${baseClassname('spinner')} ${!color ? 'c-action-primary' : ''} ${block ? 'db' : ''}`
+    }
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 100 100"
     preserveAspectRatio="xMidYMid"
@@ -19,7 +21,7 @@ const Spinner = ({ color, size, block }) => (
       cy="50"
       fill="none"
       r={radius}
-      stroke={color}
+      stroke={color || 'currentColor'}
       strokeWidth="10"
       strokeDasharray={`0 0 2 ${circ}`}
       strokeLinecap="round"
@@ -58,7 +60,6 @@ Spinner.propTypes = {
 
 Spinner.defaultProps = {
   block: false,
-  color: 'currentColor',
   size: 40,
 }
 
