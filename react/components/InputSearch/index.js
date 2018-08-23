@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import config from 'vtex-tachyons/config.json'
 import Input from '../Input'
 import SearchIcon from '../icon/Search'
 import DenyIcon from '../icon/Deny'
@@ -53,17 +52,19 @@ class InputSearch extends Component {
   }
 }
 
-InputSearch.defaultProps = {}
-
-InputSearch.propTypes = {
-  /** onSubmit event */
-  onSubmit: PropTypes.func,
-
-  value: PropTypes.String,
-  onChange: PropTypes.func,
-  size: PropTypes.string,
-}
-
-export default React.forwardRef((props, ref) => (
+const InputSearchWithRef = React.forwardRef((props, ref) => (
   <InputSearch {...props} forwardedRef={ref} />
 ))
+
+InputSearchWithRef.displayName = 'InputSearch'
+
+InputSearchWithRef.propTypes = {
+  onChange: PropTypes.func,
+  onSubmit: PropTypes.func,
+  size: PropTypes.string,
+  value: PropTypes.string,
+}
+
+InputSearch.propTypes = InputSearchWithRef.propTypes
+
+export default InputSearchWithRef
