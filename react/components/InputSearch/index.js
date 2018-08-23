@@ -11,8 +11,8 @@ class InputSearch extends Component {
   }
 
   handleClickClear = event => {
-    this.props.inputProps.onChange &&
-      this.props.inputProps.onChange({
+    this.props.onChange &&
+      this.props.onChange({
         ...event,
         target: {
           ...event.target,
@@ -22,16 +22,17 @@ class InputSearch extends Component {
   }
 
   render() {
-    const size = this.props.inputProps.size
+    const size = this.props.size
     const iconSize = size === 'large' ? 18 : size === 'x-large' ? 20 : 16
 
     return (
       <form onSubmit={this.handleSubmit}>
         <Input
-          {...this.props.inputProps}
+          {...this.props}
+          type="search"
           suffixIcon={
             <span className="pointer">
-              {this.props.inputProps.value ? (
+              {this.props.value ? (
                 <span
                   tabIndex={0}
                   onClick={this.handleClickClear}
@@ -55,8 +56,10 @@ InputSearch.defaultProps = {}
 InputSearch.propTypes = {
   /** onSubmit event */
   onSubmit: PropTypes.func,
-  /** Input props */
-  inputProps: PropTypes.object,
+
+  value: PropTypes.String,
+  onChange: PropTypes.func,
+  size: PropTypes.string,
 }
 
 export default React.forwardRef((props, ref) => (
