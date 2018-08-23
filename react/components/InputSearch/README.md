@@ -3,18 +3,27 @@ Search
 ```js
 initialState = { value1: '', value2: '', value3: '' }
 ;<div>
-  <div className="mb5">
+  <form
+    className="mb5"
+    onSubmit={e => {
+      e.preventDefault()
+      console.log(state.value1)
+    }}
+  >
     <InputSearch
       placeholder="Search..."
       value={state.value1}
       onChange={e => setState({ value1: e.target.value })}
-      onSubmit={e => {
-        e.preventDefault()
-        console.log(state.value1)
-      }}
     />
-  </div>
-  <div className="mb5">
+  </form>
+
+  <form
+    className="mb5"
+    onSubmit={e => {
+      e.preventDefault()
+      console.log(state.value2)
+    }}
+  >
     <InputSearch
       placeholder="Search..."
       value={state.value2}
@@ -25,8 +34,15 @@ initialState = { value1: '', value2: '', value3: '' }
         console.log(state.value2)
       }}
     />
-  </div>
-  <div className="mb5">
+  </form>
+
+  <form
+    className="mb5"
+    onSubmit={e => {
+      e.preventDefault()
+      console.log(state.value3)
+    }}
+  >
     <InputSearch
       placeholder="Search..."
       value={state.value3}
@@ -37,6 +53,6 @@ initialState = { value1: '', value2: '', value3: '' }
         console.log(state.value3)
       }}
     />
-  </div>
+  </form>
 </div>
 ```

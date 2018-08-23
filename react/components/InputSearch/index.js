@@ -5,10 +5,6 @@ import SearchIcon from '../icon/Search'
 import DenyIcon from '../icon/Deny'
 
 class InputSearch extends Component {
-  handleSubmit = event => {
-    this.props.onSubmit && this.props.onSubmit(event)
-  }
-
   handleClickClear = event => {
     this.props.onChange &&
       this.props.onChange({
@@ -25,29 +21,27 @@ class InputSearch extends Component {
     const iconSize = size === 'large' ? 18 : size === 'x-large' ? 20 : 16
 
     return (
-      <form onSubmit={this.handleSubmit}>
-        <Input
-          {...this.props}
-          type="search"
-          suffixIcon={
-            <span className="pointer">
-              {this.props.value ? (
-                <span
-                  tabIndex={0}
-                  onClick={this.handleClickClear}
-                  className="pointer c-link"
-                >
-                  <DenyIcon size={iconSize} />
-                </span>
-              ) : (
-                <span className="c-link">
-                  <SearchIcon size={iconSize} />
-                </span>
-              )}
-            </span>
-          }
-        />
-      </form>
+      <Input
+        {...this.props}
+        type="search"
+        suffixIcon={
+          <span className="pointer">
+            {this.props.value ? (
+              <span
+                tabIndex={0}
+                onClick={this.handleClickClear}
+                className="pointer c-link"
+              >
+                <DenyIcon size={iconSize} />
+              </span>
+            ) : (
+              <span className="c-link">
+                <SearchIcon size={iconSize} />
+              </span>
+            )}
+          </span>
+        }
+      />
     )
   }
 }
@@ -60,7 +54,6 @@ InputSearchWithRef.displayName = 'InputSearch'
 
 InputSearchWithRef.propTypes = {
   onChange: PropTypes.func,
-  onSubmit: PropTypes.func,
   size: PropTypes.string,
   value: PropTypes.string,
 }
