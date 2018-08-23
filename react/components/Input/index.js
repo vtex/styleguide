@@ -185,7 +185,13 @@ class Input extends Component {
   }
 }
 
-Input.defaultProps = {
+const InputWithRef = React.forwardRef((props, ref) => (
+  <Input {...props} forwardedRef={ref} />
+))
+
+InputWithRef.displayName = 'Input'
+
+InputWithRef.defaultProps = {
   autoFocus: false,
   token: false,
   dataAttributes: {},
@@ -199,7 +205,7 @@ Input.defaultProps = {
   type: 'text',
 }
 
-Input.propTypes = {
+InputWithRef.propTypes = {
   /** Error highlight */
   error: PropTypes.bool,
   /** Error message */
@@ -288,6 +294,7 @@ Input.propTypes = {
   onBlur: PropTypes.func,
 }
 
-export default React.forwardRef((props, ref) => (
-  <Input {...props} forwardedRef={ref} />
-))
+Input.propTypes = InputWithRef.propTypes
+Input.defaultProps = InputWithRef.defaultProps
+
+export default InputWithRef
