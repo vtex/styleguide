@@ -34,7 +34,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- **Input** Type search
+- **InputSearch** component
 
 ## [5.6.2] - 2018-8-17
 
