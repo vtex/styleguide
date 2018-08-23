@@ -4,25 +4,15 @@ import PropTypes from 'prop-types'
 import Spinner from '../Spinner'
 
 class Button extends Component {
-  state = {
-    shouldBeDisabled: false,
-  }
-
-  static getDerivedStateFromProps(props) {
-    return {
-      shouldBeDisabled: props.disabled || props.isLoading,
-    }
-  }
-
   handleClick = event => {
-    !this.state.shouldBeDisabled &&
-      this.props.onClick &&
-      this.props.onClick(event)
+    !this.props.disabled && !this.props.isLoading
+    this.props.onClick && this.props.onClick(event)
   }
 
   render() {
     const { size, block, variation, icon, children, isLoading } = this.props
-    const { shouldBeDisabled } = this.state
+
+    const disabled = this.props.disabled || isLoading
 
     const Tag = icon ? 'div' : 'button'
 
@@ -52,7 +42,7 @@ class Button extends Component {
     switch (variation) {
       default:
       case 'primary': {
-        if (shouldBeDisabled) {
+        if (disabled) {
           classes += 'bg-disabled b--disabled c-on-disabled '
         } else {
           classes +=
@@ -61,7 +51,7 @@ class Button extends Component {
         break
       }
       case 'secondary': {
-        if (shouldBeDisabled) {
+        if (disabled) {
           classes += 'bg-disabled b--disabled c-on-disabled '
         } else {
           classes +=
@@ -70,7 +60,7 @@ class Button extends Component {
         break
       }
       case 'tertiary': {
-        if (shouldBeDisabled) {
+        if (disabled) {
           classes += 'bg-transparent b--transparent c-disabled '
         } else {
           classes +=
@@ -79,7 +69,7 @@ class Button extends Component {
         break
       }
       case 'danger': {
-        if (shouldBeDisabled) {
+        if (disabled) {
           classes += 'bg-disabled b--disabled c-on-disabled '
         } else {
           classes +=
@@ -89,7 +79,7 @@ class Button extends Component {
       }
     }
 
-    if (!shouldBeDisabled) {
+    if (!disabled) {
       classes += 'pointer '
     }
 
