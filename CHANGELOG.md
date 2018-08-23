@@ -10,16 +10,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - **Badge** add prop `type`
 
+### Changed
+
+- **[BREAKING]** **Alert** Remove default value of `type` prop
+- **[BREAKING]** **Alert** Remove value `info` from `type` prop
+
 ### Fixed
 - Spinner proptypes
 
 ## [5.6.2] - 2018-8-17
 
 ## [5.6.1] - 2018-08-17
-
-### Changed
-
-- **[BREAKING]** **Alert** Remove default type prop
 
 ## [5.6.0] - 2018-08-17
 
