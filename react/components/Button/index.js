@@ -5,8 +5,10 @@ import Spinner from '../Spinner'
 
 class Button extends Component {
   handleClick = event => {
-    !this.props.disabled && !this.props.isLoading
-    this.props.onClick && this.props.onClick(event)
+    !this.props.disabled &&
+      !this.props.isLoading &&
+      this.props.onClick &&
+      this.props.onClick(event)
   }
 
   render() {
