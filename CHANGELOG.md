@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [6.1.0] - 2018-08-24
+
 ### Added
 
 - **InputSearch** component
