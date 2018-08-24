@@ -24,7 +24,6 @@ Variations
 
 ```js
 const IconHelp = require('../icon/Help').default
-
 ;<div className="w-40">
   <div className="mb5">
     <Input disabled value="Hayao Miyazaki" label="Disabled" />
@@ -55,16 +54,42 @@ const IconHelp = require('../icon/Help').default
   </div>
 
   <div className="mb5">
-    <Input label="With suffixIcon" suffixIcon={(
-      <span className="pointer">
-        <IconHelp />
-      </span>
-    )} />
+    <Input
+      label="With suffixIcon"
+      suffixIcon={
+        <span className="pointer">
+          <IconHelp />
+        </span>
+      }
+    />
+  </div>
+  <div className="mb5">
+    <Input
+      label="Large with suffixIcon"
+      suffixIcon={
+        <span className="pointer">
+          <IconHelp size={18} />
+        </span>
+      }
+      size="large"
+    />
+  </div>
+  <div className="mb5">
+    <Input
+      label="X-large with suffixIcon"
+      suffixIcon={
+        <span className="pointer">
+          <IconHelp size={20} />
+        </span>
+      }
+      size="x-large"
+    />
   </div>
 </div>
 ```
 
 Using ref
+
 ```js
   this.input = React.createRef()
 

@@ -13,29 +13,29 @@ class Input extends Component {
 
   handleChange = event => {
     this.props.onChange && this.props.onChange(event)
-  };
+  }
 
   handleKeyPress = event => {
     this.props.onKeyPress && this.props.onKeyPress(event)
-  };
+  }
 
   handleKeyDown = event => {
     this.props.onKeyDown && this.props.onKeyDown(event)
-  };
+  }
 
   handleKeyUp = event => {
     this.props.onKeyUp && this.props.onKeyUp(event)
-  };
+  }
 
   handleFocus = event => {
     this.setState({ active: true })
     this.props.onFocus && this.props.onFocus(event)
-  };
+  }
 
   handleBlur = event => {
     this.setState({ active: false })
     this.props.onBlur && this.props.onBlur(event)
-  };
+  }
 
   render() {
     const {
@@ -71,7 +71,8 @@ class Input extends Component {
 
     let labelClasses = 'vtex-input__label db mb3 w-100 '
 
-    let prefixAndSuffixClasses = 'vtex-input__prefix absolute c-muted-1 fw5 flex items-center '
+    let prefixAndSuffixClasses =
+      'vtex-input__prefix absolute c-muted-1 fw5 flex items-center '
 
     if (token) {
       classes += 'code '
@@ -93,19 +94,25 @@ class Input extends Component {
 
     switch (size) {
       case 'large':
-        classes += `f5 pv4 ${prefix ? 'pl8 pr6' : 'ph6'} ${suffixIcon ? 'pr8' : ''}`
+        classes += `f5 pv4 ${prefix ? 'pl8 pr6' : 'ph6'} ${
+          suffixIcon ? 'pr8' : ''
+        }`
         labelClasses += 'f5 '
         prefixAndSuffixClasses += 'ph4 f5'
         // iconSize = 18
         break
       case 'x-large':
-        classes += `f4 pv5 ${prefix ? 'pl8 pr7' : 'ph7'} ${suffixIcon ? 'pr8' : ''}`
+        classes += `f4 pv5 ${prefix ? 'pl8 pr7' : 'ph7'} ${
+          suffixIcon ? 'pr8' : ''
+        }`
         labelClasses += 'f5 '
         prefixAndSuffixClasses += 'ph5 f4 '
         // iconSize = 22
         break
       default:
-        classes += `f6 pv3 ${prefix ? 'pl7 pr5' : 'ph5'} ${suffixIcon ? 'pr7' : ''}`
+        classes += `f6 pv3 ${prefix ? 'pl7 pr5' : 'ph5'} ${
+          suffixIcon ? 'pr7' : ''
+        }`
         labelClasses += 'f6 '
         prefixAndSuffixClasses += 'ph3 fw5 f6 '
         // iconSize = 16
@@ -116,7 +123,7 @@ class Input extends Component {
       <label className="vtex-input w-100">
         {label && <span className={labelClasses}>{label}</span>}
         <div className="flex vtex-input-prefix__group relative">
-          {prefix &&
+          {prefix && (
             <span
               style={{
                 height: calcPrefixAndSuffixHeight,
@@ -126,7 +133,8 @@ class Input extends Component {
               className={prefixAndSuffixClasses}
             >
               {prefix}
-            </span>}
+            </span>
+          )}
           <input
             {...dataAttrs}
             ref={this.props.forwardedRef}
@@ -164,7 +172,7 @@ class Input extends Component {
             value={this.props.value}
             id={this.props.id}
           />
-          {suffixIcon &&
+          {suffixIcon && (
             <span
               style={{
                 height: calcPrefixAndSuffixHeight,
@@ -174,12 +182,15 @@ class Input extends Component {
               className={prefixAndSuffixClasses}
             >
               {suffixIcon}
-            </span>}
+            </span>
+          )}
         </div>
-        {errorMessage &&
-          <div className="c-danger f6 mt3 lh-title">{errorMessage}</div>}
-        {helpText &&
-          <div className="c-muted-1 f6 mt3 lh-title">{helpText}</div>}
+        {errorMessage && (
+          <div className="c-danger f6 mt3 lh-title">{errorMessage}</div>
+        )}
+        {helpText && (
+          <div className="c-muted-1 f6 mt3 lh-title">{helpText}</div>
+        )}
       </label>
     )
   }
