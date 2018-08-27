@@ -12,7 +12,7 @@ const sampleData = require('./sampleData').default;
 //       email: {
 //         type: 'string',
 //         title: 'Email',
-//         width: 35,
+//         width: 35, (this should be a % of containers width, default is 25%)
 //       },
 //       number: {
 //         type: 'number',
@@ -59,7 +59,7 @@ const sampleData = require('./sampleData').default;
 //     email: {
 //       type: 'string',
 //       title: 'Email',
-//       width: 35,
+//       width: 35, (this should be a % of containers width, default is 25%)
 //     },
 //     color: {
 //       type: 'object',
