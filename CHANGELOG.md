@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [6.1.2] - 2018-08-28
+
 ### Fixed
 - **Icons** block prop was sometimes not applied when icons had a `solid` variation
 
