@@ -15,7 +15,9 @@ class Failure extends PureComponent {
     if (solid) {
       return (
         <svg
-          className={`${baseClassname('failure', 'solid')} ${block ? 'db' : ''}`}
+          className={`${baseClassname('failure', 'solid')} ${
+            block ? 'db' : ''
+          }`}
           width={newSize.width}
           height={newSize.height}
           viewBox="0 0 16 16"
@@ -32,7 +34,7 @@ class Failure extends PureComponent {
 
     return (
       <svg
-        className={baseClassname('failure')}
+        className={`${baseClassname('failure')} ${block ? 'db' : ''}`}
         width={newSize.width}
         height={newSize.height}
         viewBox="0 0 16 16"

@@ -37,7 +37,7 @@ class Edit extends PureComponent {
     }
     return (
       <svg
-        className={baseClassname('edit')}
+        className={`${baseClassname('edit')} ${block ? 'db' : ''}`}
         width={newSize.width}
         height={newSize.height}
         viewBox="0 0 16 16"

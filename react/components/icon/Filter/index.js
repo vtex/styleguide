@@ -30,7 +30,7 @@ class Filter extends PureComponent {
     }
     return (
       <svg
-        className={baseClassname('filter')}
+        className={`${baseClassname('filter')} ${block ? 'db' : ''}`}
         width={newSize.width}
         height={newSize.height}
         viewBox="0 0 18 21"
