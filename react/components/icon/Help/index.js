@@ -31,7 +31,7 @@ class Help extends PureComponent {
     }
     return (
       <svg
-        className={baseClassname('help')}
+        className={`${baseClassname('help')} ${block ? 'db' : ''}`}
         width={newSize.width}
         height={newSize.height}
         viewBox="0 0 16 16"

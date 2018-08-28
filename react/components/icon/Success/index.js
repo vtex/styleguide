@@ -15,7 +15,9 @@ class Success extends PureComponent {
     if (solid) {
       return (
         <svg
-          className={baseClassname('upload', 'solid')}
+          className={`${baseClassname('success', 'solid')} ${
+            block ? 'db' : ''
+          }`}
           width={newSize.width}
           height={newSize.height}
           viewBox="0 0 16 16"
