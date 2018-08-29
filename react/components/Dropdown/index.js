@@ -266,7 +266,7 @@ DropdownWithRef.propTypes = {
   /** onOpen event */
   onOpen: PropTypes.func,
   /** Internal prop used for ref forwarding */
-  forwardedRef: PropTypes.func,
+  forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
 }
 
 Dropdown.propTypes = DropdownWithRef.propTypes

@@ -232,7 +232,7 @@ InputWithRef.propTypes = {
   /** Prefix */
   prefix: PropTypes.string,
   /** Internal prop used for ref forwarding */
-  forwardedRef: PropTypes.func,
+  forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /** Spec attribute */
   accept: PropTypes.string,
   /** Spec attribute */
