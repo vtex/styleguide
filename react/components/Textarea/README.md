@@ -29,6 +29,7 @@ initialState = {
       value={state.value}
       maxLength={100}
       characterCountdown
+      helpText="You can have helper text alongside the countdown."
     />
   </div>
 </div>;
