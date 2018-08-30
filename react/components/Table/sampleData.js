@@ -50,7 +50,7 @@ export default {
             <div
               className="truncate ph4">
               <span
-                className="pointer"
+                className="pointer near-black fw5"
                 onClick={() => alert('You can customize header components. For example, call an external sort function')}>
                 {`${label} `}<ArrowDown size={11} />
               </span>
