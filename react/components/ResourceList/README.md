@@ -3,23 +3,30 @@ Working example
 ```js
 const sampleData = require('./sampleData').default
 const tableLength = 10
+const initialState = {
+  currentPage: 1,
+  slicedData: sampleData.items.slice(0, tableLength),
+  currentItemFrom: 1,
+  currentItemTo: tableLength,
+  searchValue: '',
+  itemsLength: sampleData.items.length,
+}
 
 class ResourceListExample extends React.Component {
   constructor() {
     super()
 
-    this.state = {
-      currentPage: 1,
-      slicedData: sampleData.items.slice(0, tableLength),
-      currentItemFrom: 1,
-      currentItemTo: tableLength,
-    }
+    this.state = initialState
 
-    this.onNextClick = this.onNextClick.bind(this)
-    this.onPrevClick = this.onPrevClick.bind(this)
+    this.handleNextClick = this.handleNextClick.bind(this)
+    this.handlePrevClick = this.handlePrevClick.bind(this)
+    this.handleInputSearchChange = this.handleInputSearchChange.bind(this)
+    this.handleInputSearchSubmit = this.handleInputSearchSubmit.bind(this)
+    this.handleInputSearchClear = this.handleInputSearchClear.bind(this)
+    this.handleRowsChange = this.handleRowsChange.bind(this)
   }
 
-  onNextClick() {
+  handleNextClick() {
     const currentPage = this.state.currentPage
     const currentItemFrom = this.state.currentItemTo + 1
     const currentItemTo = tableLength * (currentPage + 1)
@@ -32,7 +39,7 @@ class ResourceListExample extends React.Component {
     })
   }
 
-  onPrevClick() {
+  handlePrevClick() {
     if (this.state.currentPage === 1) return
     const currentPage = this.state.currentPage
     const currentItemFrom = this.state.currentItemFrom - tableLength
@@ -46,6 +53,30 @@ class ResourceListExample extends React.Component {
     })
   }
 
+  handleRowsChange() {
+    console.log('handleRowsChange')
+  }
+
+  handleInputSearchChange(e) {
+    this.setState({ searchValue: e.target.value })
+  }
+
+  handleInputSearchClear(e) {
+    this.setState({ ...initialState })
+  }
+
+  handleInputSearchSubmit(e) {
+    e.preventDefault()
+
+    this.setState({
+      currentPage: 1,
+      currentItemFrom: 1,
+      currentItemTo: 4,
+      slicedData: sampleData.items.slice(0, 4),
+      itemsLength: 4,
+    })
+  }
+
   render() {
     return (
       <ResourceList
@@ -53,14 +84,22 @@ class ResourceListExample extends React.Component {
           schema: sampleData.defaultSchema,
           items: this.state.slicedData,
         }}
-        exportBtn={{ show: true }}
+        exportBtn={{ show: true, label: 'Download' }}
         pagination={{
-          onNextClick: this.onNextClick,
-          onPrevClick: this.onPrevClick,
+          onNextClick: this.handleNextClick,
+          onPrevClick: this.handlePrevClick,
           currentItemFrom: this.state.currentItemFrom,
           currentItemTo: this.state.currentItemTo,
           textOf: 'de',
-          totalItems: sampleData.items.length,
+          totalItems: this.state.itemsLength,
+        }}
+        inputSearch={{
+          value: this.state.searchValue,
+          placeholder: 'Search stuff...',
+          onChange: this.handleInputSearchChange,
+          onClear: this.handleInputSearchClear,
+          onSubmit: this.handleInputSearchSubmit,
+          size: 'large',
         }}
       />
     )
