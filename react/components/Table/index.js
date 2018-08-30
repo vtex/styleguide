@@ -29,12 +29,12 @@ class Table extends PureComponent {
             <VirtualTable
               width={width}
               height={height}
-              headerHeight={40}
-              rowHeight={50}
+              headerHeight={36}
+              rowHeight={64}
               rowCount={newItems.length}
               rowGetter={({ index }) => newItems[index]}
               className="flex flex-column"
-              headerClassName="b pv4"
+              headerClassName="c-muted-2 f6"
               disableHeader={disableHeader}
               onRowClick={({ event, index, rowData }) => {
                 onRowClick({ event, index, rowData })
@@ -46,7 +46,7 @@ class Table extends PureComponent {
                 onRowMouseOut({ event, index, rowData })
               }}
               rowClassName={({ index }) =>
-                `flex flex-row items-center pv4 ${
+                `flex flex-row items-center ${
                   index === -1 ? 'bt bb' : 'bb'
                 } b--muted-4`
               }
