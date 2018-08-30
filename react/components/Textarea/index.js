@@ -46,6 +46,7 @@ class Textarea extends Component {
       helpText,
       dataAttributes,
       children,
+      maxLength,
     } = this.props
     const { active } = this.state
 
@@ -118,7 +119,7 @@ class Textarea extends Component {
               <div className="c-muted-1 f6 mt2 lh-title">{helpText}</div>
             )}
           </div>
-          {this.props.maxLength && (
+          {maxLength && (
             <Textarea.CharacterCountdown
               value={this.props.maxLength - this.props.value.length}
               text={this.props.characterCountdownText}
