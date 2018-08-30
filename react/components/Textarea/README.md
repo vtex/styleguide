@@ -28,7 +28,6 @@ initialState = {
       onChange={e => setState({ value: e.target.value.trim() })}
       value={state.value}
       maxLength={100}
-      characterCountdown
       helpText="You can have helper text alongside the countdown."
     />
   </div>
