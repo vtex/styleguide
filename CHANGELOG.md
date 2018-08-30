@@ -7,20 +7,27 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- **Textarea** character countdown when maxLength is defined
+
 ## [6.1.3] - 2018-08-29
 
-### Fix
+### Fixed
+
 - **Input** fix propType of ref
 - **Dropdown** fix propType of ref
 
 ## [6.1.2] - 2018-08-28
 
 ### Fixed
+
 - **Icons** block prop was sometimes not applied when icons had a `solid` variation
 
 ## [6.1.1] - 2018-08-27
 
 ### Added
+
 - **Table** Enhance schema examples in README documentation
 
 ## [6.1.0] - 2018-08-24
@@ -30,17 +37,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **InputSearch** component
 
 ### Fixed
+
 - **Button** component should be disabled while loading
 
 ## [6.0.1] - 2018-08-23
 
 ### Fixed
+
 - **Dropdown** forward ref to select
 - **Pagination** Next button disabled
 
 ## [6.0.0] - 2018-08-23
 
 ### Added
+
 - **Badge** add prop `type`
 - **Spinner** add prop `color`
 - **Spinner** add default color of `.c-action-primary`
@@ -53,6 +63,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **[BREAKING]** **Spinner** remove prop `secondary`
 
 ### Fixed
+
 - Spinner proptypes
 
 ## [5.6.2] - 2018-8-17

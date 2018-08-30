@@ -10,19 +10,33 @@ class Textarea extends Component {
     }
   }
 
+  static CharacterCountdown = props => {
+    let classes = 'f6 mt2 lh-title '
+    if (props.value <= 10) {
+      classes += 'c-danger'
+    } else {
+      classes += 'c-muted-1'
+    }
+    return (
+      <div className={classes}>
+        {props.value} {props.text}
+      </div>
+    )
+  }
+
   handleChange = event => {
     this.props.onChange && this.props.onChange(event)
-  };
+  }
 
   handleFocus = event => {
     this.setState({ active: true })
     this.props.onFocus && this.props.onFocus(event)
-  };
+  }
 
   handleBlur = event => {
     this.setState({ active: false })
     this.props.onBlur && this.props.onBlur(event)
-  };
+  }
 
   render() {
     const {
@@ -32,6 +46,7 @@ class Textarea extends Component {
       helpText,
       dataAttributes,
       children,
+      maxLength,
     } = this.props
     const { active } = this.state
 
@@ -68,8 +83,9 @@ class Textarea extends Component {
 
     return (
       <label className="vtex-textarea">
-        {label &&
-          <span className="vtex-textarea__label db mb3 w-100">{label}</span>}
+        {label && (
+          <span className="vtex-textarea__label db mb3 w-100">{label}</span>
+        )}
         <textarea
           {...dataAttrs}
           onBlur={this.handleBlur}
@@ -94,10 +110,22 @@ class Textarea extends Component {
           {children}
         </textarea>
 
-        {errorMessage &&
-          <div className="c-danger f6 mt3 lh-title">{errorMessage}</div>}
-        {helpText &&
-          <div className="c-muted-1 f6 mt3 lh-title">{helpText}</div>}
+        <div className="flex justify-between">
+          <div>
+            {errorMessage && (
+              <div className="c-danger f6 mt2 lh-title">{errorMessage}</div>
+            )}
+            {helpText && (
+              <div className="c-muted-1 f6 mt2 lh-title">{helpText}</div>
+            )}
+          </div>
+          {maxLength && (
+            <Textarea.CharacterCountdown
+              value={this.props.maxLength - this.props.value.length}
+              text={this.props.characterCountdownText}
+            />
+          )}
+        </div>
       </label>
     )
   }
@@ -110,6 +138,7 @@ Textarea.defaultProps = {
   label: '',
   readOnly: false,
   error: false,
+  characterCountdownText: 'characters left',
   rows: 5,
 }
 
@@ -136,7 +165,7 @@ Textarea.propTypes = {
   disabled: PropTypes.bool,
   /** Spec attribute */
   id: PropTypes.string,
-  /** Spec attribute */
+  /** If defined, the textarea will have a character countdown at the bottom right */
   maxLength: PropTypes.string,
   /** Spec attribute */
   minLength: PropTypes.string,
@@ -162,6 +191,8 @@ Textarea.propTypes = {
   onFocus: PropTypes.func,
   /** onBlur event */
   onBlur: PropTypes.func,
+  /** Helper text for character countdown (X characters left) */
+  characterCountdownText: PropTypes.string,
 }
 
 export default Textarea
