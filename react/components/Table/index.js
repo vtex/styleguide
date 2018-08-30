@@ -34,7 +34,7 @@ class Table extends PureComponent {
               rowCount={newItems.length}
               rowGetter={({ index }) => newItems[index]}
               className="flex flex-column"
-              headerClassName="gray f6"
+              headerClassName="c-muted-2 f6"
               disableHeader={disableHeader}
               onRowClick={({ event, index, rowData }) => {
                 onRowClick({ event, index, rowData })
