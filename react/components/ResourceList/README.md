@@ -68,13 +68,17 @@ class ResourceListExample extends React.Component {
   handleInputSearchSubmit(e) {
     e.preventDefault()
 
-    this.setState({
-      currentPage: 1,
-      currentItemFrom: 1,
-      currentItemTo: 4,
-      slicedData: sampleData.items.slice(0, 4),
-      itemsLength: 4,
-    })
+    if (!this.state.searchValue) {
+      this.setState({ ...initialState })
+    } else {
+      this.setState({
+        currentPage: 1,
+        currentItemFrom: 1,
+        currentItemTo: 4,
+        slicedData: sampleData.items.slice(0, 4),
+        itemsLength: 4,
+      })
+    }
   }
 
   render() {
@@ -92,6 +96,7 @@ class ResourceListExample extends React.Component {
           currentItemTo: this.state.currentItemTo,
           textOf: 'de',
           totalItems: this.state.itemsLength,
+          rowsOptions: [5, 10, 15, 20],
         }}
         inputSearch={{
           value: this.state.searchValue,
