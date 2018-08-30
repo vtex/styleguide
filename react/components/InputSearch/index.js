@@ -14,6 +14,7 @@ class InputSearch extends Component {
           value: '',
         },
       })
+    this.props.onClear && this.props.onClear(event)
   }
 
   render() {
@@ -54,6 +55,7 @@ InputSearchWithRef.displayName = 'InputSearch'
 
 InputSearchWithRef.propTypes = {
   onChange: PropTypes.func,
+  onClear: PropTypes.func,
   size: PropTypes.string,
   value: PropTypes.string,
 }

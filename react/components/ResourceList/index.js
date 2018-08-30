@@ -3,26 +3,27 @@ import PropTypes from 'prop-types'
 
 import Table from '../Table'
 import Pagination from '../Pagination'
-import Input from '../Input'
+import InputSearch from '../InputSearch'
 import Button from '../Button'
 import IconDownload from '../icon/Download'
 
 class ResourceList extends PureComponent {
-  handlePaginationNext = () => {
-    this.props.pagination.onNextClick && this.props.pagination.onNextClick()
-  }
-  handlePaginationPrev = () => {
-    this.props.pagination.onPrevClick && this.props.pagination.onPrevClick()
+  handleInputSearchSubmit = e => {
+    this.props.inputSearch.onSubmit && this.props.inputSearch.onSubmit(e)
   }
 
   render() {
-    const { table, exportBtn, pagination } = this.props
+    const { table, exportBtn, pagination, inputSearch } = this.props
     const showExportBtn = exportBtn && exportBtn.show
 
     return (
       <div className="vtex-resourceList__container">
         <div className="mb5 flex flex-row">
-          <Input placeholder="Search..." />
+          {inputSearch && (
+            <form className="w-100" onSubmit={this.handleInputSearchSubmit}>
+              <InputSearch {...inputSearch} />
+            </form>
+          )}
 
           {showExportBtn && (
             <Button variation="primary" size="small">
@@ -30,23 +31,15 @@ class ResourceList extends PureComponent {
                 <span className="mr3">
                   <IconDownload color="currentColor" />
                 </span>
-                Export
+                {exportBtn.label}
               </span>
             </Button>
           )}
         </div>
 
-        <Table schema={table && table.schema} items={table && table.items} />
+        <Table {...table} />
 
-        <Pagination
-          currentItemFrom={pagination.currentItemFrom}
-          currentItemTo={pagination.currentItemTo}
-          textOf={pagination.textOf}
-          textShowRows="show rows"
-          totalItems={pagination.totalItems}
-          onNextClick={this.handlePaginationNext}
-          onPrevClick={this.handlePaginationPrev}
-        />
+        {pagination && <Pagination {...pagination} />}
       </div>
     )
   }
@@ -58,19 +51,23 @@ ResourceList.defaultProps = {
 
 ResourceList.propTypes = {
   table: PropTypes.shape({
-    items: PropTypes.array,
-    schema: PropTypes.object,
+    items: PropTypes.array.isRequired,
+    schema: PropTypes.object.isRequired,
   }).isRequired,
   exportBtn: PropTypes.shape({
     show: PropTypes.bool,
+    label: PropTypes.string.isRequired,
   }),
   pagination: PropTypes.shape({
     onNextClick: PropTypes.func.isRequired,
     onPrevClick: PropTypes.func.isRequired,
     currentItemFrom: PropTypes.number.isRequired,
     currentItemTo: PropTypes.number.isRequired,
-    textOf: PropTypes.string,
+    textOf: PropTypes.string.isRequired,
     totalItems: PropTypes.number.isRequired,
+  }),
+  inputSearch: PropTypes.shape({
+    onSubmit: PropTypes.func.isRequired,
   }),
 }
 
