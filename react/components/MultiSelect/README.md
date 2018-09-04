@@ -1,6 +1,6 @@
 ```js
 <MultiSelect
-  label="MultiSelect"
+  label="Colors"
   selectableList={[
     "white",
     "black",
