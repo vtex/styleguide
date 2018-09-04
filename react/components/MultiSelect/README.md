@@ -1,0 +1,18 @@
+```js
+<MultiSelect
+  label="MultiSelect"
+  selectableList={[
+    "white",
+    "black",
+    "grey",
+    "yellow",
+    "red",
+    "blue",
+    "green",
+    "brown",
+    "pink",
+    "orange",
+    "purple"
+  ]}
+/>
+```
