@@ -21,24 +21,23 @@ export default class Tag extends Component {
   }
 
   render() {
+    const hoverClass = this.state.hover ? 'c-danger' : 'c-on-action-secondary'
     return (
-      <div
-        className="pointer br-pill dib f6 fw5 pv2 ph3 mr2 mt2 bg-action-secondary c-on-action-secondary"
+      <button
+        className="pointer br-pill bn dib f7 fw4 pv2 pl4 mr5 mv3 bg-action-secondary c-on-action-secondary"
         onClick={() => {
           this.props.onClick && this.props.onClick(this.props.tag)
         }}
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
       >
-        <div className="flex items-center">
-          <span>{this.props.tag}</span>{' '}
-          <div
-            className={this.state.hover ? 'c-danger' : 'c-on-action-secondary'}
-          >
-            <Close className="mt2" color="currentColor" />
+        <div className="flex items-center justify-center">
+          <span className="self-center">{this.props.tag}</span>{' '}
+          <div className={`${hoverClass} pl3 pt1 self-center`}>
+            <Close color="currentColor" size="14" />
           </div>
         </div>
-      </div>
+      </button>
     )
   }
 }
