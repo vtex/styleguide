@@ -52,22 +52,14 @@ export default class MultiSelect extends Component {
     )
   }
 
-  handleFocus = () => {
-    this.setState(
-      { active: true },
-      document.addEventListener('click', this.handleOutsideClick)
-    )
+  handleBlur = () => {
+    this.setState({ active: false })
   }
 
-  handleOutsideClick = event => {
-    // Ignore clicks inside of component
-    if (this.node.contains(event.target)) {
-      return
-    }
-
+  handleFocus = () => {
     this.setState(
-      { active: false },
-      document.removeEventListener('click', this.handleOutsideClick)
+      { active: true }
+      // document.addEventListener('click', this.handleOutsideClick)
     )
   }
 
@@ -75,13 +67,14 @@ export default class MultiSelect extends Component {
     this.setState({ searchTerm: event.target.value })
   }
 
-  setNode = node => {
-    this.node = node
-  }
-
   render() {
     return (
-      <div ref={this.setNode} onFocus={this.handleFocus}>
+      <div
+        style={{ outline: 'none' }}
+        tabIndex="-1"
+        onFocus={this.handleFocus}
+        onBlur={this.handleBlur}
+      >
         <Input
           placeholder="Search..."
           label={this.props.label}
