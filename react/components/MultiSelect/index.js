@@ -9,6 +9,7 @@ export default class MultiSelect extends Component {
     super(props)
 
     this.state = {
+      active: false,
       searchTerm: '',
       selected: ['green', 'red'],
     }
@@ -51,20 +52,42 @@ export default class MultiSelect extends Component {
     )
   }
 
+  handleFocus = () => {
+    this.setState(
+      { active: true },
+      document.addEventListener('click', this.handleOutsideClick)
+    )
+  }
+
+  handleOutsideClick = event => {
+    // Ignore clicks inside of component
+    if (this.node.contains(event.target)) {
+      return
+    }
+
+    this.setState(
+      { active: false },
+      document.removeEventListener('click', this.handleOutsideClick)
+    )
+  }
+
   handleSearchTermChange = event => {
     this.setState({ searchTerm: event.target.value })
   }
 
+  setNode = node => {
+    this.node = node
+  }
+
   render() {
     return (
-      <div>
+      <div ref={this.setNode} onFocus={this.handleFocus}>
         <Input
           placeholder="Search..."
           label={this.props.label}
           value={this.state.searchTerm}
           onChange={this.handleSearchTermChange}
         />
-
         <MultiSelect.SelectedTags
           selected={this.state.selected}
           onClick={tag => {
@@ -73,20 +96,21 @@ export default class MultiSelect extends Component {
             }))
           }}
         />
-
-        <MultiSelect.SelectableTags
-          searchTerm={this.state.searchTerm}
-          list={this.props.selectableList
-            // Only show tags that fit the search
-            .filter(tag => tag.includes(this.state.searchTerm))
-            // And have not been selected already
-            .filter(tag => !this.state.selected.includes(tag))}
-          onClick={tag => {
-            this.setState(prevState => ({
-              selected: [...prevState.selected, tag],
-            }))
-          }}
-        />
+        {this.state.active && (
+          <MultiSelect.SelectableTags
+            searchTerm={this.state.searchTerm}
+            list={this.props.selectableList
+              // Only show tags that fit the search
+              .filter(tag => tag.includes(this.state.searchTerm))
+              // And have not been selected already
+              .filter(tag => !this.state.selected.includes(tag))}
+            onClick={tag => {
+              this.setState(prevState => ({
+                selected: [...prevState.selected, tag],
+              }))
+            }}
+          />
+        )}
       </div>
     )
   }
