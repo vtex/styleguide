@@ -14,14 +14,6 @@ export default class MultiSelect extends Component {
     }
   }
 
-  static SelectedTags = props => {
-    const tags = props.selected.map((tag, index) => (
-      <Tag tag={tag} key={index} onClick={props.onClick} />
-    ))
-
-    return <div>{tags}</div>
-  }
-
   static SelectableTags = props => {
     const formatTag = tag => {
       return {
@@ -52,7 +44,7 @@ export default class MultiSelect extends Component {
   }
 
   handleBlur = () => {
-    this.setState({ active: false })
+    // this.setState({ active: false })
   }
 
   handleFocus = () => {
@@ -64,18 +56,22 @@ export default class MultiSelect extends Component {
   }
 
   render() {
+    const tags = this.state.selected.map((tag, index) => (
+      <Tag
+        tag={tag}
+        key={index}
+        onClick={tag => {
+          this.setState(prevState => ({
+            selected: prevState.selected.filter(i => i !== tag),
+          }))
+        }}
+      />
+    ))
     return (
       <div>
         <label htmlFor="search-input">Colors</label>
         <div className="flex flex-wrap mt3 b--muted-4 br--top br2 b--solid bw1">
-          <MultiSelect.SelectedTags
-            selected={this.state.selected}
-            onClick={tag => {
-              this.setState(prevState => ({
-                selected: prevState.selected.filter(i => i !== tag),
-              }))
-            }}
-          />
+          {tags}
           <input
             id="search-input"
             className="f6 mv3 mh3 c-on-base bn outline-0"
