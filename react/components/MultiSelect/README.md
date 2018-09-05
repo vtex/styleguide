@@ -2,17 +2,20 @@
 <MultiSelect
   label="Colors"
   selectableList={[
-    "white",
-    "black",
-    "grey",
-    "yellow",
-    "red",
-    "blue",
-    "green",
-    "brown",
-    "pink",
-    "orange",
-    "purple"
+    "White",
+    "Black",
+    "Grey",
+    "Yellow",
+    "Red",
+    "Blue",
+    "Green",
+    "Brown",
+    "Pink",
+    "Orange",
+    "Purple",
+    "Dark-blue",
+    "Dark-red",
+    "Light-blue"
   ]}
 />
 ```

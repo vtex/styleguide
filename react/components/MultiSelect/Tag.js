@@ -24,7 +24,7 @@ export default class Tag extends Component {
     const hoverClass = this.state.hover ? 'c-danger' : 'c-on-action-secondary'
     return (
       <button
-        className="pointer br-pill bn dib f7 fw4 pv2 pl4 mr5 mv3 bg-action-secondary c-on-action-secondary"
+        className="pointer br-pill bn dib f7 fw4 pv2 pl4 mh3 mv3 bg-action-secondary c-on-action-secondary"
         onClick={() => {
           this.props.onClick && this.props.onClick(this.props.tag)
         }}

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import Input from '../Input'
 import Tag from './Tag'
 
 export default class MultiSelect extends Component {
@@ -11,7 +10,7 @@ export default class MultiSelect extends Component {
     this.state = {
       active: false,
       searchTerm: '',
-      selected: ['green', 'red'],
+      selected: ['Green', 'Red'],
     }
   }
 
@@ -20,7 +19,7 @@ export default class MultiSelect extends Component {
       <Tag tag={tag} key={index} onClick={props.onClick} />
     ))
 
-    return <div className="pv3">{tags}</div>
+    return <div>{tags}</div>
   }
 
   static SelectableTags = props => {
@@ -57,10 +56,7 @@ export default class MultiSelect extends Component {
   }
 
   handleFocus = () => {
-    this.setState(
-      { active: true }
-      // document.addEventListener('click', this.handleOutsideClick)
-    )
+    this.setState({ active: true })
   }
 
   handleSearchTermChange = event => {
@@ -69,26 +65,30 @@ export default class MultiSelect extends Component {
 
   render() {
     return (
-      <div
-        style={{ outline: 'none' }}
-        tabIndex="-1"
-        onFocus={this.handleFocus}
-        onBlur={this.handleBlur}
-      >
-        <Input
-          placeholder="Search..."
-          label={this.props.label}
-          value={this.state.searchTerm}
-          onChange={this.handleSearchTermChange}
-        />
-        <MultiSelect.SelectedTags
-          selected={this.state.selected}
-          onClick={tag => {
-            this.setState(prevState => ({
-              selected: prevState.selected.filter(i => i !== tag),
-            }))
-          }}
-        />
+      <div>
+        <label htmlFor="search-input">Colors</label>
+        <div className="flex flex-wrap mt3 b--muted-4 br--top br2 b--solid bw1">
+          <MultiSelect.SelectedTags
+            selected={this.state.selected}
+            onClick={tag => {
+              this.setState(prevState => ({
+                selected: prevState.selected.filter(i => i !== tag),
+              }))
+            }}
+          />
+          <input
+            id="search-input"
+            className="f6 mv3 c-on-base bn outline-0"
+            onBlur={this.handleBlur}
+            onChange={this.handleSearchTermChange}
+            onFocus={this.handleFocus}
+            placeholder={this.props.placeholder}
+            style={{
+              flexGrow: 1,
+            }}
+            value={this.state.searchTerm}
+          />
+        </div>
         {this.state.active && (
           <MultiSelect.SelectableTags
             searchTerm={this.state.searchTerm}
@@ -100,6 +100,7 @@ export default class MultiSelect extends Component {
             onClick={tag => {
               this.setState(prevState => ({
                 selected: [...prevState.selected, tag],
+                searchTerm: '',
               }))
             }}
           />
@@ -110,10 +111,12 @@ export default class MultiSelect extends Component {
 }
 
 MultiSelect.defaultProps = {
+  placeholder: 'Search...',
   selectableList: [],
 }
 
 MultiSelect.propTypes = {
   label: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
   selectableList: PropTypes.array.isRequired,
 }
