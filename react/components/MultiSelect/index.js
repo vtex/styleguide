@@ -78,7 +78,7 @@ export default class MultiSelect extends Component {
           />
           <input
             id="search-input"
-            className="f6 mv3 c-on-base bn outline-0"
+            className="f6 mv3 mh3 c-on-base bn outline-0"
             onBlur={this.handleBlur}
             onChange={this.handleSearchTermChange}
             onFocus={this.handleFocus}
