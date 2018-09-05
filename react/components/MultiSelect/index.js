@@ -56,7 +56,6 @@ export default class MultiSelect extends Component {
   }
 
   render() {
-    console.log(this.state.selected)
     return (
       <div>
         <Input
