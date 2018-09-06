@@ -18,8 +18,8 @@ export default class MultiSelect extends Component {
     const formatTag = tag => {
       return {
         __html: tag.replace(
-          new RegExp(props.searchTerm),
-          `<span class="fw5">${props.searchTerm}</span>`
+          new RegExp(props.searchTerm, 'i'),
+          '<span class="fw5">$&</span>'
         ),
       }
     }
@@ -93,7 +93,9 @@ export default class MultiSelect extends Component {
             searchTerm={this.state.searchTerm}
             list={this.props.selectableList
               // Only show tags that fit the search
-              .filter(tag => tag.includes(this.state.searchTerm))
+              .filter(tag =>
+                tag.toLowerCase().includes(this.state.searchTerm.toLowerCase())
+              )
               // And have not been selected already
               .filter(tag => !this.state.selected.includes(tag))}
             onClick={tag => {
