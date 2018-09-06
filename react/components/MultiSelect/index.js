@@ -59,10 +59,15 @@ export default class MultiSelect extends Component {
   }
 
   handleSelectTag = tag => {
-    this.setState(prevState => ({
-      selected: [...prevState.selected, tag],
-      searchTerm: '',
-    }))
+    this.setState(
+      prevState => ({
+        selected: [...prevState.selected, tag],
+        searchTerm: '',
+      }),
+      () => {
+        this.searchInput.focus()
+      }
+    )
   }
 
   render() {
@@ -78,6 +83,7 @@ export default class MultiSelect extends Component {
         }}
       />
     ))
+    const showSelectable = this.state.active && this.state.searchTerm !== ''
     return (
       <div>
         <label htmlFor="search-input">Colors</label>
@@ -94,13 +100,16 @@ export default class MultiSelect extends Component {
             onChange={this.handleSearchTermChange}
             onFocus={this.handleFocus}
             placeholder={this.props.placeholder}
+            ref={node => {
+              this.searchInput = node
+            }}
             style={{
               flexGrow: 1,
             }}
             value={this.state.searchTerm}
           />
         </div>
-        {this.state.active && (
+        {showSelectable && (
           <MultiSelect.SelectableTags
             searchTerm={this.state.searchTerm}
             list={this.props.selectableList
