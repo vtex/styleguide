@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [6.1.5] - 2018-09-06
 
+## [6.1.5] - 2018-09-06
+
 ### Fixed
 
 - **Alert** styles
