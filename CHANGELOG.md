@@ -17,7 +17,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- **Container** New component
+- **Box** New component
 - **Textarea** character countdown when maxLength is defined
 
 ## [6.1.3] - 2018-08-29

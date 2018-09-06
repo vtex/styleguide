@@ -1,10 +1,10 @@
-A Container helps group pieces of related informations.
+A Box helps group pieces of related informations.
 
 Admin-like style
 
 ```js
 <div className="bg-muted-5 pa8">
-  <Container>
+  <Box>
     <h3>Lorem Ipsum</h3>
     <p>
       It is simply dummy text of the printing and typesetting industry. Lorem
@@ -19,6 +19,6 @@ Admin-like style
       and more recently with desktop publishing software like Aldus PageMaker
       including versions of Lorem Ipsum.
     </p>
-  </Container>
+  </Box>
 </div>
 ```
