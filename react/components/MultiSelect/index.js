@@ -47,7 +47,7 @@ export default class MultiSelect extends Component {
   }
 
   handleBlur = () => {
-    // this.setState({ active: false })
+    this.setState({ active: false })
   }
 
   handleFocus = () => {
@@ -58,6 +58,13 @@ export default class MultiSelect extends Component {
     this.setState({ searchTerm: event.target.value })
   }
 
+  handleSelectTag = tag => {
+    this.setState(prevState => ({
+      selected: [...prevState.selected, tag],
+      searchTerm: '',
+    }))
+  }
+
   render() {
     const tags = this.state.selected.map((tag, index) => (
       <Tag
@@ -65,6 +72,7 @@ export default class MultiSelect extends Component {
         key={index}
         onClick={tag => {
           this.setState(prevState => ({
+            // Removes tag from selected array
             selected: prevState.selected.filter(i => i !== tag),
           }))
         }}
@@ -73,7 +81,11 @@ export default class MultiSelect extends Component {
     return (
       <div>
         <label htmlFor="search-input">Colors</label>
-        <div className="flex flex-wrap mt3 b--muted-4 br--top br2 b--solid bw1">
+        <div
+          className={`${
+            this.state.active ? 'br--top ' : ''
+          }flex flex-wrap mt3 b--muted-4 br2 b--solid bw1`}
+        >
           {tags}
           <input
             id="search-input"
@@ -98,12 +110,7 @@ export default class MultiSelect extends Component {
               )
               // And have not been selected already
               .filter(tag => !this.state.selected.includes(tag))}
-            onClick={tag => {
-              this.setState(prevState => ({
-                selected: [...prevState.selected, tag],
-                searchTerm: '',
-              }))
-            }}
+            onClick={this.handleSelectTag}
           />
         )}
       </div>
