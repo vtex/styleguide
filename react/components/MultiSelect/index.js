@@ -9,6 +9,7 @@ export default class MultiSelect extends Component {
 
     this.state = {
       active: false,
+      hoveringSelectable: false,
       searchTerm: '',
       selected: ['Green', 'Red'],
     }
@@ -40,6 +41,8 @@ export default class MultiSelect extends Component {
       <ul
         style={{ listStyleType: 'none', borderTop: 'none' }}
         className="ph0 mt0 b--muted-4 br--bottom br2 b--solid bw1"
+        onMouseEnter={() => props.onMouseEnter()}
+        onMouseLeave={() => props.onMouseLeave()}
       >
         {tagList}
       </ul>
@@ -47,11 +50,23 @@ export default class MultiSelect extends Component {
   }
 
   handleBlur = () => {
-    this.setState({ active: false })
+    if (!this.state.hoveringSelectable) {
+      this.setState({ active: false })
+    } else {
+      this.searchInput.focus()
+    }
   }
 
   handleFocus = () => {
     this.setState({ active: true })
+  }
+
+  handleMouseEnterSelectable = () => {
+    this.setState({ hoveringSelectable: true })
+  }
+
+  handleMouseLeaveSelectable = () => {
+    this.setState({ hoveringSelectable: false })
   }
 
   handleSearchTermChange = event => {
@@ -120,6 +135,8 @@ export default class MultiSelect extends Component {
               // And have not been selected already
               .filter(tag => !this.state.selected.includes(tag))}
             onClick={this.handleSelectTag}
+            onMouseEnter={this.handleMouseEnterSelectable}
+            onMouseLeave={this.handleMouseLeaveSelectable}
           />
         )}
       </div>
