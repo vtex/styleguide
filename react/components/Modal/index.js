@@ -10,6 +10,7 @@ class Modal extends PureComponent {
       onClose,
       closeOnEsc,
       closeOnOverlayClick,
+      showCloseIcon,
     } = this.props
 
     return (
@@ -19,6 +20,7 @@ class Modal extends PureComponent {
         onClose={onClose}
         closeOnEsc={closeOnEsc}
         closeOnOverlayClick={closeOnOverlayClick}
+        showCloseIcon={showCloseIcon}
         classNames={{
           overlay: 'vtex-modal__overlay',
           modal: 'vtex-modal__modal br2',
@@ -50,6 +52,7 @@ Modal.defaultProps = {
   isOpen: false,
   closeOnEsc: true,
   closeOnOverlayClick: true,
+  showCloseIcon: true,
 }
 
 Modal.propTypes = {
@@ -66,6 +69,8 @@ Modal.propTypes = {
   closeOnEsc: PropTypes.bool,
   /** Close the modal on overlay click (default true) */
   closeOnOverlayClick: PropTypes.bool,
+  /** Show the close icon on upper right corner (default true) */
+  showCloseIcon: PropTypes.bool,
 }
 
 export default Modal
