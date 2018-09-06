@@ -19,14 +19,14 @@ export default class MultiSelect extends Component {
       return {
         __html: tag.replace(
           new RegExp(props.searchTerm),
-          `<strong>${props.searchTerm}</strong>`
+          `<span class="fw5">${props.searchTerm}</span>`
         ),
       }
     }
 
     const tagList = props.list.map((tag, index) => (
       <li
-        className="pv3 ph5 hover-bg-muted-5 pointer"
+        className="pv4 ph5 hover-bg-muted-5 pointer f6 c-on-muted-4 fw3"
         // In this case we can trust the source (not dangerous per say)
         dangerouslySetInnerHTML={formatTag(tag)}
         key={index}
@@ -37,7 +37,10 @@ export default class MultiSelect extends Component {
     ))
 
     return (
-      <ul style={{ listStyleType: 'none' }} className="ph0">
+      <ul
+        style={{ listStyleType: 'none', borderTop: 'none' }}
+        className="ph0 mt0 b--muted-4 br--bottom br2 b--solid bw1"
+      >
         {tagList}
       </ul>
     )
@@ -74,7 +77,7 @@ export default class MultiSelect extends Component {
           {tags}
           <input
             id="search-input"
-            className="f6 mv3 mh3 c-on-base bn outline-0"
+            className="f6 mv3 mh3 pv2 c-on-base bn outline-0"
             onBlur={this.handleBlur}
             onChange={this.handleSearchTermChange}
             onFocus={this.handleFocus}
