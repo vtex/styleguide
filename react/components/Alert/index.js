@@ -19,7 +19,7 @@ class Alert extends Component {
 
   render() {
     const { type, onClose, action } = this.props
-    let classes = 'pa5 br2 '
+    let classes = 'ph5 pv4 br2 '
     let showIcon = false
     let Icon = 'div'
     let color = 'c-on-base'
@@ -55,36 +55,39 @@ class Alert extends Component {
       <div
         className={`vtex-alert flex justify-between f5 c-on-base ${classes}`}
       >
-        <div className="flex-ns flex-grow-1">
+        <div className="flex-ns flex-grow-1 items-center">
           <div className="flex items-center flex-grow-1">
-            {showIcon &&
+            {showIcon && (
               <div className={color}>
                 <Icon block color="currentColor" size={18} />
-              </div>}
+              </div>
+            )}
 
             <div className={`${showIcon ? 'ph5 flex' : 'pr5'}`}>
               {this.props.children}
             </div>
           </div>
 
-          {displayAction &&
+          {displayAction && (
             <div className="flex flex-grow-1 justify-end">
               <div className="nt4-ns nb4">
                 <Button variation="tertiary" onClick={handleActionClick}>
                   {action.label}
                 </Button>
               </div>
-            </div>}
+            </div>
+          )}
         </div>
 
-        {onClose &&
+        {onClose && (
           <div
-            className="vtex-alert__close-icon pointer flex items-center pv2 c-on-base"
+            className="vtex-alert__close-icon pointer flex items-center pv2 c-on-base pa3"
             onClick={onClose}
             tabIndex={0}
           >
             <CloseIcon block color="currentColor" size={16} />
-          </div>}
+          </div>
+        )}
       </div>
     )
   }
