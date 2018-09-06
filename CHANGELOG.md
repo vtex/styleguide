@@ -141,6 +141,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - **Textarea** character countdown when maxLength is defined
+- **Modal** Confirmation buttons
 
 ## [6.1.3] - 2018-08-29
 
