@@ -13,7 +13,7 @@ Default
 <Badge>Pending</Badge>
 ```
 
-Type examples
+Types examples
 
 ```js
 <span className="mr4">
@@ -33,22 +33,49 @@ Type examples
 </span>
 ```
 
+Low prominence examples
+
+```js
+<div>
+  <span className="mr4">
+    <Badge bgColor="#FFE6E6" color="#FF4C4C">
+      Error
+    </Badge>
+  </span>
+  <span className="mr4">
+    <Badge bgColor="#FFF6E0" color="#FFB100">
+      Warning
+    </Badge>
+  </span>
+  <span className="mr4">
+    <Badge bgColor="#EAFCE3" color="#8BC34A">
+      Success
+    </Badge>
+  </span>
+  <span className="mr4">
+    <Badge bgColor="#E3E4E6" color="#979899">
+      Neutral
+    </Badge>
+  </span>
+</div>
+```
+
 Custom colors examples
 
 ```js
 <span className="mr4">
   <Badge bgColor="#F71963" color="#FFFFFF">
-    New
+    Label
   </Badge>
 </span>
 <span className="mr4">
   <Badge bgColor="#142032" color="#D6D8E0">
-    New
+    Label
   </Badge>
 </span>
 <span className="mr4">
   <Badge bgColor="#00BBD4" color="#FFFFFF">
-    New
+    Label
   </Badge>
 </span>
 ```
