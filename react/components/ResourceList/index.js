@@ -76,9 +76,9 @@ ResourceList.defaultProps = {
 
 ResourceList.propTypes = {
   table: PropTypes.shape({
-    items: PropTypes.array.isRequired,
-    schema: PropTypes.object.isRequired,
-  }).isRequired,
+    items: PropTypes.array,
+    schema: PropTypes.object,
+  }),
   exportBtn: PropTypes.shape({
     show: PropTypes.bool,
     label: PropTypes.string.isRequired,
@@ -90,15 +90,15 @@ ResourceList.propTypes = {
     callback: PropTypes.func.isRequired,
   }),
   pagination: PropTypes.shape({
-    onNextClick: PropTypes.func.isRequired,
-    onPrevClick: PropTypes.func.isRequired,
-    currentItemFrom: PropTypes.number.isRequired,
-    currentItemTo: PropTypes.number.isRequired,
-    textOf: PropTypes.string.isRequired,
-    totalItems: PropTypes.number.isRequired,
+    onNextClick: PropTypes.func,
+    onPrevClick: PropTypes.func,
+    currentItemFrom: PropTypes.number,
+    currentItemTo: PropTypes.number,
+    textOf: PropTypes.string,
+    totalItems: PropTypes.number,
   }),
   inputSearch: PropTypes.shape({
-    onSubmit: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func,
   }),
 }
 
