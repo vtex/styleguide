@@ -121,6 +121,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **Input** fix propType of ref
 - **Dropdown** fix propType of ref
 
+### Changed
+
+- **PageHeader** Side buttons changed to `children`
+
 ## [6.1.2] - 2018-08-28
 
 ### Fixed
