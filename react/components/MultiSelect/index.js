@@ -24,17 +24,21 @@ export default class MultiSelect extends Component {
       }
     }
 
-    const tagList = props.list.map((tag, index) => (
-      <li
-        className="pv4 ph5 hover-bg-muted-5 pointer f6 c-on-muted-4 fw3"
-        // In this case we can trust the source (not dangerous per say)
-        dangerouslySetInnerHTML={formatTag(tag)}
-        key={index}
-        onClick={() => {
-          props.onClick(tag)
-        }}
-      />
-    ))
+    const tagList = props.list.map((tag, index) => {
+      const highlightFirstIfNotHovering =
+        !props.hovering && index === 0 ? 'bg-muted-5 c-on-muted-5' : ''
+      return (
+        <li
+          className={`pv4 ph5 hover-bg-muted-5 hover-c-on-muted-5 pointer f6 c-on-muted-4 fw3 ${highlightFirstIfNotHovering}`}
+          // In this case we can trust the source (not dangerous per say)
+          dangerouslySetInnerHTML={formatTag(tag)}
+          key={index}
+          onClick={() => {
+            props.onClick(tag)
+          }}
+        />
+      )
+    })
 
     return (
       <ul className="ph0 mv0" style={{ listStyleType: 'none' }}>
@@ -53,6 +57,18 @@ export default class MultiSelect extends Component {
 
   handleFocus = () => {
     this.setState({ active: true })
+  }
+
+  handleKeyPress = event => {
+    if (this.state.searchTerm !== '') {
+      if (event.key === 'Tab' || event.key === 'Enter') {
+        // Prevents tabs from changing focus
+        event.preventDefault()
+        this.selectFirstTagIfExists()
+      }
+    } else if (event.key === 'Backspace') {
+      this.unselectLastSelectedTagIfExists()
+    }
   }
 
   handleMouseEnterSelectable = () => {
@@ -82,16 +98,33 @@ export default class MultiSelect extends Component {
 
   handleUnselectTag = tag => {
     this.props.onUnselectTag(tag)
+    this.searchInput.focus()
+  }
+
+  selectFirstTagIfExists = () => {
+    const selectableList = this.props.selectableList.filter(
+      tag => !this.props.selectedTags.includes(tag)
+    )
+    if (selectableList.length > 0) {
+      this.handleSelectTag(selectableList[0])
+    }
+  }
+
+  unselectLastSelectedTagIfExists = () => {
+    const length = this.props.selectedTags.length
+    if (this.props.selectedTags.length > 0) {
+      this.handleUnselectTag(this.props.selectedTags[length - 1])
+    }
   }
 
   render() {
     const tags = this.props.selectedTags.map((tag, index) => (
       <Tag
-        tag={tag}
         key={index}
         onClick={tag => {
           this.handleUnselectTag(tag)
         }}
+        tag={tag}
       />
     ))
     // Only show tags that have not been selected already
@@ -114,6 +147,7 @@ export default class MultiSelect extends Component {
             onBlur={this.handleBlur}
             onChange={this.handleSearchTermChange}
             onFocus={this.handleFocus}
+            onKeyDown={this.handleKeyPress}
             placeholder={this.props.placeholder}
             ref={node => {
               this.searchInput = node
@@ -133,6 +167,7 @@ export default class MultiSelect extends Component {
           >
             {selectableList.length !== 0 && (
               <MultiSelect.SelectableTags
+                hovering={this.state.hoveringSelectable}
                 searchTerm={this.state.searchTerm}
                 list={selectableList}
                 onClick={this.handleSelectTag}
