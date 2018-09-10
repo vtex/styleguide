@@ -11,7 +11,6 @@ export default class MultiSelect extends Component {
       active: false,
       hoveringSelectable: false,
       searchTerm: '',
-      selected: ['Green', 'Red'],
     }
   }
 
@@ -70,33 +69,34 @@ export default class MultiSelect extends Component {
   }
 
   handleSelectTag = tag => {
+    this.props.onSelectTag(tag)
     this.setState(
-      prevState => ({
-        selected: [...prevState.selected, tag],
+      {
         searchTerm: '',
-      }),
+      },
       () => {
         this.searchInput.focus()
       }
     )
   }
 
+  handleUnselectTag = tag => {
+    this.props.onUnselectTag(tag)
+  }
+
   render() {
-    const tags = this.state.selected.map((tag, index) => (
+    const tags = this.props.selectedTags.map((tag, index) => (
       <Tag
         tag={tag}
         key={index}
         onClick={tag => {
-          this.setState(prevState => ({
-            // Removes tag from selected array
-            selected: prevState.selected.filter(i => i !== tag),
-          }))
+          this.handleUnselectTag(tag)
         }}
       />
     ))
     // Only show tags that have not been selected already
     const selectableList = this.props.selectableList.filter(
-      tag => !this.state.selected.includes(tag)
+      tag => !this.props.selectedTags.includes(tag)
     )
     const showDropdown = this.state.active && this.state.searchTerm !== ''
     return (
@@ -104,7 +104,7 @@ export default class MultiSelect extends Component {
         <label htmlFor="search-input">Colors</label>
         <div
           className={`${
-            this.state.active ? 'br--top ' : ''
+            this.state.active && showDropdown ? 'br--top ' : ''
           }flex flex-wrap mt3 b--muted-4 br2 b--solid bw1`}
         >
           {tags}
@@ -155,11 +155,15 @@ export default class MultiSelect extends Component {
 MultiSelect.defaultProps = {
   placeholder: 'Search...',
   selectableList: [],
+  selectedTags: [],
 }
 
 MultiSelect.propTypes = {
   label: PropTypes.string.isRequired,
-  onSearchChange: PropTypes.func,
+  onSearchChange: PropTypes.func.isRequired,
+  onSelectTag: PropTypes.func.isRequired,
+  onUnselectTag: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
   selectableList: PropTypes.array.isRequired,
+  selectedTags: PropTypes.array,
 }
