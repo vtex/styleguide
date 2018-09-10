@@ -38,12 +38,7 @@ export default class MultiSelect extends Component {
     ))
 
     return (
-      <ul
-        style={{ listStyleType: 'none', borderTop: 'none' }}
-        className="ph0 mt0 b--muted-4 br--bottom br2 b--solid bw1"
-        onMouseEnter={() => props.onMouseEnter()}
-        onMouseLeave={() => props.onMouseLeave()}
-      >
+      <ul className="ph0 mv0" style={{ listStyleType: 'none' }}>
         {tagList}
       </ul>
     )
@@ -71,6 +66,7 @@ export default class MultiSelect extends Component {
 
   handleSearchTermChange = event => {
     this.setState({ searchTerm: event.target.value })
+    this.props.onSearchChange && this.props.onSearchChange(event)
   }
 
   handleSelectTag = tag => {
@@ -98,7 +94,11 @@ export default class MultiSelect extends Component {
         }}
       />
     ))
-    const showSelectable = this.state.active && this.state.searchTerm !== ''
+    // Only show tags that have not been selected already
+    const selectableList = this.props.selectableList.filter(
+      tag => !this.state.selected.includes(tag)
+    )
+    const showDropdown = this.state.active && this.state.searchTerm !== ''
     return (
       <div>
         <label htmlFor="search-input">Colors</label>
@@ -124,20 +124,28 @@ export default class MultiSelect extends Component {
             value={this.state.searchTerm}
           />
         </div>
-        {showSelectable && (
-          <MultiSelect.SelectableTags
-            searchTerm={this.state.searchTerm}
-            list={this.props.selectableList
-              // Only show tags that fit the search
-              .filter(tag =>
-                tag.toLowerCase().includes(this.state.searchTerm.toLowerCase())
-              )
-              // And have not been selected already
-              .filter(tag => !this.state.selected.includes(tag))}
-            onClick={this.handleSelectTag}
-            onMouseEnter={this.handleMouseEnterSelectable}
-            onMouseLeave={this.handleMouseLeaveSelectable}
-          />
+        {showDropdown && (
+          <div
+            style={{ borderTop: 'none' }}
+            className="b--muted-4 br--bottom br2 b--solid bw1"
+            onMouseEnter={() => this.handleMouseEnterSelectable()}
+            onMouseLeave={() => this.handleMouseLeaveSelectable()}
+          >
+            {selectableList.length !== 0 && (
+              <MultiSelect.SelectableTags
+                searchTerm={this.state.searchTerm}
+                list={selectableList}
+                onClick={this.handleSelectTag}
+              />
+            )}
+            {selectableList.length === 0 && (
+              <div className="pv4 ph5 f6 c-on-muted-4 fw4">
+                No results found for "<span className="fw5">
+                  {this.state.searchTerm}
+                </span>".
+              </div>
+            )}
+          </div>
         )}
       </div>
     )
@@ -151,6 +159,7 @@ MultiSelect.defaultProps = {
 
 MultiSelect.propTypes = {
   label: PropTypes.string.isRequired,
+  onSearchChange: PropTypes.func,
   placeholder: PropTypes.string,
   selectableList: PropTypes.array.isRequired,
 }
