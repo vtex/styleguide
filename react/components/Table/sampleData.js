@@ -45,17 +45,9 @@ export default {
       name: {
         type: 'string',
         title: 'Name',
-        headerRenderer: ({ label }) => {
-          return (
-            <div
-              className="truncate ph4">
-              <span
-                className="pointer c-on-base fw5"
-                onClick={() => alert('You can customize header components. For example, call an external sort function')}>
-                {`${label} `}<ArrowDown size={11} />
-              </span>
-            </div>
-          )
+        sort: {
+          callback: (order) => alert(`Callback for sorting, order: ${order}`),
+          initialOrder: 'DESC'
         },
       },
       email: {

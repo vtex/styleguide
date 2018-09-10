@@ -40,21 +40,12 @@ const sampleData = require('./sampleData').default;
 //     name: {
 //       type: 'string',
 //       title: 'Name',
-//       headerRenderer: ({ label }) => {
-//         return (
-//           <div
-//             className="truncate ph4">
-//             <span
-//               className="pointer"
-//               onClick={() => {
-//                  alert('You can customize and call an external function')
-//                  // you can for example, sort your items alphabetically etc...
-//               }}>
-//               {`${label} `}<ArrowDown size={11} />
-//             </span>
-//           </div>
-//         )
-//       },
+//       sort: {
+//        callback: (order) => alert(`Callback for sorting, order: ${order}`),
+//        // above callback sends one of following strings 'no-order', 'ASC' or 'DESC'
+//        // you should use this parameter to call an API which sorts your items
+//        initialOrder: 'DESC'
+//      }
 //     },
 //     email: {
 //       type: 'string',
