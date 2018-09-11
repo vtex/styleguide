@@ -11,7 +11,7 @@ export default class MultiSelect extends Component {
     this.state = {
       active: false,
       searchTerm: '',
-      focusedTag: '',
+      focusedTag: 0,
     }
   }
 
@@ -25,8 +25,10 @@ export default class MultiSelect extends Component {
         event.preventDefault()
         this.selectFocusedTagIfExists()
       } else if (event.key === 'ArrowUp') {
+        event.preventDefault()
         this.moveFocusedTagUp()
       } else if (event.key === 'ArrowDown') {
+        event.preventDefault()
         this.moveFocusedTagDown()
       }
     } else if (event.key === 'Backspace') {
@@ -35,12 +37,12 @@ export default class MultiSelect extends Component {
   }
 
   handleSearchTermChange = event => {
-    this.setState({ searchTerm: event.target.value, focusedTag: '' })
+    this.setState({ searchTerm: event.target.value, focusedTag: 0 })
     this.props.onSearchChange && this.props.onSearchChange(event)
   }
 
-  handleSelectTag = tag => {
-    this.props.onSelectTag(tag)
+  handleSelectTag = index => {
+    this.props.onSelectTag(index)
     this.setState(
       {
         searchTerm: '',
@@ -51,53 +53,49 @@ export default class MultiSelect extends Component {
     )
   }
 
-  handleUnselectTag = tag => {
-    this.props.onUnselectTag(tag)
+  handleUnselectTag = index => {
+    this.props.onUnselectTag(index)
     this.searchInput.focus()
   }
 
   selectFocusedTagIfExists = () => {
-    const tag = this.getFocusedTag()
-    if (tag !== '') {
-      this.handleSelectTag(tag)
+    const index = this.state.focusedTag
+    if (this.props.options.length > 0) {
+      this.handleSelectTag(index)
     }
   }
 
   unselectLastSelectedTagIfExists = () => {
     const length = this.props.selectedTags.length
-    if (this.props.selectedTags.length > 0) {
-      this.handleUnselectTag(this.props.selectedTags[length - 1])
+    if (length > 0) {
+      this.handleUnselectTag(length - 1)
     }
   }
 
-  getFocusedTag = () => {
-    if (this.state.focusedTag !== '') {
-      return this.state.focusedTag
+  moveFocusedTagUp = () => {
+    const newFocus = this.state.focusedTag - 1
+    if (newFocus >= 0) {
+      this.setState({ focusedTag: newFocus })
     }
-    // If no item is focused, focus on the first one
-    const options = this.props.selectableList.filter(
-      tag => !this.props.selectedTags.includes(tag)
-    )
-    return options.length > 0 ? options[0] : ''
   }
 
-  moveFocusedTagUp = () => {}
-
-  moveFocusedTagDown = () => {}
+  moveFocusedTagDown = () => {
+    const newFocus = this.state.focusedTag + 1
+    if (newFocus <= this.props.options.length - 1) {
+      this.setState({ focusedTag: newFocus })
+    }
+  }
 
   render() {
     const tags = this.props.selectedTags.map((tag, index) => (
       <Tag
         key={index}
-        onClick={tag => {
-          this.handleUnselectTag(tag)
+        onClick={() => {
+          this.handleUnselectTag(index)
         }}
         tag={tag}
       />
     ))
-    const remainingOptions = this.props.selectableList.filter(
-      tag => !this.props.selectedTags.includes(tag)
-    )
     const showDropdown = this.state.active && this.state.searchTerm !== ''
     const emptyState = (
       <span>
@@ -133,10 +131,10 @@ export default class MultiSelect extends Component {
           />
         </div>
         <DropdownList
-          options={remainingOptions}
+          options={this.props.options}
           show={showDropdown}
           emptyState={emptyState}
-          focused={this.getFocusedTag()}
+          focused={this.state.focusedTag}
           formatOption={opt =>
             opt.replace(
               new RegExp(this.state.searchTerm, 'i'),
@@ -153,7 +151,7 @@ export default class MultiSelect extends Component {
 
 MultiSelect.defaultProps = {
   placeholder: 'Search...',
-  selectableList: [],
+  options: [],
   selectedTags: [],
 }
 
@@ -163,6 +161,6 @@ MultiSelect.propTypes = {
   onSelectTag: PropTypes.func.isRequired,
   onUnselectTag: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
-  selectableList: PropTypes.array.isRequired,
+  options: PropTypes.array.isRequired,
   selectedTags: PropTypes.array,
 }

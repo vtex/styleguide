@@ -26,7 +26,7 @@ export default class Tag extends Component {
       <button
         className="pointer br-pill bn dib f7 fw4 pv2 pl4 mh3 mv3 bg-action-secondary c-on-action-secondary"
         onClick={() => {
-          this.props.onClick && this.props.onClick(this.props.tag)
+          this.props.onClick && this.props.onClick()
         }}
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}

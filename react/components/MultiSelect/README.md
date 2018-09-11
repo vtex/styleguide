@@ -3,33 +3,38 @@ initialState = {
   searchTerm: "",
   selectedTags: ["Green", "Red"]
 };
+selectableList = [
+  "White",
+  "Black",
+  "Grey",
+  "Yellow",
+  "Red",
+  "Blue",
+  "Green",
+  "Brown",
+  "Pink",
+  "Orange",
+  "Purple",
+  "Dark-blue",
+  "Dark-red",
+  "Light-blue"
+]
+  .filter(tag => tag.toLowerCase().includes(state.searchTerm.toLowerCase()))
+  .filter(tag => !state.selectedTags.includes(tag));
 <MultiSelect
   label="Colors"
   onSearchChange={e => setState({ searchTerm: e.target.value })}
   onSelectTag={tag =>
-    setState(prevState => ({ selectedTags: [...prevState.selectedTags, tag] }))
-  }
-  onUnselectTag={tag =>
     setState(prevState => ({
-      selectedTags: prevState.selectedTags.filter(i => i !== tag)
+      selectedTags: [...prevState.selectedTags, selectableList[tag]]
     }))
   }
-  selectableList={[
-    "White",
-    "Black",
-    "Grey",
-    "Yellow",
-    "Red",
-    "Blue",
-    "Green",
-    "Brown",
-    "Pink",
-    "Orange",
-    "Purple",
-    "Dark-blue",
-    "Dark-red",
-    "Light-blue"
-  ].filter(tag => tag.toLowerCase().includes(state.searchTerm.toLowerCase()))}
+  onUnselectTag={index =>
+    setState(prevState => ({
+      selectedTags: prevState.selectedTags.filter((tag, i) => i !== index)
+    }))
+  }
+  options={selectableList}
   selectedTags={state.selectedTags}
 />;
 ```

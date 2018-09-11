@@ -2,12 +2,12 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
 export default class DropdownList extends PureComponent {
-  handleSelect = opt => {
-    this.props.onSelect && this.props.onSelect(opt)
+  handleSelect = index => {
+    this.props.onSelect && this.props.onSelect(index)
   }
 
-  handleFocus = opt => {
-    this.props.onFocus && this.props.onFocus(opt)
+  handleFocus = index => {
+    this.props.onFocus && this.props.onFocus(index)
   }
 
   render() {
@@ -15,14 +15,14 @@ export default class DropdownList extends PureComponent {
 
     const optionList = this.props.options.map((opt, index) => {
       const focusedClasses =
-        opt === this.props.focused ? ' bg-muted-5 c-on-muted-5 ' : ''
+        index === this.props.focused ? ' bg-muted-5 c-on-muted-5 ' : ''
       return (
         <li
           className={`pv4 ph5 pointer f6 c-on-muted-4 fw3 ${focusedClasses}`}
           dangerouslySetInnerHTML={{ __html: this.props.formatOption(opt) }}
           key={index}
-          onClick={() => this.handleSelect(opt)}
-          onMouseEnter={() => this.handleFocus(opt)}
+          onClick={() => this.handleSelect(index)}
+          onMouseEnter={() => this.handleFocus(index)}
         />
       )
     })
@@ -59,7 +59,6 @@ DropdownList.defaultProps = {
 DropdownList.propTypes = {
   emptyState: PropTypes.any,
   focused: PropTypes.number,
-  /* Receives index, returns string */
   formatOption: PropTypes.func,
   onSelect: PropTypes.func,
   onFocus: PropTypes.func,
