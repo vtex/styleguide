@@ -78,7 +78,7 @@ class Textarea extends Component {
     if (this.props.disabled) {
       classes += 'bg-disabled b--disabled c-disabled '
     } else {
-      classes += 'bg-on-base '
+      classes += 'bg-base '
     }
 
     return (
