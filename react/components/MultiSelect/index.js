@@ -10,8 +10,9 @@ export default class MultiSelect extends Component {
 
     this.state = {
       active: false,
+      focusedOption: 0,
+      hovering: false,
       searchTerm: '',
-      focusedTag: 0,
     }
   }
 
@@ -19,30 +20,36 @@ export default class MultiSelect extends Component {
     this.setState({ active: true })
   }
 
+  handleBlur = () => {
+    if (!this.state.hovering) {
+      this.setState({ active: false })
+    }
+  }
+
   handleKeyPress = event => {
     if (this.state.searchTerm !== '') {
       if (event.key === 'Tab' || event.key === 'Enter') {
         event.preventDefault()
-        this.selectFocusedTagIfExists()
+        this.selectFocused()
       } else if (event.key === 'ArrowUp') {
         event.preventDefault()
-        this.moveFocusedTagUp()
+        this.moveFocusUp()
       } else if (event.key === 'ArrowDown') {
         event.preventDefault()
-        this.moveFocusedTagDown()
+        this.moveFocusDown()
       }
     } else if (event.key === 'Backspace') {
-      this.unselectLastSelectedTagIfExists()
+      this.unselectLast()
     }
   }
 
-  handleSearchTermChange = event => {
-    this.setState({ searchTerm: event.target.value, focusedTag: 0 })
-    this.props.onSearchChange && this.props.onSearchChange(event)
+  handleSearch = event => {
+    this.setState({ searchTerm: event.target.value, focusedOption: 0 })
+    this.props.onSearch && this.props.onSearch(event)
   }
 
-  handleSelectTag = index => {
-    this.props.onSelectTag(index)
+  handleSelect = index => {
+    this.props.onSelect(index)
     this.setState(
       {
         searchTerm: '',
@@ -53,45 +60,45 @@ export default class MultiSelect extends Component {
     )
   }
 
-  handleUnselectTag = index => {
-    this.props.onUnselectTag(index)
+  handleUnselect = index => {
+    this.props.onUnselect(index)
     this.searchInput.focus()
   }
 
-  selectFocusedTagIfExists = () => {
-    const index = this.state.focusedTag
+  selectFocused = () => {
+    const index = this.state.focusedOption
     if (this.props.options.length > 0) {
-      this.handleSelectTag(index)
+      this.handleSelect(index)
     }
   }
 
-  unselectLastSelectedTagIfExists = () => {
-    const length = this.props.selectedTags.length
+  unselectLast = () => {
+    const length = this.props.selected.length
     if (length > 0) {
-      this.handleUnselectTag(length - 1)
+      this.handleUnselect(length - 1)
     }
   }
 
-  moveFocusedTagUp = () => {
-    const newFocus = this.state.focusedTag - 1
+  moveFocusUp = () => {
+    const newFocus = this.state.focusedOption - 1
     if (newFocus >= 0) {
-      this.setState({ focusedTag: newFocus })
+      this.setState({ focusedOption: newFocus })
     }
   }
 
-  moveFocusedTagDown = () => {
-    const newFocus = this.state.focusedTag + 1
+  moveFocusDown = () => {
+    const newFocus = this.state.focusedOption + 1
     if (newFocus <= this.props.options.length - 1) {
-      this.setState({ focusedTag: newFocus })
+      this.setState({ focusedOption: newFocus })
     }
   }
 
   render() {
-    const tags = this.props.selectedTags.map((tag, index) => (
+    const tags = this.props.selected.map((tag, index) => (
       <Tag
         key={index}
         onClick={() => {
-          this.handleUnselectTag(index)
+          this.handleUnselect(index)
         }}
         tag={tag}
       />
@@ -114,10 +121,10 @@ export default class MultiSelect extends Component {
         >
           {tags}
           <input
-            id="search-input"
             className="f6 mv3 mh3 pv2 c-on-base bn outline-0"
+            id="search-input"
             onBlur={this.handleBlur}
-            onChange={this.handleSearchTermChange}
+            onChange={this.handleSearch}
             onFocus={this.handleFocus}
             onKeyDown={this.handleKeyPress}
             placeholder={this.props.placeholder}
@@ -131,18 +138,20 @@ export default class MultiSelect extends Component {
           />
         </div>
         <DropdownList
-          options={this.props.options}
-          show={showDropdown}
           emptyState={emptyState}
-          focused={this.state.focusedTag}
+          focused={this.state.focusedOption}
           formatOption={opt =>
             opt.replace(
               new RegExp(this.state.searchTerm, 'i'),
               '<span class="fw5">$&</span>'
             )
           }
-          onSelect={this.handleSelectTag}
-          onFocus={opt => this.setState({ focusedTag: opt })}
+          onFocus={opt => this.setState({ focusedOption: opt })}
+          onMouseEnter={() => this.setState({ hovering: true })}
+          onMouseLeave={() => this.setState({ hovering: false })}
+          onSelect={this.handleSelect}
+          options={this.props.options}
+          show={showDropdown}
         />
       </div>
     )
@@ -150,17 +159,24 @@ export default class MultiSelect extends Component {
 }
 
 MultiSelect.defaultProps = {
-  placeholder: 'Search...',
   options: [],
-  selectedTags: [],
+  placeholder: 'Search...',
+  selected: [],
 }
 
 MultiSelect.propTypes = {
+  /** Label */
   label: PropTypes.string.isRequired,
-  onSearchChange: PropTypes.func.isRequired,
-  onSelectTag: PropTypes.func.isRequired,
-  onUnselectTag: PropTypes.func.isRequired,
-  placeholder: PropTypes.string,
+  /** Called when the search term changes. Usage: `onSearch(event)` */
+  onSearch: PropTypes.func.isRequired,
+  /** Called when an option is selected. Usage: `onSelect(index)` */
+  onSelect: PropTypes.func.isRequired,
+  /** Called when an option is unselected. Usage: `onUnselect(index)` */
+  onUnselect: PropTypes.func.isRequired,
+  /** List of selectable options */
   options: PropTypes.array.isRequired,
-  selectedTags: PropTypes.array,
+  /** Search input placeholder */
+  placeholder: PropTypes.string,
+  /** List of selected options, which will be shown as tags */
+  selected: PropTypes.array,
 }

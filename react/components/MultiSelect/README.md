@@ -1,7 +1,7 @@
 ```js
 initialState = {
   searchTerm: "",
-  selectedTags: ["Green", "Red"]
+  selected: ["Green", "Red"]
 };
 selectableList = [
   "White",
@@ -20,21 +20,21 @@ selectableList = [
   "Light-blue"
 ]
   .filter(tag => tag.toLowerCase().includes(state.searchTerm.toLowerCase()))
-  .filter(tag => !state.selectedTags.includes(tag));
+  .filter(tag => !state.selected.includes(tag));
 <MultiSelect
   label="Colors"
-  onSearchChange={e => setState({ searchTerm: e.target.value })}
-  onSelectTag={tag =>
+  onSearch={e => setState({ searchTerm: e.target.value })}
+  onSelect={tag =>
     setState(prevState => ({
-      selectedTags: [...prevState.selectedTags, selectableList[tag]]
+      selected: [...prevState.selected, selectableList[tag]]
     }))
   }
-  onUnselectTag={index =>
+  onUnselect={index =>
     setState(prevState => ({
-      selectedTags: prevState.selectedTags.filter((tag, i) => i !== index)
+      selected: prevState.selected.filter((tag, i) => i !== index)
     }))
   }
   options={selectableList}
-  selectedTags={state.selectedTags}
+  selected={state.selected}
 />;
 ```

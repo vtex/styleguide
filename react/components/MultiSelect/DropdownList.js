@@ -31,7 +31,12 @@ export default class DropdownList extends PureComponent {
       <div
         className="b--muted-4 br--bottom br2 b--solid bw1"
         style={{ borderTop: 'none' }}
-        onKeyDown={() => console.log('key down!')}
+        onMouseEnter={() =>
+          this.props.onMouseEnter && this.props.onMouseEnter()
+        }
+        onMouseLeave={() =>
+          this.props.onMouseLeave && this.props.onMouseLeave()
+        }
       >
         {this.props.options.length === 0 && (
           <div className="pv4 ph5 f6 c-on-muted-4 fw4">
@@ -62,6 +67,8 @@ DropdownList.propTypes = {
   formatOption: PropTypes.func,
   onSelect: PropTypes.func,
   onFocus: PropTypes.func,
+  onMouseEnter: PropTypes.func,
+  onMouseLeave: PropTypes.func,
   options: PropTypes.array,
   show: PropTypes.bool,
 }

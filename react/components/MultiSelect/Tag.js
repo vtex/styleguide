@@ -42,12 +42,7 @@ export default class Tag extends Component {
   }
 }
 
-Tag.defaultProps = {
-  selected: [],
-}
-
 Tag.propTypes = {
   onClick: PropTypes.func,
-  selected: PropTypes.array,
   tag: PropTypes.string.isRequired,
 }
