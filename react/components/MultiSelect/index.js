@@ -11,6 +11,7 @@ export default class MultiSelect extends Component {
     this.state = {
       active: false,
       searchTerm: '',
+      focusedTag: '',
     }
   }
 
@@ -19,13 +20,22 @@ export default class MultiSelect extends Component {
   }
 
   handleKeyPress = event => {
-    if (this.state.searchTerm === '' && event.key === 'Backspace') {
+    if (this.state.searchTerm !== '') {
+      if (event.key === 'Tab' || event.key === 'Enter') {
+        event.preventDefault()
+        this.selectFocusedTagIfExists()
+      } else if (event.key === 'ArrowUp') {
+        this.moveFocusedTagUp()
+      } else if (event.key === 'ArrowDown') {
+        this.moveFocusedTagDown()
+      }
+    } else if (event.key === 'Backspace') {
       this.unselectLastSelectedTagIfExists()
     }
   }
 
   handleSearchTermChange = event => {
-    this.setState({ searchTerm: event.target.value })
+    this.setState({ searchTerm: event.target.value, focusedTag: '' })
     this.props.onSearchChange && this.props.onSearchChange(event)
   }
 
@@ -46,12 +56,34 @@ export default class MultiSelect extends Component {
     this.searchInput.focus()
   }
 
+  selectFocusedTagIfExists = () => {
+    const tag = this.getFocusedTag()
+    if (tag !== '') {
+      this.handleSelectTag(tag)
+    }
+  }
+
   unselectLastSelectedTagIfExists = () => {
     const length = this.props.selectedTags.length
     if (this.props.selectedTags.length > 0) {
       this.handleUnselectTag(this.props.selectedTags[length - 1])
     }
   }
+
+  getFocusedTag = () => {
+    if (this.state.focusedTag !== '') {
+      return this.state.focusedTag
+    }
+    // If no item is focused, focus on the first one
+    const options = this.props.selectableList.filter(
+      tag => !this.props.selectedTags.includes(tag)
+    )
+    return options.length > 0 ? options[0] : ''
+  }
+
+  moveFocusedTagUp = () => {}
+
+  moveFocusedTagDown = () => {}
 
   render() {
     const tags = this.props.selectedTags.map((tag, index) => (
@@ -104,6 +136,7 @@ export default class MultiSelect extends Component {
           options={remainingOptions}
           show={showDropdown}
           emptyState={emptyState}
+          focused={this.getFocusedTag()}
           formatOption={opt =>
             opt.replace(
               new RegExp(this.state.searchTerm, 'i'),
@@ -111,6 +144,7 @@ export default class MultiSelect extends Component {
             )
           }
           onSelect={this.handleSelectTag}
+          onFocus={opt => this.setState({ focusedTag: opt })}
         />
       </div>
     )
