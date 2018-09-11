@@ -4,6 +4,7 @@ Usage: <span className="c-muted-1">`import <IconName> from '@vtex/styleguide/lib
 const ArrowBack = require('./ArrowBack').default
 const ArrowDown = require('./ArrowDown').default
 const ArrowUp = require('./ArrowUp').default
+const Bars = require('./Bars').default
 const CaretDown = require('./CaretDown').default
 const CaretLeft = require('./CaretLeft').default
 const CaretRight = require('./CaretRight').default
@@ -201,6 +202,10 @@ const demoLabel = 'pb3 code c-muted-1 f6'
       <td>
         <div className={demoLabel}>Warning (solid)</div>
         <Warning solid size={demoSize} />
+      </td>
+      <td>
+        <div className={demoLabel}>Bars</div>
+        <Bars size={demoSize} />
       </td>
       <td />
     </tr>
