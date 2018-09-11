@@ -27,6 +27,7 @@ const Link = require('./Link').default
 const Plus = require('./Plus').default
 const Save = require('./Save').default
 const Search = require('./Search').default
+const ShoppingCart = require('./ShoppingCart').default
 const Success = require('./Success').default
 const Upload = require('./Upload').default
 const VisibilityOff = require('./VisibilityOff').default
@@ -211,6 +212,12 @@ const demoLabel = 'pb3 code c-muted-1 f6'
       <td>
         <div className={demoLabel}>User</div>
         <User size={demoSize} />
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div className={demoLabel}>Shopping Cart</div>
+        <ShoppingCart size={demoSize} />
       </td>
     </tr>
   </tbody>

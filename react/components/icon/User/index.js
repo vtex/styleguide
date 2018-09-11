@@ -18,7 +18,7 @@ class User extends PureComponent {
         width={newSize.width}
         height={newSize.height}
         viewBox="0 0 44 44"
-        fill="transparent"
+        fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
