@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import Tag from './Tag'
+import DropdownList from './DropdownList'
 
 export default class MultiSelect extends Component {
   constructor(props) {
@@ -9,49 +10,7 @@ export default class MultiSelect extends Component {
 
     this.state = {
       active: false,
-      hoveringSelectable: false,
       searchTerm: '',
-    }
-  }
-
-  static SelectableTags = props => {
-    const formatTag = tag => {
-      return {
-        __html: tag.replace(
-          new RegExp(props.searchTerm, 'i'),
-          '<span class="fw5">$&</span>'
-        ),
-      }
-    }
-
-    const tagList = props.list.map((tag, index) => {
-      const highlightFirstIfNotHovering =
-        !props.hovering && index === 0 ? 'bg-muted-5 c-on-muted-5' : ''
-      return (
-        <li
-          className={`pv4 ph5 hover-bg-muted-5 hover-c-on-muted-5 pointer f6 c-on-muted-4 fw3 ${highlightFirstIfNotHovering}`}
-          // In this case we can trust the source (not dangerous per say)
-          dangerouslySetInnerHTML={formatTag(tag)}
-          key={index}
-          onClick={() => {
-            props.onClick(tag)
-          }}
-        />
-      )
-    })
-
-    return (
-      <ul className="ph0 mv0" style={{ listStyleType: 'none' }}>
-        {tagList}
-      </ul>
-    )
-  }
-
-  handleBlur = () => {
-    if (!this.state.hoveringSelectable) {
-      this.setState({ active: false })
-    } else {
-      this.searchInput.focus()
     }
   }
 
@@ -60,23 +19,9 @@ export default class MultiSelect extends Component {
   }
 
   handleKeyPress = event => {
-    if (this.state.searchTerm !== '') {
-      if (event.key === 'Tab' || event.key === 'Enter') {
-        // Prevents tabs from changing focus
-        event.preventDefault()
-        this.selectFirstTagIfExists()
-      }
-    } else if (event.key === 'Backspace') {
+    if (this.state.searchTerm === '' && event.key === 'Backspace') {
       this.unselectLastSelectedTagIfExists()
     }
-  }
-
-  handleMouseEnterSelectable = () => {
-    this.setState({ hoveringSelectable: true })
-  }
-
-  handleMouseLeaveSelectable = () => {
-    this.setState({ hoveringSelectable: false })
   }
 
   handleSearchTermChange = event => {
@@ -101,15 +46,6 @@ export default class MultiSelect extends Component {
     this.searchInput.focus()
   }
 
-  selectFirstTagIfExists = () => {
-    const selectableList = this.props.selectableList.filter(
-      tag => !this.props.selectedTags.includes(tag)
-    )
-    if (selectableList.length > 0) {
-      this.handleSelectTag(selectableList[0])
-    }
-  }
-
   unselectLastSelectedTagIfExists = () => {
     const length = this.props.selectedTags.length
     if (this.props.selectedTags.length > 0) {
@@ -127,17 +63,23 @@ export default class MultiSelect extends Component {
         tag={tag}
       />
     ))
-    // Only show tags that have not been selected already
-    const selectableList = this.props.selectableList.filter(
+    const remainingOptions = this.props.selectableList.filter(
       tag => !this.props.selectedTags.includes(tag)
     )
     const showDropdown = this.state.active && this.state.searchTerm !== ''
+    const emptyState = (
+      <span>
+        No results found for "
+        <span className="fw5">{this.state.searchTerm}</span>
+        ".
+      </span>
+    )
     return (
       <div>
         <label htmlFor="search-input">Colors</label>
         <div
           className={`${
-            this.state.active && showDropdown ? 'br--top ' : ''
+            showDropdown ? 'br--top ' : ''
           }flex flex-wrap mt3 b--muted-4 br2 b--solid bw1`}
         >
           {tags}
@@ -158,30 +100,18 @@ export default class MultiSelect extends Component {
             value={this.state.searchTerm}
           />
         </div>
-        {showDropdown && (
-          <div
-            style={{ borderTop: 'none' }}
-            className="b--muted-4 br--bottom br2 b--solid bw1"
-            onMouseEnter={() => this.handleMouseEnterSelectable()}
-            onMouseLeave={() => this.handleMouseLeaveSelectable()}
-          >
-            {selectableList.length !== 0 && (
-              <MultiSelect.SelectableTags
-                hovering={this.state.hoveringSelectable}
-                searchTerm={this.state.searchTerm}
-                list={selectableList}
-                onClick={this.handleSelectTag}
-              />
-            )}
-            {selectableList.length === 0 && (
-              <div className="pv4 ph5 f6 c-on-muted-4 fw4">
-                No results found for "<span className="fw5">
-                  {this.state.searchTerm}
-                </span>".
-              </div>
-            )}
-          </div>
-        )}
+        <DropdownList
+          options={remainingOptions}
+          show={showDropdown}
+          emptyState={emptyState}
+          formatOption={opt =>
+            opt.replace(
+              new RegExp(this.state.searchTerm, 'i'),
+              '<span class="fw5">$&</span>'
+            )
+          }
+          onSelect={this.handleSelectTag}
+        />
       </div>
     )
   }
