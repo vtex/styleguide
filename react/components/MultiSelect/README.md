@@ -23,17 +23,8 @@ selectableList = [
   .filter(tag => !state.selected.includes(tag));
 <MultiSelect
   label="Colors"
+  onChange={selected => setState({ selected: [...selected] })}
   onSearch={e => setState({ searchTerm: e.target.value })}
-  onSelect={tag =>
-    setState(prevState => ({
-      selected: [...prevState.selected, selectableList[tag]]
-    }))
-  }
-  onUnselect={index =>
-    setState(prevState => ({
-      selected: prevState.selected.filter((tag, i) => i !== index)
-    }))
-  }
   options={selectableList}
   selected={state.selected}
 />;

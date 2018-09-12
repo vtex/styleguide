@@ -50,7 +50,7 @@ export default class MultiSelect extends Component {
   }
 
   handleSelect = index => {
-    this.props.onSelect(index)
+    this.props.onChange([...this.props.selected, this.props.options[index]])
     this.setState(
       {
         searchTerm: '',
@@ -62,7 +62,7 @@ export default class MultiSelect extends Component {
   }
 
   handleUnselect = index => {
-    this.props.onUnselect(index)
+    this.props.onChange(this.props.selected.filter((opt, i) => index !== i))
     this.searchInput.current.focus()
   }
 
@@ -163,12 +163,10 @@ MultiSelect.defaultProps = {
 MultiSelect.propTypes = {
   /** Label */
   label: PropTypes.string.isRequired,
+  /** Called when selected options change. Usage: onChange(selected array) */
+  onChange: PropTypes.func.isRequired,
   /** Called when the search term changes. Usage: `onSearch(event)` */
   onSearch: PropTypes.func.isRequired,
-  /** Called when an option is selected. Usage: `onSelect(index)` */
-  onSelect: PropTypes.func.isRequired,
-  /** Called when an option is unselected. Usage: `onUnselect(index)` */
-  onUnselect: PropTypes.func.isRequired,
   /** List of selectable options */
   options: PropTypes.array.isRequired,
   /** Search input placeholder */
