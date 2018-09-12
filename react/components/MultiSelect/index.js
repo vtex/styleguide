@@ -121,24 +121,26 @@ export default class MultiSelect extends Component {
     )
     return (
       <div>
-        <label>{this.props.label}</label>
-        <div
-          className={`${
-            showDropdown ? 'br--top ' : ''
-          }flex flex-wrap mt3 b--muted-4 br2 b--solid bw1`}
-        >
-          {tags}
-          <input
-            className="f6 mv3 mh3 pv2 c-on-base bn outline-0 flex-grow-1"
-            onBlur={this.handleBlur}
-            onChange={this.handleSearch}
-            onFocus={this.handleFocus}
-            onKeyDown={this.handleKeyPress}
-            placeholder={this.props.placeholder}
-            ref={this.searchInput}
-            value={this.state.searchTerm}
-          />
-        </div>
+        <label>
+          {this.props.label}
+          <div
+            className={`${
+              showDropdown ? 'br--top ' : ''
+            }flex flex-wrap mt3 b--muted-4 br2 b--solid bw1`}
+          >
+            <input
+              className="f6 mv3 mh3 pv2 c-on-base bn outline-0 flex-grow-1 order-last"
+              onBlur={this.handleBlur}
+              onChange={this.handleSearch}
+              onFocus={this.handleFocus}
+              onKeyDown={this.handleKeyPress}
+              placeholder={this.props.placeholder}
+              ref={this.searchInput}
+              value={this.state.searchTerm}
+            />
+            {tags}
+          </div>
+        </label>
         <DropdownList
           emptyState={emptyState}
           focused={this.state.focusedOption}
