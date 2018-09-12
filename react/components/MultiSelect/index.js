@@ -13,6 +13,7 @@ export default class MultiSelect extends Component {
       active: false,
       focusedOption: 0,
       hovering: false,
+      options: [],
       searchTerm: '',
     }
   }
@@ -45,12 +46,17 @@ export default class MultiSelect extends Component {
   }
 
   handleSearch = event => {
-    this.setState({ searchTerm: event.target.value, focusedOption: 0 })
-    this.props.onSearch && this.props.onSearch(event)
+    const searchTerm = event.target.value
+    const options = this.props.onSearch(searchTerm)
+    this.setState({
+      searchTerm: searchTerm,
+      focusedOption: 0,
+      options: [...options],
+    })
   }
 
   handleSelect = index => {
-    this.props.onChange([...this.props.selected, this.props.options[index]])
+    this.props.onChange([...this.props.selected, this.state.options[index]])
     this.setState(
       {
         searchTerm: '',
@@ -68,7 +74,7 @@ export default class MultiSelect extends Component {
 
   selectFocused = () => {
     const index = this.state.focusedOption
-    if (this.props.options.length > 0) {
+    if (this.state.options.length > 0) {
       this.handleSelect(index)
     }
   }
@@ -89,7 +95,7 @@ export default class MultiSelect extends Component {
 
   moveFocusDown = () => {
     const newFocus = this.state.focusedOption + 1
-    if (newFocus <= this.props.options.length - 1) {
+    if (newFocus <= this.state.options.length - 1) {
       this.setState({ focusedOption: newFocus })
     }
   }
@@ -146,7 +152,7 @@ export default class MultiSelect extends Component {
           onMouseEnter={() => this.setState({ hovering: true })}
           onMouseLeave={() => this.setState({ hovering: false })}
           onSelect={this.handleSelect}
-          options={this.props.options}
+          options={this.state.options}
           show={showDropdown}
         />
       </div>
@@ -155,7 +161,6 @@ export default class MultiSelect extends Component {
 }
 
 MultiSelect.defaultProps = {
-  options: [],
   placeholder: 'Search...',
   selected: [],
 }
@@ -165,10 +170,8 @@ MultiSelect.propTypes = {
   label: PropTypes.string.isRequired,
   /** Called when selected options change. Usage: onChange(selected array) */
   onChange: PropTypes.func.isRequired,
-  /** Called when the search term changes. Usage: `onSearch(event)` */
+  /** Called when the search term changes. Returns an array of options to display. Usage: `onSearch(term)` */
   onSearch: PropTypes.func.isRequired,
-  /** List of selectable options */
-  options: PropTypes.array.isRequired,
   /** Search input placeholder */
   placeholder: PropTypes.string,
   /** List of selected options, which will be shown as tags */

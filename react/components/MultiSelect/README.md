@@ -1,6 +1,5 @@
 ```js
 initialState = {
-  searchTerm: "",
   selected: ["Green", "Red"]
 };
 selectableList = [
@@ -18,14 +17,15 @@ selectableList = [
   "Dark-blue",
   "Dark-red",
   "Light-blue"
-]
-  .filter(tag => tag.toLowerCase().includes(state.searchTerm.toLowerCase()))
-  .filter(tag => !state.selected.includes(tag));
+];
 <MultiSelect
   label="Colors"
   onChange={selected => setState({ selected: [...selected] })}
-  onSearch={e => setState({ searchTerm: e.target.value })}
-  options={selectableList}
+  onSearch={term =>
+    selectableList
+      .filter(tag => tag.toLowerCase().includes(term.toLowerCase()))
+      .filter(tag => !state.selected.includes(tag))
+  }
   selected={state.selected}
 />;
 ```
