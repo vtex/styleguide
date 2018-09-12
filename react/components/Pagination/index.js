@@ -6,7 +6,17 @@ import Button from '../Button'
 import Dropdown from '../Dropdown'
 
 class Pagination extends PureComponent {
+  constructor(props) {
+    super(props)
+    this.state = {
+      selectedRowsOptionIndex: 0,
+    }
+  }
+
   handleRowsChange = (e, value) => {
+    const { rowsOptions } = this.props
+    const optionIndex = rowsOptions.indexOf(parseInt(value))
+    this.setState({ selectedRowsOptionIndex: optionIndex })
     this.props.onRowsChange && this.props.onRowsChange(e, value)
   };
 
@@ -29,6 +39,7 @@ class Pagination extends PureComponent {
 
   render() {
     const { rowsOptions } = this.props
+    const { selectedRowsOptionIndex } = this.state
     const dropdownOptions = this.createRowOptions(rowsOptions)
 
     const isPrevDisabled = this.props.currentItemFrom === 1
@@ -46,7 +57,7 @@ class Pagination extends PureComponent {
             <Dropdown
               label=""
               options={dropdownOptions}
-              value={dropdownOptions[0].label}
+              value={dropdownOptions[selectedRowsOptionIndex].label}
               onChange={this.handleRowsChange}
             />
           </div>}
