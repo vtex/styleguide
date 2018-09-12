@@ -334,9 +334,14 @@ export default class Slider extends Component {
           />}
         </div>
 
-        <div className="flex justify-between" style={{ top: '100%' }}>
+        <div className="flex justify-end">
           <label className="f6 c-muted-1">{formatValue(lastLeftValue)}</label>
-          <label className="f6 c-muted-1">{formatValue(lastRightValue)}</label>
+          {range && (
+            <label className="f6 c-muted-1">
+              <span className="mh2">&ndash;</span>
+              {formatValue(lastRightValue)}
+            </label>
+          )}
         </div>
       </div>
     )
