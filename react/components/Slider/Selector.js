@@ -3,8 +3,6 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
 export default function Selector({
-  className,
-  style,
   onDragStart,
   position,
   active,
@@ -12,15 +10,21 @@ export default function Selector({
   value,
   displayPopup,
   formatValue,
+  offset,
 }) {
   const containerClasses = classNames(
     'vtex-slider__selector-container absolute pointer',
-    className,
     {
       'z-2': active,
       'z-1': !active,
+      'left-0': position === 'left',
+      'right-0': position === 'right',
     }
   )
+
+  const containerStyle = position === 'left'
+    ? { transform: `translateX(${offset}px) translateX(-50%)` }
+    : { transform: `translateX(-${offset}px) translateX(50%)` }
 
   const dragCircleClasses = classNames(
     'vtex-slider__selector br-100 bg-action-primary flex justify-center items-center',
@@ -33,7 +37,7 @@ export default function Selector({
     'vtex-slider__selector-tooltip flex justify-center items-center relative ph3 pv2 br2 f6 ba',
     {
       'vtex-slider__tooltip--active bg-action-primary white b--action-primary': active,
-      'bg-white b--silver gray': !active,
+      'bg-base b--muted-2 c-muted-1': !active,
     }
   )
 
@@ -43,7 +47,7 @@ export default function Selector({
       onMouseDown={onDragStart(position)}
       onTouchStart={onDragStart(position)}
       style={{
-        ...style,
+        ...containerStyle,
         willChange: 'transform',
         top: 6.5,
       }}
@@ -76,15 +80,11 @@ Selector.defaultProps = {
 }
 
 Selector.propTypes = {
-  /** CSS classes */
-  className: PropTypes.string,
   /** Position of the selector */
   position: PropTypes.oneOf([
     'left',
     'right',
   ]).isRequired,
-  /** Style */
-  style: PropTypes.object,
   /** onDragStart event */
   onDragStart: PropTypes.func.isRequired,
   /** If the selector is active */
@@ -97,4 +97,6 @@ Selector.propTypes = {
   displayPopup: PropTypes.bool,
   /** Function to format the value */
   formatValue: PropTypes.func.isRequired,
+  /** Margin offset value */
+  offset: PropTypes.number.isRequired,
 }
