@@ -32,9 +32,9 @@ export default class Tag extends Component {
         onMouseLeave={this.handleMouseLeave}
       >
         <div className="flex items-center justify-center">
-          <span className="self-center">{this.props.tag}</span>{' '}
+          <span className="self-center">{this.props.children}</span>{' '}
           <div className={`${hoverClass} pl3 pt1 self-center`}>
-            <Close color="currentColor" size="14" />
+            <Close color="currentColor" size={14} />
           </div>
         </div>
       </button>
@@ -43,6 +43,6 @@ export default class Tag extends Component {
 }
 
 Tag.propTypes = {
+  children: PropTypes.string.isRequired,
   onClick: PropTypes.func,
-  tag: PropTypes.string.isRequired,
 }

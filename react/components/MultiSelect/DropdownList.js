@@ -43,7 +43,7 @@ export default class DropdownList extends PureComponent {
             {this.props.emptyState}
           </div>
         )}
-        <ul className="ph0 mv0" style={{ listStyleType: 'none' }}>
+        <ul className="ph0 mv0 list">
           {optionList}
         </ul>
       </div>

@@ -7,6 +7,7 @@ import DropdownList from './DropdownList'
 export default class MultiSelect extends Component {
   constructor(props) {
     super(props)
+    this.searchInput = React.createRef()
 
     this.state = {
       active: false,
@@ -55,14 +56,14 @@ export default class MultiSelect extends Component {
         searchTerm: '',
       },
       () => {
-        this.searchInput.focus()
+        this.searchInput.current.focus()
       }
     )
   }
 
   handleUnselect = index => {
     this.props.onUnselect(index)
-    this.searchInput.focus()
+    this.searchInput.current.focus()
   }
 
   selectFocused = () => {
@@ -100,8 +101,9 @@ export default class MultiSelect extends Component {
         onClick={() => {
           this.handleUnselect(index)
         }}
-        tag={tag}
-      />
+      >
+        {tag}
+      </Tag>
     ))
     const showDropdown = this.state.active && this.state.searchTerm !== ''
     const emptyState = (
@@ -113,7 +115,7 @@ export default class MultiSelect extends Component {
     )
     return (
       <div>
-        <label htmlFor="search-input">Colors</label>
+        <label>{this.props.label}</label>
         <div
           className={`${
             showDropdown ? 'br--top ' : ''
@@ -121,19 +123,13 @@ export default class MultiSelect extends Component {
         >
           {tags}
           <input
-            className="f6 mv3 mh3 pv2 c-on-base bn outline-0"
-            id="search-input"
+            className="f6 mv3 mh3 pv2 c-on-base bn outline-0 flex-grow-1"
             onBlur={this.handleBlur}
             onChange={this.handleSearch}
             onFocus={this.handleFocus}
             onKeyDown={this.handleKeyPress}
             placeholder={this.props.placeholder}
-            ref={node => {
-              this.searchInput = node
-            }}
-            style={{
-              flexGrow: 1,
-            }}
+            ref={this.searchInput}
             value={this.state.searchTerm}
           />
         </div>
