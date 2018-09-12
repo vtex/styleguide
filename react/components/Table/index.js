@@ -13,6 +13,8 @@ class Table extends PureComponent {
       onRowClick,
       onRowMouseOver,
       onRowMouseOut,
+      containerHeight,
+      containerClass,
     } = this.props
     const properties = Object.keys(schema.properties)
     // hydrate items with index when 'indexColumn' prop is true
@@ -23,7 +25,9 @@ class Table extends PureComponent {
       }))
       : items
     return (
-      <div className="vh-50">
+      <div
+        className={containerClass || 'vh-50'}
+        style={containerHeight ? { height: containerHeight } : {}}>
         <AutoSizer>
           {({ width, height }) => (
             <VirtualTable
@@ -125,6 +129,10 @@ Table.propTypes = {
   onRowMouseOver: PropTypes.func,
   /** Callback invoked when the mouse leaves a table row. ({ event: Event, index: number, rowData: any }): void */
   onRowMouseOut: PropTypes.func,
+  /** In case you need precise control of table container height (number in pixels)  */
+  containerHeight: PropTypes.number,
+  /** CSS that goes in table container (note: it needs a defined height, default is vh-50 from tachyons) */
+  containerClass: PropTypes.string,
 }
 
 export default Table
