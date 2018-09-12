@@ -115,9 +115,13 @@ export default class Slider extends Component {
       value = max
     }
 
-    if (range && position === 'left' && value >= this.state.values.right) {
+    if (!range) {
+      return value
+    }
+
+    if (position === 'left' && value >= this.state.values.right) {
       value = this.state.values.right - step
-    } else if (range && position === 'right' && value <= this.state.values.left) {
+    } else if (position === 'right' && value <= this.state.values.left) {
       value = this.state.values.left + step
     }
 
@@ -264,7 +268,7 @@ export default class Slider extends Component {
   }
 
   render() {
-    const { disabled, alwaysShowCurrentValue, formatValue, range } = this.props
+    const { disabled, alwaysShowCurrentValue, formatValue, range, handleIcon } = this.props
     const { left, right } = this.state.translate
 
     const lastLeftValue = this.valuesBeforeDrag_
@@ -322,6 +326,7 @@ export default class Slider extends Component {
             displayPopup={alwaysShowCurrentValue}
             value={this.state.values.left}
             formatValue={formatValue}
+            icon={handleIcon}
           />
           {range && <Selector
             offset={right}
@@ -331,6 +336,7 @@ export default class Slider extends Component {
             displayPopup={alwaysShowCurrentValue}
             value={this.state.values.right}
             formatValue={formatValue}
+            icon={handleIcon}
           />}
         </div>
 
@@ -356,6 +362,7 @@ Slider.defaultProps = {
   alwaysShowCurrentValue: false,
   formatValue: a => a,
   range: false,
+  handleIcon: null,
 }
 
 Slider.propTypes = {
@@ -377,4 +384,6 @@ Slider.propTypes = {
   formatValue: PropTypes.func,
   /** Whether to render as a range input */
   range: PropTypes.bool,
+  /** Optional icon to show inside the slider handle */
+  handleIcon: PropTypes.node,
 }
