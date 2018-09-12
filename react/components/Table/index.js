@@ -122,7 +122,7 @@ class Table extends PureComponent {
                             {schema.properties[key].sortCallback
                               ? <span className="pointer"
                                 onClick={() => {
-                                  const sortTypeData = this.toggleSortType(key, schema.properties[key].sort)
+                                  const sortTypeData = this.toggleSortType(key)
                                   schema.properties[key].sortCallback(sortTypeData)
                                 }}>
                                 {`${label} `}{sortOrder === 'ASC' && sortedBy === key
