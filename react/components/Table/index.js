@@ -29,6 +29,8 @@ class Table extends PureComponent {
       onRowClick,
       onRowMouseOver,
       onRowMouseOut,
+      containerHeight,
+      containerClass,
       sort: { sortOrder, sortedBy },
       onSort,
       updateTableKey,
@@ -42,7 +44,9 @@ class Table extends PureComponent {
       }))
       : items
     return (
-      <div className="vh-50">
+      <div
+        className={containerClass || 'vh-50'}
+        style={containerHeight ? { height: containerHeight } : {}}>
         <AutoSizer>
           {({ width, height }) => (
             <VirtualTable
@@ -176,6 +180,10 @@ Table.propTypes = {
   onSort: PropTypes.func,
   /** Forces table re-render when changed */
   updateTableKey: PropTypes.string,
+  /** In case you need precise control of table container height (number in pixels)  */
+  containerHeight: PropTypes.number,
+  /** CSS that goes in table container (note: it needs a defined height, default is vh-50 from tachyons) */
+  containerClass: PropTypes.string,
 }
 
 export default Table
