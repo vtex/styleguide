@@ -309,16 +309,13 @@ export default class Slider extends Component {
             <div
               className={classNames('absolute h-100', {
                 'bg-action-primary': !disabled,
-                'bg-marked-4': disabled,
+                'bg-muted-4': disabled,
               })}
               style={sliderSelectionStyle}
             />
           </div>
           <Selector
-            className="left-0"
-            style={{
-              transform: `translateX(${left}px) translateX(-50%)`,
-            }}
+            offset={left}
             onDragStart={this.handleDragStart}
             position="left"
             active={this.state.dragging === 'left'}
@@ -327,10 +324,7 @@ export default class Slider extends Component {
             formatValue={formatValue}
           />
           {range && <Selector
-            className="right-0"
-            style={{
-              transform: `translateX(-${right}px) translateX(50%)`,
-            }}
+            offset={right}
             onDragStart={this.handleDragStart}
             position="right"
             active={this.state.dragging === 'right'}
