@@ -2,8 +2,9 @@ Working example
 
 ```js
 const sampleData = require('./sampleData').default
-const tableLength = 10
+const tableLength = 5
 const initialState = {
+  tableLength,
   currentPage: 1,
   slicedData: sampleData.items.slice(0, tableLength),
   currentItemFrom: 1,
@@ -53,8 +54,12 @@ class ResourceListExample extends React.Component {
     })
   }
 
-  handleRowsChange() {
-    console.log('handleRowsChange')
+  handleRowsChange(e, value) {
+    this.setState({
+      tableLength: parseInt(value),
+      slicedData: sampleData.items.slice(0, parseInt(value)),
+      currentItemTo: parseInt(value),
+    })
   }
 
   handleInputSearchChange(e) {
@@ -88,12 +93,22 @@ class ResourceListExample extends React.Component {
           schema: sampleData.defaultSchema,
           items: this.state.slicedData,
         }}
-        exportBtn={{ show: true, label: 'Download' }}
+        exportBtn={{
+          show: true,
+          label: 'Download',
+          callback: () => alert('You can implement export callback! :)'),
+        }}
+        importBtn={{
+          show: true,
+          label: 'Import',
+          callback: () => alert('You can implement import callback also! :)'),
+        }}
         pagination={{
           onNextClick: this.handleNextClick,
           onPrevClick: this.handlePrevClick,
           currentItemFrom: this.state.currentItemFrom,
           currentItemTo: this.state.currentItemTo,
+          onRowsChange: this.handleRowsChange,
           textOf: 'de',
           totalItems: this.state.itemsLength,
           rowsOptions: [5, 10, 15, 20],
@@ -104,7 +119,6 @@ class ResourceListExample extends React.Component {
           onChange: this.handleInputSearchChange,
           onClear: this.handleInputSearchClear,
           onSubmit: this.handleInputSearchSubmit,
-          size: 'large',
         }}
       />
     )
