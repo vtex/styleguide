@@ -11,6 +11,7 @@ export default function Selector({
   displayPopup,
   formatValue,
   offset,
+  icon,
 }) {
   const containerClasses = classNames(
     'vtex-slider__selector-container absolute pointer',
@@ -66,7 +67,9 @@ export default function Selector({
           width: '0.6875rem',
           boxShadow: '-1px 1px 3px rgba(0, 0, 0, 0.15)',
         }}
-      />
+      >
+        {icon}
+      </div>
     </div>
   )
 }
@@ -77,6 +80,7 @@ Selector.defaultProps = {
   value: 0,
   className: '',
   displayPopup: false,
+  icon: null,
 }
 
 Selector.propTypes = {
@@ -99,4 +103,6 @@ Selector.propTypes = {
   formatValue: PropTypes.func.isRequired,
   /** Margin offset value */
   offset: PropTypes.number.isRequired,
+  /** Icon to show inside the handle */
+  icon: PropTypes.node,
 }
