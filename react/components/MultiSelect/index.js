@@ -120,7 +120,7 @@ export default class MultiSelect extends Component {
       </span>
     )
     return (
-      <div>
+      <div className="relative">
         <label>
           {this.props.label}
           <div

@@ -15,7 +15,9 @@ export default class DropdownList extends PureComponent {
 
     const optionList = this.props.options.map((opt, index) => {
       const focusedClasses =
-        index === this.props.focused ? ' bg-muted-5 c-on-muted-5 ' : ''
+        index === this.props.focused
+          ? ' bg-muted-5 c-on-muted-5 '
+          : ' bg-base c-on-base '
       return (
         <li
           className={`pv4 ph5 pointer f6 c-on-muted-4 fw3 ${focusedClasses}`}
@@ -29,7 +31,7 @@ export default class DropdownList extends PureComponent {
 
     return (
       <div
-        className="b--muted-4 br--bottom br2 b--solid bw1"
+        className="b--muted-4 br--bottom br2 b--solid bw1 absolute w-100"
         style={{ borderTop: 'none' }}
         onMouseEnter={() =>
           this.props.onMouseEnter && this.props.onMouseEnter()
@@ -39,7 +41,7 @@ export default class DropdownList extends PureComponent {
         }
       >
         {this.props.options.length === 0 && (
-          <div className="pv4 ph5 f6 c-on-muted-4 fw4">
+          <div className="pv4 ph5 f6 c-on-base bg-base fw4">
             {this.props.emptyState}
           </div>
         )}
