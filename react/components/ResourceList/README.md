@@ -93,15 +93,15 @@ class ResourceListExample extends React.Component {
           schema: sampleData.defaultSchema,
           items: this.state.slicedData,
         }}
-        exportBtn={{
-          show: true,
-          label: 'Download',
-          callback: () => alert('You can implement export callback! :)'),
-        }}
-        importBtn={{
-          show: true,
-          label: 'Import',
-          callback: () => alert('You can implement import callback also! :)'),
+        actions={{
+          download: {
+            label: 'Download',
+            handleCallback: () => alert('Callback()'),
+          },
+          upload: {
+            label: 'Import',
+            handleCallback: () => alert('Callback()'),
+          },
         }}
         pagination={{
           onNextClick: this.handleNextClick,
