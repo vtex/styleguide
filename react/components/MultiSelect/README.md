@@ -20,7 +20,7 @@ selectableList = [
 ];
 <MultiSelect
   label="Colors"
-  onChange={selected => setState({ selected: [...selected] })}
+  onChange={selected => setState({ selected })}
   onSearch={term =>
     selectableList
       .filter(tag => tag.toLowerCase().includes(term.toLowerCase()))

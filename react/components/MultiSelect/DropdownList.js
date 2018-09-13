@@ -11,7 +11,7 @@ export default class DropdownList extends PureComponent {
   }
 
   render() {
-    if (!this.props.show) return null
+    if (!this.props.isVisible) return null
 
     const optionList = this.props.options.map((opt, index) => {
       const focusedClasses =
@@ -43,9 +43,7 @@ export default class DropdownList extends PureComponent {
             {this.props.emptyState}
           </div>
         )}
-        <ul className="ph0 mv0 list">
-          {optionList}
-        </ul>
+        <ul className="ph0 mv0 list">{optionList}</ul>
       </div>
     )
   }
@@ -58,7 +56,7 @@ DropdownList.defaultProps = {
     return opt
   },
   options: [],
-  show: false,
+  isVisible: false,
 }
 
 DropdownList.propTypes = {
@@ -70,5 +68,5 @@ DropdownList.propTypes = {
   onMouseEnter: PropTypes.func,
   onMouseLeave: PropTypes.func,
   options: PropTypes.array,
-  show: PropTypes.bool,
+  isVisible: PropTypes.bool,
 }

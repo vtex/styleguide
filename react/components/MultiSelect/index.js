@@ -155,7 +155,7 @@ export default class MultiSelect extends Component {
           onMouseLeave={() => this.setState({ hovering: false })}
           onSelect={this.handleSelect}
           options={this.state.options}
-          show={showDropdown}
+          isVisible={showDropdown}
         />
       </div>
     )
