@@ -82,6 +82,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Fixed Toast export for render
 
+### Added
+
+- **ModalDialog**
+
 ## [6.4.1] - 2018-09-27
 
 ### Fixed
@@ -101,8 +105,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Removed extra iOS styiling from inputs
 - **Icons** Fix plus icon svg.
-
-## [6.3.3] - 2018-09-18
 
 ## [6.3.2] - 2018-09-13
 
@@ -141,7 +143,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - **Textarea** character countdown when maxLength is defined
-- **Modal** Confirmation buttons
 
 ## [6.1.3] - 2018-08-29
 
