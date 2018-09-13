@@ -1,7 +1,7 @@
 Default
 
 ```js
-const sampleData = require('./sampleData').default;
+const sampleData = require('./sampleData').default.slice(0);
 const defaultSchema = {
     properties: {
       name: {
@@ -39,22 +39,36 @@ class CustomTableExample extends React.Component {
   constructor() {
     super()
     this.state = {
-      orderedItems: sampleData.sort(this.sortNameAlphapeticallyASC)
+      orderedItems: sampleData,
+      dataSort: {
+        sortedBy: null,
+        sortOrder: null,
+      }
     }
 
     this.sortNameAlphapeticallyASC = this.sortNameAlphapeticallyASC.bind(this)
     this.sortNameAlphapeticallyDESC = this.sortNameAlphapeticallyDESC.bind(this)
-    this.sortName = this.sortName.bind(this)
+    this.handleSort = this.handleSort.bind(this)
   }
 
   sortNameAlphapeticallyASC(a, b) { return (a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0 }
   sortNameAlphapeticallyDESC(a, b) { return (a.name < b.name) ? 1 : (a.name > b.name) ? -1 : 0 }
 
-  sortName({ sortOrder, sortedBy }) {
-    const orderedItems = sortOrder === 'ASC'
+  handleSort({ sortOrder, sortedBy }) {
+     // I'll just handle sort by 'name', but I could handle multiple properties
+    if (sortedBy === 'name') {
+      const orderedItems = sortOrder === 'ASC'
         ? sampleData.sort(this.sortNameAlphapeticallyASC)
         : sampleData.sort(this.sortNameAlphapeticallyDESC)
-    this.setState({ orderedItems })
+      // the above const could come out of an API call to sort items for example
+      this.setState({
+        orderedItems,
+        dataSort: {
+          sortedBy,
+          sortOrder,
+        }
+      })
+    }
   }
 
   render() {
@@ -63,9 +77,9 @@ class CustomTableExample extends React.Component {
         name: {
           type: 'string',
           title: 'Name',
-          // just by passing a sortCallback in a schema property makes it sortable,
-          // you should do this to handle each property you want to be sortable
-          sortCallback: this.sortName,
+          // sortable boolean in a schema property makes it sortable,
+          // (clicking header triggers onSort callback).
+          sortable: true,
         },
         email: {
           type: 'string',
@@ -98,8 +112,11 @@ class CustomTableExample extends React.Component {
             schema={customSchema}
             items={this.state.orderedItems}
             indexColumn
-            initialSortProperty="name"
-            initialSortOrder="ASC"
+            sort={{
+              sortedBy: this.state.dataSort.sortedBy,
+              sortOrder: this.state.dataSort.sortOrder,
+            }}
+            onSort={this.handleSort}
           />
         </div>
       </div>

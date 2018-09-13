@@ -5,42 +5,24 @@ import ArrowDown from '../icon/ArrowDown'
 import ArrowUp from '../icon/ArrowUp'
 
 class Table extends PureComponent {
-  constructor(props) {
-    super(props)
-    this.state = {
-      sortedBy: props.initialSortProperty,
-      sortOrder: props.initialSortOrder,
-    }
-  }
-
   toggleSortType = (key) => {
-    const { sortOrder, sortedBy } = this.state
+    const { sort: { sortOrder, sortedBy } } = this.props
     if (sortedBy === key) {
       if (sortOrder === 'DESC' || !sortOrder) {
-        const newState = {
-          sortOrder: 'ASC',
-        }
-        this.setState(newState)
         return {
-          ...newState,
+          sortOrder: 'ASC',
           sortedBy: key,
         }
       }
-      const newState = {
-        sortOrder: 'DESC',
-      }
-      this.setState(newState)
       return {
-        ...newState,
+        sortOrder: 'DESC',
         sortedBy: key,
       }
     }
-    const newState = {
+    return {
       sortOrder: 'ASC',
       sortedBy: key,
     }
-    this.setState(newState)
-    return newState
   }
 
   render() {
@@ -53,8 +35,9 @@ class Table extends PureComponent {
       onRowClick,
       onRowMouseOver,
       onRowMouseOut,
+      sort: { sortOrder, sortedBy },
+      onSort,
     } = this.props
-    const { sortOrder, sortedBy } = this.state
     const properties = Object.keys(schema.properties)
     // hydrate items with index when 'indexColumn' prop is true
     const newItems = indexColumn
@@ -119,17 +102,18 @@ class Table extends PureComponent {
                       (({ label }) => {
                         return (
                           <div className="truncate ph4">
-                            {schema.properties[key].sortCallback
-                              ? <span className="pointer"
+                            {schema.properties[key].sortable
+                              ? <span className="pointer c-muted-1 b f6"
                                 onClick={() => {
-                                  const sortTypeData = this.toggleSortType(key)
-                                  schema.properties[key].sortCallback(sortTypeData)
+                                  onSort(this.toggleSortType(key))
                                 }}>
-                                {`${label} `}{sortOrder === 'ASC' && sortedBy === key
+                                {`${label} `}
+                                {sortOrder === 'ASC' && sortedBy === key
                                   ? <ArrowDown size={11} />
                                   : sortOrder === 'DESC' && sortedBy === key
                                     ? <ArrowUp size={11} />
-                                    : null}
+                                    : null
+                                }
                               </span>
                               : label
                             }
@@ -164,8 +148,10 @@ Table.defaultProps = {
   onRowClick: () => {},
   onRowMouseOut: () => {},
   onRowMouseOver: () => {},
-  initialSortOrder: null,
-  initialSortProperty: null,
+  sort: {
+    sortOrder: null,
+    sortedBy: null,
+  },
 }
 
 Table.propTypes = {
@@ -185,10 +171,13 @@ Table.propTypes = {
   onRowMouseOver: PropTypes.func,
   /** Callback invoked when the mouse leaves a table row. ({ event: Event, index: number, rowData: any }): void */
   onRowMouseOut: PropTypes.func,
-  /** Sinalize to Table header wich property (key in schema) is initially sorted (if your items are sorted by any of them) */
-  initialSortProperty: PropTypes.string,
-  /** Sinalize to Table header the order which your items are initially sorted (if your items are already sorted on first render) */
-  initialSortOrder: PropTypes.oneOf(['ASC', 'DESC']),
+  /** Sort order and which property (key in schema) is table data sorted by. */
+  sort: PropTypes.shape({
+    sortOrder: PropTypes.oneOf(['ASC', 'DESC']),
+    sortedBy: PropTypes.string,
+  }),
+  /** Callback to handle sort ({ sortOrder, sortedBy }) : object */
+  onSort: PropTypes.func,
 }
 
 export default Table
