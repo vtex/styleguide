@@ -6,15 +6,10 @@ class ModalDialogExample extends React.Component {
     super()
     this.state = { isModalOpen: false }
     this.handleModalToggle = this.handleModalToggle.bind(this)
-    this.handleConfirmation = this.handleConfirmation.bind(this)
   }
 
   handleModalToggle() {
     this.setState({ isModalOpen: !this.state.isModalOpen })
-  }
-
-  handleConfirmation() {
-    this.handleModalToggle()
   }
 
   render() {
@@ -24,10 +19,14 @@ class ModalDialogExample extends React.Component {
 
         <ModalDialog
           centered
-          handleConfirmation={this.handleConfirmation}
-          confirmationLabel="Ok"
-          handleCancelation={this.handleModalToggle}
-          cancelationLabel="Cancel"
+          confirmation={{
+            onClick: this.handleModalToggle,
+            label: 'Ok',
+          }}
+          cancelation={{
+            onClick: this.handleModalToggle,
+            label: 'Cancel',
+          }}
           isOpen={this.state.isModalOpen}
           onClose={this.handleModalToggle}
         >

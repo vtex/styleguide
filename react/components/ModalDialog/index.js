@@ -5,15 +5,19 @@ import Button from '../Button'
 
 class ModalDialog extends Component {
   handleConfirmation = () => {
-    this.props.handleConfirmation && this.props.handleConfirmation()
+    this.props.confirmation &&
+      this.props.confirmation.onClick &&
+      this.props.confirmation.onClick()
   }
 
   handleCancelation = () => {
-    this.props.handleCancelation && this.props.handleCancelation()
+    this.props.cancelation &&
+      this.props.cancelation.onClick &&
+      this.props.cancelation.onClick()
   }
 
   render() {
-    const { confirmationLabel, cancelationLabel } = this.props
+    const { confirmation, cancelation } = this.props
 
     return (
       <Modal {...this.props}>
@@ -26,7 +30,7 @@ class ModalDialog extends Component {
               variation="tertiary"
               onClick={this.handleCancelation}
             >
-              {cancelationLabel}
+              {cancelation.label}
             </Button>
           </span>
 
@@ -35,7 +39,7 @@ class ModalDialog extends Component {
             variation="primary"
             onClick={this.handleConfirmation}
           >
-            {confirmationLabel}
+            {confirmation.label}
           </Button>
         </div>
       </Modal>
@@ -45,10 +49,14 @@ class ModalDialog extends Component {
 
 ModalDialog.propTypes = {
   children: PropTypes.node,
-  handleConfirmation: PropTypes.func.isRequired,
-  confirmationLabel: PropTypes.string.isRequired,
-  handleCancelation: PropTypes.func.isRequired,
-  cancelationLabel: PropTypes.string.isRequired,
+  confirmation: PropTypes.shape({
+    label: PropTypes.string,
+    onClick: PropTypes.func,
+  }).isRequired,
+  cancelation: PropTypes.shape({
+    label: PropTypes.string,
+    onClick: PropTypes.func,
+  }).isRequired,
 }
 
 export default ModalDialog
