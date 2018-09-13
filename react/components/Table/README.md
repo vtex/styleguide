@@ -1,7 +1,7 @@
 Default
 
 ```js
-const sampleData = require('./sampleData').default.slice(0);
+const sampleData = require('./sampleData').default;
 const defaultSchema = {
     properties: {
       name: {
@@ -58,8 +58,8 @@ class CustomTableExample extends React.Component {
      // I'll just handle sort by 'name', but I could handle multiple properties
     if (sortedBy === 'name') {
       const orderedItems = sortOrder === 'ASC'
-        ? sampleData.sort(this.sortNameAlphapeticallyASC)
-        : sampleData.sort(this.sortNameAlphapeticallyDESC)
+        ? sampleData.slice(0).sort(this.sortNameAlphapeticallyASC)
+        : sampleData.slice(0).sort(this.sortNameAlphapeticallyDESC)
       // the above const could come out of an API call to sort items for example
       this.setState({
         orderedItems,

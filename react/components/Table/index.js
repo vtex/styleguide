@@ -7,20 +7,14 @@ import ArrowUp from '../icon/ArrowUp'
 class Table extends PureComponent {
   toggleSortType = (key) => {
     const { sort: { sortOrder, sortedBy } } = this.props
-    if (sortedBy === key) {
-      if (sortOrder === 'DESC' || !sortOrder) {
-        return {
-          sortOrder: 'ASC',
-          sortedBy: key,
-        }
-      }
+    if (sortedBy !== key || (sortedBy === key && sortOrder !== 'ASC')) {
       return {
-        sortOrder: 'DESC',
+        sortOrder: 'ASC',
         sortedBy: key,
       }
     }
     return {
-      sortOrder: 'ASC',
+      sortOrder: 'DESC',
       sortedBy: key,
     }
   }
