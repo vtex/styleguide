@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 
-- **Table** Sortable columns with clickable Header with opinionated style
+- **Table** Sortable columns with opinionated style for clickable Headers.
 
 ## [6.3.1] - 2018-09-12
 ### Fixed
