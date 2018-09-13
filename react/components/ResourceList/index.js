@@ -16,37 +16,44 @@ class ResourceList extends PureComponent {
   render() {
     const {
       table,
-      exportBtn,
-      importBtn,
+      actions: { download, upload },
       pagination,
       inputSearch,
     } = this.props
-    const showExportBtn = exportBtn && exportBtn.show
-    const showImportBtn = importBtn && importBtn.show
+    const showdownload = download && download.label
+    const showupload = upload && upload.label
 
     return (
       <div className="vtex-resourceList__container">
         <div className="mb5 flex flex-row justify-between w-100">
           <div id="toolbar">
-            {showExportBtn && (
+            {showdownload && (
               // eslint-disable-next-line react/jsx-handler-names
-              <Button variation="tertiary" size="small" onClick={exportBtn.callback}>
+              <Button
+                variation="tertiary"
+                size="small"
+                onClick={download.handleCallback}
+              >
                 <span className="flex align-baseline">
                   <span className="mr3">
                     <IconDownload color="currentColor" />
                   </span>
-                  {exportBtn.label}
+                  {download.label}
                 </span>
               </Button>
             )}
-            {showImportBtn && (
+            {showupload && (
               // eslint-disable-next-line react/jsx-handler-names
-              <Button variation="tertiary" size="small" onClick={importBtn.callback}>
+              <Button
+                variation="tertiary"
+                size="small"
+                onClick={upload.handleCallback}
+              >
                 <span className="flex align-baseline">
                   <span className="mr3">
                     <IconUpload color="currentColor" />
                   </span>
-                  {importBtn.label}
+                  {upload.label}
                 </span>
               </Button>
             )}
@@ -61,7 +68,7 @@ class ResourceList extends PureComponent {
         <Table
           {...table}
           containerClass="vh-100"
-          containerHeight={36 + (64 * table.items.length)}
+          containerHeight={36 + 64 * table.items.length}
         />
 
         {pagination && <Pagination {...pagination} />}
@@ -70,24 +77,20 @@ class ResourceList extends PureComponent {
   }
 }
 
-ResourceList.defaultProps = {
-  exportBtn: { show: false },
-}
-
 ResourceList.propTypes = {
   table: PropTypes.shape({
     items: PropTypes.array,
     schema: PropTypes.object,
   }),
-  exportBtn: PropTypes.shape({
-    show: PropTypes.bool,
-    label: PropTypes.string.isRequired,
-    callback: PropTypes.func.isRequired,
-  }),
-  importBtn: PropTypes.shape({
-    show: PropTypes.bool,
-    label: PropTypes.string.isRequired,
-    callback: PropTypes.func.isRequired,
+  actions: PropTypes.shape({
+    download: PropTypes.shape({
+      label: PropTypes.string,
+      handleCallback: PropTypes.func,
+    }),
+    upload: PropTypes.shape({
+      label: PropTypes.string,
+      handleCallback: PropTypes.func,
+    }),
   }),
   pagination: PropTypes.shape({
     onNextClick: PropTypes.func,
