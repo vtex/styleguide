@@ -38,10 +38,6 @@ class ModalExample extends React.Component {
 
         <Modal
           centered
-          confirmation={this.handleConfirmation}
-          confirmationLabel="Ok"
-          cancelation={this.handleModalToggle}
-          cancelationLabel="Cancel"
           isOpen={this.state.isModalOpen}
           onClose={this.handleModalToggle}
         >
