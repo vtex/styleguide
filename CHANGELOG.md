@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [6.3.2] - 2018-09-13
+### Added
+
+- **Table** Sortable columns with opinionated style for clickable Headers.
+
 ## [6.3.1] - 2018-09-12
 ### Fixed
 - Execute `yarn install` to fix wrong dependencies.

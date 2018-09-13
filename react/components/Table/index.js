@@ -1,8 +1,24 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Column, Table as VirtualTable, AutoSizer } from 'react-virtualized'
+import ArrowDown from '../icon/ArrowDown'
+import ArrowUp from '../icon/ArrowUp'
 
 class Table extends PureComponent {
+  toggleSortType = (key) => {
+    const { sort: { sortOrder, sortedBy } } = this.props
+    if (sortedBy !== key || (sortedBy === key && sortOrder !== 'ASC')) {
+      return {
+        sortOrder: 'ASC',
+        sortedBy: key,
+      }
+    }
+    return {
+      sortOrder: 'DESC',
+      sortedBy: key,
+    }
+  }
+
   render() {
     const {
       schema,
@@ -13,6 +29,8 @@ class Table extends PureComponent {
       onRowClick,
       onRowMouseOver,
       onRowMouseOut,
+      sort: { sortOrder, sortedBy },
+      onSort,
     } = this.props
     const properties = Object.keys(schema.properties)
     // hydrate items with index when 'indexColumn' prop is true
@@ -75,9 +93,27 @@ class Table extends PureComponent {
                     key={index}
                     headerRenderer={
                       headerRenderer ||
-                      function({ label }) {
-                        return <div className="truncate ph4">{label}</div>
-                      }
+                      (({ label }) => {
+                        return (
+                          <div className="truncate ph4">
+                            {schema.properties[key].sortable
+                              ? <span className="pointer c-muted-1 b f6"
+                                onClick={() => {
+                                  onSort(this.toggleSortType(key))
+                                }}>
+                                {`${label} `}
+                                {sortOrder === 'ASC' && sortedBy === key
+                                  ? <ArrowDown size={11} />
+                                  : sortOrder === 'DESC' && sortedBy === key
+                                    ? <ArrowUp size={11} />
+                                    : null
+                                }
+                              </span>
+                              : label
+                            }
+                          </div>
+                        )
+                      })
                     }
                     cellRenderer={
                       cellRenderer ||
@@ -106,6 +142,10 @@ Table.defaultProps = {
   onRowClick: () => {},
   onRowMouseOut: () => {},
   onRowMouseOver: () => {},
+  sort: {
+    sortOrder: null,
+    sortedBy: null,
+  },
 }
 
 Table.propTypes = {
@@ -125,6 +165,13 @@ Table.propTypes = {
   onRowMouseOver: PropTypes.func,
   /** Callback invoked when the mouse leaves a table row. ({ event: Event, index: number, rowData: any }): void */
   onRowMouseOut: PropTypes.func,
+  /** Sort order and which property (key in schema) is table data sorted by. */
+  sort: PropTypes.shape({
+    sortOrder: PropTypes.oneOf(['ASC', 'DESC']),
+    sortedBy: PropTypes.string,
+  }),
+  /** Callback to handle sort ({ sortOrder, sortedBy }) : object */
+  onSort: PropTypes.func,
 }
 
 export default Table
