@@ -15,18 +15,18 @@ class Pagination extends PureComponent {
 
   handleRowsChange = (e, value) => {
     const { rowsOptions } = this.props
-    const optionIndex = rowsOptions.indexOf(parseInt(value))
+    const optionIndex = rowsOptions.indexOf(parseInt(value, 10))
     this.setState({ selectedRowsOptionIndex: optionIndex })
     this.props.onRowsChange && this.props.onRowsChange(e, value)
-  };
+  }
 
   handlePrevPage = e => {
     this.props.onPrevClick && this.props.onPrevClick(e)
-  };
+  }
 
   handleNextPage = e => {
     this.props.onNextClick && this.props.onNextClick(e)
-  };
+  }
 
   createRowOptions = rowsOptions => {
     if (rowsOptions) {
@@ -35,7 +35,7 @@ class Pagination extends PureComponent {
       return opts
     }
     return null
-  };
+  }
 
   render() {
     const { rowsOptions } = this.props
@@ -47,11 +47,11 @@ class Pagination extends PureComponent {
 
     return (
       <div
-        className={
-          `flex flex-row items-center ${rowsOptions ? 'justify-between' : 'justify-end'}`
-        }
+        className={`flex flex-row items-center ${
+          rowsOptions ? 'justify-between' : 'justify-end'
+        }`}
       >
-        {dropdownOptions &&
+        {dropdownOptions && (
           <div className="flex flex-row items-baseline">
             <span className="mr4">{this.props.textShowRows}</span>
             <Dropdown
@@ -60,7 +60,8 @@ class Pagination extends PureComponent {
               value={dropdownOptions[selectedRowsOptionIndex].label}
               onChange={this.handleRowsChange}
             />
-          </div>}
+          </div>
+        )}
 
         <div className="flex flex-row items-center">
           <div>
