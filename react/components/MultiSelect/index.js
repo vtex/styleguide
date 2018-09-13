@@ -112,12 +112,8 @@ export default class MultiSelect extends Component {
       </Tag>
     ))
     const showDropdown = this.state.active && this.state.searchTerm !== ''
-    const emptyState = (
-      <span>
-        No results found for "
-        <span className="fw5">{this.state.searchTerm}</span>
-        ".
-      </span>
+    const emptyState = this.props.emptyState(
+      `<span class="fw5">${this.state.searchTerm}</span>`
     )
     return (
       <div className="relative">
@@ -163,16 +159,21 @@ export default class MultiSelect extends Component {
 }
 
 MultiSelect.defaultProps = {
+  emptyState: term => {
+    return `No results found for "${term}".`
+  },
   placeholder: 'Search...',
   selected: [],
 }
 
 MultiSelect.propTypes = {
+  /** Returns a string that will be shown if no results are found. Usage: emptyState(search term) */
+  emptyState: PropTypes.func,
   /** Label */
   label: PropTypes.string.isRequired,
   /** Called when selected options change. Usage: onChange(selected array) */
   onChange: PropTypes.func.isRequired,
-  /** Called when the search term changes. Returns an array of options to display. Usage: `onSearch(term)` */
+  /** Called when the search term changes. Returns an array of options to display. Usage: `onSearch(search term)` */
   onSearch: PropTypes.func.isRequired,
   /** Search input placeholder */
   placeholder: PropTypes.string,

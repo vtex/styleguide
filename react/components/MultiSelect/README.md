@@ -19,6 +19,9 @@ selectableList = [
   "Light-blue"
 ];
 <MultiSelect
+  emptyState={term => {
+    return `Your search for "${term}" did not find any results. Did you mean: "<span class="fw5">pink</span>"?`;
+  }}
   label="Colors"
   onChange={selected => setState({ selected })}
   onSearch={term =>

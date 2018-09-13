@@ -41,9 +41,10 @@ export default class DropdownList extends PureComponent {
         }
       >
         {this.props.options.length === 0 && (
-          <div className="pv4 ph5 f6 c-on-base bg-base fw4">
-            {this.props.emptyState}
-          </div>
+          <div
+            className="pv4 ph5 f6 c-on-base bg-base fw4"
+            dangerouslySetInnerHTML={{ __html: this.props.emptyState }}
+          />
         )}
         <ul className="ph0 mv0 list">{optionList}</ul>
       </div>
@@ -52,7 +53,6 @@ export default class DropdownList extends PureComponent {
 }
 
 DropdownList.defaultProps = {
-  emptyState: 'Sorry, no options available.',
   focused: '',
   formatOption: opt => {
     return opt
@@ -62,7 +62,7 @@ DropdownList.defaultProps = {
 }
 
 DropdownList.propTypes = {
-  emptyState: PropTypes.any,
+  emptyState: PropTypes.string,
   focused: PropTypes.number,
   formatOption: PropTypes.func,
   onSelect: PropTypes.func,
