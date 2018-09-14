@@ -28,6 +28,15 @@ export default class DropdownList extends PureComponent {
         />
       )
     })
+    const results =
+      this.props.options.length === 0 ? (
+        <div
+          className="pv4 ph5 f6 c-on-base bg-base fw4"
+          dangerouslySetInnerHTML={{ __html: this.props.emptyState }}
+        />
+      ) : (
+        <ul className="ph0 mv0 list">{optionList}</ul>
+      )
 
     return (
       <div
@@ -40,13 +49,12 @@ export default class DropdownList extends PureComponent {
           this.props.onMouseLeave && this.props.onMouseLeave()
         }
       >
-        {this.props.options.length === 0 && (
-          <div
-            className="pv4 ph5 f6 c-on-base bg-base fw4"
-            dangerouslySetInnerHTML={{ __html: this.props.emptyState }}
-          />
+        {this.props.loading && (
+          <div className="pv4 ph5 f6 c-on-base bg-base fw4">
+            {this.props.loadingText}
+          </div>
         )}
-        <ul className="ph0 mv0 list">{optionList}</ul>
+        {!this.props.loading && results}
       </div>
     )
   }
@@ -57,6 +65,8 @@ DropdownList.defaultProps = {
   formatOption: opt => {
     return opt
   },
+  loading: false,
+  loadingText: 'Loading...',
   options: [],
   isVisible: false,
 }
@@ -65,6 +75,8 @@ DropdownList.propTypes = {
   emptyState: PropTypes.string,
   focused: PropTypes.number,
   formatOption: PropTypes.func,
+  loading: PropTypes.bool,
+  loadingText: PropTypes.string,
   onSelect: PropTypes.func,
   onFocus: PropTypes.func,
   onMouseEnter: PropTypes.func,

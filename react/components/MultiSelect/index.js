@@ -13,6 +13,7 @@ export default class MultiSelect extends Component {
       active: false,
       focusedOption: 0,
       hovering: false,
+      loadCount: 0,
       options: [],
       searchTerm: '',
     }
@@ -47,12 +48,22 @@ export default class MultiSelect extends Component {
 
   handleSearch = event => {
     const searchTerm = event.target.value
-    const options = this.props.onSearch(searchTerm)
-    this.setState({
-      searchTerm: searchTerm,
-      focusedOption: 0,
-      options: [...options],
-    })
+    this.setState(
+      prevState => {
+        return {
+          loadCount: prevState.loadCount + 1,
+          searchTerm,
+          focusedOption: 0,
+          options: [],
+        }
+      },
+      async () => {
+        const options = await this.props.onSearch(searchTerm)
+        this.setState(prevState => {
+          return { loadCount: prevState.loadCount - 1, options }
+        })
+      }
+    )
   }
 
   handleSelect = index => {
@@ -146,6 +157,7 @@ export default class MultiSelect extends Component {
               '<span class="fw5">$&</span>'
             )
           }
+          loading={this.state.loadCount !== 0}
           onFocus={opt => this.setState({ focusedOption: opt })}
           onMouseEnter={() => this.setState({ hovering: true })}
           onMouseLeave={() => this.setState({ hovering: false })}

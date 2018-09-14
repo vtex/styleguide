@@ -18,17 +18,22 @@ selectableList = [
   "Dark-red",
   "Light-blue"
 ];
+function sleep(ms) {
+  return new Promise(r => setTimeout(r, ms));
+}
+async function onSearch(term) {
+  await sleep(1000);
+  return selectableList
+    .filter(tag => tag.toLowerCase().includes(term.toLowerCase()))
+    .filter(tag => !state.selected.includes(tag));
+}
 <MultiSelect
   emptyState={term => {
     return `Your search for "${term}" did not find any results. Did you mean: "<span class="fw5">pink</span>"?`;
   }}
   label="Colors"
   onChange={selected => setState({ selected })}
-  onSearch={term =>
-    selectableList
-      .filter(tag => tag.toLowerCase().includes(term.toLowerCase()))
-      .filter(tag => !state.selected.includes(tag))
-  }
+  onSearch={onSearch}
   selected={state.selected}
 />;
 ```
