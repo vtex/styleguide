@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Input from '../Input'
 import SearchIcon from '../icon/Search'
-import DenyIcon from '../icon/Deny'
+import FailureIcon from '../icon/Failure'
 
 class InputSearch extends Component {
   handleClickClear = event => {
@@ -30,12 +30,12 @@ class InputSearch extends Component {
               <span
                 tabIndex={0}
                 onClick={this.handleClickClear}
-                className="pointer c-link"
+                className="pointer c-on-base"
               >
-                <DenyIcon size={iconSize} />
+                <FailureIcon solid size={iconSize} />
               </span>
             ) : (
-              <span className="c-link">
+              <span className="c-muted-2">
                 <SearchIcon size={iconSize} />
               </span>
             )}
