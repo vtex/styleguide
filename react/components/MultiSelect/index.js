@@ -122,7 +122,7 @@ export default class MultiSelect extends Component {
         {tag}
       </Tag>
     ))
-    const showDropdown = this.state.active && this.state.searchTerm !== ''
+    const isDropdownVisible = this.state.active && this.state.searchTerm !== ''
     const emptyState = this.props.emptyState(
       `<span class="fw5">${this.state.searchTerm}</span>`
     )
@@ -132,7 +132,7 @@ export default class MultiSelect extends Component {
           {this.props.label}
           <div
             className={`${
-              showDropdown ? 'br--top ' : ''
+              isDropdownVisible ? 'br--top ' : ''
             }flex flex-wrap mt3 b--muted-4 br2 b--solid bw1`}
           >
             <input
@@ -164,7 +164,7 @@ export default class MultiSelect extends Component {
           onMouseLeave={() => this.setState({ hovering: false })}
           onSelect={this.handleSelect}
           options={this.state.options}
-          isVisible={showDropdown}
+          isVisible={isDropdownVisible}
         />
       </div>
     )
