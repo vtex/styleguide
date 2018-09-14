@@ -158,6 +158,7 @@ export default class MultiSelect extends Component {
             )
           }
           loading={this.state.loadCount !== 0}
+          loadingText={this.props.loadingText}
           onFocus={opt => this.setState({ focusedOption: opt })}
           onMouseEnter={() => this.setState({ hovering: true })}
           onMouseLeave={() => this.setState({ hovering: false })}
@@ -183,6 +184,8 @@ MultiSelect.propTypes = {
   emptyState: PropTypes.func,
   /** Label */
   label: PropTypes.string.isRequired,
+  /** Text that shows during load */
+  loadingText: PropTypes.string,
   /** Called when selected options change. Usage: onChange(selected array) */
   onChange: PropTypes.func.isRequired,
   /** Called when the search term changes. Returns an array of options to display. Usage: `onSearch(search term)` */
