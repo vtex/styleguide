@@ -2,23 +2,23 @@ Simple Use
 
 ```js
 initialState = {
-  selected: ["Green", "Red"]
+  selected: [{ label: "Green", value: "green" }, { label: "Red", value: "red" }]
 };
 options = [
-  "White",
-  "Black",
-  "Grey",
-  "Yellow",
-  "Red",
-  "Blue",
-  "Green",
-  "Brown",
-  "Pink",
-  "Orange",
-  "Purple",
-  "Dark-blue",
-  "Dark-red",
-  "Light-blue"
+  { label: "White", value: "white" },
+  { label: "Black", value: "black" },
+  { label: "Grey", value: "grey" },
+  { label: "Yellow", value: "yellow" },
+  { label: "Red", value: "red" },
+  { label: "Blue", value: "blue" },
+  { label: "Green", value: "green" },
+  { label: "Brown", value: "brown" },
+  { label: "Pink", value: "pink" },
+  { label: "Orange", value: "orange" },
+  { label: "Purple", value: "purple" },
+  { label: "Dark-blue", value: "dark-blue" },
+  { label: "Dark-red", value: "dark-red" },
+  { label: "Light-blue", value: "light-blue" }
 ];
 <MultiSelect
   label="Colors"
@@ -32,23 +32,23 @@ Simulating API
 
 ```js
 initialState = {
-  selected: ["Green", "Red"]
+  selected: [{ label: "Green", value: "green" }, { label: "Red", value: "red" }]
 };
 options = [
-  "White",
-  "Black",
-  "Grey",
-  "Yellow",
-  "Red",
-  "Blue",
-  "Green",
-  "Brown",
-  "Pink",
-  "Orange",
-  "Purple",
-  "Dark-blue",
-  "Dark-red",
-  "Light-blue"
+  { label: "White", value: "white" },
+  { label: "Black", value: "black" },
+  { label: "Grey", value: "grey" },
+  { label: "Yellow", value: "yellow" },
+  { label: "Red", value: "red" },
+  { label: "Blue", value: "blue" },
+  { label: "Green", value: "green" },
+  { label: "Brown", value: "brown" },
+  { label: "Pink", value: "pink" },
+  { label: "Orange", value: "orange" },
+  { label: "Purple", value: "purple" },
+  { label: "Dark-blue", value: "dark-blue" },
+  { label: "Dark-red", value: "dark-red" },
+  { label: "Light-blue", value: "light-blue" }
 ];
 function sleep(ms) {
   return new Promise(r => setTimeout(r, ms));
@@ -56,8 +56,15 @@ function sleep(ms) {
 async function filter(term) {
   await sleep(1000);
   return options
-    .filter(tag => tag.toLowerCase().includes(term.toLowerCase()))
-    .filter(tag => !state.selected.includes(tag));
+    .filter(tag => tag.label.toLowerCase().includes(term.toLowerCase()))
+    .filter(tag => {
+      for (var i = 0; i < state.selected.length; i++) {
+        if (state.selected[i].value === tag.value) {
+          return false;
+        }
+      }
+      return true;
+    });
 }
 <MultiSelect
   emptyState={term => {

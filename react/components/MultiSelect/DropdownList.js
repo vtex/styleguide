@@ -63,7 +63,7 @@ export default class DropdownList extends PureComponent {
 DropdownList.defaultProps = {
   focused: '',
   formatOption: opt => {
-    return opt
+    return opt.label
   },
   loading: false,
   loadingText: 'Loading...',

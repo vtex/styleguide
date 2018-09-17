@@ -91,8 +91,15 @@ export default class MultiSelect extends Component {
       return this.props.filter(term)
     }
     return this.props.options
-      .filter(opt => opt.toLowerCase().includes(term.toLowerCase()))
-      .filter(opt => !this.props.selected.includes(opt))
+      .filter(opt => opt.label.toLowerCase().includes(term.toLowerCase()))
+      .filter(opt => {
+        for (var i = 0; i < this.props.selected.length; i++) {
+          if (this.props.selected[i].value === opt.value) {
+            return false
+          }
+        }
+        return true
+      })
   }
 
   moveFocusDown = () => {
@@ -131,7 +138,7 @@ export default class MultiSelect extends Component {
           this.handleUnselect(index)
         }}
       >
-        {tag}
+        {tag.label}
       </Tag>
     ))
     const isDropdownVisible = this.state.active && this.state.searchTerm !== ''
@@ -164,7 +171,7 @@ export default class MultiSelect extends Component {
           emptyState={emptyState}
           focused={this.state.focusedOption}
           formatOption={opt =>
-            opt.replace(
+            opt.label.replace(
               new RegExp(this.state.searchTerm, 'i'),
               '<span class="fw5">$&</span>'
             )
