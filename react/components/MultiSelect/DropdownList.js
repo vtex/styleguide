@@ -40,7 +40,7 @@ export default class DropdownList extends PureComponent {
 
     return (
       <div
-        className="b--muted-4 br--bottom br2 b--solid bw1 absolute w-100"
+        className="b--muted-4 br--bottom br2 b--solid bw1 absolute w-100 z-max"
         style={{ borderTop: 'none' }}
         onMouseEnter={() =>
           this.props.onMouseEnter && this.props.onMouseEnter()
