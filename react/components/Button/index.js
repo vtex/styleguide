@@ -18,7 +18,7 @@ class Button extends Component {
 
     const Tag = icon ? 'div' : 'button'
 
-    let classes = 'vtex-button bw1 ba fw5 ttu br2 fw4 v-mid relative '
+    let classes = 'vtex-button bw1 ba fw5 ttu br2 fw4 v-mid relative nowrap '
     let loaderSize = 15
 
     classes += icon ? 'icon-button dib ' : ''
