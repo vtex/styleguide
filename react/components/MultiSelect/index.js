@@ -11,10 +11,10 @@ export default class MultiSelect extends Component {
 
     this.state = {
       active: false,
+      filteredOptions: [],
       focusedOption: 0,
       hovering: false,
       loadCount: 0,
-      options: [],
       searchTerm: '',
     }
   }
@@ -54,20 +54,23 @@ export default class MultiSelect extends Component {
           loadCount: prevState.loadCount + 1,
           searchTerm,
           focusedOption: 0,
-          options: [],
+          filteredOptions: [],
         }
       },
       async () => {
-        const options = await this.props.onSearch(searchTerm)
+        const filteredOptions = await this.filter(searchTerm)
         this.setState(prevState => {
-          return { loadCount: prevState.loadCount - 1, options }
+          return { loadCount: prevState.loadCount - 1, filteredOptions }
         })
       }
     )
   }
 
   handleSelect = index => {
-    this.props.onChange([...this.props.selected, this.state.options[index]])
+    this.props.onChange([
+      ...this.props.selected,
+      this.state.filteredOptions[index],
+    ])
     this.setState(
       {
         searchTerm: '',
@@ -83,17 +86,19 @@ export default class MultiSelect extends Component {
     this.searchInput.current.focus()
   }
 
-  selectFocused = () => {
-    const index = this.state.focusedOption
-    if (this.state.options.length > 0) {
-      this.handleSelect(index)
+  filter = term => {
+    if (this.props.filter) {
+      return this.props.filter(term)
     }
+    return this.props.options
+      .filter(opt => opt.toLowerCase().includes(term.toLowerCase()))
+      .filter(opt => !this.props.selected.includes(opt))
   }
 
-  unselectLast = () => {
-    const length = this.props.selected.length
-    if (length > 0) {
-      this.handleUnselect(length - 1)
+  moveFocusDown = () => {
+    const newFocus = this.state.focusedOption + 1
+    if (newFocus <= this.state.filteredOptions.length - 1) {
+      this.setState({ focusedOption: newFocus })
     }
   }
 
@@ -104,10 +109,17 @@ export default class MultiSelect extends Component {
     }
   }
 
-  moveFocusDown = () => {
-    const newFocus = this.state.focusedOption + 1
-    if (newFocus <= this.state.options.length - 1) {
-      this.setState({ focusedOption: newFocus })
+  selectFocused = () => {
+    const index = this.state.focusedOption
+    if (this.state.filteredOptions.length > 0) {
+      this.handleSelect(index)
+    }
+  }
+
+  unselectLast = () => {
+    const length = this.props.selected.length
+    if (length > 0) {
+      this.handleUnselect(length - 1)
     }
   }
 
@@ -163,7 +175,7 @@ export default class MultiSelect extends Component {
           onMouseEnter={() => this.setState({ hovering: true })}
           onMouseLeave={() => this.setState({ hovering: false })}
           onSelect={this.handleSelect}
-          options={this.state.options}
+          options={this.state.filteredOptions}
           isVisible={isDropdownVisible}
         />
       </div>
@@ -175,6 +187,7 @@ MultiSelect.defaultProps = {
   emptyState: term => {
     return `No results found for "${term}".`
   },
+  options: [],
   placeholder: 'Search...',
   selected: [],
 }
@@ -182,14 +195,16 @@ MultiSelect.defaultProps = {
 MultiSelect.propTypes = {
   /** Returns a string that will be shown if no results are found. Usage: emptyState(search term) */
   emptyState: PropTypes.func,
+  /** Returns an array of filtered results. Usage: filter(search term) */
+  filter: PropTypes.func,
   /** Label */
   label: PropTypes.string.isRequired,
   /** Text that shows during load */
   loadingText: PropTypes.string,
   /** Called when selected options change. Usage: onChange(selected array) */
   onChange: PropTypes.func.isRequired,
-  /** Called when the search term changes. Returns an array of options to display. Usage: `onSearch(search term)` */
-  onSearch: PropTypes.func.isRequired,
+  /** List of selectable options. */
+  options: PropTypes.array,
   /** Search input placeholder */
   placeholder: PropTypes.string,
   /** List of selected options, which will be shown as tags */
