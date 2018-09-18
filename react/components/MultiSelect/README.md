@@ -31,6 +31,7 @@ options = [
   <MultiSelect
     disabled
     label="Disabled"
+    placeholder=""
     selected={[
       { label: "Black", value: "black" },
       { label: "Pink", value: "pink" }

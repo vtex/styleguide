@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { debounce } from 'lodash'
 
 import Tag from './Tag'
 import DropdownList from './DropdownList'
@@ -14,10 +15,19 @@ export default class MultiSelect extends Component {
       filteredOptions: [],
       focusedOption: 0,
       hovering: false,
-      loadCount: 0,
+      loading: false,
       searchTerm: '',
     }
   }
+
+  handleFilter = debounce(
+    async term => {
+      const filteredOptions = await this.filter(term)
+      this.setState({ loading: false, filteredOptions })
+    },
+    this.props.debounceWait,
+    { trailing: true }
+  )
 
   handleFocus = () => {
     this.setState({ active: true })
@@ -49,19 +59,16 @@ export default class MultiSelect extends Component {
   handleSearch = event => {
     const searchTerm = event.target.value
     this.setState(
-      prevState => {
+      () => {
         return {
-          loadCount: prevState.loadCount + 1,
           searchTerm,
           focusedOption: 0,
           filteredOptions: [],
+          loading: true,
         }
       },
-      async () => {
-        const filteredOptions = await this.filter(searchTerm)
-        this.setState(prevState => {
-          return { loadCount: prevState.loadCount - 1, filteredOptions }
-        })
+      () => {
+        this.handleFilter(searchTerm)
       }
     )
   }
@@ -184,7 +191,7 @@ export default class MultiSelect extends Component {
               '<span class="fw5">$&</span>'
             )
           }
-          loading={this.state.loadCount !== 0}
+          loading={this.state.loading}
           loadingText={loadingText}
           onFocus={opt => this.setState({ focusedOption: opt })}
           onMouseEnter={() => this.setState({ hovering: true })}
@@ -199,6 +206,7 @@ export default class MultiSelect extends Component {
 }
 
 MultiSelect.defaultProps = {
+  debounceWait: 275,
   disabled: false,
   emptyState: term => {
     return `No results found for "${term}".`
@@ -209,6 +217,8 @@ MultiSelect.defaultProps = {
 }
 
 MultiSelect.propTypes = {
+  /** Wait (in ms) before invoking the filter function. The cheaper the call, the lower this value can be. */
+  debounceWait: PropTypes.number,
   /** True if the component should be disabled */
   disabled: PropTypes.bool,
   /** Returns a string that will be shown if no results are found. Usage: emptyState(search term) */
