@@ -21,18 +21,26 @@ export default class Tag extends Component {
   }
 
   render() {
-    const hoverClass = this.state.hover ? 'c-danger' : 'c-on-action-secondary'
+    const { children, disabled, onClick } = this.props
+    const classes = disabled
+      ? ' c-muted-2 bg-muted-4 '
+      : ' pointer bg-action-secondary c-on-action-secondary '
+    let hoverClass = ''
+    if (!disabled) {
+      hoverClass = this.state.hover ? 'c-danger' : 'c-on-action-secondary'
+    }
     return (
       <button
-        className="pointer br-pill bn dib f7 fw4 pv2 pl4 mh3 mv3 bg-action-secondary c-on-action-secondary"
+        className={`br-pill bn dib f7 fw4 pv2 pl4 mh3 mv3${classes}`}
+        disabled={disabled}
         onClick={() => {
-          this.props.onClick && this.props.onClick()
+          onClick && onClick()
         }}
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
       >
         <div className="flex items-center justify-center">
-          <span className="self-center">{this.props.children}</span>{' '}
+          <span className="self-center">{children}</span>{' '}
           <div className={`${hoverClass} pl3 pt1 self-center`}>
             <Close color="currentColor" size={14} />
           </div>
@@ -42,7 +50,12 @@ export default class Tag extends Component {
   }
 }
 
+Tag.defaultProps = {
+  disabled: false,
+}
+
 Tag.propTypes = {
   children: PropTypes.string.isRequired,
+  disabled: PropTypes.bool,
   onClick: PropTypes.func,
 }

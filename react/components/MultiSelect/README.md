@@ -20,12 +20,23 @@ options = [
   { label: "Dark-red", value: "dark-red" },
   { label: "Light-blue", value: "light-blue" }
 ];
-<MultiSelect
-  label="Colors"
-  options={options}
-  onChange={selected => setState({ selected })}
-  selected={state.selected}
-/>;
+<div>
+  <MultiSelect
+    label="Colors"
+    options={options}
+    onChange={selected => setState({ selected })}
+    selected={state.selected}
+  />
+  <br />
+  <MultiSelect
+    disabled
+    label="Disabled"
+    selected={[
+      { label: "Black", value: "black" },
+      { label: "Pink", value: "pink" }
+    ]}
+  />
+</div>;
 ```
 
 Simulating API
