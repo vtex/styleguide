@@ -31,6 +31,7 @@ class Table extends PureComponent {
       onRowMouseOut,
       sort: { sortOrder, sortedBy },
       onSort,
+      updateTableKey,
     } = this.props
     const properties = Object.keys(schema.properties)
     // hydrate items with index when 'indexColumn' prop is true
@@ -45,6 +46,7 @@ class Table extends PureComponent {
         <AutoSizer>
           {({ width, height }) => (
             <VirtualTable
+              updateTableKey={updateTableKey}
               width={width}
               height={height}
               headerHeight={36}
@@ -172,6 +174,8 @@ Table.propTypes = {
   }),
   /** Callback to handle sort ({ sortOrder, sortedBy }) : object */
   onSort: PropTypes.func,
+  /** Forces table re-render when changed */
+  updateTableKey: PropTypes.string,
 }
 
 export default Table
