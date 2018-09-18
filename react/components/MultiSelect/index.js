@@ -131,7 +131,12 @@ export default class MultiSelect extends Component {
   }
 
   render() {
-    const tags = this.props.selected.map((tag, index) => (
+    const { label, loadingText, placeholder, selected } = this.props
+    const emptyState = this.props.emptyState(
+      `<span class="fw5">${this.state.searchTerm}</span>`
+    )
+    const isDropdownVisible = this.state.active && this.state.searchTerm !== ''
+    const tags = selected.map((tag, index) => (
       <Tag
         key={index}
         onClick={() => {
@@ -141,17 +146,12 @@ export default class MultiSelect extends Component {
         {tag.label}
       </Tag>
     ))
-    const isDropdownVisible = this.state.active && this.state.searchTerm !== ''
-    const emptyState = this.props.emptyState(
-      `<span class="fw5">${this.state.searchTerm}</span>`
-    )
+
     return (
       <div className="relative">
         <label>
-          {this.props.label && (
-            <span className="vtex-input__label db mb3 w-100">
-              {this.props.label}
-            </span>
+          {label && (
+            <span className="vtex-input__label db mb3 w-100">{label}</span>
           )}
           <div
             className={`${
@@ -164,7 +164,7 @@ export default class MultiSelect extends Component {
               onChange={this.handleSearch}
               onFocus={this.handleFocus}
               onKeyDown={this.handleKeyPress}
-              placeholder={this.props.placeholder}
+              placeholder={placeholder}
               ref={this.searchInput}
               value={this.state.searchTerm}
             />
@@ -181,7 +181,7 @@ export default class MultiSelect extends Component {
             )
           }
           loading={this.state.loadCount !== 0}
-          loadingText={this.props.loadingText}
+          loadingText={loadingText}
           onFocus={opt => this.setState({ focusedOption: opt })}
           onMouseEnter={() => this.setState({ hovering: true })}
           onMouseLeave={() => this.setState({ hovering: false })}
