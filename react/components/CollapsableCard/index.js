@@ -50,10 +50,10 @@ export default class CollapsableCard extends Component {
               </div>
             </button>
           </h2>
+          <div className="pa5 mt6 nh6 nb6 c-muted-1 bt b--muted-5" hidden={!open}>
+            {children}
+          </div>
         </Card>
-        <div className="pa5 c-muted-1" hidden={!open}>
-          {children}
-        </div>
       </div>
     )
   }
