@@ -1,9 +1,9 @@
 Default card
 
 ```jsx
-<CollapsableCard label="Click me">
+<CollapsibleCard label="Click me">
   Hello there
-</CollapsableCard>
+</CollapsibleCard>
 ```
 
 With custom icons
@@ -12,7 +12,7 @@ With custom icons
 const ArrowDown = require('../icon/ArrowDown').default
 const ArrowUp = require('../icon/ArrowUp').default
 
-;<CollapsableCard label="I'm another collapsable card" openIcon={ArrowDown} closeIcon={ArrowUp}>
+;<CollapsibleCard label="I'm another collapsible card" openIcon={ArrowDown} closeIcon={ArrowUp}>
   Lorem ipsum dolor sit amet
-</CollapsableCard>
+</CollapsibleCard>
 ```

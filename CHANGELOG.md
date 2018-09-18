@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- **CollapsableCard** New component
+- **CollapsibleCard** New component
 
 ## [6.3.2] - 2018-09-13
 ### Added

@@ -5,7 +5,7 @@ import Card from '../Card'
 import CaretDown from '../icon/CaretDown'
 import CaretUp from '../icon/CaretUp'
 
-export default class CollapsableCard extends Component {
+export default class CollapsibleCard extends Component {
   state = {
     open: false,
   }
@@ -39,7 +39,7 @@ export default class CollapsableCard extends Component {
     const { open } = this.state
 
     return (
-      <div className="vtex-collapsable-card">
+      <div className="vtex-collapsible-card">
         <Card>
           <h2 className="ma0 c-on-base f4 normal flex justify-between w-100 items-center pointer">
             <button style={{ all: 'inherit' }} onClick={this.handleClick} aria-expanded={open}>
