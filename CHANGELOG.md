@@ -7,19 +7,28 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- **MultiSelect** New component
+
 ## [6.3.3] - 2018-09-18
 
 ## [6.3.2] - 2018-09-13
+
 ### Added
 
 - **Table** Sortable columns with opinionated style for clickable Headers.
 
 ## [6.3.1] - 2018-09-12
+
 ### Fixed
+
 - Execute `yarn install` to fix wrong dependencies.
 
 ## [6.3.0] - 2018-09-12
+
 ### Added
+
 - **Slider** New component
 
 ## [6.2.0] - 2018-09-06
