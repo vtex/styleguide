@@ -73,6 +73,7 @@ export default class MultiSelect extends Component {
     ])
     this.setState(
       {
+        hovering: false,
         searchTerm: '',
       },
       () => {
