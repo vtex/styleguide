@@ -25,7 +25,7 @@ export default class MultiSelect extends Component {
       const filteredOptions = await this.filter(term)
       this.setState({ loading: false, filteredOptions })
     },
-    this.props.debounceWait,
+    275,
     { trailing: true }
   )
 
@@ -206,7 +206,6 @@ export default class MultiSelect extends Component {
 }
 
 MultiSelect.defaultProps = {
-  debounceWait: 275,
   disabled: false,
   emptyState: term => {
     return `No results found for "${term}".`
@@ -217,8 +216,6 @@ MultiSelect.defaultProps = {
 }
 
 MultiSelect.propTypes = {
-  /** Wait (in ms) before invoking the filter function. The cheaper the call, the lower this value can be. */
-  debounceWait: PropTypes.number,
   /** True if the component should be disabled */
   disabled: PropTypes.bool,
   /** Returns a string that will be shown if no results are found. Usage: emptyState(search term) */
