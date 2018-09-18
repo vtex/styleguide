@@ -148,7 +148,11 @@ export default class MultiSelect extends Component {
     return (
       <div className="relative">
         <label>
-          {this.props.label}
+          {this.props.label && (
+            <span className="vtex-input__label db mb3 w-100">
+              {this.props.label}
+            </span>
+          )}
           <div
             className={`${
               isDropdownVisible ? 'br--top ' : ''
@@ -205,7 +209,7 @@ MultiSelect.propTypes = {
   /** Returns an array of filtered results. Usage: filter(search term) */
   filter: PropTypes.func,
   /** Label */
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   /** Text that shows during load */
   loadingText: PropTypes.string,
   /** Called when selected options change. Usage: onChange(selected array) */
