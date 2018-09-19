@@ -77,6 +77,10 @@ class ResourceList extends PureComponent {
   }
 }
 
+ResourceList.defaultProps = {
+  actions: {},
+}
+
 ResourceList.propTypes = {
   table: PropTypes.shape({
     items: PropTypes.array,
