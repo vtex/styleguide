@@ -155,10 +155,6 @@ const demoLabel = 'pb3 ttu gray f6'
         <Plus size={demoSize} />
       </td>
       <td>
-        <div className={demoLabel}>Plus Lines</div>
-        <PlusLines size={demoSize} />
-      </td>
-      <td>
         <div className={demoLabel}>Save</div>
         <Save size={demoSize} />
       </td>
@@ -187,6 +183,10 @@ const demoLabel = 'pb3 ttu gray f6'
       <td>
         <div className={demoLabel}>Warning solid</div>
         <Warning solid size={demoSize} />
+      </td>
+      <td>
+        <div className={demoLabel}>Plus Lines</div>
+        <PlusLines size={demoSize} />
       </td>
       <td />
     </tr>
