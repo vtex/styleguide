@@ -5,6 +5,11 @@ import VisibilityOn from '../icon/VisibilityOn'
 import VisibilityOff from '../icon/VisibilityOff'
 
 class PasswordInput extends Component {
+  static iconSizes = {
+    default: 16,
+    large: 18,
+    'x-large': 22,
+  }
   state = {
     showPassword: false,
   }
@@ -13,7 +18,7 @@ class PasswordInput extends Component {
 
   render() {
     const size = this.props.size
-    const iconSize = size === 'large' ? 18 : size === 'x-large' ? 22 : 16
+    const iconSize = PasswordInput.iconSizes[size] || PasswordInput.iconSizes.default
 
     return (
       <Input
