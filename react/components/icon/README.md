@@ -22,6 +22,7 @@ const Filter = require('./Filter').default
 const Help = require('./Help').default
 const Link = require('./Link').default
 const Plus = require('./Plus').default
+const PlusLines = require('./PlusLines').default
 const Save = require('./Save').default
 const Search = require('./Search').default
 const Success = require('./Success').default
@@ -146,8 +147,16 @@ const demoLabel = 'pb3 ttu gray f6'
         <Link size={demoSize} />
       </td>
       <td>
+        <div className={demoLabel}>Plus Solid</div>
+        <Plus solid size={demoSize} />
+      </td>
+      <td>
         <div className={demoLabel}>Plus</div>
         <Plus size={demoSize} />
+      </td>
+      <td>
+        <div className={demoLabel}>Plus Lines</div>
+        <PlusLines size={demoSize} />
       </td>
       <td>
         <div className={demoLabel}>Save</div>
