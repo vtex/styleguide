@@ -19,10 +19,10 @@ class ResourceList extends PureComponent {
     }
   }
 
-  cloneSchema = (schema) => {
+  cloneSchema = (schema, showAll = false) => {
     const clonedSchema = { properties: {} }
     Object.keys(schema.properties).forEach(key => {
-      if (!schema.properties[key].hidden) {
+      if (!schema.properties[key].hidden || showAll) {
         clonedSchema.properties[key] = { ...schema.properties[key] }
       }
     })
@@ -47,7 +47,7 @@ class ResourceList extends PureComponent {
 
   handleShowAllColumns = () => {
     const { table: { schema } } = this.props
-    const clonedSchema = this.cloneSchema(schema)
+    const clonedSchema = this.cloneSchema(schema, true)
     this.setState({ clonedSchema })
   }
 
