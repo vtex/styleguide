@@ -28,11 +28,12 @@ const Save = require('./Save').default
 const Search = require('./Search').default
 const Success = require('./Success').default
 const Upload = require('./Upload').default
+const VisibilityOff = require('./VisibilityOff').default
+const VisibilityOn = require('./VisibilityOn').default
 const Warning = require('./Warning').default
 
 const demoSize = 20
 const demoLabel = 'pb3 code c-muted-1 f6'
-
 ;<table className="w-100">
   <tbody>
     <tr>
@@ -174,6 +175,25 @@ const demoLabel = 'pb3 code c-muted-1 f6'
         <div className={demoLabel}>Success (solid)</div>
         <Success solid size={demoSize} />
       </td>
+      <td>
+        <div className={demoLabel}>Visibility On</div>
+        <VisibilityOn size={demoSize} />
+      </td>
+      <td>
+        <div className={demoLabel}>Visibility On (solid)</div>
+        <VisibilityOn solid size={demoSize} />
+      </td>
+      <td>
+        <div className={demoLabel}>Visibility Off</div>
+        <VisibilityOff size={demoSize} />
+      </td>
+      <td>
+        <div className={demoLabel}>Visibility Off (solid)</div>
+        <VisibilityOff solid size={demoSize} />
+      </td>
+      <td />
+    </tr>
+    <tr>
       <td>
         <div className={demoLabel}>Warning</div>
         <Warning size={demoSize} />
