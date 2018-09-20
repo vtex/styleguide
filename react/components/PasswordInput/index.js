@@ -17,8 +17,7 @@ class PasswordInput extends Component {
   toggle = () => this.setState(state => ({ showPassword: !state.showPassword }))
 
   render() {
-    const size = this.props.size
-    const iconSize = PasswordInput.iconSizes[size] || PasswordInput.iconSizes.default
+    const iconSize = PasswordInput.iconSizes[this.props.size] || PasswordInput.iconSizes.default
 
     return (
       <Input
