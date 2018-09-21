@@ -1,170 +1,32 @@
 import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
-import Button from '../Button'
-import CloseIcon from '../icon/Close'
+import Toast from './Toast'
+import isString from 'lodash/isString'
 
-let container = null
+const ToastContext = React.createContext({
+  showToast: () => {},
+  hideToast: () => {},
+})
 
-class Toast extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      isOpen: false,
+class ToastProvider extends Component {
+  state = {
+    toast: null,
+    nextToast: null,
+    toastVisible: true,
+  }
+
+  showToast = (args) => {
+    if (isString(args)) {
+      args = { message: args }
     }
-
-    this.transitionDuration = 180
-  }
-
-  componentDidMount() {
-    if (this.props.visible) {
-      setTimeout(() => {
-        this.open()
-      }, 10)
-
-      this.startAutoClose()
-    }
-  }
-
-  startAutoClose = () => {
-    this.stopAutoClose()
-    this.autoCloseTimeout = setTimeout(this.close, 3000)
-  }
-
-  stopAutoClose = () => {
-    clearTimeout(this.autoCloseTimeout)
-    this.autoCloseTimeout = null
-  }
-
-  handleMouseOver = () => {
-    this.stopAutoClose()
-  }
-
-  handleMouseOut = () => {
-    this.startAutoClose()
-  }
-
-  handleCloseClick = () => {
-    this.close()
-  }
-
-  close = () => {
-    setTimeout(() => {
-      this.props.onClose()
-    }, this.transitionDuration)
-
-    this.setState({
-      isOpen: false,
-    })
-  }
-
-  open = () => {
-    this.setState({
-      isOpen: true,
-    })
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (!this.props.visible && prevProps.visible) {
-      this.close()
-      this.stopAutoClose()
-    } else if (this.props.visible && !prevProps.visible) {
-      this.open()
-      this.startAutoClose()
-    }
-  }
-
-  render() {
-    const { isOpen } = this.state
-    const { onClose, message, action } = this.props
-    const handleActionClick = (action && action.onClick) || undefined
-
-    return (
-      <div
-        className="absolute bottom-0 left-0 z-5 ma7-ns mb0-s w-100 w-30-ns"
-        onMouseOver={this.handleMouseOver}
-        onMouseOut={this.handleMouseOut}
-        style={{
-          pointerEvents: 'all',
-          transition: `transform ${this.transitionDuration}ms ${isOpen ? 'ease-out' : 'ease-in'}`,
-          transform: `translate3d(0, ${isOpen ? 0 : '170%'}, 0)`,
-        }}
-      >
-        <div
-          className="vtex-alert flex justify-between f5 bg-near-black white pa5 br2-ns shadow-5"
-        >
-          <div className="flex-ns flex-grow-1">
-            <div className="flex items-center flex-grow-1">
-              <div className="pr5">
-                {message}
-              </div>
-            </div>
-
-            {action &&
-              action.onClick &&
-              action.label && (
-                <div className="flex flex-grow-1 justify-end">
-                  <div className="nt4-ns nb4">
-                    <Button variation="tertiary" onClick={handleActionClick}>
-                      {action.label}
-                    </Button>
-                  </div>
-                </div>
-              )}
-          </div>
-          {onClose && (
-            <div
-              className="vtex-alert__close-icon pointer flex items-center pa3 white nr3 nv3"
-              onClick={this.handleCloseClick}
-            >
-              <CloseIcon color="currentColor" size={10} />
-            </div>
-          )}
-        </div>
-      </div>
-    )
-  }
-}
-
-Toast.defaultProps = {
-  autoClose: 3000,
-}
-
-Toast.propTypes = {
-  autoClose: PropTypes.number,
-  onClose: PropTypes.func.isRequired,
-  message: PropTypes.string.isRequired,
-  action: PropTypes.shape({
-    label: PropTypes.string.isRequired,
-    onClick: PropTypes.func.isRequired,
-  }),
-  visible: PropTypes.bool,
-}
-
-class ToastContainer extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      toast: null,
-      nextToast: null,
-      toastVisible: true,
-    }
-  }
-
-  componentDidMount() {
-    container = this
-  }
-
-  componentWillUnmount() {
-    container = null
-  }
-
-  showToast = (message, action) => {
-    console.log({ action })
+    const { message = '', duration, action } = args
     if (this.state.toast) {
+      // If there is a toast present already, queue up the next toast
+      // It will be displayed when the current toast is closed, on handleToastClose
       this.setState({
         nextToast: {
           message,
+          duration,
           action,
         },
       })
@@ -173,6 +35,7 @@ class ToastContainer extends Component {
       this.setState({
         toast: {
           message,
+          duration,
           action,
         },
         toastVisible: true,
@@ -189,6 +52,8 @@ class ToastContainer extends Component {
   handleToastClose = () => {
     this.setState(state => {
       return ({
+        // If there is a toast queued up, shows it.
+        // Otherwise, nextToast will be null, and state.toast will be cleared up
         toast: state.nextToast,
         toastVisible: !!state.nextToast,
         nextToast: null,
@@ -198,28 +63,56 @@ class ToastContainer extends Component {
 
   render() {
     const { toast } = this.state
+    const { children } = this.props
     return (
-      <div
-        className="fixed bottom-0 left-0 right-0 top-0 z-5 pl5 pb5 pl7-ns pb7-ns overflow-hidden"
-        style={{
-          pointerEvents: 'none',
-        }}
-      >
-        {this.state.toast && (
-          <Toast
-            message={toast.message}
-            action={toast.action}
-            visible={this.state.toastVisible}
-            onClose={this.handleToastClose}
-          />
-        )}
-      </div>
+      <ToastContext.Provider value={{
+        showToast: this.showToast,
+        hideToast: this.hideToast,
+      }}>
+        {children}
+        <div
+          className="fixed bottom-0 left-0 right-0 top-0 z-5 overflow-hidden"
+          style={{
+            pointerEvents: 'none',
+          }}
+        >
+          {toast && (
+            <Toast
+              message={toast.message}
+              action={toast.action}
+              duration={toast.duration}
+              visible={this.state.toastVisible}
+              onClose={this.handleToastClose}
+            />
+          )}
+        </div>
+      </ToastContext.Provider>
     )
   }
 }
 
-const showToast = (message, action) => {
-  container && container.showToast(message, action)
+ToastProvider.propTypes = {
+  children: PropTypes.node,
 }
 
-export { showToast, ToastContainer }
+class ToastConsumer extends Component {
+  render() {
+    const { children } = this.props
+    return (
+      <ToastContext.Consumer>
+        { value => (
+          children({
+            showToast: value.showToast,
+            hideToast: value.hideToast,
+          })
+        )}
+      </ToastContext.Consumer>
+    )
+  }
+}
+
+ToastConsumer.propTypes = {
+  children: PropTypes.func.isRequired,
+}
+
+export { ToastProvider, ToastConsumer }
