@@ -154,6 +154,10 @@ const demoLabel = 'pb3 code c-muted-1 f6'
         <Plus size={demoSize} />
       </td>
       <td>
+        <div className={demoLabel}>Plus</div>
+        <Plus solid size={demoSize} />
+      </td>
+      <td>
         <div className={demoLabel}>Save</div>
         <Save size={demoSize} />
       </td>
