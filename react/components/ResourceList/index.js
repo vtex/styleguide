@@ -100,7 +100,9 @@ class ResourceList extends PureComponent {
                 </Button>
                 {showFieldsOptions && (
                   <div className="absolute z-999 ba b--light-gray br2">
-                    <div className="vtex-card card w-100 b2 br2 bg-base" style={{ width: 282 }}>
+                    <div
+                      className="w-100 b2 br2 bg-base"
+                      style={{ width: 282, boxShadow: 'rgba(61, 62, 64, 0.2) 0px 3px 9px 0px' }}>
                       <div className="flex inline-flex bb b--light-gray w-100 pl6 pv4">
                         <Button
                           variation="secondary"
