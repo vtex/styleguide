@@ -8,7 +8,7 @@ import Button from '../Button'
 import Toggle from '../Toggle'
 import IconDownload from '../icon/Download'
 import IconUpload from '../icon/Upload'
-import IconVisibilityOn from '../icon/VisibilityOn'
+import IconColumns from '../icon/Columns'
 const MAX_FIELDS_BOX_HEIGHT = 192
 
 class ResourceList extends PureComponent {
@@ -120,7 +120,7 @@ class ResourceList extends PureComponent {
                 >
                   <span className="flex align-baseline near-black">
                     <span className="mr3">
-                      <IconVisibilityOn color="currentColor" />
+                      <IconColumns color="currentColor" />
                     </span>
                     {fields.label}
                   </span>
