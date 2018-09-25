@@ -65,6 +65,10 @@ export default class Toast extends Component {
   }
 
   close = () => {
+    if (!this.state.isOpen) {
+      return
+    }
+
     setTimeout(() => {
       this.props.onClose()
     }, this.transitionDuration)
