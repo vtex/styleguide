@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-// import Button from '../Button'
 import CloseIcon from '../icon/Close'
 
 export default class Toast extends Component {
