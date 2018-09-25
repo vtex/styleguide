@@ -12,6 +12,7 @@ const Check = require('./Check').default
 const Clock = require('./Clock').default
 const Close = require('./Close').default
 const Cog = require('./Cog').default
+const Columns = require('./Columns').default
 const Copy = require('./Copy').default
 const Delete = require('./Delete').default
 const Deny = require('./Deny').default
@@ -85,11 +86,15 @@ const demoLabel = 'pb3 code c-muted-1 f6'
         <Cog size={demoSize} />
       </td>
       <td>
-        <div className={demoLabel}>Copy</div>
-        <Copy size={demoSize} />
+        <div className={demoLabel}>Columns</div>
+        <Columns size={demoSize} />
       </td>
     </tr>
     <tr>
+      <td>
+        <div className={demoLabel}>Copy</div>
+        <Copy size={demoSize} />
+      </td>
       <td>
         <div className={demoLabel}>Delete</div>
         <Delete size={demoSize} />
@@ -110,12 +115,12 @@ const demoLabel = 'pb3 code c-muted-1 f6'
         <div className={demoLabel}>Edit (solid)</div>
         <Edit solid size={demoSize} />
       </td>
+    </tr>
+    <tr>
       <td>
         <div className={demoLabel}>ExternalLink</div>
         <ExternalLink size={demoSize} />
       </td>
-    </tr>
-    <tr>
       <td>
         <div className={demoLabel}>ExternalLinkMini</div>
         <ExternalLinkMini size={demoSize} />
@@ -136,12 +141,12 @@ const demoLabel = 'pb3 code c-muted-1 f6'
         <div className={demoLabel}>Filter (solid)</div>
         <Filter solid size={demoSize} />
       </td>
+    </tr>
+    <tr>
       <td>
         <div className={demoLabel}>Help</div>
         <Help size={demoSize} />
       </td>
-    </tr>
-    <tr>
       <td>
         <div className={demoLabel}>Help (solid)</div>
         <Help solid size={demoSize} />
@@ -172,6 +177,8 @@ const demoLabel = 'pb3 code c-muted-1 f6'
         <div className={demoLabel}>Search</div>
         <Search size={demoSize} />
       </td>
+    </tr>
+    <tr>
       <td>
         <div className={demoLabel}>Upload</div>
         <Upload size={demoSize} />
@@ -199,6 +206,9 @@ const demoLabel = 'pb3 code c-muted-1 f6'
         <div className={demoLabel}>Visibility Off</div>
         <VisibilityOff size={demoSize} />
       </td>
+      <td />
+    </tr>
+    <tr>
       <td>
         <div className={demoLabel}>Visibility Off (solid)</div>
         <VisibilityOff solid size={demoSize} />
