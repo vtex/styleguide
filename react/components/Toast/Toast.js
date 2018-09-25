@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import CloseIcon from '../icon/Close'
 
+const DURATION_BASE = 3000
+const DURATION_INCREMENT = 30
 export default class Toast extends Component {
   constructor(props) {
     super(props)
@@ -22,7 +24,7 @@ export default class Toast extends Component {
   }
 
   // Duration increases along with the length of the message
-  getDefaultDuration = () => 3000 + this.props.message.length * 30
+  getDefaultDuration = () => DURATION_BASE + this.props.message.length * DURATION_INCREMENT
 
   startAutoClose = () => {
     this.stopAutoClose()
