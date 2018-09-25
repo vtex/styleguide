@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { calcIconSize, baseClassname } from '../utils'
 
-const iconBase = {
+const iconBaseDimensions = {
   width: 16,
   height: 18,
 }
@@ -10,7 +10,7 @@ const iconBase = {
 class Columns extends PureComponent {
   render() {
     const { color, size, block } = this.props
-    const newSize = calcIconSize(iconBase, size)
+    const newSize = calcIconSize(iconBaseDimensions, size)
 
     return (
       <svg

@@ -9,6 +9,7 @@ import Toggle from '../Toggle'
 import IconDownload from '../icon/Download'
 import IconUpload from '../icon/Upload'
 import IconColumns from '../icon/Columns'
+import { cloneDeep } from 'lodash'
 const MAX_FIELDS_BOX_HEIGHT = 192
 const FIELDS_BOX_ITEM_HEIGHT = 36
 const FIELDS_BOX_WIDTH = 292
@@ -18,37 +19,38 @@ const TABLE_CELL_HEIGHT = 64
 class ResourceList extends PureComponent {
   constructor(props) {
     super(props)
+    this.fieldsBtnRef = React.createRef()
     this.state = {
-      clonedSchema: props.table.schema ? this.cloneSchema(props.table.schema) : {},
-      showFieldsOptions: false,
+      displaySchema: props.table.schema ? this.cloneSchema(props.table.schema) : {},
+      isFieldsBoxVisible: false,
     }
   }
 
   cloneSchema = (schema, showAll = false) => {
-    const clonedSchema = { properties: {} }
-    Object.keys(schema.properties).forEach(key => {
-      if (!schema.properties[key].hidden || showAll) {
-        clonedSchema.properties[key] = { ...schema.properties[key] }
+    const displaySchema = cloneDeep(schema)
+    Object.keys(displaySchema.properties).forEach(key => {
+      if (displaySchema.properties[key].hidden && !showAll) {
+        delete displaySchema.properties[key]
       }
     })
-    return clonedSchema
+    return displaySchema
   }
 
   toggleFieldsSelector = () => {
-    const { showFieldsOptions } = this.state
-    if (showFieldsOptions) {
+    const { isFieldsBoxVisible } = this.state
+    if (isFieldsBoxVisible) {
       document.removeEventListener('mousedown', this.handleClickOutside)
     } else {
       document.addEventListener('mousedown', this.handleClickOutside)
     }
-    this.setState({ showFieldsOptions: !showFieldsOptions })
+    this.setState({ isFieldsBoxVisible: !isFieldsBoxVisible })
   }
 
   handleClickOutside = (e) => {
     if ( // handle clicks outside the show/hide fields btn or box
-      this.toggleFieldsBtnRef &&
-      !this.toggleFieldsBtnRef.contains(e.target) &&
-      this.state.showFieldsOptions
+      this.fieldsBtnRef &&
+      !this.fieldsBtnRef.contains(e.target) &&
+      this.state.isFieldsBoxVisible
     ) {
       // closes the box if it's open
       this.toggleFieldsSelector()
@@ -56,24 +58,24 @@ class ResourceList extends PureComponent {
   }
 
   toggleColumn = (key) => {
-    const { clonedSchema } = this.state
+    const { displaySchema } = this.state
     const { table: { schema } } = this.props
-    const newSchema = { properties: { ...clonedSchema.properties } }
-    if (clonedSchema.properties[key]) {
+    const newSchema = cloneDeep(displaySchema)
+    if (newSchema.properties[key]) {
       delete newSchema.properties[key]
     } else {
-      newSchema.properties[key] = { ...schema.properties[key] }
+      newSchema.properties[key] = cloneDeep(schema.properties[key])
     }
-    this.setState({ clonedSchema: newSchema })
+    this.setState({ displaySchema: newSchema })
   }
 
   handleShowAllColumns = () => {
     const { table: { schema } } = this.props
-    const clonedSchema = this.cloneSchema(schema, true)
-    this.setState({ clonedSchema })
+    const displaySchema = this.cloneSchema(schema, true)
+    this.setState({ displaySchema })
   }
 
-  handleHideAllColumns = () => this.setState({ clonedSchema: { properties: {} } })
+  handleHideAllColumns = () => this.setState({ displaySchema: { properties: {} } })
 
   calculateFieldsBoxHeight = () => {
     const { table: { schema } } = this.props
@@ -97,12 +99,12 @@ class ResourceList extends PureComponent {
       inputSearch,
     } = this.props
     const {
-      clonedSchema,
-      showFieldsOptions,
+      displaySchema,
+      isFieldsBoxVisible,
     } = this.state
-    const showdownload = download && download.label
-    const showupload = upload && upload.label
-    const showfields = fields && fields.label
+    const isDownloadVisible = download && download.label
+    const isUploadVisible = upload && upload.label
+    const isFieldsVisible = fields && fields.label
 
     return (
       <div className="vtex-resourceList__container">
@@ -113,11 +115,11 @@ class ResourceList extends PureComponent {
             </form>
           )}
           <div id="toolbar" className="flex flex-row">
-            {showfields && (
+            {isFieldsVisible && (
               <div
                 id="toggleFieldsBtn"
-                ref={div => {
-                  this.toggleFieldsBtnRef = div
+                ref={el => {
+                  this.fieldsBtnRef = el
                 }}
                 className="relative">
                 <Button
@@ -133,11 +135,11 @@ class ResourceList extends PureComponent {
                     {fields.label}
                   </span>
                 </Button>
-                {showFieldsOptions && (
+                {isFieldsBoxVisible && (
                   <div className="absolute z-999 ba b--light-gray br2">
                     <div
-                      className="w-100 b2 br2 bg-base"
-                      style={{ width: FIELDS_BOX_WIDTH, boxShadow: 'rgba(61, 62, 64, 0.2) 0px 3px 9px 0px' }}>
+                      className="w-100 b2 br2 bg-base shadow-2"
+                      style={{ width: FIELDS_BOX_WIDTH }}>
                       <div className="flex inline-flex bb b--light-gray w-100 pl6 pv4">
                         <Button
                           variation="secondary"
@@ -162,7 +164,7 @@ class ResourceList extends PureComponent {
                                 </span>
                                 <Toggle
                                   size="small"
-                                  checked={!!clonedSchema.properties[field]}
+                                  checked={!!displaySchema.properties[field]}
                                   onChange={() => this.toggleColumn(field)} />
                               </div>
                             )
@@ -174,7 +176,7 @@ class ResourceList extends PureComponent {
                 )}
               </div>
             )}
-            {showdownload && (
+            {isDownloadVisible && (
               <Button
                 variation="tertiary"
                 size="small"
@@ -188,7 +190,7 @@ class ResourceList extends PureComponent {
                 </span>
               </Button>
             )}
-            {showupload && (
+            {isUploadVisible && (
               <Button
                 variation="tertiary"
                 size="small"
@@ -207,7 +209,7 @@ class ResourceList extends PureComponent {
 
         <Table
           {...table}
-          schema={clonedSchema}
+          schema={displaySchema}
           containerClass="vh-100"
           containerHeight={this.calculateTableHeight(table.items.length)}
         />
