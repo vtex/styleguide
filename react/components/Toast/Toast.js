@@ -4,7 +4,7 @@ import CloseIcon from '../icon/Close'
 
 const DURATION_BASE = 3000
 const DURATION_INCREMENT = 30
-const TRANSITION_DURATION = 100
+const TRANSITION_DURATION = 160
 
 export default class Toast extends Component {
   constructor(props) {
