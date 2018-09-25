@@ -4,14 +4,14 @@ import CloseIcon from '../icon/Close'
 
 const DURATION_BASE = 3000
 const DURATION_INCREMENT = 30
+const TRANSITION_DURATION = 100
+
 export default class Toast extends Component {
   constructor(props) {
     super(props)
     this.state = {
       isOpen: false,
     }
-
-    this.transitionDuration = 180
   }
 
   componentDidMount() {
@@ -72,7 +72,7 @@ export default class Toast extends Component {
 
     setTimeout(() => {
       this.props.onClose()
-    }, this.transitionDuration)
+    }, TRANSITION_DURATION)
 
     this.setState({
       isOpen: false,
@@ -115,7 +115,7 @@ export default class Toast extends Component {
         onMouseOut={this.handleMouseOut}
         style={{
           pointerEvents: 'all',
-          transition: `transform ${this.transitionDuration}ms ${isOpen ? 'ease-out' : 'ease-in'}`,
+          transition: `transform ${TRANSITION_DURATION}ms ${isOpen ? 'ease-out' : 'ease-in'}`,
           transform: `translate3d(0, ${isOpen ? 0 : '170%'}, 0)`,
           minWidth: '18rem',
         }}
