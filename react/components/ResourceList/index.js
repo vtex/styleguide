@@ -8,6 +8,7 @@ import Button from '../Button'
 import Toggle from '../Toggle'
 import IconDownload from '../icon/Download'
 import IconUpload from '../icon/Upload'
+import IconCaretDown from '../icon/CaretDown'
 import IconColumns from '../icon/Columns'
 import { cloneDeep } from 'lodash'
 const MAX_FIELDS_BOX_HEIGHT = 192
@@ -23,6 +24,7 @@ class ResourceList extends PureComponent {
     this.state = {
       displaySchema: props.table.schema ? this.cloneSchema(props.table.schema) : {},
       isFieldsBoxVisible: false,
+      isExtraActionsBoxVisible: false,
     }
   }
 
@@ -46,6 +48,16 @@ class ResourceList extends PureComponent {
     this.setState({ isFieldsBoxVisible: !isFieldsBoxVisible })
   }
 
+  toggleExtraActionsSelector = () => {
+    const { isExtraActionsBoxVisible } = this.state
+    if (isExtraActionsBoxVisible) {
+      document.removeEventListener('mousedown', this.handleClickOutside)
+    } else {
+      document.addEventListener('mousedown', this.handleClickOutside)
+    }
+    this.setState({ isExtraActionsBoxVisible: !isExtraActionsBoxVisible })
+  }
+
   handleClickOutside = (e) => {
     if ( // handle clicks outside the show/hide fields btn or box
       this.fieldsBtnRef &&
@@ -55,6 +67,13 @@ class ResourceList extends PureComponent {
     ) {
       // closes the box if it's open
       this.handleToggleFieldsBox()
+    }
+    if (
+      this.toggleExtraActionsBtnRef &&
+      !this.toggleExtraActionsBtnRef.contains(e.target) &&
+      this.state.isExtraActionsBoxVisible
+    ) {
+      this.toggleExtraActionsSelector()
     }
   }
 
@@ -88,6 +107,12 @@ class ResourceList extends PureComponent {
     return TABLE_HEADER_HEIGHT + (TABLE_CELL_HEIGHT * totalItems)
   }
 
+  calculateExtraActionsBoxHeight = () => {
+    const { actions: { extraActions } } = this.props
+    const estimate = extraActions.actions.length * FIELDS_BOX_ITEM_HEIGHT
+    return estimate > MAX_FIELDS_BOX_HEIGHT ? MAX_FIELDS_BOX_HEIGHT : estimate
+  }
+
   handleInputSearchSubmit = e => {
     this.props.inputSearch.onSubmit && this.props.inputSearch.onSubmit(e)
   }
@@ -95,17 +120,19 @@ class ResourceList extends PureComponent {
   render() {
     const {
       table,
-      actions: { download, upload, fields },
+      actions: { download, upload, fields, extraActions },
       pagination,
       inputSearch,
     } = this.props
     const {
       displaySchema,
       isFieldsBoxVisible,
+      isExtraActionsBoxVisible,
     } = this.state
     const isDownloadVisible = download && download.label
     const isUploadVisible = upload && upload.label
     const isFieldsVisible = fields && fields.label
+    const isExtraActionsVisible = extraActions && extraActions.label && extraActions.actions.length > 0
 
     return (
       <div className="vtex-resourceList__container">
@@ -200,6 +227,52 @@ class ResourceList extends PureComponent {
                 </span>
               </Button>
             )}
+            {isExtraActionsVisible && (
+              <div
+                id="toggleExtraActionsBtn"
+                ref={div => {
+                  this.toggleExtraActionsBtnRef = div
+                }}
+                className="relative">
+                <Button
+                  variation="tertiary"
+                  size="small"
+                  // eslint-disable-next-line react/jsx-handler-names
+                  onClick={this.toggleExtraActionsSelector}
+                >
+                  <span className="flex align-baseline items-center near-black">
+                    <span className="mr3">
+                      {extraActions.label}
+                    </span>
+                    <IconCaretDown height={13} color="currentColor" />
+                  </span>
+                </Button>
+                {isExtraActionsBoxVisible && (
+                  <div className="absolute z-999 ba b--light-gray br2" style={{ left: -99 }}>
+                    <div
+                      className="w-100 b2 br2 bg-base"
+                      style={{ width: 199, boxShadow: 'rgba(61, 62, 64, 0.2) 0px 3px 9px 0px' }}>
+                      <div style={{ height: this.calculateExtraActionsBoxHeight() }} className="overflow-scroll">
+                        {
+                          extraActions.actions.map((action, index) => {
+                            return (
+                              <div
+                                key={index}
+                                className="flex justify-between ph6 pv3 pointer hover-bg-light-silver"
+                                onClick={action.handleCallback}>
+                                <span className="w-70 truncate">
+                                  {action.label}
+                                </span>
+                              </div>
+                            )
+                          })
+                        }
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
 
@@ -217,7 +290,11 @@ class ResourceList extends PureComponent {
 }
 
 ResourceList.defaultProps = {
-  actions: {},
+  actions: {
+    extraActions: {
+      actions: [],
+    },
+  },
 }
 
 ResourceList.propTypes = {
@@ -238,6 +315,15 @@ ResourceList.propTypes = {
     upload: PropTypes.shape({
       label: PropTypes.string,
       handleCallback: PropTypes.func,
+    }),
+    extraActions: PropTypes.shape({
+      label: PropTypes.string,
+      actions: PropTypes.arrayOf(
+        PropTypes.shape({
+          label: PropTypes.string,
+          handleCallback: PropTypes.func,
+        })
+      ),
     }),
   }),
   pagination: PropTypes.shape({
