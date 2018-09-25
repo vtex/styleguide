@@ -36,7 +36,7 @@ class ResourceList extends PureComponent {
     return displaySchema
   }
 
-  toggleFieldsSelector = () => {
+  handleToggleFieldsBox = () => {
     const { isFieldsBoxVisible } = this.state
     if (isFieldsBoxVisible) {
       document.removeEventListener('mousedown', this.handleClickOutside)
@@ -53,7 +53,7 @@ class ResourceList extends PureComponent {
       this.state.isFieldsBoxVisible
     ) {
       // closes the box if it's open
-      this.toggleFieldsSelector()
+      this.handleToggleFieldsBox()
     }
   }
 
@@ -125,8 +125,7 @@ class ResourceList extends PureComponent {
                 <Button
                   variation="tertiary"
                   size="small"
-                  // eslint-disable-next-line react/jsx-handler-names
-                  onClick={this.toggleFieldsSelector}
+                  onClick={this.handleToggleFieldsBox}
                 >
                   <span className="flex align-baseline near-black">
                     <span className="mr3">
