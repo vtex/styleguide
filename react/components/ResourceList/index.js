@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from 'react'
+import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
 import Table from '../Table'
@@ -31,7 +31,24 @@ class ResourceList extends PureComponent {
   }
 
   toggleFieldsSelector = () => {
-    this.setState({ showFieldsOptions: !this.state.showFieldsOptions })
+    const { showFieldsOptions } = this.state
+    if (showFieldsOptions) {
+      document.removeEventListener('mousedown', this.handleClickOutside)
+    } else {
+      document.addEventListener('mousedown', this.handleClickOutside)
+    }
+    this.setState({ showFieldsOptions: !showFieldsOptions })
+  }
+
+  handleClickOutside = (e) => {
+    if ( // handle clicks outside the show/hide fields btn or box
+      this.toggleFieldsBtnRef &&
+      !this.toggleFieldsBtnRef.contains(e.target) &&
+      this.state.showFieldsOptions
+    ) {
+      // closes the box if it's open
+      this.toggleFieldsSelector()
+    }
   }
 
   toggleColumn = (key) => {
@@ -82,16 +99,26 @@ class ResourceList extends PureComponent {
     return (
       <div className="vtex-resourceList__container">
         <div className="mb5 flex flex-row justify-between w-100">
-          <div id="toolbar">
+          {inputSearch && (
+            <form className="w-30" onSubmit={this.handleInputSearchSubmit}>
+              <InputSearch {...inputSearch} />
+            </form>
+          )}
+          <div id="toolbar" className="flex flex-row">
             {showfields && (
-              <Fragment>
+              <div
+                id="toggleFieldsBtn"
+                ref={div => {
+                  this.toggleFieldsBtnRef = div
+                }}
+                className="relative">
                 <Button
                   variation="tertiary"
                   size="small"
                   // eslint-disable-next-line react/jsx-handler-names
                   onClick={this.toggleFieldsSelector}
                 >
-                  <span className="flex align-baseline">
+                  <span className="flex align-baseline near-black">
                     <span className="mr3">
                       <IconVisibilityOn color="currentColor" />
                     </span>
@@ -137,7 +164,7 @@ class ResourceList extends PureComponent {
                     </div>
                   </div>
                 )}
-              </Fragment>
+              </div>
             )}
             {showdownload && (
               <Button
@@ -145,7 +172,7 @@ class ResourceList extends PureComponent {
                 size="small"
                 onClick={download.handleCallback}
               >
-                <span className="flex align-baseline">
+                <span className="flex align-baseline near-black">
                   <span className="mr3">
                     <IconDownload color="currentColor" />
                   </span>
@@ -159,7 +186,7 @@ class ResourceList extends PureComponent {
                 size="small"
                 onClick={upload.handleCallback}
               >
-                <span className="flex align-baseline">
+                <span className="flex align-baseline near-black">
                   <span className="mr3">
                     <IconUpload color="currentColor" />
                   </span>
@@ -168,11 +195,6 @@ class ResourceList extends PureComponent {
               </Button>
             )}
           </div>
-          {inputSearch && (
-            <form className="w-30" onSubmit={this.handleInputSearchSubmit}>
-              <InputSearch {...inputSearch} />
-            </form>
-          )}
         </div>
 
         <Table
@@ -198,6 +220,11 @@ ResourceList.propTypes = {
     schema: PropTypes.object,
   }),
   actions: PropTypes.shape({
+    fields: PropTypes.shape({
+      label: PropTypes.string,
+      showAllLabel: PropTypes.string,
+      hideAllLabel: PropTypes.string,
+    }),
     download: PropTypes.shape({
       label: PropTypes.string,
       handleCallback: PropTypes.func,
@@ -205,11 +232,6 @@ ResourceList.propTypes = {
     upload: PropTypes.shape({
       label: PropTypes.string,
       handleCallback: PropTypes.func,
-    }),
-    fields: PropTypes.shape({
-      label: PropTypes.string,
-      showAllLabel: PropTypes.string,
-      hideAllLabel: PropTypes.string,
     }),
   }),
   pagination: PropTypes.shape({
