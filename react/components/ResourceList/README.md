@@ -106,7 +106,24 @@ class ResourceListExample extends React.Component {
             label: 'Fields',
             showAllLabel: 'Show All',
             hideAllLabel: 'Hide All',
-          }
+          },
+          extraActions: {
+            label: 'More',
+            actions: [
+              {
+                label: 'alert 1',
+                handleCallback: () => alert('1')
+              },
+              {
+                label: 'alert 2',
+                handleCallback: () => alert('2')
+              },
+              {
+                label: 'alert 3',
+                handleCallback: () => alert('3')
+              },
+            ],
+          },
         }}
         pagination={{
           onNextClick: this.handleNextClick,
