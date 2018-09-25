@@ -73,6 +73,7 @@ class ResourceList extends PureComponent {
 
   calculateFieldsBoxHeight = () => {
     const { table: { schema } } = this.props
+    // each field line has 36px height
     const estimate = Object.keys(schema.properties).length * 36
     return estimate > MAX_FIELDS_BOX_HEIGHT ? MAX_FIELDS_BOX_HEIGHT : estimate
   }
