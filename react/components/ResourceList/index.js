@@ -49,7 +49,8 @@ class ResourceList extends PureComponent {
   handleClickOutside = (e) => {
     if ( // handle clicks outside the show/hide fields btn or box
       this.fieldsBtnRef &&
-      !this.fieldsBtnRef.contains(e.target) &&
+      this.fieldsBtnRef.current &&
+      !this.fieldsBtnRef.current.contains(e.target) &&
       this.state.isFieldsBoxVisible
     ) {
       // closes the box if it's open
@@ -118,9 +119,7 @@ class ResourceList extends PureComponent {
             {isFieldsVisible && (
               <div
                 id="toggleFieldsBtn"
-                ref={el => {
-                  this.fieldsBtnRef = el
-                }}
+                ref={this.fieldsBtnRef}
                 className="relative">
                 <Button
                   variation="tertiary"
