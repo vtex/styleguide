@@ -10,6 +10,10 @@ import IconDownload from '../icon/Download'
 import IconUpload from '../icon/Upload'
 import IconColumns from '../icon/Columns'
 const MAX_FIELDS_BOX_HEIGHT = 192
+const FIELDS_BOX_ITEM_HEIGHT = 36
+const FIELDS_BOX_WIDTH = 292
+const TABLE_HEADER_HEIGHT = 36
+const TABLE_CELL_HEIGHT = 64
 
 class ResourceList extends PureComponent {
   constructor(props) {
@@ -73,9 +77,12 @@ class ResourceList extends PureComponent {
 
   calculateFieldsBoxHeight = () => {
     const { table: { schema } } = this.props
-    // each field line has 36px height
-    const estimate = Object.keys(schema.properties).length * 36
+    const estimate = Object.keys(schema.properties).length * FIELDS_BOX_ITEM_HEIGHT
     return estimate > MAX_FIELDS_BOX_HEIGHT ? MAX_FIELDS_BOX_HEIGHT : estimate
+  }
+
+  calculateTableHeight = (totalItems) => {
+    return TABLE_HEADER_HEIGHT + (TABLE_CELL_HEIGHT * totalItems)
   }
 
   handleInputSearchSubmit = e => {
@@ -130,7 +137,7 @@ class ResourceList extends PureComponent {
                   <div className="absolute z-999 ba b--light-gray br2">
                     <div
                       className="w-100 b2 br2 bg-base"
-                      style={{ width: 282, boxShadow: 'rgba(61, 62, 64, 0.2) 0px 3px 9px 0px' }}>
+                      style={{ width: FIELDS_BOX_WIDTH, boxShadow: 'rgba(61, 62, 64, 0.2) 0px 3px 9px 0px' }}>
                       <div className="flex inline-flex bb b--light-gray w-100 pl6 pv4">
                         <Button
                           variation="secondary"
@@ -202,7 +209,7 @@ class ResourceList extends PureComponent {
           {...table}
           schema={clonedSchema}
           containerClass="vh-100"
-          containerHeight={36 + (64 * table.items.length)}
+          containerHeight={this.calculateTableHeight(table.items.length)}
         />
 
         {pagination && <Pagination {...pagination} />}
