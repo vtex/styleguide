@@ -1,5 +1,20 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Badge from '../Badge'
+
+const ColorBadgeCellComponent = ({ cellData }) => {
+  return (
+    <div className="mh4">
+      <Badge bgColor={cellData.color} color="#fff">
+        <span className="nowrap">{cellData.label}</span>
+      </Badge>
+    </div>
+  )
+}
+ColorBadgeCellComponent.displayName = 'ColorBadgeCellComponent'
+ColorBadgeCellComponent.propTypes = {
+  cellData: PropTypes.any,
+}
 
 const generateRandomColorObject = () => {
   const badgeData = [
@@ -43,15 +58,7 @@ export default {
         type: 'object',
         title: 'Color',
         hidden: true,
-        cellRenderer: ({ cellData }) => {
-          return (
-            <div className="mh4">
-              <Badge bgColor={cellData.color} color="#fff">
-                <span className="nowrap">{cellData.label}</span>
-              </Badge>
-            </div>
-          )
-        },
+        cellRenderer: ColorBadgeCellComponent,
       },
     },
   },
