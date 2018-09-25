@@ -120,7 +120,7 @@ export default class Toast extends Component {
         }}
       >
         <div
-          className="vtex-toast flex justify-between f5 bg-base--inverted c-on-base--inverted pa5 br2-ns shadow-5"
+          className="vtex-toast flex justify-between items-start items-center-ns f5 bg-base--inverted c-on-base--inverted pa5 br2-ns shadow-5"
         >
           <div className="flex-ns flex-grow-1">
             <div className="flex items-center flex-grow-1">
@@ -140,11 +140,13 @@ export default class Toast extends Component {
             )}
           </div>
           {onClose && (
-            <div
-              className="vtex-alert__close-icon pointer flex items-center pa3 white nr3 nv3"
-              onClick={this.handleCloseClick}
-            >
-              <CloseIcon color="currentColor" size={16} />
+            <div className="pt2 pt0-ns">
+              <div
+                className="vtex-alert__close-icon pointer flex items-center pa3 white nr3 nv3"
+                onClick={this.handleCloseClick}
+              >
+                <CloseIcon color="currentColor" size={16} />
+              </div>
             </div>
           )}
         </div>
