@@ -97,7 +97,6 @@ export default class Toast extends Component {
   componentDidUpdate(prevProps) {
     if (!this.props.visible && prevProps.visible) {
       this.close()
-      this.stopAutoClose()
     } else if (this.props.visible && !prevProps.visible) {
       this.open()
       this.startAutoClose()
