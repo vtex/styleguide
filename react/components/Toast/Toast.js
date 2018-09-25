@@ -85,10 +85,10 @@ export default class Toast extends Component {
     if (!isOpen) return
 
     const { action } = this.props
-    const handler = action && action.onClick
+    const actionHandler = action && action.onClick
 
-    if (handler) {
-      handler()
+    if (actionHandler) {
+      actionHandler()
     }
 
     this.close()
