@@ -95,13 +95,18 @@ class ResourceListExample extends React.Component {
         }}
         actions={{
           download: {
-            label: 'Download',
+            label: 'Export',
             handleCallback: () => alert('Callback()'),
           },
           upload: {
             label: 'Import',
             handleCallback: () => alert('Callback()'),
           },
+          fields: {
+            label: 'Fields',
+            showAllLabel: 'Show All',
+            hideAllLabel: 'Hide All',
+          }
         }}
         pagination={{
           onNextClick: this.handleNextClick,
