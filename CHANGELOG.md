@@ -139,6 +139,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
+- **Tabs** Tab labels won't wrap anymore. 
+
 - Removed extra iOS styiling from inputs
 - **Icons** Fix plus icon svg.
 
