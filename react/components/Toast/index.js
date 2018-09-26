@@ -10,9 +10,9 @@ const ToastContext = React.createContext({
 
 class ToastProvider extends Component {
   state = {
-    toast: null,
+    currentToast: null,
     nextToast: null,
-    toastVisible: true,
+    isToastVisible: true,
   }
 
   showToast = (args) => {
@@ -21,7 +21,7 @@ class ToastProvider extends Component {
     }
     const { message = '', action } = args
 
-    if (this.state.toast) {
+    if (this.state.currentToast) {
       // If there is a toast present already, queue up the next toast
       // It will be displayed when the current toast is closed, on handleToastClose
       this.setState({
@@ -33,18 +33,18 @@ class ToastProvider extends Component {
       this.hideToast()
     } else {
       this.setState({
-        toast: {
+        currentToast: {
           message,
           action,
         },
-        toastVisible: true,
+        isToastVisible: true,
       })
     }
   }
 
   hideToast = () => {
     this.setState({
-      toastVisible: false,
+      isToastVisible: false,
     })
   }
 
@@ -53,15 +53,15 @@ class ToastProvider extends Component {
       return ({
         // If there is a toast queued up, shows it.
         // Otherwise, nextToast will be null, and state.toast will be cleared up
-        toast: state.nextToast,
-        toastVisible: !!state.nextToast,
+        currentToast: state.nextToast,
+        isToastVisible: !!state.nextToast,
         nextToast: null,
       })
     })
   }
 
   render() {
-    const { toast } = this.state
+    const { currentToast } = this.state
     const { children } = this.props
     return (
       <ToastContext.Provider value={{
@@ -75,11 +75,11 @@ class ToastProvider extends Component {
             pointerEvents: 'none',
           }}
         >
-          {toast && (
+          {currentToast && (
             <Toast
-              message={toast.message}
-              action={toast.action}
-              visible={this.state.toastVisible}
+              message={currentToast.message}
+              action={currentToast.action}
+              visible={this.state.isToastVisible}
               onClose={this.handleToastClose}
             />
           )}
