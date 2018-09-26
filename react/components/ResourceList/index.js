@@ -16,6 +16,7 @@ const FIELDS_BOX_ITEM_HEIGHT = 36
 const FIELDS_BOX_WIDTH = 292
 const TABLE_HEADER_HEIGHT = 36
 const TABLE_CELL_HEIGHT = 64
+const EXTRA_ACTIONS_BOX_WIDTH = 199
 
 class ResourceList extends PureComponent {
   constructor(props) {
@@ -248,10 +249,10 @@ class ResourceList extends PureComponent {
                   </span>
                 </Button>
                 {isExtraActionsBoxVisible && (
-                  <div className="absolute z-999 ba b--light-gray br2" style={{ left: -99 }}>
+                  <div className="absolute z-999 ba b--light-gray br2 shadow-2 right-0">
                     <div
                       className="w-100 b2 br2 bg-base"
-                      style={{ width: 199, boxShadow: 'rgba(61, 62, 64, 0.2) 0px 3px 9px 0px' }}>
+                      style={{ width: EXTRA_ACTIONS_BOX_WIDTH }}>
                       <div style={{ height: this.calculateExtraActionsBoxHeight() }} className="overflow-scroll">
                         {
                           extraActions.actions.map((action, index) => {
