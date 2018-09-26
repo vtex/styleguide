@@ -8,7 +8,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ### Added
+- **Icons** Fix plus icon svg. 
 
+### Added
+- **Icons** Add plus outline version and PlusLines, another plus icon without a circle around it.
 - **MultiSelect** New component
 - **PasswordInput** New component
 
