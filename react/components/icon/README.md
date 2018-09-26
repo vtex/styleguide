@@ -213,8 +213,6 @@ const demoLabel = 'pb3 code c-muted-1 f6'
         <div className={demoLabel}>User</div>
         <User size={demoSize} />
       </td>
-    </tr>
-    <tr>
       <td>
         <div className={demoLabel}>User (solid)</div>
         <User solid size={demoSize} />
@@ -223,6 +221,8 @@ const demoLabel = 'pb3 code c-muted-1 f6'
         <div className={demoLabel}>Shopping Cart</div>
         <ShoppingCart size={demoSize} />
       </td>
+    </tr>
+    <tr>
       <td>
         <div className={demoLabel}>Shopping Cart (solid)</div>
         <ShoppingCart solid size={demoSize} />
