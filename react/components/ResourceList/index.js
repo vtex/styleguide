@@ -21,6 +21,7 @@ class ResourceList extends PureComponent {
   constructor(props) {
     super(props)
     this.fieldsBtnRef = React.createRef()
+    this.extraActionsBtnRef = React.createRef()
     this.state = {
       displaySchema: props.table.schema ? this.cloneSchema(props.table.schema) : {},
       isFieldsBoxVisible: false,
@@ -69,8 +70,9 @@ class ResourceList extends PureComponent {
       this.handleToggleFieldsBox()
     }
     if (
-      this.toggleExtraActionsBtnRef &&
-      !this.toggleExtraActionsBtnRef.contains(e.target) &&
+      this.extraActionsBtnRef &&
+      this.extraActionsBtnRef.current &&
+      !this.extraActionsBtnRef.current.contains(e.target) &&
       this.state.isExtraActionsBoxVisible
     ) {
       this.toggleExtraActionsSelector()
@@ -230,9 +232,7 @@ class ResourceList extends PureComponent {
             {isExtraActionsVisible && (
               <div
                 id="toggleExtraActionsBtn"
-                ref={div => {
-                  this.toggleExtraActionsBtnRef = div
-                }}
+                ref={this.extraActionsBtnRef}
                 className="relative">
                 <Button
                   variation="tertiary"
