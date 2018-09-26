@@ -36,7 +36,7 @@ export default class Toast extends Component {
     this.stopAutoClose()
     const { duration } = this.props
 
-    if (duration === 0 || duration < 0 || duration === Infinity) {
+    if (duration <= 0 || duration === Infinity) {
       return
     }
 
