@@ -185,14 +185,18 @@ class ResourceList extends PureComponent {
                       <div style={{ height: this.calculateFieldsBoxHeight() }} className="overflow-scroll">
                         {
                           Object.keys(table.schema.properties).map((field, index) => (
-                            <div key={index} className="flex justify-between ph6 pv3">
+                            <div
+                              key={index}
+                              className="flex justify-between ph6 pv3 pointer hover-bg-light-silver"
+                              onClick={() => this.toggleColumn(field)}
+                            >
                               <span className="w-70 truncate">
                                 {table.schema.properties[field].title || field}
                               </span>
                               <Toggle
                                 size="small"
                                 checked={!!displaySchema.properties[field]}
-                                onChange={() => this.toggleColumn(field)} />
+                              />
                             </div>
                           ))
                         }
