@@ -50,7 +50,7 @@ class ResourceList extends PureComponent {
     this.setState({ isFieldsBoxVisible: !isFieldsBoxVisible })
   }
 
-  toggleExtraActionsSelector = () => {
+  handleToggleExtraActionsBox = () => {
     const { isExtraActionsBoxVisible } = this.state
     if (isExtraActionsBoxVisible) {
       document.removeEventListener('mousedown', this.handleClickOutside)
@@ -76,7 +76,7 @@ class ResourceList extends PureComponent {
       !this.extraActionsBtnRef.current.contains(e.target) &&
       this.state.isExtraActionsBoxVisible
     ) {
-      this.toggleExtraActionsSelector()
+      this.handleToggleExtraActionsBox()
     }
   }
 
@@ -242,8 +242,7 @@ class ResourceList extends PureComponent {
                 <Button
                   variation="tertiary"
                   size="small"
-                  // eslint-disable-next-line react/jsx-handler-names
-                  onClick={this.toggleExtraActionsSelector}
+                  onClick={this.handleToggleExtraActionsBox}
                 >
                   <span className="flex align-baseline items-center near-black">
                     <span className="mr3">
@@ -259,18 +258,16 @@ class ResourceList extends PureComponent {
                       style={{ width: EXTRA_ACTIONS_BOX_WIDTH }}>
                       <div style={{ height: this.calculateExtraActionsBoxHeight() }} className="overflow-scroll">
                         {
-                          extraActions.actions.map((action, index) => {
-                            return (
-                              <div
-                                key={index}
-                                className="flex justify-between ph6 pv3 pointer hover-bg-light-silver"
-                                onClick={action.handleCallback}>
-                                <span className="w-70 truncate">
-                                  {action.label}
-                                </span>
-                              </div>
-                            )
-                          })
+                          extraActions.actions.map((action, index) => (
+                            <div
+                              key={index}
+                              className="flex justify-between ph6 pv3 pointer hover-bg-light-silver"
+                              onClick={action.handleCallback}>
+                              <span className="w-70 truncate">
+                                {action.label}
+                              </span>
+                            </div>
+                          ))
                         }
                       </div>
                     </div>
