@@ -2,6 +2,11 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import CloseIcon from '../icon/Close'
 
+const nextFrame = callback => {
+  const FRAME_DURATION = 16
+  setTimeout(callback, FRAME_DURATION)
+}
+
 const DURATION_BASE = 3000
 const DURATION_INCREMENT = 30
 const TRANSITION_DURATION = 160
@@ -16,9 +21,10 @@ export default class Toast extends Component {
 
   componentDidMount() {
     if (this.props.visible) {
-      setTimeout(() => {
-        this.open()
-      }, 10)
+      // sets the open state on the next frame
+      // so the opening transition will run
+      nextFrame(() => this.open())
+
       this.startAutoClose()
     }
   }
