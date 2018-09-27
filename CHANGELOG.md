@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **PasswordInput** New component
 - **Toast** New component
 
+### Fixed
+
+- Removed extra iOS styiling from inputs
+
 ## [6.3.3] - 2018-09-18
 
 ## [6.3.2] - 2018-09-13
