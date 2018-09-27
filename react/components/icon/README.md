@@ -31,6 +31,7 @@ const Upload = require('./Upload').default
 const VisibilityOff = require('./VisibilityOff').default
 const VisibilityOn = require('./VisibilityOn').default
 const Warning = require('./Warning').default
+const PlusLines = require('./PlusLines').default
 
 const demoSize = 20
 const demoLabel = 'pb3 code c-muted-1 f6'
@@ -151,12 +152,22 @@ const demoLabel = 'pb3 code c-muted-1 f6'
       </td>
       <td>
         <div className={demoLabel}>Plus</div>
-        <Plus size={demoSize} />
+        <Plus solid size={demoSize} />
+      </td>
+      <td>
+        <div className={demoLabel}>Plus outlines</div>
+        <Plus  size={demoSize} />
+      </td>
+      <td>
+        <div className={demoLabel}>Plus Lines</div>
+        <PlusLines size={demoSize} />
       </td>
       <td>
         <div className={demoLabel}>Save</div>
         <Save size={demoSize} />
       </td>
+    </tr>
+    <tr>
       <td>
         <div className={demoLabel}>Search</div>
         <Search size={demoSize} />
@@ -165,8 +176,6 @@ const demoLabel = 'pb3 code c-muted-1 f6'
         <div className={demoLabel}>Upload</div>
         <Upload size={demoSize} />
       </td>
-    </tr>
-    <tr>
       <td>
         <div className={demoLabel}>Success</div>
         <Success size={demoSize} />
@@ -183,6 +192,9 @@ const demoLabel = 'pb3 code c-muted-1 f6'
         <div className={demoLabel}>Visibility On (solid)</div>
         <VisibilityOn solid size={demoSize} />
       </td>
+      <td />
+    </tr>
+    <tr>
       <td>
         <div className={demoLabel}>Visibility Off</div>
         <VisibilityOff size={demoSize} />
@@ -191,9 +203,6 @@ const demoLabel = 'pb3 code c-muted-1 f6'
         <div className={demoLabel}>Visibility Off (solid)</div>
         <VisibilityOff solid size={demoSize} />
       </td>
-      <td />
-    </tr>
-    <tr>
       <td>
         <div className={demoLabel}>Warning</div>
         <Warning size={demoSize} />
