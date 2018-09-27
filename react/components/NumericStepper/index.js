@@ -166,6 +166,7 @@ export default class NumericStepper extends React.Component {
               ...(block && {
                 width: 0,
               }),
+              WebkitAppearance: 'none',
             }}
             value={displayValue}
             onChange={this.handleTypeQuantity}
