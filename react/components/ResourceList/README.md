@@ -124,6 +124,10 @@ class ResourceListExample extends React.Component {
               },
             ],
           },
+          newLine: {
+            label: 'New',
+            handleCallback: () => alert('handle new line callback')
+          },
         }}
         pagination={{
           onNextClick: this.handleNextClick,

@@ -119,6 +119,10 @@ ResourceList.propTypes = {
         })
       ),
     }),
+    newLine: PropTypes.shape({
+      label: PropTypes.string,
+      handleCallback: PropTypes.func,
+    }),
   }),
   pagination: PropTypes.shape({
     onNextClick: PropTypes.func,

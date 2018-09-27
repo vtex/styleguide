@@ -4,10 +4,11 @@ import PropTypes from 'prop-types'
 import InputSearch from '../InputSearch'
 import Button from '../Button'
 import Toggle from '../Toggle'
-import IconDownload from '../icon/Download'
-import IconUpload from '../icon/Upload'
 import IconCaretDown from '../icon/CaretDown'
 import IconColumns from '../icon/Columns'
+import IconDownload from '../icon/Download'
+import IconPlus from '../icon/Plus'
+import IconUpload from '../icon/Upload'
 const MAX_FIELDS_BOX_HEIGHT = 192
 const FIELDS_BOX_ITEM_HEIGHT = 36
 const FIELDS_BOX_WIDTH = 292
@@ -82,7 +83,7 @@ class Toolbar extends PureComponent {
 
   render() {
     const {
-      actions: { download, upload, fields, extraActions },
+      actions: { download, upload, fields, extraActions, newLine },
       inputSearch,
       displaySchema,
       schema,
@@ -98,15 +99,16 @@ class Toolbar extends PureComponent {
     const isUploadVisible = upload && upload.label
     const isFieldsVisible = fields && fields.label
     const isExtraActionsVisible = extraActions && extraActions.label && extraActions.actions.length > 0
+    const isNewLineVisible = newLine && newLine.label
 
     return (
-      <div className="mb5 flex flex-row justify-between w-100">
+      <div id="toolbar" className="mb5 flex flex-row justify-between w-100">
         {inputSearch && (
           <form className="w-30" onSubmit={this.handleInputSearchSubmit}>
             <InputSearch {...inputSearch} />
           </form>
         )}
-        <div id="toolbar" className="flex flex-row">
+        <div className="flex flex-row">
           {isFieldsVisible && (
             <div
               id="toggleFieldsBtn"
@@ -235,6 +237,20 @@ class Toolbar extends PureComponent {
                 </div>
               )}
             </div>
+          )}
+          {isNewLineVisible && (
+            <Button
+              variation="primary"
+              size="small"
+              onClick={newLine.handleCallback}
+            >
+              <span className="flex align-baseline">
+                <span className="mr2">
+                  <IconPlus color="currentColor" />
+                </span>
+                {newLine.label}
+              </span>
+            </Button>
           )}
         </div>
       </div>
