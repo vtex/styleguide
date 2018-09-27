@@ -171,6 +171,9 @@ class Input extends Component {
             type={this.props.type}
             value={this.props.value}
             id={this.props.id}
+            style={{
+              WebkitAppearance: 'none',
+            }}
           />
           {suffixIcon && (
             <span

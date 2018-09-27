@@ -178,6 +178,9 @@ export default class MultiSelect extends Component {
               placeholder={placeholder}
               ref={this.searchInput}
               value={this.state.searchTerm}
+              style={{
+                WebkitAppearance: 'none',
+              }}
             />
             {tags}
           </div>

@@ -106,6 +106,9 @@ class Textarea extends Component {
           rows={this.props.rows}
           defaultValue={this.props.defaultValue}
           value={this.props.value}
+          style={{
+            WebkitAppearance: 'none',
+          }}
         >
           {children}
         </textarea>
