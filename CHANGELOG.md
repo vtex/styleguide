@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- **EmptyState** Remove border
+
 ## [6.4.1] - 2018-09-27
 
 ### Fixed
@@ -16,6 +20,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [6.4.0] - 2018-09-27
 
 ### Added
+
 - **Icons** Add plus outline version and PlusLines, another plus icon without a circle around it.
 - **MultiSelect** New component
 - **PasswordInput** New component
@@ -24,7 +29,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - Removed extra iOS styiling from inputs
-- **Icons** Fix plus icon svg. 
+- **Icons** Fix plus icon svg.
 
 ## [6.3.3] - 2018-09-18
 
