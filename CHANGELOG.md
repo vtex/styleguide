@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - **EmptyState** Remove border
 
+## [6.4.2] - 2018-09-28
+
+### Fixed
+
+- Fixed Toast export for render
+
 ## [6.4.1] - 2018-09-27
 
 ### Fixed
