@@ -7,8 +7,8 @@ class Tabs extends Component {
     const selectedTab = children.find(child => child.props.active)
     const content = selectedTab && selectedTab.props.children
     return (
-      <div className="w-100">
-        <div className="flex flex-row bb b--muted-4 overflow-y-auto">
+      <div className="vtex-tabs w-100">
+        <div className="vtex-tabs__nav flex flex-row bb b--muted-4 overflow-y-auto">
           {children.map(child =>
             cloneElement(child, { fullWidth, key: child.props.label.toString() })
           )}
