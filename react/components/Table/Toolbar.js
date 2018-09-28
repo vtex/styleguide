@@ -78,13 +78,12 @@ class Toolbar extends PureComponent {
   }
 
   handleInputSearchSubmit = e => {
-    this.props.inputSearch.onSubmit && this.props.inputSearch.onSubmit(e)
+    this.props.actions.inputSearch.onSubmit && this.props.actions.inputSearch.onSubmit(e)
   }
 
   render() {
     const {
-      actions: { download, upload, fields, extraActions, newLine },
-      inputSearch,
+      actions: { inputSearch, download, upload, fields, extraActions, newLine },
       displaySchema,
       schema,
       handleHideAllColumns,
@@ -268,6 +267,9 @@ Toolbar.defaultProps = {
 
 Toolbar.propTypes = {
   actions: PropTypes.shape({
+    inputSearch: PropTypes.shape({
+      onSubmit: PropTypes.func,
+    }),
     fields: PropTypes.shape({
       label: PropTypes.string,
       showAllLabel: PropTypes.string,
@@ -290,9 +292,6 @@ Toolbar.propTypes = {
         })
       ),
     }),
-  }),
-  inputSearch: PropTypes.shape({
-    onSubmit: PropTypes.func,
   }),
   displaySchema: PropTypes.object.isRequired,
   schema: PropTypes.object.isRequired,
