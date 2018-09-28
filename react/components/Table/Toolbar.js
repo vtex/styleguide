@@ -245,7 +245,7 @@ class Toolbar extends PureComponent {
             >
               <span className="flex align-baseline">
                 <span className="mr2">
-                  <IconPlus color="currentColor" />
+                  <IconPlus solid size={16} color="currentColor" />
                 </span>
                 {newLine.label}
               </span>
