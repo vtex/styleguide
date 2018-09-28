@@ -13,7 +13,7 @@ class Tabs extends Component {
             cloneElement(child, { fullWidth, key: child.props.label.toString() })
           )}
         </div>
-        <div className="w-100">
+        <div className="vtex-tabs__content w-100">
           {content}
         </div>
       </div>
