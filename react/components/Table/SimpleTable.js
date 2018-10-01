@@ -23,7 +23,6 @@ class SimpleTable extends PureComponent {
     const {
       schema,
       items,
-      indexColumn,
       indexColumnLabel,
       disableHeader,
       onRowClick,
@@ -37,7 +36,7 @@ class SimpleTable extends PureComponent {
     } = this.props
     const properties = Object.keys(schema.properties)
     // hydrate items with index when 'indexColumn' prop is true
-    const newItems = indexColumn && items.length > 0
+    const newItems = indexColumnLabel && items.length > 0
       ? items.map((item, index) => ({
         ...item,
         _reactVirtualizedIndex: index + 1,
@@ -75,10 +74,10 @@ class SimpleTable extends PureComponent {
                 } b--muted-4`
               }
             >
-              {indexColumn ? (
+              {indexColumnLabel ? (
                 <Column
                   headerRenderer={() => (
-                    <span className="ph4">{indexColumnLabel || 'Index'}</span>
+                    <span className="ph4">{indexColumnLabel}</span>
                   )}
                   cellRenderer={({ cellData }) => (
                     <span className="ph4">{cellData}</span>
@@ -142,8 +141,7 @@ class SimpleTable extends PureComponent {
 }
 
 SimpleTable.defaultProps = {
-  indexColumn: false,
-  indexColumnLabel: 'Index',
+  indexColumnLabel: null,
   items: [],
   disableHeader: false,
   onRowClick: () => {},
@@ -160,9 +158,7 @@ SimpleTable.propTypes = {
   items: PropTypes.array.isRequired,
   /** Json Schema data model for the items (example: https://jsonschema.net/) for custom examples see code from custom components */
   schema: PropTypes.object.isRequired,
-  /** Should first column be row index */
-  indexColumn: PropTypes.bool,
-  /** Row index column label */
+  /** if passed, activates first column as row index  */
   indexColumnLabel: PropTypes.string,
   /** Do not render the table header (only the rows) */
   disableHeader: PropTypes.bool,

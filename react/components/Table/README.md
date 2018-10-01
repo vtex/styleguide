@@ -113,7 +113,7 @@ class CustomTableExample extends React.Component {
           <Table
             schema={customSchema}
             items={this.state.orderedItems}
-            indexColumn
+            indexColumnLabel="Index"
             sort={{
               sortedBy: this.state.dataSort.sortedBy,
               sortOrder: this.state.dataSort.sortOrder,
