@@ -46,7 +46,12 @@ module.exports = {
     )
     return `import ${componentName} from '@vtex/styleguide/lib/${dir}'`
   },
-  webpackConfig: require('@vtex/react-scripts/config/webpack.config.dev.js'),
+  webpackConfig: {
+    ...require('@vtex/react-scripts/config/webpack.config.dev.js'),
+    devServer: {
+      disableHostCheck: true,
+    },
+  },
   theme: {
     color: {
       link: config.colors.blue,

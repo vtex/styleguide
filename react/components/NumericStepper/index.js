@@ -153,8 +153,8 @@ export default class NumericStepper extends React.Component {
       'x-large': `pv5 f4 ${block ? 'flex-grow-1' : 'w4'}`,
     }
 
-    return (
-      <label>
+    const content = (
+      <React.Fragment>
         {label && <span className="db mb3 w-100">{label}</span>}
         <div className="flex self-start">
           <input
@@ -219,8 +219,16 @@ export default class NumericStepper extends React.Component {
             </button>
           </div>
         </div>
-      </label>
+      </React.Fragment>
     )
+
+    // Refrain from using label tag if not needed, to prevent
+    // iOS from focusing on the text field and popping up the
+    // keyboard when increment/decrement is pressed
+    if (label) {
+      return <label>{content}</label>
+    }
+    return <div>{content}</div>
   }
 }
 

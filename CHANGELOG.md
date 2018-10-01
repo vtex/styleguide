@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [6.4.4] - 2018-10-01
+
+### Fixed
+
+- **NumericStepper** Refrains from using the label tag if there is no label, to prevent the keyboard from popping up on iOS unnecessarily
+- Disable host checking on dev server in order to make it publicly accessible
+
 ## [6.4.3] - 2018-09-28
 
 ### Added
