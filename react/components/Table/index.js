@@ -55,7 +55,6 @@ class Table extends PureComponent {
     const {
       items,
       schema,
-      indexColumn,
       indexColumnLabel,
       disableHeader,
       onRowClick,
@@ -86,7 +85,6 @@ class Table extends PureComponent {
         <SimpleTable
           items={items}
           schema={displaySchema}
-          indexColumn={indexColumn}
           indexColumnLabel={indexColumnLabel}
           disableHeader={disableHeader}
           onRowClick={onRowClick}
@@ -117,9 +115,7 @@ Table.propTypes = {
   items: PropTypes.array.isRequired,
   /** Json Schema data model for the items (example: https://jsonschema.net/) for custom examples see code from custom components */
   schema: PropTypes.object.isRequired,
-  /** Should first column be row index */
-  indexColumn: PropTypes.bool,
-  /** Row index column label */
+  /** if passed, activates first column as row index */
   indexColumnLabel: PropTypes.string,
   /** Do not render the table header (only the rows) */
   disableHeader: PropTypes.bool,
