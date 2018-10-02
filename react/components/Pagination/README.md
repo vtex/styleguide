@@ -2,11 +2,11 @@ Default
 
 ```js
 <Pagination
-  rowsOptions={[5, 10, 15, 20]}
+  rowsOptions={[5, 10, 15, 25]}
   currentItemFrom={1}
   currentItemTo={10}
   textOf="of"
-  textShowRows="show rows"
+  textShowRows="Show rows"
   totalItems={32}
   onRowsChange={(event, value) => {
     console.log('event: ', event, 'value: ', value)
@@ -27,7 +27,7 @@ Without row options
   currentItemFrom={10}
   currentItemTo={20}
   textOf="of"
-  textShowRows="show rows"
+  textShowRows="Show rows"
   totalItems={32}
   onNextClick={event => {
     console.log(event)

@@ -52,8 +52,8 @@ class Pagination extends PureComponent {
         }`}
       >
         {dropdownOptions && (
-          <div className="flex flex-row items-baseline">
-            <span className="mr4">{this.props.textShowRows}</span>
+          <div className="flex flex-row pt5 items-baseline">
+            <span className="mr4 c-muted-2 f6">{this.props.textShowRows}</span>
             <Dropdown
               label=""
               options={dropdownOptions}
@@ -63,29 +63,35 @@ class Pagination extends PureComponent {
           </div>
         )}
 
-        <div className="flex flex-row items-center">
-          <div>
+        <div className="flex flex-row pt5 items-center">
+          <div className="c-muted-2 f6">
             {this.props.currentItemFrom}
             {' - '}
             {this.props.currentItemTo} {this.props.textOf}{' '}
             {this.props.totalItems}
           </div>
-          <Button
-            icon
-            variation="tertiary"
-            disabled={isPrevDisabled}
-            onClick={this.handlePrevPage}
-          >
-            <CaretLeft color="currentColor" />
-          </Button>
-          <Button
-            icon
-            variation="tertiary"
-            disabled={isNextDisabled}
-            onClick={this.handleNextPage}
-          >
-            <CaretRight color="currentColor" />
-          </Button>
+          <div className="ml4">
+            <Button
+              icon
+              variation="secondary"
+              size="small"
+              disabled={isPrevDisabled}
+              onClick={this.handlePrevPage}
+            >
+              <CaretLeft color="currentColor" />
+            </Button>
+          </div>
+          <div className="ml2">
+            <Button
+              icon
+              variation="secondary"
+              size="small"
+              disabled={isNextDisabled}
+              onClick={this.handleNextPage}
+            >
+              <CaretRight color="currentColor" />
+            </Button>
+          </div>
         </div>
       </div>
     )

@@ -269,7 +269,8 @@ class ResourceListExample extends React.Component {
           currentItemFrom: this.state.currentItemFrom,
           currentItemTo: this.state.currentItemTo,
           onRowsChange: this.handleRowsChange,
-          textOf: 'de',
+          textShowRows: 'Show rows',
+          textOf: 'of',
           totalItems: this.state.itemsLength,
           rowsOptions: [5, 10, 15, 20],
         }}
@@ -279,5 +280,3 @@ class ResourceListExample extends React.Component {
 }
 ;<ResourceListExample />
 ```
-
-
