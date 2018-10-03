@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [6.4.4] - 2018-10-01
 
+### Added
+
+- Improves styles of Multiselect
+
 ### Fixed
 
 - **NumericStepper** Refrains from using the label tag if there is no label, to prevent the keyboard from popping up on iOS unnecessarily
