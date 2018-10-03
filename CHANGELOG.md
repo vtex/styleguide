@@ -110,12 +110,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- **Table** props to enhance height control
-- **ResouceList** CRUD component
-
-### Fixed
-
-- **Pagination** control state of selected rows quantity dropdown
+- **Textarea** character countdown when maxLength is defined
 
 ## [6.1.3] - 2018-08-29
 
