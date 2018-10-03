@@ -40,7 +40,7 @@ export default class DropdownList extends PureComponent {
     const results =
       options.length === 0 ? (
         <div
-          className="pv4 ph5 f6 c-on-base bg-base fw4"
+          className="pv4 ph5 f6 c-muted-2 bg-base fw4"
           dangerouslySetInnerHTML={{ __html: emptyState }}
         />
       ) : (
@@ -50,12 +50,12 @@ export default class DropdownList extends PureComponent {
     return (
       <div
         className="b--muted-4 br--bottom br2 b--solid bw1 absolute w-100 z-max"
-        style={{ borderTop: 'none' }}
+        style={{ borderTop: 'none', boxShadow: '0 1px 18px rgba(0,0,0,0.15)' }}
         onMouseEnter={() => onMouseEnter && onMouseEnter()}
         onMouseLeave={() => onMouseLeave && onMouseLeave()}
       >
         {loading && (
-          <div className="pv4 ph5 f6 c-on-base bg-base fw4">{loadingText}</div>
+          <div className="pv4 ph5 f6 c-muted-2 bg-base fw4">{loadingText}</div>
         )}
         {!loading && results}
       </div>
