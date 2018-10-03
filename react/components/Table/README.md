@@ -2,7 +2,7 @@ Simple
 
 ```js
 const sampleData = require('./sampleData').default;
-const itemsCopy = sampleData.items.slice(0).reverse().splice(20);
+const itemsCopy = sampleData.items.slice().reverse().splice(20);
 const defaultSchema = {
     properties: {
       name: {
@@ -35,7 +35,7 @@ Custom Cell components
 
 ```js
 const sampleData = require('./sampleData').default;
-const itemsCopy = sampleData.items.slice(0).reverse().splice(20);
+const itemsCopy = sampleData.items.slice().reverse().splice(20);
 const Badge = require('../Badge').default;
 class CustomTableExample extends React.Component {
   constructor() {
@@ -60,8 +60,8 @@ class CustomTableExample extends React.Component {
      // I'll just handle sort by 'name', but I could handle multiple properties
     if (sortedBy === 'name') {
       const orderedItems = sortOrder === 'ASC'
-        ? itemsCopy.slice(0).sort(this.sortNameAlphapeticallyASC)
-        : itemsCopy.slice(0).sort(this.sortNameAlphapeticallyDESC)
+        ? itemsCopy.slice().sort(this.sortNameAlphapeticallyASC)
+        : itemsCopy.slice().sort(this.sortNameAlphapeticallyDESC)
       // the above const could come out of an API call to sort items for example
       this.setState({
         orderedItems,
@@ -134,7 +134,7 @@ const sampleData = require('./sampleData').default
 const tableLength = 5
 const initialState = {
   tableLength,
-  currentPage: 1,
+  currentPage: 0,
   slicedData: sampleData.items.slice(0, tableLength),
   currentItemFrom: 1,
   currentItemTo: tableLength,
@@ -150,6 +150,7 @@ class ResourceListExample extends React.Component {
 
     this.handleNextClick = this.handleNextClick.bind(this)
     this.handlePrevClick = this.handlePrevClick.bind(this)
+    this.goToPage = this.goToPage.bind(this)
     this.handleInputSearchChange = this.handleInputSearchChange.bind(this)
     this.handleInputSearchSubmit = this.handleInputSearchSubmit.bind(this)
     this.handleInputSearchClear = this.handleInputSearchClear.bind(this)
@@ -157,29 +158,28 @@ class ResourceListExample extends React.Component {
   }
 
   handleNextClick() {
-    const currentPage = this.state.currentPage
-    const currentItemFrom = this.state.currentItemTo + 1
-    const currentItemTo = tableLength * (currentPage + 1)
-
-    this.setState({
-      currentPage: currentPage + 1,
-      currentItemFrom,
-      currentItemTo,
-      slicedData: sampleData.items.slice(currentItemFrom - 1, currentItemTo),
-    })
+    const newPage = this.state.currentPage + 1
+    const itemFrom = this.state.currentItemTo + 1
+    const itemTo = tableLength * (newPage)
+    const data = sampleData.items.slice(itemFrom - 1, itemTo)
+    this.goToPage(newPage, itemFrom, itemTo, data)
   }
 
   handlePrevClick() {
-    if (this.state.currentPage === 1) return
-    const currentPage = this.state.currentPage
-    const currentItemFrom = this.state.currentItemFrom - tableLength
-    const currentItemTo = this.state.currentItemFrom - 1
+    if (this.state.currentPage === 0) return
+    const newPage = this.state.currentPage - 1
+    const itemFrom = this.state.currentItemFrom - tableLength
+    const itemTo = this.state.currentItemFrom - 1
+    const data = sampleData.items.slice(itemFrom - 1, itemTo)
+    this.goToPage(newPage, itemFrom, itemTo, data)
+  }
 
+  goToPage(currentPage, currentItemFrom, currentItemTo, slicedData) {
     this.setState({
-      currentPage: currentPage - 1,
+      currentPage,
       currentItemFrom,
       currentItemTo,
-      slicedData: sampleData.items.slice(currentItemFrom - 1, currentItemTo),
+      slicedData,
     })
   }
 
@@ -206,7 +206,7 @@ class ResourceListExample extends React.Component {
       this.setState({ ...initialState })
     } else {
       this.setState({
-        currentPage: 1,
+        currentPage: 0,
         currentItemFrom: 1,
         currentItemTo: 4,
         slicedData: sampleData.items.slice(0, 4),
@@ -272,7 +272,7 @@ class ResourceListExample extends React.Component {
           textShowRows: 'Show rows',
           textOf: 'of',
           totalItems: this.state.itemsLength,
-          rowsOptions: [5, 10, 15, 20],
+          rowsOptions: [5, 10, 15, 25],
         }}
       />
     )

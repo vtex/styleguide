@@ -3,6 +3,9 @@ import PropTypes from 'prop-types'
 import { Column, Table as VirtualTable, AutoSizer } from 'react-virtualized'
 import ArrowDown from '../icon/ArrowDown'
 import ArrowUp from '../icon/ArrowUp'
+const ARROW_SIZE = 11
+const ROW_HEIGHT = 64
+const HEADER_HEIGHT = 36
 
 class SimpleTable extends PureComponent {
   toggleSortType = (key) => {
@@ -29,7 +32,6 @@ class SimpleTable extends PureComponent {
       onRowMouseOver,
       onRowMouseOut,
       containerHeight,
-      containerClass,
       sort: { sortOrder, sortedBy },
       onSort,
       updateTableKey,
@@ -44,7 +46,7 @@ class SimpleTable extends PureComponent {
       : items
     return (
       <div
-        className={containerClass || 'vh-50'}
+        className="vh-100"
         style={containerHeight ? { height: containerHeight } : {}}>
         <AutoSizer>
           {({ width, height }) => (
@@ -52,8 +54,8 @@ class SimpleTable extends PureComponent {
               updateTableKey={updateTableKey}
               width={width}
               height={height}
-              headerHeight={36}
-              rowHeight={64}
+              headerHeight={HEADER_HEIGHT}
+              rowHeight={ROW_HEIGHT}
               rowCount={newItems.length}
               rowGetter={({ index }) => newItems[index]}
               className="flex flex-column"
@@ -74,7 +76,7 @@ class SimpleTable extends PureComponent {
                 } b--muted-4`
               }
             >
-              {indexColumnLabel ? (
+              {indexColumnLabel && (
                 <Column
                   headerRenderer={() => (
                     <span className="ph4">{indexColumnLabel}</span>
@@ -84,9 +86,9 @@ class SimpleTable extends PureComponent {
                   )}
                   dataKey="_reactVirtualizedIndex"
                   label={indexColumnLabel}
-                  width={width / 10} // 10%
+                  width={width / 10} // since index are only integers 10% of table width is enough
                 />
-              ) : null}
+              )}
               {properties.map((key, index) => {
                 const label = schema.properties[key].title
                 const cellWidthPercent = schema.properties[key].width || 25
@@ -108,9 +110,9 @@ class SimpleTable extends PureComponent {
                                 }}>
                                 {`${label} `}
                                 {sortOrder === 'ASC' && sortedBy === key
-                                  ? <ArrowDown size={11} />
+                                  ? <ArrowDown size={ARROW_SIZE} />
                                   : sortOrder === 'DESC' && sortedBy === key
-                                    ? <ArrowUp size={11} />
+                                    ? <ArrowUp size={ARROW_SIZE} />
                                     : null
                                 }
                               </span>
@@ -122,9 +124,7 @@ class SimpleTable extends PureComponent {
                     }
                     cellRenderer={
                       cellRenderer ||
-                      function({ cellData }) {
-                        return <div className="truncate ph4">{cellData}</div>
-                      }
+                      (({ cellData }) => <div className="truncate ph4">{cellData}</div>)
                     }
                     dataKey={key}
                     label={label}
@@ -158,7 +158,7 @@ SimpleTable.propTypes = {
   items: PropTypes.array.isRequired,
   /** Json Schema data model for the items (example: https://jsonschema.net/) for custom examples see code from custom components */
   schema: PropTypes.object.isRequired,
-  /** if passed, activates first column as row index  */
+  /** Activates a first column as row index (line count)  */
   indexColumnLabel: PropTypes.string,
   /** Do not render the table header (only the rows) */
   disableHeader: PropTypes.bool,
@@ -175,12 +175,10 @@ SimpleTable.propTypes = {
   }),
   /** Callback to handle sort ({ sortOrder, sortedBy }) : object */
   onSort: PropTypes.func,
-  /** Forces table re-render when changed */
+  /** Changing this key forces table to re-render (you will need this to handle locale changes if you use intl FormatedMessage inside cellRenderer) */
   updateTableKey: PropTypes.string,
   /** In case you need precise control of table container height (number in pixels)  */
   containerHeight: PropTypes.number,
-  /** CSS that goes in table container (note: it needs a defined height, default is vh-50 from tachyons) */
-  containerClass: PropTypes.string,
 }
 
 export default SimpleTable

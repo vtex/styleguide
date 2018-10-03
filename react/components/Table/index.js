@@ -63,7 +63,6 @@ class Table extends PureComponent {
       sort,
       onSort,
       updateTableKey,
-      containerClass,
       containerHeight,
       toolbar,
       pagination,
@@ -93,7 +92,6 @@ class Table extends PureComponent {
           sort={sort}
           onSort={onSort}
           updateTableKey={updateTableKey}
-          containerClass={containerClass || 'vh-100'}
           containerHeight={containerHeight || this.calculateTableHeight(items.length)}
         />
         {pagination && <Pagination {...pagination} />}
@@ -115,7 +113,7 @@ Table.propTypes = {
   items: PropTypes.array.isRequired,
   /** Json Schema data model for the items (example: https://jsonschema.net/) for custom examples see code from custom components */
   schema: PropTypes.object.isRequired,
-  /** if passed, activates first column as row index */
+  /** Activates a first column as row index (line count)  */
   indexColumnLabel: PropTypes.string,
   /** Do not render the table header (only the rows) */
   disableHeader: PropTypes.bool,
@@ -136,8 +134,6 @@ Table.propTypes = {
   updateTableKey: PropTypes.string,
   /** In case you need precise control of table container height (number in pixels)  */
   containerHeight: PropTypes.number,
-  /** CSS that goes in table container (note: it needs a defined height, default is vh-50 from tachyons) */
-  containerClass: PropTypes.string,
   /** Toolbar (search and actions) */
   toolbar: PropTypes.shape({
     inputSearch: PropTypes.shape({
