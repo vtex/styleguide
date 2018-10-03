@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [7.1.0] - 2018-10-03
+
+## [7.1.0] - 2018-10-03
+
+### Changed
+
+- **PageHeader** Side buttons changed to `children`
+
 ## [7.0.0] - 2018-10-03
 
 ### Added
@@ -25,7 +33,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
- - **Pagination** change button styles to secondary to match rows dropdown weight
+- **Pagination** change button styles to secondary to match rows dropdown weight
 
 ## [6.4.4] - 2018-10-01
 

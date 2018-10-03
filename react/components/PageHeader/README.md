@@ -19,7 +19,7 @@ With link
 />
 ```
 
-With Side button
+With children
 
 ```js
 <PageHeader
@@ -28,9 +28,11 @@ With Side button
   onLinkClick={e => {
     console.log(e)
   }}
-  buttonLabel="Main action"
-  onButtonClick={e => {
-    console.log(e)
-  }}
-/>
+>
+  <span className="mr4">
+    <Button variation="secondary">Secondary</Button>
+  </span>
+
+  <Button variation="primary">Primary</Button>
+</PageHeader>
 ```

@@ -9,12 +9,8 @@ class PageHeader extends PureComponent {
     this.props.onLinkClick && this.props.onLinkClick(e)
   }
 
-  handleButtonClick = e => {
-    this.props.onButtonClick && this.props.onButtonClick(e)
-  }
-
   render() {
-    const { linkLabel, buttonLabel } = this.props
+    const { linkLabel, children } = this.props
 
     return (
       <div className="vtex-pageHeader__container bg-muted-5 pa7">
@@ -45,15 +41,9 @@ class PageHeader extends PureComponent {
           }`}
         >
           <span>{this.props.title}</span>
-          {buttonLabel && (
-            <Button
-              size="small"
-              variation="primary"
-              neutral
-              onClick={this.handleButtonClick}
-            >
-              {buttonLabel}
-            </Button>
+
+          {children && (
+            <div className="vtex-pageHeader__children">{children}</div>
           )}
         </div>
       </div>
@@ -65,8 +55,7 @@ PageHeader.propTypes = {
   title: PropTypes.string.isRequired,
   linkLabel: PropTypes.string,
   onLinkClick: PropTypes.func,
-  buttonLabel: PropTypes.string,
-  onButtonClick: PropTypes.func,
+  children: PropTypes.node,
 }
 
 export default PageHeader

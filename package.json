@@ -1,6 +1,6 @@
 {
   "name": "@vtex/styleguide",
-  "version": "7.0.0",
+  "version": "7.1.0",
   "scripts": {
     "test": "react-scripts test --env=jsdom",
     "test:codemod": "jest codemod",
