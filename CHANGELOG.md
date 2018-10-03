@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- **Icon** add columns icon
+- **InputSearch** add `onClear` callback as prop
+- **Pagination** control state of selected rows quantity dropdown
+- **Table** add `containerHeight` prop to enhance Table height control
+- **Table** add `pagination` prop to make it easier to use Table and Pagination together
+- **Table** add `toolbar` prop with actions and search features possibility
+
+### Changed
+
+- **[BREAKING]** **Table** Remove `indexColumn` prop. `indexColumnLabel` alone now activates the feature
+- **[BREAKING]** **Table** Remove `containerClass` prop
+
+### Fixed
+
+ - **Pagination** change button styles to secondary to match rows dropdown weight
+
 ## [6.4.4] - 2018-10-01
 
 ### Added
