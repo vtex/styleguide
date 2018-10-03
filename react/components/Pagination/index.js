@@ -6,17 +6,27 @@ import Button from '../Button'
 import Dropdown from '../Dropdown'
 
 class Pagination extends PureComponent {
+  constructor(props) {
+    super(props)
+    this.state = {
+      selectedRowsOptionIndex: 0,
+    }
+  }
+
   handleRowsChange = (e, value) => {
+    const { rowsOptions } = this.props
+    const optionIndex = rowsOptions.indexOf(parseInt(value, 10))
+    this.setState({ selectedRowsOptionIndex: optionIndex })
     this.props.onRowsChange && this.props.onRowsChange(e, value)
-  };
+  }
 
   handlePrevPage = e => {
     this.props.onPrevClick && this.props.onPrevClick(e)
-  };
+  }
 
   handleNextPage = e => {
     this.props.onNextClick && this.props.onNextClick(e)
-  };
+  }
 
   createRowOptions = rowsOptions => {
     if (rowsOptions) {
@@ -25,10 +35,11 @@ class Pagination extends PureComponent {
       return opts
     }
     return null
-  };
+  }
 
   render() {
     const { rowsOptions } = this.props
+    const { selectedRowsOptionIndex } = this.state
     const dropdownOptions = this.createRowOptions(rowsOptions)
 
     const isPrevDisabled = this.props.currentItemFrom === 1
@@ -36,44 +47,51 @@ class Pagination extends PureComponent {
 
     return (
       <div
-        className={
-          `flex flex-row items-center ${rowsOptions ? 'justify-between' : 'justify-end'}`
-        }
+        className={`flex flex-row items-center ${
+          rowsOptions ? 'justify-between' : 'justify-end'
+        }`}
       >
-        {dropdownOptions &&
-          <div className="flex flex-row items-baseline">
-            <span className="mr4">{this.props.textShowRows}</span>
+        {dropdownOptions && (
+          <div className="flex flex-row pt5 items-baseline">
+            <span className="mr4 c-muted-2 f6">{this.props.textShowRows}</span>
             <Dropdown
               label=""
               options={dropdownOptions}
-              value={dropdownOptions[0].label}
+              value={dropdownOptions[selectedRowsOptionIndex].label}
               onChange={this.handleRowsChange}
             />
-          </div>}
+          </div>
+        )}
 
-        <div className="flex flex-row items-center">
-          <div>
+        <div className="flex flex-row pt5 items-center">
+          <div className="c-muted-2 f6">
             {this.props.currentItemFrom}
             {' - '}
             {this.props.currentItemTo} {this.props.textOf}{' '}
             {this.props.totalItems}
           </div>
-          <Button
-            icon
-            variation="tertiary"
-            disabled={isPrevDisabled}
-            onClick={this.handlePrevPage}
-          >
-            <CaretLeft color="currentColor" />
-          </Button>
-          <Button
-            icon
-            variation="tertiary"
-            disabled={isNextDisabled}
-            onClick={this.handleNextPage}
-          >
-            <CaretRight color="currentColor" />
-          </Button>
+          <div className="ml4">
+            <Button
+              icon
+              variation="secondary"
+              size="small"
+              disabled={isPrevDisabled}
+              onClick={this.handlePrevPage}
+            >
+              <CaretLeft color="currentColor" />
+            </Button>
+          </div>
+          <div className="ml2">
+            <Button
+              icon
+              variation="secondary"
+              size="small"
+              disabled={isNextDisabled}
+              onClick={this.handleNextPage}
+            >
+              <CaretRight color="currentColor" />
+            </Button>
+          </div>
         </div>
       </div>
     )
