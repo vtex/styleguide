@@ -35,12 +35,16 @@ class MenusExample extends React.Component {
                   handleCallback: () => alert('I’m sorry, Dave. I’m afraid I can’t do that.')
                 },
                 {
-                  label: 'alert number 2',
-                  handleCallback: () => alert(2)
+                  label: 'Have you heard about the word?',
+                  handleCallback: () => alert('sure, everybody knows that the bird is the word...')
                 },
                 {
-                  label: 'alert number 3',
-                  handleCallback: () => alert(3)
+                  label: 'Does wise men also have fears?',
+                  handleCallback: () => alert('There are three things all wise men fear: the sea in storm, a night with no moon, and the anger of a gentle man.')
+                },
+                {
+                  label: 'Quit now and cake will be served',
+                  handleCallback: () => alert('The cake is a lie')
                 },
               ]}
             />
@@ -49,18 +53,19 @@ class MenusExample extends React.Component {
             <Menu
               label="aligned left"
               align="left"
+              boxWidth="100%"
               options={[
                 {
-                  label: 'alert 1',
-                  handleCallback: () => alert(1)
+                  label: 'Start front engines',
+                  handleCallback: () => alert('beep!')
                 },
                 {
-                  label: 'alert 2',
-                  handleCallback: () => alert(2)
+                  label: 'Engage side thrusters',
+                  handleCallback: () => alert('boop!')
                 },
                 {
-                  label: 'alert 3',
-                  handleCallback: () => alert(3)
+                  label: 'Commence take off',
+                  handleCallback: () => alert('meerp!')
                 },
               ]}
             />
@@ -130,7 +135,7 @@ class MenusExample extends React.Component {
                   label: 'Tone',
                   handleCallback: () => this.setState({ songOption8: !this.state.songOption8 }),
                   toggle: {
-                    checked: this.state.songOptio8,
+                    checked: this.state.songOption8,
                   }
                 },
                 {
