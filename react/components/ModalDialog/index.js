@@ -50,12 +50,12 @@ class ModalDialog extends Component {
 ModalDialog.propTypes = {
   children: PropTypes.node,
   confirmation: PropTypes.shape({
-    label: PropTypes.string,
-    onClick: PropTypes.func,
+    label: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired,
   }).isRequired,
   cancelation: PropTypes.shape({
-    label: PropTypes.string,
-    onClick: PropTypes.func,
+    label: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired,
   }).isRequired,
 }
 
