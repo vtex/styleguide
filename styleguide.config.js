@@ -42,9 +42,12 @@ module.exports = {
     const componentName = pathArray[pathArray.length - 1]
     const dir = path.relative(
       path.join('react', 'components'),
-      path.dirname(componentPath),
+      path.dirname(componentPath)
     )
-    return `import ${componentName} from '@vtex/styleguide/lib/${dir}'`
+    return {
+      componentName,
+      dir,
+    }
   },
   webpackConfig: {
     ...require('@vtex/react-scripts/config/webpack.config.dev.js'),
@@ -61,6 +64,9 @@ module.exports = {
       h1: 36,
       h2: 24,
     },
+  },
+  styleguideComponents: {
+    PathlineRenderer: path.join(__dirname, 'react/docs/Pathline.js'),
   },
   styles: {
     TabButton: {
