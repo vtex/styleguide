@@ -4,6 +4,7 @@ Usage: <span className="c-muted-1">`import <IconName> from '@vtex/styleguide/lib
 const ArrowBack = require('./ArrowBack').default
 const ArrowDown = require('./ArrowDown').default
 const ArrowUp = require('./ArrowUp').default
+const Bars = require('./Bars').default
 const CaretDown = require('./CaretDown').default
 const CaretLeft = require('./CaretLeft').default
 const CaretRight = require('./CaretRight').default
@@ -27,10 +28,12 @@ const Link = require('./Link').default
 const Plus = require('./Plus').default
 const Save = require('./Save').default
 const Search = require('./Search').default
+const ShoppingCart = require('./ShoppingCart').default
 const Success = require('./Success').default
 const Upload = require('./Upload').default
 const VisibilityOff = require('./VisibilityOff').default
 const VisibilityOn = require('./VisibilityOn').default
+const User = require('./User').default
 const Warning = require('./Warning').default
 const PlusLines = require('./PlusLines').default
 
@@ -221,7 +224,18 @@ const demoLabel = 'pb3 code c-muted-1 f6'
         <div className={demoLabel}>Warning (solid)</div>
         <Warning solid size={demoSize} />
       </td>
-      <td />
+      <td>
+        <div className={demoLabel}>Bars</div>
+        <Bars size={demoSize} />
+      </td>
+      <td>
+        <div className={demoLabel}>User</div>
+        <User size={demoSize} />
+      </td>
+      <td>
+        <div className={demoLabel}>Shopping Cart</div>
+        <ShoppingCart size={demoSize} />
+      </td>
     </tr>
   </tbody>
 </table>
