@@ -1,10 +1,6 @@
-```jsx noeditor
-    <Alert type="warning">
-        <div>
-            This styleguide is <span className="fw5">under construction</span>. Everything may - and will - break. Use with caution, and avoid for now its use in Production projects if you're not very certain of what you're doing ;)
-        </div>
-    </Alert>
-```
+<div class="pa5 br2 bg-washed-red mb6 lh-copy">
+  This styleguide is **under construction**. Everything may - and will - break. Use with caution, and avoid for now its use in Production projects if you're not very certain of what you're doing.
+</div>
 
 # Getting started
 
