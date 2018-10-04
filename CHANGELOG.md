@@ -14,6 +14,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `IconBars`, `IconUser` and `IconShoppingCart` components
 
 ## [7.1.0] - 2018-10-03
+### Fixed
+
+- **Textarea** Border style error state
 
 ## [7.1.0] - 2018-10-03
 
