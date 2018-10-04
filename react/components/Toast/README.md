@@ -1,3 +1,15 @@
+### Overview
+Toasts give users instant feedback about the tasks they just did. Its main objective is to ensure tasks confirmation and success. 
+
+### Dos
+- Toast are always self-dismissing, but users should be allowed to dismiss it themselves as well. 
+- Keep messages in a low to mild priority spectrum. Toasts are intended to be either neutral or positive. 
+
+### Don'ts
+- Do not present critical or high priority actions on a Toast, if that's the case, you might consider using <a href="#alert">Alerts</a> instead.
+- Due to its low to mild priority usage and dismissability, warning and error semantic styles do not apply to Toasts.
+
+
 ```
 const ToastProvider = require('./index').ToastProvider
 const ToastConsumer = require('./index').ToastConsumer

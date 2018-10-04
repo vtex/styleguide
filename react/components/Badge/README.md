@@ -1,8 +1,13 @@
-Use badges for a visual representation status. It's most powerful when used with semantic colors that have a clear and contextualized meaning in your application, such as _green_ for success and _red_ for errors. However, if your application employs a richer palette with unambiguous usage of colors don't hesitate to use your badges with them.
+### Overview
+A Badge represents a status or a tag.
 
-The component is agnostic in respect to color combinations, so be mindful of potential accessibility issues concerning color contrast. After identifying accessible contrast combinations, feel free to play with them to convey the proeminence you want the badges to have in your design: high contrast for high proeminence, and low contrast for low proeminence.
+### Dos
+- Do use semantic colors that have a clear and contextualized meaning in your application, such as _green_ for success and _red_ for errors. However, if your application employs a richer palette with unambiguous usage of colors don't hesitate to use your Badges with them.
+- Do play with contrast to convey the visual prominence more suited to your application. Use high contrast for high proeminence, and low contrast for low proeminence.
 
-Badges should always be read-only, never interactive.
+### Don'ts
+- Don't do make the Badge other than the optional close button, otherwise they should always be read-only.
+- Don't use color contrast combinations that don't pass Accessibility tests.
 
 
 **@todo: update examples to use VTEX Tachyons colors without hardcoding them**
@@ -13,7 +18,7 @@ Default
 <Badge>Pending</Badge>
 ```
 
-Types examples
+Types 
 
 ```js
 <span className="mr4">
@@ -33,7 +38,7 @@ Types examples
 </span>
 ```
 
-Low prominence examples
+Low prominence 
 
 ```js
 <div>
@@ -60,7 +65,7 @@ Low prominence examples
 </div>
 ```
 
-Custom colors examples
+Custom colors 
 
 ```js
 <span className="mr4">

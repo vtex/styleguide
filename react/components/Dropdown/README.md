@@ -1,3 +1,17 @@
+### Overview
+A Dropdown lets the user pick an option from a list.
+
+### Dos
+- Mind the order of the options, like putting more probable to be picked on that. In doubt, sort them alphanumerically (from A to Z and from 0 to 9).
+
+### Don'ts
+- Don't use a Dropdown if you have more than a few dozens options. Most users don't know about the keyboard search feature and will have to scan through all the options. In this case you'll probably need something a little fancier (work not in progress).
+
+### Related components
+- Consider a <a href="#radiogroup">Radio Group</a> if there are fewer than 4 options to choose from, or you need more space to explain each of the options.
+- For multiple picks, use the <a href="#multiselect">Multiselect</a>.
+
+
 Sizes
 ```js
 <div>

@@ -1,3 +1,9 @@
+### Overview
+Like a simple dropdown, but users may select more than one option.
+
+### Related components
+For single selection use a <a href="#dropdown">Dropdown</a>.
+
 Simple Use
 
 ```js

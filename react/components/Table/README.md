@@ -1,3 +1,17 @@
+### Overview
+A table displays any kind of structured data and offers controls to easily navigate, search and filter through it. Data may be from just numbers to complex entities that employ other components to represent itself, like images, tags, links, etc.
+
+Our Table was built to be highly composable and flexible. All parts are optional, and you can compose your table with any other Styleguide components. A Table may be used from a small table with numbers to full CRUD-like functionalities, from a small data display to the main screen of a complex module. All parts are plug'n'play parts that you can turn on and off to match your needs.
+
+### Dos
+- Try to support as many of the Table features as you can in your system - if we designed there it's because it's highly recommended to have.
+- Provide as many domain-specific actions as you want in the dropdown slot.
+- Line actions: should be mostly for actions that are resolved in the same screen, or if it's was identified to be a very recurrent action.
+
+<div class="center mw6 pv6">
+  ![](/table.png)
+</div>
+
 Simple
 
 ```js

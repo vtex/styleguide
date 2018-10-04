@@ -1,15 +1,77 @@
+### Overview
+A Radio Group represents a need for the user to make a choice among a few offered options. 
+
+### Dos
+- Keep the list of options short. More than 6 options might start looking weird. 
+- Try to keep label texts short, but it's more important the option being clear than short.
+- Mind the order of the options. Some good rule of thumbs for ordering are: most to least frequently used, simplest to most complex, least to most risk.
+- Use a "None" option if you need an unselected state.
+- Consider adding an "Other" option if needed, maybe in conjunction with a Text Input to capture the user need.
+
+### Don'ts
+- Don't offer overlapping options, they should be clearly mutually exclusive.
+
+### Related components
+- Consider using a <a href="#checkbox">Checkbox</a> if you need the user to select more than one option.
+- Consider using a <a href="#dropdown">Dropdown</a> if you have several options and they don't need much explanation.
+
+
 Default
 
 ```js
+initialState = { checkedRadioValue: 'option-1' }
+;<div>
+  <Radio
+   checked={state.checkedRadioValue === 'option-0'}
+   id="radio-0"
+   label="Opção 0"
+   name="radio-group"
+   onChange={e => setState({ checkedRadioValue: 'option-0' })}
+   value="option-0"
+  />
+  <Radio
+   checked={state.checkedRadioValue === 'option-1'}
+   id="radio-1"
+   label="Opção 1"
+   name="radio-group"
+   onChange={e => setState({ checkedRadioValue: 'option-1' })}
+   value="option-1"        
+  />
+  <Radio
+    checked={state.checkedRadioValue === 'option-2'}
+    id="radio-2"
+    label="Opção 2"
+    name="radio-group"
+    onChange={e => setState({ checkedRadioValue: 'option-2' })}
+    value="option-2"
+  />
+  <Radio
+    checked={state.checkedRadioValue === 'option-3'}
+    disabled
+    id="radio-3"
+    label="Opção 3"
+    name="radio-group"
+    onChange={e => setState({ checkedRadioValue: 'option-3' })}
+    value="option-3"
+  />
+</div>
+```
+
+RadioGroup
+
+```js
+initialState = { value: 'cyan' };
+
 <RadioGroup
-  name="radioGroupExample"
+  name="colors"
   options={[
-    {value:'value1', label: 'Red'},
-    {value:'value2', label: 'Green'},
-    {value:'value3', label: 'Blue'},
+    {value: 'cyan', label: 'Cyan'},
+    {value: 'magenta', label: 'Magenta'},
+    {value: 'yellow', label: 'Yellow'},
+    {value: 'key', label: 'Black'},
   ]}
-  value="value1"
-  onChange={() => {}}
+  value={state.value}
+  onChange={e => setState({ value: e.currentTarget.value })}
 />
 ```
 
@@ -56,23 +118,5 @@ Entire group disabled
   ]}
   value="value1"
   onChange={() => {}}
-/>
-```
-
-Example: Working React Component
-
-```js
-initialState = { value: 'cyan' };
-
-<RadioGroup
-  name="colors"
-  options={[
-    {value: 'cyan', label: 'Cyan'},
-    {value: 'magenta', label: 'Magenta'},
-    {value: 'yellow', label: 'Yellow'},
-    {value: 'key', label: 'Black'},
-  ]}
-  value={state.value}
-  onChange={e => setState({ value: e.currentTarget.value })}
 />
 ```
