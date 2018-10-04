@@ -1,10 +1,16 @@
-A Card is a powerful solution for a visual container, improving the scannabiliy and overall visual organization of a design when well used. Use it to group related groups of information.
+### Overview
+A Card like any container improves scannability of a design when well used. What sets the Card apart is that it has higher visual prominence and invites interactivity with it's fancy drop shadow.
 
-It performs best when repeated and when each instance shares a similar structure among each other. Avoid using it to encompass the entirety of a page. Prefer small to medium sizes.
+### Dos
+- It works best when it works as a big button.
+- Do use buttons inside it if you need, but keep it simple.
 
-Do use call-to-actions, but avoid having too many of them inside the same card.
+### Don'ts
+- Don't nest cards inside cards.
+- Avoid using it to encompass the entirety of a page.
 
-Never nest cards inside cards.
+### Related components
+- In doubt prefer using a simple <a href="#box">Box</a>.
 
 
 Default

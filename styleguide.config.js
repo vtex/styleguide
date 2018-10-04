@@ -90,4 +90,5 @@ module.exports = {
       ],
     },
   },
+  assetsDir: './assets',
 }

@@ -1,6 +1,14 @@
-A toggle is a special case of a checkbox. Like its counterpart it conveys a _binary choice_, but with a particular ON/OFF interpretation of that choice. Toggles are often independent from each other, differently than checkboxes that might be grouped.
+### Overview
+A Toggle is a control for turning an option ON or OFF. Its effect is usually automatically applied, which is one of the main differences compared to checkboxes, that need a submit.
 
-Use a toggle whenever you're dealing with a feature that can be activated or deactivated.
+### Dos
+- Do use the Semantic variation if turning this option ON is highly recommended from your application standpoint. In doubt prefer the default variation.
+- Do me mindful of the default value of this field.
+- It's usually a good practice to be optimistic about its effect. Even if you're not sure if the resulting network request will be successful, pretend it does and let it change its state.
+
+### Related components
+- Consider using a <a href="#checkbox">Checkbox</a> if it's inside a form, or if the property doesn't have a clear "ON/OFF".
+
 
 ## Default
 
@@ -53,14 +61,8 @@ initialState = {
 </div>;
 ```
 
-## Semantic Toggle
-
-The semantic toggle is more opinative than a regular toggle, and it conveys an inherent right/wrong judgement of its controlled value.
-
-Use this toggle if turning it ON is highly recommended from your application standpoint. In doubt, use the Default one.
-
-Example: when configuring Security settings, you might want to signal to the user that turning ON double-authentication feature is highly recommended.
-
+## Semantic
+ 
 ```js
 initialState = {
   checked: true,
