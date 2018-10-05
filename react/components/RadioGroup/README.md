@@ -3,7 +3,7 @@ A Radio Group represents a need for the user to make a choice among a few offere
 
 ### Dos
 - Keep the list of options short. More than 6 options might start looking weird. 
-- Try to keep label texts short, but it's more important the option being clear than short.
+- Labels should be clear and if possible short.
 - Mind the order of the options. Some good rule of thumbs for ordering are: most to least frequently used, simplest to most complex, least to most risk.
 - Use a "None" option if you need an unselected state.
 - Consider adding an "Other" option if needed, maybe in conjunction with a Text Input to capture the user need.

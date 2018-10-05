@@ -1,5 +1,5 @@
 ### Overview
-Alerts are notifications of mild to high priority. They may inform the user about things they should know or explain a problem and the user a solution. It may be triggered by an user action or not.
+Alerts are notifications of mild to high priority. They may inform the user about things they should know or explain a problem and the user a solution. It may be triggered by a user action or not.
 
 ### Do
 - Alerts should be shown at the top of the page or section they apply to, filling the full container width respecting some minimum little margins.
@@ -7,7 +7,7 @@ Alerts are notifications of mild to high priority. They may inform the user abou
 - Do use semantic colors that have a clear and contextualized meaning in your application, but keep in mind that due to its mild to high priority, that success message may not apply here. If that's the case, you might be looking for Toasts.
 
 ### Don'ts
-- Never dismiss automatically an Alert. If dismissable, an user action is required.
+- Never dismiss automatically an Alert. If dismissable, a user action is required.
 
 ### Related components
 For low-priority notification prefer a <a href="#toast">Toast</a>.

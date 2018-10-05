@@ -1,5 +1,5 @@
 ### Overview
-A Spinner is a way of showing the user something is being loaded, either because of an user action or not. It should be used for short, indeterminate loading times.
+A Spinner is a way of showing the user something is being loaded, either because of a user action or not. It should be used for short, indeterminate loading times.
 
 ### Dos
 - Mind the color contrast with the background.
@@ -12,8 +12,8 @@ A Spinner is a way of showing the user something is being loaded, either because
 - Avoid showing too many spinners at a given time in the same screen, it'll look overwhelming.
 
 ### Related components
-- If you can assess the progression of the task prefer a Progress Bar (WIP).
-- For whole screen loading try using Skeleton Pages (WIP).
+- If you can assess the progression of the task prefer a Progress Bar (work in progress).
+- For whole screen loading try using Skeleton Pages (work in progress).
 
 
 #### Default

@@ -7,8 +7,8 @@ Tabs are navigation solutions for alternating between content that is in the sam
 - Use may use icons instead of text if you want, but be mindful it may hurt usability.
 
 ### Don'ts
-- Don't use too many tabs. More than 5 might start looking weird.
-- Don't use dropdown menus with these tabs. I mean, one day we might support that, but we don't .
+- Don't use too many tabs. More than 5 starts looking weird.
+- Don't use dropdown menus with these tabs (althought we might one day support that).
 - Don't nest tabs directly inside tabs, it will be very confusing. (@todo we might need an alternative visual for tabs when used inside other tabs)
 - Avoid forcing the user to alternate back-and-forth between tabs to execute an important task.
 

@@ -2,7 +2,7 @@
 Toasts give users instant feedback about the tasks they just did. Its main objective is to ensure tasks confirmation and success. 
 
 ### Dos
-- Toast are always self-dismissing, but users should be allowed to dismiss it themselves as well. 
+- Toasts are always self-dismissing, but users should be allowed to dismiss by themselves as well. 
 - Keep messages in a low to mild priority spectrum. Toasts are intended to be either neutral or positive. 
 
 ### Don'ts
