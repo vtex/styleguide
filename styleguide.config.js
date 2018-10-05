@@ -43,6 +43,27 @@ module.exports = {
       content: './docs/introduction.md',
     },
     {
+      name: 'Styles',
+      sections: [
+        {
+          name: '',
+          content: 'docs/styles/introduction.md',
+        },
+        {
+          name: 'Colors',
+          content: 'docs/styles/colors.md',
+        },
+        {
+          name: 'Spacing',
+          content: 'docs/styles/spacing.md',
+        },
+        {
+          name: 'Typography',
+          content: 'docs/styles/typography.md',
+        },
+      ],
+    },
+    {
       name: 'Components',
       content: './docs/components.md',
       components: 'react/components/*/index.js',
