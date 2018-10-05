@@ -4,7 +4,7 @@ Tabs are navigation solutions for alternating between content that is in the sam
 ### Dos
 - Use short labels.
 - Use tabs in any place of your page hierarchy: as a top-level navigation or inside another component.
-- Use may use icons instead of text if you want, but be mindful it may hurt usability.
+- You may use icons instead of text if you want, but be mindful it may hurt usability.
 
 ### Don'ts
 - Don't use too many tabs. More than 5 starts looking weird.
