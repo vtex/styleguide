@@ -1,12 +1,12 @@
 ### Overview
-A Card like any container improves scannability of a design when well used. What sets the Card apart is that it has higher visual prominence and invites interactivity with it's fancy drop shadow.
+A Card like any container improves scannability of a design when well used. What sets the Card apart is that it has higher visual prominence and invites interactivity with its fancy drop shadow.
 
 ### Dos
-- It works best when it works as a big button.
+- It works best when used as a big button.
 - Do use buttons inside it if you need, but keep it simple.
 
 ### Don'ts
-- Don't nest cards inside cards.
+- Don't nest cards.
 - Avoid using it to encompass the entirety of a page.
 
 ### Related components

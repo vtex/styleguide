@@ -5,7 +5,6 @@ A simple header for Admin modules and Apps with simple navigation needs.
 - Keep the page title short. It's a title, after all. Use the module name in the title if it's the first page.
 - Use the previous page title as the label of the back link.
 - Use the main action button if it's clear what would be the most import action of the entire page. Otherwise just don't.
-- Combine this us the Tabs component for for your main module navigation if needed.
 
 ### Don'ts
 - Don't change dynamically the main page action upon action on the page. The main action should be as static as the title is.

@@ -2,8 +2,8 @@
 A Toggle is a control for turning an option ON or OFF. Its effect is usually automatically applied, which is one of the main differences compared to checkboxes, that need a submit.
 
 ### Dos
-- Do use the Semantic variation if turning this option ON is highly recommended from your application standpoint. In doubt prefer the default variation.
-- Do me mindful of the default value of this field.
+- Use the Semantic variation if turning this option ON is highly recommended from your application standpoint. In doubt prefer the default variation.
+- be me mindful of the default value of this field.
 - It's usually a good practice to be optimistic about its effect. Even if you're not sure if the resulting network request will be successful, pretend it does and let it change its state.
 
 ### Related components

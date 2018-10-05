@@ -1,5 +1,5 @@
 ### Overview
-A modal is a overlay that demands the attention and action from the user, preventing her from interacting with the rest of the page. It might be used from displaying messages to providing a simple form to edit a record.
+A modal is an overlay that demands the attention and action from the user, preventing her from interacting with the rest of the page. It might be used from displaying messages to providing a simple form to edit a record.
 
 ### Dos
 - Keep it simple. The content of a modal should represent one, clear action from the user - even if it takes multiple steps to be completed.
