@@ -1,8 +1,14 @@
-<div class="pa5 br2 bg-washed-red mb6">
-    This styleguide is **under construction**. Everything may - and will - break. Use with caution, and avoid for now its use in Production projects if you're not very certain of what you're doing.
-</div>
+```jsx noeditor
+    <Alert type="warning">
+        <div>
+            This styleguide is <span className="fw5">under construction</span>. Everything may - and will - break. Use with caution, and avoid for now its use in Production projects if you're not very certain of what you're doing ;)
+        </div>
+    </Alert>
+```
 
-## CSS
+# Getting started
+
+## Styles
 
 VTEX Styleguide uses [VTEX Tachyons](https://vtex.github.io/vtex-tachyons/) as our CSS framework.
 
@@ -15,6 +21,35 @@ yarn add @vtex/styleguide --exact
 # or
 npm install @vtex/styleguide --save-exact
 ```
+
+## Contributing
+
+```jsx noeditor
+<div className="flex flex-row tc">
+    <div className="w-50 mh4 dim">
+        <a href="https://github.com/vtex/styleguide/issues" className="link c-on-base">
+            <Card>
+                <img className="w-20" src="https://image.flaticon.com/icons/svg/25/25231.svg"/>
+                <p className="">
+                    All tasks, ideas, new components requests and bug trackings are being done on Github. Feel free to bring your ideas there, or pick any issue to contribute on!
+                </p>
+            </Card>
+        </a>
+    </div>
+    
+    <div className="w-50 mh4 dim">
+        <a href="https://vtex.slack.com/app_redirect?channel=styleguide-onda" className="link c-on-base">
+            <Card>
+                <img className="w-20" src="https://cdn.freebiesupply.com/logos/large/2x/slack-1-logo-png-transparent.png"/>
+                <p className="">
+                    If you're inside VTEX, come join us at the <b>#styleguide-onda</b> Slack channel and at our weekly meetings.
+                </p>
+            </Card>
+        </a>
+    </div>
+</div>
+```
+
 
 # Patterns
 
@@ -36,10 +71,3 @@ As a rule of thumb of user interfaces, the visual weight and color contrast of a
 Several of our components offer flexibility in the form of variations of prominency. Some will have predetermined variations, like Buttons, others will give you full freedom of color combinations, like Badges.
 
 To choose the right prominence it's important to understand how important the information or action that component represents is to the context it's in, as well as the overall balance of your design.
-
-
-**to do**
-
-### Progressive disclosure
-
-**to do**
