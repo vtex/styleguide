@@ -9,7 +9,7 @@ Our Table was built to be highly composable and flexible. All parts are optional
 - Line actions: should be mostly for actions that are resolved in the same screen, or if it's was identified to be a very recurrent action.
 
 <div class="center mw7 pv6">
-  ![](/table.png)
+  ![](./table.png)
 </div>
 
 Simple
