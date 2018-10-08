@@ -65,7 +65,7 @@ Several components in our Styleguide will have different size variations to pick
 As a rule of thumb of user interfaces, the visual weight and color contrast of an interface element should be proportional to its importance. A good interface will often have an harmonious balance of weights.
 
 <div class="center mw6 pv6">
-  ![](/prominences.png)
+  ![](./prominences.png)
 </div>
 
 Several of our components offer flexibility in the form of variations of prominency. Some will have predetermined variations, like Buttons, others will give you full freedom of color combinations, like Badges.
