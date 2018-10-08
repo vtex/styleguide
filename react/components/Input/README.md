@@ -1,7 +1,9 @@
 ### Overview
+
 Inputs let users type in data in a variety of ways. Take a look at the options available to see which one fits best with what you need.
 
 ### Dos
+
 - When possible use labels, and keep them short and descriptive. More than 3 words might start looking weird.
 - Use the placeholders only to provide complementary information and show examples of how to fill that field. But using the label text is preferred in most cases.
 - Do use the required/optional flags when necessary, but prefer using one or another.
@@ -9,9 +11,9 @@ Inputs let users type in data in a variety of ways. Take a look at the options a
 - Use the Helper Text to explain in more details how the input is expected to be filled.
 
 ### Related components
+
 - In some cases for numerical inputs you might want a <a href="#numericstepper">NumericStepper</a>.
 - If instead of a free-form entry you expect the user to enter a value from a preset of values you might want to use a <a href="#dropdown">Dropdown</a>, for a single value, or a <a href="#multiselect">Multiselect</a> for multiple values.
-
 
 Sizes
 
@@ -125,6 +127,7 @@ Using ref
 Password input
 
 ```js
+const PasswordInput = require('../PasswordInput').default
 initialState = { value1: 'Passw0rd', value2: 'Passw0rd', value3: 'Passw0rd' }
 ;<div>
   <form
@@ -150,6 +153,7 @@ initialState = { value1: 'Passw0rd', value2: 'Passw0rd', value3: 'Passw0rd' }
 Search input
 
 ```js
+const InputSearch = require('../InputSearch').default
 initialState = { value1: '', value2: '', value3: '' }
 ;<div>
   <form
@@ -173,13 +177,14 @@ initialState = { value1: '', value2: '', value3: '' }
 </div>
 ```
 
-Text area
+Textarea
 
 ```js
+const Textarea = require('../Textarea').default
 initialState = {
-  value: ""
-};
-<div>
+  value: '',
+}
+;<div>
   <div className="mb6">
     <Textarea label="With a label">I haz content</Textarea>
   </div>
@@ -202,9 +207,9 @@ initialState = {
       label="Controlling text (no spaces) with character countdown"
       onChange={e => setState({ value: e.target.value.trim() })}
       value={state.value}
-      maxLength={100}
+      maxLength="100"
       helpText="You can have helper text alongside the countdown."
     />
   </div>
-</div>;
+</div>
 ```
