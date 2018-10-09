@@ -29,3 +29,13 @@ A Spinner is a way of showing the user something is being loaded, either because
   <Spinner color="currentColor" size={20} />
 </span>
 ```
+
+#### Controlling spinner
+```js
+initialState = { spinning: true }
+;<span className="dib c-muted-1">
+  <Spinner spinning={state.spinning} />
+  <input type="checkbox" value={state.spinning} onChange={() => setState({ spinning: !state.spinning })} />
+  { JSON.stringify(state.spinning) }
+</span>
+```
