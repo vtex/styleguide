@@ -1,60 +1,36 @@
-TYPE SCALE
 
 Base: f = font-size
 
 
 ***
 
-Modifiers:
+### Modifiers:
+- 1 = 1st step in size scale
+- 2 = 2nd step in size scale
+- 3 = 3rd step in size scale
+- 4 = 4th step in size scale
+- 5 = 5th step in size scale
+- 6 = 6th step in size scale
+- 7 = 7th step in size scale
 
-1 = 1st step in size scale
-
-2 = 2nd step in size scale
-
-3 = 3rd step in size scale
-
-4 = 4th step in size scale
-
-5 = 5th step in size scale
-
-6 = 6th step in size scale
-
-7 = 7th step in size scale
-
-
-***
-
-Font Sizes:
-
+### Font Sizes:
+```sh
 .f1 { font-size: 3rem; }
-
 .f2 { font-size: 2.25rem; }
-
 .f3 { font-size: 1.5rem; }
-
 .f4 { font-size: 1.25rem; }
-
 .f5 { font-size: 1rem; }
-
 .f6 { font-size: 0.875rem; }
-
 .f7 { font-size: 0.75rem; }
+```
 
+### Media Query Extensions:
 
-***
-
-Media Query Extensions:
-
--s  = 20em
-
--ns  = 40em
-
--m  = 40em
-
--l  = 64em
-
--xl  = 80em
-
+- s  = 20em
+- ns  = 40em
+- m  = 40em
+- l  = 64em
+- xl  = 80em
 
 ```js
   <div class="xe xn">
