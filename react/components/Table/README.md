@@ -40,6 +40,15 @@ const defaultSchema = {
     <Table
       schema={defaultSchema}
       items={itemsCopy}
+      onRowClick={({ rowData }) => {
+        alert(`you just clicked ${
+          rowData.name
+        }, number is ${
+          rowData.number
+        } and email ${
+          rowData.email
+        }`)
+      }}
     />
   </div>
 </div>

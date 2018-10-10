@@ -62,18 +62,20 @@ class SimpleTable extends PureComponent {
               headerClassName="c-muted-2 f6"
               disableHeader={disableHeader}
               onRowClick={({ event, index, rowData }) => {
-                onRowClick({ event, index, rowData })
+                onRowClick && onRowClick({ event, index, rowData })
               }}
               onRowMouseOver={({ event, index, rowData }) => {
-                onRowMouseOver({ event, index, rowData })
+                onRowMouseOver && onRowMouseOver({ event, index, rowData })
               }}
               onRowMouseOut={({ event, index, rowData }) => {
-                onRowMouseOut({ event, index, rowData })
+                onRowMouseOut && onRowMouseOut({ event, index, rowData })
               }}
               rowClassName={({ index }) =>
                 `flex flex-row items-center ${
                   index === -1 ? 'bt bb' : 'bb'
-                } b--muted-4`
+                } b--muted-4 ${
+                  onRowClick && index !== -1 ? 'hover-bg-action-secondary pointer' : ''
+                }`
               }
             >
               {indexColumnLabel && (
@@ -144,9 +146,6 @@ SimpleTable.defaultProps = {
   indexColumnLabel: null,
   items: [],
   disableHeader: false,
-  onRowClick: () => {},
-  onRowMouseOut: () => {},
-  onRowMouseOver: () => {},
   sort: {
     sortOrder: null,
     sortedBy: null,
