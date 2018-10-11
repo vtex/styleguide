@@ -18,7 +18,8 @@ Inputs let users type in data in a variety of ways. Take a look at the options a
 Sizes
 
 ```js
-<div>
+const Input = require('./index.js').default
+;<div>
   <div className="mb5">
     <Input
       placeholder="Default with data-attributes"
@@ -40,6 +41,7 @@ Sizes
 Variations
 
 ```js
+const Input = require('./index.js').default
 const IconHelp = require('../icon/Help').default
 class InputExamples extends React.Component {
   constructor() {
@@ -109,9 +111,7 @@ class InputExamples extends React.Component {
             label="With suffixIcon"
             value={this.state.withSuffixValue}
             onChange={e => this.setState({ withSuffixValue: e.target.value })}
-            suffixIcon={
-              <IconHelp />
-            }
+            suffixIcon={<IconHelp />}
           />
         </div>
       </div>
@@ -124,20 +124,21 @@ class InputExamples extends React.Component {
 Using ref
 
 ```js
-  this.input = React.createRef()
+const Input = require('./index.js').default;
+this.input = React.createRef()
 
-  const handleFocusClick = () => {
-    this.input.current.focus()
-  }
+const handleFocusClick = () => {
+  this.input.current.focus()
+}
 
-  <div>
-    <Input ref={this.input} placeholder="Placeholder" label="Click on the button below to focus on this input" />
-    <div className="pt2">
-      <Button size="small" onClick={handleFocusClick}>
-        Focus on input
-      </Button>
-    </div>
+<div>
+  <Input ref={this.input} placeholder="Placeholder" label="Click on the button below to focus on this input" />
+  <div className="pt2">
+    <Button size="small" onClick={handleFocusClick}>
+      Focus on input
+    </Button>
   </div>
+</div>
 ```
 
 Password input

@@ -8,7 +8,7 @@ const originalAppSrc = webpackConfig.module.rules[0].include
 const appSrc = path.join(__dirname, 'react')
 
 webpackConfig.module.rules[0].include = path.join(__dirname, 'react')
-webpackConfig.module.rules[1].oneOf.forEach((r) => {
+webpackConfig.module.rules[1].oneOf.forEach(r => {
   if (r.include === originalAppSrc) {
     r.include = appSrc
   }
@@ -22,7 +22,7 @@ module.exports = {
   version: `${version}`,
   require: ['vtex-tachyons'],
   usageMode: 'collapse',
-  exampleMode: 'expand',
+  exampleMode: 'collapse',
   title: 'VTEX Styleguide',
   skipComponentsWithoutExample: true,
   sections: [
@@ -45,7 +45,7 @@ module.exports = {
     const componentName = pathArray[pathArray.length - 1]
     const dir = path.relative(
       path.join('react', 'components'),
-      path.dirname(componentPath)
+      path.dirname(componentPath),
     )
     return {
       componentName,
