@@ -9,8 +9,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [7.2.0] - 2018-10-11
 
-## [7.2.0] - 2018-10-11
-
 ### Added
 
 - **ModalDialog**
@@ -23,6 +21,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **Input** Update color token of prefix & suffix to match Figma version
 
 ### Added
+
 - **Toast** Added `positioning` prop to `ToastProvider` to position toasts based either on the parent element dimensions, or window dimensions.
 
 ## [7.1.2] - 2018-10-08
