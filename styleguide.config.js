@@ -24,7 +24,10 @@ webpackConfig.module.rules[1].oneOf.forEach(r => {
 module.exports = {
   components: 'react/components/**/*.{js,jsx,ts,tsx}',
   version: `${version}`,
-  require: ['vtex-tachyons'],
+  require: [
+    'vtex-tachyons',
+    path.join(__dirname, './docs/styles/styles.css'),
+  ],
   usageMode: 'collapse',
   exampleMode: 'collapse',
   title: 'VTEX Styleguide',
@@ -64,16 +67,29 @@ module.exports = {
   },
   theme: {
     color: {
-      link: config.colors.blue,
-      linkHover: config.colors['heavy-blue'],
+      link: '#134CD8',
+      linkHover: '#0C389F',
+      codeBackground: '#F7F9FA',
+      sidebarBackground: '#FFF',
+      // ribbonBackground: 'blue',
+      // ribbonText: '#fff',
+      // border: 'red',
+      name: 'red',
+    },
+    fontFamily: {
+      base: 'Fabriga, sans-serif',
     },
     fontSize: {
-      h1: 36,
-      h2: 24,
+      base: 14,
+      text: 16,
+      small: 12,
     },
+    maxWidth: 900,
   },
   styleguideComponents: {
-    PathlineRenderer: path.join(__dirname, 'react/docs/Pathline.js'),
+    PathlineRenderer: path.join(__dirname, 'react/docs/Pathline'),
+    HeadingRenderer: path.join(__dirname, 'react/docs/HeadingRenderer'),
+    TabButtonRenderer: path.join(__dirname, 'react/docs/TabButtonRenderer'),
   },
   styles: {
     TabButton: {
