@@ -6,6 +6,7 @@ import Button from '../Button'
 import Toggle from '../Toggle'
 import IconCaretDown from '../icon/CaretDown'
 import IconColumns from '../icon/Columns'
+import IconDensity from '../icon/Density'
 import IconDownload from '../icon/Download'
 import IconPlus from '../icon/Plus'
 import IconUpload from '../icon/Upload'
@@ -13,36 +14,32 @@ const MAX_FIELDS_BOX_HEIGHT = 192
 const FIELDS_BOX_ITEM_HEIGHT = 36
 const FIELDS_BOX_WIDTH = 292
 const EXTRA_ACTIONS_BOX_WIDTH = 199
+const DENSITY_BOX_WIDTH = 114
+const BOX_SHADOW_STYLE = { boxShadow: '0px 1px 18px rgba(0, 0, 0, 0.14)' }
 
 class Toolbar extends PureComponent {
   constructor(props) {
     super(props)
     this.fieldsBtnRef = React.createRef()
     this.extraActionsBtnRef = React.createRef()
+    this.densityBtnRef = React.createRef()
     this.state = {
       isFieldsBoxVisible: false,
       isExtraActionsBoxVisible: false,
+      isDensityBoxVisible: false,
     }
   }
 
-  handleToggleFieldsBox = () => {
-    const { isFieldsBoxVisible } = this.state
-    if (isFieldsBoxVisible) {
+  handleToggleBox = (boxKey) => {
+    const isBoxVisible = this.state[boxKey]
+    console.log('TOGGLING THIS: ', boxKey, ' state: ', { isBoxVisible })
+    if (isBoxVisible) {
       document.removeEventListener('mousedown', this.handleClickOutside)
     } else {
       document.addEventListener('mousedown', this.handleClickOutside)
     }
-    this.setState({ isFieldsBoxVisible: !isFieldsBoxVisible })
-  }
-
-  handleToggleExtraActionsBox = () => {
-    const { isExtraActionsBoxVisible } = this.state
-    if (isExtraActionsBoxVisible) {
-      document.removeEventListener('mousedown', this.handleClickOutside)
-    } else {
-      document.addEventListener('mousedown', this.handleClickOutside)
-    }
-    this.setState({ isExtraActionsBoxVisible: !isExtraActionsBoxVisible })
+    console.log('NEW STATE: ', { [`${boxKey}`]: !isBoxVisible })
+    this.setState({ [`${boxKey}`]: !isBoxVisible })
   }
 
   handleClickOutside = (e) => {
@@ -53,7 +50,7 @@ class Toolbar extends PureComponent {
       this.state.isFieldsBoxVisible
     ) {
       // closes the box if it's open
-      this.handleToggleFieldsBox()
+      this.handleToggleBox('isFieldsBoxVisible')
     }
     if (
       this.extraActionsBtnRef &&
@@ -61,7 +58,15 @@ class Toolbar extends PureComponent {
       !this.extraActionsBtnRef.current.contains(e.target) &&
       this.state.isExtraActionsBoxVisible
     ) {
-      this.handleToggleExtraActionsBox()
+      this.handleToggleBox('isExtraActionsBoxVisible')
+    }
+    if (
+      this.densityBtnRef &&
+      this.densityBtnRef.current &&
+      !this.densityBtnRef.current.contains(e.target) &&
+      this.state.isDensityBoxVisible
+    ) {
+      this.handleToggleBox('isDensityBoxVisible')
     }
   }
 
@@ -83,22 +88,26 @@ class Toolbar extends PureComponent {
 
   render() {
     const {
-      actions: { inputSearch, download, upload, fields, extraActions, newLine },
+      actions: { inputSearch, download, upload, fields, extraActions, newLine, density },
       displaySchema,
       schema,
       handleHideAllColumns,
       handleShowAllColumns,
       toggleColumn,
+      handleToggleDensity,
+      selectedDensity,
     } = this.props
     const {
       isFieldsBoxVisible,
       isExtraActionsBoxVisible,
+      isDensityBoxVisible,
     } = this.state
     const isDownloadVisible = download && download.label
     const isUploadVisible = upload && upload.label
     const isFieldsVisible = fields && fields.label
     const isExtraActionsVisible = extraActions && extraActions.label && extraActions.actions.length > 0
     const isNewLineVisible = newLine && newLine.label
+    const isDensityVisible = density && density.label && density.labelLow && density.labelMedium && density.labelHigh
 
     return (
       <div id="toolbar" className="mb5 flex flex-row justify-between w-100">
@@ -108,6 +117,80 @@ class Toolbar extends PureComponent {
           </form>
         )}
         <div className="flex flex-row">
+          {isDensityVisible && (
+            <div
+              id="toggleDensity"
+              ref={this.densityBtnRef}
+              className="relative">
+              <Button
+                variation="tertiary"
+                size="small"
+                onClick={() => this.handleToggleBox('isDensityBoxVisible')}
+              >
+                <span className="flex align-baseline items-center near-black">
+                  <span className="mr3">
+                    <IconDensity color="currentColor" />
+                  </span>
+                  {density.label}
+                </span>
+              </Button>
+              {isDensityBoxVisible && (
+                <div
+                  className="absolute z-999 ba b--light-gray br2 mt2"
+                  style={BOX_SHADOW_STYLE}
+                >
+                  <div
+                    className="w-100 b2 br2 bg-base"
+                    style={{ width: DENSITY_BOX_WIDTH }}>
+                    <div style={{ height: 3 * FIELDS_BOX_ITEM_HEIGHT }} className="overflow-scroll">
+                      <div
+                        className={`flex justify-between ph6 pv3 pointer hover-bg-light-silver bl bw1 ${
+                          selectedDensity === 'low' ? 'b--emphasis' : 'b--transparent'
+                        }`}
+                        onClick={() => {
+                          handleToggleDensity('low')
+                          this.handleToggleBox('isDensityBoxVisible')
+                        }}>
+                        <span className={`w-100 ${
+                          selectedDensity === 'low' ? 'fw5' : ''
+                        }`}>
+                          {density.labelLow}
+                        </span>
+                      </div>
+                      <div
+                        className={`flex justify-between ph6 pv3 pointer hover-bg-light-silver bl bw1 ${
+                          selectedDensity === 'medium' ? 'b--emphasis' : 'b--transparent'
+                        }`}
+                        onClick={() => {
+                          handleToggleDensity('medium')
+                          this.handleToggleBox('isDensityBoxVisible')
+                        }}>
+                        <span className={`w-100 ${
+                          selectedDensity === 'medium' ? 'fw5' : ''
+                        }`}>
+                          {density.labelMedium}
+                        </span>
+                      </div>
+                      <div
+                        className={`flex justify-between ph6 pv3 pointer hover-bg-light-silver bl bw1 ${
+                          selectedDensity === 'high' ? 'b--emphasis' : 'b--transparent'
+                        }`}
+                        onClick={() => {
+                          handleToggleDensity('high')
+                          this.handleToggleBox('isDensityBoxVisible')
+                        }}>
+                        <span className={`w-100 ${
+                          selectedDensity === 'high' ? 'fw5' : ''
+                        }`}>
+                          {density.labelHigh}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
           {isFieldsVisible && (
             <div
               id="toggleFieldsBtn"
@@ -116,7 +199,7 @@ class Toolbar extends PureComponent {
               <Button
                 variation="tertiary"
                 size="small"
-                onClick={this.handleToggleFieldsBox}
+                onClick={() => this.handleToggleBox('isFieldsBoxVisible')}
               >
                 <span className="flex align-baseline near-black">
                   <span className="mr3">
@@ -126,10 +209,13 @@ class Toolbar extends PureComponent {
                 </span>
               </Button>
               {isFieldsBoxVisible && (
-                <div className="absolute z-999 ba b--light-gray br2">
+                <div className="absolute z-999 ba b--light-gray br2 mt2">
                   <div
-                    className="w-100 b2 br2 bg-base shadow-2"
-                    style={{ width: FIELDS_BOX_WIDTH }}>
+                    className="w-100 b2 br2 bg-base"
+                    style={{
+                      ...BOX_SHADOW_STYLE,
+                      width: FIELDS_BOX_WIDTH,
+                    }}>
                     <div className="flex inline-flex bb b--light-gray w-100 pl6 pv4">
                       <Button
                         variation="secondary"
@@ -204,7 +290,7 @@ class Toolbar extends PureComponent {
               <Button
                 variation="tertiary"
                 size="small"
-                onClick={this.handleToggleExtraActionsBox}
+                onClick={() => this.handleToggleBox('isExtraActionsBoxVisible')}
               >
                 <span className="flex align-baseline items-center near-black">
                   <span className="mr3">
@@ -214,7 +300,10 @@ class Toolbar extends PureComponent {
                 </span>
               </Button>
               {isExtraActionsBoxVisible && (
-                <div className="absolute z-999 ba b--light-gray br2 shadow-2 right-0">
+                <div
+                  className="absolute z-999 ba b--light-gray br2 right-0"
+                  style={BOX_SHADOW_STYLE}
+                >
                   <div
                     className="w-100 b2 br2 bg-base"
                     style={{ width: EXTRA_ACTIONS_BOX_WIDTH }}>
@@ -270,6 +359,12 @@ Toolbar.propTypes = {
     inputSearch: PropTypes.shape({
       onSubmit: PropTypes.func,
     }),
+    density: PropTypes.shape({
+      label: PropTypes.string,
+      labelLow: PropTypes.string,
+      labelMedium: PropTypes.string,
+      labelHigh: PropTypes.string,
+    }),
     fields: PropTypes.shape({
       label: PropTypes.string,
       showAllLabel: PropTypes.string,
@@ -298,6 +393,8 @@ Toolbar.propTypes = {
   toggleColumn: PropTypes.func,
   handleHideAllColumns: PropTypes.func,
   handleShowAllColumns: PropTypes.func,
+  handleToggleDensity: PropTypes.func,
+  selectedDensity: PropTypes.string,
 }
 
 export default Toolbar

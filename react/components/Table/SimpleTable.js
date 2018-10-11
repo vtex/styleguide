@@ -4,7 +4,6 @@ import { Column, Table as VirtualTable, AutoSizer } from 'react-virtualized'
 import ArrowDown from '../icon/ArrowDown'
 import ArrowUp from '../icon/ArrowUp'
 const ARROW_SIZE = 11
-const ROW_HEIGHT = 64
 const HEADER_HEIGHT = 36
 
 class SimpleTable extends PureComponent {
@@ -35,6 +34,7 @@ class SimpleTable extends PureComponent {
       sort: { sortOrder, sortedBy },
       onSort,
       updateTableKey,
+      rowHeight,
     } = this.props
     const properties = Object.keys(schema.properties)
     // hydrate items with index when 'indexColumn' prop is true
@@ -55,7 +55,7 @@ class SimpleTable extends PureComponent {
               width={width}
               height={height}
               headerHeight={HEADER_HEIGHT}
-              rowHeight={ROW_HEIGHT}
+              rowHeight={rowHeight}
               rowCount={newItems.length}
               rowGetter={({ index }) => newItems[index]}
               className="flex flex-column"
@@ -74,7 +74,7 @@ class SimpleTable extends PureComponent {
                 `flex flex-row items-center ${
                   index === -1 ? 'bt bb' : 'bb'
                 } b--muted-4 ${
-                  onRowClick && index !== -1 ? 'hover-bg-action-secondary pointer' : ''
+                  onRowClick && index !== -1 ? 'pointer hover-bg-near-white hover-c-link' : ''
                 }`
               }
             >
@@ -153,31 +153,21 @@ SimpleTable.defaultProps = {
 }
 
 SimpleTable.propTypes = {
-  /** Array of objects with data */
   items: PropTypes.array.isRequired,
-  /** Json Schema data model for the items (example: https://jsonschema.net/) for custom examples see code from custom components */
   schema: PropTypes.object.isRequired,
-  /** Activates a first column as row index (line count)  */
   indexColumnLabel: PropTypes.string,
-  /** Do not render the table header (only the rows) */
   disableHeader: PropTypes.bool,
-  /** Callback invoked when a user clicks on a table row. ({ event: Event, index: number, rowData: any }): void */
   onRowClick: PropTypes.func,
-  /** Callback invoked when a user moves the mouse over a table row. ({ event: Event, index: number, rowData: any }): void */
   onRowMouseOver: PropTypes.func,
-  /** Callback invoked when the mouse leaves a table row. ({ event: Event, index: number, rowData: any }): void */
   onRowMouseOut: PropTypes.func,
-  /** Sort order and which property (key in schema) is table data sorted by. */
   sort: PropTypes.shape({
     sortOrder: PropTypes.oneOf(['ASC', 'DESC']),
     sortedBy: PropTypes.string,
   }),
-  /** Callback to handle sort ({ sortOrder, sortedBy }) : object */
   onSort: PropTypes.func,
-  /** Changing this key forces table to re-render (you will need this to handle locale changes if you use intl FormatedMessage inside cellRenderer) */
   updateTableKey: PropTypes.string,
-  /** In case you need precise control of table container height (number in pixels)  */
   containerHeight: PropTypes.number,
+  rowHeight: PropTypes.number.isRequired,
 }
 
 export default SimpleTable

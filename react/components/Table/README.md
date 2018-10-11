@@ -12,11 +12,11 @@ Our Table was built to be highly composable and flexible. All parts are optional
   ![](./table.png)
 </div>
 
-Simple
+Simple (high density)
 
 ```js
 const sampleData = require('./sampleData').default;
-const itemsCopy = sampleData.items.slice().reverse().splice(20);
+const itemsCopy = sampleData.items.slice().reverse().splice(15);
 const defaultSchema = {
     properties: {
       name: {
@@ -40,6 +40,7 @@ const defaultSchema = {
     <Table
       schema={defaultSchema}
       items={itemsCopy}
+      density="high"
       onRowClick={({ rowData }) => {
         alert(`you just clicked ${
           rowData.name
@@ -250,6 +251,12 @@ class ResourceListExample extends React.Component {
             onChange: this.handleInputSearchChange,
             onClear: this.handleInputSearchClear,
             onSubmit: this.handleInputSearchSubmit,
+          },
+          density: {
+            label: 'Density',
+            labelLow: 'Low',
+            labelMedium: 'Medium',
+            labelHigh: 'High',
           },
           download: {
             label: 'Export',
