@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- **Table** `density` prop
+- **Table** `toolbar.density` prop to have native control via toolbar of Table content density
+
 ## [7.3.2] - 2018-10-11
 
 ### Changed

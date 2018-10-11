@@ -32,13 +32,11 @@ class Toolbar extends PureComponent {
 
   handleToggleBox = (boxKey) => {
     const isBoxVisible = this.state[boxKey]
-    console.log('TOGGLING THIS: ', boxKey, ' state: ', { isBoxVisible })
     if (isBoxVisible) {
       document.removeEventListener('mousedown', this.handleClickOutside)
     } else {
       document.addEventListener('mousedown', this.handleClickOutside)
     }
-    console.log('NEW STATE: ', { [`${boxKey}`]: !isBoxVisible })
     this.setState({ [`${boxKey}`]: !isBoxVisible })
   }
 
