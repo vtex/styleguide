@@ -47,7 +47,7 @@ class Input extends Component {
       helpText,
       dataAttributes,
       prefix,
-      suffixIcon,
+      suffix,
       groupBottom,
     } = this.props
     const { active } = this.state
@@ -94,25 +94,19 @@ class Input extends Component {
 
     switch (size) {
       case 'large':
-        classes += `f5 pv4 ${prefix ? 'pl8 pr6' : 'ph6'} ${
-          suffixIcon ? 'pr8' : ''
-        }`
+        classes += `f5 pv4 ${prefix ? 'pl8 pr6' : 'ph6'} ${suffix ? 'pr8' : ''}`
         labelClasses += 'f5 '
         prefixAndSuffixClasses += 'ph4 f5'
         // iconSize = 18
         break
       case 'x-large':
-        classes += `f4 pv5 ${prefix ? 'pl8 pr7' : 'ph7'} ${
-          suffixIcon ? 'pr8' : ''
-        }`
+        classes += `f4 pv5 ${prefix ? 'pl8 pr7' : 'ph7'} ${suffix ? 'pr8' : ''}`
         labelClasses += 'f5 '
         prefixAndSuffixClasses += 'ph5 f4 '
         // iconSize = 22
         break
       default:
-        classes += `f6 pv3 ${prefix ? 'pl7 pr5' : 'ph5'} ${
-          suffixIcon ? 'pr7' : ''
-        }`
+        classes += `f6 pv3 ${prefix ? 'pl7 pr5' : 'ph5'} ${suffix ? 'pr7' : ''}`
         labelClasses += 'f6 '
         prefixAndSuffixClasses += 'ph3 fw5 f6 '
         // iconSize = 16
@@ -174,7 +168,7 @@ class Input extends Component {
               WebkitAppearance: 'none',
             }}
           />
-          {suffixIcon && (
+          {suffix && (
             <span
               style={{
                 height: calcPrefixAndSuffixHeight,
@@ -182,7 +176,7 @@ class Input extends Component {
                 right: prefixAndSuffixPosition,
               }}
               className={prefixAndSuffixClasses}>
-              {suffixIcon}
+              {suffix}
             </span>
           )}
         </div>
@@ -231,7 +225,7 @@ InputWithRef.propTypes = {
   /** Label */
   label: PropTypes.string,
   /** Prefix */
-  prefix: PropTypes.string,
+  prefix: PropTypes.element,
   /** Internal prop used for ref forwarding */
   forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /** Spec attribute */
@@ -284,8 +278,8 @@ InputWithRef.propTypes = {
   src: PropTypes.string,
   /** Spec attribute */
   step: PropTypes.string,
-  /** SuffixIcon attribute */
-  suffixIcon: PropTypes.element,
+  /** Suffix attribute */
+  suffix: PropTypes.element,
   /** Spec attribute */
   tabIndex: PropTypes.string,
   /** Spec attribute */

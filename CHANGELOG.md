@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- **Input** `prefix` prop now accepts any element
+- **Input** `suffixIcon` prop to `suffix`
+
 ## [7.3.5] - 2018-10-15
 
 ### Added
