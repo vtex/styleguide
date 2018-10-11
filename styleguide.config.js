@@ -50,6 +50,10 @@ module.exports = {
           content: 'docs/styles/introduction.md',
         },
         {
+          name: 'Breakpoints',
+          content: 'docs/styles/breakpoints.md',
+        },
+        {
           name: 'Colors',
           content: 'docs/styles/colors.md',
         },
