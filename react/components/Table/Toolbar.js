@@ -105,7 +105,11 @@ class Toolbar extends PureComponent {
     const isFieldsVisible = fields && fields.label
     const isExtraActionsVisible = extraActions && extraActions.label && extraActions.actions.length > 0
     const isNewLineVisible = newLine && newLine.label
-    const isDensityVisible = density && density.label && density.low && density.medium && density.high
+    const isDensityVisible = density &&
+      density.buttonLabel &&
+      density.lowOptionLabel &&
+      density.mediumOptionLabel &&
+      density.highOptionLabel
 
     return (
       <div id="toolbar" className="mb5 flex flex-row justify-between w-100">
@@ -129,7 +133,7 @@ class Toolbar extends PureComponent {
                   <span className="mr3">
                     <IconDensity color="currentColor" />
                   </span>
-                  {density.label}
+                  {density.buttonLabel}
                 </span>
               </Button>
               {isDensityBoxVisible && (
@@ -155,7 +159,7 @@ class Toolbar extends PureComponent {
                               <span className={`w-100 ${
                                 isKeySelected ? 'fw5' : ''
                               }`}>
-                                {density[key]}
+                                {density[`${key}OptionLabel`]}
                               </span>
                             </div>
                           )
@@ -336,10 +340,10 @@ Toolbar.propTypes = {
       onSubmit: PropTypes.func,
     }),
     density: PropTypes.shape({
-      label: PropTypes.string,
-      low: PropTypes.string,
-      medium: PropTypes.string,
-      high: PropTypes.string,
+      buttonLabel: PropTypes.string,
+      lowOptionLabel: PropTypes.string,
+      mediumOptionLabel: PropTypes.string,
+      highOptionLabel: PropTypes.string,
     }),
     fields: PropTypes.shape({
       label: PropTypes.string,

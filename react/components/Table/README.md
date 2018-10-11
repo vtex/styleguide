@@ -253,10 +253,10 @@ class ResourceListExample extends React.Component {
             onSubmit: this.handleInputSearchSubmit,
           },
           density: {
-            label: 'Density',
-            low: 'Low',
-            medium: 'Medium',
-            high: 'High',
+            buttonLabel: 'Density',
+            lowOptionLabel: 'Low',
+            mediumOptionLabel: 'Medium',
+            highOptionLabel: 'High',
           },
           download: {
             label: 'Export',

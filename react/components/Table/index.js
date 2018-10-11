@@ -174,14 +174,10 @@ Table.propTypes = {
       onSubmit: PropTypes.func,
     }),
     density: PropTypes.shape({
-      /** Density toolbar button label */
-      label: PropTypes.string,
-      /** Toolbar low density option label */
-      low: PropTypes.string,
-      /** Toolbar medium density option label */
-      medium: PropTypes.string,
-      /** Toolbar high density option label */
-      high: PropTypes.string,
+      buttonLabel: PropTypes.string,
+      lowOptionLabel: PropTypes.string,
+      mediumOptionLabel: PropTypes.string,
+      highOptionLabel: PropTypes.string,
     }),
     fields: PropTypes.shape({
       label: PropTypes.string,
