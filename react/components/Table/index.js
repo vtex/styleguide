@@ -7,13 +7,14 @@ import Pagination from '../Pagination'
 import SimpleTable from './SimpleTable'
 
 const TABLE_HEADER_HEIGHT = 36
-const TABLE_CELL_HEIGHT = 64
 
 class Table extends PureComponent {
   constructor(props) {
     super(props)
     this.state = {
       displaySchema: props.schema ? this.cloneSchema(props.schema) : {},
+      tableRowHeight: this.getRowHeight(props.density),
+      selectedDensity: props.density,
     }
   }
 
@@ -25,6 +26,30 @@ class Table extends PureComponent {
       }
     })
     return displaySchema
+  }
+
+  getRowHeight = (density) => {
+    switch (density) {
+      case 'low':
+        return 77
+      case 'medium':
+        return 61
+      case 'high':
+        return 27
+      default:
+        return 61
+    }
+  }
+
+  toggleTableRowHeight = (density) => {
+    const { tableRowHeight } = this.state
+    const newHeight = this.getRowHeight(density)
+    if (tableRowHeight !== newHeight) {
+      this.setState({
+        tableRowHeight: newHeight,
+        selectedDensity: density,
+      })
+    }
   }
 
   toggleColumn = (key) => {
@@ -48,7 +73,8 @@ class Table extends PureComponent {
   onHideAllColumns = () => this.setState({ displaySchema: { properties: {} } })
 
   calculateTableHeight = (totalItems) => {
-    return TABLE_HEADER_HEIGHT + (TABLE_CELL_HEIGHT * totalItems)
+    const { tableRowHeight } = this.state
+    return TABLE_HEADER_HEIGHT + (tableRowHeight * totalItems)
   }
 
   render() {
@@ -69,6 +95,8 @@ class Table extends PureComponent {
     } = this.props
     const {
       displaySchema,
+      tableRowHeight,
+      selectedDensity,
     } = this.state
 
     return (
@@ -79,12 +107,15 @@ class Table extends PureComponent {
           toggleColumn={this.toggleColumn}
           handleHideAllColumns={this.onHideAllColumns}
           handleShowAllColumns={this.onShowAllColumns}
+          handleToggleDensity={this.toggleTableRowHeight}
+          selectedDensity={selectedDensity}
           schema={schema}
           actions={toolbar} />
         <SimpleTable
           items={items}
           schema={displaySchema}
           indexColumnLabel={indexColumnLabel}
+          rowHeight={tableRowHeight}
           disableHeader={disableHeader}
           onRowClick={onRowClick}
           onRowMouseOut={onRowMouseOut}
@@ -101,6 +132,7 @@ class Table extends PureComponent {
 }
 
 Table.defaultProps = {
+  density: 'medium',
   toolbar: {
     extraActions: {
       actions: [],
@@ -134,10 +166,18 @@ Table.propTypes = {
   updateTableKey: PropTypes.string,
   /** In case you need precise control of table container height (number in pixels)  */
   containerHeight: PropTypes.number,
+  /** Row info visual density  */
+  density: PropTypes.oneOf(['low', 'medium', 'high']),
   /** Toolbar (search and actions) */
   toolbar: PropTypes.shape({
     inputSearch: PropTypes.shape({
       onSubmit: PropTypes.func,
+    }),
+    density: PropTypes.shape({
+      buttonLabel: PropTypes.string,
+      lowOptionLabel: PropTypes.string,
+      mediumOptionLabel: PropTypes.string,
+      highOptionLabel: PropTypes.string,
     }),
     fields: PropTypes.shape({
       label: PropTypes.string,
