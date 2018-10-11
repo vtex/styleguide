@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - **Textarea** Border style error state
+- **Input** Update color token of prefix & suffix to match Figma version
 
 ### Added
 - **Toast** Added `positioning` prop to `ToastProvider` to position toasts based either on the parent element dimensions, or window dimensions.
