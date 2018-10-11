@@ -44,7 +44,7 @@ const DEMO_LABEL = 'pb3 code c-muted-1 f6';
 const TOTAL_ICONS_PER_LINE = 6;
 class IconsTable extends React.PureComponent {
   render() {
-    const completeIconsArray = Object.keys(ICONS)
+    const completeIconsArray = Object.keys(ICONS).sort((a, b) => (a < b) ? -1 : (a > b) ? 1 : 0 )
     const totalLines = Math.ceil(completeIconsArray.length / TOTAL_ICONS_PER_LINE)
     const chunkedIconsMatrix = []
     for (var i = 0; i < totalLines; i++) {
