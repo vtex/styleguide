@@ -6,7 +6,7 @@ Toasts give users instant feedback about the tasks they just did. Its main objec
 - Keep messages in a low to mild priority spectrum. Toasts are intended to be either neutral or positive. 
 
 ### Don'ts
-- Do not present critical or high priority actions on a Toast, if that's the case, you might consider using <a href="#alert">Alerts</a> instead.
+- Do not present critical or high priority actions on a Toast. If that's the case, you might consider using [Alerts](#alert) instead.
 - Due to its low to mild priority usage and dismissability, warning and error semantic styles do not apply to Toasts.
 
 
@@ -16,7 +16,9 @@ const ToastConsumer = require('./index').ToastConsumer
 
 const App = () => (
   // Wrap the entire application on a toast provider
-  <ToastProvider>
+  <ToastProvider
+    positioning="window"
+  >
     <Content/>
   </ToastProvider>
 )
