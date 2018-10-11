@@ -53,7 +53,7 @@ class Badge extends PureComponent {
         className={`${baseClasses} bn ${btnClasses} ${theme} ${hoverClass}`}
         style={{
           backgroundColor: bgColor,
-          color: disabled ? config.colors.gray : color,
+          color: disabled ? config.semanticColors.text.disabled : color,
         }}
         disabled={disabled}
         onClick={onClick}
