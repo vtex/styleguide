@@ -143,7 +143,7 @@ class Toolbar extends PureComponent {
                 variation="tertiary"
                 size="small"
                 onClick={() => this.handleToggleBox('isDensityBoxVisible')}>
-                <span className="flex align-baseline items-center near-black">
+                <span className="flex align-baseline items-center c-on-base">
                   <span className="mr3">
                     <IconDensity color="currentColor" />
                   </span>
@@ -152,7 +152,7 @@ class Toolbar extends PureComponent {
               </Button>
               {isDensityBoxVisible && (
                 <div
-                  className="absolute z-999 ba b--light-gray br2 mt2"
+                  className="absolute z-999 ba b--muted-4 br2 mt2"
                   style={BOX_SHADOW_STYLE}>
                   <div className="w-100 b2 br2 bg-base">
                     <div
@@ -163,7 +163,7 @@ class Toolbar extends PureComponent {
                         return (
                           <div
                             key={index}
-                            className={`flex justify-between ph6 pv3 pointer hover-bg-light-silver bl bw1 ${
+                            className={`flex justify-between ph6 pv3 pointer hover-bg-muted-5 bl bw1 ${
                               isKeySelected ? 'b--emphasis' : 'b--transparent'
                             }`}
                             onClick={() => {
@@ -192,7 +192,7 @@ class Toolbar extends PureComponent {
                 variation="tertiary"
                 size="small"
                 onClick={() => this.handleToggleBox('isFieldsBoxVisible')}>
-                <span className="flex align-baseline near-black">
+                <span className="flex align-baseline c-on-base">
                   <span className="mr3">
                     <IconColumns color="currentColor" />
                   </span>
@@ -200,14 +200,14 @@ class Toolbar extends PureComponent {
                 </span>
               </Button>
               {isFieldsBoxVisible && (
-                <div className="absolute z-999 ba b--light-gray br2 mt2">
+                <div className="absolute z-999 ba b--muted-4 br2 mt2">
                   <div
                     className="w-100 b2 br2 bg-base"
                     style={{
                       ...BOX_SHADOW_STYLE,
                       width: FIELDS_BOX_WIDTH,
                     }}>
-                    <div className="flex inline-flex bb b--light-gray w-100 pl6 pv4">
+                    <div className="flex inline-flex bb b--muted-4 w-100 pl6 pv4">
                       <Button
                         variation="secondary"
                         size="small"
@@ -229,7 +229,7 @@ class Toolbar extends PureComponent {
                       {Object.keys(schema.properties).map((field, index) => (
                         <div
                           key={index}
-                          className="flex justify-between ph6 pv3 pointer hover-bg-light-silver"
+                          className="flex justify-between ph6 pv3 pointer hover-bg-muted-5"
                           onClick={() => toggleColumn(field)}>
                           <span className="w-70 truncate">
                             {schema.properties[field].title || field}
@@ -251,7 +251,7 @@ class Toolbar extends PureComponent {
               variation="tertiary"
               size="small"
               onClick={download.handleCallback}>
-              <span className="flex align-baseline near-black">
+              <span className="flex align-baseline c-on-base">
                 <span className="mr3">
                   <IconDownload color="currentColor" />
                 </span>
@@ -264,7 +264,7 @@ class Toolbar extends PureComponent {
               variation="tertiary"
               size="small"
               onClick={upload.handleCallback}>
-              <span className="flex align-baseline near-black">
+              <span className="flex align-baseline c-on-base">
                 <span className="mr3">
                   <IconUpload color="currentColor" />
                 </span>
@@ -283,14 +283,14 @@ class Toolbar extends PureComponent {
                 onClick={() =>
                   this.handleToggleBox('isExtraActionsBoxVisible')
                 }>
-                <span className="flex align-baseline items-center near-black">
+                <span className="flex align-baseline items-center c-on-base">
                   <span className="mr3">{extraActions.label}</span>
                   <IconCaretDown height={13} color="currentColor" />
                 </span>
               </Button>
               {isExtraActionsBoxVisible && (
                 <div
-                  className="absolute z-999 ba b--light-gray br2 right-0"
+                  className="absolute z-999 ba b--muted-4 br2 right-0"
                   style={BOX_SHADOW_STYLE}>
                   <div
                     className="w-100 b2 br2 bg-base"
@@ -301,7 +301,7 @@ class Toolbar extends PureComponent {
                       {extraActions.actions.map((action, index) => (
                         <div
                           key={index}
-                          className="flex justify-between ph6 pv3 pointer hover-bg-light-silver"
+                          className="flex justify-between ph6 pv3 pointer hover-bg-muted-5"
                           onClick={action.handleCallback}>
                           <span className="w-70 truncate">{action.label}</span>
                         </div>

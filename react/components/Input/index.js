@@ -84,7 +84,7 @@ class Input extends Component {
     const typography = 'c-on-base'
     let classes = `${widthClass} ${box} ${border} ${typography} `
 
-    let labelClasses = 'vtex-input__label db mb3 w-100 '
+    let labelClasses = 'vtex-input__label db mb3 w-100 c-on-base '
 
     let prefixAndSuffixClasses =
       'vtex-input__prefix absolute c-muted-2 fw5 flex items-center '
@@ -109,21 +109,27 @@ class Input extends Component {
 
     switch (size) {
       case 'large':
-        classes += `f5 pv4 ${prefix ? 'pl8 pr6' : 'ph6'} ${suffix ? 'pr8' : ''}`
-        labelClasses += 'f5 '
-        prefixAndSuffixClasses += 'ph4 f5'
+        classes += `t-body pv4 ${prefix ? 'pl8 pr6' : 'ph6'} ${
+          suffix ? 'pr8' : ''
+        }`
+        labelClasses += 't-body '
+        prefixAndSuffixClasses += 'ph4 t-body'
         // iconSize = 18
         break
       case 'x-large':
-        classes += `f4 pv5 ${prefix ? 'pl8 pr7' : 'ph7'} ${suffix ? 'pr8' : ''}`
-        labelClasses += 'f5 '
-        prefixAndSuffixClasses += 'ph5 f4 '
+        classes += `t-body pv5 ${prefix ? 'pl8 pr7' : 'ph7'} ${
+          suffix ? 'pr8' : ''
+        }`
+        labelClasses += 't-body '
+        prefixAndSuffixClasses += 'ph5 t-body '
         // iconSize = 22
         break
       default:
-        classes += `f6 pv3 ${prefix ? 'pl7 pr5' : 'ph5'} ${suffix ? 'pr7' : ''}`
-        labelClasses += 'f6 '
-        prefixAndSuffixClasses += 'ph3 fw5 f6 '
+        classes += `t-small pv3 ${prefix ? 'pl7 pr5' : 'ph5'} ${
+          suffix ? 'pr7' : ''
+        }`
+        labelClasses += 't-small '
+        prefixAndSuffixClasses += 'ph3 t-small '
         // iconSize = 16
         break
     }
@@ -196,10 +202,10 @@ class Input extends Component {
           )}
         </div>
         {errorMessage && (
-          <div className="c-danger f6 mt3 lh-title">{errorMessage}</div>
+          <div className="c-danger t-small mt3 lh-title">{errorMessage}</div>
         )}
         {helpText && (
-          <div className="c-muted-1 f6 mt3 lh-title">{helpText}</div>
+          <div className="c-muted-1 t-small mt3 lh-title">{helpText}</div>
         )}
       </label>
     )

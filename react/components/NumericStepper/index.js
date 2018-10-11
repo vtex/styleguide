@@ -144,26 +144,26 @@ class NumericStepper extends Component {
     // TODO: Make this less cumbersome - will be done when x-large is killed
     const buttonSizeClass = (lean
       ? {
-          regular: 'f4 pv0',
-          large: 'f3 pv0',
-          'x-large': 'f2 pv0',
+          regular: 't-small pv0',
+          large: 't-body pv0',
+          'x-large': 't-body pv0',
         }
       : {
-          regular: 'pv3 f6',
-          large: 'pv4 f5',
-          'x-large': 'pv5 f4',
+          regular: 't-small pv3',
+          large: 't-body pv4',
+          'x-large': 't-body pv5',
         })[size]
 
     const inputSizeClass = (lean
       ? {
-          regular: `pv3 f6 ${block ? 'flex-grow-1' : 'w2'}`,
-          large: `pv4 f5 ${block ? 'flex-grow-1' : 'w2'}`,
-          'x-large': `pv5 f4 ${block ? 'flex-grow-1' : 'w3'}`,
+          regular: `pv3 t-small ${block ? 'flex-grow-1' : 'w2'}`,
+          large: `pv4 t-body ${block ? 'flex-grow-1' : 'w2'}`,
+          'x-large': `pv5 t-body ${block ? 'flex-grow-1' : 'w3'}`,
         }
       : {
-          regular: `pv3 f6 ${block ? 'flex-grow-1' : 'w3'}`,
-          large: `pv4 f5 ${block ? 'flex-grow-1' : 'w3'}`,
-          'x-large': `pv5 f4 ${block ? 'flex-grow-1' : 'w4'}`,
+          regular: `pv3 t-small ${block ? 'flex-grow-1' : 'w3'}`,
+          large: `pv4 t-body ${block ? 'flex-grow-1' : 'w3'}`,
+          'x-large': `pv5 t-body ${block ? 'flex-grow-1' : 'w4'}`,
         })[size]
 
     const borderClass = lean ? 'bn' : 'ba b--muted-4 bw1'
@@ -177,7 +177,7 @@ class NumericStepper extends Component {
 
     const content = (
       <React.Fragment>
-        {label && <span className="db mb3 w-100">{label}</span>}
+        {label && <span className="db mb3 w-100 c-on-base">{label}</span>}
         <div className="flex self-start">
           {lean ? (
             <div className={`order-1 tc ${inputSizeClass}`}>{displayValue}</div>

@@ -53,7 +53,7 @@ class Alert extends Component {
 
     return (
       <div
-        className={`vtex-alert flex justify-between f5 c-on-base ${classes}`}>
+        className={`vtex-alert flex justify-between t-body c-on-base ${classes}`}>
         <div className="flex-ns flex-grow-1 items-center">
           <div className="flex items-center flex-grow-1">
             {showIcon && (

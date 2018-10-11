@@ -18,8 +18,7 @@ class Tab extends Component {
           active
             ? 'c-on-muted b--emphasis'
             : 'c-muted-1 b--transparent hover-c-action-primary pointer'
-        }
-          fw5 fw4 v-mid relative pv5 ph4 f5 bg-transparent outline-0
+        } v-mid relative pv5 ph4 t-body bg-transparent outline-0
         `}>
         {label}
       </button>

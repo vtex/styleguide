@@ -111,7 +111,7 @@ class SimpleTable extends PureComponent {
                           <div className="truncate ph4">
                             {schema.properties[key].sortable ? (
                               <span
-                                className="pointer c-muted-1 b f6"
+                                className="pointer c-muted-1 b t-small"
                                 onClick={() => {
                                   onSort(this.toggleSortType(key))
                                 }}>

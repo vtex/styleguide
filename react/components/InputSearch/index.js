@@ -35,7 +35,7 @@ class InputSearch extends Component {
                 <DenyIcon size={iconSize} />
               </span>
             ) : (
-              <span className="c-link">
+              <span className="c-action-primary">
                 <SearchIcon size={iconSize} />
               </span>
             )}

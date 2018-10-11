@@ -100,7 +100,7 @@ ${this.getDropdownIdentification()}`
     let containerClasses = 'br2 bw1 relative '
     let selectClasses = 'o-0 absolute top-0 left-0 w-100 bottom-0 '
 
-    let labelClasses = 'vtex-dropdown__label dib mb3 w-100 '
+    let labelClasses = 'vtex-dropdown__label dib mb3 w-100 c-on-base '
 
     const valueLabel = this.getValueLabel()
     const showCaption = !valueLabel
@@ -116,21 +116,21 @@ ${this.getDropdownIdentification()}`
 
     switch (size) {
       case 'large':
-        classes += 'f5 pv4 pl6 pr5 '
-        selectClasses += 'f5 '
-        labelClasses += 'f5 '
+        classes += 't-body pv4 pl6 pr5 '
+        selectClasses += 't-body '
+        labelClasses += 't-body '
         iconSize = 18
         break
       case 'x-large':
-        classes += 'f4 pv5 pl7 pr6 '
-        selectClasses += 'f4 '
-        labelClasses += 'f5 '
+        classes += 't-body pv5 pl7 pr6 '
+        selectClasses += 't-body '
+        labelClasses += 't-body '
         iconSize = 22
         break
       default:
-        classes += 'f6 pv3 pl5 pr4 '
-        selectClasses += 'f6 '
-        labelClasses += 'f6 '
+        classes += 't-small pv3 pl5 pr4 '
+        selectClasses += 't-small '
+        labelClasses += 't-small '
         iconSize = 16
         break
     }
@@ -199,10 +199,10 @@ ${this.getDropdownIdentification()}`
           </div>
         </label>
         {errorMessage && (
-          <div className="c-danger f6 mt3 lh-title">{errorMessage}</div>
+          <div className="c-danger t-small mt3 lh-title">{errorMessage}</div>
         )}
         {helpText && (
-          <div className="c-muted-1 f6 mt3 lh-title">{helpText}</div>
+          <div className="c-muted-1 t-small mt3 lh-title">{helpText}</div>
         )}
       </div>
     )
