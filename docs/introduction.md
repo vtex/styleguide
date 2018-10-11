@@ -4,13 +4,13 @@
 
 # Getting started
 
-## Styles
+### Styles
 
 VTEX Styleguide uses [VTEX Tachyons](https://vtex.github.io/vtex-tachyons/) as our CSS framework.
 
 **To do:** create a better documentation for our CSS framework to live inside this Styleguide page.
 
-## Install
+### Install
 
 ```sh
 yarn add @vtex/styleguide --exact
@@ -18,7 +18,7 @@ yarn add @vtex/styleguide --exact
 npm install @vtex/styleguide --save-exact
 ```
 
-## Contributing
+### Contributing
 
 ```jsx noeditor
 <div className="flex flex-row tc">
@@ -49,14 +49,14 @@ npm install @vtex/styleguide --save-exact
 
 # Patterns
 
-## Component sizes and interface density
+### Component sizes and interface density
 Several components in our Styleguide will have different size variations to pick from. To make this choice consider the density of information your interface is employing:
 
 - _High density_ interfaces expose more details and offer more options and decisions, thus are suitable to more technical uses. For example, things like data tables and dashboards might be more appropriately done with high density UIs.
 
 - _Low density_ interfaces focus in simplifying information, fewer decisions to take and are normally easier to use and oriented to less technical uses.
 
-## Visual hierarchy
+### Visual hierarchy
 
 As a rule of thumb of user interfaces, the visual weight and color contrast of an interface element should be proportional to its importance. A good interface will often have an harmonious balance of weights.
 
