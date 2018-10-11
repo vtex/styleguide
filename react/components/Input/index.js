@@ -52,6 +52,12 @@ class Input extends Component {
     } = this.props
     const { active } = this.state
 
+    if (prefix && suffix) {
+      console.warn(
+        'You should not use both prefix and suffix props in the same input. ',
+      )
+    }
+
     const dataAttrs = {}
     for (const key of Object.keys(dataAttributes)) {
       dataAttrs[`data-${key}`] = dataAttributes[key]
