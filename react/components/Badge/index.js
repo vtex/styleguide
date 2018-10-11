@@ -1,8 +1,31 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
+import config from 'vtex-tachyons/config.json'
+import Close from '../icon/Close'
+
 class Badge extends PureComponent {
+  constructor() {
+    super()
+
+    this.state = {
+      hover: false,
+    }
+  }
+
+  handleMouseEnter = () => {
+    this.setState({ hover: true })
+  }
+
+  handleMouseLeave = () => {
+    this.setState({ hover: false })
+  }
+
   render() {
+    const { children, onClick, disabled, color, bgColor } = this.props
+
+    const baseClasses = 'br-pill f6 pv2 ph4 dib fw5'
+
     let theme = ''
     switch (this.props.type) {
       case 'success':
@@ -18,18 +41,48 @@ class Badge extends PureComponent {
         theme = 'bg-muted-4 c-on-base'
     }
 
-    return (
-      <div
-        className={`br-pill f6 pv2 ph3 dib fw5 ${theme}`}
+    const btnClasses = disabled ? 'c-muted-2' : 'pointer'
+
+    let hoverClass = ''
+    if (!disabled) {
+      hoverClass = this.state.hover && 'o-60'
+    }
+
+    return onClick ? (
+      <button
+        className={`${baseClasses} bn ${btnClasses} ${theme} ${hoverClass}`}
         style={{
-          backgroundColor: this.props.bgColor,
-          color: this.props.color,
+          backgroundColor: bgColor,
+          color: disabled ? config.colors.gray : color,
+        }}
+        disabled={disabled}
+        onClick={onClick}
+        onMouseEnter={this.handleMouseEnter}
+        onMouseLeave={this.handleMouseLeave}
+      >
+        <div className="flex items-stretch">
+          <span>{children}</span>
+          <div className="ml2 flex items-center">
+            <Close color={color} size={12} />
+          </div>
+        </div>
+      </button>
+    ) : (
+      <div
+        className={`${baseClasses} ${theme}`}
+        style={{
+          backgroundColor: bgColor,
+          color: color,
         }}
       >
-        {this.props.children}
+        {children}
       </div>
     )
   }
+}
+
+Badge.defaultProps = {
+  disabled: false,
 }
 
 Badge.propTypes = {
@@ -37,6 +90,8 @@ Badge.propTypes = {
   children: PropTypes.node.isRequired,
   color: PropTypes.string,
   bgColor: PropTypes.string,
+  onClick: PropTypes.func,
+  disabled: PropTypes.bool,
 }
 
 export default Badge
