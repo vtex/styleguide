@@ -9,6 +9,12 @@ const ToastContext = React.createContext({
 })
 
 class ToastProvider extends Component {
+  constructor(props) {
+    super(props)
+
+    this.container = React.createRef()
+  }
+
   state = {
     currentToast: null,
     nextToast: null,
@@ -60,6 +66,35 @@ class ToastProvider extends Component {
     })
   }
 
+  getParentBounds = () => {
+    const parentContainer = this.container.current && this.container.current.parentNode
+    return parentContainer &&
+      parentContainer.getBoundingClientRect &&
+      parentContainer.getBoundingClientRect()
+  }
+
+  updateContainerBounds = () => {
+    const defaultBounds = {
+      left: 0,
+      right: window.innerWidth,
+      top: 0,
+      bottom: window.innerHeight,
+    }
+
+    const bounds = (!this.props.breakOutOfParent && this.getParentBounds()) || defaultBounds
+
+    if (this.container.current) {
+      this.container.current.style.left = `${bounds.left}px`
+      this.container.current.style.right = `${window.innerWidth - bounds.right}px`
+      this.container.current.style.top = `${bounds.top}px`
+      this.container.current.style.bottom = `${Math.max(0, window.innerHeight - bounds.bottom)}px`
+    }
+  }
+
+  componentDidUpdate() {
+    this.updateContainerBounds()
+  }
+
   render() {
     const { currentToast } = this.state
     const { children } = this.props
@@ -70,7 +105,8 @@ class ToastProvider extends Component {
       }}>
         {children}
         <div
-          className="fixed bottom-0 left-0 right-0 top-0 z-5 overflow-hidden"
+          className="fixed z-5 overflow-hidden"
+          ref={this.container}
           style={{
             pointerEvents: 'none',
           }}
@@ -91,6 +127,11 @@ class ToastProvider extends Component {
 
 ToastProvider.propTypes = {
   children: PropTypes.node,
+  breakOutOfParent: PropTypes.bool,
+}
+
+ToastProvider.defaultProps = {
+  breakOutOfParent: false,
 }
 
 class ToastConsumer extends Component {
