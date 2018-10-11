@@ -1,6 +1,7 @@
 const path = require('path')
 const config = require('vtex-tachyons/config.json')
 const webpackConfig = require('@vtex/react-scripts/config/webpack.config.dev.js')
+const { version } = require('./manifest.json')
 
 // Monkey patch webpackConfig to change src/ to react/
 const originalAppSrc = webpackConfig.module.rules[0].include
@@ -18,8 +19,10 @@ webpackConfig.module.rules[1].oneOf.forEach((r) => {
 
 module.exports = {
   components: 'react/components/**/*.{js,jsx,ts,tsx}',
+  version: `${version}`,
   require: ['vtex-tachyons'],
-  showUsage: false,
+  usageMode: 'collapse',
+  exampleMode: 'expand',
   title: 'VTEX Styleguide',
   skipComponentsWithoutExample: true,
   sections: [
