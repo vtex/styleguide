@@ -145,15 +145,16 @@ export default class MultiSelect extends Component {
     )
     const isDropdownVisible = this.state.active && this.state.searchTerm !== ''
     const tags = selected.map((tag, index) => (
-      <Tag
-        disabled={disabled}
-        key={index}
-        onClick={() => {
-          this.handleUnselect(index)
-        }}
-      >
-        {tag.label}
-      </Tag>
+      <div className="mr2 mv1 flex" key={index}>
+        <Tag
+          disabled={disabled}
+          onClick={() => {
+            this.handleUnselect(index)
+          }}
+        >
+          {tag.label}
+        </Tag>
+      </div>
     ))
 
     let classes = disabled ? ' bg-muted-5 c-muted-2 ' : ' bg-base c-on-base '
@@ -167,9 +168,9 @@ export default class MultiSelect extends Component {
           {label && (
             <span className="vtex-input__label db mb3 w-100">{label}</span>
           )}
-          <div className={`flex flex-wrap mt3 br2 b--solid bw1 ${classes}`}>
+          <div className={`flex flex-wrap mt3 br2 b--solid bw1 pv2 ph6 ${classes}`}>
             <input
-              className={`f6 mv3 mh3 pv2 bn outline-0 flex-grow-1 order-last ${classes}`}
+              className={`f6 mv3 bn outline-0 flex-grow-1 order-last ${classes}`}
               disabled={disabled}
               onBlur={this.handleBlur}
               onChange={this.handleSearch}
@@ -178,6 +179,9 @@ export default class MultiSelect extends Component {
               placeholder={placeholder}
               ref={this.searchInput}
               value={this.state.searchTerm}
+              style={{
+                WebkitAppearance: 'none',
+              }}
             />
             {tags}
           </div>

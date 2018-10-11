@@ -7,15 +7,133 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [7.3.3] - 2018-10-11
+
+### Added
+
+- **Table** `density` prop
+- **Table** `toolbar.density` prop to have native control via toolbar of Table content density
+
+## [7.3.2] - 2018-10-11
+
+### Changed
+
+- **Styleguidist** Version to latest
+
+## [7.3.1] - 2018-10-11
+
+## [7.3.0] - 2018-10-11
+
+### Added
+
+- **Badge** `onClick` prop
+
+## [7.2.0] - 2018-10-11
+
+### Added
+
+- **ModalDialog**
+
+## [7.1.3] - 2018-10-11
+
+### Fixed
+
+- **Textarea** Border style error state
+- **Input** Update color token of prefix & suffix to match Figma version
+
+### Added
+
+- **Toast** Added `positioning` prop to `ToastProvider` to position toasts based either on the parent element dimensions, or window dimensions.
+
+## [7.1.2] - 2018-10-08
+
+### Fixed
+
+- Demo files
+
+## [7.1.1] - 2018-10-04
+
 ### Added
 - **Icons** Fix plus icon svg. 
 
+<<<<<<< HEAD
 ### Added
+=======
+- `IconBars`, `IconUser` and `IconShoppingCart` components
+
+## [7.1.0] - 2018-10-03
+
+### Changed
+
+- **PageHeader** Side buttons changed to `children`
+
+## [7.0.0] - 2018-10-03
+
+### Added
+
+- **Icon** add columns icon
+- **InputSearch** add `onClear` callback as prop
+- **Pagination** control state of selected rows quantity dropdown
+- **Table** add `containerHeight` prop to enhance Table height control
+- **Table** add `pagination` prop to make it easier to use Table and Pagination together
+- **Table** add `toolbar` prop with actions and search features possibility
+
+### Changed
+
+- **[BREAKING]** **Table** Remove `indexColumn` prop. `indexColumnLabel` alone now activates the feature
+- **[BREAKING]** **Table** Remove `containerClass` prop
+
+### Fixed
+
+- **Pagination** change button styles to secondary to match rows dropdown weight
+
+## [6.4.4] - 2018-10-01
+
+### Added
+
+- Improves styles of Multiselect
+
+### Fixed
+
+- **NumericStepper** Refrains from using the label tag if there is no label, to prevent the keyboard from popping up on iOS unnecessarily
+- Disable host checking on dev server in order to make it publicly accessible
+
+## [6.4.3] - 2018-09-28
+
+### Added
+
+- **Tabs** Added new classes to elements
+
+### Fixed
+
+- **EmptyState** Remove border
+
+## [6.4.2] - 2018-09-28
+
+### Fixed
+
+- Fixed Toast export for render
+
+## [6.4.1] - 2018-09-27
+
+### Fixed
+
+- Exports ToastProvider, ToastConsumer, and IconPlusLines to render
+
+## [6.4.0] - 2018-09-27
+
+### Added
+
+>>>>>>> a9a6721f1efc01f303380b84131687290f625f6e
 - **Icons** Add plus outline version and PlusLines, another plus icon without a circle around it.
 - **MultiSelect** New component
 - **PasswordInput** New component
+- **Toast** New component
 
-## [6.3.3] - 2018-09-18
+### Fixed
+
+- Removed extra iOS styiling from inputs
+- **Icons** Fix plus icon svg.
 
 ## [6.3.2] - 2018-09-13
 

@@ -1,6 +1,16 @@
-Alerts are used to inform about important changes or persistent conditions. They’re one of the most prominent ways to communicate information to the user. Banners show at the top of the page or section they apply to and should fill the full container width with some little margins.
+### Overview
+Alerts are notifications of mild to high priority. They may inform the user about things they should know or explain a problem and the user a solution. It may be triggered by a user action or not.
 
-Don't use Alerts for asynchronous notifications, such as giving user feedback about an API request's success of failure. In this case a Toast would be more appropriate (work in progress).
+### Do
+- Alerts should be shown at the top of the page or section they apply to, filling the full container width respecting some minimum little margins.
+- Do provide actions for users to address when it ads value to the user's workflow. Alerts are also a helping hand.
+- Do use semantic colors that have a clear and contextualized meaning in your application, but keep in mind that due to its mild to high priority, that success message may not apply here. If that's the case, you might be looking for Toasts.
+
+### Don'ts
+- Never dismiss automatically an Alert. If dismissable, a user action is required.
+
+### Related components
+For low-priority notification prefer a <a href="#toast">Toast</a>.
 
 ```js
 <div>

@@ -64,7 +64,7 @@ class Textarea extends Component {
 
     if (active) {
       classes += 'b--muted-2 '
-    } else {
+    } else if (!error && !errorMessage) {
       classes += 'b--muted-4 '
       if (!this.props.disabled) {
         classes += 'hover-b--muted-3 '
@@ -106,6 +106,7 @@ class Textarea extends Component {
           rows={this.props.rows}
           defaultValue={this.props.defaultValue}
           value={this.props.value}
+          style={{ WebkitAppearance: 'none' }}
         >
           {children}
         </textarea>

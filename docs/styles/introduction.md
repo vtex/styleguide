@@ -1,1 +1,0 @@
-VTEX Styleguide uses [VTEX Tachyons](https://vtex.github.io/vtex-tachyons/) as our CSS framework.

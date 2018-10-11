@@ -1,13 +1,14 @@
 const path = require('path')
 const config = require('vtex-tachyons/config.json')
 const webpackConfig = require('@vtex/react-scripts/config/webpack.config.dev.js')
+const { version } = require('./manifest.json')
 
 // Monkey patch webpackConfig to change src/ to react/
 const originalAppSrc = webpackConfig.module.rules[0].include
 const appSrc = path.join(__dirname, 'react')
 
 webpackConfig.module.rules[0].include = path.join(__dirname, 'react')
-webpackConfig.module.rules[1].oneOf.forEach((r) => {
+webpackConfig.module.rules[1].oneOf.forEach(r => {
   if (r.include === originalAppSrc) {
     r.include = appSrc
   }
@@ -18,8 +19,10 @@ webpackConfig.module.rules[1].oneOf.forEach((r) => {
 
 module.exports = {
   components: 'react/components/**/*.{js,jsx,ts,tsx}',
+  version: `${version}`,
   require: ['vtex-tachyons'],
-  showUsage: false,
+  usageMode: 'collapse',
+  exampleMode: 'collapse',
   title: 'VTEX Styleguide',
   skipComponentsWithoutExample: true,
   sections: [
@@ -69,9 +72,17 @@ module.exports = {
       path.join('react', 'components'),
       path.dirname(componentPath),
     )
-    return `import ${componentName} from '@vtex/styleguide/lib/${dir}'`
+    return {
+      componentName,
+      dir,
+    }
   },
-  webpackConfig: require('@vtex/react-scripts/config/webpack.config.dev.js'),
+  webpackConfig: {
+    ...require('@vtex/react-scripts/config/webpack.config.dev.js'),
+    devServer: {
+      disableHostCheck: true,
+    },
+  },
   theme: {
     color: {
       link: config.colors.blue,
@@ -81,6 +92,9 @@ module.exports = {
       h1: 36,
       h2: 24,
     },
+  },
+  styleguideComponents: {
+    PathlineRenderer: path.join(__dirname, 'react/docs/Pathline.js'),
   },
   styles: {
     TabButton: {
@@ -104,4 +118,5 @@ module.exports = {
       ],
     },
   },
+  assetsDir: './assets',
 }

@@ -72,7 +72,7 @@ class Input extends Component {
     let labelClasses = 'vtex-input__label db mb3 w-100 '
 
     let prefixAndSuffixClasses =
-      'vtex-input__prefix absolute c-muted-1 fw5 flex items-center '
+      'vtex-input__prefix absolute c-muted-2 fw5 flex items-center '
 
     if (token) {
       classes += 'code '
@@ -171,6 +171,9 @@ class Input extends Component {
             type={this.props.type}
             value={this.props.value}
             id={this.props.id}
+            style={{
+              WebkitAppearance: 'none',
+            }}
           />
           {suffixIcon && (
             <span

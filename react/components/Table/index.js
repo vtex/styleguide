@@ -1,152 +1,142 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { Column, Table as VirtualTable, AutoSizer } from 'react-virtualized'
-import ArrowDown from '../icon/ArrowDown'
-import ArrowUp from '../icon/ArrowUp'
+import { cloneDeep } from 'lodash'
+
+import Toolbar from './Toolbar'
+import Pagination from '../Pagination'
+import SimpleTable from './SimpleTable'
+
+const TABLE_HEADER_HEIGHT = 36
 
 class Table extends PureComponent {
-  toggleSortType = (key) => {
-    const { sort: { sortOrder, sortedBy } } = this.props
-    if (sortedBy !== key || (sortedBy === key && sortOrder !== 'ASC')) {
-      return {
-        sortOrder: 'ASC',
-        sortedBy: key,
+  constructor(props) {
+    super(props)
+    this.state = {
+      displaySchema: props.schema ? this.cloneSchema(props.schema) : {},
+      tableRowHeight: this.getRowHeight(props.density),
+      selectedDensity: props.density,
+    }
+  }
+
+  cloneSchema = (schema, showAll = false) => {
+    const displaySchema = cloneDeep(schema)
+    Object.keys(displaySchema.properties).forEach(key => {
+      if (displaySchema.properties[key].hidden && !showAll) {
+        delete displaySchema.properties[key]
       }
+    })
+    return displaySchema
+  }
+
+  getRowHeight = (density) => {
+    switch (density) {
+      case 'low':
+        return 77
+      case 'medium':
+        return 61
+      case 'high':
+        return 27
+      default:
+        return 61
     }
-    return {
-      sortOrder: 'DESC',
-      sortedBy: key,
+  }
+
+  toggleTableRowHeight = (density) => {
+    const { tableRowHeight } = this.state
+    const newHeight = this.getRowHeight(density)
+    if (tableRowHeight !== newHeight) {
+      this.setState({
+        tableRowHeight: newHeight,
+        selectedDensity: density,
+      })
     }
+  }
+
+  toggleColumn = (key) => {
+    const { displaySchema } = this.state
+    const { schema } = this.props
+    const newSchema = cloneDeep(displaySchema)
+    if (newSchema.properties[key]) {
+      delete newSchema.properties[key]
+    } else {
+      newSchema.properties[key] = cloneDeep(schema.properties[key])
+    }
+    this.setState({ displaySchema: newSchema })
+  }
+
+  onShowAllColumns = () => {
+    const { schema } = this.props
+    const displaySchema = this.cloneSchema(schema, true)
+    this.setState({ displaySchema })
+  }
+
+  onHideAllColumns = () => this.setState({ displaySchema: { properties: {} } })
+
+  calculateTableHeight = (totalItems) => {
+    const { tableRowHeight } = this.state
+    return TABLE_HEADER_HEIGHT + (tableRowHeight * totalItems)
   }
 
   render() {
     const {
-      schema,
       items,
-      indexColumn,
+      schema,
       indexColumnLabel,
       disableHeader,
       onRowClick,
       onRowMouseOver,
       onRowMouseOut,
-      sort: { sortOrder, sortedBy },
+      sort,
       onSort,
       updateTableKey,
+      containerHeight,
+      toolbar,
+      pagination,
     } = this.props
-    const properties = Object.keys(schema.properties)
-    // hydrate items with index when 'indexColumn' prop is true
-    const newItems = indexColumn
-      ? items.map((item, index) => ({
-        ...item,
-        _reactVirtualizedIndex: index + 1,
-      }))
-      : items
+    const {
+      displaySchema,
+      tableRowHeight,
+      selectedDensity,
+    } = this.state
+
     return (
-      <div className="vh-50">
-        <AutoSizer>
-          {({ width, height }) => (
-            <VirtualTable
-              updateTableKey={updateTableKey}
-              width={width}
-              height={height}
-              headerHeight={36}
-              rowHeight={64}
-              rowCount={newItems.length}
-              rowGetter={({ index }) => newItems[index]}
-              className="flex flex-column"
-              headerClassName="c-muted-2 f6"
-              disableHeader={disableHeader}
-              onRowClick={({ event, index, rowData }) => {
-                onRowClick({ event, index, rowData })
-              }}
-              onRowMouseOver={({ event, index, rowData }) => {
-                onRowMouseOver({ event, index, rowData })
-              }}
-              onRowMouseOut={({ event, index, rowData }) => {
-                onRowMouseOut({ event, index, rowData })
-              }}
-              rowClassName={({ index }) =>
-                `flex flex-row items-center ${
-                  index === -1 ? 'bt bb' : 'bb'
-                } b--muted-4`
-              }
-            >
-              {indexColumn ? (
-                <Column
-                  headerRenderer={() => (
-                    <span className="ph4">{indexColumnLabel || 'Index'}</span>
-                  )}
-                  cellRenderer={({ cellData }) => (
-                    <span className="ph4">{cellData}</span>
-                  )}
-                  dataKey="_reactVirtualizedIndex"
-                  label={indexColumnLabel}
-                  width={width / 10} // 10%
-                />
-              ) : null}
-              {properties.map((key, index) => {
-                const label = schema.properties[key].title
-                const cellWidthPercent = schema.properties[key].width || 25
-                const cellWidth = (width * cellWidthPercent) / 100
-                const headerRenderer = schema.properties[key].headerRenderer
-                const cellRenderer = schema.properties[key].cellRenderer
-                return (
-                  <Column
-                    key={index}
-                    headerRenderer={
-                      headerRenderer ||
-                      (({ label }) => {
-                        return (
-                          <div className="truncate ph4">
-                            {schema.properties[key].sortable
-                              ? <span className="pointer c-muted-1 b f6"
-                                onClick={() => {
-                                  onSort(this.toggleSortType(key))
-                                }}>
-                                {`${label} `}
-                                {sortOrder === 'ASC' && sortedBy === key
-                                  ? <ArrowDown size={11} />
-                                  : sortOrder === 'DESC' && sortedBy === key
-                                    ? <ArrowUp size={11} />
-                                    : null
-                                }
-                              </span>
-                              : label
-                            }
-                          </div>
-                        )
-                      })
-                    }
-                    cellRenderer={
-                      cellRenderer ||
-                      function({ cellData }) {
-                        return <div className="truncate ph4">{cellData}</div>
-                      }
-                    }
-                    dataKey={key}
-                    label={label}
-                    width={cellWidth}
-                  />
-                )
-              })}
-            </VirtualTable>
-          )}
-        </AutoSizer>
+      <div className="vtex-resourceList__container">
+        <Toolbar
+          toolbar={toolbar}
+          displaySchema={displaySchema}
+          toggleColumn={this.toggleColumn}
+          handleHideAllColumns={this.onHideAllColumns}
+          handleShowAllColumns={this.onShowAllColumns}
+          handleToggleDensity={this.toggleTableRowHeight}
+          selectedDensity={selectedDensity}
+          schema={schema}
+          actions={toolbar} />
+        <SimpleTable
+          items={items}
+          schema={displaySchema}
+          indexColumnLabel={indexColumnLabel}
+          rowHeight={tableRowHeight}
+          disableHeader={disableHeader}
+          onRowClick={onRowClick}
+          onRowMouseOut={onRowMouseOut}
+          onRowMouseOver={onRowMouseOver}
+          sort={sort}
+          onSort={onSort}
+          updateTableKey={updateTableKey}
+          containerHeight={containerHeight || this.calculateTableHeight(items.length)}
+        />
+        {pagination && <Pagination {...pagination} />}
       </div>
     )
   }
 }
 
 Table.defaultProps = {
-  indexColumn: false,
-  indexColumnLabel: 'Index',
-  disableHeader: false,
-  onRowClick: () => {},
-  onRowMouseOut: () => {},
-  onRowMouseOver: () => {},
-  sort: {
-    sortOrder: null,
-    sortedBy: null,
+  density: 'medium',
+  toolbar: {
+    extraActions: {
+      actions: [],
+    },
   },
 }
 
@@ -155,9 +145,7 @@ Table.propTypes = {
   items: PropTypes.array.isRequired,
   /** Json Schema data model for the items (example: https://jsonschema.net/) for custom examples see code from custom components */
   schema: PropTypes.object.isRequired,
-  /** Should first column be row index */
-  indexColumn: PropTypes.bool,
-  /** Row index column label */
+  /** Activates a first column as row index (line count)  */
   indexColumnLabel: PropTypes.string,
   /** Do not render the table header (only the rows) */
   disableHeader: PropTypes.bool,
@@ -176,6 +164,56 @@ Table.propTypes = {
   onSort: PropTypes.func,
   /** Forces table re-render when changed */
   updateTableKey: PropTypes.string,
+  /** In case you need precise control of table container height (number in pixels)  */
+  containerHeight: PropTypes.number,
+  /** Row info visual density  */
+  density: PropTypes.oneOf(['low', 'medium', 'high']),
+  /** Toolbar (search and actions) */
+  toolbar: PropTypes.shape({
+    inputSearch: PropTypes.shape({
+      onSubmit: PropTypes.func,
+    }),
+    density: PropTypes.shape({
+      buttonLabel: PropTypes.string,
+      lowOptionLabel: PropTypes.string,
+      mediumOptionLabel: PropTypes.string,
+      highOptionLabel: PropTypes.string,
+    }),
+    fields: PropTypes.shape({
+      label: PropTypes.string,
+      showAllLabel: PropTypes.string,
+      hideAllLabel: PropTypes.string,
+    }),
+    download: PropTypes.shape({
+      label: PropTypes.string,
+      handleCallback: PropTypes.func,
+    }),
+    upload: PropTypes.shape({
+      label: PropTypes.string,
+      handleCallback: PropTypes.func,
+    }),
+    extraActions: PropTypes.shape({
+      label: PropTypes.string,
+      actions: PropTypes.arrayOf(
+        PropTypes.shape({
+          label: PropTypes.string,
+          handleCallback: PropTypes.func,
+        })
+      ),
+    }),
+    newLine: PropTypes.shape({
+      label: PropTypes.string,
+      handleCallback: PropTypes.func,
+    }),
+  }),
+  pagination: PropTypes.shape({
+    onNextClick: PropTypes.func,
+    onPrevClick: PropTypes.func,
+    currentItemFrom: PropTypes.number,
+    currentItemTo: PropTypes.number,
+    textOf: PropTypes.string,
+    totalItems: PropTypes.number,
+  }),
 }
 
 export default Table

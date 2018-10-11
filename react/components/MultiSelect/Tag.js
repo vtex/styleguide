@@ -31,7 +31,7 @@ export default class Tag extends Component {
     }
     return (
       <button
-        className={`br-pill bn dib f7 fw4 pv2 pl4 mh3 mv3${classes}`}
+        className={`br-pill bn dib f6 fw4 pv2 ph4 ${classes}`}
         disabled={disabled}
         onClick={() => {
           onClick && onClick()
@@ -41,8 +41,8 @@ export default class Tag extends Component {
       >
         <div className="flex items-center justify-center">
           <span className="self-center">{children}</span>{' '}
-          <div className={`${hoverClass} pl3 pt1 self-center`}>
-            <Close color="currentColor" size={14} />
+          <div className={`${hoverClass} ml2 pt2 self-center`}>
+            <Close color="currentColor" size={16} />
           </div>
         </div>
       </button>
