@@ -14,8 +14,8 @@ const MAX_FIELDS_BOX_HEIGHT = 192
 const FIELDS_BOX_ITEM_HEIGHT = 36
 const FIELDS_BOX_WIDTH = 292
 const EXTRA_ACTIONS_BOX_WIDTH = 199
-const DENSITY_BOX_WIDTH = 114
 const BOX_SHADOW_STYLE = { boxShadow: '0px 1px 18px rgba(0, 0, 0, 0.14)' }
+const DENSITY_OPTIONS = ['low', 'medium', 'high']
 
 class Toolbar extends PureComponent {
   constructor(props) {
@@ -105,7 +105,7 @@ class Toolbar extends PureComponent {
     const isFieldsVisible = fields && fields.label
     const isExtraActionsVisible = extraActions && extraActions.label && extraActions.actions.length > 0
     const isNewLineVisible = newLine && newLine.label
-    const isDensityVisible = density && density.label && density.labelLow && density.labelMedium && density.labelHigh
+    const isDensityVisible = density && density.label && density.low && density.medium && density.high
 
     return (
       <div id="toolbar" className="mb5 flex flex-row justify-between w-100">
@@ -137,52 +137,30 @@ class Toolbar extends PureComponent {
                   className="absolute z-999 ba b--light-gray br2 mt2"
                   style={BOX_SHADOW_STYLE}
                 >
-                  <div
-                    className="w-100 b2 br2 bg-base"
-                    style={{ width: DENSITY_BOX_WIDTH }}>
+                  <div className="w-100 b2 br2 bg-base">
                     <div style={{ height: 3 * FIELDS_BOX_ITEM_HEIGHT }} className="overflow-scroll">
-                      <div
-                        className={`flex justify-between ph6 pv3 pointer hover-bg-light-silver bl bw1 ${
-                          selectedDensity === 'low' ? 'b--emphasis' : 'b--transparent'
-                        }`}
-                        onClick={() => {
-                          handleToggleDensity('low')
-                          this.handleToggleBox('isDensityBoxVisible')
-                        }}>
-                        <span className={`w-100 ${
-                          selectedDensity === 'low' ? 'fw5' : ''
-                        }`}>
-                          {density.labelLow}
-                        </span>
-                      </div>
-                      <div
-                        className={`flex justify-between ph6 pv3 pointer hover-bg-light-silver bl bw1 ${
-                          selectedDensity === 'medium' ? 'b--emphasis' : 'b--transparent'
-                        }`}
-                        onClick={() => {
-                          handleToggleDensity('medium')
-                          this.handleToggleBox('isDensityBoxVisible')
-                        }}>
-                        <span className={`w-100 ${
-                          selectedDensity === 'medium' ? 'fw5' : ''
-                        }`}>
-                          {density.labelMedium}
-                        </span>
-                      </div>
-                      <div
-                        className={`flex justify-between ph6 pv3 pointer hover-bg-light-silver bl bw1 ${
-                          selectedDensity === 'high' ? 'b--emphasis' : 'b--transparent'
-                        }`}
-                        onClick={() => {
-                          handleToggleDensity('high')
-                          this.handleToggleBox('isDensityBoxVisible')
-                        }}>
-                        <span className={`w-100 ${
-                          selectedDensity === 'high' ? 'fw5' : ''
-                        }`}>
-                          {density.labelHigh}
-                        </span>
-                      </div>
+                      {
+                        DENSITY_OPTIONS.map((key, index) => {
+                          const isKeySelected = selectedDensity === key
+                          return (
+                            <div
+                              key={index}
+                              className={`flex justify-between ph6 pv3 pointer hover-bg-light-silver bl bw1 ${
+                                isKeySelected ? 'b--emphasis' : 'b--transparent'
+                              }`}
+                              onClick={() => {
+                                handleToggleDensity(key)
+                                this.handleToggleBox('isDensityBoxVisible')
+                              }}>
+                              <span className={`w-100 ${
+                                isKeySelected ? 'fw5' : ''
+                              }`}>
+                                {density[key]}
+                              </span>
+                            </div>
+                          )
+                        })
+                      }
                     </div>
                   </div>
                 </div>
@@ -359,9 +337,9 @@ Toolbar.propTypes = {
     }),
     density: PropTypes.shape({
       label: PropTypes.string,
-      labelLow: PropTypes.string,
-      labelMedium: PropTypes.string,
-      labelHigh: PropTypes.string,
+      low: PropTypes.string,
+      medium: PropTypes.string,
+      high: PropTypes.string,
     }),
     fields: PropTypes.shape({
       label: PropTypes.string,

@@ -254,9 +254,9 @@ class ResourceListExample extends React.Component {
           },
           density: {
             label: 'Density',
-            labelLow: 'Low',
-            labelMedium: 'Medium',
-            labelHigh: 'High',
+            low: 'Low',
+            medium: 'Medium',
+            high: 'High',
           },
           download: {
             label: 'Export',

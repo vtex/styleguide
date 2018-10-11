@@ -48,32 +48,29 @@ class IconsTable extends React.PureComponent {
     const totalLines = Math.ceil(completeIconsArray.length / TOTAL_ICONS_PER_LINE)
     const chunkedIconsMatrix = []
     for (var i = 0; i < totalLines; i++) {
-      const rangeStart = (TOTAL_ICONS_PER_LINE * i)
-      chunkedIconsMatrix[i] = completeIconsArray.slice(rangeStart, rangeStart + TOTAL_ICONS_PER_LINE)
+      const rangeStart = TOTAL_ICONS_PER_LINE * i;
+      chunkedIconsMatrix[i] = completeIconsArray.slice(
+        rangeStart,
+        rangeStart + TOTAL_ICONS_PER_LINE
+      );
     }
 
     return (
       <table className="w-100">
         <tbody>
-          {
-            chunkedIconsMatrix.map((iconsLine, row) => {
-              return (
-                <tr key={`icon-table-row-${row}`}>
-                  {
-                    iconsLine.map((icon, cell) => {
-                      const IconComponent = ICONS[icon]
-                      return (
-                        <td key={`icon-table-cell-${row}-${cell}`}>
-                          <div className={DEMO_LABEL}>{icon}</div>
-                          <IconComponent size={DEMO_SIZE} />
-                        </td>
-                      )
-                    })
-                  }
-                </tr>
-              )
-            })
-          }
+          {chunkedIconsMatrix.map((iconsLine, row) => (
+            <tr key={`icon-table-row-${row}`}>
+              {iconsLine.map((icon, cell) => {
+                const IconComponent = ICONS[icon];
+                return (
+                  <td key={`icon-table-cell-${row}-${cell}`}>
+                    <div className={DEMO_LABEL}>{icon}</div>
+                    <IconComponent size={DEMO_SIZE} />
+                  </td>
+                );
+              })}
+            </tr>
+          ))}
         </tbody>
       </table>
     );
