@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [7.2.0] - 2018-10-11
+
+## [7.2.0] - 2018-10-11
+
+### Added
+
+- **ModalDialog**
+
 ## [7.1.3] - 2018-10-11
 
 ### Fixed
@@ -101,8 +109,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Removed extra iOS styiling from inputs
 - **Icons** Fix plus icon svg.
-
-## [6.3.3] - 2018-09-18
 
 ## [6.3.2] - 2018-09-13
 
