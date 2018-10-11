@@ -15,6 +15,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 - **[BREAKING]** **Table** Now width in schema properties is absolute (mirroring react pattern in style obj)
+- **Input** `prefix` prop now accepts any element
+- **Input** `suffixIcon` prop to `suffix`
 
 ### Removed
 

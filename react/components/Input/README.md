@@ -43,6 +43,7 @@ Variations
 ```js
 const Input = require('./index.js').default
 const IconHelp = require('../icon/Help').default
+const IconSearch = require('../icon/Search').default
 class InputExamples extends React.Component {
   constructor() {
     super()
@@ -102,16 +103,16 @@ class InputExamples extends React.Component {
             label="With prefix"
             value={this.state.withPrefixValue}
             onChange={e => this.setState({ withPrefixValue: e.target.value })}
-            prefix="R$"
+            prefix={<IconSearch />}
             type="number"
           />
         </div>
         <div className="mb5">
           <Input
-            label="With suffixIcon"
+            label="With suffix"
             value={this.state.withSuffixValue}
             onChange={e => this.setState({ withSuffixValue: e.target.value })}
-            suffixIcon={<IconHelp />}
+            suffix={<IconHelp />}
           />
         </div>
       </div>
