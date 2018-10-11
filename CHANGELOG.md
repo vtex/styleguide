@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - **Textarea** Border style error state
+- **Input** Update color token of prefix & suffix to match Figma version
 
 ## [7.1.2] - 2018-10-08
 

@@ -110,40 +110,8 @@ class InputExamples extends React.Component {
             value={this.state.withSuffixValue}
             onChange={e => this.setState({ withSuffixValue: e.target.value })}
             suffixIcon={
-              <span className="pointer">
-                <IconHelp />
-              </span>
+              <IconHelp />
             }
-          />
-        </div>
-        <div className="mb5">
-          <Input
-            label="Large with suffixIcon"
-            value={this.state.withSuffixLargeValue}
-            onChange={e =>
-              this.setState({ withSuffixLargeValue: e.target.value })
-            }
-            suffixIcon={
-              <span className="pointer">
-                <IconHelp size={18} />
-              </span>
-            }
-            size="large"
-          />
-        </div>
-        <div className="mb5">
-          <Input
-            label="X-large with suffixIcon"
-            value={this.state.withSuffixXLargeValue}
-            onChange={e =>
-              this.setState({ withSuffixXLargeValue: e.target.value })
-            }
-            suffixIcon={
-              <span className="pointer">
-                <IconHelp size={20} />
-              </span>
-            }
-            size="x-large"
           />
         </div>
       </div>
