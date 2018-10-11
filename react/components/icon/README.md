@@ -23,6 +23,7 @@ const ExternalLink = require('./ExternalLink').default
 const ExternalLinkMini = require('./ExternalLinkMini').default
 const Failure = require('./Failure').default
 const Filter = require('./Filter').default
+const Globe = require('./Globe').default
 const Help = require('./Help').default
 const Link = require('./Link').default
 const Plus = require('./Plus').default
@@ -147,6 +148,10 @@ const demoLabel = 'pb3 code c-muted-1 f6'
     </tr>
     <tr>
       <td>
+        <div className={demoLabel}>Globe</div>
+        <Globe size={demoSize} />
+      </td>
+      <td>
         <div className={demoLabel}>Help</div>
         <Help size={demoSize} />
       </td>
@@ -166,6 +171,8 @@ const demoLabel = 'pb3 code c-muted-1 f6'
         <div className={demoLabel}>Plus outlines</div>
         <Plus  size={demoSize} />
       </td>
+    </tr>
+    <tr>
       <td>
         <div className={demoLabel}>Plus Lines</div>
         <PlusLines size={demoSize} />
@@ -174,14 +181,10 @@ const demoLabel = 'pb3 code c-muted-1 f6'
         <div className={demoLabel}>Save</div>
         <Save size={demoSize} />
       </td>
-    </tr>
-    <tr>
       <td>
         <div className={demoLabel}>Search</div>
         <Search size={demoSize} />
       </td>
-    </tr>
-    <tr>
       <td>
         <div className={demoLabel}>Upload</div>
         <Upload size={demoSize} />
@@ -194,6 +197,8 @@ const demoLabel = 'pb3 code c-muted-1 f6'
         <div className={demoLabel}>Success (solid)</div>
         <Success solid size={demoSize} />
       </td>
+    </tr>
+    <tr>
       <td>
         <div className={demoLabel}>Visibility On</div>
         <VisibilityOn size={demoSize} />
@@ -203,8 +208,6 @@ const demoLabel = 'pb3 code c-muted-1 f6'
         <VisibilityOn solid size={demoSize} />
       </td>
       <td />
-    </tr>
-    <tr>
       <td>
         <div className={demoLabel}>Visibility Off</div>
         <VisibilityOff size={demoSize} />
