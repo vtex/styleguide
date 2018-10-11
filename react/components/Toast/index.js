@@ -74,14 +74,14 @@ class ToastProvider extends Component {
   }
 
   updateContainerBounds = () => {
-    const defaultBounds = {
+    const windowBounds = {
       left: 0,
       right: window.innerWidth,
       top: 0,
       bottom: window.innerHeight,
     }
 
-    const bounds = (!this.props.breakOutOfParent && this.getParentBounds()) || defaultBounds
+    const bounds = (this.props.positioning === 'parent' && this.getParentBounds()) || windowBounds
 
     if (this.container.current) {
       this.container.current.style.left = `${bounds.left}px`
@@ -127,11 +127,12 @@ class ToastProvider extends Component {
 
 ToastProvider.propTypes = {
   children: PropTypes.node,
-  breakOutOfParent: PropTypes.bool,
+  /** Sets the position of the toasts based either on the dimensions of the parent element of the ToastProvider, or window dimensions */
+  positioning: PropTypes.oneOf(['parent', 'window']),
 }
 
 ToastProvider.defaultProps = {
-  breakOutOfParent: false,
+  positioning: 'parent',
 }
 
 class ToastConsumer extends Component {
