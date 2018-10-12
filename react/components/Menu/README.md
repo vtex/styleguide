@@ -170,3 +170,34 @@ class MenusExample extends React.Component {
   }
 };<MenusExample />
 ```
+
+Icons
+```js
+const Cog = require('../icon/Cog').default;
+<div className="ma3">
+  <Menu
+    icon={<Cog color="currentColor" size={13} />}
+    label="Settings"
+    align="left"
+    boxWidth="100%"
+    options={[
+      {
+        label: 'Open pod doors, HAL',
+        handleCallback: () => alert('I’m sorry, Dave. I’m afraid I can’t do that.')
+      },
+      {
+        label: 'Have you heard about the word?',
+        handleCallback: () => alert('sure, everybody knows that the bird is the word...')
+      },
+      {
+        label: 'Hey look',
+        handleCallback: () => alert('Listen!')
+      },
+      {
+        label: 'Quit now and cake will be served',
+        handleCallback: () => alert('The cake is a lie')
+      },
+    ]}
+  />
+</div>
+```
