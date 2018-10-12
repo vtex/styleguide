@@ -82,7 +82,7 @@ class Menu extends Component {
               <span className="mr3">
                 {label}
               </span>
-              <IconCaretDown height={13} color="currentColor" />
+              <IconCaretDown size={13} color="currentColor" />
             </span>
           </Button>
           {isBoxOpen && (
