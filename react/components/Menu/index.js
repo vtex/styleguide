@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import Button from '../Button'
 import IconCaretDown from '../icon/CaretDown'
+import IconCaretUp from '../icon/CaretUp'
 import Toggle from '../Toggle'
 const BOX_WIDTH = 292
 const MAX_BOX_HEIGHT = 192
@@ -82,7 +83,10 @@ class Menu extends Component {
               <span className="mr3">
                 {label}
               </span>
-              <IconCaretDown size={13} color="currentColor" />
+              {isBoxOpen
+                ? <IconCaretUp size={13} color="currentColor" />
+                : <IconCaretDown size={13} color="currentColor" />
+              }
             </span>
           </Button>
           {isBoxOpen && (
