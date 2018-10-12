@@ -52,8 +52,17 @@ class Menu extends Component {
     }
   }
 
+  renderIcon(icon) {
+    if (!icon) return null
+    return (
+      <div className="mr2 pt2 self-center">
+        {icon}
+      </div>
+    )
+  }
+
   render() {
-    const { label, options, boxWidth, align } = this.props
+    const { icon, label, options, boxWidth, align } = this.props
     const { isBoxOpen, isHoveringButton } = this.state
 
     return (
@@ -69,6 +78,7 @@ class Menu extends Component {
             onClick={this.handleMenuClick}
           >
             <span className="flex align-baseline items-center">
+              {this.renderIcon(icon)}
               <span className="mr3">
                 {label}
               </span>
@@ -129,6 +139,8 @@ Menu.defaultProps = {
 Menu.propTypes = {
   /** Menu Button label */
   label: PropTypes.string.isRequired,
+  /** Menu Button icon */
+  icon: PropTypes.element,
   /** Menu Box width (default is 292px) */
   boxWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /** Menu options */
