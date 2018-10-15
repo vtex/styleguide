@@ -9,6 +9,7 @@ const nextFrame = callback => {
 
 const DURATION_BASE = 3000
 const DURATION_INCREMENT = 30
+const DURATION_ACTION_INCREMENT = 2000
 const TRANSITION_DURATION = 160
 
 export default class Toast extends Component {
@@ -30,7 +31,7 @@ export default class Toast extends Component {
   }
 
   // Duration increases along with the length of the message
-  getDefaultDuration = () => DURATION_BASE + this.props.message.length * DURATION_INCREMENT
+  getDefaultDuration = () => DURATION_BASE + this.props.message.length * DURATION_INCREMENT + (this.props.action ? DURATION_ACTION_INCREMENT : 0)
 
   startAutoClose = () => {
     this.stopAutoClose()
