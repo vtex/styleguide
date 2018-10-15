@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- **Toast** Add duration argument to `showToast`
+
+### Changed
+
+- **Toast** Increase Toast duration if it has an action
+
 ## [7.3.4] - 2018-10-15
 
 ## [7.3.3] - 2018-10-11
