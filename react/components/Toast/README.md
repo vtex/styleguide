@@ -31,15 +31,76 @@ const Content = () => (
     <div className="mb5">
       Click on a button to show the corresponding toast
     </div>
+    <div className="mb8">
+      <ToastConsumer>
+        { ({ showToast }) => (
+          <div className="flex">
+            <div className="mr5">
+              <Button
+                size="small"
+                variation="secondary"
+                onClick={() => showToast('Your toast is ready')}>
+                Short text
+              </Button>
+            </div>
+            <div className="mr5">
+              <Button
+                size="small"
+                variation="secondary"
+                onClick={
+                  () => showToast({
+                    message: 'The bread has been inserted into the toaster',
+                    action: {
+                      label:'Undo',
+                      onClick: () =>
+                        alert('Bread removed from toaster'),
+                    },
+                  })
+                }
+              >
+                With action
+              </Button>
+            </div>
+            <div className="mr5">
+              <Button
+                size="small"
+                variation="secondary"
+                onClick={
+                  () => showToast({
+                    message: 'The toast is done, with a layer of butter on top, along with a nice cup of coffee.',
+                    action: {
+                      label: 'Thanks',
+                      onClick: () => {},
+                    }
+                  })
+                }
+              >
+                Long text
+              </Button>
+            </div>
+          </div>
+        )}
+      </ToastConsumer>
+    </div>
+
+    <div className="mb5">
+      Toast duration and control
+    </div>
     <ToastConsumer>
-      { ({ showToast }) => (
+      {({showToast, hideToast}) => (
         <div className="flex">
           <div className="mr5">
             <Button
               size="small"
               variation="secondary"
-              onClick={() => showToast('Your toast is ready')}>
-              Short text
+              onClick={
+                () => showToast({
+                  message: 'This message lasts 30 seconds',
+                  duration: 30000,
+                })
+              }
+            >
+              30 seconds
             </Button>
           </div>
           <div className="mr5">
@@ -48,33 +109,21 @@ const Content = () => (
               variation="secondary"
               onClick={
                 () => showToast({
-                  message: 'The bread has been inserted into the toaster',
-                  action: {
-                    label:'Undo',
-                    onClick: () =>
-                      alert('Bread removed from toaster'),
-                  },
+                  message: 'This message stays here until closed',
+                  duration: Infinity,
                 })
               }
             >
-              With action
+              Permanent
             </Button>
           </div>
           <div className="mr5">
             <Button
               size="small"
-              variation="secondary"
-              onClick={
-                () => showToast({
-                  message: 'The toast is done, with a layer of butter on top, along with a nice cup of coffee.',
-                  action: {
-                    label: 'Thanks',
-                    onClick: () => {},
-                  }
-                })
-              }
+              variation="danger"
+              onClick={hideToast}
             >
-              Long text
+              Close all toasts
             </Button>
           </div>
         </div>

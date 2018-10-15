@@ -25,7 +25,7 @@ class ToastProvider extends Component {
     if (isString(args)) {
       args = { message: args }
     }
-    const { message = '', action } = args
+    const { message = '', action, duration } = args
 
     if (this.state.currentToast) {
       // If there is a toast present already, queue up the next toast
@@ -34,6 +34,7 @@ class ToastProvider extends Component {
         nextToast: {
           message,
           action,
+          duration,
         },
       })
       this.hideToast()
@@ -42,6 +43,7 @@ class ToastProvider extends Component {
         currentToast: {
           message,
           action,
+          duration,
         },
         isToastVisible: true,
       })
@@ -115,6 +117,7 @@ class ToastProvider extends Component {
             <Toast
               message={currentToast.message}
               action={currentToast.action}
+              duration={currentToast.duration}
               visible={this.state.isToastVisible}
               onClose={this.handleToastClose}
             />
