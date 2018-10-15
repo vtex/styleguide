@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { cloneDeep } from 'lodash'
+import { cloneDeep, isEqual } from 'lodash'
 
 import Toolbar from './Toolbar'
 import Pagination from '../Pagination'
@@ -15,6 +15,16 @@ class Table extends PureComponent {
       displaySchema: props.schema ? this.cloneSchema(props.schema) : {},
       tableRowHeight: this.getRowHeight(props.density),
       selectedDensity: props.density,
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const { schema } = prevProps
+    const newSchema = this.props.schema
+    if (!isEqual(schema, newSchema)) {
+      this.setState({
+        displaySchema: this.cloneSchema(newSchema)
+      })
     }
   }
 
