@@ -23,7 +23,7 @@ class Table extends PureComponent {
     const newSchema = this.props.schema
     if (!isEqual(schema, newSchema)) {
       this.setState({
-        displaySchema: this.cloneSchema(newSchema)
+        displaySchema: this.cloneSchema(newSchema),
       })
     }
   }
