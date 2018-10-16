@@ -17,6 +17,7 @@ class Spinner extends React.Component {
     element.addEventListener('webkitAnimationIteration', () => {
       console.log('Completed')
     })
+
     element.addEventListener('animationIteration', () => {
       console.log('Completed')
     })
