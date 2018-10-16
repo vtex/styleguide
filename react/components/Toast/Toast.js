@@ -44,10 +44,7 @@ export default class Toast extends Component {
       return
     }
 
-    this.autoCloseTimeout = setTimeout(
-      this.close,
-      this.props.duration || this.getDefaultDuration()
-    )
+    this.autoCloseTimeout = setTimeout(this.close, this.props.duration || this.getDefaultDuration())
   }
 
   stopAutoClose = () => {
