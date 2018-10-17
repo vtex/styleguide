@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- **Table** move schema prop comparisson to getDerivedStateFromProps
+
 ## [7.3.5] - 2018-10-15
 
 ### Added
@@ -18,6 +22,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **Toast** Increase Toast duration if it has an action
 
 ## [7.3.4] - 2018-10-15
+
+### Fixed
+
+- **Table** deeply compare schema prop to decide whether to render again or not
 
 ## [7.3.3] - 2018-10-11
 
