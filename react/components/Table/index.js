@@ -8,11 +8,21 @@ import SimpleTable from './SimpleTable'
 
 const TABLE_HEADER_HEIGHT = 36
 
+const cloneSchema = (schema, showAll = false) => {
+  const displaySchema = cloneDeep(schema)
+  Object.keys(displaySchema.properties).forEach(key => {
+    if (displaySchema.properties[key].hidden && !showAll) {
+      delete displaySchema.properties[key]
+    }
+  })
+  return displaySchema
+}
+
 class Table extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      displaySchema: props.schema ? this.cloneSchema(props.schema) : {},
+      displaySchema: props.schema ? cloneSchema(props.schema) : {},
       tableRowHeight: this.getRowHeight(props.density),
       selectedDensity: props.density,
     }
@@ -23,18 +33,8 @@ class Table extends Component {
     const { displaySchema } = state
 
     return isEqual(schema, displaySchema) ? null : {
-      displaySchema: this.cloneSchema(props.schema)
+      displaySchema: cloneSchema(schema)
     }
-  }
-
-  cloneSchema = (schema, showAll = false) => {
-    const displaySchema = cloneDeep(schema)
-    Object.keys(displaySchema.properties).forEach(key => {
-      if (displaySchema.properties[key].hidden && !showAll) {
-        delete displaySchema.properties[key]
-      }
-    })
-    return displaySchema
   }
 
   getRowHeight = (density) => {
@@ -75,7 +75,7 @@ class Table extends Component {
 
   onShowAllColumns = () => {
     const { schema } = this.props
-    const displaySchema = this.cloneSchema(schema, true)
+    const displaySchema = cloneSchema(schema, true)
     this.setState({ displaySchema })
   }
 
@@ -143,8 +143,15 @@ class Table extends Component {
 Table.defaultProps = {
   density: 'medium',
   toolbar: {
+    fields: {
+      alignBox: 'left',
+    },
+    density: {
+      alignBox: 'left',
+    },
     extraActions: {
       actions: [],
+      alignBox: 'right',
     },
   },
 }
@@ -187,11 +194,13 @@ Table.propTypes = {
       lowOptionLabel: PropTypes.string,
       mediumOptionLabel: PropTypes.string,
       highOptionLabel: PropTypes.string,
+      alignBox: PropTypes.oneOf(['right', 'left']),
     }),
     fields: PropTypes.shape({
       label: PropTypes.string,
       showAllLabel: PropTypes.string,
       hideAllLabel: PropTypes.string,
+      alignBox: PropTypes.oneOf(['right', 'left']),
     }),
     download: PropTypes.shape({
       label: PropTypes.string,
@@ -209,6 +218,7 @@ Table.propTypes = {
           handleCallback: PropTypes.func,
         })
       ),
+      alignBox: PropTypes.oneOf(['right', 'left']),
     }),
     newLine: PropTypes.shape({
       label: PropTypes.string,

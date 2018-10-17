@@ -9,7 +9,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- **Table** move schema prop comparisson to getDerivedStateFromProps
+- **Table** Move schema prop comparisson to getDerivedStateFromProps
+
+### Added
+
+- **Table** `alignBox` prop added to toolbar actions that have menu boxes
 
 ## [7.3.5] - 2018-10-15
 
@@ -25,7 +29,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- **Table** deeply compare schema prop to decide whether to render again or not
+- **Table** Deeply compare schema prop to decide whether to render again or not
 
 ## [7.3.3] - 2018-10-11
 
