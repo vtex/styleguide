@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { cloneDeep, isEqual } from 'lodash'
 
@@ -8,7 +8,7 @@ import SimpleTable from './SimpleTable'
 
 const TABLE_HEADER_HEIGHT = 36
 
-class Table extends PureComponent {
+class Table extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -18,13 +18,12 @@ class Table extends PureComponent {
     }
   }
 
-  componentDidUpdate(prevProps) {
-    const { schema } = prevProps
-    const newSchema = this.props.schema
-    if (!isEqual(schema, newSchema)) {
-      this.setState({
-        displaySchema: this.cloneSchema(newSchema),
-      })
+  static getDerivedStateFromProps(props, state) {
+    const { schema } = props
+    const { displaySchema } = state
+
+    return isEqual(schema, displaySchema) ? null : {
+      displaySchema: this.cloneSchema(props.schema)
     }
   }
 
