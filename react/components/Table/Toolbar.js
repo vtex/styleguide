@@ -138,7 +138,7 @@ class Toolbar extends PureComponent {
               </Button>
               {isDensityBoxVisible && (
                 <div
-                  className="absolute z-999 ba b--light-gray br2 mt2"
+                  className={`absolute z-999 ba b--light-gray br2 mt2 ${density.alignBox === 'left' ? '' : 'right-0'}`}
                   style={BOX_SHADOW_STYLE}
                 >
                   <div className="w-100 b2 br2 bg-base">
@@ -189,7 +189,7 @@ class Toolbar extends PureComponent {
                 </span>
               </Button>
               {isFieldsBoxVisible && (
-                <div className="absolute z-999 ba b--light-gray br2 mt2">
+                <div className={`absolute z-999 ba b--light-gray br2 mt2 ${fields.alignBox === 'left' ? '' : 'right-0'}`}>
                   <div
                     className="w-100 b2 br2 bg-base"
                     style={{
@@ -281,7 +281,7 @@ class Toolbar extends PureComponent {
               </Button>
               {isExtraActionsBoxVisible && (
                 <div
-                  className="absolute z-999 ba b--light-gray br2 right-0"
+                  className={`absolute z-999 ba b--light-gray br2 ${extraActions.alignBox === 'right' ? 'right-0' : ''}`}
                   style={BOX_SHADOW_STYLE}
                 >
                   <div
