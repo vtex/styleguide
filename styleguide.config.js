@@ -34,6 +34,9 @@ module.exports = {
   skipComponentsWithoutExample: true,
   sections: [
     {
+      content: './docs/cover.md',
+    },
+    {
       name: 'Introduction',
       content: './docs/introduction.md',
     },
