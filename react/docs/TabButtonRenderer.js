@@ -29,9 +29,19 @@ export const styles = ({ space, color, fontFamily, fontSize, buttonTextTransform
       isolate: false,
       marginLeft: space[1],
     },
+    '&:after': {
+      content: '▼',
+      fontSize: '10px',
+      marginLeft: '4px',
+    },
   },
   isActive: {
     borderBottom: [[2, color.linkHover, 'solid']],
+    '&:after': {
+      content: '▲',
+      fontSize: '10px',
+      marginLeft: '4px',
+    },
   },
 })
 
