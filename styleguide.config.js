@@ -1,7 +1,8 @@
 const path = require('path')
-const config = require('vtex-tachyons/config.json')
+// const config = require('vtex-tachyons/config.json')
 const webpackConfig = require('@vtex/react-scripts/config/webpack.config.dev.js')
 const { version } = require('./manifest.json')
+const { styles, theme } = require('./styleguide.styles.js')
 
 // Monkey patch webpackConfig to change src/ to react/
 const originalAppSrc = webpackConfig.module.rules[0].include
@@ -18,7 +19,6 @@ webpackConfig.module.rules[1].oneOf.forEach((r) => {
 })
 
 module.exports = {
-  components: 'react/components/**/*.{js,jsx,ts,tsx}',
   version: `${version}`,
   require: [
     'vtex-tachyons',
@@ -26,8 +26,10 @@ module.exports = {
   ],
   usageMode: 'collapse',
   exampleMode: 'collapse',
+  pagePerSection: true,
   title: 'VTEX Styleguide',
-  skipComponentsWithoutExample: true,
+  styles,
+  theme,
   sections: [
     {
       content: './docs/cover.md',
@@ -39,11 +41,20 @@ module.exports = {
     {
       name: 'Components',
       content: './docs/components.md',
-      components: 'react/components/**/index.js',
+      components: 'react/components/*/index.js',
+      skipComponentsWithoutExample: true,
+      sectionDepth: 2,
+      // sections: [
+      //   {
+      //     name: 'Forms',
+      //     components: 'react/components/_Forms/**/index.js',
+      //   },
+      // ],
     },
     {
       name: 'Icons',
       content: 'react/components/icon/README.md',
+      sectionDepth: 0,
     },
   ],
   getComponentPathLine(componentPath) {
@@ -64,41 +75,17 @@ module.exports = {
       disableHostCheck: true,
     },
   },
-  theme: {
-    color: {
-      link: '#134CD8',
-      linkHover: '#0C389F',
-      codeBackground: '#F7F9FA',
-      sidebarBackground: '#FFF',
-      // ribbonBackground: 'blue',
-      // ribbonText: '#fff',
-      // border: 'red',
-      name: 'red',
-    },
-    fontFamily: {
-      base: 'Fabriga, sans-serif',
-    },
-    fontSize: {
-      base: 14,
-      text: 16,
-      small: 12,
-    },
-    maxWidth: 900,
-  },
   styleguideComponents: {
     PathlineRenderer: path.join(__dirname, 'react/docs/Pathline'),
     HeadingRenderer: path.join(__dirname, 'react/docs/HeadingRenderer'),
     TabButtonRenderer: path.join(__dirname, 'react/docs/TabButtonRenderer'),
   },
-  styles: {
-    TabButton: {
-      button: {
-        color: config.colors['near-black'],
-        fontWeight: 'normal',
-        borderBottom: `1px solid ${config.colors.blue}`,
-        textTransform: 'initial',
-      },
-    },
+  editorConfig: {
+    lineWrapping: true,
+    smartIndent: true,
+    matchBrackets: true,
+    lineNumbers: false,
+    theme: 'monokai', // more: https://codemirror.net/theme/
   },
   template: {
     head: {
