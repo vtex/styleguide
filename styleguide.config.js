@@ -47,19 +47,38 @@ module.exports = {
       content: './docs/components.md',
       components: 'react/components/*/index.js',
       skipComponentsWithoutExample: true,
-      sectionDepth: 2,
+      // sectionDepth: 2,
       // sections: [
       //   {
-      //     name: 'Forms',
-      //     components: 'react/components/_Forms/**/index.js',
+      //     name: 'Actions',
+      //     components: 'react/components/_Actions/**/index.js',
       //   },
       // ],
     },
     {
       name: 'Icons',
       content: 'react/components/icon/README.md',
-      sectionDepth: 0,
     },
+    {
+      name: 'External links',
+      sections: [
+        {
+          name: 'VTEX.com',
+          href: 'http://vtex.com/',
+          external: true,
+        },
+        {
+          name: 'Brand',
+          href: 'http://brand.vtex.com/',
+          external: true,
+        },
+        {
+          name: 'Careers',
+          href: 'http://careers.vtex.com/',
+          external: true,
+        },
+      ]
+    }
   ],
   getComponentPathLine(componentPath) {
     const pathArray = path.dirname(componentPath).split(path.sep)
@@ -82,7 +101,7 @@ module.exports = {
   styleguideComponents: {
     PathlineRenderer: path.join(__dirname, 'react/docs/Pathline'),
     HeadingRenderer: path.join(__dirname, 'react/docs/HeadingRenderer'),
-    TabButtonRenderer: path.join(__dirname, 'react/docs/TabButtonRenderer'),
+    // TabButtonRenderer: path.join(__dirname, 'react/docs/TabButtonRenderer'),
   },
   editorConfig: {
     lineWrapping: true,
@@ -90,7 +109,7 @@ module.exports = {
     matchBrackets: true,
     lineNumbers: false,
     theme: 'monokai', // more: https://codemirror.net/theme/
-  },
+  }, 
   template: {
     head: {
       scripts: [

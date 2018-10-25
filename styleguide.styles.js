@@ -3,25 +3,39 @@ const config = require('vtex-tachyons/config.json')
 const styles = {
     TabButton: {
       button: {
-        color: config.colors['near-black'],
-        fontWeight: 'normal',
-        // borderBottom: `1px solid ${config.colors.blue}`,
-        textTransform: 'initial',
+        color: config.colors['blue'],
+        width: '100%',
+        fontWeight: 'bold',
+        borderBottom: `1px solid ${config.colors.pink}`,
+        textTransform: 'uppercase',
+        transition: 'none',
       },
+    },
+    Table: {
+        table: {
+            // marginTop: rhythm(0.5),
+            // marginBottom: rhythm(0.5),
+            // minWidth: '600px'
+        },
+        cellHeading: {
+            borderBottom: `thin solid lightGrey`
+        },
+        cell: {
+            paddingBottom: 0,
+            '& p': {
+                // marginBottom: `${rhythm(0.125)} !important`
+            },
+            '& div[class*="para"]': {
+                // marginBottom: `${rhythm(0.125)} !important`
+            }
+        }
     },
     ComponentsList: {
         heading: {
-            fontWeight: '700 !important',
+            // fontWeight: '700',
             // textTransform: 'uppercase'
+            marginTop: '2rem !important',
         }
-    },
-    TabButton: {
-        button: {
-            width: '100%',
-        },
-        isActive: {
-            border: 0,
-        },
     },
     StyleGuide: {
         logo: {
@@ -29,7 +43,6 @@ const styles = {
         },
         sidebar: {
             border: 0,
-            // backgroundColor: '#fa0d61',
             // '& li > a': {
             //     color: 'white !important',
             // },
@@ -58,5 +71,6 @@ const theme = {
 };
 
 module.exports = {
-    styles: styles
+    styles: styles,
+    theme: theme
 }
