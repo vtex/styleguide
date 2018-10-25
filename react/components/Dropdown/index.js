@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import ArrowDownIcon from './ArrowDownIcon'
 
+/**
+ * @visibleName Dropdown
+ */
 class Dropdown extends Component {
   constructor(props) {
     super(props)
