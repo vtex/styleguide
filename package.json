@@ -19,7 +19,9 @@
     "manifest-version": "node ./scripts/version.js",
     "vtex-io": "run-s entrypoints manifest-version",
     "prereleasy": "npm run vtex-io",
-    "postreleasy": "vtex publish --public --verbose"
+    "postreleasy": "vtex publish --public --verbose",
+    "lint-fix": "eslint react --fix --max-warnings 0",
+    "prettier-conflict-check": "eslint --print-config .eslintrc | eslint-config-prettier-check"
   },
   "files": [
     "lib/",
