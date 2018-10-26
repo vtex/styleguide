@@ -20,6 +20,7 @@
     "vtex-io": "run-s entrypoints manifest-version",
     "prereleasy": "npm run vtex-io",
     "postreleasy": "vtex publish --public --verbose",
+    "lint": "eslint react",
     "lint-fix": "eslint react --fix --max-warnings 0",
     "prettier-conflict-check": "eslint --print-config .eslintrc | eslint-config-prettier-check"
   },
