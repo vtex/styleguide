@@ -169,11 +169,7 @@ ${this.getDropdownIdentification()}`
               className={selectClasses}
               onChange={this.handleChange}
               ref={this.props.forwardedRef}
-              {
-                ...{
-                  /* Check the comment on the constructor regarding nil values */
-                }
-              }
+              // Check the comment on the constructor regarding nil values
               value={value == null ? '' : value}
               autoFocus={autoFocus}
               form={form}
