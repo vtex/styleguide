@@ -40,8 +40,7 @@ class Modal extends PureComponent {
             padding: '10px',
           },
         }}
-        closeIconSize={18}
-      >
+        closeIconSize={18}>
         {this.props.children}
       </ResponsiveModal>
     )

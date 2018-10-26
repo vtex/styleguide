@@ -23,9 +23,10 @@ export default function Selector({
     }
   )
 
-  const containerStyle = position === 'left'
-    ? { transform: `translateX(${offset}px) translateX(-50%)` }
-    : { transform: `translateX(-${offset}px) translateX(50%)` }
+  const containerStyle =
+    position === 'left'
+      ? { transform: `translateX(${offset}px) translateX(-50%)` }
+      : { transform: `translateX(-${offset}px) translateX(50%)` }
 
   const dragCircleClasses = classNames(
     'vtex-slider__selector br-100 bg-action-primary flex justify-center items-center',
@@ -51,8 +52,7 @@ export default function Selector({
         ...containerStyle,
         willChange: 'transform',
         top: 6.5,
-      }}
-    >
+      }}>
       {(active || displayPopup) && (
         <div className="absolute pb4" style={{ left: '50%', bottom: '100%' }}>
           <div className={popupClasses} style={{ left: '-50%' }}>
@@ -66,8 +66,7 @@ export default function Selector({
           height: '0.6875rem',
           width: '0.6875rem',
           boxShadow: '-1px 1px 3px rgba(0, 0, 0, 0.15)',
-        }}
-      >
+        }}>
         {icon}
       </div>
     </div>
@@ -85,10 +84,7 @@ Selector.defaultProps = {
 
 Selector.propTypes = {
   /** Position of the selector */
-  position: PropTypes.oneOf([
-    'left',
-    'right',
-  ]).isRequired,
+  position: PropTypes.oneOf(['left', 'right']).isRequired,
   /** onDragStart event */
   onDragStart: PropTypes.func.isRequired,
   /** If the selector is active */

@@ -150,8 +150,7 @@ export default class MultiSelect extends Component {
           disabled={disabled}
           onClick={() => {
             this.handleUnselect(index)
-          }}
-        >
+          }}>
           {tag.label}
         </Tag>
       </div>
@@ -168,7 +167,8 @@ export default class MultiSelect extends Component {
           {label && (
             <span className="vtex-input__label db mb3 w-100">{label}</span>
           )}
-          <div className={`flex flex-wrap mt3 br2 b--solid bw1 pv2 ph6 ${classes}`}>
+          <div
+            className={`flex flex-wrap mt3 br2 b--solid bw1 pv2 ph6 ${classes}`}>
             <input
               className={`f6 mv3 bn outline-0 flex-grow-1 order-last ${classes}`}
               disabled={disabled}

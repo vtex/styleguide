@@ -7,9 +7,9 @@ import Selector from './Selector'
 const UP_EVENTS = ['mouseup', 'pointerup', 'touchend']
 
 const MOVE_EVENT_MAP = {
-  'mousedown': 'mousemove',
-  'touchstart': 'touchmove',
-  'pointerdown': 'pointermove',
+  mousedown: 'mousemove',
+  touchstart: 'touchmove',
+  pointerdown: 'pointermove',
 }
 
 /**
@@ -50,27 +50,34 @@ export default class Slider extends Component {
       right: 0,
     },
     values: {
-      left: this.props.defaultValues && this.props.defaultValues.length > 0
-        ? this.props.defaultValues[0]
-        : this.props.min,
-      right: this.props.range && this.props.defaultValues && this.props.defaultValues.length >= 2
-        ? this.props.defaultValues[1]
-        : this.props.max,
+      left:
+        this.props.defaultValues && this.props.defaultValues.length > 0
+          ? this.props.defaultValues[0]
+          : this.props.min,
+      right:
+        this.props.range &&
+        this.props.defaultValues &&
+        this.props.defaultValues.length >= 2
+          ? this.props.defaultValues[1]
+          : this.props.max,
     },
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.min !== this.props.min || prevProps.max !== this.props.max) {
-      this.setState({
-        translate: {
-          left: 0,
-          right: 0,
+      this.setState(
+        {
+          translate: {
+            left: 0,
+            right: 0,
+          },
+          values: {
+            left: this.props.min,
+            right: this.props.max,
+          },
         },
-        values: {
-          left: this.props.min,
-          right: this.props.max,
-        },
-      }, this.updateLayout)
+        this.updateLayout
+      )
     }
   }
 
@@ -152,7 +159,10 @@ export default class Slider extends Component {
     let nearestPoint
 
     // Which one has a absolute value closer to 0
-    if (!this.props.range || Math.abs(leftPos - xPos) < Math.abs(rightPos - xPos)) {
+    if (
+      !this.props.range ||
+      Math.abs(leftPos - xPos) < Math.abs(rightPos - xPos)
+    ) {
       nearestPoint = 'left'
     } else {
       nearestPoint = 'right'
@@ -185,7 +195,9 @@ export default class Slider extends Component {
 
     this.cancelDragEvent_ = () => {
       this.valuesBeforeDrag_ = undefined
-      UP_EVENTS.forEach(evtName => document.body.removeEventListener(evtName, handleUpEvent))
+      UP_EVENTS.forEach(evtName =>
+        document.body.removeEventListener(evtName, handleUpEvent)
+      )
       document.body.removeEventListener(MOVE_EVENT_MAP[e.type], moveHandler)
       document.body.removeEventListener('keydown', this.handleKeyDown)
     }
@@ -195,7 +207,9 @@ export default class Slider extends Component {
       this.handleDragEnd()
     }
 
-    UP_EVENTS.forEach(evtName => document.body.addEventListener(evtName, handleUpEvent))
+    UP_EVENTS.forEach(evtName =>
+      document.body.addEventListener(evtName, handleUpEvent)
+    )
     document.body.addEventListener(MOVE_EVENT_MAP[e.type], moveHandler)
     document.body.addEventListener('keydown', this.handleKeyDown)
 
@@ -268,7 +282,13 @@ export default class Slider extends Component {
   }
 
   render() {
-    const { disabled, alwaysShowCurrentValue, formatValue, range, handleIcon } = this.props
+    const {
+      disabled,
+      alwaysShowCurrentValue,
+      formatValue,
+      range,
+      handleIcon,
+    } = this.props
     const { left, right } = this.state.translate
 
     const lastLeftValue = this.valuesBeforeDrag_
@@ -278,13 +298,15 @@ export default class Slider extends Component {
       ? this.valuesBeforeDrag_.right
       : this.state.values.right
 
-    const sliderSelectionStyle = range ? {
-      left,
-      right,
-    } : {
-      left: 0,
-      width: left,
-    }
+    const sliderSelectionStyle = range
+      ? {
+          left,
+          right,
+        }
+      : {
+          left: 0,
+          width: left,
+        }
 
     return (
       <div className="vtex-slider-container">
@@ -300,16 +322,14 @@ export default class Slider extends Component {
             userSelect: 'none',
           }}
           onMouseDown={this.handleSliderMouseDown}
-          onTouchStart={this.handleSliderMouseDown}
-        >
+          onTouchStart={this.handleSliderMouseDown}>
           <div
             ref={this.sliderRef}
             className="vtex-slider__base w-100 bg-muted-4 absolute br-pill overflow-hidden"
             style={{
               height: 3,
               top: 10.5,
-            }}
-          >
+            }}>
             <div
               className={classNames('absolute h-100', {
                 'bg-action-primary': !disabled,
@@ -328,16 +348,18 @@ export default class Slider extends Component {
             formatValue={formatValue}
             icon={handleIcon}
           />
-          {range && <Selector
-            offset={right}
-            onDragStart={this.handleDragStart}
-            position="right"
-            active={this.state.dragging === 'right'}
-            displayPopup={alwaysShowCurrentValue}
-            value={this.state.values.right}
-            formatValue={formatValue}
-            icon={handleIcon}
-          />}
+          {range && (
+            <Selector
+              offset={right}
+              onDragStart={this.handleDragStart}
+              position="right"
+              active={this.state.dragging === 'right'}
+              displayPopup={alwaysShowCurrentValue}
+              value={this.state.values.right}
+              formatValue={formatValue}
+              icon={handleIcon}
+            />
+          )}
         </div>
 
         <div className="flex justify-end">

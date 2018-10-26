@@ -19,8 +19,7 @@ class ShoppingCart extends PureComponent {
         height={newSize.height}
         viewBox="0 0 32 30"
         fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
+        xmlns="http://www.w3.org/2000/svg">
         <path
           d="M8 30C9.65685 30 11 28.6569 11 27C11 25.3431 9.65685 24 8 24C6.34315 24 5 25.3431 5 27C5 28.6569 6.34315 30 8 30Z"
           fill={color}

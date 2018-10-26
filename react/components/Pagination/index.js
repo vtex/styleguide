@@ -49,8 +49,7 @@ class Pagination extends PureComponent {
       <div
         className={`flex flex-row items-center ${
           rowsOptions ? 'justify-between' : 'justify-end'
-        }`}
-      >
+        }`}>
         {dropdownOptions && (
           <div className="flex flex-row pt5 items-baseline">
             <span className="mr4 c-muted-2 f6">{this.props.textShowRows}</span>
@@ -76,8 +75,7 @@ class Pagination extends PureComponent {
               variation="secondary"
               size="small"
               disabled={isPrevDisabled}
-              onClick={this.handlePrevPage}
-            >
+              onClick={this.handlePrevPage}>
               <CaretLeft color="currentColor" />
             </Button>
           </div>
@@ -87,8 +85,7 @@ class Pagination extends PureComponent {
               variation="secondary"
               size="small"
               disabled={isNextDisabled}
-              onClick={this.handleNextPage}
-            >
+              onClick={this.handleNextPage}>
               <CaretRight color="currentColor" />
             </Button>
           </div>

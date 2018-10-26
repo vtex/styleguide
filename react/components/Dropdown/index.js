@@ -23,14 +23,14 @@ class Dropdown extends Component {
     } = e
 
     !disabled && onChange && onChange(e, value)
-  };
+  }
 
   getOptionFromValue = value => {
     const { options } = this.props
     const option = options.filter(option => option.value === value)[0]
     if (!option) return null
     return option
-  };
+  }
 
   getDropdownIdentification = () => {
     const { label, id, options } = this.props
@@ -42,7 +42,7 @@ class Dropdown extends Component {
     return `Dropdown with the options ${options
       .map(option => option.label)
       .join(', ')}`
-  };
+  }
 
   getPlaceholder = () => {
     const { placeholder, label, helpText } = this.props
@@ -59,11 +59,11 @@ ${this.getDropdownIdentification()}`
     }
 
     return placeholderValue
-  };
+  }
 
   getSelectedOption = () => {
     return this.getOptionFromValue(this.props.value)
-  };
+  }
 
   getValueLabel() {
     const selectedOption = this.getSelectedOption()
@@ -89,8 +89,8 @@ ${this.getDropdownIdentification()}`
       required,
     } = this.props
 
-    const hasValidInitialValue = this.getOptionFromValue(this.initialValue) !==
-      null
+    const hasValidInitialValue =
+      this.getOptionFromValue(this.initialValue) !== null
 
     const isPlaceholder = this.getSelectedOption() === null
     let width
@@ -107,9 +107,12 @@ ${this.getDropdownIdentification()}`
 
     classes += disabled ? 'bg-disabled ' : 'pointer '
     selectClasses += disabled ? '' : 'pointer '
-    classes += !disabled && valueLabel
-      ? !isPlaceholder ? 'c-on-base ' : 'c-muted-2 '
-      : 'c-disabled '
+    classes +=
+      !disabled && valueLabel
+        ? !isPlaceholder
+          ? 'c-on-base '
+          : 'c-muted-2 '
+        : 'c-disabled '
 
     switch (size) {
       case 'large':
@@ -153,10 +156,9 @@ ${this.getDropdownIdentification()}`
                   {showCaption ? placeholder : valueLabel}
                 </div>
                 <div
-                  className={
-                    `vtex-dropdown__arrow flex-none flex items-center pl2 ${disabled ? 'c-on-disabled' : 'c-action-primary'}`
-                  }
-                >
+                  className={`vtex-dropdown__arrow flex-none flex items-center pl2 ${
+                    disabled ? 'c-on-disabled' : 'c-action-primary'
+                  }`}>
                   <ArrowDownIcon size={iconSize} />
                 </div>
               </div>
@@ -167,7 +169,11 @@ ${this.getDropdownIdentification()}`
               className={selectClasses}
               onChange={this.handleChange}
               ref={this.props.forwardedRef}
-              {...{/* Check the comment on the constructor regarding nil values */}}
+              {
+                ...{
+                  /* Check the comment on the constructor regarding nil values */
+                }
+              }
               value={value == null ? '' : value}
               autoFocus={autoFocus}
               form={form}
@@ -176,19 +182,18 @@ ${this.getDropdownIdentification()}`
               style={{
                 // safari select height fix
                 WebkitAppearance: 'menulist-button',
-              }}
-            >
+              }}>
               {/* iOS hack to optionally prevent truncating options */}
               {preventTruncate && <optgroup label={label || helpText || ''} />}
 
               {/* Creates a disabled first option in case the first value is invalid or empty */}
-              {(!hasValidInitialValue || placeholder) &&
+              {(!hasValidInitialValue || placeholder) && (
                 <option
                   disabled
-                  value={!hasValidInitialValue ? this.initialValue : null}
-                >
+                  value={!hasValidInitialValue ? this.initialValue : null}>
                   {this.getPlaceholder()}
-                </option>}
+                </option>
+              )}
               {options.map(option => (
                 <option key={option.value} value={option.value}>
                   {option.label}
@@ -197,10 +202,12 @@ ${this.getDropdownIdentification()}`
             </select>
           </div>
         </label>
-        {errorMessage &&
-          <div className="c-danger f6 mt3 lh-title">{errorMessage}</div>}
-        {helpText &&
-          <div className="c-muted-1 f6 mt3 lh-title">{helpText}</div>}
+        {errorMessage && (
+          <div className="c-danger f6 mt3 lh-title">{errorMessage}</div>
+        )}
+        {helpText && (
+          <div className="c-muted-1 f6 mt3 lh-title">{helpText}</div>
+        )}
       </div>
     )
   }
@@ -233,14 +240,10 @@ DropdownWithRef.propTypes = {
   /** Dropdown options list */
   options: PropTypes.arrayOf(
     PropTypes.shape({
-      value: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-      ]).isRequired,
-      label: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-      ]).isRequired,
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+        .isRequired,
+      label: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+        .isRequired,
     })
   ),
   /** Prevent truncating large options texts on some devices/browsers, such as iOS */

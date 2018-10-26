@@ -20,22 +20,20 @@ class RadioGroup extends React.Component {
           const id = `${name}-${i}`
           return (
             <label
-              className={`db pv2 ph4 ba b--muted-4 br3 ${classNames({ pointer: !isDisabled })}`}
+              className={`db pv2 ph4 ba b--muted-4 br3 ${classNames({
+                pointer: !isDisabled,
+              })}`}
               key={id}
               style={{
-                ...(!isFirst &&
-                  {
-                    borderTopLeftRadius: 0,
-                    borderTopRightRadius: 0,
-                    borderTop: 'none',
-                  }
-                ),
-                ...(!isLast &&
-                  {
-                    borderBottomLeftRadius: 0,
-                    borderBottomRightRadius: 0,
-                  }
-                ),
+                ...(!isFirst && {
+                  borderTopLeftRadius: 0,
+                  borderTopRightRadius: 0,
+                  borderTop: 'none',
+                }),
+                ...(!isLast && {
+                  borderBottomLeftRadius: 0,
+                  borderBottomRightRadius: 0,
+                }),
               }}>
               <div className="mt3">
                 <Radio
@@ -51,7 +49,8 @@ class RadioGroup extends React.Component {
             </label>
           )
         })}
-      </div>)
+      </div>
+    )
   }
 }
 
@@ -63,7 +62,7 @@ RadioGroup.propTypes = {
         .isRequired,
       label: PropTypes.node.isRequired,
       disabled: PropTypes.bool,
-    }),
+    })
   ).isRequired,
   /** Name attribute for the radio inputs, which will also be used to generate ids */
   name: PropTypes.string.isRequired,

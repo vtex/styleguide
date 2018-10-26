@@ -3,11 +3,11 @@ export const calcIconSize = (iconBase, newSize) => {
 
   const width = isHorizontal
     ? newSize
-    : newSize * iconBase.width / iconBase.height
+    : (newSize * iconBase.width) / iconBase.height
 
   const height = !isHorizontal
     ? newSize
-    : newSize * iconBase.height / iconBase.width
+    : (newSize * iconBase.height) / iconBase.width
 
   return { width, height }
 }

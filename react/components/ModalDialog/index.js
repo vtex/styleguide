@@ -28,8 +28,7 @@ class ModalDialog extends Component {
             <Button
               size="small"
               variation="tertiary"
-              onClick={this.handleCancelation}
-            >
+              onClick={this.handleCancelation}>
               {cancelation.label}
             </Button>
           </span>
@@ -37,8 +36,7 @@ class ModalDialog extends Component {
           <Button
             size="small"
             variation="primary"
-            onClick={this.handleConfirmation}
-          >
+            onClick={this.handleConfirmation}>
             {confirmation.label}
           </Button>
         </div>

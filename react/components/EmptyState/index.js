@@ -20,7 +20,7 @@ EmptyState.propTypes = {
   title: (props, propName, componentName) => {
     if (!props.title && !props.children) {
       return new Error(
-        `Prop 'title' or 'children' was not specified in '${componentName}'.`,
+        `Prop 'title' or 'children' was not specified in '${componentName}'.`
       )
     }
   },
@@ -28,7 +28,7 @@ EmptyState.propTypes = {
   children: (props, propName, componentName) => {
     if (!props.title && !props.children) {
       return new Error(
-        `Prop 'title' or 'children' was not specified in '${componentName}'.`,
+        `Prop 'title' or 'children' was not specified in '${componentName}'.`
       )
     }
   },

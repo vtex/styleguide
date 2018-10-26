@@ -107,8 +107,7 @@ class Button extends Component {
         onMouseUp={this.props.onMouseUp}
         onMouseDown={this.props.onMouseDown}
         ref={this.props.ref}
-        style={icon ? { fontSize: 0 } : {}}
-      >
+        style={icon ? { fontSize: 0 } : {}}>
         {isLoading ? (
           <Fragment>
             <span className="left-0 w-100 absolute flex justify-center items-baseline">

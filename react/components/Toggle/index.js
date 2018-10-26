@@ -127,20 +127,22 @@ class Toggle extends Component {
         <div className={`flex flex-row items-center ${!disabled && 'pointer'}`}>
           <div className={`vtex-toggle ${classes}`} style={style}>
             <div className={circleClasses} style={circleStyle} />
-            {semantic &&
+            {semantic && (
               <div className={iconDenyClasses} style={iconStyle}>
                 <DenyIcon
                   size={size === 'regular' ? 14 : 12}
                   color="currentColor"
                 />
-              </div>}
-            {semantic &&
+              </div>
+            )}
+            {semantic && (
               <div className={iconCheckClasses} style={iconStyle}>
                 <CheckIcon
                   size={size === 'regular' ? 15 : 13}
                   color="currentColor"
                 />
-              </div>}
+              </div>
+            )}
           </div>
           <input
             id={id || undefined}
@@ -154,8 +156,9 @@ class Toggle extends Component {
           />
           {label && <span className={labelClass}>{label}</span>}
         </div>
-        {helpText &&
-          <div className="c-muted-1 f6 mt3 lh-title">{helpText}</div>}
+        {helpText && (
+          <div className="c-muted-1 f6 mt3 lh-title">{helpText}</div>
+        )}
       </label>
     )
   }

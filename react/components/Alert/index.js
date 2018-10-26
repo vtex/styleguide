@@ -53,8 +53,7 @@ class Alert extends Component {
 
     return (
       <div
-        className={`vtex-alert flex justify-between f5 c-on-base ${classes}`}
-      >
+        className={`vtex-alert flex justify-between f5 c-on-base ${classes}`}>
         <div className="flex-ns flex-grow-1 items-center">
           <div className="flex items-center flex-grow-1">
             {showIcon && (
@@ -83,8 +82,7 @@ class Alert extends Component {
           <div
             className="vtex-alert__close-icon pointer flex items-center pv2 c-on-base pa3"
             onClick={onClose}
-            tabIndex={0}
-          >
+            tabIndex={0}>
             <CloseIcon block color="currentColor" size={16} />
           </div>
         )}

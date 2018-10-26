@@ -19,8 +19,7 @@ class Copy extends PureComponent {
         height={newSize.height}
         viewBox="0 0 18 18"
         fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
+        xmlns="http://www.w3.org/2000/svg">
         <path
           d="M6.4 0H9.2C10.3046 0 11.2 0.895431 11.2 2V9.2C11.2 10.3046 10.3046 11.2 9.2 11.2H2C0.89543 11.2 0 10.3046 0 9.2V6.4"
           transform="translate(5.80005 12.2) rotate(-90)"

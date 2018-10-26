@@ -30,7 +30,7 @@ class Toolbar extends PureComponent {
     }
   }
 
-  handleToggleBox = (boxKey) => {
+  handleToggleBox = boxKey => {
     const isBoxVisible = this.state[boxKey]
     if (isBoxVisible) {
       document.removeEventListener('mousedown', this.handleClickOutside)
@@ -40,8 +40,9 @@ class Toolbar extends PureComponent {
     this.setState({ [`${boxKey}`]: !isBoxVisible })
   }
 
-  handleClickOutside = (e) => {
-    if ( // handle clicks outside the show/hide fields btn or box
+  handleClickOutside = e => {
+    if (
+      // handle clicks outside the show/hide fields btn or box
       this.fieldsBtnRef &&
       this.fieldsBtnRef.current &&
       !this.fieldsBtnRef.current.contains(e.target) &&
@@ -70,23 +71,35 @@ class Toolbar extends PureComponent {
 
   calculateFieldsBoxHeight = () => {
     const { schema } = this.props
-    const estimate = Object.keys(schema.properties).length * FIELDS_BOX_ITEM_HEIGHT
+    const estimate =
+      Object.keys(schema.properties).length * FIELDS_BOX_ITEM_HEIGHT
     return estimate > MAX_FIELDS_BOX_HEIGHT ? MAX_FIELDS_BOX_HEIGHT : estimate
   }
 
   calculateExtraActionsBoxHeight = () => {
-    const { actions: { extraActions } } = this.props
+    const {
+      actions: { extraActions },
+    } = this.props
     const estimate = extraActions.actions.length * FIELDS_BOX_ITEM_HEIGHT
     return estimate > MAX_FIELDS_BOX_HEIGHT ? MAX_FIELDS_BOX_HEIGHT : estimate
   }
 
   handleInputSearchSubmit = e => {
-    this.props.actions.inputSearch.onSubmit && this.props.actions.inputSearch.onSubmit(e)
+    this.props.actions.inputSearch.onSubmit &&
+      this.props.actions.inputSearch.onSubmit(e)
   }
 
   render() {
     const {
-      actions: { inputSearch, download, upload, fields, extraActions, newLine, density },
+      actions: {
+        inputSearch,
+        download,
+        upload,
+        fields,
+        extraActions,
+        newLine,
+        density,
+      },
       displaySchema,
       schema,
       handleHideAllColumns,
@@ -103,9 +116,11 @@ class Toolbar extends PureComponent {
     const isDownloadVisible = download && download.label
     const isUploadVisible = upload && upload.label
     const isFieldsVisible = fields && fields.label
-    const isExtraActionsVisible = extraActions && extraActions.label && extraActions.actions.length > 0
+    const isExtraActionsVisible =
+      extraActions && extraActions.label && extraActions.actions.length > 0
     const isNewLineVisible = newLine && newLine.label
-    const isDensityVisible = density &&
+    const isDensityVisible =
+      density &&
       density.buttonLabel &&
       density.lowOptionLabel &&
       density.mediumOptionLabel &&
@@ -127,8 +142,7 @@ class Toolbar extends PureComponent {
               <Button
                 variation="tertiary"
                 size="small"
-                onClick={() => this.handleToggleBox('isDensityBoxVisible')}
-              >
+                onClick={() => this.handleToggleBox('isDensityBoxVisible')}>
                 <span className="flex align-baseline items-center near-black">
                   <span className="mr3">
                     <IconDensity color="currentColor" />
@@ -139,32 +153,30 @@ class Toolbar extends PureComponent {
               {isDensityBoxVisible && (
                 <div
                   className="absolute z-999 ba b--light-gray br2 mt2"
-                  style={BOX_SHADOW_STYLE}
-                >
+                  style={BOX_SHADOW_STYLE}>
                   <div className="w-100 b2 br2 bg-base">
-                    <div style={{ height: 3 * FIELDS_BOX_ITEM_HEIGHT }} className="overflow-scroll">
-                      {
-                        DENSITY_OPTIONS.map((key, index) => {
-                          const isKeySelected = selectedDensity === key
-                          return (
-                            <div
-                              key={index}
-                              className={`flex justify-between ph6 pv3 pointer hover-bg-light-silver bl bw1 ${
-                                isKeySelected ? 'b--emphasis' : 'b--transparent'
-                              }`}
-                              onClick={() => {
-                                handleToggleDensity(key)
-                                this.handleToggleBox('isDensityBoxVisible')
-                              }}>
-                              <span className={`w-100 ${
-                                isKeySelected ? 'fw5' : ''
-                              }`}>
-                                {density[`${key}OptionLabel`]}
-                              </span>
-                            </div>
-                          )
-                        })
-                      }
+                    <div
+                      style={{ height: 3 * FIELDS_BOX_ITEM_HEIGHT }}
+                      className="overflow-scroll">
+                      {DENSITY_OPTIONS.map((key, index) => {
+                        const isKeySelected = selectedDensity === key
+                        return (
+                          <div
+                            key={index}
+                            className={`flex justify-between ph6 pv3 pointer hover-bg-light-silver bl bw1 ${
+                              isKeySelected ? 'b--emphasis' : 'b--transparent'
+                            }`}
+                            onClick={() => {
+                              handleToggleDensity(key)
+                              this.handleToggleBox('isDensityBoxVisible')
+                            }}>
+                            <span
+                              className={`w-100 ${isKeySelected ? 'fw5' : ''}`}>
+                              {density[`${key}OptionLabel`]}
+                            </span>
+                          </div>
+                        )
+                      })}
                     </div>
                   </div>
                 </div>
@@ -179,8 +191,7 @@ class Toolbar extends PureComponent {
               <Button
                 variation="tertiary"
                 size="small"
-                onClick={() => this.handleToggleBox('isFieldsBoxVisible')}
-              >
+                onClick={() => this.handleToggleBox('isFieldsBoxVisible')}>
                 <span className="flex align-baseline near-black">
                   <span className="mr3">
                     <IconColumns color="currentColor" />
@@ -200,34 +211,35 @@ class Toolbar extends PureComponent {
                       <Button
                         variation="secondary"
                         size="small"
-                        onClick={handleShowAllColumns}
-                      >{fields.showAllLabel}</Button>
+                        onClick={handleShowAllColumns}>
+                        {fields.showAllLabel}
+                      </Button>
                       <div className="mh4">
                         <Button
                           variation="secondary"
                           size="small"
-                          onClick={handleHideAllColumns}
-                        >{fields.hideAllLabel}</Button>
+                          onClick={handleHideAllColumns}>
+                          {fields.hideAllLabel}
+                        </Button>
                       </div>
                     </div>
-                    <div style={{ height: this.calculateFieldsBoxHeight() }} className="overflow-scroll">
-                      {
-                        Object.keys(schema.properties).map((field, index) => (
-                          <div
-                            key={index}
-                            className="flex justify-between ph6 pv3 pointer hover-bg-light-silver"
-                            onClick={() => toggleColumn(field)}
-                          >
-                            <span className="w-70 truncate">
-                              {schema.properties[field].title || field}
-                            </span>
-                            <Toggle
-                              size="small"
-                              checked={!!displaySchema.properties[field]}
-                            />
-                          </div>
-                        ))
-                      }
+                    <div
+                      style={{ height: this.calculateFieldsBoxHeight() }}
+                      className="overflow-scroll">
+                      {Object.keys(schema.properties).map((field, index) => (
+                        <div
+                          key={index}
+                          className="flex justify-between ph6 pv3 pointer hover-bg-light-silver"
+                          onClick={() => toggleColumn(field)}>
+                          <span className="w-70 truncate">
+                            {schema.properties[field].title || field}
+                          </span>
+                          <Toggle
+                            size="small"
+                            checked={!!displaySchema.properties[field]}
+                          />
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -238,8 +250,7 @@ class Toolbar extends PureComponent {
             <Button
               variation="tertiary"
               size="small"
-              onClick={download.handleCallback}
-            >
+              onClick={download.handleCallback}>
               <span className="flex align-baseline near-black">
                 <span className="mr3">
                   <IconDownload color="currentColor" />
@@ -252,8 +263,7 @@ class Toolbar extends PureComponent {
             <Button
               variation="tertiary"
               size="small"
-              onClick={upload.handleCallback}
-            >
+              onClick={upload.handleCallback}>
               <span className="flex align-baseline near-black">
                 <span className="mr3">
                   <IconUpload color="currentColor" />
@@ -270,36 +280,32 @@ class Toolbar extends PureComponent {
               <Button
                 variation="tertiary"
                 size="small"
-                onClick={() => this.handleToggleBox('isExtraActionsBoxVisible')}
-              >
+                onClick={() =>
+                  this.handleToggleBox('isExtraActionsBoxVisible')
+                }>
                 <span className="flex align-baseline items-center near-black">
-                  <span className="mr3">
-                    {extraActions.label}
-                  </span>
+                  <span className="mr3">{extraActions.label}</span>
                   <IconCaretDown height={13} color="currentColor" />
                 </span>
               </Button>
               {isExtraActionsBoxVisible && (
                 <div
                   className="absolute z-999 ba b--light-gray br2 right-0"
-                  style={BOX_SHADOW_STYLE}
-                >
+                  style={BOX_SHADOW_STYLE}>
                   <div
                     className="w-100 b2 br2 bg-base"
                     style={{ width: EXTRA_ACTIONS_BOX_WIDTH }}>
-                    <div style={{ height: this.calculateExtraActionsBoxHeight() }} className="overflow-scroll">
-                      {
-                        extraActions.actions.map((action, index) => (
-                          <div
-                            key={index}
-                            className="flex justify-between ph6 pv3 pointer hover-bg-light-silver"
-                            onClick={action.handleCallback}>
-                            <span className="w-70 truncate">
-                              {action.label}
-                            </span>
-                          </div>
-                        ))
-                      }
+                    <div
+                      style={{ height: this.calculateExtraActionsBoxHeight() }}
+                      className="overflow-scroll">
+                      {extraActions.actions.map((action, index) => (
+                        <div
+                          key={index}
+                          className="flex justify-between ph6 pv3 pointer hover-bg-light-silver"
+                          onClick={action.handleCallback}>
+                          <span className="w-70 truncate">{action.label}</span>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -310,8 +316,7 @@ class Toolbar extends PureComponent {
             <Button
               variation="primary"
               size="small"
-              onClick={newLine.handleCallback}
-            >
+              onClick={newLine.handleCallback}>
               <span className="flex align-baseline">
                 <span className="mr2">
                   <IconPlus solid size={16} color="currentColor" />
