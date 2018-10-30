@@ -44,11 +44,11 @@ class Table extends PureComponent {
       case 'low':
         return 77
       case 'medium':
-        return 61
+        return 45
       case 'high':
-        return 27
+        return 32
       default:
-        return 61
+        return 45
     }
   }
 
@@ -92,11 +92,9 @@ class Table extends PureComponent {
     const {
       items,
       schema,
-      indexColumnLabel,
       disableHeader,
+      fixedColumns,
       onRowClick,
-      onRowMouseOver,
-      onRowMouseOut,
       sort,
       onSort,
       updateTableKey,
@@ -122,12 +120,10 @@ class Table extends PureComponent {
         <SimpleTable
           items={items}
           schema={displaySchema}
-          indexColumnLabel={indexColumnLabel}
+          fixedColumns={fixedColumns}
           rowHeight={tableRowHeight}
           disableHeader={disableHeader}
           onRowClick={onRowClick}
-          onRowMouseOut={onRowMouseOut}
-          onRowMouseOver={onRowMouseOver}
           sort={sort}
           onSort={onSort}
           updateTableKey={updateTableKey}
@@ -143,6 +139,7 @@ class Table extends PureComponent {
 
 Table.defaultProps = {
   density: 'medium',
+  fixedColumns: 0,
   toolbar: {
     extraActions: {
       actions: [],
@@ -155,16 +152,10 @@ Table.propTypes = {
   items: PropTypes.array.isRequired,
   /** Json Schema data model for the items (example: https://jsonschema.net/) for custom examples see code from custom components */
   schema: PropTypes.object.isRequired,
-  /** Activates a first column as row index (line count)  */
-  indexColumnLabel: PropTypes.string,
   /** Do not render the table header (only the rows) */
   disableHeader: PropTypes.bool,
   /** Callback invoked when a user clicks on a table row. ({ event: Event, index: number, rowData: any }): void */
   onRowClick: PropTypes.func,
-  /** Callback invoked when a user moves the mouse over a table row. ({ event: Event, index: number, rowData: any }): void */
-  onRowMouseOver: PropTypes.func,
-  /** Callback invoked when the mouse leaves a table row. ({ event: Event, index: number, rowData: any }): void */
-  onRowMouseOut: PropTypes.func,
   /** Sort order and which property (key in schema) is table data sorted by. */
   sort: PropTypes.shape({
     sortOrder: PropTypes.oneOf(['ASC', 'DESC']),
@@ -178,6 +169,8 @@ Table.propTypes = {
   containerHeight: PropTypes.number,
   /** Row info visual density  */
   density: PropTypes.oneOf(['low', 'medium', 'high']),
+  /** Number of fixed columns (dafault is 0) */
+  fixedColumns: PropTypes.number,
   /** Toolbar (search and actions) */
   toolbar: PropTypes.shape({
     inputSearch: PropTypes.shape({
