@@ -25,7 +25,7 @@ const defaultSchema = {
       email: {
         type: 'string',
         title: 'Email',
-        width: 35,
+        width: 300,
       },
       number: {
         type: 'number',
@@ -109,7 +109,7 @@ class CustomTableExample extends React.Component {
         email: {
           type: 'string',
           title: 'Email',
-          width: 35,
+          width: 300,
         },
         color: {
           type: 'object',
@@ -117,13 +117,11 @@ class CustomTableExample extends React.Component {
           // you can customize cell component render (also header component with headerRenderer)
           cellRenderer: ({ cellData }) => {
             return (
-              <div className="mh4">
-                <Badge bgColor={cellData.color} color="#fff">
-                  <span className="nowrap">
-                    {cellData.label}
-                  </span>
-                </Badge>
-              </div>
+              <Badge bgColor={cellData.color} color="#fff">
+                <span className="nowrap">
+                  {cellData.label}
+                </span>
+              </Badge>
             )
           },
         },
@@ -178,6 +176,7 @@ class ResourceListExample extends React.Component {
     this.handleInputSearchSubmit = this.handleInputSearchSubmit.bind(this)
     this.handleInputSearchClear = this.handleInputSearchClear.bind(this)
     this.handleRowsChange = this.handleRowsChange.bind(this)
+    this.customColorBadgeProperty = this.customColorBadgeProperty.bind(this)
   }
 
   handleNextClick() {
@@ -238,11 +237,53 @@ class ResourceListExample extends React.Component {
     }
   }
 
+  customColorBadgeProperty(index) {
+    return {
+      type: 'object',
+      title: `Color${index ? ` ${index}` : ''}`,
+      cellRenderer: ({ cellData }) => {
+        return (
+          <Badge bgColor={cellData.color} color="#fff">
+            <span className="nowrap">
+              {cellData.label}
+            </span>
+          </Badge>
+        )
+      },
+    }
+  }
+
   render() {
+    const customSchema = {
+      properties: {
+        name: {
+          type: 'string',
+          title: 'Name',
+        },
+        email: {
+          type: 'string',
+          title: 'Email',
+          width: 300,
+        },
+        number: {
+          type: 'number',
+          title: 'Number',
+        },
+        color: this.customColorBadgeProperty(),
+        color1: this.customColorBadgeProperty(1),
+        color2: this.customColorBadgeProperty(2),
+        color3: this.customColorBadgeProperty(3),
+        color4: this.customColorBadgeProperty(4),
+        color5: this.customColorBadgeProperty(5),
+        color6: this.customColorBadgeProperty(6),
+      },
+    };
+
     return (
       <Table
-        schema={sampleData.defaultSchema}
+        schema={customSchema}
         items={this.state.slicedData}
+        fixedColumns={1}
         toolbar={{
           inputSearch: {
             value: this.state.searchValue,
