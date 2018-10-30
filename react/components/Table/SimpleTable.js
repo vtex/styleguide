@@ -1,12 +1,21 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Column, Table as VirtualTable, AutoSizer } from 'react-virtualized'
+import { MultiGrid, AutoSizer } from 'react-virtualized'
 import ArrowDown from '../icon/ArrowDown'
 import ArrowUp from '../icon/ArrowUp'
 const ARROW_SIZE = 11
 const HEADER_HEIGHT = 36
+const DEFAULT_COLUMN_WIDTH = 200
 
-class SimpleTable extends PureComponent {
+class SimpleTable extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      hoverRowIndex: -1,
+    }
+  }
+
   toggleSortType = key => {
     const {
       sort: { sortOrder, sortedBy },
@@ -23,125 +32,135 @@ class SimpleTable extends PureComponent {
     }
   }
 
+  handleRowHover = (rowIndex) => {
+    const { onRowClick } = this.props
+    if (onRowClick) {
+      this.setState({
+        hoverRowIndex: rowIndex,
+      })
+    }
+  }
+
   render() {
     const {
       schema,
       items,
-      indexColumnLabel,
+      fixedColumns,
       disableHeader,
       onRowClick,
-      onRowMouseOver,
-      onRowMouseOut,
       containerHeight,
       sort: { sortOrder, sortedBy },
       onSort,
       updateTableKey,
       rowHeight,
     } = this.props
+    const { hoverRowIndex } = this.state
     const properties = Object.keys(schema.properties)
-    // hydrate items with index when 'indexColumn' prop is true
-    const newItems =
-      indexColumnLabel && items.length > 0
-        ? items.map((item, index) => ({
-            ...item,
-            _reactVirtualizedIndex: index + 1,
-          }))
-        : items
+    const gridKey = rowHeight // this is force grids rerender when density changes
+
     return (
       <div
-        className="vh-100"
-        style={containerHeight ? { height: containerHeight } : {}}>
-        <AutoSizer>
-          {({ width, height }) => (
-            <VirtualTable
-              updateTableKey={updateTableKey}
+        className="vh-100 w-100"
+        style={{ height: containerHeight }}>
+        <AutoSizer disableHeight key={updateTableKey}>
+          {({ width }) => (
+            <MultiGrid
+              key={gridKey}
+              height={containerHeight}
               width={width}
-              height={height}
-              headerHeight={HEADER_HEIGHT}
-              rowHeight={rowHeight}
-              rowCount={newItems.length}
-              rowGetter={({ index }) => newItems[index]}
-              className="flex flex-column"
-              headerClassName="c-muted-2 f6"
-              disableHeader={disableHeader}
-              onRowClick={({ event, index, rowData }) => {
-                onRowClick && onRowClick({ event, index, rowData })
+
+              fixedRowCount={disableHeader ? 0 : 1}
+              rowCount={disableHeader ? items.length : items.length + 1}
+              rowHeight={({ index }) => {
+                console.log(`LINE ${index} - ${index === 0 && !disableHeader ? HEADER_HEIGHT : rowHeight}px`)
+                return index === 0 && !disableHeader ? HEADER_HEIGHT : rowHeight
               }}
-              onRowMouseOver={({ event, index, rowData }) => {
-                onRowMouseOver && onRowMouseOver({ event, index, rowData })
-              }}
-              onRowMouseOut={({ event, index, rowData }) => {
-                onRowMouseOut && onRowMouseOut({ event, index, rowData })
-              }}
-              rowClassName={({ index }) =>
-                `flex flex-row items-center ${
-                  index === -1 ? 'bt bb' : 'bb'
-                } b--muted-4 ${
-                  onRowClick && index !== -1
-                    ? 'pointer hover-bg-near-white hover-c-link'
-                    : ''
-                }`
-              }>
-              {indexColumnLabel && (
-                <Column
-                  headerRenderer={() => (
-                    <span className="ph4">{indexColumnLabel}</span>
-                  )}
-                  cellRenderer={({ cellData }) => (
-                    <span className="ph4">{cellData}</span>
-                  )}
-                  dataKey="_reactVirtualizedIndex"
-                  label={indexColumnLabel}
-                  width={width / 10} // since index are only integers 10% of table width is enough
-                />
-              )}
-              {properties.map((key, index) => {
-                const label = schema.properties[key].title
-                const cellWidthPercent = schema.properties[key].width || 25
-                const cellWidth = (width * cellWidthPercent) / 100
-                const headerRenderer = schema.properties[key].headerRenderer
-                const cellRenderer = schema.properties[key].cellRenderer
-                return (
-                  <Column
-                    key={index}
-                    headerRenderer={
-                      headerRenderer ||
-                      (({ label }) => {
-                        return (
-                          <div className="truncate ph4">
-                            {schema.properties[key].sortable ? (
-                              <span
-                                className="pointer c-muted-1 b f6"
-                                onClick={() => {
-                                  onSort(this.toggleSortType(key))
-                                }}>
-                                {`${label} `}
-                                {sortOrder === 'ASC' && sortedBy === key ? (
-                                  <ArrowDown size={ARROW_SIZE} />
-                                ) : sortOrder === 'DESC' && sortedBy === key ? (
-                                  <ArrowUp size={ARROW_SIZE} />
-                                ) : null}
-                              </span>
-                            ) : (
-                              label
-                            )}
+              enableFixedRowScroll={!disableHeader}
+              hideTopRightGridScrollbar={!disableHeader}
+              overscanRowCount={0}
+              styleTopRightGrid={fixedColumns > 0 ? { overflowX: 'hidden' } : {}}
+
+              fixedColumnCount={fixedColumns}
+              columnCount={properties.length}
+              columnWidth={({ index }) => schema.properties[properties[index]].width || DEFAULT_COLUMN_WIDTH}
+              enableFixedColumnScroll
+              overscanColumnCount={0}
+
+              cellRenderer={({
+                columnIndex,
+                key,
+                rowIndex,
+                style,
+              }) => {
+                const property = properties[columnIndex]
+                if (!disableHeader && rowIndex === 0) { // Header row
+                  const title = schema.properties[property].title || property
+                  const headerRenderer = schema.properties[property].headerRenderer
+                  return (
+                    <div
+                      key={key}
+                      style={{
+                        ...style,
+                        height: HEADER_HEIGHT,
+                        overflowX: 'hidden',
+                      }}
+                      className={`flex items-center w-100 h-100 c-muted-2 f6 truncate ph4 ${
+                        columnIndex === 0 && fixedColumns > 0 ? 'br' : ''
+                      } bt bb b--muted-4`}
+                    >
+                      {schema.properties[property].sortable
+                        ? <span className="pointer c-muted-1 b f6"
+                          onClick={() => {
+                            onSort(this.toggleSortType(property))
+                          }}>
+                          {`${title} `}
+                          {/* {`row${rowIndex}, col${columnIndex}`} */}
+                          {sortOrder === 'ASC' && sortedBy === property
+                            ? <ArrowDown size={ARROW_SIZE} />
+                            : sortOrder === 'DESC' && sortedBy === property
+                              ? <ArrowUp size={ARROW_SIZE} />
+                              : null
+                          }
+                        </span>
+                        : columnIndex === 0 && fixedColumns > 0 ? (
+                          <div className="w-100 flex items-center">
+                            <span>{title}</span>
                           </div>
                         )
-                      })
-                    }
-                    cellRenderer={
-                      cellRenderer ||
-                      (({ cellData }) => (
-                        <div className="truncate ph4">{cellData}</div>
-                      ))
-                    }
-                    dataKey={key}
-                    label={label}
-                    width={cellWidth}
-                  />
+                          : headerRenderer ? headerRenderer({ columnIndex, key, rowIndex, style }) : title
+                        // : `row${rowIndex}, col${columnIndex}`
+                      }
+                    </div>
+                  )
+                }
+                const cellRenderer = schema.properties[property].cellRenderer
+                const rowData = items[disableHeader ? rowIndex : rowIndex - 1]
+                const cellData = rowData[property]
+                return (
+                  <div
+                    key={key}
+                    style={{
+                      ...style,
+                      height: rowHeight,
+                      width: schema.properties[properties[columnIndex]].width || DEFAULT_COLUMN_WIDTH,
+                    }}
+                    className={`flex items-center w-100 h-100 truncate ph4 ${
+                      disableHeader && rowIndex === 0 ? 'bt' : ''
+                    } bb b--muted-4 ${
+                      onRowClick && rowIndex === hoverRowIndex ? 'pointer bg-near-white c-link' : ''
+                    } ${
+                      columnIndex === 0 && fixedColumns > 0 ? 'br' : ''
+                    }`}
+                    onClick={onRowClick ? (event) => onRowClick({ event, index: rowIndex, rowData }) : null}
+                    onMouseEnter={onRowClick ? () => this.handleRowHover(rowIndex) : null}
+                    onMouseLeave={onRowClick ? () => this.handleRowHover(-1) : null}
+                  >
+                    {cellRenderer ? cellRenderer({ cellData, rowData }) : cellData}
+                    {/* {`row${rowIndex}, col${columnIndex}`} */}
+                  </div>
                 )
-              })}
-            </VirtualTable>
+              }}
+            />
           )}
         </AutoSizer>
       </div>
@@ -151,6 +170,7 @@ class SimpleTable extends PureComponent {
 
 SimpleTable.defaultProps = {
   indexColumnLabel: null,
+  fixedColumns: 0,
   items: [],
   disableHeader: false,
   sort: {
@@ -163,10 +183,9 @@ SimpleTable.propTypes = {
   items: PropTypes.array.isRequired,
   schema: PropTypes.object.isRequired,
   indexColumnLabel: PropTypes.string,
+  fixedColumns: PropTypes.number,
   disableHeader: PropTypes.bool,
   onRowClick: PropTypes.func,
-  onRowMouseOver: PropTypes.func,
-  onRowMouseOut: PropTypes.func,
   sort: PropTypes.shape({
     sortOrder: PropTypes.oneOf(['ASC', 'DESC']),
     sortedBy: PropTypes.string,
