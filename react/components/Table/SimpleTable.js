@@ -45,7 +45,7 @@ class SimpleTable extends Component {
     const {
       schema,
       items,
-      fixedColumns,
+      fixFirstColumn,
       disableHeader,
       onRowClick,
       containerHeight,
@@ -71,16 +71,13 @@ class SimpleTable extends Component {
 
               fixedRowCount={disableHeader ? 0 : 1}
               rowCount={disableHeader ? items.length : items.length + 1}
-              rowHeight={({ index }) => {
-                console.log(`LINE ${index} - ${index === 0 && !disableHeader ? HEADER_HEIGHT : rowHeight}px`)
-                return index === 0 && !disableHeader ? HEADER_HEIGHT : rowHeight
-              }}
+              rowHeight={({ index }) => index === 0 && !disableHeader ? HEADER_HEIGHT : rowHeight}
               enableFixedRowScroll={!disableHeader}
               hideTopRightGridScrollbar={!disableHeader}
               overscanRowCount={0}
-              styleTopRightGrid={fixedColumns > 0 ? { overflowX: 'hidden' } : {}}
+              styleTopRightGrid={fixFirstColumn ? { overflowX: 'hidden' } : {}}
 
-              fixedColumnCount={fixedColumns}
+              fixedColumnCount={fixFirstColumn ? 1 : 0}
               columnCount={properties.length}
               columnWidth={({ index }) => schema.properties[properties[index]].width || DEFAULT_COLUMN_WIDTH}
               enableFixedColumnScroll
@@ -105,7 +102,7 @@ class SimpleTable extends Component {
                         overflowX: 'hidden',
                       }}
                       className={`flex items-center w-100 h-100 c-muted-2 f6 truncate ph4 ${
-                        columnIndex === 0 && fixedColumns > 0 ? 'br' : ''
+                        columnIndex === 0 && fixFirstColumn ? 'br' : ''
                       } bt bb b--muted-4`}
                     >
                       {schema.properties[property].sortable
@@ -114,7 +111,6 @@ class SimpleTable extends Component {
                             onSort(this.toggleSortType(property))
                           }}>
                           {`${title} `}
-                          {/* {`row${rowIndex}, col${columnIndex}`} */}
                           {sortOrder === 'ASC' && sortedBy === property
                             ? <ArrowDown size={ARROW_SIZE} />
                             : sortOrder === 'DESC' && sortedBy === property
@@ -122,13 +118,12 @@ class SimpleTable extends Component {
                               : null
                           }
                         </span>
-                        : columnIndex === 0 && fixedColumns > 0 ? (
+                        : columnIndex === 0 && fixFirstColumn ? (
                           <div className="w-100 flex items-center">
                             <span>{title}</span>
                           </div>
                         )
                           : headerRenderer ? headerRenderer({ columnIndex, key, rowIndex, style }) : title
-                        // : `row${rowIndex}, col${columnIndex}`
                       }
                     </div>
                   )
@@ -149,14 +144,13 @@ class SimpleTable extends Component {
                     } bb b--muted-4 ${
                       onRowClick && rowIndex === hoverRowIndex ? 'pointer bg-near-white c-link' : ''
                     } ${
-                      columnIndex === 0 && fixedColumns > 0 ? 'br' : ''
+                      columnIndex === 0 && fixFirstColumn ? 'br' : ''
                     }`}
                     onClick={onRowClick ? (event) => onRowClick({ event, index: rowIndex, rowData }) : null}
                     onMouseEnter={onRowClick ? () => this.handleRowHover(rowIndex) : null}
                     onMouseLeave={onRowClick ? () => this.handleRowHover(-1) : null}
                   >
                     {cellRenderer ? cellRenderer({ cellData, rowData }) : cellData}
-                    {/* {`row${rowIndex}, col${columnIndex}`} */}
                   </div>
                 )
               }}
@@ -170,7 +164,7 @@ class SimpleTable extends Component {
 
 SimpleTable.defaultProps = {
   indexColumnLabel: null,
-  fixedColumns: 0,
+  fixFirstColumn: false,
   items: [],
   disableHeader: false,
   sort: {
@@ -183,7 +177,7 @@ SimpleTable.propTypes = {
   items: PropTypes.array.isRequired,
   schema: PropTypes.object.isRequired,
   indexColumnLabel: PropTypes.string,
-  fixedColumns: PropTypes.number,
+  fixFirstColumn: PropTypes.bool,
   disableHeader: PropTypes.bool,
   onRowClick: PropTypes.func,
   sort: PropTypes.shape({
