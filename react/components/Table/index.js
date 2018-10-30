@@ -93,7 +93,7 @@ class Table extends PureComponent {
       items,
       schema,
       disableHeader,
-      fixedColumns,
+      fixFirstColumn,
       onRowClick,
       sort,
       onSort,
@@ -120,7 +120,7 @@ class Table extends PureComponent {
         <SimpleTable
           items={items}
           schema={displaySchema}
-          fixedColumns={fixedColumns}
+          fixFirstColumn={fixFirstColumn}
           rowHeight={tableRowHeight}
           disableHeader={disableHeader}
           onRowClick={onRowClick}
@@ -139,7 +139,7 @@ class Table extends PureComponent {
 
 Table.defaultProps = {
   density: 'medium',
-  fixedColumns: 0,
+  fixFirstColumn: false,
   toolbar: {
     extraActions: {
       actions: [],
@@ -154,6 +154,8 @@ Table.propTypes = {
   schema: PropTypes.object.isRequired,
   /** Do not render the table header (only the rows) */
   disableHeader: PropTypes.bool,
+  /** Fix first column so only the following ones scroll horizontaly */
+  fixFirstColumn: PropTypes.bool,
   /** Callback invoked when a user clicks on a table row. ({ event: Event, index: number, rowData: any }): void */
   onRowClick: PropTypes.func,
   /** Sort order and which property (key in schema) is table data sorted by. */
@@ -169,8 +171,6 @@ Table.propTypes = {
   containerHeight: PropTypes.number,
   /** Row info visual density  */
   density: PropTypes.oneOf(['low', 'medium', 'high']),
-  /** Number of fixed columns (dafault is 0) */
-  fixedColumns: PropTypes.number,
   /** Toolbar (search and actions) */
   toolbar: PropTypes.shape({
     inputSearch: PropTypes.shape({

@@ -283,7 +283,7 @@ class ResourceListExample extends React.Component {
       <Table
         schema={customSchema}
         items={this.state.slicedData}
-        fixedColumns={1}
+        fixFirstColumn
         toolbar={{
           inputSearch: {
             value: this.state.searchValue,
