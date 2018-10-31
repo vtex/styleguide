@@ -33,7 +33,7 @@ const Bars = require('../../IconBars').default;
 const Check = require('../../IconCheck').default;
 const Tab = require('./Tab').default;
 <div className="w-10">
-  <Tabs direction="column">
+  <Tabs vertical>
     <Tab label={<Bars />} active onClick={() => {}} />
     <Tab label={<Check />} onClick={() => {}} />
   </Tabs>

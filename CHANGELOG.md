@@ -9,8 +9,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- **Tabs** `direction` prop to control wether the tabs are displayed vertically or horizontally
-- **Tab** `direction` prop to control wether the border is below or to the right of the active tab
+- **Tabs** `vertical` prop to control the direction of the tabs
+- **Tab** `vertical` prop to control wether the border is below or to the right of the active tab
 
 ## [7.3.3] - 2018-10-11
 
