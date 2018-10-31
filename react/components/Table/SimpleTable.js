@@ -32,7 +32,7 @@ class SimpleTable extends Component {
     }
   }
 
-  handleRowHover = (rowIndex) => {
+  handleRowHover = rowIndex => {
     const { onRowClick } = this.props
     if (onRowClick) {
       this.setState({
@@ -59,40 +59,37 @@ class SimpleTable extends Component {
     const gridKey = rowHeight // this is force grids rerender when density changes
 
     return (
-      <div
-        className="vh-100 w-100"
-        style={{ height: containerHeight }}>
+      <div className="vh-100 w-100" style={{ height: containerHeight }}>
         <AutoSizer disableHeight key={updateTableKey}>
           {({ width }) => (
             <MultiGrid
               key={gridKey}
               height={containerHeight}
               width={width}
-
               fixedRowCount={disableHeader ? 0 : 1}
               rowCount={disableHeader ? items.length : items.length + 1}
-              rowHeight={({ index }) => index === 0 && !disableHeader ? HEADER_HEIGHT : rowHeight}
+              rowHeight={({ index }) =>
+                index === 0 && !disableHeader ? HEADER_HEIGHT : rowHeight
+              }
               enableFixedRowScroll={!disableHeader}
               hideTopRightGridScrollbar={!disableHeader}
               overscanRowCount={0}
               styleTopRightGrid={fixFirstColumn ? { overflowX: 'hidden' } : {}}
-
               fixedColumnCount={fixFirstColumn ? 1 : 0}
               columnCount={properties.length}
-              columnWidth={({ index }) => schema.properties[properties[index]].width || DEFAULT_COLUMN_WIDTH}
+              columnWidth={({ index }) =>
+                schema.properties[properties[index]].width ||
+                DEFAULT_COLUMN_WIDTH
+              }
               enableFixedColumnScroll
               overscanColumnCount={0}
-
-              cellRenderer={({
-                columnIndex,
-                key,
-                rowIndex,
-                style,
-              }) => {
+              cellRenderer={({ columnIndex, key, rowIndex, style }) => {
                 const property = properties[columnIndex]
-                if (!disableHeader && rowIndex === 0) { // Header row
+                if (!disableHeader && rowIndex === 0) {
+                  // Header row
                   const title = schema.properties[property].title || property
-                  const headerRenderer = schema.properties[property].headerRenderer
+                  const headerRenderer =
+                    schema.properties[property].headerRenderer
                   return (
                     <div
                       key={key}
@@ -103,28 +100,29 @@ class SimpleTable extends Component {
                       }}
                       className={`flex items-center w-100 h-100 c-muted-2 f6 truncate ph4 ${
                         columnIndex === 0 && fixFirstColumn ? 'br' : ''
-                      } bt bb b--muted-4`}
-                    >
-                      {schema.properties[property].sortable
-                        ? <span className="pointer c-muted-1 b f6"
+                      } bt bb b--muted-4`}>
+                      {schema.properties[property].sortable ? (
+                        <span
+                          className="pointer c-muted-1 b f6"
                           onClick={() => {
                             onSort(this.toggleSortType(property))
                           }}>
                           {`${title} `}
-                          {sortOrder === 'ASC' && sortedBy === property
-                            ? <ArrowDown size={ARROW_SIZE} />
-                            : sortOrder === 'DESC' && sortedBy === property
-                              ? <ArrowUp size={ARROW_SIZE} />
-                              : null
-                          }
+                          {sortOrder === 'ASC' && sortedBy === property ? (
+                            <ArrowDown size={ARROW_SIZE} />
+                          ) : sortOrder === 'DESC' && sortedBy === property ? (
+                            <ArrowUp size={ARROW_SIZE} />
+                          ) : null}
                         </span>
-                        : columnIndex === 0 && fixFirstColumn ? (
-                          <div className="w-100 flex items-center">
-                            <span>{title}</span>
-                          </div>
-                        )
-                          : headerRenderer ? headerRenderer({ columnIndex, key, rowIndex, style }) : title
-                      }
+                      ) : columnIndex === 0 && fixFirstColumn ? (
+                        <div className="w-100 flex items-center">
+                          <span>{title}</span>
+                        </div>
+                      ) : headerRenderer ? (
+                        headerRenderer({ columnIndex, key, rowIndex, style })
+                      ) : (
+                        title
+                      )}
                     </div>
                   )
                 }
@@ -137,20 +135,32 @@ class SimpleTable extends Component {
                     style={{
                       ...style,
                       height: rowHeight,
-                      width: schema.properties[properties[columnIndex]].width || DEFAULT_COLUMN_WIDTH,
+                      width:
+                        schema.properties[properties[columnIndex]].width ||
+                        DEFAULT_COLUMN_WIDTH,
                     }}
                     className={`flex items-center w-100 h-100 truncate ph4 ${
                       disableHeader && rowIndex === 0 ? 'bt' : ''
                     } bb b--muted-4 ${
-                      onRowClick && rowIndex === hoverRowIndex ? 'pointer bg-near-white c-link' : ''
-                    } ${
-                      columnIndex === 0 && fixFirstColumn ? 'br' : ''
-                    }`}
-                    onClick={onRowClick ? (event) => onRowClick({ event, index: rowIndex, rowData }) : null}
-                    onMouseEnter={onRowClick ? () => this.handleRowHover(rowIndex) : null}
-                    onMouseLeave={onRowClick ? () => this.handleRowHover(-1) : null}
-                  >
-                    {cellRenderer ? cellRenderer({ cellData, rowData }) : cellData}
+                      onRowClick && rowIndex === hoverRowIndex
+                        ? 'pointer bg-near-white c-link'
+                        : ''
+                    } ${columnIndex === 0 && fixFirstColumn ? 'br' : ''}`}
+                    onClick={
+                      onRowClick
+                        ? event =>
+                            onRowClick({ event, index: rowIndex, rowData })
+                        : null
+                    }
+                    onMouseEnter={
+                      onRowClick ? () => this.handleRowHover(rowIndex) : null
+                    }
+                    onMouseLeave={
+                      onRowClick ? () => this.handleRowHover(-1) : null
+                    }>
+                    {cellRenderer
+                      ? cellRenderer({ cellData, rowData })
+                      : cellData}
                   </div>
                 )
               }}

@@ -3,40 +3,33 @@ import PropTypes from 'prop-types'
 import cloneDeep from 'lodash/cloneDeep'
 import isEqual from 'lodash/isEqual'
 
-import Toolbar from './Toolbar'
+import Box from '../Box'
 import Pagination from '../Pagination'
 import SimpleTable from './SimpleTable'
+import Toolbar from './Toolbar'
+import EmptyState from '../EmptyState'
 
 const TABLE_HEADER_HEIGHT = 36
+const EMPTY_STATE_SIZE_IN_ROWS = 5
 
 class Table extends PureComponent {
   constructor(props) {
     super(props)
     this.state = {
-      displaySchema: props.schema ? this.cloneSchema(props.schema) : {},
+      hiddenFields: this.getInitialHiddenFieldsFromSchema(props.schema),
       tableRowHeight: this.getRowHeight(props.density),
       selectedDensity: props.density,
     }
   }
 
-  componentDidUpdate(prevProps) {
-    const { schema } = prevProps
-    const newSchema = this.props.schema
-    if (!isEqual(schema, newSchema)) {
-      this.setState({
-        displaySchema: this.cloneSchema(newSchema),
-      })
-    }
-  }
-
-  cloneSchema = (schema, showAll = false) => {
-    const displaySchema = cloneDeep(schema)
-    Object.keys(displaySchema.properties).forEach(key => {
-      if (displaySchema.properties[key].hidden && !showAll) {
-        delete displaySchema.properties[key]
+  getInitialHiddenFieldsFromSchema = (schema) => {
+    const hiddenFields = []
+    Object.keys(schema.properties).forEach(key => {
+      if (schema.properties[key].hidden) {
+        hiddenFields.push(key)
       }
     })
-    return displaySchema
+    return hiddenFields
   }
 
   getRowHeight = density => {
@@ -63,29 +56,22 @@ class Table extends PureComponent {
     }
   }
 
-  toggleColumn = key => {
-    const { displaySchema } = this.state
-    const { schema } = this.props
-    const newSchema = cloneDeep(displaySchema)
-    if (newSchema.properties[key]) {
-      delete newSchema.properties[key]
-    } else {
-      newSchema.properties[key] = cloneDeep(schema.properties[key])
-    }
-    this.setState({ displaySchema: newSchema })
+  toggleColumn = (key) => {
+    const { hiddenFields } = this.state
+    const newFieldsArray = hiddenFields.slice()
+    const index = hiddenFields.indexOf(key)
+    index === -1 ? newFieldsArray.push(key) : newFieldsArray.splice(index, 1)
+    this.setState({ hiddenFields: newFieldsArray })
   }
 
-  onShowAllColumns = () => {
-    const { schema } = this.props
-    const displaySchema = this.cloneSchema(schema, true)
-    this.setState({ displaySchema })
-  }
+  onShowAllColumns = () => this.setState({ hiddenFields: [] })
 
-  onHideAllColumns = () => this.setState({ displaySchema: { properties: {} } })
+  onHideAllColumns = () => this.setState({ hiddenFields: Object.keys(this.props.schema.properties) })
 
   calculateTableHeight = totalItems => {
     const { tableRowHeight } = this.state
-    return TABLE_HEADER_HEIGHT + tableRowHeight * totalItems
+    const multiplicator = totalItems !== 0 ? totalItems : EMPTY_STATE_SIZE_IN_ROWS
+    return TABLE_HEADER_HEIGHT + tableRowHeight * multiplicator)
   }
 
   render() {
@@ -93,6 +79,7 @@ class Table extends PureComponent {
       items,
       schema,
       disableHeader,
+      emptyStateLabel,
       fixFirstColumn,
       onRowClick,
       sort,
@@ -102,35 +89,51 @@ class Table extends PureComponent {
       toolbar,
       pagination,
     } = this.props
-    const { displaySchema, tableRowHeight, selectedDensity } = this.state
+    const {
+      hiddenFields,
+      tableRowHeight,
+      selectedDensity,
+    } = this.state
+
+    const displaySchema = cloneDeep(schema)
+    const properties = Object.keys(displaySchema.properties)
+    properties.forEach(key => {
+      if (hiddenFields.includes && hiddenFields.includes(key)) {
+        delete displaySchema.properties[key]
+      }
+    })
+    const emptyState = !!(properties.length === 0 || properties.length === hiddenFields.length)
 
     return (
       <div className="vtex-resourceList__container">
         <Toolbar
           toolbar={toolbar}
-          displaySchema={displaySchema}
+          hiddenFields={hiddenFields}
           toggleColumn={this.toggleColumn}
           handleHideAllColumns={this.onHideAllColumns}
           handleShowAllColumns={this.onShowAllColumns}
           handleToggleDensity={this.toggleTableRowHeight}
           selectedDensity={selectedDensity}
           schema={schema}
-          actions={toolbar}
-        />
-        <SimpleTable
-          items={items}
-          schema={displaySchema}
-          fixFirstColumn={fixFirstColumn}
-          rowHeight={tableRowHeight}
-          disableHeader={disableHeader}
-          onRowClick={onRowClick}
-          sort={sort}
-          onSort={onSort}
-          updateTableKey={updateTableKey}
-          containerHeight={
-            containerHeight || this.calculateTableHeight(items.length)
-          }
-        />
+          actions={toolbar} />
+        {
+          emptyState
+            ? <Box><EmptyState title={emptyStateLabel} /></Box>
+            : <SimpleTable
+              items={items}
+              schema={displaySchema}
+              fixFirstColumn={fixFirstColumn}
+              rowHeight={tableRowHeight}
+              disableHeader={disableHeader}
+              emptyStateLabel={emptyStateLabel}
+              onRowClick={onRowClick}
+              sort={sort}
+              onSort={onSort}
+              key={hiddenFields.toString()}
+              updateTableKey={updateTableKey}
+              containerHeight={containerHeight || this.calculateTableHeight(items.length)}
+            />
+        }
         {pagination && <Pagination {...pagination} />}
       </div>
     )
@@ -145,6 +148,7 @@ Table.defaultProps = {
       actions: [],
     },
   },
+  emptyStateLabel: 'Nothing to show.',
 }
 
 Table.propTypes = {
@@ -171,6 +175,8 @@ Table.propTypes = {
   containerHeight: PropTypes.number,
   /** Row info visual density  */
   density: PropTypes.oneOf(['low', 'medium', 'high']),
+  /** Label for emptystate  */
+  emptyStateLabel: PropTypes.string,
   /** Toolbar (search and actions) */
   toolbar: PropTypes.shape({
     inputSearch: PropTypes.shape({
