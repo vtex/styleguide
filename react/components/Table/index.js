@@ -35,9 +35,9 @@ class Table extends PureComponent {
   getRowHeight = density => {
     switch (density) {
       case 'low':
-        return 77
+        return 76
       case 'medium':
-        return 45
+        return 48
       case 'high':
         return 32
       default:
