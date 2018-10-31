@@ -26,6 +26,21 @@ const Tab = require('./Tab').default;
 </div>
 ```
 
+Vertical
+
+```js
+const Bars = require('../../IconBars').default;
+const Check = require('../../IconCheck').default;
+const Tab = require('./Tab').default;
+<div className="w-10">
+  <Tabs direction="column">
+    <Tab label={<Bars />} active onClick={() => {}} />
+    <Tab label={<Check />} onClick={() => {}} />
+  </Tabs>
+</div>
+```
+
+
 Full width tabs
 
 ```js

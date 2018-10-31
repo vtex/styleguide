@@ -7,12 +7,12 @@ class Tab extends Component {
   }
 
   render() {
-    const { active, fullWidth, label } = this.props
+    const { active, direction, fullWidth, label } = this.props
     return (
       <button
         type="button"
         onClick={this.handleClick}
-        className={`vtex-tab__button bt-0 bl-0 br-0 bw1 ${fullWidth ? 'w-100' : ''} ${
+        className={`vtex-tab__button bt-0 bl-0 ${direction === 'row' ? 'br-0' : 'bb-0'} bw1 ${fullWidth ? 'w-100' : ''} ${
           active
             ? 'c-on-muted b--emphasis'
             : 'c-muted-1 b--transparent hover-c-action-primary pointer'}
@@ -25,9 +25,14 @@ class Tab extends Component {
   }
 }
 
+Tab.defaultProps = {
+  direction: 'row',
+}
+
 Tab.propTypes = {
   active: PropTypes.bool,
   fullWidth: PropTypes.bool,
+  direction: PropTypes.oneOf(['row', 'column']),
   children: PropTypes.node,
   label: PropTypes.any.isRequired,
   onClick: PropTypes.func,
