@@ -55,7 +55,7 @@ const defaultSchema = {
 </div>
 ```
 
-Custom Cell components
+Custom cell components / sortable columns
 
 ```js
 const sampleData = require('./sampleData').default;
@@ -118,7 +118,12 @@ class CustomTableExample extends React.Component {
           // you can customize cell component render (also header component with headerRenderer)
           cellRenderer: ({ cellData }) => {
             return (
-              <Badge bgColor={cellData.color} color="#fff">
+              <Badge bgColor={cellData.color} color="#fff" onClick={(e) => {
+                  // if you use cellRender click event AND onRowclick event
+                  // you should stop the event propagation so the cell click fires and row click don't
+                  e.stopPropagation()
+                  alert(`you just clicked a cell to remove ${cellData.label}, HEX: ${cellData.color}`)
+                }}>
                 <span className="nowrap">
                   {cellData.label}
                 </span>
@@ -136,6 +141,9 @@ class CustomTableExample extends React.Component {
             schema={customSchema}
             items={this.state.orderedItems}
             indexColumnLabel="Index"
+            onRowClick={({ rowData }) => {
+              alert(`you just clicked the row with ${rowData.name}`)
+            }}
             sort={{
               sortedBy: this.state.dataSort.sortedBy,
               sortOrder: this.state.dataSort.sortOrder,
