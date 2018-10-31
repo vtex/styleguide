@@ -1,6 +1,16 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Button from '../Button'
+import Spinner from '../Spinner'
+import ArrowBack from '../icon/ArrowBack'
+import styled, { keyframes } from 'styled-components'
+import { fadeInRight, fadeIn } from 'react-animations'
+
+const fadeInRightAnimation = keyframes`${fadeInRight}`
+const fadeInAnimation = keyframes`${fadeIn}`
+
+const FadeInRight = styled.div`animation: 0.45s ${fadeInRightAnimation};`
+const FadeIn = styled.div`animation: 0.3s ${fadeInAnimation};`
 
 class DrawerBox extends Component {
   constructor(props) {
@@ -8,6 +18,7 @@ class DrawerBox extends Component {
     this.overlay = React.createRef()
     this.handleClick = this.handleClick.bind(this)
   }
+
   componentDidMount() {
     document.addEventListener('mousedown', this.handleClick, false)
   }
@@ -28,7 +39,7 @@ class DrawerBox extends Component {
 
   render() {
     return (
-      <div ref={this.overlay} className="flex flex-column items-stretch vh-100">
+      <div ref={this.overlay} className="flex flex-column items-stretch vh-100 animated">
         { this.props.children }
       </div>
     )
@@ -52,45 +63,85 @@ class Drawer extends Component {
       },
     }
 
-    const { closeText, backLinkText, titleText, onClose, isOpen } = this.props
+    const {
+      title,
+      isOpen,
+      loading,
+      submit,
+      back,
+    } = this.props
 
     return (
-      isOpen && <div style={styles.overlay}>
-        <div className="bg-white vh-100 right-0 absolute" style={styles.drawer}>
-          <DrawerBox onClose={onClose}>
-            <div className="bg-light-silver h4 flex flex-column-reverse ph6 pv3">
-              <p>{ titleText }</p>
-              <a href="#">{ backLinkText }</a>
-            </div>
+      isOpen && (
+        <FadeIn>
+          <div style={styles.overlay}>
+            <FadeInRight>
+              <div className="bg-white vh-100 right-0 absolute" style={styles.drawer}>
+                <DrawerBox onClose={back.handleClick}>
+                  <div className="bg-light-silver h4 flex flex-column-reverse ph6 pv3">
+                    <p className="fw4 f4 mb4 mt0">
+                      { title }
+                    </p>
+                    <Button
+                      size="small"
+                      variation="tertiary"
+                      neutral
+                      onClick={back.handleClick}
+                    >
+                      <span
+                        className="flex align-baseline relative"
+                        style={{ marginLeft: '-16px' }}
+                      >
+                        <span className="mr3">
+                          <ArrowBack color="currentColor" />
+                        </span>
+                        {back.label}
+                      </span>
+                    </Button>
+                  </div>
 
-            <div className="flex-grow-1 ph6 pv3">
-              { this.props.children }
-            </div>
+                  <div className="flex-grow-1 ph6 pv7">
+                    { this.props.children }
+                  </div>
 
-            <div className="bg-light-silver flex flex-row-reverse items-center ph6 pv3">
-              <div className="dib ma3">
-                <Button
-                  variation="primary"
-                  onClick={onClose}
-                >
-                  { closeText }
-                </Button>
+                  <div className="bg-light-silver flex flex-row-reverse items-center ph6 pv3">
+                    <div className="dib ma3">
+                      <Button
+                        variation="primary"
+                        disabled={loading}
+                        onClick={submit.handleClick}
+                      >
+                        {
+                          loading
+                            ? <Spinner size={16} />
+                            : submit.label
+                        }
+                      </Button>
+                    </div>
+                  </div>
+                </DrawerBox>
               </div>
-            </div>
-          </DrawerBox>
-        </div>
-      </div>
+            </FadeInRight>
+          </div>
+        </FadeIn>
+      )
     )
   }
 }
 
 Drawer.propTypes = {
   isOpen: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired,
-  backLinkText: PropTypes.string,
-  closeText: PropTypes.string.isRequired,
-  titleText: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
+  loading: PropTypes.bool,
+  submit: PropTypes.shape({
+    label: PropTypes.string,
+    handleClick: PropTypes.func,
+  }),
+  back: PropTypes.shape({
+    label: PropTypes.string,
+    handleClick: PropTypes.func,
+  }),
 }
 
 DrawerBox.propTypes = {
