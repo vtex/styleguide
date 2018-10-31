@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { MultiGrid, AutoSizer } from 'react-virtualized'
 import ArrowDown from '../icon/ArrowDown'
 import ArrowUp from '../icon/ArrowUp'
+import EmptyState from '../EmptyState'
 const ARROW_SIZE = 11
 const HEADER_HEIGHT = 36
 const DEFAULT_COLUMN_WIDTH = 200
@@ -47,6 +48,7 @@ class SimpleTable extends Component {
       items,
       fixFirstColumn,
       disableHeader,
+      emptyStateLabel,
       onRowClick,
       containerHeight,
       sort: { sortOrder, sortedBy },
@@ -64,7 +66,7 @@ class SimpleTable extends Component {
           {({ width }) => (
             <MultiGrid
               key={gridKey}
-              height={containerHeight}
+              height={items.length === 0 ? HEADER_HEIGHT : containerHeight}
               width={width}
               fixedRowCount={disableHeader ? 0 : 1}
               rowCount={disableHeader ? items.length : items.length + 1}
@@ -96,7 +98,6 @@ class SimpleTable extends Component {
                       style={{
                         ...style,
                         height: HEADER_HEIGHT,
-                        overflowX: 'hidden',
                       }}
                       className={`flex items-center w-100 h-100 c-muted-2 f6 truncate ph4 ${
                         columnIndex === 0 && fixFirstColumn ? 'br' : ''
@@ -167,6 +168,13 @@ class SimpleTable extends Component {
             />
           )}
         </AutoSizer>
+        {
+          items.length === 0 && (
+            <div style={{ height: containerHeight - HEADER_HEIGHT }}>
+              <EmptyState title={emptyStateLabel} />
+            </div>
+          )
+        }
       </div>
     )
   }
@@ -190,6 +198,7 @@ SimpleTable.propTypes = {
   fixFirstColumn: PropTypes.bool,
   disableHeader: PropTypes.bool,
   onRowClick: PropTypes.func,
+  emptyStateLabel: PropTypes.string,
   sort: PropTypes.shape({
     sortOrder: PropTypes.oneOf(['ASC', 'DESC']),
     sortedBy: PropTypes.string,

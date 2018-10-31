@@ -161,6 +161,7 @@ const initialState = {
   currentItemTo: tableLength,
   searchValue: '',
   itemsLength: sampleData.items.length,
+  emptyStateLabel: 'Nothing to show.',
 }
 
 class ResourceListExample extends React.Component {
@@ -229,10 +230,11 @@ class ResourceListExample extends React.Component {
     } else {
       this.setState({
         currentPage: 0,
-        currentItemFrom: 1,
-        currentItemTo: 4,
-        slicedData: sampleData.items.slice(0, 4),
-        itemsLength: 4,
+        currentItemFrom: 0,
+        currentItemTo: 0,
+        slicedData: [],
+        emptyStateLabel: 'No results found.',
+        itemsLength: 0,
       })
     }
   }
@@ -284,6 +286,7 @@ class ResourceListExample extends React.Component {
         schema={customSchema}
         items={this.state.slicedData}
         fixFirstColumn
+        emptyStateLabel={this.state.emptyStateLabel}
         toolbar={{
           inputSearch: {
             value: this.state.searchValue,
