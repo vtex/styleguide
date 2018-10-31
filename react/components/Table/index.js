@@ -105,7 +105,7 @@ class Table extends PureComponent {
     const emptyState = !!(properties.length === 0 || properties.length === hiddenFields.length)
 
     return (
-      <div className="vtex-resourceList__container">
+      <div className="vtex-table__container">
         <Toolbar
           toolbar={toolbar}
           hiddenFields={hiddenFields}

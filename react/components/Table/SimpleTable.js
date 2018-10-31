@@ -58,14 +58,14 @@ class SimpleTable extends Component {
     } = this.props
     const { hoverRowIndex } = this.state
     const properties = Object.keys(schema.properties)
-    const gridKey = rowHeight // this is force grids rerender when density changes
+    const updateKey = `vtex-table__${rowHeight}--${updateTableKey}` // this is force grids rerender when density changes
 
     return (
       <div className="vh-100 w-100" style={{ height: containerHeight }}>
         <AutoSizer disableHeight key={updateTableKey}>
           {({ width }) => (
             <MultiGrid
-              key={gridKey}
+              key={updateKey}
               height={items.length === 0 ? HEADER_HEIGHT : containerHeight}
               width={width}
               fixedRowCount={disableHeader ? 0 : 1}
@@ -168,13 +168,11 @@ class SimpleTable extends Component {
             />
           )}
         </AutoSizer>
-        {
-          items.length === 0 && (
-            <div style={{ height: containerHeight - HEADER_HEIGHT }}>
-              <EmptyState title={emptyStateLabel} />
-            </div>
-          )
-        }
+        {items.length === 0 && (
+          <div style={{ height: containerHeight - HEADER_HEIGHT }}>
+            <EmptyState title={emptyStateLabel} />
+          </div>
+        )}
       </div>
     )
   }
