@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- **Table** add `emptyStateLabel` prop to use in EmptyState when there is nothing to show
+- **Table** add `fixFirstColumn` prop to enhance the multiple column horizontal scroll experience
+
+### Changed
+
+- **[BREAKING]** **Table** Remove `indexColumnLabel` prop, index column is no longer a native feature
+- **[BREAKING]** **Table** Remove `onRowMouseOver` prop
+- **[BREAKING]** **Table** Remove `onRowMouseOut` prop
+- **[BREAKING]** **Table** Now width in schema properties is absolute in pixels
+
 ## [7.6.6] - 2018-11-21
 
 ## [7.6.5] - 2018-11-21
