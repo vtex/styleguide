@@ -22,11 +22,12 @@ const defaultSchema = {
       name: {
         type: 'string',
         title: 'Name',
+        width: 300,
       },
       email: {
         type: 'string',
         title: 'Email',
-        width: 300,
+        width: 350, // default is 200px
       },
       number: {
         type: 'number',
@@ -103,6 +104,7 @@ class CustomTableExample extends React.Component {
         name: {
           type: 'string',
           title: 'Name',
+          width: 300,
           // sortable boolean in a schema property makes it sortable,
           // (clicking header triggers onSort callback).
           sortable: true,
@@ -110,7 +112,7 @@ class CustomTableExample extends React.Component {
         email: {
           type: 'string',
           title: 'Email',
-          width: 300,
+          width: 350,
         },
         color: {
           type: 'object',
