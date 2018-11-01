@@ -240,7 +240,7 @@ InputWithRef.propTypes = {
   /** Label */
   label: PropTypes.string,
   /** Prefix */
-  prefix: PropTypes.element,
+  prefix: PropTypes.node,
   /** Internal prop used for ref forwarding */
   forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /** Spec attribute */
@@ -294,7 +294,7 @@ InputWithRef.propTypes = {
   /** Spec attribute */
   step: PropTypes.string,
   /** Suffix attribute */
-  suffix: PropTypes.element,
+  suffix: PropTypes.node,
   /** DEPRECATED: Suffix icon attribute */
   suffixIcon: PropTypes.element,
   /** Spec attribute */
