@@ -9,6 +9,7 @@
 - Don't change dynamically the main page action upon action on the page. The main action should be as static as the title is.
 
 ### Related components
+
 <a href="#tabs">Tabs</a> may be used in composition with the PageHeader for the main navigation.
 
 Default
@@ -37,8 +38,7 @@ With children
   linkLabel="Orders"
   onLinkClick={e => {
     console.log(e)
-  }}
->
+  }}>
   <span className="mr4">
     <Button variation="secondary">Secondary</Button>
   </span>
