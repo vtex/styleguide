@@ -19,8 +19,7 @@ class ExternalLink extends PureComponent {
         height={newSize.height}
         viewBox="0 0 16 16"
         fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
+        xmlns="http://www.w3.org/2000/svg">
         <path
           d="M8.7 0H1.7V2H6.3L1.90735e-07 8.3L1.4 9.7L7.7 3.4V8H9.7V1C9.7 0.4 9.3 0 8.7 0Z"
           transform="translate(6.30005)"

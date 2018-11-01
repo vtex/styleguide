@@ -20,12 +20,10 @@ class PageHeader extends PureComponent {
               size="small"
               variation="tertiary"
               neutral
-              onClick={this.handleClick}
-            >
+              onClick={this.handleClick}>
               <span
                 className="flex align-baseline relative"
-                style={{ marginLeft: '-16px' }}
-              >
+                style={{ marginLeft: '-16px' }}>
                 <span className="mr3">
                   <ArrowBack color="currentColor" />
                 </span>
@@ -38,8 +36,7 @@ class PageHeader extends PureComponent {
         <div
           className={`vtex-pageHeader__title c-on-base f2 fw6 flex flex-row justify-between ${
             linkLabel ? 'mt0' : 'mt7'
-          }`}
-        >
+          }`}>
           <span>{this.props.title}</span>
 
           {children && (

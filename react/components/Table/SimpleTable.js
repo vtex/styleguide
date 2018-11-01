@@ -7,8 +7,10 @@ const ARROW_SIZE = 11
 const HEADER_HEIGHT = 36
 
 class SimpleTable extends PureComponent {
-  toggleSortType = (key) => {
-    const { sort: { sortOrder, sortedBy } } = this.props
+  toggleSortType = key => {
+    const {
+      sort: { sortOrder, sortedBy },
+    } = this.props
     if (sortedBy !== key || (sortedBy === key && sortOrder !== 'ASC')) {
       return {
         sortOrder: 'ASC',
@@ -38,12 +40,13 @@ class SimpleTable extends PureComponent {
     } = this.props
     const properties = Object.keys(schema.properties)
     // hydrate items with index when 'indexColumn' prop is true
-    const newItems = indexColumnLabel && items.length > 0
-      ? items.map((item, index) => ({
-        ...item,
-        _reactVirtualizedIndex: index + 1,
-      }))
-      : items
+    const newItems =
+      indexColumnLabel && items.length > 0
+        ? items.map((item, index) => ({
+            ...item,
+            _reactVirtualizedIndex: index + 1,
+          }))
+        : items
     return (
       <div
         className="vh-100"
@@ -74,10 +77,11 @@ class SimpleTable extends PureComponent {
                 `flex flex-row items-center ${
                   index === -1 ? 'bt bb' : 'bb'
                 } b--muted-4 ${
-                  onRowClick && index !== -1 ? 'pointer hover-bg-near-white hover-c-link' : ''
+                  onRowClick && index !== -1
+                    ? 'pointer hover-bg-near-white hover-c-link'
+                    : ''
                 }`
-              }
-            >
+              }>
               {indexColumnLabel && (
                 <Column
                   headerRenderer={() => (
@@ -105,28 +109,31 @@ class SimpleTable extends PureComponent {
                       (({ label }) => {
                         return (
                           <div className="truncate ph4">
-                            {schema.properties[key].sortable
-                              ? <span className="pointer c-muted-1 b f6"
+                            {schema.properties[key].sortable ? (
+                              <span
+                                className="pointer c-muted-1 b f6"
                                 onClick={() => {
                                   onSort(this.toggleSortType(key))
                                 }}>
                                 {`${label} `}
-                                {sortOrder === 'ASC' && sortedBy === key
-                                  ? <ArrowDown size={ARROW_SIZE} />
-                                  : sortOrder === 'DESC' && sortedBy === key
-                                    ? <ArrowUp size={ARROW_SIZE} />
-                                    : null
-                                }
+                                {sortOrder === 'ASC' && sortedBy === key ? (
+                                  <ArrowDown size={ARROW_SIZE} />
+                                ) : sortOrder === 'DESC' && sortedBy === key ? (
+                                  <ArrowUp size={ARROW_SIZE} />
+                                ) : null}
                               </span>
-                              : label
-                            }
+                            ) : (
+                              label
+                            )}
                           </div>
                         )
                       })
                     }
                     cellRenderer={
                       cellRenderer ||
-                      (({ cellData }) => <div className="truncate ph4">{cellData}</div>)
+                      (({ cellData }) => (
+                        <div className="truncate ph4">{cellData}</div>
+                      ))
                     }
                     dataKey={key}
                     label={label}

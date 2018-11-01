@@ -19,10 +19,21 @@ class Density extends PureComponent {
         height={newSize.height}
         viewBox="0 0 14 13"
         fill={color}
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <rect y="11.1426" width={newSize.width} height="1.85714" rx="0.928571" fill={color} />
-        <rect y="7.42871" width={newSize.width} height="1.85714" rx="0.928571" fill={color} />
+        xmlns="http://www.w3.org/2000/svg">
+        <rect
+          y="11.1426"
+          width={newSize.width}
+          height="1.85714"
+          rx="0.928571"
+          fill={color}
+        />
+        <rect
+          y="7.42871"
+          width={newSize.width}
+          height="1.85714"
+          rx="0.928571"
+          fill={color}
+        />
         <rect width={newSize.width} height="5.57143" rx="1" fill={color} />
       </svg>
     )

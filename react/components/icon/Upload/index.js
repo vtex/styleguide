@@ -19,8 +19,7 @@ class Upload extends PureComponent {
         height={newSize.height}
         viewBox="0 0 14 16"
         fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
+        xmlns="http://www.w3.org/2000/svg">
         <path
           d="M5.4 3.4V12H7.4V3.4L11.4 7.4L12.8 6L7.1 0.3C6.7 -0.1 6.1 -0.1 5.7 0.3L2.38419e-08 6L1.4 7.4L5.4 3.4Z"
           transform="translate(0.599976)"

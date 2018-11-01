@@ -8,6 +8,10 @@ const originalAppSrc = webpackConfig.module.rules[0].include
 const appSrc = path.join(__dirname, 'react')
 
 webpackConfig.module.rules[0].include = path.join(__dirname, 'react')
+
+// Monkey patch webpackConfig to use eslint-loader instead of its default eslint rules
+webpackConfig.module.rules[0].use = ['eslint-loader']
+
 webpackConfig.module.rules[1].oneOf.forEach(r => {
   if (r.include === originalAppSrc) {
     r.include = appSrc
@@ -45,7 +49,7 @@ module.exports = {
     const componentName = pathArray[pathArray.length - 1]
     const dir = path.relative(
       path.join('react', 'components'),
-      path.dirname(componentPath),
+      path.dirname(componentPath)
     )
     return {
       componentName,

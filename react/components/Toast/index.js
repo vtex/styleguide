@@ -21,7 +21,7 @@ class ToastProvider extends Component {
     isToastVisible: true,
   }
 
-  showToast = (args) => {
+  showToast = args => {
     if (isString(args)) {
       args = { message: args }
     }
@@ -58,21 +58,24 @@ class ToastProvider extends Component {
 
   handleToastClose = () => {
     this.setState(state => {
-      return ({
+      return {
         // If there is a toast queued up, shows it.
         // Otherwise, nextToast will be null, and state.toast will be cleared up
         currentToast: state.nextToast,
         isToastVisible: !!state.nextToast,
         nextToast: null,
-      })
+      }
     })
   }
 
   getParentBounds = () => {
-    const parentContainer = this.container.current && this.container.current.parentNode
-    return parentContainer &&
+    const parentContainer =
+      this.container.current && this.container.current.parentNode
+    return (
+      parentContainer &&
       parentContainer.getBoundingClientRect &&
       parentContainer.getBoundingClientRect()
+    )
   }
 
   updateContainerBounds = () => {
@@ -83,13 +86,19 @@ class ToastProvider extends Component {
       bottom: window.innerHeight,
     }
 
-    const bounds = (this.props.positioning === 'parent' && this.getParentBounds()) || windowBounds
+    const bounds =
+      (this.props.positioning === 'parent' && this.getParentBounds()) ||
+      windowBounds
 
     if (this.container.current) {
       this.container.current.style.left = `${bounds.left}px`
-      this.container.current.style.right = `${window.innerWidth - bounds.right}px`
+      this.container.current.style.right = `${window.innerWidth -
+        bounds.right}px`
       this.container.current.style.top = `${bounds.top}px`
-      this.container.current.style.bottom = `${Math.max(0, window.innerHeight - bounds.bottom)}px`
+      this.container.current.style.bottom = `${Math.max(
+        0,
+        window.innerHeight - bounds.bottom
+      )}px`
     }
   }
 
@@ -101,18 +110,18 @@ class ToastProvider extends Component {
     const { currentToast } = this.state
     const { children } = this.props
     return (
-      <ToastContext.Provider value={{
-        showToast: this.showToast,
-        hideToast: this.hideToast,
-      }}>
+      <ToastContext.Provider
+        value={{
+          showToast: this.showToast,
+          hideToast: this.hideToast,
+        }}>
         {children}
         <div
           className="fixed z-5 overflow-hidden"
           ref={this.container}
           style={{
             pointerEvents: 'none',
-          }}
-        >
+          }}>
           {currentToast && (
             <Toast
               message={currentToast.message}
@@ -143,12 +152,12 @@ class ToastConsumer extends Component {
     const { children } = this.props
     return (
       <ToastContext.Consumer>
-        { value => (
+        {value =>
           children({
             showToast: value.showToast,
             hideToast: value.hideToast,
           })
-        )}
+        }
       </ToastContext.Consumer>
     )
   }

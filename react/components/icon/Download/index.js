@@ -19,8 +19,7 @@ class Download extends PureComponent {
         height={newSize.height}
         viewBox="0 0 14 16"
         fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
+        xmlns="http://www.w3.org/2000/svg">
         <path
           d="M6.4 12C6.7 12 6.9 11.9 7.1 11.7L12.8 6L11.4 4.6L7.4 8.6V0H5.4V8.6L1.4 4.6L2.38419e-08 6L5.7 11.7C5.9 11.9 6.1 12 6.4 12Z"
           transform="translate(0.599976)"

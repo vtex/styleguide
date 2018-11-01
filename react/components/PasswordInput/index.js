@@ -17,7 +17,9 @@ class PasswordInput extends Component {
   toggle = () => this.setState(state => ({ showPassword: !state.showPassword }))
 
   render() {
-    const iconSize = PasswordInput.iconSizes[this.props.size] || PasswordInput.iconSizes.default
+    const iconSize =
+      PasswordInput.iconSizes[this.props.size] ||
+      PasswordInput.iconSizes.default
 
     return (
       <Input
@@ -25,7 +27,11 @@ class PasswordInput extends Component {
         type={this.state.showPassword ? 'text' : 'password'}
         suffixIcon={
           <span className="pointer pt2" onClick={() => this.toggle()}>
-            {this.state.showPassword ? <VisibilityOff solid size={iconSize} /> : <VisibilityOn solid size={iconSize} />}
+            {this.state.showPassword ? (
+              <VisibilityOff solid size={iconSize} />
+            ) : (
+              <VisibilityOn solid size={iconSize} />
+            )}
           </span>
         }
       />
@@ -33,7 +39,9 @@ class PasswordInput extends Component {
   }
 }
 
-const PasswordInputWithRef = React.forwardRef((props, ref) => <PasswordInput {...props} forwardedRef={ref} />)
+const PasswordInputWithRef = React.forwardRef((props, ref) => (
+  <PasswordInput {...props} forwardedRef={ref} />
+))
 
 PasswordInputWithRef.displayName = 'PasswordInput'
 

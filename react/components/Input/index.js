@@ -130,8 +130,7 @@ class Input extends Component {
                 top: prefixAndSuffixPosition,
                 left: prefixAndSuffixPosition,
               }}
-              className={prefixAndSuffixClasses}
-            >
+              className={prefixAndSuffixClasses}>
               {prefix}
             </span>
           )}
@@ -182,8 +181,7 @@ class Input extends Component {
                 top: prefixAndSuffixPosition,
                 right: prefixAndSuffixPosition,
               }}
-              className={prefixAndSuffixClasses}
-            >
+              className={prefixAndSuffixClasses}>
               {suffixIcon}
             </span>
           )}

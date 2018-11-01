@@ -18,31 +18,40 @@ export const styles = ({ space, fontFamily, fontSize, color }) => ({
 })
 
 export function PathlineRenderer({ classes, children }) {
-  const npmString = `import ${children.componentName} from '@vtex/styleguide/lib/${children.dir}'`
-  const vtexIOString = `import { ${children.componentName} } from 'vtex.styleguide'`
+  const npmString = `import ${
+    children.componentName
+  } from '@vtex/styleguide/lib/${children.dir}'`
+  const vtexIOString = `import { ${
+    children.componentName
+  } } from 'vtex.styleguide'`
 
   return (
     <div className={classes.pathline}>
-      <small><strong>npm</strong></small><br />
+      <small>
+        <strong>npm</strong>
+      </small>
+      <br />
       {npmString}
       <ToolbarButton
         small
         className={classes.copyButton}
         onClick={() => copy(npmString)}
-        title="Copy to clipboard"
-      >
+        title="Copy to clipboard">
         <MdContentCopy />
       </ToolbarButton>
 
-      <br /><br />
-      <small><strong>VTEX IO</strong></small><br />
+      <br />
+      <br />
+      <small>
+        <strong>VTEX IO</strong>
+      </small>
+      <br />
       {vtexIOString}
       <ToolbarButton
         small
         className={classes.copyButton}
         onClick={() => copy(vtexIOString)}
-        title="Copy to clipboard"
-      >
+        title="Copy to clipboard">
         <MdContentCopy />
       </ToolbarButton>
     </div>

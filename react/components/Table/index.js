@@ -38,7 +38,7 @@ class Table extends PureComponent {
     return displaySchema
   }
 
-  getRowHeight = (density) => {
+  getRowHeight = density => {
     switch (density) {
       case 'low':
         return 77
@@ -51,7 +51,7 @@ class Table extends PureComponent {
     }
   }
 
-  toggleTableRowHeight = (density) => {
+  toggleTableRowHeight = density => {
     const { tableRowHeight } = this.state
     const newHeight = this.getRowHeight(density)
     if (tableRowHeight !== newHeight) {
@@ -62,7 +62,7 @@ class Table extends PureComponent {
     }
   }
 
-  toggleColumn = (key) => {
+  toggleColumn = key => {
     const { displaySchema } = this.state
     const { schema } = this.props
     const newSchema = cloneDeep(displaySchema)
@@ -82,9 +82,9 @@ class Table extends PureComponent {
 
   onHideAllColumns = () => this.setState({ displaySchema: { properties: {} } })
 
-  calculateTableHeight = (totalItems) => {
+  calculateTableHeight = totalItems => {
     const { tableRowHeight } = this.state
-    return TABLE_HEADER_HEIGHT + (tableRowHeight * totalItems)
+    return TABLE_HEADER_HEIGHT + tableRowHeight * totalItems
   }
 
   render() {
@@ -103,11 +103,7 @@ class Table extends PureComponent {
       toolbar,
       pagination,
     } = this.props
-    const {
-      displaySchema,
-      tableRowHeight,
-      selectedDensity,
-    } = this.state
+    const { displaySchema, tableRowHeight, selectedDensity } = this.state
 
     return (
       <div className="vtex-resourceList__container">
@@ -120,7 +116,8 @@ class Table extends PureComponent {
           handleToggleDensity={this.toggleTableRowHeight}
           selectedDensity={selectedDensity}
           schema={schema}
-          actions={toolbar} />
+          actions={toolbar}
+        />
         <SimpleTable
           items={items}
           schema={displaySchema}
@@ -133,7 +130,9 @@ class Table extends PureComponent {
           sort={sort}
           onSort={onSort}
           updateTableKey={updateTableKey}
-          containerHeight={containerHeight || this.calculateTableHeight(items.length)}
+          containerHeight={
+            containerHeight || this.calculateTableHeight(items.length)
+          }
         />
         {pagination && <Pagination {...pagination} />}
       </div>

@@ -34,8 +34,7 @@ class Radio extends PureComponent {
           pointer: !disabled,
         })}
         ref={this.container}
-        onClick={this.handleContainerClick}
-      >
+        onClick={this.handleContainerClick}>
         <div
           className={classNames(
             'fake-radio relative ba br-100 mr3 flex justify-center items-center',
@@ -43,15 +42,14 @@ class Radio extends PureComponent {
               'b--muted-4 pointer': !disabled && !checked,
               'b--action-primary pointer': !disabled && checked,
               'b--muted-4 bg-muted-5': disabled,
-            },
+            }
           )}
           style={{
             borderWidth: '3px',
             height: '1.25rem',
             width: '1.25rem',
             transition: 'border 100ms ease-in-out',
-          }}
-        >
+          }}>
           <div
             className={classNames('br-100', {
               'bg-action-primary': !disabled,
@@ -87,10 +85,9 @@ class Radio extends PureComponent {
           className={classNames(
             { 'c-disabled': disabled },
             { 'c-on-base pointer': !disabled },
-            'flex flex-auto',
+            'flex flex-auto'
           )}
-          htmlFor={id}
-        >
+          htmlFor={id}>
           {label}
         </label>
       </div>

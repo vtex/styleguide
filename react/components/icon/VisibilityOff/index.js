@@ -19,8 +19,7 @@ class VisibilityOff extends PureComponent {
           height={newSize.height}
           viewBox="0 0 16 16"
           fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+          xmlns="http://www.w3.org/2000/svg">
           <path
             d="M14.6 5.59961L6.39999 13.7996C6.89999 13.8996 7.49999 13.9996 7.99999 13.9996C11.6 13.9996 14.4 10.8996 15.6 9.09961C16.1 8.39961 16.1 7.49961 15.6 6.79961C15.4 6.49961 15 6.09961 14.6 5.59961Z"
             fill={color}
@@ -38,8 +37,7 @@ class VisibilityOff extends PureComponent {
         height={newSize.height}
         viewBox="0 0 16 16"
         fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
+        xmlns="http://www.w3.org/2000/svg">
         <path
           d="M14.5744 5.66895L13.1504 7.09295C13.4284 7.43995 13.6564 7.75695 13.8194 7.99995C13.0594 9.12995 10.9694 11.8199 8.25838 11.9849L6.44337 13.7999C6.93937 13.9239 7.45737 13.9999 8.00037 13.9999C12.7074 13.9999 15.7444 8.71594 15.8714 8.49194C16.0424 8.18794 16.0434 7.81595 15.8724 7.51195C15.8254 7.42695 15.3724 6.63095 14.5744 5.66895Z"
           fill={color}
