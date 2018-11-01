@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { cloneDeep } from 'lodash'
+import reduce from 'lodash/reduce'
 
 import Box from '../Box'
 import Pagination from '../Pagination'
@@ -94,14 +94,18 @@ class Table extends PureComponent {
       selectedDensity,
     } = this.state
 
-    const displaySchema = cloneDeep(schema)
-    const properties = Object.keys(displaySchema.properties)
-    properties.forEach(key => {
-      if (hiddenFields.includes && hiddenFields.includes(key)) {
-        delete displaySchema.properties[key]
-      }
-    })
+    const properties = Object.keys(schema.properties)
     const emptyState = !!(properties.length === 0 || properties.length === hiddenFields.length)
+    const displayProperties = reduce(schema.properties, (acc, value, key) => {
+      if (hiddenFields.includes && hiddenFields.includes(key)) {
+        return acc
+      }
+      return { ...acc, [key]: value }
+    }, {})
+    const displaySchema = {
+      ...schema,
+      properties: displayProperties,
+    }
 
     return (
       <div className="vtex-table__container">
