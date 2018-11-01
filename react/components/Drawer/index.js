@@ -42,16 +42,16 @@ class DrawerBox extends Component {
 
 class Drawer extends Component {
   state = {
-    isMounted: false,
+    isVisible: false,
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.isOpen !== prevProps.isOpen) {
       if (this.props.isOpen) {
-        this.setState({ isMounted: this.props.isOpen })
+        this.setState({ isVisible: this.props.isOpen })
       } else {
         setTimeout(() => {
-          this.setState({ isMounted: this.props.isOpen })
+          this.setState({ isVisible: this.props.isOpen })
         }, ANIMATION_DURATION)
       }
     }
@@ -82,9 +82,9 @@ class Drawer extends Component {
     } = this.props
 
     return (
-      this.state.isMounted && (
-        <div style={styles.overlay} className={`animated faster ${isOpen ? 'fadeIn' : 'fadeOut'}`}>
-          <div className={`bg-white vh-100 right-0 absolute animated faster ${isOpen ? 'fadeInRight' : 'fadeOutRight'}`} style={styles.drawer}>
+      this.state.isVisible && (
+        <div style={styles.overlay} className={`animated ${isOpen ? 'fadeIn' : 'fadeOut'}`}>
+          <div className={`bg-white vh-100 right-0 absolute animated ${isOpen ? 'fadeInRight' : 'fadeOutRight'}`} style={styles.drawer}>
             <DrawerBox onClose={back.handleClick}>
               <div className="bg-light-silver h4 flex flex-column-reverse ph6 pv3">
                 <p className="fw4 f4 mb4 mt0">
