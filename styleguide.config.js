@@ -70,6 +70,10 @@ module.exports = {
       ],
     },
     {
+      name: 'Icons',
+      content: 'react/components/icon/README.md',
+    },
+    {
       name: 'Components',
       content: './docs/components.md',
       skipComponentsWithoutExample: true,
@@ -135,10 +139,6 @@ module.exports = {
           ]
         },
       ],
-    },
-    {
-      name: 'Icons',
-      content: 'react/components/icon/README.md',
     },
     {
       name: 'External links', 
