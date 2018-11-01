@@ -47,10 +47,19 @@ class Input extends Component {
       helpText,
       dataAttributes,
       prefix,
-      suffix,
+      suffix: suffixProp,
+      suffixIcon,
       groupBottom,
     } = this.props
     const { active } = this.state
+
+    const suffix = suffixProp || suffixIcon
+
+    if (suffixIcon) {
+      console.warn(
+        'The prop suffixIcon is deprecated and will be removed in the next major. Please use the prop suffix instead.'
+      )
+    }
 
     if (prefix && suffix) {
       console.warn(
@@ -286,6 +295,8 @@ InputWithRef.propTypes = {
   step: PropTypes.string,
   /** Suffix attribute */
   suffix: PropTypes.element,
+  /** DEPRECATED: Suffix icon attribute */
+  suffixIcon: PropTypes.element,
   /** Spec attribute */
   tabIndex: PropTypes.string,
   /** Spec attribute */
