@@ -29,7 +29,7 @@ module.exports = {
     'vtex-tachyons',
     path.join(__dirname, './docs/styles/styles.css'),
   ],
-  usageMode: 'collapse',
+  usageMode: 'expand',
   exampleMode: 'collapse',
   pagePerSection: true,
   title: 'VTEX Styleguide',
@@ -37,11 +37,12 @@ module.exports = {
   theme,
   sections: [
     {
-      content: './docs/cover.md',
-    },
-    {
       name: 'Introduction',
       content: './docs/introduction.md',
+    },
+    {
+      name: 'Guides',
+      content: './docs/guides.md',
     },
     {
       name: 'Styles',
@@ -72,7 +73,7 @@ module.exports = {
       name: 'Components',
       content: './docs/components.md',
       skipComponentsWithoutExample: true,
-      sectionDepth: 2,
+      sectionDepth: 1,
       sections: [
         {
           name: 'Containers',
@@ -140,7 +141,7 @@ module.exports = {
       content: 'react/components/icon/README.md',
     },
     {
-      name: 'External links',
+      name: 'External links', 
       sections: [
         {
           name: 'VTEX.com',
