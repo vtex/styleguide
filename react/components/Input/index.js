@@ -63,7 +63,7 @@ class Input extends Component {
 
     if (prefix && suffix) {
       console.warn(
-        'You should not use both prefix and suffix props in the same input. ',
+        'You should not use both prefix and suffix props in the same input. '
       )
     }
 
