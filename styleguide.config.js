@@ -1,3 +1,4 @@
+/* eslint-disable */
 const path = require('path')
 // const config = require('vtex-tachyons/config.json')
 const webpackConfig = require('@vtex/react-scripts/config/webpack.config.dev.js')
@@ -70,15 +71,69 @@ module.exports = {
     {
       name: 'Components',
       content: './docs/components.md',
-      components: 'react/components/*/index.js',
       skipComponentsWithoutExample: true,
-      // sectionDepth: 2,
-      // sections: [
-      //   {
-      //     name: 'Actions',
-      //     components: 'react/components/_Actions/**/index.js',
-      //   },
-      // ],
+      sectionDepth: 2,
+      sections: [
+        {
+          name: 'Containers',
+          components: [
+            'react/components/Box/index.js',
+            'react/components/Card/index.js',
+          ]
+        },
+        {
+          name: 'Forms',
+          components: [
+            'react/components/Button/index.js',
+            'react/components/Checkbox/index.js',
+            'react/components/Dropdown/index.js',
+            'react/components/Input/index.js',
+            'react/components/InputSearch/index.js',
+            'react/components/MultiSelect/index.js',
+            'react/components/Textarea/index.js',
+            'react/components/PasswordInput/index.js',
+            'react/components/RadioGroup/index.js',
+            'react/components/Slider/index.js',
+            'react/components/Toggle/index.js',
+          ]
+        },
+        {
+          name: 'Navigation',
+          components: [
+            'react/components/PageHeader/index.js',
+            'react/components/Pagination/index.js',
+            'react/components/Tabs/index.js',
+          ]
+        },
+        {
+          name: 'Notification',
+          components: [
+            'react/components/Alert/index.js',
+            'react/components/Toast/index.js',
+          ]
+        },
+        {
+          name: 'Overlays',
+          components: [
+            'react/components/Modal/index.js',
+            'react/components/ModalDialog/index.js',
+          ]
+        },
+        {
+          name: 'Display',
+          components: [
+            'react/components/Table/index.js',
+            'react/components/EmptyState/index.js',
+          ]
+        },
+        {
+          name: 'Other',
+          components: [
+            'react/components/Badge/index.js',
+            'react/components/Spinner/index.js',
+          ]
+        },
+      ],
     },
     {
       name: 'Icons',
