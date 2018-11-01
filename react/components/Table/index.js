@@ -21,7 +21,7 @@ class Table extends PureComponent {
     }
   }
 
-  getInitialHiddenFieldsFromSchema = (schema) => {
+  getInitialHiddenFieldsFromSchema = schema => {
     const hiddenFields = []
     Object.keys(schema.properties).forEach(key => {
       if (schema.properties[key].hidden) {
@@ -55,7 +55,7 @@ class Table extends PureComponent {
     }
   }
 
-  toggleColumn = (key) => {
+  toggleColumn = key => {
     const { hiddenFields } = this.state
     const newFieldsArray = hiddenFields.slice()
     const index = hiddenFields.indexOf(key)
@@ -65,12 +65,14 @@ class Table extends PureComponent {
 
   onShowAllColumns = () => this.setState({ hiddenFields: [] })
 
-  onHideAllColumns = () => this.setState({ hiddenFields: Object.keys(this.props.schema.properties) })
+  onHideAllColumns = () =>
+    this.setState({ hiddenFields: Object.keys(this.props.schema.properties) })
 
   calculateTableHeight = totalItems => {
     const { tableRowHeight } = this.state
-    const multiplicator = totalItems !== 0 ? totalItems : EMPTY_STATE_SIZE_IN_ROWS
-    return TABLE_HEADER_HEIGHT + (tableRowHeight * multiplicator)
+    const multiplicator =
+      totalItems !== 0 ? totalItems : EMPTY_STATE_SIZE_IN_ROWS
+    return TABLE_HEADER_HEIGHT + tableRowHeight * multiplicator
   }
 
   render() {
@@ -88,20 +90,22 @@ class Table extends PureComponent {
       toolbar,
       pagination,
     } = this.props
-    const {
-      hiddenFields,
-      tableRowHeight,
-      selectedDensity,
-    } = this.state
+    const { hiddenFields, tableRowHeight, selectedDensity } = this.state
 
     const properties = Object.keys(schema.properties)
-    const emptyState = !!(properties.length === 0 || properties.length === hiddenFields.length)
-    const displayProperties = reduce(schema.properties, (acc, value, key) => {
-      if (hiddenFields.includes && hiddenFields.includes(key)) {
-        return acc
-      }
-      return { ...acc, [key]: value }
-    }, {})
+    const emptyState = !!(
+      properties.length === 0 || properties.length === hiddenFields.length
+    )
+    const displayProperties = reduce(
+      schema.properties,
+      (acc, value, key) => {
+        if (hiddenFields.includes && hiddenFields.includes(key)) {
+          return acc
+        }
+        return { ...acc, [key]: value }
+      },
+      {}
+    )
     const displaySchema = {
       ...schema,
       properties: displayProperties,
@@ -118,25 +122,30 @@ class Table extends PureComponent {
           handleToggleDensity={this.toggleTableRowHeight}
           selectedDensity={selectedDensity}
           schema={schema}
-          actions={toolbar} />
-        {
-          emptyState
-            ? <Box><EmptyState title={emptyStateLabel} /></Box>
-            : <SimpleTable
-              items={items}
-              schema={displaySchema}
-              fixFirstColumn={fixFirstColumn}
-              rowHeight={tableRowHeight}
-              disableHeader={disableHeader}
-              emptyStateLabel={emptyStateLabel}
-              onRowClick={onRowClick}
-              sort={sort}
-              onSort={onSort}
-              key={hiddenFields.toString()}
-              updateTableKey={updateTableKey}
-              containerHeight={containerHeight || this.calculateTableHeight(items.length)}
-            />
-        }
+          actions={toolbar}
+        />
+        {emptyState ? (
+          <Box>
+            <EmptyState title={emptyStateLabel} />
+          </Box>
+        ) : (
+          <SimpleTable
+            items={items}
+            schema={displaySchema}
+            fixFirstColumn={fixFirstColumn}
+            rowHeight={tableRowHeight}
+            disableHeader={disableHeader}
+            emptyStateLabel={emptyStateLabel}
+            onRowClick={onRowClick}
+            sort={sort}
+            onSort={onSort}
+            key={hiddenFields.toString()}
+            updateTableKey={updateTableKey}
+            containerHeight={
+              containerHeight || this.calculateTableHeight(items.length)
+            }
+          />
+        )}
         {pagination && <Pagination {...pagination} />}
       </div>
     )
