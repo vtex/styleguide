@@ -33,19 +33,31 @@ class DrawerExample extends React.Component {
 
           <Drawer
             isOpen={this.state.isOpen}
-            title="Create a new store"
+            title="Drawer Sample"
             loading={this.state.loading}
             submit={{
-              label: 'Create',
+              label: 'Save',
               handleClick: this.handleDrawerSubmit
             }}
             back={{
-              label: 'Stores',
+              label: 'Styleguide',
               handleClick: this.handleDrawerToggle
             }}
           >
             <p className="kear-black">
-              Choose a face to be ignored in the facial recognition system
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam id ipsum cursus, consequat justo et, congue justo. Ut tincidunt ac lorem id consectetur. Duis ut elit ac ex ultricies efficitur et eget lacus. Aenean commodo enim lacus, in tincidunt tellus malesuada sed. Sed pulvinar mi vitae mi laoreet, sit amet ultricies sem vulputate. Sed quis posuere metus. Suspendisse eleifend sem justo, at aliquet nisl porta sed. Integer pharetra ornare convallis. Donec vitae ante eu lectus laoreet aliquam in in urna. Donec convallis tristique leo, ac posuere leo rhoncus vitae. Donec enim mauris, placerat in hendrerit et, elementum eu sem.
+            </p>
+            <p className="kear-black">
+              Curabitur id sem id odio commodo convallis. Suspendisse metus dui, efficitur sit amet sollicitudin eget, volutpat vitae libero. Phasellus venenatis tincidunt massa, et lobortis mauris aliquam sed. Vivamus ornare nisi a pharetra placerat. Vestibulum sed nulla diam. Etiam faucibus congue laoreet. Maecenas non aliquam mi. Phasellus et enim molestie, dapibus ante nec, scelerisque neque.
+            </p>
+            <p className="kear-black">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam id ipsum cursus, consequat justo et, congue justo. Ut tincidunt ac lorem id consectetur. Duis ut elit ac ex ultricies efficitur et eget lacus. Aenean commodo enim lacus, in tincidunt tellus malesuada sed. Sed pulvinar mi vitae mi laoreet, sit amet ultricies sem vulputate. Sed quis posuere metus. Suspendisse eleifend sem justo, at aliquet nisl porta sed. Integer pharetra ornare convallis. Donec vitae ante eu lectus laoreet aliquam in in urna. Donec convallis tristique leo, ac posuere leo rhoncus vitae. Donec enim mauris, placerat in hendrerit et, elementum eu sem.
+            </p>
+            <p className="kear-black">
+              Curabitur id sem id odio commodo convallis. Suspendisse metus dui, efficitur sit amet sollicitudin eget, volutpat vitae libero. Phasellus venenatis tincidunt massa, et lobortis mauris aliquam sed. Vivamus ornare nisi a pharetra placerat. Vestibulum sed nulla diam. Etiam faucibus congue laoreet. Maecenas non aliquam mi. Phasellus et enim molestie, dapibus ante nec, scelerisque neque.
+            </p>
+            <p className="kear-black">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam id ipsum cursus, consequat justo et, congue justo. Ut tincidunt ac lorem id consectetur. Duis ut elit ac ex ultricies efficitur et eget lacus. Aenean commodo enim lacus, in tincidunt tellus malesuada sed. Sed pulvinar mi vitae mi laoreet, sit amet ultricies sem vulputate. Sed quis posuere metus. Suspendisse eleifend sem justo, at aliquet nisl porta sed. Integer pharetra ornare convallis. Donec vitae ante eu lectus laoreet aliquam in in urna. Donec convallis tristique leo, ac posuere leo rhoncus vitae. Donec enim mauris, placerat in hendrerit et, elementum eu sem.
             </p>
           </Drawer>
         </div>
