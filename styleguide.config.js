@@ -20,7 +20,10 @@ webpackConfig.module.rules[1].oneOf.forEach(r => {
 module.exports = {
   components: 'react/components/**/*.{js,jsx,ts,tsx}',
   version: `${version}`,
-  require: ['vtex-tachyons'],
+  require: [
+    'vtex-tachyons',
+    'animate.css',
+  ],
   usageMode: 'collapse',
   exampleMode: 'collapse',
   title: 'VTEX Styleguide',

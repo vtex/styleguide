@@ -5,7 +5,7 @@ const Button = require('../Button').default
 class DrawerExample extends React.Component {
   constructor() {
     this.state = {
-      isOpen: true,
+      isOpen: false,
       loading: false,
     }
     this.handleDrawerToggle = this.handleDrawerToggle.bind(this)
