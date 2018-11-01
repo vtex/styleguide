@@ -67,9 +67,13 @@ class Drawer extends Component {
         left: 0,
         right: 0,
         bottom: 0,
+        '-webkit-animation-duration': '300ms',
+        'animation-duration': '300ms',
       },
       drawer: {
         width: '32rem',
+        '-webkit-animation-duration': '300ms',
+        'animation-duration': '300ms',
       },
     }
 
