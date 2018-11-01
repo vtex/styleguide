@@ -62,7 +62,7 @@ class SimpleTable extends Component {
 
     return (
       <div className="vh-100 w-100" style={{ height: containerHeight }}>
-        <AutoSizer disableHeight key={updateTableKey}>
+        <AutoSizer disableHeight>
           {({ width }) => (
             <MultiGrid
               key={updateKey}

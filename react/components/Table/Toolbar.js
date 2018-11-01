@@ -91,7 +91,15 @@ class Toolbar extends PureComponent {
 
   render() {
     const {
-      actions: { inputSearch, download, upload, fields, extraActions, newLine, density },
+      actions: {
+        inputSearch,
+        download,
+        upload,
+        fields,
+        extraActions,
+        newLine,
+        density,
+      },
       hiddenFields,
       schema,
       handleHideAllColumns,
@@ -155,9 +163,9 @@ class Toolbar extends PureComponent {
                         return (
                           <div
                             key={index}
-                            className={`flex justify-between ph6 pv3 pointer hover-bg-light-silver bl bw1 ${
+                            className={`flex justify-between ph6 pv3 ${
                               isKeySelected ? 'b--emphasis' : 'b--transparent'
-                            }`}
+                            } pointer hover-bg-light-silver bl bw1`}
                             onClick={() => {
                               handleToggleDensity(key)
                               this.handleToggleBox('isDensityBoxVisible')
@@ -215,24 +223,23 @@ class Toolbar extends PureComponent {
                         </Button>
                       </div>
                     </div>
-                    <div style={{ height: this.calculateFieldsBoxHeight() }} className="overflow-scroll">
-                      {
-                        Object.keys(schema.properties).map((field, index) => (
-                          <div
-                            key={index}
-                            className="flex justify-between ph6 pv3 pointer hover-bg-light-silver"
-                            onClick={() => toggleColumn(field)}
-                          >
-                            <span className="w-70 truncate">
-                              {schema.properties[field].title || field}
-                            </span>
-                            <Toggle
-                              size="small"
-                              checked={!hiddenFields.includes(field)}
-                            />
-                          </div>
-                        ))
-                      }
+                    <div
+                      style={{ height: this.calculateFieldsBoxHeight() }}
+                      className="overflow-scroll">
+                      {Object.keys(schema.properties).map((field, index) => (
+                        <div
+                          key={index}
+                          className="flex justify-between ph6 pv3 pointer hover-bg-light-silver"
+                          onClick={() => toggleColumn(field)}>
+                          <span className="w-70 truncate">
+                            {schema.properties[field].title || field}
+                          </span>
+                          <Toggle
+                            size="small"
+                            checked={!hiddenFields.includes(field)}
+                          />
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>
