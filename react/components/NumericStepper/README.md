@@ -85,6 +85,23 @@ initialState = {
 </React.Fragment>
 ```
 
+Styling
+```js
+initialState = {
+  value: 1,
+};
+
+<div className="mb5">
+  <NumericStepper
+    label="Lean mode"
+    minValue={1}
+    lean
+    value={state.value}
+    onChange={event => setState({ value: event.value })}
+  />
+</div>
+```
+
 Box types
 ```js
 <React.Fragment>
