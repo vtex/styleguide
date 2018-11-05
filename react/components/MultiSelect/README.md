@@ -95,7 +95,7 @@ async function filter(term) {
 }
 ;<MultiSelect
   emptyState={term => {
-    return `Your search for "${term}" did not find any results. Did you mean: "<span class="fw5">pink</span>"?`
+    return `Your search for "${term}" did not find any results. Did you mean: "<span className="fw5">pink</span>"?`
   }}
   filter={filter}
   label="Colors"
