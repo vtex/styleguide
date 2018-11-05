@@ -141,7 +141,7 @@ export default class MultiSelect extends Component {
   render() {
     const { disabled, label, loadingText, placeholder, selected } = this.props
     const emptyState = this.props.emptyState(
-      `<span class="fw5">${this.state.searchTerm}</span>`
+      `<span className="fw5">${this.state.searchTerm}</span>`
     )
     const isDropdownVisible = this.state.active && this.state.searchTerm !== ''
     const tags = selected.map((tag, index) => (
@@ -192,7 +192,7 @@ export default class MultiSelect extends Component {
           formatOption={opt =>
             opt.label.replace(
               new RegExp(this.state.searchTerm, 'i'),
-              '<span class="fw5">$&</span>'
+              '<span className="fw5">$&</span>'
             )
           }
           loading={this.state.loading}

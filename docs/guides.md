@@ -1,4 +1,5 @@
 ## Size variations
+
 Several components in our Styleguide will have different size variations to pick from. To make this choice consider the density of information your interface is employing:
 
 - _High density_ interfaces expose more details and offer more options and decisions, thus are suitable to more technical uses. For example, things like data tables and dashboards might be more appropriately done with high density UIs.
@@ -7,15 +8,14 @@ Several components in our Styleguide will have different size variations to pick
 
 ### Related components
 
-* Button
-* Inputs
-
+- Button
+- Inputs
 
 ## Visual hierarchy
 
 As a rule of thumb of user interfaces, the visual weight and color contrast of an interface element should be proportional to its importance. A good interface will often have an harmonious balance of weights.
 
-<div class="center mw6 pv6">
+<div className="center mw6 pv6">
   ![](./prominences.png)
 </div>
 
@@ -25,8 +25,8 @@ To choose the right prominence it's important to understand how important the in
 
 ### Related components
 
-* Button
-* Tag
+- Button
+- Tag
 
 ## Progressive disclosure
 
@@ -34,6 +34,6 @@ Progressive disclosure defers advanced or rarely used features to a secondary sc
 
 ### Related components
 
-* Modal
-* Tabs
-* Collapsible
+- Modal
+- Tabs
+- Collapsible

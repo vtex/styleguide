@@ -1,10 +1,9 @@
-
 Base: f = font-size
 
-
-***
+---
 
 ### Modifiers:
+
 - 1 = 1st step in size scale
 - 2 = 2nd step in size scale
 - 3 = 3rd step in size scale
@@ -14,6 +13,7 @@ Base: f = font-size
 - 7 = 7th step in size scale
 
 ### Font Sizes:
+
 ```sh
 .f1 { font-size: 3rem; }
 .f2 { font-size: 2.25rem; }
@@ -26,21 +26,22 @@ Base: f = font-size
 
 ### Media Query Extensions:
 
-- s  = 20em
-- ns  = 40em
-- m  = 40em
-- l  = 64em
-- xl  = 80em
+- s = 20em
+- ns = 40em
+- m = 40em
+- l = 64em
+- xl = 80em
 
 ```js
-  <div class="xe xn">
-    <h1 class="f1">Level 1 Heading</h1>
-    <h2 class="f2">Level 2 Heading</h2>
-    <h3 class="f3">Level 3 Heading</h3>
-    <h4 class="f4">Level 4 Heading</h4>
-    <h5 class="f5">Level 5 Heading</h5>
-    <h6 class="f6">Level 6 Heading</h6>
-    <h6 class="f7">Level 7 Heading</h6>
-  </div>
+<div className="xe xn">
+  <h1 className="f1">Level 1 Heading</h1>
+  <h2 className="f2">Level 2 Heading</h2>
+  <h3 className="f3">Level 3 Heading</h3>
+  <h4 className="f4">Level 4 Heading</h4>
+  <h5 className="f5">Level 5 Heading</h5>
+  <h6 className="f6">Level 6 Heading</h6>
+  <h6 className="f7">Level 7 Heading</h6>
+</div>
 ```
+
 Learn more at http://tachyons.io/docs/typography/scale/
