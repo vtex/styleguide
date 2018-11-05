@@ -1,44 +1,23 @@
 ### Overview
-
 A table displays any kind of structured data and offers controls to easily navigate, search and filter through it. Data may be from just numbers to complex entities that employ other components to represent itself, like images, tags, links, etc.
 
 Our Table was built to be highly composable and flexible. All parts are optional, and you can compose your table with any other Styleguide components. A Table may be used from a small table with numbers to full CRUD-like functionalities, from a small data display to the main screen of a complex module. All parts are plug'n'play parts that you can turn on and off to match your needs.
 
 ### Dos
-
 - Try to support as many of the Table features as you can in your system - if we designed there it's because it's highly recommended to have.
 - Provide as many domain-specific actions as you want in the dropdown slot.
 - Line actions: should be mostly for actions that are resolved in the same screen, or if it's was identified to be a very recurrent action.
 
-<div className="center mw7 pv6">
+<div class="center mw7 pv6">
   ![](./table.png)
 </div>
 
 Simple (high density)
 
 ```js
-const sampleData = require('./sampleData').default
-const itemsCopy = sampleData.items
-  .slice()
-  .reverse()
-  .splice(15)
+const sampleData = require('./sampleData').default;
+const itemsCopy = sampleData.items.slice().reverse().splice(15);
 const defaultSchema = {
-<<<<<<< HEAD
-  properties: {
-    name: {
-      type: 'string',
-      title: 'Name',
-      width: 300,
-    },
-    email: {
-      type: 'string',
-      title: 'Email',
-      width: 350, // default is 200px
-    },
-    number: {
-      type: 'number',
-      title: 'Number',
-=======
     properties: {
       name: {
         type: 'string',
@@ -53,23 +32,23 @@ const defaultSchema = {
         type: 'number',
         title: 'Number',
       },
->>>>>>> Revert "Merge pull request #392 from vtex/feature/table-width"
     },
-  },
-}
+  };
 
-;<div>
+<div>
   <div className="mb5">
     <Table
       schema={defaultSchema}
       items={itemsCopy}
       density="high"
       onRowClick={({ rowData }) => {
-        alert(
-          `you just clicked ${rowData.name}, number is ${
-            rowData.number
-          } and email ${rowData.email}`
-        )
+        alert(`you just clicked ${
+          rowData.name
+        }, number is ${
+          rowData.number
+        } and email ${
+          rowData.email
+        }`)
       }}
     />
   </div>
@@ -79,12 +58,9 @@ const defaultSchema = {
 Custom Cell components
 
 ```js
-const sampleData = require('./sampleData').default
-const itemsCopy = sampleData.items
-  .slice()
-  .reverse()
-  .splice(20)
-const Badge = require('../Badge').default
+const sampleData = require('./sampleData').default;
+const itemsCopy = sampleData.items.slice().reverse().splice(20);
+const Badge = require('../Badge').default;
 class CustomTableExample extends React.Component {
   constructor() {
     super()
@@ -93,7 +69,7 @@ class CustomTableExample extends React.Component {
       dataSort: {
         sortedBy: null,
         sortOrder: null,
-      },
+      }
     }
 
     this.sortNameAlphapeticallyASC = this.sortNameAlphapeticallyASC.bind(this)
@@ -101,27 +77,22 @@ class CustomTableExample extends React.Component {
     this.handleSort = this.handleSort.bind(this)
   }
 
-  sortNameAlphapeticallyASC(a, b) {
-    return a.name < b.name ? -1 : a.name > b.name ? 1 : 0
-  }
-  sortNameAlphapeticallyDESC(a, b) {
-    return a.name < b.name ? 1 : a.name > b.name ? -1 : 0
-  }
+  sortNameAlphapeticallyASC(a, b) { return (a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0 }
+  sortNameAlphapeticallyDESC(a, b) { return (a.name < b.name) ? 1 : (a.name > b.name) ? -1 : 0 }
 
   handleSort({ sortOrder, sortedBy }) {
-    // I'll just handle sort by 'name', but I could handle multiple properties
+     // I'll just handle sort by 'name', but I could handle multiple properties
     if (sortedBy === 'name') {
-      const orderedItems =
-        sortOrder === 'ASC'
-          ? itemsCopy.slice().sort(this.sortNameAlphapeticallyASC)
-          : itemsCopy.slice().sort(this.sortNameAlphapeticallyDESC)
+      const orderedItems = sortOrder === 'ASC'
+        ? itemsCopy.slice().sort(this.sortNameAlphapeticallyASC)
+        : itemsCopy.slice().sort(this.sortNameAlphapeticallyDESC)
       // the above const could come out of an API call to sort items for example
       this.setState({
         orderedItems,
         dataSort: {
           sortedBy,
           sortOrder,
-        },
+        }
       })
     }
   }
@@ -147,23 +118,6 @@ class CustomTableExample extends React.Component {
           // you can customize cell component render (also header component with headerRenderer)
           cellRenderer: ({ cellData }) => {
             return (
-<<<<<<< HEAD
-              <Badge
-                bgColor={cellData.color}
-                color="#fff"
-                onClick={e => {
-                  // if you use cellRender click event AND onRowclick event
-                  // you should stop the event propagation so the cell click fires and row click don't
-                  e.stopPropagation()
-                  alert(
-                    `you just clicked a cell to remove ${
-                      cellData.label
-                    }, HEX: ${cellData.color}`
-                  )
-                }}>
-                <span className="nowrap">{cellData.label}</span>
-              </Badge>
-=======
               <div className="mh4">
                 <Badge bgColor={cellData.color} color="#fff">
                   <span className="nowrap">
@@ -171,12 +125,11 @@ class CustomTableExample extends React.Component {
                   </span>
                 </Badge>
               </div>
->>>>>>> Revert "Merge pull request #392 from vtex/feature/table-width"
             )
           },
         },
       },
-    }
+    };
 
     return (
       <div>
@@ -193,10 +146,9 @@ class CustomTableExample extends React.Component {
           />
         </div>
       </div>
-    )
+    );
   }
-}
-;<CustomTableExample />
+};<CustomTableExample />
 ```
 
 With Toolbar and Pagination
@@ -232,7 +184,7 @@ class ResourceListExample extends React.Component {
   handleNextClick() {
     const newPage = this.state.currentPage + 1
     const itemFrom = this.state.currentItemTo + 1
-    const itemTo = tableLength * newPage
+    const itemTo = tableLength * (newPage)
     const data = sampleData.items.slice(itemFrom - 1, itemTo)
     this.goToPage(newPage, itemFrom, itemTo, data)
   }
@@ -287,50 +239,7 @@ class ResourceListExample extends React.Component {
     }
   }
 
-<<<<<<< HEAD
-  customColorBadgeProperty(index) {
-    return {
-      type: 'object',
-      title: `Color${index ? ` ${index}` : ''}`,
-      cellRenderer: ({ cellData }) => {
-        return (
-          <Badge bgColor={cellData.color} color="#fff">
-            <span className="nowrap">{cellData.label}</span>
-          </Badge>
-        )
-      },
-    }
-  }
-
   render() {
-    const customSchema = {
-      properties: {
-        name: {
-          type: 'string',
-          title: 'Name',
-        },
-        email: {
-          type: 'string',
-          title: 'Email',
-          width: 300,
-        },
-        number: {
-          type: 'number',
-          title: 'Number',
-        },
-        color: this.customColorBadgeProperty(),
-        color1: this.customColorBadgeProperty(1),
-        color2: this.customColorBadgeProperty(2),
-        color3: this.customColorBadgeProperty(3),
-        color4: this.customColorBadgeProperty(4),
-        color5: this.customColorBadgeProperty(5),
-        color6: this.customColorBadgeProperty(6),
-      },
-    }
-
-=======
-  render() {
->>>>>>> Revert "Merge pull request #392 from vtex/feature/table-width"
     return (
       <Table
         schema={sampleData.defaultSchema}
@@ -367,21 +276,21 @@ class ResourceListExample extends React.Component {
             actions: [
               {
                 label: 'alert 1',
-                handleCallback: () => alert('1'),
+                handleCallback: () => alert('1')
               },
               {
                 label: 'alert 2',
-                handleCallback: () => alert('2'),
+                handleCallback: () => alert('2')
               },
               {
                 label: 'alert 3',
-                handleCallback: () => alert('3'),
+                handleCallback: () => alert('3')
               },
             ],
           },
           newLine: {
             label: 'New',
-            handleCallback: () => alert('handle new line callback'),
+            handleCallback: () => alert('handle new line callback')
           },
         }}
         pagination={{
