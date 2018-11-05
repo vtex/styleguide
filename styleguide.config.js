@@ -25,10 +25,7 @@ webpackConfig.module.rules[1].oneOf.forEach(r => {
 
 module.exports = {
   version: `${version}`,
-  require: [
-    'vtex-tachyons',
-    path.join(__dirname, './docs/styles/styles.css'),
-  ],
+  require: ['vtex-tachyons', path.join(__dirname, './docs/styles/styles.css')],
   usageMode: 'expand',
   exampleMode: 'collapse',
   pagePerSection: true,
@@ -74,6 +71,10 @@ module.exports = {
       content: 'react/components/icon/README.md',
     },
     {
+      name: 'Charts',
+      content: './docs/charts.md',
+    },
+    {
       name: 'Components',
       content: './docs/components.md',
       skipComponentsWithoutExample: true,
@@ -84,7 +85,7 @@ module.exports = {
           components: [
             'react/components/Box/index.js',
             'react/components/Card/index.js',
-          ]
+          ],
         },
         {
           name: 'Forms',
@@ -100,7 +101,7 @@ module.exports = {
             'react/components/RadioGroup/index.js',
             'react/components/Slider/index.js',
             'react/components/Toggle/index.js',
-          ]
+          ],
         },
         {
           name: 'Navigation',
@@ -108,40 +109,40 @@ module.exports = {
             'react/components/PageHeader/index.js',
             'react/components/Pagination/index.js',
             'react/components/Tabs/index.js',
-          ]
+          ],
         },
         {
           name: 'Notification',
           components: [
             'react/components/Alert/index.js',
             'react/components/Toast/index.js',
-          ]
+          ],
         },
         {
           name: 'Overlays',
           components: [
             'react/components/Modal/index.js',
             'react/components/ModalDialog/index.js',
-          ]
+          ],
         },
         {
           name: 'Display',
           components: [
             'react/components/Table/index.js',
             'react/components/EmptyState/index.js',
-          ]
+          ],
         },
         {
           name: 'Other',
           components: [
             'react/components/Badge/index.js',
             'react/components/Spinner/index.js',
-          ]
+          ],
         },
       ],
     },
     {
-      name: 'External links', 
+      name: 'External links',
       sections: [
         {
           name: 'VTEX.com',
@@ -158,15 +159,15 @@ module.exports = {
           href: 'http://careers.vtex.com/',
           external: true,
         },
-      ]
-    }
+      ],
+    },
   ],
   getComponentPathLine(componentPath) {
     const pathArray = path.dirname(componentPath).split(path.sep)
     const componentName = pathArray[pathArray.length - 1]
     const dir = path.relative(
       path.join('react', 'components'),
-      path.dirname(componentPath)
+      path.dirname(componentPath),
     )
     return {
       componentName,
@@ -190,7 +191,7 @@ module.exports = {
     matchBrackets: true,
     lineNumbers: false,
     theme: 'monokai', // more: https://codemirror.net/theme/
-  }, 
+  },
   template: {
     head: {
       scripts: [
