@@ -1,20 +1,10 @@
-## Usage
-
-### Install
-
-```sh noeditor static
-yarn add @vtex/styleguide --exact
-# or
-npm install @vtex/styleguide --save-exact
-```
-
 ### VTEX IO apps
 
 Add the styleguide to dependencies on `manifest.json`:
 
 ```sh noeditor static
 "dependencies": {
-  "vtex.styleguide": "5.x"
+  "vtex.styleguide": "7.x"
 },
 ```
 
@@ -27,9 +17,9 @@ import { Button } from 'vtex.styleguide'
 ### Other projects
 
 ```sh noeditor static
-yarn add @vtex/styleguide --exact
+yarn add @vtex/styleguide
 # or
-npm install @vtex/styleguide --save-exact
+npm install @vtex/styleguide
 ```
 
 Importing components:

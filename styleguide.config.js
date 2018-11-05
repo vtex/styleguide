@@ -38,6 +38,10 @@ module.exports = {
       content: './docs/introduction.md',
     },
     {
+      name: 'Getting started',
+      content: './docs/components.md',
+    },
+    {
       name: 'Guides',
       content: './docs/guides.md',
     },
@@ -76,7 +80,6 @@ module.exports = {
     },
     {
       name: 'Components',
-      content: './docs/components.md',
       skipComponentsWithoutExample: true,
       sectionDepth: 1,
       sections: [
