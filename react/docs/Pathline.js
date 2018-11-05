@@ -28,21 +28,6 @@ export function PathlineRenderer({ classes, children }) {
   return (
     <div className={classes.pathline}>
       <small>
-        <strong>npm</strong>
-      </small>
-      <br />
-      {npmString}
-      <ToolbarButton
-        small
-        className={classes.copyButton}
-        onClick={() => copy(npmString)}
-        title="Copy to clipboard">
-        <MdContentCopy />
-      </ToolbarButton>
-
-      <br />
-      <br />
-      <small>
         <strong>VTEX IO</strong>
       </small>
       <br />
@@ -51,6 +36,21 @@ export function PathlineRenderer({ classes, children }) {
         small
         className={classes.copyButton}
         onClick={() => copy(vtexIOString)}
+        title="Copy to clipboard">
+        <MdContentCopy />
+      </ToolbarButton>
+
+      <br />
+      <br />
+      <small>
+        <strong>npm</strong>
+      </small>
+      <br />
+      {npmString}
+      <ToolbarButton
+        small
+        className={classes.copyButton}
+        onClick={() => copy(npmString)}
         title="Copy to clipboard">
         <MdContentCopy />
       </ToolbarButton>
