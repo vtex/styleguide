@@ -183,7 +183,9 @@ module.exports = {
   styleguideComponents: {
     PathlineRenderer: path.join(__dirname, 'react/docs/Pathline'),
     HeadingRenderer: path.join(__dirname, 'react/docs/HeadingRenderer'),
-    // TabButtonRenderer: path.join(__dirname, 'react/docs/TabButtonRenderer'),
+    // 'slots/IsolateButton': path.join(__dirname, 'react/docs/IsolateButton'),
+    'slots/CodeTabButton': path.join(__dirname, 'react/docs/CodeTabButton'),
+    'slots/UsageTabButton': path.join(__dirname, 'react/docs/UsageTabButton'),
   },
   editorConfig: {
     lineWrapping: true,
