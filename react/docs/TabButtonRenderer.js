@@ -3,7 +3,13 @@ import PropTypes from 'prop-types'
 import Styled from 'rsg-components/Styled'
 import cx from 'classnames'
 
-export const styles = ({ space, color, fontFamily, fontSize, buttonTextTransform }) => ({
+export const styles = ({
+  space,
+  color,
+  fontFamily,
+  fontSize,
+  buttonTextTransform,
+}) => ({
   button: {
     padding: [[space[1], 0]],
     fontFamily: fontFamily.base,
@@ -45,7 +51,14 @@ export const styles = ({ space, color, fontFamily, fontSize, buttonTextTransform
   },
 })
 
-export function TabButtonRenderer({ classes, name, className, onClick, active, children }) {
+export function TabButtonRenderer({
+  classes,
+  name,
+  className,
+  onClick,
+  active,
+  children,
+}) {
   const classNames = cx(classes.button, className, {
     [classes.isActive]: active,
   })
