@@ -22,6 +22,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **[BREAKING]** **Table** Remove `onRowMouseOver` prop
 - **[BREAKING]** **Table** Remove `onRowMouseOut` prop
 
+## [7.4.0] - 2018-11-01
+
+### Changed
+
+- **Input** `prefix` prop now accepts any element
+- **Input** `suffixIcon` prop to `suffix`. `suffixIcon` has been deprecated.
+
 ## [7.3.5] - 2018-10-15
 
 ### Added

@@ -25,7 +25,7 @@ class InputSearch extends Component {
       <Input
         {...this.props}
         type="search"
-        suffixIcon={
+        suffix={
           <span className="pointer">
             {this.props.value ? (
               <span

@@ -25,7 +25,7 @@ class PasswordInput extends Component {
       <Input
         {...this.props}
         type={this.state.showPassword ? 'text' : 'password'}
-        suffixIcon={
+        suffix={
           <span className="pointer pt2" onClick={() => this.toggle()}>
             {this.state.showPassword ? (
               <VisibilityOff solid size={iconSize} />
