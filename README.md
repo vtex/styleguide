@@ -6,42 +6,13 @@
 - [Developing](#developing)
   -  [Setup](#setup)
   -  [Running](#running)
-  -  [Snapshots](#snapshots)
 - [Developing using npm link](#developing-using-npm-link)
 - [Publishing](#publishing)
 - [Docs](#docs)
 
 ## Usage
 
-### VTEX IO Apps
-
-Add the styleguide to dependencies on `manifest.json`:
-
-```sh
-"dependencies": {
-  "vtex.styleguide": "5.x"
-},
-```
-
-Importing components:
-
-```js
-import { Button } from 'vtex.styleguide'
-```
-
-### Other Projects
-
-```sh
-yarn add @vtex/styleguide --exact
-# or
-npm install @vtex/styleguide --save-exact
-```
-
-Importing components:
-
-```js
-import Button from '@vtex/styleguide/lib/Button'
-```
+For instructions on how to use the Styleguide in your project refer to the page itself: https://vtex.github.io/styleguide/.
 
 ## Developing
 
@@ -55,26 +26,6 @@ yarn install
 
 ```sh
 yarn styleguide
-```
-
-### Snapshots
-
-To save the components snapshots use:
-
-```sh
-yarn snap:test
-```
-
-Check the snapshots and to approve the changes use:
-
-```sh
-yarn snap:approve
-```
-
-You can use the option `--filter` to just test or approve a specific component. Example:
-
-```sh
-yarn snap:approve --filter "Button"
 ```
 
 ## Developing using `npm link`

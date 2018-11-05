@@ -38,10 +38,7 @@ module.exports = {
         color: {
             link: '#134CD8',
             linkHover: '#0C389F',
-            sidebarBackground: '#FFF',
-            // sidebarBackground: '#fa0d61',
-            // border: 'red',
-            // name: 'red',
+            sidebarBackground: '#FAFAFA',
         },
         fontFamily: {
             base: 'Fabriga, sans-serif',
@@ -51,7 +48,7 @@ module.exports = {
             text: 16,
             small: 12,
         },
-        maxWidth: 1100,
-        sidebarWidth: 300,
+        maxWidth: 1000,
+        sidebarWidth: 270,
     }
 }
