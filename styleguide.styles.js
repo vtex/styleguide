@@ -5,21 +5,31 @@ module.exports = {
     styles: {
         TabButton: {
             button: {
-                color: config.colors['blue'],
+                color: '#00BBD4',
                 width: '100%',
                 fontWeight: 'bold',
-                borderBottom: `1px solid ${config.colors.pink}`,
-                textTransform: 'uppercase',
-                transition: 'none',
+                borderBottom: 'none !important',
+                textTransform: 'uppercase !important',
+                transition: 'none !important',
             },
+            isActive: {
+                borderBottom: 0,
+            }
         },
         ComponentsList: {
-            heading: {
-                // fontWeight: '700',
-                // textTransform: 'uppercase'
-                marginTop: '3rem !important',
-                fontSize: '1.2rem',
+            item: {
+                // 
+            }
+        },
+        Logo: {
+            logo: {
+                color: `${config.colors['rebel-pink']} !important`,
+                fontWeight: '900 !important',
+                fontSize: '36px !important',
             },
+        },
+        headingSpacer: {
+            marginBottom: '5rem',
         },
         StyleGuide: {
             logo: {
@@ -27,18 +37,22 @@ module.exports = {
             },
             sidebar: {
                 border: 0,
-                // '& li > a': {
-                //     color: 'white !important',
-                // },
+                '& li > a': {
+                    color: `${config.colors['near-black']} !important`,
+                },
+                '& li > a:hover': {
+                    color: `${config.colors['gray']} !important`,
+                    cursor: 'pointer',
+                },
             },
         },
     },
 
     theme: {
         color: {
-            link: '#134CD8',
-            linkHover: '#0C389F',
-            sidebarBackground: '#FAFAFA',
+            link: '#00BBD4',
+            linkHover: '#0090a3',
+            sidebarBackground: config.colors['near-white'],
         },
         fontFamily: {
             base: 'Fabriga, sans-serif',
@@ -48,7 +62,7 @@ module.exports = {
             text: 16,
             small: 12,
         },
-        maxWidth: 1000,
+        maxWidth: 900,
         sidebarWidth: 270,
     }
 }
