@@ -52,7 +52,7 @@ Minimum and maximum values
 ```js
 initialState = {
   value1: 1,
-  value2: 0,
+  value2: 2,
   value3: 0,
 };
 
@@ -72,14 +72,6 @@ initialState = {
       maxValue={6}
       value={state.value2}
       onChange={event => setState({ value2: event.value })}
-    />
-  </div>
-  <div className="mb5">
-    <NumericStepper
-      label="No minimum value (allows negative values)"
-      minValue={null}
-      value={state.value3}
-      onChange={event => setState({ value3: event.value })}
     />
   </div>
 </React.Fragment>
