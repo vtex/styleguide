@@ -28,7 +28,8 @@ class DrawerBox extends Component {
     }
 
     // The click was in the overlay area
-    this.props.onClose()
+    const { isOpen, onClose } = this.props
+    if (isOpen) { onClose() }
   }
 
   render() {
@@ -89,7 +90,7 @@ class Drawer extends Component {
       this.state.isVisible && (
         <div style={styles.overlay} className={`animated ${isOpen ? 'fadeIn' : 'fadeOut'}`}>
           <div className={`bg-white vh-100 right-0 absolute animated ${isOpen ? 'fadeInRight' : 'fadeOutRight'}`} style={styles.drawer}>
-            <DrawerBox onClose={back.handleClick}>
+            <DrawerBox onClose={back.handleClick} isOpen={isOpen}>
               <div className="bg-light-silver h4 flex flex-column-reverse ph6 pv3">
                 <p className="fw4 f4 mb4 mt0">
                   { title }
@@ -155,6 +156,7 @@ Drawer.propTypes = {
 }
 
 DrawerBox.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
 }
