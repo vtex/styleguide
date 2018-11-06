@@ -104,7 +104,7 @@ class Drawer extends Component {
     return (
       this.state.isVisible && (
         <div style={styles.overlay} className={`animated ${isOpen ? 'fadeIn' : 'fadeOut'}`}>
-          <div className={`bg-white vh-100 right-0 fixed animated ${isOpen ? 'fadeInRight' : 'fadeOutRight'}`} style={styles.drawer}>
+          <div className={`bg-white h-100 right-0 fixed animated ${isOpen ? 'fadeInRight' : 'fadeOutRight'}`} style={styles.drawer}>
             <DrawerBox onClose={back.handleClick} isOpen={isOpen}>
               <div className="h4 flex-shrink-0 flex bg-light-silver">
                 <div className="flex flex-column-reverse ph6 pv3 flex-grow-1">
