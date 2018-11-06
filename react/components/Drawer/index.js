@@ -26,8 +26,8 @@ class DrawerBox extends Component {
     document.removeEventListener('keydown', this.handleEscape, false)
   }
 
-  handleEscape({ keyCode }) {
-    if (keyCode === 27) {
+  handleEscape({ key }) {
+    if (key === 'Escape') {
       this.handleClose()
     }
   }
