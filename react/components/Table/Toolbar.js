@@ -100,7 +100,7 @@ class Toolbar extends PureComponent {
         newLine,
         density,
       },
-      hiddenFields,
+      displaySchema,
       schema,
       handleHideAllColumns,
       handleShowAllColumns,
@@ -163,9 +163,9 @@ class Toolbar extends PureComponent {
                         return (
                           <div
                             key={index}
-                            className={`flex justify-between ph6 pv3 ${
+                            className={`flex justify-between ph6 pv3 pointer hover-bg-light-silver bl bw1 ${
                               isKeySelected ? 'b--emphasis' : 'b--transparent'
-                            } pointer hover-bg-light-silver bl bw1`}
+                            }`}
                             onClick={() => {
                               handleToggleDensity(key)
                               this.handleToggleBox('isDensityBoxVisible')
@@ -236,7 +236,7 @@ class Toolbar extends PureComponent {
                           </span>
                           <Toggle
                             size="small"
-                            checked={!hiddenFields.includes(field)}
+                            checked={!!displaySchema.properties[field]}
                           />
                         </div>
                       ))}
@@ -373,8 +373,8 @@ Toolbar.propTypes = {
       ),
     }),
   }),
+  displaySchema: PropTypes.object.isRequired,
   schema: PropTypes.object.isRequired,
-  hiddenFields: PropTypes.array,
   toggleColumn: PropTypes.func,
   handleHideAllColumns: PropTypes.func,
   handleShowAllColumns: PropTypes.func,

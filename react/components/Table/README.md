@@ -22,12 +22,11 @@ const defaultSchema = {
       name: {
         type: 'string',
         title: 'Name',
-        width: 300,
       },
       email: {
         type: 'string',
         title: 'Email',
-        width: 350, // default is 200px
+        width: 35,
       },
       number: {
         type: 'number',
@@ -56,7 +55,7 @@ const defaultSchema = {
 </div>
 ```
 
-Custom cell components / sortable columns
+Custom Cell components
 
 ```js
 const sampleData = require('./sampleData').default;
@@ -104,7 +103,6 @@ class CustomTableExample extends React.Component {
         name: {
           type: 'string',
           title: 'Name',
-          width: 300,
           // sortable boolean in a schema property makes it sortable,
           // (clicking header triggers onSort callback).
           sortable: true,
@@ -112,7 +110,7 @@ class CustomTableExample extends React.Component {
         email: {
           type: 'string',
           title: 'Email',
-          width: 350,
+          width: 35,
         },
         color: {
           type: 'object',
@@ -120,16 +118,13 @@ class CustomTableExample extends React.Component {
           // you can customize cell component render (also header component with headerRenderer)
           cellRenderer: ({ cellData }) => {
             return (
-              <Badge bgColor={cellData.color} color="#fff" onClick={(e) => {
-                  // if you use cellRender click event AND onRowclick event
-                  // you should stop the event propagation so the cell click fires and row click don't
-                  e.stopPropagation()
-                  alert(`you just clicked a cell to remove ${cellData.label}, HEX: ${cellData.color}`)
-                }}>
-                <span className="nowrap">
-                  {cellData.label}
-                </span>
-              </Badge>
+              <div className="mh4">
+                <Badge bgColor={cellData.color} color="#fff">
+                  <span className="nowrap">
+                    {cellData.label}
+                  </span>
+                </Badge>
+              </div>
             )
           },
         },
@@ -143,9 +138,6 @@ class CustomTableExample extends React.Component {
             schema={customSchema}
             items={this.state.orderedItems}
             indexColumnLabel="Index"
-            onRowClick={({ rowData }) => {
-              alert(`you just clicked the row with ${rowData.name}`)
-            }}
             sort={{
               sortedBy: this.state.dataSort.sortedBy,
               sortOrder: this.state.dataSort.sortOrder,
@@ -172,7 +164,6 @@ const initialState = {
   currentItemTo: tableLength,
   searchValue: '',
   itemsLength: sampleData.items.length,
-  emptyStateLabel: 'Nothing to show.',
 }
 
 class ResourceListExample extends React.Component {
@@ -188,7 +179,6 @@ class ResourceListExample extends React.Component {
     this.handleInputSearchSubmit = this.handleInputSearchSubmit.bind(this)
     this.handleInputSearchClear = this.handleInputSearchClear.bind(this)
     this.handleRowsChange = this.handleRowsChange.bind(this)
-    this.customColorBadgeProperty = this.customColorBadgeProperty.bind(this)
   }
 
   handleNextClick() {
@@ -241,63 +231,19 @@ class ResourceListExample extends React.Component {
     } else {
       this.setState({
         currentPage: 0,
-        currentItemFrom: 0,
-        currentItemTo: 0,
-        slicedData: [],
-        emptyStateLabel: 'No results found.',
-        itemsLength: 0,
+        currentItemFrom: 1,
+        currentItemTo: 4,
+        slicedData: sampleData.items.slice(0, 4),
+        itemsLength: 4,
       })
     }
   }
 
-  customColorBadgeProperty(index) {
-    return {
-      type: 'object',
-      title: `Color${index ? ` ${index}` : ''}`,
-      cellRenderer: ({ cellData }) => {
-        return (
-          <Badge bgColor={cellData.color} color="#fff">
-            <span className="nowrap">
-              {cellData.label}
-            </span>
-          </Badge>
-        )
-      },
-    }
-  }
-
   render() {
-    const customSchema = {
-      properties: {
-        name: {
-          type: 'string',
-          title: 'Name',
-        },
-        email: {
-          type: 'string',
-          title: 'Email',
-          width: 300,
-        },
-        number: {
-          type: 'number',
-          title: 'Number',
-        },
-        color: this.customColorBadgeProperty(),
-        color1: this.customColorBadgeProperty(1),
-        color2: this.customColorBadgeProperty(2),
-        color3: this.customColorBadgeProperty(3),
-        color4: this.customColorBadgeProperty(4),
-        color5: this.customColorBadgeProperty(5),
-        color6: this.customColorBadgeProperty(6),
-      },
-    };
-
     return (
       <Table
-        schema={customSchema}
+        schema={sampleData.defaultSchema}
         items={this.state.slicedData}
-        fixFirstColumn
-        emptyStateLabel={this.state.emptyStateLabel}
         toolbar={{
           inputSearch: {
             value: this.state.searchValue,
