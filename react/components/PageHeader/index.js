@@ -33,10 +33,8 @@ class PageHeader extends PureComponent {
           </div>
         )}
 
-        <div
-          className={`vtex-pageHeader__title c-on-base f2 fw6 flex flex-row justify-between ${
-            linkLabel ? 'mt0' : 'mt7'
-          }`}>
+        <div className={`vtex-pageHeader__title c-on-base f2 fw6 flex flex-row 
+          flex-wrap justify-between ${linkLabel ? 'mt0' : 'mt7'}`}>
           <span>{this.props.title}</span>
 
           {children && (
