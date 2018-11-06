@@ -6,7 +6,7 @@ import ArrowBack from '../icon/ArrowBack'
 import config from 'vtex-tachyons/config.json'
 import Close from '../icon/Close'
 
-const ANIMATION_DURATION = 500
+const ANIMATION_DURATION = 300
 
 class DrawerBox extends Component {
   constructor(props) {
@@ -82,13 +82,13 @@ class Drawer extends Component {
         left: 0,
         right: 0,
         bottom: 0,
-        WebkitAnimationDuration: '300ms',
-        animationDuration: '300ms',
+        WebkitAnimationDuration: `${ANIMATION_DURATION}ms`,
+        animationDuration: `${ANIMATION_DURATION}ms`,
       },
       drawer: {
         width: '32rem',
-        WebkitAnimationDuration: '300ms',
-        animationDuration: '300ms',
+        WebkitAnimationDuration: `${ANIMATION_DURATION}ms`,
+        animationDuration: `${ANIMATION_DURATION}ms`,
       },
     }
 
