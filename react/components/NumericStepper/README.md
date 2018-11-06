@@ -3,6 +3,7 @@ This is a special case of a regular numerical input where you expect the user to
 
 ### Dos
 - Do use a default value. If you don't know which do use, use 1. This way the user is not forced to type something and then click the buttons.
+- The lean mode is intended to be used on lists, that: have a high density of content, and where being able to type the number is not important. It is especially useful in mobile contexts or cramped containers.
 
 ### Don'ts
 - Don't use for big numbers. Steppers make more sense for small numbers that might be adjusted with a few clicks.
