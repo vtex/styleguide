@@ -48,7 +48,7 @@ class DrawerBox extends Component {
 
   render() {
     return (
-      <div ref={this.overlay} className="flex flex-column items-stretch vh-100">
+      <div ref={this.overlay} className="flex flex-column items-stretch h-100">
         { this.props.children }
       </div>
     )
