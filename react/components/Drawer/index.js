@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import Button from '../Button'
 import Spinner from '../Spinner'
 import ArrowBack from '../icon/ArrowBack'
+import config from 'vtex-tachyons/config.json'
+import Close from '../icon/Close'
 
 const ANIMATION_DURATION = 500
 
@@ -75,7 +77,7 @@ class Drawer extends Component {
       overlay: {
         backgroundColor: 'rgba(0, 0, 0, 0.8)',
         zIndex: 10000,
-        position: 'absolute',
+        position: 'fixed',
         top: 0,
         left: 0,
         right: 0,
@@ -102,28 +104,33 @@ class Drawer extends Component {
     return (
       this.state.isVisible && (
         <div style={styles.overlay} className={`animated ${isOpen ? 'fadeIn' : 'fadeOut'}`}>
-          <div className={`bg-white vh-100 right-0 absolute animated ${isOpen ? 'fadeInRight' : 'fadeOutRight'}`} style={styles.drawer}>
+          <div className={`bg-white vh-100 right-0 fixed animated ${isOpen ? 'fadeInRight' : 'fadeOutRight'}`} style={styles.drawer}>
             <DrawerBox onClose={back.handleClick} isOpen={isOpen}>
-              <div className="bg-light-silver h4 flex flex-column-reverse ph6 pv3">
-                <p className="fw4 f4 mb4 mt0">
-                  { title }
-                </p>
-                <Button
-                  size="small"
-                  variation="tertiary"
-                  neutral
-                  onClick={back.handleClick}
-                >
-                  <span
-                    className="flex align-baseline relative"
-                    style={{ marginLeft: '-16px' }}
+              <div className="flex bg-light-silver">
+                <div className="h4 flex flex-column-reverse ph6 pv3 flex-grow-1">
+                  <p className="fw4 f4 mb4 mt0">
+                    { title }
+                  </p>
+                  <Button
+                    size="small"
+                    variation="tertiary"
+                    neutral
+                    onClick={back.handleClick}
                   >
-                    <span className="mr3">
-                      <ArrowBack color="currentColor" />
+                    <span
+                      className="flex align-baseline relative"
+                      style={{ marginLeft: '-16px' }}
+                    >
+                      <span className="mr3">
+                        <ArrowBack color="currentColor" />
+                      </span>
+                      {back.label}
                     </span>
-                    {back.label}
-                  </span>
-                </Button>
+                  </Button>
+                </div>
+                <span onClick={back.handleClick} className="mb8 mh6 flex flex-column-reverse pointer">
+                  <Close color={config.colors['near-black']} size={17} />
+                </span>
               </div>
 
               <div className="flex-grow-1 ph6 pv7 overflow-scroll">
