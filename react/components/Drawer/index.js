@@ -11,14 +11,23 @@ class DrawerBox extends Component {
     super(props)
     this.overlay = React.createRef()
     this.handleClick = this.handleClick.bind(this)
+    this.handleEscape = this.handleEscape.bind(this)
+    this.handleClose = this.handleClose.bind(this)
   }
-
   componentDidMount() {
     document.addEventListener('mousedown', this.handleClick, false)
+    document.addEventListener('keydown', this.handleEscape, false)
   }
 
   componentWillUnmount() {
     document.removeEventListener('mousedown', this.handleClick, false)
+    document.removeEventListener('keydown', this.handleEscape, false)
+  }
+
+  handleEscape({ keyCode }) {
+    if (keyCode === 27) {
+      this.handleClose()
+    }
   }
 
   handleClick(e) {
@@ -26,7 +35,10 @@ class DrawerBox extends Component {
       // The click was inside the drawer element
       return
     }
+    this.handleClose()
+  }
 
+  handleClose() {
     // The click was in the overlay area
     const { isOpen, onClose } = this.props
     if (isOpen) { onClose() }
