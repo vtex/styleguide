@@ -142,7 +142,7 @@ export default class NumericStepper extends React.Component {
     const isMax = value >= normalizeMax(maxValue)
 
     // TODO: Make this less cumbersome - will be done when x-large is killed
-    const buttonSizeClasses = (lean
+    const buttonSizeClass = (lean
       ? {
           regular: 'f4 pv0',
           large: 'f3 pv0',
@@ -154,7 +154,7 @@ export default class NumericStepper extends React.Component {
           'x-large': 'pv5 f4',
         })[size]
 
-    const inputSizeClasses = (lean
+    const inputSizeClass = (lean
       ? {
           regular: `pv3 f6 ${block ? 'flex-grow-1' : 'w2'}`,
           large: `pv4 f5 ${block ? 'flex-grow-1' : 'w2'}`,
@@ -166,13 +166,13 @@ export default class NumericStepper extends React.Component {
           'x-large': `pv5 f4 ${block ? 'flex-grow-1' : 'w4'}`,
         })[size]
 
-    const borderClasses = lean ? 'bn' : 'ba b--muted-4 bw1'
+    const borderClass = lean ? 'bn' : 'ba b--muted-4 bw1'
 
-    const buttonDisabledClasses = lean
+    const buttonDisabledClass = lean
       ? 'o-0 c-action-primary'
       : 'bg-muted-5 c-disabled o-100'
 
-    const buttonEnabledClasses = `pointer bg-base c-action-primary ${lean &&
+    const buttonEnabledClass = `pointer bg-base c-action-primary ${lean &&
       'outline-0'}`
 
     const content = (
@@ -180,13 +180,11 @@ export default class NumericStepper extends React.Component {
         {label && <span className="db mb3 w-100">{label}</span>}
         <div className="flex self-start">
           {lean ? (
-            <div className={`order-1 tc ${inputSizeClasses}`}>
-              {displayValue}
-            </div>
+            <div className={`order-1 tc ${inputSizeClass}`}>{displayValue}</div>
           ) : (
             <input
               type="tel"
-              className={`z-1 order-1 tc bw1 ${borderClasses} br0 ${inputSizeClasses}`}
+              className={`z-1 order-1 tc bw1 ${borderClass} br0 ${inputSizeClass}`}
               style={{
                 ...(block && {
                   width: 0,
@@ -201,8 +199,8 @@ export default class NumericStepper extends React.Component {
           )}
           <div className="z-2 order-2 flex-none">
             <button
-              className={`br2 ph0 h-100 tc ${borderClasses} bl-0 ${buttonSizeClasses} ${
-                isMax ? buttonDisabledClasses : buttonEnabledClasses
+              className={`br2 ph0 h-100 tc ${borderClass} bl-0 ${buttonSizeClass} ${
+                isMax ? buttonDisabledClass : buttonEnabledClass
               }`}
               style={{
                 borderTopLeftRadius: 0,
@@ -222,8 +220,8 @@ export default class NumericStepper extends React.Component {
           </div>
           <div className="z-2 order-0 flex-none">
             <button
-              className={`br2 ph0 h-100 ${borderClasses} br-0 ${buttonSizeClasses} ${
-                isMin ? buttonDisabledClasses : buttonEnabledClasses
+              className={`br2 ph0 h-100 ${borderClass} br-0 ${buttonSizeClass} ${
+                isMin ? buttonDisabledClass : buttonEnabledClass
               }`}
               style={{
                 borderTopRightRadius: 0,
