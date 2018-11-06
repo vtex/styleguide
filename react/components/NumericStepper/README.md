@@ -3,6 +3,7 @@ This is a special case of a regular numerical input where you expect the user to
 
 ### Dos
 - Do use a default value. If you don't know which do use, use 1. This way the user is not forced to type something and then click the buttons.
+- The lean mode is intended to be used on lists, that: have a high density of content, and where being able to type the number is not important. It is especially useful in mobile contexts or cramped containers.
 
 ### Don'ts
 - Don't use for big numbers. Steppers make more sense for small numbers that might be adjusted with a few clicks.
@@ -52,7 +53,7 @@ Minimum and maximum values
 ```js
 initialState = {
   value1: 1,
-  value2: 0,
+  value2: 2,
   value3: 0,
 };
 
@@ -74,15 +75,24 @@ initialState = {
       onChange={event => setState({ value2: event.value })}
     />
   </div>
-  <div className="mb5">
-    <NumericStepper
-      label="No minimum value (allows negative values)"
-      minValue={null}
-      value={state.value3}
-      onChange={event => setState({ value3: event.value })}
-    />
-  </div>
 </React.Fragment>
+```
+
+Styling
+```js
+initialState = {
+  value: 1,
+};
+
+<div className="mb5">
+  <NumericStepper
+    label="Lean mode"
+    minValue={1}
+    lean
+    value={state.value}
+    onChange={event => setState({ value: event.value })}
+  />
+</div>
 ```
 
 Box types

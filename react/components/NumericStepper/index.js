@@ -136,56 +136,77 @@ export default class NumericStepper extends React.Component {
 
   render() {
     const { value, displayValue } = this.state
-    const { maxValue, minValue, size, block, label } = this.props
+    const { maxValue, minValue, size, block, label, lean } = this.props
 
     const isMin = value <= normalizeMin(minValue)
     const isMax = value >= normalizeMax(maxValue)
 
-    const buttonSizeClasses = {
-      regular: 'pv3 f6',
-      large: 'pv4 f5',
-      'x-large': 'pv5 f4',
-    }
+    // TODO: Make this less cumbersome - will be done when x-large is killed
+    const buttonSizeClass = (lean
+      ? {
+          regular: 'f4 pv0',
+          large: 'f3 pv0',
+          'x-large': 'f2 pv0',
+        }
+      : {
+          regular: 'pv3 f6',
+          large: 'pv4 f5',
+          'x-large': 'pv5 f4',
+        })[size]
 
-    const inputSizeClasses = {
-      regular: `pv3 f6 ${block ? 'flex-grow-1' : 'w3'}`,
-      large: `pv4 f5 ${block ? 'flex-grow-1' : 'w3'}`,
-      'x-large': `pv5 f4 ${block ? 'flex-grow-1' : 'w4'}`,
-    }
+    const inputSizeClass = (lean
+      ? {
+          regular: `pv3 f6 ${block ? 'flex-grow-1' : 'w2'}`,
+          large: `pv4 f5 ${block ? 'flex-grow-1' : 'w2'}`,
+          'x-large': `pv5 f4 ${block ? 'flex-grow-1' : 'w3'}`,
+        }
+      : {
+          regular: `pv3 f6 ${block ? 'flex-grow-1' : 'w3'}`,
+          large: `pv4 f5 ${block ? 'flex-grow-1' : 'w3'}`,
+          'x-large': `pv5 f4 ${block ? 'flex-grow-1' : 'w4'}`,
+        })[size]
+
+    const borderClass = lean ? 'bn' : 'ba b--muted-4 bw1'
+
+    const buttonDisabledClass = lean
+      ? 'o-0 c-action-primary bg-transparent'
+      : 'bg-muted-5 c-disabled o-100'
+
+    const buttonEnabledClass = `pointer bg-base c-action-primary ${lean &&
+      'outline-0'}`
 
     const content = (
       <React.Fragment>
         {label && <span className="db mb3 w-100">{label}</span>}
         <div className="flex self-start">
-          <input
-            type="tel"
-            className={`z-1 order-1 tc bw1 ba b--muted-4 br0 ${
-              inputSizeClasses[size]
-            }`}
-            style={{
-              ...(block && {
-                width: 0,
-              }),
-              WebkitAppearance: 'none',
-            }}
-            value={displayValue}
-            onChange={this.handleTypeQuantity}
-            onFocus={this.handleFocusInput}
-            onBlur={this.handleBlurInput}
-          />
+          {lean ? (
+            <div className={`order-1 tc ${inputSizeClass}`}>{displayValue}</div>
+          ) : (
+            <input
+              type="tel"
+              className={`z-1 order-1 tc bw1 ${borderClass} br0 ${inputSizeClass}`}
+              style={{
+                ...(block && {
+                  width: 0,
+                }),
+                WebkitAppearance: 'none',
+              }}
+              value={displayValue}
+              onChange={this.handleTypeQuantity}
+              onFocus={this.handleFocusInput}
+              onBlur={this.handleBlurInput}
+            />
+          )}
           <div className="z-2 order-2 flex-none">
             <button
-              className={`br2 ph0 h-100 tc ba bl-0 bw1 b--muted-4 ${
-                buttonSizeClasses[size]
-              } ${
-                isMax
-                  ? 'bg-muted-5 c-disabled'
-                  : 'pointer bg-base c-action-primary'
+              className={`br2 ph0 h-100 tc ${borderClass} bl-0 ${buttonSizeClass} ${
+                isMax ? buttonDisabledClass : buttonEnabledClass
               }`}
               style={{
                 borderTopLeftRadius: 0,
                 borderBottomLeftRadius: 0,
-                width: '3em',
+                width: lean ? '2em' : '3em',
+                transition: 'opacity 150ms',
               }}
               disabled={isMax}
               aria-label="+"
@@ -199,17 +220,14 @@ export default class NumericStepper extends React.Component {
           </div>
           <div className="z-2 order-0 flex-none">
             <button
-              className={`br2 ph0 h-100 ba br-0 bw1 b--muted-4 ${
-                buttonSizeClasses[size]
-              } ${
-                isMin
-                  ? 'bg-muted-5 c-disabled'
-                  : 'pointer bg-white c-action-primary'
+              className={`br2 ph0 h-100 ${borderClass} br-0 ${buttonSizeClass} ${
+                isMin ? buttonDisabledClass : buttonEnabledClass
               }`}
               style={{
                 borderTopRightRadius: 0,
                 borderBottomRightRadius: 0,
-                width: '3em',
+                width: lean ? '2em' : '3em',
+                transition: 'opacity 150ms',
               }}
               disabled={isMin}
               aria-label="−"
@@ -231,7 +249,7 @@ export default class NumericStepper extends React.Component {
     // Refrain from using label tag if not needed, to prevent
     // iOS from focusing on the text field and popping up the
     // keyboard when increment/decrement is pressed
-    if (label) {
+    if (label && !lean) {
       return <label>{content}</label>
     }
     return <div>{content}</div>
@@ -257,6 +275,8 @@ NumericStepper.propTypes = {
   block: PropTypes.bool,
   /** Input label */
   label: PropTypes.string,
+  /** Lean mode, with subtler styling */
+  lean: PropTypes.bool,
 }
 
 NumericStepper.defaultProps = {
