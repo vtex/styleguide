@@ -169,7 +169,7 @@ export default class NumericStepper extends React.Component {
     const borderClass = lean ? 'bn' : 'ba b--muted-4 bw1'
 
     const buttonDisabledClass = lean
-      ? 'o-0 c-action-primary'
+      ? 'o-0 c-action-primary bg-transparent'
       : 'bg-muted-5 c-disabled o-100'
 
     const buttonEnabledClass = `pointer bg-base c-action-primary ${lean &&
