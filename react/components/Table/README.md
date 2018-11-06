@@ -23,6 +23,7 @@ const itemsCopy = sampleData.items
   .reverse()
   .splice(15)
 const defaultSchema = {
+<<<<<<< HEAD
   properties: {
     name: {
       type: 'string',
@@ -37,6 +38,22 @@ const defaultSchema = {
     number: {
       type: 'number',
       title: 'Number',
+=======
+    properties: {
+      name: {
+        type: 'string',
+        title: 'Name',
+      },
+      email: {
+        type: 'string',
+        title: 'Email',
+        width: 35,
+      },
+      number: {
+        type: 'number',
+        title: 'Number',
+      },
+>>>>>>> Revert "Merge pull request #392 from vtex/feature/table-width"
     },
   },
 }
@@ -130,6 +147,7 @@ class CustomTableExample extends React.Component {
           // you can customize cell component render (also header component with headerRenderer)
           cellRenderer: ({ cellData }) => {
             return (
+<<<<<<< HEAD
               <Badge
                 bgColor={cellData.color}
                 color="#fff"
@@ -145,6 +163,15 @@ class CustomTableExample extends React.Component {
                 }}>
                 <span className="nowrap">{cellData.label}</span>
               </Badge>
+=======
+              <div className="mh4">
+                <Badge bgColor={cellData.color} color="#fff">
+                  <span className="nowrap">
+                    {cellData.label}
+                  </span>
+                </Badge>
+              </div>
+>>>>>>> Revert "Merge pull request #392 from vtex/feature/table-width"
             )
           },
         },
@@ -260,6 +287,7 @@ class ResourceListExample extends React.Component {
     }
   }
 
+<<<<<<< HEAD
   customColorBadgeProperty(index) {
     return {
       type: 'object',
@@ -300,6 +328,9 @@ class ResourceListExample extends React.Component {
       },
     }
 
+=======
+  render() {
+>>>>>>> Revert "Merge pull request #392 from vtex/feature/table-width"
     return (
       <Table
         schema={sampleData.defaultSchema}
