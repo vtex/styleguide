@@ -83,6 +83,7 @@ class Drawer extends Component {
       isOpen,
       loading,
       submit,
+      secondAction,
       back,
     } = this.props
 
@@ -131,6 +132,21 @@ class Drawer extends Component {
                     }
                   </Button>
                 </div>
+                { secondAction &&
+                  <div className="dib ma3">
+                    <Button
+                      variation="tertiary"
+                      disabled={loading}
+                      onClick={secondAction.handleClick}
+                    >
+                      {
+                        loading
+                          ? <Spinner size={16} />
+                          : secondAction.label
+                      }
+                    </Button>
+                  </div>
+                }
               </div>
             </DrawerBox>
           </div>
@@ -148,11 +164,15 @@ Drawer.propTypes = {
   submit: PropTypes.shape({
     label: PropTypes.string,
     handleClick: PropTypes.func,
+  }).isRequired,
+  secondAction: PropTypes.shape({
+    label: PropTypes.string,
+    handleClick: PropTypes.func,
   }),
   back: PropTypes.shape({
     label: PropTypes.string,
     handleClick: PropTypes.func,
-  }),
+  }).isRequired,
 }
 
 DrawerBox.propTypes = {

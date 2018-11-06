@@ -39,6 +39,10 @@ class DrawerExample extends React.Component {
               label: 'Save',
               handleClick: this.handleDrawerSubmit
             }}
+            secondAction={{
+              label: 'Dismiss',
+              handleClick: this.handleDrawerToggle
+            }}
             back={{
               label: 'Styleguide',
               handleClick: this.handleDrawerToggle
