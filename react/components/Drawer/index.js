@@ -63,10 +63,10 @@ class Drawer extends Component {
   componentDidUpdate(prevProps) {
     if (this.props.isOpen !== prevProps.isOpen) {
       if (this.props.isOpen) {
-        this.setState({ isVisible: this.props.isOpen })
+        this.setState({ isVisible: true })
       } else {
         setTimeout(() => {
-          this.setState({ isVisible: this.props.isOpen })
+          this.setState({ isVisible: false })
         }, ANIMATION_DURATION)
       }
     }
