@@ -51,11 +51,8 @@
     "watch": "^1.0.2"
   },
   "dependencies": {
-    "animate.css": "^3.7.0",
-    "react-animations": "^1.0.0",
     "react-responsive-modal": "^2.0.1",
     "react-virtualized": "^9.19.1",
-    "styled-components": "^4.0.3",
     "vtex-tachyons": "^2.7.0"
   }
 }
