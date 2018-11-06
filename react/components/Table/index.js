@@ -1,46 +1,53 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import reduce from 'lodash/reduce'
+import { cloneDeep, isEqual } from 'lodash'
 
-import Box from '../Box'
+import Toolbar from './Toolbar'
 import Pagination from '../Pagination'
 import SimpleTable from './SimpleTable'
-import Toolbar from './Toolbar'
-import EmptyState from '../EmptyState'
 
 const TABLE_HEADER_HEIGHT = 36
-const EMPTY_STATE_SIZE_IN_ROWS = 5
 
 class Table extends PureComponent {
   constructor(props) {
     super(props)
     this.state = {
-      hiddenFields: this.getInitialHiddenFieldsFromSchema(props.schema),
+      displaySchema: props.schema ? this.cloneSchema(props.schema) : {},
       tableRowHeight: this.getRowHeight(props.density),
       selectedDensity: props.density,
     }
   }
 
-  getInitialHiddenFieldsFromSchema = schema => {
-    const hiddenFields = []
-    Object.keys(schema.properties).forEach(key => {
-      if (schema.properties[key].hidden) {
-        hiddenFields.push(key)
+  componentDidUpdate(prevProps) {
+    const { schema } = prevProps
+    const newSchema = this.props.schema
+    if (!isEqual(schema, newSchema)) {
+      this.setState({
+        displaySchema: this.cloneSchema(newSchema),
+      })
+    }
+  }
+
+  cloneSchema = (schema, showAll = false) => {
+    const displaySchema = cloneDeep(schema)
+    Object.keys(displaySchema.properties).forEach(key => {
+      if (displaySchema.properties[key].hidden && !showAll) {
+        delete displaySchema.properties[key]
       }
     })
-    return hiddenFields
+    return displaySchema
   }
 
   getRowHeight = density => {
     switch (density) {
       case 'low':
-        return 76
+        return 77
       case 'medium':
-        return 48
+        return 61
       case 'high':
-        return 32
+        return 27
       default:
-        return 45
+        return 61
     }
   }
 
@@ -56,33 +63,39 @@ class Table extends PureComponent {
   }
 
   toggleColumn = key => {
-    const { hiddenFields } = this.state
-    const newFieldsArray = hiddenFields.slice()
-    const index = hiddenFields.indexOf(key)
-    index === -1 ? newFieldsArray.push(key) : newFieldsArray.splice(index, 1)
-    this.setState({ hiddenFields: newFieldsArray })
+    const { displaySchema } = this.state
+    const { schema } = this.props
+    const newSchema = cloneDeep(displaySchema)
+    if (newSchema.properties[key]) {
+      delete newSchema.properties[key]
+    } else {
+      newSchema.properties[key] = cloneDeep(schema.properties[key])
+    }
+    this.setState({ displaySchema: newSchema })
   }
 
-  onShowAllColumns = () => this.setState({ hiddenFields: [] })
+  onShowAllColumns = () => {
+    const { schema } = this.props
+    const displaySchema = this.cloneSchema(schema, true)
+    this.setState({ displaySchema })
+  }
 
-  onHideAllColumns = () =>
-    this.setState({ hiddenFields: Object.keys(this.props.schema.properties) })
+  onHideAllColumns = () => this.setState({ displaySchema: { properties: {} } })
 
   calculateTableHeight = totalItems => {
     const { tableRowHeight } = this.state
-    const multiplicator =
-      totalItems !== 0 ? totalItems : EMPTY_STATE_SIZE_IN_ROWS
-    return TABLE_HEADER_HEIGHT + tableRowHeight * multiplicator
+    return TABLE_HEADER_HEIGHT + tableRowHeight * totalItems
   }
 
   render() {
     const {
       items,
       schema,
+      indexColumnLabel,
       disableHeader,
-      emptyStateLabel,
-      fixFirstColumn,
       onRowClick,
+      onRowMouseOver,
+      onRowMouseOut,
       sort,
       onSort,
       updateTableKey,
@@ -90,32 +103,13 @@ class Table extends PureComponent {
       toolbar,
       pagination,
     } = this.props
-    const { hiddenFields, tableRowHeight, selectedDensity } = this.state
-
-    const properties = Object.keys(schema.properties)
-    const emptyState = !!(
-      properties.length === 0 || properties.length === hiddenFields.length
-    )
-    const displayProperties = reduce(
-      schema.properties,
-      (acc, value, key) => {
-        if (hiddenFields.includes && hiddenFields.includes(key)) {
-          return acc
-        }
-        return { ...acc, [key]: value }
-      },
-      {}
-    )
-    const displaySchema = {
-      ...schema,
-      properties: displayProperties,
-    }
+    const { displaySchema, tableRowHeight, selectedDensity } = this.state
 
     return (
-      <div className="vtex-table__container">
+      <div className="vtex-resourceList__container">
         <Toolbar
           toolbar={toolbar}
-          hiddenFields={hiddenFields}
+          displaySchema={displaySchema}
           toggleColumn={this.toggleColumn}
           handleHideAllColumns={this.onHideAllColumns}
           handleShowAllColumns={this.onShowAllColumns}
@@ -124,28 +118,22 @@ class Table extends PureComponent {
           schema={schema}
           actions={toolbar}
         />
-        {emptyState ? (
-          <Box>
-            <EmptyState title={emptyStateLabel} />
-          </Box>
-        ) : (
-          <SimpleTable
-            items={items}
-            schema={displaySchema}
-            fixFirstColumn={fixFirstColumn}
-            rowHeight={tableRowHeight}
-            disableHeader={disableHeader}
-            emptyStateLabel={emptyStateLabel}
-            onRowClick={onRowClick}
-            sort={sort}
-            onSort={onSort}
-            key={hiddenFields.toString()}
-            updateTableKey={updateTableKey}
-            containerHeight={
-              containerHeight || this.calculateTableHeight(items.length)
-            }
-          />
-        )}
+        <SimpleTable
+          items={items}
+          schema={displaySchema}
+          indexColumnLabel={indexColumnLabel}
+          rowHeight={tableRowHeight}
+          disableHeader={disableHeader}
+          onRowClick={onRowClick}
+          onRowMouseOut={onRowMouseOut}
+          onRowMouseOver={onRowMouseOver}
+          sort={sort}
+          onSort={onSort}
+          updateTableKey={updateTableKey}
+          containerHeight={
+            containerHeight || this.calculateTableHeight(items.length)
+          }
+        />
         {pagination && <Pagination {...pagination} />}
       </div>
     )
@@ -154,13 +142,11 @@ class Table extends PureComponent {
 
 Table.defaultProps = {
   density: 'medium',
-  fixFirstColumn: false,
   toolbar: {
     extraActions: {
       actions: [],
     },
   },
-  emptyStateLabel: 'Nothing to show.',
 }
 
 Table.propTypes = {
@@ -168,12 +154,16 @@ Table.propTypes = {
   items: PropTypes.array.isRequired,
   /** Json Schema data model for the items (example: https://jsonschema.net/) for custom examples see code from custom components */
   schema: PropTypes.object.isRequired,
+  /** Activates a first column as row index (line count)  */
+  indexColumnLabel: PropTypes.string,
   /** Do not render the table header (only the rows) */
   disableHeader: PropTypes.bool,
-  /** Fix first column so only the following ones scroll horizontaly */
-  fixFirstColumn: PropTypes.bool,
   /** Callback invoked when a user clicks on a table row. ({ event: Event, index: number, rowData: any }): void */
   onRowClick: PropTypes.func,
+  /** Callback invoked when a user moves the mouse over a table row. ({ event: Event, index: number, rowData: any }): void */
+  onRowMouseOver: PropTypes.func,
+  /** Callback invoked when the mouse leaves a table row. ({ event: Event, index: number, rowData: any }): void */
+  onRowMouseOut: PropTypes.func,
   /** Sort order and which property (key in schema) is table data sorted by. */
   sort: PropTypes.shape({
     sortOrder: PropTypes.oneOf(['ASC', 'DESC']),
@@ -187,8 +177,6 @@ Table.propTypes = {
   containerHeight: PropTypes.number,
   /** Row info visual density  */
   density: PropTypes.oneOf(['low', 'medium', 'high']),
-  /** Label for emptystate  */
-  emptyStateLabel: PropTypes.string,
   /** Toolbar (search and actions) */
   toolbar: PropTypes.shape({
     inputSearch: PropTypes.shape({
