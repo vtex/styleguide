@@ -151,11 +151,7 @@ class Drawer extends Component {
                       disabled={loading}
                       onClick={secondAction.handleClick}
                     >
-                      {
-                        loading
-                          ? <Spinner size={16} />
-                          : secondAction.label
-                      }
+                      { secondAction.label }
                     </Button>
                   </div>
                 }
