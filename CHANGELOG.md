@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- **NumericStepper** Add lean mode
+
 ## [7.4.1] - 2018-11-06
 
 ## [7.4.0] - 2018-11-01
