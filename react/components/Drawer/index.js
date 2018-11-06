@@ -106,8 +106,8 @@ class Drawer extends Component {
         <div style={styles.overlay} className={`animated ${isOpen ? 'fadeIn' : 'fadeOut'}`}>
           <div className={`bg-white vh-100 right-0 fixed animated ${isOpen ? 'fadeInRight' : 'fadeOutRight'}`} style={styles.drawer}>
             <DrawerBox onClose={back.handleClick} isOpen={isOpen}>
-              <div className="flex bg-light-silver">
-                <div className="h4 flex flex-column-reverse ph6 pv3 flex-grow-1">
+              <div className="h4 flex-shrink-0 flex bg-light-silver">
+                <div className="flex flex-column-reverse ph6 pv3 flex-grow-1">
                   <p className="fw4 f4 mb4 mt0">
                     { title }
                   </p>
@@ -137,7 +137,7 @@ class Drawer extends Component {
                 { this.props.children }
               </div>
 
-              <div className="bg-light-silver flex flex-row-reverse items-center ph6 pv3">
+              <div className="flex-shrink-0 bg-light-silver flex flex-row-reverse items-center ph6 pv3">
                 <div className="dib ma3">
                   <Button
                     variation="primary"
