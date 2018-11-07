@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- **Spinner** Fixed bug where the spinner wasn't animating while the page was loading.
+
 ## [7.5.1] - 2018-11-07
 
 ### Added
