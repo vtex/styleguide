@@ -199,11 +199,13 @@ Table.propTypes = {
       lowOptionLabel: PropTypes.string,
       mediumOptionLabel: PropTypes.string,
       highOptionLabel: PropTypes.string,
+      alignMenu: PropTypes.oneOf(['rigth', 'left']),
     }),
     fields: PropTypes.shape({
       label: PropTypes.string,
       showAllLabel: PropTypes.string,
       hideAllLabel: PropTypes.string,
+      alignMenu: PropTypes.oneOf(['rigth', 'left']),
     }),
     download: PropTypes.shape({
       label: PropTypes.string,
@@ -221,6 +223,7 @@ Table.propTypes = {
           handleCallback: PropTypes.func,
         })
       ),
+      alignMenu: PropTypes.oneOf(['rigth', 'left']),
     }),
     newLine: PropTypes.shape({
       label: PropTypes.string,

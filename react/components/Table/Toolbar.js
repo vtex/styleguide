@@ -152,7 +152,9 @@ class Toolbar extends PureComponent {
               </Button>
               {isDensityBoxVisible && (
                 <div
-                  className="absolute z-999 ba b--light-gray br2 mt2"
+                  className={`absolute ${
+                    density.alignMenu === 'right' ? 'right-0' : 'left-0'
+                  } z-999 ba b--light-gray br2 mt2`}
                   style={BOX_SHADOW_STYLE}>
                   <div className="w-100 b2 br2 bg-base">
                     <div
@@ -200,7 +202,10 @@ class Toolbar extends PureComponent {
                 </span>
               </Button>
               {isFieldsBoxVisible && (
-                <div className="absolute z-999 ba b--light-gray br2 mt2">
+                <div
+                  className={`absolute ${
+                    fields.alignMenu === 'right' ? 'right-0' : 'left-0'
+                  } z-999 ba b--light-gray br2 mt2`}>
                   <div
                     className="w-100 b2 br2 bg-base"
                     style={{
@@ -290,7 +295,9 @@ class Toolbar extends PureComponent {
               </Button>
               {isExtraActionsBoxVisible && (
                 <div
-                  className="absolute z-999 ba b--light-gray br2 right-0"
+                  className={`absolute ${
+                    extraActions.alignMenu === 'left' ? 'left-0' : 'right-0'
+                  } z-999 ba b--light-gray br2`}
                   style={BOX_SHADOW_STYLE}>
                   <div
                     className="w-100 b2 br2 bg-base"
@@ -349,11 +356,13 @@ Toolbar.propTypes = {
       lowOptionLabel: PropTypes.string,
       mediumOptionLabel: PropTypes.string,
       highOptionLabel: PropTypes.string,
+      alignMenu: PropTypes.oneOf(['rigth', 'left']),
     }),
     fields: PropTypes.shape({
       label: PropTypes.string,
       showAllLabel: PropTypes.string,
       hideAllLabel: PropTypes.string,
+      alignMenu: PropTypes.oneOf(['rigth', 'left']),
     }),
     download: PropTypes.shape({
       label: PropTypes.string,
@@ -371,6 +380,7 @@ Toolbar.propTypes = {
           handleCallback: PropTypes.func,
         })
       ),
+      alignMenu: PropTypes.oneOf(['rigth', 'left']),
     }),
   }),
   schema: PropTypes.object.isRequired,
