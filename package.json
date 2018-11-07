@@ -9,7 +9,7 @@
     "styleguide": "styleguidist server",
     "start": "styleguidist server",
     "styleguide:build": "styleguidist build",
-    "babel": "NODE_ENV=production babel ./react/components --out-dir ./lib --ignore '__tests__,*.spec.js,*.md' --copy-files",
+    "babel": "NODE_ENV=production babel ./react/components --out-dir ./lib --ignore '__tests__,*.spec.js' --ignore '*.md' --copy-files",
     "compile": "run-s cleanlib babel",
     "cleanlib": "rm -rf lib",
     "prepublishOnly": "run-s compile deploy",
