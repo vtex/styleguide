@@ -68,6 +68,7 @@ class SimpleTable extends Component {
               key={updateKey}
               height={items.length === 0 ? HEADER_HEIGHT : containerHeight}
               width={width}
+              tabIndex={null}
               fixedRowCount={disableHeader ? 0 : 1}
               rowCount={disableHeader ? items.length : items.length + 1}
               rowHeight={({ index }) =>
