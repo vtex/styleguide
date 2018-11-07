@@ -22,7 +22,7 @@ A Spinner is a way of showing the user something is being loaded, either because
 <Spinner />
 ```
 
-#### Custom color
+#### Custom color and size
 
 ```js
 <span className="dib c-muted-1">
