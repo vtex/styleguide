@@ -1,3 +1,3 @@
-import PasswordInput from './components/PasswordInput'
+import PasswordInput from './components/PasswordInput/index'
 
 export default PasswordInput

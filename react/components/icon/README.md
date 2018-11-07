@@ -27,6 +27,7 @@ const ICONS = {
   Filter: require('./Filter').default,
   Help: require('./Help').default,
   Link: require('./Link').default,
+  OptionsDots: require('./OptionsDots').default,
   Plus: require('./Plus').default,
   PlusLines: require('./PlusLines').default,
   Save: require('./Save').default,

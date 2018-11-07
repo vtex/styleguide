@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [7.5.1] - 2018-11-07
+
+### Added
+
+- **Icon** add OptionsDots icon
+
 ## [7.5.0] - 2018-11-06
 
 ### Added
