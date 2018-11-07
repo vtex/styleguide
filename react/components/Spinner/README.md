@@ -29,37 +29,3 @@ A Spinner is a way of showing the user something is being loaded, either because
   <Spinner color="currentColor" size={20} />
 </span>
 ```
-
-#### Transition between spinner status
-
-```js
-initialState = {
-  status: 'working',
-};
-
-<div>
-  <div className="mb5">
-    <Spinner status={state.status} />
-  </div>
-
-  <div className="mb2">
-    Set status:
-  </div>
-  <div className="w-50">
-    <RadioGroup
-      options={[
-        {
-          value: "working",
-          label: "Working",
-        },
-        {
-          value: "idle",
-          label: "Idle",
-        },
-      ]}
-      value={state.status}
-      onChange={e => setState({ status: e.currentTarget.value })}
-    />
-  </div>
-</div>
-```
