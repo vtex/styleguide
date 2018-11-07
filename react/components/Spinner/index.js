@@ -21,7 +21,7 @@ class Spinner extends React.Component {
         width={size}>
         <style>
           {`
-            @keyframes rot {
+            @keyframes vtex-spinner-rotate {
               from {
                 transform-origin: 50% 50%;
                 transform: rotate(0deg);
@@ -32,7 +32,7 @@ class Spinner extends React.Component {
               }
             }
 
-            @keyframes fill {
+            @keyframes vtex-spinner-fill {
               0% {
                 stroke-dasharray: 0 0 2 ${circ};
               }
@@ -44,14 +44,14 @@ class Spinner extends React.Component {
               }
             }
 
-            .loader {
-              animation: fill 1.25s infinite cubic-bezier(0.455, 0.030, 0.515, 0.955), rot 0.625s infinite linear;
+            .vtex-spinner_circle {
+              animation: vtex-spinner-fill 1.25s infinite cubic-bezier(0.455, 0.030, 0.515, 0.955), vtex-spinner-rotate 0.625s infinite linear;
             }
           `}
         </style>
 
         <circle
-          className="loader"
+          className="vtex-spinner_circle"
           cx="50"
           cy="50"
           fill="none"
