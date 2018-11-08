@@ -1,11 +1,10 @@
-### Overview
-This is a special case of a regular numerical input where you expect the user to modify it by a few incremental steps.
+#### This is a special case of a regular numerical input where you expect the user to modify it by a few incremental steps.
 
-### Dos
+### 👍 Dos
 - Do use a default value. If you don't know which do use, use 1. This way the user is not forced to type something and then click the buttons.
 - The lean mode is intended to be used on lists, that: have a high density of content, and where being able to type the number is not important. It is especially useful in mobile contexts or cramped containers.
 
-### Don'ts
+### 👎 Don'ts
 - Don't use for big numbers. Steppers make more sense for small numbers that might be adjusted with a few clicks.
 - Don't stretch it too much, the buttons in the extremes and the centered label will look really weird.
 

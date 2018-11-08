@@ -1,5 +1,4 @@
-### Overview
-Buttons are independent interactive elements used to trigger actions or to perform navigation.
+#### Buttons are independent interactive elements used to trigger actions or to perform navigation.
 
 ### Chosing a variation
 Our Styleguide defines 3 main variations based on the button visual proeminence. As with any UI element, the proeminence should be proportional to the importance of that element.

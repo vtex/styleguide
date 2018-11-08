@@ -1,11 +1,10 @@
-### Overview
-A Checkbox represents a need for the user to do a choice that is binary, required and independent from other choices. 
+#### A Checkbox represents a need for the user to do a choice that is binary, required and independent from other choices. 
 
-### Dos
+### 👍 Dos
 - Initialize it with a default value that makes sense to your needs.
 - Use a text label, which should be intuitive and provide sufficient context for the user take that decision. 
 
-### Don'ts
+### 👎 Don'ts
 - Don't use negative labels because they are harder to interpret.
 - Don't implement an "autosave" behavior: checkboxes should always require the use of a button (like "SAVE" or "OK") to commit the choice.
 

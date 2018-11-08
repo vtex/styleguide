@@ -1,8 +1,6 @@
-### Overview
+#### Inputs let users type in data in a variety of ways. Take a look at the options available to see which one fits best with what you need.
 
-Inputs let users type in data in a variety of ways. Take a look at the options available to see which one fits best with what you need.
-
-### Dos
+### 👍 Dos
 
 - When possible use labels, and keep them short and descriptive. More than 3 words might start looking weird.
 - Use the placeholders only to provide complementary information and show examples of how to fill that field. But using the label text is preferred in most cases.
