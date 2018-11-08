@@ -1,6 +1,5 @@
-/* eslint-disable */
+/* eslint-disable import/unambiguous */
 const path = require('path')
-// const config = require('vtex-tachyons/config.json')
 const webpackConfig = require('@vtex/react-scripts/config/webpack.config.dev.js')
 const { version } = require('./manifest.json')
 const { styles, theme } = require('./styleguide.styles.js')
@@ -167,7 +166,7 @@ module.exports = {
     const componentName = pathArray[pathArray.length - 1]
     const dir = path.relative(
       path.join('react', 'components'),
-      path.dirname(componentPath),
+      path.dirname(componentPath)
     )
     return {
       componentName,
@@ -183,7 +182,6 @@ module.exports = {
   styleguideComponents: {
     PathlineRenderer: path.join(__dirname, 'react/docs/Pathline'),
     HeadingRenderer: path.join(__dirname, 'react/docs/HeadingRenderer'),
-    // 'slots/IsolateButton': path.join(__dirname, 'react/docs/IsolateButton'),
     'slots/CodeTabButton': path.join(__dirname, 'react/docs/CodeTabButton'),
     'slots/UsageTabButton': path.join(__dirname, 'react/docs/UsageTabButton'),
   },
@@ -192,7 +190,7 @@ module.exports = {
     smartIndent: true,
     matchBrackets: true,
     lineNumbers: false,
-    theme: 'monokai', // more: https://codemirror.net/theme/
+    theme: 'monokai', // more themes: https://codemirror.net/theme/
   },
   template: {
     head: {

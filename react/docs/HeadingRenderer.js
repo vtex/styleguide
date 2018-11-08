@@ -1,7 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-// import cx from 'classnames'
-// import Styled from 'rsg-components/Styled'
 
 const styles = {
   h1: 'near-black f1 fw1 mt9 mb8 lh-title',
