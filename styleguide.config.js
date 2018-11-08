@@ -173,6 +173,13 @@ module.exports = {
       dir,
     }
   },
+  handlers: componentPath => {
+    require('react-docgen').defaultHandlers.concat(
+      require('react-docgen-displayname-handler').createDisplayNameHandler(
+        componentPath
+      )
+    )
+  },
   webpackConfig: {
     ...require('@vtex/react-scripts/config/webpack.config.dev.js'),
     devServer: {
