@@ -1,8 +1,6 @@
-### Overview
+#### A Radio Group represents a need for the user to make a choice among a few offered options.
 
-A Radio Group represents a need for the user to make a choice among a few offered options.
-
-### Dos
+### 👍 Dos
 
 - Keep the list of options short. More than 6 options might start looking weird.
 - Labels should be clear and if possible short.
@@ -10,7 +8,7 @@ A Radio Group represents a need for the user to make a choice among a few offere
 - Use a "None" option if you need an unselected state.
 - Consider adding an "Other" option if needed, maybe in conjunction with a Text Input to capture the user need.
 
-### Don'ts
+### 👎 Don'ts
 
 - Don't offer overlapping options, they should be clearly mutually exclusive.
 

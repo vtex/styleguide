@@ -1,7 +1,6 @@
-### Overview
-A Toggle is a control for turning an option ON or OFF. Its effect is usually automatically applied, which is one of the main differences compared to checkboxes, that need a submit.
+#### A Toggle is a control for turning an option ON or OFF. Its effect is usually automatically applied, which is one of the main differences compared to checkboxes, that need a submit.
 
-### Dos
+### 👍 Dos
 - Use the Semantic variation if turning this option ON is highly recommended from your application standpoint. In doubt prefer the default variation.
 - Be mindful of the default value of this field.
 - It's usually a good practice to be optimistic about its effect. Even if you're not sure if the resulting network request will be successful, pretend it does and let it change its state.
@@ -10,7 +9,7 @@ A Toggle is a control for turning an option ON or OFF. Its effect is usually aut
 - Consider using a <a href="#checkbox">Checkbox</a> if it's inside a form, or if the property doesn't have a clear "ON/OFF".
 
 
-## Default
+Default
 
 ```js
 initialState = {
@@ -61,7 +60,7 @@ initialState = {
 </div>;
 ```
 
-## Semantic
+Semantic
  
 ```js
 initialState = {
@@ -115,7 +114,7 @@ initialState = {
 </div>;
 ```
 
-## Disabled
+Disabled
 
 ```js
 <div>

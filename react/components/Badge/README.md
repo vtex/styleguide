@@ -1,13 +1,11 @@
-### Overview
+#### A Badge represents a status or a tag.
 
-A Badge represents a status or a tag.
-
-### Dos
+### 👍 Dos
 
 - Do use semantic colors that have a clear and contextualized meaning in your application, such as _green_ for success and _red_ for errors. However, if your application employs a richer palette with unambiguous usage of colors don't hesitate to use your Badges with them.
 - Do play with contrast to convey the visual prominence more suited to your application. Use high contrast for high proeminence, and low contrast for low proeminence.
 
-### Don'ts
+### 👎 Don'ts
 
 - Don't do make the Badge other than the optional close button, otherwise they should always be read-only.
 - Don't use color contrast combinations that don't pass Accessibility tests.

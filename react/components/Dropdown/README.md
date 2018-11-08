@@ -1,12 +1,10 @@
-### Overview
+#### A Dropdown lets the user pick an option from a list.
 
-A Dropdown lets the user pick an option from a list.
-
-### Dos
+### 👍 Dos
 
 - Mind the order of the options, like putting more probable to be picked on that. In doubt, sort them alphanumerically (from A to Z and from 0 to 9).
 
-### Don'ts
+### 👎 Don'ts
 
 - Don't use a Dropdown if you have more than a few dozens options. Most users don't know about the keyboard search feature and will have to scan through all the options. In this case you'll probably need something a little fancier (work not in progress).
 

@@ -1,6 +1,4 @@
-### Overview
-
-Like a simple dropdown, but users may select more than one option.
+#### Like a simple dropdown, but users may select more than one option.
 
 ### Related components
 

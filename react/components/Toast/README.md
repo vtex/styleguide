@@ -1,11 +1,10 @@
-### Overview
-Toasts give users instant feedback about the tasks they just did. Its main objective is to ensure tasks confirmation and success. 
+#### Toasts give users instant feedback about the tasks they just did. Its main objective is to ensure tasks confirmation and success. 
 
-### Dos
+### 👍 Dos
 - Toasts are always self-dismissing, but users should be allowed to dismiss by themselves as well. 
 - Keep messages in a low to mild priority spectrum. Toasts are intended to be either neutral or positive. 
 
-### Don'ts
+### 👎 Don'ts
 - Do not present critical or high priority actions on a Toast. If that's the case, you might consider using [Alerts](#alert) instead.
 - Due to its low to mild priority usage and dismissability, warning and error semantic styles do not apply to Toasts.
 
