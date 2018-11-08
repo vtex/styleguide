@@ -8,7 +8,7 @@ initialState = { value1: '', value2: '', value3: '' }
       console.log(state.value2)
     }}
   >
-    <InputSearchWithRef
+    <InputSearch
       placeholder="Search..."
       value={state.value2}
       size="large"
