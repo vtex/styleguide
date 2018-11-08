@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [7.5.5] - 2018-11-08
+
 ### Added
 
 - **Toast** Create ToastMessage passed on ToastConsumer to immediately allow to use toast
