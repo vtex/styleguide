@@ -1,251 +1,218 @@
-```js
-<table className="border-collapse w-100">
-  <tbody className="f6">
-    <tr>
-      <td className="xr xs bg-rebel-pink" />
-      <td className="xr xt xu x3 x4 rebel-pink">Aa</td>
-      <td className="xr">--rebel-pink: #F71963</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-heavy-rebel-pink" />
-      <td className="xr xt xu x3 x4 heavy-rebel-pink">Aa</td>
-      <td className="xr">--heavy-rebel-pink: #DD1659</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-elite-purple" />
-      <td className="xr xt xu x3 x4 elite-purple">Aa</td>
-      <td className="xr">--elite-purple: #8914CC</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-near-black" />
-      <td className="xr xt xu x3 x4 near-black">Aa</td>
-      <td className="xr">--near-black: #3F3F40</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-dark-gray" />
-      <td className="xr xt xu x3 x4 dark-gray">Aa</td>
-      <td className="xr">--dark-gray: #585959</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-mid-gray" />
-      <td className="xr xt xu x3 x4 mid-gray">Aa</td>
-      <td className="xr">--mid-gray: #727273</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-gray" />
-      <td className="xr xt xu x3 x4 gray">Aa</td>
-      <td className="xr">--gray: #979899</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-silver" />
-      <td className="xr xt xu x3 x4 silver">Aa</td>
-      <td className="xr">--silver: #CACBCC</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-light-gray" />
-      <td className="xr xt xu x3 x4 light-gray">Aa</td>
-      <td className="xr">--light-gray: #E3E4E6</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-light-silver" />
-      <td className="xr xt xu x3 x4 light-silver">Aa</td>
-      <td className="xr">--light-silver: #F2F4F5</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-near-white" />
-      <td className="xr xt xu x3 x4 near-white">Aa</td>
-      <td className="xr">--near-white: #F7F9FA</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-white" />
-      <td className="xr xt xu x3 x4 white">Aa</td>
-      <td className="xr">--white:#FFFFFF</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-washed-blue" />
-      <td className="xr xt xu x3 x4 washed-blue">Aa</td>
-      <td className="xr">--washed-blue: #EDF4FA</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-light-blue" />
-      <td className="xr xt xu x3 x4 light-blue">Aa</td>
-      <td className="xr">--light-blue: #cce8ff</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-blue" />
-      <td className="xr xt xu x3 x4 blue">Aa</td>
-      <td className="xr">--blue: #368DF7</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-heavy-blue" />
-      <td className="xr xt xu x3 x4 heavy-blue">Aa</td>
-      <td className="xr">--heavy-blue: #2A6DBF</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-light-marine" />
-      <td className="xr xt xu x3 x4 light-marine">Aa</td>
-      <td className="xr">--light-marine: #3D5980</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-marine" />
-      <td className="xr xt xu x3 x4 marine">Aa</td>
-      <td className="xr">--marine: #25354D</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-serious-black" />
-      <td className="xr xt xu x3 x4 serious-black">Aa</td>
-      <td className="xr">--serious-black: #142032</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-green" />
-      <td className="xr xt xu x3 x4 green">Aa</td>
-      <td className="xr">--green: #8BC34A</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-washed-green" />
-      <td className="xr xt xu x3 x4 washed-green">Aa</td>
-      <td className="xr">--washed-green: #EAFCE3</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-red" />
-      <td className="xr xt xu x3 x4 red">Aa</td>
-      <td className="xr">--red: #FF4C4C</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-washed-red" />
-      <td className="xr xt xu x3 x4 washed-red">Aa</td>
-      <td className="xr">--washed-red: #FFE6E6</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-yellow" />
-      <td className="xr xt xu x3 x4 yellow">Aa</td>
-      <td className="xr">--yellow: #FFB100</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-washed-yellow" />
-      <td className="xr xt xu x3 x4 washed-yellow">Aa</td>
-      <td className="xr">--washed-yellow: #FFF6E0</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-black-90" />
-      <td className="xr xt xu x3 x4 black-90">Aa</td>
-      <td className="xr">--black-90: rgba(0,0,0,.9)</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-black-80" />
-      <td className="xr xt xu x3 x4 black-80">Aa</td>
-      <td className="xr">--black-80: rgba(0,0,0,.8)</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-black-70" />
-      <td className="xr xt xu x3 x4 black-70">Aa</td>
-      <td className="xr">--black-70: rgba(0,0,0,.7)</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-black-60" />
-      <td className="xr xt xu x3 x4 black-60">Aa</td>
-      <td className="xr">--black-60: rgba(0,0,0,.6)</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-black-50" />
-      <td className="xr xt xu x3 x4 black-50">Aa</td>
-      <td className="xr">--black-50: rgba(0,0,0,.5)</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-black-40" />
-      <td className="xr xt xu x3 x4 black-40">Aa</td>
-      <td className="xr">--black-40: rgba(0,0,0,.4)</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-black-30" />
-      <td className="xr xt xu x3 x4 black-30">Aa</td>
-      <td className="xr">--black-30: rgba(0,0,0,.3)</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-black-20" />
-      <td className="xr xt xu x3 x4 black-20">Aa</td>
-      <td className="xr">--black-20: rgba(0,0,0,.2)</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-black-10" />
-      <td className="xr xt xu x3 x4 black-10">Aa</td>
-      <td className="xr">--black-10: rgba(0,0,0,.1)</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-black-05" />
-      <td className="xr xt xu x3 x4 black-05">Aa</td>
-      <td className="xr">--black-05: rgba(0,0,0,.05)</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-black-025" />
-      <td className="xr xt xu x3 x4 black-025">Aa</td>
-      <td className="xr">--black-025: rgba(0,0,0,.025)</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-black-0125" />
-      <td className="xr xt xu x3 x4 black-0125">Aa</td>
-      <td className="xr">--black-0125: rgba(0,0,0,.0125)</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-white-90" />
-      <td className="xr xt xu x3 x4 white-90">Aa</td>
-      <td className="xr">--white-90: rgba(255,255,255,.9)</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-white-80" />
-      <td className="xr xt xu x3 x4 white-80">Aa</td>
-      <td className="xr">--white-80: rgba(255,255,255,.8)</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-white-70" />
-      <td className="xr xt xu x3 x4 white-70">Aa</td>
-      <td className="xr">--white-70: rgba(255,255,255,.7)</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-white-60" />
-      <td className="xr xt xu x3 x4 white-60">Aa</td>
-      <td className="xr">--white-60: rgba(255,255,255,.6)</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-white-50" />
-      <td className="xr xt xu x3 x4 white-50">Aa</td>
-      <td className="xr">--white-50: rgba(255,255,255,.5)</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-white-40" />
-      <td className="xr xt xu x3 x4 white-40">Aa</td>
-      <td className="xr">--white-40: rgba(255,255,255,.4)</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-white-30" />
-      <td className="xr xt xu x3 x4 white-30">Aa</td>
-      <td className="xr">--white-30: rgba(255,255,255,.3)</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-white-20" />
-      <td className="xr xt xu x3 x4 white-20">Aa</td>
-      <td className="xr">--white-20: rgba(255,255,255,.2)</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-white-10" />
-      <td className="xr xt xu x3 x4 white-10">Aa</td>
-      <td className="xr">--white-10: rgba(255,255,255,.1)</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-white-05" />
-      <td className="xr xt xu x3 x4 white-05">Aa</td>
-      <td className="xr">--white-05: rgba(255,255,255,.05)</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-white-025" />
-      <td className="xr xt xu x3 x4 white-025">Aa</td>
-      <td className="xr">--white-025: rgba(255,255,255,.025)</td>
-    </tr>
-    <tr>
-      <td className="xr xs bg-white-0125" />
-      <td className="xr xt xu x3 x4 white-0125">Aa</td>
-      <td className="xr">--white-0125: rgba(255,255,255,.0125)</td>
-    </tr>
-  </tbody>
-</table>
+Color themes are used to reflect a product's style with consistency across all components used on the application. Each color has some specific function when applied to an element on screen. They can be customized to match the app's style guidelines, reflecting their function. 
+
+<!-- Action Colors-->
+<div class="f3 fw5 c-on-base pt7 pb5">Action colors</div>
+This colors should be applied to interactive elements of an application.
+
+<div class="flex mt3 items-center">
+    <div class="f5 fw5 c-on-base pv5 mv0 mr5">Primary</div>
+</div>
+The action-primary color is the color used on the interactive elements of an app. It should drive the user's attention to the tasks that should be done using the app. This token should be applied to:
+
+<div class="pa3 br2 bg-muted-5 c-on-muted-5 mb6 dib mr5">Call to action</div>
+<div class="pa3 br2 bg-muted-5 c-on-muted-5 mb6 dib mr5">Form elements (checkbox, radio buttons)</div>
+<div class="pa3 br2 bg-muted-5 c-on-muted-5 mb6 dib">Toggles</div>
+
+```jsx 
+<div class="flex mv3 items-center">
+    <div class="pa3 br2 bg-action-primary hover-bg-action-primary active-bg-action-primary c-on-action-primary hover-c-on-action-primary active-c-on-action-primary dib mr3">Aa</div>
+    <div class="pa3 br2 c-action-primary hover-c-action-primary active-c-action-primary dib mr5 mv0 ba b--action-primary hover-b-action-primary active-b-action-primary">Aa</div>
+</div>
+
+```
+
+
+<!-- -->
+
+<div class="flex mt3  items-center">
+    <div class="f5 fw5 c-on-base pv5 mv0 mr5">Secondary</div>
+</div>
+The action-secondary color is used on the less important interactions of an app. It should be visually less prominent in comparison with the action-primary color. This token should be applied to:
+
+<div class="pa3 br2 bg-muted-5 c-on-muted-5 mb6 dib">Secondary buttons</div>
+
+```jsx 
+<div class="flex mv3 items-center">
+    <div class="pa3 br2 bg-action-secondary hover-bg-action-secondary active-bg-action-secondary c-on-action-secondary hover-c-on-action-secondary active-c-on-action-success dib mr3">Aa</div>
+    <div class="pa3 br2 c-action-secondary hover-c-action-secondary active-c-action-secondary dib mr5 mv0 ba b--action-secondary hover-b-action-secondary active-b-action-secondary">Aa</div>
+</div>
+
+```
+
+<!-- -->
+
+<div class="flex mt3  items-center">
+    <div class="f5 fw5 c-on-base pv5 mv0 mr5">Disabled</div>
+</div>
+Used to indicate the disabled state of an interactive element. This token should be applied to:
+
+<div class="pa3 br2 bg-muted-5 c-on-muted-5 mb6 dib mr5">Disabled buttons</div>
+<div class="pa3 br2 bg-muted-5 c-on-muted-5 mb6 dib">Disabled form elements</div>
+
+```jsx 
+<div class="flex mv3 items-center">
+    <div class="pa3 br2 bg-disabled hover-bg-disabled c-on-disabled active-c-on-disabled primary dib mr3">Aa</div>
+    <div class="pa3 br2 c-disabled dib mr5 mv0 ba b--disabled hover-b-disabled active-b-disabled">Aa</div>
+</div>
+```
+
+
+<!-- -->
+
+<div class="flex mt3  items-center">
+    <div class="f5 fw5 c-on-base pv5 mv0 mr5">Link</div>
+</div>
+This token should be applied to:
+
+<div class="pa3 br2 bg-muted-5 c-on-muted-5 mb6 dib mr">Hyper-links</div>
+
+```jsx 
+<div class="flex mv3 items-center">
+    <div class="pa3 c-link hover-c-link active-c-link visited-c-link dib mr5 mv0">Aa</div>
+</div>
+
+```
+
+
+<!-- Feedback Colors-->
+<div class="f3 fw5 c-on-base pt7 pb5">Feedback colors</div>
+Colors used to facilitate user understanding of some information. Avoid using this colors on other elements that do not carry some feedback purpose. 
+
+<div class="flex mv3 items-center">
+    <div class="f5 fw5 c-on-base pv5 mv0 mr5">Success</div>
+</div>
+Success color is used to give the user a positive perception of an information that's being displayed. This token should be applied to:
+
+<div class="pa3 br2 bg-muted-5 c-on-muted-5 mb6 dib mr5">Success alerts</div>
+<div class="pa3 br2 bg-muted-5 c-on-muted-5 mb6 dib mr5">Badges</div>
+<div class="pa3 br2 bg-muted-5 c-on-muted-5 mb6 dib mr5">Positive trends</div>
+<div class="pa3 br2 bg-muted-5 c-on-muted-5 mb6 dib">
+Success confirmations such as Order Placed</div>
+
+```jsx 
+<div class="flex mv3 items-center">
+    <div class="pa3 br2 bg-success hover-bg-success active-bg-success c-on-success hover-c-on-success active-c-on-success dib mr3">Aa</div>
+    <div class="pa3 br2 bg-success--faded hover-bg-success-faded active-bg-success-faded c-success hover-c-success active-c-success dib mr5 mv0 ba b--success hover-b-success active-b-success">Aa</div>
+</div>
+
+```
+
+<div class="flex mv3 items-center">
+    <div class="f5 fw5 c-on-base pv5 mv0 mr5">Warning</div>
+</div>
+Warning color is used to inform users that something is not performing as it should or that they need caution before taking some action. This token should be applied to:
+
+<div class="pa3 br2 bg-muted-5 c-on-muted-5 mb6 dib mr5">Warning alerts</div>
+<div class="pa3 br2 bg-muted-5 c-on-muted-5 mb6 dib">badges</div>
+
+```jsx 
+<div class="flex mv3 items-center">
+    <div class="pa3 br2 bg-warning hover-bg-warning active-bg-warning c-on-warning hover-c-on-warning active-c-on-warning dib mr3">Aa</div>
+    <div class="pa3 br2 bg-warning--faded hover-bg-warning-faded active-bg-warning-faded c-warning hover-c-warning active-c-warning dib mr5 mv0 ba b--warning hover-b-warning active-b-warning">Aa</div>
+</div>
+
+```
+
+<div class="flex mv3 items-center">
+    <div class="f5 fw5 c-on-base pv5 mv0 mr5">Danger</div>
+</div>
+Danger color is used to give users error feedbacks and inform that they need extreme caution before taking some action. This token should be applied to:
+
+<div class="pa3 br2 bg-muted-5 c-on-muted-5 mb6 dib mr5">Danger alerts</div>
+<div class="pa3 br2 bg-muted-5 c-on-muted-5 mb6 dib mr5">Badges</div>
+<div class="pa3 br2 bg-muted-5 c-on-muted-5 mb6 dib mr5">Danger buttons</div>
+<div class="pa3 br2 bg-muted-5 c-on-muted-5 mb6 dib mr5">Negative trends</div>
+<div class="pa3 br2 bg-muted-5 c-on-muted-5 mb6 dib">Error messages</div>
+
+```jsx 
+<div class="flex mv3 items-center">
+    <div class="pa3 br2 bg-danger hover-bg-danger active-bg-danger c-on-danger hover-c-on-danger active-c-on-danger dib mr3">Aa</div>
+    <div class="pa3 br2 bg-danger--faded hover-bg-danger-faded active-bg-danger-faded c-danger hover-c-danger active-c-danger dib mr5 mv0 ba b--danger hover-b-danger active-b-danger">Aa</div>
+</div>
+
+```
+
+<!-- Emphasis Color-->
+
+<div class="flex mv3 items-center">
+    <div class="f3 fw5 c-on-base pv7 mv0 mr5">Emphasis color</div>
+</div>
+
+Emphasis color should be used to call user's attention to a relevant but neutral information. It shouldn't be used on interactive elements since it's just a visual reference. This token should be applied to:
+
+<div class="pa3 br2 bg-muted-5 c-on-muted-5 mb6 dib mr5">Contextual tabs</div>
+<div class="pa3 br2 bg-muted-5 c-on-muted-5 mb6 dib mr5">Badges</div>
+<div class="pa3 br2 bg-muted-5 c-on-muted-5 mb6 dib">Promotional tags</div>
+
+```jsx 
+<div class="flex mv3 items-center">
+    <div class="pa3 br2 bg-emphasis hover-bg-emphasis active-bg-emphasis c-on-emphasis hover-c-on-emphasis active-c-on-emphasis dib mr3">Aa</div>
+    <div class="pa3 br2 c-emphasis hover-c-emphasis active-c-emphasis dib mr5 mv0 ba b--emphasis hover-b-emphasis active-b-emphasis">Aa</div>
+</div>
+
+```
+
+<!-- Base Color-->
+<div class="f3 fw5 c-on-base pt7 pb5">Base color</div>
+The colors that will receive most of the app's content. Base colors can only be applied as backgrounds of pages and elements. 
+
+<div class="flex mv3 items-center">
+    <div class="f5 fw5 c-on-base pv5 mv0 mr5">Base</div>
+</div>
+
+The main background color of the app. This token should be applied to:
+
+<div class="pa3 br2 bg-muted-5 c-on-muted-5 mb6 dib mr5">Body background</div>
+<div class="pa3 br2 bg-muted-5 c-on-muted-5 mb6 dib mr5">Modals</div>
+<div class="pa3 br2 bg-muted-5 c-on-muted-5 mb6 dib">Cards</div>
+
+```jsx 
+<div class="flex mv3 items-center">
+    <div class="pa3 br2 bg-base hover-bg-base active-bg-base c-on-base hover-c-on-base active-c-on-base dib mr3">Aa</div>
+</div>
+
+```
+
+<div class="flex mv3 items-center">
+    <div class="f5 fw5 c-on-base pv5 mv0 mr5">Base inverted</div>
+</div>
+
+The negative color of the base color. This token should be applied to:
+
+<div class="pa3 br2 bg-muted-5 c-on-muted-5 mb6 dib mr5">Specific sections' background</div>
+<div class="pa3 br2 bg-muted-5 c-on-muted-5 mb6 dib mr5">Specific pages' background</div>
+<div class="pa3 br2 bg-muted-5 c-on-muted-5 mb6 dib">Toasts</div>
+
+```jsx 
+<div class="flex mv3 items-center">
+    <div class="pa3 br2 bg-base--inverted hover-bg-base--inverted active-bg-base--inverted c-on-base--inverted hover-c-on-base--inverted active-c-on-base--inverted dib mr3">Aa</div>
+</div>
+
+```
+
+<!-- Muted Color-->
+<div class="flex mv3 items-center">
+    <div class="f3 fw5 c-on-base pv7 mv0 mr5">Muted Color</div>
+</div>
+
+Should be applied to elements that support an app but do not need emphasis. Should have mid to low contrast with the base colors as they are not meant to call attention. Muted-1 is the most contrasting color and muted-5 is the less one. This token should be applied to:
+
+<div class="pa3 br2 bg-muted-5 c-on-muted-5 mb6 dib mr5">Borders</div>
+<div class="pa3 br2 bg-muted-5 c-on-muted-5 mb6 dib mr5">Separators</div>
+<div class="pa3 br2 bg-muted-5 c-on-muted-5 mb6 dib">Sections Backgrounds</div>
+
+```jsx 
+<div class="flex mv3 items-center">
+    <div class="pa3 br2 bg-muted-1 hover-bg-muted-1 active-bg-muted-1 c-on-muted-1 hover-c-on-muted-1 active-c-on-muted-1 dib mr3">Aa</div>
+    <div class="pa3 br2 c-muted-1 hover-c-muted-1 active-c-muted-1 dib mr5 mv0 ba b--muted-1 hover-b-muted-1 active-b-muted-1">Aa</div>
+    <div class="pa3 br2 bg-muted-2 hover-bg-muted-2 active-bg-muted-2 c-on-muted-2 hover-c-on-muted-2 active-c-on-muted-2 dib mr3">Aa</div>
+    <div class="pa3 br2 c-muted-2 hover-c-muted-2 active-c-muted-2 dib mr5 mv0 ba b--muted-2 hover-b-muted-2 active-b-muted-2">Aa</div>
+    <div class="pa3 br2 bg-muted-3 hover-bg-muted-3 active-bg-muted-3 c-on-muted-3 hover-c-on-muted-3 active-c-on-muted-3 dib mr3">Aa</div>
+    <div class="pa3 br2 c-muted-3 hover-c-muted-3 active-c-muted-3 dib mr5 mv0 ba b--muted-3 hover-b-muted-3 active-b-muted-3">Aa</div>
+    <div class="pa3 br2 bg-muted-4 hover-bg-muted-4 active-bg-muted-4 c-on-muted-4 hover-c-on-muted-4 active-c-on-muted-4 dib mr3">Aa</div>
+    <div class="pa3 br2 c-muted-4 hover-c-muted-4 active-c-muted-4 dib mr5 mv0 ba b--muted-4 hover-b-muted-4 active-b-muted-4">Aa</div>
+    <div class="pa3 br2 bg-muted-5 hover-bg-muted-5 active-bg-muted-5 c-on-muted-5 hover-c-on-muted-5 active-c-on-muted-5 dib mr3">Aa</div>
+    <div class="pa3 br2 c-muted-5 hover-c-muted-5 active-c-muted-5 dib mr5 mv0 ba b--muted-5 hover-b-muted-5 active-b-muted-5">Aa</div>    
+</div>
+
 ```
