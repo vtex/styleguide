@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Toast from './Toast'
 import isString from 'lodash/isString'
+import isEqual from 'lodash/isEqual'
+
+import Toast from './Toast'
+import ToastMessage from './ToastMessage'
 
 const ToastContext = React.createContext({
   showToast: () => {},
@@ -28,6 +31,14 @@ class ToastProvider extends Component {
     const { message = '', action, duration } = args
 
     if (this.state.currentToast) {
+      // Check if is the same toast
+      if (
+        isEqual(this.state.currentToast, { message, action, duration }) ||
+        isEqual(this.state.nextToast, { message, action, duration })
+      ) {
+        return
+      }
+
       // If there is a toast present already, queue up the next toast
       // It will be displayed when the current toast is closed, on handleToastClose
       this.setState({
@@ -102,6 +113,15 @@ class ToastProvider extends Component {
     }
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      nextProps.positioning !== this.props.positioning ||
+      nextState.isToastVisible !== this.state.isToastVisible ||
+      !isEqual(nextState.currentToast, this.state.currentToast) ||
+      !isEqual(nextState.nextToast, this.state.nextToast)
+    )
+  }
+
   componentDidUpdate() {
     this.updateContainerBounds()
   }
@@ -156,6 +176,14 @@ class ToastConsumer extends Component {
           children({
             showToast: value.showToast,
             hideToast: value.hideToast,
+            ToastMessage: ({ children, ...props }) => (
+              <ToastMessage
+                message={children}
+                showToast={value.showToast}
+                hideToast={value.hideToast}
+                {...props}
+              />
+            ),
           })
         }
       </ToastContext.Consumer>

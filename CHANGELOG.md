@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [7.5.6] - 2018-11-08
+
+## [7.5.5] - 2018-11-08
+
+### Added
+
+- **Toast** Create ToastMessage passed on ToastConsumer to immediately allow to use toast
+
 ## [7.5.4] - 2018-11-07
 
 ## [7.5.3] - 2018-11-07
@@ -131,7 +139,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [6.4.4] - 2018-10-01
 
 ### Added
-- **Icons** Fix plus icon svg. 
+- **Icons** Fix plus icon svg.
 - Improves styles of Multiselect
 
 ### Fixed
