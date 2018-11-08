@@ -1,6 +1,4 @@
-### Overview
-
-Toasts give users instant feedback about the tasks they just did. Its main objective is to ensure tasks confirmation and success.
+#### Toasts give users instant feedback about the tasks they just did. Its main objective is to ensure tasks confirmation and success. 
 
 ### 👍 Dos
 
