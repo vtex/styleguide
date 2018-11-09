@@ -135,3 +135,56 @@ const Content = () => (
 ;<App/>
 
 ```
+
+### Higher order component
+
+```js
+  const withToast = require('./index').withToast
+  const Input = require('../Input').default
+  const debounce = require('lodash').debounce
+
+  class App extends React.Component {
+    constructor(props){
+      super(props)
+
+      this.state = {
+        value: '',
+      }
+
+      this.handleInputChange = this.handleInputChange.bind(this)
+      this.showToast = debounce(this.showToast.bind(this), 300)
+    }
+
+    handleInputChange(event) {
+      this.setState({ value: event.currentTarget.value })
+    }
+
+    componentDidUpdate(prevState) {
+      if(prevState.value !== this.state.value) {
+        this.showToast(`Value set to ${this.state.value}`)
+      }
+    }
+
+    showToast(message) {
+      this.props.showToast({ message })
+    }
+
+    render() {
+      const {value} = this.state
+      return (
+        <Input
+          value={value}
+          label="Write something below to display a toast"
+          onChange={this.handleInputChange}
+          placeholder="Type here"
+        />
+      )
+    }
+  }
+
+  const AppWithToast = withToast(App)
+
+  ;<ToastProvider positioning="window">
+    <AppWithToast />
+  </ToastProvider>
+```
