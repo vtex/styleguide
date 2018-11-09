@@ -136,8 +136,6 @@ const Content = () => (
 
 ```
 
-### Higher order component
-
 ```js
   const withToast = require('./index').withToast
   const Input = require('../Input').default
@@ -160,8 +158,13 @@ const Content = () => (
     }
 
     componentDidUpdate(prevState) {
-      if(prevState.value !== this.state.value) {
-        this.showToast(`Value set to ${this.state.value}`)
+      const { value } = this.state
+      if ( prevState.value !== this.state.value ) {
+        if (value === ''){
+          this.showToast('The text has been erased')
+        } else {
+          this.showToast(`You typed: “${this.state.value}”`)
+        }
       }
     }
 
@@ -172,17 +175,24 @@ const Content = () => (
     render() {
       const {value} = this.state
       return (
-        <Input
-          value={value}
-          label="Write something below to display a toast"
-          onChange={this.handleInputChange}
-          placeholder="Type here"
-        />
+        <React.Fragment>
+          <div className="mb6">
+            <h3>Higher order component</h3>
+            For use on component lifecycle methods (componentDidMount, componentDidUpdate, etc)
+          </div>
+          <Input
+            value={value}
+            label="Write something below to display a toast"
+            onChange={this.handleInputChange}
+            placeholder="Type here"
+          />
+        </React.Fragment>
       )
     }
   }
 
   const AppWithToast = withToast(App)
+
 
   ;<ToastProvider positioning="window">
     <AppWithToast />
