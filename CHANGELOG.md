@@ -6,8 +6,18 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
 ### Fixed
 - **PageHeader** using `flex-wrap` to fix layout on small screens
+- Revert ToastMessage, fixing a bug where children of ToastProvider would not update
+
+## [7.5.6] - 2018-11-08
+
+## [7.5.5] - 2018-11-08
+
+### Added
+
+- **Toast** Create ToastMessage passed on ToastConsumer to immediately allow to use toast
 
 ## [7.5.4] - 2018-11-07
 
@@ -133,7 +143,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [6.4.4] - 2018-10-01
 
 ### Added
-- **Icons** Fix plus icon svg. 
+- **Icons** Fix plus icon svg.
 - Improves styles of Multiselect
 
 ### Fixed
