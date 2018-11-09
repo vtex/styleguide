@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [7.5.7] - 2018-11-09
+
 ### Fixed
 - **PageHeader** using `flex-wrap` to fix layout on small screens
 - Revert ToastMessage, fixing a bug where children of ToastProvider would not update
