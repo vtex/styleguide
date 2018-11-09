@@ -135,3 +135,66 @@ const Content = () => (
 ;<App/>
 
 ```
+
+```js
+  const withToast = require('./index').withToast
+  const Input = require('../Input').default
+  const debounce = require('lodash').debounce
+
+  class App extends React.Component {
+    constructor(props){
+      super(props)
+
+      this.state = {
+        value: '',
+      }
+
+      this.handleInputChange = this.handleInputChange.bind(this)
+      this.showToast = debounce(this.showToast.bind(this), 300)
+    }
+
+    handleInputChange(event) {
+      this.setState({ value: event.currentTarget.value })
+    }
+
+    componentDidUpdate(prevState) {
+      const { value } = this.state
+      if ( prevState.value !== this.state.value ) {
+        if (value === ''){
+          this.showToast('The text has been erased')
+        } else {
+          this.showToast(`You typed: “${this.state.value}”`)
+        }
+      }
+    }
+
+    showToast(message) {
+      this.props.showToast({ message })
+    }
+
+    render() {
+      const {value} = this.state
+      return (
+        <React.Fragment>
+          <div className="mb6">
+            <h3>Higher order component</h3>
+            For use on component lifecycle methods (componentDidMount, componentDidUpdate, etc)
+          </div>
+          <Input
+            value={value}
+            label="Write something below to display a toast"
+            onChange={this.handleInputChange}
+            placeholder="Type here"
+          />
+        </React.Fragment>
+      )
+    }
+  }
+
+  const AppWithToast = withToast(App)
+
+
+  ;<ToastProvider positioning="window">
+    <AppWithToast />
+  </ToastProvider>
+```
