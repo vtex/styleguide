@@ -57,7 +57,7 @@ class DrawerBox extends Component {
 
 class Drawer extends Component {
   state = {
-    isVisible: false,
+    isVisible: this.props.isOpen,
   }
 
   componentDidUpdate(prevProps) {
