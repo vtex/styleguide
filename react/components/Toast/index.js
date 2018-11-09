@@ -14,11 +14,11 @@ class ToastProvider extends Component {
     this.toastManager = React.createRef()
   }
 
-  showToast = message => {
+  showToast = args => {
     this.toastManager &&
       this.toastManager.current &&
       this.toastManager.current.showToast &&
-      this.toastManager.current.showToast(message)
+      this.toastManager.current.showToast(args)
   }
 
   hideToast = () => {
