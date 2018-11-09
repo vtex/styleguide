@@ -73,4 +73,17 @@ ToastConsumer.propTypes = {
   children: PropTypes.func.isRequired,
 }
 
-export { ToastProvider, ToastConsumer }
+// eslint-disable-next-line react/display-name
+const withToast = WrappedComponent => props => (
+  <ToastConsumer>
+    {({ showToast, hideToast }) => (
+      <WrappedComponent
+        showToast={showToast}
+        hideToast={hideToast}
+        {...props}
+      />
+    )}
+  </ToastConsumer>
+)
+
+export { ToastProvider, ToastConsumer, withToast }
