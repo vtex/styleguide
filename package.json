@@ -8,7 +8,7 @@
     "deploy": "gh-pages -d styleguide",
     "styleguide": "styleguidist server",
     "start": "styleguidist server",
-    "styleguide:build": "styleguidist build",
+    "styleguide:build": "styleguidist build && echo 'styleguide.vtex.com' >./styleguide/CNAME",
     "babel": "NODE_ENV=production babel ./react/components --out-dir ./lib --ignore '__tests__,*.spec.js' --ignore '*.md' --copy-files",
     "compile": "run-s cleanlib babel",
     "cleanlib": "rm -rf lib",
