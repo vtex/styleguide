@@ -6,8 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [7.5.7] - 2018-11-09
+
 ### Fixed
 - **PageHeader** using `flex-wrap` to fix layout on small screens
+- Revert ToastMessage, fixing a bug where children of ToastProvider would not update
 
 ## [7.5.6] - 2018-11-08
 
