@@ -79,6 +79,15 @@ class Button extends Component {
         }
         break
       }
+      case 'danger-tertiary': {
+        if (disabled) {
+          classes += 'bg-transparent b--transparent c-disabled '
+        } else {
+          classes +=
+            'bg-transparent b--transparent c-danger hover-b--transparent hover-c-danger '
+        }
+        break
+      }
     }
 
     if (!disabled) {

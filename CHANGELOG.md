@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [7.6.2] - 2018-11-14
+
+## [7.6.1] - 2018-11-14
+
+### Added
+
+- **Button** Add "danger tertiary" Button variation
+
 ## [7.6.0] - 2018-11-09
 
 ### Added
