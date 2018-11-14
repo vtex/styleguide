@@ -84,7 +84,7 @@ class Button extends Component {
           classes += 'bg-transparent b--transparent c-disabled '
         } else {
           classes +=
-            'bg-transparent b--transparent c-danger hover-b--transparent hover-bg-light-silver '
+            'bg-transparent b--transparent c-danger hover-b--transparent hover-c-danger '
         }
         break
       }
