@@ -79,7 +79,7 @@ class Button extends Component {
         }
         break
       }
-      case 'danger tertiary': {
+      case 'danger-tertiary': {
         if (disabled) {
           classes += 'bg-transparent b--transparent c-disabled '
         } else {
