@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [7.6.3] - 2018-11-14
+
 ### Added
 
 - **Toast** Export toast HOC to allow VTEX IO usage
