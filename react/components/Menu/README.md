@@ -2,59 +2,62 @@ WIP docs. this is menu, pls use with caution.
 When it haz some documentation it will be really awesome. And you will never use it wrongly (I hope)
 Thanks for the attention. For all the lovelly ppl who did read this far, many thanks...
 
-Alignment
+Left Aligned
 
 ```js
-<div className="flex flex-row w-100 justify-between">
-  <div className="ma3">
-    <Menu
-      label="box aligned left"
-      align="left"
-      boxWidth="100%"
-      options={[
-        {
-          label: 'Open pod doors, HAL',
-          handleCallback: () => alert('I’m sorry, Dave. I’m afraid I can’t do that.')
-        },
-        {
-          label: 'Have you heard about the word?',
-          handleCallback: () => alert('sure, everybody knows that the bird is the word...')
-        },
-        {
-          label: 'Hey look',
-          handleCallback: () => alert('Listen!')
-        },
-        {
-          label: 'Quit now and cake will be served',
-          handleCallback: () => alert('The cake is a lie')
-        },
-      ]}
-    />
-  </div>
-  <div className="ma3">
-    <Menu
-      label="box aligned right"
-      boxWidth="100%"
-      options={[
-        {
-          label: 'Start front engines motors',
-          handleCallback: () => alert('beep!')
-        },
-        {
-          label: 'Engage side thrusters heating',
-          handleCallback: () => alert('boop!')
-        },
-        {
-          label: 'Commence take off immediatelly',
-          handleCallback: () => alert('meerp!')
-        },
-        {
-          label: 'Prepare for Adama maneuver',
-          handleCallback: () => alert('Do a barrel roll!')
-        },
-      ]}
-    />
-  </div>
+<div style={{ height: '10rem' }}>
+  <Menu
+    isOpen
+    align="left"
+    boxWidth="100%"
+    options={[
+      {
+        label: 'Open pod doors, HAL',
+        handleCallback: () => alert('I’m sorry, Dave. I’m afraid I can’t do that.')
+      },
+      {
+        label: 'Have you heard about the word?',
+        handleCallback: () => alert('sure, everybody knows that the bird is the word...')
+      },
+      {
+        label: 'Hey look',
+        handleCallback: () => alert('Listen!')
+      },
+      {
+        label: 'Quit now and cake will be served',
+        handleCallback: () => alert('The cake is a lie')
+      },
+    ]}
+  />
+</div>
+```
+
+Right Aligned (default)
+
+```js
+<div style={{ height: '10rem' }}>
+  <Menu
+    isOpen
+    boxWidth="100%"
+    options={[
+      {
+        label: 'Start front engines motors',
+        handleCallback: () => alert('beep!')
+      },
+      {
+        label: 'Engage side thrusters heating',
+        handleCallback: () => alert('boop!')
+      },
+      {
+        label: 'Commence take off immediatelly',
+        handleCallback: () => alert('meerp!')
+      },
+      {
+        label: 'Prepare for Adama maneuver',
+        handleCallback: () => alert('Do a barrel roll!')
+      },
+    ]}
+  />
 </div>
 ```
 
@@ -81,9 +84,9 @@ class MenusExample extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={{ height: '14rem' }}>
         <Menu
-          label="big list example"
+          isOpen
           align="left"
           options={[
             {
@@ -169,35 +172,4 @@ class MenusExample extends React.Component {
     );
   }
 };<MenusExample />
-```
-
-Icons
-```js
-const Cog = require('../icon/Cog').default;
-<div className="ma3">
-  <Menu
-    icon={<Cog color="currentColor" size={13} />}
-    label="Settings"
-    align="left"
-    boxWidth="100%"
-    options={[
-      {
-        label: 'Open pod doors, HAL',
-        handleCallback: () => alert('I’m sorry, Dave. I’m afraid I can’t do that.')
-      },
-      {
-        label: 'Have you heard about the word?',
-        handleCallback: () => alert('sure, everybody knows that the bird is the word...')
-      },
-      {
-        label: 'Hey look',
-        handleCallback: () => alert('Listen!')
-      },
-      {
-        label: 'Quit now and cake will be served',
-        handleCallback: () => alert('The cake is a lie')
-      },
-    ]}
-  />
-</div>
 ```
