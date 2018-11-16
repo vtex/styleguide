@@ -1,9 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 
-import Button from '../Button'
-import IconCaretDown from '../icon/CaretDown'
-import IconCaretUp from '../icon/CaretUp'
 import Toggle from '../Toggle'
 const BOX_WIDTH = 292
 const MAX_BOX_HEIGHT = 192
@@ -13,31 +10,6 @@ class Menu extends Component {
   constructor(props) {
     super(props)
     this.menuBtnRef = React.createRef()
-    this.state = {
-      isBoxOpen: false,
-      isHoveringButton: false,
-    }
-  }
-
-  handleMenuClick = () => {
-    const { isBoxOpen } = this.state
-    if (isBoxOpen) {
-      document.removeEventListener('mousedown', this.handleClickOutside)
-    } else {
-      document.addEventListener('mousedown', this.handleClickOutside)
-    }
-    this.setState({ isBoxOpen: !isBoxOpen })
-  }
-
-  handleClickOutside = e => {
-    if (
-      this.menuBtnRef &&
-      this.menuBtnRef.current &&
-      !this.menuBtnRef.current.contains(e.target) &&
-      this.state.isBoxOpen
-    ) {
-      this.handleMenuClick()
-    }
   }
 
   calculateBoxHeight = () => {
@@ -46,42 +18,13 @@ class Menu extends Component {
     return estimate > MAX_BOX_HEIGHT ? MAX_BOX_HEIGHT : estimate
   }
 
-  handleHover = isHovering => {
-    const { isBoxOpen, isHoveringButton } = this.state
-    if (!isBoxOpen || isHovering !== isHoveringButton) {
-      this.setState({ isHoveringButton: isHovering })
-    }
-  }
-
-  renderIcon(icon) {
-    if (!icon) return null
-    return <div className="mr2 pt2 self-center">{icon}</div>
-  }
-
   render() {
-    const { icon, label, options, boxWidth, align } = this.props
-    const { isBoxOpen, isHoveringButton } = this.state
+    const { options, boxWidth, align, isOpen } = this.props
 
     return (
       <Fragment>
         <div ref={this.menuBtnRef} className="relative">
-          <Button
-            variation={isBoxOpen || isHoveringButton ? 'secondary' : 'tertiary'}
-            size="small"
-            onMouseOver={() => this.handleHover(true)}
-            onMouseOut={() => this.handleHover(false)}
-            onClick={this.handleMenuClick}>
-            <span className="flex align-baseline items-center">
-              {this.renderIcon(icon)}
-              <span className="mr3">{label}</span>
-              {isBoxOpen ? (
-                <IconCaretUp size={13} color="currentColor" />
-              ) : (
-                <IconCaretDown size={13} color="currentColor" />
-              )}
-            </span>
-          </Button>
-          {isBoxOpen && (
+          {isOpen && (
             <div
               className={`absolute z-999 ba b--light-gray br2 shadow-1 mt4 ${
                 align === 'right' ? 'right-0' : 'left-0'
@@ -134,13 +77,12 @@ class Menu extends Component {
 Menu.defaultProps = {
   options: [],
   align: 'right',
+  isOpen: false,
 }
 
 Menu.propTypes = {
-  /** Menu Button label */
-  label: PropTypes.string.isRequired,
-  /** Menu Button icon */
-  icon: PropTypes.element,
+  /** Menu visibility (default is false) */
+  isOpen: PropTypes.bool,
   /** Menu Box width (default is 292px) */
   boxWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /** Menu options */
