@@ -7,7 +7,7 @@ Alignment
 ```js
 <div className="flex flex-row w-100 justify-between">
   <div className="ma3">
-    <Menu
+    <DropdownMenu
       label="box aligned left"
       align="left"
       boxWidth="100%"
@@ -32,7 +32,7 @@ Alignment
     />
   </div>
   <div className="ma3">
-    <Menu
+    <DropdownMenu
       label="box aligned right"
       boxWidth="100%"
       options={[
@@ -82,7 +82,7 @@ class MenusExample extends React.Component {
   render() {
     return (
       <div>
-        <Menu
+        <DropdownMenu
           label="big list example"
           align="left"
           options={[
@@ -175,7 +175,7 @@ Icons
 ```js
 const Cog = require('../icon/Cog').default;
 <div className="ma3">
-  <Menu
+  <DropdownMenu
     icon={<Cog color="currentColor" size={13} />}
     label="Settings"
     align="left"

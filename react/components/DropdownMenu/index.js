@@ -1,15 +1,13 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 
+import Menu from '../Menu'
 import Button from '../Button'
+
 import IconCaretDown from '../icon/CaretDown'
 import IconCaretUp from '../icon/CaretUp'
-import Toggle from '../Toggle'
-const BOX_WIDTH = 292
-const MAX_BOX_HEIGHT = 192
-const BOX_ITEM_HEIGHT = 36
 
-class Menu extends Component {
+class DropdownMenu extends Component {
   constructor(props) {
     super(props)
     this.menuBtnRef = React.createRef()
@@ -38,12 +36,6 @@ class Menu extends Component {
     ) {
       this.handleMenuClick()
     }
-  }
-
-  calculateBoxHeight = () => {
-    const { options } = this.props
-    const estimate = options.length * BOX_ITEM_HEIGHT
-    return estimate > MAX_BOX_HEIGHT ? MAX_BOX_HEIGHT : estimate
   }
 
   handleHover = isHovering => {
@@ -81,65 +73,27 @@ class Menu extends Component {
               )}
             </span>
           </Button>
-          {isBoxOpen && (
-            <div
-              className={`absolute z-999 ba b--light-gray br2 shadow-1 mt4 ${
-                align === 'right' ? 'right-0' : 'left-0'
-              }`}>
-              <div
-                className="b2 br2 bg-base"
-                style={{ width: boxWidth || BOX_WIDTH }}>
-                <div
-                  style={{ height: this.calculateBoxHeight() }}
-                  className={
-                    options.length * BOX_ITEM_HEIGHT > MAX_BOX_HEIGHT
-                      ? 'overflow-scroll'
-                      : ''
-                  }>
-                  {options.map((option, index) => (
-                    <div
-                      key={index}
-                      className="flex justify-between ph6 pv3 pointer hover-bg-light-silver"
-                      onClick={() => {
-                        option.handleCallback(option)
-                        if (option.closeBoxOnClick) {
-                          this.handleMenuClick()
-                        }
-                      }}>
-                      <span
-                        className={
-                          option.toggle ? 'w-70 truncate' : 'w-100 truncate'
-                        }>
-                        {option.label}
-                      </span>
-                      {option.toggle && (
-                        <Toggle
-                          size="small"
-                          semantic={option.toggle.semantic}
-                          checked={option.toggle.checked}
-                        />
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
+          <Menu
+            isOpen={isBoxOpen}
+            align={align}
+            boxWidth={boxWidth}
+            options={options}
+          />
         </div>
       </Fragment>
     )
   }
 }
 
-Menu.defaultProps = {
+DropdownMenu.defaultProps = {
   options: [],
   align: 'right',
 }
 
-Menu.propTypes = {
-  /** Menu Button label */
+DropdownMenu.propTypes = {
+  /** DropdownMenu Button label */
   label: PropTypes.string.isRequired,
-  /** Menu Button icon */
+  /** DropdownMenu Button icon */
   icon: PropTypes.element,
   /** Menu Box width (default is 292px) */
   boxWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -161,4 +115,4 @@ Menu.propTypes = {
   align: PropTypes.oneOf(['right', 'left']),
 }
 
-export default Menu
+export default DropdownMenu
