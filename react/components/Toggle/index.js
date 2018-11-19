@@ -19,8 +19,8 @@ class Toggle extends Component {
     let labelClass = disabled ? 'c-disabled ' : 'c-on-base '
     let classes = 'flex items-center relative br4 '
     let circleClasses = 'absolute br-100 '
-    let iconDenyClasses = 'absolute flex justify-center c-danger '
-    let iconCheckClasses = 'absolute flex justify-center c-success '
+    let iconDenyClasses = 'absolute flex justify-center '
+    let iconCheckClasses = 'absolute flex justify-center '
 
     let circleStyle = {
       boxShadow: disabled ? 'none' : '0 0 10px rgba(0,0,0,0.2)',
@@ -33,16 +33,31 @@ class Toggle extends Component {
 
     // Background
     if (semantic) {
-      if (!disabled && !checked) {
-        classes += 'bg-danger '
-        iconDenyClasses += 'o-100 '
-        iconCheckClasses += 'o-0 '
-      }
+      if (!disabled) {
+        iconCheckClasses += 'c-success '
+        iconDenyClasses += 'c-danger '
 
-      if (!disabled && checked) {
-        classes += 'bg-success '
-        iconDenyClasses += 'o-0 '
-        iconCheckClasses += 'o-100 '
+        if (!checked) {
+          classes += 'bg-danger '
+          iconDenyClasses += 'o-100 '
+          iconCheckClasses += 'o-0 '
+        } else {
+          classes += 'bg-success '
+          iconDenyClasses += 'o-0 '
+          iconCheckClasses += 'o-100 '
+        }
+      } else {
+        classes += 'bg-disabled '
+        iconCheckClasses += 'c-on-disabled '
+        iconDenyClasses += 'c-on-disabled '
+
+        if (!checked) {
+          iconDenyClasses += 'o-100 '
+          iconCheckClasses += 'o-0 '
+        } else {
+          iconDenyClasses += 'o-0 '
+          iconCheckClasses += 'o-100 '
+        }
       }
     } else if (disabled) {
       classes += 'bg-disabled '
@@ -129,18 +144,12 @@ class Toggle extends Component {
             <div className={circleClasses} style={circleStyle} />
             {semantic && (
               <div className={iconDenyClasses} style={iconStyle}>
-                <DenyIcon
-                  size={size === 'regular' ? 14 : 12}
-                  color="currentColor"
-                />
+                <DenyIcon size={size === 'regular' ? 14 : 12} />
               </div>
             )}
             {semantic && (
               <div className={iconCheckClasses} style={iconStyle}>
-                <CheckIcon
-                  size={size === 'regular' ? 15 : 13}
-                  color="currentColor"
-                />
+                <CheckIcon size={size === 'regular' ? 15 : 13} />
               </div>
             )}
           </div>
