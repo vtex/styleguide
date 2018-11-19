@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [7.6.4] - 2018-11-19
+
+### Fixed
+
+- **Toggle** Fixes styling when it's `semantic` and `disabled` simultaneously
+
 ## [7.6.3] - 2018-11-14
 
 ### Added
