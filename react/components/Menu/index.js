@@ -60,6 +60,7 @@ class Menu extends Component {
                           size="small"
                           semantic={option.toggle.semantic}
                           checked={option.toggle.checked}
+                          onChange={option.toggle.handleChange}
                         />
                       )}
                     </div>
@@ -94,6 +95,7 @@ Menu.propTypes = {
       toggle: PropTypes.shape({
         checked: PropTypes.bool,
         semantic: PropTypes.bool,
+        handleChange: PropTypes.func,
       }),
       /** if clicking on this opption should close the box */
       closeBoxOnClick: PropTypes.bool,
