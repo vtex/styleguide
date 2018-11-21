@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- **Button** Add "danger tertiary" to Button variation propTypes, to stop React warning
+- **Button** Add `danger-tertiary` to Button variation propTypes, to stop React warning
 
 ## [7.6.4] - 2018-11-19
 
