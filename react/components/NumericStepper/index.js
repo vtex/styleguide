@@ -1,5 +1,5 @@
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import React from 'react'
 
 const normalizeMin = min => (min == null ? -Infinity : min)
 const normalizeMax = max => (max == null ? Infinity : max)
@@ -53,7 +53,7 @@ const validateDisplayValue = (value, min, max) => {
   return parsedValue
 }
 
-export default class NumericStepper extends React.Component {
+class NumericStepper extends Component {
   state = {
     inputFocused: false,
     // used for comparison whether to trigger onChange or not
@@ -286,3 +286,5 @@ NumericStepper.defaultProps = {
   size: 'regular',
   block: false,
 }
+
+export default NumericStepper

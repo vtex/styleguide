@@ -94,6 +94,7 @@ module.exports = {
             'react/components/Dropdown/index.js',
             'react/components/Input/index.js',
             'react/components/InputSearch/index.js',
+            'react/components/NumericStepper/index.js',
             'react/components/MultiSelect/index.js',
             'react/components/Textarea/index.js',
             'react/components/PasswordInput/index.js',
