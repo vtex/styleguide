@@ -3,9 +3,9 @@
     "vtex",
     "vtex-react",
     "plugin:import/recommended",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
   ],
-  "plugins": ["import"],
+  "plugins": ["import", "lodash"],
   "rules": {
     "import/no-unresolved": [
       "error",
@@ -15,6 +15,7 @@
         "ignore": ["^([a-zA-Z@]+[-\\.]?)+"]
       }
     ],
+    "lodash/import-scope": [2, "method"],
     // Rules that conflict with Prettier.
     // To verify conflicting rules, run:
     // $ npm run prettier-conflict-check
