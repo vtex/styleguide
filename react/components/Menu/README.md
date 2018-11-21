@@ -1,6 +1,18 @@
-WIP docs. this is menu, pls use with caution.
-When it haz some documentation it will be really awesome. And you will never use it wrongly (I hope)
-Thanks for the attention. For all the lovelly ppl who did read this far, many thanks...
+#### A Menu is a list of actions that a user can perform.
+
+### 👍 Dos
+
+- Use Menu component to create more complex components that need to list actions.
+
+### 👎 Don'ts
+
+- Don't use a Menu alone, check the related components below.
+
+### Related components
+
+- Consider a <a href="#/Components/Forms?id=dropdownmenu">DropdownMenu</a> when you want to present a group of actions the user can take.
+- Consider a <a href="#/Components/Forms?id=contextmenu">ContextMenu</a> if you want to provide a list of actions that change following the context.
+- Consider a <a href="#/Components/Forms?id=dropdown">Dropdown</a> if you expect the user to select a value from a preset of options.
 
 Left Aligned
 

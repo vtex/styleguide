@@ -1,6 +1,18 @@
-WIP docs. this is menu, pls use with caution.
-When it haz some documentation it will be really awesome. And you will never use it wrongly (I hope)
-Thanks for the attention. For all the lovelly ppl who did read this far, many thanks...
+#### A DropdownMenu lets a user choose an action to perform from a list of options (menu).
+
+### 👍 Dos
+
+- Give a comprehensive title (label) that helps the user to choose the best action to take.
+- Mind the order of the options, like putting more probable to be picked on that.
+
+### 👎 Don'ts
+
+- Don't use a DropdownMenu if you want to provide a list of options that doesn't represent actions.
+
+### Related components
+
+- Consider a <a href="#/Components/Forms?id=dropdown">Dropdown</a> if you expect the user to select a value from a list of options that doesn't represent actions.
+
 
 Alignment
 

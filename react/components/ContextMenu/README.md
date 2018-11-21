@@ -1,4 +1,10 @@
-ContextMenu
+#### A ContextMenu lets a user to perform actions accordingly to the context she is in.
+
+### 👍 Dos
+- Use `isDangerous` prop for options that perform damaging actions as deleting something.
+
+### Related components
+- Consider using a <a href="#/Components/Forms?id=dropdownmenu">DropdownMenu</a> if you want to give a title that names the group of actions you are providing to the user.
 
 ```js
 <div>
