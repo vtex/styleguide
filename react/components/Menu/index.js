@@ -26,7 +26,7 @@ class Menu extends Component {
         <div ref={this.menuBtnRef} className="relative">
           {isOpen && (
             <div
-              className={`absolute z-999 ba b--light-gray br2 shadow-1 mt4 ${
+              className={`absolute z-999 ba b--muted-4 br2 shadow-1 mt4 ${
                 align === 'right' ? 'right-0' : 'left-0'
               }`}>
               <div
@@ -42,7 +42,7 @@ class Menu extends Component {
                   {options.map((option, index) => (
                     <div
                       key={index}
-                      className="flex justify-between ph6 pv3 pointer hover-bg-light-silver"
+                      className="flex justify-between ph6 pv3 pointer hover-bg-muted-5"
                       onClick={() => {
                         option.handleCallback(option)
                         if (option.closeBoxOnClick) {
