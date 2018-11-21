@@ -50,9 +50,9 @@ class Menu extends Component {
                         }
                       }}>
                       <span
-                        className={
+                        className={`${
                           option.toggle ? 'w-70 truncate' : 'w-100 truncate'
-                        }>
+                        } ${option.isDangerous ? 'c-danger' : ''}`}>
                         {option.label}
                       </span>
                       {option.toggle && (
