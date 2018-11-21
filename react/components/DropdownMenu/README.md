@@ -91,6 +91,7 @@ class MenusExample extends React.Component {
               handleCallback: () => this.setState({ songOption0: !this.state.songOption0 }),
               toggle: {
                 checked: this.state.songOption0,
+                handleChange: () => {},
               }
             },
             {
@@ -98,6 +99,7 @@ class MenusExample extends React.Component {
               handleCallback: () => this.setState({ songOption1: !this.state.songOption1 }),
               toggle: {
                 checked: this.state.songOption1,
+                handleChange: () => {},
               }
             },
             {
@@ -105,6 +107,7 @@ class MenusExample extends React.Component {
               handleCallback: () => this.setState({ songOption2: !this.state.songOption2 }),
               toggle: {
                 checked: this.state.songOption2,
+                handleChange: () => {},
               }
             },
             {
@@ -112,6 +115,7 @@ class MenusExample extends React.Component {
               handleCallback: () => this.setState({ songOption3: !this.state.songOption3 }),
               toggle: {
                 checked: this.state.songOption3,
+                handleChange: () => {},
               }
             },
             {
@@ -119,6 +123,7 @@ class MenusExample extends React.Component {
               handleCallback: () => this.setState({ songOption4: !this.state.songOption4 }),
               toggle: {
                 checked: this.state.songOption4,
+                handleChange: () => {},
               }
             },
             {
@@ -126,6 +131,7 @@ class MenusExample extends React.Component {
               handleCallback: () => this.setState({ songOption5: !this.state.songOption5 }),
               toggle: {
                 checked: this.state.songOption5,
+                handleChange: () => {},
               }
             },
             {
@@ -133,6 +139,7 @@ class MenusExample extends React.Component {
               handleCallback: () => this.setState({ songOption6: !this.state.songOption6 }),
               toggle: {
                 checked: this.state.songOption6,
+                handleChange: () => {},
               }
             },
             {
@@ -140,6 +147,7 @@ class MenusExample extends React.Component {
               handleCallback: () => this.setState({ songOption7: !this.state.songOption7 }),
               toggle: {
                 checked: this.state.songOption7,
+                handleChange: () => {},
               }
             },
             {
@@ -147,6 +155,7 @@ class MenusExample extends React.Component {
               handleCallback: () => this.setState({ songOption8: !this.state.songOption8 }),
               toggle: {
                 checked: this.state.songOption8,
+                handleChange: () => {},
               }
             },
             {
@@ -154,6 +163,7 @@ class MenusExample extends React.Component {
               handleCallback: () => this.setState({ songOption9: !this.state.songOption9 }),
               toggle: {
                 checked: this.state.songOption9,
+                handleChange: () => {},
               }
             },
             {
@@ -161,6 +171,7 @@ class MenusExample extends React.Component {
               handleCallback: () => this.setState({ songOption10: !this.state.songOption10 }),
               toggle: {
                 checked: this.state.songOption10,
+                handleChange: () => {},
               }
             },
           ]}
