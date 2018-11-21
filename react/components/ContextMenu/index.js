@@ -7,6 +7,7 @@ import IconOptionsDots from '../icon/OptionsDots'
 export default class ContextMenu extends PureComponent {
   constructor(props) {
     super(props)
+    this.contextMenuRef = React.createRef()
     this.state = { isOpen: false }
   }
 
@@ -22,9 +23,9 @@ export default class ContextMenu extends PureComponent {
 
   handleClickOutside = e => {
     if (
-      this.menuBtnRef &&
-      this.menuBtnRef.current &&
-      !this.menuBtnRef.current.contains(e.target) &&
+      this.contextMenuRef &&
+      this.contextMenuRef.current &&
+      !this.contextMenuRef.current.contains(e.target) &&
       this.state.isOpen
     ) {
       this.handleIconClick()
@@ -32,17 +33,20 @@ export default class ContextMenu extends PureComponent {
   }
 
   render() {
-    const { options, align, boxWidth } = this.props
+    const { options, boxWidth } = this.props
     const { isOpen } = this.state
 
     return (
       <Fragment>
-        <div style={{ cursor: 'pointer' }} onClick={this.handleIconClick}>
+        <div
+          ref={this.contextMenuRef}
+          className="flex justify-end pointer"
+          onClick={this.handleIconClick}>
           <IconOptionsDots />
         </div>
         <Menu
           isOpen={isOpen || false}
-          align={align}
+          align="right"
           boxWidth={boxWidth}
           options={options}
         />
