@@ -150,7 +150,13 @@ Button.propTypes = {
   /** Button size  */
   size: PropTypes.oneOf(['small', 'regular', 'large']),
   /** Button prominence variation */
-  variation: PropTypes.oneOf(['primary', 'secondary', 'tertiary', 'danger']),
+  variation: PropTypes.oneOf([
+    'primary',
+    'secondary',
+    'tertiary',
+    'danger',
+    'danger-tertiary',
+  ]),
   /** Block style */
   block: PropTypes.bool,
   /** Loading state */
