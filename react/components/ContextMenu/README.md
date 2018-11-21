@@ -6,6 +6,11 @@ ContextMenu
       align="left"
       options={[
         {
+          label: 'Remove something',
+          isDangerous: true,
+          handleCallback: () => alert('you are removing something important')
+        },
+        {
           label: 'Start front engines motors',
           handleCallback: () => alert('beep!')
         },

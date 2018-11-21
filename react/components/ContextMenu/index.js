@@ -38,18 +38,19 @@ export default class ContextMenu extends PureComponent {
 
     return (
       <Fragment>
-        <div
-          ref={this.contextMenuRef}
-          className="flex justify-end pointer"
-          onClick={this.handleIconClick}>
-          <IconOptionsDots />
+        <div ref={this.contextMenuRef}>
+          <div
+            className="flex justify-end pointer"
+            onClick={this.handleIconClick}>
+            <IconOptionsDots />
+          </div>
+          <Menu
+            isOpen={isOpen || false}
+            align="right"
+            boxWidth={boxWidth}
+            options={options}
+          />
         </div>
-        <Menu
-          isOpen={isOpen || false}
-          align="right"
-          boxWidth={boxWidth}
-          options={options}
-        />
       </Fragment>
     )
   }
