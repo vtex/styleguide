@@ -6,6 +6,8 @@ const BOX_WIDTH = 292
 const MAX_BOX_HEIGHT = 192
 const BOX_ITEM_HEIGHT = 36
 
+const BOX_SHADOW_STYLE = { boxShadow: '0px 1px 18px rgba(0, 0, 0, 0.14)' }
+
 class Menu extends Component {
   constructor(props) {
     super(props)
@@ -26,6 +28,7 @@ class Menu extends Component {
         <div ref={this.menuBtnRef} className="relative">
           {isOpen && (
             <div
+              style={BOX_SHADOW_STYLE}
               className={`absolute z-999 ba b--muted-4 br2 shadow-1 mt4 ${
                 align === 'right' ? 'right-0' : 'left-0'
               }`}>
