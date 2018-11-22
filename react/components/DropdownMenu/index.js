@@ -51,8 +51,14 @@ class DropdownMenu extends Component {
   }
 
   render() {
-    const { icon, label, options, boxWidth, align } = this.props
+    const { icon, label, options, boxWidth, align, showIconCaret } = this.props
     const { isBoxOpen, isHoveringButton } = this.state
+
+    const iconCaret = isBoxOpen ? (
+      <IconCaretUp size={13} color="currentColor" />
+    ) : (
+      <IconCaretDown size={13} color="currentColor" />
+    )
 
     return (
       <Fragment>
@@ -65,12 +71,8 @@ class DropdownMenu extends Component {
             onClick={this.handleMenuClick}>
             <span className="flex align-baseline items-center">
               {this.renderIcon(icon)}
-              <span className="mr3">{label}</span>
-              {isBoxOpen ? (
-                <IconCaretUp size={13} color="currentColor" />
-              ) : (
-                <IconCaretDown size={13} color="currentColor" />
-              )}
+              <span className={`${showIconCaret ? 'mr3' : ''}`}>{label}</span>
+              {showIconCaret ? iconCaret : null}
             </span>
           </Button>
           <Menu
@@ -88,6 +90,7 @@ class DropdownMenu extends Component {
 DropdownMenu.defaultProps = {
   options: [],
   align: 'right',
+  showIconCaret: true,
 }
 
 DropdownMenu.propTypes = {
@@ -95,6 +98,8 @@ DropdownMenu.propTypes = {
   label: PropTypes.string.isRequired,
   /** DropdownMenu Button icon */
   icon: PropTypes.element,
+  /** If should show Caret icon */
+  showIconCaret: PropTypes.bool,
   /** Menu Box width (default is 292px) */
   boxWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /** Menu options */
