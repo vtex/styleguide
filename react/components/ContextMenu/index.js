@@ -33,7 +33,7 @@ export default class ContextMenu extends PureComponent {
   }
 
   render() {
-    const { options, boxWidth } = this.props
+    const { options, boxWidth, shouldCloseOnClick } = this.props
     const { isOpen } = this.state
 
     return (
@@ -49,6 +49,7 @@ export default class ContextMenu extends PureComponent {
             align="right"
             boxWidth={boxWidth}
             options={options}
+            onMenuClose={shouldCloseOnClick ? this.handleIconClick : null}
           />
         </div>
       </Fragment>
@@ -69,10 +70,10 @@ ContextMenu.propTypes = {
         checked: PropTypes.bool,
         semantic: PropTypes.bool,
       }),
-      /** if clicking on this opption should close the box */
-      closeBoxOnClick: PropTypes.bool,
     })
   ),
+  /** if should close the menu after clicking an option */
+  shouldCloseOnClick: PropTypes.func,
   /** Menu Box align (default is right) */
   align: PropTypes.oneOf(['right', 'left']),
 }
