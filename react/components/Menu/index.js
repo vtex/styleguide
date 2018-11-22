@@ -21,7 +21,7 @@ class Menu extends Component {
   }
 
   render() {
-    const { options, boxWidth, align, isOpen } = this.props
+    const { options, boxWidth, align, isOpen, onMenuClose } = this.props
 
     return (
       <Fragment>
@@ -48,8 +48,8 @@ class Menu extends Component {
                       className="flex justify-between ph6 pv3 pointer hover-bg-muted-5"
                       onClick={() => {
                         option.handleCallback(option)
-                        if (option.closeBoxOnClick) {
-                          this.handleMenuClick()
+                        if (onMenuClose) {
+                          onMenuClose()
                         }
                       }}>
                       <span
@@ -100,10 +100,10 @@ Menu.propTypes = {
         semantic: PropTypes.bool,
         handleChange: PropTypes.func,
       }),
-      /** if clicking on this opption should close the box */
-      closeBoxOnClick: PropTypes.bool,
     })
   ),
+  /** function to close the menu after clicking an option */
+  onMenuClose: PropTypes.func,
   /** Menu Box align (default is right) */
   align: PropTypes.oneOf(['right', 'left']),
 }

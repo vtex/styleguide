@@ -51,7 +51,16 @@ class DropdownMenu extends Component {
   }
 
   render() {
-    const { icon, label, options, boxWidth, align, showIconCaret } = this.props
+    const {
+      icon,
+      label,
+      options,
+      boxWidth,
+      align,
+      showIconCaret,
+      shouldCloseOnClick,
+    } = this.props
+
     const { isBoxOpen, isHoveringButton } = this.state
 
     const iconCaret = isBoxOpen ? (
@@ -80,6 +89,7 @@ class DropdownMenu extends Component {
             align={align}
             boxWidth={boxWidth}
             options={options}
+            onMenuClose={shouldCloseOnClick ? this.handleMenuClick : null}
           />
         </div>
       </Fragment>
@@ -112,10 +122,10 @@ DropdownMenu.propTypes = {
         checked: PropTypes.bool,
         semantic: PropTypes.bool,
       }),
-      /** if clicking on this opption should close the box */
-      closeBoxOnClick: PropTypes.bool,
     })
   ),
+  /** if should close the menu after clicking an option */
+  shouldCloseOnClick: PropTypes.bool,
   /** Menu Box align (default is right) */
   align: PropTypes.oneOf(['right', 'left']),
 }
