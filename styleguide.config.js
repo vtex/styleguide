@@ -94,7 +94,6 @@ module.exports = {
             'react/components/Checkbox/index.js',
             'react/components/DatePicker/index.js',
             'react/components/Dropdown/index.js',
-            'react/components/Menu/index.js',
             'react/components/DropdownMenu/index.js',
             'react/components/ContextMenu/index.js',
             'react/components/Input/index.js',
