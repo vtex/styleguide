@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { debounce } from 'lodash'
+import debounce from 'lodash/debounce'
 
 import Tag from './Tag'
 import DropdownList from './DropdownList'

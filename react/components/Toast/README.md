@@ -139,7 +139,7 @@ const Content = () => (
 ```js
   const withToast = require('./index').withToast
   const Input = require('../Input').default
-  const debounce = require('lodash').debounce
+  const debounce = require('lodash/debounce')
 
   class App extends React.Component {
     constructor(props){
