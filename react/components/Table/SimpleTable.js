@@ -58,7 +58,7 @@ class SimpleTable extends Component {
     } = this.props
     const { hoverRowIndex } = this.state
     const properties = Object.keys(schema.properties)
-    const updateKey = `vtex-table__${rowHeight}--${updateTableKey}` // this is force grids rerender when density changes
+    const updateKey = `vtex-table__${rowHeight}--${updateTableKey}` // this forces grid to rerender when density changes
 
     return (
       <div className="vh-100 w-100" style={{ height: containerHeight }}>
