@@ -7,7 +7,7 @@ import Button from '../Button'
 import IconCaretDown from '../icon/CaretDown'
 import IconCaretUp from '../icon/CaretUp'
 
-class DropdownMenu extends Component {
+class ActionMenu extends Component {
   constructor(props) {
     super(props)
     this.menuBtnRef = React.createRef()
@@ -17,7 +17,7 @@ class DropdownMenu extends Component {
     }
   }
 
-  handleMenuClick = () => {
+  handleClick = () => {
     const { isBoxOpen } = this.state
     if (isBoxOpen) {
       document.removeEventListener('mousedown', this.handleClickOutside)
@@ -34,7 +34,7 @@ class DropdownMenu extends Component {
       !this.menuBtnRef.current.contains(e.target) &&
       this.state.isBoxOpen
     ) {
-      this.handleMenuClick()
+      this.handleClick()
     }
   }
 
@@ -45,11 +45,6 @@ class DropdownMenu extends Component {
     }
   }
 
-  renderIcon(icon) {
-    if (!icon) return null
-    return <div className="mr2 pt2 self-center">{icon}</div>
-  }
-
   render() {
     const {
       icon,
@@ -57,11 +52,14 @@ class DropdownMenu extends Component {
       options,
       boxWidth,
       align,
-      showIconCaret,
+      isSimpleIcon,
+      showCaretIcon,
       shouldCloseOnClick,
     } = this.props
 
     const { isBoxOpen, isHoveringButton } = this.state
+
+    const iconMenu = icon && <div onClick={this.handleClick}>{icon}</div>
 
     const iconCaret = isBoxOpen ? (
       <IconCaretUp size={13} color="currentColor" />
@@ -69,27 +67,44 @@ class DropdownMenu extends Component {
       <IconCaretDown size={13} color="currentColor" />
     )
 
+    const buttonMenu = (
+      <Button
+        variation={isBoxOpen || isHoveringButton ? 'secondary' : 'tertiary'}
+        size="small"
+        onMouseOver={() => this.handleHover(true)}
+        onMouseOut={() => this.handleHover(false)}
+        onClick={this.handleClick}>
+        <span className="flex align-baseline items-center">
+          {icon && (
+            <div className={`pt2 self-center ${showCaretIcon ? 'mr2' : ''}`}>
+              {icon}
+            </div>
+          )}
+
+          {label && (
+            <span className={`${showCaretIcon ? 'mr3' : ''}`}>{label}</span>
+          )}
+
+          {showCaretIcon && iconCaret}
+        </span>
+      </Button>
+    )
+
     return (
       <Fragment>
-        <div ref={this.menuBtnRef} className="relative">
-          <Button
-            variation={isBoxOpen || isHoveringButton ? 'secondary' : 'tertiary'}
-            size="small"
-            onMouseOver={() => this.handleHover(true)}
-            onMouseOut={() => this.handleHover(false)}
-            onClick={this.handleMenuClick}>
-            <span className="flex align-baseline items-center">
-              {this.renderIcon(icon)}
-              <span className={`${showIconCaret ? 'mr3' : ''}`}>{label}</span>
-              {showIconCaret ? iconCaret : null}
-            </span>
-          </Button>
+        <div ref={this.menuBtnRef} className="relative pointer">
+          <div
+            className={`flex ${
+              align === 'left' ? 'justify-start' : 'justify-end'
+            }`}>
+            {isSimpleIcon ? iconMenu : buttonMenu}
+          </div>
           <Menu
             isOpen={isBoxOpen}
             align={align}
             boxWidth={boxWidth}
             options={options}
-            onMenuClose={shouldCloseOnClick ? this.handleMenuClick : null}
+            onMenuClose={shouldCloseOnClick ? this.handleClick : null}
           />
         </div>
       </Fragment>
@@ -97,20 +112,26 @@ class DropdownMenu extends Component {
   }
 }
 
-DropdownMenu.defaultProps = {
+ActionMenu.defaultProps = {
   options: [],
   align: 'right',
-  showIconCaret: true,
+  showCaretIcon: true,
 }
 
-DropdownMenu.propTypes = {
-  /** DropdownMenu Button label */
+ActionMenu.propTypes = {
+  /** ActionMenu alignment (default is right) */
+  align: PropTypes.oneOf(['right', 'left']),
+  /** if should close the menu after clicking an option */
+  shouldCloseOnClick: PropTypes.bool,
+  /** if it's a simple icon, not a button */
+  isSimpleIcon: PropTypes.bool,
+  /** ActionMenu Button label */
   label: PropTypes.string.isRequired,
-  /** DropdownMenu Button icon */
+  /** ActionMenu Button icon */
   icon: PropTypes.element,
   /** If should show Caret icon */
-  showIconCaret: PropTypes.bool,
-  /** Menu Box width (default is 292px) */
+  showCaretIcon: PropTypes.bool,
+  /** Menu width (default is 292px) */
   boxWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /** Menu options */
   options: PropTypes.arrayOf(
@@ -124,10 +145,6 @@ DropdownMenu.propTypes = {
       }),
     })
   ),
-  /** if should close the menu after clicking an option */
-  shouldCloseOnClick: PropTypes.bool,
-  /** Menu Box align (default is right) */
-  align: PropTypes.oneOf(['right', 'left']),
 }
 
-export default DropdownMenu
+export default ActionMenu
