@@ -1,17 +1,20 @@
-#### A DropdownMenu lets a user choose an action to perform from a list of options (menu).
+#### An ActionMenu lets a user choose an action to perform from a list of options (menu).
 
 ### 👍 Dos
 
 - Give a comprehensive title (label) that helps the user to choose the best action to take.
-- Mind the order of the options, like putting more probable to be picked on that.
+- Use `isDangerous` prop for options that perform damaging actions as deleting something.
+- Use `shouldCloseOnClick` prop for auto closing menu after clicking an option.
+- Use `isSimpleIcon` prop when you want an icon (not a button with an icon) to identify your menu.
 
 ### 👎 Don'ts
 
-- Don't use a DropdownMenu if you want to provide a list of options that doesn't represent actions.
+- Don't use an ActionMenu if you want to provide a list of options that doesn't represent actions.
 
 ### Related components
 
 - Consider a <a href="#/Components/Forms?id=dropdown">Dropdown</a> if you expect the user to select a value from a list of options that doesn't represent actions.
+- This component uses the Menu component (the list of actions) that should never be used alone.
 
 
 Alignment
@@ -19,7 +22,7 @@ Alignment
 ```js
 <div className="flex flex-row w-100 justify-between">
   <div className="ma3">
-    <DropdownMenu
+    <ActionMenu
       label="box aligned left"
       align="left"
       boxWidth="100%"
@@ -44,7 +47,7 @@ Alignment
     />
   </div>
   <div className="ma3">
-    <DropdownMenu
+    <ActionMenu
       label="box aligned right"
       boxWidth="100%"
       options={[
@@ -94,7 +97,7 @@ class MenusExample extends React.Component {
   render() {
     return (
       <div>
-        <DropdownMenu
+        <ActionMenu
           label="big list example"
           align="left"
           options={[
@@ -194,13 +197,44 @@ class MenusExample extends React.Component {
 };<MenusExample />
 ```
 
-Icons
+Button with icon
 ```js
 const Cog = require('../icon/Cog').default;
 <div className="ma3">
-  <DropdownMenu
+  <ActionMenu
     icon={<Cog color="currentColor" size={13} />}
     label="Settings"
+    align="left"
+    boxWidth="100%"
+    options={[
+      {
+        label: 'Open pod doors, HAL',
+        handleCallback: () => alert('I’m sorry, Dave. I’m afraid I can’t do that.')
+      },
+      {
+        label: 'Have you heard about the word?',
+        handleCallback: () => alert('sure, everybody knows that the bird is the word...')
+      },
+      {
+        label: 'Hey look',
+        handleCallback: () => alert('Listen!')
+      },
+      {
+        label: 'Quit now and cake will be served',
+        handleCallback: () => alert('The cake is a lie')
+      },
+    ]}
+  />
+</div>
+```
+
+Button only with icon
+```js
+const Cog = require('../icon/Cog').default;
+<div className="ma3">
+  <ActionMenu
+    icon={<Cog color="currentColor" size={13} />}
+    showCaretIcon={false}
     align="left"
     boxWidth="100%"
     options={[
@@ -228,12 +262,49 @@ const Cog = require('../icon/Cog').default;
 Without caret
 ```js
 <div className="ma3">
-  <DropdownMenu
+  <ActionMenu
     label="Options"
     align="left"
     boxWidth="100%"
-    showIconCaret={false}
+    showCaretIcon={false}
     options={[
+      {
+        label: 'Open pod doors, HAL',
+        handleCallback: () => alert('I’m sorry, Dave. I’m afraid I can’t do that.')
+      },
+      {
+        label: 'Have you heard about the word?',
+        handleCallback: () => alert('sure, everybody knows that the bird is the word...')
+      },
+      {
+        label: 'Hey look',
+        handleCallback: () => alert('Listen!')
+      },
+      {
+        label: 'Quit now and cake will be served',
+        handleCallback: () => alert('The cake is a lie')
+      },
+    ]}
+  />
+</div>
+```
+
+Simple icon right aligned
+```js
+const OptionsDots = require('../icon/OptionsDots').default;
+<div className="ma3">
+  <ActionMenu
+    isSimpleIcon
+    shouldCloseOnClick
+    icon={<OptionsDots />}
+    showCaretIcon={false}
+    boxWidth="100%"
+    options={[
+      {
+        label: 'Remove something',
+        isDangerous: true,
+        handleCallback: () => alert('you are removing something important')
+      },
       {
         label: 'Open pod doors, HAL',
         handleCallback: () => alert('I’m sorry, Dave. I’m afraid I can’t do that.')
