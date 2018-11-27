@@ -3,7 +3,7 @@
 ### 👍 Dos
 
 - Give a comprehensive title (label) that helps the user to choose the best action to take.
-- Use `isDangerous` prop for options that perform damaging actions as deleting something.
+- Use `isDangerous` prop for options that perform dangerous actions like deleting.
 - Use `shouldCloseOnClick` prop for auto closing menu after clicking an option.
 - Use `isSimpleIcon` prop when you want an icon (not a button with an icon) to identify your menu.
 
