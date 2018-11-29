@@ -63,7 +63,7 @@ Add the styleguide to dependencies on `manifest.json`:
 
 ```sh noeditor static
 "dependencies": {
- "vtex.styleguide": "7.x"
+  "vtex.styleguide": "8.x"
 },
 ```
 
