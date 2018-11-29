@@ -11,7 +11,7 @@
  *  },
  *  customMessage: 'Some custom deprecation message'
  * }, Component)
-**/
+ **/
 import React, { Component } from 'react'
 
 // Attempt to get the wrapped component's name
@@ -34,7 +34,10 @@ const mapNewProps = (propsMap, props) => {
   }
 }
 
-function deprecated({ useNewComponent, useNewProps, customMessage }, WrappedComponent) {
+function deprecated(
+  { useNewComponent, useNewProps, customMessage },
+  WrappedComponent
+) {
   class Deprecated extends Component {
     componentDidMount() {
       if (useNewComponent) {
