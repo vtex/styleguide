@@ -100,7 +100,7 @@ class Toolbar extends PureComponent {
         newLine,
         density,
       },
-      displaySchema,
+      hiddenFields,
       schema,
       handleHideAllColumns,
       handleShowAllColumns,
@@ -152,7 +152,9 @@ class Toolbar extends PureComponent {
               </Button>
               {isDensityBoxVisible && (
                 <div
-                  className="absolute z-999 ba b--light-gray br2 mt2"
+                  className={`absolute ${
+                    density.alignMenu === 'right' ? 'right-0' : 'left-0'
+                  } z-999 ba b--light-gray br2 mt2`}
                   style={BOX_SHADOW_STYLE}>
                   <div className="w-100 b2 br2 bg-base">
                     <div
@@ -163,9 +165,9 @@ class Toolbar extends PureComponent {
                         return (
                           <div
                             key={index}
-                            className={`flex justify-between ph6 pv3 pointer hover-bg-light-silver bl bw1 ${
+                            className={`flex justify-between ph6 pv3 ${
                               isKeySelected ? 'b--emphasis' : 'b--transparent'
-                            }`}
+                            } pointer hover-bg-light-silver bl bw1`}
                             onClick={() => {
                               handleToggleDensity(key)
                               this.handleToggleBox('isDensityBoxVisible')
@@ -200,7 +202,10 @@ class Toolbar extends PureComponent {
                 </span>
               </Button>
               {isFieldsBoxVisible && (
-                <div className="absolute z-999 ba b--light-gray br2 mt2">
+                <div
+                  className={`absolute ${
+                    fields.alignMenu === 'right' ? 'right-0' : 'left-0'
+                  } z-999 ba b--light-gray br2 mt2`}>
                   <div
                     className="w-100 b2 br2 bg-base"
                     style={{
@@ -236,7 +241,7 @@ class Toolbar extends PureComponent {
                           </span>
                           <Toggle
                             size="small"
-                            checked={!!displaySchema.properties[field]}
+                            checked={!hiddenFields.includes(field)}
                           />
                         </div>
                       ))}
@@ -290,7 +295,9 @@ class Toolbar extends PureComponent {
               </Button>
               {isExtraActionsBoxVisible && (
                 <div
-                  className="absolute z-999 ba b--light-gray br2 right-0"
+                  className={`absolute ${
+                    extraActions.alignMenu === 'left' ? 'left-0' : 'right-0'
+                  } z-999 ba b--light-gray br2`}
                   style={BOX_SHADOW_STYLE}>
                   <div
                     className="w-100 b2 br2 bg-base"
@@ -349,11 +356,13 @@ Toolbar.propTypes = {
       lowOptionLabel: PropTypes.string,
       mediumOptionLabel: PropTypes.string,
       highOptionLabel: PropTypes.string,
+      alignMenu: PropTypes.oneOf(['right', 'left']),
     }),
     fields: PropTypes.shape({
       label: PropTypes.string,
       showAllLabel: PropTypes.string,
       hideAllLabel: PropTypes.string,
+      alignMenu: PropTypes.oneOf(['right', 'left']),
     }),
     download: PropTypes.shape({
       label: PropTypes.string,
@@ -371,10 +380,11 @@ Toolbar.propTypes = {
           handleCallback: PropTypes.func,
         })
       ),
+      alignMenu: PropTypes.oneOf(['right', 'left']),
     }),
   }),
-  displaySchema: PropTypes.object.isRequired,
   schema: PropTypes.object.isRequired,
+  hiddenFields: PropTypes.array,
   toggleColumn: PropTypes.func,
   handleHideAllColumns: PropTypes.func,
   handleShowAllColumns: PropTypes.func,
