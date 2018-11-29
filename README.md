@@ -4,8 +4,8 @@
 
 - [Usage](#usage)
 - [Developing](#developing)
-  -  [Setup](#setup)
-  -  [Running](#running)
+  - [Setup](#setup)
+  - [Running](#running)
 - [Developing using npm link](#developing-using-npm-link)
 - [Publishing](#publishing)
 - [Docs](#docs)
@@ -68,4 +68,4 @@ yarn deploy
 
 #### Known issues
 
-* Your project has to run with webpack >= 2. Here's a [guide](https://webpack.js.org/migrate/3/) for upgrading Webpack to v2.
+- Your project has to run with webpack >= 2. Here's a [guide](https://webpack.js.org/migrate/3/) for upgrading Webpack to v2.
