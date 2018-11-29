@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.0.0] - 2018-11-29
+
 ### Added
 - **Table** add `emptyStateLabel` prop to use in EmptyState when there is nothing to show
 - **Table** add `fixFirstColumn` prop to enhance the multiple column horizontal scroll experience
