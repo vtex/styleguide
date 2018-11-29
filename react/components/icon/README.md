@@ -1,6 +1,20 @@
-Usage: <span className="c-muted-1">`import <IconName> from '@vtex/styleguide/lib/icon/<IconName>'`</span>
+Usage: 
+  * VTEX IO: <span className="c-muted-1">`import <IconName> from 'vtex.styleguide'`</span>
+  * npm: <span className="c-muted-1">`import <IconName> from '@vtex/styleguide/lib/icon/<IconName>'`</span>
 
 ```js
+
+/*
+  The following code is just for the table above to be rendered.
+  To use the Icon components one need only to import and instanciate it.
+
+  Usage:
+    * VTEX IO: import <IconName> from 'vtex.styleguide'
+    * npm: import <IconName> from '@vtex/styleguide/lib/icon/<IconName>'
+  
+  !!!!!! DO NOT IMPORT LIKE BELOW !!!!!!
+*/
+
 const ICONS = {
   ArrowBack: require('./ArrowBack').default,
   ArrowDown: require('./ArrowDown').default,
