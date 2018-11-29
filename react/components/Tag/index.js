@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import config from 'vtex-tachyons/config.json'
 import Close from '../icon/Close'
 
-class Badge extends PureComponent {
+class Tag extends PureComponent {
   constructor() {
     super()
 
@@ -79,11 +79,11 @@ class Badge extends PureComponent {
   }
 }
 
-Badge.defaultProps = {
+Tag.defaultProps = {
   disabled: false,
 }
 
-Badge.propTypes = {
+Tag.propTypes = {
   type: PropTypes.oneOf(['success', 'error', 'warning']),
   children: PropTypes.node.isRequired,
   color: PropTypes.string,
@@ -92,4 +92,4 @@ Badge.propTypes = {
   disabled: PropTypes.bool,
 }
 
-export default Badge
+export default Tag
