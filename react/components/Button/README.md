@@ -62,7 +62,7 @@ Sizes
     </span>
     <span className="mr4">
       <Button variation="primary">
-        Default
+        Regular
       </Button>
     </span>
     <span className="mr4">
@@ -79,7 +79,7 @@ Sizes
     </span>
     <span className="mr4">
       <Button variation="secondary" size="regular">
-        Default
+        Regular
       </Button>
     </span>
     <span className="mr4">
@@ -96,7 +96,7 @@ Sizes
     </span>
     <span className="mr4">
       <Button variation="tertiary" size="regular">
-        Default
+        Regular
       </Button>
     </span>
     <span className="mr4">
@@ -113,7 +113,7 @@ Sizes
     </span>
     <span className="mr4">
       <Button variation="danger" size="regular">
-        Default
+        Regular
       </Button>
     </span>
     <span className="mr4">
@@ -130,7 +130,7 @@ Sizes
     </span>
     <span className="mr4">
       <Button variation="danger-tertiary" size="regular">
-        Default
+        Regular
       </Button>
     </span>
     <span className="mr4">
