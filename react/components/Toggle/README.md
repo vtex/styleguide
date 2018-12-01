@@ -15,8 +15,8 @@ Default
 initialState = {
   checked: true,
   checked2: false,
-  checkedSmall1: true,
-  checkedSmall2: false
+  checkedLarge1: true,
+  checkedLarge2: false
 };
 <div>
   <div className="dib">
