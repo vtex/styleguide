@@ -19,19 +19,19 @@ Sizes
 const Input = require('./index.js').default
 ;<div>
   <div className="mb5">
+    <Input placeholder="Placeholder" size="small" label="Small" />
+  </div>
+
+  <div className="mb5">
     <Input
-      placeholder="Default with data-attributes"
-      label="Default"
+      placeholder="Regular with data-attributes"
       dataAttributes={{ 'hj-white-list': true, test: 'string' }}
+      label="Regular"
     />
   </div>
 
   <div className="mb5">
     <Input placeholder="Placeholder" size="large" label="Large" />
-  </div>
-
-  <div>
-    <Input placeholder="Placeholder" size="x-large" label="Extra Large" />
   </div>
 </div>
 ```
@@ -102,7 +102,6 @@ class InputExamples extends React.Component {
             value={this.state.withPrefixValue}
             onChange={e => this.setState({ withPrefixValue: e.target.value })}
             prefix={<IconSearch />}
-            type="number"
           />
         </div>
         <div className="mb5">
