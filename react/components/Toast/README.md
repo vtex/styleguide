@@ -177,7 +177,7 @@ const Content = () => (
       return (
         <React.Fragment>
           <div className="mb6">
-            <h3>Higher order component</h3>
+            <h3>Higher-order component</h3>
             For use on component lifecycle methods (componentDidMount, componentDidUpdate, etc)
           </div>
           <Input
