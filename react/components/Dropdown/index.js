@@ -70,6 +70,14 @@ ${this.getDropdownIdentification()}`
     return selectedOption ? selectedOption.label : this.getPlaceholder()
   }
 
+  componentDidMount() {
+    if (this.props.size === 'x-large') {
+      console.warn(
+        'Dropdown: The value "x-large" for the prop "size" is deprecated. In the next major version, it will be equivalent to "large", and removed altogether in future versions'
+      )
+    }
+  }
+
   render() {
     const {
       label,
@@ -115,23 +123,30 @@ ${this.getDropdownIdentification()}`
         : 'c-disabled '
 
     switch (size) {
+      case 'small':
+        classes += 'h-small f6 pl5 pr4 '
+        selectClasses += 'f6 '
+        labelClasses += 'f6 '
+        iconSize = 18
+        break
       case 'large':
-        classes += 'f5 pv4 pl6 pr5 '
+        classes += 'h-large f5 pl6 pr5 '
         selectClasses += 'f5 '
         labelClasses += 'f5 '
         iconSize = 18
         break
       case 'x-large':
+        // DEPRECATED
         classes += 'f4 pv5 pl7 pr6 '
         selectClasses += 'f4 '
         labelClasses += 'f5 '
         iconSize = 22
         break
       default:
-        classes += 'f6 pv3 pl5 pr4 '
+        classes += 'h-regular f5 pl6 pr5 '
         selectClasses += 'f6 '
         labelClasses += 'f6 '
-        iconSize = 16
+        iconSize = 18
         break
     }
 
@@ -151,9 +166,11 @@ ${this.getDropdownIdentification()}`
           {label && <span className={labelClasses}>{label}</span>}
           <div className={containerClasses} style={containerStyle}>
             <div id={id} className={`vtex-dropdown__button ${classes}`}>
-              <div className="flex">
-                <div className="vtex-dropdown__caption flex-auto tl truncate">
-                  {showCaption ? placeholder : valueLabel}
+              <div className="flex h-100">
+                <div className="vtex-dropdown__caption flex-auto tl truncate h-100">
+                  <div className="h-100 flex items-center">
+                    {showCaption ? placeholder : valueLabel}
+                  </div>
                 </div>
                 <div
                   className={`vtex-dropdown__arrow flex-none flex items-center pl2 ${
@@ -232,7 +249,7 @@ DropdownWithRef.propTypes = {
   /** Dropdown placeholder value */
   placeholder: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /** Dropdown size */
-  size: PropTypes.oneOf(['regular', 'large', 'x-large']),
+  size: PropTypes.oneOf(['small', 'regular', 'large']),
   /** Dropdown options list */
   options: PropTypes.arrayOf(
     PropTypes.shape({
