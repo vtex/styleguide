@@ -25,17 +25,17 @@ class Button extends Component {
 
     switch (size) {
       case 'small':
-        classes += icon ? 'pa3 ' : 'pv3 ph5 '
+        classes += `h-small ${icon ? 'ph3' : 'ph5'} `
         classes += 'f6 '
         break
       default:
       case 'regular':
-        classes += icon ? 'pa4 ' : 'pv4 ph6 '
+        classes += `h-regular ${icon ? 'ph4' : 'ph6'} `
         classes += 'f5 '
         loaderSize = 20
         break
       case 'large':
-        classes += icon ? 'pa5 ' : 'pv5 ph7 '
+        classes += `h-large ${icon ? 'ph5' : 'ph7'} `
         classes += 'f4 '
         loaderSize = 25
         break
@@ -128,7 +128,9 @@ class Button extends Component {
             <span style={{ opacity: 0 }}>{children}</span>
           </Fragment>
         ) : (
-          children
+          <div className="flex items-center justify-center h-100">
+            {children}
+          </div>
         )}
       </Tag>
     )
