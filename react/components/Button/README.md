@@ -200,31 +200,11 @@ Loading state
 ```js
 initialState = { isLoading1: true, isLoading2: true, isLoading3: true  };
 <div>
-  <div>
-    <Button
-      variation="danger"
-      size="small"
-      onClick={() => setState({ isLoading1: !state.isLoading1 })}
-      isLoading={state.isLoading1}
-    >
-      Toggle loading state
-    </Button>
-  </div>
   <div className="mt4">
     <Button
       variation="primary"
       onClick={() => setState({ isLoading2: !state.isLoading2 })}
       isLoading={state.isLoading2}
-    >
-      Toggle loading state
-    </Button>
-  </div>
-  <div className="mt4">
-    <Button
-      variation="secondary"
-      size="large"
-      onClick={() => setState({ isLoading3: !state.isLoading3 })}
-      isLoading={state.isLoading3}
     >
       Toggle loading state
     </Button>
