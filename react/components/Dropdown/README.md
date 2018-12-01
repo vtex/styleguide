@@ -20,7 +20,24 @@ const Dropdown = require('./index.js').default
 ;<div>
   <div className="mb5">
     <Dropdown
-      label="Default"
+      label="Small"
+      size="small"
+      options={[
+        { value: 'chagall', label: 'Chagall' },
+        { value: 'dali', label: 'Dali' },
+        { value: 'goya', label: 'Goya' },
+        { value: 'monet', label: 'Monet' },
+        { value: 'picasso', label: 'Picasso' },
+        { value: 'tolouseLautrec', label: 'Toulouse-Lautrec' },
+      ]}
+      value="tolouseLautrec"
+      onChange={() => {}}
+    />
+  </div>
+
+  <div className="mb5">
+    <Dropdown
+      label="Regular"
       options={[
         { value: 'chagall', label: 'Chagall' },
         { value: 'dali', label: 'Dali' },
@@ -38,23 +55,6 @@ const Dropdown = require('./index.js').default
     <Dropdown
       label="Large"
       size="large"
-      options={[
-        { value: 'chagall', label: 'Chagall' },
-        { value: 'dali', label: 'Dali' },
-        { value: 'goya', label: 'Goya' },
-        { value: 'monet', label: 'Monet' },
-        { value: 'picasso', label: 'Picasso' },
-        { value: 'tolouseLautrec', label: 'Toulouse-Lautrec' },
-      ]}
-      value="tolouseLautrec"
-      onChange={() => {}}
-    />
-  </div>
-
-  <div>
-    <Dropdown
-      label="Extra Large"
-      size="x-large"
       options={[
         { value: 'chagall', label: 'Chagall' },
         { value: 'dali', label: 'Dali' },
