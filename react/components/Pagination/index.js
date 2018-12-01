@@ -54,7 +54,7 @@ class Pagination extends PureComponent {
           <div className="flex flex-row pt5 items-baseline">
             <span className="mr4 c-muted-2 f6">{this.props.textShowRows}</span>
             <Dropdown
-              label=""
+              size="small"
               options={dropdownOptions}
               value={dropdownOptions[selectedRowsOptionIndex].label}
               onChange={this.handleRowsChange}
