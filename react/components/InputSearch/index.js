@@ -5,6 +5,13 @@ import SearchIcon from '../icon/Search'
 import DenyIcon from '../icon/Deny'
 
 class InputSearch extends Component {
+  static iconSizes = {
+    small: 14,
+    default: 16,
+    large: 18,
+    'x-large': 22,
+  }
+
   handleClickClear = event => {
     this.props.onChange &&
       this.props.onChange({
@@ -19,7 +26,8 @@ class InputSearch extends Component {
 
   render() {
     const size = this.props.size
-    const iconSize = size === 'large' ? 18 : size === 'x-large' ? 20 : 16
+    const iconSize =
+      InputSearch.iconSizes[size] || InputSearch.iconSizes.default
 
     return (
       <Input

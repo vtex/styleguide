@@ -37,6 +37,14 @@ class Input extends Component {
     this.props.onBlur && this.props.onBlur(event)
   }
 
+  componentDidMount() {
+    if (this.props.size === 'x-large') {
+      console.warn(
+        'Input: The value "x-large" for the prop "size" is deprecated. In the next major version, it will be equivalent to "large", and removed altogether in future versions'
+      )
+    }
+  }
+
   render() {
     const {
       errorMessage,
@@ -108,23 +116,32 @@ class Input extends Component {
     }
 
     switch (size) {
+      case 'small':
+        classes += `f6 h-small ${prefix ? 'pl7 pr5' : 'ph5'} ${
+          suffix ? 'pr7' : ''
+        }`
+        labelClasses += 'f6 '
+        prefixAndSuffixClasses += 'ph3 fw5 f6 '
+        break
       case 'large':
-        classes += `f5 pv4 ${prefix ? 'pl8 pr6' : 'ph6'} ${suffix ? 'pr8' : ''}`
+        classes += `f5 h-large ${prefix ? 'pl8 pr6' : 'ph6'} ${
+          suffix ? 'pr8' : ''
+        }`
         labelClasses += 'f5 '
         prefixAndSuffixClasses += 'ph4 f5'
-        // iconSize = 18
         break
       case 'x-large':
+        // DEPRECATED
         classes += `f4 pv5 ${prefix ? 'pl8 pr7' : 'ph7'} ${suffix ? 'pr8' : ''}`
         labelClasses += 'f5 '
         prefixAndSuffixClasses += 'ph5 f4 '
-        // iconSize = 22
         break
       default:
-        classes += `f6 pv3 ${prefix ? 'pl7 pr5' : 'ph5'} ${suffix ? 'pr7' : ''}`
+        classes += `f6 h-regular ${prefix ? 'pl7 pr5' : 'ph5'} ${
+          suffix ? 'pr7' : ''
+        }`
         labelClasses += 'f6 '
         prefixAndSuffixClasses += 'ph3 fw5 f6 '
-        // iconSize = 16
         break
     }
 
@@ -236,7 +253,7 @@ InputWithRef.propTypes = {
   /** Help text */
   helpText: PropTypes.node,
   /** Input size */
-  size: PropTypes.oneOf(['regular', 'large', 'x-large']),
+  size: PropTypes.oneOf(['small', 'regular', 'large']),
   /** Label */
   label: PropTypes.string,
   /** Prefix */
