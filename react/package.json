@@ -3,7 +3,7 @@
   "dependencies": {
     "lodash": "^4.17.11",
     "react-responsive-modal": "^2.0.1",
-    "vtex-tachyons": "^2.8.4",
-    "react-virtualized": "^9.19.1"
+    "react-virtualized": "^9.19.1",
+    "vtex-tachyons": "^2.10.0"
   }
 }
