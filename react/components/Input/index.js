@@ -43,6 +43,18 @@ class Input extends Component {
         'Input: The value "x-large" for the prop "size" is deprecated. In the next major version, it will be equivalent to "large", and removed altogether in future versions'
       )
     }
+
+    if (this.props.suffixIcon) {
+      console.warn(
+        'The prop suffixIcon is deprecated and will be removed in the next major. Please use the prop suffix instead.'
+      )
+    }
+
+    if (this.props.prefix && this.props.suffix) {
+      console.warn(
+        'You should not use both prefix and suffix props in the same input. '
+      )
+    }
   }
 
   render() {
@@ -62,18 +74,6 @@ class Input extends Component {
     const { active } = this.state
 
     const suffix = suffixProp || suffixIcon
-
-    if (suffixIcon) {
-      console.warn(
-        'The prop suffixIcon is deprecated and will be removed in the next major. Please use the prop suffix instead.'
-      )
-    }
-
-    if (prefix && suffix) {
-      console.warn(
-        'You should not use both prefix and suffix props in the same input. '
-      )
-    }
 
     const dataAttrs = {}
     for (const key of Object.keys(dataAttributes)) {
