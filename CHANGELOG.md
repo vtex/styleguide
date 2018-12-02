@@ -15,10 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Updated sizes of some form components (`Dropdown`, `Pagination`, `Input`, `Button`, `NumericStepper`)
 - Changed default `Toggle` size to what was previously `small`. The previous default size is now named `large`
-
-### Removed
-
-- Removed `x-large` size from all components
+- Deprecated `x-large` size from all components
 
 ## [8.0.1] - 2018-12-03
 
