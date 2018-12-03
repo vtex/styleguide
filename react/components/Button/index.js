@@ -16,8 +16,6 @@ class Button extends Component {
 
     const disabled = this.props.disabled || isLoading
 
-    const Tag = icon ? 'div' : 'button'
-
     let classes = 'vtex-button bw1 ba fw5 br2 v-mid relative pa0 '
     let loaderSize = 15
 
@@ -99,7 +97,7 @@ class Button extends Component {
     }
 
     return (
-      <Tag
+      <button
         id={this.props.id}
         autoFocus={icon ? undefined : this.props.autoFocus}
         disabled={icon ? undefined : this.props.disabled}
@@ -132,7 +130,7 @@ class Button extends Component {
             {children}
           </div>
         )}
-      </Tag>
+      </button>
     )
   }
 }
