@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- Adds lodash dependency
+
 ## [7.6.6] - 2018-11-21
 
 ## [7.6.5] - 2018-11-21
