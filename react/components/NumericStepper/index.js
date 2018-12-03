@@ -228,7 +228,7 @@ class NumericStepper extends Component {
           )}
           <div className="z-2 order-2 flex-none">
             <button
-              className={`br2 ph0 bl-0 flex items-center justify-center ${borderClasses} ${buttonClasses} ${
+              className={`br2 pa0 bl-0 flex items-center justify-center ${borderClasses} ${buttonClasses} ${
                 isMax ? buttonDisabledClasses : buttonEnabledClasses
               }`}
               style={{
@@ -249,7 +249,7 @@ class NumericStepper extends Component {
           </div>
           <div className="z-2 order-0 flex-none">
             <button
-              className={`br2 ph0 br-0 flex items-center justify-center ${borderClasses} ${buttonClasses} ${
+              className={`br2 pa0 br-0 flex items-center justify-center ${borderClasses} ${buttonClasses} ${
                 isMin ? buttonDisabledClasses : buttonEnabledClasses
               }`}
               style={{
