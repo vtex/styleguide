@@ -24,7 +24,7 @@ class Tag extends PureComponent {
   render() {
     const { children, onClick, disabled, color, bgColor } = this.props
 
-    const baseClasses = 'br-pill f6 pv2 ph4 dib fw5'
+    const baseClasses = 'br-pill t-small pv2 ph4 dib fw5'
 
     let theme = ''
     switch (this.props.type) {

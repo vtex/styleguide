@@ -11,7 +11,7 @@ class Textarea extends Component {
   }
 
   static CharacterCountdown = props => {
-    let classes = 'f6 mt2 lh-title '
+    let classes = 't-small mt2 lh-title '
     if (props.value <= 10) {
       classes += 'c-danger'
     } else {
@@ -58,7 +58,7 @@ class Textarea extends Component {
     const widthClass = 'w-100'
     const box = 'ma0 border-box'
     const border = 'bw1 br2 b--solid outline-0'
-    const typography = 'c-on-base f6'
+    const typography = 'c-on-base t-small'
     const padding = 'pv3 ph5'
     let classes = `${widthClass} ${box} ${padding} ${border} ${typography} `
 
@@ -113,10 +113,12 @@ class Textarea extends Component {
         <div className="flex justify-between">
           <div>
             {errorMessage && (
-              <div className="c-danger f6 mt2 lh-title">{errorMessage}</div>
+              <div className="c-danger t-small mt2 lh-title">
+                {errorMessage}
+              </div>
             )}
             {helpText && (
-              <div className="c-muted-1 f6 mt2 lh-title">{helpText}</div>
+              <div className="c-muted-1 t-small mt2 lh-title">{helpText}</div>
             )}
           </div>
           {maxLength && (

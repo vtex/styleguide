@@ -7,8 +7,8 @@ class EmptyState extends PureComponent {
     return (
       <div className="br3 flex c-muted-2 justify-center pv9 ph6 ph9-l tc">
         <div className="w-80 w-50-l">
-          {title && <h2 className="f3 fw5 mt0 mt0">{title}</h2>}
-          {children && <div className="f5 lh-copy">{children}</div>}
+          {title && <h2 className="t-hading-3 mt0 mt0">{title}</h2>}
+          {children && <div className="t-body lh-copy">{children}</div>}
         </div>
       </div>
     )

@@ -173,7 +173,7 @@ class Toggle extends Component {
           {label && <span className={labelClass}>{label}</span>}
         </div>
         {helpText && (
-          <div className="c-muted-1 f6 mt3 lh-title">{helpText}</div>
+          <div className="c-muted-1 t-small mt3 lh-title">{helpText}</div>
         )}
       </label>
     )

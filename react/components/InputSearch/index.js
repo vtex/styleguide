@@ -39,7 +39,7 @@ class InputSearch extends Component {
               <span
                 tabIndex={0}
                 onClick={this.handleClickClear}
-                className="pointer c-link">
+                className="pointer c-action-primary">
                 <DenyIcon size={iconSize} />
               </span>
             ) : (

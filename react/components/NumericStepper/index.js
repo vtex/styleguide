@@ -157,30 +157,32 @@ class NumericStepper extends Component {
       case 'small': {
         buttonClasses += `h-small ${lean ? 'f4' : 'f6'} `
         const inputWidth = lean ? 'w1' : 'w3'
-        inputClasses += `h-small f6 ${block ? 'flex-grow-1' : inputWidth} `
-        labelClasses += 'f6 '
+        inputClasses += `h-small t-small ${block ? 'flex-grow-1' : inputWidth} `
+        labelClasses += 't-small '
         break
       }
       case 'large': {
         buttonClasses += `h-large ${lean ? 'f3' : 'f5'} `
         const inputWidth = lean ? 'w2' : 'w3'
-        inputClasses += `h-large f5 ${block ? 'flex-grow-1' : inputWidth} `
-        labelClasses += 'f5 '
+        inputClasses += `h-large t-body ${block ? 'flex-grow-1' : inputWidth} `
+        labelClasses += 't-body '
         break
       }
       case 'x-large': {
         // DEPRECATED
         buttonClasses += `pv5 ${lean ? 'f2' : 'f4'} `
         const inputWidth = lean ? 'w3' : 'w4'
-        inputClasses += `pv5 f4 ${block ? 'flex-grow-1' : inputWidth} `
-        labelClasses += 'f5 '
+        inputClasses += `pv5 t-body ${block ? 'flex-grow-1' : inputWidth} `
+        labelClasses += 't-body '
         break
       }
       default: {
         buttonClasses += `h-regular ${lean ? 'f4' : 'f6'} `
         const inputWidth = lean ? 'w2' : 'w3'
-        inputClasses += `h-regular f6 ${block ? 'flex-grow-1' : inputWidth} `
-        labelClasses += 'f6 '
+        inputClasses += `h-regular t-small ${
+          block ? 'flex-grow-1' : inputWidth
+        } `
+        labelClasses += 't-small '
         break
       }
     }
@@ -198,7 +200,9 @@ class NumericStepper extends Component {
     const content = (
       <React.Fragment>
         {label && (
-          <span className={`db mb3 w-100 ${labelClasses}`}>{label}</span>
+          <span className={`db mb3 w-100 c-on-base ${labelClasses}`}>
+            {label}
+          </span>
         )}
         <div className="flex self-start">
           {lean ? (

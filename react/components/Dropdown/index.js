@@ -108,7 +108,7 @@ ${this.getDropdownIdentification()}`
     let containerClasses = 'br2 bw1 relative '
     let selectClasses = 'o-0 absolute top-0 left-0 w-100 bottom-0 '
 
-    let labelClasses = 'vtex-dropdown__label dib mb3 w-100 '
+    let labelClasses = 'vtex-dropdown__label dib mb3 w-100 c-on-base '
 
     const valueLabel = this.getValueLabel()
     const showCaption = !valueLabel
@@ -124,28 +124,28 @@ ${this.getDropdownIdentification()}`
 
     switch (size) {
       case 'small':
-        classes += 'h-small f6 pl5 pr4 '
-        selectClasses += 'f6 '
-        labelClasses += 'f6 '
+        classes += 'h-small t-small pl5 pr4 '
+        selectClasses += 't-small '
+        labelClasses += 't-small '
         iconSize = 18
         break
       case 'large':
-        classes += 'h-large f5 pl6 pr5 '
-        selectClasses += 'f5 '
-        labelClasses += 'f5 '
+        classes += 'h-large t-body pl6 pr5 '
+        selectClasses += 't-body '
+        labelClasses += 't-body '
         iconSize = 18
         break
       case 'x-large':
         // DEPRECATED
-        classes += 'f4 pv5 pl7 pr6 '
-        selectClasses += 'f4 '
-        labelClasses += 'f5 '
+        classes += 't-body pv5 pl7 pr6 '
+        selectClasses += 't-body '
+        labelClasses += 't-body '
         iconSize = 22
         break
       default:
-        classes += 'h-regular f5 pl6 pr5 '
-        selectClasses += 'f6 '
-        labelClasses += 'f6 '
+        classes += 'h-regular t-body pl6 pr5 '
+        selectClasses += 't-small '
+        labelClasses += 't-small '
         iconSize = 18
         break
     }
@@ -216,10 +216,10 @@ ${this.getDropdownIdentification()}`
           </div>
         </label>
         {errorMessage && (
-          <div className="c-danger f6 mt3 lh-title">{errorMessage}</div>
+          <div className="c-danger t-small mt3 lh-title">{errorMessage}</div>
         )}
         {helpText && (
-          <div className="c-muted-1 f6 mt3 lh-title">{helpText}</div>
+          <div className="c-muted-1 t-small mt3 lh-title">{helpText}</div>
         )}
       </div>
     )

@@ -92,7 +92,7 @@ class Input extends Component {
     const typography = 'c-on-base'
     let classes = `${widthClass} ${box} ${border} ${typography} `
 
-    let labelClasses = 'vtex-input__label db mb3 w-100 '
+    let labelClasses = 'vtex-input__label db mb3 w-100 c-on-base '
 
     let prefixAndSuffixClasses =
       'vtex-input__prefix absolute c-muted-2 fw5 flex items-center '
@@ -117,31 +117,33 @@ class Input extends Component {
 
     switch (size) {
       case 'small':
-        classes += `f6 h-small ${prefix ? 'pl7 pr5' : 'ph5'} ${
+        classes += `t-small h-small ${prefix ? 'pl7 pr5' : 'ph5'} ${
           suffix ? 'pr7' : ''
         }`
-        labelClasses += 'f6 '
-        prefixAndSuffixClasses += 'ph3 fw5 f6 '
+        labelClasses += 't-small '
+        prefixAndSuffixClasses += 'ph3 t-body '
         break
       case 'large':
-        classes += `f5 h-large ${prefix ? 'pl8 pr6' : 'ph6'} ${
+        classes += `t-body h-large ${prefix ? 'pl8 pr6' : 'ph6'} ${
           suffix ? 'pr8' : ''
         }`
-        labelClasses += 'f5 '
-        prefixAndSuffixClasses += 'ph4 f5'
+        labelClasses += 't-body '
+        prefixAndSuffixClasses += 'ph4 t-body'
         break
       case 'x-large':
         // DEPRECATED
-        classes += `f4 pv5 ${prefix ? 'pl8 pr7' : 'ph7'} ${suffix ? 'pr8' : ''}`
-        labelClasses += 'f5 '
-        prefixAndSuffixClasses += 'ph5 f4 '
+        classes += `t-body pv5 ${prefix ? 'pl8 pr7' : 'ph7'} ${
+          suffix ? 'pr8' : ''
+        }`
+        labelClasses += 't-body '
+        prefixAndSuffixClasses += 'ph5 t-body '
         break
       default:
-        classes += `f6 h-regular ${prefix ? 'pl7 pr5' : 'ph5'} ${
+        classes += `t-small h-regular ${prefix ? 'pl7 pr5' : 'ph5'} ${
           suffix ? 'pr7' : ''
         }`
-        labelClasses += 'f6 '
-        prefixAndSuffixClasses += 'ph3 fw5 f6 '
+        labelClasses += 't-small '
+        prefixAndSuffixClasses += 'ph3 t-small '
         break
     }
 
@@ -213,10 +215,10 @@ class Input extends Component {
           )}
         </div>
         {errorMessage && (
-          <div className="c-danger f6 mt3 lh-title">{errorMessage}</div>
+          <div className="c-danger t-small mt3 lh-title">{errorMessage}</div>
         )}
         {helpText && (
-          <div className="c-muted-1 f6 mt3 lh-title">{helpText}</div>
+          <div className="c-muted-1 t-small mt3 lh-title">{helpText}</div>
         )}
       </label>
     )

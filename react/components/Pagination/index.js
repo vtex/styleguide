@@ -52,7 +52,9 @@ class Pagination extends PureComponent {
         }`}>
         {dropdownOptions && (
           <div className="flex flex-row pt5 items-baseline">
-            <span className="mr4 c-muted-2 f6">{this.props.textShowRows}</span>
+            <span className="mr4 c-muted-2 t-small">
+              {this.props.textShowRows}
+            </span>
             <Dropdown
               size="small"
               options={dropdownOptions}
@@ -63,7 +65,7 @@ class Pagination extends PureComponent {
         )}
 
         <div className="flex flex-row pt5 items-center">
-          <div className="c-muted-2 f6">
+          <div className="c-muted-2 t-small">
             {this.props.currentItemFrom}
             {' - '}
             {this.props.currentItemTo} {this.props.textOf}{' '}

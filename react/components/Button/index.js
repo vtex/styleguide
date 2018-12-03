@@ -18,7 +18,7 @@ class Button extends Component {
 
     const Tag = icon ? 'div' : 'button'
 
-    let classes = 'vtex-button bw1 ba fw5 ttu br2 fw4 v-mid relative '
+    let classes = 'vtex-button bw1 ba fw5 br2 v-mid relative '
     let loaderSize = 15
 
     classes += icon ? 'icon-button dib ' : ''
@@ -26,17 +26,17 @@ class Button extends Component {
     switch (size) {
       case 'small':
         classes += `h-small ${icon ? 'ph3' : 'ph5'} `
-        classes += 'f6 '
+        classes += 't-action--small '
         break
       default:
       case 'regular':
         classes += `h-regular ${icon ? 'ph4' : 'ph6'} `
-        classes += 'f5 '
+        classes += 't-action '
         loaderSize = 20
         break
       case 'large':
         classes += `h-large ${icon ? 'ph5' : 'ph7'} `
-        classes += 'f4 '
+        classes += 't-action--large '
         loaderSize = 25
         break
     }
