@@ -124,7 +124,7 @@ class Input extends Component {
         prefixAndSuffixClasses += 'ph3 t-body '
         break
       case 'large':
-        classes += `t-body h-large ${prefix ? 'pl8 pr6' : 'ph6'} ${
+        classes += `t-body h-large ${prefix ? 'pl8 pr6' : 'ph5'} ${
           suffix ? 'pr8' : ''
         }`
         labelClasses += 't-body '
