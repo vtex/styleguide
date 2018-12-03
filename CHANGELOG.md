@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Module to help deprecating component names and props
+
+### Changed
+- **Badge** renamed component to Tag (still compatible with former usage, only deprecation alert)
+
 ## [8.0.0] - 2018-11-29
 
 ### Added
