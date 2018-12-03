@@ -3,14 +3,14 @@
  * API props:
  * deprecated({
  *  useNewComponent: {
- *    OldComponentName: NewComponentName,
+ *    old: OldComponentName
+ *    new: NewComponentName,
  *  },
  *  useNewProps: {
  *    OldPropName: NewPropName,
  *    OtherOldPropName: OtherNewPropName,
  *  },
- *  customMessage: 'Some custom deprecation message'
- * }, Component)
+ * })(Component)
  **/
 import React, { Component } from 'react'
 
@@ -34,47 +34,39 @@ const mapNewProps = (propsMap, props) => {
   }
 }
 
-function deprecated(
-  { useNewComponent, useNewProps, customMessage },
-  WrappedComponent
-) {
-  class Deprecated extends Component {
-    componentDidMount() {
-      if (useNewComponent) {
-        const deprecatedComponentName = Object.keys(useNewComponent)[0]
-        console.warn(
-          `"${deprecatedComponentName}" is deprecated, you should use "${
-            useNewComponent[deprecatedComponentName]
-          }" instead`
-        )
+export default function deprecated({ useNewComponent, useNewProps }) {
+  return WrappedComponent =>
+    class Deprecated extends Component {
+      componentDidMount() {
+        if (useNewComponent) {
+          console.warn(
+            `"${
+              useNewComponent.old
+            }" component is deprecated, you should use "${
+              useNewComponent.new
+            }" instead`
+          )
+        }
+        if (useNewProps) {
+          Object.keys(useNewProps).map(deprecatedProp => {
+            if (this.props[deprecatedProp]) {
+              console.warn(
+                `"${getComponentName(
+                  WrappedComponent
+                )}" prop "${deprecatedProp}" is deprecated, you should use "${
+                  useNewProps[deprecatedProp]
+                }" instead`
+              )
+            }
+          })
+        }
       }
-      if (useNewProps) {
-        Object.keys(useNewProps).map(deprecatedProp => {
-          if (this.props[deprecatedProp]) {
-            console.warn(
-              `"${getComponentName(
-                WrappedComponent
-              )}" prop "${deprecatedProp}" is deprecated, you should use "${
-                useNewProps[deprecatedProp]
-              }" instead`
-            )
-          }
-        })
-      }
-      if (customMessage) {
-        console.warn(customMessage)
+
+      render() {
+        const newProps = useNewProps
+          ? mapNewProps(useNewProps, this.props)
+          : this.props
+        return <WrappedComponent {...newProps} />
       }
     }
-
-    render() {
-      const newProps = useNewProps
-        ? mapNewProps(useNewProps, this.props)
-        : this.props
-      return <WrappedComponent {...newProps} />
-    }
-  }
-
-  return Deprecated
 }
-
-export default deprecated
