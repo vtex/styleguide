@@ -1,5 +1,5 @@
 const generateRandomColorObject = () => {
-  const badgeData = [
+  const tagData = [
     {
       color: '#F71963',
       label: 'Rebel pink',
@@ -17,7 +17,7 @@ const generateRandomColorObject = () => {
       label: 'Serious black',
     },
   ]
-  return badgeData[Math.floor(Math.random() * badgeData.length)]
+  return tagData[Math.floor(Math.random() * tagData.length)]
 }
 
 export default {

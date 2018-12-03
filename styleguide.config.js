@@ -135,7 +135,7 @@ module.exports = {
         {
           name: 'Other',
           components: [
-            'react/components/Badge/index.js',
+            'react/components/Tag/index.js',
             'react/components/Spinner/index.js',
           ],
         },

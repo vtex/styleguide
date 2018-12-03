@@ -60,7 +60,7 @@ Custom cell components / sortable columns
 ```js
 const sampleData = require('./sampleData').default;
 const itemsCopy = sampleData.items.slice().reverse().splice(20);
-const Badge = require('../Badge').default;
+const Tag = require('../Tag').default;
 class CustomTableExample extends React.Component {
   constructor() {
     super()
@@ -119,7 +119,7 @@ class CustomTableExample extends React.Component {
           // you can customize cell component render (also header component with headerRenderer)
           cellRenderer: ({ cellData }) => {
             return (
-              <Badge bgColor={cellData.color} color="#fff" onClick={(e) => {
+              <Tag bgColor={cellData.color} color="#fff" onClick={(e) => {
                   // if you use cellRender click event AND onRowclick event
                   // you should stop the event propagation so the cell click fires and row click don't
                   e.stopPropagation()
@@ -128,7 +128,7 @@ class CustomTableExample extends React.Component {
                 <span className="nowrap">
                   {cellData.label}
                 </span>
-              </Badge>
+              </Tag>
             )
           },
         },
@@ -187,7 +187,7 @@ class ResourceListExample extends React.Component {
     this.handleInputSearchSubmit = this.handleInputSearchSubmit.bind(this)
     this.handleInputSearchClear = this.handleInputSearchClear.bind(this)
     this.handleRowsChange = this.handleRowsChange.bind(this)
-    this.customColorBadgeProperty = this.customColorBadgeProperty.bind(this)
+    this.customColorTagProperty = this.customColorTagProperty.bind(this)
   }
 
   handleNextClick() {
@@ -249,17 +249,17 @@ class ResourceListExample extends React.Component {
     }
   }
 
-  customColorBadgeProperty(index) {
+  customColorTagProperty(index) {
     return {
       type: 'object',
       title: `Color${index ? ` ${index}` : ''}`,
       cellRenderer: ({ cellData }) => {
         return (
-          <Badge bgColor={cellData.color} color="#fff">
+          <Tag bgColor={cellData.color} color="#fff">
             <span className="nowrap">
               {cellData.label}
             </span>
-          </Badge>
+          </Tag>
         )
       },
     }
@@ -281,13 +281,13 @@ class ResourceListExample extends React.Component {
           type: 'number',
           title: 'Number',
         },
-        color: this.customColorBadgeProperty(),
-        color1: this.customColorBadgeProperty(1),
-        color2: this.customColorBadgeProperty(2),
-        color3: this.customColorBadgeProperty(3),
-        color4: this.customColorBadgeProperty(4),
-        color5: this.customColorBadgeProperty(5),
-        color6: this.customColorBadgeProperty(6),
+        color: this.customColorTagProperty(),
+        color1: this.customColorTagProperty(1),
+        color2: this.customColorTagProperty(2),
+        color3: this.customColorTagProperty(3),
+        color4: this.customColorTagProperty(4),
+        color5: this.customColorTagProperty(5),
+        color6: this.customColorTagProperty(6),
       },
     };
 
