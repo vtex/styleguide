@@ -170,7 +170,7 @@ export default class MultiSelect extends Component {
             </span>
           )}
           <div
-            className={`flex flex-wrap mt3 br2 b--solid bw1 pv2 ph6 ${classes}`}>
+            className={`flex flex-wrap mt3 br2 b--solid bw1 pv2 ph5 ${classes}`}>
             <input
               className={`t-small mv3 bn outline-0 flex-grow-1 order-last ${classes}`}
               disabled={disabled}
