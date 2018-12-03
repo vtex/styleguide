@@ -124,26 +124,26 @@ ${this.getDropdownIdentification()}`
 
     switch (size) {
       case 'small':
-        classes += 'h-small t-small pl5 pr4 '
+        classes += 'h-small t-small pl5 pr3 '
         selectClasses += 't-small '
         labelClasses += 't-small '
         iconSize = 18
         break
       case 'large':
-        classes += 'h-large t-body pl6 pr5 '
+        classes += 'h-large t-body ph5 '
         selectClasses += 't-body '
         labelClasses += 't-body '
         iconSize = 18
         break
       case 'x-large':
         // DEPRECATED
-        classes += 't-body pv5 pl7 pr6 '
+        classes += 't-body pv5 ph5 '
         selectClasses += 't-body '
         labelClasses += 't-body '
         iconSize = 22
         break
       default:
-        classes += 'h-regular t-body pl6 pr5 '
+        classes += 'h-regular t-body pl5 pr4 '
         selectClasses += 't-small '
         labelClasses += 't-small '
         iconSize = 18
