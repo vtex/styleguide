@@ -36,7 +36,7 @@ export default function Selector({
   )
 
   const popupClasses = classNames(
-    'vtex-slider__selector-tooltip flex justify-center items-center relative ph3 pv2 br2 f6 ba',
+    'vtex-slider__selector-tooltip flex justify-center items-center relative ph3 pv2 br2 t-small ba',
     {
       'vtex-slider__tooltip--active bg-action-primary white b--action-primary': active,
       'bg-base b--muted-2 c-muted-1': !active,

@@ -6,6 +6,7 @@ import VisibilityOff from '../icon/VisibilityOff'
 
 class PasswordInput extends Component {
   static iconSizes = {
+    small: 14,
     default: 16,
     large: 18,
     'x-large': 22,

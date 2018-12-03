@@ -16,27 +16,25 @@ class Button extends Component {
 
     const disabled = this.props.disabled || isLoading
 
-    const Tag = icon ? 'div' : 'button'
-
-    let classes = 'vtex-button bw1 ba fw5 ttu br2 fw4 v-mid relative '
+    let classes = 'vtex-button bw1 ba fw5 br2 v-mid relative pa0 '
     let loaderSize = 15
 
     classes += icon ? 'icon-button dib ' : ''
 
     switch (size) {
       case 'small':
-        classes += icon ? 'pa3 ' : 'pv3 ph5 '
-        classes += 'f6 '
+        classes += `h-small ${icon ? 'ph3' : 'ph5'} `
+        classes += 't-action--small '
         break
       default:
       case 'regular':
-        classes += icon ? 'pa4 ' : 'pv4 ph6 '
-        classes += 'f5 '
+        classes += `h-regular ${icon ? 'ph4' : 'ph6'} `
+        classes += 't-action '
         loaderSize = 20
         break
       case 'large':
-        classes += icon ? 'pa5 ' : 'pv5 ph7 '
-        classes += 'f4 '
+        classes += `h-large ${icon ? 'ph5' : 'ph7'} `
+        classes += 't-action--large '
         loaderSize = 25
         break
     }
@@ -99,7 +97,7 @@ class Button extends Component {
     }
 
     return (
-      <Tag
+      <button
         id={this.props.id}
         autoFocus={icon ? undefined : this.props.autoFocus}
         disabled={icon ? undefined : this.props.disabled}
@@ -128,9 +126,11 @@ class Button extends Component {
             <span style={{ opacity: 0 }}>{children}</span>
           </Fragment>
         ) : (
-          children
+          <div className="flex items-center justify-center h-100">
+            {children}
+          </div>
         )}
-      </Tag>
+      </button>
     )
   }
 }

@@ -5,6 +5,14 @@ import DenyIcon from '../icon/Deny'
 import CheckIcon from '../icon/Check'
 
 class Toggle extends Component {
+  componentDidMount() {
+    if (this.props.size === 'small') {
+      console.warn(
+        'Toggle: value "small" for the prop "size" is deprecated—the default "regular" size is now equivalent to what the size "small" was previously.'
+      )
+    }
+  }
+
   render() {
     const {
       semantic,
@@ -85,7 +93,26 @@ class Toggle extends Component {
     let checkedOffset
 
     switch (size) {
-      case 'small':
+      case 'large':
+        classes += 'h2 '
+        circleClasses += 'h2 w2 '
+        iconDenyClasses += 'w2 '
+        iconCheckClasses += 'w2 '
+
+        labelClass += 'ml5 '
+
+        style = {
+          ...style,
+          minWidth: '3.5rem',
+        }
+        circleStyle = {
+          ...circleStyle,
+          minWidth: '2rem',
+        }
+
+        checkedOffset = '1.5rem'
+        break
+      default:
         style = {
           ...style,
           height: '1.25rem',
@@ -108,26 +135,6 @@ class Toggle extends Component {
         labelClass += 'ml3 '
 
         checkedOffset = '1rem'
-
-        break
-      default:
-        classes += 'h2 '
-        circleClasses += 'h2 w2 '
-        iconDenyClasses += 'w2 '
-        iconCheckClasses += 'w2 '
-
-        labelClass += 'ml5 '
-
-        style = {
-          ...style,
-          minWidth: '3.5rem',
-        }
-        circleStyle = {
-          ...circleStyle,
-          minWidth: '2rem',
-        }
-
-        checkedOffset = '1.5rem'
     }
 
     const checkedStyle = {
@@ -166,7 +173,7 @@ class Toggle extends Component {
           {label && <span className={labelClass}>{label}</span>}
         </div>
         {helpText && (
-          <div className="c-muted-1 f6 mt3 lh-title">{helpText}</div>
+          <div className="c-muted-1 t-small mt3 lh-title">{helpText}</div>
         )}
       </label>
     )
@@ -189,7 +196,7 @@ Toggle.propTypes = {
   label: PropTypes.string,
   onChange: PropTypes.func,
   onClick: PropTypes.func,
-  size: PropTypes.oneOf(['small', 'regular']),
+  size: PropTypes.oneOf(['regular', 'large']),
   helpText: PropTypes.node,
 }
 

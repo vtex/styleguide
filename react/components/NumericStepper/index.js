@@ -62,6 +62,14 @@ class NumericStepper extends Component {
     displayValue: 0,
   }
 
+  componentDidMount() {
+    if (this.props.size === 'x-large') {
+      console.warn(
+        'NumericStepper: The value "x-large" for the prop "size" is deprecated. In the next major version, it will be equivalent to "large", and removed altogether in future versions'
+      )
+    }
+  }
+
   static getDerivedStateFromProps(props, state) {
     const { value, minValue, maxValue, defaultValue } = props
 
@@ -141,50 +149,71 @@ class NumericStepper extends Component {
     const isMin = value <= normalizeMin(minValue)
     const isMax = value >= normalizeMax(maxValue)
 
-    // TODO: Make this less cumbersome - will be done when x-large is killed
-    const buttonSizeClass = (lean
-      ? {
-          regular: 'f4 pv0',
-          large: 'f3 pv0',
-          'x-large': 'f2 pv0',
-        }
-      : {
-          regular: 'pv3 f6',
-          large: 'pv4 f5',
-          'x-large': 'pv5 f4',
-        })[size]
+    let labelClasses = ''
+    let buttonClasses = ''
+    let inputClasses = ''
 
-    const inputSizeClass = (lean
-      ? {
-          regular: `pv3 f6 ${block ? 'flex-grow-1' : 'w2'}`,
-          large: `pv4 f5 ${block ? 'flex-grow-1' : 'w2'}`,
-          'x-large': `pv5 f4 ${block ? 'flex-grow-1' : 'w3'}`,
-        }
-      : {
-          regular: `pv3 f6 ${block ? 'flex-grow-1' : 'w3'}`,
-          large: `pv4 f5 ${block ? 'flex-grow-1' : 'w3'}`,
-          'x-large': `pv5 f4 ${block ? 'flex-grow-1' : 'w4'}`,
-        })[size]
+    switch (size) {
+      case 'small': {
+        buttonClasses += `h-small ${lean ? 'f4' : 'f6'} `
+        const inputWidth = lean ? 'w1' : 'w3'
+        inputClasses += `h-small t-small ${block ? 'flex-grow-1' : inputWidth} `
+        labelClasses += 't-small '
+        break
+      }
+      case 'large': {
+        buttonClasses += `h-large ${lean ? 'f3' : 'f5'} `
+        const inputWidth = lean ? 'w2' : 'w3'
+        inputClasses += `h-large t-body ${block ? 'flex-grow-1' : inputWidth} `
+        labelClasses += 't-body '
+        break
+      }
+      case 'x-large': {
+        // DEPRECATED
+        buttonClasses += `pv5 ${lean ? 'f2' : 'f4'} `
+        const inputWidth = lean ? 'w3' : 'w4'
+        inputClasses += `pv5 t-body ${block ? 'flex-grow-1' : inputWidth} `
+        labelClasses += 't-body '
+        break
+      }
+      default: {
+        buttonClasses += `h-regular ${lean ? 'f4' : 'f6'} `
+        const inputWidth = lean ? 'w2' : 'w3'
+        inputClasses += `h-regular t-small ${
+          block ? 'flex-grow-1' : inputWidth
+        } `
+        labelClasses += 't-small '
+        break
+      }
+    }
 
-    const borderClass = lean ? 'bn' : 'ba b--muted-4 bw1'
+    const borderClasses = lean ? 'bn ' : 'ba b--muted-4 bw1 '
 
-    const buttonDisabledClass = lean
-      ? 'o-0 c-action-primary bg-transparent'
-      : 'bg-muted-5 c-disabled o-100'
+    const buttonDisabledClasses = lean
+      ? 'c-disabled bg-transparent '
+      : 'bg-muted-5 c-disabled o-100 '
 
-    const buttonEnabledClass = `pointer bg-base c-action-primary ${lean &&
-      'outline-0'}`
+    const buttonEnabledClasses = `pointer bg-base c-action-primary ${
+      lean ? 'outline-0' : ''
+    } `
 
     const content = (
       <React.Fragment>
-        {label && <span className="db mb3 w-100">{label}</span>}
+        {label && (
+          <span className={`db mb3 w-100 c-on-base ${labelClasses}`}>
+            {label}
+          </span>
+        )}
         <div className="flex self-start">
           {lean ? (
-            <div className={`order-1 tc ${inputSizeClass}`}>{displayValue}</div>
+            <div
+              className={`order-1 flex items-center justify-center ${inputClasses}`}>
+              {displayValue}
+            </div>
           ) : (
             <input
               type="tel"
-              className={`z-1 order-1 tc bw1 ${borderClass} br0 ${inputSizeClass}`}
+              className={`z-1 order-1 tc bw1 ${borderClasses} br0 ${inputClasses}`}
               style={{
                 ...(block && {
                   width: 0,
@@ -199,8 +228,8 @@ class NumericStepper extends Component {
           )}
           <div className="z-2 order-2 flex-none">
             <button
-              className={`br2 ph0 h-100 tc ${borderClass} bl-0 ${buttonSizeClass} ${
-                isMax ? buttonDisabledClass : buttonEnabledClass
+              className={`br2 pa0 bl-0 flex items-center justify-center ${borderClasses} ${buttonClasses} ${
+                isMax ? buttonDisabledClasses : buttonEnabledClasses
               }`}
               style={{
                 borderTopLeftRadius: 0,
@@ -212,16 +241,16 @@ class NumericStepper extends Component {
               aria-label="+"
               tabIndex={0}
               onClick={this.handleIncreaseValue}>
-              <span className="b">
+              <div className="b">
                 {/* fullwidth plus sign (U+FF0B) http://graphemica.com/%EF%BC%8B */}
                 ＋
-              </span>
+              </div>
             </button>
           </div>
           <div className="z-2 order-0 flex-none">
             <button
-              className={`br2 ph0 h-100 ${borderClass} br-0 ${buttonSizeClass} ${
-                isMin ? buttonDisabledClass : buttonEnabledClass
+              className={`br2 pa0 br-0 flex items-center justify-center ${borderClasses} ${buttonClasses} ${
+                isMin ? buttonDisabledClasses : buttonEnabledClasses
               }`}
               style={{
                 borderTopRightRadius: 0,
@@ -270,7 +299,7 @@ NumericStepper.propTypes = {
   /** Default value in case of invalid input (e.g. letters) and there is no minimum value */
   defaultValue: PropTypes.number,
   /** Input size */
-  size: PropTypes.oneOf(['regular', 'large', 'x-large']),
+  size: PropTypes.oneOf(['small', 'regular', 'large']),
   /** Block or default size. */
   block: PropTypes.bool,
   /** Input label */

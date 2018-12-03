@@ -131,7 +131,7 @@ export default class Toast extends Component {
           transform: `translate3d(0, ${isOpen ? 0 : '170%'}, 0)`,
           minWidth: '18rem',
         }}>
-        <div className="vtex-toast flex justify-between items-start items-center-ns f5 bg-base--inverted c-on-base--inverted pa5 br2-ns shadow-5">
+        <div className="vtex-toast flex justify-between items-start items-center-ns t-body bg-base--inverted c-on-base--inverted pa5 br2-ns shadow-5">
           <div className="flex-ns flex-grow-1">
             <div className="flex items-center flex-grow-1">
               <div className="pr5 mw6-ns lh-copy">{message}</div>
@@ -141,7 +141,7 @@ export default class Toast extends Component {
               <div className="flex flex-grow-1 justify-end items-center">
                 <div className="nt4-ns nb4">
                   <button
-                    className="ttu bg-transparent b--transparent c-on-base--inverted bw1 ba fw5 ttu br2 fw4 v-mid relative pv4 pl5 pr4 pointer"
+                    className="ttu bg-transparent b--transparent c-on-base--inverted bw1 ba ttu br2 t-action v-mid relative pv4 pl5 pr4 pointer"
                     onClick={this.handleActionClick}>
                     {action.label}
                   </button>

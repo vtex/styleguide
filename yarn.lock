@@ -8624,6 +8624,7 @@ punycode@^1.2.4, punycode@^1.4.1:
 punycode@^2.1.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
+  integrity sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==
 
 q-i@^2.0.1:
   version "2.0.1"
@@ -11097,10 +11098,10 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
-vtex-tachyons@^2.8.4:
-  version "2.8.4"
-  resolved "https://registry.yarnpkg.com/vtex-tachyons/-/vtex-tachyons-2.8.4.tgz#0f4aa6df1da36261202890c95812d08b439559ee"
-  integrity sha512-vhTwEy/PR441nUse5AWk/3iIaaiv+5aUABpUaOgwJfXSZN0LZDrmA20EdsPeAcSTwN1psltRI3qF5aODzo3KWA==
+vtex-tachyons@^2.10.0:
+  version "2.10.0"
+  resolved "https://registry.yarnpkg.com/vtex-tachyons/-/vtex-tachyons-2.10.0.tgz#d72363dcd77d0960cb23efc82e0e8d168714f153"
+  integrity sha512-WWEOR4iyrMQ2fzp+EActa5ZLaYSMdPk2yxP8XQRhg+q+QnbFH2EKGayjkea4okXRDE7KTKQZdLF3GlB/HaXOow==
 
 vue-eslint-parser@^2.0.2:
   version "2.0.3"

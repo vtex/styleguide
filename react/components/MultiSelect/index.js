@@ -165,12 +165,14 @@ export default class MultiSelect extends Component {
       <div className="relative">
         <label>
           {label && (
-            <span className="vtex-input__label db mb3 w-100">{label}</span>
+            <span className="vtex-input__label db mb3 w-100 c-on-base">
+              {label}
+            </span>
           )}
           <div
-            className={`flex flex-wrap mt3 br2 b--solid bw1 pv2 ph6 ${classes}`}>
+            className={`flex flex-wrap mt3 br2 b--solid bw1 pv2 ph5 ${classes}`}>
             <input
-              className={`f6 mv3 bn outline-0 flex-grow-1 order-last ${classes}`}
+              className={`t-small mv3 bn outline-0 flex-grow-1 order-last ${classes}`}
               disabled={disabled}
               onBlur={this.handleBlur}
               onChange={this.handleSearch}

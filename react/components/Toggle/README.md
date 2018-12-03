@@ -15,8 +15,8 @@ Default
 initialState = {
   checked: true,
   checked2: false,
-  checkedSmall1: true,
-  checkedSmall2: false
+  checkedLarge1: true,
+  checkedLarge2: false
 };
 <div>
   <div className="dib">
@@ -37,22 +37,22 @@ initialState = {
   <br />
   <div className="mt6 dib">
     <Toggle
-      label="Label (small)"
-      size="small"
-      checked={state.checkedSmall1}
+      label="Label (large)"
+      size="large"
+      checked={state.checkedLarge1}
       onChange={e =>
-        setState(prevState => ({ checkedSmall1: !prevState.checkedSmall1 }))
+        setState(prevState => ({ checkedLarge1: !prevState.checkedLarge1 }))
       }
     />
   </div>
   <br />
   <div className="mt2 dib">
     <Toggle
-      label="Label (small)"
-      size="small"
-      checked={state.checkedSmall2}
+      label="Label (large)"
+      size="large"
+      checked={state.checkedLarge2}
       onChange={e =>
-        setState(prevState => ({ checkedSmall2: !prevState.checkedSmall2 }))
+        setState(prevState => ({ checkedLarge2: !prevState.checkedLarge2 }))
       }
       helpText="You can add help text!"
     />
@@ -66,8 +66,8 @@ Semantic
 initialState = {
   checked: true,
   checked2: false,
-  checkedSmall1: true,
-  checkedSmall2: false
+  checkedLarge1: true,
+  checkedLarge2: false
 };
 <div>
   <div className="dib">
@@ -90,24 +90,24 @@ initialState = {
   <br />
   <div className="mt6 dib">
     <Toggle
-      label="Label (small)"
-      size="small"
+      label="Label (large)"
+      size="large"
       semantic
-      checked={state.checkedSmall1}
+      checked={state.checkedLarge1}
       onChange={e =>
-        setState(prevState => ({ checkedSmall1: !prevState.checkedSmall1 }))
+        setState(prevState => ({ checkedLarge1: !prevState.checkedLarge1 }))
       }
     />
   </div>
   <br />
   <div className="mt2 dib">
     <Toggle
-      label="Label (small)"
-      size="small"
+      label="Label (large)"
+      size="large"
       semantic
-      checked={state.checkedSmall2}
+      checked={state.checkedLarge2}
       onChange={e =>
-        setState(prevState => ({ checkedSmall2: !prevState.checkedSmall2 }))
+        setState(prevState => ({ checkedLarge2: !prevState.checkedLarge2 }))
       }
     />
   </div>

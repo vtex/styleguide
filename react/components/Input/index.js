@@ -37,6 +37,26 @@ class Input extends Component {
     this.props.onBlur && this.props.onBlur(event)
   }
 
+  componentDidMount() {
+    if (this.props.size === 'x-large') {
+      console.warn(
+        'Input: The value "x-large" for the prop "size" is deprecated. In the next major version, it will be equivalent to "large", and removed altogether in future versions'
+      )
+    }
+
+    if (this.props.suffixIcon) {
+      console.warn(
+        'The prop suffixIcon is deprecated and will be removed in the next major. Please use the prop suffix instead.'
+      )
+    }
+
+    if (this.props.prefix && this.props.suffix) {
+      console.warn(
+        'You should not use both prefix and suffix props in the same input. '
+      )
+    }
+  }
+
   render() {
     const {
       errorMessage,
@@ -55,18 +75,6 @@ class Input extends Component {
 
     const suffix = suffixProp || suffixIcon
 
-    if (suffixIcon) {
-      console.warn(
-        'The prop suffixIcon is deprecated and will be removed in the next major. Please use the prop suffix instead.'
-      )
-    }
-
-    if (prefix && suffix) {
-      console.warn(
-        'You should not use both prefix and suffix props in the same input. '
-      )
-    }
-
     const dataAttrs = {}
     for (const key of Object.keys(dataAttributes)) {
       dataAttrs[`data-${key}`] = dataAttributes[key]
@@ -84,7 +92,7 @@ class Input extends Component {
     const typography = 'c-on-base'
     let classes = `${widthClass} ${box} ${border} ${typography} `
 
-    let labelClasses = 'vtex-input__label db mb3 w-100 '
+    let labelClasses = 'vtex-input__label db mb3 w-100 c-on-base '
 
     let prefixAndSuffixClasses =
       'vtex-input__prefix absolute c-muted-2 fw5 flex items-center '
@@ -108,23 +116,34 @@ class Input extends Component {
     }
 
     switch (size) {
+      case 'small':
+        classes += `t-small h-small ${prefix ? 'pl7 pr5' : 'ph5'} ${
+          suffix ? 'pr7' : ''
+        }`
+        labelClasses += 't-small '
+        prefixAndSuffixClasses += 'ph3 t-body '
+        break
       case 'large':
-        classes += `f5 pv4 ${prefix ? 'pl8 pr6' : 'ph6'} ${suffix ? 'pr8' : ''}`
-        labelClasses += 'f5 '
-        prefixAndSuffixClasses += 'ph4 f5'
-        // iconSize = 18
+        classes += `t-body h-large ${prefix ? 'pl8 pr6' : 'ph5'} ${
+          suffix ? 'pr8' : ''
+        }`
+        labelClasses += 't-body '
+        prefixAndSuffixClasses += 'ph4 t-body'
         break
       case 'x-large':
-        classes += `f4 pv5 ${prefix ? 'pl8 pr7' : 'ph7'} ${suffix ? 'pr8' : ''}`
-        labelClasses += 'f5 '
-        prefixAndSuffixClasses += 'ph5 f4 '
-        // iconSize = 22
+        // DEPRECATED
+        classes += `t-body pv5 ${prefix ? 'pl8 pr7' : 'ph7'} ${
+          suffix ? 'pr8' : ''
+        }`
+        labelClasses += 't-body '
+        prefixAndSuffixClasses += 'ph5 t-body '
         break
       default:
-        classes += `f6 pv3 ${prefix ? 'pl7 pr5' : 'ph5'} ${suffix ? 'pr7' : ''}`
-        labelClasses += 'f6 '
-        prefixAndSuffixClasses += 'ph3 fw5 f6 '
-        // iconSize = 16
+        classes += `t-small h-regular ${prefix ? 'pl7 pr5' : 'ph5'} ${
+          suffix ? 'pr7' : ''
+        }`
+        labelClasses += 't-small '
+        prefixAndSuffixClasses += 'ph3 t-small '
         break
     }
 
@@ -196,10 +215,10 @@ class Input extends Component {
           )}
         </div>
         {errorMessage && (
-          <div className="c-danger f6 mt3 lh-title">{errorMessage}</div>
+          <div className="c-danger t-small mt3 lh-title">{errorMessage}</div>
         )}
         {helpText && (
-          <div className="c-muted-1 f6 mt3 lh-title">{helpText}</div>
+          <div className="c-muted-1 t-small mt3 lh-title">{helpText}</div>
         )}
       </label>
     )
@@ -236,7 +255,7 @@ InputWithRef.propTypes = {
   /** Help text */
   helpText: PropTypes.node,
   /** Input size */
-  size: PropTypes.oneOf(['regular', 'large', 'x-large']),
+  size: PropTypes.oneOf(['small', 'regular', 'large']),
   /** Label */
   label: PropTypes.string,
   /** Prefix */

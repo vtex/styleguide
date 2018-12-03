@@ -70,6 +70,14 @@ ${this.getDropdownIdentification()}`
     return selectedOption ? selectedOption.label : this.getPlaceholder()
   }
 
+  componentDidMount() {
+    if (this.props.size === 'x-large') {
+      console.warn(
+        'Dropdown: The value "x-large" for the prop "size" is deprecated. In the next major version, it will be equivalent to "large", and removed altogether in future versions'
+      )
+    }
+  }
+
   render() {
     const {
       label,
@@ -100,7 +108,7 @@ ${this.getDropdownIdentification()}`
     let containerClasses = 'br2 bw1 relative '
     let selectClasses = 'o-0 absolute top-0 left-0 w-100 bottom-0 '
 
-    let labelClasses = 'vtex-dropdown__label dib mb3 w-100 '
+    let labelClasses = 'vtex-dropdown__label dib mb3 w-100 c-on-base '
 
     const valueLabel = this.getValueLabel()
     const showCaption = !valueLabel
@@ -115,23 +123,30 @@ ${this.getDropdownIdentification()}`
         : 'c-disabled '
 
     switch (size) {
+      case 'small':
+        classes += 'h-small t-small pl5 pr3 '
+        selectClasses += 't-small '
+        labelClasses += 't-small '
+        iconSize = 18
+        break
       case 'large':
-        classes += 'f5 pv4 pl6 pr5 '
-        selectClasses += 'f5 '
-        labelClasses += 'f5 '
+        classes += 'h-large t-body ph5 '
+        selectClasses += 't-body '
+        labelClasses += 't-body '
         iconSize = 18
         break
       case 'x-large':
-        classes += 'f4 pv5 pl7 pr6 '
-        selectClasses += 'f4 '
-        labelClasses += 'f5 '
+        // DEPRECATED
+        classes += 't-body pv5 ph5 '
+        selectClasses += 't-body '
+        labelClasses += 't-body '
         iconSize = 22
         break
       default:
-        classes += 'f6 pv3 pl5 pr4 '
-        selectClasses += 'f6 '
-        labelClasses += 'f6 '
-        iconSize = 16
+        classes += 'h-regular t-body pl5 pr4 '
+        selectClasses += 't-small '
+        labelClasses += 't-small '
+        iconSize = 18
         break
     }
 
@@ -151,9 +166,11 @@ ${this.getDropdownIdentification()}`
           {label && <span className={labelClasses}>{label}</span>}
           <div className={containerClasses} style={containerStyle}>
             <div id={id} className={`vtex-dropdown__button ${classes}`}>
-              <div className="flex">
-                <div className="vtex-dropdown__caption flex-auto tl truncate">
-                  {showCaption ? placeholder : valueLabel}
+              <div className="flex h-100">
+                <div className="vtex-dropdown__caption flex-auto tl truncate h-100">
+                  <div className="h-100 flex items-center">
+                    {showCaption ? placeholder : valueLabel}
+                  </div>
                 </div>
                 <div
                   className={`vtex-dropdown__arrow flex-none flex items-center pl2 ${
@@ -199,10 +216,10 @@ ${this.getDropdownIdentification()}`
           </div>
         </label>
         {errorMessage && (
-          <div className="c-danger f6 mt3 lh-title">{errorMessage}</div>
+          <div className="c-danger t-small mt3 lh-title">{errorMessage}</div>
         )}
         {helpText && (
-          <div className="c-muted-1 f6 mt3 lh-title">{helpText}</div>
+          <div className="c-muted-1 t-small mt3 lh-title">{helpText}</div>
         )}
       </div>
     )
@@ -232,7 +249,7 @@ DropdownWithRef.propTypes = {
   /** Dropdown placeholder value */
   placeholder: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /** Dropdown size */
-  size: PropTypes.oneOf(['regular', 'large', 'x-large']),
+  size: PropTypes.oneOf(['small', 'regular', 'large']),
   /** Dropdown options list */
   options: PropTypes.arrayOf(
     PropTypes.shape({

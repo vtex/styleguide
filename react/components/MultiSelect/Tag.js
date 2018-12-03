@@ -31,7 +31,7 @@ export default class Tag extends Component {
     }
     return (
       <button
-        className={`br-pill bn dib f6 fw4 pv2 ph4 ${classes}`}
+        className={`br-pill bn dib t-small pv2 ph4 ${classes}`}
         disabled={disabled}
         onClick={() => {
           onClick && onClick()

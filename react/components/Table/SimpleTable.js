@@ -105,7 +105,7 @@ class SimpleTable extends Component {
                       } bt bb b--muted-4`}>
                       {schema.properties[property].sortable ? (
                         <span
-                          className="pointer c-muted-1 b f6"
+                          className="pointer c-muted-1 b t-small"
                           onClick={() => {
                             onSort(this.toggleSortType(property))
                           }}>
