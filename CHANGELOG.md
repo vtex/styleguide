@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - **[BREAKING]** Updated sizes of some form components (`Dropdown`, `Pagination`, `Input`, `Button`, `NumericStepper`)
 - **[BREAKING]** Changed default `Toggle` size to what was previously `small`. The previous default size is now named `large`
-- [BREAKING] Use typography tokens instead of font-scale classes
+- **[BREAKING]** Use typography tokens instead of font-scale classes
 - Use color tokens on Table Toolbar
 - Deprecated `x-large` size from all components
 
