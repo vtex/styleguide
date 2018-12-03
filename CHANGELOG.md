@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.0.1] - 2018-12-03
+
 ### Added
 - Module to help deprecating component names and props
 
