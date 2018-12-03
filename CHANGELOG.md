@@ -17,7 +17,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **Table** Use color tokens on the Table Toolbar
 - **[BREAKING]** **Toggle** Decreased the default size
 - **[BREAKING]** Use typography tokens instead of font-scale classes
-- **[BREAKING]** Changed the rendered sizes of the following form components: `Dropdown`, `Pagination`, `Input`, `InputSearch`, `PasswordInput`, `Button`, `Toggle`, and `NumericStepper`. If your layouts are pixel-perfect, check if the components are properly aligned.
+- **[BREAKING]** Changed the rendered sizes of the following form components: `Dropdown`, `Pagination`, `Input`, `InputSearch`, `PasswordInput`, `Button`, `Toggle`, and `NumericStepper`. This might only affect you if your layouts are pixel-perfect. In that case, verify if the components are properly aligned.
 
 ### Deprecated
 - Deprecated `x-large` size from all components (`Dropdown`, `Input`, `InputSearch`, `PasswordInput`, and `NumericStepper`)
