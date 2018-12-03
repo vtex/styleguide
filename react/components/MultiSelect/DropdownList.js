@@ -29,7 +29,7 @@ export default class DropdownList extends PureComponent {
         index === focused ? ' bg-muted-5 c-on-muted-5 ' : ' bg-base c-on-base '
       return (
         <li
-          className={`pv4 ph5 pointer t-small fw3 c-on-muted-4 fw3 ${focusedClasses}`}
+          className={`pv4 ph5 pointer t-small fw3 c-on-muted-4 ${focusedClasses}`}
           dangerouslySetInnerHTML={{ __html: formatOption(opt) }}
           key={index}
           onClick={() => this.handleSelect(index)}
@@ -40,7 +40,7 @@ export default class DropdownList extends PureComponent {
     const results =
       options.length === 0 ? (
         <div
-          className="pv4 ph5 t-small fw4 c-muted-2 bg-base"
+          className="pv4 ph5 t-small c-muted-2 bg-base"
           dangerouslySetInnerHTML={{ __html: emptyState }}
         />
       ) : (
@@ -54,9 +54,7 @@ export default class DropdownList extends PureComponent {
         onMouseEnter={() => onMouseEnter && onMouseEnter()}
         onMouseLeave={() => onMouseLeave && onMouseLeave()}>
         {loading && (
-          <div className="pv4 ph5 t-small fw4 c-muted-2 bg-base fw4">
-            {loadingText}
-          </div>
+          <div className="pv4 ph5 t-small c-muted-2 bg-base">{loadingText}</div>
         )}
         {!loading && results}
       </div>
