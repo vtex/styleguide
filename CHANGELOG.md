@@ -10,43 +10,25 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [8.1.0] - 2018-12-03
 
 ### Added
-
+- **Table** add `emptyStateLabel` prop to use in EmptyState when there is nothing to show
+- **Table** add `fixFirstColumn` prop to enhance the multiple column horizontal scroll experience
 - **Toggle** Added size `large`
 - Added size `small` to the following components: `Input`, `InputSearch`, `PasswordInput`, `Dropdown`, and `NumericStepper`
 
 ### Changed
-
 - **Table** Use color tokens on the Table Toolbar
+- **[BREAKING]** **PageHeader** background set to transparent
+- **[BREAKING]** **Table** Now width in schema properties is absolute (mirroring react pattern in style obj)
 - **[BREAKING]** **Toggle** Decreased the default size
 - **[BREAKING]** Use typography tokens instead of font-scale classes
 - **[BREAKING]** Changed the rendered sizes of the following form components: `Dropdown`, `Pagination`, `Input`, `InputSearch`, `PasswordInput`, `Button`, `Toggle`, and `NumericStepper`. This might only affect you if your layouts are pixel-perfect. In that case, verify if the components are properly aligned.
 
 ### Deprecated
 - Deprecated `x-large` size from all components (`Dropdown`, `Input`, `InputSearch`, `PasswordInput`, and `NumericStepper`)
+- **Badge** renamed component to Tag (still compatible with former usage, only deprecation alert)
 
 ### Removed
 - **[BREAKING]** **Toggle** Removed size `small`
-
-## [8.0.1] - 2018-12-03
-
-### Added
-- Module to help deprecating component names and props
-
-### Deprecated
-- **Badge** renamed component to Tag (still compatible with former usage, only deprecation alert)
-
-## [8.0.0] - 2018-11-29
-
-### Added
-- **Table** add `emptyStateLabel` prop to use in EmptyState when there is nothing to show
-- **Table** add `fixFirstColumn` prop to enhance the multiple column horizontal scroll experience
-
-### Changed
-- **[BREAKING]** **PageHeader** background set to transparent
-- **[BREAKING]** **Table** Now width in schema properties is absolute (mirroring react pattern in style obj)
-
-### Removed
-
 - **[BREAKING]** **Table** Remove `indexColumnLabel` prop, index column is no longer a native feature
 - **[BREAKING]** **Table** Remove `onRowMouseOver` prop
 - **[BREAKING]** **Table** Remove `onRowMouseOut` prop
