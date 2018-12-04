@@ -113,7 +113,7 @@ ${this.getDropdownIdentification()}`
     const valueLabel = this.getValueLabel()
     const showCaption = !valueLabel
 
-    classes += disabled ? 'bg-disabled ' : 'pointer '
+    classes += disabled ? '' : 'pointer '
     selectClasses += disabled ? '' : 'pointer '
     classes +=
       !disabled && valueLabel
@@ -153,7 +153,7 @@ ${this.getDropdownIdentification()}`
     const containerStyle = { width }
 
     if (disabled) {
-      containerClasses += 'bg-disabled '
+      containerClasses += 'ba b--disabled bw1 bg-disabled '
     } else if (error || errorMessage) {
       containerClasses += 'ba b--danger hover-b--danger '
     } else {
