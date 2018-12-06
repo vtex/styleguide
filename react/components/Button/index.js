@@ -38,7 +38,6 @@ class Button extends Component {
       case 'regular':
         classes += 'h-regular t-action '
         horizontalPadding = icon ? 4 : 6
-        classes += 't-action '
         loaderSize = 20
         break
       case 'large':
