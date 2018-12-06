@@ -13,6 +13,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - **Dropdown** add missing border on disabled state
 
+### Changed
+- Renamed **PasswordInput** to **InputPassword**, to make it consistent with InputSearch
+
+### Deprecated
+- Deprecates `PasswordInput` in favor of `InputPassword`
+
 ## [8.1.0] - 2018-12-03
 
 ### Added
