@@ -34,16 +34,15 @@ class Button extends Component {
         classes += 'h-small t-action--small '
         horizontalPadding = icon ? 3 : 5
         break
-      default:
-      case 'regular':
-        classes += 'h-regular t-action '
-        horizontalPadding = icon ? 4 : 6
-        loaderSize = 20
-        break
       case 'large':
         classes += `h-large t-action--large `
         horizontalPadding = icon ? 5 : 7
         loaderSize = 25
+        break
+      default:
+        classes += 'h-regular t-action '
+        horizontalPadding = icon ? 4 : 6
+        loaderSize = 20
         break
     }
 
