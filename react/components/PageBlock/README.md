@@ -6,7 +6,6 @@ Full
 <div className="bg-muted-5 pa8">
   <PageBlock variation="full">
     <div>
-      Content
     </div>
   </PageBlock>
 </div>
@@ -18,10 +17,8 @@ Half
 <div className="bg-muted-5 pa8">
   <PageBlock variation="half">
     <div>
-      Content
     </div>
     <div>
-      Other content
     </div>
   </PageBlock>
 </div>
@@ -33,10 +30,8 @@ Aside
 <div className="bg-muted-5 pa8">
   <PageBlock variation="aside">
     <div>
-      Content
     </div>
     <div>
-      Other content
     </div>
   </PageBlock>
 </div>
@@ -48,11 +43,10 @@ Annotated
 <div className="bg-muted-5 pa8">
   <PageBlock
     variation="annotated"
-    title="Header"
-    subtitle="Some explanation for your section. It can be used as a helper text to guide user troughout the interface. "
+    title="Title"
+    subtitle="Subtitle"
     >
     <div>
-      Content
     </div>
   </PageBlock>
 </div>
@@ -61,16 +55,24 @@ Annotated
 Full-blown example
 
 ```js
+const Tab = require('../Tabs/Tab').default;
+
 <div className="bg-muted-5 pa8">
-  <PageBlock
-    variation="full"
-    title="Section"
-    subtitle="Some explanation for your section. It can be used as a helper text to guide user troughout the interface. "
-    >
+  <PageBlock variation="full" >
     <div>
-      <p className="t-body lh-copy">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus et neque sit amet urna rhoncus ultrices. Praesent feugiat congue ligula, ut eleifend ligula laoreet vel.
-      </p>
+      <div className="mb5">
+        <Input label="Lorem ipsum" />
+      </div>
+
+      <div className="mb5">
+        <Input label="Lorem ipsum" />
+      </div>
+
+      <div className="mb5">
+        <Input label="Lorem ipsum" />
+      </div>
+
+      <Button variation="primary">button</Button>
     </div>
   </PageBlock>
   <PageBlock variation="half">
@@ -78,34 +80,125 @@ Full-blown example
       <p className="t-body lh-copy">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus et neque sit amet urna rhoncus ultrices. Praesent feugiat congue ligula, ut eleifend ligula laoreet vel.
       </p>
+      
+      <Button variation="tertiary" collapseLeft>button</Button>
+      <Button variation="tertiary">button</Button>
     </div>
     <div>
       <p className="t-body lh-copy">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus et neque sit amet urna rhoncus ultrices. Praesent feugiat congue ligula, ut eleifend ligula laoreet vel.
       </p>
+      
+      <Button variation="tertiary" collapseLeft>button</Button>
+      <Button variation="tertiary">button</Button>
     </div>
   </PageBlock>
   
   <PageBlock
     variation="full"
-    title="Another section"
+    title="Section"
+    subtitle="Some explanation for your section. It can be used as a helper text to guide user troughout the interface. "
     >
     <div>
-      <p className="t-body lh-copy">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus et neque sit amet urna rhoncus ultrices. Praesent feugiat congue ligula, ut eleifend ligula laoreet vel.
-      </p>
+        <div>
+          <div className="mb5">
+            <Table
+              schema={{
+                properties: {
+                  name: {
+                    type: 'string',
+                    title: 'Name',
+                    width: 200,
+                  },
+                  email: {
+                    type: 'string',
+                    title: 'Email',
+                    width: 350,
+                  },
+                },
+              }}
+              toolbar={{
+                inputSearch: {
+                  value: () => {},
+                  placeholder: 'Search stuff...',
+                  onChange: () => {},
+                  onClear: () => {},
+                  onSubmit: () => {},
+                },
+                newLine: {
+                  label: 'New',
+                  handleCallback: () => {}
+                },
+              }}
+              pagination={{
+                onNextClick: () => {},
+                onPrevClick: () => {},
+                currentItemFrom: 1,
+                currentItemTo: 7,
+                onRowsChange: () => {},
+                textShowRows: 'Show rows',
+                textOf: 'of',
+                totalItems: 7,
+                rowsOptions: [7],
+              }}
+              items={
+                [
+                  {
+                    email: 'olen.stamm21@yahoo.com',
+                    name: 'Patrick Rothfuss',
+                  },
+                  {
+                    email: 'junius0@gmail.com',
+                    name: 'Hurricane Skywalker IV',
+                  },
+                  {
+                    email: 'judd_gulgowski22@yahoo.com',
+                    name: 'Tom Braddy',
+                  },
+                  {
+                    email: 'catharine.leuschke62@hotmail.com',
+                    name: 'Momochi Zabuza',
+                  },
+                  {
+                    email: 'candido_ryan@hotmail.com',
+                    name: 'Freddie Mercury',
+                  },
+                  {
+                    email: 'freda_ritchie26@yahoo.com',
+                    name: 'Dr. Lempi Mosciski',
+                  },
+                  {
+                    email: 'elissa28@gmail.com',
+                    name: 'Nikita Feeney',
+                  }
+                ]
+              }
+            />
+          </div>
+        </div>
     </div>
   </PageBlock>
   <PageBlock variation="aside">
     <div>
+      <Tabs>
+        <Tab label="A tab" active onClick={() => {}} />
+        <Tab label="Another tab" onClick={() => {}} />
+      </Tabs>
       <p className="t-body lh-copy">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus et neque sit amet urna rhoncus ultrices. Praesent feugiat congue ligula, ut eleifend ligula laoreet vel.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce elementum tellus in mauris aliquet, at vestibulum elit scelerisque. Fusce dapibus consectetur scelerisque. Nam vitae orci id metus aliquam efficitur at non tortor. Etiam nec tincidunt mi, sit amet ultrices ipsum. Sed mattis eu dui at ultrices. Pellentesque sit amet neque in nibh malesuada elementum. Integer condimentum, enim non vehicula ultricies, dui eros lobortis nunc, id convallis orci est vel nunc. Aenean iaculis vehicula turpis sed consequat.
+      </p>
+      <p className="t-body lh-copy">
+        Praesent consequat ligula at auctor lobortis. Ut facilisis, odio ut consequat consectetur, enim nisi hendrerit lectus, nec consectetur magna ante id arcu. Proin id dolor id enim viverra ornare et ac mauris. Integer efficitur egestas magna vel iaculis. Sed faucibus congue nisi, cursus porta erat malesuada in. Vestibulum id sollicitudin libero. Vivamus eu aliquet ipsum. Proin in rutrum eros.
       </p>
     </div>
     <div>
-      <p className="t-body lh-copy">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus et neque sit amet urna rhoncus ultrices. Praesent feugiat congue ligula, ut eleifend ligula laoreet vel.
-      </p>
+      <ul className="t-body lh-copy">
+        <li> Lorem ipsum </li>
+        <li> Lorem ipsum </li>
+        <li> Lorem ipsum </li>
+        <li> Lorem ipsum </li>
+        <li> Lorem ipsum </li>
+      </ul>
     </div>
   </PageBlock>
 </div>
