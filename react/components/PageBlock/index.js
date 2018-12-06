@@ -64,12 +64,18 @@ class PageBlock extends Component {
   }
 }
 
+PageBlock.defaultProps = {
+  variation: 'full',
+}
+
 PageBlock.propTypes = {
-  /** Type of block*/
+  /** Type of layout grid for the content. Accepts 'full', 'half', 'asided' and 'annotated'. */
   variation: PropTypes.string,
+  /** Title for the block. */
   title: PropTypes.bool,
+  /** Subtitle for the block. */
   subtitle: PropTypes.bool,
-  /** Content of the  */
+  /** Contents of the boxes. Can be 1 or 2 nodes depending on the variation chosen. */
   children: PropTypes.node.isRequired,
 }
 

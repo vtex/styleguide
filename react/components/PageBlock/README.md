@@ -6,9 +6,7 @@ Full
 <div className="bg-muted-5 pa8">
   <PageBlock variation="full">
     <div>
-      <p className="t-body lh-copy">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus et neque sit amet urna rhoncus ultrices. Praesent feugiat congue ligula, ut eleifend ligula laoreet vel.
-      </p>
+      Content
     </div>
   </PageBlock>
 </div>
@@ -20,14 +18,10 @@ Half
 <div className="bg-muted-5 pa8">
   <PageBlock variation="half">
     <div>
-      <p className="t-body lh-copy">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus et neque sit amet urna rhoncus ultrices. Praesent feugiat congue ligula, ut eleifend ligula laoreet vel.
-      </p>
+      Content
     </div>
     <div>
-      <p className="t-body lh-copy">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus et neque sit amet urna rhoncus ultrices. Praesent feugiat congue ligula, ut eleifend ligula laoreet vel.
-      </p>
+      Other content
     </div>
   </PageBlock>
 </div>
@@ -39,14 +33,10 @@ Aside
 <div className="bg-muted-5 pa8">
   <PageBlock variation="aside">
     <div>
-      <p className="t-body lh-copy">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus et neque sit amet urna rhoncus ultrices. Praesent feugiat congue ligula, ut eleifend ligula laoreet vel.
-      </p>
+      Content
     </div>
     <div>
-      <p className="t-body lh-copy">
-        It is simply dummy text of the printing and typesetting industry.
-      </p>
+      Other content
     </div>
   </PageBlock>
 </div>
@@ -62,9 +52,7 @@ Annotated
     subtitle="Some explanation for your section. It can be used as a helper text to guide user troughout the interface. "
     >
     <div>
-      <p className="t-body lh-copy">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus et neque sit amet urna rhoncus ultrices. Praesent feugiat congue ligula, ut eleifend ligula laoreet vel.
-      </p>
+      Content
     </div>
   </PageBlock>
 </div>
