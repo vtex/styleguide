@@ -1,0 +1,76 @@
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+
+import Box from '../Box/index'
+
+class PageBlock extends Component {
+  render() {
+    const { title, subtitle, variation } = this.props
+    const isAnnotated = variation === 'annotated'
+
+    let boxes
+    if (variation === 'full' || isAnnotated)
+      boxes = (
+        <div className="w-100">
+          <Box>{this.props.children}</Box>
+        </div>
+      )
+    else if (variation === 'half') {
+      boxes = (
+        <React.Fragment>
+          <div className="w-50-ns w-100 mr3-ns mb0-ns">
+            <Box>{this.props.children[0]}</Box>
+          </div>
+          <div className="w-50-ns w-100 ml3-ns">
+            <Box>{this.props.children[1]}</Box>
+          </div>
+        </React.Fragment>
+      )
+    } else if (variation === 'aside') {
+      boxes = (
+        <React.Fragment>
+          <div className="w-two-thirds-ns w-100 mr3-ns mb0-ns">
+            <Box>{this.props.children[0]}</Box>
+          </div>
+          <div className="w-third-ns w-100 ml3-ns">
+            <Box>{this.props.children[1]}</Box>
+          </div>
+        </React.Fragment>
+      )
+    }
+
+    return (
+      <div className={`flex mb5 ${isAnnotated ? 'flex-row' : 'flex-column'}`}>
+        {/* Title & subtitle */}
+        <div className={isAnnotated ? 'w-third' : ''}>
+          {title && <h2 className="t-heading-3 mt4 mb3 ml3">{title}</h2>}
+          {subtitle && (
+            <div
+              className={`t-body lh-copy c-muted-1 mb7 ml3 ${!isAnnotated &&
+                'w-two-thirds-ns w-100'}`}>
+              {subtitle}
+            </div>
+          )}
+        </div>
+
+        {/* Boxes and the content itself */}
+        <div
+          className={`flex flex-column flex-row-ns ${isAnnotated &&
+            'w-two-thirds'}`}>
+          {boxes}
+        </div>
+      </div>
+    )
+  }
+}
+
+PageBlock.propTypes = {
+  /** Type of block*/
+  variation: PropTypes.string,
+  title: PropTypes.bool,
+  subtitle: PropTypes.bool,
+  /** Content of the  */
+  children: PropTypes.node.isRequired,
+}
+
+export default PageBlock

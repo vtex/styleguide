@@ -106,9 +106,15 @@ module.exports = {
         {
           name: 'Navigation',
           components: [
-            'react/components/PageHeader/index.js',
             'react/components/Pagination/index.js',
             'react/components/Tabs/index.js',
+          ],
+        },
+        {
+          name: 'Admin structure',
+          components: [
+            'react/components/PageHeader/index.js',
+            'react/components/PageBlock/index.js',
           ],
         },
         {
