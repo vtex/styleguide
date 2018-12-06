@@ -48,7 +48,7 @@ Annotated
 <div className="bg-muted-5 pa8">
   <PageBlock
     variation="annotated"
-    title="Title"
+    title="Section title"
     subtitle="Subtitle"
     >
     <div>
@@ -65,6 +65,8 @@ const Tab = require('../Tabs/Tab').default;
 <div className="bg-muted-5 pa8">
   <PageBlock variation="full" >
     <div>
+      <h4 className="t-heading-4 mt0"> Fill this form </h4>
+
       <div className="mb5">
         <Input label="Lorem ipsum" />
       </div>
@@ -107,6 +109,8 @@ const Tab = require('../Tabs/Tab').default;
     <div>
         <div>
           <div className="mb5">
+            <h4 className="t-heading-4 mt0"> List of people </h4>
+
             <Table
               schema={{
                 properties: {
@@ -197,6 +201,7 @@ const Tab = require('../Tabs/Tab').default;
       </p>
     </div>
     <div>
+      <h4 className="t-heading-5 mt0"> Summary </h4>
       <ul className="t-body lh-copy">
         <li> Lorem ipsum </li>
         <li> Lorem ipsum </li>
