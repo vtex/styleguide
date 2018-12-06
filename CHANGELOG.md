@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.2.0] - 2018-12-06
+
 ### Added
 - **Button** Add `collapseLeft` and `collapseRight` props, to cancel out paddings
 
