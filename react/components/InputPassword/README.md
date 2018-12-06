@@ -8,7 +8,7 @@ initialState = { value1: 'Passw0rd', value2: 'Passw0rd', value3: 'Passw0rd' }
       console.log(state.value2)
     }}
   >
-    <PasswordInput
+    <InputPassword
       value={state.value2}
       size="large"
       onChange={e => setState({ value2: e.target.value })}
