@@ -14,9 +14,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 - **PageBlock** new component for organizing the blocks that make up our Admin pages.
-
-### Added
 - **Table** Add `title` as param to headerRenderer callback declared in schema to customize header cell
+- **Layout**
 
 ## [8.2.0] - 2018-12-06
 
@@ -35,12 +34,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [8.1.0] - 2018-12-03
 
 ### Added
+
 - **Table** add `emptyStateLabel` prop to use in EmptyState when there is nothing to show
 - **Table** add `fixFirstColumn` prop to enhance the multiple column horizontal scroll experience
 - **Toggle** Added size `large`
 - Added size `small` to the following components: `Input`, `InputSearch`, `PasswordInput`, `Dropdown`, and `NumericStepper`
 
 ### Changed
+
 - **Table** Use color tokens on the Table Toolbar
 - **[BREAKING]** **PageHeader** background set to transparent
 - **[BREAKING]** **Table** Now width in schema properties is absolute (mirroring react pattern in style obj)
@@ -49,10 +50,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **[BREAKING]** Changed the rendered sizes of the following form components: `Dropdown`, `Pagination`, `Input`, `InputSearch`, `PasswordInput`, `Button`, `Toggle`, and `NumericStepper`. This might only affect you if your layouts are pixel-perfect. In that case, verify if the components are properly aligned.
 
 ### Deprecated
+
 - Deprecated `x-large` size from all components (`Dropdown`, `Input`, `InputSearch`, `PasswordInput`, and `NumericStepper`)
 - **Badge** renamed component to Tag (still compatible with former usage, only deprecation alert)
 
 ### Removed
+
 - **[BREAKING]** **Toggle** Removed size `small`
 - **[BREAKING]** **Table** Remove `indexColumnLabel` prop, index column is no longer a native feature
 - **[BREAKING]** **Table** Remove `onRowMouseOver` prop
@@ -95,6 +98,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [7.5.7] - 2018-11-09
 
 ### Fixed
+
 - **PageHeader** using `flex-wrap` to fix layout on small screens
 - Revert ToastMessage, fixing a bug where children of ToastProvider would not update
 
@@ -230,6 +234,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [6.4.4] - 2018-10-01
 
 ### Added
+
 - **Icons** Fix plus icon svg.
 - Improves styles of Multiselect
 
