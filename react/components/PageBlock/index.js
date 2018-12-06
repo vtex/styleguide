@@ -11,17 +11,17 @@ class PageBlock extends Component {
     let boxes
     if (variation === 'full' || isAnnotated)
       boxes = (
-        <div className="w-100">
+        <div className="w-100 mb5">
           <Box>{this.props.children}</Box>
         </div>
       )
     else if (variation === 'half') {
       boxes = (
         <React.Fragment>
-          <div className="w-50-ns w-100 mr3-ns mb0-ns">
+          <div className="w-50-ns w-100 mr3-ns mb0-ns mb5">
             <Box>{this.props.children[0]}</Box>
           </div>
-          <div className="w-50-ns w-100 ml3-ns">
+          <div className="w-50-ns w-100 ml3-ns mb5">
             <Box>{this.props.children[1]}</Box>
           </div>
         </React.Fragment>
@@ -29,10 +29,10 @@ class PageBlock extends Component {
     } else if (variation === 'aside') {
       boxes = (
         <React.Fragment>
-          <div className="w-two-thirds-ns w-100 mr3-ns mb0-ns">
+          <div className="w-two-thirds-ns w-100 mr3-ns mb0-ns mb5">
             <Box>{this.props.children[0]}</Box>
           </div>
-          <div className="w-third-ns w-100 ml3-ns">
+          <div className="w-third-ns w-100 ml3-ns mb5">
             <Box>{this.props.children[1]}</Box>
           </div>
         </React.Fragment>
@@ -40,18 +40,20 @@ class PageBlock extends Component {
     }
 
     return (
-      <div className={`flex mb5 ${isAnnotated ? 'flex-row' : 'flex-column'}`}>
+      <div className={`flex ${isAnnotated ? 'flex-row' : 'flex-column'}`}>
         {/* Title & subtitle */}
-        <div className={isAnnotated ? 'w-third' : ''}>
-          {title && <h2 className="t-heading-3 mt4 mb3 ml3">{title}</h2>}
-          {subtitle && (
-            <div
-              className={`t-body lh-copy c-muted-1 mb7 ml3 ${!isAnnotated &&
-                'w-two-thirds-ns w-100'}`}>
-              {subtitle}
-            </div>
-          )}
-        </div>
+        {(title || subtitle) && (
+          <div className={isAnnotated ? 'w-third' : ''}>
+            {title && <h2 className="t-heading-3 mt4 mb3 ml3">{title}</h2>}
+            {subtitle && (
+              <div
+                className={`t-body lh-copy c-muted-1 mb7 ml3 ${!isAnnotated &&
+                  'w-two-thirds-ns w-100'}`}>
+                {subtitle}
+              </div>
+            )}
+          </div>
+        )}
 
         {/* Boxes and the content itself */}
         <div
