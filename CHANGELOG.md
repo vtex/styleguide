@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- **Layout** new component to establish layout standards in our Admin pages.
+
 ## [8.3.0] - 2018-12-13
 
 ### Fixed
@@ -15,7 +18,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - **PageBlock** new component for organizing the blocks that make up our Admin pages.
 - **Table** Add `title` as param to headerRenderer callback declared in schema to customize header cell
-- **Layout**
 
 ## [8.2.0] - 2018-12-06
 
@@ -23,6 +25,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **Button** Add `collapseLeft` and `collapseRight` props, to cancel out paddings
 
 ### Fixed
+
 - **Dropdown** add missing border on disabled state
 
 ### Changed
