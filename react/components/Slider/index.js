@@ -300,13 +300,13 @@ export default class Slider extends Component {
 
     const sliderSelectionStyle = range
       ? {
-          left,
-          right,
-        }
+        left,
+        right,
+      }
       : {
-          left: 0,
-          width: left,
-        }
+        left: 0,
+        width: left,
+      }
 
     return (
       <div className="vtex-slider-container">

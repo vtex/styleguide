@@ -1,11 +1,11 @@
 {
+  "parser": "babel-eslint",
   "extends": [
     "vtex",
     "vtex-react",
-    "plugin:import/recommended",
-    "plugin:prettier/recommended"
+    "plugin:import/recommended"
   ],
-  "plugins": ["import", "lodash"],
+  "plugins": ["import"],
   "rules": {
     "import/no-unresolved": [
       "error",
@@ -14,17 +14,7 @@
         "amd": true,
         "ignore": ["^([a-zA-Z@]+[-\\.]?)+"]
       }
-    ],
-    "lodash/import-scope": [2, "method"],
-    // Rules that conflict with Prettier.
-    // To verify conflicting rules, run:
-    // $ npm run prettier-conflict-check
-    "react/jsx-curly-spacing": 0,
-    "react/jsx-equals-spacing": 0,
-    "react/jsx-indent": 0,
-    "react/jsx-indent-props": 0,
-    "react/jsx-tag-spacing": 0,
-    "react/jsx-wrap-multilines": 0
+    ]
   },
   "env": {
     "browser": true,

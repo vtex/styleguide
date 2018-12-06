@@ -151,7 +151,7 @@ class SimpleTable extends Component {
                     onClick={
                       onRowClick
                         ? event =>
-                            onRowClick({ event, index: rowIndex, rowData })
+                          onRowClick({ event, index: rowIndex, rowData })
                         : null
                     }
                     onMouseEnter={
