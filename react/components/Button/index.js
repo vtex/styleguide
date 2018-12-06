@@ -12,31 +12,50 @@ class Button extends Component {
   }
 
   render() {
-    const { size, block, variation, icon, children, isLoading } = this.props
+    const {
+      size,
+      block,
+      variation,
+      icon,
+      children,
+      isLoading,
+      collapseLeft,
+      collapseRight,
+    } = this.props
 
     const disabled = this.props.disabled || isLoading
 
     let classes = 'vtex-button bw1 ba fw5 br2 v-mid relative pa0 '
     let loaderSize = 15
-
-    classes += icon ? 'icon-button dib ' : ''
+    let horizontalPadding = 0
 
     switch (size) {
       case 'small':
-        classes += `h-small ${icon ? 'ph3' : 'ph5'} `
-        classes += 't-action--small '
-        break
-      default:
-      case 'regular':
-        classes += `h-regular ${icon ? 'ph4' : 'ph6'} `
-        classes += 't-action '
-        loaderSize = 20
+        classes += 'h-small t-action--small '
+        horizontalPadding = icon ? 3 : 5
         break
       case 'large':
-        classes += `h-large ${icon ? 'ph5' : 'ph7'} `
-        classes += 't-action--large '
+        classes += `h-large t-action--large `
+        horizontalPadding = icon ? 5 : 7
         loaderSize = 25
         break
+      default:
+        classes += 'h-regular t-action '
+        horizontalPadding = icon ? 4 : 6
+        loaderSize = 20
+        break
+    }
+
+    classes += `ph${horizontalPadding} `
+
+    if (collapseLeft) {
+      classes += `nl${horizontalPadding} `
+    }
+    if (collapseRight) {
+      classes += `nr${horizontalPadding} `
+    }
+    if (icon) {
+      classes += 'icon-button dib '
     }
 
     switch (variation) {
@@ -195,6 +214,10 @@ Button.propTypes = {
   onMouseDown: PropTypes.func,
   /** ref function */
   ref: PropTypes.func,
+  /** Cancels out left padding */
+  collapseLeft: PropTypes.bool,
+  /** Cancels out right padding */
+  collapseRight: PropTypes.bool,
 }
 
 export default Button

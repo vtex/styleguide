@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- **Button** Add `collapseLeft` and `collapseRight` props, to cancel out paddings
+
 ### Fixed
 - **Dropdown** add missing border on disabled state
 
