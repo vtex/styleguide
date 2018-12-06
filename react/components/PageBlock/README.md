@@ -1,4 +1,9 @@
-#### The building blocks of our Admin pages.
+#### Page blocks are the building blocks of a page. After choosing a layout you can use the Page Blocks to design the page as you will. There are four main kinds of Page blocks, full, Half, Aside and annotated. They are off to be used to fulfill design needs and to display the page content with the due visual hierarchy.
+
+### 👍 Dos
+- Use to build a page layout
+- Use to create information hierarchy
+
 
 Full 
 
