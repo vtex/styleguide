@@ -1,17 +1,19 @@
 <div class="f2 c-on-base pv5">Typography</div>
-Typography is used to communicate informations the most efficient way possible through legibility and visual hierarchy. It's a crucial tool to guide users on their tasks. It should be used on clear and delightful way. For that, it's important to define different **typography styles** for an app by setting a combination of different typography attributes: **Typeface, weight, size, capitalization and letter spacing.**
+Typography is used to communicate informations the most efficient way possible through legibility and visual hierarchy. It's a crucial tool to guide users on their tasks. It should be used on clear and delightful way. 
+
+For that, it's important to define different typography styles for an app by setting a combination of different typography attributes: **Typeface, weight, size, capitalization and letter spacing.**
 
 Typography styles work as single-purpose CSS classes used to modify the typography configuration of an app. Each class configures the following CSS attributes: ** font-family, font-size, font-weight, text-transform and letter-spacing. **
 
 <!-- Headings -->
-<div class="flex mt7 mb3 tc">
+<div class="flex mt7 mb3">
     <div class="f3 fw5 c-on-base mv0 mr5 pv3">Headings</div>
 </div>
 Headings are the most prominent type elements of an app. They are the first elements that users read. They should call attention and give information the most efficient way, using no more than the necessary quantity of words. Heading-1 is the most prominent heading style and heading-6 is the less one. Headings should be applied to:
 
 <div class="pa3 br2 bg-muted-5 c-on-muted-5 mb5 dib mr5">Product names</div>
 <div class="pa3 br2 bg-muted-5 c-on-muted-5 mb5 dib mr5">Prices</div>
-<div class="pa3 br2 bg-muted-5 c-on-muted-5 mb5 dib">Page titles</div>
+<div class="pa3 br2 bg-muted-5 c-on-muted-5 mb5 dib mr5">Page titles</div>
 <div class="pa3 br2 bg-muted-5 c-on-muted-5 mb5 dib">Input labels</div>
 
 ```js
@@ -26,7 +28,7 @@ Headings are the most prominent type elements of an app. They are the first elem
 ```
 
 <!-- Body -->
-<div class="flex mt7 mb3 tc">
+<div class="flex mt7 mb3">
     <div class="f3 fw5 c-on-base mv0 mr5 pv3">Body</div>
 </div>
 Body is the text style defined to achieve a good level of rhythm and legibility on longer texts. Paragraph should be applied to:
@@ -41,7 +43,7 @@ Body is the text style defined to achieve a good level of rhythm and legibility 
 </div>
 ```
 <!-- Auxiliary -->
-<div class="flex mt7 mb3 tc">
+<div class="flex mt7 mb3">
     <div class="f3 fw5 c-on-base mv0 mr5 pv3">Auxiliary</div>
 </div>
 Small and mini are the less prominent type elements of an app. They should work as secondary elements of an interface, those that do not require the user's attention to complete a task. Auxiliary should be applied to:
@@ -58,7 +60,7 @@ Small and mini are the less prominent type elements of an app. They should work 
 ```
 
 <!-- Action -->
-<div class="flex mt7 mb3 tc">
+<div class="flex mt7 mb3">
     <div class="f3 fw5 c-on-base mv0 mr5 pv3">Action</div>
 </div>
 Action is the text style used on the main action and interactive elements of the page. Action should be applied to:
