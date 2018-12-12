@@ -117,6 +117,7 @@ module.exports = {
             'react/components/MultiSelect/index.js',
             'react/components/NumericStepper/index.js',
             'react/components/RadioGroup/index.js',
+            'react/components/Select/index.js',
             'react/components/Slider/index.js',
             'react/components/Textarea/index.js',
             'react/components/Toggle/index.js',

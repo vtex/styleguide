@@ -183,6 +183,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **PageBlock** new component for organizing the blocks that make up our Admin pages.
 - **Table** Add `title` as param to headerRenderer callback declared in schema to customize header cell
 
+### Added
+- **Select**
+
 ## [8.2.0] - 2018-12-06
 
 ### Added
