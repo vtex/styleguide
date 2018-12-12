@@ -21,7 +21,7 @@
     "lint": "eslint react",
     "lint-fix": "eslint react --fix --max-warnings 0",
     "prettier-conflict-check": "eslint --print-config .eslintrc | eslint-config-prettier-check",
-    "preinstall": "yarn --cwd react"
+    "preinstall": "npm install --prefix react"
   },
   "files": [
     "lib/",
