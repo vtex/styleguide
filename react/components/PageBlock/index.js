@@ -83,12 +83,12 @@ PageBlock.defaultProps = {
 }
 
 PageBlock.propTypes = {
-  /** Type of layout grid for the content. Accepts 'full', 'half', 'asided' and 'annotated'. */
-  variation: PropTypes.string,
+  /** Type of layout grid for the content. */
+  variation: PropTypes.oneOf(['full', 'half', 'annotated', 'aside']),
   /** Title for the block. */
-  title: PropTypes.bool,
+  title: PropTypes.string,
   /** Subtitle for the block. */
-  subtitle: PropTypes.bool,
+  subtitle: PropTypes.string,
   /** Contents of the boxes. Can be 1 or 2 nodes depending on the variation chosen. */
   children: PropTypes.node.isRequired,
 }
