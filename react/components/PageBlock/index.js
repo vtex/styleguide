@@ -1,43 +1,33 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 
 import Box from '../Box/index'
 
 class PageBlock extends Component {
+  constructor(props) {
+    super(props)
+
+    const isAsideOrHalf = ['half', 'aside'].indexOf(props.variation) !== -1
+    const hasRequiredChildren = props.children && props.children.length === 2
+
+    if (isAsideOrHalf && !hasRequiredChildren) {
+      throw new Error(
+        `Component PageBlock with variation "${
+          props.variation
+        }" must have 2 nodes as children. It was passed ${
+          props.children
+            ? props.children.length
+              ? props.children.length
+              : 'one'
+            : 'nothing'
+        }.`
+      )
+    }
+  }
+
   render() {
     const { title, subtitle, variation } = this.props
     const isAnnotated = variation === 'annotated'
-
-    let boxes
-    if (variation === 'full' || isAnnotated)
-      boxes = (
-        <div className="w-100 mb5">
-          <Box>{this.props.children}</Box>
-        </div>
-      )
-    else if (variation === 'half') {
-      boxes = (
-        <React.Fragment>
-          <div className="w-50-ns w-100 mr3-ns mb0-ns mb5">
-            <Box>{this.props.children[0]}</Box>
-          </div>
-          <div className="w-50-ns w-100 ml3-ns mb5">
-            <Box>{this.props.children[1]}</Box>
-          </div>
-        </React.Fragment>
-      )
-    } else if (variation === 'aside') {
-      boxes = (
-        <React.Fragment>
-          <div className="w-two-thirds-ns w-100 mr3-ns mb0-ns mb5">
-            <Box>{this.props.children[0]}</Box>
-          </div>
-          <div className="w-third-ns w-100 ml3-ns mb5">
-            <Box>{this.props.children[1]}</Box>
-          </div>
-        </React.Fragment>
-      )
-    }
 
     return (
       <div className={`flex ${isAnnotated ? 'flex-row' : 'flex-column'}`}>
@@ -59,7 +49,29 @@ class PageBlock extends Component {
         <div
           className={`flex flex-column flex-row-ns ${isAnnotated &&
             'w-two-thirds'}`}>
-          {boxes}
+          {variation === 'half' ? (
+            <Fragment>
+              <div className="w-50-ns w-100 mr3-ns mb0-ns mb5">
+                <Box>{this.props.children && this.props.children[0]}</Box>
+              </div>
+              <div className="w-50-ns w-100 ml3-ns mb5">
+                <Box>{this.props.children && this.props.children[1]}</Box>
+              </div>
+            </Fragment>
+          ) : variation === 'aside' ? (
+            <Fragment>
+              <div className="w-two-thirds-ns w-100 mr3-ns mb0-ns mb5">
+                <Box>{this.props.children && this.props.children[0]}</Box>
+              </div>
+              <div className="w-third-ns w-100 ml3-ns mb5">
+                <Box>{this.props.children && this.props.children[1]}</Box>
+              </div>
+            </Fragment>
+          ) : (
+            <div className="w-100 mb5">
+              <Box>{this.props.children}</Box>
+            </div>
+          )}
         </div>
       </div>
     )
