@@ -56,6 +56,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **Table** Add `title` as param to headerRenderer callback declared in schema to customize header cell
 
 ## [8.2.0] - 2018-12-06
+### Added
+- **Tab** Add different class names for selected and unselected states
 
 ### Added
 
