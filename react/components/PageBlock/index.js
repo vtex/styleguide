@@ -4,27 +4,6 @@ import PropTypes from 'prop-types'
 import Box from '../Box/index'
 
 class PageBlock extends Component {
-  constructor(props) {
-    super(props)
-
-    const isAsideOrHalf = ['half', 'aside'].indexOf(props.variation) !== -1
-    const hasRequiredChildren = props.children && props.children.length === 2
-
-    if (isAsideOrHalf && !hasRequiredChildren) {
-      throw new Error(
-        `Component PageBlock with variation "${
-          props.variation
-        }" must have 2 nodes as children. It was passed ${
-          props.children
-            ? props.children.length
-              ? props.children.length
-              : 'one'
-            : 'nothing'
-        }.`
-      )
-    }
-  }
-
   render() {
     const { title, subtitle, variation } = this.props
     const isAnnotated = variation === 'annotated'
@@ -90,7 +69,24 @@ PageBlock.propTypes = {
   /** Subtitle for the block. */
   subtitle: PropTypes.string,
   /** Contents of the boxes. Can be 1 or 2 nodes depending on the variation chosen. */
-  children: PropTypes.node.isRequired,
+  children: function(props, propName, componentName) {
+    const isAsideOrHalf = ['half', 'aside'].indexOf(props.variation) !== -1
+    const hasRequiredChildren = props[propName] && props[propName].length === 2
+
+    if (isAsideOrHalf && !hasRequiredChildren) {
+      return new Error(
+        `Invalid prop \`children\` supplied to ${componentName} with variation "${
+          props.variation
+        }", it must have 2 nodes as children. It was passed ${
+          props.children
+            ? props.children.length
+              ? props.children.length
+              : 'one'
+            : 'nothing'
+        }.`
+      )
+    }
+  },
 }
 
 export default PageBlock
