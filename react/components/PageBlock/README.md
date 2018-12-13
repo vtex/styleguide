@@ -57,6 +57,22 @@ Annotated
 </div>
 ```
 
+With Title and subtitle
+
+```js
+<div className="bg-muted-5 pa8">
+  <PageBlock
+    title="Section"
+    subtitle="Some explanation for your section."
+    variation="full">
+    <div>
+    </div>
+    <div>
+    </div>
+  </PageBlock>
+</div>
+```
+
 Full-blown example
 
 ```js
