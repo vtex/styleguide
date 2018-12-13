@@ -6,10 +6,10 @@ class Layout extends Component {
     const { fullWidth, pageHeader, children } = this.props
 
     return (
-      <div className="vtex-layout-base flex justify-center pb7 bg-muted-5">
+      <div className="vtex-layout flex justify-center pb7 bg-muted-5">
         <div style={{ maxWidth: fullWidth ? 'none' : '400px' }}>
           {pageHeader}
-          <div className="vtex-layout-app-container ph7">{children}</div>
+          <div className="vtex-layout__container ph7">{children}</div>
         </div>
       </div>
     )
