@@ -70,12 +70,21 @@ PageBlock.propTypes = {
   subtitle: PropTypes.string,
   /** Contents of the boxes. Can be 1 or 2 nodes depending on the variation chosen. */
   children: function(props, propName, componentName) {
+    PropTypes.checkPropTypes(
+      {
+        children: PropTypes.node.isRequired,
+      },
+      props,
+      'props',
+      componentName
+    )
+
     const isAsideOrHalf = ['half', 'aside'].indexOf(props.variation) !== -1
     const hasRequiredChildren = props[propName] && props[propName].length === 2
 
     if (isAsideOrHalf && !hasRequiredChildren) {
       return new Error(
-        `Invalid prop \`children\` supplied to ${componentName} with variation "${
+        `Invalid prop \`children\` supplied to \`${componentName}\` with variation "${
           props.variation
         }", it must have 2 nodes as children. It was passed ${
           props.children
