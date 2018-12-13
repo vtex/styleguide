@@ -1,0 +1,101 @@
+import React, { Component, Fragment } from 'react'
+import PropTypes from 'prop-types'
+
+import Box from '../Box/index'
+
+class PageBlock extends Component {
+  render() {
+    const { title, subtitle, variation } = this.props
+    const isAnnotated = variation === 'annotated'
+
+    return (
+      <div className={`flex ${isAnnotated ? 'flex-row' : 'flex-column'}`}>
+        {/* Title & subtitle */}
+        {(title || subtitle) && (
+          <div className={isAnnotated ? 'w-third' : ''}>
+            {title && <h2 className="t-heading-3 mt4 mb3 ml3">{title}</h2>}
+            {subtitle && (
+              <div
+                className={`t-body lh-copy c-muted-1 mb7 ml3 ${!isAnnotated &&
+                  'w-two-thirds-ns w-100'}`}>
+                {subtitle}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Boxes and the content itself */}
+        <div
+          className={`flex flex-column flex-row-ns ${isAnnotated &&
+            'w-two-thirds'}`}>
+          {variation === 'half' ? (
+            <Fragment>
+              <div className="w-50-ns w-100 mr3-ns mb0-ns mb5">
+                <Box>{this.props.children && this.props.children[0]}</Box>
+              </div>
+              <div className="w-50-ns w-100 ml3-ns mb5">
+                <Box>{this.props.children && this.props.children[1]}</Box>
+              </div>
+            </Fragment>
+          ) : variation === 'aside' ? (
+            <Fragment>
+              <div className="w-two-thirds-ns w-100 mr3-ns mb0-ns mb5">
+                <Box>{this.props.children && this.props.children[0]}</Box>
+              </div>
+              <div className="w-third-ns w-100 ml3-ns mb5">
+                <Box>{this.props.children && this.props.children[1]}</Box>
+              </div>
+            </Fragment>
+          ) : (
+            <div className="w-100 mb5">
+              <Box>{this.props.children}</Box>
+            </div>
+          )}
+        </div>
+      </div>
+    )
+  }
+}
+
+PageBlock.defaultProps = {
+  variation: 'full',
+}
+
+PageBlock.propTypes = {
+  /** Type of layout grid for the content. */
+  variation: PropTypes.oneOf(['full', 'half', 'annotated', 'aside']),
+  /** Title for the block. */
+  title: PropTypes.string,
+  /** Subtitle for the block. */
+  subtitle: PropTypes.string,
+  /** Contents of the boxes. Can be 1 or 2 nodes depending on the variation chosen. */
+  children: function(props, propName, componentName) {
+    PropTypes.checkPropTypes(
+      {
+        children: PropTypes.node.isRequired,
+      },
+      props,
+      'props',
+      componentName
+    )
+
+    const isAsideOrHalf = ['half', 'aside'].indexOf(props.variation) !== -1
+    const hasRequiredChildren = props[propName] && props[propName].length === 2
+
+    if (isAsideOrHalf && !hasRequiredChildren) {
+      return new Error(
+        `Invalid prop \`children\` supplied to \`${componentName}\` with variation "${
+          props.variation
+        }", it must have 2 nodes as children. It was passed ${
+          props.children
+            ? props.children.length
+              ? props.children.length
+              : 'one'
+            : 'nothing'
+        }.`
+      )
+    }
+  },
+}
+
+export default PageBlock
