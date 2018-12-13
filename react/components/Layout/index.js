@@ -1,15 +1,14 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import PageHeader from '../PageHeader'
 
-class Layout extends PureComponent {
+class Layout extends Component {
   render() {
     const { fullWidth, pageHeader, children } = this.props
 
     return (
-      <div className="vtex-layout-base flex justify-center pb7 bg-near-white">
+      <div className="vtex-layout-base flex justify-center pb7 bg-muted-5">
         <div style={{ maxWidth: fullWidth ? 'none' : '400px' }}>
-          <PageHeader {...pageHeader} />
+          {pageHeader}
           <div className="vtex-layout-app-container ph7">{children}</div>
         </div>
       </div>
@@ -17,20 +16,17 @@ class Layout extends PureComponent {
   }
 }
 
-Layout.defaultProps = { fullWidth: false }
+Layout.defaultProps = {
+  fullWidth: false,
+}
 
 Layout.propTypes = {
   /** Content of the Layout */
   children: PropTypes.node.isRequired,
   /** If the content fills the whole width */
   fullWidth: PropTypes.bool,
-  /** PageHeader properties */
-  pageHeader: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    linkLabel: PropTypes.string,
-    onLinkClick: PropTypes.func,
-    children: PropTypes.node,
-  }),
+  /** A PageHeader component slot */
+  pageHeader: PropTypes.node.isRequired,
 }
 
 export default Layout

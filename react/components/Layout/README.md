@@ -15,7 +15,7 @@
 Centered
 
 ```js
-<Layout pageHeader={{ title: 'Page title centered' }}>
+<Layout pageHeader={<PageHeader title="Page title centered" />}>
   <Card>
     <h3>Lorem Ipsum</h3>
     <p>
@@ -33,11 +33,13 @@ Full width
 ```js
 <Layout
   fullWidth
-  pageHeader={{
-    title: 'Page title fullwidth',
-    linkLabel: 'A link',
-    children: <Button variation="primary">Primary</Button>,
-  }}>
+  pageHeader={
+    <PageHeader
+      title="Page title fullwidth"
+      linkLabel="A link">
+      <Button variation="primary">Primary</Button>
+    </PageHeader>
+  }>
   <Card>
     <h3>Lorem Ipsum</h3>
     <p>
