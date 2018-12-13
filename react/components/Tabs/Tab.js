@@ -16,8 +16,8 @@ class Tab extends Component {
           fullWidth ? 'w-100' : ''
         } ${
           active
-            ? 'c-on-muted b--emphasis'
-            : 'c-muted-1 b--transparent hover-c-action-primary pointer'
+            ? 'c-on-muted b--emphasis vtex-tab__button--selected'
+            : 'c-muted-1 b--transparent hover-c-action-primary pointer vtex-tab__button--unselected'
         } v-mid relative h-regular ph4 t-body bg-transparent outline-0
         `}>
         {label}
