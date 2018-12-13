@@ -121,7 +121,13 @@ class SimpleTable extends Component {
                           <span>{title}</span>
                         </div>
                       ) : headerRenderer ? (
-                        headerRenderer({ columnIndex, key, rowIndex, style })
+                        headerRenderer({
+                          columnIndex,
+                          key,
+                          rowIndex,
+                          style,
+                          title,
+                        })
                       ) : (
                         title
                       )}

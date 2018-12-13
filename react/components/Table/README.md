@@ -131,6 +131,8 @@ class CustomTableExample extends React.Component {
               </Tag>
             )
           },
+          // you can also customize non sortable headers with the following prop
+          // headerRenderer: ({ columnIndex, key, rowIndex, style, title })
         },
       },
     };
