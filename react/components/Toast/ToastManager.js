@@ -106,7 +106,7 @@ export default class ToastManager extends Component {
 
     return (
       <div
-        className="fixed z-5 overflow-hidden"
+        className="fixed z-max overflow-hidden"
         ref={this.container}
         style={{
           pointerEvents: 'none',
