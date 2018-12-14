@@ -754,8 +754,6 @@
   position: absolute;
   font-family: inherit;
   font-size: var(--datepicker-font-size);
-  /* width: var(--datepicker-width);
-  height: var(--datepicker-height); */
   background: var(--datepicker-bg-color);
   box-shadow: 0px 2px 1px rgba(151, 151, 151, 0.5);
   border: none;

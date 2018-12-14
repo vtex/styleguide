@@ -54,43 +54,41 @@ class DatePicker extends Component {
 
   render() {
     return (
-      <div className="flex vtex-input-prefix__group relative">
-        <ReactDatePicker
-          autoFocus={this.props.autoFocus}
-          customInput={
-            <Input
-              error={this.props.error}
-              errorMessage={this.props.errorMessage || this.state.errorMessage}
-              helpText={this.props.helpText}
-              label={this.props.label}
-              prefix={<IconCalendar />}
-              size={this.props.size}
-            />
-          }
-          dateFormat={this.props.useTime ? 'Pp' : 'P'}
-          disabled={this.props.disabled}
-          excludeDates={this.props.excludeDates}
-          excludeTimes={this.props.excludeTimes}
-          id={this.props.id}
-          includeDates={this.props.includeDates}
-          includeTimes={this.props.includeTimes}
-          locale={this.props.locale}
-          maxDate={this.props.maxDate}
-          minDate={this.props.minDate}
-          name={this.props.name}
-          placeholderText={this.props.placeholder}
-          readOnly={this.props.readOnly}
-          required={this.props.required}
-          selected={this.props.value}
-          showTimeSelect={this.props.useTime}
-          tabIndex={this.props.tabIndex}
-          timeFormat="p"
-          timeIntervals={this.props.timeIntervals}
-          onBlur={this.props.onBlur}
-          onFocus={this.props.onFocus}
-          onChange={this.props.onChange}
-        />
-      </div>
+      <ReactDatePicker
+        autoFocus={this.props.autoFocus}
+        customInput={
+          <Input
+            error={this.props.error}
+            errorMessage={this.props.errorMessage || this.state.errorMessage}
+            helpText={this.props.helpText}
+            label={this.props.label}
+            prefix={<IconCalendar />}
+            size={this.props.size}
+          />
+        }
+        dateFormat={this.props.useTime ? 'Pp' : 'P'}
+        disabled={this.props.disabled}
+        excludeDates={this.props.excludeDates}
+        excludeTimes={this.props.excludeTimes}
+        id={this.props.id}
+        includeDates={this.props.includeDates}
+        includeTimes={this.props.includeTimes}
+        locale={this.props.locale}
+        maxDate={this.props.maxDate}
+        minDate={this.props.minDate}
+        name={this.props.name}
+        placeholderText={this.props.placeholder}
+        readOnly={this.props.readOnly}
+        required={this.props.required}
+        selected={this.props.value}
+        showTimeSelect={this.props.useTime}
+        tabIndex={this.props.tabIndex}
+        timeFormat="p"
+        timeIntervals={this.props.timeIntervals}
+        onBlur={this.props.onBlur}
+        onFocus={this.props.onFocus}
+        onChange={this.props.onChange}
+      />
     )
   }
 }
