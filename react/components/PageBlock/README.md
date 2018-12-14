@@ -4,6 +4,8 @@
 - Use to build a page layout
 - Use to create information hierarchy
 
+### 👎 Don'ts
+- PageBlock title is not the box title, it’s the title of a whole section. Boxes titles should be inside them.
 
 Full 
 

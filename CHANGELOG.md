@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.4.2] - 2018-12-14
+
 ### Fixed
 - Fixed bug where Tabs component would crash if it had a single Tab
 
