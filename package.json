@@ -28,7 +28,7 @@
   ],
   "homepage": "https://vtex.github.io/styleguide",
   "devDependencies": {
-    "@vtex/react-scripts": "1.1.10",
+    "@vtex/react-scripts": "1.2.0",
     "babel-cli": "^6.26.0",
     "babel-eslint": "8.2.2",
     "babel-plugin-dynamic-import-node": "^1.2.0",
