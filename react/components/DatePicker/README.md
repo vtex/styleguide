@@ -1,5 +1,3 @@
-## DatePicker
-
 #### Simple DatePicker
 
 ```js
@@ -94,6 +92,10 @@ class DatePickerExample extends React.Component {
 
 #### DateTimePicker with locale
 
+### Supported locales
+
+You can check out the list of supported locales [here](https://github.com/date-fns/date-fns/blob/master/src/locale/index.js).
+
 ```js
 const DatePicker = require('./index.js').default
 
@@ -154,23 +156,37 @@ class DatePickerExample extends React.Component {
 ;<DatePickerExample />
 ```
 
-### Supported locales
-
-You can check out the list of supported locales [here](https://github.com/date-fns/date-fns/blob/master/src/locale/index.js).
-
 #### Variations
 
 ```js
+const { subDays, addDays, setHours, setMinutes } = require('date-fns')
 const DatePicker = require('./index.js').default
 
 class DatePickerExample extends React.Component {
   constructor() {
     super()
     this.state = {
-      startDate: new Date(),
+      customTimeIntervalsDate: new Date(),
+      dateRangeDate: new Date(),
+      disabledDate: new Date(),
+      errorDate: new Date(),
+      excludeDatesDate: new Date(),
+      excludeTimesDate: new Date(),
+      helpTextDate: new Date(),
+      includeDatesDate: new Date(),
+      includeTimesDate: new Date(),
+      placeholderDate: new Date(),
+      readOnlyDate: new Date(),
+      requiredDate: null,
     }
 
     this.handleChange = this.handleChange.bind(this)
+  }
+
+  handleChange(date) {
+    this.setState({
+      startDate: date,
+    })
   }
 
   render() {
@@ -180,8 +196,35 @@ class DatePickerExample extends React.Component {
           <DatePicker
             disabled
             label="Disabled"
-            value={this.state.startDate}
-            onChange={this.handleChange}
+            value={this.state.disabledDate}
+            onChange={date => this.setState({ disabledDate: date })}
+          />
+        </div>
+
+        <div className="mb5">
+          <DatePicker
+            label="Read only"
+            readOnly
+            value={this.state.readOnlyDate}
+            onChange={date => this.setState({ readOnlyDate: date })}
+          />
+        </div>
+
+        <div className="mb5">
+          <DatePicker
+            label="Required"
+            required
+            value={this.state.requiredDate}
+            onChange={date => this.setState({ requiredDate: date })}
+          />
+        </div>
+
+        <div className="mb5">
+          <DatePicker
+            label="Placeholder"
+            placeholder="Your placeholder text goes here"
+            value={this.state.placeholderDate}
+            onChange={date => this.setState({ placeholderDate: date })}
           />
         </div>
 
@@ -189,27 +232,101 @@ class DatePickerExample extends React.Component {
           <DatePicker
             helpText="Your help text goes here"
             label="Help text"
-            value={this.state.startDate}
-            onChange={this.handleChange}
+            value={this.state.helpTextDate}
+            onChange={date => this.setState({ helpTextDate: date })}
           />
         </div>
 
         <div className="mb5">
           <DatePicker
-            label="Error"
-            value={this.state.startDate}
-            onChange={this.handleChange}
             errorMessage="Invalid field value"
+            label="Error"
+            value={this.state.errorDate}
+            onChange={date => this.setState({ errorDate: date })}
+          />
+        </div>
+
+        <div className="mb5">
+          <DatePicker
+            label="Custom time intervals"
+            timeIntervals={5}
+            useTime
+            value={this.state.customTimeIntervalsDate}
+            onChange={date => this.setState({ customTimeIntervalsDate: date })}
+          />
+        </div>
+
+        <div className="mb5">
+          <DatePicker
+            label="Date range"
+            maxDate={addDays(new Date(), 5)}
+            minDate={new Date()}
+            value={this.state.dateRangeDate}
+            onChange={date => this.setState({ dateRangeDate: date })}
+          />
+        </div>
+
+        <div className="mb5">
+          <DatePicker
+            excludeDates={[
+              subDays(new Date(), 4),
+              subDays(new Date(), 2),
+              new Date(),
+              addDays(new Date(), 2),
+              addDays(new Date(), 4),
+            ]}
+            label="Exclude dates"
+            value={this.state.excludeDatesDate}
+            onChange={date => this.setState({ excludeDatesDate: date })}
+          />
+        </div>
+
+        <div className="mb5">
+          <DatePicker
+            includeDates={[
+              subDays(new Date(), 4),
+              subDays(new Date(), 2),
+              new Date(),
+              addDays(new Date(), 2),
+              addDays(new Date(), 4),
+            ]}
+            label="Include dates"
+            value={this.state.includeDatesDate}
+            onChange={date => this.setState({ includeDatesDate: date })}
+          />
+        </div>
+
+        <div className="mb5">
+          <DatePicker
+            excludeTimes={[
+              setHours(setMinutes(new Date(), 0), 17),
+              setHours(setMinutes(new Date(), 30), 18),
+              setHours(setMinutes(new Date(), 30), 19),
+              setHours(setMinutes(new Date(), 30), 17),
+            ]}
+            label="Exclude times"
+            useTime
+            value={this.state.excludeTimesDate}
+            onChange={date => this.setState({ excludeTimesDate: date })}
+          />
+        </div>
+
+        <div className="mb5">
+          <DatePicker
+            label="Include times"
+            includeTimes={[
+              setHours(setMinutes(new Date(), 0), 17),
+              setHours(setMinutes(new Date(), 30), 18),
+              setHours(setMinutes(new Date(), 30), 19),
+              setHours(setMinutes(new Date(), 30), 17),
+            ]}
+            useTime
+            value={this.state.includeTimesDate}
+            onChange={date => this.setState({ includeTimesDate: date })}
           />
         </div>
       </div>
     )
-  }
-
-  handleChange(date) {
-    this.setState({
-      startDate: date,
-    })
   }
 }
 

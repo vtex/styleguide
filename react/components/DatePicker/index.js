@@ -22,18 +22,6 @@ class DatePicker extends Component {
     this.props.onChange && this.props.onChange(event)
   }
 
-  handleKeyPress = event => {
-    this.props.onKeyPress && this.props.onKeyPress(event)
-  }
-
-  handleKeyDown = event => {
-    this.props.onKeyDown && this.props.onKeyDown(event)
-  }
-
-  handleKeyUp = event => {
-    this.props.onKeyUp && this.props.onKeyUp(event)
-  }
-
   handleFocus = event => {
     this.setState({ active: true })
     this.props.onFocus && this.props.onFocus(event)
@@ -56,19 +44,6 @@ class DatePicker extends Component {
          removed altogether in future versions`
       )
     }
-
-    if (this.props.suffixIcon) {
-      console.warn(
-        `The prop suffixIcon is deprecated and will be removed in the next 
-         major. Please use the prop suffix instead.`
-      )
-    }
-
-    if (this.props.prefix && this.props.suffix) {
-      console.warn(
-        `You should not use both prefix and suffix props in the same input.`
-      )
-    }
   }
 
   componentDidUpdate(prevProps) {
@@ -81,9 +56,11 @@ class DatePicker extends Component {
     return (
       <div className="flex vtex-input-prefix__group relative">
         <ReactDatePicker
+          autoFocus={this.props.autoFocus}
           customInput={
             <Input
-              errorMessage={this.props.errorMessage}
+              error={this.props.error}
+              errorMessage={this.props.errorMessage || this.state.errorMessage}
               helpText={this.props.helpText}
               label={this.props.label}
               prefix={<IconCalendar />}
@@ -92,46 +69,26 @@ class DatePicker extends Component {
           }
           dateFormat={this.props.useTime ? 'Pp' : 'P'}
           disabled={this.props.disabled}
+          excludeDates={this.props.excludeDates}
+          excludeTimes={this.props.excludeTimes}
           id={this.props.id}
-          isClearable={this.props.clearable}
+          includeDates={this.props.includeDates}
+          includeTimes={this.props.includeTimes}
           locale={this.props.locale}
+          maxDate={this.props.maxDate}
+          minDate={this.props.minDate}
           name={this.props.name}
+          placeholderText={this.props.placeholder}
           readOnly={this.props.readOnly}
           required={this.props.required}
           selected={this.props.value}
           showTimeSelect={this.props.useTime}
-          timeFormat="pp"
+          tabIndex={this.props.tabIndex}
+          timeFormat="p"
           timeIntervals={this.props.timeIntervals}
+          onBlur={this.props.onBlur}
+          onFocus={this.props.onFocus}
           onChange={this.props.onChange}
-          // {...dataAttrs}
-          // onFocus={this.handleFocus}
-          // onKeyPress={this.handleKeyPress}
-          // onKeyDown={this.handleKeyDown}
-          // onKeyUp={this.handleKeyUp}
-          // accept={this.props.accept}
-          // autoComplete={this.props.autoComplete}
-          // autoCorrect={this.props.autoCorrect}
-          // autoFocus={this.props.autoFocus}
-          // autoSave={this.props.autoSave}
-          // defaultValue={this.props.defaultValue}
-          // inputMode={this.props.inputMode}
-          // list={this.props.list}
-          // max={this.props.max}
-          // maxLength={this.props.maxLength}
-          // min={this.props.min}
-          // minLength={this.props.minLength}
-          // multiple={this.props.multiple}
-          // onBlur={this.handleBlur}
-          // pattern={this.props.pattern}
-          // placeholder={this.props.placeholder}
-          // spellCheck={this.props.spellCheck}
-          // src={this.props.src}
-          // step={this.props.step}
-          // tabIndex={this.props.tabIndex}
-          // type={this.props.type}
-          // style={{
-          //   WebkitAppearance: 'none',
-          // }}
         />
       </div>
     )
@@ -140,116 +97,68 @@ class DatePicker extends Component {
 
 DatePicker.defaultProps = {
   autoFocus: false,
-  dataAttributes: {},
   disabled: false,
   error: false,
   label: '',
   locale: 'en-US',
-  multiple: false,
-  prefix: '',
   readOnly: false,
+  required: false,
   size: 'regular',
-  token: false,
-  type: 'text',
 }
 
 DatePicker.propTypes = {
-  /** Error highlight */
-  error: PropTypes.bool,
-  /** Error message */
-  errorMessage: PropTypes.string,
-  /** If the input is an API Key, App Key or App Token */
-  token: PropTypes.bool,
-  /** Help text */
-  helpText: PropTypes.node,
-  /** Input size */
-  size: PropTypes.oneOf(['small', 'regular', 'large']),
-  /** Label */
-  label: PropTypes.string,
-  /** Prefix */
-  prefix: PropTypes.node,
-  /** Spec attribute */
-  accept: PropTypes.string,
-  /** Spec attribute */
-  disabled: PropTypes.bool,
-  /** Spec attribute */
-  autoComplete: PropTypes.string,
-  /** Spec attribute */
-  autoCorrect: PropTypes.string,
-  /** Spec attribute */
+  /** Spec attribute  */
   autoFocus: PropTypes.bool,
-  /** Spec attribute */
-  autoSave: PropTypes.string,
-  /** Spec attribute */
-  clearable: PropTypes.bool,
-  /** List of data attributes as a object like `{'locale': 'en-US'}` */
-  dataAttributes: PropTypes.object,
-  /** Spec attribute */
-  defaultValue: PropTypes.string,
-  /** Spec attribute */
-  format: PropTypes.string,
-  /** Whether the border should join with an element below */
-  groupBottom: PropTypes.bool,
-  /** Spec attribute */
+  /** Spec attribute  */
+  disabled: PropTypes.bool,
+  /** Error highlight  */
+  error: PropTypes.bool,
+  /** Error message  */
+  errorMessage: PropTypes.string,
+  /** Dates to be excluded  */
+  excludeDates: PropTypes.arrayOf(Date),
+  /** Times to be excluded  */
+  excludeTimes: PropTypes.arrayOf(Date),
+  /** Help text  */
+  helpText: PropTypes.node,
+  /** Spec attribute  */
   id: PropTypes.string,
-  /** Spec attribute */
-  inputMode: PropTypes.string,
-  /** Spec attribute */
-  list: PropTypes.string,
-  /** Spec attribute */
+  /** Dates to be included  */
+  includeDates: PropTypes.arrayOf(Date),
+  /** Dates to be included  */
+  includeTimes: PropTypes.arrayOf(Date),
+  /** Label  */
+  label: PropTypes.string,
+  /** Locale string ('en-US', 'pt-BR', ...)  */
   locale: PropTypes.string,
-  /** Spec attribute */
-  max: PropTypes.string,
-  /** Spec attribute */
-  maxLength: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  /** Spec attribute */
-  min: PropTypes.string,
-  /** Spec attribute */
-  minLength: PropTypes.string,
-  /** Spec attribute */
-  multiple: PropTypes.bool,
-  /** Spec attribute */
+  /** Max possible date  */
+  maxDate: PropTypes.instanceOf(Date),
+  /** Minimum possible date  */
+  minDate: PropTypes.instanceOf(Date),
+  /** Spec attribute  */
   name: PropTypes.string,
-  /** Spec attribute */
-  pattern: PropTypes.string,
-  /** Spec attribute */
-  placeholder: PropTypes.string,
-  /** Spec attribute */
-  readOnly: PropTypes.bool,
-  /** Spec attribute */
-  required: PropTypes.bool,
-  /** Spec attribute */
-  spellCheck: PropTypes.string,
-  /** Spec attribute */
-  src: PropTypes.string,
-  /** Spec attribute */
-  step: PropTypes.string,
-  /** Suffix attribute */
-  suffix: PropTypes.node,
-  /** DEPRECATED: Suffix icon attribute */
-  suffixIcon: PropTypes.element,
-  /** Spec attribute */
-  tabIndex: PropTypes.string,
-  /** Spec attribute */
-  timeIntervals: PropTypes.number,
-  /** Spec attribute */
-  type: PropTypes.string,
-  /** Spec attribute */
-  useTime: PropTypes.bool,
-  /** Spec attribute */
-  value: PropTypes.instanceOf(Date),
-  /** onChange event */
+  /** onChange event  */
   onChange: PropTypes.func,
-  /** onKeyDown event */
-  onKeyDown: PropTypes.func,
-  /** onKeyPress event */
-  onKeyPress: PropTypes.func,
-  /** onKeyUp event */
-  onKeyUp: PropTypes.func,
-  /** onFocus event */
+  /** onFocus event  */
   onFocus: PropTypes.func,
-  /** onBlur event */
+  /** onBlur event  */
   onBlur: PropTypes.func,
+  /** Placeholder text  */
+  placeholder: PropTypes.string,
+  /** Spec attribute  */
+  readOnly: PropTypes.bool,
+  /** Spec attribute  */
+  required: PropTypes.bool,
+  /** DatePicker size  */
+  size: PropTypes.oneOf(['small', 'regular', 'large']),
+  /** Spec attribute  */
+  tabIndex: PropTypes.string,
+  /** Interval between times (in min)  */
+  timeIntervals: PropTypes.number,
+  /** Flag used fo indicating whether to use time or not  */
+  useTime: PropTypes.bool,
+  /** Value of the selected date  */
+  value: PropTypes.instanceOf(Date),
 }
 
 export default DatePicker
