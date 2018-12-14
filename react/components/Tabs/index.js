@@ -1,12 +1,11 @@
 import React, { Component, cloneElement } from 'react'
 import PropTypes from 'prop-types'
-import isArray from 'lodash/isArray'
 
 class Tabs extends Component {
   render() {
     const { children, fullWidth } = this.props
 
-    const childrenArray = isArray(children) ? children : [children]
+    const childrenArray = [].concat(children)
 
     const selectedTab = childrenArray.find(child => child.props.active)
 
