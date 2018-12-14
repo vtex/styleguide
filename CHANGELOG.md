@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.4.1] - 2018-12-14
+
+### Fixed
+- **Layout** Fix fullWidth prop.
+
 ## [8.4.0] - 2018-12-14
 
 ### Added

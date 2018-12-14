@@ -7,7 +7,7 @@ class Layout extends Component {
 
     return (
       <div className="vtex-layout flex justify-center pb7 bg-muted-5">
-        <div className={fullWidth ? '' : 'mw8'}>
+        <div className={fullWidth ? 'w-100' : 'mw8'}>
           {pageHeader}
           <div className="vtex-layout__container ph7">{children}</div>
         </div>
