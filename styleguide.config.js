@@ -113,6 +113,7 @@ module.exports = {
         {
           name: 'Admin structure',
           components: [
+            'react/components/Layout/index.js',
             'react/components/PageHeader/index.js',
             'react/components/PageBlock/index.js',
           ],
