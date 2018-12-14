@@ -4,12 +4,16 @@ import PropTypes from 'prop-types'
 class Tabs extends Component {
   render() {
     const { children, fullWidth } = this.props
-    const selectedTab = children.find(child => child.props.active)
+
+    const childrenArray = [].concat(children)
+
+    const selectedTab = childrenArray.find(child => child.props.active)
+
     const content = selectedTab && selectedTab.props.children
     return (
       <div className="vtex-tabs w-100">
         <div className="vtex-tabs__nav flex flex-row bb b--muted-4 overflow-y-auto">
-          {children.map(child =>
+          {childrenArray.map(child =>
             cloneElement(child, {
               fullWidth,
               key: child.props.label.toString(),
