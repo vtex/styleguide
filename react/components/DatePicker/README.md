@@ -1,3 +1,7 @@
+### Supported locales
+
+You can check out the list of supported locales [here](https://github.com/date-fns/date-fns/blob/master/src/locale/index.js).
+
 #### Simple DatePicker
 
 ```js
@@ -22,6 +26,7 @@ class DatePickerExample extends React.Component {
             size="small"
             value={this.state.startDate}
             onChange={this.handleChange}
+            locale="pt-BR"
           />
         </div>
 
@@ -30,6 +35,7 @@ class DatePickerExample extends React.Component {
             label="Regular"
             value={this.state.startDate}
             onChange={this.handleChange}
+            locale="pt-BR"
           />
         </div>
 
@@ -39,6 +45,7 @@ class DatePickerExample extends React.Component {
             size="large"
             value={this.state.startDate}
             onChange={this.handleChange}
+            locale="pt-BR"
           />
         </div>
       </div>
@@ -56,45 +63,6 @@ class DatePickerExample extends React.Component {
 ```
 
 #### DateTimePicker
-
-```js
-const DatePicker = require('./index.js').default
-
-class DatePickerExample extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      startDate: new Date(),
-    }
-
-    this.handleChange = this.handleChange.bind(this)
-  }
-
-  render() {
-    return (
-      <DatePicker
-        value={this.state.startDate}
-        onChange={this.handleChange}
-        useTime
-      />
-    )
-  }
-
-  handleChange(date) {
-    this.setState({
-      startDate: date,
-    })
-  }
-}
-
-;<DatePickerExample />
-```
-
-#### DateTimePicker with locale
-
-### Supported locales
-
-You can check out the list of supported locales [here](https://github.com/date-fns/date-fns/blob/master/src/locale/index.js).
 
 ```js
 const DatePicker = require('./index.js').default

@@ -36,16 +36,6 @@ class DatePicker extends Component {
     registerLocale(locale, locales[locale.replace('-', '')])
   }
 
-  componentDidMount() {
-    if (this.props.size === 'x-large') {
-      console.warn(
-        `Input: The value "x-large" for the prop "size" is deprecated. 
-         In the next major version, it will be equivalent to "large", and 
-         removed altogether in future versions`
-      )
-    }
-  }
-
   componentDidUpdate(prevProps) {
     if (this.props.locale !== prevProps.locale) {
       this.handleLocaleChange(this.props.locale)
@@ -98,7 +88,6 @@ DatePicker.defaultProps = {
   disabled: false,
   error: false,
   label: '',
-  locale: 'en-US',
   readOnly: false,
   required: false,
   size: 'regular',
@@ -128,7 +117,7 @@ DatePicker.propTypes = {
   /** Label  */
   label: PropTypes.string,
   /** Locale string ('en-US', 'pt-BR', ...)  */
-  locale: PropTypes.string,
+  locale: PropTypes.string.isRequired,
   /** Max possible date  */
   maxDate: PropTypes.instanceOf(Date),
   /** Minimum possible date  */
@@ -136,7 +125,7 @@ DatePicker.propTypes = {
   /** Spec attribute  */
   name: PropTypes.string,
   /** onChange event  */
-  onChange: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
   /** onFocus event  */
   onFocus: PropTypes.func,
   /** onBlur event  */
@@ -156,7 +145,7 @@ DatePicker.propTypes = {
   /** Flag used fo indicating whether to use time or not  */
   useTime: PropTypes.bool,
   /** Value of the selected date  */
-  value: PropTypes.instanceOf(Date),
+  value: PropTypes.instanceOf(Date).isRequired,
 }
 
 export default DatePicker
