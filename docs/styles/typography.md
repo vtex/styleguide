@@ -14,7 +14,6 @@ Headings are the most prominent type elements of an app. They are the first elem
 <div class="pa3 br2 bg-muted-5 c-on-muted-5 mb5 dib mr5">Product names</div>
 <div class="pa3 br2 bg-muted-5 c-on-muted-5 mb5 dib mr5">Prices</div>
 <div class="pa3 br2 bg-muted-5 c-on-muted-5 mb5 dib mr5">Page titles</div>
-<div class="pa3 br2 bg-muted-5 c-on-muted-5 mb5 dib">Input labels</div>
 
 ```js
 <div>
@@ -71,8 +70,24 @@ Action is the text style used on the main action and interactive elements of the
 
 ```js
 <div>
-  <p className="t-action-large mw9">Lorem ipsum</p>
+  <p className="t-action--large mw9">Lorem ipsum</p>
   <p className="t-action mw9">Lorem ipsum</p>
-  <p className="t-action-small mw9">Lorem ipsum</p>
+  <p className="t-action--small mw9">Lorem ipsum</p>
+</div>
+```
+
+<!-- Code -->
+<div class="flex mt7 mb3">
+    <div class="f3 fw5 c-on-base mv0 mr5 pv3">Code</div>
+</div>
+Code is the text style used to indicate techinical terms, such as programming language and product specifications. Code should be applied to:
+
+<div class="pa3 br2 bg-muted-5 c-on-muted-5 mb5 dib mr5">Specification tables</div>
+<div class="pa3 br2 bg-muted-5 c-on-muted-5 mb5 dib mr5">Shipping estimate</div>
+<div class="pa3 br2 bg-muted-5 c-on-muted-5 mb5 dib">Installment rules</div>
+
+```js
+<div>
+  <p className="t-code mw9">Lorem ipsum</p>
 </div>
 ```
