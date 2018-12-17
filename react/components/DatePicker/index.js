@@ -33,6 +33,12 @@ class DatePicker extends Component {
   }
 
   handleLocaleChange = locale => {
+    // registerLocale is a function from react-datepicker component that loads
+    // an imported locale object from date-fns.
+    //
+    // For more information visit the link below:
+    // https://github.com/Hacker0x01/react-datepicker#localization
+    //
     registerLocale(locale, locales[locale.replace('-', '')])
   }
 
