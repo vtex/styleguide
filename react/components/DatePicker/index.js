@@ -109,17 +109,17 @@ DatePicker.propTypes = {
   /** Error message  */
   errorMessage: PropTypes.string,
   /** Dates to be excluded  */
-  excludeDates: PropTypes.arrayOf(Date),
+  excludeDates: PropTypes.arrayOf(PropTypes.instanceOf(Date)),
   /** Times to be excluded  */
-  excludeTimes: PropTypes.arrayOf(Date),
+  excludeTimes: PropTypes.arrayOf(PropTypes.instanceOf(Date)),
   /** Help text  */
   helpText: PropTypes.node,
   /** Spec attribute  */
   id: PropTypes.string,
   /** Dates to be included  */
-  includeDates: PropTypes.arrayOf(Date),
+  includeDates: PropTypes.arrayOf(PropTypes.instanceOf(Date)),
   /** Dates to be included  */
-  includeTimes: PropTypes.arrayOf(Date),
+  includeTimes: PropTypes.arrayOf(PropTypes.instanceOf(Date)),
   /** Label  */
   label: PropTypes.string,
   /** Locale string ('en-US', 'pt-BR', ...)  */

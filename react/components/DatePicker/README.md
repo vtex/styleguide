@@ -170,6 +170,7 @@ class DatePickerExample extends React.Component {
               onChange={date =>
                 this.setState({ customTimeIntervalsDate: date })
               }
+              locale="pt-BR"
             />
           </span>
           <span className="mr4">
@@ -179,6 +180,7 @@ class DatePickerExample extends React.Component {
               minDate={new Date()}
               value={this.state.dateRangeDate}
               onChange={date => this.setState({ dateRangeDate: date })}
+              locale="pt-BR"
             />
           </span>
           <span className="mr4">
@@ -193,6 +195,7 @@ class DatePickerExample extends React.Component {
               label="Exclude dates"
               value={this.state.excludeDatesDate}
               onChange={date => this.setState({ excludeDatesDate: date })}
+              locale="pt-BR"
             />
           </span>
         </div>
@@ -210,6 +213,7 @@ class DatePickerExample extends React.Component {
               label="Include dates"
               value={this.state.includeDatesDate}
               onChange={date => this.setState({ includeDatesDate: date })}
+              locale="pt-BR"
             />
           </span>
           <span className="mr4">
@@ -224,6 +228,7 @@ class DatePickerExample extends React.Component {
               useTime
               value={this.state.excludeTimesDate}
               onChange={date => this.setState({ excludeTimesDate: date })}
+              locale="pt-BR"
             />
           </span>
           <span className="mr4">
@@ -238,6 +243,7 @@ class DatePickerExample extends React.Component {
               useTime
               value={this.state.includeTimesDate}
               onChange={date => this.setState({ includeTimesDate: date })}
+              locale="pt-BR"
             />
           </span>
         </div>
