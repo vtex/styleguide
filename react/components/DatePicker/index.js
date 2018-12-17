@@ -142,7 +142,7 @@ DatePicker.propTypes = {
   tabIndex: PropTypes.string,
   /** Interval between times (in min)  */
   timeIntervals: PropTypes.number,
-  /** Flag used fo indicating whether to use time or not  */
+  /** Flag used for indicating whether to use time or not  */
   useTime: PropTypes.bool,
   /** Value of the selected date  */
   value: PropTypes.instanceOf(Date).isRequired,
