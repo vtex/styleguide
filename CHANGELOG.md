@@ -9,33 +9,43 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - Fix typo on `/docs/styles/breakpoints.md`
 
+### Fixed
+
+- **PageBlock** export.
+
 ## [8.4.2] - 2018-12-14
 
 ### Fixed
+
 - Fixed bug where Tabs component would crash if it had a single Tab
 
 ## [8.4.1] - 2018-12-14
 
 ### Fixed
+
 - **Layout** Fix fullWidth prop.
 
 ## [8.4.0] - 2018-12-14
 
 ### Added
+
 - **Layout** new component to establish layout standards in our Admin pages.
 
 ## [8.3.0] - 2018-12-13
 
 ### Fixed
+
 - **Toast** Increase z-index to the max.
 
 ### Added
+
 - **PageBlock** new component for organizing the blocks that make up our Admin pages.
 - **Table** Add `title` as param to headerRenderer callback declared in schema to customize header cell
 
 ## [8.2.0] - 2018-12-06
 
 ### Added
+
 - **Button** Add `collapseLeft` and `collapseRight` props, to cancel out paddings
 
 ### Fixed
@@ -43,9 +53,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **Dropdown** add missing border on disabled state
 
 ### Changed
+
 - Renamed **PasswordInput** to **InputPassword**, to make it consistent with InputSearch
 
 ### Deprecated
+
 - Deprecates `PasswordInput` in favor of `InputPassword`
 
 ## [8.1.0] - 2018-12-03
