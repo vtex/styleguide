@@ -77,13 +77,29 @@ module.exports = {
       name: 'Components',
       content: './docs/components.md',
       skipComponentsWithoutExample: true,
-      sectionDepth: 1,
+      sectionDepth: 2,
       sections: [
+        {
+          name: 'Admin structure',
+          components: [
+            'react/components/Layout/index.js',
+            'react/components/PageBlock/index.js',
+            'react/components/PageHeader/index.js',
+          ],
+        },
         {
           name: 'Containers',
           components: [
             'react/components/Box/index.js',
             'react/components/Card/index.js',
+          ],
+        },
+        {
+          name: 'Display',
+          components: [
+            'react/components/EmptyState/index.js',
+            'react/components/Table/index.js',
+            'react/components/Tag/index.js',
           ],
         },
         {
@@ -95,13 +111,13 @@ module.exports = {
             'react/components/DatePicker/index.js',
             'react/components/Dropdown/index.js',
             'react/components/Input/index.js',
-            'react/components/InputSearch/index.js',
             'react/components/InputPassword/index.js',
-            'react/components/NumericStepper/index.js',
+            'react/components/InputSearch/index.js',
             'react/components/MultiSelect/index.js',
-            'react/components/Textarea/index.js',
+            'react/components/NumericStepper/index.js',
             'react/components/RadioGroup/index.js',
             'react/components/Slider/index.js',
+            'react/components/Textarea/index.js',
             'react/components/Toggle/index.js',
           ],
         },
@@ -113,17 +129,10 @@ module.exports = {
           ],
         },
         {
-          name: 'Admin structure',
-          components: [
-            'react/components/Layout/index.js',
-            'react/components/PageHeader/index.js',
-            'react/components/PageBlock/index.js',
-          ],
-        },
-        {
           name: 'Notification',
           components: [
             'react/components/Alert/index.js',
+            'react/components/Spinner/index.js',
             'react/components/Toast/index.js',
           ],
         },
