@@ -7,8 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.6.2] - 2018-12-18
+
+### Fixed
+
+- **Layout** Prevent the Layout component from not filling the whole height of the page
+
 ## [8.6.0] - 2018-12-18
+
 ### Added
+
 - **Tab** Add different class names for selected and unselected states
 
 ## [8.5.0] - 2018-12-18
