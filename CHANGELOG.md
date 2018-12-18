@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.5.0] - 2018-12-18
+
 ### Added
 
 - **DatePicker** new component to select a Date and Time.
