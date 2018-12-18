@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - **PageBlock** file export name.
 
-## [8.4.3] - 2018-12-14
+## [8.4.3] - 2018-12-17
 
 ### Fixed
 
