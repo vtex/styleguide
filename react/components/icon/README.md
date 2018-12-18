@@ -1,9 +1,9 @@
-Usage: 
-  * VTEX IO: <span className="c-muted-1">`import <IconName> from 'vtex.styleguide'`</span>
-  * npm: <span className="c-muted-1">`import <IconName> from '@vtex/styleguide/lib/icon/<IconName>'`</span>
+Usage:
+
+- VTEX IO: <span className="c-muted-1">`import <IconName> from 'vtex.styleguide'`</span>
+- npm: <span className="c-muted-1">`import <IconName> from '@vtex/styleguide/lib/icon/<IconName>'`</span>
 
 ```js
-
 /*
   The following code is just for the table above to be rendered.
   To use the Icon components one need only to import and instanciate it.
@@ -20,6 +20,7 @@ const ICONS = {
   ArrowDown: require('./ArrowDown').default,
   ArrowUp: require('./ArrowUp').default,
   Bars: require('./Bars').default,
+  Calendar: require('./Calendar').default,
   CaretDown: require('./CaretDown').default,
   CaretLeft: require('./CaretLeft').default,
   CaretRight: require('./CaretRight').default,
@@ -53,21 +54,25 @@ const ICONS = {
   VisibilityOff: require('./VisibilityOff').default,
   VisibilityOn: require('./VisibilityOn').default,
   Warning: require('./Warning').default,
-};
-const DEMO_SIZE = 20;
-const DEMO_LABEL = 'pb3 code c-muted-1 f6';
-const TOTAL_ICONS_PER_LINE = 6;
+}
+const DEMO_SIZE = 20
+const DEMO_LABEL = 'pb3 code c-muted-1 f6'
+const TOTAL_ICONS_PER_LINE = 6
 class IconsTable extends React.PureComponent {
   render() {
-    const completeIconsArray = Object.keys(ICONS).sort((a, b) => (a < b) ? -1 : (a > b) ? 1 : 0 )
-    const totalLines = Math.ceil(completeIconsArray.length / TOTAL_ICONS_PER_LINE)
+    const completeIconsArray = Object.keys(ICONS).sort((a, b) =>
+      a < b ? -1 : a > b ? 1 : 0
+    )
+    const totalLines = Math.ceil(
+      completeIconsArray.length / TOTAL_ICONS_PER_LINE
+    )
     const chunkedIconsMatrix = []
     for (var i = 0; i < totalLines; i++) {
-      const rangeStart = TOTAL_ICONS_PER_LINE * i;
+      const rangeStart = TOTAL_ICONS_PER_LINE * i
       chunkedIconsMatrix[i] = completeIconsArray.slice(
         rangeStart,
         rangeStart + TOTAL_ICONS_PER_LINE
-      );
+      )
     }
 
     return (
@@ -76,19 +81,20 @@ class IconsTable extends React.PureComponent {
           {chunkedIconsMatrix.map((iconsLine, row) => (
             <tr key={`icon-table-row-${row}`}>
               {iconsLine.map((icon, cell) => {
-                const IconComponent = ICONS[icon];
+                const IconComponent = ICONS[icon]
                 return (
                   <td key={`icon-table-cell-${row}-${cell}`}>
                     <div className={DEMO_LABEL}>{icon}</div>
                     <IconComponent size={DEMO_SIZE} />
                   </td>
-                );
+                )
               })}
             </tr>
           ))}
         </tbody>
       </table>
-    );
+    )
   }
-};<IconsTable />
+}
+;<IconsTable />
 ```

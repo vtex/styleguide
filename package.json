@@ -1,6 +1,6 @@
 {
   "name": "@vtex/styleguide",
-  "version": "8.4.4",
+  "version": "8.5.0",
   "scripts": {
     "test": "react-scripts test --env=jsdom",
     "test:codemod": "jest codemod",
@@ -28,7 +28,7 @@
   ],
   "homepage": "https://vtex.github.io/styleguide",
   "devDependencies": {
-    "@vtex/react-scripts": "1.1.10",
+    "@vtex/react-scripts": "1.2.0",
     "babel-cli": "^6.26.0",
     "babel-eslint": "8.2.2",
     "babel-plugin-dynamic-import-node": "^1.2.0",
@@ -59,6 +59,7 @@
   },
   "dependencies": {
     "react-docgen-displayname-handler": "^2.1.1",
+    "react-datepicker": "^2.0.0",
     "react-responsive-modal": "^2.0.1",
     "react-virtualized": "^9.19.1",
     "vtex-tachyons": "^2.10.0"
