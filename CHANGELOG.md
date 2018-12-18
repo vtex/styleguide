@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- **Tab** Add different class names for selected and unselected states
 
 ## [8.5.0] - 2018-12-18
 
@@ -56,8 +58,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **Table** Add `title` as param to headerRenderer callback declared in schema to customize header cell
 
 ## [8.2.0] - 2018-12-06
-### Added
-- **Tab** Add different class names for selected and unselected states
 
 ### Added
 
