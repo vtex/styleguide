@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+- **Button** Tertiary variations now change background on hover
+
 ## [8.6.2] - 2018-12-18
 
 ### Fixed
