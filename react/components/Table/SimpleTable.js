@@ -55,125 +55,140 @@ class SimpleTable extends Component {
       onSort,
       updateTableKey,
       rowHeight,
+      fullWidth,
     } = this.props
     const { hoverRowIndex } = this.state
     const properties = Object.keys(schema.properties)
-    const updateKey = `vtex-table__${rowHeight}--${updateTableKey}` // this forces grid to rerender when density changes
 
     return (
       <div className="vh-100 w-100" style={{ height: containerHeight }}>
         <AutoSizer disableHeight>
-          {({ width }) => (
-            <MultiGrid
-              key={updateKey}
-              height={items.length === 0 ? HEADER_HEIGHT : containerHeight}
-              width={width}
-              tabIndex={null}
-              fixedRowCount={disableHeader ? 0 : 1}
-              rowCount={disableHeader ? items.length : items.length + 1}
-              rowHeight={({ index }) =>
-                index === 0 && !disableHeader ? HEADER_HEIGHT : rowHeight
-              }
-              enableFixedRowScroll={!disableHeader}
-              hideTopRightGridScrollbar={!disableHeader}
-              overscanRowCount={0}
-              styleTopRightGrid={fixFirstColumn ? { overflowX: 'hidden' } : {}}
-              fixedColumnCount={fixFirstColumn ? 1 : 0}
-              columnCount={properties.length}
-              columnWidth={({ index }) =>
-                schema.properties[properties[index]].width ||
-                DEFAULT_COLUMN_WIDTH
-              }
-              enableFixedColumnScroll
-              overscanColumnCount={0}
-              cellRenderer={({ columnIndex, key, rowIndex, style }) => {
-                const property = properties[columnIndex]
-                if (!disableHeader && rowIndex === 0) {
-                  // Header row
-                  const title = schema.properties[property].title || property
-                  const headerRenderer =
-                    schema.properties[property].headerRenderer
+          {({ width }) => {
+            const updateKey = `vtex-table__${rowHeight}--${updateTableKey}--${width}` // this forces grid to rerender when density and window's width change
+            const fullWidthColWidth =
+              width / Object.keys(schema.properties).length
+
+            return (
+              <MultiGrid
+                key={updateKey}
+                height={items.length === 0 ? HEADER_HEIGHT : containerHeight}
+                width={width}
+                tabIndex={null}
+                fixedRowCount={disableHeader ? 0 : 1}
+                rowCount={disableHeader ? items.length : items.length + 1}
+                rowHeight={({ index }) =>
+                  index === 0 && !disableHeader ? HEADER_HEIGHT : rowHeight
+                }
+                enableFixedRowScroll={!disableHeader}
+                hideTopRightGridScrollbar={!disableHeader}
+                overscanRowCount={0}
+                styleTopRightGrid={
+                  fixFirstColumn ? { overflowX: 'hidden' } : {}
+                }
+                fixedColumnCount={fixFirstColumn ? 1 : 0}
+                columnCount={properties.length}
+                columnWidth={({ index }) =>
+                  fullWidth
+                    ? fullWidthColWidth
+                    : schema.properties[properties[index]].width ||
+                      DEFAULT_COLUMN_WIDTH
+                }
+                enableFixedColumnScroll
+                overscanColumnCount={0}
+                cellRenderer={({ columnIndex, key, rowIndex, style }) => {
+                  const property = properties[columnIndex]
+                  if (!disableHeader && rowIndex === 0) {
+                    // Header row
+                    const title = schema.properties[property].title || property
+                    const headerRenderer =
+                      schema.properties[property].headerRenderer
+                    const arrowIsDown =
+                      sortOrder === 'ASC' && sortedBy === property
+                    const arrowIsUp =
+                      sortOrder === 'DESC' && sortedBy === property
+                    return (
+                      <div
+                        key={key}
+                        style={{
+                          ...style,
+                          height: HEADER_HEIGHT,
+                        }}
+                        className={`flex items-center w-100 h-100 c-muted-2 f6 truncate ph4 ${
+                          columnIndex === 0 && fixFirstColumn ? 'br' : ''
+                        } bt bb b--muted-4`}>
+                        {schema.properties[property].sortable ? (
+                          <span
+                            className="pointer c-muted-1 b t-small"
+                            onClick={() => {
+                              onSort(this.toggleSortType(property))
+                            }}>
+                            {`${title} `}
+                            {arrowIsDown ? (
+                              <ArrowDown size={ARROW_SIZE} />
+                            ) : arrowIsUp ? (
+                              <ArrowUp size={ARROW_SIZE} />
+                            ) : null}
+                          </span>
+                        ) : columnIndex === 0 && fixFirstColumn ? (
+                          <div className="w-100 flex items-center">
+                            <span>{title}</span>
+                          </div>
+                        ) : headerRenderer ? (
+                          headerRenderer({
+                            columnIndex,
+                            key,
+                            rowIndex,
+                            style,
+                            title,
+                          })
+                        ) : (
+                          title
+                        )}
+                      </div>
+                    )
+                  }
+                  const cellRenderer = schema.properties[property].cellRenderer
+                  const rowData = items[disableHeader ? rowIndex : rowIndex - 1]
+                  const cellData = rowData[property]
                   return (
                     <div
                       key={key}
                       style={{
                         ...style,
-                        height: HEADER_HEIGHT,
+                        height: rowHeight,
+                        width: fullWidth
+                          ? fullWidthColWidth
+                          : schema.properties[properties[columnIndex]].width ||
+                            DEFAULT_COLUMN_WIDTH,
                       }}
-                      className={`flex items-center w-100 h-100 c-muted-2 f6 truncate ph4 ${
-                        columnIndex === 0 && fixFirstColumn ? 'br' : ''
-                      } bt bb b--muted-4`}>
-                      {schema.properties[property].sortable ? (
-                        <span
-                          className="pointer c-muted-1 b t-small"
-                          onClick={() => {
-                            onSort(this.toggleSortType(property))
-                          }}>
-                          {`${title} `}
-                          {sortOrder === 'ASC' && sortedBy === property ? (
-                            <ArrowDown size={ARROW_SIZE} />
-                          ) : sortOrder === 'DESC' && sortedBy === property ? (
-                            <ArrowUp size={ARROW_SIZE} />
-                          ) : null}
-                        </span>
-                      ) : columnIndex === 0 && fixFirstColumn ? (
-                        <div className="w-100 flex items-center">
-                          <span>{title}</span>
-                        </div>
-                      ) : headerRenderer ? (
-                        headerRenderer({
-                          columnIndex,
-                          key,
-                          rowIndex,
-                          style,
-                          title,
-                        })
-                      ) : (
-                        title
-                      )}
+                      className={`flex items-center w-100 h-100 truncate ph4 ${
+                        disableHeader && rowIndex === 0 ? 'bt' : ''
+                      } bb b--muted-4 ${
+                        onRowClick && rowIndex === hoverRowIndex
+                          ? 'pointer bg-near-white c-link'
+                          : ''
+                      } ${columnIndex === 0 && fixFirstColumn ? 'br' : ''}`}
+                      onClick={
+                        onRowClick
+                          ? event =>
+                              onRowClick({ event, index: rowIndex, rowData })
+                          : null
+                      }
+                      onMouseEnter={
+                        onRowClick ? () => this.handleRowHover(rowIndex) : null
+                      }
+                      onMouseLeave={
+                        onRowClick ? () => this.handleRowHover(-1) : null
+                      }>
+                      {cellRenderer
+                        ? cellRenderer({ cellData, rowData })
+                        : cellData}
                     </div>
                   )
-                }
-                const cellRenderer = schema.properties[property].cellRenderer
-                const rowData = items[disableHeader ? rowIndex : rowIndex - 1]
-                const cellData = rowData[property]
-                return (
-                  <div
-                    key={key}
-                    style={{
-                      ...style,
-                      height: rowHeight,
-                      width:
-                        schema.properties[properties[columnIndex]].width ||
-                        DEFAULT_COLUMN_WIDTH,
-                    }}
-                    className={`flex items-center w-100 h-100 truncate ph4 ${
-                      disableHeader && rowIndex === 0 ? 'bt' : ''
-                    } bb b--muted-4 ${
-                      onRowClick && rowIndex === hoverRowIndex
-                        ? 'pointer bg-near-white c-link'
-                        : ''
-                    } ${columnIndex === 0 && fixFirstColumn ? 'br' : ''}`}
-                    onClick={
-                      onRowClick
-                        ? event =>
-                            onRowClick({ event, index: rowIndex, rowData })
-                        : null
-                    }
-                    onMouseEnter={
-                      onRowClick ? () => this.handleRowHover(rowIndex) : null
-                    }
-                    onMouseLeave={
-                      onRowClick ? () => this.handleRowHover(-1) : null
-                    }>
-                    {cellRenderer
-                      ? cellRenderer({ cellData, rowData })
-                      : cellData}
-                  </div>
-                )
-              }}
-            />
-          )}
+                }}
+              />
+            )
+          }}
         </AutoSizer>
         {items.length === 0 && (
           <div style={{ height: containerHeight - HEADER_HEIGHT }}>
@@ -194,6 +209,7 @@ SimpleTable.defaultProps = {
     sortOrder: null,
     sortedBy: null,
   },
+  fullWidth: false,
 }
 
 SimpleTable.propTypes = {
@@ -212,6 +228,7 @@ SimpleTable.propTypes = {
   updateTableKey: PropTypes.string,
   containerHeight: PropTypes.number,
   rowHeight: PropTypes.number.isRequired,
+  fullWidth: PropTypes.bool,
 }
 
 export default SimpleTable

@@ -89,6 +89,7 @@ class Table extends PureComponent {
       containerHeight,
       toolbar,
       pagination,
+      fullWidth,
     } = this.props
     const { hiddenFields, tableRowHeight, selectedDensity } = this.state
 
@@ -130,6 +131,7 @@ class Table extends PureComponent {
           </Box>
         ) : (
           <SimpleTable
+            fullWidth={fullWidth}
             items={items}
             schema={displaySchema}
             fixFirstColumn={fixFirstColumn}
@@ -161,6 +163,7 @@ Table.defaultProps = {
     },
   },
   emptyStateLabel: 'Nothing to show.',
+  fullWidth: false,
 }
 
 Table.propTypes = {
@@ -189,6 +192,8 @@ Table.propTypes = {
   density: PropTypes.oneOf(['low', 'medium', 'high']),
   /** Label for emptystate  */
   emptyStateLabel: PropTypes.string,
+  /** Full width property  */
+  fullWidth: PropTypes.bool,
   /** Toolbar (search and actions) */
   toolbar: PropTypes.shape({
     inputSearch: PropTypes.shape({
