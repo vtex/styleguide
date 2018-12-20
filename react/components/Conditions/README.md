@@ -7,7 +7,7 @@
 
   - Filtering a specific user by name
 
-    - subject: First Name
+    - subject: User Name
     - verb: is
     - object: Jhon Doe
 
@@ -19,24 +19,93 @@
 
 ### 👍 Dos
 - Use clear verbs and subjects, which should be intuitive and provide sufficient context for the user take that decision.
-- Initialize it with a default value that makes sense to your needs. (exemple: initial render already with an active filter)
+- Initialize it with a default value that makes sense to your needs. (example: initial render already with an active filter)
 
 ### 👎 Don'ts
 - Don't use too complex components as objects for a statement. If your statement object is too complex, maybe you should break it in simpler statements options and the complex case can be contemplated by using multiple simpler statetments.
 
-Default
+Simple
 
 ```js
-initialState = { check1: true, check2: false };
-<div>
-  <Conditions
-    checked={state.check1}
-    id="option-0"
-    label="Option 0"
-    name="default-checkbox-group"
-    onChange={e => setState({ check1: !state.check1 })}
-    value="option-0"
-  />
-</div>
-```
+const initialState = {
+  statements: [],
+  operator: 'all',
+}
 
+class SimpleConditionsCase extends React.Component {
+  constructor() {
+    super()
+
+    this.state = initialState
+    this.handleToggleOperator = this.handleToggleOperator.bind(this)
+    this.simpleInputObject = this.simpleInputObject.bind(this)
+  }
+
+  handleToggleOperator(operator) {
+    this.setState({ operator: this.state.operator === 'all' ? 'any' : 'all' })
+  }
+
+  simpleInputObject({ statements, values, statementIndex, error }) {
+    return (
+      <Input
+        value={values}
+        onChange={e => {
+          statements[statementIndex].object = e.target.value
+          this.setState({ statements })
+        }}
+      />
+    )
+  }
+
+  render() {
+    const choices = {
+      name: {
+        label: 'User name',
+        verbs: [
+          {
+            label: 'is',
+            value: '=',
+            object: this.simpleInputObject,
+          },
+          {
+            label: 'is not',
+            value: '!=',
+            object: this.simpleInputObject,
+          },
+        ],
+      },
+      email: {
+        label: 'Email',
+        verbs: [
+          {
+            label: 'contains',
+            value: 'contains',
+            object: this.simpleInputObject,
+          },
+          {
+            label: 'is',
+            value: '=',
+            object: this.simpleInputObject,
+          },
+          {
+            label: 'is not',
+            value: '!=',
+            object: this.simpleInputObject,
+          },
+        ],
+      },
+    };
+
+    return (
+      <Conditions
+        choices={choices}
+        statements={this.state.statments}
+        operator="all"
+        onChangeOperator={this.handleToggleOperator}
+        onChangeStatements={(statements) => this.setState({ statements })}
+      />
+    )
+  }
+}
+;<SimpleConditionsCase />
+```
