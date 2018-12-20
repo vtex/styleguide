@@ -1,6 +1,6 @@
 {
   "name": "@vtex/styleguide",
-  "version": "8.7.0",
+  "version": "8.7.1",
   "scripts": {
     "test": "react-scripts test --env=jsdom",
     "test:codemod": "jest codemod",
@@ -20,7 +20,8 @@
     "postreleasy": "vtex publish --public --verbose",
     "lint": "eslint react",
     "lint-fix": "eslint react --fix --max-warnings 0",
-    "prettier-conflict-check": "eslint --print-config .eslintrc | eslint-config-prettier-check"
+    "prettier-conflict-check": "eslint --print-config .eslintrc | eslint-config-prettier-check",
+    "postinstall": "yarn --cwd react --ignore-scripts"
   },
   "files": [
     "lib/",
@@ -59,9 +60,6 @@
   },
   "dependencies": {
     "react-docgen-displayname-handler": "^2.1.1",
-    "react-datepicker": "^2.0.0",
-    "react-responsive-modal": "^2.0.1",
-    "react-virtualized": "^9.19.1",
     "vtex-tachyons": "^2.10.0"
   },
   "husky": {
