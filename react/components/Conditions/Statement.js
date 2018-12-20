@@ -16,7 +16,7 @@ class Statement extends React.Component {
 
   static RemoveButton = props => (
     <div
-      className="mh3 mt4 pointer flex-auto"
+      className="mh3 mt4 pointer"
       style={{ maxWidth: 50 }}
       onClick={() => props.remove()}>
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
