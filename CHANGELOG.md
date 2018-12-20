@@ -7,8 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.7.0] - 2018-12-20
+
 ### Changed
 - **Button** Tertiary variations now change background on hover
+
+### Added
+
+- **Table** Prop `fullWidth` for a 100% width table and all colunms equal.
 
 ## [8.6.2] - 2018-12-18
 

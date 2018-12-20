@@ -38,6 +38,7 @@ const defaultSchema = {
 <div>
   <div className="mb5">
     <Table
+      fullWidth
       schema={defaultSchema}
       items={itemsCopy}
       density="high"
