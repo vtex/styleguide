@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- **Conditions** new experimental component to filter data based on statements.
+
 ## [8.7.4] - 2018-12-27
 
 - **DatePicker** Disable keyboard interaction until date-fns `parse` function
