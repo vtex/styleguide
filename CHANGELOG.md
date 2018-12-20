@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.7.2] - 2018-12-20
+
 - Reverting v8.7.1. The implemented solution for the `yarn install` problem was
   causing some build problems due to missing dependencies (probably caused by
   the changes to `package.json`)
