@@ -7,12 +7,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [8.7.1] - 2018-12-20
-
-### Fixed
-
-- Fix wrong `yarn install` behaviour mentioned in #458
-
 ## [8.7.0] - 2018-12-20
 
 ### Changed
