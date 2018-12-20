@@ -26,6 +26,3 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# we use npm install in react/ due to the preinstall script, so we can ignore
-# local yarn.lock files
-react/yarn.lock
