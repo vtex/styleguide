@@ -101,7 +101,7 @@ class SimpleConditionsCase extends React.Component {
       <Conditions
         choices={choices}
         statements={this.state.simpleStatements}
-        operator="all"
+        operator={this.state.operator}
         onChangeOperator={this.handleToggleOperator}
         onChangeStatements={(statements) => { 
           this.setState({ simpleStatements: statements })
@@ -345,7 +345,7 @@ class ComplexConditionsCase extends React.Component {
       <Conditions
         choices={choices}
         statements={this.state.statments}
-        operator="all"
+        operator={this.state.operator}
         onChangeOperator={this.handleToggleOperator}
         onChangeStatements={(statements) => this.setState({ statements })}
       />
