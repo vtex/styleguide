@@ -44,12 +44,7 @@ class Statement extends React.Component {
     <div className="flex-auto">
       <div className={`mh3 ${props.isFullWidth ? 'pb3' : ''}`}>
         <Statement.Dropdown
-          options={Object.keys(props.choices).map(choiceKey => {
-            return {
-              value: choiceKey,
-              label: props.choices[choiceKey].label,
-            }
-          })}
+          options={props.options}
           value={!props.condition.subject ? '' : props.condition.subject || ''}
           onChange={(e, value) => props.onChange(value)}
         />
@@ -72,7 +67,6 @@ class Statement extends React.Component {
   )
 
   handleChangeStatement = (newValue, structure) => {
-    console.log('handleChangeStatement', newValue, structure)
     this.props.onChangeStatement(newValue, structure)
   }
 
@@ -108,10 +102,44 @@ class Statement extends React.Component {
   renderSubject = entities => {
     const { choices, statements, isFullWidth, statementIndex } = this.props
     const condition = statements[statementIndex]
+
+    const options = Object.keys(choices).map(choiceKey => {
+      return {
+        value: choiceKey,
+        label: choices[choiceKey].label,
+        unique: choices[choiceKey].unique || false,
+      }
+    })
+
+    const subjectsInUse = statements
+      .map(statement => {
+        return statement.subject
+      })
+      .filter(subject => {
+        return subject !== ''
+      })
+
+    const uniqueOptions = options.filter(option => {
+      if (!option.unique) {
+        return true
+      }
+
+      const alreadyInUse = subjectsInUse.indexOf(option.value) > -1
+      if (!alreadyInUse) {
+        return true
+      }
+
+      if (subjectsInUse.indexOf(option.value) === statementIndex) {
+        return true
+      }
+
+      return false
+    })
+
     entities.push(
       <Statement.Subject
         condition={condition}
-        choices={choices}
+        options={uniqueOptions}
         isFullWidth={isFullWidth}
         onChange={selectedSubjectValue => {
           this.handleChangeStatement(selectedSubjectValue, 'subject')
@@ -134,16 +162,7 @@ class Statement extends React.Component {
         condition={condition}
         choices={choices}
         isFullWidth={isFullWidth}
-        verbs={
-          !condition.subject
-            ? [
-                {
-                  value: '',
-                  label: '',
-                },
-              ]
-            : myChoice.verbs
-        }
+        verbs={(myChoice && myChoice.verbs) || [{ label: '', value: '' }]}
         onChange={verb => {
           this.handleChangeStatement(verb.value, 'verb')
           this.clearObjects()
@@ -162,6 +181,11 @@ class Statement extends React.Component {
     const myChoice = this.getChoiceBySubject(condition.subject)
 
     if (!condition.verb) {
+      entities.push(<Statement.EmptyObject />)
+      return entities
+    }
+
+    if (!myChoice) {
       entities.push(<Statement.EmptyObject />)
       return entities
     }

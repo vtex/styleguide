@@ -28,7 +28,7 @@ Simple
 
 ```js
 const initialState = {
-  statements: [],
+  simpleStatements: [],
   operator: 'all',
 }
 
@@ -37,6 +37,7 @@ class SimpleConditionsCase extends React.Component {
     super()
 
     this.state = initialState
+      
     this.handleToggleOperator = this.handleToggleOperator.bind(this)
     this.simpleInputObject = this.simpleInputObject.bind(this)
   }
@@ -99,10 +100,12 @@ class SimpleConditionsCase extends React.Component {
     return (
       <Conditions
         choices={choices}
-        statements={this.state.statments}
+        statements={this.state.simpleStatements}
         operator="all"
         onChangeOperator={this.handleToggleOperator}
-        onChangeStatements={(statements) => this.setState({ statements })}
+        onChangeStatements={(statements) => { 
+          this.setState({ simpleStatements: statements })
+        }}
       />
     )
   }
@@ -113,7 +116,7 @@ class SimpleConditionsCase extends React.Component {
 Complex
 
 ```js
-const initialState = {
+const initialState =  {
   statements: [],
   operator: 'all',
 }
@@ -135,7 +138,7 @@ const possibleColors = [
   { label: 'Light-blue', value: 'light-blue' },
 ]
 
-class SimpleConditionsCase extends React.Component {
+class ComplexConditionsCase extends React.Component {
   constructor() {
     super()
 
@@ -146,7 +149,7 @@ class SimpleConditionsCase extends React.Component {
     this.complexDatePickerObject = this.complexDatePickerObject.bind(this)
     this.complexDatePickerRangeObject = this.complexDatePickerRangeObject.bind(this)
     this.complexNumericStepperObject = this.complexNumericStepperObject.bind(this)
-    this.complexNumericRangeObject = this.complexNumericRangeObject.bind(this)
+    this.complexNumericStepperRangeObject = this.complexNumericStepperRangeObject.bind(this)
   }
 
   handleToggleOperator(operator) {
@@ -251,24 +254,36 @@ class SimpleConditionsCase extends React.Component {
     )
   }
 
-  complexNumericRangeObject({ statements, values, statementIndex, error }) {
+  complexNumericStepperRangeObject({ statements, values, statementIndex, error }) {
     return (
-      <div className="br2 bw1 bg-base hover-b--muted-3 ba b--muted-4 ph4">
-        <Slider
-          range
-          min={0}
-          max={125}
-          defaultValue={values && values.from && values.to ? [values.from, values.to] : []}
-          onChange={([leftValue, rightValue]) => {
+      <div className='flex'>
+        <NumericStepper
+          value={values && values.from}
+          maxValue={values && values.to || null}
+          onChange={e => {
             statements[statementIndex].object = {
               ...statements[statementIndex].object || {},
-              from: leftValue,
-              to: rightValue,
+              from: e.value,
             }
             
             this.setState({ statements })
           }}
         />
+
+        <div className="mv4 mh3 c-muted-2 b">and</div>
+
+        <NumericStepper
+          value={values && values.to}
+          minValue={values && values.from || 0}
+          onChange={e => {
+            statements[statementIndex].object = {
+              ...statements[statementIndex].object || {},
+              to: e.value,
+            }
+            
+            this.setState({ statements })
+          }}
+        />  
       </div>
     )
   }
@@ -277,6 +292,7 @@ class SimpleConditionsCase extends React.Component {
   render() {
     const choices = {
       age: {
+        unique: true,
         label: 'User age',
         verbs: [
           {
@@ -287,11 +303,12 @@ class SimpleConditionsCase extends React.Component {
           {
             label: 'is between',
             value: 'between',
-            object: this.complexNumericRangeObject,
+            object: this.complexNumericStepperRangeObject,
           }
         ],
       },
       color: {
+        unique: true,
         label: 'User favorite color',
         verbs: [
           {
@@ -307,6 +324,7 @@ class SimpleConditionsCase extends React.Component {
         ],
       },
       birthday: {
+        unique: true,
         label: 'User birthday',
         verbs: [
           {
@@ -334,5 +352,5 @@ class SimpleConditionsCase extends React.Component {
     )
   }
 }
-;<SimpleConditionsCase />
+;<ComplexConditionsCase />
 ```
