@@ -54,19 +54,14 @@ class StrategySelector extends React.Component {
 StrategySelector.propTypes = {
   /** Operator indicates whether all the conditions should be met or any of them */
   operator: PropTypes.oneOf(['all', 'any']),
-  /** Operator change callback (conditions): array of conditions */
+  /** Operator change callback: one of 'any', 'all' */
   onChangeOperator: PropTypes.func,
   /** Labels for the controls and texts, default is english */
   labels: PropTypes.shape({
     operatorAll: PropTypes.string,
-    operatorAnd: PropTypes.string,
     operatorAny: PropTypes.string,
-    operatorOr: PropTypes.string,
     headerPrefix: PropTypes.string,
     headerSufix: PropTypes.string,
-    addConditionBtn: PropTypes.string,
-    noConditions: PropTypes.string,
-    addNewCondition: PropTypes.string,
   }),
 }
 
