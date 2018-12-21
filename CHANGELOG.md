@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- **Dropdown** Size was corrected to follow the standards
+
 ## [8.7.2] - 2018-12-20
 
 - Reverting v8.7.1. The implemented solution for the `yarn install` problem was
