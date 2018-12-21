@@ -104,7 +104,7 @@ ${this.getDropdownIdentification()}`
     let width
     let iconSize
 
-    let classes = 'bg-transparent bn w-100 '
+    let classes = 'bg-transparent bn w-100 h-100 '
     let containerClasses = 'br2 bw1 relative '
     let selectClasses = 'o-0 absolute top-0 left-0 w-100 bottom-0 '
 
@@ -124,15 +124,17 @@ ${this.getDropdownIdentification()}`
 
     switch (size) {
       case 'small':
-        classes += 'h-small t-small pl5 pr3 '
+        classes += 'pl5 pr3 '
         selectClasses += 't-small '
         labelClasses += 't-small '
+        containerClasses += 'h-small t-small '
         iconSize = 18
         break
       case 'large':
-        classes += 'h-large t-body ph5 '
+        classes += 'ph5 '
         selectClasses += 't-body '
         labelClasses += 't-body '
+        containerClasses += 'h-large t-body '
         iconSize = 18
         break
       case 'x-large':
@@ -143,9 +145,10 @@ ${this.getDropdownIdentification()}`
         iconSize = 22
         break
       default:
-        classes += 'h-regular t-body pl5 pr4 '
+        classes += 'pl5 pr4 '
         selectClasses += 't-small '
         labelClasses += 't-small '
+        containerClasses += 'h-regular t-body '
         iconSize = 18
         break
     }
