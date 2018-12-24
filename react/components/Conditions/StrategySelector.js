@@ -33,7 +33,7 @@ class StrategySelector extends React.Component {
               : labels.operatorAny}
           </span>
           <select
-            className="o-0 absolute top-0 left-0 w-100 bottom-0 pointer f6"
+            className="o-0 absolute top-0 left-0 w-100 bottom-0 pointer t-small"
             onChange={this.handleOperatorChange}
             value={this.state.selectedOperator}
             style={{
