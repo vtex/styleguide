@@ -148,8 +148,8 @@ class ComplexConditionsCase extends React.Component {
     this.complexMultiselectObject = this.complexMultiselectObject.bind(this)
     this.complexDatePickerObject = this.complexDatePickerObject.bind(this)
     this.complexDatePickerRangeObject = this.complexDatePickerRangeObject.bind(this)
-    this.complexNumericStepperObject = this.complexNumericStepperObject.bind(this)
-    this.complexNumericStepperRangeObject = this.complexNumericStepperRangeObject.bind(this)
+    this.complexNumericInputObject = this.complexNumericInputObject.bind(this)
+    this.complexNumericInputRangeObject = this.complexNumericInputRangeObject.bind(this)
   }
 
   handleToggleOperator(operator) {
@@ -242,9 +242,12 @@ class ComplexConditionsCase extends React.Component {
     )
   }
 
-  complexNumericStepperObject({ statements, values, statementIndex, error }) {
+  complexNumericInputObject({ statements, values, statementIndex, error }) {
     return (
-      <NumericStepper
+      <Input
+        placeholder="Insert age..."
+        type="number"
+        min={0}
         value={values}
         onChange={e => {
           statements[statementIndex].object = e.value
@@ -254,17 +257,26 @@ class ComplexConditionsCase extends React.Component {
     )
   }
 
-  complexNumericStepperRangeObject({ statements, values, statementIndex, error }) {
+  complexNumericInputRangeObject({ statements, values, statementIndex, error }) {
     return (
       <div className='flex'>
-        <NumericStepper
-          value={values && values.from}
-          maxValue={values && values.to || null}
+
+        <Input
+          placeholder="Age from..."
+          errorMessage={
+            statements[statementIndex].object &&
+            parseInt(statements[statementIndex].object.first) >=
+              parseInt(statements[statementIndex].object.last)
+              ? 'Must be smaller than other input'
+              : ''
+          }
+          value={values && values.first ? values.first : ''}
           onChange={e => {
-            statements[statementIndex].object = {
-              ...statements[statementIndex].object || {},
-              from: e.value,
-            }
+            const currentObject =
+              statements[statementIndex].object || {}
+            currentObject.first = e.target.value.replace(/\D/g, '')
+
+            statements[statementIndex].object = currentObject
             
             this.setState({ statements })
           }}
@@ -272,18 +284,20 @@ class ComplexConditionsCase extends React.Component {
 
         <div className="mv4 mh3 c-muted-2 b">and</div>
 
-        <NumericStepper
-          value={values && values.to}
-          minValue={values && values.from || 0}
+        <Input
+          placeholder="Age to..."
+          value={values && values.last ? values.last : ''}
           onChange={e => {
-            statements[statementIndex].object = {
-              ...statements[statementIndex].object || {},
-              to: e.value,
-            }
-            
+            const currentObject =
+              statements[statementIndex].object || {}
+            currentObject.last = e.target.value.replace(/\D/g, '')
+
+            statements[statementIndex].object = currentObject
+
             this.setState({ statements })
           }}
-        />  
+        />
+        
       </div>
     )
   }
@@ -298,12 +312,12 @@ class ComplexConditionsCase extends React.Component {
           {
             label: 'is',
             value: '=',
-            object: this.complexNumericStepperObject,
+            object: this.complexNumericInputObject,
           },
           {
             label: 'is between',
             value: 'between',
-            object: this.complexNumericStepperRangeObject,
+            object: this.complexNumericInputRangeObject,
           }
         ],
       },
