@@ -9,7 +9,7 @@
 
     - subject: User Name
     - verb: is
-    - object: Jhon Doe
+    - object: John Doe
 
   - Filtering gmail users
 
@@ -22,21 +22,19 @@
 - Initialize it with a default value that makes sense to your needs. (example: initial render already with an active filter)
 
 ### 👎 Don'ts
-- Don't use too complex components as objects for a statement. If your statement object is too complex, maybe you should break it in simpler statements options and the complex case can be contemplated by using multiple simpler statetments.
+- Don't use too complex components as objects for a statement. If your statement object is too complex, maybe you should break it in simpler statements options and the complex case can be contemplated by using multiple simpler statements.
 
 Simple
 
 ```js
-const initialState = {
-  simpleStatements: [],
-  operator: 'all',
-}
-
 class SimpleConditionsCase extends React.Component {
   constructor() {
     super()
 
-    this.state = initialState
+    this.state = {
+      simpleStatements: [],
+      operator: 'all',
+    }
       
     this.handleToggleOperator = this.handleToggleOperator.bind(this)
     this.simpleInputObject = this.simpleInputObject.bind(this)
@@ -116,11 +114,6 @@ class SimpleConditionsCase extends React.Component {
 Complex
 
 ```js
-const initialState =  {
-  statements: [],
-  operator: 'all',
-}
-
 const possibleColors = [
   { label: 'White', value: 'white' },
   { label: 'Black', value: 'black' },
@@ -142,7 +135,11 @@ class ComplexConditionsCase extends React.Component {
   constructor() {
     super()
 
-    this.state = initialState
+    this.state = {
+      statements: [],
+      operator: 'all',
+    }
+
     this.handleToggleOperator = this.handleToggleOperator.bind(this)
     this.complexDropdownObject = this.complexDropdownObject.bind(this)
     this.complexMultiselectObject = this.complexMultiselectObject.bind(this)
