@@ -14,20 +14,6 @@ class Statement extends React.Component {
     }
   }
 
-  static RemoveButton = props => (
-    <div
-      className="mh3 mt4 pointer"
-      style={{ maxWidth: 50 }}
-      onClick={() => props.remove()}>
-      <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-        <path
-          d="M11.7429 0.257143C11.4 -0.0857143 10.8857 -0.0857143 10.5429 0.257143L6 4.8L1.45714 0.257143C1.11429 -0.0857143 0.6 -0.0857143 0.257143 0.257143C-0.0857143 0.6 -0.0857143 1.11429 0.257143 1.45714L4.8 6L0.257143 10.5429C-0.0857143 10.8857 -0.0857143 11.4 0.257143 11.7429C0.428571 11.9143 0.6 12 0.857143 12C1.11429 12 1.28571 11.9143 1.45714 11.7429L6 7.2L10.5429 11.7429C10.7143 11.9143 10.9714 12 11.1429 12C11.3143 12 11.5714 11.9143 11.7429 11.7429C12.0857 11.4 12.0857 10.8857 11.7429 10.5429L7.2 6L11.7429 1.45714C12.0857 1.11429 12.0857 0.6 11.7429 0.257143Z"
-          fill="#979899"
-        />
-      </svg>
-    </div>
-  )
-
   static EmptyObject = () => (
     <div className="flex-auto">
       <div className="mh3 mb3">
@@ -251,21 +237,21 @@ class Statement extends React.Component {
             {canDelete &&
               !isFullWidth &&
               isRtl && (
-                <Statement.RemoveButton
-                  remove={() => {
-                    this.handleRemoveStatement()
-                  }}
-                />
+                <div
+                  className="ma3 c-muted-2 pointer hover-c-danger"
+                  onClick={this.handleRemoveStatement}>
+                  <IconClose size={25} />
+                </div>
               )}
             {statementAtoms}
             {canDelete &&
               !isFullWidth &&
               !isRtl && (
-                <Statement.RemoveButton
-                  remove={() => {
-                    this.handleRemoveStatement()
-                  }}
-                />
+                <div
+                  className="ma3 c-muted-2 pointer hover-c-danger"
+                  onClick={this.handleRemoveStatement}>
+                  <IconClose size={25} />
+                </div>
               )}
             {canDelete &&
               isFullWidth && (
