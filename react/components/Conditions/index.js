@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import Button from '../Button'
 import IconPlus from '../icon/Plus'
+import Separator from './Separator'
 import StrategySelector from './StrategySelector'
 import Statement from './Statement'
 
@@ -33,22 +34,6 @@ class Conditions extends React.Component {
       addNewCondition: 'add new condition',
     },
   }
-
-  static Separator = props => (
-    <div>
-      <div
-        style={{
-          marginLeft: -17,
-          width: 'calc(100% + 34px)',
-        }}
-        className="flex flex-row w-100 nowrap items-center mv3">
-        <hr className="ma0 b--black-10 bb bb-0 w-100" />
-      </div>
-      <div className="w-100 tc" style={{ marginTop: -18 }}>
-        <span className="gray ph3 dib bg-white">{props.label}</span>
-      </div>
-    </div>
-  )
 
   canAddNewCondition = () => {
     const { statements } = this.props
@@ -148,7 +133,7 @@ class Conditions extends React.Component {
                     />
 
                     {statementIndex !== statements.length - 1 && (
-                      <Conditions.Separator
+                      <Separator
                         label={
                           operator === 'all'
                             ? labels.operatorAnd

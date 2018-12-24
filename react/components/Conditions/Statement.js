@@ -275,7 +275,7 @@ class Statement extends React.Component {
           </div>
           {condition.error &&
             condition.error.message && (
-              <div className="red f6 mh3 mt2 lh-title">
+              <div className="red t-small mh3 mt2 lh-title">
                 {condition.error.message}
               </div>
             )}
