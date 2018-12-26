@@ -1,11 +1,8 @@
-import React from 'react'
 import PropTypes from 'prop-types'
-import Hoverable from './Hoverable'
+import withHover from './withHover'
 import TheTooltip from './Tooltip'
 
-function Tooltip({ hoverable, ...props }) {
-  return hoverable ? <Hoverable {...props} /> : <TheTooltip {...props} />
-}
+const Tooltip = withHover(TheTooltip)
 
 Tooltip.defaultProps = {
   hoverable: true,
