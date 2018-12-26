@@ -143,7 +143,6 @@ class Conditions extends React.Component {
                     className="flex flex-column w-100 mv3"
                     key={statementIndex}>
                     <Statement
-                      key={`statement-${statementIndex}`}
                       canDelete={canDelete}
                       choices={choices}
                       isRtl={isRtl}

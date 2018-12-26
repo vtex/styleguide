@@ -3,18 +3,6 @@ import Dropdown from '../../Dropdown'
 import PropTypes from 'prop-types'
 
 class SubjectAtom extends React.Component {
-  static Dropdown = props => (
-    <div className="flex-auto">
-      <div className={`mh3 ${props.isFullWidth ? 'pb3' : ''}`}>
-        <Dropdown
-          options={props.options}
-          value={!props.condition.subject ? '' : props.condition.subject || ''}
-          onChange={(e, value) => props.onChange(value)}
-        />
-      </div>
-    </div>
-  )
-
   handleChangeStatement = (newValue, structure) => {
     this.props.onChangeStatement(newValue, structure)
   }
@@ -57,14 +45,17 @@ class SubjectAtom extends React.Component {
     })
 
     return (
-      <SubjectAtom.Dropdown
-        condition={condition}
-        options={uniqueOptions}
-        isFullWidth={isFullWidth}
-        onChange={selectedSubjectValue => {
-          this.handleChangeStatement(selectedSubjectValue, 'subject')
-        }}
-      />
+      <div className="flex-auto">
+        <div className={`mh3 ${isFullWidth ? 'pb3' : ''}`}>
+          <Dropdown
+            options={uniqueOptions}
+            value={!condition.subject ? '' : condition.subject || ''}
+            onChange={(e, value) =>
+              this.handleChangeStatement(value, 'subject')
+            }
+          />
+        </div>
+      </div>
     )
   }
 }

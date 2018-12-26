@@ -3,20 +3,6 @@ import Dropdown from '../../Dropdown'
 import PropTypes from 'prop-types'
 
 class VerbAtom extends React.Component {
-  static Dropdown = props => (
-    <div className={`mh3 ${props.isFullWidth ? 'pb3' : ''}`}>
-      <Dropdown
-        disabled={!props.condition.subject}
-        options={props.verbs}
-        value={!props.condition.subject ? '' : props.condition.verb || ''}
-        onChange={(e, value) => {
-          const foundVerb = props.verbs.find(verb => verb.value === value)
-          props.onChange(foundVerb)
-        }}
-      />
-    </div>
-  )
-
   handleChangeStatement = (newValue, structure) => {
     this.props.onChangeStatement(newValue, structure)
   }
@@ -25,18 +11,20 @@ class VerbAtom extends React.Component {
     const { choices, isFullWidth, statements, statementIndex } = this.props
     const condition = statements[statementIndex]
     const myChoice = choices[condition.subject]
-
+    const verbs = (myChoice && myChoice.verbs) || [{ label: '', value: '' }]
     return (
       <div className="flex-auto">
-        <VerbAtom.Dropdown
-          condition={condition}
-          choices={choices}
-          isFullWidth={isFullWidth}
-          verbs={(myChoice && myChoice.verbs) || [{ label: '', value: '' }]}
-          onChange={verb => {
-            this.handleChangeStatement(verb.value, 'verb')
-          }}
-        />
+        <div className={`mh3 ${isFullWidth ? 'pb3' : ''}`}>
+          <Dropdown
+            disabled={!condition.subject}
+            options={verbs}
+            value={!condition.subject ? '' : condition.verb || ''}
+            onChange={(e, value) => {
+              const foundVerb = verbs.find(verb => verb.value === value)
+              this.handleChangeStatement(foundVerb.value, 'verb')
+            }}
+          />
+        </div>
       </div>
     )
   }

@@ -69,7 +69,7 @@ class Statement extends React.Component {
 
     const statementAtoms = [
       <SubjectAtom
-        key={`subject-${statementIndex}`}
+        key="subject"
         {...atomProps}
         onChangeStatement={(value, structure) => {
           this.handleChangeStatement(value, structure)
@@ -77,13 +77,13 @@ class Statement extends React.Component {
         }}
       />,
       <VerbAtom
-        key={`verb-${statementIndex}`}
+        key="verb"
         {...atomProps}
         onChangeStatement={(value, structure) => {
           this.handleChangeStatement(value, structure)
         }}
       />,
-      <ObjectAtom key={`object-${statementIndex}`} {...atomProps} />,
+      <ObjectAtom key="object" {...atomProps} />,
     ]
 
     return (
