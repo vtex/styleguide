@@ -253,7 +253,7 @@ class ComplexConditionsCase extends React.Component {
         min={0}
         value={values}
         onChange={e => {
-          statements[statementIndex].object = e.target.value
+          statements[statementIndex].object = e.target.value.replace(/\D/g, '')
           this.setState({ statements })
         }}
       />
