@@ -1,10 +1,5 @@
-#### A warning about Experimental Components
-*Experimental components* are *still under development*.
+#### Components still under development, whose support may cease without further notice. Avoid using them in Production.
 
-These components may suffer breaking changes in the future, even in minor or patch versions of VTEX Styleguide. 
+Experimental components may undergo breaking changes despite major, minor or patch versions of Styleguide. They might be lacking proper documentation or have their APIs completely rewritten. They are however in a functional state where multiple teams may start sharing their code to work together.
 
-Despite being a glimpse of the future, we do not guarantee supporting them.
-
-They may even cease to exist without further notice 👻
-
-**Please avoid using these components in production**.
+Feel free to use them and contribute providing feedback on GitHub or Slack.

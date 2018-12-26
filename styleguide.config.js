@@ -148,7 +148,7 @@ module.exports = {
           ],
         },
         {
-          name: 'Experimental',
+          name: '👻 Experimental',
           content: './docs/components_experimental.md',
           components: ['react/components/Conditions/index.js'],
         },
