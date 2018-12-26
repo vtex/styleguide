@@ -65,12 +65,20 @@ class Conditions extends React.Component {
   }
 
   handleChangeStatement = (statementIndex, newValue, structure) => {
-    const { currentStatements } = this.state
+    this.setState(
+      prevState => {
+        const updatedCurrentStatements = [...prevState.currentStatements]
+        updatedCurrentStatements[statementIndex][structure] = newValue
 
-    currentStatements[statementIndex][structure] = newValue
-
-    this.setState({ currentStatements })
-    this.props.onChangeStatements(currentStatements)
+        return {
+          ...prevState,
+          currentStatements: updatedCurrentStatements,
+        }
+      },
+      () => {
+        this.props.onChangeStatements(this.state.currentStatements)
+      }
+    )
   }
 
   render() {

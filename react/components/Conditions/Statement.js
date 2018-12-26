@@ -259,7 +259,7 @@ class Statement extends React.Component {
                   <Button
                     variation="tertiary"
                     size="small"
-                    onClick={() => this.handleRemoveStatement()}>
+                    onClick={this.handleRemoveStatement}>
                     <div className="dib">
                       <IconClose className="c-on-action-primary" />
                     </div>
