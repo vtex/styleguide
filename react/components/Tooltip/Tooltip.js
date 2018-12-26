@@ -4,13 +4,13 @@ import styles from './styles.css'
 
 function Tooltip({ children, label, visible }) {
   return (
-    <div className="vtex-tooltip relative z-4 w-100 w-auto-ns flex">
+    <div className="vtex-tooltip relative z-4 w-100 w-auto-ns flex justify-center">
       {children}
       <div
         className={`${styles.tooltip} ${
           visible ? '' : 'dn'
-        } vtex-tooltip__container absolute h-auto mw5 bg-base--inverted pa1 br1 z-5`}>
-        <div className="vtex-tooltip__label bg-base--inverted c-on-base--inverted pa2 t-body">
+        } vtex-tooltip__container absolute h-auto bg-base--inverted pa1 br1 z-5`}>
+        <div className="vtex-tooltip__label bg-base--inverted c-on-base--inverted pa2 t-small tc">
           {label}
         </div>
         <div

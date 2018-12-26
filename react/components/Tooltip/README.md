@@ -1,33 +1,51 @@
 #### A Tooltip
 
 ### 👍 Dos
-- Things right
+- If you use the manual version, display it after an user action with a timeout.
+
+### 👎 Don'ts
+- Don't keep the Tooltip always visible
 
 
 Default
 
 ```js
-<div class="w-20 ma4">
-  <Tooltip label="Hi!">
-    <div class="w-100 tc">
-      <Button>
-        Hover me
-      </Button>
+const IconHelp = require('../icon/Help').default;
+<div class="ml4 mt6 mb6">
+  <div class="dib flex">
+    <div class="ml3">
+      <Tooltip label={
+        <div class="w4 lh-copy">
+          That is a big message example.
+        </div>
+      }>
+        What does this mean?
+        <span class="ml2">
+          <IconHelp solid />
+        </span>
+      </Tooltip>
     </div>
-  </Tooltip>
+  </div>
 </div>
 ```
 
 Manual Trigger
 
 ```js
-<div class="w-20 ma4">
-  <Tooltip hoverable={false} visible={true} label="Manual">
-    <div class="w-100 tc">
-      <Button>
-        Hover me
-      </Button>
-    </div>
-  </Tooltip>
+const IconDownload = require('../icon/Download').default;
+initialState = { clicked: false };
+<div class="ml7 mt7 mb2">
+  <div class="dib w-20">
+    <Tooltip hoverable={false} visible={state.clicked} label="Downloading">
+      <span
+        class="pointer"
+        onClick={() => {
+          setState({ clicked: true })
+          setTimeout(() => (setState({ clicked: false })), 2000)
+        }}>
+        <IconDownload />
+      </span>
+    </Tooltip>
+  </div>
 </div>
 ```
