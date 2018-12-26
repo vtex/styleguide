@@ -143,6 +143,7 @@ module.exports = {
         {
           name: 'Other',
           components: [
+            'react/components/Tooltip/index.js',
             'react/components/Tag/index.js',
             'react/components/Spinner/index.js',
           ],

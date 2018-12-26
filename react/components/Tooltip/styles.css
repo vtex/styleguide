@@ -1,0 +1,22 @@
+.tooltip {
+  bottom: 100%;
+  left: 50%;
+  margin-bottom: 10px;
+  transform: translateX(-50%);
+}
+
+.arrow {
+  width: 0;
+  height: 0;
+  bottom: -5px;
+  left: 50%;
+  margin-left: -5px;
+  border-left: solid transparent 5px;
+  border-right: solid transparent 5px;
+  border-top: solid currentColor 5px;
+}
+
+.gap {
+  height: 20px;
+  bottom: -20px;
+}
