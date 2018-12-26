@@ -22,14 +22,10 @@ class Statement extends React.Component {
     </div>
   )
 
-  static Dropdown = props => {
-    return <Dropdown {...props} style={{ minWidth: '250px' }} />
-  }
-
   static Subject = props => (
     <div className="flex-auto">
       <div className={`mh3 ${props.isFullWidth ? 'pb3' : ''}`}>
-        <Statement.Dropdown
+        <Dropdown
           options={props.options}
           value={!props.condition.subject ? '' : props.condition.subject || ''}
           onChange={(e, value) => props.onChange(value)}
@@ -40,7 +36,7 @@ class Statement extends React.Component {
 
   static Verb = props => (
     <div className={`mh3 ${props.isFullWidth ? 'pb3' : ''}`}>
-      <Statement.Dropdown
+      <Dropdown
         disabled={!props.condition.subject}
         options={props.verbs}
         value={!props.condition.subject ? '' : props.condition.verb || ''}
