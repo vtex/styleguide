@@ -60,13 +60,17 @@ class Statement extends React.Component {
       labels,
     } = this.props
     const condition = statements[statementIndex]
+    const atomProps = {
+      statements: statements,
+      choices: choices,
+      isFullWidth: isFullWidth,
+      statementIndex: statementIndex,
+    }
+
     const statementAtoms = [
       <SubjectAtom
         key={`subject-${statementIndex}`}
-        statements={statements}
-        choices={choices}
-        isFullWidth={isFullWidth}
-        statementIndex={statementIndex}
+        {...atomProps}
         onChangeStatement={(value, structure) => {
           this.handleChangeStatement(value, structure)
           this.clearPredicate()
@@ -74,21 +78,12 @@ class Statement extends React.Component {
       />,
       <VerbAtom
         key={`verb-${statementIndex}`}
-        statements={statements}
-        choices={choices}
-        isFullWidth={isFullWidth}
-        statementIndex={statementIndex}
+        {...atomProps}
         onChangeStatement={(value, structure) => {
           this.handleChangeStatement(value, structure)
         }}
       />,
-      <ObjectAtom
-        key={`object-${statementIndex}`}
-        statements={statements}
-        choices={choices}
-        isFullWidth={isFullWidth}
-        statementIndex={statementIndex}
-      />,
+      <ObjectAtom key={`object-${statementIndex}`} {...atomProps} />,
     ]
 
     return (
