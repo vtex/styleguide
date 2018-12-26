@@ -104,6 +104,15 @@ class Conditions extends React.Component {
     )
   }
 
+  componentDidMount() {
+    console.warn(
+      `Experimental component warning:
+      
+       Conditions component is in an experimental state.
+       This component may suffer breaking changes in a near future, even in minor or patch versions.
+       It may even cease to exist without further notice 👻`
+    )
+  }
   render() {
     const {
       canDelete,
