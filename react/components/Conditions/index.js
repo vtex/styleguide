@@ -47,21 +47,44 @@ class Conditions extends React.Component {
   }
 
   handleAddNewCondition = () => {
-    const currentStatements = this.props.statements
-    currentStatements.push({
+    const emptyStatement = {
       subject: '',
       verb: '',
       object: null,
-    })
+    }
 
-    this.props.onChangeStatements(currentStatements)
+    this.setState(
+      prevState => {
+        const updatedStatements = [...this.props.statements, emptyStatement]
+
+        return {
+          ...prevState,
+          currentStatements: updatedStatements,
+        }
+      },
+      () => {
+        this.props.onChangeStatements(this.state.currentStatements)
+      }
+    )
   }
 
   handleRemoveStatement = index => {
-    const currentStatements = this.props.statements
-    currentStatements.splice(index, 1)
+    this.setState(
+      prevState => {
+        const currentStatements = this.props.statements
+        const updatedStatements = currentStatements
+          .slice(0, index)
+          .concat(currentStatements.slice(index + 1))
 
-    this.props.onChangeStatements(currentStatements)
+        return {
+          ...prevState,
+          currentStatements: updatedStatements,
+        }
+      },
+      () => {
+        this.props.onChangeStatements(this.state.currentStatements)
+      }
+    )
   }
 
   handleChangeStatement = (statementIndex, newValue, structure) => {

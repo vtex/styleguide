@@ -50,7 +50,7 @@ class SimpleConditionsCase extends React.Component {
         value={values}
         onChange={e => {
           statements[statementIndex].object = e.target.value
-          this.setState({ statements })
+          this.setState({ simpleStatements: statements })
         }}
       />
     )
@@ -361,10 +361,12 @@ class ComplexConditionsCase extends React.Component {
     return (
       <Conditions
         choices={choices}
-        statements={this.state.statments}
+        statements={this.state.statements}
         operator={this.state.operator}
         onChangeOperator={this.handleToggleOperator}
-        onChangeStatements={(statements) => this.setState({ statements })}
+        onChangeStatements={(statements) => {
+          this.setState({ statements })
+        }}
       />
     )
   }
