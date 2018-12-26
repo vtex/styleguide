@@ -207,6 +207,12 @@ class ComplexConditionsCase extends React.Component {
           <DatePicker
             style={{ maxWidth: 140 }}
             value={values && values.from}
+            errorMessage={
+              statements[statementIndex].object &&
+              statements[statementIndex].object.from >= statements[statementIndex].object.to
+                ? 'Must be before end date'
+                : ''
+            }
             onChange={date => {
               statements[statementIndex].object = {
                 ...statements[statementIndex].object || {},
@@ -247,7 +253,7 @@ class ComplexConditionsCase extends React.Component {
         min={0}
         value={values}
         onChange={e => {
-          statements[statementIndex].object = e.value
+          statements[statementIndex].object = e.target.value
           this.setState({ statements })
         }}
       />
