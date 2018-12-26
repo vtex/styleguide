@@ -91,7 +91,6 @@ module.exports = {
           components: [
             'react/components/Button/index.js',
             'react/components/Checkbox/index.js',
-            'react/components/Conditions/index.js',
             'react/components/DatePicker/index.js',
             'react/components/Dropdown/index.js',
             'react/components/Input/index.js',
@@ -147,6 +146,10 @@ module.exports = {
             'react/components/Tag/index.js',
             'react/components/Spinner/index.js',
           ],
+        },
+        {
+          name: 'Experimental',
+          components: ['react/components/Conditions/index.js'],
         },
       ],
     },
