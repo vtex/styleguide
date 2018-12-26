@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Input from '../../Input'
 
 class ObjectAtom extends React.Component {
-  static EmptyObject = () => (
+  static EmptyObjectAtom = () => (
     <div className="flex-auto">
       <div className="mh3 mb3">
         <Input disabled />
@@ -17,11 +17,11 @@ class ObjectAtom extends React.Component {
     const myChoice = choices[condition.subject]
 
     if (!condition.verb) {
-      return <ObjectAtom.EmptyObject />
+      return <ObjectAtom.EmptyObjectAtom />
     }
 
     if (!myChoice) {
-      return <ObjectAtom.EmptyObject />
+      return <ObjectAtom.EmptyObjectAtom />
     }
 
     const currentVerb = myChoice.verbs.find(
@@ -29,7 +29,7 @@ class ObjectAtom extends React.Component {
     )
 
     if (!currentVerb) {
-      return <ObjectAtom.EmptyObject />
+      return <ObjectAtom.EmptyObjectAtom />
     }
 
     return (
