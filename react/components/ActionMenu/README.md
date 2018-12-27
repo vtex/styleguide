@@ -3,17 +3,14 @@
 ### 👍 Dos
 
 - Give a comprehensive title (label) that helps the user to choose the best action to take.
-- Use `isDangerous` prop for options that perform dangerous actions like deleting.
-- Use `shouldCloseOnClick` prop for auto closing menu after clicking an option.
-- Use `isSimpleIcon` prop when you want an icon (not a button with an icon) to identify your menu.
 
 ### 👎 Don'ts
 
 - Don't use an ActionMenu if you want to provide a list of options that doesn't represent actions.
+- Don't use a button with text and no carret, it may be confused if a common button with no menu. (the `showCaretIcon=false` prop exists so the button with only an icon can be possible)
 
 ### Related components
 
-- Consider a <a href="#/Components/Forms?id=dropdown">Dropdown</a> if you expect the user to select a value from a list of options that doesn't represent actions.
 - This component uses the Menu component (the list of actions) that should never be used alone.
 
 
@@ -26,6 +23,10 @@ Alignment
       label="box aligned left"
       align="left"
       boxWidth="100%"
+      buttonProps={{
+        size: 'small',
+        variation: 'primary',
+      }}
       options={[
         {
           label: 'Open pod doors, HAL',
@@ -50,6 +51,10 @@ Alignment
     <ActionMenu
       label="box aligned right"
       boxWidth="100%"
+      buttonProps={{
+        size: 'small',
+        variation: 'primary',
+      }}
       options={[
         {
           label: 'Start front engines motors',
@@ -100,6 +105,10 @@ class MenusExample extends React.Component {
         <ActionMenu
           label="big list example"
           align="left"
+          buttonProps={{
+            size: 'small',
+            variation: 'primary',
+          }}
           options={[
             {
               label: 'Syncopation',
@@ -197,95 +206,71 @@ class MenusExample extends React.Component {
 };<MenusExample />
 ```
 
-Button with icon
+Examples with no caret
 ```js
 const Cog = require('../icon/Cog').default;
-<div className="ma3">
-  <ActionMenu
-    icon={<Cog color="currentColor" size={13} />}
-    label="Settings"
-    align="left"
-    boxWidth="100%"
-    options={[
-      {
-        label: 'Open pod doors, HAL',
-        handleCallback: () => alert('I’m sorry, Dave. I’m afraid I can’t do that.')
-      },
-      {
-        label: 'Have you heard about the word?',
-        handleCallback: () => alert('sure, everybody knows that the bird is the word...')
-      },
-      {
-        label: 'Hey look',
-        handleCallback: () => alert('Listen!')
-      },
-      {
-        label: 'Quit now and cake will be served',
-        handleCallback: () => alert('The cake is a lie')
-      },
-    ]}
-  />
-</div>
-```
-
-Button only with icon
-```js
-const Cog = require('../icon/Cog').default;
-<div className="ma3">
-  <ActionMenu
-    icon={<Cog color="currentColor" size={13} />}
-    showCaretIcon={false}
-    align="left"
-    boxWidth="100%"
-    options={[
-      {
-        label: 'Open pod doors, HAL',
-        handleCallback: () => alert('I’m sorry, Dave. I’m afraid I can’t do that.')
-      },
-      {
-        label: 'Have you heard about the word?',
-        handleCallback: () => alert('sure, everybody knows that the bird is the word...')
-      },
-      {
-        label: 'Hey look',
-        handleCallback: () => alert('Listen!')
-      },
-      {
-        label: 'Quit now and cake will be served',
-        handleCallback: () => alert('The cake is a lie')
-      },
-    ]}
-  />
-</div>
-```
-
-Without caret
-```js
-<div className="ma3">
-  <ActionMenu
-    label="Options"
-    align="left"
-    boxWidth="100%"
-    showCaretIcon={false}
-    options={[
-      {
-        label: 'Open pod doors, HAL',
-        handleCallback: () => alert('I’m sorry, Dave. I’m afraid I can’t do that.')
-      },
-      {
-        label: 'Have you heard about the word?',
-        handleCallback: () => alert('sure, everybody knows that the bird is the word...')
-      },
-      {
-        label: 'Hey look',
-        handleCallback: () => alert('Listen!')
-      },
-      {
-        label: 'Quit now and cake will be served',
-        handleCallback: () => alert('The cake is a lie')
-      },
-    ]}
-  />
+<div className="flex flex-row justify-between">
+  <div className="ma3">
+    <ActionMenu
+      icon={<Cog color="currentColor" size={13} />}
+      buttonProps={{
+        size: 'small',
+        variation: 'secondary',
+      }}
+      label="Settings"
+      showCaretIcon={false}
+      align="left"
+      boxWidth="100%"
+      options={[
+        {
+          label: 'Open pod doors, HAL',
+          handleCallback: () => alert('I’m sorry, Dave. I’m afraid I can’t do that.')
+        },
+        {
+          label: 'Have you heard about the word?',
+          handleCallback: () => alert('sure, everybody knows that the bird is the word...')
+        },
+        {
+          label: 'Hey look',
+          handleCallback: () => alert('Listen!')
+        },
+        {
+          label: 'Quit now and cake will be served',
+          handleCallback: () => alert('The cake is a lie')
+        },
+      ]}
+    />
+  </div>
+  <div className="ma3">
+    <ActionMenu
+      icon={<Cog color="currentColor" size={13} />}
+      buttonProps={{
+        size: 'small',
+        variation: 'secondary',
+        icon: true,
+      }}
+      showCaretIcon={false}
+      boxWidth="100%"
+      options={[
+        {
+          label: 'Open pod doors, HAL',
+          handleCallback: () => alert('I’m sorry, Dave. I’m afraid I can’t do that.')
+        },
+        {
+          label: 'Have you heard about the word?',
+          handleCallback: () => alert('sure, everybody knows that the bird is the word...')
+        },
+        {
+          label: 'Hey look',
+          handleCallback: () => alert('Listen!')
+        },
+        {
+          label: 'Quit now and cake will be served',
+          handleCallback: () => alert('The cake is a lie')
+        },
+      ]}
+    />
+  </div>
 </div>
 ```
 
@@ -298,11 +283,16 @@ const OptionsDots = require('../icon/OptionsDots').default;
     shouldCloseOnClick
     icon={<OptionsDots />}
     showCaretIcon={false}
+    buttonProps={{
+      size: 'small',
+      variation: 'tertiary',
+      icon: true,
+    }}
     boxWidth="100%"
     options={[
       {
         label: 'Remove something',
-        isDangerous: true,
+        isDangerous: true, // for options that perform dangerous actions like deleting.
         handleCallback: () => alert('you are removing something important')
       },
       {
