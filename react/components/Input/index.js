@@ -28,13 +28,17 @@ class Input extends Component {
   }
 
   handleFocus = event => {
-    this.setState({ active: true })
-    this.props.onFocus && this.props.onFocus(event)
+    if (!this.props.readOnly) {
+      this.setState({ active: true })
+      this.props.onFocus && this.props.onFocus(event)
+    }
   }
 
   handleBlur = event => {
-    this.setState({ active: false })
-    this.props.onBlur && this.props.onBlur(event)
+    if (!this.props.readOnly) {
+      this.setState({ active: false })
+      this.props.onBlur && this.props.onBlur(event)
+    }
   }
 
   componentDidMount() {
@@ -89,8 +93,7 @@ class Input extends Component {
     const topBottomHeight = config.borderRadius[1] * 2 // 2 is top AND BOTTOM
     const prefixAndSuffixPosition = `${config.borderRadius[1]}rem`
     const calcPrefixAndSuffixHeight = `calc(100% - ${topBottomHeight}rem)`
-    const typography = 'c-on-base'
-    let classes = `${widthClass} ${box} ${border} ${typography} `
+    let classes = `${widthClass} ${box} ${border} `
 
     let labelClasses = 'vtex-input__label db mb3 w-100 c-on-base '
 
@@ -104,14 +107,17 @@ class Input extends Component {
     if (this.props.disabled) {
       classes += 'bg-disabled b--disabled c-disabled '
     } else {
-      classes += 'bg-base '
+      classes += 'bg-base c-on-base '
 
       if (error || errorMessage) {
         classes += 'b--danger hover-b--danger '
       } else if (active) {
         classes += 'b--muted-2 '
       } else {
-        classes += 'b--muted-4 hover-b--muted-3 '
+        classes += 'b--muted-4 '
+        if (!this.props.readOnly) {
+          classes += 'hover-b--muted-3 '
+        }
       }
     }
 
