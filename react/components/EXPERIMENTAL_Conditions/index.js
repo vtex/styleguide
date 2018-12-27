@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React from 'react'
 import PropTypes from 'prop-types'
 
@@ -7,7 +8,10 @@ import Separator from './Separator'
 import StrategySelector from './StrategySelector'
 import Statement from './Statement'
 
-class Conditions extends React.Component {
+/**
+ * @visibleName Conditions
+ */
+class EXPERIMENTAL_Conditions extends React.Component {
   static defaultProps = {
     operator: 'any',
     showOperator: true,
@@ -174,7 +178,7 @@ class Conditions extends React.Component {
   }
 }
 
-Conditions.propTypes = {
+EXPERIMENTAL_Conditions.propTypes = {
   /** Shows or hides the delete button */
   canDelete: PropTypes.bool,
   /** Operator indicates whether all the statements should be met or any of them */
@@ -215,4 +219,4 @@ Conditions.propTypes = {
   }),
 }
 
-export default Conditions
+export default EXPERIMENTAL_Conditions

@@ -1,3 +1,4 @@
-import Conditions from './components/Conditions/index'
+/* eslint-disable camelcase */
+import EXPERIMENTAL_Conditions from './components/EXPERIMENTAL_Conditions/index'
 
-export default Conditions
+export default EXPERIMENTAL_Conditions

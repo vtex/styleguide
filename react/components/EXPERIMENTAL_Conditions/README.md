@@ -96,7 +96,7 @@ class SimpleConditionsCase extends React.Component {
     };
 
     return (
-      <Conditions
+      <EXPERIMENTAL_Conditions
         options={options}
         statements={this.state.simpleStatements}
         operator={this.state.operator}
@@ -359,7 +359,7 @@ class ComplexConditionsCase extends React.Component {
     };
 
     return (
-      <Conditions
+      <EXPERIMENTAL_Conditions
         options={options}
         statements={this.state.statements}
         operator={this.state.operator}
