@@ -60,8 +60,15 @@ class InputExamples extends React.Component {
   render() {
     return (
       <div className="w-40">
+      <div className="mb5">
+          <Input
+            value={"This input is read-only."}
+            readOnly={true}
+            label="Read-only"
+          />
+        </div>
         <div className="mb5">
-          <Input disabled value="Hayao Miyazaki" label="Disabled" />
+          <Input disabled value="This input is disabled." label="Disabled" />
         </div>
         <div className="mb5">
           <Input

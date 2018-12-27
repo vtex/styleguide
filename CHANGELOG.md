@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- **Input** Fix styles for disabled and read-only states.
+
 ## [8.7.3] - 2018-12-21
 
 ### Fixed
