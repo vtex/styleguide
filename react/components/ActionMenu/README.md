@@ -1,9 +1,5 @@
 #### An ActionMenu lets a user choose an action to perform from a list of options (menu).
 
-### 👍 Dos
-
-- Give a comprehensive title (label) that helps the user to choose the best action to take.
-
 ### 👎 Don'ts
 
 - Don't use an ActionMenu if you want to provide a list of options that doesn't represent actions.
