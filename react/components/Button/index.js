@@ -11,6 +11,14 @@ class Button extends Component {
       this.props.onClick(event)
   }
 
+  componentDidMount() {
+    if (this.props.icon) {
+      console.warn(
+        'Button: The prop "icon" of the "Button" component has been deprecated, and will be removed in a future version. Please use the component "ButtonWithIcon" instead'
+      )
+    }
+  }
+
   render() {
     const {
       size,
@@ -24,6 +32,7 @@ class Button extends Component {
     } = this.props
 
     const disabled = this.props.disabled || isLoading
+    const iconOnly = icon || this.props.iconOnly
 
     let classes = 'vtex-button bw1 ba fw5 br2 v-mid relative pa0 '
     let loaderSize = 15
@@ -32,16 +41,16 @@ class Button extends Component {
     switch (size) {
       case 'small':
         classes += 'h-small t-action--small '
-        horizontalPadding = icon ? 3 : 5
+        horizontalPadding = iconOnly ? 3 : 5
         break
       case 'large':
         classes += `h-large t-action--large `
-        horizontalPadding = icon ? 5 : 7
+        horizontalPadding = iconOnly ? 5 : 7
         loaderSize = 25
         break
       default:
         classes += 'h-regular t-action '
-        horizontalPadding = icon ? 4 : 6
+        horizontalPadding = iconOnly ? 4 : 6
         loaderSize = 20
         break
     }
@@ -54,7 +63,8 @@ class Button extends Component {
     if (collapseRight) {
       classes += `nr${horizontalPadding} `
     }
-    if (icon) {
+
+    if (iconOnly) {
       classes += 'icon-button dib '
     }
 
@@ -118,11 +128,11 @@ class Button extends Component {
     return (
       <button
         id={this.props.id}
-        autoFocus={icon ? undefined : this.props.autoFocus}
-        disabled={icon ? undefined : this.props.disabled}
-        name={icon ? undefined : this.props.name}
-        type={icon ? undefined : this.props.type}
-        value={icon ? undefined : this.props.value}
+        autoFocus={iconOnly ? undefined : this.props.autoFocus}
+        disabled={iconOnly ? undefined : this.props.disabled}
+        name={iconOnly ? undefined : this.props.name}
+        type={iconOnly ? undefined : this.props.type}
+        value={iconOnly ? undefined : this.props.value}
         tabIndex={0}
         className={classes}
         onClick={this.handleClick}
@@ -133,7 +143,7 @@ class Button extends Component {
         onMouseUp={this.props.onMouseUp}
         onMouseDown={this.props.onMouseDown}
         ref={this.props.ref}
-        style={icon ? { fontSize: 0 } : {}}>
+        style={iconOnly ? { fontSize: 0 } : {}}>
         {isLoading ? (
           <Fragment>
             <span className="left-0 w-100 absolute flex justify-center items-baseline">
@@ -180,8 +190,12 @@ Button.propTypes = {
   block: PropTypes.bool,
   /** Loading state */
   isLoading: PropTypes.bool,
-  /** If you are using just an Icon component inside, use this as true */
+  /** [DEPRECATED] If you are using just an Icon component inside, use this as true */
   icon: PropTypes.bool,
+  /** @ignore For internal use
+   * Sets reduced paddings in order to keep the button squareish if it
+   * only has an icon  */
+  iconOnly: PropTypes.bool,
   /** (Button spec attribute) */
   id: PropTypes.string,
   /** (Button spec attribute) */
