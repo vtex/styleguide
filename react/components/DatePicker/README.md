@@ -1,3 +1,14 @@
+#### A Datepicker lets the user select a single or a range of dates and times, either by typing or by interacting with a calendar.
+
+### 👍 Dos
+- Combine with Dropdowns or other components if you need more input from the user such as choosing a timezone.
+- For birthdates or other dates that span far to the past or to the future do disable the calendar popover. It's not (yet) built for that, and the user might see herself forced to do a lot of clicks.
+
+
+### 👎 Don'ts
+- For complex tasks such as selecting dates you might be tempted to design a slightly different behavior and build a customization on top of the component. Avoid doing that locally, and consider contributing to the library. More often than you think your need is the same as someone's else.
+
+
 ### Supported locales
 
 You can check out the list of supported locales [here](https://github.com/date-fns/date-fns/blob/master/src/locale/index.js).
