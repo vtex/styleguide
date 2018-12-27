@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+- **DatePicker** Disable keyboard interaction until date-fns `parse` function
+  support localized date strings (https://github.com/date-fns/date-fns/issues/896)
+
 ### Fixed
 
 - **Input** Fix styles for disabled and read-only states.
@@ -32,6 +35,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [8.7.0] - 2018-12-20
 
 ### Changed
+
 - **Button** Tertiary variations now change background on hover
 
 ### Added
