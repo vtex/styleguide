@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.7.4] - 2018-12-27
+
 - **DatePicker** Disable keyboard interaction until date-fns `parse` function
   support localized date strings (https://github.com/date-fns/date-fns/issues/896)
 
