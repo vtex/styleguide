@@ -57,7 +57,7 @@ class SimpleConditionsCase extends React.Component {
   }
 
   render() {
-    const choices = {
+    const options = {
       name: {
         label: 'User name',
         verbs: [
@@ -97,7 +97,7 @@ class SimpleConditionsCase extends React.Component {
 
     return (
       <Conditions
-        choices={choices}
+        options={options}
         statements={this.state.simpleStatements}
         operator={this.state.operator}
         onChangeOperator={this.handleToggleOperator}
@@ -307,7 +307,7 @@ class ComplexConditionsCase extends React.Component {
 
 
   render() {
-    const choices = {
+    const options = {
       age: {
         unique: true,
         label: 'User age',
@@ -360,7 +360,7 @@ class ComplexConditionsCase extends React.Component {
 
     return (
       <Conditions
-        choices={choices}
+        options={options}
         statements={this.state.statements}
         operator={this.state.operator}
         onChangeOperator={this.handleToggleOperator}

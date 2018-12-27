@@ -12,9 +12,9 @@ class ObjectAtom extends React.Component {
   )
 
   render() {
-    const { choices, isFullWidth, statements, statementIndex } = this.props
+    const { options, isFullWidth, statements, statementIndex } = this.props
     const condition = statements[statementIndex]
-    const myChoice = choices[condition.subject]
+    const myChoice = options[condition.subject]
 
     if (!condition.verb) {
       return <ObjectAtom.EmptyObjectAtom />
@@ -60,8 +60,8 @@ ObjectAtom.propTypes = {
       error: PropTypes.string,
     })
   ),
-  /** Possible choices and respective data types, verb options */
-  choices: PropTypes.object.isRequired,
+  /** Possible options and respective data types, verb options */
+  options: PropTypes.object.isRequired,
   /** Stretch component to 100% of the width */
   isFullWidth: PropTypes.bool,
   /** To which row does this Statement belong to?  */

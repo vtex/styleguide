@@ -25,8 +25,8 @@ class Statement extends React.Component {
   }
 
   getChoiceBySubject = subject => {
-    const { choices } = this.props
-    return choices[subject]
+    const { options } = this.props
+    return options[subject]
   }
 
   clearPredicate = () => {
@@ -52,7 +52,7 @@ class Statement extends React.Component {
   render() {
     const {
       canDelete,
-      choices,
+      options,
       isRtl,
       isFullWidth,
       statements,
@@ -62,7 +62,7 @@ class Statement extends React.Component {
     const condition = statements[statementIndex]
     const atomProps = {
       statements: statements,
-      choices: choices,
+      options: options,
       isFullWidth: isFullWidth,
       statementIndex: statementIndex,
     }
@@ -167,8 +167,8 @@ Statement.propTypes = {
       error: PropTypes.string,
     })
   ),
-  /** Possible choices and respective data types, verb options */
-  choices: PropTypes.object.isRequired,
+  /** Possible options and respective data types, verb options */
+  options: PropTypes.object.isRequired,
   /** Stretch component to 100% of the width */
   isFullWidth: PropTypes.bool,
   /** Whether the order of elements and text if right to left */

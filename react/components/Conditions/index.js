@@ -117,7 +117,7 @@ class Conditions extends React.Component {
     const {
       canDelete,
       statements,
-      choices,
+      options,
       isFullWidth,
       isRtl,
       labels,
@@ -153,7 +153,7 @@ class Conditions extends React.Component {
                     key={statementIndex}>
                     <Statement
                       canDelete={canDelete}
-                      choices={choices}
+                      options={options}
                       isRtl={isRtl}
                       isFullWidth={isFullWidth}
                       onChangeStatement={(newValue, structure) => {
@@ -229,8 +229,8 @@ Conditions.propTypes = {
       error: PropTypes.any,
     })
   ),
-  /** Possible choices and respective data types, verb options */
-  choices: PropTypes.object.isRequired,
+  /** Possible options and respective data types, verb options */
+  options: PropTypes.object.isRequired,
   /** Wether to show this component stretched to the width */
   isFullWidth: PropTypes.bool,
   /** Conditions change callback: array of statement definitions */

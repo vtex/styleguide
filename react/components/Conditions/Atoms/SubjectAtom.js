@@ -8,14 +8,14 @@ class SubjectAtom extends React.Component {
   }
 
   render() {
-    const { choices, statements, isFullWidth, statementIndex } = this.props
+    const { options, statements, isFullWidth, statementIndex } = this.props
     const condition = statements[statementIndex]
 
-    const options = Object.keys(choices).map(choiceKey => {
+    const subjectOptions = Object.keys(options).map(choiceKey => {
       return {
         value: choiceKey,
-        label: choices[choiceKey].label,
-        unique: choices[choiceKey].unique || false,
+        label: options[choiceKey].label,
+        unique: options[choiceKey].unique || false,
       }
     })
 
@@ -27,7 +27,7 @@ class SubjectAtom extends React.Component {
         return subject !== ''
       })
 
-    const uniqueOptions = options.filter(option => {
+    const uniqueOptions = subjectOptions.filter(option => {
       if (!option.unique) {
         return true
       }
@@ -74,8 +74,8 @@ SubjectAtom.propTypes = {
       error: PropTypes.string,
     })
   ),
-  /** Possible choices and respective data types, verb options */
-  choices: PropTypes.object.isRequired,
+  /** Possible options and respective data types, verb options */
+  options: PropTypes.object.isRequired,
   /** Stretch component to 100% of the width */
   isFullWidth: PropTypes.bool,
   /** To which row does this Statement belong to?  */
