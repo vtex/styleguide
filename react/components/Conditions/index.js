@@ -8,14 +8,6 @@ import StrategySelector from './StrategySelector'
 import Statement from './Statement'
 
 class Conditions extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      currentStatements: props.statements,
-    }
-  }
-
   static defaultProps = {
     operator: 'any',
     showOperator: true,
@@ -53,61 +45,28 @@ class Conditions extends React.Component {
       object: null,
     }
 
-    this.setState(
-      prevState => {
-        const updatedStatements = [...this.props.statements, emptyStatement]
-
-        return {
-          ...prevState,
-          currentStatements: updatedStatements,
-        }
-      },
-      () => {
-        this.props.onChangeStatements(this.state.currentStatements)
-      }
-    )
+    this.props.onChangeStatements([...this.props.statements, emptyStatement])
   }
 
   handleRemoveStatement = index => {
-    this.setState(
-      prevState => {
-        const currentStatements = this.props.statements
-        const updatedStatements = currentStatements
-          .slice(0, index)
-          .concat(currentStatements.slice(index + 1))
+    const currentStatements = this.props.statements
+    const updatedStatements = currentStatements
+      .slice(0, index)
+      .concat(currentStatements.slice(index + 1))
 
-        return {
-          ...prevState,
-          currentStatements: updatedStatements,
-        }
-      },
-      () => {
-        this.props.onChangeStatements(this.state.currentStatements)
-      }
-    )
+    this.props.onChangeStatements(updatedStatements)
   }
 
   handleChangeStatement = (statementIndex, newValue, structure) => {
-    this.setState(
-      prevState => {
-        const updatedCurrentStatements = [...prevState.currentStatements]
-        updatedCurrentStatements[statementIndex][structure] = newValue
-
-        return {
-          ...prevState,
-          currentStatements: updatedCurrentStatements,
-        }
-      },
-      () => {
-        this.props.onChangeStatements(this.state.currentStatements)
-      }
-    )
+    const updatedCurrentStatements = [...this.props.statements]
+    updatedCurrentStatements[statementIndex][structure] = newValue
+    this.props.onChangeStatements(updatedCurrentStatements)
   }
 
   componentDidMount() {
     console.warn(
       `Experimental component warning:
-      
+
        Conditions component is in an experimental state.
        This component may suffer breaking changes in a near future, even in minor or patch versions.
        It may even cease to exist without further notice 👻`
@@ -153,7 +112,6 @@ class Conditions extends React.Component {
                     key={statementIndex}>
                     <Statement
                       canDelete={canDelete}
-                      options={options}
                       isRtl={isRtl}
                       isFullWidth={isFullWidth}
                       onChangeStatement={(newValue, structure) => {
@@ -166,6 +124,7 @@ class Conditions extends React.Component {
                       onRemoveStatement={() =>
                         this.handleRemoveStatement(statementIndex)
                       }
+                      options={options}
                       statements={statements}
                       statementIndex={statementIndex}
                       labels={labels}

@@ -8,14 +8,6 @@ import VerbAtom from './Atoms/VerbAtom'
 import ObjectAtom from './Atoms/ObjectAtom'
 
 class Statement extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      error: null,
-    }
-  }
-
   handleChangeStatement = (newValue, structure) => {
     this.props.onChangeStatement(newValue, structure)
   }

@@ -3,20 +3,11 @@ import PropTypes from 'prop-types'
 import IconCaretDown from '../icon/CaretDown'
 
 class StrategySelector extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      selectedOperator: props.operator,
-    }
-  }
-
   handleOperatorChange = event => {
     const newOperator = event.target.value
-    const { selectedOperator } = this.state
-    if (selectedOperator !== newOperator) {
+    const { operator } = this.props
+    if (operator !== newOperator) {
       this.props.onChangeOperator(newOperator)
-      this.setState({ selectedOperator: newOperator })
     }
   }
 
@@ -28,14 +19,14 @@ class StrategySelector extends React.Component {
         <span>{labels.headerPrefix}</span>
         <div className="c-link relative">
           <span className="mh3 b">
-            {this.state.selectedOperator === 'all'
+            {this.props.operator === 'all'
               ? labels.operatorAll
               : labels.operatorAny}
           </span>
           <select
             className="o-0 absolute top-0 left-0 w-100 bottom-0 pointer t-small"
             onChange={this.handleOperatorChange}
-            value={this.state.selectedOperator}
+            value={this.props.operator}
             style={{
               // safari select height fix
               WebkitAppearance: 'menulist-button',
