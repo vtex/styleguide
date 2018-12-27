@@ -84,6 +84,9 @@ class DatePicker extends Component {
         onBlur={this.props.onBlur}
         onFocus={this.props.onFocus}
         onChange={this.props.onChange}
+        onChangeRaw={event => {
+          event.preventDefault()
+        }}
       />
     )
   }
