@@ -1,11 +1,10 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 
-import Menu from '../Menu'
 import Button from '../Button'
-
 import IconCaretDown from '../icon/CaretDown'
 import IconCaretUp from '../icon/CaretUp'
+import Menu from './Menu'
 
 class ActionMenu extends Component {
   constructor(props) {
@@ -13,7 +12,6 @@ class ActionMenu extends Component {
     this.menuBtnRef = React.createRef()
     this.state = {
       isBoxOpen: false,
-      isHoveringButton: false,
     }
   }
 
@@ -38,13 +36,6 @@ class ActionMenu extends Component {
     }
   }
 
-  handleHover = isHovering => {
-    const { isBoxOpen, isHoveringButton } = this.state
-    if (!isBoxOpen || isHovering !== isHoveringButton) {
-      this.setState({ isHoveringButton: isHovering })
-    }
-  }
-
   render() {
     const {
       icon,
@@ -52,12 +43,12 @@ class ActionMenu extends Component {
       options,
       boxWidth,
       align,
-      isSimpleIcon,
+      buttonProps,
       showCaretIcon,
       shouldCloseOnClick,
     } = this.props
 
-    const { isBoxOpen, isHoveringButton } = this.state
+    const { isBoxOpen } = this.state
 
     const iconMenu = icon && <div onClick={this.handleClick}>{icon}</div>
 
@@ -68,12 +59,7 @@ class ActionMenu extends Component {
     )
 
     const buttonMenu = (
-      <Button
-        variation={isBoxOpen || isHoveringButton ? 'secondary' : 'tertiary'}
-        size="small"
-        onMouseOver={() => this.handleHover(true)}
-        onMouseOut={() => this.handleHover(false)}
-        onClick={this.handleClick}>
+      <Button {...buttonProps} onClick={this.handleClick}>
         <span className="flex align-baseline items-center">
           {icon && (
             <div className={`pt2 self-center ${showCaretIcon ? 'mr2' : ''}`}>
@@ -97,7 +83,7 @@ class ActionMenu extends Component {
             className={`flex ${
               align === 'left' ? 'justify-start' : 'justify-end'
             }`}>
-            {isSimpleIcon ? iconMenu : buttonMenu}
+            {!buttonProps ? iconMenu : buttonMenu}
           </div>
           <Menu
             isOpen={isBoxOpen}
@@ -123,12 +109,13 @@ ActionMenu.propTypes = {
   align: PropTypes.oneOf(['right', 'left']),
   /** if should close the menu after clicking an option */
   shouldCloseOnClick: PropTypes.bool,
-  /** if it's a simple icon, not a button */
-  isSimpleIcon: PropTypes.bool,
-  /** ActionMenu Button label */
-  label: PropTypes.string.isRequired,
+  /** respecting button props contract.
+   * If empty, will be treated as a simple icon, no button. */
+  buttonProps: PropTypes.shape({ ...Button.propTypes }),
   /** ActionMenu Button icon */
   icon: PropTypes.element,
+  /** ActionMenu Button label */
+  label: PropTypes.string.isRequired,
   /** If should show Caret icon */
   showCaretIcon: PropTypes.bool,
   /** Menu width (default is 292px) */
