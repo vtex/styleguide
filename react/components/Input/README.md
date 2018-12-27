@@ -62,7 +62,7 @@ class InputExamples extends React.Component {
       <div className="w-40">
       <div className="mb5">
           <Input
-            value={"This input is read-only."}
+            value="This input is read-only."
             readOnly={true}
             label="Read-only"
           />
