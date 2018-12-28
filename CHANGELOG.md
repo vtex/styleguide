@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- **ButtonWithIcon** New component
+
+### Deprecated
+- **Button** `icon` prop was deprecated in favor of the `ButtonWithIcon` component
+
 ## [8.8.1] - 2018-12-28
 
 ### Added
