@@ -1,3 +1,5 @@
+In addition to the props above, `ButtonWithIcon` accepts all the props the `Button` component does.
+
 ```js
 const ArrowBack = require('../icon/ArrowBack').default
 const Delete = require('../icon/Delete').default
