@@ -147,6 +147,11 @@ module.exports = {
             'react/components/Spinner/index.js',
           ],
         },
+        {
+          name: '👻 Experimental',
+          content: './docs/components_experimental.md',
+          components: ['react/components/EXPERIMENTAL_Conditions/index.js'],
+        },
       ],
     },
     {
