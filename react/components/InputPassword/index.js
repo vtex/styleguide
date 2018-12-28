@@ -26,6 +26,8 @@ class InputPassword extends Component {
       <Input
         {...this.props}
         type={this.state.showPassword ? 'text' : 'password'}
+        token
+        spellCheck="false"
         suffix={
           <span className="pointer pt2" onClick={() => this.toggle()}>
             {this.state.showPassword ? (
