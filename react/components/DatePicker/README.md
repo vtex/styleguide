@@ -1,7 +1,7 @@
-#### A Datepicker lets the user select a single or a range of dates and times, either by typing or by interacting with a calendar.
+#### A Datepicker lets the user select a single date and time by interacting with a calendar.
 
 ### 👍 Dos
-- Combine with Dropdowns or other components if you need more input from the user such as choosing a timezone.
+- Combine with Dropdowns or other components if you need more input from the user such as choosing a timezone or for different ways of selecting times.
 - For birthdates or other dates that span far to the past or to the future do disable the calendar popover. It's not (yet) built for that, and the user might see herself forced to do a lot of clicks.
 
 
