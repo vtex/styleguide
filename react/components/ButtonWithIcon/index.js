@@ -11,6 +11,9 @@ class ButtonWithIcon extends Component {
     icon: PropTypes.node.isRequired,
     /** Position of the icon */
     iconPosition: PropTypes.oneOf(['left', 'right']),
+    /** @ignore Button size, used to calculate the margins of the icon.
+     * It is then passed to the Button itself */
+    size: PropTypes.oneOf(['small', 'regular', 'large']),
   }
 
   static defaultProps = {
@@ -18,9 +21,27 @@ class ButtonWithIcon extends Component {
   }
 
   render() {
-    const { icon, iconPosition, children } = this.props
+    const { icon, iconPosition, size, children } = this.props
 
     const hasIconOnly = !children
+
+    let iconMargin
+    let paddingOffset
+
+    switch (size) {
+      case 'small':
+        iconMargin = 2
+        paddingOffset = 1
+        break
+      case 'large':
+        iconMargin = 4
+        paddingOffset = 3
+        break
+      default:
+        iconMargin = 3
+        paddingOffset = 2
+        break
+    }
 
     return (
       <Button {...this.props} icon={false} iconOnly={hasIconOnly}>
@@ -29,14 +50,22 @@ class ButtonWithIcon extends Component {
         ) : (
           <span
             className={`flex items-center ${
-              iconPosition === 'left' ? 'nr2' : 'nl2'
+              iconPosition === 'left'
+                ? `nr${paddingOffset}`
+                : `nl${paddingOffset}`
             }`}>
             {iconPosition === 'left' && (
-              <div className="mr3 nl3 flex items-center">{icon}</div>
+              <div
+                className={`mr${iconMargin} nl${iconMargin} flex items-center`}>
+                {icon}
+              </div>
             )}
             <div>{children}</div>
             {iconPosition === 'right' && (
-              <div className="ml3 nr3 flex items-center">{icon}</div>
+              <div
+                className={`ml${iconMargin} nr${iconMargin} flex items-center`}>
+                {icon}
+              </div>
             )}
           </span>
         )}
