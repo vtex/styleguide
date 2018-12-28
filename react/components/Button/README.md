@@ -215,15 +215,6 @@ Colored container background
 </div>
 ```
 
-With icon
-
-```js
-const CloseIcon = require('../icon/Close').default
-;<Button icon variation="primary">
-  <CloseIcon color="#fff" />
-</Button>
-```
-
 Loading state
 
 ```js
