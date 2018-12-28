@@ -123,31 +123,31 @@ class Input extends Component {
 
     switch (size) {
       case 'small':
-        classes += `t-small h-small ${prefix ? 'pl7 pr5' : 'ph5'} ${
-          suffix ? 'pr7' : ''
-        }`
+        classes += `${!token ? 't-small' : ''} h-small ${
+          prefix ? 'pl7 pr5' : 'ph5'
+        } ${suffix ? 'pr7' : ''}`
         labelClasses += 't-small '
         prefixAndSuffixClasses += 'ph3 t-body '
         break
       case 'large':
-        classes += `t-body h-large ${prefix ? 'pl8 pr6' : 'ph5'} ${
-          suffix ? 'pr8' : ''
-        }`
+        classes += `${!token ? 't-body' : ''} h-large ${
+          prefix ? 'pl8 pr6' : 'ph5'
+        } ${suffix ? 'pr8' : ''}`
         labelClasses += 't-body '
         prefixAndSuffixClasses += 'ph4 t-body'
         break
       case 'x-large':
         // DEPRECATED
-        classes += `t-body pv5 ${prefix ? 'pl8 pr7' : 'ph7'} ${
-          suffix ? 'pr8' : ''
-        }`
+        classes += `${!token ? 't-body' : ''} pv5 ${
+          prefix ? 'pl8 pr7' : 'ph7'
+        } ${suffix ? 'pr8' : ''}`
         labelClasses += 't-body '
         prefixAndSuffixClasses += 'ph5 t-body '
         break
       default:
-        classes += `t-small h-regular ${prefix ? 'pl7 pr5' : 'ph5'} ${
-          suffix ? 'pr7' : ''
-        }`
+        classes += `${!token ? 't-small' : ''} h-regular ${
+          prefix ? 'pl7 pr5' : 'ph5'
+        } ${suffix ? 'pr7' : ''}`
         labelClasses += 't-small '
         prefixAndSuffixClasses += 'ph3 t-small '
         break
