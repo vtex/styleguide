@@ -1,9 +1,8 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import Button from '../Button'
 import IconCaretDown from '../icon/CaretDown'
-import IconCaretUp from '../icon/CaretUp'
 import Menu from './Menu'
 
 class ActionMenu extends Component {
@@ -41,59 +40,46 @@ class ActionMenu extends Component {
       icon,
       label,
       options,
-      boxWidth,
+      menuWidth,
       align,
       buttonProps,
-      showCaretIcon,
+      hideCaretIcon,
       shouldCloseOnClick,
     } = this.props
 
     const { isBoxOpen } = this.state
 
-    const iconMenu = icon && <div onClick={this.handleClick}>{icon}</div>
-
-    const iconCaret = isBoxOpen ? (
-      <IconCaretUp size={13} color="currentColor" />
-    ) : (
-      <IconCaretDown size={13} color="currentColor" />
-    )
+    const iconCaret = <IconCaretDown size={12} color="currentColor" />
 
     const buttonMenu = (
       <Button {...buttonProps} onClick={this.handleClick}>
         <span className="flex align-baseline items-center">
           {icon && (
-            <div className={`pt2 self-center ${showCaretIcon ? 'mr2' : ''}`}>
+            <div className={`pt2 self-center ${hideCaretIcon ? '' : 'mr2'}`}>
               {icon}
             </div>
           )}
 
           {label && (
-            <span className={`${showCaretIcon ? 'mr3' : ''}`}>{label}</span>
+            <span className={`${hideCaretIcon ? '' : 'mr3'}`}>{label}</span>
           )}
 
-          {showCaretIcon && iconCaret}
+          {!hideCaretIcon && <span>{iconCaret}</span>}
         </span>
       </Button>
     )
 
     return (
-      <Fragment>
-        <div ref={this.menuBtnRef} className="relative pointer">
-          <div
-            className={`flex ${
-              align === 'left' ? 'justify-start' : 'justify-end'
-            }`}>
-            {!buttonProps ? iconMenu : buttonMenu}
-          </div>
-          <Menu
-            isOpen={isBoxOpen}
-            align={align}
-            boxWidth={boxWidth}
-            options={options}
-            onMenuClose={shouldCloseOnClick ? this.handleClick : null}
-          />
-        </div>
-      </Fragment>
+      <div ref={this.menuBtnRef}>
+        {buttonMenu}
+        <Menu
+          isOpen={isBoxOpen}
+          align={align}
+          menuWidth={menuWidth}
+          options={options}
+          onMenuClose={shouldCloseOnClick ? this.handleClick : null}
+        />
+      </div>
     )
   }
 }
@@ -101,25 +87,26 @@ class ActionMenu extends Component {
 ActionMenu.defaultProps = {
   options: [],
   align: 'right',
-  showCaretIcon: true,
+  hideCaretIcon: false,
+  menuWidth: '100%',
+  shouldCloseOnClick: true,
 }
 
 ActionMenu.propTypes = {
-  /** ActionMenu alignment (default is right) */
+  /** Menu alignment in relation to the button*/
   align: PropTypes.oneOf(['right', 'left']),
-  /** if should close the menu after clicking an option */
+  /** If should close the menu after clicking an option */
   shouldCloseOnClick: PropTypes.bool,
-  /** respecting button props contract.
-   * If empty, will be treated as a simple icon, no button. */
+  /** Respecting button props contract. */
   buttonProps: PropTypes.shape({ ...Button.propTypes }),
-  /** ActionMenu Button icon */
+  /** Button icon */
   icon: PropTypes.element,
-  /** ActionMenu Button label */
-  label: PropTypes.string.isRequired,
-  /** If should show Caret icon */
-  showCaretIcon: PropTypes.bool,
-  /** Menu width (default is 292px) */
-  boxWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /** Button text label */
+  label: PropTypes.string,
+  /** Hide the automatic caret icon */
+  hideCaretIcon: PropTypes.bool,
+  /** Menu width*/
+  menuWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /** Menu options */
   options: PropTypes.arrayOf(
     PropTypes.shape({

@@ -21,7 +21,7 @@ class Menu extends Component {
   }
 
   render() {
-    const { options, boxWidth, align, isOpen, onMenuClose } = this.props
+    const { options, menuWidth, align, isOpen, onMenuClose } = this.props
 
     return (
       <Fragment>
@@ -34,7 +34,7 @@ class Menu extends Component {
               }`}>
               <div
                 className="b2 br2 bg-base"
-                style={{ width: boxWidth || BOX_WIDTH }}>
+                style={{ width: menuWidth || BOX_WIDTH }}>
                 <div
                   style={{ height: this.calculateBoxHeight() }}
                   className={
@@ -88,7 +88,7 @@ Menu.propTypes = {
   /** Menu visibility (default is false) */
   isOpen: PropTypes.bool,
   /** Menu Box width (default is 292px) */
-  boxWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  menuWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /** Menu options */
   options: PropTypes.arrayOf(
     PropTypes.shape({
