@@ -60,7 +60,7 @@ class Menu extends Component {
                       </span>
                       {option.toggle && (
                         <Toggle
-                          size="small"
+                          size="regular"
                           semantic={option.toggle.semantic}
                           checked={option.toggle.checked}
                           onChange={option.toggle.handleChange}

@@ -1,9 +1,9 @@
-#### An ActionMenu lets a user choose an action to perform from a list of options (menu).
+#### An Action Menu lets a user choose an action to perform from a list of options (menu).
 
 ### 👎 Don'ts
 
 - Don't use an ActionMenu if you want to provide a list of options that doesn't represent actions.
-- Don't use a button with text and no carret, it may be confused if a common button with no menu. (the `showCaretIcon=false` prop exists so the button with only an icon can be possible)
+- Avoid hiding the caret, it signifies to the user that this button behaves different than normal buttons.
 
 ### Related components
 
@@ -292,20 +292,12 @@ const OptionsDots = require('../icon/OptionsDots').default;
         handleCallback: () => alert('you are removing something important')
       },
       {
-        label: 'Open pod doors, HAL',
-        handleCallback: () => alert('I’m sorry, Dave. I’m afraid I can’t do that.')
+        label: 'Make some action',
+        handleCallback: () => alert('act!')
       },
       {
-        label: 'Have you heard about the word?',
-        handleCallback: () => alert('sure, everybody knows that the bird is the word...')
-      },
-      {
-        label: 'Hey look',
-        handleCallback: () => alert('Listen!')
-      },
-      {
-        label: 'Quit now and cake will be served',
-        handleCallback: () => alert('The cake is a lie')
+        label: 'Configurations',
+        handleCallback: () => alert('config!')
       },
     ]}
   />
