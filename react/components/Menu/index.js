@@ -7,7 +7,7 @@ import IconCaretUp from '../icon/CaretUp'
 import Toggle from '../Toggle'
 const BOX_WIDTH = 292
 const MAX_BOX_HEIGHT = 192
-const BOX_ITEM_HEIGHT = 36
+const BOX_ITEM_HEIGHT = 40
 
 class Menu extends Component {
   constructor(props) {
@@ -99,7 +99,7 @@ class Menu extends Component {
                   {options.map((option, index) => (
                     <div
                       key={index}
-                      className="flex justify-between ph6 pv3 pointer hover-bg-light-silver"
+                      className="flex justify-between items-center ph6 h-regular pointer hover-bg-light-silver"
                       onClick={() => {
                         option.handleCallback(option)
                         if (option.closeBoxOnClick) {
