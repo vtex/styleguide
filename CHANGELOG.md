@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - **Input** Fixed `token` prop which was not working.
+- **Button** Fix layout on linebreak.
 
 ## [8.9.1] - 2019-01-02
 

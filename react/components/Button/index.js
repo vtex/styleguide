@@ -35,27 +35,28 @@ class Button extends Component {
     const iconOnly = icon || this.props.iconOnly
 
     let classes = 'vtex-button bw1 ba fw5 br2 v-mid relative pa0 '
+    let labelClasses = 'flex items-center justify-center h-100 pv2 '
     let loaderSize = 15
     let horizontalPadding = 0
 
     switch (size) {
       case 'small':
-        classes += 'h-small t-action--small '
+        classes += 'min-h-small t-action--small '
         horizontalPadding = iconOnly ? 3 : 5
         break
       case 'large':
-        classes += `h-large t-action--large `
+        classes += 'min-h-large t-action--large '
         horizontalPadding = iconOnly ? 5 : 7
         loaderSize = 25
         break
       default:
-        classes += 'h-regular t-action '
+        classes += 'min-h-regular t-action '
         horizontalPadding = iconOnly ? 4 : 6
         loaderSize = 20
         break
     }
 
-    classes += `ph${horizontalPadding} `
+    labelClasses += `ph${horizontalPadding} `
 
     if (collapseLeft) {
       classes += `nl${horizontalPadding} `
@@ -146,18 +147,16 @@ class Button extends Component {
         style={iconOnly ? { fontSize: 0 } : {}}>
         {isLoading ? (
           <Fragment>
-            <span className="left-0 w-100 absolute flex justify-center items-baseline">
+            <span className="top-0 left-0 w-100 h-100 absolute flex justify-center items-center">
               <Spinner
                 secondary={variation === 'primary' || variation === 'danger'}
                 size={loaderSize}
               />
             </span>
-            <span style={{ opacity: 0 }}>{children}</span>
+            <span className={`${labelClasses} o-0`}>{children}</span>
           </Fragment>
         ) : (
-          <div className="flex items-center justify-center h-100">
-            {children}
-          </div>
+          <div className={labelClasses}>{children}</div>
         )}
       </button>
     )
