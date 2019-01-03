@@ -106,7 +106,6 @@ module.exports = {
           name: 'Forms',
           components: [
             'react/components/Button/index.js',
-            'react/components/Menu/index.js',
             'react/components/ButtonWithIcon/index.js',
             'react/components/Checkbox/index.js',
             'react/components/DatePicker/index.js',

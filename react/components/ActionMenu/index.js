@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import Button from '../Button'
 import IconCaretDown from '../icon/CaretDown'
-import Menu from './Menu'
+import Menu from '../Menu'
 
 class ActionMenu extends Component {
   constructor(props) {

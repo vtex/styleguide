@@ -1,43 +1,17 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 
-import Button from '../Button'
-import IconCaretDown from '../icon/CaretDown'
-import IconCaretUp from '../icon/CaretUp'
 import Toggle from '../Toggle'
 const BOX_WIDTH = 292
 const MAX_BOX_HEIGHT = 192
 const BOX_ITEM_HEIGHT = 40
 
+const BOX_SHADOW_STYLE = { boxShadow: '0px 1px 18px rgba(0, 0, 0, 0.14)' }
+
 class Menu extends Component {
   constructor(props) {
     super(props)
     this.menuBtnRef = React.createRef()
-    this.state = {
-      isBoxOpen: false,
-      isHoveringButton: false,
-    }
-  }
-
-  handleMenuClick = () => {
-    const { isBoxOpen } = this.state
-    if (isBoxOpen) {
-      document.removeEventListener('mousedown', this.handleClickOutside)
-    } else {
-      document.addEventListener('mousedown', this.handleClickOutside)
-    }
-    this.setState({ isBoxOpen: !isBoxOpen })
-  }
-
-  handleClickOutside = e => {
-    if (
-      this.menuBtnRef &&
-      this.menuBtnRef.current &&
-      !this.menuBtnRef.current.contains(e.target) &&
-      this.state.isBoxOpen
-    ) {
-      this.handleMenuClick()
-    }
   }
 
   calculateBoxHeight = () => {
@@ -46,49 +20,21 @@ class Menu extends Component {
     return estimate > MAX_BOX_HEIGHT ? MAX_BOX_HEIGHT : estimate
   }
 
-  handleHover = isHovering => {
-    const { isBoxOpen, isHoveringButton } = this.state
-    if (!isBoxOpen || isHovering !== isHoveringButton) {
-      this.setState({ isHoveringButton: isHovering })
-    }
-  }
-
-  renderIcon(icon) {
-    if (!icon) return null
-    return <div className="mr2 pt2 self-center">{icon}</div>
-  }
-
   render() {
-    const { icon, label, options, boxWidth, align } = this.props
-    const { isBoxOpen, isHoveringButton } = this.state
+    const { options, menuWidth, align, isOpen, onMenuClose } = this.props
 
     return (
       <Fragment>
         <div ref={this.menuBtnRef} className="relative">
-          <Button
-            variation={isBoxOpen || isHoveringButton ? 'secondary' : 'tertiary'}
-            size="small"
-            onMouseOver={() => this.handleHover(true)}
-            onMouseOut={() => this.handleHover(false)}
-            onClick={this.handleMenuClick}>
-            <span className="flex align-baseline items-center">
-              {this.renderIcon(icon)}
-              <span className="mr3">{label}</span>
-              {isBoxOpen ? (
-                <IconCaretUp size={13} color="currentColor" />
-              ) : (
-                <IconCaretDown size={13} color="currentColor" />
-              )}
-            </span>
-          </Button>
-          {isBoxOpen && (
+          {isOpen && (
             <div
-              className={`absolute z-999 ba b--light-gray br2 shadow-1 mt4 ${
+              style={BOX_SHADOW_STYLE}
+              className={`absolute z-999 ba b--muted-4 br2 shadow-1 mt4 ${
                 align === 'right' ? 'right-0' : 'left-0'
               }`}>
               <div
                 className="b2 br2 bg-base"
-                style={{ width: boxWidth || BOX_WIDTH }}>
+                style={{ width: menuWidth || BOX_WIDTH }}>
                 <div
                   style={{ height: this.calculateBoxHeight() }}
                   className={
@@ -99,25 +45,26 @@ class Menu extends Component {
                   {options.map((option, index) => (
                     <div
                       key={index}
-                      className="flex justify-between items-center ph6 h-regular pointer hover-bg-light-silver"
+                      className="flex justify-between items-center ph6 h-regular pointer hover-bg-muted-5"
                       onClick={() => {
                         option.handleCallback(option)
-                        if (option.closeBoxOnClick) {
-                          this.handleMenuClick()
+                        if (onMenuClose) {
+                          onMenuClose()
                         }
                       }}>
                       <span
-                        className={
+                        className={`${
                           option.toggle ? 'w-70 truncate' : 'w-100 truncate'
-                        }>
+                        } ${option.isDangerous ? 'c-danger' : ''}`}>
                         {option.label}
                       </span>
                       {option.toggle && (
                         <div style={{ pointerEvents: 'none' }}>
                           <Toggle
-                            size="small"
+                            size="regular"
                             semantic={option.toggle.semantic}
                             checked={option.toggle.checked}
+                            onChange={option.toggle.handleChange}
                           />
                         </div>
                       )}
@@ -136,15 +83,14 @@ class Menu extends Component {
 Menu.defaultProps = {
   options: [],
   align: 'right',
+  isOpen: false,
 }
 
 Menu.propTypes = {
-  /** Menu Button label */
-  label: PropTypes.string.isRequired,
-  /** Menu Button icon */
-  icon: PropTypes.element,
+  /** Menu visibility (default is false) */
+  isOpen: PropTypes.bool,
   /** Menu Box width (default is 292px) */
-  boxWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  menuWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /** Menu options */
   options: PropTypes.arrayOf(
     PropTypes.shape({
@@ -154,11 +100,12 @@ Menu.propTypes = {
       toggle: PropTypes.shape({
         checked: PropTypes.bool,
         semantic: PropTypes.bool,
+        handleChange: PropTypes.func,
       }),
-      /** if clicking on this opption should close the box */
-      closeBoxOnClick: PropTypes.bool,
     })
   ),
+  /** function to close the menu after clicking an option */
+  onMenuClose: PropTypes.func,
   /** Menu Box align (default is right) */
   align: PropTypes.oneOf(['right', 'left']),
 }
