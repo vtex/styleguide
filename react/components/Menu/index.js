@@ -29,7 +29,7 @@ class Menu extends Component {
     this.setState({ isBoxOpen: !isBoxOpen })
   }
 
-  handleClickOutside = (e) => {
+  handleClickOutside = e => {
     if (
       this.menuBtnRef &&
       this.menuBtnRef.current &&
@@ -46,7 +46,7 @@ class Menu extends Component {
     return estimate > MAX_BOX_HEIGHT ? MAX_BOX_HEIGHT : estimate
   }
 
-  handleHover = (isHovering) => {
+  handleHover = isHovering => {
     const { isBoxOpen, isHoveringButton } = this.state
     if (!isBoxOpen || isHovering !== isHoveringButton) {
       this.setState({ isHoveringButton: isHovering })
@@ -55,11 +55,7 @@ class Menu extends Component {
 
   renderIcon(icon) {
     if (!icon) return null
-    return (
-      <div className="mr2 pt2 self-center">
-        {icon}
-      </div>
-    )
+    return <div className="mr2 pt2 self-center">{icon}</div>
   }
 
   render() {
@@ -68,25 +64,21 @@ class Menu extends Component {
 
     return (
       <Fragment>
-        <div
-          ref={this.menuBtnRef}
-          className="relative">
+        <div ref={this.menuBtnRef} className="relative">
           <Button
             variation={isBoxOpen || isHoveringButton ? 'secondary' : 'tertiary'}
             size="small"
             onMouseOver={() => this.handleHover(true)}
             onMouseOut={() => this.handleHover(false)}
-            onClick={this.handleMenuClick}
-          >
+            onClick={this.handleMenuClick}>
             <span className="flex align-baseline items-center">
               {this.renderIcon(icon)}
-              <span className="mr3">
-                {label}
-              </span>
-              {isBoxOpen
-                ? <IconCaretUp size={13} color="currentColor" />
-                : <IconCaretDown size={13} color="currentColor" />
-              }
+              <span className="mr3">{label}</span>
+              {isBoxOpen ? (
+                <IconCaretUp size={13} color="currentColor" />
+              ) : (
+                <IconCaretDown size={13} color="currentColor" />
+              )}
             </span>
           </Button>
           {isBoxOpen && (
@@ -99,32 +91,36 @@ class Menu extends Component {
                 style={{ width: boxWidth || BOX_WIDTH }}>
                 <div
                   style={{ height: this.calculateBoxHeight() }}
-                  className={(options.length * BOX_ITEM_HEIGHT) > MAX_BOX_HEIGHT ? 'overflow-scroll' : ''}
-                >
-                  {
-                    options.map((option, index) => (
-                      <div
-                        key={index}
-                        className="flex justify-between ph6 pv3 pointer hover-bg-light-silver"
-                        onClick={() => {
-                          option.handleCallback(option)
-                          if (option.closeBoxOnClick) {
-                            this.handleMenuClick()
-                          }
-                        }}>
-                        <span className={option.toggle ? 'w-70 truncate' : 'w-100 truncate'}>
-                          {option.label}
-                        </span>
-                        {option.toggle && (
-                          <Toggle
-                            size="small"
-                            semantic={option.toggle.semantic}
-                            checked={option.toggle.checked}
-                          />
-                        )}
-                      </div>
-                    ))
-                  }
+                  className={
+                    options.length * BOX_ITEM_HEIGHT > MAX_BOX_HEIGHT
+                      ? 'overflow-scroll'
+                      : ''
+                  }>
+                  {options.map((option, index) => (
+                    <div
+                      key={index}
+                      className="flex justify-between ph6 pv3 pointer hover-bg-light-silver"
+                      onClick={() => {
+                        option.handleCallback(option)
+                        if (option.closeBoxOnClick) {
+                          this.handleMenuClick()
+                        }
+                      }}>
+                      <span
+                        className={
+                          option.toggle ? 'w-70 truncate' : 'w-100 truncate'
+                        }>
+                        {option.label}
+                      </span>
+                      {option.toggle && (
+                        <Toggle
+                          size="small"
+                          semantic={option.toggle.semantic}
+                          checked={option.toggle.checked}
+                        />
+                      )}
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
