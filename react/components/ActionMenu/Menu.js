@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Toggle from '../Toggle'
 const BOX_WIDTH = 292
 const MAX_BOX_HEIGHT = 192
-const BOX_ITEM_HEIGHT = 36
+const BOX_ITEM_HEIGHT = 40
 
 const BOX_SHADOW_STYLE = { boxShadow: '0px 1px 18px rgba(0, 0, 0, 0.14)' }
 
@@ -45,7 +45,7 @@ class Menu extends Component {
                   {options.map((option, index) => (
                     <div
                       key={index}
-                      className="flex justify-between ph6 pv3 pointer hover-bg-muted-5"
+                      className="flex justify-between items-center ph6 h-regular pointer hover-bg-muted-5"
                       onClick={() => {
                         option.handleCallback(option)
                         if (onMenuClose) {
@@ -59,12 +59,14 @@ class Menu extends Component {
                         {option.label}
                       </span>
                       {option.toggle && (
-                        <Toggle
-                          size="regular"
-                          semantic={option.toggle.semantic}
-                          checked={option.toggle.checked}
-                          onChange={option.toggle.handleChange}
-                        />
+                        <div style={{ pointerEvents: 'none' }}>
+                          <Toggle
+                            size="regular"
+                            semantic={option.toggle.semantic}
+                            checked={option.toggle.checked}
+                            onChange={option.toggle.handleChange}
+                          />
+                        </div>
                       )}
                     </div>
                   ))}
