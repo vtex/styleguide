@@ -144,13 +144,6 @@ module.exports = {
           ],
         },
         {
-          name: 'Display',
-          components: [
-            'react/components/Table/index.js',
-            'react/components/EmptyState/index.js',
-          ],
-        },
-        {
           name: 'Other',
           components: [
             'react/components/Tag/index.js',
