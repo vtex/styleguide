@@ -17,7 +17,10 @@ export default class Toast extends Component {
     super(props)
     this.state = {
       isOpen: false,
+      isSingleLine: false,
     }
+    this.messageElement = React.createRef()
+    this.buttonElement = React.createRef()
   }
 
   componentDidMount() {
@@ -28,6 +31,7 @@ export default class Toast extends Component {
 
       this.startAutoClose()
     }
+    this.updateButtonWrap()
   }
 
   // Duration increases along with the length of the message
@@ -44,7 +48,10 @@ export default class Toast extends Component {
       return
     }
 
-    this.autoCloseTimeout = setTimeout(this.close, this.props.duration || this.getDefaultDuration())
+    this.autoCloseTimeout = setTimeout(
+      this.close,
+      this.props.duration || this.getDefaultDuration()
+    )
   }
 
   stopAutoClose = () => {
@@ -108,10 +115,49 @@ export default class Toast extends Component {
       this.open()
       this.startAutoClose()
     }
+    if (
+      this.props.message !== prevProps.message ||
+      (this.props.visible && !prevProps.visible)
+    ) {
+      this.updateButtonWrap()
+    }
+  }
+
+  // Lets the toast to be single line on mobile
+  // if the message is short enough
+  updateButtonWrap() {
+    this.setState(
+      {
+        isSingleLine: false,
+      },
+      () => {
+        const messageWidth = this.getElementWidth(this.messageElement)
+        const buttonWidth = this.getElementWidth(this.buttonElement)
+        const windowWidth = window.innerWidth || 0
+        const threshold = 75
+
+        if (messageWidth != null && buttonWidth != null) {
+          if (messageWidth + buttonWidth <= windowWidth - threshold) {
+            this.setState({
+              isSingleLine: true,
+            })
+          }
+        }
+      }
+    )
+  }
+
+  getElementWidth(ref) {
+    const element = ref && ref.current
+    const bounds =
+      element &&
+      element.getBoundingClientRect &&
+      element.getBoundingClientRect()
+    return bounds && bounds.width
   }
 
   render() {
-    const { isOpen } = this.state
+    const { isOpen, isSingleLine } = this.state
     const { onClose, message, action } = this.props
     const hasAction = !!(action && action.onClick && action.label)
 
@@ -129,16 +175,19 @@ export default class Toast extends Component {
           minWidth: '18rem',
         }}>
         <div className="vtex-toast flex justify-between items-start items-center-ns t-body bg-base--inverted c-on-base--inverted pa5 br2-ns shadow-5">
-          <div className="flex-ns flex-grow-1">
+          <div className={`${isSingleLine ? 'flex' : 'flex-ns'} flex-grow-1`}>
             <div className="flex items-center flex-grow-1">
-              <div className="pr5 mw6-ns lh-copy">{message}</div>
+              <div className="pr5 mw6-ns lh-copy" ref={this.messageElement}>
+                {message}
+              </div>
             </div>
 
             {hasAction && (
               <div className="flex flex-grow-1 justify-end items-center">
-                <div className="nt4-ns nb4">
+                <div className={`${isSingleLine ? 'nt4' : 'nt4-ns'} nb4`}>
                   <button
-                    className="ttu bg-transparent b--transparent c-on-base--inverted bw1 ba ttu br2 t-action v-mid relative pv4 pl5 pr4 pointer"
+                    ref={this.buttonElement}
+                    className="bg-transparent b--transparent c-on-base--inverted bw1 ba br2 t-action v-mid relative pv4 pl5 pr4 pointer"
                     onClick={this.handleActionClick}>
                     {action.label}
                   </button>
