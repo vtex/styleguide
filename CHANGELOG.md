@@ -7,9 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- **InputPassword** Use monospaced font to prevent the width from shifting.
+
 ### Fixed
 
-- **Input** Fixed `token` prop which was not working
+- **Input** Fixed `token` prop which was not working.
 
 ## [8.9.1] - 2019-01-02
 
