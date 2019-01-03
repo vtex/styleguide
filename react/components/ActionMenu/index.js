@@ -118,7 +118,7 @@ ActionMenu.propTypes = {
         semantic: PropTypes.bool,
       }),
     })
-  ),
+  ).isRequired,
 }
 
 export default ActionMenu
