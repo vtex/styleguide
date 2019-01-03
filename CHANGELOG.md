@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 - **InputPassword** Use monospaced font to prevent the width from shifting.
+- **Toast** Allow single line toast on small screens if the message is short.
 
 ### Fixed
 
