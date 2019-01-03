@@ -113,11 +113,13 @@ class Menu extends Component {
                         {option.label}
                       </span>
                       {option.toggle && (
-                        <Toggle
-                          size="small"
-                          semantic={option.toggle.semantic}
-                          checked={option.toggle.checked}
-                        />
+                        <div style={{ pointerEvents: 'none' }}>
+                          <Toggle
+                            size="small"
+                            semantic={option.toggle.semantic}
+                            checked={option.toggle.checked}
+                          />
+                        </div>
                       )}
                     </div>
                   ))}
