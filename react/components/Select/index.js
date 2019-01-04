@@ -7,6 +7,30 @@ import DropdownIndicator from './DropdownIndicator'
 import MultiValueRemove from './MultiValueRemove'
 import Placeholder from './Placeholder'
 
+const getFontClassNameFromSize = size => {
+  switch (size) {
+    case 'large':
+      return 't-body'
+
+    case 'small':
+    default:
+      return 't-small'
+  }
+}
+
+const getValueContainerHeightFromSize = size => {
+  switch (size) {
+    case 'large':
+      return '3rem'
+
+    case 'small':
+      return '2rem'
+
+    default:
+      return '2.5rem'
+  }
+}
+
 const Select = ({
   autoFocus,
   disabled,
@@ -15,19 +39,20 @@ const Select = ({
   label,
   onChange,
   options,
-  value,
   placeholder,
+  size,
+  value,
   ...props
 }) => (
   <div className="flex flex-column">
-    <label>
-      <span className="dib mb3 w-100 f6">
-        <span>{label}</span>
-      </span>
+    <label className={`dib mb3 w-100 ${getFontClassNameFromSize(size)}`}>
+      {label}
     </label>
     <ReactSelect
       autoFocus={autoFocus}
-      className={`f6 ${errorMessage ? 'b--danger bw1' : ''}`}
+      className={`${getFontClassNameFromSize(size)} ${
+        errorMessage ? 'b--danger bw1' : ''
+      }`}
       components={{
         DropdownIndicator,
         IndicatorSeparator: () => null,
@@ -51,23 +76,32 @@ const Select = ({
             borderWidth: '.125rem',
           }
         },
+        valueContainer: (style, state) => ({
+          ...style,
+          height: getValueContainerHeightFromSize(size),
+          backgroundColor: state.isDisabled
+            ? COLORS.lightGray
+            : style.backgroundColor,
+        }),
         menu: style => ({ ...style, marginTop: 0 }),
-        multiValue: style => ({
+        multiValue: (style, state) => ({
           ...style,
           position: 'relative',
-          backgroundColor: COLORS.aliceBlue,
+          backgroundColor: state.isDisabled
+            ? COLORS['muted-4']
+            : COLORS.aliceBlue,
           borderRadius: 100,
         }),
-        multiValueLabel: style => {
+        multiValueLabel: (style, state) => {
           return {
             ...style,
-            color: COLORS.blue,
+            color: state.isDisabled ? COLORS.gray : COLORS.blue,
           }
         },
-        multiValueRemove: style => {
+        multiValueRemove: (style, state) => {
           return {
             ...style,
-            color: COLORS.blue,
+            color: state.isDisabled ? COLORS.gray : COLORS.blue,
             ':hover': {
               backgroundColor: 'transparent',
               color: COLORS.red,
@@ -94,8 +128,9 @@ const Select = ({
 )
 
 Select.defaultProps = {
-  isMulti: false,
+  isMulti: true,
   placeholder: 'Select...',
+  size: 'regular',
 }
 
 Select.propTypes = {
@@ -126,6 +161,8 @@ Select.propTypes = {
   ),
   /** Text for the select value.  */
   placeholder: PropTypes.string,
+  /** Select size */
+  size: PropTypes.oneOf(['small', 'regular', 'large']),
   /** Value of the select. */
   value: PropTypes.oneOfType([
     PropTypes.shape({
