@@ -2,8 +2,6 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { components } from 'react-select'
 
-/* eslint-disable react/jsx-handler-names */
-// These functions are defined in react-select
 const MultiValueRemove = props => {
   const multiValueProps = {
     ...props,
@@ -12,6 +10,15 @@ const MultiValueRemove = props => {
       className: `${props.innerProps.className}`,
     },
   }
+
+  const {
+    innerProps: {
+      onClick: handleClick,
+      onTouchEnd: handleTouchEnd,
+      onMouseDown: handleMouseDown,
+    },
+  } = props
+
   return (
     <React.Fragment>
       <components.MultiValueRemove {...multiValueProps} />
@@ -20,14 +27,13 @@ const MultiValueRemove = props => {
         style={{
           width: 'calc(100% - 22px)',
         }}
-        onClick={props.innerProps.onClick}
-        onTouchEnd={props.innerProps.onTouchEnd}
-        onMouseDown={props.innerProps.onMouseDown}
+        onClick={handleClick}
+        onTouchEnd={handleTouchEnd}
+        onMouseDown={handleMouseDown}
       />
     </React.Fragment>
   )
 }
-/* eslint-enable */
 
 MultiValueRemove.propTypes = {
   innerProps: PropTypes.object,
