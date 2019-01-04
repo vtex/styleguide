@@ -13,22 +13,23 @@ Using button variations
 const options = [
   {
     label: 'Open pod doors, HAL',
-    handleCallback: () => alert('I’m sorry, Dave. I’m afraid I can’t do that.')
+    onClick: () => alert('I’m sorry, Dave. I’m afraid I can’t do that.')
   },
   {
     label: 'Have you heard about the word?',
-    handleCallback: () => alert('sure, everybody knows that the bird is the word...')
+    onClick: () => alert('sure, everybody knows that the bird is the word...')
   },
   {
     label: 'Hey look',
-    handleCallback: () => alert('Listen!')
+    onClick: () => alert('Listen!')
   },
   {
     label: 'Quit now and cake will be served',
     isDangerous: 'true',
-    handleCallback: () => alert('The cake is a lie')
+    onClick: () => alert('The cake is a lie')
   },
 ];
+
 
 <div className="flex">
   <div className="flex flex-column">
@@ -102,24 +103,34 @@ const OptionsDots = require('../icon/OptionsDots').default;
 const Cog = require('../icon/Cog').default;
 
 const options = [
-  {
-    label: 'Open pod doors, HAL',
-    handleCallback: () => alert('I’m sorry, Dave. I’m afraid I can’t do that.')
-  },
-  {
-    label: 'Have you heard about the word?',
-    handleCallback: () => alert('sure, everybody knows that the bird is the word...')
-  },
-  {
-    label: 'Hey look',
-    handleCallback: () => alert('Listen!')
-  },
-  {
-    label: 'Quit now and cake will be served',
-    isDangerous: 'true',
-    handleCallback: () => alert('The cake is a lie')
-  },
-];
+  'General',
+  'Desktop & Screen Saver',
+  'Dock',
+  'Language & Region',
+  'Security & Privacy',
+  'Notifications',
+  'Displays',
+  'Energy Saver',
+  'Keyboard',
+  'Mouse',
+  'Trackpad',
+  'Pronters & Scanners',
+  'Sound',
+  'Startup Disk',
+  'Internet Accounts',
+  'Software Update',
+  'Network',
+  'Bluetooth',
+  'Extensions',
+  'Sharing',
+  'Users & Groups',
+  'Parental Controls',
+  'Date & Time',
+  'Accessibility',
+].map(label => ({
+  label,
+  onClick: () => {},
+}));
 
 <div className="flex">
   <div className="flex flex-column">
@@ -128,16 +139,6 @@ const options = [
         icon={<Cog color="currentColor"/>}
         buttonProps={{
           variation: 'primary',
-        }}
-        label="Settings"
-        options={options}
-      />
-    </div>
-    <div className="ma3">
-      <ActionMenu
-        icon={<Cog color="currentColor"/>}
-        buttonProps={{
-          variation: 'secondary',
         }}
         label="Settings"
         options={options}
@@ -173,18 +174,6 @@ const options = [
         icon={<OptionsDots />}
         hideCaretIcon
         buttonProps={{
-          variation: 'secondary',
-          icon: true
-        }}
-        options={options}
-      />
-    </div>
-    <div className="ma3">
-      <ActionMenu
-        label="Actions"
-        icon={<OptionsDots />}
-        hideCaretIcon
-        buttonProps={{
           variation: 'tertiary',
           icon: true
         }}
@@ -202,24 +191,24 @@ Menu Alignment
 const options = [
   {
     label: 'Open pod doors, HAL',
-    handleCallback: () => alert('I’m sorry, Dave. I’m afraid I can’t do that.')
+    onClick: () => alert('I’m sorry, Dave. I’m afraid I can’t do that.')
   },
   {
     label: 'Have you heard about the word?',
-    handleCallback: () => alert('sure, everybody knows that the bird is the word...')
+    onClick: () => alert('sure, everybody knows that the bird is the word...')
   },
   {
     label: 'Hey look',
-    handleCallback: () => alert('Listen!')
+    onClick: () => alert('Listen!')
   },
   {
     label: 'Quit now and cake will be served',
     isDangerous: 'true',
-    handleCallback: () => alert('The cake is a lie')
+    onClick: () => alert('The cake is a lie')
   },
 ];
 
-<div className="flex flex-column items-center">
+<div className="flex items-center">
   <div className="ma3">
     <ActionMenu
       label="left-aligned"
