@@ -48,7 +48,8 @@ class Menu extends Component {
       menuBounds.top + initialMenuHeight + containerHeight > window.innerHeight
 
     const isUpwards =
-      isOutOfBounds && menuBounds.top + CONTAINER_MARGIN > window.innerHeight / 2
+      isOutOfBounds &&
+      menuBounds.top + CONTAINER_MARGIN > window.innerHeight / 2
 
     const maxMenuHeight = isUpwards
       ? menuBounds.top - CONTAINER_MARGIN - WINDOW_MARGIN
@@ -117,16 +118,17 @@ class Menu extends Component {
           <div
             ref={this.menuElement}
             style={{
-              [isUpwards ? 'bottom' : 'top']: containerHeight + CONTAINER_MARGIN,
+              [isUpwards ? 'bottom' : 'top']:
+                containerHeight + CONTAINER_MARGIN,
               transform:
                 !hasCalculatedSize || isVisible
                   ? 'scale(1)'
-                  : 'scale(0.7, 0.3)',
+                  : 'scale(0.9, 0.6)',
               transformOrigin: `${isRight ? '75%' : '25%'} ${
                 isUpwards ? '100%' : '0'
               }`,
               transition: isVisible
-                ? `transform 100ms ease-out, opacity 25ms`
+                ? `transform 50ms ease-out, opacity 25ms`
                 : 'none',
             }}
             className={`absolute z-999 ba b--muted-4 br2 shadow-5 ${
@@ -142,7 +144,7 @@ class Menu extends Component {
                 {options.map((option, index) => (
                   <div
                     key={index}
-                    className="flex justify-between items-center ph6 h-regular pointer hover-bg-muted-5"
+                    className="flex justify-between items-center t-body ph6 h-regular pointer hover-bg-muted-5"
                     onClick={() => {
                       option.onClick(option)
                       if (onClose) {
