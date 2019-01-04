@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- **ActionMenu** and **Menu** components (even though the last one shouldn't be used alone)
+- **ActionMenu** component
 
 ### Changed
 
