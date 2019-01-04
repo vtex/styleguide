@@ -141,9 +141,9 @@ class Menu extends Component {
                 style={{ height: menuHeight || 'auto' }}
                 className={menuHeight ? 'overflow-scroll' : ''}>
                 {options.map((option, index) => (
-                  <div
+                  <button
                     key={index}
-                    className="flex justify-between items-center t-body ph6 h-regular pointer hover-bg-muted-5"
+                    className="flex justify-between items-center t-body ph6 h-regular pointer hover-bg-muted-5 ma0 bg-transparent bn w-100 tl"
                     onClick={() => {
                       option.onClick(option)
                       if (onClose) {
@@ -165,7 +165,7 @@ class Menu extends Component {
                         />
                       </div>
                     )}
-                  </div>
+                  </button>
                 ))}
               </div>
             </div>
