@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 
 import Toggle from '../Toggle'
 
-const MENU_DEFAULT_WIDTH = 292
-const MENU_MARGIN = 6
-const MENU_WINDOW_MARGIN = 10
+const DEFAULT_WIDTH = 292
+const CONTAINER_MARGIN = 6
+const WINDOW_MARGIN = 10
 
 class Menu extends Component {
   constructor(props) {
@@ -48,15 +48,15 @@ class Menu extends Component {
       menuBounds.top + initialMenuHeight + containerHeight > window.innerHeight
 
     const isUpwards =
-      isOutOfBounds && menuBounds.top + MENU_MARGIN > window.innerHeight / 2
+      isOutOfBounds && menuBounds.top + CONTAINER_MARGIN > window.innerHeight / 2
 
     const maxMenuHeight = isUpwards
-      ? menuBounds.top - MENU_MARGIN - MENU_WINDOW_MARGIN
+      ? menuBounds.top - CONTAINER_MARGIN - WINDOW_MARGIN
       : window.innerHeight -
         menuBounds.top -
         containerHeight -
-        MENU_MARGIN -
-        MENU_WINDOW_MARGIN
+        CONTAINER_MARGIN -
+        WINDOW_MARGIN
 
     // Makes the menu height, if it doesn't fit on the screen, fall in
     // the middle of an item, to hint that it scrolls
@@ -117,7 +117,7 @@ class Menu extends Component {
           <div
             ref={this.menuElement}
             style={{
-              [isUpwards ? 'bottom' : 'top']: containerHeight + MENU_MARGIN,
+              [isUpwards ? 'bottom' : 'top']: containerHeight + CONTAINER_MARGIN,
               transform:
                 !hasCalculatedSize || isVisible
                   ? 'scale(1)'
@@ -135,7 +135,7 @@ class Menu extends Component {
             ${isVisible ? 'o-100' : 'o-0'}`}>
             <div
               className="b2 br2 bg-base"
-              style={{ width: width || MENU_DEFAULT_WIDTH }}>
+              style={{ width: width || DEFAULT_WIDTH }}>
               <div
                 style={{ height: menuHeight || 'auto' }}
                 className={menuHeight ? 'overflow-scroll' : ''}>
