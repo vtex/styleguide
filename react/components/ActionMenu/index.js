@@ -69,22 +69,6 @@ class ActionMenu extends Component {
 
     const iconCaret = <IconCaretDown size={12} color="currentColor" />
 
-    const buttonMenu = (
-      <Button {...buttonProps} onClick={this.handleClick}>
-        <span className="flex align-baseline items-center">
-          {icon && (
-            <div className={`pt2 self-center ${hideCaretIcon ? '' : 'mr2'}`}>
-              {icon}
-            </div>
-          )}
-          {label && (
-            <span className={`${hideCaretIcon ? '' : 'mr3'}`}>{label}</span>
-          )}
-          {!hideCaretIcon && <span>{iconCaret}</span>}
-        </span>
-      </Button>
-    )
-
     return (
       <div ref={this.container}>
         <Menu
@@ -93,7 +77,20 @@ class ActionMenu extends Component {
           width={menuWidth}
           options={options}
           onClose={shouldCloseOnClick ? this.closeMenu : null}>
-          {buttonMenu}
+          <Button {...buttonProps} onClick={this.handleClick}>
+            <span className="flex align-baseline items-center">
+              {icon && (
+                <div
+                  className={`pt2 self-center ${hideCaretIcon ? '' : 'mr2'}`}>
+                  {icon}
+                </div>
+              )}
+              {label && (
+                <span className={`${hideCaretIcon ? '' : 'mr3'}`}>{label}</span>
+              )}
+              {!hideCaretIcon && <span>{iconCaret}</span>}
+            </span>
+          </Button>
         </Menu>
       </div>
     )
