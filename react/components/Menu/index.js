@@ -16,8 +16,8 @@ class Menu extends Component {
 
   state = {
     hasCalculatedSize: false, // hides the menu while calculating its size and position
-    isUpwards: false,
-    isVisible: false,
+    isUpwards: false, // opens the menu from bottom to top, if it doesn't fit on the screen otherwise
+    isVisible: false, // triggers the opening animation
     menuHeight: 0,
     containerHeight: 0,
   }
@@ -59,8 +59,8 @@ class Menu extends Component {
         CONTAINER_MARGIN -
         WINDOW_MARGIN
 
-    // Makes the menu height, if it doesn't fit on the screen, fall in
-    // the middle of an item, to hint that it scrolls
+    // Makes the height of the menu, if it doesn't entirely fit on the screen,
+    // fall in the middle of an item, to hint that the menu scrolls
     const maxVisibleItems = Math.round(maxMenuHeight / itemHeight)
     const adjustedMenuHeight = maxVisibleItems * itemHeight - itemHeight / 2
 
