@@ -2,13 +2,10 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import Toggle from '../Toggle'
+
 const MENU_DEFAULT_WIDTH = 292
 const MENU_MARGIN = 6
-
-const BOX_SHADOW_STYLE = {
-  boxShadow:
-    '0px 1px 18px rgba(0, 0, 0, 0.14), 0px 15px 40px 10px rgba(0,0,0,0.06)',
-}
+const MENU_WINDOW_MARGIN = 10
 
 class Menu extends Component {
   constructor(props) {
@@ -20,8 +17,9 @@ class Menu extends Component {
   state = {
     hasCalculatedSize: false, // hides the menu while calculating its size and position
     isUpwards: false,
-    menuHeight: 0,
     isVisible: false,
+    menuHeight: 0,
+    containerHeight: 0,
   }
 
   getMenuBounds = () =>
@@ -29,23 +27,48 @@ class Menu extends Component {
     this.menuElement.current.getBoundingClientRect &&
     this.menuElement.current.getBoundingClientRect()
 
+  getContainerBounds = () =>
+    this.containerElement.current &&
+    this.containerElement.current.getBoundingClientRect &&
+    this.containerElement.current.getBoundingClientRect()
+
   updateMenu() {
     const menuBounds = this.getMenuBounds()
+    const containerBounds = this.getContainerBounds()
 
-    let menuHeight = menuBounds ? menuBounds.height : 0
+    if (!menuBounds || !containerBounds) return
+
+    const containerHeight = containerBounds.height
+
+    const initialMenuHeight = menuBounds.height
+
+    const itemHeight = initialMenuHeight / this.props.options.length
+
     const isOutOfBounds =
-      menuBounds && menuBounds.top + menuHeight > window.innerHeight
-    const isUpwards = isOutOfBounds && menuBounds.top > window.innerHeight / 2
-    const windowMargin = 10
-    menuHeight = Math.min(
-      menuHeight,
-      isUpwards
-        ? menuBounds.top - 40 - MENU_MARGIN * 2 - windowMargin
-        : window.innerHeight - menuBounds.top - windowMargin
-    )
+      menuBounds.top + initialMenuHeight + containerHeight > window.innerHeight
+
+    const isUpwards =
+      isOutOfBounds && menuBounds.top + MENU_MARGIN > window.innerHeight / 2
+
+    const maxMenuHeight = isUpwards
+      ? menuBounds.top - MENU_MARGIN - MENU_WINDOW_MARGIN
+      : window.innerHeight -
+        menuBounds.top -
+        containerHeight -
+        MENU_MARGIN -
+        MENU_WINDOW_MARGIN
+
+    // Makes the menu height, if it doesn't fit on the screen, fall in
+    // the middle of an item, to hint that it scrolls
+    const maxVisibleItems = Math.round(maxMenuHeight / itemHeight)
+    const adjustedMenuHeight = maxVisibleItems * itemHeight - itemHeight / 2
+
+    const menuHeight =
+      maxMenuHeight < initialMenuHeight ? adjustedMenuHeight : 0
 
     this.setState(
       {
+        containerHeight,
         menuHeight,
         isUpwards,
         hasCalculatedSize: true,
@@ -66,38 +89,48 @@ class Menu extends Component {
 
     if (prevProps.open && !this.props.open) {
       this.setState({
-        isUpwards: false,
         hasCalculatedSize: false,
-        menuHeight: 0,
+        isUpwards: false,
         isVisible: false,
+        menuHeight: 0,
+        containerHeight: 0,
       })
     }
   }
 
   render() {
     const { options, width, align, open, onClose, children } = this.props
-    const { isUpwards, hasCalculatedSize, menuHeight, isVisible } = this.state
+    const {
+      hasCalculatedSize,
+      isUpwards,
+      isVisible,
+      menuHeight,
+      containerHeight,
+    } = this.state
+
+    const isRight = align === 'right'
 
     return (
-      <div ref={this.containerElement} className="relative">
-        {children}
+      <div className="relative">
+        <div ref={this.containerElement}>{children}</div>
         {open && (
           <div
             ref={this.menuElement}
             style={{
-              ...BOX_SHADOW_STYLE,
-              [isUpwards ? 'bottom' : 'top']: 40 + MENU_MARGIN,
+              [isUpwards ? 'bottom' : 'top']: containerHeight + MENU_MARGIN,
               transform:
                 !hasCalculatedSize || isVisible
                   ? 'scale(1)'
-                  : 'scale(0.7, 0.25)',
-              transformOrigin: `${align === 'right' ? '80%' : '20%'} ${
+                  : 'scale(0.7, 0.5)',
+              transformOrigin: `${isRight ? '80%' : '20%'} ${
                 isUpwards ? '100%' : '0'
               }`,
-              transition: isVisible ? 'transform 100ms, opacity 80ms' : 'none',
+              transition: isVisible
+                ? `transform 100ms ease-out, opacity 100ms`
+                : 'none',
             }}
-            className={`absolute z-999 ba b--muted-4 br2 ${
-              align === 'right' ? 'right-0' : 'left-0'
+            className={`absolute z-999 ba b--muted-4 br2 shadow-5 ${
+              isRight ? 'right-0' : 'left-0'
             }
             ${isVisible ? 'o-100' : 'o-0'}`}>
             <div
