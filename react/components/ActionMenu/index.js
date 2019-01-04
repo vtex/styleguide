@@ -10,18 +10,18 @@ class ActionMenu extends Component {
     super(props)
     this.menuBtnRef = React.createRef()
     this.state = {
-      isBoxOpen: false,
+      isMenuOpen: false,
     }
   }
 
   handleClick = () => {
-    const { isBoxOpen } = this.state
-    if (isBoxOpen) {
+    const { isMenuOpen } = this.state
+    if (isMenuOpen) {
       document.removeEventListener('mousedown', this.handleClickOutside)
     } else {
       document.addEventListener('mousedown', this.handleClickOutside)
     }
-    this.setState({ isBoxOpen: !isBoxOpen })
+    this.setState({ isMenuOpen: !isMenuOpen })
   }
 
   handleClickOutside = e => {
@@ -29,7 +29,7 @@ class ActionMenu extends Component {
       this.menuBtnRef &&
       this.menuBtnRef.current &&
       !this.menuBtnRef.current.contains(e.target) &&
-      this.state.isBoxOpen
+      this.state.isMenuOpen
     ) {
       this.handleClick()
     }
@@ -47,7 +47,7 @@ class ActionMenu extends Component {
       shouldCloseOnClick,
     } = this.props
 
-    const { isBoxOpen } = this.state
+    const { isMenuOpen } = this.state
 
     const iconCaret = <IconCaretDown size={12} color="currentColor" />
 
@@ -71,14 +71,14 @@ class ActionMenu extends Component {
 
     return (
       <div ref={this.menuBtnRef}>
-        {buttonMenu}
         <Menu
-          isOpen={isBoxOpen}
+          open={isMenuOpen}
           align={align}
           menuWidth={menuWidth}
           options={options}
-          onMenuClose={shouldCloseOnClick ? this.handleClick : null}
-        />
+          onMenuClose={shouldCloseOnClick ? this.handleClick : null}>
+          {buttonMenu}
+        </Menu>
       </div>
     )
   }
