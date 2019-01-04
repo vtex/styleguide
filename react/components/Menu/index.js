@@ -121,12 +121,12 @@ class Menu extends Component {
               transform:
                 !hasCalculatedSize || isVisible
                   ? 'scale(1)'
-                  : 'scale(0.7, 0.5)',
-              transformOrigin: `${isRight ? '80%' : '20%'} ${
+                  : 'scale(0.7, 0.3)',
+              transformOrigin: `${isRight ? '75%' : '25%'} ${
                 isUpwards ? '100%' : '0'
               }`,
               transition: isVisible
-                ? `transform 100ms ease-out, opacity 100ms`
+                ? `transform 100ms ease-out, opacity 25ms`
                 : 'none',
             }}
             className={`absolute z-999 ba b--muted-4 br2 shadow-5 ${
