@@ -16,13 +16,38 @@ const options = [{
 }];
 
 <div>
-  <Select
-    label="Simple select"
-    options={options}
-    onChange={values => {
-      console.log(`[Select] Selected: ${JSON.stringify(values, null, 2)}`)
-    }}
-  />
+  <div className="mb5">
+    <Select
+      size="small"
+      isMulti={true}
+      label="Small"
+      options={options}
+      onChange={values => {
+        console.log(`[Select] Selected: ${JSON.stringify(values, null, 2)}`)
+      }}
+    />
+  </div>
+  <div className="mb5">
+    <Select
+      isMulti={true}
+      label="Regular"
+      options={options}
+      onChange={values => {
+        console.log(`[Select] Selected: ${JSON.stringify(values, null, 2)}`)
+      }}
+    />
+  </div>
+  <div className="mb5">
+    <Select
+      size="large"
+      isMulti={true}
+      label="Large"
+      options={options}
+      onChange={values => {
+        console.log(`[Select] Selected: ${JSON.stringify(values, null, 2)}`)
+      }}
+    />
+  </div>
 </div>
 ```
 
@@ -97,5 +122,20 @@ const options = [{
       console.log(`[Select] Selected: ${JSON.stringify(values, null, 2)}`)
     }}
   />
+  <div className="mv5">
+    <Select
+      disabled={true}
+      label="Multi select"
+      options={options}
+      isMulti={true}
+      onChange={values => {
+        console.log(`[Select] Selected: ${JSON.stringify(values, null, 2)}`)
+      }}
+      value={[{
+        value: 'first-option',
+        label: 'First Option',
+      }]}
+    />
+  </div>
 </div>
 ```
