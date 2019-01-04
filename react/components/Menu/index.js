@@ -60,8 +60,8 @@ class Menu extends Component {
 
     // Makes the height of the menu, if it doesn't entirely fit on the screen,
     // fall in the middle of an item, to hint that the menu scrolls
-    const maxVisibleItems = Math.round(maxMenuHeight / itemHeight)
-    const adjustedMenuHeight = maxVisibleItems * itemHeight - itemHeight / 2
+    const visibleItemsNum = Math.round(maxMenuHeight / itemHeight)
+    const adjustedMenuHeight = visibleItemsNum * itemHeight - itemHeight / 2
 
     const menuHeight =
       maxMenuHeight < initialMenuHeight ? adjustedMenuHeight : 0
