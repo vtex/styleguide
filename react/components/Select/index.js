@@ -1,39 +1,15 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import ReactSelect from 'react-select'
-import IconCaretDown from '../icon/CaretDown'
-import IconCaretUp from '../icon/CaretUp'
+import { COLORS } from './constants'
 
-const DropdownIndicator = ({ innerProps, selectProps }) => {
-  return (
-    <div className="pr4" {...innerProps}>
-      {selectProps.menuIsOpen ? (
-        <IconCaretUp color="#134cd8" size={8} />
-      ) : (
-        <IconCaretDown color="#134cd8" size={8} />
-      )}
-    </div>
-  )
-}
-
-DropdownIndicator.propTypes = {
-  innerProps: PropTypes.object,
-  selectProps: PropTypes.object.isRequired,
-}
-
-const Placeholder = ({ innerProps, children }) => (
-  <span className="ml2 c-muted-2" {...innerProps}>
-    {children}
-  </span>
-)
-
-Placeholder.propTypes = {
-  innerProps: PropTypes.object,
-  children: PropTypes.node.isRequired,
-}
+import DropdownIndicator from './DropdownIndicator'
+import MultiValueRemove from './MultiValueRemove'
+import Placeholder from './Placeholder'
 
 const Select = ({
   autoFocus,
+  disabled,
   errorMessage,
   isMulti,
   label,
@@ -55,8 +31,10 @@ const Select = ({
       components={{
         DropdownIndicator,
         IndicatorSeparator: () => null,
+        MultiValueRemove,
         Placeholder,
       }}
+      isDisabled={disabled}
       isMulti={isMulti}
       onChange={onChange}
       options={options}
@@ -64,13 +42,36 @@ const Select = ({
         control: style => {
           const errorStyle = errorMessage
             ? {
-                borderColor: '#ff4c4c',
-                borderWidth: '.125rem',
+                borderColor: COLORS.red,
               }
             : {}
           return {
             ...style,
             ...errorStyle,
+            borderWidth: '.125rem',
+          }
+        },
+        menu: style => ({ ...style, marginTop: 0 }),
+        multiValue: style => ({
+          ...style,
+          position: 'relative',
+          backgroundColor: COLORS.aliceBlue,
+          borderRadius: 100,
+        }),
+        multiValueLabel: style => {
+          return {
+            ...style,
+            color: COLORS.blue,
+          }
+        },
+        multiValueRemove: style => {
+          return {
+            ...style,
+            color: COLORS.blue,
+            ':hover': {
+              backgroundColor: 'transparent',
+              color: COLORS.red,
+            },
           }
         },
       }}
@@ -79,7 +80,8 @@ const Select = ({
         ...theme,
         colors: {
           ...theme.colors,
-          primary: '#cacbcc',
+          primary: COLORS.gray,
+          primary25: COLORS.lightGray,
         },
       })}
       value={value}
@@ -99,12 +101,18 @@ Select.defaultProps = {
 Select.propTypes = {
   /** Select auto focus */
   autoFocus: PropTypes.bool,
+  /** Disables Select */
+  disabled: PropTypes.bool,
   /** Error message, e.g., validation error message. */
   errorMessage: PropTypes.string,
-  /** If Select should be used as multi. */
+  /** Is the select in a state of loading (async). */
+  isLoading: PropTypes.bool,
+  /** Support multiple selected options. */
   isMulti: PropTypes.bool,
   /** Label text. */
   label: PropTypes.string.isRequired,
+  /** Text to display when loading options */
+  loadingMessage: PropTypes.string,
   /** onChange handler: (option) => void */
   onChange: PropTypes.func.isRequired,
   /** Array of options. Options have the shape { label, value }. */
