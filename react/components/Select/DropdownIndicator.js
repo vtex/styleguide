@@ -7,7 +7,7 @@ import IconCaretUp from '../icon/CaretUp'
 const DropdownIndicator = ({ innerProps, selectProps }) => {
   const arrowColor = selectProps.isDisabled ? COLORS.gray : COLORS.blue
   return (
-    <div className="pr4" {...innerProps}>
+    <div className="flex items-center h-100 pr4" {...innerProps}>
       {selectProps.menuIsOpen ? (
         <IconCaretUp color={arrowColor} size={8} />
       ) : (
