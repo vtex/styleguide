@@ -5,22 +5,30 @@ import Box from '../Box/index'
 
 class PageBlock extends Component {
   render() {
-    const { title, subtitle, variation } = this.props
+    const { title, subtitle, variation, titleAside } = this.props
     const isAnnotated = variation === 'annotated'
+
+    let headerClasses = isAnnotated ? 'w-third' : ''
+    headerClasses +=
+      !isAnnotated && titleAside ? ' flex flex-row justify-between' : ''
+    headerClasses += isAnnotated && titleAside ? ' flex flex-column' : ''
 
     return (
       <div className={`flex ${isAnnotated ? 'flex-row' : 'flex-column'}`}>
-        {/* Title & subtitle */}
+        {/* Title, subtitle & aside */}
         {(title || subtitle) && (
-          <div className={isAnnotated ? 'w-third' : ''}>
-            {title && <h2 className="t-heading-3 mt4 mb3 ml3">{title}</h2>}
-            {subtitle && (
-              <div
-                className={`t-body lh-copy c-muted-1 mb7 ml3 ${!isAnnotated &&
-                  'w-two-thirds-ns w-100'}`}>
-                {subtitle}
-              </div>
-            )}
+          <div className={headerClasses}>
+            <div style={{ flexGrow: 1 }}>
+              {title && <h2 className="t-heading-3 mt4 mb3 ml3">{title}</h2>}
+              {subtitle && (
+                <div
+                  className={`t-body lh-copy c-muted-1 mb7 ml3 ${!isAnnotated &&
+                    'w-two-thirds-ns w-100'}`}>
+                  {subtitle}
+                </div>
+              )}
+            </div>
+            {titleAside && <div style={{ flexGrow: 1 }}>{titleAside}</div>}
           </div>
         )}
 
@@ -68,6 +76,8 @@ PageBlock.propTypes = {
   title: PropTypes.string,
   /** Subtitle for the block. */
   subtitle: PropTypes.string,
+  /** Content on the right side of the title. */
+  titleAside: PropTypes.node,
   /** Contents of the boxes. Can be 1 or 2 nodes depending on the variation chosen. */
   children: function(props, propName, componentName) {
     PropTypes.checkPropTypes(
