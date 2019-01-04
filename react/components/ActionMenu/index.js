@@ -8,30 +8,48 @@ import Menu from '../Menu'
 class ActionMenu extends Component {
   constructor(props) {
     super(props)
-    this.menuBtnRef = React.createRef()
+    this.container = React.createRef()
     this.state = {
       isMenuOpen: false,
     }
   }
 
+  openMenu = () => {
+    if (this.state.isMenuOpen) return
+
+    document.addEventListener('mousedown', this.handleClickOutside)
+    this.setState({ isMenuOpen: true })
+  }
+
+  closeMenu = () => {
+    if (!this.state.isMenuOpen) return
+
+    document.removeEventListener('mousedown', this.handleClickOutside)
+    this.setState({ isMenuOpen: false })
+  }
+
   handleClick = () => {
-    const { isMenuOpen } = this.state
-    if (isMenuOpen) {
-      document.removeEventListener('mousedown', this.handleClickOutside)
+    if (!this.state.isMenuOpen) {
+      this.openMenu()
     } else {
-      document.addEventListener('mousedown', this.handleClickOutside)
+      this.closeMenu()
     }
-    this.setState({ isMenuOpen: !isMenuOpen })
   }
 
   handleClickOutside = e => {
     if (
-      this.menuBtnRef &&
-      this.menuBtnRef.current &&
-      !this.menuBtnRef.current.contains(e.target) &&
+      this.container &&
+      this.container.current &&
+      !this.container.current.contains(e.target) &&
       this.state.isMenuOpen
     ) {
-      this.handleClick()
+      this.closeMenu()
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.state.isMenuOpen) {
+      this.closeMenu()
     }
   }
 
@@ -59,24 +77,22 @@ class ActionMenu extends Component {
               {icon}
             </div>
           )}
-
           {label && (
             <span className={`${hideCaretIcon ? '' : 'mr3'}`}>{label}</span>
           )}
-
           {!hideCaretIcon && <span>{iconCaret}</span>}
         </span>
       </Button>
     )
 
     return (
-      <div ref={this.menuBtnRef}>
+      <div ref={this.container}>
         <Menu
           open={isMenuOpen}
           align={align}
-          menuWidth={menuWidth}
+          width={menuWidth}
           options={options}
-          onMenuClose={shouldCloseOnClick ? this.handleClick : null}>
+          onClose={shouldCloseOnClick ? this.closeMenu : null}>
           {buttonMenu}
         </Menu>
       </div>
