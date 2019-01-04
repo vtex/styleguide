@@ -48,8 +48,7 @@ class Menu extends Component {
       menuBounds.top + initialMenuHeight + containerHeight > window.innerHeight
 
     const isUpwards =
-      isOutOfBounds &&
-      menuBounds.top + CONTAINER_MARGIN > window.innerHeight / 2
+      isOutOfBounds && containerBounds.top > window.innerHeight / 2
 
     const maxMenuHeight = isUpwards
       ? menuBounds.top - CONTAINER_MARGIN - WINDOW_MARGIN
