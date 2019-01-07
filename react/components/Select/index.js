@@ -148,6 +148,8 @@ Select.propTypes = {
   label: PropTypes.string.isRequired,
   /** Text to display when loading options */
   loadingMessage: PropTypes.string,
+  /** Text to display when there are no options. ({inputValue}) => string | null */
+  noOptionsMessage: PropTypes.func,
   /** onChange handler: (option) => void */
   onChange: PropTypes.func.isRequired,
   /** Array of options. Options have the shape { label, value }. */
