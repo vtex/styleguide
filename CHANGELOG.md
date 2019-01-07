@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.10.0] - 2019-01-07
+
+### Added
+
+- **ActionMenu** component
+
 ### Changed
 
 - **InputPassword** Use monospaced font to prevent the width from shifting.
