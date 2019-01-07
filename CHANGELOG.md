@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+- **Toast** Allow single line toast on small screens if the message is short enough.
+
 ## [8.10.0] - 2019-01-07
 
 ### Added
@@ -16,7 +19,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 - **InputPassword** Use monospaced font to prevent the width from shifting.
-- **Toast** Allow single line toast on small screens if the message is short.
 
 ### Fixed
 
