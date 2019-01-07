@@ -10,8 +10,8 @@
 
 ### Related components
 
-- Consider a <a href="#radiogroup">Radio Group</a> if there are fewer than 4 options to choose from, or you need more space to explain each of the options.
-- For multiple picks, use the <a href="#multiselect">Multiselect</a>.
+- Consider a <a href="#/Components/Forms/RadioGroup">Radio Group</a> if there are fewer than 4 options to choose from, or you need more space to explain each of the options.
+- For multiple picks, use the <a href="#/Components/Forms/Select">Select</a>.
 
 Sizes
 
