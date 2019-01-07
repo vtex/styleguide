@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.10.1] - 2019-01-07
+
 ### Changed
 - **Toast** Allow single line toast on small screens if the message is short enough.
 
