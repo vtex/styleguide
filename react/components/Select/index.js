@@ -15,8 +15,8 @@ import {
 
 const Select = ({
   autoFocus,
-  disabled,
   errorMessage,
+  isDisabled,
   isMulti,
   label,
   noOptionsMessage,
@@ -42,7 +42,7 @@ const Select = ({
         MultiValueRemove,
         Placeholder,
       }}
-      isDisabled={disabled}
+      isDisabled={isDisabled}
       isMulti={isMulti}
       noOptionsMessage={noOptionsMessage}
       onChange={onChange}
@@ -130,7 +130,7 @@ Select.propTypes = {
   /** Select auto focus */
   autoFocus: PropTypes.bool,
   /** Disables Select */
-  disabled: PropTypes.bool,
+  isDisabled: PropTypes.bool,
   /** Error message, e.g., validation error message. */
   errorMessage: PropTypes.string,
   /** Is the select in a state of loading (async). */
