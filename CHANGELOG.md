@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.10.3] - 2019-01-08
+
 ### Fix
 
 - Fix #458 by adding postinstall script to run the install dependencies for the
