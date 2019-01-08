@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
-class ClearIcon extends PureComponent {
+class Clear extends PureComponent {
   render() {
     return (
       <svg
@@ -18,15 +18,15 @@ class ClearIcon extends PureComponent {
     )
   }
 }
-// fill="#CACBCC"
-ClearIcon.defaultProps = {
+
+Clear.defaultProps = {
   size: 16,
   color: 'currentColor',
 }
 
-ClearIcon.propTypes = {
+Clear.propTypes = {
   size: PropTypes.number.isRequired,
   color: PropTypes.string.isRequired,
 }
 
-export default ClearIcon
+export default Clear

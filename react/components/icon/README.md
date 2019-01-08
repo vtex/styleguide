@@ -11,7 +11,7 @@ Usage:
   Usage:
     * VTEX IO: import <IconName> from 'vtex.styleguide'
     * npm: import <IconName> from '@vtex/styleguide/lib/icon/<IconName>'
-  
+
   !!!!!! DO NOT IMPORT LIKE BELOW !!!!!!
 */
 
@@ -26,6 +26,7 @@ const ICONS = {
   CaretRight: require('./CaretRight').default,
   CaretUp: require('./CaretUp').default,
   Check: require('./Check').default,
+  Clear: require('./Clear').default,
   Clock: require('./Clock').default,
   Close: require('./Close').default,
   Cog: require('./Cog').default,

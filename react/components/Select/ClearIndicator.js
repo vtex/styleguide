@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ClearIcon from './ClearIcon'
+import ClearIcon from '../icon/Clear'
 
 const ClearIndicator = ({ innerProps }) => {
   return (
