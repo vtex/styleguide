@@ -71,22 +71,25 @@ const Select = ({
         menu: style => ({ ...style, marginTop: 0 }),
         multiValue: (style, state) => ({
           ...style,
-          position: 'relative',
           backgroundColor: state.isDisabled
             ? COLORS['muted-4']
             : COLORS.aliceBlue,
           borderRadius: 100,
+          color: state.isDisabled ? COLORS.gray : COLORS.blue,
+          position: 'relative',
+          ':hover': {
+            color: COLORS.red,
+          },
         }),
         multiValueLabel: (style, state) => ({
           ...style,
           color: state.isDisabled ? COLORS.gray : COLORS.blue,
         }),
-        multiValueRemove: (style, state) => ({
+        multiValueRemove: style => ({
           ...style,
-          color: state.isDisabled ? COLORS.gray : COLORS.blue,
+          colors: 'inherit',
           ':hover': {
             backgroundColor: 'transparent',
-            color: COLORS.red,
           },
         }),
         option: style => ({ ...style, cursor: 'pointer' }),
