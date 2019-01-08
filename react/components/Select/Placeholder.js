@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const Placeholder = ({ innerProps, children }) => (
-  <span className="ml2 c-muted-2" {...innerProps}>
+  <span className="c-muted-2" {...innerProps}>
     {children}
   </span>
 )

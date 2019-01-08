@@ -3,10 +3,12 @@ import React from 'react'
 import ReactSelect from 'react-select'
 import COLORS from './colors'
 
+import ClearIndicator from './ClearIndicator'
 import DropdownIndicator from './DropdownIndicator'
 import MultiValueRemove from './MultiValueRemove'
 import Placeholder from './Placeholder'
 import {
+  getDropdownIndicatorPaddingRightFromSize,
   getFontClassNameFromSize,
   getValueContainerHeightFromSize,
 } from './styles'
@@ -34,6 +36,7 @@ const Select = ({
         errorMessage ? 'b--danger bw1' : ''
       }`}
       components={{
+        ClearIndicator,
         DropdownIndicator,
         IndicatorSeparator: () => null,
         MultiValueRemove,
@@ -55,12 +58,16 @@ const Select = ({
             ...style,
             ...errorStyle,
             borderWidth: '.125rem',
+            minHeight: 0,
+            padding: 0,
+            height: getValueContainerHeightFromSize(size),
           }
         },
+        placeholder: style => ({ ...style, padding: 10 }),
         valueContainer: (style, state) => ({
           ...style,
           cursor: 'pointer',
-          height: getValueContainerHeightFromSize(size),
+          paddingLeft: '1rem',
           backgroundColor: state.isDisabled
             ? COLORS.lightGray
             : style.backgroundColor,
@@ -91,6 +98,10 @@ const Select = ({
             },
           }
         },
+        dropdownIndicator: style => ({
+          ...style,
+          paddingRight: getDropdownIndicatorPaddingRightFromSize(size),
+        }),
       }}
       placeholder={placeholder}
       theme={theme => ({
