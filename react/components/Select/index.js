@@ -23,7 +23,6 @@ const Select = ({
   placeholder,
   size,
   value,
-  ...props
 }) => (
   <div className="flex flex-column">
     <label className={`dib mb3 w-100 ${getFontClassNameFromSize(size)}`}>
@@ -103,7 +102,6 @@ const Select = ({
         },
       })}
       value={value}
-      {...props}
     />
     {errorMessage && (
       <span className="c-danger f6 mt3 lh-title">{errorMessage}</span>
