@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fix
+
+- Fix #458 by adding postinstall script to run the install dependencies for the
+  `react/` folder after installing dependencies for the `root` folder.
+
 ## [8.10.2] - 2019-01-08
 
 ### Added
@@ -16,6 +21,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [8.10.1] - 2019-01-07
 
 ### Changed
+
 - **Toast** Allow single line toast on small screens if the message is short enough.
 
 ## [8.10.0] - 2019-01-07
@@ -42,9 +48,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [8.9.0] - 2018-12-28
 
 ### Added
+
 - **ButtonWithIcon** New component
 
 ### Deprecated
+
 - **Button** `icon` prop was deprecated in favor of the `ButtonWithIcon` component
 
 ## [8.8.1] - 2018-12-28
