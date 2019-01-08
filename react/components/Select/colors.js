@@ -1,4 +1,4 @@
-export const COLORS = {
+export default {
   aliceBlue: '#eef3f7',
   blue: '#134cd8',
   gray: '#979899',
