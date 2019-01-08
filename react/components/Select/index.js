@@ -1,35 +1,15 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import ReactSelect from 'react-select'
-import { COLORS } from './constants'
+import COLORS from './colors'
 
 import DropdownIndicator from './DropdownIndicator'
 import MultiValueRemove from './MultiValueRemove'
 import Placeholder from './Placeholder'
-
-const getFontClassNameFromSize = size => {
-  switch (size) {
-    case 'large':
-      return 't-body'
-
-    case 'small':
-    default:
-      return 't-small'
-  }
-}
-
-const getValueContainerHeightFromSize = size => {
-  switch (size) {
-    case 'large':
-      return '3rem'
-
-    case 'small':
-      return '2rem'
-
-    default:
-      return '2.5rem'
-  }
-}
+import {
+  getFontClassNameFromSize,
+  getValueContainerHeightFromSize,
+} from './styles'
 
 const Select = ({
   autoFocus,
@@ -37,6 +17,7 @@ const Select = ({
   errorMessage,
   isMulti,
   label,
+  noOptionsMessage,
   onChange,
   options,
   placeholder,
@@ -50,7 +31,7 @@ const Select = ({
     </label>
     <ReactSelect
       autoFocus={autoFocus}
-      className={`${getFontClassNameFromSize(size)} ${
+      className={`pointer ${getFontClassNameFromSize(size)} ${
         errorMessage ? 'b--danger bw1' : ''
       }`}
       components={{
@@ -61,6 +42,7 @@ const Select = ({
       }}
       isDisabled={disabled}
       isMulti={isMulti}
+      noOptionsMessage={noOptionsMessage}
       onChange={onChange}
       options={options}
       styles={{
@@ -78,12 +60,14 @@ const Select = ({
         },
         valueContainer: (style, state) => ({
           ...style,
+          cursor: 'pointer',
           height: getValueContainerHeightFromSize(size),
           backgroundColor: state.isDisabled
             ? COLORS.lightGray
             : style.backgroundColor,
         }),
         menu: style => ({ ...style, marginTop: 0 }),
+        option: style => ({ ...style, cursor: 'pointer' }),
         multiValue: (style, state) => ({
           ...style,
           position: 'relative',
