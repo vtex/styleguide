@@ -107,6 +107,7 @@ class Toolbar extends PureComponent {
       toggleColumn,
       handleToggleDensity,
       selectedDensity,
+      loading,
     } = this.props
     const {
       isFieldsBoxVisible,
@@ -130,7 +131,7 @@ class Toolbar extends PureComponent {
       <div id="toolbar" className="mb5 flex flex-row justify-between w-100">
         {inputSearch && (
           <form className="w-30" onSubmit={this.handleInputSearchSubmit}>
-            <InputSearch {...inputSearch} />
+            <InputSearch disabled={loading} {...inputSearch} />
           </form>
         )}
         <div className="flex flex-row">
@@ -140,6 +141,7 @@ class Toolbar extends PureComponent {
               ref={this.densityBtnRef}
               className="relative">
               <Button
+                disabled={loading}
                 variation="tertiary"
                 size="small"
                 onClick={() => this.handleToggleBox('isDensityBoxVisible')}>
@@ -191,6 +193,7 @@ class Toolbar extends PureComponent {
               ref={this.fieldsBtnRef}
               className="relative">
               <Button
+                disabled={loading}
                 variation="tertiary"
                 size="small"
                 onClick={() => this.handleToggleBox('isFieldsBoxVisible')}>
@@ -253,6 +256,7 @@ class Toolbar extends PureComponent {
           )}
           {isDownloadVisible && (
             <Button
+              disabled={loading}
               variation="tertiary"
               size="small"
               onClick={download.handleCallback}>
@@ -266,6 +270,7 @@ class Toolbar extends PureComponent {
           )}
           {isUploadVisible && (
             <Button
+              disabled={loading}
               variation="tertiary"
               size="small"
               onClick={upload.handleCallback}>
@@ -283,6 +288,7 @@ class Toolbar extends PureComponent {
               ref={this.extraActionsBtnRef}
               className="relative">
               <Button
+                disabled={loading}
                 variation="tertiary"
                 size="small"
                 onClick={() =>
@@ -321,6 +327,7 @@ class Toolbar extends PureComponent {
           )}
           {isNewLineVisible && (
             <Button
+              disabled={loading}
               variation="primary"
               size="small"
               onClick={newLine.handleCallback}>
@@ -390,6 +397,7 @@ Toolbar.propTypes = {
   handleShowAllColumns: PropTypes.func,
   handleToggleDensity: PropTypes.func,
   selectedDensity: PropTypes.string,
+  loading: PropTypes.bool,
 }
 
 export default Toolbar

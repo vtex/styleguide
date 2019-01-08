@@ -90,6 +90,7 @@ class Table extends PureComponent {
       toolbar,
       pagination,
       fullWidth,
+      loading,
     } = this.props
     const { hiddenFields, tableRowHeight, selectedDensity } = this.state
 
@@ -115,6 +116,7 @@ class Table extends PureComponent {
     return (
       <div className="vtex-table__container">
         <Toolbar
+          loading={loading}
           toolbar={toolbar}
           hiddenFields={hiddenFields}
           toggleColumn={this.toggleColumn}
@@ -143,18 +145,20 @@ class Table extends PureComponent {
             onSort={onSort}
             key={hiddenFields.toString()}
             updateTableKey={updateTableKey}
+            loading={loading}
             containerHeight={
               containerHeight || this.calculateTableHeight(items.length)
             }
           />
         )}
-        {pagination && <Pagination {...pagination} />}
+        {!loading && pagination && <Pagination {...pagination} />}
       </div>
     )
   }
 }
 
 Table.defaultProps = {
+  loading: false,
   density: 'medium',
   fixFirstColumn: false,
   toolbar: {
@@ -194,6 +198,7 @@ Table.propTypes = {
   emptyStateLabel: PropTypes.string,
   /** Full width property  */
   fullWidth: PropTypes.bool,
+  loading: PropTypes.bool,
   /** Toolbar (search and actions) */
   toolbar: PropTypes.shape({
     inputSearch: PropTypes.shape({

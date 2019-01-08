@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.10.2] - 2019-01-08
+
+### Added
+
+- **Table** loading prop, holding the table size.
+
 ## [8.10.1] - 2019-01-07
 
 ### Changed
