@@ -115,7 +115,7 @@ const options = [{
 
 <div>
   <Select
-    disabled={true}
+    isDisabled={true}
     label="Multi select"
     options={options}
     isMulti={true}
@@ -125,7 +125,7 @@ const options = [{
   />
   <div className="mv5">
     <Select
-      disabled={true}
+      isDisabled={true}
       label="Multi select"
       options={options}
       isMulti={true}
