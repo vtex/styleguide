@@ -54,6 +54,7 @@ const Select = ({
                 borderColor: COLORS.red,
               }
             : {}
+
           return {
             ...style,
             ...errorStyle,
@@ -63,17 +64,11 @@ const Select = ({
             height: getValueContainerHeightFromSize(size),
           }
         },
-        placeholder: style => ({ ...style, padding: 10 }),
-        valueContainer: (style, state) => ({
+        dropdownIndicator: style => ({
           ...style,
-          cursor: 'pointer',
-          paddingLeft: '1rem',
-          backgroundColor: state.isDisabled
-            ? COLORS.lightGray
-            : style.backgroundColor,
+          paddingRight: getDropdownIndicatorPaddingRightFromSize(size),
         }),
         menu: style => ({ ...style, marginTop: 0 }),
-        option: style => ({ ...style, cursor: 'pointer' }),
         multiValue: (style, state) => ({
           ...style,
           position: 'relative',
@@ -82,25 +77,27 @@ const Select = ({
             : COLORS.aliceBlue,
           borderRadius: 100,
         }),
-        multiValueLabel: (style, state) => {
-          return {
-            ...style,
-            color: state.isDisabled ? COLORS.gray : COLORS.blue,
-          }
-        },
-        multiValueRemove: (style, state) => {
-          return {
-            ...style,
-            color: state.isDisabled ? COLORS.gray : COLORS.blue,
-            ':hover': {
-              backgroundColor: 'transparent',
-              color: COLORS.red,
-            },
-          }
-        },
-        dropdownIndicator: style => ({
+        multiValueLabel: (style, state) => ({
           ...style,
-          paddingRight: getDropdownIndicatorPaddingRightFromSize(size),
+          color: state.isDisabled ? COLORS.gray : COLORS.blue,
+        }),
+        multiValueRemove: (style, state) => ({
+          ...style,
+          color: state.isDisabled ? COLORS.gray : COLORS.blue,
+          ':hover': {
+            backgroundColor: 'transparent',
+            color: COLORS.red,
+          },
+        }),
+        option: style => ({ ...style, cursor: 'pointer' }),
+        placeholder: style => ({ ...style, padding: 10 }),
+        valueContainer: (style, state) => ({
+          ...style,
+          cursor: 'pointer',
+          paddingLeft: '1rem',
+          backgroundColor: state.isDisabled
+            ? COLORS.lightGray
+            : style.backgroundColor,
         }),
       }}
       placeholder={placeholder}
