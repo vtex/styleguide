@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
-class ArrowDownIcon extends PureComponent {
+class ArrowUpIcon extends PureComponent {
   render() {
     return (
       <svg
@@ -20,14 +20,14 @@ class ArrowDownIcon extends PureComponent {
   }
 }
 
-ArrowDownIcon.defaultProps = {
+ArrowUpIcon.defaultProps = {
   size: 16,
   color: 'currentColor',
 }
 
-ArrowDownIcon.propTypes = {
+ArrowUpIcon.propTypes = {
   size: PropTypes.number.isRequired,
   color: PropTypes.string.isRequired,
 }
 
-export default ArrowDownIcon
+export default ArrowUpIcon
