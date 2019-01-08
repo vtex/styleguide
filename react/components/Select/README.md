@@ -1,4 +1,5 @@
 #### Select component
+_Added in v8_
 
 <p class="f6">(Wrapper for [`react-select`](https://react-select.com/).)</p>
 
@@ -51,7 +52,7 @@ const options = [{
 </div>
 ```
 
-Multi
+Single
 
 ```js
 const options = [{
@@ -65,9 +66,9 @@ const options = [{
 
 <div>
   <Select
-    label="Multi select"
+    label="Single option select"
     options={options}
-    isMulti={true}
+    isMulti={false}
     onChange={values => {
       console.log(`[Select] Selected: ${JSON.stringify(values, null, 2)}`)
     }}

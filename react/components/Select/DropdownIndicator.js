@@ -4,10 +4,15 @@ import COLORS from './colors'
 import ArrowDownIcon from '../Dropdown/ArrowDownIcon'
 import ArrowUpIcon from './ArrowUpIcon'
 
-const DropdownIndicator = ({ innerProps, selectProps }) => {
+const DropdownIndicator = props => {
+  const { innerProps, selectProps } = props
   const arrowColor = selectProps.isDisabled ? COLORS.gray : COLORS.blue
+  const { paddingRight } = props.getStyles('dropdownIndicator', props)
   return (
-    <div className="flex items-center h-100 pr4 pointer" {...innerProps}>
+    <div
+      className="flex items-center h-100 pr4 pointer"
+      {...innerProps}
+      style={{ paddingRight }}>
       {selectProps.menuIsOpen ? (
         <ArrowUpIcon color={arrowColor} size={18} />
       ) : (
@@ -18,6 +23,7 @@ const DropdownIndicator = ({ innerProps, selectProps }) => {
 }
 
 DropdownIndicator.propTypes = {
+  getStyles: PropTypes.func,
   innerProps: PropTypes.object,
   selectProps: PropTypes.object.isRequired,
 }
