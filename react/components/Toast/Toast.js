@@ -94,7 +94,7 @@ export default class Toast extends Component {
     })
   }
 
-  handleActionClick = () => {
+  handleActionClick = e => {
     const { isOpen } = this.state
     if (!isOpen) return
 
@@ -102,7 +102,7 @@ export default class Toast extends Component {
     const actionHandler = action && action.onClick
 
     if (actionHandler) {
-      actionHandler()
+      actionHandler(e)
     }
 
     this.close()
