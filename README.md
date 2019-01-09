@@ -69,3 +69,11 @@ yarn deploy
 #### Known issues
 
 - Your project has to run with webpack >= 2. Here's a [guide](https://webpack.js.org/migrate/3/) for upgrading Webpack to v2.
+
+- `VTEX Styleguide` is a project built to run on top of either `npm` or `VTEX IO`. To
+  make this viable, we currently use two `package.json` files, one in the top repository
+  folder for `npm`, and one inside the `react` folder for `VTEX IO`. We are
+  looking into how we can improve this architecture, but for now we have to live
+  with duplicated dependencies in these `package.json` files.
+
+  For more info, please refer to https://github.com/vtex/styleguide/issues/483
