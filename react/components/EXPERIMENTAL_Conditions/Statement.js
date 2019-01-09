@@ -85,51 +85,43 @@ class Statement extends React.Component {
             className={`flex w-100 items-start ${
               isFullWidth ? 'flex-column items-stretch' : ''
             }`}>
-            {canDelete &&
-              !isFullWidth &&
-              isRtl && (
-                <div
-                  className="ma3 c-muted-2 pointer hover-c-danger"
-                  onClick={this.handleRemoveStatement}>
-                  <IconClose size={25} />
-                </div>
-              )}
-            {isRtl ? [...statementAtoms].reverse() : statementAtoms}
-            {canDelete &&
-              !isFullWidth &&
-              !isRtl && (
-                <div
-                  className="ma3 c-muted-2 pointer hover-c-danger"
-                  onClick={this.handleRemoveStatement}>
-                  <IconClose size={25} />
-                </div>
-              )}
-            {canDelete &&
-              isFullWidth && (
-                <div className="tr">
-                  <Button
-                    variation="tertiary"
-                    size="small"
-                    onClick={this.handleRemoveStatement}>
-                    <div className="dib">
-                      <IconClose className="c-on-action-primary" />
-                    </div>
-
-                    <div
-                      className="dib mb1 v-mid"
-                      style={{ lineHeight: '10px' }}>
-                      {labels.delete}
-                    </div>
-                  </Button>
-                </div>
-              )}
-          </div>
-          {condition.error &&
-            condition.error.message && (
-              <div className="red t-small mh3 mt2 lh-title">
-                {condition.error.message}
+            {canDelete && !isFullWidth && isRtl && (
+              <div
+                className="ma3 c-muted-2 pointer hover-c-danger"
+                onClick={this.handleRemoveStatement}>
+                <IconClose size={25} />
               </div>
             )}
+            {isRtl ? [...statementAtoms].reverse() : statementAtoms}
+            {canDelete && !isFullWidth && !isRtl && (
+              <div
+                className="ma3 c-muted-2 pointer hover-c-danger"
+                onClick={this.handleRemoveStatement}>
+                <IconClose size={25} />
+              </div>
+            )}
+            {canDelete && isFullWidth && (
+              <div className="tr">
+                <Button
+                  variation="tertiary"
+                  size="small"
+                  onClick={this.handleRemoveStatement}>
+                  <div className="dib">
+                    <IconClose className="c-on-action-primary" />
+                  </div>
+
+                  <div className="dib mb1 v-mid" style={{ lineHeight: '10px' }}>
+                    {labels.delete}
+                  </div>
+                </Button>
+              </div>
+            )}
+          </div>
+          {condition.error && condition.error.message && (
+            <div className="red t-small mh3 mt2 lh-title">
+              {condition.error.message}
+            </div>
+          )}
         </div>
       </div>
     )
