@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import InputSearch from '../InputSearch'
 import Button from '../Button'
+import ButtonWithIcon from '../ButtonWithIcon'
 import Toggle from '../Toggle'
 import IconCaretDown from '../icon/CaretDown'
 import IconColumns from '../icon/Columns'
@@ -16,6 +17,7 @@ const FIELDS_BOX_WIDTH = 292
 const EXTRA_ACTIONS_BOX_WIDTH = 199
 const BOX_SHADOW_STYLE = { boxShadow: '0px 1px 18px rgba(0, 0, 0, 0.14)' }
 const DENSITY_OPTIONS = ['low', 'medium', 'high']
+const ICON_OPTICAL_COMPENSATION = { marginTop: '1.5px' }
 
 class Toolbar extends PureComponent {
   constructor(props) {
@@ -140,18 +142,19 @@ class Toolbar extends PureComponent {
               id="toggleDensity"
               ref={this.densityBtnRef}
               className="relative">
-              <Button
+              <ButtonWithIcon
+                icon={
+                  <span className="c-on-base" style={ICON_OPTICAL_COMPENSATION}>
+                    <IconDensity size={14} color="currentColor" />
+                  </span>
+                }
+                block
                 disabled={loading}
                 variation="tertiary"
                 size="small"
                 onClick={() => this.handleToggleBox('isDensityBoxVisible')}>
-                <span className="flex align-baseline items-center c-on-base">
-                  <span className="mr3">
-                    <IconDensity color="currentColor" />
-                  </span>
-                  {density.buttonLabel}
-                </span>
-              </Button>
+                <span className="c-on-base">{density.buttonLabel}</span>
+              </ButtonWithIcon>
               {isDensityBoxVisible && (
                 <div
                   className={`absolute ${
@@ -192,18 +195,19 @@ class Toolbar extends PureComponent {
               id="toggleFieldsBtn"
               ref={this.fieldsBtnRef}
               className="relative">
-              <Button
+              <ButtonWithIcon
+                icon={
+                  <span className="c-on-base" style={ICON_OPTICAL_COMPENSATION}>
+                    <IconColumns size={15} color="currentColor" />
+                  </span>
+                }
+                block
                 disabled={loading}
                 variation="tertiary"
                 size="small"
                 onClick={() => this.handleToggleBox('isFieldsBoxVisible')}>
-                <span className="flex align-baseline c-on-base">
-                  <span className="mr3">
-                    <IconColumns color="currentColor" />
-                  </span>
-                  {fields.label}
-                </span>
-              </Button>
+                <span className="c-on-base">{fields.label}</span>
+              </ButtonWithIcon>
               {isFieldsBoxVisible && (
                 <div
                   className={`absolute ${
@@ -255,50 +259,54 @@ class Toolbar extends PureComponent {
             </div>
           )}
           {isDownloadVisible && (
-            <Button
+            <ButtonWithIcon
+              icon={
+                <span className="c-on-base">
+                  <IconDownload size={15} color="currentColor" />
+                </span>
+              }
               disabled={loading}
               variation="tertiary"
               size="small"
               onClick={download.handleCallback}>
-              <span className="flex align-baseline c-on-base">
-                <span className="mr3">
-                  <IconDownload color="currentColor" />
-                </span>
-                {download.label}
-              </span>
-            </Button>
+              <span className="c-on-base">{download.label}</span>
+            </ButtonWithIcon>
           )}
           {isUploadVisible && (
-            <Button
+            <ButtonWithIcon
+              icon={
+                <span className="c-on-base" style={ICON_OPTICAL_COMPENSATION}>
+                  <IconUpload size={14} color="currentColor" />
+                </span>
+              }
               disabled={loading}
               variation="tertiary"
               size="small"
               onClick={upload.handleCallback}>
-              <span className="flex align-baseline c-on-base">
-                <span className="mr3">
-                  <IconUpload color="currentColor" />
-                </span>
-                {upload.label}
-              </span>
-            </Button>
+              <span className="c-on-base">{upload.label}</span>
+            </ButtonWithIcon>
           )}
           {isExtraActionsVisible && (
             <div
               id="toggleExtraActionsBtn"
               ref={this.extraActionsBtnRef}
               className="relative">
-              <Button
+              <ButtonWithIcon
+                icon={
+                  <span className="c-on-base">
+                    <IconCaretDown height={13} />
+                  </span>
+                }
+                iconPosition="right"
                 disabled={loading}
                 variation="tertiary"
+                block
                 size="small"
                 onClick={() =>
                   this.handleToggleBox('isExtraActionsBoxVisible')
                 }>
-                <span className="flex align-baseline items-center c-on-base">
-                  <span className="mr3">{extraActions.label}</span>
-                  <IconCaretDown height={13} color="currentColor" />
-                </span>
-              </Button>
+                <span className="c-on-base">{extraActions.label}</span>
+              </ButtonWithIcon>
               {isExtraActionsBoxVisible && (
                 <div
                   className={`absolute ${
@@ -326,18 +334,14 @@ class Toolbar extends PureComponent {
             </div>
           )}
           {isNewLineVisible && (
-            <Button
+            <ButtonWithIcon
+              icon={<IconPlus solid size={16} color="currentColor" />}
               disabled={loading}
               variation="primary"
               size="small"
               onClick={newLine.handleCallback}>
-              <span className="flex align-baseline">
-                <span className="mr2">
-                  <IconPlus solid size={16} color="currentColor" />
-                </span>
-                {newLine.label}
-              </span>
-            </Button>
+              {newLine.label}
+            </ButtonWithIcon>
           )}
         </div>
       </div>
