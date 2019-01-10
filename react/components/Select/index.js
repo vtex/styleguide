@@ -11,6 +11,7 @@ import {
   getDropdownIndicatorPaddingRightFromSize,
   getFontClassNameFromSize,
   getValueContainerHeightFromSize,
+  getTagPaddingFromSize,
 } from './styles'
 
 const getOptionValue = option => {
@@ -93,14 +94,14 @@ const Select = ({
             ? COLORS['muted-4']
             : COLORS.aliceBlue,
           borderRadius: 100,
+          padding: getTagPaddingFromSize(size),
           color: state.isDisabled ? COLORS.gray : COLORS.blue,
           position: 'relative',
-          ':hover': {
-            color: COLORS.red,
-          },
         }),
         multiValueLabel: (style, state) => ({
           ...style,
+          paddingRight: 0,
+          fontWeight: 500,
           color: state.isDisabled ? COLORS.gray : COLORS.blue,
         }),
         multiValueRemove: style => ({
@@ -108,6 +109,7 @@ const Select = ({
           colors: 'inherit',
           ':hover': {
             backgroundColor: 'transparent',
+            color: COLORS.red,
           },
         }),
         option: style => ({ ...style, cursor: 'pointer' }),

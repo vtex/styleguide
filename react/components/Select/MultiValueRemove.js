@@ -2,6 +2,8 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { components } from 'react-select'
 
+import Close from '../icon/Close'
+
 const MultiValueRemove = props => {
   const multiValueProps = {
     ...props,
@@ -21,16 +23,15 @@ const MultiValueRemove = props => {
 
   return (
     <React.Fragment>
-      <components.MultiValueRemove {...multiValueProps} />
       <div
-        className="absolute h-100 pointer"
-        style={{
-          width: 'calc(100% - 22px)',
-        }}
+        className="flex items-center"
         onClick={handleClick}
         onTouchEnd={handleTouchEnd}
-        onMouseDown={handleMouseDown}
-      />
+        onMouseDown={handleMouseDown}>
+        <components.MultiValueRemove {...multiValueProps}>
+          <Close size={14} />
+        </components.MultiValueRemove>
+      </div>
     </React.Fragment>
   )
 }

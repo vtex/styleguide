@@ -29,3 +29,14 @@ export const getDropdownIndicatorPaddingRightFromSize = size => {
       return '0.75rem' // pr4
   }
 }
+
+export const getTagPaddingFromSize = size => {
+  switch (size) {
+    case 'large':
+      return '.25rem .75rem' // pv2 ph4
+    case 'small':
+      return '0 .125rem' // pv0 ph1
+    default:
+      return '.25rem .75rem' // pv2 ph4
+  }
+}
