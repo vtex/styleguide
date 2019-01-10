@@ -4,10 +4,9 @@
 
 - Mind the order of the options, like putting more probable to be picked on that. In doubt, sort them alphanumerically (from A to Z and from 0 to 9).
 
-### Related components
+### 👎 Don'ts
 
-- Consider a <a href="#/Components/Forms/RadioGroup">Radio Group</a> if there are fewer than 4 options to choose from, or you need more space to explain each of the options.
-- For multiple picks, use the <a href="#/Components/Forms/Select">Select</a>.
+- If there are just a few options to choose from (like 4), consider a **Radio Group** (for single select) or **Checkbox** (for multi select).
 
 
 Simple
@@ -97,11 +96,11 @@ Multi Select
 ```js
 const options = [{
   value: 'first-option',
-  label: 'Preselected',
+  label: 'First option',
 },
 {
   value: 'second-option',
-  label: 'Select me!',
+  label: 'Second option',
 }];
 
 <div>
