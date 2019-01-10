@@ -145,7 +145,7 @@ class Toolbar extends PureComponent {
               <ButtonWithIcon
                 icon={
                   <span className="c-on-base" style={ICON_OPTICAL_COMPENSATION}>
-                    <IconDensity size={14} color="currentColor" />
+                    <IconDensity size={14} />
                   </span>
                 }
                 block
@@ -198,7 +198,7 @@ class Toolbar extends PureComponent {
               <ButtonWithIcon
                 icon={
                   <span className="c-on-base" style={ICON_OPTICAL_COMPENSATION}>
-                    <IconColumns size={15} color="currentColor" />
+                    <IconColumns size={15} />
                   </span>
                 }
                 block
@@ -262,7 +262,7 @@ class Toolbar extends PureComponent {
             <ButtonWithIcon
               icon={
                 <span className="c-on-base">
-                  <IconDownload size={15} color="currentColor" />
+                  <IconDownload size={15} />
                 </span>
               }
               disabled={loading}
@@ -276,7 +276,7 @@ class Toolbar extends PureComponent {
             <ButtonWithIcon
               icon={
                 <span className="c-on-base" style={ICON_OPTICAL_COMPENSATION}>
-                  <IconUpload size={14} color="currentColor" />
+                  <IconUpload size={14} />
                 </span>
               }
               disabled={loading}
@@ -335,7 +335,7 @@ class Toolbar extends PureComponent {
           )}
           {isNewLineVisible && (
             <ButtonWithIcon
-              icon={<IconPlus solid size={16} color="currentColor" />}
+              icon={<IconPlus solid size={16} />}
               disabled={loading}
               variation="primary"
               size="small"
