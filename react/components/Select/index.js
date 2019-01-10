@@ -21,7 +21,6 @@ const getOptionValue = option => {
 const Select = ({
   autoFocus,
   errorMessage,
-  isClearable,
   isDisabled,
   isLoading,
   isMulti,
@@ -51,7 +50,7 @@ const Select = ({
         Placeholder,
       }}
       getOptionValue={getOptionValue}
-      isClearable={isClearable}
+      isClearable
       isDisabled={isDisabled}
       isLoading={isLoading}
       isMulti={isMulti}
@@ -151,8 +150,6 @@ Select.propTypes = {
   autoFocus: PropTypes.bool,
   /** Error message, e.g., validation error message. */
   errorMessage: PropTypes.string,
-  /** Is option clearable */
-  isClearable: PropTypes.bool,
   /** Disables Select */
   isDisabled: PropTypes.bool,
   /** Is the select in a state of loading (async). */
