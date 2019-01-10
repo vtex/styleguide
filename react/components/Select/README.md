@@ -1,10 +1,14 @@
-#### Select component
+#### A Select lets the user pick one or more options from a list.
 
-_Added in v8_
+### 👍 Dos
 
-<p class="f6">(Wrapper for [`react-select`](https://react-select.com/).)</p>
+- Mind the order of the options, like putting more probable to be picked on that. In doubt, sort them alphanumerically (from A to Z and from 0 to 9).
 
-Select component that supports being used via controlled props
+### Related components
+
+- Consider a <a href="#/Components/Forms/RadioGroup">Radio Group</a> if there are fewer than 4 options to choose from, or you need more space to explain each of the options.
+- For multiple picks, use the <a href="#/Components/Forms/Select">Select</a>.
+
 
 Simple
 
@@ -85,17 +89,6 @@ const options = [
       console.log(`[Select] Selected: ${JSON.stringify(values, null, 2)}`)
     }}
   />
-  <div className="mv5">
-    <Select
-      label="Clearable Single option select"
-      options={options}
-      isClearable={true}
-      isMulti={false}
-      onChange={values => {
-        console.log(`[Select] Selected: ${JSON.stringify(values, null, 2)}`)
-      }}
-    />
-  </div>
 </div>
 ```
 
