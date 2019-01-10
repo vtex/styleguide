@@ -7,8 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- `react` & `react-dom` version to `16.7.0`
+
 ## [8.10.4] - 2019-01-09
+
 ### Fixed
+
 - **Toast** Pass event parameter to onClick
 
 ## [8.10.3] - 2019-01-08
