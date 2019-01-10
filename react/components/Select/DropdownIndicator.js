@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import COLORS from './colors'
 import ArrowDownIcon from '../Dropdown/ArrowDownIcon'
-import ArrowUpIcon from './ArrowUpIcon'
 
 const DropdownIndicator = props => {
   const { innerProps, selectProps } = props
@@ -13,11 +12,7 @@ const DropdownIndicator = props => {
       className="flex items-center h-100 pr4 pointer"
       {...innerProps}
       style={{ paddingRight }}>
-      {selectProps.menuIsOpen ? (
-        <ArrowUpIcon color={arrowColor} size={18} />
-      ) : (
-        <ArrowDownIcon color={arrowColor} size={18} />
-      )}
+      <ArrowDownIcon color={arrowColor} size={18} />
     </div>
   )
 }
