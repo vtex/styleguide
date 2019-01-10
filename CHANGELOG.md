@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.10.5] - 2019-01-10
+
+### Fixed
+
+- Fixed Dropdown label adding a stray margin at the top of the component.
+- Fixed Radio getting squished on small sizes.
+
 ### Changed
 
 - `react` & `react-dom` version to `16.7.0`

@@ -35,33 +35,40 @@ class Radio extends PureComponent {
         })}
         ref={this.container}
         onClick={this.handleContainerClick}>
-        <div
-          className={classNames(
-            'fake-radio relative ba br-100 mr3 flex justify-center items-center',
-            {
-              'b--muted-4 pointer': !disabled && !checked,
-              'b--action-primary pointer': !disabled && checked,
-              'b--muted-4 bg-muted-5': disabled,
-            }
-          )}
-          style={{
-            borderWidth: '3px',
-            height: '1.25rem',
-            width: '1.25rem',
-            transition: 'border 100ms ease-in-out',
-          }}>
+        {/* This empty div is used so that the radio circle is not a direct child of
+         * a flex element, and thus can set a fixed width. Otherwise, the width would
+         * be used as flex-basis, and would not be set directly */}
+        <div>
           <div
-            className={classNames('br-100', {
-              'bg-action-primary': !disabled,
-              'bg-muted-3': disabled,
-            })}
+            className={classNames(
+              'fake-radio relative ba br-100 mr3 flex justify-center items-center',
+              {
+                'b--muted-4 pointer': !disabled && !checked,
+                'b--action-primary pointer': !disabled && checked,
+                'b--muted-4 bg-muted-5': disabled,
+              }
+            )}
             style={{
-              height: '0.5rem',
-              width: '0.5rem',
-              transform: `scale(${checked ? 1 : 0})`,
-              transition: `transform 80ms ${checked ? 'ease-out' : 'ease-in'}`,
-            }}
-          />
+              borderWidth: '3px',
+              height: '1.25rem',
+              width: '1.25rem',
+              transition: 'border 100ms ease-in-out',
+            }}>
+            <div
+              className={classNames('br-100', {
+                'bg-action-primary': !disabled,
+                'bg-muted-3': disabled,
+              })}
+              style={{
+                height: '0.5rem',
+                width: '0.5rem',
+                transform: `scale(${checked ? 1 : 0})`,
+                transition: `transform 80ms ${
+                  checked ? 'ease-out' : 'ease-in'
+                }`,
+              }}
+            />
+          </div>
         </div>
         <input
           checked={checked}

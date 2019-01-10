@@ -108,7 +108,7 @@ ${this.getDropdownIdentification()}`
     let containerClasses = 'br2 bw1 relative '
     let selectClasses = 'o-0 absolute top-0 left-0 w-100 bottom-0 '
 
-    let labelClasses = 'vtex-dropdown__label dib mb3 w-100 c-on-base '
+    let labelClasses = 'vtex-dropdown__label db mb3 w-100 c-on-base '
 
     const valueLabel = this.getValueLabel()
     const showCaption = !valueLabel
