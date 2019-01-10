@@ -23,6 +23,7 @@ const options = [
 ;<div>
   <div className="mb5">
     <Select
+      value={options[0]}
       size="small"
       isMulti={true}
       label="Small"
@@ -37,6 +38,7 @@ const options = [
   </div>
   <div className="mb5">
     <Select
+      value={options[0]}
       isMulti={true}
       label="Regular"
       options={options}
@@ -47,6 +49,7 @@ const options = [
   </div>
   <div className="mb5">
     <Select
+      value={options[0]}
       size="large"
       isMulti={true}
       label="Large"
@@ -96,6 +99,30 @@ const options = [
 </div>
 ```
 
+Multi Select
+
+```js
+const options = [{
+  value: 'first-option',
+  label: 'Preselected',
+},
+{
+  value: 'second-option',
+  label: 'Select me!',
+}];
+
+<div>
+  <Select
+    label="Label"
+    options={options}
+    isMulti={true}
+    onChange={values => {
+      console.log(`[Select] Selected: ${JSON.stringify(values, null, 2)}`)
+    }}
+  />
+</div>
+```
+
 With Error
 
 ```js
@@ -112,7 +139,7 @@ const options = [
 
 ;<div>
   <Select
-    label="Select with error!"
+    label="Label"
     options={options}
     isMulti={true}
     errorMessage="Required!"
@@ -140,7 +167,7 @@ const options = [
 ;<div>
   <Select
     isDisabled={true}
-    label="Multi select"
+    label="Label"
     options={options}
     isMulti={true}
     onChange={values => {
@@ -150,7 +177,7 @@ const options = [
   <div className="mv5">
     <Select
       isDisabled={true}
-      label="Multi select"
+      label="Label"
       options={options}
       isMulti={true}
       onChange={values => {
@@ -184,7 +211,7 @@ const options = [
 ;<div>
   <Select
     isLoading={true}
-    label="Multi select"
+    label="Label"
     options={options}
     isMulti={true}
     onChange={values => {
