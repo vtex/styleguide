@@ -13,14 +13,21 @@ import {
   getValueContainerHeightFromSize,
 } from './styles'
 
+const getOptionValue = option => {
+  return JSON.stringify(option.value)
+}
+
 const Select = ({
   autoFocus,
   errorMessage,
+  isClearable,
   isDisabled,
+  isLoading,
   isMulti,
   label,
   noOptionsMessage,
   onChange,
+  onSearchInputChange,
   options,
   placeholder,
   size,
@@ -42,9 +49,20 @@ const Select = ({
         MultiValueRemove,
         Placeholder,
       }}
+      getOptionValue={getOptionValue}
+      isClearable={isClearable}
       isDisabled={isDisabled}
+      isLoading={isLoading}
       isMulti={isMulti}
       noOptionsMessage={noOptionsMessage}
+      onInputChange={(value, { action }) => {
+        if (
+          action === 'input-change' &&
+          typeof onSearchInputChange === 'function'
+        ) {
+          onSearchInputChange(value)
+        }
+      }}
       onChange={onChange}
       options={options}
       styles={{
@@ -129,10 +147,12 @@ Select.defaultProps = {
 Select.propTypes = {
   /** Select auto focus */
   autoFocus: PropTypes.bool,
-  /** Disables Select */
-  isDisabled: PropTypes.bool,
   /** Error message, e.g., validation error message. */
   errorMessage: PropTypes.string,
+  /** Is option clearable */
+  isClearable: PropTypes.bool,
+  /** Disables Select */
+  isDisabled: PropTypes.bool,
   /** Is the select in a state of loading (async). */
   isLoading: PropTypes.bool,
   /** Support multiple selected options. */
@@ -145,13 +165,16 @@ Select.propTypes = {
   noOptionsMessage: PropTypes.func,
   /** onChange handler: (option) => void */
   onChange: PropTypes.func.isRequired,
+  /** Handle events on search input */
+  onSearchInputChange: PropTypes.func,
   /** Array of options. Options have the shape { label, value }. */
   options: PropTypes.arrayOf(
     PropTypes.shape({
       /** Text that gets rendered for the option. */
       label: PropTypes.string.isRequired,
       /** Underlying value, e.g., an id. */
-      value: PropTypes.string.isRequired,
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
+        .isRequired,
     })
   ),
   /** Text for the select value.  */
@@ -162,12 +185,14 @@ Select.propTypes = {
   value: PropTypes.oneOfType([
     PropTypes.shape({
       label: PropTypes.string.isRequired,
-      value: PropTypes.string.isRequired,
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
+        .isRequired,
     }),
     PropTypes.arrayOf(
       PropTypes.shape({
         label: PropTypes.string.isRequired,
-        value: PropTypes.string.isRequired,
+        value: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
+          .isRequired,
       })
     ),
   ]),
