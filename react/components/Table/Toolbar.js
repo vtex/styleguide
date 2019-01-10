@@ -18,6 +18,9 @@ const EXTRA_ACTIONS_BOX_WIDTH = 199
 const BOX_SHADOW_STYLE = { boxShadow: '0px 1px 18px rgba(0, 0, 0, 0.14)' }
 const DENSITY_OPTIONS = ['low', 'medium', 'high']
 const ICON_OPTICAL_COMPENSATION = { marginTop: '1.5px' }
+const LIGHT_ICON_SIZE = 16
+const MEDIUM_ICON_SIZE = 14
+const HEAVY_ICON_SIZE = 13
 
 class Toolbar extends PureComponent {
   constructor(props) {
@@ -145,7 +148,7 @@ class Toolbar extends PureComponent {
               <ButtonWithIcon
                 icon={
                   <span className="c-on-base" style={ICON_OPTICAL_COMPENSATION}>
-                    <IconDensity size={14} />
+                    <IconDensity size={MEDIUM_ICON_SIZE} />
                   </span>
                 }
                 block
@@ -198,7 +201,7 @@ class Toolbar extends PureComponent {
               <ButtonWithIcon
                 icon={
                   <span className="c-on-base" style={ICON_OPTICAL_COMPENSATION}>
-                    <IconColumns size={15} />
+                    <IconColumns size={MEDIUM_ICON_SIZE} />
                   </span>
                 }
                 block
@@ -262,7 +265,7 @@ class Toolbar extends PureComponent {
             <ButtonWithIcon
               icon={
                 <span className="c-on-base">
-                  <IconDownload size={15} />
+                  <IconDownload size={MEDIUM_ICON_SIZE} />
                 </span>
               }
               disabled={loading}
@@ -276,7 +279,7 @@ class Toolbar extends PureComponent {
             <ButtonWithIcon
               icon={
                 <span className="c-on-base" style={ICON_OPTICAL_COMPENSATION}>
-                  <IconUpload size={14} />
+                  <IconUpload size={HEAVY_ICON_SIZE} />
                 </span>
               }
               disabled={loading}
@@ -294,7 +297,7 @@ class Toolbar extends PureComponent {
               <ButtonWithIcon
                 icon={
                   <span className="c-on-base">
-                    <IconCaretDown height={13} />
+                    <IconCaretDown height={HEAVY_ICON_SIZE} />
                   </span>
                 }
                 iconPosition="right"
@@ -335,7 +338,7 @@ class Toolbar extends PureComponent {
           )}
           {isNewLineVisible && (
             <ButtonWithIcon
-              icon={<IconPlus solid size={16} />}
+              icon={<IconPlus solid size={LIGHT_ICON_SIZE} />}
               disabled={loading}
               variation="primary"
               size="small"
