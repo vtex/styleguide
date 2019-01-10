@@ -54,8 +54,8 @@ class SimpleTable extends Component {
     return col.width
       ? col.width
       : fullWidth
-        ? Math.max(col.minWidth || 100, fullWidthColWidth)
-        : DEFAULT_COLUMN_WIDTH
+      ? Math.max(col.minWidth || 100, fullWidthColWidth)
+      : DEFAULT_COLUMN_WIDTH
   }
 
   render() {
