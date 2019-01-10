@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- **Button** when using block prop and small size, button height was samaller than it was supposed to be.
+- **Button** when using block prop and small size, button height was smaller than it was supposed to be.
 - **Table** Align toolbar buttons and use ButtonWithIcon instead of button.
 
 ## [8.11.2] - 2019-01-16
