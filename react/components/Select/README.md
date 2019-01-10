@@ -1,4 +1,5 @@
 #### Select component
+
 _Added in v8_
 
 <p class="f6">(Wrapper for [`react-select`](https://react-select.com/).)</p>
@@ -6,17 +7,20 @@ _Added in v8_
 Select component that supports being used via controlled props
 
 Simple
-```js
-const options = [{
-  value: 'first-option',
-  label: 'First Option',
-},
-{
-  value: 'second-option',
-  label: 'Second Option',
-}];
 
-<div>
+```js
+const options = [
+  {
+    value: { id: 0, name: 'first-option' },
+    label: 'First Option',
+  },
+  {
+    value: { id: 1, name: 'second-option' },
+    label: 'Second Option',
+  },
+]
+
+;<div>
   <div className="mb5">
     <Select
       size="small"
@@ -25,6 +29,9 @@ const options = [{
       options={options}
       onChange={values => {
         console.log(`[Select] Selected: ${JSON.stringify(values, null, 2)}`)
+      }}
+      onSearchInputChange={value => {
+        console.log('[Select] onSeachInputChange: ' + value)
       }}
     />
   </div>
@@ -55,16 +62,18 @@ const options = [{
 Single
 
 ```js
-const options = [{
-  value: 'first-option',
-  label: 'First Option',
-},
-{
-  value: 'second-option',
-  label: 'Second Option',
-}];
+const options = [
+  {
+    value: 'first-option',
+    label: 'First Option',
+  },
+  {
+    value: 'second-option',
+    label: 'Second Option',
+  },
+]
 
-<div>
+;<div>
   <Select
     label="Single option select"
     options={options}
@@ -73,22 +82,35 @@ const options = [{
       console.log(`[Select] Selected: ${JSON.stringify(values, null, 2)}`)
     }}
   />
+  <div className="mv5">
+    <Select
+      label="Clearable Single option select"
+      options={options}
+      isClearable={true}
+      isMulti={false}
+      onChange={values => {
+        console.log(`[Select] Selected: ${JSON.stringify(values, null, 2)}`)
+      }}
+    />
+  </div>
 </div>
 ```
 
 With Error
 
 ```js
-const options = [{
-  value: 'first-option',
-  label: 'First Option',
-},
-{
-  value: 'second-option',
-  label: 'Second Option',
-}];
+const options = [
+  {
+    value: 'first-option',
+    label: 'First Option',
+  },
+  {
+    value: 'second-option',
+    label: 'Second Option',
+  },
+]
 
-<div>
+;<div>
   <Select
     label="Select with error!"
     options={options}
@@ -104,16 +126,18 @@ const options = [{
 Disabled
 
 ```js
-const options = [{
-  value: 'first-option',
-  label: 'First Option',
-},
-{
-  value: 'second-option',
-  label: 'Second Option',
-}];
+const options = [
+  {
+    value: 'first-option',
+    label: 'First Option',
+  },
+  {
+    value: 'second-option',
+    label: 'Second Option',
+  },
+]
 
-<div>
+;<div>
   <Select
     isDisabled={true}
     label="Multi select"
@@ -132,11 +156,40 @@ const options = [{
       onChange={values => {
         console.log(`[Select] Selected: ${JSON.stringify(values, null, 2)}`)
       }}
-      value={[{
-        value: 'first-option',
-        label: 'First Option',
-      }]}
+      value={[
+        {
+          value: 'first-option',
+          label: 'First Option',
+        },
+      ]}
     />
   </div>
+</div>
+```
+
+Loading state
+
+```js
+const options = [
+  {
+    value: 'first-option',
+    label: 'First Option',
+  },
+  {
+    value: 'second-option',
+    label: 'Second Option',
+  },
+]
+
+;<div>
+  <Select
+    isLoading={true}
+    label="Multi select"
+    options={options}
+    isMulti={true}
+    onChange={values => {
+      console.log(`[Select] Selected: ${JSON.stringify(values, null, 2)}`)
+    }}
+  />
 </div>
 ```
