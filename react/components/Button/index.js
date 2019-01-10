@@ -123,7 +123,7 @@ class Button extends Component {
     }
 
     if (block) {
-      classes += 'w-100 '
+      classes += 'w-100 h-100 '
     }
 
     return (
