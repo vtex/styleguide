@@ -13,13 +13,16 @@ class PageBlock extends Component {
       !isAnnotated && titleAside ? ' flex flex-row justify-between' : ''
     headerClasses += isAnnotated && titleAside ? ' flex flex-column' : ''
 
+    let titleClasses = 't-heading-3 mb3 ml3'
+    titleClasses += titleAside ? 'mt0' : 'mt4'
+
     return (
       <div className={`flex ${isAnnotated ? 'flex-row' : 'flex-column'}`}>
         {/* Title, subtitle & aside */}
         {(title || subtitle) && (
           <div className={headerClasses}>
             <div className="flex-grow-1">
-              {title && <h2 className="t-heading-3 mt4 mb3 ml3">{title}</h2>}
+              {title && <h2 className={titleClasses}>{title}</h2>}
               {subtitle && (
                 <div
                   className={`t-body lh-copy c-muted-1 mb7 ml3 ${!isAnnotated &&
