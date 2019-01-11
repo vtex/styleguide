@@ -18,7 +18,7 @@ class PageBlock extends Component {
         {/* Title, subtitle & aside */}
         {(title || subtitle) && (
           <div className={headerClasses}>
-            <div style={{ flexGrow: 1 }}>
+            <div className="flex-grow-1">
               {title && <h2 className="t-heading-3 mt4 mb3 ml3">{title}</h2>}
               {subtitle && (
                 <div
@@ -29,7 +29,7 @@ class PageBlock extends Component {
               )}
             </div>
             {titleAside && !isAnnotated && (
-              <div style={{ flexGrow: 1 }}>{titleAside}</div>
+              <div className="flex-grow-1">{titleAside}</div>
             )}
           </div>
         )}
