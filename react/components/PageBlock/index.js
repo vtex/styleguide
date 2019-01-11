@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
 
 import Box from '../Box/index'
 
@@ -8,10 +9,11 @@ class PageBlock extends Component {
     const { title, subtitle, variation, titleAside } = this.props
     const isAnnotated = variation === 'annotated'
 
-    let headerClasses = isAnnotated ? 'w-third' : ''
-    headerClasses +=
-      !isAnnotated && titleAside ? ' flex flex-row justify-between' : ''
-    headerClasses += isAnnotated && titleAside ? ' flex flex-column' : ''
+    const headerClasses = classNames({
+      'w-third': isAnnotated,
+      'flex flex-row justify-between': !isAnnotated && titleAside,
+      'flex flex-column': isAnnotated && titleAside,
+    })
 
     let titleClasses = 't-heading-3 mb3 ml3'
     titleClasses += titleAside ? 'mt0' : 'mt4'
