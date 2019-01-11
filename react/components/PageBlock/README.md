@@ -52,31 +52,6 @@ Annotated
 </div>
 ```
 
-Annotated width aside children
-
-```js
-<div className="bg-muted-5 pa8">
-  <PageBlock
-    variation="annotated"
-    title="Section title"
-    titleAside={
-      <div className="w-60 mt2">
-        <Dropdown
-          options={[
-            { value: 'chagall', label: 'Chagall' },
-            { value: 'dali', label: 'Dali' },
-          ]}
-          value="dali"
-          onChange={() => {}}
-        />
-      </div>
-    }>
-    <div>line 1</div>
-    <div>line 2</div>
-  </PageBlock>
-</div>
-```
-
 With Title and subtitle
 
 ```js

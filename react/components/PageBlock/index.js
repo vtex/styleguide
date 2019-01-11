@@ -28,7 +28,9 @@ class PageBlock extends Component {
                 </div>
               )}
             </div>
-            {titleAside && <div style={{ flexGrow: 1 }}>{titleAside}</div>}
+            {titleAside && !isAnnotated && (
+              <div style={{ flexGrow: 1 }}>{titleAside}</div>
+            )}
           </div>
         )}
 
