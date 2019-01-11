@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.11.0] - 2019-01-11
+
 ### Added
 
 - **PageBlock** `titleAside` prop for side header content
