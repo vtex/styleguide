@@ -1,8 +1,8 @@
-#### Toasts give users instant feedback about the tasks they just did. Its main objective is to ensure tasks confirmation and success. 
+#### Toasts give users instant feedback about the tasks they just did. Its main objective is to ensure tasks confirmation and success.
 
 ### 👍 Dos
-- Toasts are always self-dismissing, but users should be allowed to dismiss by themselves as well. 
-- Keep messages in a low to mild priority spectrum. Toasts are intended to be either neutral or positive. 
+- Toasts are always self-dismissing, but users should be allowed to dismiss by themselves as well.
+- Keep messages in a low to mild priority spectrum. Toasts are intended to be either neutral or positive.
 
 ### 👎 Don'ts
 - Do not present critical or high priority actions on a Toast. If that's the case, you might consider using [Alerts](#alert) instead.
@@ -17,6 +17,7 @@ const App = () => (
   // Wrap the entire application on a toast provider
   <ToastProvider
     positioning="window"
+    horizontal="right"
   >
     <Content/>
   </ToastProvider>

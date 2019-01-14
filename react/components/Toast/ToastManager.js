@@ -118,6 +118,7 @@ export default class ToastManager extends Component {
             duration={currentToast.duration}
             visible={this.state.isToastVisible}
             onClose={this.handleToastClose}
+            horizontal={this.props.horizontal}
           />
         )}
       </div>
@@ -125,6 +126,11 @@ export default class ToastManager extends Component {
   }
 }
 
+ToastManager.defaultProps = {
+  horizontal: 'left',
+}
+
 ToastManager.propTypes = {
+  horizontal: PropTypes.oneOf(['left', 'right']),
   positioning: PropTypes.oneOf(['parent', 'window']),
 }

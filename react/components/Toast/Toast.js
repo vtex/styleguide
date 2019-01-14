@@ -163,7 +163,9 @@ export default class Toast extends Component {
 
     return (
       <div
-        className="absolute bottom-0 left-0 z-5 ma7-ns mb0-s w-100 w-auto-ns mw6-m mw-40-l"
+        className={`absolute bottom-0 ${
+          this.props.horizontal
+        }-0 z-5 ma7-ns mb0-s w-100 w-auto-ns mw6-m mw-40-l`}
         onMouseOver={this.handleMouseOver}
         onMouseOut={this.handleMouseOut}
         style={{
@@ -213,6 +215,7 @@ export default class Toast extends Component {
 Toast.propTypes = {
   onClose: PropTypes.func.isRequired,
   message: PropTypes.string.isRequired,
+  horizontal: PropTypes.oneOf(['left', 'right']),
   action: PropTypes.shape({
     label: PropTypes.string.isRequired,
     onClick: PropTypes.func.isRequired,
