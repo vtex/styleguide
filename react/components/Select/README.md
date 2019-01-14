@@ -26,7 +26,7 @@ const options = [
 ;<div>
   <div className="mb5">
     <Select
-      value={options[0]}
+      defaultValue={options[0]}
       size="small"
       isMulti={true}
       label="Small"
@@ -41,7 +41,7 @@ const options = [
   </div>
   <div className="mb5">
     <Select
-      value={options[0]}
+      defaultValue={options[0]}
       isMulti={true}
       label="Regular"
       options={options}
@@ -52,7 +52,7 @@ const options = [
   </div>
   <div className="mb5">
     <Select
-      value={options[0]}
+      defaultValue={options[0]}
       size="large"
       isMulti={true}
       label="Large"

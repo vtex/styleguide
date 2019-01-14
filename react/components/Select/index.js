@@ -20,6 +20,7 @@ const getOptionValue = option => {
 
 const Select = ({
   autoFocus,
+  defaultValue,
   errorMessage,
   isDisabled,
   isLoading,
@@ -49,6 +50,7 @@ const Select = ({
         MultiValueRemove,
         Placeholder,
       }}
+      defaultValue={defaultValue}
       getOptionValue={getOptionValue}
       isClearable
       isDisabled={isDisabled}
@@ -148,6 +150,8 @@ Select.defaultProps = {
 Select.propTypes = {
   /** Select auto focus */
   autoFocus: PropTypes.bool,
+  /** Default value */
+  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   /** Error message, e.g., validation error message. */
   errorMessage: PropTypes.string,
   /** Disables Select */
