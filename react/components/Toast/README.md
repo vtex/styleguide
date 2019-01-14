@@ -86,6 +86,55 @@ const Content = () => (
     <div className="mb5">
       Toast duration and control
     </div>
+    <div className="mb8">
+      <ToastConsumer>
+        {({showToast, hideToast}) => (
+          <div className="flex">
+            <div className="mr5">
+              <Button
+                size="small"
+                variation="secondary"
+                onClick={
+                  () => showToast({
+                    message: 'This message lasts 30 seconds',
+                    duration: 30000,
+                  })
+                }
+              >
+                30 seconds
+              </Button>
+            </div>
+            <div className="mr5">
+              <Button
+                size="small"
+                variation="secondary"
+                onClick={
+                  () => showToast({
+                    message: 'This message stays here until closed',
+                    duration: Infinity,
+                  })
+                }
+              >
+                Permanent
+              </Button>
+            </div>
+            <div className="mr5">
+              <Button
+                size="small"
+                variation="danger"
+                onClick={hideToast}
+              >
+                Close all toasts
+              </Button>
+            </div>
+          </div>
+        )}
+      </ToastConsumer>
+    </div>
+
+    <div className="mb5">
+      Toast position
+    </div>
     <ToastConsumer>
       {({showToast, hideToast}) => (
         <div className="flex">
@@ -95,12 +144,13 @@ const Content = () => (
               variation="secondary"
               onClick={
                 () => showToast({
-                  message: 'This message lasts 30 seconds',
-                  duration: 30000,
+                  message: 'Right',
+                  duration: 3000,
+                  horizontalPosition: 'right'
                 })
               }
             >
-              30 seconds
+              Right
             </Button>
           </div>
           <div className="mr5">
@@ -109,26 +159,19 @@ const Content = () => (
               variation="secondary"
               onClick={
                 () => showToast({
-                  message: 'This message stays here until closed',
-                  duration: Infinity,
+                  message: 'Everything you own in the box to the left',
+                  duration: 3000,
+                  horizontalPosition: 'left'
                 })
               }
             >
-              Permanent
-            </Button>
-          </div>
-          <div className="mr5">
-            <Button
-              size="small"
-              variation="danger"
-              onClick={hideToast}
-            >
-              Close all toasts
+              To the left, to the left
             </Button>
           </div>
         </div>
       )}
     </ToastConsumer>
+
   </div>
 )
 

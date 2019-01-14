@@ -20,7 +20,12 @@ export default class ToastManager extends Component {
     if (isString(args)) {
       args = { message: args }
     }
-    const { message = '', action, duration } = args
+    const {
+      message = '',
+      action,
+      duration,
+      horizontalPosition = 'right',
+    } = args
 
     if (this.state.currentToast) {
       // If there is a toast present already, queue up the next toast
@@ -30,6 +35,7 @@ export default class ToastManager extends Component {
           message,
           action,
           duration,
+          horizontalPosition,
         },
       })
       this.hideToast()
@@ -39,6 +45,7 @@ export default class ToastManager extends Component {
           message,
           action,
           duration,
+          horizontalPosition,
         },
         isToastVisible: true,
       })
@@ -59,6 +66,7 @@ export default class ToastManager extends Component {
         currentToast: state.nextToast,
         isToastVisible: !!state.nextToast,
         nextToast: null,
+        state: state.horizontalPosition,
       }
     })
   }
@@ -118,7 +126,7 @@ export default class ToastManager extends Component {
             duration={currentToast.duration}
             visible={this.state.isToastVisible}
             onClose={this.handleToastClose}
-            horizontal={this.props.horizontal}
+            horizontalPosition={currentToast.horizontalPosition}
           />
         )}
       </div>
@@ -126,11 +134,6 @@ export default class ToastManager extends Component {
   }
 }
 
-ToastManager.defaultProps = {
-  horizontal: 'left',
-}
-
 ToastManager.propTypes = {
-  horizontal: PropTypes.oneOf(['left', 'right']),
   positioning: PropTypes.oneOf(['parent', 'window']),
 }

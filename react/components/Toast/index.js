@@ -29,7 +29,7 @@ class ToastProvider extends Component {
   }
 
   render() {
-    const { children, positioning, horizontal } = this.props
+    const { children, positioning } = this.props
     return (
       <ToastContext.Provider
         value={{
@@ -37,11 +37,7 @@ class ToastProvider extends Component {
           hideToast: this.hideToast,
         }}>
         {children}
-        <ToastManager
-          positioning={positioning}
-          horizontal={horizontal}
-          ref={this.toastManager}
-        />
+        <ToastManager positioning={positioning} ref={this.toastManager} />
       </ToastContext.Provider>
     )
   }
@@ -51,11 +47,9 @@ ToastProvider.propTypes = {
   children: PropTypes.node,
   /** Sets the position of the toasts based either on the dimensions of the parent element of the ToastProvider, or window dimensions */
   positioning: PropTypes.oneOf(['parent', 'window']),
-  horizontal: PropTypes.oneOf(['left', 'right']),
 }
 
 ToastProvider.defaultProps = {
-  horizontal: 'left',
   positioning: 'parent',
 }
 
