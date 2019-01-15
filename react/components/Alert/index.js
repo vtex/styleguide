@@ -80,6 +80,7 @@ class Alert extends Component {
 
         {onClose && (
           <div
+            title="Close"
             className="vtex-alert__close-icon pointer flex items-center pv2 c-on-base pa3"
             onClick={onClose}
             tabIndex={0}>

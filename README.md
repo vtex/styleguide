@@ -48,6 +48,37 @@ Import (case a `<Button>` component in lib):
 import Button from '@vtex/styleguide/lib/Button'
 ```
 
+## Testing
+
+### Developing new tests
+
+To add tests to a component, just add a test file with the `.test.js` extension next to the component implementation.
+
+Example:
+
+```sh
+react/components/Alert/
+├── README.md
+├── index.js
+└── index.test.js
+```
+
+We use [react-testing-library](https://github.com/kentcdodds/react-testing-library) to test our components.
+
+### Running tests
+
+To run the test use:
+
+```sh
+yarn test
+```
+
+You can also pass the `--watch` flag:
+
+```sh
+yarn test --watch
+```
+
 ### Publishing
 
 To post the changelog on Github Release Notes, is required to configure a Personal Token. [See more here](https://www.npmjs.com/package/releasy#settings)
