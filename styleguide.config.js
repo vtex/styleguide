@@ -134,7 +134,7 @@ module.exports = {
           components: [
             'react/components/Alert/index.js',
             'react/components/Spinner/index.js',
-            'react/components/Toast/index.js',
+            'react/components/ToastProvider/index.js',
           ],
         },
         {

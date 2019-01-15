@@ -143,13 +143,13 @@ const Content = () => (
               variation="secondary"
               onClick={
                 () => showToast({
-                  message: 'Right',
+                  message: 'Everything you own in the box to the left',
                   duration: 3000,
-                  horizontalPosition: 'right'
+                  horizontalPosition: 'left'
                 })
               }
             >
-              Right
+              To the left, to the left
             </Button>
           </div>
           <div className="mr5">
@@ -158,13 +158,13 @@ const Content = () => (
               variation="secondary"
               onClick={
                 () => showToast({
-                  message: 'Everything you own in the box to the left',
+                  message: 'Right',
                   duration: 3000,
-                  horizontalPosition: 'left'
+                  horizontalPosition: 'right'
                 })
               }
             >
-              To the left, to the left
+              Right
             </Button>
           </div>
         </div>
