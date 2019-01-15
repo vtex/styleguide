@@ -20,12 +20,7 @@ export default class ToastManager extends Component {
     if (isString(args)) {
       args = { message: args }
     }
-    const {
-      message = '',
-      action,
-      duration,
-      horizontalPosition = 'right',
-    } = args
+    const { message = '', action, duration, horizontalPosition = 'left' } = args
 
     if (this.state.currentToast) {
       // If there is a toast present already, queue up the next toast
