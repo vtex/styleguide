@@ -17,7 +17,6 @@ const App = () => (
   // Wrap the entire application on a toast provider
   <ToastProvider
     positioning="window"
-    horizontal="right"
   >
     <Content/>
   </ToastProvider>
