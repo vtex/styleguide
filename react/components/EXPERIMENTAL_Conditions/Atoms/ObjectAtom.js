@@ -34,12 +34,13 @@ class ObjectAtom extends React.Component {
 
     return (
       <div className="mh3 flex-auto">
-        {currentVerb.object({
+        {currentVerb.object.renderFn({
           statementIndex: statementIndex,
           statements: statements,
           isFullWidth: isFullWidth,
           values: condition.object,
           error: null,
+          extraParams: currentVerb.object.extraParams,
         })}
       </div>
     )
