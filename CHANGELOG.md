@@ -14,7 +14,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
-- **Conditions** Removed `flex-auto` from the subject and verb atoms
+- **Conditions** Remove `flex-auto` from the subject and verb atoms.
+- **Conditions** Automatically select first verb when changing a subject.
 
 ## [8.11.1] - 2019-01-16
 
