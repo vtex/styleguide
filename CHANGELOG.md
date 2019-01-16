@@ -7,6 +7,40 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- **Conditions** Modify object atom prop to allow developers to pass extra
+  parameters to the render function. Now instead of passing a `function` to the
+  object prop you need to pass an `object` with the following structure:
+
+  ```js
+  const options = {
+    ...
+    verbs: [
+      {
+        ...
+        object: {
+          renderFn: foo,
+          extraParams: {
+            a: 1,
+            b: 2,
+            ...
+          }
+        }
+      },
+    ]
+  }
+  ```
+
+  The extraParams property will be available in your render function as a
+  parameter like the example below:
+
+  ```js
+  foo = ({ statements, values, statementIndex, error, extraParams }) => {
+    // here goes the render logic of you object component
+  }
+  ```
+
 ## [8.11.0] - 2019-01-11
 
 ### Added
