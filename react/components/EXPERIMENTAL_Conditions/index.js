@@ -81,6 +81,7 @@ class EXPERIMENTAL_Conditions extends React.Component {
       canDelete,
       statements,
       options,
+      subjectPlaceholder,
       isFullWidth,
       isRtl,
       labels,
@@ -129,6 +130,7 @@ class EXPERIMENTAL_Conditions extends React.Component {
                         this.handleRemoveStatement(statementIndex)
                       }
                       options={options}
+                      subjectPlaceholder={subjectPlaceholder}
                       statements={statements}
                       statementIndex={statementIndex}
                       labels={labels}
@@ -194,6 +196,8 @@ EXPERIMENTAL_Conditions.propTypes = {
   ),
   /** Possible options and respective data types, verb options */
   options: PropTypes.object.isRequired,
+  /** Placeholder for subject dropdown */
+  subjectPlaceholder: PropTypes.string.isRequired,
   /** Wether to show this component stretched to the width */
   isFullWidth: PropTypes.bool,
   /** Conditions change callback: array of statement definitions */

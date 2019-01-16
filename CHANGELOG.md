@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.11.2] - 2019-01-16
+
+### Added
+
+- **Conditions** Add the `subjectPlaceholder` prop to control the placeholder
+  of the subject atom dropdown.
+
+### Changed
+
+- **Conditions** Remove `flex-auto` from the subject and verb atoms.
+- **Conditions** Automatically select first verb when changing a subject.
+
 ## [8.11.1] - 2019-01-16
 
 ### Changed

@@ -8,7 +8,13 @@ class SubjectAtom extends React.Component {
   }
 
   render() {
-    const { options, statements, isFullWidth, statementIndex } = this.props
+    const {
+      options,
+      statements,
+      isFullWidth,
+      statementIndex,
+      placeholder,
+    } = this.props
     const condition = statements[statementIndex]
 
     const subjectOptions = Object.keys(options).map(choiceKey => {
@@ -45,16 +51,15 @@ class SubjectAtom extends React.Component {
     })
 
     return (
-      <div className="flex-auto">
-        <div className={`mh3 ${isFullWidth ? 'pb3' : ''}`}>
-          <Dropdown
-            options={uniqueOptions}
-            value={!condition.subject ? '' : condition.subject || ''}
-            onChange={(e, value) =>
-              this.handleChangeStatement(value, 'subject')
-            }
-          />
-        </div>
+      <div className={`mh3 ${isFullWidth ? 'pb3' : ''}`}>
+        <Dropdown
+          placeholder={placeholder}
+          options={uniqueOptions}
+          value={!condition.subject ? '' : condition.subject || ''}
+          onChange={(e, value) => {
+            this.handleChangeStatement(value, 'subject')
+          }}
+        />
       </div>
     )
   }
@@ -76,6 +81,8 @@ SubjectAtom.propTypes = {
   ),
   /** Possible options and respective data types, verb options */
   options: PropTypes.object.isRequired,
+  /** Placeholder for dropdown */
+  placeholder: PropTypes.string.isRequired,
   /** Stretch component to 100% of the width */
   isFullWidth: PropTypes.bool,
   /** To which row does this Statement belong to?  */

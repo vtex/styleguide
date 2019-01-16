@@ -21,15 +21,20 @@ class Statement extends React.Component {
     return options[subject]
   }
 
-  clearPredicate = () => {
+  resetPredicate = subjectValue => {
+    const { options } = this.props
+
     this.handleChangeStatement(
-      Statement.defaultProps.statements[0].verb,
+      options[subjectValue].verbs[0].value ||
+        Statement.defaultProps.statements[0].verb,
       'verb'
     )
+
     this.handleChangeStatement(
       Statement.defaultProps.statements[0].object,
       'object'
     )
+
     this.handleChangeStatement(null, 'error')
   }
 
@@ -45,6 +50,7 @@ class Statement extends React.Component {
     const {
       canDelete,
       options,
+      subjectPlaceholder,
       isRtl,
       isFullWidth,
       statements,
@@ -63,9 +69,10 @@ class Statement extends React.Component {
       <SubjectAtom
         key="subject"
         {...atomProps}
+        placeholder={subjectPlaceholder}
         onChangeStatement={(value, structure) => {
           this.handleChangeStatement(value, structure)
-          this.clearPredicate()
+          this.resetPredicate(value)
         }}
       />,
       <VerbAtom
@@ -153,6 +160,8 @@ Statement.propTypes = {
   ),
   /** Possible options and respective data types, verb options */
   options: PropTypes.object.isRequired,
+  /** Placeholder for subject dropdown */
+  subjectPlaceholder: PropTypes.string.isRequired,
   /** Stretch component to 100% of the width */
   isFullWidth: PropTypes.bool,
   /** Whether the order of elements and text if right to left */

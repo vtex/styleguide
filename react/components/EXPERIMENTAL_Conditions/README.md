@@ -122,6 +122,7 @@ class SimpleConditionsCase extends React.Component {
     return (
       <EXPERIMENTAL_Conditions
         options={options}
+        subjectPlaceholder="Select subject"
         statements={this.state.simpleStatements}
         operator={this.state.operator}
         onChangeOperator={this.handleToggleOperator}
@@ -432,6 +433,7 @@ class ComplexConditionsCase extends React.Component {
     return (
       <EXPERIMENTAL_Conditions
         options={options}
+        subjectPlaceholder="Select subject"
         statements={this.state.statements}
         operator={this.state.operator}
         onChangeOperator={this.handleToggleOperator}
