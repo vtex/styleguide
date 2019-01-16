@@ -197,7 +197,7 @@ EXPERIMENTAL_Conditions.propTypes = {
   /** Possible options and respective data types, verb options */
   options: PropTypes.object.isRequired,
   /** Placeholder for subject dropdown */
-  subjectPlaceholder: PropTypes.string,
+  subjectPlaceholder: PropTypes.string.isRequired,
   /** Wether to show this component stretched to the width */
   isFullWidth: PropTypes.bool,
   /** Conditions change callback: array of statement definitions */

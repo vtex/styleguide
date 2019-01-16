@@ -161,7 +161,7 @@ Statement.propTypes = {
   /** Possible options and respective data types, verb options */
   options: PropTypes.object.isRequired,
   /** Placeholder for subject dropdown */
-  subjectPlaceholder: PropTypes.string,
+  subjectPlaceholder: PropTypes.string.isRequired,
   /** Stretch component to 100% of the width */
   isFullWidth: PropTypes.bool,
   /** Whether the order of elements and text if right to left */

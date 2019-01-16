@@ -82,7 +82,7 @@ SubjectAtom.propTypes = {
   /** Possible options and respective data types, verb options */
   options: PropTypes.object.isRequired,
   /** Placeholder for dropdown */
-  placeholder: PropTypes.string,
+  placeholder: PropTypes.string.isRequired,
   /** Stretch component to 100% of the width */
   isFullWidth: PropTypes.bool,
   /** To which row does this Statement belong to?  */
