@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.11.2] - 2019-01-16
+
 ### Added
 
 - **Conditions** Add the `subjectPlaceholder` prop to control the placeholder
