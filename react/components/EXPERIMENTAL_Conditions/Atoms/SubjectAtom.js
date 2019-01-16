@@ -45,16 +45,14 @@ class SubjectAtom extends React.Component {
     })
 
     return (
-      <div className="flex-auto">
-        <div className={`mh3 ${isFullWidth ? 'pb3' : ''}`}>
-          <Dropdown
-            options={uniqueOptions}
-            value={!condition.subject ? '' : condition.subject || ''}
-            onChange={(e, value) =>
-              this.handleChangeStatement(value, 'subject')
-            }
-          />
-        </div>
+      <div className={`mh3 ${isFullWidth ? 'pb3' : ''}`}>
+        <Dropdown
+          options={uniqueOptions}
+          value={!condition.subject ? '' : condition.subject || ''}
+          onChange={(e, value) => {
+            this.handleChangeStatement(value, 'subject')
+          }}
+        />
       </div>
     )
   }

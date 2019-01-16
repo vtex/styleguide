@@ -21,15 +21,20 @@ class Statement extends React.Component {
     return options[subject]
   }
 
-  clearPredicate = () => {
+  resetPredicate = subjectValue => {
+    const { options } = this.props
+
     this.handleChangeStatement(
-      Statement.defaultProps.statements[0].verb,
+      options[subjectValue].verbs[0].value ||
+        Statement.defaultProps.statements[0].verb,
       'verb'
     )
+
     this.handleChangeStatement(
       Statement.defaultProps.statements[0].object,
       'object'
     )
+
     this.handleChangeStatement(null, 'error')
   }
 
@@ -65,7 +70,7 @@ class Statement extends React.Component {
         {...atomProps}
         onChangeStatement={(value, structure) => {
           this.handleChangeStatement(value, structure)
-          this.clearPredicate()
+          this.resetPredicate(value)
         }}
       />,
       <VerbAtom

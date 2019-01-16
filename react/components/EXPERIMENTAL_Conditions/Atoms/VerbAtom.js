@@ -13,18 +13,16 @@ class VerbAtom extends React.Component {
     const myChoice = options[condition.subject]
     const verbs = (myChoice && myChoice.verbs) || [{ label: '', value: '' }]
     return (
-      <div className="flex-auto">
-        <div className={`mh3 ${isFullWidth ? 'pb3' : ''}`}>
-          <Dropdown
-            disabled={!condition.subject}
-            options={verbs}
-            value={!condition.subject ? '' : condition.verb || ''}
-            onChange={(e, value) => {
-              const foundVerb = verbs.find(verb => verb.value === value)
-              this.handleChangeStatement(foundVerb.value, 'verb')
-            }}
-          />
-        </div>
+      <div className={`mh3 ${isFullWidth ? 'pb3' : ''}`}>
+        <Dropdown
+          disabled={!condition.subject}
+          options={verbs}
+          value={!condition.subject ? '' : condition.verb || ''}
+          onChange={(e, value) => {
+            const foundVerb = verbs.find(verb => verb.value === value)
+            this.handleChangeStatement(foundVerb.value, 'verb')
+          }}
+        />
       </div>
     )
   }
