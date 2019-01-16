@@ -50,6 +50,7 @@ class Statement extends React.Component {
     const {
       canDelete,
       options,
+      subjectPlaceholder,
       isRtl,
       isFullWidth,
       statements,
@@ -68,6 +69,7 @@ class Statement extends React.Component {
       <SubjectAtom
         key="subject"
         {...atomProps}
+        placeholder={subjectPlaceholder}
         onChangeStatement={(value, structure) => {
           this.handleChangeStatement(value, structure)
           this.resetPredicate(value)
@@ -158,6 +160,8 @@ Statement.propTypes = {
   ),
   /** Possible options and respective data types, verb options */
   options: PropTypes.object.isRequired,
+  /** Placeholder for subject dropdown */
+  subjectPlaceholder: PropTypes.string,
   /** Stretch component to 100% of the width */
   isFullWidth: PropTypes.bool,
   /** Whether the order of elements and text if right to left */
