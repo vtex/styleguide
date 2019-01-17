@@ -250,7 +250,7 @@ DropdownWithRef.displayName = 'Dropdown'
 DropdownWithRef.defaultProps = {
   size: 'regular',
   options: [],
-  variation: 'primary',
+  variation: 'default',
 }
 
 DropdownWithRef.propTypes = {
@@ -286,7 +286,7 @@ DropdownWithRef.propTypes = {
   /** Spec attribute */
   disabled: PropTypes.bool,
   /** Dropdown variation */
-  variation: PropTypes.oneOf(['primary', 'inline']),
+  variation: PropTypes.oneOf(['default', 'inline']),
   /** Spec attribute */
   form: PropTypes.string,
   /** Spec attribute */
