@@ -73,7 +73,6 @@ const Dropdown = require('./index.js').default
 Variations
 
 ```js
-const Dropdown = require('./index.js').default
 ;<div className="w-40">
   <div className="mb5">
     <Dropdown
@@ -166,13 +165,25 @@ const Dropdown = require('./index.js').default
       onChange={() => {}}
     />
   </div>
+  <div className="mt5">
+    Inline example:
+    <Dropdown
+      inline
+      size="large"
+      options={[
+        { value: 'chagall', label: 'Chagall' },
+        { value: 'dali', label: 'Dali' },
+      ]}
+      value="dali"
+      onChange={() => {}}
+    />
+  </div>
 </div>
 ```
 
 Example: Working React Component
 
 ```js
-const Dropdown = require('./index.js').default
 class Example extends React.Component {
   constructor(props) {
     super(props)
@@ -197,7 +208,7 @@ class Example extends React.Component {
 
   render() {
     const selectedPainter = this.state.options.find(
-      painter => painter.value === this.state.selectedPainter,
+      painter => painter.value === this.state.selectedPainter
     )
 
     const { label, value } = selectedPainter || {}
