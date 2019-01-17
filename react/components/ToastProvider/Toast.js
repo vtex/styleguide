@@ -158,12 +158,12 @@ export default class Toast extends Component {
 
   render() {
     const { isOpen, isSingleLine } = this.state
-    const { onClose, message, action } = this.props
+    const { action, horizontalPosition, message, onClose } = this.props
     const hasAction = !!(action && action.onClick && action.label)
 
     return (
       <div
-        className="absolute bottom-0 left-0 z-5 ma7-ns mb0-s w-100 w-auto-ns mw6-m mw-40-l"
+        className={`absolute bottom-0 ${horizontalPosition}-0 z-5 ma7-ns mb0-s w-100 w-auto-ns mw6-m mw-40-l`}
         onMouseOver={this.handleMouseOver}
         onMouseOut={this.handleMouseOut}
         style={{
@@ -213,6 +213,7 @@ export default class Toast extends Component {
 Toast.propTypes = {
   onClose: PropTypes.func.isRequired,
   message: PropTypes.string.isRequired,
+  horizontalPosition: PropTypes.oneOf(['left', 'right']),
   action: PropTypes.shape({
     label: PropTypes.string.isRequired,
     onClick: PropTypes.func.isRequired,

@@ -1,8 +1,8 @@
-#### Toasts give users instant feedback about the tasks they just did. Its main objective is to ensure tasks confirmation and success. 
+#### Toasts give users instant feedback about the tasks they just did. Its main objective is to ensure tasks confirmation and success.
 
 ### 👍 Dos
-- Toasts are always self-dismissing, but users should be allowed to dismiss by themselves as well. 
-- Keep messages in a low to mild priority spectrum. Toasts are intended to be either neutral or positive. 
+- Toasts are always self-dismissing, but users should be allowed to dismiss by themselves as well.
+- Keep messages in a low to mild priority spectrum. Toasts are intended to be either neutral or positive.
 
 ### 👎 Don'ts
 - Do not present critical or high priority actions on a Toast. If that's the case, you might consider using [Alerts](#alert) instead.
@@ -85,6 +85,55 @@ const Content = () => (
     <div className="mb5">
       Toast duration and control
     </div>
+    <div className="mb8">
+      <ToastConsumer>
+        {({showToast, hideToast}) => (
+          <div className="flex">
+            <div className="mr5">
+              <Button
+                size="small"
+                variation="secondary"
+                onClick={
+                  () => showToast({
+                    message: 'This message lasts 30 seconds',
+                    duration: 30000,
+                  })
+                }
+              >
+                30 seconds
+              </Button>
+            </div>
+            <div className="mr5">
+              <Button
+                size="small"
+                variation="secondary"
+                onClick={
+                  () => showToast({
+                    message: 'This message stays here until closed',
+                    duration: Infinity,
+                  })
+                }
+              >
+                Permanent
+              </Button>
+            </div>
+            <div className="mr5">
+              <Button
+                size="small"
+                variation="danger"
+                onClick={hideToast}
+              >
+                Close all toasts
+              </Button>
+            </div>
+          </div>
+        )}
+      </ToastConsumer>
+    </div>
+
+    <div className="mb5">
+      Toast position
+    </div>
     <ToastConsumer>
       {({showToast, hideToast}) => (
         <div className="flex">
@@ -94,12 +143,13 @@ const Content = () => (
               variation="secondary"
               onClick={
                 () => showToast({
-                  message: 'This message lasts 30 seconds',
-                  duration: 30000,
+                  message: 'Everything you own in the box to the left',
+                  duration: 3000,
+                  horizontalPosition: 'left'
                 })
               }
             >
-              30 seconds
+              To the left, to the left
             </Button>
           </div>
           <div className="mr5">
@@ -108,26 +158,19 @@ const Content = () => (
               variation="secondary"
               onClick={
                 () => showToast({
-                  message: 'This message stays here until closed',
-                  duration: Infinity,
+                  message: 'Right',
+                  duration: 3000,
+                  horizontalPosition: 'right'
                 })
               }
             >
-              Permanent
-            </Button>
-          </div>
-          <div className="mr5">
-            <Button
-              size="small"
-              variation="danger"
-              onClick={hideToast}
-            >
-              Close all toasts
+              Right
             </Button>
           </div>
         </div>
       )}
     </ToastConsumer>
+
   </div>
 )
 

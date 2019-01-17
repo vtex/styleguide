@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.13.0] - 2019-01-17
+### Added
+
+- **`Toast`** Add `horizontalPosition` to `showToast` options.
+
 ## [8.12.0] - 2019-01-17
 
 ### Added

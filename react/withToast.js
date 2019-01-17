@@ -1,3 +1,3 @@
-import { withToast } from './components/Toast/index'
+import { withToast } from './components/ToastProvider/index'
 
 export default withToast
