@@ -35,9 +35,11 @@ const Select = ({
   value,
 }) => (
   <div className="flex flex-column">
-    <label className={`dib mb3 w-100 ${getFontClassNameFromSize(size)}`}>
-      {label}
-    </label>
+    {label ? (
+      <label className={`dib mb3 w-100 ${getFontClassNameFromSize(size)}`}>
+        {label}
+      </label>
+    ) : null}
     <ReactSelect
       autoFocus={autoFocus}
       className={`pointer ${getFontClassNameFromSize(size)} ${
@@ -161,7 +163,7 @@ Select.propTypes = {
   /** Support multiple selected options. */
   isMulti: PropTypes.bool,
   /** Label text. */
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   /** Text to display when loading options */
   loadingMessage: PropTypes.string,
   /** Text to display when there are no options. ({inputValue}) => string | null */
