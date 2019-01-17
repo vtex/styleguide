@@ -49,10 +49,9 @@ class Dropdown extends Component {
     const placeholderValue = placeholder || label || helpText || ''
 
     if (placeholderValue === '' && !this.sentPlaceholderWarning) {
+      const identificationText = this.getDropdownIdentification()
       console.warn(
-        `The following dropdown has a placeholder option, but no placeholder text. Please use at least one of these props: placeholder, label, or helpText.
-
-${this.getDropdownIdentification()}`
+        `The following dropdown has a placeholder option, but no placeholder text. Please use at least one of these props: placeholder, label, or helpText. ${identificationText}`
       )
 
       this.sentPlaceholderWarning = true
@@ -95,46 +94,50 @@ ${this.getDropdownIdentification()}`
       form,
       name,
       required,
+      variation,
     } = this.props
 
     const hasValidInitialValue =
       this.getOptionFromValue(this.initialValue) !== null
 
     const isPlaceholder = this.getSelectedOption() === null
+    const isInline = variation.toLowerCase() === 'inline'
     let width
     let iconSize
 
     let classes = 'bg-transparent bn w-100 h-100 '
-    let containerClasses = 'br2 bw1 relative '
-    let selectClasses = 'o-0 absolute top-0 left-0 w-100 bottom-0 '
+    let containerClasses = `${isInline ? '' : 'bw1'} br2 relative `
+    let selectClasses = 'o-0 absolute top-0 left-0 w-100 bottom-00 '
 
     let labelClasses = 'vtex-dropdown__label db mb3 w-100 c-on-base '
 
     const valueLabel = this.getValueLabel()
     const showCaption = !valueLabel
 
+    const color = isInline ? 'c-link ' : 'c-on-base '
+
     classes += disabled ? '' : 'pointer '
     selectClasses += disabled ? '' : 'pointer '
     classes +=
       !disabled && valueLabel
         ? !isPlaceholder
-          ? 'c-on-base '
+          ? color
           : 'c-muted-2 '
         : 'c-disabled '
 
     switch (size) {
       case 'small':
-        classes += 'pl5 pr3 '
+        classes += isInline ? 'ph2 ' : 'pl5 pr3 '
         selectClasses += 't-small '
         labelClasses += 't-small '
-        containerClasses += 'h-small t-small '
+        containerClasses += `${isInline ? 'h-auto' : 'h-small'} t-small `
         iconSize = 18
         break
       case 'large':
-        classes += 'ph5 '
+        classes += isInline ? 'ph2 ' : 'ph5 '
         selectClasses += 't-body '
         labelClasses += 't-body '
-        containerClasses += 'h-large t-body '
+        containerClasses += `${isInline ? 'h-auto' : 'h-large'} t-body `
         iconSize = 18
         break
       case 'x-large':
@@ -145,10 +148,10 @@ ${this.getDropdownIdentification()}`
         iconSize = 22
         break
       default:
-        classes += 'pl5 pr4 '
+        classes += isInline ? 'ph2 ' : 'pl5 pr4 '
         selectClasses += 't-small '
         labelClasses += 't-small '
-        containerClasses += 'h-regular t-body '
+        containerClasses += `${isInline ? 'h-auto' : 'h-regular'} t-body `
         iconSize = 18
         break
     }
@@ -159,19 +162,28 @@ ${this.getDropdownIdentification()}`
       containerClasses += 'ba b--disabled bw1 bg-disabled '
     } else if (error || errorMessage) {
       containerClasses += 'ba b--danger hover-b--danger '
+    } else if (isInline) {
+      containerClasses += 'fw5 '
     } else {
       containerClasses += 'bg-base hover-b--muted-3 ba b--muted-4 '
     }
 
     return (
-      <div className="vtex-dropdown">
+      <div
+        className={`vtex-dropdown ${
+          isInline ? 'vtex-dropdown--inline dib' : ''
+        }`}>
         <label>
           {label && <span className={labelClasses}>{label}</span>}
           <div className={containerClasses} style={containerStyle}>
             <div id={id} className={`vtex-dropdown__button ${classes}`}>
-              <div className="flex h-100">
-                <div className="vtex-dropdown__caption flex-auto tl truncate h-100">
-                  <div className="h-100 flex items-center">
+              <div className={`flex ${isInline ? '' : 'h-100'}`}>
+                <div
+                  className={`vtex-dropdown__caption flex-auto tl truncate ${
+                    isInline ? '' : 'h-100'
+                  }`}>
+                  <div
+                    className={`${isInline ? '' : 'h-100'} flex items-center`}>
                     {showCaption ? placeholder : valueLabel}
                   </div>
                 </div>
@@ -238,6 +250,7 @@ DropdownWithRef.displayName = 'Dropdown'
 DropdownWithRef.defaultProps = {
   size: 'regular',
   options: [],
+  variation: 'default',
 }
 
 DropdownWithRef.propTypes = {
@@ -272,6 +285,8 @@ DropdownWithRef.propTypes = {
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /** Spec attribute */
   disabled: PropTypes.bool,
+  /** Dropdown variation */
+  variation: PropTypes.oneOf(['default', 'inline']),
   /** Spec attribute */
   form: PropTypes.string,
   /** Spec attribute */
