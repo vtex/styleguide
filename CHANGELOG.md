@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- **Dropdown** `secondary` variation
+- **Dropdown** `variation` prop
 
 ## [8.11.3] - 2019-01-17
 

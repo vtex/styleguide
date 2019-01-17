@@ -168,7 +168,7 @@ Variations
   <div className="mt5">
     Inline example:
     <Dropdown
-      inline
+      variation="inline"
       size="large"
       options={[
         { value: 'chagall', label: 'Chagall' },
