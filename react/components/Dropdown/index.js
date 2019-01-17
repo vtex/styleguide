@@ -169,7 +169,10 @@ class Dropdown extends Component {
     }
 
     return (
-      <div className={`vtex-dropdown ${isInline ? 'dib' : ''}`}>
+      <div
+        className={`vtex-dropdown ${
+          isInline ? 'vtex-dropdown--inline dib' : ''
+        }`}>
         <label>
           {label && <span className={labelClasses}>{label}</span>}
           <div className={containerClasses} style={containerStyle}>
