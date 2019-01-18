@@ -1,0 +1,44 @@
+.gradient-container {
+    height: 0.25rem;
+}
+
+.saturation-container {
+    height: 25vh;
+}
+
+.gradient-container div {
+    border-radius: 0.25rem;
+}
+
+.saturation-container div {
+    border-radius: 0.25rem;
+}
+
+.pointer-gradient, .pointer-saturation {
+    border-radius: 1rem !important; 
+    cursor: pointer;
+    transform: translate(-50%, -0.4375rem);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.pointer-gradient {
+    width: 1rem;
+    height: 1rem;
+    border: 0.125rem solid #ffffff;
+}
+
+.pointer-saturation {
+    width: 0.625rem;
+    height: 0.625rem;
+    border: 0.125rem solid #ffffff;
+}
+
+.options-container {
+    box-shadow: 0px 4px 8px rgba(15, 54, 102, 0.15);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
