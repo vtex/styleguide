@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [9.0.0] - 2019-01-18
 ### Changed
-- **Breaking Change** Make `vtex.styleguide` works with apps that are build with the new react builder `3.x`.
+- **Breaking Change** Make `vtex.styleguide` work with apps that are build with the new react builder `3.x`.
 
 ## [8.22.0] - 2019-03-01
 
