@@ -6,15 +6,25 @@ import Alpha from './Alpha'
 import RGBInput from './RGBInput'
 import HSVInput from './HSVInput'
 import Dropdown from './../../Dropdown'
+import ColorHistory from './ColorHistory'
 
+/** HSV Key to Dropdown */
 const HSV_INPUT = 'HSV_KEY'
+/** RGB Key to Dropdown */
 const RGB_INPUT = 'RGB_KEY'
 
+/**
+ * ColorOptions Component
+ */
 export default class ColorOptions extends React.Component {
+  /** Initial State */
   state = {
     currentInput: RGB_INPUT,
   }
 
+  /**
+   * Handle input changes
+   */
   handleOnChangeInput = e => {
     console.log(e.target.value)
     this.setState({
@@ -22,9 +32,12 @@ export default class ColorOptions extends React.Component {
     })
   }
 
+  /**
+   * Render ColorOptions Component
+   */
   render() {
     return (
-      <div className="absolute pa3 w-100 z-1 bg-base options-container br2">
+      <div className="absolute pa3 w-100 z-5 bg-base options-container br2">
         <div className="mv3 relative items-end flex w-100">
           <div className="w-75">
             {this.state.currentInput === RGB_INPUT ? (
@@ -63,12 +76,15 @@ export default class ColorOptions extends React.Component {
           color={this.props.color.rgba}
           onChangeComplete={this.props.onColorChange}
         />
+        <ColorHistory {...this.props} />
       </div>
     )
   }
 }
 
 ColorOptions.propTypes = {
+  /** Color input */
   color: PropTypes.object.isRequired,
+  /** ColorChange event */
   onColorChange: PropTypes.func,
 }

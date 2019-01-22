@@ -1,8 +1,11 @@
 import React from 'react'
 import { CustomPicker } from 'react-color'
-import { PropTypes } from 'prop-types'
+import PropTypes from 'prop-types'
 import { Alpha } from 'react-color/lib/components/common'
 
+/**
+ * AlphaComponent to control alpha level
+ */
 class AlphaCustom extends React.Component {
   render() {
     const { rgb, hsl, hex, onChange } = this.props
@@ -22,11 +25,13 @@ class AlphaCustom extends React.Component {
 }
 
 AlphaCustom.propTypes = {
-  /** Content of the card */
-  children: PropTypes.node.isRequired,
+  /** onChange event */
   onChange: PropTypes.func,
-  hex: PropTypes.object,
+  /** Hex Color string */
+  hex: PropTypes.string,
+  /** RGB color object */
   rgb: PropTypes.object,
+  /** HSL color object */
   hsl: PropTypes.object,
 }
 

@@ -1,56 +1,46 @@
-#### A Datepicker lets the user select a single date and time by interacting with a calendar.
+#### A ColorPicker lets the user select a single color.
 
 ### 👍 Dos
-- Combine with Dropdowns or other components if you need more input from the user such as choosing a timezone or for different ways of selecting times.
-- For birthdates or other dates that span far to the past or to the future do disable the calendar popover. It's not (yet) built for that, and the user might see herself forced to do a lot of clicks.
-
+- Select single color to use in backgrounds, on hover actions, active classes, etc.
+- Select single color from multiples inputs, such RGB, HSV, Hex inputs.
 
 ### 👎 Don'ts
-- For complex tasks such as selecting dates you might be tempted to design a slightly different behavior and build a customization on top of the component. Avoid doing that locally, and consider contributing to the library. More often than you think your need is the same as someone's else.
+- For complex color compositions, such as a linear gradient.
 
 
-### Supported locales
-
-You can check out the list of supported locales [here](https://github.com/date-fns/date-fns/blob/master/src/locale/index.js).
-
-#### Simple DatePicker
+#### Simple ColorPicker
 
 ```js
-const DatePicker = require('./index.js').default
+const ColorPicker = require('./index.js').default
 
-class DatePickerExample extends React.Component {
+class ColorPickerExample extends React.Component {
   constructor() {
     super()
     this.handleChange = this.handleChange.bind(this)
-    this.state = { color:'#fffff' }
+    this.state = { history: [] }
   }
 
   render() {
     return (
       <div>
-        <div className="mb5">
-          <DatePicker
-            color="coral"
-            onChangeComplete={ this.handleChange }
+        <div className="w-50">
+          <ColorPicker
+            colorHistory={this.state.history}
+            onChange={ this.handleChange }
           />
         </div>
-
-        <div className="mb5">
-          <DatePicker
-            label="Regular"
-            value={this.state.startDate}
-            onChange={this.handleChange}
-            locale="pt-BR"
+        <div className="w-50">
+          <ColorPicker
+            colorState="Active"
+            colorHistory={this.state.history}
+            onChange={ this.handleChange }
           />
         </div>
-
-        <div className="mb5">
-          <DatePicker
-            label="Large"
-            size="large"
-            value={this.state.startDate}
-            onChange={this.handleChange}
-            locale="pt-BR"
+        <div className="w-50">
+          <ColorPicker
+            colorState="Hover"
+            colorHistory={this.state.history}
+            onChange={ this.handleChange }
           />
         </div>
       </div>
@@ -58,205 +48,52 @@ class DatePickerExample extends React.Component {
   }
 
   handleChange(color) {
-    console.log(color)
+    const { history } = this.state
+    history.push(color)
     this.setState({
-      color
+      history
     })
   }
 }
 
-;<DatePickerExample />
+;<ColorPickerExample />
 ```
 
-#### DateTimePicker
+#### ColorPicker with Title
 
 ```js
-const DatePicker = require('./index.js').default
+const ColorPicker = require('./index.js').default
 
-class DatePickerExample extends React.Component {
+class ColorPickerExample extends React.Component {
   constructor() {
     super()
-    this.state = {
-      startDate: new Date(),
-      locale: 'pt-BR',
-    }
-
-    this.handleDateChange = this.handleDateChange.bind(this)
-    this.handleLocaleChange = this.handleLocaleChange.bind(this)
-  }
-
-  handleDateChange(date) {
-    this.setState({
-      startDate: date,
-    })
-  }
-
-  handleLocaleChange(event) {
-    this.setState({
-      locale: event.currentTarget.value,
-    })
-  }
-
-  render() {
-    return (
-      <div>
-        <div className="mb5">
-          <RadioGroup
-            name="locale"
-            label="Choose locale for DateTimePicker"
-            options={[
-              { value: 'pt-BR', label: 'pt-BR' },
-              { value: 'en-US', label: 'en-US' },
-              { value: 'en-GB', label: 'en-GB' },
-              { value: 'es', label: 'es' },
-            ]}
-            value={this.state.locale}
-            onChange={this.handleLocaleChange}
-          />
-        </div>
-        <div className="mb5">
-          <DatePicker
-            locale={this.state.locale}
-            onChange={this.handleDateChange}
-            useTime={true}
-            value={this.state.startDate}
-          />
-        </div>
-      </div>
-    )
-  }
-}
-
-;<DatePickerExample />
-```
-
-#### Variations
-
-```js
-const { subDays, addDays, setHours, setMinutes } = require('date-fns')
-const DatePicker = require('./index.js').default
-
-class DatePickerExample extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      customTimeIntervalsDate: new Date(),
-      dateRangeDate: new Date(),
-      disabledDate: new Date(),
-      errorDate: new Date(),
-      excludeDatesDate: new Date(),
-      excludeTimesDate: new Date(),
-      helpTextDate: new Date(),
-      includeDatesDate: new Date(),
-      includeTimesDate: new Date(),
-      placeholderDate: null,
-      readOnlyDate: new Date(),
-      requiredDate: null,
-    }
+    this.state = { history: [] }
 
     this.handleChange = this.handleChange.bind(this)
   }
 
-  handleChange(date) {
+  handleChange(color) {
+    const { history } = this.state
+    history.push(color)
     this.setState({
-      startDate: date,
+      history
     })
   }
 
   render() {
     return (
       <div>
-        <div className="mb5">
-          <span className="mr4">
-            <DatePicker
-              label="Custom time intervals"
-              timeIntervals={5}
-              useTime
-              value={this.state.customTimeIntervalsDate}
-              onChange={date =>
-                this.setState({ customTimeIntervalsDate: date })
-              }
-              locale="pt-BR"
-            />
-          </span>
-          <span className="mr4">
-            <DatePicker
-              label="Date range"
-              maxDate={addDays(new Date(), 5)}
-              minDate={new Date()}
-              value={this.state.dateRangeDate}
-              onChange={date => this.setState({ dateRangeDate: date })}
-              locale="pt-BR"
-            />
-          </span>
-          <span className="mr4">
-            <DatePicker
-              excludeDates={[
-                subDays(new Date(), 4),
-                subDays(new Date(), 2),
-                new Date(),
-                addDays(new Date(), 2),
-                addDays(new Date(), 4),
-              ]}
-              label="Exclude dates"
-              value={this.state.excludeDatesDate}
-              onChange={date => this.setState({ excludeDatesDate: date })}
-              locale="pt-BR"
-            />
-          </span>
-        </div>
-
-        <div className="mb5">
-          <span className="mr4">
-            <DatePicker
-              includeDates={[
-                subDays(new Date(), 4),
-                subDays(new Date(), 2),
-                new Date(),
-                addDays(new Date(), 2),
-                addDays(new Date(), 4),
-              ]}
-              label="Include dates"
-              value={this.state.includeDatesDate}
-              onChange={date => this.setState({ includeDatesDate: date })}
-              locale="pt-BR"
-            />
-          </span>
-          <span className="mr4">
-            <DatePicker
-              excludeTimes={[
-                setHours(setMinutes(new Date(), 0), 17),
-                setHours(setMinutes(new Date(), 30), 18),
-                setHours(setMinutes(new Date(), 30), 19),
-                setHours(setMinutes(new Date(), 30), 17),
-              ]}
-              label="Exclude times"
-              useTime
-              value={this.state.excludeTimesDate}
-              onChange={date => this.setState({ excludeTimesDate: date })}
-              locale="pt-BR"
-            />
-          </span>
-          <span className="mr4">
-            <DatePicker
-              label="Include times"
-              includeTimes={[
-                setHours(setMinutes(new Date(), 0), 17),
-                setHours(setMinutes(new Date(), 30), 18),
-                setHours(setMinutes(new Date(), 30), 19),
-                setHours(setMinutes(new Date(), 30), 17),
-              ]}
-              useTime
-              value={this.state.includeTimesDate}
-              onChange={date => this.setState({ includeTimesDate: date })}
-              locale="pt-BR"
-            />
-          </span>
+        <div className="w-50">
+          <ColorPicker
+            title="Color Title"
+            colorHistory={this.state.history}
+            onChange={ this.handleChange }
+          />
         </div>
       </div>
     )
   }
 }
 
-;<DatePickerExample />
+;<ColorPickerExample />
 ```

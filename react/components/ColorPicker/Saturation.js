@@ -3,7 +3,9 @@ import { CustomPicker } from 'react-color'
 import { PropTypes } from 'prop-types'
 import { Saturation } from 'react-color/lib/components/common'
 
+/** SaturationCustom Component */
 class SaturationCustom extends React.Component {
+  /** Render SaturationCustom Component */
   render() {
     const { hex, onChange } = this.props
     return (
@@ -24,9 +26,9 @@ class SaturationCustom extends React.Component {
 }
 
 SaturationCustom.propTypes = {
-  /** Content of the card */
-  children: PropTypes.node.isRequired,
+  /** onChenge event */
   onChange: PropTypes.func,
+  /** Pointer hex color  */
   hex: PropTypes.object,
 }
 

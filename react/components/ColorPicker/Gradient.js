@@ -3,7 +3,13 @@ import PropTypes from 'prop-types'
 import { CustomPicker } from 'react-color'
 import { Hue } from 'react-color/lib/components/common'
 
+/**
+ * Gradient Component
+ */
 class Gradient extends React.Component {
+  /**
+   * Render Gradient Component
+   */
   render() {
     return (
       <div className="gradient-container relative w-100 mv6">
@@ -24,9 +30,9 @@ class Gradient extends React.Component {
 }
 
 Gradient.propTypes = {
-  /** Content of the card */
-  children: PropTypes.node.isRequired,
+  /** onChange event */
   onChange: PropTypes.func,
+  /** Pointer Hex Color */
   hex: PropTypes.object,
 }
 
