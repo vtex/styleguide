@@ -4,11 +4,10 @@ import ReactSelect from 'react-select'
 import COLORS from './colors'
 
 import ClearIndicator from './ClearIndicator'
-import DropdownIndicator from './DropdownIndicator'
+import DropdownIndicatorComponent from './DropdownIndicator'
 import MultiValueRemove from './MultiValueRemove'
 import Placeholder from './Placeholder'
 import {
-  getDropdownIndicatorPaddingRightFromSize,
   getFontClassNameFromSize,
   getValueContainerHeightFromSize,
   getTagPaddingFromSize,
@@ -47,7 +46,9 @@ const Select = ({
       }`}
       components={{
         ClearIndicator,
-        DropdownIndicator,
+        DropdownIndicator: function DropdownIndicator(props) {
+          return <DropdownIndicatorComponent size={size} {...props} />
+        },
         IndicatorSeparator: () => null,
         MultiValueRemove,
         Placeholder,
@@ -86,10 +87,6 @@ const Select = ({
             height: getValueContainerHeightFromSize(size),
           }
         },
-        dropdownIndicator: style => ({
-          ...style,
-          paddingRight: getDropdownIndicatorPaddingRightFromSize(size),
-        }),
         menu: style => ({ ...style, marginTop: 0 }),
         multiValue: (style, state) => ({
           ...style,

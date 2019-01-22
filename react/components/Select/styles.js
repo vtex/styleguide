@@ -19,17 +19,6 @@ export const getValueContainerHeightFromSize = size => {
   }
 }
 
-export const getDropdownIndicatorPaddingRightFromSize = size => {
-  switch (size) {
-    case 'large':
-      return '1rem' // pr5
-    case 'small':
-      return '0.5rem' // pr3
-    default:
-      return '0.75rem' // pr4
-  }
-}
-
 export const getTagPaddingFromSize = size => {
   switch (size) {
     case 'large':

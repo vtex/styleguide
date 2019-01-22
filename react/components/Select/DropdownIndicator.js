@@ -1,18 +1,27 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import COLORS from './colors'
 import ArrowDownIcon from '../Dropdown/ArrowDownIcon'
 
-const DropdownIndicator = props => {
-  const { innerProps, selectProps } = props
-  const arrowColor = selectProps.isDisabled ? COLORS.gray : COLORS.blue
-  const { paddingRight } = props.getStyles('dropdownIndicator', props)
+function paddingRightClassFromSize(size) {
+  return {
+    [size]: 'pr4',
+    large: 'pr5',
+    small: 'pr3',
+  }[size]
+}
+
+const DropdownIndicator = ({ innerProps, selectProps, size }) => {
+  const arrowColorClassName = selectProps.isDisabled
+    ? 'c-disabled'
+    : 'c-action-primary'
+
   return (
     <div
-      className="flex items-center h-100 pr4 pointer"
-      {...innerProps}
-      style={{ paddingRight }}>
-      <ArrowDownIcon color={arrowColor} size={18} />
+      className={`flex items-center h-100 ${paddingRightClassFromSize(
+        size
+      )} pointer ${arrowColorClassName}`}
+      {...innerProps}>
+      <ArrowDownIcon size={18} />
     </div>
   )
 }
@@ -20,6 +29,7 @@ const DropdownIndicator = props => {
 DropdownIndicator.propTypes = {
   getStyles: PropTypes.func,
   innerProps: PropTypes.object,
+  size: PropTypes.oneOf(['large', 'regular', 'small']),
   selectProps: PropTypes.object.isRequired,
 }
 
