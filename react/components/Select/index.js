@@ -21,7 +21,7 @@ const Select = ({
   autoFocus,
   defaultValue,
   errorMessage,
-  isDisabled,
+  disabled,
   isLoading,
   isMulti,
   label,
@@ -56,7 +56,7 @@ const Select = ({
       defaultValue={defaultValue}
       getOptionValue={getOptionValue}
       isClearable
-      isDisabled={isDisabled}
+      isDisabled={disabled}
       isLoading={isLoading}
       isMulti={isMulti}
       noOptionsMessage={noOptionsMessage}
@@ -154,7 +154,7 @@ Select.propTypes = {
   /** Error message, e.g., validation error message. */
   errorMessage: PropTypes.string,
   /** Disables Select */
-  isDisabled: PropTypes.bool,
+  disabled: PropTypes.bool,
   /** Is the select in a state of loading (async). */
   isLoading: PropTypes.bool,
   /** Support multiple selected options. */

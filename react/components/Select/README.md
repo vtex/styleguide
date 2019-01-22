@@ -2,7 +2,7 @@
 
 ### 👍 Dos
 
-- Mind the order of the options, like putting more probable to be picked on that. In doubt, sort them alphanumerically (from A to Z and from 0 to 9).
+- Mind the order of the options, like putting the more probable one to be selected at the top. In doubt, sort them alphanumerically (from A to Z and from 0 to 9).
 
 ### 👎 Don'ts
 
@@ -158,7 +158,7 @@ const options = [
 
 ;<div>
   <Select
-    isDisabled={true}
+    disabled={true}
     label="Label"
     options={options}
     isMulti={true}
@@ -168,7 +168,7 @@ const options = [
   />
   <div className="mv5">
     <Select
-      isDisabled={true}
+      disabled={true}
       label="Label"
       options={options}
       isMulti={true}
