@@ -5,7 +5,7 @@ import ClearIcon from '../icon/Clear'
 const ClearIndicator = ({ innerProps }) => {
   return (
     <div
-      className="flex items-center h-100 pr4 pointer silver hover-gray"
+      className="flex items-center h-100 pr4 pointer c-muted-3 hover-gray"
       {...innerProps}>
       <ClearIcon />
     </div>
