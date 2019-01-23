@@ -5,7 +5,7 @@ import CreatableSelect from 'react-select/lib/Creatable'
 import COLORS from './colors'
 
 import ClearIndicator from './ClearIndicator'
-import DropdownIndicator from './DropdownIndicator'
+import DropdownIndicatorComponent from './DropdownIndicator'
 import MultiValueRemove from './MultiValueRemove'
 import Placeholder from './Placeholder'
 import ControlComponent from './Control'
@@ -20,7 +20,7 @@ const Select = ({
   autoFocus,
   defaultValue,
   errorMessage,
-  isDisabled,
+  disabled,
   isLoading,
   isMulti,
   label,
@@ -31,7 +31,7 @@ const Select = ({
   placeholder,
   size,
   value,
-  isCreatable,
+  creatable,
 }) => (
   <div className="flex flex-column">
     {label ? (
@@ -39,7 +39,7 @@ const Select = ({
         {label}
       </label>
     ) : null}
-    {isCreatable ? (
+    {creatable ? (
       <CreatableSelect
         autoFocus={autoFocus}
         className={`pointer ${getFontClassNameFromSize(size)} ${
@@ -169,6 +169,23 @@ const Select = ({
         onChange={onChange}
         options={options}
         styles={{
+          control: style => {
+            const errorStyle = errorMessage
+              ? {
+                  borderColor: COLORS.red,
+                }
+              : {}
+
+            return {
+              ...style,
+              ...errorStyle,
+              borderWidth: '.125rem',
+              minHeight: 0,
+              padding: 0,
+              height: getValueContainerHeightFromSize(size),
+            }
+          },
+          menu: style => ({ ...style, marginTop: 0 }),
           multiValue: (style, state) => ({
             ...style,
             backgroundColor: state.isDisabled
@@ -216,6 +233,7 @@ const Select = ({
         value={value}
       />
     )}
+
     {errorMessage && (
       <span className="c-danger f6 mt3 lh-title">{errorMessage}</span>
     )}
@@ -236,7 +254,7 @@ Select.propTypes = {
   /** Error message, e.g., validation error message. */
   errorMessage: PropTypes.string,
   /** Disables Select */
-  isDisabled: PropTypes.bool,
+  disabled: PropTypes.bool,
   /** Is the select in a state of loading (async). */
   isLoading: PropTypes.bool,
   /** Support multiple selected options. */
@@ -280,7 +298,7 @@ Select.propTypes = {
       })
     ),
   ]),
-  isCreatable: PropTypes.bool,
+  creatable: PropTypes.bool,
 }
 
 export default Select
