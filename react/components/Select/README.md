@@ -8,7 +8,6 @@
 
 - If there are just a few options to choose from (like 4), consider a **Radio Group** (for single select) or **Checkbox** (for multi select).
 
-
 Simple
 
 ```js
@@ -94,16 +93,18 @@ const options = [
 Multi Select
 
 ```js
-const options = [{
-  value: 'first-option',
-  label: 'First option',
-},
-{
-  value: 'second-option',
-  label: 'Second option',
-}];
+const options = [
+  {
+    value: 'first-option',
+    label: 'First option',
+  },
+  {
+    value: 'second-option',
+    label: 'Second option',
+  },
+]
 
-<div>
+;<div>
   <Select
     label="Label"
     options={options}
@@ -138,6 +139,34 @@ const options = [
     onChange={values => {
       console.log(`[Select] Selected: ${JSON.stringify(values, null, 2)}`)
     }}
+  />
+</div>
+```
+
+With creatable option
+
+```js
+const options = [
+  {
+    value: 'first-option',
+    label: 'First Option',
+  },
+  {
+    value: 'second-option',
+    label: 'Second Option',
+  },
+]
+
+;<div>
+  <Select
+    label="Label"
+    options={options}
+    isMulti={true}
+    errorMessage="Required!"
+    onChange={values => {
+      console.log(`[Select] Selected: ${JSON.stringify(values, null, 2)}`)
+    }}
+    isCreatable
   />
 </div>
 ```
