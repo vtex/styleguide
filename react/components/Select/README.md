@@ -156,7 +156,6 @@ const options = [
     label: 'Second Option',
   },
 ]
-
 ;<div>
   <Select
     label="Label"
@@ -187,7 +186,7 @@ const options = [
 
 ;<div>
   <Select
-    isDisabled={true}
+    disabled={true}
     label="Label"
     options={options}
     isMulti={true}
@@ -197,7 +196,7 @@ const options = [
   />
   <div className="mv5">
     <Select
-      isDisabled={true}
+      disabled={true}
       label="Label"
       options={options}
       isMulti={true}
