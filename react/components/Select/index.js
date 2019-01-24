@@ -7,14 +7,22 @@ import ClearIndicator from './ClearIndicator'
 import DropdownIndicatorComponent from './DropdownIndicator'
 import MultiValueRemove from './MultiValueRemove'
 import Placeholder from './Placeholder'
-import {
-  getFontClassNameFromSize,
-  getValueContainerHeightFromSize,
-  getTagPaddingFromSize,
-} from './styles'
+import ControlComponent from './Control'
+
+import { getTagPaddingFromSize } from './styles'
 
 const getOptionValue = option => {
   return JSON.stringify(option.value)
+}
+
+const getFontClassNameFromSize = size => {
+  switch (size) {
+    case 'large':
+      return 't-body'
+    case 'small':
+    default:
+      return 't-small'
+  }
 }
 
 const Select = ({
@@ -46,6 +54,15 @@ const Select = ({
       }`}
       components={{
         ClearIndicator,
+        Control: function Control(props) {
+          return (
+            <ControlComponent
+              errorMessage={errorMessage}
+              size={size}
+              {...props}
+            />
+          )
+        },
         DropdownIndicator: function DropdownIndicator(props) {
           return <DropdownIndicatorComponent size={size} {...props} />
         },
@@ -71,23 +88,6 @@ const Select = ({
       onChange={onChange}
       options={options}
       styles={{
-        control: style => {
-          const errorStyle = errorMessage
-            ? {
-                borderColor: COLORS.red,
-              }
-            : {}
-
-          return {
-            ...style,
-            ...errorStyle,
-            borderWidth: '.125rem',
-            minHeight: 0,
-            padding: 0,
-            height: getValueContainerHeightFromSize(size),
-          }
-        },
-        menu: style => ({ ...style, marginTop: 0 }),
         multiValue: (style, state) => ({
           ...style,
           backgroundColor: state.isDisabled
