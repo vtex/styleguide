@@ -165,7 +165,7 @@ const options = [
     onChange={values => {
       console.log(`[Select] Selected: ${JSON.stringify(values, null, 2)}`)
     }}
-    isCreatable
+    creatable
   />
 </div>
 ```
