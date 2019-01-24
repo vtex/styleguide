@@ -169,23 +169,6 @@ const Select = ({
         onChange={onChange}
         options={options}
         styles={{
-          control: style => {
-            const errorStyle = errorMessage
-              ? {
-                  borderColor: COLORS.red,
-                }
-              : {}
-
-            return {
-              ...style,
-              ...errorStyle,
-              borderWidth: '.125rem',
-              minHeight: 0,
-              padding: 0,
-              height: getValueContainerHeightFromSize(size),
-            }
-          },
-          menu: style => ({ ...style, marginTop: 0 }),
           multiValue: (style, state) => ({
             ...style,
             backgroundColor: state.isDisabled
