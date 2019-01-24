@@ -64,8 +64,11 @@ InputCurrencyWithRef.propTypes = {
   size: PropTypes.string,
   defaultValue: PropTypes.number,
   value: PropTypes.number,
+  /** Currency symbol used as the input prefix. */
   currencySymbol: PropTypes.string,
+  /** Character used for decimal separation. Eg: '.' in US$ 1,325.25. */
   decimalSeparator: PropTypes.string,
+  /** Character used for thounsand separation. Eg: ',' in US$ 1,325.25. */
   thousandSeparator: PropTypes.string,
 }
 

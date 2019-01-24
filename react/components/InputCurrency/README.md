@@ -1,5 +1,7 @@
+#### InputCurrency is designed to be used when working with monetary values.
+
 ```js
-initialState = { value: '' }
+initialState = { value: undefined }
 ;<div>
   <form
     className="mb5"
