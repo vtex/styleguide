@@ -125,7 +125,8 @@ class Button extends Component {
     }
 
     if (block) {
-      classes += 'w-100 '
+      classes += 'w-100 h-100 '
+      labelClasses += 'w-100 '
     }
 
     return (
@@ -158,8 +159,8 @@ class Button extends Component {
             <span className={`${labelClasses} o-0`}>{children}</span>
           </Fragment>
         ) : (
-          <div className={labelClasses}>{children}</div>
-        )}
+            <div className={labelClasses}>{children}</div>
+          )}
       </button>
     )
   }
