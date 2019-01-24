@@ -1,3 +1,3 @@
-import InputCurency from './components/InputCurency'
+import InputCurency from './components/InputCurrency'
 
 export default InputCurency
