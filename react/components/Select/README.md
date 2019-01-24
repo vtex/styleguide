@@ -161,7 +161,6 @@ const options = [
     label="Label"
     options={options}
     isMulti={true}
-    errorMessage="Required!"
     onChange={values => {
       console.log(`[Select] Selected: ${JSON.stringify(values, null, 2)}`)
     }}
