@@ -9,20 +9,10 @@ import MultiValueRemove from './MultiValueRemove'
 import Placeholder from './Placeholder'
 import ControlComponent from './Control'
 
-import { getTagPaddingFromSize } from './styles'
+import { getFontClassNameFromSize, getTagPaddingFromSize } from './styles'
 
 const getOptionValue = option => {
   return JSON.stringify(option.value)
-}
-
-const getFontClassNameFromSize = size => {
-  switch (size) {
-    case 'large':
-      return 't-body'
-    case 'small':
-    default:
-      return 't-small'
-  }
 }
 
 const Select = ({

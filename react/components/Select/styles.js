@@ -1,3 +1,13 @@
+export const getFontClassNameFromSize = size => {
+  switch (size) {
+    case 'large':
+      return 't-body'
+    case 'small':
+    default:
+      return 't-small'
+  }
+}
+
 export const getTagPaddingFromSize = size => {
   switch (size) {
     case 'large':
