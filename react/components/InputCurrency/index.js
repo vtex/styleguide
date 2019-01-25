@@ -36,13 +36,14 @@ class InputCurrency extends Component {
 
   render() {
     const { currencySymbol, decimalSeparator, thousandSeparator } = this.props
+    console.log(decimalSeparator, thousandSeparator)
     return (
       <div>
         <NumberFormat
           {...this.props}
           inputPrefix={currencySymbol}
-          decimalSeparator={decimalSeparator}
-          decimalScale={2}
+          decimalSeparator={decimalSeparator || false}
+          decimalScale={decimalSeparator ? 2 : 0}
           fixedDecimalScale
           thousandSeparator={thousandSeparator}
           customInput={BaseInput}
@@ -74,7 +75,6 @@ InputCurrencyWithRef.propTypes = {
 
 InputCurrencyWithRef.defaultProps = {
   currencySymbol: '¤',
-  decimalSeparator: '.',
   thousandSeparator: ',',
 }
 

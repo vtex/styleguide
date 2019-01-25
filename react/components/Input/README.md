@@ -11,6 +11,7 @@
 ### Related components
 
 - In some cases for numerical inputs you might want a <a href="#numericstepper">NumericStepper</a>.
+- In case of monetary input values you might want to use the <a href="#/Components/Forms/InputCurrency">InputCurrency</a>.
 - If instead of a free-form entry you expect the user to enter a value from a preset of values you might want to use a <a href="#dropdown">Dropdown</a>, for a single value, or a <a href="#multiselect">Multiselect</a> for multiple values.
 
 Sizes
@@ -60,7 +61,7 @@ class InputExamples extends React.Component {
   render() {
     return (
       <div className="w-40">
-      <div className="mb5">
+        <div className="mb5">
           <Input
             value="This input is read-only."
             readOnly={true}
@@ -129,15 +130,19 @@ class InputExamples extends React.Component {
 Using ref
 
 ```js
-const Input = require('./index.js').default;
+const Input = require('./index.js').default
 this.input = React.createRef()
 
 const handleFocusClick = () => {
   this.input.current.focus()
 }
 
-<div>
-  <Input ref={this.input} placeholder="Placeholder" label="Click on the button below to focus on this input" />
+;<div>
+  <Input
+    ref={this.input}
+    placeholder="Placeholder"
+    label="Click on the button below to focus on this input"
+  />
   <div className="pt2">
     <Button size="small" onClick={handleFocusClick}>
       Focus on input
