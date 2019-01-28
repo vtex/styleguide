@@ -117,7 +117,6 @@ module.exports = {
             'react/components/MultiSelect/index.js',
             'react/components/NumericStepper/index.js',
             'react/components/RadioGroup/index.js',
-            'react/components/Select/index.js',
             'react/components/Slider/index.js',
             'react/components/Textarea/index.js',
             'react/components/Toggle/index.js',
@@ -155,7 +154,10 @@ module.exports = {
         {
           name: '👻 Experimental',
           content: './docs/components_experimental.md',
-          components: ['react/components/EXPERIMENTAL_Conditions/index.js'],
+          components: [
+            'react/components/EXPERIMENTAL_Conditions/index.js',
+            'react/components/EXPERIMENTAL_Select/index.js',
+          ],
         },
       ],
     },
