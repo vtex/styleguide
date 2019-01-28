@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import ReactSelect from 'react-select'
+import CreatableSelect from 'react-select/lib/Creatable'
 import COLORS from './colors'
 
 import ClearIndicator from './ClearIndicator'
@@ -30,6 +31,7 @@ const Select = ({
   placeholder,
   size,
   value,
+  creatable,
 }) => (
   <div className="flex flex-column">
     {label ? (
@@ -37,93 +39,184 @@ const Select = ({
         {label}
       </label>
     ) : null}
-    <ReactSelect
-      autoFocus={autoFocus}
-      className={`pointer ${getFontClassNameFromSize(size)} ${
-        errorMessage ? 'b--danger bw1' : ''
-      }`}
-      components={{
-        ClearIndicator,
-        Control: function Control(props) {
-          return (
-            <ControlComponent
-              errorMessage={errorMessage}
-              size={size}
-              {...props}
-            />
-          )
-        },
-        DropdownIndicator: function DropdownIndicator(props) {
-          return <DropdownIndicatorComponent size={size} {...props} />
-        },
-        IndicatorSeparator: () => null,
-        MultiValueRemove,
-        Placeholder,
-      }}
-      defaultValue={defaultValue}
-      getOptionValue={getOptionValue}
-      isClearable
-      isDisabled={disabled}
-      isLoading={isLoading}
-      isMulti={isMulti}
-      noOptionsMessage={noOptionsMessage}
-      onInputChange={(value, { action }) => {
-        if (
-          action === 'input-change' &&
-          typeof onSearchInputChange === 'function'
-        ) {
-          onSearchInputChange(value)
-        }
-      }}
-      onChange={onChange}
-      options={options}
-      styles={{
-        multiValue: (style, state) => ({
-          ...style,
-          backgroundColor: state.isDisabled
-            ? COLORS['muted-4']
-            : COLORS.aliceBlue,
-          borderRadius: 100,
-          padding: getTagPaddingFromSize(size),
-          color: state.isDisabled ? COLORS.gray : COLORS.blue,
-          position: 'relative',
-        }),
-        multiValueLabel: (style, state) => ({
-          ...style,
-          paddingRight: 0,
-          fontWeight: 500,
-          color: state.isDisabled ? COLORS.gray : COLORS.blue,
-        }),
-        multiValueRemove: style => ({
-          ...style,
-          colors: 'inherit',
-          ':hover': {
-            backgroundColor: 'transparent',
-            color: COLORS.red,
+    {creatable ? (
+      <CreatableSelect
+        autoFocus={autoFocus}
+        className={`pointer ${getFontClassNameFromSize(size)} ${
+          errorMessage ? 'b--danger bw1' : ''
+        }`}
+        components={{
+          ClearIndicator,
+          Control: function Control(props) {
+            return (
+              <ControlComponent
+                errorMessage={errorMessage}
+                size={size}
+                {...props}
+              />
+            )
           },
-        }),
-        option: style => ({ ...style, cursor: 'pointer' }),
-        placeholder: style => ({ ...style, padding: 10 }),
-        valueContainer: (style, state) => ({
-          ...style,
-          cursor: 'pointer',
-          paddingLeft: '1rem',
-          backgroundColor: state.isDisabled
-            ? COLORS.lightGray
-            : style.backgroundColor,
-        }),
-      }}
-      placeholder={placeholder}
-      theme={theme => ({
-        ...theme,
-        colors: {
-          ...theme.colors,
-          primary: COLORS.gray,
-          primary25: COLORS.lightGray,
-        },
-      })}
-      value={value}
-    />
+          DropdownIndicator: function DropdownIndicator(props) {
+            return <DropdownIndicatorComponent size={size} {...props} />
+          },
+          IndicatorSeparator: () => null,
+          MultiValueRemove,
+          Placeholder,
+        }}
+        defaultValue={defaultValue}
+        getOptionValue={getOptionValue}
+        isClearable
+        isDisabled={disabled}
+        isLoading={isLoading}
+        isMulti={isMulti}
+        noOptionsMessage={noOptionsMessage}
+        onInputChange={(value, { action }) => {
+          if (
+            action === 'input-change' &&
+            typeof onSearchInputChange === 'function'
+          ) {
+            onSearchInputChange(value)
+          }
+        }}
+        onChange={onChange}
+        options={options}
+        styles={{
+          multiValue: (style, state) => ({
+            ...style,
+            backgroundColor: state.isDisabled
+              ? COLORS['muted-4']
+              : COLORS.aliceBlue,
+            borderRadius: 100,
+            padding: getTagPaddingFromSize(size),
+            color: state.isDisabled ? COLORS.gray : COLORS.blue,
+            position: 'relative',
+          }),
+          multiValueLabel: (style, state) => ({
+            ...style,
+            paddingRight: 0,
+            fontWeight: 500,
+            color: state.isDisabled ? COLORS.gray : COLORS.blue,
+          }),
+          multiValueRemove: style => ({
+            ...style,
+            colors: 'inherit',
+            ':hover': {
+              backgroundColor: 'transparent',
+              color: COLORS.red,
+            },
+          }),
+          option: style => ({ ...style, cursor: 'pointer' }),
+          placeholder: style => ({ ...style, padding: 10 }),
+          valueContainer: (style, state) => ({
+            ...style,
+            cursor: 'pointer',
+            paddingLeft: '1rem',
+            backgroundColor: state.isDisabled
+              ? COLORS.lightGray
+              : style.backgroundColor,
+          }),
+        }}
+        placeholder={placeholder}
+        theme={theme => ({
+          ...theme,
+          colors: {
+            ...theme.colors,
+            primary: COLORS.gray,
+            primary25: COLORS.lightGray,
+          },
+        })}
+        value={value}
+      />
+    ) : (
+      <ReactSelect
+        autoFocus={autoFocus}
+        className={`pointer ${getFontClassNameFromSize(size)} ${
+          errorMessage ? 'b--danger bw1' : ''
+        }`}
+        components={{
+          ClearIndicator,
+          Control: function Control(props) {
+            return (
+              <ControlComponent
+                errorMessage={errorMessage}
+                size={size}
+                {...props}
+              />
+            )
+          },
+          DropdownIndicator: function DropdownIndicator(props) {
+            return <DropdownIndicatorComponent size={size} {...props} />
+          },
+          IndicatorSeparator: () => null,
+          MultiValueRemove,
+          Placeholder,
+        }}
+        defaultValue={defaultValue}
+        getOptionValue={getOptionValue}
+        isClearable
+        isDisabled={disabled}
+        isLoading={isLoading}
+        isMulti={isMulti}
+        noOptionsMessage={noOptionsMessage}
+        onInputChange={(value, { action }) => {
+          if (
+            action === 'input-change' &&
+            typeof onSearchInputChange === 'function'
+          ) {
+            onSearchInputChange(value)
+          }
+        }}
+        onChange={onChange}
+        options={options}
+        styles={{
+          multiValue: (style, state) => ({
+            ...style,
+            backgroundColor: state.isDisabled
+              ? COLORS['muted-4']
+              : COLORS.aliceBlue,
+            borderRadius: 100,
+            padding: getTagPaddingFromSize(size),
+            color: state.isDisabled ? COLORS.gray : COLORS.blue,
+            position: 'relative',
+          }),
+          multiValueLabel: (style, state) => ({
+            ...style,
+            paddingRight: 0,
+            fontWeight: 500,
+            color: state.isDisabled ? COLORS.gray : COLORS.blue,
+          }),
+          multiValueRemove: style => ({
+            ...style,
+            colors: 'inherit',
+            ':hover': {
+              backgroundColor: 'transparent',
+              color: COLORS.red,
+            },
+          }),
+          option: style => ({ ...style, cursor: 'pointer' }),
+          placeholder: style => ({ ...style, padding: 10 }),
+          valueContainer: (style, state) => ({
+            ...style,
+            cursor: 'pointer',
+            paddingLeft: '1rem',
+            backgroundColor: state.isDisabled
+              ? COLORS.lightGray
+              : style.backgroundColor,
+          }),
+        }}
+        placeholder={placeholder}
+        theme={theme => ({
+          ...theme,
+          colors: {
+            ...theme.colors,
+            primary: COLORS.gray,
+            primary25: COLORS.lightGray,
+          },
+        })}
+        value={value}
+      />
+    )}
+
     {errorMessage && (
       <span className="c-danger f6 mt3 lh-title">{errorMessage}</span>
     )}
@@ -188,6 +281,7 @@ Select.propTypes = {
       })
     ),
   ]),
+  creatable: PropTypes.bool,
 }
 
 export default Select
