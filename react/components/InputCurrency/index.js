@@ -22,7 +22,7 @@ BaseInput.propTypes = {
   inputSuffix: PropTypes.string.isRequired,
 }
 
-const baseNumber = 9999.99
+const baseNumber = 9999999999.9999999999
 
 class InputCurrency extends Component {
   render() {
@@ -44,6 +44,9 @@ class InputCurrency extends Component {
     const [thousandSeparator] = formattedParts
       .filter(part => part.type === 'group')
       .map(part => part.value)
+    const [fraction] = formattedParts
+      .filter(part => part.type === 'fraction')
+      .map(part => part.value)
 
     return (
       <div>
@@ -52,7 +55,7 @@ class InputCurrency extends Component {
           inputPrefix={prefix ? currencySymbol : null}
           inputSuffix={prefix ? null : currencySymbol}
           decimalSeparator={decimalSeparator || false}
-          decimalScale={2}
+          decimalScale={fraction.length}
           fixedDecimalScale={!!decimalSeparator}
           thousandSeparator={thousandSeparator}
           customInput={BaseInput}

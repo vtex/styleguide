@@ -49,7 +49,7 @@ class InputExamples extends React.Component {
     super()
     this.state = {
       value: undefined,
-      selectedCurrency: undefined,
+      selectedCurrency: 'USD',
       currencyOptions: [
         {
           label: 'Real',
