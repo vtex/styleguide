@@ -35,7 +35,6 @@ class InputCurrency extends Component {
 
     const formattedParts = formatter.formatToParts(baseNumber)
     const prefix = !formattedParts.map(part => part.type).indexOf('currency')
-    console.log(formattedParts)
     const [currencySymbol] = formattedParts
       .filter(part => part.type === 'currency')
       .map(part => part.value)
@@ -53,7 +52,7 @@ class InputCurrency extends Component {
           inputPrefix={prefix ? currencySymbol : null}
           inputSuffix={prefix ? null : currencySymbol}
           decimalSeparator={decimalSeparator || false}
-          decimalScale={decimalSeparator}
+          decimalScale={2}
           fixedDecimalScale={!!decimalSeparator}
           thousandSeparator={thousandSeparator}
           customInput={BaseInput}
