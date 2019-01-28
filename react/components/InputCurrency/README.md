@@ -10,9 +10,8 @@ initialState = { value: undefined }
       label="Small"
       size="small"
       placeholder="Type a monetary value"
-      currencySymbol="R$"
-      decimalSeparator=","
-      thousandSeparator="."
+      locale="pt-BR"
+      currencyCode="BRL"
       value={state.value}
       onChange={e => setState({ value: e.target.value })}
     />
@@ -21,9 +20,8 @@ initialState = { value: undefined }
     <InputCurrency
       label="Regular"
       placeholder="Type a monetary value"
-      currencySymbol="R$"
-      decimalSeparator=","
-      thousandSeparator="."
+      locale="pt-BR"
+      currencyCode="BRL"
       value={state.value}
       onChange={e => setState({ value: e.target.value })}
     />
@@ -33,9 +31,8 @@ initialState = { value: undefined }
       label="Large"
       size="large"
       placeholder="Type a monetary value"
-      currencySymbol="R$"
-      decimalSeparator=","
-      thousandSeparator="."
+      locale="pt-BR"
+      currencyCode="BRL"
       value={state.value}
       onChange={e => setState({ value: e.target.value })}
     />
@@ -52,42 +49,23 @@ class InputExamples extends React.Component {
     super()
     this.state = {
       value: undefined,
-      selectedCurrency: JSON.stringify({
-        currencySymbol: 'R$',
-        decimalSeparator: ',',
-        thousandSeparator: '.',
-      }),
+      selectedCurrency: undefined,
       currencyOptions: [
         {
           label: 'Real',
-          value: JSON.stringify({
-            currencySymbol: 'R$',
-            decimalSeparator: ',',
-            thousandSeparator: '.',
-          }),
+          value: 'BRL',
         },
         {
           label: 'US Dollar',
-          value: JSON.stringify({
-            currencySymbol: 'US$',
-            decimalSeparator: '.',
-            thousandSeparator: ',',
-          }),
+          value: 'USD',
         },
         {
           label: 'Euro',
-          value: JSON.stringify({
-            currencySymbol: '€',
-            decimalSeparator: ',',
-            thousandSeparator: '.',
-          }),
+          value: 'EUR',
         },
         {
           label: 'Yen',
-          value: JSON.stringify({
-            currencySymbol: '¥',
-            thousandSeparator: ',',
-          }),
+          value: 'JPY',
         },
       ],
     }
@@ -95,9 +73,6 @@ class InputExamples extends React.Component {
 
   render() {
     const { currencyOptions, selectedCurrency, value } = this.state
-    const { currencySymbol, decimalSeparator, thousandSeparator } = JSON.parse(
-      selectedCurrency
-    )
 
     return (
       <div className="w-40">
@@ -113,9 +88,8 @@ class InputExamples extends React.Component {
           <InputCurrency
             label="Product value"
             placeholder="Type a monetary value"
-            currencySymbol={currencySymbol}
-            decimalSeparator={decimalSeparator}
-            thousandSeparator={thousandSeparator}
+            locale="pt-BR"
+            currencyCode={selectedCurrency}
             value={value}
             onChange={e => this.setState({ value: e.target.value })}
           />

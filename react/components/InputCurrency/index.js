@@ -12,39 +12,48 @@ import Input from '../Input'
  * https://github.com/s-yadav/react-number-format/issues/276
  *
  */
-var BaseInput = props => {
-  const { inputPrefix: prefix } = props
-  return <Input {...props} prefix={prefix} />
+const BaseInput = props => {
+  const { inputPrefix: prefix, inputSuffix: suffix } = props
+  return <Input {...props} prefix={prefix} suffix={suffix} />
 }
 
 BaseInput.propTypes = {
   inputPrefix: PropTypes.string.isRequired,
+  inputSuffix: PropTypes.string.isRequired,
 }
 
-class InputCurrency extends Component {
-  handleClickClear = event => {
-    this.props.onChange &&
-      this.props.onChange({
-        ...event,
-        target: {
-          ...event.target,
-          value: '',
-        },
-      })
-    this.props.onClear && this.props.onClear(event)
-  }
+const baseNumber = 9999.99
 
+class InputCurrency extends Component {
   render() {
-    const { currencySymbol, decimalSeparator, thousandSeparator } = this.props
-    console.log(decimalSeparator, thousandSeparator)
+    const { locale, currencyCode } = this.props
+
+    const formatter = new Intl.NumberFormat(locale, {
+      style: 'currency',
+      currency: currencyCode,
+    })
+
+    const formattedParts = formatter.formatToParts(baseNumber)
+    const prefix = !formattedParts.map(part => part.type).indexOf('currency')
+    const [currencySymbol] = formattedParts
+      .filter(part => part.type === 'currency')
+      .map(part => part.value)
+    const [decimalSeparator] = formattedParts
+      .filter(part => part.type === 'decimal')
+      .map(part => part.value)
+    const [thousandSeparator] = formattedParts
+      .filter(part => part.type === 'group')
+      .map(part => part.value)
+
     return (
       <div>
         <NumberFormat
           {...this.props}
-          inputPrefix={currencySymbol}
+          inputPrefix={prefix ? currencySymbol : null}
+          suffixPrefix={prefix ? null : currencySymbol}
           decimalSeparator={decimalSeparator || false}
-          decimalScale={decimalSeparator ? 2 : 0}
-          fixedDecimalScale
+          decimalScale={decimalSeparator}
+          fixedDecimalScale={!!decimalSeparator}
           thousandSeparator={thousandSeparator}
           customInput={BaseInput}
         />
@@ -65,17 +74,13 @@ InputCurrencyWithRef.propTypes = {
   size: PropTypes.string,
   defaultValue: PropTypes.number,
   value: PropTypes.number,
-  /** Currency symbol used as the input prefix. */
-  currencySymbol: PropTypes.string,
-  /** Character used for decimal separation. Eg: '.' in US$ 1,325.25. */
-  decimalSeparator: PropTypes.string,
-  /** Character used for thounsand separation. Eg: ',' in US$ 1,325.25. */
-  thousandSeparator: PropTypes.string,
+  locale: PropTypes.string,
+  currencyCode: PropTypes.string,
 }
 
 InputCurrencyWithRef.defaultProps = {
-  currencySymbol: '¤',
-  thousandSeparator: ',',
+  locale: 'en-US',
+  currencyCode: 'USD',
 }
 
 InputCurrency.propTypes = InputCurrencyWithRef.propTypes
