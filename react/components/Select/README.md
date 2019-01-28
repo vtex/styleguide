@@ -27,7 +27,7 @@ const options = [
     <Select
       defaultValue={options[0]}
       size="small"
-      isMulti={true}
+      multi={true}
       label="Small"
       options={options}
       onChange={values => {
@@ -41,7 +41,7 @@ const options = [
   <div className="mb5">
     <Select
       defaultValue={options[0]}
-      isMulti={true}
+      multi={true}
       label="Regular"
       options={options}
       onChange={values => {
@@ -53,7 +53,7 @@ const options = [
     <Select
       defaultValue={options[0]}
       size="large"
-      isMulti={true}
+      multi={true}
       label="Large"
       options={options}
       onChange={values => {
@@ -80,9 +80,9 @@ const options = [
 
 ;<div>
   <Select
-    label="Single option select"
+    label="Label"
     options={options}
-    isMulti={false}
+    multi={false}
     onChange={values => {
       console.log(`[Select] Selected: ${JSON.stringify(values, null, 2)}`)
     }}
@@ -90,7 +90,7 @@ const options = [
 </div>
 ```
 
-Multi Select
+No label
 
 ```js
 const options = [
@@ -106,9 +106,8 @@ const options = [
 
 ;<div>
   <Select
-    label="Label"
     options={options}
-    isMulti={true}
+    multi={true}
     onChange={values => {
       console.log(`[Select] Selected: ${JSON.stringify(values, null, 2)}`)
     }}
@@ -134,7 +133,7 @@ const options = [
   <Select
     label="Label"
     options={options}
-    isMulti={true}
+    multi={true}
     errorMessage="Required!"
     onChange={values => {
       console.log(`[Select] Selected: ${JSON.stringify(values, null, 2)}`)
@@ -160,7 +159,7 @@ const options = [
   <Select
     label="Label"
     options={options}
-    isMulti={true}
+    multi={true}
     onChange={values => {
       console.log(`[Select] Selected: ${JSON.stringify(values, null, 2)}`)
     }}
@@ -188,7 +187,7 @@ const options = [
     disabled={true}
     label="Label"
     options={options}
-    isMulti={true}
+    multi={true}
     onChange={values => {
       console.log(`[Select] Selected: ${JSON.stringify(values, null, 2)}`)
     }}
@@ -198,7 +197,7 @@ const options = [
       disabled={true}
       label="Label"
       options={options}
-      isMulti={true}
+      multi={true}
       onChange={values => {
         console.log(`[Select] Selected: ${JSON.stringify(values, null, 2)}`)
       }}
@@ -229,10 +228,10 @@ const options = [
 
 ;<div>
   <Select
-    isLoading={true}
+    loading={true}
     label="Label"
     options={options}
-    isMulti={true}
+    multi={true}
     onChange={values => {
       console.log(`[Select] Selected: ${JSON.stringify(values, null, 2)}`)
     }}

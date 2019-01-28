@@ -18,12 +18,13 @@ const getOptionValue = option => {
 
 const Select = ({
   autoFocus,
+  creatable,
   defaultValue,
-  errorMessage,
   disabled,
-  isLoading,
-  isMulti,
+  errorMessage,
   label,
+  loading,
+  multi,
   noOptionsMessage,
   onChange,
   onSearchInputChange,
@@ -31,200 +32,132 @@ const Select = ({
   placeholder,
   size,
   value,
-  creatable,
-}) => (
-  <div className="flex flex-column">
-    {label ? (
-      <label className={`dib mb3 w-100 ${getFontClassNameFromSize(size)}`}>
-        {label}
-      </label>
-    ) : null}
-    {creatable ? (
-      <CreatableSelect
-        autoFocus={autoFocus}
-        className={`pointer ${getFontClassNameFromSize(size)} ${
-          errorMessage ? 'b--danger bw1' : ''
-        }`}
-        components={{
-          ClearIndicator,
-          Control: function Control(props) {
-            return (
-              <ControlComponent
-                errorMessage={errorMessage}
-                size={size}
-                {...props}
-              />
-            )
-          },
-          DropdownIndicator: function DropdownIndicator(props) {
-            return <DropdownIndicatorComponent size={size} {...props} />
-          },
-          IndicatorSeparator: () => null,
-          MultiValueRemove,
-          Placeholder,
-        }}
-        defaultValue={defaultValue}
-        getOptionValue={getOptionValue}
-        isClearable
-        isDisabled={disabled}
-        isLoading={isLoading}
-        isMulti={isMulti}
-        noOptionsMessage={noOptionsMessage}
-        onInputChange={(value, { action }) => {
-          if (
-            action === 'input-change' &&
-            typeof onSearchInputChange === 'function'
-          ) {
-            onSearchInputChange(value)
-          }
-        }}
-        onChange={onChange}
-        options={options}
-        styles={{
-          multiValue: (style, state) => ({
-            ...style,
-            backgroundColor: state.isDisabled
-              ? COLORS['muted-4']
-              : COLORS.aliceBlue,
-            borderRadius: 100,
-            padding: getTagPaddingFromSize(size),
-            color: state.isDisabled ? COLORS.gray : COLORS.blue,
-            position: 'relative',
-          }),
-          multiValueLabel: (style, state) => ({
-            ...style,
-            paddingRight: 0,
-            fontWeight: 500,
-            color: state.isDisabled ? COLORS.gray : COLORS.blue,
-          }),
-          multiValueRemove: style => ({
-            ...style,
-            colors: 'inherit',
-            ':hover': {
-              backgroundColor: 'transparent',
-              color: COLORS.red,
-            },
-          }),
-          option: style => ({ ...style, cursor: 'pointer' }),
-          placeholder: style => ({ ...style, padding: 10 }),
-          valueContainer: (style, state) => ({
-            ...style,
-            cursor: 'pointer',
-            paddingLeft: '1rem',
-            backgroundColor: state.isDisabled
-              ? COLORS.lightGray
-              : style.backgroundColor,
-          }),
-        }}
-        placeholder={placeholder}
-        theme={theme => ({
-          ...theme,
-          colors: {
-            ...theme.colors,
-            primary: COLORS.gray,
-            primary25: COLORS.lightGray,
-          },
-        })}
-        value={value}
-      />
-    ) : (
-      <ReactSelect
-        autoFocus={autoFocus}
-        className={`pointer ${getFontClassNameFromSize(size)} ${
-          errorMessage ? 'b--danger bw1' : ''
-        }`}
-        components={{
-          ClearIndicator,
-          Control: function Control(props) {
-            return (
-              <ControlComponent
-                errorMessage={errorMessage}
-                size={size}
-                {...props}
-              />
-            )
-          },
-          DropdownIndicator: function DropdownIndicator(props) {
-            return <DropdownIndicatorComponent size={size} {...props} />
-          },
-          IndicatorSeparator: () => null,
-          MultiValueRemove,
-          Placeholder,
-        }}
-        defaultValue={defaultValue}
-        getOptionValue={getOptionValue}
-        isClearable
-        isDisabled={disabled}
-        isLoading={isLoading}
-        isMulti={isMulti}
-        noOptionsMessage={noOptionsMessage}
-        onInputChange={(value, { action }) => {
-          if (
-            action === 'input-change' &&
-            typeof onSearchInputChange === 'function'
-          ) {
-            onSearchInputChange(value)
-          }
-        }}
-        onChange={onChange}
-        options={options}
-        styles={{
-          multiValue: (style, state) => ({
-            ...style,
-            backgroundColor: state.isDisabled
-              ? COLORS['muted-4']
-              : COLORS.aliceBlue,
-            borderRadius: 100,
-            padding: getTagPaddingFromSize(size),
-            color: state.isDisabled ? COLORS.gray : COLORS.blue,
-            position: 'relative',
-          }),
-          multiValueLabel: (style, state) => ({
-            ...style,
-            paddingRight: 0,
-            fontWeight: 500,
-            color: state.isDisabled ? COLORS.gray : COLORS.blue,
-          }),
-          multiValueRemove: style => ({
-            ...style,
-            colors: 'inherit',
-            ':hover': {
-              backgroundColor: 'transparent',
-              color: COLORS.red,
-            },
-          }),
-          option: style => ({ ...style, cursor: 'pointer' }),
-          placeholder: style => ({ ...style, padding: 10 }),
-          valueContainer: (style, state) => ({
-            ...style,
-            cursor: 'pointer',
-            paddingLeft: '1rem',
-            backgroundColor: state.isDisabled
-              ? COLORS.lightGray
-              : style.backgroundColor,
-          }),
-        }}
-        placeholder={placeholder}
-        theme={theme => ({
-          ...theme,
-          colors: {
-            ...theme.colors,
-            primary: COLORS.gray,
-            primary25: COLORS.lightGray,
-          },
-        })}
-        value={value}
-      />
-    )}
+}) => {
+  const reactSelectComponentProps = {
+    autoFocus,
+    className: `pointer b--danger bw1 ${getFontClassNameFromSize(size)} ${
+      errorMessage ? 'b--danger bw1' : ''
+    }`,
+    components: {
+      ClearIndicator,
+      Control: function Control(props) {
+        return (
+          <ControlComponent
+            errorMessage={errorMessage}
+            size={size}
+            {...props}
+          />
+        )
+      },
+      DropdownIndicator: function DropdownIndicator(props) {
+        return <DropdownIndicatorComponent size={size} {...props} />
+      },
+      IndicatorSeparator: () => null,
+      MultiValueRemove,
+      Placeholder,
+    },
+    defaultValue,
+    getOptionValue,
+    isClearable: true,
+    isDisabled: disabled,
+    isLoading: loading,
+    isMulti: multi,
+    noOptionsMessage,
+    onInputChange: (value, { action }) => {
+      if (
+        action === 'input-change' &&
+        typeof onSearchInputChange === 'function'
+      ) {
+        onSearchInputChange(value)
+      }
+    },
+    onChange,
+    options,
+    placeholder,
+    styles: {
+      control: style => {
+        const errorStyle = errorMessage
+          ? {
+              borderColor: COLORS.red,
+            }
+          : {}
 
-    {errorMessage && (
-      <span className="c-danger f6 mt3 lh-title">{errorMessage}</span>
-    )}
-  </div>
-)
+        return {
+          ...style,
+          ...errorStyle,
+          borderWidth: '.125rem',
+        }
+      },
+      menu: style => ({ ...style, marginTop: 0 }),
+      multiValue: (style, state) => ({
+        ...style,
+        backgroundColor: state.isDisabled
+          ? COLORS['muted-4']
+          : COLORS.aliceBlue,
+        borderRadius: 100,
+        padding: getTagPaddingFromSize(size),
+        color: state.isDisabled ? COLORS.gray : COLORS.blue,
+        position: 'relative',
+      }),
+      multiValueLabel: (style, state) => ({
+        ...style,
+        paddingRight: 0,
+        fontWeight: 500,
+        color: state.isDisabled ? COLORS.gray : COLORS.blue,
+      }),
+      multiValueRemove: style => ({
+        ...style,
+        colors: 'inherit',
+        ':hover': {
+          backgroundColor: 'transparent',
+          color: COLORS.red,
+        },
+      }),
+      option: style => ({ ...style, cursor: 'pointer' }),
+      placeholder: style => ({ ...style, padding: 10 }),
+      valueContainer: (style, state) => ({
+        ...style,
+        cursor: 'pointer',
+        paddingLeft: '1rem',
+        backgroundColor: state.isDisabled
+          ? COLORS.lightGray
+          : style.backgroundColor,
+      }),
+      theme: theme => ({
+        ...theme,
+        colors: {
+          ...theme.colors,
+          primary: COLORS.gray,
+          primary25: COLORS.lightGray,
+        },
+      }),
+    },
+    value,
+  }
+
+  return (
+    <div className="flex flex-column">
+      {label && (
+        <label className={`dib mb3 w-100 ${getFontClassNameFromSize(size)}`}>
+          {label}
+        </label>
+      )}
+
+      {creatable ? (
+        <CreatableSelect {...reactSelectComponentProps} />
+      ) : (
+        <ReactSelect {...reactSelectComponentProps} />
+      )}
+
+      {errorMessage && (
+        <span className="c-danger f6 mt3 lh-title">{errorMessage}</span>
+      )}
+    </div>
+  )
+}
 
 Select.defaultProps = {
-  isMulti: true,
+  multi: true,
   placeholder: 'Select...',
   size: 'regular',
 }
@@ -232,20 +165,22 @@ Select.defaultProps = {
 Select.propTypes = {
   /** Select auto focus */
   autoFocus: PropTypes.bool,
+  /** Creatable options. */
+  creatable: PropTypes.bool,
   /** Default value */
   defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  /** Error message, e.g., validation error message. */
-  errorMessage: PropTypes.string,
   /** Disables Select */
   disabled: PropTypes.bool,
-  /** Is the select in a state of loading (async). */
-  isLoading: PropTypes.bool,
-  /** Support multiple selected options. */
-  isMulti: PropTypes.bool,
+  /** Error message, e.g., validation error message. */
+  errorMessage: PropTypes.string,
   /** Label text. */
   label: PropTypes.string,
+  /** Is the select in a state of loading (async). */
+  loading: PropTypes.bool,
   /** Text to display when loading options */
   loadingMessage: PropTypes.string,
+  /** Support multiple selected options. */
+  multi: PropTypes.bool,
   /** Text to display when there are no options. ({inputValue}) => string | null */
   noOptionsMessage: PropTypes.func,
   /** onChange handler: (option) => void */
@@ -281,7 +216,6 @@ Select.propTypes = {
       })
     ),
   ]),
-  creatable: PropTypes.bool,
 }
 
 export default Select

@@ -4,18 +4,15 @@ import { components } from 'react-select'
 
 function heightClassFromSize(size) {
   return {
-    [size]: 'h-regular',
-    large: 'h-large',
-    small: 'h-small',
+    [size]: 'min-h-regular',
+    large: 'min-h-large',
+    small: 'min-h-small',
   }[size]
 }
 
-const Control = ({ errorMessage, size, ...props }) => {
+const Control = ({ size, ...props }) => {
   return (
-    <div
-      className={`pa0 bw1 ${
-        errorMessage ? 'b--danger' : ''
-      } ${heightClassFromSize(size)}`}>
+    <div className={`pa0 ${heightClassFromSize(size)}`}>
       <components.Control {...props} />
     </div>
   )
