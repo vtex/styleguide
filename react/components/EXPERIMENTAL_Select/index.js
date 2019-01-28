@@ -1,0 +1,221 @@
+import PropTypes from 'prop-types'
+import React from 'react'
+import ReactSelect from 'react-select'
+import CreatableSelect from 'react-select/lib/Creatable'
+import COLORS from './colors'
+
+import ClearIndicator from './ClearIndicator'
+import DropdownIndicatorComponent from './DropdownIndicator'
+import MultiValueRemove from './MultiValueRemove'
+import Placeholder from './Placeholder'
+import ControlComponent from './Control'
+
+import { getFontClassNameFromSize, getTagPaddingFromSize } from './styles'
+
+const getOptionValue = option => {
+  return JSON.stringify(option.value)
+}
+
+const Select = ({
+  autoFocus,
+  creatable,
+  defaultValue,
+  disabled,
+  errorMessage,
+  label,
+  loading,
+  multi,
+  noOptionsMessage,
+  onChange,
+  onSearchInputChange,
+  options,
+  placeholder,
+  size,
+  value,
+}) => {
+  const reactSelectComponentProps = {
+    autoFocus,
+    className: `pointer b--danger bw1 ${getFontClassNameFromSize(size)} ${
+      errorMessage ? 'b--danger bw1' : ''
+    }`,
+    components: {
+      ClearIndicator,
+      Control: function Control(props) {
+        return (
+          <ControlComponent
+            errorMessage={errorMessage}
+            size={size}
+            {...props}
+          />
+        )
+      },
+      DropdownIndicator: function DropdownIndicator(props) {
+        return <DropdownIndicatorComponent size={size} {...props} />
+      },
+      IndicatorSeparator: () => null,
+      MultiValueRemove,
+      Placeholder,
+    },
+    defaultValue,
+    getOptionValue,
+    isClearable: true,
+    isDisabled: disabled,
+    isLoading: loading,
+    isMulti: multi,
+    noOptionsMessage,
+    onInputChange: (value, { action }) => {
+      if (
+        action === 'input-change' &&
+        typeof onSearchInputChange === 'function'
+      ) {
+        onSearchInputChange(value)
+      }
+    },
+    onChange,
+    options,
+    placeholder,
+    styles: {
+      control: style => {
+        const errorStyle = errorMessage
+          ? {
+              borderColor: COLORS.red,
+            }
+          : {}
+
+        return {
+          ...style,
+          ...errorStyle,
+          borderWidth: '.125rem',
+        }
+      },
+      menu: style => ({ ...style, marginTop: 0 }),
+      multiValue: (style, state) => ({
+        ...style,
+        backgroundColor: state.isDisabled
+          ? COLORS['muted-4']
+          : COLORS.aliceBlue,
+        borderRadius: 100,
+        padding: getTagPaddingFromSize(size),
+        color: state.isDisabled ? COLORS.gray : COLORS.blue,
+        position: 'relative',
+      }),
+      multiValueLabel: (style, state) => ({
+        ...style,
+        paddingRight: 0,
+        fontWeight: 500,
+        color: state.isDisabled ? COLORS.gray : COLORS.blue,
+      }),
+      multiValueRemove: style => ({
+        ...style,
+        colors: 'inherit',
+        ':hover': {
+          backgroundColor: 'transparent',
+          color: COLORS.red,
+        },
+      }),
+      option: style => ({ ...style, cursor: 'pointer' }),
+      placeholder: style => ({ ...style, padding: 10 }),
+      valueContainer: (style, state) => ({
+        ...style,
+        cursor: 'pointer',
+        paddingLeft: '1rem',
+        backgroundColor: state.isDisabled
+          ? COLORS.lightGray
+          : style.backgroundColor,
+      }),
+      theme: theme => ({
+        ...theme,
+        colors: {
+          ...theme.colors,
+          primary: COLORS.gray,
+          primary25: COLORS.lightGray,
+        },
+      }),
+    },
+    value,
+  }
+
+  return (
+    <div className="flex flex-column">
+      {label && (
+        <label className={`dib mb3 w-100 ${getFontClassNameFromSize(size)}`}>
+          {label}
+        </label>
+      )}
+
+      {creatable ? (
+        <CreatableSelect {...reactSelectComponentProps} />
+      ) : (
+        <ReactSelect {...reactSelectComponentProps} />
+      )}
+
+      {errorMessage && (
+        <span className="c-danger f6 mt3 lh-title">{errorMessage}</span>
+      )}
+    </div>
+  )
+}
+
+Select.defaultProps = {
+  multi: true,
+  placeholder: 'Select...',
+  size: 'regular',
+}
+
+Select.propTypes = {
+  /** Select auto focus */
+  autoFocus: PropTypes.bool,
+  /** Creatable options. */
+  creatable: PropTypes.bool,
+  /** Default value */
+  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  /** Disables Select */
+  disabled: PropTypes.bool,
+  /** Error message, e.g., validation error message. */
+  errorMessage: PropTypes.string,
+  /** Label text. */
+  label: PropTypes.string,
+  /** Is the select in a state of loading (async). */
+  loading: PropTypes.bool,
+  /** Text to display when loading options */
+  loadingMessage: PropTypes.string,
+  /** Support multiple selected options. */
+  multi: PropTypes.bool,
+  /** Text to display when there are no options. ({inputValue}) => string | null */
+  noOptionsMessage: PropTypes.func,
+  /** onChange handler: (option) => void */
+  onChange: PropTypes.func.isRequired,
+  /** Handle events on search input */
+  onSearchInputChange: PropTypes.func,
+  /** Array of options. Options have the shape { label, value }. */
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      /** Text that gets rendered for the option. */
+      label: PropTypes.string.isRequired,
+      /** Underlying value, e.g., an id. */
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
+        .isRequired,
+    })
+  ),
+  /** Text for the select value.  */
+  placeholder: PropTypes.string,
+  /** Select size */
+  size: PropTypes.oneOf(['small', 'regular', 'large']),
+  /** Value of the select. */
+  value: PropTypes.oneOfType([
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
+        .isRequired,
+    }),
+    PropTypes.arrayOf(
+      PropTypes.shape({
+        label: PropTypes.string.isRequired,
+        value: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
+          .isRequired,
+      })
+    ),
+  ]),
+}
+
+export default Select

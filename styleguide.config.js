@@ -154,7 +154,10 @@ module.exports = {
         {
           name: '👻 Experimental',
           content: './docs/components_experimental.md',
-          components: ['react/components/EXPERIMENTAL_Conditions/index.js'],
+          components: [
+            'react/components/EXPERIMENTAL_Conditions/index.js',
+            'react/components/EXPERIMENTAL_Select/index.js',
+          ],
         },
       ],
     },

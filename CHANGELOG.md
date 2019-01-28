@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.14.0] - 2019-01-28
+### Added
+- **`EXPERIMENTAL_Select`** New component.
+- **`Clear`** New Icon.
+
+### Deprecated
+- Deprecates `MultiSelect` in favor of `Select`
+
 ## [8.13.0] - 2019-01-17
 ### Added
 
