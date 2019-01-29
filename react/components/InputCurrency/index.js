@@ -18,8 +18,8 @@ const BaseInput = props => {
 }
 
 BaseInput.propTypes = {
-  inputPrefix: PropTypes.string.isRequired,
-  inputSuffix: PropTypes.string.isRequired,
+  inputPrefix: PropTypes.string,
+  inputSuffix: PropTypes.string,
 }
 
 const baseNumber = 9999999999.9999999999
@@ -93,7 +93,7 @@ InputCurrencyWithRef.propTypes = {
   /** Locale ISO string ('en-US', 'pt-BR', etc.)*/
   locale: PropTypes.string.isRequired,
   /** Currency code in ISO 4217 ('USD', 'BRL', etc.) */
-  currencyCode: PropTypes.string,
+  currencyCode: PropTypes.string.isRequired,
 }
 
 InputCurrency.propTypes = InputCurrencyWithRef.propTypes
