@@ -55,7 +55,7 @@ class InputCurrency extends Component {
           inputPrefix={prefix ? currencySymbol : null}
           inputSuffix={prefix ? null : currencySymbol}
           decimalSeparator={decimalSeparator || false}
-          decimalScale={fraction.length}
+          decimalScale={fraction ? fraction.length : 0}
           fixedDecimalScale={!!decimalSeparator}
           thousandSeparator={thousandSeparator}
           customInput={BaseInput}
