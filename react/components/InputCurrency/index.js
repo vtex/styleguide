@@ -25,8 +25,21 @@ BaseInput.propTypes = {
 const baseNumber = 9999999999.9999999999
 
 class InputCurrency extends Component {
+  handleChange = ({ floatValue }) => {
+    // console.log(floatValue)
+    this.props.onChange &&
+      this.props.onChange({
+        ...event,
+        target: {
+          ...event.target,
+          value: floatValue,
+        },
+      })
+  }
+
   render() {
-    const { locale, currencyCode } = this.props
+    // eslint-disable-next-line no-unused-vars
+    const { locale, currencyCode, onChange, ...props } = this.props
 
     const formatter = new Intl.NumberFormat(locale, {
       style: 'currency',
@@ -51,13 +64,14 @@ class InputCurrency extends Component {
     return (
       <div>
         <NumberFormat
-          {...this.props}
+          {...props}
           inputPrefix={prefix ? currencySymbol : null}
           inputSuffix={prefix ? null : currencySymbol}
           decimalSeparator={decimalSeparator || false}
           decimalScale={fraction ? fraction.length : 0}
           fixedDecimalScale={!!decimalSeparator}
           thousandSeparator={thousandSeparator}
+          onValueChange={this.handleChange}
           customInput={BaseInput}
         />
       </div>
