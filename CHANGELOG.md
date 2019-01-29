@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.15.1] - 2019-01-29
+
+### Fixed
+
+- **InputCurrency** `onChange` callback was using the formatted value instead of
+  the actual float value.
+
 ## [8.15.0] - 2019-01-29
 
 ### Added
