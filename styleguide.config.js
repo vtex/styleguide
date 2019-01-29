@@ -114,6 +114,7 @@ module.exports = {
             'react/components/Input/index.js',
             'react/components/InputPassword/index.js',
             'react/components/InputSearch/index.js',
+            'react/components/InputCurrency/index.js',
             'react/components/MultiSelect/index.js',
             'react/components/NumericStepper/index.js',
             'react/components/RadioGroup/index.js',
