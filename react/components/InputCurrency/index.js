@@ -26,7 +26,6 @@ const baseNumber = 9999999999.9999999999
 
 class InputCurrency extends Component {
   handleChange = ({ floatValue }) => {
-    // console.log(floatValue)
     this.props.onChange &&
       this.props.onChange({
         ...event,
