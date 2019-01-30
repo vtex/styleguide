@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.15.2] - 2019-01-30
+
 ### Fixed
 
 - **EXPERIMENTAL_Conditions** object empty validation to allow `false` values
