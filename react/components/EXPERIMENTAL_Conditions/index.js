@@ -31,13 +31,23 @@ class EXPERIMENTAL_Conditions extends React.Component {
     },
   }
 
+  objectIsEmpty = object => {
+    if (object === undefined) return true
+    if (object === null) return true
+    if (object === '') return true
+    if (Array.isArray(object) && object.length === 0) return true
+    return false
+  }
+
   canAddNewCondition = () => {
     const { statements } = this.props
     if (statements.length === 0) return true
 
     const hasIncompleteCondition = statements.some(
       condition =>
-        condition.subject === '' || condition.verb === '' || !condition.object
+        condition.subject === '' ||
+        condition.verb === '' ||
+        this.objectIsEmpty(condition.object)
     )
     return !hasIncompleteCondition
   }
