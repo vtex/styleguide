@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- **EXPERIMENTAL_Conditions** object empty validation to allow `false` values
+  and to disallow `[]` (empty array) values.
+
 ## [8.15.1] - 2019-01-29
 
 ### Fixed
