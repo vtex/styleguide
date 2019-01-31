@@ -127,7 +127,7 @@ class Menu extends Component {
                 isUpwards ? '100%' : '0'
               }`,
               transition: isVisible
-                ? `transform 50ms ease-out, opacity 25ms`
+                ? 'transform 50ms ease-out, opacity 25ms'
                 : 'none',
             }}
             className={`absolute z-999 ba b--muted-4 br2 shadow-5 ${

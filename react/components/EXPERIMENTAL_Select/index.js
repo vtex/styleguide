@@ -76,11 +76,7 @@ const Select = ({
     placeholder,
     styles: {
       control: style => {
-        const errorStyle = errorMessage
-          ? {
-              borderColor: COLORS.red,
-            }
-          : {}
+        const errorStyle = errorMessage ? { borderColor: COLORS.red } : {}
 
         return {
           ...style,

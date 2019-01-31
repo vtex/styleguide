@@ -299,14 +299,8 @@ export default class Slider extends Component {
       : this.state.values.right
 
     const sliderSelectionStyle = range
-      ? {
-          left,
-          right,
-        }
-      : {
-          left: 0,
-          width: left,
-        }
+      ? { left, right }
+      : { left: 0, width: left }
 
     return (
       <div className="vtex-slider-container">

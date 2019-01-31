@@ -166,16 +166,20 @@ class SimpleTable extends Component {
                       const rowData =
                         items[disableHeader ? rowIndex : rowIndex - 1]
                       const cellData = rowData[property]
+
+                      const height = rowHeight
+                      const width = fullWidth
+                        ? fullWidthColWidth
+                        : schema.properties[properties[columnIndex]].width ||
+                          DEFAULT_COLUMN_WIDTH
+
                       return (
                         <div
                           key={key}
                           style={{
                             ...style,
-                            height: rowHeight,
-                            width: fullWidth
-                              ? fullWidthColWidth
-                              : schema.properties[properties[columnIndex]]
-                                  .width || DEFAULT_COLUMN_WIDTH,
+                            height,
+                            width,
                           }}
                           className={`flex items-center w-100 h-100 truncate ph4 ${
                             disableHeader && rowIndex === 0 ? 'bt' : ''
@@ -186,12 +190,7 @@ class SimpleTable extends Component {
                           } ${columnIndex === 0 && fixFirstColumn ? 'br' : ''}`}
                           onClick={
                             onRowClick
-                              ? event =>
-                                  onRowClick({
-                                    event,
-                                    index: rowIndex,
-                                    rowData,
-                                  })
+                              ? e => onRowClick({ e, index: rowIndex, rowData })
                               : null
                           }
                           onMouseEnter={
