@@ -151,7 +151,7 @@ class Toolbar extends PureComponent {
                     <IconDensity size={MEDIUM_ICON_SIZE} />
                   </span>
                 }
-                block
+                fullHeight
                 disabled={loading}
                 variation="tertiary"
                 size="small"
@@ -204,7 +204,7 @@ class Toolbar extends PureComponent {
                     <IconColumns size={MEDIUM_ICON_SIZE} />
                   </span>
                 }
-                block
+                fullHeight
                 disabled={loading}
                 variation="tertiary"
                 size="small"
@@ -303,7 +303,7 @@ class Toolbar extends PureComponent {
                 iconPosition="right"
                 disabled={loading}
                 variation="tertiary"
-                block
+                fullHeight
                 size="small"
                 onClick={() =>
                   this.handleToggleBox('isExtraActionsBoxVisible')

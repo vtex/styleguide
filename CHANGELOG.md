@@ -12,6 +12,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **Dropdown** select position and height in windows chrome was preventing click action on bottom part of dropdown.
 - **Input** hide input decorations in internet explorer and ms Edge.
 - **NumericStepper** hide input decorations in internet explorer and ms Edge.
+- **Button** remove full height from block prop.
+- **Table** use fullHeight prop on Toolbar buttons
+- **Pagination** align rows lable in center in edge and IE.
+
+### Added
+
+- **Button** adds fullHeight prop for button to use 100% of parent height.
 
 ## [8.17.5] - 2019-02-07
 
