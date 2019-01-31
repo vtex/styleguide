@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.16.0] - 2019-01-31
+
 ### Added
 
 - **Spinner** `status` prop to start & stop the animation.
