@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import config from 'vtex-tachyons/config.json'
 
+import './edge.global.css'
+
 class Input extends Component {
   constructor(props) {
     super(props)
@@ -93,7 +95,7 @@ class Input extends Component {
     const topBottomHeight = config.borderRadius[1] * 2 // 2 is top AND BOTTOM
     const prefixAndSuffixPosition = `${config.borderRadius[1]}rem`
     const calcPrefixAndSuffixHeight = `calc(100% - ${topBottomHeight}rem)`
-    let classes = `${widthClass} ${box} ${border} `
+    let classes = `${widthClass} ${box} ${border} hide-edge-input-decorations`
 
     let labelClasses = 'vtex-input__label db mb3 w-100 c-on-base '
 
