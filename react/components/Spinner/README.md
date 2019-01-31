@@ -21,6 +21,51 @@
 <Spinner />
 ```
 
+### Changing status
+
+```js
+class SpinnerStatusExample extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = { loading: true }
+
+    this.scheduleLoading = this.scheduleLoading.bind(this)
+    this.toggleLoading = this.toggleLoading.bind(this)
+  }
+
+  componentDidMount() {
+    this.mounted = true
+    this.scheduleLoading()
+  }
+
+  scheduleLoading() {
+    this.timeout = setTimeout(this.toggleLoading, 2000)
+  }
+
+  toggleLoading() {
+    this.setState(prevState => ({ loading: !prevState.loading }))
+    this.scheduleLoading()
+  }
+
+  componentWillUnmount() {
+    this.mounted = false
+    this.timeout && clearTimeout(this.timeout)
+  }
+
+  render() {
+    return (
+      <div className="flex items-center">
+        <Spinner status={this.state.loading ? 'working' : 'idle' }/>
+        <div className="ml5">
+          {this.state.loading ? 'Working' : 'Idle' }
+        </div>
+      </div>
+    )
+  }
+};
+<SpinnerStatusExample />
+```
 #### Custom color and size
 
 ```js
