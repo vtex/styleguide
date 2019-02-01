@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.17.1] - 2019-02-01
+
 ### Changed
 
 - **Box**, **Layout**, **PageBlock**, **Header** mobile styles
