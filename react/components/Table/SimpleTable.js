@@ -201,12 +201,6 @@ class SimpleTable extends Component {
                         items[disableHeader ? rowIndex : rowIndex - 1]
                       const cellData = rowData[property]
 
-                      const height = rowHeight
-                      const width = fullWidth
-                        ? fullWidthColWidth
-                        : schema.properties[properties[columnIndex]].width ||
-                          DEFAULT_COLUMN_WIDTH
-
                       return (
                         <div
                           key={key}
