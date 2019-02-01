@@ -155,6 +155,7 @@ const colorFormat = color => {
   else if ('r' in color && 'g' in color && 'b' in color) return COLOR_FORMAT.RGB
 }
 
+/** Convert Any format suported(RGB, HSV and HEX) to RGB */
 const anyTorgb = color => {
   const format = colorFormat(color)
   switch (format) {
@@ -169,6 +170,7 @@ const anyTorgb = color => {
   }
 }
 
+/** Convert Any format suported(RGB, HSV and HEX) to HSV */
 const anyTohsv = color => {
   const format = colorFormat(color)
   switch (format) {
@@ -183,6 +185,7 @@ const anyTohsv = color => {
   }
 }
 
+/** Convert Any format suported(RGB, HSV and HEX) to HEX */
 const anyTohex = color => {
   const format = colorFormat(color)
   switch (format) {
