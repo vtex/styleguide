@@ -117,7 +117,7 @@ class ColorPickerExample extends React.Component {
         <div className="w-50">
           <ColorPicker
             color={this.state.colorActive}
-            colorState="Active"
+            colorLabel="Active"
             colorHistory={this.state.history}
             onChange={ (color) => this.handleChange(color, 'colorActive') }
           />
@@ -125,7 +125,7 @@ class ColorPickerExample extends React.Component {
         <div className="w-50">
           <ColorPicker
             color={this.state.colorHover}
-            colorState="Hover"
+            colorLabel="Hover"
             colorHistory={this.state.history}
             onChange={ (color) => this.handleChange(color, 'colorHover') }
           />
@@ -174,7 +174,7 @@ class ColorPickerExample extends React.Component {
         <div className="w-50">
           <ColorPicker
             color={this.state.color}
-            disable
+            disabled
             colorHistory={this.state.history}
             onChange={ this.handleChange }
           />

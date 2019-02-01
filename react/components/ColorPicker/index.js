@@ -48,15 +48,13 @@ class ColorPicker extends React.Component {
   }
 
   render() {
-    const { title, disable, disableOptions } = this.props
+    const { title, disabled } = this.props
     const { rgba, hsva, hex } = this.validColor()
 
     const styleColorBox = {
       backgroundColor: `rgba(${rgba.r},${rgba.g},${rgba.b},${rgba.a})`,
       height: '1.5rem',
     }
-
-    const isDisableOptions = disable || disableOptions
 
     return (
       <OutsideClickHandler onOutsideClick={this.handleOutsideClick}>
@@ -66,12 +64,12 @@ class ColorPicker extends React.Component {
           )}
           <div className="flex w-100">
             <div className="w-25 pa1">
-              <span className="t-small w-100 c-on-base db mb3">
-                {this.props.colorState}
-              </span>
+              <div className="t-small w-100 c-on-base db mb3">
+                {this.props.colorLabel}
+              </div>
               <div
                 className={`ba bw1 b--muted-4 br2 pa1 ${
-                  isDisableOptions ? '' : 'hover-b--action-primary pointer'
+                  disabled ? '' : 'hover-b--action-primary pointer'
                 }`}
                 onClick={this.handleShowOptions}>
                 <div className="br1" style={styleColorBox} />
@@ -81,12 +79,12 @@ class ColorPicker extends React.Component {
               <HexInput
                 rgb={rgba}
                 onChange={this.handleColorChange}
-                disable={disable}
+                disable={disabled}
               />
             </div>
           </div>
           <div>
-            {this.state.showOptions && !isDisableOptions && (
+            {this.state.showOptions && !disabled && (
               <ColorOptions
                 {...this.props}
                 color={{ rgba, hex, hsva }}
@@ -102,14 +100,14 @@ class ColorPicker extends React.Component {
 
 /** Default props values */
 ColorPicker.defaultProps = {
-  colorState: 'Default',
+  colorLabel: 'Default',
 }
 
 ColorPicker.propTypes = {
   /** onChange event */
   onChange: PropTypes.func,
-  /** Color state */
-  colorState: PropTypes.string,
+  /** Color Label */
+  colorLabel: PropTypes.string,
   /** ColorPicker Title */
   title: PropTypes.string,
   /** Color format */
@@ -121,10 +119,8 @@ ColorPicker.propTypes = {
     /** HEX color format */
     hex: PropTypes.string,
   }).isRequired,
-  /** Disable options box */
-  disableOptions: PropTypes.bool,
   /** Disable component */
-  disable: PropTypes.bool,
+  disabled: PropTypes.bool,
 }
 
 export default ColorPicker
