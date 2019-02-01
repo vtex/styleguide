@@ -43,6 +43,21 @@ class SimpleTable extends Component {
     }
   }
 
+  calculateColWidth = (
+    schema,
+    properties,
+    index,
+    fullWidth,
+    fullWidthColWidth
+  ) => {
+    const col = schema.properties[properties[index]]
+    return col.width
+      ? col.width
+      : fullWidth
+      ? Math.max(col.minWidth || 100, fullWidthColWidth)
+      : DEFAULT_COLUMN_WIDTH
+  }
+
   render() {
     const {
       schema,
@@ -76,8 +91,24 @@ class SimpleTable extends Component {
               {({ width }) => {
                 // updateKey forces grid to rerender when density and window's width change
                 const updateKey = `vtex-table__${rowHeight}--${updateTableKey}--${width}`
+
+                const colsWidth = Object.keys(schema.properties).reduce(
+                  (acc, curr) => {
+                    const col = schema.properties[curr]
+                    return acc + (col.width ? col.width : 0)
+                  },
+                  0
+                )
+
+                const colsWithoutWidth = Object.keys(schema.properties).filter(
+                  curr => {
+                    const col = schema.properties[curr]
+                    return !col.width
+                  }
+                )
+
                 const fullWidthColWidth =
-                  width / Object.keys(schema.properties).length
+                  (width - colsWidth) / colsWithoutWidth.length
 
                 return (
                   <MultiGrid
@@ -101,10 +132,13 @@ class SimpleTable extends Component {
                     fixedColumnCount={fixFirstColumn ? 1 : 0}
                     columnCount={properties.length}
                     columnWidth={({ index }) =>
-                      fullWidth
-                        ? fullWidthColWidth
-                        : schema.properties[properties[index]].width ||
-                          DEFAULT_COLUMN_WIDTH
+                      this.calculateColWidth(
+                        schema,
+                        properties,
+                        index,
+                        fullWidth,
+                        fullWidthColWidth
+                      )
                     }
                     enableFixedColumnScroll
                     overscanColumnCount={0}
@@ -167,19 +201,19 @@ class SimpleTable extends Component {
                         items[disableHeader ? rowIndex : rowIndex - 1]
                       const cellData = rowData[property]
 
-                      const height = rowHeight
-                      const width = fullWidth
-                        ? fullWidthColWidth
-                        : schema.properties[properties[columnIndex]].width ||
-                          DEFAULT_COLUMN_WIDTH
-
                       return (
                         <div
                           key={key}
                           style={{
                             ...style,
-                            height,
-                            width,
+                            height: rowHeight,
+                            width: this.calculateColWidth(
+                              schema,
+                              properties,
+                              columnIndex,
+                              fullWidth,
+                              fullWidthColWidth
+                            ),
                           }}
                           className={`flex items-center w-100 h-100 truncate ph4 ${
                             disableHeader && rowIndex === 0 ? 'bt' : ''

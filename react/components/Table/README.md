@@ -3,6 +3,7 @@
 Our Table was built to be highly composable and flexible. All parts are optional, and you can compose your table with any other Styleguide components. A Table may be used from a small table with numbers to full CRUD-like functionalities, from a small data display to the main screen of a complex module. All parts are plug'n'play parts that you can turn on and off to match your needs.
 
 ### 👍 Dos
+
 - Try to support as many of the Table features as you can in your system - if we designed there it's because it's highly recommended to have.
 - Provide as many domain-specific actions as you want in the dropdown slot.
 - Line actions: should be mostly for actions that are resolved in the same screen, or if it's was identified to be a very recurrent action.
@@ -14,28 +15,33 @@ Our Table was built to be highly composable and flexible. All parts are optional
 Simple (high density)
 
 ```js
-const sampleData = require('./sampleData').default;
-const itemsCopy = sampleData.items.slice().reverse().splice(15);
+const sampleData = require('./sampleData').default
+const itemsCopy = sampleData.items
+  .slice()
+  .reverse()
+  .splice(15)
 const defaultSchema = {
-    properties: {
-      name: {
-        type: 'string',
-        title: 'Name',
-        width: 300,
-      },
-      email: {
-        type: 'string',
-        title: 'Email',
-        width: 350, // default is 200px
-      },
-      number: {
-        type: 'number',
-        title: 'Number',
-      },
+  properties: {
+    name: {
+      type: 'string',
+      title: 'Name',
+      width: 300,
     },
-  };
+    email: {
+      type: 'string',
+      title: 'Email',
+      minWidth: 350,
+    },
+    number: {
+      type: 'number',
+      title: 'Number',
+      // default is 200px
+      minWidth: 100,
+    },
+  },
+}
 
-<div>
+;<div>
   <div className="mb5">
     <Table
       fullWidth
@@ -59,9 +65,12 @@ const defaultSchema = {
 Custom cell components / sortable columns
 
 ```js
-const sampleData = require('./sampleData').default;
-const itemsCopy = sampleData.items.slice().reverse().splice(20);
-const Tag = require('../Tag').default;
+const sampleData = require('./sampleData').default
+const itemsCopy = sampleData.items
+  .slice()
+  .reverse()
+  .splice(20)
+const Tag = require('../Tag').default
 class CustomTableExample extends React.Component {
   constructor() {
     super()
@@ -70,7 +79,7 @@ class CustomTableExample extends React.Component {
       dataSort: {
         sortedBy: null,
         sortOrder: null,
-      }
+      },
     }
 
     this.sortNameAlphapeticallyASC = this.sortNameAlphapeticallyASC.bind(this)
@@ -78,22 +87,27 @@ class CustomTableExample extends React.Component {
     this.handleSort = this.handleSort.bind(this)
   }
 
-  sortNameAlphapeticallyASC(a, b) { return (a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0 }
-  sortNameAlphapeticallyDESC(a, b) { return (a.name < b.name) ? 1 : (a.name > b.name) ? -1 : 0 }
+  sortNameAlphapeticallyASC(a, b) {
+    return a.name < b.name ? -1 : a.name > b.name ? 1 : 0
+  }
+  sortNameAlphapeticallyDESC(a, b) {
+    return a.name < b.name ? 1 : a.name > b.name ? -1 : 0
+  }
 
   handleSort({ sortOrder, sortedBy }) {
-     // I'll just handle sort by 'name', but I could handle multiple properties
+    // I'll just handle sort by 'name', but I could handle multiple properties
     if (sortedBy === 'name') {
-      const orderedItems = sortOrder === 'ASC'
-        ? itemsCopy.slice().sort(this.sortNameAlphapeticallyASC)
-        : itemsCopy.slice().sort(this.sortNameAlphapeticallyDESC)
+      const orderedItems =
+        sortOrder === 'ASC'
+          ? itemsCopy.slice().sort(this.sortNameAlphapeticallyASC)
+          : itemsCopy.slice().sort(this.sortNameAlphapeticallyDESC)
       // the above const could come out of an API call to sort items for example
       this.setState({
         orderedItems,
         dataSort: {
           sortedBy,
           sortOrder,
-        }
+        },
       })
     }
   }
@@ -120,15 +134,20 @@ class CustomTableExample extends React.Component {
           // you can customize cell component render (also header component with headerRenderer)
           cellRenderer: ({ cellData }) => {
             return (
-              <Tag bgColor={cellData.color} color="#fff" onClick={(e) => {
+              <Tag
+                bgColor={cellData.color}
+                color="#fff"
+                onClick={e => {
                   // if you use cellRender click event AND onRowclick event
                   // you should stop the event propagation so the cell click fires and row click don't
                   e.stopPropagation()
-                  alert(`you just clicked a cell to remove ${cellData.label}, HEX: ${cellData.color}`)
+                  alert(
+                    `you just clicked a cell to remove ${
+                      cellData.label
+                    }, HEX: ${cellData.color}`
+                  )
                 }}>
-                <span className="nowrap">
-                  {cellData.label}
-                </span>
+                <span className="nowrap">{cellData.label}</span>
               </Tag>
             )
           },
@@ -136,7 +155,7 @@ class CustomTableExample extends React.Component {
           // headerRenderer: ({ columnIndex, key, rowIndex, style, title })
         },
       },
-    };
+    }
 
     return (
       <div>
@@ -156,9 +175,10 @@ class CustomTableExample extends React.Component {
           />
         </div>
       </div>
-    );
+    )
   }
-};<CustomTableExample />
+}
+;<CustomTableExample />
 ```
 
 With Toolbar and Pagination
@@ -196,7 +216,7 @@ class ResourceListExample extends React.Component {
   handleNextClick() {
     const newPage = this.state.currentPage + 1
     const itemFrom = this.state.currentItemTo + 1
-    const itemTo = tableLength * (newPage)
+    const itemTo = tableLength * newPage
     const data = sampleData.items.slice(itemFrom - 1, itemTo)
     this.goToPage(newPage, itemFrom, itemTo, data)
   }
@@ -259,9 +279,7 @@ class ResourceListExample extends React.Component {
       cellRenderer: ({ cellData }) => {
         return (
           <Tag bgColor={cellData.color} color="#fff">
-            <span className="nowrap">
-              {cellData.label}
-            </span>
+            <span className="nowrap">{cellData.label}</span>
           </Tag>
         )
       },
@@ -292,7 +310,7 @@ class ResourceListExample extends React.Component {
         color5: this.customColorTagProperty(5),
         color6: this.customColorTagProperty(6),
       },
-    };
+    }
 
     return (
       <Table
@@ -332,21 +350,21 @@ class ResourceListExample extends React.Component {
             actions: [
               {
                 label: 'alert 1',
-                handleCallback: () => alert('1')
+                handleCallback: () => alert('1'),
               },
               {
                 label: 'alert 2',
-                handleCallback: () => alert('2')
+                handleCallback: () => alert('2'),
               },
               {
                 label: 'alert 3',
-                handleCallback: () => alert('3')
+                handleCallback: () => alert('3'),
               },
             ],
           },
           newLine: {
             label: 'New',
-            handleCallback: () => alert('handle new line callback')
+            handleCallback: () => alert('handle new line callback'),
           },
         }}
         pagination={{
