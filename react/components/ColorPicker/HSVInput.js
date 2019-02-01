@@ -1,18 +1,10 @@
 import React from 'react'
-import colorutil from 'color-util'
+import colorutil from './colorUtil'
 import PropTypes from 'prop-types'
 import Input from './../../Input'
 
-/** HUE max input value */
-const HUE_MAX_VALUE = 360
-/** RGB max input value */
-const RGB_MAX_VALUE = 255
-
 /** HSVInput component */
 class HSVInput extends React.Component {
-  /**
-   * Get Value from input and validate
-   */
   getValue = event => {
     const max = Number(event.target.max)
     const min = Number(event.target.min)
@@ -24,27 +16,19 @@ class HSVInput extends React.Component {
     return value
   }
 
-  /**
-   * Handle input change
-   */
   handleChange = (event, key) => {
     const value = this.getValue(event)
 
-    const currentColor = { ...this.props.color, [key]: value }
-    const rgb = colorutil.hsv.to.rgb({
-      ...currentColor,
-      h: currentColor.h / HUE_MAX_VALUE,
-    })
+    const hsv = { ...this.props.color, [key]: value }
+    const rgb = colorutil.hsv.to.rgb(hsv)
     const hex = colorutil.rgb.to.hex(rgb)
 
     this.props.onChange({
-      rgb: { ...rgb, a: rgb.a / RGB_MAX_VALUE },
+      rgb,
       hex,
-      hsv: currentColor,
+      hsv,
     })
   }
-
-  /** Render HSVInput */
   render() {
     return (
       <div className="mv3">

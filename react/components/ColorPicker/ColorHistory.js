@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import colorutil from './colorUtil'
 
 /**
  * ColorHistory Component
@@ -8,16 +9,25 @@ class ColorHistory extends React.Component {
   /**
    * Render sigle color block
    */
-  renderColorBlock = color => {
-    const { rgba } = color
+  renderColorBlock = colorInput => {
+    const { rgba, hsva, hex } = colorInput
+    const color = rgba || hsva || hex || '#FFFFFF'
+    const colorInRGB = colorutil.any.to.rgb(color)
     const styleColorBox = {
-      backgroundColor: `rgba(${rgba.r},${rgba.g},${rgba.b},${rgba.a})`,
+      backgroundColor: `rgba(${colorInRGB.r},${colorInRGB.g},${colorInRGB.b},${
+        colorInRGB.a
+      })`,
       height: '1.5rem',
+    }
+    const output = {
+      rgba: colorInRGB,
+      hsva: colorutil.any.to.hsv(color),
+      hex: colorutil.any.to.hex(color),
     }
 
     return (
       <div
-        onClick={() => this.props.onColorChange(color)}
+        onClick={() => this.props.onColorChange(output)}
         className="br2 ba b--muted-4 w-100 ma1 hover-b--action-primary pointer"
         style={styleColorBox}
       />
@@ -57,21 +67,7 @@ ColorHistory.defaultProps = {
   /** Default historyLength */
   historyLength: 9,
   /** Default color to empty blocks */
-  defaultColor: {
-    rgba: {
-      r: 255,
-      g: 255,
-      b: 255,
-      a: 1,
-    },
-    hsva: {
-      h: 360,
-      s: 1,
-      v: 1,
-      a: 1,
-    },
-    hex: '#FFFFFF',
-  },
+  defaultColor: { hex: '#FFFFFF' },
 }
 
 /** ColorHistory Props */

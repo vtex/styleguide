@@ -1,5 +1,5 @@
 import React from 'react'
-import { PropTypes } from 'prop-types'
+import PropTypes from 'prop-types'
 import Gradient from './Gradient'
 import Saturation from './Saturation'
 import Alpha from './Alpha'
@@ -26,7 +26,6 @@ export default class ColorOptions extends React.Component {
    * Handle input changes
    */
   handleOnChangeInput = e => {
-    console.log(e.target.value)
     this.setState({
       currentInput: e.target.value,
     })

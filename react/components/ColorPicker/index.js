@@ -1,14 +1,130 @@
 import React from 'react'
-import ColorContent from './ColorContent'
+import OutsideClickHandler from 'react-outside-click-handler'
+import PropTypes from 'prop-types'
+import colorutil from './colorUtil'
+import HexInput from './HexInput'
+import ColorOptions from './ColorOptions'
 
 import './color-picker.global.css'
 
 /**
- * ColorPicker App
+ * ColorPicker Component
  */
-export default class ColorPicker extends React.Component {
-  /** Render ColorPicker App */
+class ColorPicker extends React.Component {
+  state = {
+    showOptions: false,
+  }
+
+  validColor() {
+    const { rgba, hsva, hex } = this.props.color
+    const color = rgba || hsva || hex
+    const hsvaAux = color && (hsva || colorutil.any.to.hsv(color))
+    const hexAux = color && (hex || colorutil.any.to.hex(color))
+    const rgbaAux = color && (rgba || colorutil.any.to.rgb(color))
+
+    return {
+      rgba: rgbaAux,
+      hsva: hsvaAux,
+      hex: hexAux,
+    }
+  }
+
+  handleColorChange = color => {
+    const { onChange } = this.props
+    onChange &&
+      onChange({
+        rgba: color.rgb || color.rgba,
+        hsva: color.hsv || color.hsva,
+        hex: color.hex,
+      })
+  }
+
+  handleOutsideClick = () => {
+    this.setState({ showOptions: false })
+  }
+
+  handleShowOptions = () => {
+    this.setState({ showOptions: !this.state.showOptions })
+  }
+
   render() {
-    return <ColorContent {...this.props} />
+    const { title, disable, disableOptions } = this.props
+    const { rgba, hsva, hex } = this.validColor()
+
+    const styleColorBox = {
+      backgroundColor: `rgba(${rgba.r},${rgba.g},${rgba.b},${rgba.a})`,
+      height: '1.5rem',
+    }
+
+    const isDisableOptions = disable || disableOptions
+
+    return (
+      <OutsideClickHandler onOutsideClick={this.handleOutsideClick}>
+        <div className="relative dib w-100">
+          {title && (
+            <div className="bb b--muted-4 mb3 t-heading-5 pv5">{title}</div>
+          )}
+          <div className="flex w-100">
+            <div className="w-25 pa1">
+              <span className="t-small w-100 c-on-base db mb3">
+                {this.props.colorState}
+              </span>
+              <div
+                className={`ba bw1 b--muted-4 br2 pa1 ${
+                  isDisableOptions ? '' : 'hover-b--action-primary pointer'
+                }`}
+                onClick={this.handleShowOptions}>
+                <div className="br1" style={styleColorBox} />
+              </div>
+            </div>
+            <div className="w-75 pa1">
+              <HexInput
+                rgb={rgba}
+                onChange={this.handleColorChange}
+                disable={disable}
+              />
+            </div>
+          </div>
+          <div>
+            {this.state.showOptions && !isDisableOptions && (
+              <ColorOptions
+                {...this.props}
+                color={{ rgba, hex, hsva }}
+                onColorChange={this.handleColorChange}
+              />
+            )}
+          </div>
+        </div>
+      </OutsideClickHandler>
+    )
   }
 }
+
+/** Default props values */
+ColorPicker.defaultProps = {
+  colorState: 'Default',
+}
+
+ColorPicker.propTypes = {
+  /** onChange event */
+  onChange: PropTypes.func,
+  /** Color state */
+  colorState: PropTypes.string,
+  /** ColorPicker Title */
+  title: PropTypes.string,
+  /** Color format */
+  color: PropTypes.shape({
+    /** RGBA color format */
+    rgba: PropTypes.object,
+    /** HSVA color format */
+    hsva: PropTypes.object,
+    /** HEX color format */
+    hex: PropTypes.string,
+  }).isRequired,
+  /** Disable options box */
+  disableOptions: PropTypes.bool,
+  /** Disable component */
+  disable: PropTypes.bool,
+}
+
+export default ColorPicker

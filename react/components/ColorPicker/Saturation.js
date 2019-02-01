@@ -5,7 +5,6 @@ import { Saturation } from 'react-color/lib/components/common'
 
 /** SaturationCustom Component */
 class SaturationCustom extends React.Component {
-  /** Render SaturationCustom Component */
   render() {
     const { hex, onChange } = this.props
     return (
@@ -14,10 +13,7 @@ class SaturationCustom extends React.Component {
           {...this.props}
           onChange={onChange}
           pointer={() => (
-            <div
-              className="pointer-saturation"
-              style={{ background: hex.rgb }}
-            />
+            <div className="pointer-saturation" style={{ background: hex }} />
           )}
         />
       </div>
@@ -29,7 +25,7 @@ SaturationCustom.propTypes = {
   /** onChenge event */
   onChange: PropTypes.func,
   /** Pointer hex color  */
-  hex: PropTypes.object,
+  hex: PropTypes.string,
 }
 
 export default CustomPicker(SaturationCustom)

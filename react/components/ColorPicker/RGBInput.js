@@ -1,20 +1,12 @@
 import React from 'react'
 import { PropTypes } from 'prop-types'
-import colorutil from 'color-util'
+import colorutil from './colorUtil'
 import Input from './../../Input'
-
-/** HUE max input value */
-const HUE_MAX_VALUE = 360
-/** RGB max input value */
-const RGB_MAX_VALUE = 255
 
 /**
  * RGBInput Component
  */
 class RGBInput extends React.Component {
-  /**
-   * Get Value from input and validate
-   */
   getValue = event => {
     const max = Number(event.target.max)
     const min = Number(event.target.min)
@@ -25,31 +17,19 @@ class RGBInput extends React.Component {
 
     return value
   }
-
-  /**
-   * Handle input changes
-   */
   handleChange = (event, key) => {
     const value = this.getValue(event)
 
-    const currentColor = { ...this.props.color, [key]: value }
-    const rgbFormated = {
-      ...currentColor,
-      a: currentColor.a * RGB_MAX_VALUE,
-    }
-    const hsv = colorutil.rgb.to.hsv(rgbFormated)
-    const hex = colorutil.rgb.to.hex(rgbFormated)
+    const rgb = { ...this.props.color, [key]: value }
+    const hsv = colorutil.rgb.to.hsv(rgb)
+    const hex = colorutil.rgb.to.hex(rgb)
 
     this.props.onChange({
-      hsv: { ...hsv, h: hsv.h * HUE_MAX_VALUE },
+      hsv,
       hex,
-      rgb: currentColor,
+      rgb,
     })
   }
-
-  /**
-   * Render RGBInput Component
-   */
   render() {
     return (
       <div className="mv3">
