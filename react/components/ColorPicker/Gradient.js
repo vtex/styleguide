@@ -33,7 +33,7 @@ Gradient.propTypes = {
   /** onChange event */
   onChange: PropTypes.func,
   /** Pointer Hex Color */
-  hex: PropTypes.object,
+  hex: PropTypes.string,
 }
 
 export default CustomPicker(Gradient)
