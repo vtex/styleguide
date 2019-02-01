@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const Box = ({ children }) => (
-  <div className="bg-base t-body c-on-base pa7 br3 b--muted-4 ba">
+  <div className="styleguide__box bg-base t-body c-on-base pa5 pa7-ns br3-ns b--muted-4 bt bb bl-ns br-ns">
     {children}
   </div>
 )
