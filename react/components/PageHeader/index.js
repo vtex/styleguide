@@ -13,7 +13,7 @@ class PageHeader extends PureComponent {
     const { linkLabel, children } = this.props
 
     return (
-      <div className="vtex-pageHeader__container pa7">
+      <div className="vtex-pageHeader__container pa5 pa7-ns">
         {linkLabel && (
           <div className="vtex-pageHeader-link__container">
             <Button

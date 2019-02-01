@@ -15,11 +15,14 @@ class PageBlock extends Component {
       'flex flex-column': isAnnotated && titleAside,
     })
 
-    let titleClasses = 't-heading-3 mb3 ml3'
+    let titleClasses = 'styleguide__pageBlock_title t-heading-3 mb3 ml5 ml3-ns '
     titleClasses += titleAside ? 'mt0' : 'mt4'
 
     return (
-      <div className={`flex ${isAnnotated ? 'flex-row' : 'flex-column'}`}>
+      <div
+        className={`styleguide__pageBlock flex ${
+          isAnnotated ? 'flex-row' : 'flex-column'
+        }`}>
         {/* Title, subtitle & aside */}
         {(title || subtitle) && (
           <div className={headerClasses}>
