@@ -7,6 +7,7 @@
     "react-responsive-modal": "^2.0.1",
     "react-select": "^2.1.2",
     "react-virtualized": "^9.19.1",
+    "uuid": "^3.3.2",
     "vtex-tachyons": "^2.10.0"
   }
 }
