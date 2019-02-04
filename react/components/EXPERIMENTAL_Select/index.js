@@ -22,13 +22,13 @@ class Select extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {
+    this.inputId = `react-select-input-${uuid()}`
       inputId: `react-select-input-${uuid()}`,
     }
   }
 
   componentDidUpdate() {
-    document.getElementById(this.state.inputId).focus()
+    document.getElementById(this.inputId).focus()
   }
 
   render() {
@@ -82,7 +82,7 @@ class Select extends Component {
       isLoading: loading,
       isMulti: multi,
       noOptionsMessage,
-      inputId: inputId,
+      inputId: this.inputId,
       onInputChange: (value, { action }) => {
         if (
           action === 'input-change' &&
