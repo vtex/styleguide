@@ -23,8 +23,6 @@ class Select extends Component {
     super(props)
 
     this.inputId = `react-select-input-${uuid()}`
-      inputId: `react-select-input-${uuid()}`,
-    }
   }
 
   componentDidUpdate() {
@@ -49,8 +47,6 @@ class Select extends Component {
       size,
       value,
     } = this.props
-
-    const { inputId } = this.state
 
     const reactSelectComponentProps = {
       autoFocus,
