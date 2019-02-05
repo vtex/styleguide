@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [9.0.2] - 2019-2-5
 ### Changed
 - Rebase 9.x version with 8.x changes
 - Remove entrypoints.js script from prereleasy
