@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Changed
 - Rebase 9.x version with 8.x changes
+- Remove entrypoints.js script from prereleasy
 
 ## [9.0.1] - 2019-01-24
 ### Fixed
