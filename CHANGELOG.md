@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.17.3] - 2019-02-04
+
+### Fixed
+
+- **EXPERIMENTAL_Select** fixed lost of focus behaviour when props were updated.
+
 ## [8.17.2] - 2019-02-01
 
 ## [8.17.2-beta] - 2019-02-01
