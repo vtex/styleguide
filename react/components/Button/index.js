@@ -126,7 +126,7 @@ class Button extends Component {
 
     if (block) {
       classes += 'w-100 h-100 '
-      labelClasses += 'w-100 '
+      if (!isLoading) labelClasses += 'w-100 '
     }
 
     return (
