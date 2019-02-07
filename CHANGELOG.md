@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - **EXPERIMENTAL_Select** fixed lost of focus behaviour when props were updated.
+- **PageLayout** now occupies all available width (even without using fullWidth)
 
 ## [8.17.2] - 2019-02-01
 

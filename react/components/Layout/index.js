@@ -7,7 +7,7 @@ class Layout extends Component {
 
     return (
       <div className="styleguide__layout flex justify-center pb7 bg-muted-5 min-h-100">
-        <div className={fullWidth ? 'w-100' : 'mw8'}>
+        <div className={fullWidth ? 'w-100' : 'w-100 mw8'}>
           {pageHeader}
           <div className="layout__container ph7-ns">{children}</div>
         </div>
