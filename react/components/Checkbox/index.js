@@ -3,6 +3,9 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import CheckIcon from '../icon/Check'
 
+const OPTICAL_COMPENSATION_WITH_LABEL = -1.5
+const OPTICAL_COMPENSATION_WITHOUT_LABEL = -2
+
 class Checkbox extends PureComponent {
   handleChange = e => !this.props.disabled && this.props.onChange(e)
 
@@ -16,12 +19,13 @@ class Checkbox extends PureComponent {
         })}>
         <div
           className={classNames(
-            'h1 w1 relative ba bw1 br1 mr3 flex justify-center items-center',
+            'h1 w1 relative ba bw1 br1 flex justify-center items-center',
             {
               'b--muted-4 pointer': !checked && !disabled,
               'b--disabled bg-muted-5 c-disabled': !checked && disabled,
               'b--action-primary bg-action-primary': checked && !disabled,
               'b--disabled bg-disabled': checked && disabled,
+              mr3: label,
             }
           )}
           style={{
@@ -30,7 +34,12 @@ class Checkbox extends PureComponent {
         />
         <div
           className="absolute w1 h1 flex o-100"
-          style={{ left: 2, top: -1.5 }}>
+          style={{
+            left: 2,
+            top: label
+              ? OPTICAL_COMPENSATION_WITH_LABEL
+              : OPTICAL_COMPENSATION_WITHOUT_LABEL,
+          }}>
           <div
             className={`absolute top-0 left-0 bottom-0 overflow-hidden ${
               disabled ? 'c-on-disabled' : 'c-on-action-primary'
@@ -56,14 +65,16 @@ class Checkbox extends PureComponent {
           value={value}
           tabIndex={0}
         />
-        <label
-          className={classNames(
-            { 'c-disabled': disabled },
-            { 'c-on-base pointer': !disabled }
-          )}
-          htmlFor={id}>
-          {label}
-        </label>
+        {label && (
+          <label
+            className={classNames(
+              { 'c-disabled': disabled },
+              { 'c-on-base pointer': !disabled }
+            )}
+            htmlFor={id}>
+            {label}
+          </label>
+        )}
       </div>
     )
   }
@@ -83,7 +94,7 @@ Checkbox.propTypes = {
   /** (Input spec attribute) */
   id: PropTypes.string,
   /** Checkbox label */
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   /** (Input spec attribute) */
   name: PropTypes.string.isRequired,
   /** onChange event */
