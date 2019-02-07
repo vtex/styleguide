@@ -906,3 +906,48 @@ class ResourceListExample extends React.Component {
 }
 ;<ResourceListExample />
 ```
+
+Bulk actions
+
+```js
+const sampleData = require('./sampleData').default
+const itemsCopy = sampleData.items
+  .slice()
+  .reverse()
+  .splice(20)
+const defaultSchema = {
+  properties: {
+    name: {
+      type: 'string',
+      title: 'Name',
+    },
+    email: {
+      type: 'string',
+      title: 'Email',
+    },
+    number: {
+      type: 'number',
+      title: 'Number',
+    },
+  },
+}
+
+;<div>
+  <div className="mb5">
+    <Table
+      fullWidth
+      schema={defaultSchema}
+      items={itemsCopy}
+      density="high"
+      bulkActions
+      oonRowClick={({ rowData }) => {
+        alert(
+          `you just clicked ${rowData.name}, number is ${
+            rowData.number
+          } and email ${rowData.email}`
+        )
+      }}
+    />
+  </div>
+</div>
+```

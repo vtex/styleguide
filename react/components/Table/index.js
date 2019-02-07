@@ -10,6 +10,7 @@ import FilterBar from '../FilterBar'
 import SimpleTable from './SimpleTable'
 import Toolbar from './Toolbar'
 import Totalizers from './Totalizers'
+import Checkbox from '../Checkbox'
 
 const TABLE_HEADER_HEIGHT = 36
 const EMPTY_STATE_SIZE_IN_ROWS = 5
@@ -96,10 +97,43 @@ class Table extends PureComponent {
       fullWidth,
       lineActions,
       loading,
+      bulkActions,
       totalizers,
       filters,
     } = this.props
     const { hiddenFields, tableRowHeight, selectedDensity } = this.state
+
+    if (bulkActions) {
+      schema.properties = {
+        bulk: {
+          width: 40,
+          type: 'string',
+          headerRenderer: () => (
+            <div className="buld__actions_selectAll flex justify-center items-center">
+              <Checkbox
+                checked={false}
+                id="select-all"
+                label=""
+                name="select-all"
+                onChange={() => console.log('hay all')}
+                value="select-all"
+              />
+            </div>
+          ),
+          cellRenderer: ({ rowData }) => (
+            <Checkbox
+              checked={false}
+              id="select-one"
+              label=""
+              name="select-one"
+              onChange={() => console.log(rowData, schema)}
+              value="select-one"
+            />
+          ),
+        },
+        ...schema.properties,
+      }
+    }
 
     const properties = Object.keys(schema.properties)
     const emptyState = !!(
@@ -189,6 +223,7 @@ Table.defaultProps = {
   },
   emptyStateLabel: 'Nothing to show.',
   fullWidth: false,
+  bulkActions: false,
   totalizers: [],
 }
 
@@ -285,6 +320,7 @@ Table.propTypes = {
     textOf: PropTypes.string,
     totalItems: PropTypes.number,
   }),
+  bulkActions: PropTypes.bool,
   /** Totalizers property  */
   totalizers: PropTypes.array,
   /** Filters property  */
