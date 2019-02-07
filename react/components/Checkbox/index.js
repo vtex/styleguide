@@ -16,12 +16,13 @@ class Checkbox extends PureComponent {
         })}>
         <div
           className={classNames(
-            'h1 w1 relative ba bw1 br1 mr3 flex justify-center items-center',
+            'h1 w1 relative ba bw1 br1 flex justify-center items-center',
             {
               'b--muted-4 pointer': !checked && !disabled,
               'b--disabled bg-muted-5 c-disabled': !checked && disabled,
               'b--action-primary bg-action-primary': checked && !disabled,
               'b--disabled bg-disabled': checked && disabled,
+              mr3: label,
             }
           )}
           style={{
@@ -30,7 +31,7 @@ class Checkbox extends PureComponent {
         />
         <div
           className="absolute w1 h1 flex o-100"
-          style={{ left: 2, top: -1.5 }}>
+          style={{ left: 2, top: label ? -1.5 : -2 }}>
           <div
             className={`absolute top-0 left-0 bottom-0 overflow-hidden ${
               disabled ? 'c-on-disabled' : 'c-on-action-primary'
@@ -56,14 +57,16 @@ class Checkbox extends PureComponent {
           value={value}
           tabIndex={0}
         />
-        <label
-          className={classNames(
-            { 'c-disabled': disabled },
-            { 'c-on-base pointer': !disabled }
-          )}
-          htmlFor={id}>
-          {label}
-        </label>
+        {label && (
+          <label
+            className={classNames(
+              { 'c-disabled': disabled },
+              { 'c-on-base pointer': !disabled }
+            )}
+            htmlFor={id}>
+            {label}
+          </label>
+        )}
       </div>
     )
   }
@@ -83,7 +86,7 @@ Checkbox.propTypes = {
   /** (Input spec attribute) */
   id: PropTypes.string,
   /** Checkbox label */
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   /** (Input spec attribute) */
   name: PropTypes.string.isRequired,
   /** onChange event */
