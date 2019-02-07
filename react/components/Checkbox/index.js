@@ -3,6 +3,9 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import CheckIcon from '../icon/Check'
 
+const OPTICAL_COMPENSATION_WITH_LABEL = -1.5
+const OPTICAL_COMPENSATION_WITHOUT_LABEL = -2
+
 class Checkbox extends PureComponent {
   handleChange = e => !this.props.disabled && this.props.onChange(e)
 
@@ -31,7 +34,12 @@ class Checkbox extends PureComponent {
         />
         <div
           className="absolute w1 h1 flex o-100"
-          style={{ left: 2, top: label ? -1.5 : -2 }}>
+          style={{
+            left: 2,
+            top: label
+              ? OPTICAL_COMPENSATION_WITH_LABEL
+              : OPTICAL_COMPENSATION_WITHOUT_LABEL,
+          }}>
           <div
             className={`absolute top-0 left-0 bottom-0 overflow-hidden ${
               disabled ? 'c-on-disabled' : 'c-on-action-primary'
