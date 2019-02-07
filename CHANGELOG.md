@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.17.4] - 2019-02-07
+
+### Removed
+
+- **Checkbox** `margin-bottom`
+
 ## [8.17.3] - 2019-02-04
 
 ### Fixed
