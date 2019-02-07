@@ -11,7 +11,7 @@ The centered version has a max width. This layout version will keep the page con
 ```js
 <Layout pageHeader={<PageHeader title="Page title centered" />}>
   <PageBlock>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada ut neque id pharetra. Suspendisse tortor eros, sagittis at molestie at, semper mollis urna. Sed porta ipsum ac vulputate ultrices. Mauris sed libero quis risus rutrum efficitur in nec justo.
+    <Button>click me</Button>
   </PageBlock>
 </Layout>
 ```
