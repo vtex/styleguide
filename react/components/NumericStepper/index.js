@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import '../Input/edge.global.css'
+import { hideDecorators } from '../Input/edge.css'
 
 const normalizeMin = min => (min == null ? -Infinity : min)
 const normalizeMax = max => (max == null ? Infinity : max)
@@ -215,13 +215,12 @@ class NumericStepper extends Component {
           ) : (
             <input
               type="tel"
-              className={`z-1 order-1 tc bw1 ${borderClasses} br0 ${inputClasses} hide-edge-input-decorations`}
+              className={`z-1 order-1 tc bw1 ${borderClasses} br0 ${inputClasses} ${hideDecorators}`}
               style={{
                 ...(block && {
                   width: 0,
                 }),
                 WebkitAppearance: 'none',
-                MsClear: { display: 'none' },
               }}
               value={displayValue}
               onChange={this.handleTypeQuantity}

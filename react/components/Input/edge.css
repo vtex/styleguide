@@ -1,0 +1,3 @@
+.hideDecorators::-ms-clear{
+  display: none;
+}
