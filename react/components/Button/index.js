@@ -23,7 +23,6 @@ class Button extends Component {
     const {
       size,
       block,
-      fullHeight,
       variation,
       icon,
       children,
@@ -127,10 +126,6 @@ class Button extends Component {
       classes += 'w-100 '
     }
 
-    if (fullHeight) {
-      classes += 'h-100 '
-    }
-
     return (
       <button
         id={this.props.id}
@@ -171,7 +166,6 @@ class Button extends Component {
 Button.defaultProps = {
   size: 'regular',
   block: false,
-  fullHeight: false,
   variation: 'primary',
   disabled: false,
   autoFocus: false,
@@ -193,8 +187,6 @@ Button.propTypes = {
   ]),
   /** Block style */
   block: PropTypes.bool,
-  /** Height 100% */
-  fullHeight: PropTypes.bool,
   /** Loading state */
   isLoading: PropTypes.bool,
   /** [DEPRECATED] If you are using just an Icon component inside, use this as true */
