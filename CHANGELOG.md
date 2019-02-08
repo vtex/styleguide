@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **Input** hide Input decorations in Internet Explorer and MS Edge.
 - **NumericStepper** hide Input decorations in Internet Explorer and MS Edge.
 - **Button** remove height 100% from block prop.
-- **Pagination** align rows lable in center in MS Edge and Internet Explorer.
+- **Pagination** align Rows quentity selector label in center in Internet Explorer and MS Edge.
 
 ## [8.17.5] - 2019-02-07
 
