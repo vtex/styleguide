@@ -107,7 +107,7 @@ class Dropdown extends Component {
 
     let classes = 'bg-transparent bn w-100 h-100 '
     let containerClasses = `${isInline ? '' : 'bw1'} br2 relative `
-    let selectClasses = 'o-0 absolute top-0 left-0 w-100 bottom-00 '
+    let selectClasses = 'o-0 absolute top-0 left-0 h-100 w-100 bottom-00 '
 
     let labelClasses = 'vtex-dropdown__label db mb3 w-100 c-on-base '
 

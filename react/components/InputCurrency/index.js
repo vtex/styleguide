@@ -45,20 +45,32 @@ class InputCurrency extends Component {
       currency: currencyCode,
     })
 
-    const formattedParts = formatter.formatToParts(baseNumber)
-    const prefix = !formattedParts.map(part => part.type).indexOf('currency')
+    const formattedParts = formatter.formatToParts
+      ? formatter.formatToParts(baseNumber)
+      : null
+    const prefix = formattedParts
+      ? !formattedParts.map(part => part.type).indexOf('currency')
+      : true
     const [currencySymbol] = formattedParts
-      .filter(part => part.type === 'currency')
-      .map(part => part.value)
+      ? formattedParts
+          .filter(part => part.type === 'currency')
+          .map(part => part.value)
+      : ['$']
     const [decimalSeparator] = formattedParts
-      .filter(part => part.type === 'decimal')
-      .map(part => part.value)
+      ? formattedParts
+          .filter(part => part.type === 'decimal')
+          .map(part => part.value)
+      : ['.']
     const [thousandSeparator] = formattedParts
-      .filter(part => part.type === 'group')
-      .map(part => part.value)
+      ? formattedParts
+          .filter(part => part.type === 'group')
+          .map(part => part.value)
+      : [',']
     const [fraction] = formattedParts
-      .filter(part => part.type === 'fraction')
-      .map(part => part.value)
+      ? formattedParts
+          .filter(part => part.type === 'fraction')
+          .map(part => part.value)
+      : ['99']
 
     return (
       <div>

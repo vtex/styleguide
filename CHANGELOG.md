@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.17.7] - 2019-02-08
+
+## [8.17.6] - 2019-02-08
+
+### Fixed
+
+- **Dropdown** select position and height in Windows Chrome was preventing click action on bottom part of Dropdown.
+- **Input** hide Input decorations in Internet Explorer and MS Edge.
+- **NumericStepper** hide Input decorations in Internet Explorer and MS Edge.
+- **Button** remove height 100% from block prop.
+- **Pagination** align Rows quantity selector label in center in Internet Explorer and MS Edge.
+
 ## [8.17.5] - 2019-02-07
 
 ### Changed

@@ -174,4 +174,3 @@
           <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/padding" class="link fw6 blue dim">MDN - Padding</a>
         </div>
       </div>
-      ```
