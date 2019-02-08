@@ -55,7 +55,7 @@ class InputCurrency extends Component {
       ? formattedParts
           .filter(part => part.type === 'currency')
           .map(part => part.value)
-      : ['¤']
+      : ['$']
     const [decimalSeparator] = formattedParts
       ? formattedParts
           .filter(part => part.type === 'decimal')
