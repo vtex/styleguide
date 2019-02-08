@@ -9,11 +9,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- **Dropdown** select position and height in Windows Chrome was preventing click action on bottom part of dropdown.
-- **Input** hide input decorations in IE and MS Edge.
-- **NumericStepper** hide input decorations in internet explorer and ms Edge.
-- **Button** remove full height from block prop.
-- **Pagination** align rows lable in center in edge and IE.
+- **Dropdown** select position and height in Windows Chrome was preventing click action on bottom part of Dropdown.
+- **Input** hide Input decorations in IE and MS Edge.
+- **NumericStepper** hide Input decorations in Internet Explorer and MS Edge.
+- **Button** remove height 100% from block prop.
+- **Pagination** align rows lable in center in MS Edge and Internet Explorer.
 
 ## [8.17.5] - 2019-02-07
 

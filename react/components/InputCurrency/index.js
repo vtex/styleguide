@@ -45,8 +45,9 @@ class InputCurrency extends Component {
       currency: currencyCode,
     })
 
-    const formattedParts =
-      formatter.formatToParts && formatter.formatToParts(baseNumber)
+    const formattedParts = formatter.formatToParts
+      ? formatter.formatToParts(baseNumber)
+      : null
     const prefix = formattedParts
       ? !formattedParts.map(part => part.type).indexOf('currency')
       : true
