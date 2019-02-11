@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- **Table** `isLoading` prop for toolbar buttons
+
 ## [8.17.7] - 2019-02-08
 
 ## [8.17.6] - 2019-02-08

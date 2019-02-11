@@ -268,6 +268,7 @@ class Toolbar extends PureComponent {
               }
               disabled={loading}
               variation="tertiary"
+              isLoading={download.isLoading}
               size="small"
               onClick={download.handleCallback}>
               <span className="c-on-base">{download.label}</span>
@@ -281,6 +282,7 @@ class Toolbar extends PureComponent {
                 </span>
               }
               disabled={loading}
+              isLoading={upload.isLoading}
               variation="tertiary"
               size="small"
               onClick={upload.handleCallback}>
@@ -300,6 +302,7 @@ class Toolbar extends PureComponent {
                 }
                 iconPosition="right"
                 disabled={loading}
+                isLoading={extraActions.isLoading}
                 variation="tertiary"
                 size="small"
                 onClick={() =>
@@ -337,6 +340,7 @@ class Toolbar extends PureComponent {
             <ButtonWithIcon
               icon={<IconPlus solid size={LIGHT_ICON_SIZE} />}
               disabled={loading}
+              isLoading={newLine.isLoading}
               variation="primary"
               size="small"
               onClick={newLine.handleCallback}>
