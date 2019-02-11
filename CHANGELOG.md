@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Fixed
-- **Dropdown** Add h-100 to select class.
+- **Dropdown** Fix typo on select classes.
 
 ## [9.1.0] - 2019-02-06
 ### Changed
