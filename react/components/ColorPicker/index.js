@@ -65,7 +65,7 @@ class ColorPicker extends React.Component {
           <div className="flex w-100">
             <div className="w-25 pa1">
               <div className="t-small w-100 c-on-base db mb3">
-                {this.props.colorLabel}
+                {this.props.label}
               </div>
               <div
                 className={`ba bw1 b--muted-4 br2 pa1 ${
@@ -100,14 +100,14 @@ class ColorPicker extends React.Component {
 
 /** Default props values */
 ColorPicker.defaultProps = {
-  colorLabel: 'Default',
+  label: 'Default',
 }
 
 ColorPicker.propTypes = {
   /** onChange event */
   onChange: PropTypes.func,
   /** Color Label */
-  colorLabel: PropTypes.string,
+  label: PropTypes.string,
   /** ColorPicker Title */
   title: PropTypes.string,
   /** Color format */

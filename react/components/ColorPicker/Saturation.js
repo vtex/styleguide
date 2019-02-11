@@ -6,12 +6,11 @@ import { Saturation } from 'react-color/lib/components/common'
 /** SaturationCustom Component */
 class SaturationCustom extends React.Component {
   render() {
-    const { hex, onChange } = this.props
+    const { hex } = this.props
     return (
       <div className="saturation-container relative w-100">
         <Saturation
           {...this.props}
-          onChange={onChange}
           pointer={() => (
             <div className="pointer-saturation" style={{ background: hex }} />
           )}

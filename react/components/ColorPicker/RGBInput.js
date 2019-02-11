@@ -32,53 +32,51 @@ class RGBInput extends React.Component {
   }
   render() {
     return (
-      <div className="mv3">
-        <div className="relative flex">
-          <div className="ph2 w-25">
-            <Input
-              label="R"
-              size="small"
-              type="number"
-              min="0"
-              max="255"
-              value={this.props.color.r}
-              onChange={e => this.handleChange(e, 'r')}
-            />
-          </div>
-          <div className="ph2 w-25">
-            <Input
-              label="G"
-              size="small"
-              type="number"
-              min="0"
-              max="255"
-              value={this.props.color.g}
-              onChange={e => this.handleChange(e, 'g')}
-            />
-          </div>
-          <div className="ph2 w-25">
-            <Input
-              label="B"
-              size="small"
-              type="number"
-              min="0"
-              max="255"
-              value={this.props.color.b}
-              onChange={e => this.handleChange(e, 'b')}
-            />
-          </div>
-          <div className="ph2 w-25">
-            <Input
-              label="A"
-              size="small"
-              type="number"
-              min="0"
-              max="1"
-              step="0.01"
-              value={this.props.color.a}
-              onChange={e => this.handleChange(e, 'a')}
-            />
-          </div>
+      <div className="relative flex mv3">
+        <div className="ph2 w-25">
+          <Input
+            label="R"
+            size="small"
+            type="number"
+            min="0"
+            max="255"
+            value={this.props.color.r}
+            onChange={e => this.handleChange(e, 'r')}
+          />
+        </div>
+        <div className="ph2 w-25">
+          <Input
+            label="G"
+            size="small"
+            type="number"
+            min="0"
+            max="255"
+            value={this.props.color.g}
+            onChange={e => this.handleChange(e, 'g')}
+          />
+        </div>
+        <div className="ph2 w-25">
+          <Input
+            label="B"
+            size="small"
+            type="number"
+            min="0"
+            max="255"
+            value={this.props.color.b}
+            onChange={e => this.handleChange(e, 'b')}
+          />
+        </div>
+        <div className="ph2 w-25">
+          <Input
+            label="A"
+            size="small"
+            type="number"
+            min="0"
+            max="1"
+            step="0.01"
+            value={this.props.color.a}
+            onChange={e => this.handleChange(e, 'a')}
+          />
         </div>
       </div>
     )

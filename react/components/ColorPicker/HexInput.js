@@ -41,17 +41,18 @@ class HexInput extends React.Component {
   }
 
   render() {
-    const { disable } = this.props
+    const { disabled, errorMessage } = this.props
+    const { error, inputValue } = this.state
     return (
       <div className="mb5">
         <Input
-          error={this.state.error}
+          error={error}
           label="Hex"
-          value={this.state.inputValue}
+          value={inputValue}
           size="small"
           onChange={this.handleChange}
-          errorMessage={this.state.error && this.props.errorMessage}
-          disabled={disable}
+          errorMessage={error && errorMessage}
+          disabled={disabled}
         />
       </div>
     )
@@ -71,7 +72,8 @@ HexInput.propTypes = {
   rgb: PropTypes.object,
   /** Erro message */
   errorMessage: PropTypes.string,
-  disable: PropTypes.bool,
+  /** Disable component */
+  disabled: PropTypes.bool,
 }
 
 export default HexInput

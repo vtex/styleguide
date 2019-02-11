@@ -26,13 +26,13 @@ class AlphaCustom extends React.Component {
 
 AlphaCustom.propTypes = {
   /** onChange event */
-  onChange: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
   /** Hex Color string */
-  hex: PropTypes.string,
+  hex: PropTypes.string.isRequired,
   /** RGB color object */
-  rgb: PropTypes.object,
+  rgb: PropTypes.object.isRequired,
   /** HSL color object */
-  hsl: PropTypes.object,
+  hsl: PropTypes.object.isRequired,
 }
 
 export default CustomPicker(AlphaCustom)
