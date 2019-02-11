@@ -382,10 +382,12 @@ Toolbar.propTypes = {
     download: PropTypes.shape({
       label: PropTypes.string,
       handleCallback: PropTypes.func,
+      isLoading: PropTypes.bool,
     }),
     upload: PropTypes.shape({
       label: PropTypes.string,
       handleCallback: PropTypes.func,
+      isLoading: PropTypes.bool,
     }),
     extraActions: PropTypes.shape({
       label: PropTypes.string,
@@ -396,6 +398,7 @@ Toolbar.propTypes = {
         })
       ),
       alignMenu: PropTypes.oneOf(['right', 'left']),
+      isLoading: PropTypes.bool,
     }),
   }),
   schema: PropTypes.object.isRequired,
