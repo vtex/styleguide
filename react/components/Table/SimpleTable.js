@@ -3,8 +3,11 @@ import PropTypes from 'prop-types'
 import { MultiGrid, AutoSizer } from 'react-virtualized'
 import ArrowDown from '../icon/ArrowDown'
 import ArrowUp from '../icon/ArrowUp'
+import OptionsDots from '../icon/OptionsDots'
 import EmptyState from '../EmptyState'
 import Spinner from '../Spinner'
+import ActionMenu from '../ActionMenu'
+
 const ARROW_SIZE = 11
 const HEADER_HEIGHT = 36
 const DEFAULT_COLUMN_WIDTH = 200
@@ -58,6 +61,34 @@ class SimpleTable extends Component {
       : DEFAULT_COLUMN_WIDTH
   }
 
+  addLineActionsToSchema(schema, lineActions) {
+    return (schema.properties = {
+      ...schema.properties,
+      _VTEX_Table_Internal_lineActions: {
+        type: 'any',
+        title: ' ',
+        width: 70,
+        cellRenderer: ({ rowData }) => {
+          return (
+            <ActionMenu
+              icon={<OptionsDots />}
+              hideCaretIcon
+              buttonProps={{
+                variation: 'tertiary',
+                icon: true,
+              }}
+              options={lineActions.map(action => ({
+                ...action,
+                label: action.label({ rowData }),
+                onClick: () => action.onClick({ rowData }),
+              }))}
+            />
+          )
+        },
+      },
+    })
+  }
+
   render() {
     const {
       schema,
@@ -72,9 +103,13 @@ class SimpleTable extends Component {
       updateTableKey,
       rowHeight,
       fullWidth,
+      lineActions,
       loading,
     } = this.props
     const { hoverRowIndex } = this.state
+
+    if (lineActions)
+      schema.properties = this.addLineActionsToSchema(schema, lineActions)
     const properties = Object.keys(schema.properties)
 
     return (
@@ -215,16 +250,24 @@ class SimpleTable extends Component {
                               fullWidthColWidth
                             ),
                           }}
-                          className={`flex items-center w-100 h-100 truncate ph4 ${
-                            disableHeader && rowIndex === 0 ? 'bt' : ''
-                          } bb b--muted-4 ${
+                          className={`flex items-center w-100 h-100 ph4 bb b--muted-4 ${
+                            property === '_VTEX_Table_Internal_lineActions'
+                              ? ''
+                              : 'truncate'
+                          } ${disableHeader && rowIndex === 0 ? 'bt' : ''} ${
                             onRowClick && rowIndex === hoverRowIndex
                               ? 'pointer bg-near-white c-link'
                               : ''
                           } ${columnIndex === 0 && fixFirstColumn ? 'br' : ''}`}
                           onClick={
-                            onRowClick
-                              ? e => onRowClick({ e, index: rowIndex, rowData })
+                            onRowClick &&
+                            property !== '_VTEX_Table_Internal_lineActions'
+                              ? e =>
+                                  onRowClick({
+                                    e,
+                                    index: rowIndex,
+                                    rowData,
+                                  })
                               : null
                           }
                           onMouseEnter={
@@ -236,7 +279,10 @@ class SimpleTable extends Component {
                             onRowClick ? () => this.handleRowHover(-1) : null
                           }>
                           {cellRenderer
-                            ? cellRenderer({ cellData, rowData })
+                            ? cellRenderer({
+                                cellData,
+                                rowData,
+                              })
                             : cellData}
                         </div>
                       )
@@ -286,6 +332,13 @@ SimpleTable.propTypes = {
   containerHeight: PropTypes.number,
   rowHeight: PropTypes.number.isRequired,
   fullWidth: PropTypes.bool,
+  lineActions: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.func,
+      isDangerous: PropTypes.bool,
+      onClick: PropTypes.func,
+    })
+  ),
   loading: PropTypes.bool,
 }
 
