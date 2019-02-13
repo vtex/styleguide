@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 
 import Spinner from '../Spinner'
 
+import withForwardedRef from '../../modules/withForwardedRef'
+
 class Button extends Component {
   handleClick = event => {
     !this.props.disabled &&
@@ -143,7 +145,7 @@ class Button extends Component {
         onMouseOut={this.props.onMouseOut}
         onMouseUp={this.props.onMouseUp}
         onMouseDown={this.props.onMouseDown}
-        ref={this.props.ref}
+        ref={this.props.forwardedRef}
         style={iconOnly ? { fontSize: 0 } : {}}>
         {isLoading ? (
           <Fragment>
@@ -203,6 +205,11 @@ Button.propTypes = {
   autoComplete: PropTypes.string,
   /** (Button spec attribute) */
   disabled: PropTypes.bool,
+  /** @ignore Forwarded Ref */
+  forwardedRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  ]),
   /** (Button spec attribute) */
   name: PropTypes.string,
   /** (Button spec attribute) */
@@ -225,12 +232,10 @@ Button.propTypes = {
   onMouseUp: PropTypes.func,
   /** onMouseDown event */
   onMouseDown: PropTypes.func,
-  /** ref function */
-  ref: PropTypes.func,
   /** Cancels out left padding */
   collapseLeft: PropTypes.bool,
   /** Cancels out right padding */
   collapseRight: PropTypes.bool,
 }
 
-export default Button
+export default withForwardedRef(Button)

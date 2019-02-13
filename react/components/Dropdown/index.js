@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import ArrowDownIcon from './ArrowDownIcon'
 
+import withForwardedRef from '../../modules/withForwardedRef'
+
 class Dropdown extends Component {
   constructor(props) {
     super(props)
@@ -241,23 +243,22 @@ class Dropdown extends Component {
   }
 }
 
-const DropdownWithRef = React.forwardRef((props, ref) => (
-  <Dropdown {...props} forwardedRef={ref} />
-))
-
-DropdownWithRef.displayName = 'Dropdown'
-
-DropdownWithRef.defaultProps = {
+Dropdown.defaultProps = {
   size: 'regular',
   options: [],
   variation: 'default',
 }
 
-DropdownWithRef.propTypes = {
+Dropdown.propTypes = {
   /** Error highlight */
   error: PropTypes.bool,
   /** Error message */
   errorMessage: PropTypes.node,
+  /** @ignore Forwarded Ref */
+  forwardedRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  ]),
   /** Help text */
   helpText: PropTypes.node,
   /** Dropdown label */
@@ -299,11 +300,6 @@ DropdownWithRef.propTypes = {
   onClose: PropTypes.func,
   /** onOpen event */
   onOpen: PropTypes.func,
-  /** Internal prop used for ref forwarding */
-  forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
 }
 
-Dropdown.propTypes = DropdownWithRef.propTypes
-Dropdown.defaultProps = DropdownWithRef.defaultProps
-
-export default DropdownWithRef
+export default withForwardedRef(Dropdown)

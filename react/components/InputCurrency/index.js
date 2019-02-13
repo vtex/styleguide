@@ -5,6 +5,8 @@ import NumberFormat from 'react-number-format'
 
 import Input from '../Input'
 
+import withForwardedRef from '../../modules/withForwardedRef'
+
 /** WORKAROUND incoming!
  * BaseInput is a wrapper for the Input component for being able to use the
  * prefix prop with the NumberFormat component.
@@ -90,13 +92,12 @@ class InputCurrency extends Component {
   }
 }
 
-const InputCurrencyWithRef = React.forwardRef((props, ref) => (
-  <InputCurrency {...props} forwardedRef={ref} />
-))
-
-InputCurrencyWithRef.displayName = 'InputCurrency'
-
-InputCurrencyWithRef.propTypes = {
+InputCurrency.propTypes = {
+  /** @ignore Forwarded Ref */
+  forwardedRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  ]),
   onChange: PropTypes.func,
   onClear: PropTypes.func,
   size: PropTypes.string,
@@ -108,6 +109,4 @@ InputCurrencyWithRef.propTypes = {
   currencyCode: PropTypes.string.isRequired,
 }
 
-InputCurrency.propTypes = InputCurrencyWithRef.propTypes
-
-export default InputCurrencyWithRef
+export default withForwardedRef(InputCurrency)

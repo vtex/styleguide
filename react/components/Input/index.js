@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import config from 'vtex-tachyons/config.json'
 
 import { hideDecorators } from './edge.css'
+import withForwardedRef from '../../modules/withForwardedRef'
 
 class Input extends Component {
   constructor(props) {
@@ -233,13 +234,7 @@ class Input extends Component {
   }
 }
 
-const InputWithRef = React.forwardRef((props, ref) => (
-  <Input {...props} forwardedRef={ref} />
-))
-
-InputWithRef.displayName = 'Input'
-
-InputWithRef.defaultProps = {
+Input.defaultProps = {
   autoFocus: false,
   token: false,
   dataAttributes: {},
@@ -253,11 +248,16 @@ InputWithRef.defaultProps = {
   type: 'text',
 }
 
-InputWithRef.propTypes = {
+Input.propTypes = {
   /** Error highlight */
   error: PropTypes.bool,
   /** Error message */
   errorMessage: PropTypes.string,
+  /** @ignore Forwarded Ref */
+  forwardedRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  ]),
   /** If the input is an API Key, App Key or App Token */
   token: PropTypes.bool,
   /** Help text */
@@ -268,8 +268,6 @@ InputWithRef.propTypes = {
   label: PropTypes.string,
   /** Prefix */
   prefix: PropTypes.node,
-  /** Internal prop used for ref forwarding */
-  forwardedRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /** Spec attribute */
   accept: PropTypes.string,
   /** Spec attribute */
@@ -344,7 +342,4 @@ InputWithRef.propTypes = {
   onBlur: PropTypes.func,
 }
 
-Input.propTypes = InputWithRef.propTypes
-Input.defaultProps = InputWithRef.defaultProps
-
-export default InputWithRef
+export default withForwardedRef(Input)
