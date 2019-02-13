@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- **Spinner** Use CSS animations instead of SVG animations, in order to make the animation work while the page is loading.
+
 ### Added
 
 - **EXPERIMENTAL_Select**: `formatCreateLabel` now allows the user to customize the create option message.
@@ -15,6 +19,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 - **Button** now uses `b--muted-5` instead of `b--disabled` when it is `disabled`.
+
+### Removed
+
+- **Spinner** prop `status`
 
 ## [8.48.1] - 2019-05-24
 
