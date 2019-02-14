@@ -13,12 +13,20 @@ const filterStatementByOptionKey = (statements, key) => {
   return filteredStatements
 }
 
+const emptyVirtualStatement = {
+  subject: null,
+  verb: null,
+  object: null,
+  error: null,
+}
+
 class FilterTag extends PureComponent {
   constructor() {
     super()
     this.filterMenuContainer = React.createRef()
     this.state = {
       isMenuOpen: false,
+      virtualStatement: emptyVirtualStatement,
     }
   }
 
@@ -61,6 +69,28 @@ class FilterTag extends PureComponent {
     }
   }
 
+  onChangeExtraStatement = (newValue, structure) => {
+    this.setState(state => {
+      return {
+        virtualStatement: {
+          subject:
+            structure === 'subject' ? newValue : state.virtualStatement.subject,
+          verb: structure === 'verb' ? newValue : state.virtualStatement.verb,
+          object:
+            structure === 'object' ? newValue : state.virtualStatement.object,
+          error:
+            structure === 'error' ? newValue : state.virtualStatement.error,
+        },
+      }
+    })
+  }
+
+  resetVirtualStatement = () => {
+    this.setState({
+      virtualStatement: emptyVirtualStatement,
+    })
+  }
+
   render() {
     const {
       options,
@@ -73,24 +103,28 @@ class FilterTag extends PureComponent {
       onClickClear,
       isMoreOptions,
       onChangeFilterStatements,
+      onSubmitFilterStatement,
     } = this.props
-    const { isMenuOpen } = this.state
+    const { isMenuOpen, virtualStatement } = this.state
 
-    const isEmpty = !statements.find(st => st.optionKey === optionKey).object
-    console.log('RENDER FILTER TAG FOR KEY ', optionKey, ' STATMENTS: ', statements, ' isEmpty? ', isEmpty)
+    const isEmpty = !!(
+      statements && !statements.find(st => st.optionKey === optionKey).object
+    )
 
     return (
       <div
         ref={this.filterMenuContainer}
-        className={`br-pill t-small ${
+        className={`br-pill ${
           isEmpty || isMoreOptions ? '' : 'pr4'
         } pv1 dib bn pointer ${
           isMenuOpen
             ? 'bg-action-secondary'
-            : alwaysVisible || isMoreOptions
-            ? ''
-            : 'bg-muted-4'
-        } c-on-base hover-bg-muted-5`}>
+            : alwaysVisible
+            ? 'bg-muted-5 hover-bg-muted-4'
+            : isMoreOptions
+            ? 'hover-bg-muted-5'
+            : 'bg-muted-4 hover-bg-muted-5'
+        } c-on-base`}>
         <div className="flex items-stretch">
           <Menu
             open={isMenuOpen}
@@ -98,7 +132,7 @@ class FilterTag extends PureComponent {
             button={
               <button
                 type="button"
-                className="bw1 ba br2 v-mid relative t-action--small bg-transparent b--transparent c-action-primary pointer w-100 outline-0"
+                className="bw1 ba br2 v-mid relative bg-transparent b--transparent c-action-primary pointer w-100 outline-0"
                 onClick={isMenuOpen ? this.closeMenu : this.openMenu}>
                 <div className="flex items-center justify-center h-100 ph3 ">
                   <span className="flex items-center nl1 nowrap">
@@ -106,11 +140,13 @@ class FilterTag extends PureComponent {
                       <span className="fw5">{filterLabel}</span>
                     ) : (
                       <Fragment>
-                        <span className="fw5">{`${
-                          options[optionKey].label
-                        }: `}</span>
                         <span className="">{`${
-                          isEmpty ? emptyFilterLabel : filterLabel
+                          options[optionKey].label
+                        }:\xa0`}</span>
+                        <span className="fw5">{`${
+                          isEmpty
+                            ? `\xa0${emptyFilterLabel}`
+                            : `\xa0${filterLabel}`
                         }`}</span>
                       </Fragment>
                     )}
@@ -138,15 +174,24 @@ class FilterTag extends PureComponent {
                 subjectPlaceholder={subjectPlaceholder}
                 statements={
                   isMoreOptions
-                    ? statements
+                    ? [virtualStatement]
                     : filterStatementByOptionKey(statements, optionKey)
                 }
                 onChangeStatement={(newValue, structure) =>
-                  onChangeFilterStatements(newValue, structure, optionKey)
+                  isMoreOptions
+                    ? this.onChangeExtraStatement(newValue, structure)
+                    : onChangeFilterStatements(newValue, structure, optionKey)
                 }
               />
               <div className="flex justify-end mt4">
-                <Button onClick={() => this.closeMenu()}>OK</Button>
+                <Button
+                  onClick={() => {
+                    onSubmitFilterStatement(virtualStatement)
+                    this.resetVirtualStatement()
+                    this.closeMenu()
+                  }}>
+                  OK
+                </Button>
               </div>
             </div>
           </Menu>
@@ -169,6 +214,7 @@ class FilterTag extends PureComponent {
 FilterTag.defaultProps = {
   alwaysVisible: false,
   isMoreOptions: false,
+  onSubmitFilterStatement: () => {},
 }
 
 FilterTag.propTypes = {
@@ -180,7 +226,8 @@ FilterTag.propTypes = {
   subjectPlaceholder: PropTypes.string,
   onClickClear: PropTypes.func,
   isMoreOptions: PropTypes.bool,
-  onChangeFilterStatements: PropTypes.func.isRequired,
+  onChangeFilterStatements: PropTypes.func,
+  onSubmitFilterStatement: PropTypes.func,
 }
 
 export default FilterTag

@@ -50,11 +50,11 @@ class EXPERIMENTAL_Filter extends PureComponent {
     }
   }
 
-  toggleExtraFilterOption = optionLabel => {
+  toggleExtraFilterOption = key => {
     const { visibleExtraOptions } = this.state
     const newVisibleExtraOptions = [
-      ...(visibleExtraOptions.indexOf(optionLabel) === -1 ? [optionLabel] : []),
-      ...visibleExtraOptions.filter(op => op !== optionLabel),
+      ...(visibleExtraOptions.indexOf(key) === -1 ? [key] : []),
+      ...visibleExtraOptions.filter(op => op !== key),
     ]
     this.setState({ visibleExtraOptions: newVisibleExtraOptions })
   }
@@ -75,6 +75,40 @@ class EXPERIMENTAL_Filter extends PureComponent {
     this.props.onChangeStatements(newStatements)
   }
 
+  handleMoreOptionsSelected = st => {
+    const { statements } = this.state
+    const newStatements = statements.map(_st => {
+      if (_st.subject === st.subject) {
+        return {
+          ...st,
+          optionKey: st.subject,
+        }
+      }
+      return _st
+    })
+    this.setState({ statements: newStatements })
+    this.props.onChangeStatements(newStatements)
+    this.toggleExtraFilterOption(st.subject)
+  }
+
+  handleFilterClear = optionKey => {
+    const { statements } = this.state
+    const { alwaysVisibleFilters } = this.props
+    const newStatements = statements.map(_st => {
+      if (_st.optionKey === optionKey) {
+        return {
+          subject: optionKey,
+          optionKey,
+        }
+      }
+      return _st
+    })
+    this.setState({ statements: newStatements })
+    this.props.onChangeStatements(newStatements)
+    !alwaysVisibleFilters.includes(optionKey) &&
+      this.toggleExtraFilterOption(optionKey)
+  }
+
   componentDidMount() {
     console.warn(
       `Experimental component warning:
@@ -87,14 +121,18 @@ class EXPERIMENTAL_Filter extends PureComponent {
 
   render() {
     const { options, moreOptionsLabel, alwaysVisibleFilters } = this.props
-    const { statements } = this.state
+    const { statements, visibleExtraOptions } = this.state
     const optionsKeys = Object.keys(options)
 
     return (
       optionsKeys.length > 0 && (
         <div className="flex flex-wrap w-100">
           {optionsKeys
-            .filter(key => alwaysVisibleFilters.includes(key))
+            .filter(
+              key =>
+                alwaysVisibleFilters.includes(key) ||
+                visibleExtraOptions.includes(key)
+            )
             .map(optionKey => {
               const statement = statements.find(
                 st => st.optionKey === optionKey
@@ -108,19 +146,21 @@ class EXPERIMENTAL_Filter extends PureComponent {
                     filterLabel={
                       (statement &&
                         statement.object &&
+                        typeof statement.object === 'string' &&
                         truncateFilterValue(statement.object)) ||
                       ''
                     }
                     optionKey={optionKey}
                     options={options}
                     statements={statements}
-                    onClickClear={() => alert(`clear ${optionKey} filter!`)}
+                    onClickClear={() => this.handleFilterClear(optionKey)}
                     onChangeFilterStatements={this.handleStatementsUpdate}
                   />
                 </div>
               )
             })}
-          {alwaysVisibleFilters.length !== optionsKeys.length && (
+          {alwaysVisibleFilters.length + visibleExtraOptions.length !==
+            optionsKeys.length && (
             <div className="ma2">
               <FilterTag
                 isMoreOptions
@@ -133,9 +173,7 @@ class EXPERIMENTAL_Filter extends PureComponent {
                     statements
                   ),
                 }}
-                statements={[
-                  { subject: null, verb: null, object: null, error: null },
-                ]}
+                onSubmitFilterStatement={this.handleMoreOptionsSelected}
               />
             </div>
           )}
