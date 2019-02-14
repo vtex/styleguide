@@ -98,7 +98,7 @@ class FilterTag extends PureComponent {
       statements,
       alwaysVisible,
       emptyFilterLabel,
-      filterLabel,
+      getFilterLabel,
       subjectPlaceholder,
       onClickClear,
       isMoreOptions,
@@ -137,7 +137,7 @@ class FilterTag extends PureComponent {
                 <div className="flex items-center justify-center h-100 ph3 ">
                   <span className="flex items-center nl1 nowrap">
                     {isMoreOptions ? (
-                      <span className="fw5">{filterLabel}</span>
+                      <span className="fw5">{getFilterLabel()}</span>
                     ) : (
                       <Fragment>
                         <span className="">{`${
@@ -146,7 +146,7 @@ class FilterTag extends PureComponent {
                         <span className="fw5">{`${
                           isEmpty
                             ? `\xa0${emptyFilterLabel}`
-                            : `\xa0${filterLabel}`
+                            : `\xa0${getFilterLabel(filterStatementByOptionKey(statements, optionKey))}`
                         }`}</span>
                       </Fragment>
                     )}
@@ -221,7 +221,7 @@ FilterTag.propTypes = {
   options: PropTypes.object.isRequired,
   optionKey: PropTypes.string,
   alwaysVisible: PropTypes.bool,
-  filterLabel: PropTypes.string,
+  getFilterLabel: PropTypes.func,
   emptyFilterLabel: PropTypes.string,
   subjectPlaceholder: PropTypes.string,
   onClickClear: PropTypes.func,

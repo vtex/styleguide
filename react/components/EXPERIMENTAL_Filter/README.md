@@ -1,9 +1,11 @@
 #### Filters are for filtering
 
 ### 👍 Dos
+
 - Filter
 
 ### 👎 Don'ts
+
 - Not filter
 
 Filter users example
@@ -12,10 +14,7 @@ Filter users example
 class MyFilter extends React.Component {
   constructor() {
     super()
-
-    this.state = {
-      statements: []
-    }
+    this.state = { statements: [] }
     this.simpleInputObject = this.simpleInputObject.bind(this)
     this.cpfInputObject = this.cpfInputObject.bind(this)
     this.ageInputObject = this.ageInputObject.bind(this)
@@ -40,8 +39,15 @@ class MyFilter extends React.Component {
     )
   }
 
-  cpfInputObject({ statements, values, statementIndex, error }, shouldValidate = false) {
-    const errorMessage = shouldValidate ? error ? 'Invalid CPF' : 'Crazy error' : null
+  cpfInputObject(
+    { statements, values, statementIndex, error },
+    shouldValidate = false
+  ) {
+    const errorMessage = shouldValidate
+      ? error
+        ? 'Invalid CPF'
+        : null
+      : null
     return (
       <Input
         placeholder="Insert age..."
@@ -132,6 +138,8 @@ class MyFilter extends React.Component {
         options={{
           name: {
             label: 'Name',
+            renderFilterLabel: st =>
+              `${st.verb === '=' ? 'is' ? st.verb === '!=' : 'is not' : 'contains'} ${st.object}`,
             verbs: [
               {
                 label: 'is',
@@ -149,10 +157,20 @@ class MyFilter extends React.Component {
                   extraParams: {},
                 },
               },
+              {
+                label: 'contains',
+                value: 'contains',
+                object: {
+                  renderFn: this.simpleInputObject,
+                  extraParams: {},
+                },
+              },
             ],
           },
           email: {
             label: 'Email',
+            renderFilterLabel: st =>
+              `${st.verb === '=' ? 'is' : st.verb === '!=' ? 'is not' : 'contains '} ${st.object}`,
             verbs: [
               {
                 label: 'contains',
@@ -182,6 +200,8 @@ class MyFilter extends React.Component {
           },
           age: {
             label: 'Age',
+            renderFilterLabel: st =>
+              `${st.verb === 'between' ? `between ${st.object.first} and ${st.object.last}` : `is ${st.object}`}`,
             verbs: [
               {
                 label: 'is',
@@ -203,6 +223,8 @@ class MyFilter extends React.Component {
           },
           cpf: {
             label: 'Document',
+            renderFilterLabel: st =>
+              `${st.verb === '=' ? 'is' : 'contains'} ${st.object}`,
             verbs: [
               {
                 label: 'is',
@@ -226,5 +248,6 @@ class MyFilter extends React.Component {
       />
     )
   }
-};<MyFilter />
+}
+;<MyFilter />
 ```

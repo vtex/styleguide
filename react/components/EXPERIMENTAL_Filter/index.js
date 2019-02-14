@@ -31,10 +31,10 @@ const filterExtraOptions = (options, alwaysVisibleFilters, statements) => {
   return newOptions
 }
 
-const FILTER_VALUE_LABEL_MAX_LENGTH = 13
+const FILTER_VALUE_LABEL_MAX_LENGTH = 17
 const truncateFilterValue = filterValue =>
   `${filterValue.substring(0, FILTER_VALUE_LABEL_MAX_LENGTH)}${
-    filterValue.length < FILTER_VALUE_LABEL_MAX_LENGTH ? '' : '…'
+    filterValue.length <= FILTER_VALUE_LABEL_MAX_LENGTH ? '' : '…'
   }`
 
 /**
@@ -72,7 +72,7 @@ class EXPERIMENTAL_Filter extends PureComponent {
       return st
     })
     this.setState({ statements: newStatements })
-    this.props.onChangeStatements(newStatements)
+    this.changeStatementsCallback(newStatements)
   }
 
   handleMoreOptionsSelected = st => {
@@ -87,7 +87,7 @@ class EXPERIMENTAL_Filter extends PureComponent {
       return _st
     })
     this.setState({ statements: newStatements })
-    this.props.onChangeStatements(newStatements)
+    this.changeStatementsCallback(newStatements)
     this.toggleExtraFilterOption(st.subject)
   }
 
@@ -104,9 +104,13 @@ class EXPERIMENTAL_Filter extends PureComponent {
       return _st
     })
     this.setState({ statements: newStatements })
-    this.props.onChangeStatements(newStatements)
+    this.changeStatementsCallback(newStatements)
     !alwaysVisibleFilters.includes(optionKey) &&
       this.toggleExtraFilterOption(optionKey)
+  }
+
+  changeStatementsCallback = statements => {
+    this.props.onChangeStatements(statements)
   }
 
   componentDidMount() {
@@ -143,13 +147,17 @@ class EXPERIMENTAL_Filter extends PureComponent {
                     alwaysVisible={alwaysVisibleFilters.includes(optionKey)}
                     subjectPlaceholder={'Select subject'}
                     emptyFilterLabel="Any"
-                    filterLabel={
-                      (statement &&
-                        statement.object &&
-                        typeof statement.object === 'string' &&
-                        truncateFilterValue(statement.object)) ||
-                      ''
-                    }
+                    getFilterLabel={() => {
+                      const label = options[optionKey].renderFilterLabel(
+                        statement
+                      )
+                      return (
+                        (label &&
+                          typeof label === 'string' &&
+                          truncateFilterValue(label)) ||
+                        '…'
+                      )
+                    }}
                     optionKey={optionKey}
                     options={options}
                     statements={statements}
@@ -165,7 +173,7 @@ class EXPERIMENTAL_Filter extends PureComponent {
               <FilterTag
                 isMoreOptions
                 subjectPlaceholder="Select a filter…"
-                filterLabel={moreOptionsLabel}
+                getFilterLabel={() => moreOptionsLabel}
                 options={{
                   ...filterExtraOptions(
                     options,
