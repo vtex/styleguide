@@ -97,7 +97,6 @@ class FilterTag extends PureComponent {
       optionKey,
       statements,
       alwaysVisible,
-      emptyFilterLabel,
       getFilterLabel,
       subjectPlaceholder,
       onClickClear,
@@ -143,11 +142,9 @@ class FilterTag extends PureComponent {
                         <span className="">{`${
                           options[optionKey].label
                         }:\xa0`}</span>
-                        <span className="fw5">{`${
-                          isEmpty
-                            ? `\xa0${emptyFilterLabel}`
-                            : `\xa0${getFilterLabel(filterStatementByOptionKey(statements, optionKey))}`
-                        }`}</span>
+                        <span className="fw5">{`\xa0${getFilterLabel(
+                          filterStatementByOptionKey(statements, optionKey)
+                        )}`}</span>
                       </Fragment>
                     )}
                     <div className="ml2 nr2">
@@ -163,10 +160,7 @@ class FilterTag extends PureComponent {
                 canDelete={false}
                 ommitSubject={!isMoreOptions}
                 ommitVerbs={
-                  isMoreOptions
-                    ? false
-                    : filterStatementByOptionKey(statements, optionKey) &&
-                      filterStatementByOptionKey(statements, optionKey).verb
+                  isMoreOptions ? false : options[optionKey].verbs.length === 1
                 }
                 options={
                   isMoreOptions ? options : { [optionKey]: options[optionKey] }
@@ -222,7 +216,6 @@ FilterTag.propTypes = {
   optionKey: PropTypes.string,
   alwaysVisible: PropTypes.bool,
   getFilterLabel: PropTypes.func,
-  emptyFilterLabel: PropTypes.string,
   subjectPlaceholder: PropTypes.string,
   onClickClear: PropTypes.func,
   isMoreOptions: PropTypes.bool,

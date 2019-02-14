@@ -4,15 +4,29 @@ import PropTypes from 'prop-types'
 
 import FilterTag from './FilterTag'
 
-const mountStatementsWithOptions = options => {
+const mountStatementsWithOptions = props => {
   // this preselects all subjects since each filter is a subject
+  // also select first verb automatically respecting statements prop
+  const { options, statements } = props
   const optionsKeys = Object.keys(options)
-  return optionsKeys.map(key => {
+  const initialStatements = optionsKeys.map(key => {
+    if (
+      statements &&
+      statements.length > 0 &&
+      statements.some(st => st.subject === key)
+    ) {
+      return {
+        ...statements.filter(st => st.subject === key)[0],
+        optionKey: key,
+      }
+    }
     return {
       subject: key,
+      verb: options[key].verbs[0].value,
       optionKey: key,
     }
   })
+  return initialStatements
 }
 
 const filterExtraOptions = (options, alwaysVisibleFilters, statements) => {
@@ -46,7 +60,7 @@ class EXPERIMENTAL_Filter extends PureComponent {
 
     this.state = {
       visibleExtraOptions: [],
-      statements: mountStatementsWithOptions(props.options),
+      statements: mountStatementsWithOptions(props),
     }
   }
 
@@ -93,11 +107,12 @@ class EXPERIMENTAL_Filter extends PureComponent {
 
   handleFilterClear = optionKey => {
     const { statements } = this.state
-    const { alwaysVisibleFilters } = this.props
+    const { alwaysVisibleFilters, options } = this.props
     const newStatements = statements.map(_st => {
       if (_st.optionKey === optionKey) {
         return {
           subject: optionKey,
+          verb: options[optionKey].verbs[0].value,
           optionKey,
         }
       }
@@ -146,7 +161,6 @@ class EXPERIMENTAL_Filter extends PureComponent {
                   <FilterTag
                     alwaysVisible={alwaysVisibleFilters.includes(optionKey)}
                     subjectPlaceholder={'Select subject'}
-                    emptyFilterLabel="Any"
                     getFilterLabel={() => {
                       const label = options[optionKey].renderFilterLabel(
                         statement

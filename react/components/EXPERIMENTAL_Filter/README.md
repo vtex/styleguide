@@ -19,6 +19,7 @@ class MyFilter extends React.Component {
     this.cpfInputObject = this.cpfInputObject.bind(this)
     this.ageInputObject = this.ageInputObject.bind(this)
     this.ageInputRangeObject = this.ageInputRangeObject.bind(this)
+    this.classSelectorObject = this.classSelectorObject.bind(this)
   }
 
   simpleInputObject({
@@ -43,14 +44,10 @@ class MyFilter extends React.Component {
     { statements, values, statementIndex, error },
     shouldValidate = false
   ) {
-    const errorMessage = shouldValidate
-      ? error
-        ? 'Invalid CPF'
-        : null
-      : null
+    const errorMessage = shouldValidate ? (error ? 'Invalid CPF' : null) : null
     return (
       <Input
-        placeholder="Insert age..."
+        placeholder="Insert cpf…"
         type="number"
         errorMessage={errorMessage}
         min={0}
@@ -66,7 +63,7 @@ class MyFilter extends React.Component {
   ageInputObject({ statements, values, statementIndex, error }) {
     return (
       <Input
-        placeholder="Insert age..."
+        placeholder="Insert age…"
         type="number"
         min={0}
         max={150}
@@ -89,7 +86,7 @@ class MyFilter extends React.Component {
     return (
       <div className="flex">
         <Input
-          placeholder="Age from..."
+          placeholder="Age from…"
           errorMessage={
             statements[statementIndex].object &&
             parseInt(statements[statementIndex].object.first) >=
@@ -111,7 +108,7 @@ class MyFilter extends React.Component {
         <div className="mv4 mh3 c-muted-2 b">and</div>
 
         <Input
-          placeholder="Age to..."
+          placeholder="Age to…"
           value={values && values.last ? values.last : ''}
           onChange={e => {
             const currentObject = statements[statementIndex].object || {}
@@ -126,11 +123,109 @@ class MyFilter extends React.Component {
     )
   }
 
+  classSelectorObject({
+    statements,
+    values,
+    statementIndex,
+    error,
+    extraParams,
+  }) {
+    const isFirstSelect = !values
+    const initialValue = {
+      vip: true,
+      gold: true,
+      silver: true,
+      platinum: true,
+    }
+    return (
+      <div>
+        <div className="mb3">
+          <Checkbox
+            checked={isFirstSelect ? true : values.vip}
+            label="VIP"
+            name="default-checkbox-group"
+            onChange={() => {
+              statements[statementIndex].object = isFirstSelect
+                ? {
+                    ...initialValue,
+                    vip: false,
+                  }
+                : {
+                    ...statements[statementIndex].object,
+                    vip: !statements[statementIndex].object.vip,
+                  }
+              this.setState({ statements })
+            }}
+            value="vip"
+          />
+        </div>
+        <div className="mb3">
+          <Checkbox
+            checked={isFirstSelect ? true : values.gold}
+            label="Gold"
+            name="default-checkbox-group"
+            onChange={() => {
+              statements[statementIndex].object = isFirstSelect
+                ? {
+                    ...initialValue,
+                    gold: false,
+                  }
+                : {
+                    ...statements[statementIndex].object,
+                    gold: !statements[statementIndex].object.gold,
+                  }
+              this.setState({ statements })
+            }}
+            value="gold"
+          />
+        </div>
+        <div className="mb3">
+          <Checkbox
+            checked={isFirstSelect ? true : values.silver}
+            label="Silver"
+            name="default-checkbox-group"
+            onChange={() => {
+              statements[statementIndex].object = isFirstSelect
+                ? {
+                    ...initialValue,
+                    silver: false,
+                  }
+                : {
+                    ...statements[statementIndex].object,
+                    silver: !statements[statementIndex].object.silver,
+                  }
+              this.setState({ statements })
+            }}
+            value="silver"
+          />
+        </div>
+        <Checkbox
+          checked={isFirstSelect ? true : values.platinum}
+          label="Platinum"
+          name="default-checkbox-group"
+          onChange={() => {
+            statements[statementIndex].object = isFirstSelect
+              ? {
+                  ...initialValue,
+                  platinum: false,
+                }
+              : {
+                  ...statements[statementIndex].object,
+                  platinum: !statements[statementIndex].object.platinum,
+                }
+            this.setState({ statements })
+          }}
+          value="platinum"
+        />
+      </div>
+    )
+  }
+
   render() {
     return (
       <EXPERIMENTAL_Filter
-        alwaysVisibleFilters={['name', 'email']}
-        statements={this.state.statments}
+        alwaysVisibleFilters={['name', 'email', 'class']}
+        statements={this.state.statements}
         onChangeStatements={statements => {
           console.log('updated statements: ', statements)
           this.setState({ statements })
@@ -138,8 +233,19 @@ class MyFilter extends React.Component {
         options={{
           name: {
             label: 'Name',
-            renderFilterLabel: st =>
-              `${st.verb === '=' ? 'is' ? st.verb === '!=' : 'is not' : 'contains'} ${st.object}`,
+            renderFilterLabel: st => {
+              if (!st.object) {
+                // you should treat empty object cases only for alwaysVisibleFilters
+                return 'Any'
+              }
+              return `${
+                st.verb === '='
+                  ? 'is'
+                  : st.verb === '!='
+                  ? 'is not'
+                  : 'contains'
+              } ${st.object}`
+            },
             verbs: [
               {
                 label: 'is',
@@ -169,8 +275,19 @@ class MyFilter extends React.Component {
           },
           email: {
             label: 'Email',
-            renderFilterLabel: st =>
-              `${st.verb === '=' ? 'is' : st.verb === '!=' ? 'is not' : 'contains '} ${st.object}`,
+            renderFilterLabel: st => {
+              if (!st.object) {
+                // you should treat empty object cases only for alwaysVisibleFilters
+                return 'Any'
+              }
+              return `${
+                st.verb === '='
+                  ? 'is'
+                  : st.verb === '!='
+                  ? 'is not'
+                  : 'contains '
+              } ${st.object}`
+            },
             verbs: [
               {
                 label: 'contains',
@@ -201,7 +318,11 @@ class MyFilter extends React.Component {
           age: {
             label: 'Age',
             renderFilterLabel: st =>
-              `${st.verb === 'between' ? `between ${st.object.first} and ${st.object.last}` : `is ${st.object}`}`,
+              `${
+                st.verb === 'between'
+                  ? `between ${st.object.first} and ${st.object.last}`
+                  : `is ${st.object}`
+              }`,
             verbs: [
               {
                 label: 'is',
@@ -239,6 +360,38 @@ class MyFilter extends React.Component {
                 value: 'contains',
                 object: {
                   renderFn: obj => this.cpfInputObject(obj, true),
+                  extraParams: {},
+                },
+              },
+            ],
+          },
+          class: {
+            label: 'Class',
+            renderFilterLabel: st => {
+              if (!st.object) {
+                // you should treat empty object cases only for alwaysVisibleFilters
+                return 'All'
+              }
+              const keys = st.object ? Object.keys(st.object) : {}
+              const isAllTrue = !keys.some(key => !st.object[key])
+              const isAllFalse = !keys.some(key => st.object[key])
+              const trueKeys = keys.filter(key => st.object[key])
+              let trueKeysLabel = ''
+              trueKeys.forEach((key, index) => {
+                trueKeysLabel += `${key}${
+                  index === trueKeys.length - 1 ? '' : ', '
+                }`
+              })
+              return `${
+                isAllTrue ? 'All' : isAllFalse ? 'None' : `${trueKeysLabel}`
+              }`
+            },
+            verbs: [
+              {
+                label: 'includes',
+                value: 'includes',
+                object: {
+                  renderFn: this.classSelectorObject,
                   extraParams: {},
                 },
               },
