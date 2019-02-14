@@ -9,11 +9,18 @@ import FilterBar from '../FilterBar'
 
 import SimpleTable from './SimpleTable'
 import Toolbar from './Toolbar'
+import EmptyState from '../EmptyState'
+// import Checkbox from '../Checkbox'
+import CheckboxContainer from './CheckboxContainer'
 import Totalizers from './Totalizers'
-import Checkbox from '../Checkbox'
 
 const TABLE_HEADER_HEIGHT = 36
 const EMPTY_STATE_SIZE_IN_ROWS = 5
+
+// const generateId = () =>
+//   `tableRow_${Math.random()
+//     .toString(36)
+//     .substr(2, 9)}`
 
 class Table extends PureComponent {
   constructor(props) {
@@ -22,6 +29,7 @@ class Table extends PureComponent {
       hiddenFields: this.getInitialHiddenFieldsFromSchema(props.schema),
       tableRowHeight: this.getRowHeight(props.density),
       selectedDensity: props.density,
+      allChecked: false,
     }
   }
 
@@ -79,6 +87,14 @@ class Table extends PureComponent {
     return TABLE_HEADER_HEIGHT + tableRowHeight * multiplicator
   }
 
+  handleSelectAll = () => {
+    console.log('handleSelectAll')
+    this.setState({ allChecked: !this.state.allChecked })
+  }
+  handleSelectBox = id => {
+    this.setState({ [id]: !this.state[id] })
+  }
+
   render() {
     const {
       items,
@@ -107,32 +123,27 @@ class Table extends PureComponent {
       schema.properties = {
         bulk: {
           width: 40,
-          type: 'string',
           headerRenderer: () => (
-            <div className="buld__actions_selectAll flex justify-center items-center">
-              <Checkbox
-                checked={false}
-                id="select-all"
-                label=""
-                name="select-all"
-                onChange={() => console.log('hay all')}
-                value="select-all"
-              />
-            </div>
+            <CheckboxContainer
+              checked={this.state.allChecked || false}
+              onClick={this.handleSelectAll}
+              id="all"
+            />
           ),
           cellRenderer: ({ rowData }) => (
-            <Checkbox
-              checked={false}
-              id="select-one"
-              label=""
-              name="select-one"
-              onChange={() => console.log(rowData, schema)}
-              value="select-one"
+            <CheckboxContainer
+              checked={
+                this.state.allChecked || (this.state[rowData.id] || false)
+              }
+              onClick={this.handleSelectBox}
+              id={rowData.id}
             />
           ),
         },
         ...schema.properties,
       }
+
+      items.map((item, i) => (item.id = i))
     }
 
     const properties = Object.keys(schema.properties)

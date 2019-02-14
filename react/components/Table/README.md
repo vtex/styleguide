@@ -911,10 +911,33 @@ Bulk actions
 
 ```js
 const sampleData = require('./sampleData').default
-const itemsCopy = sampleData.items
-  .slice()
-  .reverse()
-  .splice(20)
+const itemsCopy = [
+  {
+    email: 'olen.stamm21@yahoo.com',
+    name: 'Patrick Rothfuss',
+    number: 1.52725,
+  },
+  {
+    email: 'junius0@gmail.com',
+    name: 'Hurricane Skywalker IV',
+    number: 2.84639,
+  },
+  {
+    email: 'judd_gulgowski22@yahoo.com',
+    name: 'Tom Braddy',
+    number: 4.10182,
+  },
+  {
+    email: 'catharine.leuschke62@hotmail.com',
+    name: 'Momochi Zabuza',
+    number: 6.33245,
+  },
+  {
+    email: 'candido_ryan@hotmail.com',
+    name: 'Freddie Mercury',
+    number: 7.96637,
+  },
+]
 const defaultSchema = {
   properties: {
     name: {
