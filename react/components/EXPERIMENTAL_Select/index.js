@@ -22,11 +22,22 @@ class Select extends Component {
   constructor(props) {
     super(props)
 
+    this.state = {
+      searchTerm: undefined,
+    }
+
     this.inputId = `react-select-input-${uuid()}`
   }
 
-  componentDidUpdate() {
-    document.getElementById(this.inputId).focus()
+  componentDidUpdate(prevProps, prevState) {
+    const { searchTerm } = this.state
+    const { searchTerm: prevSearchTerm } = prevState
+    const { loading } = this.props
+    const { loading: prevLoading } = prevProps
+
+    if (searchTerm !== prevSearchTerm || loading !== prevLoading) {
+      document.getElementById(this.inputId).focus()
+    }
   }
 
   render() {
@@ -80,6 +91,9 @@ class Select extends Component {
       noOptionsMessage,
       inputId: this.inputId,
       onInputChange: (value, { action }) => {
+        this.setState({
+          searchTerm: value,
+        })
         if (
           action === 'input-change' &&
           typeof onSearchInputChange === 'function'
