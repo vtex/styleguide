@@ -125,6 +125,10 @@ class MyFilter extends React.Component {
       <EXPERIMENTAL_Filter
         alwaysVisibleFilters={['name', 'email']}
         statements={this.state.statments}
+        onChangeStatements={statements => {
+          console.log('updated statements: ', statements)
+          this.setState({ statements })
+        }}
         options={{
           name: {
             label: 'Name',

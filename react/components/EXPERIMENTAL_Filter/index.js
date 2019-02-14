@@ -24,12 +24,18 @@ const filterExtraOptions = (options, alwaysVisibleFilters, statements) => {
     }
   })
   statements.forEach(st => {
-    if (st.object) {
+    if (st && st.object) {
       delete newOptions[st.optionKey]
     }
   })
   return newOptions
 }
+
+const FILTER_VALUE_LABEL_MAX_LENGTH = 13
+const truncateFilterValue = filterValue =>
+  `${filterValue.substring(0, FILTER_VALUE_LABEL_MAX_LENGTH)}${
+    filterValue.length < FILTER_VALUE_LABEL_MAX_LENGTH ? '' : '…'
+  }`
 
 /**
  * @visibleName Filter
@@ -53,6 +59,22 @@ class EXPERIMENTAL_Filter extends PureComponent {
     this.setState({ visibleExtraOptions: newVisibleExtraOptions })
   }
 
+  handleStatementsUpdate = (newValue, structure, optionKey) => {
+    const { statements } = this.state
+    const newStatements = statements.map(st => {
+      if (st.optionKey === optionKey) {
+        st = {
+          ...st,
+          [structure]: newValue,
+        }
+        return st
+      }
+      return st
+    })
+    this.setState({ statements: newStatements })
+    this.props.onChangeStatements(newStatements)
+  }
+
   componentDidMount() {
     console.warn(
       `Experimental component warning:
@@ -74,17 +96,26 @@ class EXPERIMENTAL_Filter extends PureComponent {
           {optionsKeys
             .filter(key => alwaysVisibleFilters.includes(key))
             .map(optionKey => {
+              const statement = statements.find(
+                st => st.optionKey === optionKey
+              )
               return (
                 <div key={`VTEX__filter_option--${optionKey}`} className="ma2">
                   <FilterTag
                     alwaysVisible={alwaysVisibleFilters.includes(optionKey)}
                     subjectPlaceholder={'Select subject'}
                     emptyFilterLabel="Any"
-                    filterLabel="Range..."
+                    filterLabel={
+                      (statement &&
+                        statement.object &&
+                        truncateFilterValue(statement.object)) ||
+                      ''
+                    }
                     optionKey={optionKey}
                     options={options}
                     statements={statements}
                     onClickClear={() => alert(`clear ${optionKey} filter!`)}
+                    onChangeFilterStatements={this.handleStatementsUpdate}
                   />
                 </div>
               )
@@ -93,7 +124,7 @@ class EXPERIMENTAL_Filter extends PureComponent {
             <div className="ma2">
               <FilterTag
                 isMoreOptions
-                subjectPlaceholder="Select a filter..."
+                subjectPlaceholder="Select a filter…"
                 filterLabel={moreOptionsLabel}
                 options={{
                   ...filterExtraOptions(

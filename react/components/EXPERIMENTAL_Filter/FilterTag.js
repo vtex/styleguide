@@ -72,11 +72,12 @@ class FilterTag extends PureComponent {
       subjectPlaceholder,
       onClickClear,
       isMoreOptions,
+      onChangeFilterStatements,
     } = this.props
     const { isMenuOpen } = this.state
 
-    // TO DO: implement this logic
-    const isEmpty = alwaysVisible ? true : false
+    const isEmpty = !statements.find(st => st.optionKey === optionKey).object
+    console.log('RENDER FILTER TAG FOR KEY ', optionKey, ' STATMENTS: ', statements, ' isEmpty? ', isEmpty)
 
     return (
       <div
@@ -131,9 +132,18 @@ class FilterTag extends PureComponent {
                     : filterStatementByOptionKey(statements, optionKey) &&
                       filterStatementByOptionKey(statements, optionKey).verb
                 }
-                options={isMoreOptions ? options : { [optionKey]: options[optionKey] }}
+                options={
+                  isMoreOptions ? options : { [optionKey]: options[optionKey] }
+                }
                 subjectPlaceholder={subjectPlaceholder}
-                statements={isMoreOptions ? statements : filterStatementByOptionKey(statements, optionKey)}
+                statements={
+                  isMoreOptions
+                    ? statements
+                    : filterStatementByOptionKey(statements, optionKey)
+                }
+                onChangeStatement={(newValue, structure) =>
+                  onChangeFilterStatements(newValue, structure, optionKey)
+                }
               />
               <div className="flex justify-end mt4">
                 <Button onClick={() => this.closeMenu()}>OK</Button>
@@ -170,6 +180,7 @@ FilterTag.propTypes = {
   subjectPlaceholder: PropTypes.string,
   onClickClear: PropTypes.func,
   isMoreOptions: PropTypes.bool,
+  onChangeFilterStatements: PropTypes.func.isRequired,
 }
 
 export default FilterTag
