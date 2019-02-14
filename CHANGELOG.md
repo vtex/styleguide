@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- **EXPERIMENTAL_Select** fix focus behaviour when typing in the search input.
+
 ## [8.18.2] - 2019-02-15
 
 ### Fixed
@@ -18,7 +22,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - Fix ref forwarding for the following components:
-  - **Button** 
+  - **Button**
   - **ButtonWithIcon**
   - **Dropdown**
   - **Input**
@@ -29,6 +33,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [8.18.0] - 2019-02-15
 
 ### Added
+
 - **ColorPicker** component.
 
 ## [8.17.8] - 2019-02-11
@@ -128,6 +133,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **`Toast`** Add `horizontalPosition` to `showToast` options.
 
 ## [8.12.0] - 2019-01-17
+
 ### Added
 
 - **Dropdown** `variation` prop
