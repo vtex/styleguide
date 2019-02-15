@@ -3,19 +3,19 @@
 ### 👍 Dos
 
 - Do use semantic colors that have a clear and contextualized meaning in your application, such as _green_ for success and _red_ for errors. However, if your application employs a richer palette with unambiguous usage of colors don't hesitate to use your Tags with them.
-- Do play with contrast to convey the visual prominence more suited to your application. Use high contrast for high proeminence, and low contrast for low proeminence.
+- Do play with contrast to convey the visual prominence more suited to your application. Use high contrast for high prominence, and low contrast for low prominence.
 
 ### 👎 Don'ts
 
 - Don't do make the Tag other than the optional close button, otherwise they should always be read-only.
 - Don't use color contrast combinations that don't pass Accessibility tests.
 
-**@todo: update examples to use VTEX Tachyons colors without hardcoding them**
+** @todo: update examples to use VTEX Tachyons colors without hardcoding them **
 
 Default
 
 ```js
-<Tag>Pending</Tag>
+<Tag>Neutral</Tag>
 ```
 
 Types
@@ -43,22 +43,22 @@ Low prominence
 ```js
 <div>
   <span className="mr4">
-    <Tag bgColor="#FFE6E6" color="#FF4C4C">
+    <Tag type="error" variation="low" >
       Error
     </Tag>
   </span>
   <span className="mr4">
-    <Tag bgColor="#FFF6E0" color="#FFB100">
+    <Tag type="warning" variation="low">
       Warning
     </Tag>
   </span>
   <span className="mr4">
-    <Tag bgColor="#EAFCE3" color="#8BC34A">
+    <Tag type="success" variation="low" >
       Success
     </Tag>
   </span>
   <span className="mr4">
-    <Tag bgColor="#E3E4E6" color="#979899">
+    <Tag variation="low">
       Neutral
     </Tag>
   </span>
@@ -69,17 +69,17 @@ Custom colors
 
 ```js
 <span className="mr4">
-  <Tag bgColor="#F71963" color="#FFFFFF">
+  <Tag bgColor="#F71963">
     Label
   </Tag>
 </span>
 <span className="mr4">
-  <Tag bgColor="#142032" color="#D6D8E0">
+  <Tag bgColor="#134CD8" color="#ffffff">
     Label
   </Tag>
 </span>
 <span className="mr4">
-  <Tag bgColor="#00BBD4" color="#FFFFFF">
+  <Tag bgColor="#FFF6E0" color="#0C389F">
     Label
   </Tag>
 </span>
@@ -92,10 +92,10 @@ With remove
   <Tag onClick={() => console.log('callback')}>Default</Tag>
 </span>
 <span className="mr4">
-  <Tag onClick={() => console.log('callback')} bgColor="#000" color="#ffb100">With color</Tag>
+  <Tag  disabled onClick={() => console.log('callback')}>Disabled</Tag>
 </span>
 <span className="mr4">
-  <Tag  disabled onClick={() => console.log('callback')}>Disabled</Tag>
+  <Tag onClick={() => console.log('callback')} bgColor="#134CD8" color="#fff">With color</Tag>
 </span>
 <span className="mr4">
   <Tag onClick={() => console.log('callback')} type="error">
