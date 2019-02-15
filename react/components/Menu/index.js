@@ -142,23 +142,24 @@ class Menu extends Component {
             console.log('scrollLeft:', scrollLeft)
             console.log('clientWidth:', clientWidth)
             console.log('clientHeight:', clientHeight)
+            console.log('menuHeight:', menuHeight)
+
             return (
               <div
                 ref={this.menuElement}
                 style={{
-                  // transform:
-                  //   !hasCalculatedSize || isVisible
-                  //     ? 'scale(1)'
-                  //     : 'scale(0.9, 0.6)',
-                  // transformOrigin: `${isRight ? '75%' : '25%'} ${
-                  //   isUpwards ? '100%' : '0'
-                  // }`,
-                  // transition: isVisible
-                  //   ? 'transform 50ms ease-out, opacity 25ms'
-                  //   : 'none',
+                  transform:
+                    !hasCalculatedSize || isVisible
+                      ? 'scale(1)'
+                      : 'scale(0.9, 0.6)',
+                  transformOrigin: `${isRight ? '75%' : '25%'} ${
+                    isUpwards ? '100%' : '0'
+                  }`,
+                  transition: isVisible
+                    ? 'transform 50ms ease-out, opacity 25ms'
+                    : 'none',
                   [isUpwards ? 'bottom' : 'top']: isUpwards
-                    ? // ? containerHeight + CONTAINER_MARGIN
-                      0 // TODO
+                    ? clientHeight - (top + scrollTop - 6)
                     : top + scrollTop + height + 6,
                   [isRight ? 'right' : 'left']: isRight
                     ? clientWidth - right
