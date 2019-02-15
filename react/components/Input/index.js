@@ -256,7 +256,7 @@ Input.propTypes = {
   /** @ignore Forwarded Ref */
   forwardedRef: PropTypes.oneOfType([
     PropTypes.func,
-    PropTypes.shape({ current: PropTypes.instanceOf(React.Element) }),
+    PropTypes.shape({ current: PropTypes.element }),
   ]),
   /** If the input is an API Key, App Key or App Token */
   token: PropTypes.bool,

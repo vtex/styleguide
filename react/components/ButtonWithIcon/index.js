@@ -12,7 +12,7 @@ class ButtonWithIcon extends Component {
     /** @ignore Forwarded Ref */
     forwardedRef: PropTypes.oneOfType([
       PropTypes.func,
-      PropTypes.shape({ current: PropTypes.instanceOf(React.Element) }),
+      PropTypes.shape({ current: PropTypes.element }),
     ]),
     /** The icon image */
     icon: PropTypes.node.isRequired,

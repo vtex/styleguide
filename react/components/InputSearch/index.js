@@ -60,7 +60,7 @@ InputSearch.propTypes = {
   /** @ignore Forwarded Ref */
   forwardedRef: PropTypes.oneOfType([
     PropTypes.func,
-    PropTypes.shape({ current: PropTypes.instanceOf(React.Element) }),
+    PropTypes.shape({ current: PropTypes.element }),
   ]),
   onChange: PropTypes.func,
   onClear: PropTypes.func,
