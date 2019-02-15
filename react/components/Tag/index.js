@@ -22,30 +22,49 @@ class Tag extends PureComponent {
   }
 
   render() {
-    const { children, onClick, disabled, color, bgColor } = this.props
+    const {
+      children,
+      onClick,
+      disabled,
+      color,
+      bgColor,
+      type,
+      variation,
+    } = this.props
 
     const baseClasses = 'br-pill t-small pv2 ph4 dib fw5'
 
     let theme = ''
-    switch (this.props.type) {
+    const variationIsLow = variation === 'low'
+
+    switch (type) {
       case 'success':
-        theme = 'bg-success c-on-success'
+        theme = variationIsLow
+          ? 'bg-transparent ba c-success '
+          : 'bg-success c-on-success '
         break
       case 'error':
-        theme = 'bg-danger c-on-danger'
+        theme = variationIsLow
+          ? 'bg-transparent ba c-danger '
+          : 'bg-danger c-on-danger '
         break
       case 'warning':
-        theme = 'bg-warning c-on-warning'
+        theme = variationIsLow
+          ? 'bg-transparent ba c-warning '
+          : 'bg-warning c-on-warning '
         break
       default:
-        theme = 'bg-muted-4 c-on-base'
+        theme = variationIsLow
+          ? 'bg-transparent ba c-muted-2 '
+          : 'bg-muted-2 c-on-muted-2 '
+        break
     }
 
-    const btnClasses = disabled ? 'c-muted-2' : 'pointer'
+    const btnClasses = disabled ? 'bg-muted-4 c-muted-2 ' : 'pointer '
 
     let hoverClass = ''
     if (!disabled) {
-      hoverClass = this.state.hover && 'o-60'
+      hoverClass = this.state.hover && 'o-80'
     }
 
     return onClick ? (
@@ -90,6 +109,7 @@ Tag.propTypes = {
   bgColor: PropTypes.string,
   onClick: PropTypes.func,
   disabled: PropTypes.bool,
+  variation: PropTypes.oneOf(['default', 'low']),
 }
 
 export default Tag
