@@ -7,9 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [8.18.0] - 2019-02-15
 ### Added
-
 - **ColorPicker** component.
 
 ## [8.17.8] - 2019-02-11
