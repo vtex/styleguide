@@ -66,6 +66,7 @@
     "react-docgen-displayname-handler": "^2.1.1",
     "react-number-format": "^4.0.6",
     "react-outside-click-handler": "^1.2.2",
+    "react-overlays": "^1.1.2",
     "react-responsive-modal": "^2.0.1",
     "react-select": "^2.1.2",
     "react-virtualized": "^9.19.1",

@@ -1,5 +1,7 @@
+/* eslint-disable no-unused-vars */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Overlay } from 'react-overlays'
 
 import Toggle from '../Toggle'
 
@@ -11,7 +13,7 @@ class Menu extends Component {
   constructor(props) {
     super(props)
     this.containerElement = React.createRef()
-    this.menuElement = React.createRef()
+    this.menuElement = props.forwardedRef || React.createRef()
   }
 
   state = {
@@ -99,7 +101,7 @@ class Menu extends Component {
   }
 
   render() {
-    const { options, width, align, open, onClose, children } = this.props
+    const { options, align, open, onClose, children } = this.props
     const {
       hasCalculatedSize,
       isUpwards,
@@ -113,70 +115,110 @@ class Menu extends Component {
     return (
       <div className="relative">
         <div ref={this.containerElement}>{children}</div>
-        {open && (
-          <div
-            ref={this.menuElement}
-            style={{
-              [isUpwards ? 'bottom' : 'top']:
-                containerHeight + CONTAINER_MARGIN,
-              transform:
-                !hasCalculatedSize || isVisible
-                  ? 'scale(1)'
-                  : 'scale(0.9, 0.6)',
-              transformOrigin: `${isRight ? '75%' : '25%'} ${
-                isUpwards ? '100%' : '0'
-              }`,
-              transition: isVisible
-                ? 'transform 50ms ease-out, opacity 25ms'
-                : 'none',
-            }}
-            className={`absolute z-999 ba b--muted-4 br2 shadow-5 ${
-              isRight ? 'right-0' : 'left-0'
-            }
-            ${isVisible ? 'o-100' : 'o-0'}`}>
-            <div
-              className="b2 br2 bg-base"
-              style={{ width: width || DEFAULT_WIDTH }}>
+        <Overlay
+          show={open}
+          // onHide={() => this.setState({ show: false })}
+          // container={document.body}
+          target={() => this.containerElement.current}>
+          {() => {
+            const {
+              top,
+              bottom,
+              left,
+              right,
+              width,
+              height,
+            } = this.getContainerBounds()
+            const {
+              scrollTop,
+              scrollLeft,
+              clientWidth,
+              clientHeight,
+            } = document.documentElement
+
+            console.log('container:', this.getContainerBounds())
+            console.log('menu:', this.getMenuBounds())
+            console.log('scrollTop:', scrollTop)
+            console.log('scrollLeft:', scrollLeft)
+            console.log('clientWidth:', clientWidth)
+            console.log('clientHeight:', clientHeight)
+            return (
               <div
-                style={{ height: menuHeight || 'auto' }}
-                className={menuHeight ? 'overflow-scroll' : ''}>
-                {options.map((option, index) => (
-                  <button
-                    key={index}
-                    className="flex justify-between items-center t-body ph6 h-regular pointer hover-bg-muted-5 ma0 bg-transparent bn w-100 tl"
-                    onClick={() => {
-                      option.onClick(option)
-                      if (onClose) {
-                        onClose()
-                      }
-                    }}>
-                    <span
-                      className={`${
-                        option.toggle ? 'w-70 truncate' : 'w-100 truncate'
-                      } ${option.isDangerous ? 'c-danger' : ''}`}>
-                      {option.label}
-                    </span>
-                    {option.toggle && (
-                      <div style={{ pointerEvents: 'none' }}>
-                        <Toggle
-                          size="regular"
-                          semantic={option.toggle.semantic}
-                          checked={option.toggle.checked}
-                        />
-                      </div>
-                    )}
-                  </button>
-                ))}
+                ref={this.menuElement}
+                style={{
+                  // transform:
+                  //   !hasCalculatedSize || isVisible
+                  //     ? 'scale(1)'
+                  //     : 'scale(0.9, 0.6)',
+                  // transformOrigin: `${isRight ? '75%' : '25%'} ${
+                  //   isUpwards ? '100%' : '0'
+                  // }`,
+                  // transition: isVisible
+                  //   ? 'transform 50ms ease-out, opacity 25ms'
+                  //   : 'none',
+                  [isUpwards ? 'bottom' : 'top']: isUpwards
+                    ? // ? containerHeight + CONTAINER_MARGIN
+                      0 // TODO
+                    : top + scrollTop + height + 6,
+                  [isRight ? 'right' : 'left']: isRight
+                    ? clientWidth - right
+                    : left + scrollLeft,
+                  width: DEFAULT_WIDTH,
+                }}
+                className={`absolute z-999 ba b--muted-4 br2 shadow-5 ${
+                  isRight ? 'right-0' : 'left-0'
+                }
+              ${isVisible ? 'o-100' : 'o-0'}`}>
+                <div className="b2 br2 bg-base">
+                  {/* style={{ width: width || DEFAULT_WIDTH }}> */}
+                  <div
+                    style={{ height: menuHeight || 'auto' }}
+                    className={menuHeight ? 'overflow-scroll' : ''}>
+                    {options.map((option, index) => (
+                      <button
+                        key={index}
+                        className="flex justify-between items-center t-body ph6 h-regular pointer hover-bg-muted-5 ma0 bg-transparent bn w-100 tl"
+                        onClick={() => {
+                          option.onClick(option)
+                          if (onClose) {
+                            onClose()
+                          }
+                        }}>
+                        <span
+                          className={`${
+                            option.toggle ? 'w-70 truncate' : 'w-100 truncate'
+                          } ${option.isDangerous ? 'c-danger' : ''}`}>
+                          {option.label}
+                        </span>
+                        {option.toggle && (
+                          <div style={{ pointerEvents: 'none' }}>
+                            <Toggle
+                              size="regular"
+                              semantic={option.toggle.semantic}
+                              checked={option.toggle.checked}
+                            />
+                          </div>
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        )}
+            )
+          }}
+        </Overlay>
       </div>
     )
   }
 }
 
-Menu.defaultProps = {
+const MenuWithRef = React.forwardRef((props, ref) => {
+  return <Menu {...props} forwardedRef={ref} />
+})
+
+MenuWithRef.displayName = 'Menu'
+
+MenuWithRef.defaultProps = {
   options: [],
   align: 'right',
   open: false,
@@ -208,4 +250,7 @@ Menu.propTypes = {
   align: PropTypes.oneOf(['right', 'left']),
 }
 
-export default Menu
+Menu.defaultProps = MenuWithRef.defaultProps
+Menu.propTypes = MenuWithRef.propTypes
+
+export default MenuWithRef

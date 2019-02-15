@@ -9,6 +9,7 @@ class ActionMenu extends Component {
   constructor(props) {
     super(props)
     this.container = React.createRef()
+    this.menu = React.createRef()
     this.state = {
       isMenuOpen: false,
     }
@@ -38,9 +39,9 @@ class ActionMenu extends Component {
 
   handleClickOutside = e => {
     if (
-      this.container &&
-      this.container.current &&
-      !this.container.current.contains(e.target) &&
+      this.menu &&
+      this.menu.current &&
+      !this.menu.current.contains(e.target) &&
       this.state.isMenuOpen
     ) {
       this.closeMenu()
@@ -72,6 +73,7 @@ class ActionMenu extends Component {
     return (
       <div ref={this.container}>
         <Menu
+          ref={this.menu}
           open={isMenuOpen}
           align={align}
           width={menuWidth}
