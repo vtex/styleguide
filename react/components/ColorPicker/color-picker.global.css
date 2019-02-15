@@ -1,0 +1,58 @@
+/**
+* ColorPicker
+*/
+
+/** Gradient container style */
+.gradient-container {
+  height: 0.25rem;
+}
+
+/** Saturation container style */
+.saturation-container {
+  min-height: 12rem;
+}
+
+/** Gradient container inner's div style */
+.gradient-container div {
+  border-radius: 0.25rem;
+}
+
+/** Saturation container inner's div style */
+.saturation-container div {
+  border-radius: 0.25rem;
+}
+
+/** Default Pointer styles */
+.pointer-gradient, .pointer-saturation {
+  border-radius: 1rem !important; 
+  cursor: pointer;
+  transform: translate(-50%, -0.4375rem);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+/** Gradient Point style */
+.pointer-gradient {
+  width: 1rem;
+  height: 1rem;
+  border: 0.125rem solid #ffffff;
+}
+
+/** Saturation Pointer style */
+.pointer-saturation {
+  width: 0.625rem;
+  height: 0.625rem;
+  border: 0.125rem solid #ffffff;
+}
+
+/** Options Container Style */
+.options-container {
+  box-shadow: 0px 4px 8px rgba(15, 54, 102, 0.15);
+  min-width: 20rem;
+}
+
+/** Remove input number spinners */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
