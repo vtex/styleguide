@@ -4,6 +4,8 @@ import Input from '../Input'
 import VisibilityOn from '../icon/VisibilityOn'
 import VisibilityOff from '../icon/VisibilityOff'
 
+import withForwardedRef from '../../modules/withForwardedRef'
+
 class InputPassword extends Component {
   static iconSizes = {
     small: 14,
@@ -42,18 +44,15 @@ class InputPassword extends Component {
   }
 }
 
-const InputPasswordWithRef = React.forwardRef((props, ref) => (
-  <InputPassword {...props} forwardedRef={ref} />
-))
-
-InputPasswordWithRef.displayName = 'InputPassword'
-
-InputPasswordWithRef.propTypes = {
+InputPassword.propTypes = {
+  /** @ignore Forwarded Ref */
+  forwardedRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  ]),
   onChange: PropTypes.func,
   size: PropTypes.string,
   value: PropTypes.string,
 }
 
-InputPassword.propTypes = InputPasswordWithRef.propTypes
-
-export default InputPasswordWithRef
+export default withForwardedRef(InputPassword)

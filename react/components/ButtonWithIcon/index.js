@@ -3,10 +3,17 @@ import PropTypes from 'prop-types'
 
 import Button from '../Button'
 
+import withForwardedRef from '../../modules/withForwardedRef'
+
 class ButtonWithIcon extends Component {
   static propTypes = {
     /** @ignore Button label */
     children: PropTypes.node,
+    /** @ignore Forwarded Ref */
+    forwardedRef: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+    ]),
     /** The icon image */
     icon: PropTypes.node.isRequired,
     /** Position of the icon */
@@ -74,4 +81,4 @@ class ButtonWithIcon extends Component {
   }
 }
 
-export default ButtonWithIcon
+export default withForwardedRef(ButtonWithIcon)

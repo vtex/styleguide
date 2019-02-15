@@ -4,6 +4,8 @@ import Input from '../Input'
 import SearchIcon from '../icon/Search'
 import DenyIcon from '../icon/Deny'
 
+import withForwardedRef from '../../modules/withForwardedRef'
+
 class InputSearch extends Component {
   static iconSizes = {
     small: 14,
@@ -54,19 +56,16 @@ class InputSearch extends Component {
   }
 }
 
-const InputSearchWithRef = React.forwardRef((props, ref) => (
-  <InputSearch {...props} forwardedRef={ref} />
-))
-
-InputSearchWithRef.displayName = 'InputSearch'
-
-InputSearchWithRef.propTypes = {
+InputSearch.propTypes = {
+  /** @ignore Forwarded Ref */
+  forwardedRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  ]),
   onChange: PropTypes.func,
   onClear: PropTypes.func,
   size: PropTypes.string,
   value: PropTypes.string,
 }
 
-InputSearch.propTypes = InputSearchWithRef.propTypes
-
-export default InputSearchWithRef
+export default withForwardedRef(InputSearch)
