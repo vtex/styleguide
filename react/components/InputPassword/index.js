@@ -48,7 +48,7 @@ InputPassword.propTypes = {
   /** @ignore Forwarded Ref */
   forwardedRef: PropTypes.oneOfType([
     PropTypes.func,
-    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+    PropTypes.shape({ current: PropTypes.instanceOf(React.Element) }),
   ]),
   onChange: PropTypes.func,
   size: PropTypes.string,
