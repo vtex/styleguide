@@ -79,7 +79,7 @@ class ColorPicker extends React.Component {
               <HexInput
                 rgb={rgba}
                 onChange={this.handleColorChange}
-                disable={disabled}
+                disabled={disabled}
               />
             </div>
           </div>
