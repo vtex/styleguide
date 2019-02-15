@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix ref forwarding for the following components:
+  - **Button** 
+  - **ButtonWithIcon**
+  - **Dropdown**
+  - **Input**
+  - **InputCurrency**
+  - **InputPassword**
+  - **InputSearch**
+
 ## [8.18.0] - 2019-02-15
 
 ### Added
