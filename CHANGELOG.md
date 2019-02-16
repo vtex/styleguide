@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.18.2] - 2019-02-15
+
+### Fixed
+
+- Wrong prop types
+
 ## [8.18.1] - 2019-02-15
 
 ### Fixed
