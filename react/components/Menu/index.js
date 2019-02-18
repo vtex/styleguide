@@ -24,6 +24,16 @@ class Menu extends Component {
     containerHeight: 0,
   }
 
+  onWindowResize = () => this.forceUpdate()
+
+  componentDidMount() {
+    window.addEventListener('resize', this.onWindowResize)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.onWindowResize)
+  }
+
   getMenuBounds = () =>
     this.menuElement.current &&
     this.menuElement.current.getBoundingClientRect &&
