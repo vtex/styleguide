@@ -11,6 +11,7 @@ styleguide-visual/*.diff.png
 # production
 /build
 /lib
+/modules
 /styleguide
 
 # misc
