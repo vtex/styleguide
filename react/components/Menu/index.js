@@ -125,11 +125,7 @@ class Menu extends Component {
     return (
       <div className="relative">
         <div ref={this.containerElement}>{children}</div>
-        <Overlay
-          show={open}
-          // onHide={() => this.setState({ show: false })}
-          // container={document.body}
-          target={() => this.containerElement.current}>
+        <Overlay show={open}>
           {() => {
             const {
               top,
@@ -169,8 +165,8 @@ class Menu extends Component {
                     ? 'transform 50ms ease-out, opacity 25ms'
                     : 'none',
                   [isUpwards ? 'bottom' : 'top']: isUpwards
-                    ? clientHeight - (top + scrollTop - 6)
-                    : top + scrollTop + height + 6,
+                    ? clientHeight - (top + scrollTop - CONTAINER_MARGIN)
+                    : top + scrollTop + height + CONTAINER_MARGIN,
                   [isRight ? 'right' : 'left']: isRight
                     ? clientWidth - right
                     : left + scrollLeft,
