@@ -25,6 +25,7 @@ styleguide-visual/*.diff.png
 .env.production.local
 .vscode
 .idea
+*.orig
 
 npm-debug.log*
 yarn-debug.log*
