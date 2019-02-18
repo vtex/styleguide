@@ -159,8 +159,8 @@ class Button extends Component {
             <span className={`${labelClasses} o-0`}>{children}</span>
           </Fragment>
         ) : (
-            <div className={labelClasses}>{children}</div>
-          )}
+          <div className={labelClasses}>{children}</div>
+        )}
       </button>
     )
   }
