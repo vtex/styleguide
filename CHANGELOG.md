@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.18.3] - 2019-02-18
+
 ### Fixed
 
 - **EXPERIMENTAL_Select** fix focus behaviour when typing in the search input.
