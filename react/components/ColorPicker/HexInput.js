@@ -32,12 +32,20 @@ class HexInput extends React.Component {
     return validColor
   }
 
+  componentDidMount() {
+    this.updateInputValue()
+  }
+
   componentDidUpdate(prevProps) {
     if (prevProps.rgb !== this.props.rgb) {
-      const { rgb } = this.props
-      const color = colorutil.rgb.to.hex(rgb)
-      this.setState({ inputValue: color })
+      this.updateInputValue()
     }
+  }
+
+  updateInputValue() {
+    const { rgb } = this.props
+    const color = colorutil.rgb.to.hex(rgb)
+    this.setState({ inputValue: color })
   }
 
   render() {
