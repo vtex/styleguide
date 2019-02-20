@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.19.2] - 2019-02-20
+
+## [8.19.1] - 2019-02-20
+
+## [8.19.0] - 2019-02-20
+
+### Added
+
+- **Tag** `low` new variation prop, now tags may have borders.
+
 ## [8.18.3] - 2019-02-18
 
 ### Fixed
