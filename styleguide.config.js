@@ -223,6 +223,7 @@ module.exports = {
     theme: 'monokai', // more themes: https://codemirror.net/theme/
   },
   template: {
+    favicon: 'https://brand.vtex.com/favicon.ico',
     head: {
       scripts: [
         {

@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.19.3] - 2019-02-21
+
+### Fixed
+
+- Adds favicon URL to styleguidist build configs.
+
 ## [8.19.2] - 2019-02-20
 
 ## [8.19.1] - 2019-02-20
