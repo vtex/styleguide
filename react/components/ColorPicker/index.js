@@ -119,6 +119,8 @@ ColorPicker.propTypes = {
     /** HEX color format */
     hex: PropTypes.string,
   }).isRequired,
+  /** Color history */
+  colorHistory: PropTypes.array.isRequired,
   /** Disable component */
   disabled: PropTypes.bool,
 }
