@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- **ColorPicker** require prop `colorHistory`.
+- **ColorPicker** always show the correct hex value.
+
 ## [8.19.3] - 2019-02-21
 
 ### Fixed
