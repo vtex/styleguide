@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.19.4] - 2019-02-22
+
 ### Fixed
 
 - **ColorPicker** require prop `colorHistory`.
