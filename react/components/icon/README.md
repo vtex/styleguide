@@ -34,6 +34,7 @@ const ICONS = {
   Copy: require('./Copy').default,
   Delete: require('./Delete').default,
   Deny: require('./Deny').default,
+  Minus: require('./Minus').default,
   Density: require('./Density').default,
   Download: require('./Download').default,
   Edit: require('./Edit').default,
