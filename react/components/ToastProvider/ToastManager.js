@@ -20,7 +20,13 @@ export default class ToastManager extends Component {
     if (isString(args)) {
       args = { message: args }
     }
-    const { message = '', action, duration, horizontalPosition = 'left' } = args
+    const {
+      message = '',
+      action,
+      dismissable,
+      duration,
+      horizontalPosition = 'left',
+    } = args
 
     if (this.state.currentToast) {
       // If there is a toast present already, queue up the next toast
@@ -29,6 +35,7 @@ export default class ToastManager extends Component {
         nextToast: {
           message,
           action,
+          dismissable,
           duration,
           horizontalPosition,
         },
@@ -39,6 +46,7 @@ export default class ToastManager extends Component {
         currentToast: {
           message,
           action,
+          dismissable,
           duration,
           horizontalPosition,
         },
@@ -119,6 +127,7 @@ export default class ToastManager extends Component {
             message={currentToast.message}
             action={currentToast.action}
             duration={currentToast.duration}
+            dismissable={currentToast.dismissable}
             visible={this.state.isToastVisible}
             onClose={this.handleToastClose}
             horizontalPosition={currentToast.horizontalPosition}

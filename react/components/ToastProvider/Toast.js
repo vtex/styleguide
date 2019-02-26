@@ -13,6 +13,10 @@ const DURATION_ACTION_INCREMENT = 2000
 const TRANSITION_DURATION = 160
 
 export default class Toast extends Component {
+  static defaultProps = {
+    dismissable: true,
+  }
+
   constructor(props) {
     super(props)
     this.state = {
@@ -158,7 +162,7 @@ export default class Toast extends Component {
 
   render() {
     const { isOpen, isSingleLine } = this.state
-    const { action, horizontalPosition, message, onClose } = this.props
+    const { action, dismissable, horizontalPosition, message } = this.props
     const hasAction = !!(action && action.onClick && action.label)
 
     return (
@@ -195,7 +199,7 @@ export default class Toast extends Component {
               </div>
             )}
           </div>
-          {onClose && (
+          {dismissable && (
             <div className="pt2 pt0-ns">
               <div
                 className="vtex-alert__close-icon pointer flex items-center pa3 white nr3 nv3"
@@ -220,4 +224,5 @@ Toast.propTypes = {
   }),
   visible: PropTypes.bool,
   duration: PropTypes.number,
+  dismissable: PropTypes.bool,
 }

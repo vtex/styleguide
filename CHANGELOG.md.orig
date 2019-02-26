@@ -7,15 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-### Added
-
-- **Toast** now can be undismissable by the user.
-
+<<<<<<< HEAD
 ## [8.19.5] - 2019-02-27
 
 ### Fixed
 
 - **Table** paginated example.
+=======
+### Added
+- **Toast** now can be undismissable by the user.
+>>>>>>> Add the undismissable Toast
 
 ## [8.19.4] - 2019-02-22
 
