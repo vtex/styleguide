@@ -120,6 +120,20 @@ const Content = () => (
             <div className="mr5">
               <Button
                 size="small"
+                variation="secondary"
+                onClick={
+                  () => showToast({
+                    message: 'This message stays here until closed programatically',
+                    dismissable: false,
+                  })
+                }
+              >
+                Undismissable
+              </Button>
+            </div>
+            <div className="mr5">
+              <Button
+                size="small"
                 variation="danger"
                 onClick={hideToast}
               >
