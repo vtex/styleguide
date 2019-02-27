@@ -49,13 +49,11 @@ const defaultSchema = {
       items={itemsCopy}
       density="high"
       onRowClick={({ rowData }) => {
-        alert(`you just clicked ${
-          rowData.name
-        }, number is ${
-          rowData.number
-        } and email ${
-          rowData.email
-        }`)
+        alert(
+          `you just clicked ${rowData.name}, number is ${
+            rowData.number
+          } and email ${rowData.email}`
+        )
       }}
     />
   </div>
