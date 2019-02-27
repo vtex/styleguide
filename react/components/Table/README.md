@@ -49,13 +49,11 @@ const defaultSchema = {
       items={itemsCopy}
       density="high"
       onRowClick={({ rowData }) => {
-        alert(`you just clicked ${
-          rowData.name
-        }, number is ${
-          rowData.number
-        } and email ${
-          rowData.email
-        }`)
+        alert(
+          `you just clicked ${rowData.name}, number is ${
+            rowData.number
+          } and email ${rowData.email}`
+        )
       }}
     />
   </div>
@@ -188,7 +186,7 @@ const sampleData = require('./sampleData').default
 const tableLength = 5
 const initialState = {
   tableLength,
-  currentPage: 0,
+  currentPage: 1,
   slicedData: sampleData.items.slice(0, tableLength),
   currentItemFrom: 1,
   currentItemTo: tableLength,
