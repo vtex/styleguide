@@ -327,7 +327,7 @@ class ResourceListExample extends React.Component {
             onSubmit: this.handleInputSearchSubmit,
           },
           density: {
-            buttonLabel: 'Density',
+            hintLabel: 'Line density',
             lowOptionLabel: 'Low',
             mediumOptionLabel: 'Medium',
             highOptionLabel: 'High',
@@ -341,12 +341,12 @@ class ResourceListExample extends React.Component {
             handleCallback: () => alert('Callback()'),
           },
           fields: {
-            label: 'Fields',
+            label: 'Toggle visible fields',
             showAllLabel: 'Show All',
             hideAllLabel: 'Hide All',
           },
           extraActions: {
-            label: 'More',
+            label: 'More options',
             actions: [
               {
                 label: 'alert 1',

@@ -211,7 +211,7 @@ Table.propTypes = {
       onSubmit: PropTypes.func,
     }),
     density: PropTypes.shape({
-      buttonLabel: PropTypes.string,
+      hintLabel: PropTypes.string,
       lowOptionLabel: PropTypes.string,
       mediumOptionLabel: PropTypes.string,
       highOptionLabel: PropTypes.string,
