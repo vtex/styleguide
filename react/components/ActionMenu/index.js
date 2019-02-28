@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import Button from '../Button'
+import ButtonWithIcon from '../ButtonWithIcon'
 import IconCaretDown from '../icon/CaretDown'
 import Menu from '../Menu'
 
@@ -85,20 +85,17 @@ class ActionMenu extends Component {
           width={menuWidth}
           options={options}
           onClose={shouldCloseOnClick ? this.closeMenu : null}>
-          <Button {...buttonProps} onClick={this.handleClick}>
+          <ButtonWithIcon
+            {...{ icon }}
+            {...buttonProps}
+            onClick={this.handleClick}>
             <span className="flex align-baseline items-center">
-              {icon && (
-                <div
-                  className={`pt2 self-center ${hideCaretIcon ? '' : 'mr2'}`}>
-                  {icon}
-                </div>
-              )}
               {label && (
                 <span className={`${hideCaretIcon ? '' : 'mr3'}`}>{label}</span>
               )}
               {!hideCaretIcon && <span>{iconCaret}</span>}
             </span>
-          </Button>
+          </ButtonWithIcon>
         </Menu>
       </div>
     )
@@ -118,9 +115,11 @@ ActionMenu.propTypes = {
   align: PropTypes.oneOf(['right', 'left']),
   /** If should close the menu after clicking an option */
   shouldCloseOnClick: PropTypes.bool,
-  /** Respecting button props contract. */
-  buttonProps: PropTypes.shape({ ...Button.propTypes }),
-  /** Button icon */
+  /** Respecting ButtonWithIcon props contract. For more info, click
+   * <a href='#/Components/Forms/ButtonWithIcon'>here</a>
+   */
+  buttonProps: ButtonWithIcon.propTypes,
+  /** @deprecated Button icon: use buttonProps instead */
   icon: PropTypes.element,
   /** Button text label */
   label: PropTypes.string,

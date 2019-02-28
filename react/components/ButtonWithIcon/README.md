@@ -1,4 +1,5 @@
-In addition to the props above, `ButtonWithIcon` accepts all the props the `Button` component does.
+In addition to the props above, `ButtonWithIcon` accepts all the props the
+[`Button`](/#/Components/Forms/Button) component does.
 
 ```js
 const ArrowBack = require('../icon/ArrowBack').default
@@ -11,8 +12,7 @@ const remove = <Delete />
 const edit = <Edit />
 const plus = <PlusLines />
 
-;
-<div className="flex">
+;<div className="flex">
   <div className="mr2">
     <ButtonWithIcon icon={arrow} variation="tertiary">
       Back
