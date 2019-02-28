@@ -72,11 +72,9 @@ class SimpleTable extends Component {
         cellRenderer: ({ rowData }) => {
           return (
             <ActionMenu
-              icon={<OptionsDots />}
-              hideCaretIcon
               buttonProps={{
                 variation: 'tertiary',
-                icon: true,
+                icon: <OptionsDots />,
               }}
               options={lineActions.map(action => ({
                 ...action,
@@ -251,11 +249,10 @@ class SimpleTable extends Component {
                               fullWidthColWidth
                             ),
                           }}
-                          className={`flex items-center w-100 h-100 ph4 bb b--muted-4 ${
-                            property === '_VTEX_Table_Internal_lineActions'
-                              ? ''
-                              : 'truncate'
-                          } ${disableHeader && rowIndex === 0 ? 'bt' : ''} ${
+                          className={`flex items-center w-100 h-100 ph4 bb 
+                            b--muted-4 truncate ${
+                              disableHeader && rowIndex === 0 ? 'bt' : ''
+                            } ${
                             onRowClick && rowIndex === hoverRowIndex
                               ? 'pointer bg-near-white c-link'
                               : ''

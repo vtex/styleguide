@@ -60,6 +60,63 @@ const defaultSchema = {
 </div>
 ```
 
+Line actions
+
+```js
+const sampleData = require('./sampleData').default
+const itemsCopy = sampleData.items
+  .slice()
+  .reverse()
+  .splice(15)
+const defaultSchema = {
+  properties: {
+    name: {
+      type: 'string',
+      title: 'Name',
+    },
+    email: {
+      type: 'string',
+      title: 'Email',
+    },
+    number: {
+      type: 'number',
+      title: 'Number',
+    },
+  },
+}
+
+const lineActions = [
+  {
+    label: ({ rowData }) => `Action for ${rowData.name}`,
+    onClick: ({ rowData }) => alert(`Executed action for ${rowData.name}`),
+  },
+  {
+    label: ({ rowData }) => `DANGEROUS action for ${rowData.name}`,
+    isDangerous: true,
+    onClick: ({ rowData }) =>
+      alert(`Executed a DANGEROUS action for ${rowData.name}`),
+  },
+]
+
+;<div>
+  <div className="mb5">
+    <Table
+      fullWidth
+      schema={defaultSchema}
+      items={itemsCopy}
+      onRowClick={({ rowData }) => {
+        alert(
+          `you just clicked ${rowData.name}, number is ${
+            rowData.number
+          } and email ${rowData.email}`
+        )
+      }}
+      lineActions={lineActions}
+    />
+  </div>
+</div>
+```
+
 Custom cell components / sortable columns
 
 ```js
@@ -197,41 +254,41 @@ const initialState = {
   emptyStateLabel: 'Nothing to show.',
 }
 const jsonschema = {
+  properties: {
+    name: {
+      type: 'string',
+      title: 'Name',
+    },
+    email: {
+      type: 'string',
+      title: 'Email',
+      width: 300,
+    },
+    number: {
+      type: 'number',
+      title: 'Number',
+    },
+    color: {
+      type: 'object',
       properties: {
-        name: {
-          type: 'string',
-          title: 'Name',
-        },
-        email: {
-          type: 'string',
-          title: 'Email',
-          width: 300,
-        },
-        number: {
-          type: 'number',
-          title: 'Number',
-        },
         color: {
-          type: 'object',
-          properties: {
-            color: {
-              type: 'string',
-            },
-            label: {
-              type: 'string',
-            },
-          },
-          title: 'Color',
-          cellRenderer: ({ cellData }) => {
-            return (
-              <Tag bgColor={cellData.color} color="#fff">
-                <span className="nowrap">{cellData.label}</span>
-              </Tag>
-            )
-          },
+          type: 'string',
+        },
+        label: {
+          type: 'string',
         },
       },
-    }
+      title: 'Color',
+      cellRenderer: ({ cellData }) => {
+        return (
+          <Tag bgColor={cellData.color} color="#fff">
+            <span className="nowrap">{cellData.label}</span>
+          </Tag>
+        )
+      },
+    },
+  },
+}
 
 class ResourceListExample extends React.Component {
   constructor() {
