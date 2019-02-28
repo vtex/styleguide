@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import config from 'vtex-tachyons/config.json'
 
 import Spinner from '../../Spinner'
 
@@ -12,8 +11,8 @@ class TotalizerValue extends PureComponent {
 
     if (isLoading) {
       return (
-        <div className="mt2">
-          <Spinner size="14" color={config.semanticColors.on.base} />
+        <div className="mt2 c-muted-1">
+          <Spinner size={14} color="currentColor" />
         </div>
       )
     }

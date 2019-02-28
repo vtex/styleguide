@@ -25,7 +25,9 @@ class Totalizers extends PureComponent {
           const EXTRA_BORDER = IS_NOT_LAST ? 'bb bb-0-ns br-ns' : ''
 
           return (
-            <div className={`${TOTALIZER_CLASSES} ${EXTRA_BORDER}`} key={i}>
+            <div
+              className={`${TOTALIZER_CLASSES} ${EXTRA_BORDER}`}
+              key={item.label}>
               {item.icon ? (
                 <div className="flex flex-row">
                   <TotalizerIcon item={item} />
