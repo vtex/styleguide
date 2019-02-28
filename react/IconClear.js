@@ -1,1 +1,3 @@
-export { default } from './components/icon/Clear'
+import Clear from './components/icon/Clear/index'
+
+export default Clear

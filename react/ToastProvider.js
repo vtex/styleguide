@@ -1,3 +1,3 @@
-import { ToastProvider } from './components/ToastProvider/index'
+import ToastProvider from './components/ToastProvider/index'
 
 export default ToastProvider
