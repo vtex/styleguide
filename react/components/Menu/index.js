@@ -5,6 +5,8 @@ import { Overlay } from 'react-overlays'
 
 import Toggle from '../Toggle'
 
+import withForwardedRef from '../../modules/withForwardedRef'
+
 const DEFAULT_WIDTH = 292
 const CONTAINER_MARGIN = 6
 const WINDOW_MARGIN = 10
@@ -131,6 +133,7 @@ class Menu extends Component {
               width,
               height,
             } = this.getContainerBounds()
+
             const {
               scrollTop,
               scrollLeft,
@@ -165,7 +168,6 @@ class Menu extends Component {
                 }
               ${isVisible ? 'o-100' : 'o-0'}`}>
                 <div className="b2 br2 bg-base">
-                  {/* style={{ width: width || DEFAULT_WIDTH }}> */}
                   <div
                     style={{ height: menuHeight || 'auto' }}
                     className={menuHeight ? 'overflow-scroll' : ''}>
@@ -207,13 +209,7 @@ class Menu extends Component {
   }
 }
 
-const MenuWithRef = React.forwardRef((props, ref) => {
-  return <Menu {...props} forwardedRef={ref} />
-})
-
-MenuWithRef.displayName = 'Menu'
-
-MenuWithRef.defaultProps = {
+Menu.defaultProps = {
   options: [],
   align: 'right',
   open: false,
@@ -245,7 +241,4 @@ Menu.propTypes = {
   align: PropTypes.oneOf(['right', 'left']),
 }
 
-Menu.defaultProps = MenuWithRef.defaultProps
-Menu.propTypes = MenuWithRef.propTypes
-
-export default MenuWithRef
+export default withForwardedRef(MenuWithRef)
