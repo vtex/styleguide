@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Overlay } from 'react-overlays'
@@ -10,6 +9,12 @@ import withForwardedRef from '../../modules/withForwardedRef'
 const DEFAULT_WIDTH = 292
 const CONTAINER_MARGIN = 6
 const WINDOW_MARGIN = 10
+const DEFAULT_DOCUMENT_ELEMENT = {
+  scrollTop: 0,
+  scrollLeft: 0,
+  clientWidth: 0,
+  clientHeight: 0,
+}
 
 class Menu extends Component {
   constructor(props) {
@@ -29,11 +34,11 @@ class Menu extends Component {
   onWindowResize = () => this.forceUpdate()
 
   componentDidMount() {
-    window.addEventListener('resize', this.onWindowResize)
+    if (window) window.addEventListener('resize', this.onWindowResize)
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.onWindowResize)
+    if (window) window.removeEventListener('resize', this.onWindowResize)
   }
 
   getMenuBounds = () =>
@@ -110,13 +115,7 @@ class Menu extends Component {
 
   render() {
     const { options, align, open, onClose, children } = this.props
-    const {
-      hasCalculatedSize,
-      isUpwards,
-      isVisible,
-      menuHeight,
-      containerHeight,
-    } = this.state
+    const { hasCalculatedSize, isUpwards, isVisible, menuHeight } = this.state
 
     const isRight = align === 'right'
 
@@ -125,21 +124,14 @@ class Menu extends Component {
         <div ref={this.containerElement}>{children}</div>
         <Overlay show={open}>
           {() => {
-            const {
-              top,
-              bottom,
-              left,
-              right,
-              width,
-              height,
-            } = this.getContainerBounds()
+            const { top, left, right, height } = this.getContainerBounds()
 
             const {
               scrollTop,
               scrollLeft,
               clientWidth,
               clientHeight,
-            } = document.documentElement
+            } = document ? document.documentElement : DEFAULT_DOCUMENT_ELEMENT
 
             return (
               <div
