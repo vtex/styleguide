@@ -13,10 +13,7 @@ class TotalizerValue extends PureComponent {
     if (isLoading) {
       return (
         <div className="mt2">
-          <Spinner
-            size="14"
-            color={config.semanticColors.background['base--inverted']}
-          />
+          <Spinner size="14" color={config.semanticColors.on.base} />
         </div>
       )
     }
