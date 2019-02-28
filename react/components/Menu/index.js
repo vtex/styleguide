@@ -63,12 +63,8 @@ class Menu extends Component {
       isOutOfBounds && containerBounds.top > window.innerHeight / 2
 
     const maxMenuHeight = isUpwards
-      ? menuBounds.top - CONTAINER_MARGIN - WINDOW_MARGIN
-      : window.innerHeight -
-        menuBounds.top -
-        containerHeight -
-        CONTAINER_MARGIN -
-        WINDOW_MARGIN
+      ? menuBounds.top - CONTAINER_MARGIN - WINDOW_MARGIN - containerHeight
+      : window.innerHeight - menuBounds.top - CONTAINER_MARGIN - WINDOW_MARGIN
 
     // Makes the height of the menu, if it doesn't entirely fit on the screen,
     // fall in the middle of an item, to hint that the menu scrolls
