@@ -219,6 +219,11 @@ Menu.propTypes = {
   /** The element which will open the menu--the menu will
    * be positioned around this element */
   children: PropTypes.node,
+  /** @ignore Forwarded Ref */
+  forwardedRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.element }),
+  ]),
   /** Menu visibility (default is false) */
   open: PropTypes.bool,
   /** Menu Box width (default is 292px) */
@@ -241,4 +246,4 @@ Menu.propTypes = {
   align: PropTypes.oneOf(['right', 'left']),
 }
 
-export default withForwardedRef(MenuWithRef)
+export default withForwardedRef(Menu)
