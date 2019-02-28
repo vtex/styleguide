@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- **Table** `lineActions` prop to add a new column with an **ActionMenu** like component used to execute actions for each line.
+- **Table** `lineActions` prop to add a new column with an **ActionMenu**-like component used to execute actions for each line.
 
 ## [8.22.1] - 2019-03-01
 
