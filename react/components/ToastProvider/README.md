@@ -214,7 +214,7 @@ const Content = () => (
       this.setState({ value: event.currentTarget.value })
     }
 
-    componentDidUpdate(prevState) {
+    componentDidUpdate(_, prevState) {
       const { value } = this.state
       if ( prevState.value !== this.state.value ) {
         if (value === ''){
