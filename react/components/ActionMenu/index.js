@@ -117,8 +117,8 @@ ActionMenu.propTypes = {
   align: PropTypes.oneOf(['right', 'left']),
   /** If should close the menu after clicking an option */
   shouldCloseOnClick: PropTypes.bool,
-  /** Respecting ButtonWithIcon props contract. For more info, click
-   * <a href='#/Components/Forms/ButtonWithIcon'>here</a>
+  /** Respecting ButtonWithIcon props contract. For more info, see:
+   * https://styleguide.vtex.com/#/Components/Forms/Button
    */
   buttonProps: ButtonWithIcon.propTypes,
   /** @deprecated Button icon: use buttonProps instead */
