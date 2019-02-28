@@ -196,11 +196,46 @@ const initialState = {
   itemsLength: sampleData.items.length,
   emptyStateLabel: 'Nothing to show.',
 }
+const jsonschema = {
+      properties: {
+        name: {
+          type: 'string',
+          title: 'Name',
+        },
+        email: {
+          type: 'string',
+          title: 'Email',
+          width: 300,
+        },
+        number: {
+          type: 'number',
+          title: 'Number',
+        },
+        color: {
+          type: 'object',
+          properties: {
+            color: {
+              type: 'string',
+            },
+            label: {
+              type: 'string',
+            },
+          },
+          title: 'Color',
+          cellRenderer: ({ cellData }) => {
+            return (
+              <Tag bgColor={cellData.color} color="#fff">
+                <span className="nowrap">{cellData.label}</span>
+              </Tag>
+            )
+          },
+        },
+      },
+    }
 
 class ResourceListExample extends React.Component {
   constructor() {
     super()
-
     this.state = initialState
 
     this.handleNextClick = this.handleNextClick.bind(this)
@@ -210,7 +245,6 @@ class ResourceListExample extends React.Component {
     this.handleInputSearchSubmit = this.handleInputSearchSubmit.bind(this)
     this.handleInputSearchClear = this.handleInputSearchClear.bind(this)
     this.handleRowsChange = this.handleRowsChange.bind(this)
-    this.customColorTagProperty = this.customColorTagProperty.bind(this)
   }
 
   handleNextClick() {
@@ -272,6 +306,125 @@ class ResourceListExample extends React.Component {
     }
   }
 
+  render() {
+    return (
+      <Table
+        schema={jsonschema}
+        items={this.state.slicedData}
+        emptyStateLabel={this.state.emptyStateLabel}
+        toolbar={{
+          inputSearch: {
+            value: this.state.searchValue,
+            placeholder: 'Search stuff...',
+            onChange: this.handleInputSearchChange,
+            onClear: this.handleInputSearchClear,
+            onSubmit: this.handleInputSearchSubmit,
+          },
+          density: {
+            buttonLabel: 'Line density',
+            lowOptionLabel: 'Low',
+            mediumOptionLabel: 'Medium',
+            highOptionLabel: 'High',
+          },
+          download: {
+            label: 'Export',
+            handleCallback: () => alert('Callback()'),
+          },
+          upload: {
+            label: 'Import',
+            handleCallback: () => alert('Callback()'),
+          },
+          fields: {
+            label: 'Toggle visible fields',
+            showAllLabel: 'Show All',
+            hideAllLabel: 'Hide All',
+          },
+          extraActions: {
+            label: 'More options',
+            actions: [
+              {
+                label: 'An action',
+                handleCallback: () => alert('An action'),
+              },
+              {
+                label: 'Another action',
+                handleCallback: () => alert('Another action'),
+              },
+              {
+                label: 'A third action',
+                handleCallback: () => alert('A third action'),
+              },
+            ],
+          },
+          newLine: {
+            label: 'New',
+            handleCallback: () => alert('handle new line callback'),
+          },
+        }}
+        pagination={{
+          onNextClick: this.handleNextClick,
+          onPrevClick: this.handlePrevClick,
+          currentItemFrom: this.state.currentItemFrom,
+          currentItemTo: this.state.currentItemTo,
+          onRowsChange: this.handleRowsChange,
+          textShowRows: 'Show rows',
+          textOf: 'of',
+          totalItems: this.state.itemsLength,
+          rowsOptions: [5, 10, 15, 25],
+        }}
+        totalizers={[
+          {
+            label: 'Saldo em conta',
+            value: 23837,
+          },
+          {
+            label: 'Entradas',
+            value: 'R$ 36239,05',
+            iconBackgroundColor: '#eafce3',
+            icon: <ArrowUp color="#79B03A" size={14} />,
+          },
+
+          {
+            label: 'Saídas',
+            value: '- R$ 13.485,26',
+            icon: <ArrowDown size={14} />,
+          },
+          {
+            label: 'Vendas',
+            value: 23837,
+            isLoading: true,
+          },
+        ]}
+      />
+    )
+  }
+}
+;<ResourceListExample />
+```
+
+Lots of columns
+
+```js
+const sampleData = require('./sampleData').default
+const tableLength = 5
+const initialState = {
+  tableLength,
+  currentPage: 1,
+  slicedData: sampleData.items.slice(0, tableLength),
+  currentItemFrom: 1,
+  currentItemTo: tableLength,
+  searchValue: '',
+  itemsLength: sampleData.items.length,
+  emptyStateLabel: 'Nothing to show.',
+}
+
+class ResourceListExample extends React.Component {
+  constructor() {
+    super()
+    this.state = initialState
+    this.customColorTagProperty = this.customColorTagProperty.bind(this)
+  }
+
   customColorTagProperty(index) {
     return {
       type: 'object',
@@ -318,89 +471,6 @@ class ResourceListExample extends React.Component {
         items={this.state.slicedData}
         fixFirstColumn
         emptyStateLabel={this.state.emptyStateLabel}
-        toolbar={{
-          inputSearch: {
-            value: this.state.searchValue,
-            placeholder: 'Search stuff...',
-            onChange: this.handleInputSearchChange,
-            onClear: this.handleInputSearchClear,
-            onSubmit: this.handleInputSearchSubmit,
-          },
-          density: {
-            buttonLabel: 'Density',
-            lowOptionLabel: 'Low',
-            mediumOptionLabel: 'Medium',
-            highOptionLabel: 'High',
-          },
-          download: {
-            label: 'Export',
-            handleCallback: () => alert('Callback()'),
-          },
-          upload: {
-            label: 'Import',
-            handleCallback: () => alert('Callback()'),
-          },
-          fields: {
-            label: 'Fields',
-            showAllLabel: 'Show All',
-            hideAllLabel: 'Hide All',
-          },
-          extraActions: {
-            label: 'More',
-            actions: [
-              {
-                label: 'alert 1',
-                handleCallback: () => alert('1'),
-              },
-              {
-                label: 'alert 2',
-                handleCallback: () => alert('2'),
-              },
-              {
-                label: 'alert 3',
-                handleCallback: () => alert('3'),
-              },
-            ],
-          },
-          newLine: {
-            label: 'New',
-            handleCallback: () => alert('handle new line callback'),
-          },
-        }}
-        pagination={{
-          onNextClick: this.handleNextClick,
-          onPrevClick: this.handlePrevClick,
-          currentItemFrom: this.state.currentItemFrom,
-          currentItemTo: this.state.currentItemTo,
-          onRowsChange: this.handleRowsChange,
-          textShowRows: 'Show rows',
-          textOf: 'of',
-          totalItems: this.state.itemsLength,
-          rowsOptions: [5, 10, 15, 25],
-        }}
-        totalizers={[
-          {
-            label: 'Saldo em conta',
-            value: 23837,
-          },
-          {
-            label: 'Entradas',
-            value: 'R$ 36239,05',
-            iconBackgroundColor: '#eafce3',
-            icon: <ArrowUp color="#79B03A" size={14} />,
-          },
-
-          {
-            label: 'Saídas',
-            value: '- R$ 13.485,26',
-            icon: <ArrowDown size={14} />,
-          },
-          {
-            label: 'Vendas',
-            value: 23837,
-            isLoading: true,
-          },
-        ]}
       />
     )
   }

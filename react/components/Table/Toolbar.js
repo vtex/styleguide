@@ -1,20 +1,20 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
+import ActionMenu from '../ActionMenu'
 import InputSearch from '../InputSearch'
 import Button from '../Button'
 import ButtonWithIcon from '../ButtonWithIcon'
 import Toggle from '../Toggle'
-import IconCaretDown from '../icon/CaretDown'
 import IconColumns from '../icon/Columns'
 import IconDensity from '../icon/Density'
 import IconDownload from '../icon/Download'
 import IconPlus from '../icon/Plus'
 import IconUpload from '../icon/Upload'
+import IconOptionsDots from '../icon/OptionsDots'
 const MAX_FIELDS_BOX_HEIGHT = 192
 const FIELDS_BOX_ITEM_HEIGHT = 36
 const FIELDS_BOX_WIDTH = 292
-const EXTRA_ACTIONS_BOX_WIDTH = 199
 const BOX_SHADOW_STYLE = { boxShadow: '0px 1px 18px rgba(0, 0, 0, 0.14)' }
 const DENSITY_OPTIONS = ['low', 'medium', 'high']
 const ICON_OPTICAL_COMPENSATION = { marginTop: '1.5px' }
@@ -30,7 +30,6 @@ class Toolbar extends PureComponent {
     this.densityBtnRef = React.createRef()
     this.state = {
       isFieldsBoxVisible: false,
-      isExtraActionsBoxVisible: false,
       isDensityBoxVisible: false,
     }
   }
@@ -55,14 +54,6 @@ class Toolbar extends PureComponent {
     ) {
       // closes the box if it's open
       this.handleToggleBox('isFieldsBoxVisible')
-    }
-    if (
-      this.extraActionsBtnRef &&
-      this.extraActionsBtnRef.current &&
-      !this.extraActionsBtnRef.current.contains(e.target) &&
-      this.state.isExtraActionsBoxVisible
-    ) {
-      this.handleToggleBox('isExtraActionsBoxVisible')
     }
     if (
       this.densityBtnRef &&
@@ -114,14 +105,10 @@ class Toolbar extends PureComponent {
       selectedDensity,
       loading,
     } = this.props
-    const {
-      isFieldsBoxVisible,
-      isExtraActionsBoxVisible,
-      isDensityBoxVisible,
-    } = this.state
-    const isDownloadVisible = download && download.label
-    const isUploadVisible = upload && upload.label
-    const isFieldsVisible = fields && fields.label
+    const { isFieldsBoxVisible, isDensityBoxVisible } = this.state
+    const isDownloadVisible = download && download.handleCallback
+    const isUploadVisible = upload && upload.handleCallback
+    const isFieldsVisible = fields && fields.showAllLabel && fields.hideAllLabel
     const isExtraActionsVisible =
       extraActions && extraActions.label && extraActions.actions.length > 0
     const isNewLineVisible = newLine && newLine.label
@@ -135,33 +122,35 @@ class Toolbar extends PureComponent {
     return (
       <div id="toolbar" className="mb5 flex flex-row justify-between w-100">
         {inputSearch && (
-          <form className="w-30" onSubmit={this.handleInputSearchSubmit}>
+          <form className="w-40" onSubmit={this.handleInputSearchSubmit}>
             <InputSearch disabled={loading} {...inputSearch} />
           </form>
         )}
-        <div className="flex flex-row">
+        <div className="flex flex-row items-center">
           {isDensityVisible && (
             <div
               id="toggleDensity"
+              title={density.buttonLabel}
               ref={this.densityBtnRef}
-              className="relative">
+              className="relative mh2">
               <ButtonWithIcon
                 icon={
-                  <span className="c-on-base" style={ICON_OPTICAL_COMPENSATION}>
+                  <span
+                    className="c-on-base mh2"
+                    style={ICON_OPTICAL_COMPENSATION}>
                     <IconDensity size={MEDIUM_ICON_SIZE} />
                   </span>
                 }
                 disabled={loading}
                 variation="tertiary"
                 size="small"
-                onClick={() => this.handleToggleBox('isDensityBoxVisible')}>
-                <span className="c-on-base">{density.buttonLabel}</span>
-              </ButtonWithIcon>
+                onClick={() => this.handleToggleBox('isDensityBoxVisible')}
+              />
               {isDensityBoxVisible && (
                 <div
                   className={`absolute ${
                     density.alignMenu === 'right' ? 'right-0' : 'left-0'
-                  } z-999 ba b--muted-4 br2 mt2`}
+                  } z-999 ba b--muted-4 br2 mt2 mh2`}
                   style={BOX_SHADOW_STYLE}>
                   <div className="w-100 b2 br2 bg-base">
                     <div
@@ -195,25 +184,27 @@ class Toolbar extends PureComponent {
           {isFieldsVisible && (
             <div
               id="toggleFieldsBtn"
+              title={fields.label}
               ref={this.fieldsBtnRef}
-              className="relative">
+              className="relative mh2">
               <ButtonWithIcon
                 icon={
-                  <span className="c-on-base" style={ICON_OPTICAL_COMPENSATION}>
+                  <span
+                    className="c-on-base mh2"
+                    style={ICON_OPTICAL_COMPENSATION}>
                     <IconColumns size={MEDIUM_ICON_SIZE} />
                   </span>
                 }
                 disabled={loading}
                 variation="tertiary"
                 size="small"
-                onClick={() => this.handleToggleBox('isFieldsBoxVisible')}>
-                <span className="c-on-base">{fields.label}</span>
-              </ButtonWithIcon>
+                onClick={() => this.handleToggleBox('isFieldsBoxVisible')}
+              />
               {isFieldsBoxVisible && (
                 <div
                   className={`absolute ${
                     fields.alignMenu === 'right' ? 'right-0' : 'left-0'
-                  } z-999 ba b--muted-4 br2 mt2`}>
+                  } z-999 ba b--muted-4 br2 mt2 mh2`}>
                   <div
                     className="w-100 b2 br2 bg-base"
                     style={{
@@ -260,80 +251,60 @@ class Toolbar extends PureComponent {
             </div>
           )}
           {isDownloadVisible && (
-            <ButtonWithIcon
-              icon={
-                <span className="c-on-base">
-                  <IconDownload size={MEDIUM_ICON_SIZE} />
-                </span>
-              }
-              disabled={loading}
-              variation="tertiary"
-              isLoading={download.isLoading}
-              size="small"
-              onClick={download.handleCallback}>
-              <span className="c-on-base">{download.label}</span>
-            </ButtonWithIcon>
-          )}
-          {isUploadVisible && (
-            <ButtonWithIcon
-              icon={
-                <span className="c-on-base" style={ICON_OPTICAL_COMPENSATION}>
-                  <IconUpload size={HEAVY_ICON_SIZE} />
-                </span>
-              }
-              disabled={loading}
-              isLoading={upload.isLoading}
-              variation="tertiary"
-              size="small"
-              onClick={upload.handleCallback}>
-              <span className="c-on-base">{upload.label}</span>
-            </ButtonWithIcon>
-          )}
-          {isExtraActionsVisible && (
-            <div
-              id="toggleExtraActionsBtn"
-              ref={this.extraActionsBtnRef}
-              className="relative">
+            <div title={download.label} className="mh2">
               <ButtonWithIcon
                 icon={
-                  <span className="c-on-base">
-                    <IconCaretDown height={HEAVY_ICON_SIZE} />
+                  <span className="c-on-base mh2">
+                    <IconDownload size={MEDIUM_ICON_SIZE} />
                   </span>
                 }
-                iconPosition="right"
                 disabled={loading}
-                isLoading={extraActions.isLoading}
+                variation="tertiary"
+                isLoading={download.isLoading}
+                size="small"
+                onClick={download.handleCallback}
+              />
+            </div>
+          )}
+          {isUploadVisible && (
+            <div title={upload.label} className="mh2">
+              <ButtonWithIcon
+                icon={
+                  <span
+                    className="c-on-base mh2"
+                    style={ICON_OPTICAL_COMPENSATION}>
+                    <IconUpload size={HEAVY_ICON_SIZE} />
+                  </span>
+                }
+                disabled={loading}
+                isLoading={upload.isLoading}
                 variation="tertiary"
                 size="small"
-                onClick={() =>
-                  this.handleToggleBox('isExtraActionsBoxVisible')
-                }>
-                <span className="c-on-base">{extraActions.label}</span>
-              </ButtonWithIcon>
-              {isExtraActionsBoxVisible && (
-                <div
-                  className={`absolute ${
-                    extraActions.alignMenu === 'left' ? 'left-0' : 'right-0'
-                  } z-999 ba b--muted-4 br2`}
-                  style={BOX_SHADOW_STYLE}>
-                  <div
-                    className="w-100 b2 br2 bg-base"
-                    style={{ width: EXTRA_ACTIONS_BOX_WIDTH }}>
-                    <div
-                      style={{ height: this.calculateExtraActionsBoxHeight() }}
-                      className="overflow-scroll">
-                      {extraActions.actions.map((action, index) => (
-                        <div
-                          key={index}
-                          className="flex justify-between ph6 pv3 pointer hover-bg-muted-5"
-                          onClick={action.handleCallback}>
-                          <span className="w-70 truncate">{action.label}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              )}
+                onClick={upload.handleCallback}
+              />
+            </div>
+          )}
+          {isExtraActionsVisible && (
+            <div title={extraActions.label} className="mh2">
+              <ActionMenu
+                icon={
+                  <span className="c-on-base mh2">
+                    <IconOptionsDots />
+                  </span>
+                }
+                hideCaretIcon
+                buttonProps={{
+                  variation: 'tertiary',
+                  icon: true,
+                  size: 'small',
+                }}
+                options={extraActions.actions.map(action => {
+                  return {
+                    label: action.label,
+                    onClick: action.handleCallback,
+                  }
+                })}
+              />
             </div>
           )}
           {isNewLineVisible && (
