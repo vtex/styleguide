@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- **ActionMenu** unwanted behavior that made the component not visible when inside other components that use `overflow`.
+- **ActionMenu** unwanted behavior, where the menu would be cropped when inside other components that use `overflow: hidden`.
 
 ### Changed
 
