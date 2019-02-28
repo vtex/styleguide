@@ -37,13 +37,23 @@ class ActionMenu extends Component {
     }
   }
 
+  isClickOutsideMenu = target =>
+    this.menu && this.menu.current && !this.menu.current.contains(target)
+
+  isClickOutsideContainer = target =>
+    this.container &&
+    this.container.current &&
+    !this.container.current.contains(target)
+
+  isClickOutside = target =>
+    this.isClickOutsideContainer(target) && this.isClickOutsideMenu(target)
+
   handleClickOutside = e => {
-    if (
-      this.menu &&
-      this.menu.current &&
-      !this.menu.current.contains(e.target) &&
-      this.state.isMenuOpen
-    ) {
+    const c = this.container
+    const m = this.menu
+    const s = this.state
+    console.log(c, m, s)
+    if (this.isClickOutside(e.target) && this.state.isMenuOpen) {
       this.closeMenu()
     }
   }
