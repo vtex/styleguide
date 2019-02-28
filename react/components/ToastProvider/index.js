@@ -5,40 +5,25 @@ import ToastManager from './ToastManager'
 const ToastContext = React.createContext({
   showToast: () => {},
   hideToast: () => {},
+  toastState: null,
 })
 
 class ToastProvider extends Component {
-  constructor(props) {
-    super(props)
-
-    this.toastManager = React.createRef()
-  }
-
-  showToast = args => {
-    this.toastManager &&
-      this.toastManager.current &&
-      this.toastManager.current.showToast &&
-      this.toastManager.current.showToast(args)
-  }
-
-  hideToast = () => {
-    this.toastManager &&
-      this.toastManager.current &&
-      this.toastManager.current.hideToast &&
-      this.toastManager.current.hideToast()
-  }
-
   render() {
     const { children, positioning } = this.props
     return (
-      <ToastContext.Provider
-        value={{
-          showToast: this.showToast,
-          hideToast: this.hideToast,
-        }}>
-        {children}
-        <ToastManager positioning={positioning} ref={this.toastManager} />
-      </ToastContext.Provider>
+      <ToastManager positioning={positioning}>
+        {({ showToast, hideToast, state: toastState }) => (
+          <ToastContext.Provider
+            value={{
+              showToast,
+              hideToast,
+              toastState,
+            }}>
+            {children}
+          </ToastContext.Provider>
+        )}
+      </ToastManager>
     )
   }
 }
@@ -55,17 +40,7 @@ ToastProvider.defaultProps = {
 
 class ToastConsumer extends Component {
   render() {
-    const { children } = this.props
-    return (
-      <ToastContext.Consumer>
-        {value =>
-          children({
-            showToast: value.showToast,
-            hideToast: value.hideToast,
-          })
-        }
-      </ToastContext.Consumer>
-    )
+    return <ToastContext.Consumer>{this.props.children}</ToastContext.Consumer>
   }
 }
 
@@ -76,10 +51,11 @@ ToastConsumer.propTypes = {
 // eslint-disable-next-line react/display-name
 const withToast = WrappedComponent => props => (
   <ToastConsumer>
-    {({ showToast, hideToast }) => (
+    {({ showToast, hideToast, toastState }) => (
       <WrappedComponent
         showToast={showToast}
         hideToast={hideToast}
+        toastState={toastState}
         {...props}
       />
     )}
