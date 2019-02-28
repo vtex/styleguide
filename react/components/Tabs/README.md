@@ -38,6 +38,18 @@ const Tab = require('./Tab').default;
 </div>
 ```
 
+Disabled tabs
+
+```js
+const Tab = require('./Tab').default;
+<div>
+  <Tabs>
+    <Tab label="Active and disabled tab" active disabled onClick={() => {}}/>
+    <Tab label="Disabled tab" disabled onClick={() => {}}/>
+  </Tabs>
+</div>
+```
+
 Working example
 
 ```js
