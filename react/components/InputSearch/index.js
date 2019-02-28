@@ -4,7 +4,7 @@ import Input from '../Input'
 import SearchIcon from '../icon/Search'
 import DenyIcon from '../icon/Deny'
 
-import withForwardedRef from '../../modules/withForwardedRef'
+import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
 
 class InputSearch extends Component {
   static iconSizes = {
@@ -58,10 +58,7 @@ class InputSearch extends Component {
 
 InputSearch.propTypes = {
   /** @ignore Forwarded Ref */
-  forwardedRef: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({ current: PropTypes.element }),
-  ]),
+  forwardedRef: refShape,
   onChange: PropTypes.func,
   onClear: PropTypes.func,
   size: PropTypes.string,

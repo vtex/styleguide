@@ -4,7 +4,7 @@ import Input from '../Input'
 import VisibilityOn from '../icon/VisibilityOn'
 import VisibilityOff from '../icon/VisibilityOff'
 
-import withForwardedRef from '../../modules/withForwardedRef'
+import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
 
 class InputPassword extends Component {
   static iconSizes = {
@@ -46,10 +46,7 @@ class InputPassword extends Component {
 
 InputPassword.propTypes = {
   /** @ignore Forwarded Ref */
-  forwardedRef: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({ current: PropTypes.element }),
-  ]),
+  forwardedRef: refShape,
   onChange: PropTypes.func,
   size: PropTypes.string,
   value: PropTypes.string,

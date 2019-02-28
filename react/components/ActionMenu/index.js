@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import Button from '../Button'
+import ButtonWithIcon from '../ButtonWithIcon'
 import IconCaretDown from '../icon/CaretDown'
 import Menu from '../Menu'
 
@@ -9,6 +9,7 @@ class ActionMenu extends Component {
   constructor(props) {
     super(props)
     this.container = React.createRef()
+    this.menu = React.createRef()
     this.state = {
       isMenuOpen: false,
     }
@@ -36,13 +37,19 @@ class ActionMenu extends Component {
     }
   }
 
+  isClickOutsideMenu = target =>
+    this.menu && this.menu.current && !this.menu.current.contains(target)
+
+  isClickOutsideContainer = target =>
+    this.container &&
+    this.container.current &&
+    !this.container.current.contains(target)
+
+  isClickOutside = target =>
+    this.isClickOutsideContainer(target) && this.isClickOutsideMenu(target)
+
   handleClickOutside = e => {
-    if (
-      this.container &&
-      this.container.current &&
-      !this.container.current.contains(e.target) &&
-      this.state.isMenuOpen
-    ) {
+    if (this.isClickOutside(e.target) && this.state.isMenuOpen) {
       this.closeMenu()
     }
   }
@@ -72,25 +79,25 @@ class ActionMenu extends Component {
     return (
       <div ref={this.container}>
         <Menu
+          ref={this.menu}
           open={isMenuOpen}
           align={align}
           width={menuWidth}
           options={options}
           onClose={shouldCloseOnClick ? this.closeMenu : null}>
-          <Button {...buttonProps} onClick={this.handleClick}>
-            <span className="flex align-baseline items-center">
-              {icon && (
-                <div
-                  className={`pt2 self-center ${hideCaretIcon ? '' : 'mr2'}`}>
-                  {icon}
-                </div>
-              )}
-              {label && (
+          <ButtonWithIcon
+            {...{
+              icon: icon || (!label && !hideCaretIcon) ? iconCaret : null,
+            }}
+            {...buttonProps}
+            onClick={this.handleClick}>
+            {label && (
+              <span className="flex align-baseline items-center">
                 <span className={`${hideCaretIcon ? '' : 'mr3'}`}>{label}</span>
-              )}
-              {!hideCaretIcon && <span>{iconCaret}</span>}
-            </span>
-          </Button>
+                {!hideCaretIcon && <span>{iconCaret}</span>}
+              </span>
+            )}
+          </ButtonWithIcon>
         </Menu>
       </div>
     )
@@ -110,9 +117,11 @@ ActionMenu.propTypes = {
   align: PropTypes.oneOf(['right', 'left']),
   /** If should close the menu after clicking an option */
   shouldCloseOnClick: PropTypes.bool,
-  /** Respecting button props contract. */
-  buttonProps: PropTypes.shape({ ...Button.propTypes }),
-  /** Button icon */
+  /** Respecting ButtonWithIcon props contract. For more info, see:
+   * https://styleguide.vtex.com/#/Components/Forms/Button
+   */
+  buttonProps: ButtonWithIcon.propTypes,
+  /** @deprecated Button icon: use buttonProps instead */
   icon: PropTypes.element,
   /** Button text label */
   label: PropTypes.string,

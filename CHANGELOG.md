@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.21.0] - 2019-02-28
+
+### Fixed
+
+- **ActionMenu** unwanted behavior, where the menu would be cropped when inside other components that use `overflow: hidden`.
+
+### Changed
+
+- **ActionMenu** now uses the `ButtonWithIcon` component. As a result, the `icon` prop should now be passed within the `buttonProps` prop. This makes the `icon` prop now _deprecated_.
+
+### Deprecated
+
+- **ActionMenu** deprecates `icon` prop of in favor of `buttonProps` since now it's using the **ButtonWithIcon** component.
+
 ## [8.20.2] - 2019-02-28
 
 ### Fixed

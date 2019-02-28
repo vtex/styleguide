@@ -1,17 +1,26 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Overlay } from 'react-overlays'
 
 import Toggle from '../Toggle'
+
+import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
 
 const DEFAULT_WIDTH = 292
 const CONTAINER_MARGIN = 6
 const WINDOW_MARGIN = 10
+const DEFAULT_DOCUMENT_ELEMENT = {
+  scrollTop: 0,
+  scrollLeft: 0,
+  clientWidth: 0,
+  clientHeight: 0,
+}
 
 class Menu extends Component {
   constructor(props) {
     super(props)
     this.containerElement = React.createRef()
-    this.menuElement = React.createRef()
+    this.menuElement = props.forwardedRef || React.createRef()
   }
 
   state = {
@@ -20,6 +29,16 @@ class Menu extends Component {
     isVisible: false, // triggers the opening animation
     menuHeight: 0,
     containerHeight: 0,
+  }
+
+  onWindowResize = () => this.forceUpdate()
+
+  componentDidMount() {
+    if (window) window.addEventListener('resize', this.onWindowResize)
+  }
+
+  componentWillUnmount() {
+    if (window) window.removeEventListener('resize', this.onWindowResize)
   }
 
   getMenuBounds = () =>
@@ -51,12 +70,8 @@ class Menu extends Component {
       isOutOfBounds && containerBounds.top > window.innerHeight / 2
 
     const maxMenuHeight = isUpwards
-      ? menuBounds.top - CONTAINER_MARGIN - WINDOW_MARGIN
-      : window.innerHeight -
-        menuBounds.top -
-        containerHeight -
-        CONTAINER_MARGIN -
-        WINDOW_MARGIN
+      ? menuBounds.top - CONTAINER_MARGIN - WINDOW_MARGIN - containerHeight
+      : window.innerHeight - menuBounds.top - CONTAINER_MARGIN - WINDOW_MARGIN
 
     // Makes the height of the menu, if it doesn't entirely fit on the screen,
     // fall in the middle of an item, to hint that the menu scrolls
@@ -99,78 +114,88 @@ class Menu extends Component {
   }
 
   render() {
-    const { options, width, align, open, onClose, children } = this.props
-    const {
-      hasCalculatedSize,
-      isUpwards,
-      isVisible,
-      menuHeight,
-      containerHeight,
-    } = this.state
+    const { options, align, open, onClose, children } = this.props
+    const { hasCalculatedSize, isUpwards, isVisible, menuHeight } = this.state
 
     const isRight = align === 'right'
 
     return (
       <div className="relative">
         <div ref={this.containerElement}>{children}</div>
-        {open && (
-          <div
-            ref={this.menuElement}
-            style={{
-              [isUpwards ? 'bottom' : 'top']:
-                containerHeight + CONTAINER_MARGIN,
-              transform:
-                !hasCalculatedSize || isVisible
-                  ? 'scale(1)'
-                  : 'scale(0.9, 0.6)',
-              transformOrigin: `${isRight ? '75%' : '25%'} ${
-                isUpwards ? '100%' : '0'
-              }`,
-              transition: isVisible
-                ? 'transform 50ms ease-out, opacity 25ms'
-                : 'none',
-            }}
-            className={`absolute z-999 ba b--muted-4 br2 shadow-5 ${
-              isRight ? 'right-0' : 'left-0'
-            }
-            ${isVisible ? 'o-100' : 'o-0'}`}>
-            <div
-              className="b2 br2 bg-base"
-              style={{ width: width || DEFAULT_WIDTH }}>
+        <Overlay show={open}>
+          {() => {
+            const { top, left, right, height } = this.getContainerBounds()
+
+            const {
+              scrollTop,
+              scrollLeft,
+              clientWidth,
+              clientHeight,
+            } = document ? document.documentElement : DEFAULT_DOCUMENT_ELEMENT
+
+            return (
               <div
-                style={{ height: menuHeight || 'auto' }}
-                className={menuHeight ? 'overflow-scroll' : ''}>
-                {options.map((option, index) => (
-                  <button
-                    key={index}
-                    className="flex justify-between items-center t-body ph6 h-regular pointer hover-bg-muted-5 ma0 bg-transparent bn w-100 tl"
-                    onClick={() => {
-                      option.onClick(option)
-                      if (onClose) {
-                        onClose()
-                      }
-                    }}>
-                    <span
-                      className={`${
-                        option.toggle ? 'w-70 truncate' : 'w-100 truncate'
-                      } ${option.isDangerous ? 'c-danger' : ''}`}>
-                      {option.label}
-                    </span>
-                    {option.toggle && (
-                      <div style={{ pointerEvents: 'none' }}>
-                        <Toggle
-                          size="regular"
-                          semantic={option.toggle.semantic}
-                          checked={option.toggle.checked}
-                        />
-                      </div>
-                    )}
-                  </button>
-                ))}
+                ref={this.menuElement}
+                style={{
+                  transform:
+                    !hasCalculatedSize || isVisible
+                      ? 'scale(1)'
+                      : 'scale(0.9, 0.6)',
+                  transformOrigin: `${isRight ? '75%' : '25%'} ${
+                    isUpwards ? '100%' : '0'
+                  }`,
+                  transition: isVisible
+                    ? 'transform 50ms ease-out, opacity 25ms'
+                    : 'none',
+                  [isUpwards ? 'bottom' : 'top']: isUpwards
+                    ? clientHeight - (top + scrollTop - CONTAINER_MARGIN)
+                    : top + scrollTop + height + CONTAINER_MARGIN,
+                  [isRight ? 'right' : 'left']: isRight
+                    ? clientWidth - right
+                    : left + scrollLeft,
+                  width: DEFAULT_WIDTH,
+                }}
+                className={`absolute z-999 ba b--muted-4 br2 shadow-5 ${
+                  isRight ? 'right-0' : 'left-0'
+                }
+              ${isVisible ? 'o-100' : 'o-0'}`}>
+                <div className="b2 br2 bg-base">
+                  <div
+                    style={{ height: menuHeight || 'auto' }}
+                    className={menuHeight ? 'overflow-scroll' : ''}>
+                    {options.map((option, index) => (
+                      <button
+                        key={index}
+                        className="flex justify-between items-center t-body ph6 h-regular pointer hover-bg-muted-5 ma0 bg-transparent bn w-100 tl"
+                        onClick={() => {
+                          option.onClick(option)
+                          if (onClose) {
+                            onClose()
+                          }
+                        }}>
+                        <span
+                          className={`${
+                            option.toggle ? 'w-70 truncate' : 'w-100 truncate'
+                          } ${option.isDangerous ? 'c-danger' : ''}`}>
+                          {option.label}
+                        </span>
+                        {option.toggle && (
+                          <div style={{ pointerEvents: 'none' }}>
+                            <Toggle
+                              size="regular"
+                              semantic={option.toggle.semantic}
+                              checked={option.toggle.checked}
+                            />
+                          </div>
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        )}
+            )
+          }}
+        </Overlay>
       </div>
     )
   }
@@ -186,6 +211,8 @@ Menu.propTypes = {
   /** The element which will open the menu--the menu will
    * be positioned around this element */
   children: PropTypes.node,
+  /** @ignore Forwarded Ref */
+  forwardedRef: refShape,
   /** Menu visibility (default is false) */
   open: PropTypes.bool,
   /** Menu Box width (default is 292px) */
@@ -208,4 +235,4 @@ Menu.propTypes = {
   align: PropTypes.oneOf(['right', 'left']),
 }
 
-export default Menu
+export default withForwardedRef(Menu)

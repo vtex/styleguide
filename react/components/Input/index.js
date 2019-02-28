@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import config from 'vtex-tachyons/config.json'
 
 import { hideDecorators } from './edge.css'
-import withForwardedRef from '../../modules/withForwardedRef'
+import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
 
 class Input extends Component {
   constructor(props) {
@@ -254,10 +254,7 @@ Input.propTypes = {
   /** Error message */
   errorMessage: PropTypes.string,
   /** @ignore Forwarded Ref */
-  forwardedRef: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({ current: PropTypes.element }),
-  ]),
+  forwardedRef: refShape,
   /** If the input is an API Key, App Key or App Token */
   token: PropTypes.bool,
   /** Help text */
