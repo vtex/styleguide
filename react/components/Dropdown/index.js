@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import ArrowDownIcon from './ArrowDownIcon'
 
-import withForwardedRef from '../../modules/withForwardedRef'
+import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
 
 class Dropdown extends Component {
   constructor(props) {
@@ -255,10 +255,7 @@ Dropdown.propTypes = {
   /** Error message */
   errorMessage: PropTypes.node,
   /** @ignore Forwarded Ref */
-  forwardedRef: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({ current: PropTypes.element }),
-  ]),
+  forwardedRef: refShape,
   /** Help text */
   helpText: PropTypes.node,
   /** Dropdown label */

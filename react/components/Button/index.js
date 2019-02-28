@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import Spinner from '../Spinner'
 
-import withForwardedRef from '../../modules/withForwardedRef'
+import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
 
 class Button extends Component {
   handleClick = event => {
@@ -206,10 +206,7 @@ Button.propTypes = {
   /** (Button spec attribute) */
   disabled: PropTypes.bool,
   /** @ignore Forwarded Ref */
-  forwardedRef: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({ current: PropTypes.element }),
-  ]),
+  forwardedRef: refShape,
   /** (Button spec attribute) */
   name: PropTypes.string,
   /** (Button spec attribute) */

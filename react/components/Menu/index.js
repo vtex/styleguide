@@ -4,7 +4,7 @@ import { Overlay } from 'react-overlays'
 
 import Toggle from '../Toggle'
 
-import withForwardedRef from '../../modules/withForwardedRef'
+import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
 
 const DEFAULT_WIDTH = 292
 const CONTAINER_MARGIN = 6
@@ -212,10 +212,7 @@ Menu.propTypes = {
    * be positioned around this element */
   children: PropTypes.node,
   /** @ignore Forwarded Ref */
-  forwardedRef: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({ current: PropTypes.element }),
-  ]),
+  forwardedRef: refShape,
   /** Menu visibility (default is false) */
   open: PropTypes.bool,
   /** Menu Box width (default is 292px) */

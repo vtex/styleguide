@@ -5,7 +5,7 @@ import NumberFormat from 'react-number-format'
 
 import Input from '../Input'
 
-import withForwardedRef from '../../modules/withForwardedRef'
+import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
 
 /** WORKAROUND incoming!
  * BaseInput is a wrapper for the Input component for being able to use the
@@ -94,10 +94,7 @@ class InputCurrency extends Component {
 
 InputCurrency.propTypes = {
   /** @ignore Forwarded Ref */
-  forwardedRef: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({ current: PropTypes.element }),
-  ]),
+  forwardedRef: refShape,
   onChange: PropTypes.func,
   onClear: PropTypes.func,
   size: PropTypes.string,
