@@ -114,7 +114,7 @@ class Toolbar extends PureComponent {
     const isNewLineVisible = newLine && newLine.label
     const isDensityVisible =
       density &&
-      density.hintLabel &&
+      density.buttonLabel &&
       density.lowOptionLabel &&
       density.mediumOptionLabel &&
       density.highOptionLabel
@@ -130,7 +130,7 @@ class Toolbar extends PureComponent {
           {isDensityVisible && (
             <div
               id="toggleDensity"
-              title={density.hintLabel}
+              title={density.buttonLabel}
               ref={this.densityBtnRef}
               className="relative mh2">
               <ButtonWithIcon

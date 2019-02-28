@@ -327,7 +327,7 @@ class ResourceListExample extends React.Component {
             onSubmit: this.handleInputSearchSubmit,
           },
           density: {
-            hintLabel: 'Line density',
+            buttonLabel: 'Line density',
             lowOptionLabel: 'Low',
             mediumOptionLabel: 'Medium',
             highOptionLabel: 'High',
