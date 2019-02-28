@@ -21,16 +21,22 @@ class TotalizerValue extends PureComponent {
       )
     }
 
-    if (value) {
-      return <div className="f4 fw5 c-on-base">{value}</div>
+    if (value == null) {
+      return null
     }
 
-    return null
+    return <div className="f4 fw5 c-on-base">{value}</div>
   }
 }
 
 TotalizerValue.propTypes = {
-  item: PropTypes.object,
+  item: PropTypes.shape({
+    label: PropTypes.string.isRequired,
+    value: PropTypes.node,
+    iconBackgroundColor: PropTypes.string,
+    icon: PropTypes.node,
+    isLoading: PropTypes.bool,
+  }),
 }
 
 export default TotalizerValue

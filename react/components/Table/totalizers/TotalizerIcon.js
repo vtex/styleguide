@@ -28,8 +28,7 @@ class TotalizerIcon extends PureComponent {
 TotalizerIcon.propTypes = {
   item: PropTypes.shape({
     icon: PropTypes.node.isRequired,
-    success: PropTypes.bool,
-    error: PropTypes.bool,
+    iconBackgroundColor: PropTypes.string,
   }).isRequired,
 }
 
