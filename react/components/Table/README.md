@@ -179,9 +179,11 @@ class CustomTableExample extends React.Component {
 ;<CustomTableExample />
 ```
 
-With Toolbar and Pagination
+With Toolbar, totalizers and Pagination
 
 ```js
+const ArrowDown = require('../icon/ArrowDown').default
+const ArrowUp = require('../icon/ArrowUp').default
 const sampleData = require('./sampleData').default
 const tableLength = 5
 const initialState = {
@@ -376,6 +378,29 @@ class ResourceListExample extends React.Component {
           totalItems: this.state.itemsLength,
           rowsOptions: [5, 10, 15, 25],
         }}
+        totalizers={[
+          {
+            label: 'Saldo em conta',
+            value: 23837,
+          },
+          {
+            label: 'Entradas',
+            value: 'R$ 36239,05',
+            iconBackgroundColor: '#eafce3',
+            icon: <ArrowUp color="#79B03A" size={14} />,
+          },
+
+          {
+            label: 'Saídas',
+            value: '- R$ 13.485,26',
+            icon: <ArrowDown size={14} />,
+          },
+          {
+            label: 'Vendas',
+            value: 23837,
+            isLoading: true,
+          },
+        ]}
       />
     )
   }
