@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - **Table** toolbar buttons alignment.
-- **Table** use hints in favor of button labels in toolbar buttons.
+- **Table** uses hints in favor of button labels in toolbar buttons.
 
 ## [8.20.1] - 2019-02-28
 
