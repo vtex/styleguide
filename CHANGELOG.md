@@ -23,6 +23,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - **Tabs** increase horizontal padding
 
+- **Toast** `ToastManager` is now a HOC. There is no need to use ref inside `ToastProvider`.
+
 ## [8.21.0] - 2019-02-28
 
 ### Fixed

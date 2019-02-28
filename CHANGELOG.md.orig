@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
+<<<<<<< HEAD
 - **Tabs** increase horizontal padding
 
 ## [8.21.0] - 2019-02-28
@@ -49,6 +50,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - **Table** `totalizers` property.
+=======
+- **Toast** `ToastManager` is now a HOC. There is no need to use ref inside `ToastProvider`.
+>>>>>>> Add CHANGELOG.md message
 
 ## [8.19.5] - 2019-02-27
 
