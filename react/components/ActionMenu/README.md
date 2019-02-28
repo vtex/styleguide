@@ -136,9 +136,9 @@ const options = [
   <div className="flex flex-column">
     <div className="ma3">
       <ActionMenu
-        icon={<Cog color="currentColor" />}
         buttonProps={{
           variation: 'primary',
+          icon: <Cog color="currentColor" />,
         }}
         label="Settings"
         options={options}
@@ -146,9 +146,9 @@ const options = [
     </div>
     <div className="ma3">
       <ActionMenu
-        icon={<Cog color="currentColor" />}
         buttonProps={{
           variation: 'tertiary',
+          icon: <Cog color="currentColor" />,
         }}
         label="Settings"
         options={options}
@@ -159,11 +159,10 @@ const options = [
     <div className="ma3">
       <ActionMenu
         label="Actions"
-        icon={<OptionsDots color="currentColor" />}
         hideCaretIcon
         buttonProps={{
           variation: 'primary',
-          icon: true,
+          icon: <OptionsDots color="currentColor" />,
         }}
         options={options}
       />
@@ -171,11 +170,74 @@ const options = [
     <div className="ma3">
       <ActionMenu
         label="Actions"
-        icon={<OptionsDots />}
         hideCaretIcon
         buttonProps={{
           variation: 'tertiary',
-          icon: true,
+          icon: <OptionsDots color="currentColor" />,
+        }}
+        options={options}
+      />
+    </div>
+  </div>
+  <div className="flex flex-column">
+    <div className="ma3">
+      <ActionMenu
+        label="Actions"
+        hideCaretIcon
+        buttonProps={{
+          variation: 'primary',
+          icon: <OptionsDots color="currentColor" />,
+          iconPosition: 'right',
+        }}
+        options={options}
+      />
+    </div>
+    <div className="ma3">
+      <ActionMenu
+        label="Actions"
+        hideCaretIcon
+        buttonProps={{
+          variation: 'tertiary',
+          icon: <OptionsDots color="currentColor" />,
+          iconPosition: 'right',
+        }}
+        options={options}
+      />
+    </div>
+  </div>
+  <div className="flex flex-column">
+    <div className="ma3">
+      <ActionMenu
+        buttonProps={{
+          variation: 'primary',
+          icon: <OptionsDots color="currentColor" />,
+        }}
+        options={options}
+      />
+    </div>
+    <div className="ma3">
+      <ActionMenu
+        buttonProps={{
+          variation: 'tertiary',
+          icon: <OptionsDots color="currentColor" />,
+        }}
+        options={options}
+      />
+    </div>
+  </div>
+  <div className="flex flex-column">
+    <div className="ma3">
+      <ActionMenu
+        buttonProps={{
+          variation: 'primary',
+        }}
+        options={options}
+      />
+    </div>
+    <div className="ma3">
+      <ActionMenu
+        buttonProps={{
+          variation: 'tertiary',
         }}
         options={options}
       />

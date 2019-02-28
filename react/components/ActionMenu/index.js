@@ -86,15 +86,17 @@ class ActionMenu extends Component {
           options={options}
           onClose={shouldCloseOnClick ? this.closeMenu : null}>
           <ButtonWithIcon
-            {...{ icon }}
+            {...{
+              icon: icon || (!label && !hideCaretIcon) ? iconCaret : null,
+            }}
             {...buttonProps}
             onClick={this.handleClick}>
-            <span className="flex align-baseline items-center">
-              {label && (
+            {label && (
+              <span className="flex align-baseline items-center">
                 <span className={`${hideCaretIcon ? '' : 'mr3'}`}>{label}</span>
-              )}
-              {!hideCaretIcon && <span>{iconCaret}</span>}
-            </span>
+                {!hideCaretIcon && <span>{iconCaret}</span>}
+              </span>
+            )}
           </ButtonWithIcon>
         </Menu>
       </div>
