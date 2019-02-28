@@ -1,3 +1,3 @@
-import InputCurency from './components/InputCurrency'
+import InputCurrency from './components/InputCurrency/index'
 
-export default InputCurency
+export default InputCurrency
