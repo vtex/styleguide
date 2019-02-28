@@ -349,16 +349,16 @@ class ResourceListExample extends React.Component {
             label: 'More options',
             actions: [
               {
-                label: 'alert 1',
-                handleCallback: () => alert('1'),
+                label: 'An action',
+                handleCallback: () => alert('An action'),
               },
               {
-                label: 'alert 2',
-                handleCallback: () => alert('2'),
+                label: 'Another action',
+                handleCallback: () => alert('Another action'),
               },
               {
-                label: 'alert 3',
-                handleCallback: () => alert('3'),
+                label: 'Another action',
+                handleCallback: () => alert('Another action'),
               },
             ],
           },
