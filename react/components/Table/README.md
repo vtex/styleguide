@@ -236,7 +236,6 @@ const jsonschema = {
 class ResourceListExample extends React.Component {
   constructor() {
     super()
-
     this.state = initialState
 
     this.handleNextClick = this.handleNextClick.bind(this)
@@ -422,9 +421,7 @@ const initialState = {
 class ResourceListExample extends React.Component {
   constructor() {
     super()
-
     this.state = initialState
-
     this.customColorTagProperty = this.customColorTagProperty.bind(this)
   }
 
