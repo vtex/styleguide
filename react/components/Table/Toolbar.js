@@ -144,7 +144,7 @@ class Toolbar extends PureComponent {
             <div
               id="toggleDensity"
               ref={this.densityBtnRef}
-              className="relative">
+              className="flex relative">
               <ButtonWithIcon
                 icon={
                   <span className="c-on-base" style={ICON_OPTICAL_COMPENSATION}>
@@ -196,7 +196,7 @@ class Toolbar extends PureComponent {
             <div
               id="toggleFieldsBtn"
               ref={this.fieldsBtnRef}
-              className="relative">
+              className="flex relative">
               <ButtonWithIcon
                 icon={
                   <span className="c-on-base" style={ICON_OPTICAL_COMPENSATION}>
@@ -293,7 +293,7 @@ class Toolbar extends PureComponent {
             <div
               id="toggleExtraActionsBtn"
               ref={this.extraActionsBtnRef}
-              className="relative">
+              className="flex relative">
               <ButtonWithIcon
                 icon={
                   <span className="c-on-base">
