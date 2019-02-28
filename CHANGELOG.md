@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.20.0] - 2019-02-28
+
+### Added
+
+- **Table** `totalizers` property.
+
 ## [8.19.5] - 2019-02-27
 
 ### Fixed

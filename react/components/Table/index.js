@@ -7,6 +7,7 @@ import Pagination from '../Pagination'
 import SimpleTable from './SimpleTable'
 import Toolbar from './Toolbar'
 import EmptyState from '../EmptyState'
+import Totalizers from './Totalizers'
 
 const TABLE_HEADER_HEIGHT = 36
 const EMPTY_STATE_SIZE_IN_ROWS = 5
@@ -91,6 +92,7 @@ class Table extends PureComponent {
       pagination,
       fullWidth,
       loading,
+      totalizers,
     } = this.props
     const { hiddenFields, tableRowHeight, selectedDensity } = this.state
 
@@ -127,6 +129,9 @@ class Table extends PureComponent {
           schema={schema}
           actions={toolbar}
         />
+        {totalizers && totalizers.length > 0 && (
+          <Totalizers items={totalizers} />
+        )}
         {emptyState ? (
           <Box>
             <EmptyState title={emptyStateLabel} />
@@ -168,6 +173,7 @@ Table.defaultProps = {
   },
   emptyStateLabel: 'Nothing to show.',
   fullWidth: false,
+  totalizers: [],
 }
 
 Table.propTypes = {
@@ -248,6 +254,8 @@ Table.propTypes = {
     textOf: PropTypes.string,
     totalItems: PropTypes.number,
   }),
+  /** Totalizers property  */
+  totalizers: PropTypes.array,
 }
 
 export default Table
