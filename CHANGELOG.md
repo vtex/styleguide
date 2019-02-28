@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.21.0] - 2019-02-28
+
 ### Fixed
 
 - **ActionMenu** unwanted behavior, where the menu would be cropped when inside other components that use `overflow: hidden`.
