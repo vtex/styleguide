@@ -138,14 +138,6 @@ class Menu extends Component {
               clientHeight,
             } = document.documentElement
 
-            console.log('container:', this.getContainerBounds())
-            console.log('menu:', this.getMenuBounds())
-            console.log('scrollTop:', scrollTop)
-            console.log('scrollLeft:', scrollLeft)
-            console.log('clientWidth:', clientWidth)
-            console.log('clientHeight:', clientHeight)
-            console.log('menuHeight:', menuHeight)
-
             return (
               <div
                 ref={this.menuElement}
