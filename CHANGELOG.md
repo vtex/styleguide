@@ -7,15 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- **ActionMenu** unwanted behavior that made the component not visible when inside other components that use `overflow`.
+
 ### Changed
 
-- **ActionMenu** now uses `react-overlays` and is being added to the DOM in
-  the bottom of the `body` tag. This should prevent unwanted behaviors caused by `overflow`.
 - **ActionMenu** now uses the `ButtonWithIcon` component. As a result, the `icon` prop should now be passed within the `buttonProps` prop. This makes the `icon` prop now _deprecated_.
 
 ### Deprecated
 
-- Deprecates `icon` prop of **ActionMenu** in favor of `buttonProps` since now it's using the **ButtonWithIcon** component
+- **ActionMenu** deprecates `icon` prop of in favor of `buttonProps` since now it's using the **ButtonWithIcon** component.
 
 ## [8.20.2] - 2019-02-28
 
