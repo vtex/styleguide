@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import Toast from './Toast'
 import isString from 'lodash/isString'
@@ -20,7 +20,13 @@ export default class ToastManager extends Component {
     if (isString(args)) {
       args = { message: args }
     }
-    const { message = '', action, duration, horizontalPosition = 'left' } = args
+    const {
+      message = '',
+      action,
+      dismissable,
+      duration,
+      horizontalPosition = 'left',
+    } = args
 
     if (this.state.currentToast) {
       // If there is a toast present already, queue up the next toast
@@ -29,6 +35,7 @@ export default class ToastManager extends Component {
         nextToast: {
           message,
           action,
+          dismissable,
           duration,
           horizontalPosition,
         },
@@ -39,6 +46,7 @@ export default class ToastManager extends Component {
         currentToast: {
           message,
           action,
+          dismissable,
           duration,
           horizontalPosition,
         },
@@ -105,30 +113,40 @@ export default class ToastManager extends Component {
   }
 
   render() {
+    const { children } = this.props
     const { currentToast } = this.state
 
     return (
-      <div
-        className="fixed z-max overflow-hidden"
-        ref={this.container}
-        style={{
-          pointerEvents: 'none',
-        }}>
-        {currentToast && (
-          <Toast
-            message={currentToast.message}
-            action={currentToast.action}
-            duration={currentToast.duration}
-            visible={this.state.isToastVisible}
-            onClose={this.handleToastClose}
-            horizontalPosition={currentToast.horizontalPosition}
-          />
-        )}
-      </div>
+      <Fragment>
+        {children({
+          showToast: this.showToast,
+          hideToast: this.hideToast,
+          state: this.state,
+        })}
+        <div
+          className="fixed z-max overflow-hidden"
+          ref={this.container}
+          style={{
+            pointerEvents: 'none',
+          }}>
+          {currentToast && (
+            <Toast
+              message={currentToast.message}
+              action={currentToast.action}
+              duration={currentToast.duration}
+              dismissable={currentToast.dismissable}
+              visible={this.state.isToastVisible}
+              onClose={this.handleToastClose}
+              horizontalPosition={currentToast.horizontalPosition}
+            />
+          )}
+        </div>
+      </Fragment>
     )
   }
 }
 
 ToastManager.propTypes = {
   positioning: PropTypes.oneOf(['parent', 'window']),
+  children: PropTypes.func.isRequired,
 }

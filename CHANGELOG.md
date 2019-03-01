@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.22.0] - 2019-03-01
+
+### Added
+
+- **Toast** now can be undismissable by the user.
+
+### Changed
+
+- **Toast** `ToastManager` is now a HOC. There is no need to use ref inside `ToastProvider`.
+
 ### Fixed
 
 - npm build

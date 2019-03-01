@@ -120,6 +120,20 @@ const Content = () => (
             <div className="mr5">
               <Button
                 size="small"
+                variation="secondary"
+                onClick={
+                  () => showToast({
+                    message: 'This message stays here until closed programatically',
+                    dismissable: false,
+                  })
+                }
+              >
+                Undismissable
+              </Button>
+            </div>
+            <div className="mr5">
+              <Button
+                size="small"
                 variation="danger"
                 onClick={hideToast}
               >
@@ -200,7 +214,7 @@ const Content = () => (
       this.setState({ value: event.currentTarget.value })
     }
 
-    componentDidUpdate(prevState) {
+    componentDidUpdate(_, prevState) {
       const { value } = this.state
       if ( prevState.value !== this.state.value ) {
         if (value === ''){
