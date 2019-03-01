@@ -87,7 +87,9 @@ class ActionMenu extends Component {
           onClose={shouldCloseOnClick ? this.closeMenu : null}>
           <ButtonWithIcon
             {...{
-              icon: icon || (!label && !hideCaretIcon ? iconCaret : null),
+              icon:
+                icon ||
+                (!label && !hideCaretIcon ? iconCaret : <React.Fragment />),
             }}
             {...buttonProps}
             onClick={this.handleClick}>
@@ -120,7 +122,8 @@ ActionMenu.propTypes = {
   /** Respecting ButtonWithIcon props contract. For more info, see:
    * https://styleguide.vtex.com/#/Components/Forms/Button
    */
-  buttonProps: ButtonWithIcon.propTypes,
+  // TODO: match ButtonWithIcon prop types
+  buttonProps: PropTypes.object,
   /** @deprecated Button icon: use buttonProps instead */
   icon: PropTypes.element,
   /** Button text label */
