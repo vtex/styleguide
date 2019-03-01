@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.22.1] - 2019-03-01
+
 ### Fixed
 
 - **ActionMenu** `icon` prop compatibility bug.
