@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - **ActionMenu** `icon` prop compatibility bug.
 
+### Changed
+
+- **Toast** ToastProvider HOC architecture reverted. Using ref again.
+
 ## [8.22.0] - 2019-03-01
 
 ### Added
