@@ -87,7 +87,7 @@ class ActionMenu extends Component {
           onClose={shouldCloseOnClick ? this.closeMenu : null}>
           <ButtonWithIcon
             {...{
-              icon: icon || (!label && !hideCaretIcon) ? iconCaret : null,
+              icon: icon || (!label && !hideCaretIcon ? iconCaret : null),
             }}
             {...buttonProps}
             onClick={this.handleClick}>
