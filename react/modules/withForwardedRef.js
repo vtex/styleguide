@@ -7,10 +7,10 @@ const Element = typeof Element === 'undefined' ? function() {} : Element
 export const refShape = PropTypes.oneOfType([
   PropTypes.func,
   PropTypes.shape({
-    current: PropTypes.oneOfType(
+    current: PropTypes.oneOfType([
       PropTypes.instanceOf(null),
       PropTypes.instanceOf(Element)
-    ),
+    ]),
   }),
 ])
 
