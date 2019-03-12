@@ -11,6 +11,8 @@ import ActionMenu from '../ActionMenu'
 const ARROW_SIZE = 11
 const HEADER_HEIGHT = 36
 const DEFAULT_COLUMN_WIDTH = 200
+const LINE_ACTIONS_COLUMN_WIDTH = 70
+const NO_TITLE_COLUMN = ' '
 
 class SimpleTable extends Component {
   constructor(props) {
@@ -39,9 +41,15 @@ class SimpleTable extends Component {
 
   handleRowHover = rowIndex => {
     const { onRowClick } = this.props
-    if (onRowClick) {
+    const { isLineActionsHovered } = this.state
+    console.log(isLineActionsHovered)
+    if (onRowClick && !isLineActionsHovered) {
       this.setState({
         hoverRowIndex: rowIndex,
+      })
+    } else {
+      this.setState({
+        hoverRowIndex: -1,
       })
     }
   }
@@ -61,20 +69,23 @@ class SimpleTable extends Component {
       : DEFAULT_COLUMN_WIDTH
   }
 
-  addLineActionsToSchema(schema, lineActions) {
-    return (schema.properties = {
+  addLineActionsToSchema = (schema, lineActions) => {
+    return {
       ...schema.properties,
       // eslint-disable-next-line camelcase
       _VTEX_Table_Internal_lineActions: {
-        type: 'any',
-        title: ' ',
-        width: 70,
+        title: NO_TITLE_COLUMN,
+        width: LINE_ACTIONS_COLUMN_WIDTH,
         cellRenderer: ({ rowData }) => {
           return (
             <ActionMenu
               buttonProps={{
                 variation: 'tertiary',
                 icon: <OptionsDots />,
+                onMouseEnter: () =>
+                  this.setState({ isLineActionsHovered: true }),
+                onMouseLeave: () =>
+                  this.setState({ isLineActionsHovered: false }),
               }}
               options={lineActions.map(action => ({
                 ...action,
@@ -85,7 +96,7 @@ class SimpleTable extends Component {
           )
         },
       },
-    })
+    }
   }
 
   render() {
