@@ -70,6 +70,7 @@ class Statement extends React.Component {
       labels,
       ommitSubject,
       ommitVerbs,
+      onChangeObjectCallback,
     } = this.props
     const condition = statements[statementIndex]
     const atomProps = {
@@ -77,6 +78,7 @@ class Statement extends React.Component {
       options: options,
       isFullWidth: isFullWidth,
       statementIndex: statementIndex,
+      onChangeObjectCallback: onChangeObjectCallback,
     }
 
     const statementAtoms = ommitSubject
@@ -168,6 +170,7 @@ class Statement extends React.Component {
 Statement.defaultProps = {
   onRemoveStatement: () => {},
   onChangeStatement: () => {},
+  onChangeObjectCallback: () => {},
   canDelete: true,
   statements: [{ subject: '', verb: '', object: null }],
   isRtl: false,
@@ -208,9 +211,10 @@ Statement.propTypes = {
   labels: PropTypes.shape({
     delete: PropTypes.string,
   }),
-  /** Please use the following ones with caution, i did not test them, so they can break everything */
+  /** Please use the 3 following ones with caution, i did not test them, so they can break everything */
   ommitSubject: PropTypes.bool,
   ommitVerbs: PropTypes.bool,
+  onChangeObjectCallback: PropTypes.func,
 }
 
 export default Statement
