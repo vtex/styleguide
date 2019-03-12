@@ -42,7 +42,6 @@ class SimpleTable extends Component {
   handleRowHover = rowIndex => {
     const { onRowClick } = this.props
     const { isLineActionsHovered } = this.state
-    console.log(isLineActionsHovered)
     if (onRowClick && !isLineActionsHovered) {
       this.setState({
         hoverRowIndex: rowIndex,
@@ -271,9 +270,9 @@ class SimpleTable extends Component {
                           onClick={
                             onRowClick &&
                             property !== '_VTEX_Table_Internal_lineActions'
-                              ? e =>
+                              ? event =>
                                   onRowClick({
-                                    e,
+                                    event,
                                     index: rowIndex,
                                     rowData,
                                   })
