@@ -7,12 +7,6 @@ import IconCaretDown from '../icon/CaretDown'
 import Statement from '../EXPERIMENTAL_Conditions/Statement'
 import Menu from './Menu'
 
-const filterStatementByOptionKey = (statements, key) => {
-  let filteredStatements = statements.filter(st => st.optionKey === key)
-  // delete filteredStatements.optionKey
-  return filteredStatements
-}
-
 const emptyVirtualStatement = {
   subject: null,
   verb: null,
@@ -20,13 +14,49 @@ const emptyVirtualStatement = {
   error: null,
 }
 
+const filterStatementBySubject = (statements = [], sbj, options = {}) => {
+  const hasStatement = statements.some(st => st.subject === sbj)
+  return hasStatement
+    ? statements.filter(st => st.subject === sbj)
+    : [
+        {
+          ...emptyVirtualStatement,
+          subject: sbj,
+          verb:
+            options[sbj] && options[sbj].verbs.length === 1
+              ? options[sbj].verbs[0].value
+              : null,
+        },
+      ]
+}
+
 class FilterTag extends PureComponent {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.filterMenuContainer = React.createRef()
+
     this.state = {
       isMenuOpen: false,
-      virtualStatement: emptyVirtualStatement,
+      virtualStatement: filterStatementBySubject(
+        props.statements,
+        props.subject,
+        props.options
+      )[0],
+    }
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (
+      nextProps.statements &&
+      nextProps.statements.length > 0 &&
+      nextProps.subject &&
+      nextProps.statements.some(st => st.subject === nextProps.subject)
+    ) {
+      const statement = filterStatementBySubject(nextProps.statements, nextProps.subject, nextProps.options)
+      return {
+        isMenuOpen: prevState.isMenuOpen,
+        virtualStatement: statement,
+      }
     }
   }
 
@@ -42,14 +72,6 @@ class FilterTag extends PureComponent {
 
     document.removeEventListener('mousedown', this.handleClickOutside)
     this.setState({ isMenuOpen: false })
-  }
-
-  handleClick = () => {
-    if (!this.state.isMenuOpen) {
-      this.openMenu()
-    } else {
-      this.closeMenu()
-    }
   }
 
   handleClickOutside = e => {
@@ -69,46 +91,51 @@ class FilterTag extends PureComponent {
     }
   }
 
-  onChangeExtraStatement = (newValue, structure) => {
+  onChangeStatement = (newValue, structure) => {
     this.setState(state => {
       return {
         virtualStatement: {
-          subject:
-            structure === 'subject' ? newValue : state.virtualStatement.subject,
-          verb: structure === 'verb' ? newValue : state.virtualStatement.verb,
-          object:
-            structure === 'object' ? newValue : state.virtualStatement.object,
-          error:
-            structure === 'error' ? newValue : state.virtualStatement.error,
+          ...state.virtualStatement,
+          [structure]: newValue,
         },
       }
     })
   }
 
   resetVirtualStatement = () => {
+    const { subject } = this.props
     this.setState({
-      virtualStatement: emptyVirtualStatement,
+      virtualStatement: {
+        ...emptyVirtualStatement,
+        subject,
+      },
     })
   }
 
   render() {
     const {
       options,
-      optionKey,
+      subject,
       statements,
       alwaysVisible,
       getFilterLabel,
       subjectPlaceholder,
       onClickClear,
       isMoreOptions,
-      onChangeFilterStatements,
       onSubmitFilterStatement,
     } = this.props
     const { isMenuOpen, virtualStatement } = this.state
 
+    const statement = filterStatementBySubject(statements, subject)[0]
     const isEmpty = !!(
-      statements && !statements.find(st => st.optionKey === optionKey).object
+      statements &&
+      (!statement || (statement && !statement.object))
     )
+
+    const shouldOmmitSubject = !isMoreOptions
+    const shouldOmmitVerb = isMoreOptions
+      ? false
+      : options[subject].verbs.length === 1
 
     return (
       <div
@@ -118,8 +145,8 @@ class FilterTag extends PureComponent {
         } pv1 dib bn pointer ${
           isMenuOpen
             ? 'bg-action-secondary'
-            : alwaysVisible
-            ? 'bg-muted-5 hover-bg-muted-4'
+            : alwaysVisible && isEmpty
+            ? 'bg-transparent hover-bg-muted-5'
             : isMoreOptions
             ? 'hover-bg-muted-5'
             : 'bg-muted-4 hover-bg-muted-5'
@@ -140,10 +167,10 @@ class FilterTag extends PureComponent {
                     ) : (
                       <Fragment>
                         <span className="">{`${
-                          options[optionKey].label
+                          options[subject].label
                         }:\xa0`}</span>
                         <span className="fw5">{`\xa0${getFilterLabel(
-                          filterStatementByOptionKey(statements, optionKey)
+                          filterStatementBySubject(statements, subject)
                         )}`}</span>
                       </Fragment>
                     )}
@@ -155,48 +182,60 @@ class FilterTag extends PureComponent {
               </button>
             }>
             <div className="ma5">
+              {shouldOmmitSubject && (
+                <span className="b mh3">{options[subject].label}</span>
+              )}
+              {shouldOmmitVerb && (
+                <span className="b mh3">{options[subject].verbs[0].label}</span>
+              )}
               <Statement
                 isFullWidth
                 canDelete={false}
-                ommitSubject={!isMoreOptions}
-                ommitVerbs={
-                  isMoreOptions ? false : options[optionKey].verbs.length === 1
-                }
-                options={
-                  isMoreOptions ? options : { [optionKey]: options[optionKey] }
-                }
+                ommitSubject={shouldOmmitSubject}
+                ommitVerbs={shouldOmmitVerb}
+                options={options}
                 subjectPlaceholder={subjectPlaceholder}
+                statementIndex={0}
                 statements={
                   isMoreOptions
-                    ? [virtualStatement]
-                    : filterStatementByOptionKey(statements, optionKey)
+                    ? [
+                        {
+                          ...{},
+                          ...virtualStatement,
+                        },
+                      ]
+                    : [
+                        {
+                          ...{},
+                          ...statement,
+                          ...virtualStatement,
+                        },
+                      ]
                 }
-                onChangeStatement={(newValue, structure) =>
-                  isMoreOptions
-                    ? this.onChangeExtraStatement(newValue, structure)
-                    : onChangeFilterStatements(newValue, structure, optionKey)
+                onChangeStatement={this.onChangeStatement}
+                onChangeObjectCallback={value =>
+                  this.onChangeStatement(value, 'object')
                 }
               />
-              <div className="flex justify-end mt4">
+              <div className="flex justify-end mt4 mh3">
                 <Button
+                  type="submit"
                   onClick={() => {
                     onSubmitFilterStatement(virtualStatement)
                     this.resetVirtualStatement()
                     this.closeMenu()
                   }}>
+                  {/* TO DO: convert this to label prop, so it's translatable */}
                   OK
                 </Button>
               </div>
             </div>
           </Menu>
           {!isEmpty && !isMoreOptions && (
-            <div className="flex items-center" onClick={() => onClickClear()}>
-              <IconClear
-                solid
-                // TO DO: when import primary action color is available, update this
-                color="#134cd8"
-                size={16}
-              />
+            <div
+              className="flex items-center c-link"
+              onClick={() => onClickClear()}>
+              <IconClear solid size={16} />
             </div>
           )}
         </div>
@@ -208,19 +247,19 @@ class FilterTag extends PureComponent {
 FilterTag.defaultProps = {
   alwaysVisible: false,
   isMoreOptions: false,
-  onSubmitFilterStatement: () => {},
+  subjectPlaceholder: '…',
 }
 
 FilterTag.propTypes = {
   options: PropTypes.object.isRequired,
-  optionKey: PropTypes.string,
+  subject: PropTypes.string,
+  statements: PropTypes.array,
   alwaysVisible: PropTypes.bool,
   getFilterLabel: PropTypes.func,
   subjectPlaceholder: PropTypes.string,
   onClickClear: PropTypes.func,
   isMoreOptions: PropTypes.bool,
-  onChangeFilterStatements: PropTypes.func,
-  onSubmitFilterStatement: PropTypes.func,
+  onSubmitFilterStatement: PropTypes.func.isRequired,
 }
 
 export default FilterTag

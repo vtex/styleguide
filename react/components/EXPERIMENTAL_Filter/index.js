@@ -2,33 +2,12 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
+import ButtonWithIcon from '../ButtonWithIcon'
+import IconClose from '../icon/Close'
+
 import FilterTag from './FilterTag'
 
-const mountStatementsWithOptions = props => {
-  // this preselects all subjects since each filter is a subject
-  // also select first verb automatically respecting statements prop
-  const { options, statements } = props
-  const optionsKeys = Object.keys(options)
-  const initialStatements = optionsKeys.map(key => {
-    if (
-      statements &&
-      statements.length > 0 &&
-      statements.some(st => st.subject === key)
-    ) {
-      return {
-        ...statements.filter(st => st.subject === key)[0],
-        optionKey: key,
-      }
-    }
-    return {
-      subject: key,
-      verb: options[key].verbs[0].value,
-      optionKey: key,
-    }
-  })
-  return initialStatements
-}
-
+const isStatementComplete = st => st.subject && st.verb && st.object
 const filterExtraOptions = (options, alwaysVisibleFilters, statements) => {
   const newOptions = { ...options }
   const optionsKeys = Object.keys(options)
@@ -39,7 +18,7 @@ const filterExtraOptions = (options, alwaysVisibleFilters, statements) => {
   })
   statements.forEach(st => {
     if (st && st.object) {
-      delete newOptions[st.optionKey]
+      delete newOptions[st.subject]
     }
   })
   return newOptions
@@ -60,7 +39,6 @@ class EXPERIMENTAL_Filter extends PureComponent {
 
     this.state = {
       visibleExtraOptions: [],
-      statements: mountStatementsWithOptions(props),
     }
   }
 
@@ -73,59 +51,59 @@ class EXPERIMENTAL_Filter extends PureComponent {
     this.setState({ visibleExtraOptions: newVisibleExtraOptions })
   }
 
-  handleStatementsUpdate = (newValue, structure, optionKey) => {
-    const { statements } = this.state
-    const newStatements = statements.map(st => {
-      if (st.optionKey === optionKey) {
-        st = {
-          ...st,
-          [structure]: newValue,
-        }
-        return st
+  handleSubmitFilter = st => {
+    if (isStatementComplete(st)) {
+      const { statements } = this.props
+      const hasStatement = statements.some(_st => _st.subject === st.subject)
+      if (hasStatement) {
+        const newStatements = statements.map(_st => {
+          if (_st.subject === st.subject) {
+            return {
+              ..._st,
+              ...st,
+            }
+          }
+          return _st
+        })
+        this.changeStatementsCallback(newStatements)
+      } else {
+        const newStatements = statements.slice(0)
+        newStatements.push(st)
+        this.changeStatementsCallback(newStatements)
       }
-      return st
-    })
-    this.setState({ statements: newStatements })
-    this.changeStatementsCallback(newStatements)
+    }
   }
 
   handleMoreOptionsSelected = st => {
-    const { statements } = this.state
-    const newStatements = statements.map(_st => {
-      if (_st.subject === st.subject) {
-        return {
-          ...st,
-          optionKey: st.subject,
-        }
-      }
-      return _st
-    })
-    this.setState({ statements: newStatements })
-    this.changeStatementsCallback(newStatements)
-    this.toggleExtraFilterOption(st.subject)
+    if (isStatementComplete(st)) {
+      this.handleSubmitFilter(st)
+      this.toggleExtraFilterOption(st.subject)
+    }
   }
 
-  handleFilterClear = optionKey => {
-    const { statements } = this.state
-    const { alwaysVisibleFilters, options } = this.props
+  handleFilterClear = subject => {
+    const { alwaysVisibleFilters, options, statements } = this.props
     const newStatements = statements.map(_st => {
-      if (_st.optionKey === optionKey) {
+      if (_st.subject === subject) {
         return {
-          subject: optionKey,
-          verb: options[optionKey].verbs[0].value,
-          optionKey,
+          subject: subject,
+          verb: options[subject].verbs[0].value,
         }
       }
       return _st
     })
-    this.setState({ statements: newStatements })
     this.changeStatementsCallback(newStatements)
-    !alwaysVisibleFilters.includes(optionKey) &&
-      this.toggleExtraFilterOption(optionKey)
+    !alwaysVisibleFilters.includes(subject) &&
+      this.toggleExtraFilterOption(subject)
   }
 
   changeStatementsCallback = statements => {
     this.props.onChangeStatements(statements)
+  }
+
+  handleClearAllfilters = () => {
+    this.setState({ visibleExtraOptions: [] })
+    this.changeStatementsCallback([])
   }
 
   componentDidMount() {
@@ -139,8 +117,14 @@ class EXPERIMENTAL_Filter extends PureComponent {
   }
 
   render() {
-    const { options, moreOptionsLabel, alwaysVisibleFilters } = this.props
-    const { statements, visibleExtraOptions } = this.state
+    const {
+      options,
+      moreOptionsLabel,
+      alwaysVisibleFilters,
+      clearAllFiltersButtonLabel,
+      statements,
+    } = this.props
+    const { visibleExtraOptions } = this.state
     const optionsKeys = Object.keys(options)
 
     return (
@@ -152,19 +136,16 @@ class EXPERIMENTAL_Filter extends PureComponent {
                 alwaysVisibleFilters.includes(key) ||
                 visibleExtraOptions.includes(key)
             )
-            .map(optionKey => {
-              const statement = statements.find(
-                st => st.optionKey === optionKey
-              )
+            .map(subject => {
+              const statement = statements.find(st => st.subject === subject)
               return (
-                <div key={`VTEX__filter_option--${optionKey}`} className="ma2">
+                <div key={`VTEX__filter_option--${subject}`} className="ma2">
                   <FilterTag
-                    alwaysVisible={alwaysVisibleFilters.includes(optionKey)}
-                    subjectPlaceholder={'Select subject'}
+                    alwaysVisible={alwaysVisibleFilters.includes(subject)}
                     getFilterLabel={() => {
-                      const label = options[optionKey].renderFilterLabel(
-                        statement
-                      )
+                      const label =
+                        options[subject] &&
+                        options[subject].renderFilterLabel(statement)
                       return (
                         (label &&
                           typeof label === 'string' &&
@@ -172,11 +153,11 @@ class EXPERIMENTAL_Filter extends PureComponent {
                         '…'
                       )
                     }}
-                    optionKey={optionKey}
+                    subject={subject}
                     options={options}
                     statements={statements}
-                    onClickClear={() => this.handleFilterClear(optionKey)}
-                    onChangeFilterStatements={this.handleStatementsUpdate}
+                    onClickClear={() => this.handleFilterClear(subject)}
+                    onSubmitFilterStatement={this.handleSubmitFilter}
                   />
                 </div>
               )
@@ -195,10 +176,25 @@ class EXPERIMENTAL_Filter extends PureComponent {
                     statements
                   ),
                 }}
+                statements={[]}
                 onSubmitFilterStatement={this.handleMoreOptionsSelected}
               />
             </div>
           )}
+          {clearAllFiltersButtonLabel &&
+            statements.some(st => !!st && !!st.object) && (
+              <div className="ml-auto mt1">
+                <ButtonWithIcon
+                  icon={<IconClose size={13} color="c-on-base" />}
+                  size="small"
+                  variation="tertiary"
+                  onClick={this.handleClearAllfilters}>
+                  <span className="c-on-base">
+                    {clearAllFiltersButtonLabel}
+                  </span>
+                </ButtonWithIcon>
+              </div>
+            )}
         </div>
       )
     )
@@ -214,12 +210,16 @@ EXPERIMENTAL_Filter.defaultProps = {
 EXPERIMENTAL_Filter.propTypes = {
   /** filter options (mirroring statements from Conditions component) */
   options: PropTypes.object.isRequired,
+  /** filter statements (mirroring statements from Conditions component) */
+  statements: PropTypes.array,
   /** Filters change callback: returns array of statement definitions */
-  onChangeStatements: PropTypes.func,
+  onChangeStatements: PropTypes.func.isRequired,
   /** lable for MORE options */
   moreOptionsLabel: PropTypes.string,
   /** filter options that are always visible outside MORE options */
   alwaysVisibleFilters: PropTypes.arrayOf(PropTypes.string),
+  /** if this label is passed, when some filter is not empty a clear all button will appear */
+  clearAllFiltersButtonLabel: PropTypes.string,
 }
 
 export default EXPERIMENTAL_Filter
