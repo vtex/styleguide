@@ -3,11 +3,16 @@ import PropTypes from 'prop-types'
 import { MultiGrid, AutoSizer } from 'react-virtualized'
 import ArrowDown from '../icon/ArrowDown'
 import ArrowUp from '../icon/ArrowUp'
+import OptionsDots from '../icon/OptionsDots'
 import EmptyState from '../EmptyState'
 import Spinner from '../Spinner'
+import ActionMenu from '../ActionMenu'
+
 const ARROW_SIZE = 11
 const HEADER_HEIGHT = 36
 const DEFAULT_COLUMN_WIDTH = 200
+const LINE_ACTIONS_COLUMN_WIDTH = 70
+const NO_TITLE_COLUMN = ' '
 
 class SimpleTable extends Component {
   constructor(props) {
@@ -36,9 +41,14 @@ class SimpleTable extends Component {
 
   handleRowHover = rowIndex => {
     const { onRowClick } = this.props
-    if (onRowClick) {
+    const { isLineActionsHovered } = this.state
+    if (onRowClick && !isLineActionsHovered) {
       this.setState({
         hoverRowIndex: rowIndex,
+      })
+    } else {
+      this.setState({
+        hoverRowIndex: -1,
       })
     }
   }
@@ -58,6 +68,36 @@ class SimpleTable extends Component {
       : DEFAULT_COLUMN_WIDTH
   }
 
+  addLineActionsToSchema = (schema, lineActions) => {
+    return {
+      ...schema.properties,
+      // eslint-disable-next-line camelcase
+      _VTEX_Table_Internal_lineActions: {
+        title: NO_TITLE_COLUMN,
+        width: LINE_ACTIONS_COLUMN_WIDTH,
+        cellRenderer: ({ rowData }) => {
+          return (
+            <ActionMenu
+              buttonProps={{
+                variation: 'tertiary',
+                icon: <OptionsDots />,
+                onMouseEnter: () =>
+                  this.setState({ isLineActionsHovered: true }),
+                onMouseLeave: () =>
+                  this.setState({ isLineActionsHovered: false }),
+              }}
+              options={lineActions.map(action => ({
+                ...action,
+                label: action.label({ rowData }),
+                onClick: () => action.onClick({ rowData }),
+              }))}
+            />
+          )
+        },
+      },
+    }
+  }
+
   render() {
     const {
       schema,
@@ -72,9 +112,13 @@ class SimpleTable extends Component {
       updateTableKey,
       rowHeight,
       fullWidth,
+      lineActions,
       loading,
     } = this.props
     const { hoverRowIndex } = this.state
+
+    if (lineActions)
+      schema.properties = this.addLineActionsToSchema(schema, lineActions)
     const properties = Object.keys(schema.properties)
 
     return (
@@ -215,16 +259,23 @@ class SimpleTable extends Component {
                               fullWidthColWidth
                             ),
                           }}
-                          className={`flex items-center w-100 h-100 truncate ph4 ${
-                            disableHeader && rowIndex === 0 ? 'bt' : ''
-                          } bb b--muted-4 ${
+                          className={`flex items-center w-100 h-100 ph4 bb 
+                            b--muted-4 truncate ${
+                              disableHeader && rowIndex === 0 ? 'bt' : ''
+                            } ${
                             onRowClick && rowIndex === hoverRowIndex
                               ? 'pointer bg-near-white c-link'
                               : ''
                           } ${columnIndex === 0 && fixFirstColumn ? 'br' : ''}`}
                           onClick={
-                            onRowClick
-                              ? e => onRowClick({ e, index: rowIndex, rowData })
+                            onRowClick &&
+                            property !== '_VTEX_Table_Internal_lineActions'
+                              ? event =>
+                                  onRowClick({
+                                    event,
+                                    index: rowIndex,
+                                    rowData,
+                                  })
                               : null
                           }
                           onMouseEnter={
@@ -236,7 +287,10 @@ class SimpleTable extends Component {
                             onRowClick ? () => this.handleRowHover(-1) : null
                           }>
                           {cellRenderer
-                            ? cellRenderer({ cellData, rowData })
+                            ? cellRenderer({
+                                cellData,
+                                rowData,
+                              })
                             : cellData}
                         </div>
                       )
@@ -286,6 +340,13 @@ SimpleTable.propTypes = {
   containerHeight: PropTypes.number,
   rowHeight: PropTypes.number.isRequired,
   fullWidth: PropTypes.bool,
+  lineActions: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.func,
+      isDangerous: PropTypes.bool,
+      onClick: PropTypes.func,
+    })
+  ),
   loading: PropTypes.bool,
 }
 

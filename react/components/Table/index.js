@@ -91,6 +91,7 @@ class Table extends PureComponent {
       toolbar,
       pagination,
       fullWidth,
+      lineActions,
       loading,
       totalizers,
     } = this.props
@@ -150,6 +151,7 @@ class Table extends PureComponent {
             onSort={onSort}
             key={hiddenFields.toString()}
             updateTableKey={updateTableKey}
+            lineActions={lineActions}
             loading={loading}
             containerHeight={
               containerHeight || this.calculateTableHeight(items.length)
@@ -204,6 +206,18 @@ Table.propTypes = {
   emptyStateLabel: PropTypes.string,
   /** Full width property  */
   fullWidth: PropTypes.bool,
+  /** Line actions column */
+  lineActions: PropTypes.arrayOf(
+    PropTypes.shape({
+      /** Function that returns a string for the action label */
+      label: PropTypes.func,
+      /** Mark whether the action performs a dangerous option or not */
+      isDangerous: PropTypes.bool,
+      /** Handles the callback function of the action */
+      onClick: PropTypes.func,
+    })
+  ),
+  /** Controls the table loading state */
   loading: PropTypes.bool,
   /** Toolbar (search and actions) */
   toolbar: PropTypes.shape({
