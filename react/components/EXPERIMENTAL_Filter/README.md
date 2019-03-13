@@ -158,40 +158,19 @@ class MyFilter extends React.Component {
     }
     return (
       <div>
-        <div className="mb3">
-          <Checkbox
-            checked={isFirstSelect ? true : values.vip}
-            label="VIP"
-            name="default-checkbox-group"
-            onChange={() => onChangeObjectCallback(toggleValueByKey('vip'))}
-            value="vip"
-          />
-        </div>
-        <div className="mb3">
-          <Checkbox
-            checked={isFirstSelect ? true : values.gold}
-            label="Gold"
-            name="default-checkbox-group"
-            onChange={() => onChangeObjectCallback(toggleValueByKey('gold'))}
-            value="gold"
-          />
-        </div>
-        <div className="mb3">
-          <Checkbox
-            checked={isFirstSelect ? true : values.silver}
-            label="Silver"
-            name="default-checkbox-group"
-            onChange={() => onChangeObjectCallback(toggleValueByKey('silver'))}
-            value="silver"
-          />
-        </div>
-        <Checkbox
-          checked={isFirstSelect ? true : values.platinum}
-          label="Platinum"
-          name="default-checkbox-group"
-          onChange={() => onChangeObjectCallback(toggleValueByKey('platinum'))}
-          value="platinum"
-        />
+        {Object.keys(initialValue).map(opt => {
+          return (
+            <div className="mb3">
+              <Checkbox
+                checked={isFirstSelect ? true : values[opt]}
+                label={opt}
+                name="default-checkbox-group"
+                onChange={() => onChangeObjectCallback(toggleValueByKey(`${opt}`))}
+                value={opt}
+              />
+            </div>
+          )
+        })}
       </div>
     )
   }
@@ -201,10 +180,7 @@ class MyFilter extends React.Component {
       <EXPERIMENTAL_Filter
         alwaysVisibleFilters={['name', 'email', 'class']}
         statements={this.state.statements}
-        onChangeStatements={statements => {
-          console.log('example updated statements: ', statements)
-          this.setState({ statements })
-        }}
+        onChangeStatements={statements => this.setState({ statements })}
         clearAllFiltersButtonLabel="Clear All"
         options={{
           name: {
@@ -368,6 +344,181 @@ class MyFilter extends React.Component {
                 value: 'contains',
                 object: {
                   renderFn: this.cpfInputObject,
+                  extraParams: {},
+                },
+              },
+            ],
+          },
+        }}
+      />
+    )
+  }
+}
+;<MyFilter />
+```
+
+Filter orders with initial values
+
+```js
+const isToday = dateIsoString => dateIsoString.includes(`${
+  new Date(dateIsoString).getFullYear()
+}-${
+  ('0' + (new Date(dateIsoString).getMonth() + 1)).slice(-2)
+}-${
+  ('0' + new Date(dateIsoString).getDate()).slice(-2)
+}`)
+
+class MyFilter extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      statements: [{
+        subject: 'date',
+        verb: '=',
+        object: new Date().toISOString()
+      }]
+    }
+    this.simpleInputObject = this.simpleInputObject.bind(this)
+  }
+
+  simpleInputObject({
+    statements,
+    values,
+    statementIndex,
+    error,
+    extraParams,
+    onChangeObjectCallback,
+  }) {
+    return (
+      <Input
+        value={values || ''}
+        onChange={e => onChangeObjectCallback(e.target.value)}
+      />
+    )
+  }
+
+  statusSelectorObject({
+    statements,
+    values,
+    statementIndex,
+    error,
+    extraParams,
+    onChangeObjectCallback,
+  }) {
+    const isFirstSelect = !values
+    const initialValue = {
+      'payment-pending': true,
+      'canceling': true,
+      'canceled': true,
+      'cancellation-requested': true,
+      'invoiced': true,
+      'processing': true,
+      'created': true,
+      'payment-approved': true,
+      'ready-for-handling': true,
+      'window-to-cancellation': true,
+    }
+    const toggleValueByKey = key => {
+      return isFirstSelect
+        ? {
+            ...initialValue,
+            [key]: false,
+          }
+        : {
+            ...values,
+            [key]: !values[key],
+          }
+    }
+    return (
+      <div>
+        {Object.keys(initialValue).map(opt => {
+          return (
+            <div className="mb3">
+              <Checkbox
+                checked={isFirstSelect ? true : values[opt]}
+                label={opt.split('-').join(' ')}
+                name="default-checkbox-group"
+                onChange={() => onChangeObjectCallback(toggleValueByKey(`${opt}`))}
+                value={opt}
+              />
+            </div>
+          )
+        })}
+      </div>
+    )
+  }
+
+  render() {
+    return (
+      <EXPERIMENTAL_Filter
+        alwaysVisibleFilters={['date', 'status']}
+        statements={this.state.statements}
+        onChangeStatements={statements => this.setState({ statements })}
+        clearAllFiltersButtonLabel="Clear All"
+        options={{
+          date: {
+            label: 'Date',
+            renderFilterLabel: st => {
+              if (!st || !st.object) {
+                // you should treat empty object cases only for alwaysVisibleFilters
+                return 'All'
+              } else if (st.object && isToday(st.object)) {
+                return 'Today'
+              } else {
+                return st.object
+              }
+            },
+            verbs: [
+              {
+                label: 'is',
+                value: '=',
+                object: {
+                  renderFn: this.simpleInputObject,
+                  extraParams: {},
+                },
+              },
+            ],
+          },
+          status: {
+            label: 'Status',
+            renderFilterLabel: st => st ? st.object ? (() => {
+              const keys = Object.keys(st.object)
+              let label = ''
+              keys.forEach((key, i) => {
+                label += `${key.split('-').join('  ')}${i === 0 ? '' : ', '}`
+              })
+              return label
+            }) : '…' : 'All',
+            // ^ you should treat empty object cases only for alwaysVisibleFilters
+            verbs: [
+              {
+                label: 'is',
+                value: '=',
+                object: {
+                  renderFn: this.statusSelectorObject,
+                  extraParams: {},
+                },
+              },
+            ],
+          },
+          id: {
+            label: 'Order ID',
+            renderFilterLabel: st =>
+              `${st.verb === '=' ? 'is' : 'contains'} ${st.object}`,
+            verbs: [
+              {
+                label: 'is',
+                value: '=',
+                object: {
+                  renderFn: this.simpleInputObject,
+                  extraParams: {},
+                },
+              },
+              {
+                label: 'contains',
+                value: 'contains',
+                object: {
+                  renderFn: this.simpleInputObject,
                   extraParams: {},
                 },
               },
