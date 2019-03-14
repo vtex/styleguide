@@ -287,15 +287,14 @@ class Toolbar extends PureComponent {
           {isExtraActionsVisible && (
             <div title={extraActions.label} className="mh2">
               <ActionMenu
-                icon={
-                  <span className="c-on-base mh2">
-                    <IconOptionsDots />
-                  </span>
-                }
                 hideCaretIcon
                 buttonProps={{
                   variation: 'tertiary',
-                  icon: true,
+                  icon: (
+                    <span className="c-on-base">
+                      <IconOptionsDots />
+                    </span>
+                  ),
                   size: 'small',
                 }}
                 options={extraActions.actions.map(action => {
