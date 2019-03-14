@@ -13,6 +13,7 @@ import Placeholder from './Placeholder'
 import ControlComponent from './Control'
 
 import { getFontClassNameFromSize, getTagPaddingFromSize } from './styles'
+import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
 
 const getOptionValue = option => {
   return JSON.stringify(option.value)
@@ -42,6 +43,7 @@ class Select extends Component {
 
   render() {
     const {
+      forwardedRef,
       autoFocus,
       creatable,
       defaultValue,
@@ -60,6 +62,7 @@ class Select extends Component {
     } = this.props
 
     const reactSelectComponentProps = {
+      ref: forwardedRef,
       autoFocus,
       className: `pointer b--danger bw1 ${getFontClassNameFromSize(size)} ${
         errorMessage ? 'b--danger bw1' : ''
@@ -190,6 +193,8 @@ Select.defaultProps = {
 }
 
 Select.propTypes = {
+  /** @ignore Forwarded Ref */
+  forwardedRef: refShape,
   /** Select auto focus */
   autoFocus: PropTypes.bool,
   /** Creatable options. */
@@ -245,4 +250,4 @@ Select.propTypes = {
   ]),
 }
 
-export default Select
+export default withForwardedRef(Select)
