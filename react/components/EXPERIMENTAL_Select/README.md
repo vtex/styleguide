@@ -238,3 +238,33 @@ const options = [
   />
 </div>
 ```
+
+Using ref
+
+```js
+const options = [
+  {
+    value: 'first-option',
+    label: 'First Option',
+  },
+  {
+    value: 'second-option',
+    label: 'Second Option',
+  },
+]
+
+const ref = React.createRef()
+
+;<div>
+  <Select
+    ref={ref}
+    label="Click in the button below to focus on this Select"
+    options={options}
+  />
+  <div className="pt2">
+    <Button size="small" onClick={() => ref.current.focus()}>
+      Focus on input
+    </Button>
+  </div>
+</div>
+```
