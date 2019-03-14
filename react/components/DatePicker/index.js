@@ -6,6 +6,7 @@ import Input from '../Input'
 import IconCalendar from '../icon/Calendar'
 
 import './react-datepicker.global.css'
+import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
 
 class DatePicker extends Component {
   constructor(props) {
@@ -54,6 +55,7 @@ class DatePicker extends Component {
         autoFocus={this.props.autoFocus}
         customInput={
           <Input
+            ref={this.props.forwardedRef}
             error={this.props.error}
             errorMessage={this.props.errorMessage || this.state.errorMessage}
             helpText={this.props.helpText}
@@ -62,6 +64,10 @@ class DatePicker extends Component {
             size={this.props.size}
           />
         }
+        // 'legacyRef' customInputRef is a workaround for this https://bit.ly/2W2Fm3U
+        // until this PR  https://github.com/Hacker0x01/react-datepicker/pull/1602
+        // is merged
+        customInputRef={'legacyRef'}
         dateFormat={this.props.useTime ? 'Pp' : 'P'}
         disabled={this.props.disabled}
         excludeDates={this.props.excludeDates}
@@ -103,6 +109,8 @@ DatePicker.defaultProps = {
 }
 
 DatePicker.propTypes = {
+  /** @ignore Forwarded Ref */
+  forwardedRef: refShape,
   /** Spec attribute  */
   autoFocus: PropTypes.bool,
   /** Spec attribute  */
@@ -157,4 +165,4 @@ DatePicker.propTypes = {
   value: PropTypes.instanceOf(Date).isRequired,
 }
 
-export default DatePicker
+export default withForwardedRef(DatePicker)
