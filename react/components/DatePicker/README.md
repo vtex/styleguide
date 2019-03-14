@@ -1,13 +1,13 @@
 #### A Datepicker lets the user select a single date and time by interacting with a calendar.
 
 ### 👍 Dos
+
 - Combine with Dropdowns or other components if you need more input from the user such as choosing a timezone or for different ways of selecting times.
 - For birthdates or other dates that span far to the past or to the future do disable the calendar popover. It's not (yet) built for that, and the user might see herself forced to do a lot of clicks.
 
-
 ### 👎 Don'ts
-- For complex tasks such as selecting dates you might be tempted to design a slightly different behavior and build a customization on top of the component. Avoid doing that locally, and consider contributing to the library. More often than you think your need is the same as someone's else.
 
+- For complex tasks such as selecting dates you might be tempted to design a slightly different behavior and build a customization on top of the component. Avoid doing that locally, and consider contributing to the library. More often than you think your need is the same as someone's else.
 
 ### Supported locales
 
@@ -257,6 +257,53 @@ class DatePickerExample extends React.Component {
               locale="pt-BR"
             />
           </span>
+        </div>
+      </div>
+    )
+  }
+}
+
+;<DatePickerExample />
+```
+
+#### Using ref
+
+```js
+const DatePicker = require('./index.js').default
+const Button = require('../Button/index.js').default
+
+class DatePickerExample extends React.Component {
+  constructor() {
+    super()
+    this.ref = React.createRef()
+    this.state = {
+      startDate: new Date(),
+    }
+
+    this.handleChange = this.handleChange.bind(this)
+  }
+
+  handleChange(date) {
+    this.setState({
+      startDate: date,
+    })
+  }
+
+  render() {
+    return (
+      <div>
+        <div className="mb5">
+          <DatePicker
+            ref={this.ref}
+            label="Click in the button below to focus on this DatePicker"
+            value={this.state.startDate}
+            onChange={this.handleChange}
+            locale="pt-BR"
+          />
+        </div>
+
+        <div className="mb5">
+          <Button onClick={() => this.ref.current.focus()}>Focus!</Button>
         </div>
       </div>
     )
