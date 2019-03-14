@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.23.3] - 2019-03-14
+
 ### Fixed
 
 - **Select** can now be used with ref now.
