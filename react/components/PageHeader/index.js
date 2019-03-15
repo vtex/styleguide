@@ -33,20 +33,19 @@ class PageHeader extends PureComponent {
           </div>
         )}
 
-        <div className="flex flex-row flex-wrap justify-between">
+        <div>
           <div
-            className={`vtex-pageHeader__title c-on-base flex flex-wrap
+            className={`vtex-pageHeader__title c-on-base flex flex-wrap flex-row justify-between
             ${linkLabel ? 'mt0' : 'mt7'}`}>
-            <div className="t-heading-2 order-0 order-0-ns flex-grow-1">
+            <div className="t-heading-2 order-0 flex-grow-1">
               {this.props.title}
             </div>
             {children && (
-              <div className="vtex-pageHeader__children order-2 order-0-ns">
+              <div className="vtex-pageHeader__children order-2 order-0-ns mt5 mt0-ns">
                 {children}
               </div>
             )}
-            <div className="w-100" />
-            <div className="t-body c-muted-1 mv5 order-1 order-0-ns">
+            <div className="t-body lh-copy c-muted-1 mv5 order-1 order-0-ns">
               {this.props.subtitle}
             </div>
           </div>
