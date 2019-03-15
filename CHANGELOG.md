@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [8.23.3] - 2019-03-14
 
+### Added
+
+- **PageHeader** added a new subtitle prop.
+
 ### Fixed
 
 - **Select** can now be used with ref now.
