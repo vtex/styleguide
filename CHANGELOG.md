@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix prop types of forwarded `ref`.
+
 ## [8.23.3] - 2019-03-14
 
 ### Fixed
