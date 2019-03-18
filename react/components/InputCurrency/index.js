@@ -15,8 +15,8 @@ import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
  *
  */
 const BaseInput = props => {
-  const { inputPrefix: prefix, inputSuffix: suffix } = props
-  return <Input {...props} prefix={prefix} suffix={suffix} />
+  const { inputPrefix: prefix, inputSuffix: suffix, inputRef: ref } = props
+  return <Input {...props} prefix={prefix} suffix={suffix} ref={ref} />
 }
 
 BaseInput.propTypes = {
@@ -40,7 +40,13 @@ class InputCurrency extends Component {
 
   render() {
     // eslint-disable-next-line no-unused-vars
-    const { locale, currencyCode, onChange, ...props } = this.props
+    const {
+      locale,
+      currencyCode,
+      onChange,
+      forwardedRef,
+      ...props
+    } = this.props
 
     const formatter = new Intl.NumberFormat(locale, {
       style: 'currency',
@@ -78,6 +84,7 @@ class InputCurrency extends Component {
       <div>
         <NumberFormat
           {...props}
+          inputRef={forwardedRef}
           inputPrefix={prefix ? currencySymbol : null}
           inputSuffix={prefix ? null : currencySymbol}
           decimalSeparator={decimalSeparator || false}
