@@ -5,6 +5,7 @@ import FailureIcon from '../icon/Failure'
 import WarningIcon from '../icon/Warning'
 import CloseIcon from '../icon/Close'
 import Button from '../Button'
+import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
 
 class Alert extends Component {
   componentDidMount() {
@@ -93,6 +94,8 @@ class Alert extends Component {
 }
 
 Alert.propTypes = {
+  /** @ignore Forwarded Ref */
+  forwardedRef: refShape,
   /** Style of the alert */
   type: PropTypes.oneOf(['success', 'error', 'warning']).isRequired,
   /** Content of the alert */
@@ -108,4 +111,4 @@ Alert.propTypes = {
   }),
 }
 
-export default Alert
+export default withForwardedRef(Alert)
