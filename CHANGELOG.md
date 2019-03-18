@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.24.0] - 2019-03-18
+
+### Added
+
+- **PageHeader** added a new subtitle prop.
+
+## [8.24.0] - 2019-03-18
+
 ### Fixed
 
 - Fix prop types of forwarded `ref`.

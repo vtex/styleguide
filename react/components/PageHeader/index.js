@@ -34,13 +34,19 @@ class PageHeader extends PureComponent {
         )}
 
         <div
-          className={`vtex-pageHeader__title c-on-base t-heading-2 flex flex-row
-          flex-wrap justify-between ${linkLabel ? 'mt0' : 'mt7'}`}>
-          <span>{this.props.title}</span>
-
+          className={`c-on-base flex flex-wrap flex-row justify-between
+            ${linkLabel ? 'mt0' : 'mt7'}`}>
+          <div className="vtex-pageHeader__title t-heading-2 order-0 flex-grow-1">
+            {this.props.title}
+          </div>
           {children && (
-            <div className="vtex-pageHeader__children">{children}</div>
+            <div className="vtex-pageHeader__children order-2 order-0-ns mt5 mt0-ns">
+              {children}
+            </div>
           )}
+          <div className="vtex-pageHeader__subtitle t-body lh-copy c-muted-1 mv5 order-1 order-0-ns">
+            {this.props.subtitle}
+          </div>
         </div>
       </div>
     )
@@ -48,7 +54,11 @@ class PageHeader extends PureComponent {
 }
 
 PageHeader.propTypes = {
+  /** Title for the header */
   title: PropTypes.string.isRequired,
+  /** Subtitle for the header */
+  subtitle: PropTypes.string,
+  /** Label for the back button */
   linkLabel: PropTypes.string,
   onLinkClick: PropTypes.func,
   children: PropTypes.node,

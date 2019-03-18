@@ -46,3 +46,21 @@ With children
   <Button variation="primary">Primary</Button>
 </PageHeader>
 ```
+
+With children and subtitle
+
+```js
+<PageHeader
+  title="Order details"
+  subtitle="Some explanation or description for your page"
+  linkLabel="Orders"
+  onLinkClick={e => {
+    console.log(e)
+  }}>
+  <span className="mr4">
+    <Button variation="secondary">Secondary</Button>
+  </span>
+
+  <Button variation="primary">Primary</Button>
+</PageHeader>
+```
