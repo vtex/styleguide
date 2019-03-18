@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- **PageHeader** fixed behavior of subtitle misplacement when without children.
+
 ## [8.24.1] - 2019-03-18
 
 ### Fixed
