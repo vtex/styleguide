@@ -10,7 +10,7 @@ class PageHeader extends PureComponent {
   }
 
   render() {
-    const { linkLabel, children } = this.props
+    const { linkLabel, children, subtitle } = this.props
 
     return (
       <div className="vtex-pageHeader__container pa5 pa7-ns">
@@ -40,12 +40,16 @@ class PageHeader extends PureComponent {
             {this.props.title}
           </div>
           {children && (
-            <div className="vtex-pageHeader__children order-2 order-0-ns mt5 mt0-ns">
+            <div
+              className={`vtex-pageHeader__children order-2 order-0-ns ${
+                subtitle ? 'mt5' : ''
+              } mt0-ns`}>
               {children}
             </div>
           )}
+          <div className="w-100" style={{ height: 0 }} />
           <div className="vtex-pageHeader__subtitle t-body lh-copy c-muted-1 mv5 order-1 order-0-ns">
-            {this.props.subtitle}
+            {subtitle}
           </div>
         </div>
       </div>
