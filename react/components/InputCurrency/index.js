@@ -102,6 +102,8 @@ class InputCurrency extends Component {
 InputCurrency.propTypes = {
   /** @ignore Forwarded Ref */
   forwardedRef: refShape,
+  /** @ignore ref used by input component */
+  inputRef: PropTypes.any,
   onChange: PropTypes.func,
   onClear: PropTypes.func,
   size: PropTypes.string,
