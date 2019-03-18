@@ -22,6 +22,7 @@ const BaseInput = props => {
 BaseInput.propTypes = {
   inputPrefix: PropTypes.string,
   inputSuffix: PropTypes.string,
+  inputRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
 }
 
 const baseNumber = 9999999999.9999999999
@@ -39,14 +40,7 @@ class InputCurrency extends Component {
   }
 
   render() {
-    // eslint-disable-next-line no-unused-vars
-    const {
-      locale,
-      currencyCode,
-      onChange,
-      forwardedRef,
-      ...props
-    } = this.props
+    const { locale, currencyCode, forwardedRef, ...props } = this.props
 
     const formatter = new Intl.NumberFormat(locale, {
       style: 'currency',
@@ -102,8 +96,6 @@ class InputCurrency extends Component {
 InputCurrency.propTypes = {
   /** @ignore Forwarded Ref */
   forwardedRef: refShape,
-  /** @ignore ref used by input component */
-  inputRef: PropTypes.any,
   onChange: PropTypes.func,
   onClear: PropTypes.func,
   size: PropTypes.string,
