@@ -1,10 +1,12 @@
 /* eslint-disable */
 import React, { PureComponent, Fragment } from 'react'
 import PropTypes from 'prop-types'
+import merge from 'lodash/merge'
 
 import IconClear from '../icon/Clear'
+import IconClose from '../icon/Close'
 import IconCaretDown from '../icon/CaretDown'
-import Statement from '../EXPERIMENTAL_Conditions/Statement'
+import Statement from './UncoupledStatement'
 import Menu from './Menu'
 
 const emptyVirtualStatement = {
@@ -52,7 +54,11 @@ class FilterTag extends PureComponent {
       nextProps.subject &&
       nextProps.statements.some(st => st.subject === nextProps.subject)
     ) {
-      const statement = filterStatementBySubject(nextProps.statements, nextProps.subject, nextProps.options)
+      const statement = filterStatementBySubject(
+        nextProps.statements,
+        nextProps.subject,
+        nextProps.options
+      )
       return {
         isMenuOpen: prevState.isMenuOpen,
         virtualStatement: statement,
@@ -142,7 +148,7 @@ class FilterTag extends PureComponent {
         ref={this.filterMenuContainer}
         className={`br-pill ${
           isEmpty || isMoreOptions ? '' : 'pr4'
-        } pv1 dib bn pointer ${
+        } pv1 dib bn ${
           isMenuOpen
             ? 'bg-action-secondary'
             : alwaysVisible && isEmpty
@@ -182,35 +188,32 @@ class FilterTag extends PureComponent {
               </button>
             }>
             <div className="ma5">
-              {shouldOmmitSubject && (
-                <span className="b mh3">{options[subject].label}</span>
-              )}
-              {shouldOmmitVerb && (
-                <span className="b mh3">{options[subject].verbs[0].label}</span>
-              )}
+              <div className="flex flex-wrap mb5">
+                {isMoreOptions && (
+                  <span className="f4 mh3">New Filter</span>
+                )}
+                {shouldOmmitSubject && (
+                  <span className="f4 mh3">{options[subject].label}</span>
+                )}
+                {shouldOmmitVerb && (
+                  <span className="f4 mh3">{options[subject].verbs[0].label}</span>
+                )}
+                <div
+                  className="ml-auto mr3 items-center pointer"
+                  onClick={this.closeMenu}>
+                  <IconClose size={18} />
+                </div>
+              </div>
               <Statement
                 isFullWidth
-                canDelete={false}
                 ommitSubject={shouldOmmitSubject}
                 ommitVerbs={shouldOmmitVerb}
                 options={options}
                 subjectPlaceholder={subjectPlaceholder}
-                statementIndex={0}
                 statements={
                   isMoreOptions
-                    ? [
-                        {
-                          ...{},
-                          ...virtualStatement,
-                        },
-                      ]
-                    : [
-                        {
-                          ...{},
-                          ...statement,
-                          ...virtualStatement,
-                        },
-                      ]
+                    ? [virtualStatement]
+                    : [merge(statement, virtualStatement)]
                 }
                 onChangeStatement={this.onChangeStatement}
                 onChangeObjectCallback={value =>

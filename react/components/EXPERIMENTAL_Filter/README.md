@@ -145,8 +145,9 @@ class MyFilter extends React.Component {
       silver: true,
       platinum: true,
     }
+    let virtualValues = null
     const toggleValueByKey = key => {
-      return isFirstSelect
+      const newValues = isFirstSelect
         ? {
             ...initialValue,
             [key]: false,
@@ -155,6 +156,9 @@ class MyFilter extends React.Component {
             ...values,
             [key]: !values[key],
           }
+      // wtf is this shitty side-effect, hooks send helps
+      virtualValues = newValues
+      return newValues
     }
     return (
       <div>
@@ -162,10 +166,18 @@ class MyFilter extends React.Component {
           return (
             <div className="mb3">
               <Checkbox
-                checked={isFirstSelect ? true : values[opt]}
+                checked={
+                  isFirstSelect
+                    ? true
+                    : virtualValues
+                    ? virtualValues[key]
+                    : values[opt]
+                }
                 label={opt}
                 name="default-checkbox-group"
-                onChange={() => onChangeObjectCallback(toggleValueByKey(`${opt}`))}
+                onChange={() =>
+                  onChangeObjectCallback(toggleValueByKey(`${opt}`))
+                }
                 value={opt}
               />
             </div>
@@ -360,23 +372,25 @@ class MyFilter extends React.Component {
 Filter orders with initial values
 
 ```js
-const isToday = dateIsoString => dateIsoString.includes(`${
-  new Date(dateIsoString).getFullYear()
-}-${
-  ('0' + (new Date(dateIsoString).getMonth() + 1)).slice(-2)
-}-${
-  ('0' + new Date(dateIsoString).getDate()).slice(-2)
-}`)
+const isToday = dateIsoString =>
+  dateIsoString.includes(
+    `${new Date(dateIsoString).getFullYear()}-${(
+      '0' +
+      (new Date(dateIsoString).getMonth() + 1)
+    ).slice(-2)}-${('0' + new Date(dateIsoString).getDate()).slice(-2)}`
+  )
 
 class MyFilter extends React.Component {
   constructor() {
     super()
     this.state = {
-      statements: [{
-        subject: 'date',
-        verb: '=',
-        object: new Date().toISOString()
-      }]
+      statements: [
+        {
+          subject: 'date',
+          verb: '=',
+          object: new Date().toISOString(),
+        },
+      ],
     }
     this.simpleInputObject = this.simpleInputObject.bind(this)
   }
@@ -408,12 +422,12 @@ class MyFilter extends React.Component {
     const isFirstSelect = !values
     const initialValue = {
       'payment-pending': true,
-      'canceling': true,
-      'canceled': true,
+      canceling: true,
+      canceled: true,
       'cancellation-requested': true,
-      'invoiced': true,
-      'processing': true,
-      'created': true,
+      invoiced: true,
+      processing: true,
+      created: true,
       'payment-approved': true,
       'ready-for-handling': true,
       'window-to-cancellation': true,
@@ -438,7 +452,9 @@ class MyFilter extends React.Component {
                 checked={isFirstSelect ? true : values[opt]}
                 label={opt.split('-').join(' ')}
                 name="default-checkbox-group"
-                onChange={() => onChangeObjectCallback(toggleValueByKey(`${opt}`))}
+                onChange={() =>
+                  onChangeObjectCallback(toggleValueByKey(`${opt}`))
+                }
                 value={opt}
               />
             </div>
@@ -481,14 +497,21 @@ class MyFilter extends React.Component {
           },
           status: {
             label: 'Status',
-            renderFilterLabel: st => st ? st.object ? (() => {
-              const keys = Object.keys(st.object)
-              let label = ''
-              keys.forEach((key, i) => {
-                label += `${key.split('-').join('  ')}${i === 0 ? '' : ', '}`
-              })
-              return label
-            }) : '…' : 'All',
+            renderFilterLabel: st =>
+              st
+                ? st.object
+                  ? () => {
+                      const keys = Object.keys(st.object)
+                      let label = ''
+                      keys.forEach((key, i) => {
+                        label += `${key.split('-').join('  ')}${
+                          i === 0 ? '' : ', '
+                        }`
+                      })
+                      return label
+                    }
+                  : '…'
+                : 'All',
             // ^ you should treat empty object cases only for alwaysVisibleFilters
             verbs: [
               {
