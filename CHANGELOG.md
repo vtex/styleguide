@@ -17,6 +17,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
+- Fix `ref` prop in InputCurrency component.
+
+## [8.23.4] - 2019-03-18
+
+### Fixed
+
 - Fix prop types of forwarded `ref`.
 
 ## [8.23.3] - 2019-03-14
