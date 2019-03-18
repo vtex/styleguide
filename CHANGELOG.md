@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - **PageHeader** added a new subtitle prop.
 
-## [8.23.4] - 2019-03-18
+## [8.24.0] - 2019-03-18
 
 ### Fixed
 
