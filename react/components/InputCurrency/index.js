@@ -22,7 +22,7 @@ const BaseInput = props => {
 BaseInput.propTypes = {
   inputPrefix: PropTypes.string,
   inputSuffix: PropTypes.string,
-  inputRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  inputRef: refShape,
 }
 
 const baseNumber = 9999999999.9999999999
