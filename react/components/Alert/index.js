@@ -19,7 +19,7 @@ class Alert extends Component {
   }
 
   render() {
-    const { type, onClose, action } = this.props
+    const { type, onClose, action, forwardedRef } = this.props
     let classes = 'ph5 pv4 br2 '
     let showIcon = false
     let Icon = 'div'
@@ -55,7 +55,7 @@ class Alert extends Component {
     return (
       <div
         className={`vtex-alert flex justify-between t-body c-on-base ${classes}`}>
-        <div className="flex-ns flex-grow-1 items-center">
+        <div ref={forwardedRef} className="flex-ns flex-grow-1 items-center">
           <div className="flex items-center flex-grow-1">
             {showIcon && (
               <div className={color}>
