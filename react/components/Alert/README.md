@@ -48,22 +48,20 @@ Using ref
 ```js
 const alertRef = React.createRef()
 
-const scrollToAlert = alertRef => {
-  const windowHeight = window.innerHeight
-  const alertHeight = alertRef.current.clientHeight
-  const alertY = alertRef.current.offsetTop
-  const x = 0
-  const y = alertY + alertHeight / 2 - windowHeight / 2
-  console.log('scrolled to:', x, y)
-  window.scrollTo(x, y)
-}
-
 ;<div>
   <Alert ref={alertRef} type="warning" onClose={() => console.log('Closed!')}>
     Click on the button below to focus on (scroll to) the alert
   </Alert>
   <div className="pt2">
-    <Button onClick={() => scrollToAlert(alertRef)}>Focus</Button>
+    <Button
+      onClick={() =>
+        alertRef.current.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center',
+        })
+      }>
+      Focus
+    </Button>
   </div>
 </div>
 ```
