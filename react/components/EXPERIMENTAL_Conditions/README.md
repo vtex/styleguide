@@ -478,7 +478,6 @@ class SimpleConditionsCase extends React.Component {
     error,
     extraParams,
   }) {
-    console.log(statements[statementIndex])
     return (
       <Input
         ref={statements[statementIndex].refs.object}
