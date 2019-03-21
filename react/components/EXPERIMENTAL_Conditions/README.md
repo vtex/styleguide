@@ -446,3 +446,109 @@ class ComplexConditionsCase extends React.Component {
 }
 ;<ComplexConditionsCase />
 ```
+
+Using ref
+
+```js
+class SimpleConditionsCase extends React.Component {
+  constructor() {
+    super()
+
+    this.state = {
+      simpleStatements: [
+        { subject: 'name', verb: '=', object: 'a', error: null },
+        { subject: 'name', verb: '=', object: 'b', error: null },
+        { subject: 'name', verb: '=', object: 'c', error: null },
+      ],
+      operator: 'all',
+    }
+
+    this.handleToggleOperator = this.handleToggleOperator.bind(this)
+    this.simpleInputObject = this.simpleInputObject.bind(this)
+  }
+
+  handleToggleOperator(operator) {
+    this.setState({ operator: this.state.operator === 'all' ? 'any' : 'all' })
+  }
+
+  simpleInputObject({
+    statements,
+    values,
+    statementIndex,
+    error,
+    extraParams,
+  }) {
+    console.log(statements[statementIndex])
+    return (
+      <Input
+        ref={statements[statementIndex].refs.object}
+        value={values}
+        onChange={e => {
+          statements[statementIndex].object = e.target.value
+          this.setState({ simpleStatements: statements })
+        }}
+      />
+    )
+  }
+
+  render() {
+    const options = {
+      name: {
+        label: 'User name',
+        verbs: [
+          {
+            label: 'is',
+            value: '=',
+            object: {
+              renderFn: this.simpleInputObject,
+              extraParams: {},
+            },
+          },
+        ],
+      },
+    }
+
+    return (
+      <div>
+        <EXPERIMENTAL_Conditions
+          options={options}
+          subjectPlaceholder="Select subject"
+          statements={this.state.simpleStatements}
+          operator={this.state.operator}
+          onChangeOperator={this.handleToggleOperator}
+          onChangeStatements={statements => {
+            this.setState({ simpleStatements: statements })
+          }}
+        />
+        <div className="mt4">
+          <span className="mr4">
+            <Button
+              onClick={() =>
+                this.state.simpleStatements[0].refs.subject.current.focus()
+              }>
+              Focus on first subject
+            </Button>
+          </span>
+          <span className="mr4">
+            <Button
+              onClick={() =>
+                this.state.simpleStatements[0].refs.verb.current.focus()
+              }>
+              Focus on first verb
+            </Button>
+          </span>
+          <span className="mr4">
+            <Button
+              onClick={() =>
+                this.state.simpleStatements[0].refs.object.current.focus()
+              }>
+              Focus on first object
+            </Button>
+          </span>
+        </div>
+      </div>
+    )
+  }
+}
+;<SimpleConditionsCase />
+```

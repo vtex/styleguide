@@ -8,6 +8,18 @@ import VerbAtom from './Atoms/VerbAtom'
 import ObjectAtom from './Atoms/ObjectAtom'
 
 class Statement extends React.Component {
+  constructor(props) {
+    super(props)
+    this.handleChangeStatement(
+      {
+        subject: React.createRef(),
+        verb: React.createRef(),
+        object: React.createRef(),
+      },
+      'refs'
+    )
+  }
+
   handleChangeStatement = (newValue, structure) => {
     this.props.onChangeStatement(newValue, structure)
   }
@@ -67,6 +79,7 @@ class Statement extends React.Component {
 
     const statementAtoms = [
       <SubjectAtom
+        ref={condition.refs.subject}
         key="subject"
         {...atomProps}
         placeholder={subjectPlaceholder}
@@ -76,6 +89,7 @@ class Statement extends React.Component {
         }}
       />,
       <VerbAtom
+        ref={condition.refs.verb}
         key="verb"
         {...atomProps}
         onChangeStatement={(value, structure) => {
