@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.25.0] - 2019-03-22
+
+### Added
+
+- **Toast** Export `ToastContext` to use the `useContext` Hook.
+
+### Changed
+
+- **Toast** Use the `ToastManager` as HOC to provide the toast state as it changes.
+
 ## [8.24.3] - 2019-03-18
 
 ### Fixed
