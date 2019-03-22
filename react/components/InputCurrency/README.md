@@ -1,13 +1,3 @@
-|Prop name    |Type   |Default|Description                                    |
-|---          |---    |---        |---                                            |
-|currencyCode |string |_Required_ |Currency code in ISO 4217 ('USD', 'BRL', etc.) |
-|defaultValue |number |           |Spec attribute                                 |
-|locale       |string |_Required_ |Locale ISO string ('en-US', 'pt-BR', etc.)     |
-|onChange     |func   |           |onChange event                                 |
-|onClear      |func   |           |onClear event                                  |
-|size         |string |           |Input size                                     |
-|value        |number |           |Spec attribute                                 |
-
 #### InputCurrency lets an user easily enter monetary values. The component understands currency codes and locales, so it can automatically format the input with the correct combination of commas, periods, etc.
 
 
