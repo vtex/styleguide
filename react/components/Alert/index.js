@@ -5,6 +5,7 @@ import FailureIcon from '../icon/Failure'
 import WarningIcon from '../icon/Warning'
 import CloseIcon from '../icon/Close'
 import Button from '../Button'
+import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
 
 class Alert extends Component {
   componentDidMount() {
@@ -18,7 +19,7 @@ class Alert extends Component {
   }
 
   render() {
-    const { type, onClose, action } = this.props
+    const { type, onClose, action, forwardedRef } = this.props
     let classes = 'ph5 pv4 br2 '
     let showIcon = false
     let Icon = 'div'
@@ -53,6 +54,7 @@ class Alert extends Component {
 
     return (
       <div
+        ref={forwardedRef}
         className={`vtex-alert flex justify-between t-body c-on-base ${classes}`}>
         <div className="flex-ns flex-grow-1 items-center">
           <div className="flex items-center flex-grow-1">
@@ -93,6 +95,8 @@ class Alert extends Component {
 }
 
 Alert.propTypes = {
+  /** @ignore Forwarded Ref */
+  forwardedRef: refShape,
   /** Style of the alert */
   type: PropTypes.oneOf(['success', 'error', 'warning']).isRequired,
   /** Content of the alert */
@@ -108,4 +112,4 @@ Alert.propTypes = {
   }),
 }
 
-export default Alert
+export default withForwardedRef(Alert)
