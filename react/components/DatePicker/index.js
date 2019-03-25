@@ -19,6 +19,38 @@ class DatePicker extends Component {
     this.handleLocaleChange(props.locale)
   }
 
+  get popperModifiers() {
+    const { flipped, rightAligned, size, useTime } = this.props
+
+    if (!flipped && !rightAligned) {
+      return undefined
+    }
+
+    const offsetX = rightAligned
+      ? (size === 'large' ? -91 : -136) - (useTime ? 130 : 0)
+      : 0
+
+    const offsetYBySize = {
+      large: -448,
+      regular: -440,
+      small: -432,
+    }
+
+    const offsetY = flipped ? offsetYBySize[size] - (useTime ? 18 : 0) : 0
+
+    return {
+      flip: {
+        enabled: !flipped,
+      },
+      keepTogether: {
+        enabled: false,
+      },
+      offset: {
+        offset: `${offsetX}, ${offsetY}`,
+      },
+    }
+  }
+
   handleChange = event => {
     this.props.onChange && this.props.onChange(event)
   }
@@ -72,6 +104,7 @@ class DatePicker extends Component {
         disabled={this.props.disabled}
         excludeDates={this.props.excludeDates}
         excludeTimes={this.props.excludeTimes}
+        fixedHeight={this.props.flipped}
         id={this.props.id}
         includeDates={this.props.includeDates}
         includeTimes={this.props.includeTimes}
@@ -80,6 +113,7 @@ class DatePicker extends Component {
         minDate={this.props.minDate}
         name={this.props.name}
         placeholderText={this.props.placeholder}
+        popperModifiers={this.popperModifiers}
         readOnly={this.props.readOnly}
         required={this.props.required}
         selected={this.props.value}
@@ -102,9 +136,11 @@ DatePicker.defaultProps = {
   autoFocus: false,
   disabled: false,
   error: false,
+  flipped: false,
   label: '',
   readOnly: false,
   required: false,
+  rightAligned: false,
   size: 'regular',
 }
 
@@ -123,6 +159,8 @@ DatePicker.propTypes = {
   excludeDates: PropTypes.arrayOf(PropTypes.instanceOf(Date)),
   /** Times to be excluded  */
   excludeTimes: PropTypes.arrayOf(PropTypes.instanceOf(Date)),
+  /** Whether or not the popper should be flipped vertically */
+  flipped: PropTypes.bool,
   /** Help text  */
   helpText: PropTypes.node,
   /** Spec attribute  */
@@ -153,6 +191,8 @@ DatePicker.propTypes = {
   readOnly: PropTypes.bool,
   /** Spec attribute  */
   required: PropTypes.bool,
+  /** Whether or not the popper should be aligned along the right side of the input */
+  rightAligned: PropTypes.bool,
   /** DatePicker size  */
   size: PropTypes.oneOf(['small', 'regular', 'large']),
   /** Spec attribute  */
