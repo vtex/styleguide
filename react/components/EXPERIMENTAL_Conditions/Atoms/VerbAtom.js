@@ -1,6 +1,7 @@
 import React from 'react'
 import Dropdown from '../../Dropdown'
 import PropTypes from 'prop-types'
+import { withForwardedRef, refShape } from '../../../modules/withForwardedRef'
 
 class VerbAtom extends React.Component {
   handleChangeStatement = (newValue, structure) => {
@@ -8,13 +9,20 @@ class VerbAtom extends React.Component {
   }
 
   render() {
-    const { options, isFullWidth, statements, statementIndex } = this.props
+    const {
+      forwardedRef,
+      options,
+      isFullWidth,
+      statements,
+      statementIndex,
+    } = this.props
     const condition = statements[statementIndex]
     const myChoice = options[condition.subject]
     const verbs = (myChoice && myChoice.verbs) || [{ label: '', value: '' }]
     return (
       <div className={`mh3 ${isFullWidth ? 'pb3' : ''}`}>
         <Dropdown
+          ref={forwardedRef}
           disabled={!condition.subject}
           options={verbs}
           value={!condition.subject ? '' : condition.verb || ''}
@@ -33,6 +41,8 @@ VerbAtom.defaultProps = {
 }
 
 VerbAtom.propTypes = {
+  /** @ignore Forwarded Ref */
+  forwardedRef: refShape,
   /** Current selected options for this Statement */
   statements: PropTypes.arrayOf(
     PropTypes.shape({
@@ -52,4 +62,4 @@ VerbAtom.propTypes = {
   onChangeStatement: PropTypes.func,
 }
 
-export default VerbAtom
+export default withForwardedRef(VerbAtom)

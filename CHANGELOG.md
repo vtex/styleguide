@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.26.0] - 2019-03-25
+
+### Added
+
+- **EXPERIMENTAL_Conditions** statement now provides _ref_ to its atoms components (Subject, Verb and Object).
+
 ## [8.25.1] - 2019-03-22
 
 ### Fixes

@@ -1,6 +1,7 @@
 import React from 'react'
 import Dropdown from '../../Dropdown'
 import PropTypes from 'prop-types'
+import { withForwardedRef, refShape } from '../../../modules/withForwardedRef'
 
 class SubjectAtom extends React.Component {
   handleChangeStatement = (newValue, structure) => {
@@ -9,6 +10,7 @@ class SubjectAtom extends React.Component {
 
   render() {
     const {
+      forwardedRef,
       options,
       statements,
       isFullWidth,
@@ -53,6 +55,7 @@ class SubjectAtom extends React.Component {
     return (
       <div className={`mh3 ${isFullWidth ? 'pb3' : ''}`}>
         <Dropdown
+          ref={forwardedRef}
           placeholder={placeholder}
           options={uniqueOptions}
           value={!condition.subject ? '' : condition.subject || ''}
@@ -70,6 +73,8 @@ SubjectAtom.defaultProps = {
 }
 
 SubjectAtom.propTypes = {
+  /** @ignore Forwarded Ref */
+  forwardedRef: refShape,
   /** Current selected options for this Statement */
   statements: PropTypes.arrayOf(
     PropTypes.shape({
@@ -91,4 +96,4 @@ SubjectAtom.propTypes = {
   onChangeStatement: PropTypes.func,
 }
 
-export default SubjectAtom
+export default withForwardedRef(SubjectAtom)
