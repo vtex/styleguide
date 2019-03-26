@@ -23,9 +23,9 @@ class DatePicker extends Component {
     const { align, direction, size, useTime } = this.props
 
     const isRightAligned = align === 'right'
-    const isUpwardsDirected = direction === 'up'
+    const isUpwards = direction === 'up'
 
-    if (!isRightAligned && !isUpwardsDirected) {
+    if (!isRightAligned && !isUpwards) {
       return undefined
     }
 
@@ -39,13 +39,11 @@ class DatePicker extends Component {
       small: -432,
     }
 
-    const offsetY = isUpwardsDirected
-      ? offsetYBySize[size] - (useTime ? 18 : 0)
-      : 0
+    const offsetY = isUpwards ? offsetYBySize[size] - (useTime ? 18 : 0) : 0
 
     return {
       flip: {
-        enabled: !isUpwardsDirected,
+        enabled: !isUpwards,
       },
       keepTogether: {
         enabled: false,

@@ -158,7 +158,7 @@ class DatePickerExample extends React.Component {
       readOnlyDate: new Date(),
       requiredDate: null,
       rightAlignedDate: new Date(),
-      upwardsDirectedDate: new Date(),
+      upwardsDate: new Date(),
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -274,10 +274,10 @@ class DatePickerExample extends React.Component {
           <span className="mr4">
             <DatePicker
               direction="up"
-              label="Upwards-directed"
+              label="Upwards"
               locale="pt-BR"
-              onChange={date => this.setState({ upwardsDirectedDate: date })}
-              value={this.state.upwardsDirectedDate}
+              onChange={date => this.setState({ upwardsDate: date })}
+              value={this.state.upwardsDate}
             />
           </span>
         </div>
