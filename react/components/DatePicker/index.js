@@ -20,13 +20,16 @@ class DatePicker extends Component {
   }
 
   get popperModifiers() {
-    const { flipped, rightAligned, size, useTime } = this.props
+    const { align, direction, size, useTime } = this.props
 
-    if (!flipped && !rightAligned) {
+    const isRightAligned = align === 'right'
+    const isUpwardsDirected = direction === 'up'
+
+    if (!isRightAligned && !isUpwardsDirected) {
       return undefined
     }
 
-    const offsetX = rightAligned
+    const offsetX = isRightAligned
       ? (size === 'large' ? -91 : -136) - (useTime ? 130 : 0)
       : 0
 
@@ -36,11 +39,13 @@ class DatePicker extends Component {
       small: -432,
     }
 
-    const offsetY = flipped ? offsetYBySize[size] - (useTime ? 18 : 0) : 0
+    const offsetY = isUpwardsDirected
+      ? offsetYBySize[size] - (useTime ? 18 : 0)
+      : 0
 
     return {
       flip: {
-        enabled: !flipped,
+        enabled: !isUpwardsDirected,
       },
       keepTogether: {
         enabled: false,
@@ -104,7 +109,7 @@ class DatePicker extends Component {
         disabled={this.props.disabled}
         excludeDates={this.props.excludeDates}
         excludeTimes={this.props.excludeTimes}
-        fixedHeight={this.props.flipped}
+        fixedHeight={this.props.direction === 'up'}
         id={this.props.id}
         includeDates={this.props.includeDates}
         includeTimes={this.props.includeTimes}
@@ -133,22 +138,26 @@ class DatePicker extends Component {
 }
 
 DatePicker.defaultProps = {
+  align: 'left',
   autoFocus: false,
+  direction: 'down',
   disabled: false,
   error: false,
-  flipped: false,
   label: '',
   readOnly: false,
   required: false,
-  rightAligned: false,
   size: 'regular',
 }
 
 DatePicker.propTypes = {
   /** @ignore Forwarded Ref */
   forwardedRef: refShape,
+  /** Popper alignment in relation to the input */
+  align: PropTypes.oneOf(['left', 'right']),
   /** Spec attribute  */
   autoFocus: PropTypes.bool,
+  /** Popper position in relation to the input */
+  direction: PropTypes.oneOf(['down', 'up']),
   /** Spec attribute  */
   disabled: PropTypes.bool,
   /** Error highlight  */
@@ -159,8 +168,6 @@ DatePicker.propTypes = {
   excludeDates: PropTypes.arrayOf(PropTypes.instanceOf(Date)),
   /** Times to be excluded  */
   excludeTimes: PropTypes.arrayOf(PropTypes.instanceOf(Date)),
-  /** Whether or not the popper should be flipped vertically */
-  flipped: PropTypes.bool,
   /** Help text  */
   helpText: PropTypes.node,
   /** Spec attribute  */
@@ -191,8 +198,6 @@ DatePicker.propTypes = {
   readOnly: PropTypes.bool,
   /** Spec attribute  */
   required: PropTypes.bool,
-  /** Whether or not the popper should be aligned along the right side of the input */
-  rightAligned: PropTypes.bool,
   /** DatePicker size  */
   size: PropTypes.oneOf(['small', 'regular', 'large']),
   /** Spec attribute  */

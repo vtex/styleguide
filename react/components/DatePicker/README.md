@@ -151,7 +151,6 @@ class DatePickerExample extends React.Component {
       errorDate: new Date(),
       excludeDatesDate: new Date(),
       excludeTimesDate: new Date(),
-      flippedDate: new Date(),
       helpTextDate: new Date(),
       includeDatesDate: new Date(),
       includeTimesDate: new Date(),
@@ -159,6 +158,7 @@ class DatePickerExample extends React.Component {
       readOnlyDate: new Date(),
       requiredDate: null,
       rightAlignedDate: new Date(),
+      upwardsDirectedDate: new Date(),
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -264,20 +264,20 @@ class DatePickerExample extends React.Component {
         <div className="mb5">
           <span className="mr4">
             <DatePicker
+              align="right"
               label="Right-aligned"
               locale="pt-BR"
               onChange={date => this.setState({ rightAlignedDate: date })}
-              rightAligned
               value={this.state.rightAlignedDate}
             />
           </span>
           <span className="mr4">
             <DatePicker
-              flipped
-              label="Flipped"
+              direction="up"
+              label="Upwards-directed"
               locale="pt-BR"
-              onChange={date => this.setState({ flippedDate: date })}
-              value={this.state.flippedDate}
+              onChange={date => this.setState({ upwardsDirectedDate: date })}
+              value={this.state.upwardsDirectedDate}
             />
           </span>
         </div>
