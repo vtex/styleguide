@@ -7,9 +7,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [8.49.1] - 2019-05-26
+## [9.49.0] - 2019-05-24
+
 ### Changed
+
+- Get changes made at `8.49.1`.
+
+## [8.49.1] - 2019-05-26
+
+### Changed
+
 - **ButtonWithIcon** Prop `icon` is not required anymore.
+
+### Changed
+
+- Get changes made at `8.49.0`.
 
 ## [8.49.0] - 2019-05-24
 
@@ -30,11 +42,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - **Spinner** prop `status`
 
+## [9.48.1] - 2019-05-24
+
+### Added
+
+- Get changes made at `8.48.1`.
+
 ## [8.48.1] - 2019-05-24
 
 ### Added
 
 - **Table** schema property `headerRight`.
+
+## [9.48.0] - 2019-05-23
+
+### Added
+
+- Get changes made at `8.48.0`.
 
 ## [8.48.0] - 2019-05-23
 
