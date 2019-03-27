@@ -1,11 +1,10 @@
 {
   "vendor": "vtex",
   "name": "styleguide",
-  "version": "8.58.0",
-  "title": "VTEX Styleguide",
+  "version": "9.57.1",
   "description": "The VTEX Styleguide components for the Render framework",
   "builders": {
-    "react": "2.x"
+    "react": "3.x"
   },
   "scripts": {
     "postreleasy": "vtex publish --verbose"
