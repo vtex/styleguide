@@ -9,36 +9,53 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [8.44.1] - 2019-05-09
 
+### Fixed
+
+- **ramda** dependency.
+
 ## [8.44.0] - 2019-05-09
+
+### Added
+
+- **Table** buldActions.
 
 ## [8.43.0] - 2019-05-09
 
 ### Added
+
 - **Collapsible** now receives a props containing a color name for its caret icon.
 
 ## [8.42.0] - 2019-05-09
+
 ### Added
-- BottomBar and TopBar to ***Modal***
-- ResponsiveFullScreen to ***Modal***
+
+- BottomBar and TopBar to **_Modal_**
+- ResponsiveFullScreen to **_Modal_**
 
 ### Changed
-- ***Modal*** scroll to be inside the Modal component
+
+- **_Modal_** scroll to be inside the Modal component
 
 ## [8.41.0] - 2019-05-07
 
 ### Fixed
+
 - **Collapsible** default focus outline removed for non-keyboard users.
 
 ## [8.40.1] - 2019-05-07
+
 ### Added
+
 - Remove hover on tertiary buttons which have `collapsedLeft` or `collapsedRight` props set.
 
 ## [8.40.0] - 2019-05-03
 
 ### Added
+
 - **CheckboxGroup** added to the styleguide.
 
 ### Fixed
+
 - Fix some component pages references not working properly.
 
 ## [8.39.1] - 2019-05-03
@@ -65,6 +82,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - **Tabs** fix partial width content.
 
+### Changed
+
+- Get changes made at version `v8.37.0`.
+- Get changes made at version `v8.36.1`.
+
 ## [8.37.0] - 2019-04-18
 
 ### Added
@@ -72,7 +94,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **CheckPartial** icon for new partial state in Checkbox.
 
 ## [8.36.2] - 2019-04-18
+
 ### Fixed
+
 - Fix `withForwardedRef` type, remove oneOfType usage.
 
 ## [8.36.1] - 2019-04-18
@@ -81,11 +105,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - **Table**: `Toolbar` without the search input now aligns to the right.
 
+## [9.36.0] - 2019-04-17
+
+### Changed
+
+- Get changes made at version `v8.36.0`.
+
 ## [8.36.0] - 2019-04-17
 
 ### Added
 
 - **EXPERIMENTAL_ButtonWithAction** new component in _EXPERIMENTAL_ mode.
+
+## [9.35.1] - 2019-04-16
+
+### Changed
+
+- Get changes made at version `v8.35.1`.
 
 ## [8.35.1] - 2019-04-16
 
@@ -102,17 +138,31 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - **Experimental_SELECT** add `clearable` prop.
 
+## [9.35.0] - 2019-04-16
+
+### Changed
+
+- Get changes made at version `v8.35.0`.
+
 ## [8.35.0] - 2019-04-16
 
 ### Added
 
 - **Table** added disabled state to `newLine` toolbar prop.
 
+## [9.34.0] - 2019-04-15
+
 ## [8.34.0] - 2019-04-15
 
 ### Added
 
 - **Tabs** added _sticky_ property.
+
+## [9.33.0] - 2019-04-11
+
+### Changed
+
+- Get changes made at version `v.8.33.0`.
 
 ## [8.33.0] - 2019-04-11
 
@@ -125,6 +175,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - **Table** height behavior.
 
+## [9.32.0] - 2019-04-11
+
+### Changed
+
+- Get changes made at version `v8.32.0`.
+
 ## [8.32.0] - 2019-04-11
 
 ### Added
@@ -136,6 +192,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - **Box** added a new noPadding prop.
+
+## [9.27.4] - 2019-04-10
+
+### Changed
+
+- Get changes made at version `v8.30.2`.
+
+## [9.27.3] - 2019-04-04
+
+### Changed
+
+- Get changes made at version `v8.27.4`.
 
 ## [8.30.2] - 2019-04-10
 
@@ -193,6 +261,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Fixed **Table** pagination when total items was not a multiple of rows length.
 
+## [9.27.2] - 2019-04-03
+
 ## [8.27.3] - 2019-04-03
 
 ### Fixed
@@ -200,6 +270,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fixed error caused by `instanceof` `null` on `withFowardedRef` module.
 
 ## [8.27.2] - 2019-04-03
+
+## [9.27.1] - 2019-03-28
 
 ## [8.27.1] - 2019-03-28
 
