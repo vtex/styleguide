@@ -131,17 +131,33 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Prop `showTopBar` in `Modal` to make it possible to hide top bar at modal.
 
+### Changed
+
+- Get changes made at version `8.59.0`.
+
 ## [8.59.0] - 2019-07-04
 
 ### Fixed
 
 - **CheckBox** breaks when the label has more than one line.
 
+## [9.58.0] - 2019-07-04
+
+### Changed
+
+- Get changes made at version `8.58.0`.
+
 ## [8.58.0] - 2019-07-04
 
 ### Fixed
 
 - Hide `Menu`'s scroll bar when its content is not overflowing.
+
+## [9.57.1] - 2019-06-28
+
+### Changed
+
+- Get changes made at version `8.57.1`.
 
 ## [8.57.1] - 2019-06-28
 
@@ -153,6 +169,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Add hover status to **NumericStepper** lean mode
 
+## [9.57.0] - 2019-06-27
+
+### Changed
+
+- Get changes made at version `8.57.0`.
+
 ## [8.57.0] - 2019-06-27
 
 ### Changed
@@ -163,11 +185,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - **EXPERIMENTAL_ButtonWithAction** in favor of ButtonGroup.
 
+## [9.56.0] - 2019-06-27
+
+### Changed
+
+- Get changes made at version `8.56.0`.
+
 ## [8.56.0] - 2019-06-27
 
 ### Added
 
 - **ModalDialog** loading state.
+
+## [9.55.3] - 2019-06-27
+
+### Changed
+
+- Get changes made at version `8.55.3`.
 
 ## [8.55.3] - 2019-06-27
 
@@ -176,11 +210,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Updates eslint dependency to fix a possible security vulnerability.
 - **FilterBar** properly remove filter statement when filterTag clear button is clicked.
 
+## [9.55.2] - 2019-06-26
+
+### Changed
+
+- Get changes made at version `8.55.2`.
+
 ## [8.55.2] - 2019-06-26
 
 ### Fixed
 
 - **Pagination** was not disabling the previous page button if `currentItemFrom` was zero.
+
+## [9.55.1] - 2019-06-24
+
+### Changed
+
+- Get changes made at version `8.55.1`.
 
 ## [8.55.1] - 2019-06-24
 
@@ -1075,7 +1121,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   ```js
   foo = ({ statements, values, statementIndex, error, extraParams }) => {
     // here goes the render logic of you object component
-  }
+  };
   ```
 
 ## [8.11.0] - 2019-01-11
