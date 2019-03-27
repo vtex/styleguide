@@ -7,11 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Get changes made at version `v8.27.4`.
+
 ## [8.27.4] - 2019-04-04
 
 ### Fixed
 
 - Fixed **Table** pagination when total items was not a multiple of rows length.
+
+## [9.27.2] - 2019-04-03
 
 ## [8.27.3] - 2019-04-03
 
@@ -20,6 +26,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fixed error caused by `instanceof` `null` on `withFowardedRef` module.
 
 ## [8.27.2] - 2019-04-03
+
+## [9.27.1] - 2019-03-28
 
 ## [8.27.1] - 2019-03-28
 
