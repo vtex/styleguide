@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Get changes made at version `v8.30.0`
+
 ## [8.30.0] - 2019-04-10
 
 ### Added
@@ -24,6 +28,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **EXPERIMENTAL_Filter** as Experimental component.
 - **EXPERIMENTAL_Conditions** add `onChangeObjectCallback` prop so it can be passed to the object atom as a callback.
 - **Table** add FilterBar option in toolbar and example with FilterBar.
+
+## [9.29.0] - 2019-04-08
 
 ## [8.29.0] - 2019-04-08
 
