@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+
+- Get changes made at `8.51.3`.
 
 ## [8.51.3] - 2019-06-06
 ### Fixed
@@ -43,11 +46,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **EXPERIMENTAL_Select** now uses the new **Select** component for its atoms.
 - **EXPERIMENTAL_Select** horizontal growth to make it simpler to the user.
 
+## [9.49.1] - 2019-05-26
+
+## [9.49.0] - 2019-05-24
+
+### Changed
+
+- Get changes made at `8.49.1`.
+
 ## [8.49.1] - 2019-05-26
 
 ### Changed
 
 - **ButtonWithIcon** Prop `icon` is not required anymore.
+
+### Changed
+
+- Get changes made at `8.49.0`.
 
 ## [8.49.0] - 2019-05-24
 
@@ -68,11 +83,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - **Spinner** prop `status`
 
+## [9.48.1] - 2019-05-24
+
+### Added
+
+- Get changes made at `8.48.1`.
+
 ## [8.48.1] - 2019-05-24
 
 ### Added
 
 - **Table** schema property `headerRight`.
+
+## [9.48.0] - 2019-05-23
+
+### Added
+
+- Get changes made at `8.48.0`.
 
 ## [8.48.0] - 2019-05-23
 
