@@ -7,11 +7,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Get changes made at version `v8.62.0`.
+
 ## [8.62.0] - 2019-07-11
 
 ### Added
 
 - Add CODEOWNERS file
+
+## [9.61.0] - 2019-07-11
+
+### Changed
+
+- Get changes made at version `v8.61.0`.
+- Get changes made at version `v8.60.4`.
 
 ## [8.61.0] - 2019-07-11
 
@@ -25,11 +36,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Security vulnerabilities
 
+## [9.60.3] - 2019-07-08
+
+### Changed
+
+- Get changes made at version 'v8.60.3'
+
 ## [8.60.3] - 2019-07-08
 
 ### Fixed
 
 - Fix `Table` usage breaking automated tests
+
+## [9.60.2] - 2019-07-05
+
+### Changed
+
+- Get changes made at version 'v8.60.2'
 
 ## [8.60.2] - 2019-07-05
 
@@ -110,12 +133,24 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - **Colapsible** open/close transition animation when content resizes.
 
+## [9.55.0] - 2019-06-18
+
+### Changed
+
+- Get changes made at version `8.55.0`.
+
 ## [8.55.0] - 2019-06-18
 
 ### Fixed
 
 - **Table** issue where the top checkbox state was always inverted
 - **Table** warnings that happened when using bulk actions
+
+## [9.54.2] - 2019-06-17
+
+### Changed
+
+- Get changes made at version `8.54.2`.
 
 ## [8.54.2] - 2019-06-17
 
@@ -124,11 +159,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **Table** bulk actions `select all` button now disables all checkboxes so nothing can be unselected
 - **Table** deselects bulk action checked lines when paginating.
 
+## [9.54.1] - 2019-06-14
+
+### Changed
+
+- Get changes made at version `8.54.1`.
+
 ## [8.54.1] - 2019-06-14
 
 ### Added
 
 - **Table** add bulkActions.onChange prop as callback to any selection changes
+
+## [9.54.0] - 2019-06-13
+
+### Changed
+
+- Get changes made at version `8.54.0`.
 
 ## [8.54.0] - 2019-06-13
 
@@ -147,17 +194,35 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **Table** bulk actions documentation
 - **Checkbox** `label` prop now accepts both string or a node.
 
+## [9.53.0] - 2019-06-13
+
+### Changed
+
+- Get changes made at version `8.53.0`.
+
 ## [8.53.0] - 2019-06-13
 
 ### Fixed
 
 - **Tab** Repeated keys when using formattedMessage
 
+## [9.52.3] - 2019-06-13
+
+### Changed
+
+- Get changes made at version `8.52.3`.
+
 ## [8.52.3] - 2019-06-13
 
 ### Fixed
 
 - **Table** `density` changes are now is nativelly considered for rerender and height recalculation.
+
+## [9.52.2] - 2019-06-13
+
+### Changed
+
+- Get changes made at version `8.52.2`.
 
 ## [8.52.2] - 2019-06-13
 
@@ -171,17 +236,35 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - `readme` section on two majors release flow.
 
+## [9.52.1] - 2019-06-13
+
+### Changed
+
+- Get changes made at version `8.52.1`.
+
 ## [8.52.1] - 2019-06-13
 
 ### Fixed
 
 - **Table** `toolbar` default prop to null.
 
+## [9.52.0] - 2019-06-11
+
+### Changed
+
+- Get changes made at version `8.52.0`.
+
 ## [8.52.0] - 2019-06-11
 
 ### Added
 
 - `IconGrid` and `IconInlineGrid` Components.
+
+## [9.51.3] - 2019-06-11
+
+### Changed
+
+- Get changes made at `8.51.3`.
 
 ## [8.51.3] - 2019-06-06
 
@@ -209,6 +292,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [8.50.1] - 2019-05-28
 
+### Added
+
+- **DatePicker** Add `positionFixed` prop, which fixes issues related to `overflow: hidden`.
+
 ### Changed
 
 - Only automatically add `key` prop to `Tabs` children when the prop is not present.
@@ -220,11 +307,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **EXPERIMENTAL_Select** now uses the new **Select** component for its atoms.
 - **EXPERIMENTAL_Select** horizontal growth to make it simpler to the user.
 
+## [9.49.1] - 2019-05-26
+
+## [9.49.0] - 2019-05-24
+
+### Changed
+
+- Get changes made at `8.49.1`.
+
 ## [8.49.1] - 2019-05-26
 
 ### Changed
 
 - **ButtonWithIcon** Prop `icon` is not required anymore.
+
+### Changed
+
+- Get changes made at `8.49.0`.
 
 ## [8.49.0] - 2019-05-24
 
@@ -245,11 +344,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - **Spinner** prop `status`
 
+## [9.48.1] - 2019-05-24
+
+### Added
+
+- Get changes made at `8.48.1`.
+
 ## [8.48.1] - 2019-05-24
 
 ### Added
 
 - **Table** schema property `headerRight`.
+
+## [9.48.0] - 2019-05-23
+
+### Added
+
+- Get changes made at `8.48.0`.
 
 ## [8.48.0] - 2019-05-23
 
