@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.27.0] - 2019-03-27
+
+### Added
+
+- **DatePicker** `align` and `direction` props, giving users more control over the popper position.
+
 ## [8.26.0] - 2019-03-25
 
 ### Added

@@ -157,6 +157,8 @@ class DatePickerExample extends React.Component {
       placeholderDate: null,
       readOnlyDate: new Date(),
       requiredDate: null,
+      rightAlignedDate: new Date(),
+      upwardsDate: new Date(),
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -255,6 +257,27 @@ class DatePickerExample extends React.Component {
               value={this.state.includeTimesDate}
               onChange={date => this.setState({ includeTimesDate: date })}
               locale="pt-BR"
+            />
+          </span>
+        </div>
+
+        <div className="mb5">
+          <span className="mr4">
+            <DatePicker
+              align="right"
+              label="Right-aligned"
+              locale="pt-BR"
+              onChange={date => this.setState({ rightAlignedDate: date })}
+              value={this.state.rightAlignedDate}
+            />
+          </span>
+          <span className="mr4">
+            <DatePicker
+              direction="up"
+              label="Upwards"
+              locale="pt-BR"
+              onChange={date => this.setState({ upwardsDate: date })}
+              value={this.state.upwardsDate}
             />
           </span>
         </div>

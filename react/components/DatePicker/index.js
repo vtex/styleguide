@@ -19,6 +19,41 @@ class DatePicker extends Component {
     this.handleLocaleChange(props.locale)
   }
 
+  get popperModifiers() {
+    const { align, direction, size, useTime } = this.props
+
+    const isRightAligned = align === 'right'
+    const isUpwards = direction === 'up'
+
+    if (!isRightAligned && !isUpwards) {
+      return undefined
+    }
+
+    const offsetX = isRightAligned
+      ? (size === 'large' ? -91 : -136) - (useTime ? 130 : 0)
+      : 0
+
+    const offsetYBySize = {
+      large: -448,
+      regular: -440,
+      small: -432,
+    }
+
+    const offsetY = isUpwards ? offsetYBySize[size] - (useTime ? 18 : 0) : 0
+
+    return {
+      flip: {
+        enabled: !isUpwards,
+      },
+      keepTogether: {
+        enabled: false,
+      },
+      offset: {
+        offset: `${offsetX}, ${offsetY}`,
+      },
+    }
+  }
+
   handleChange = event => {
     this.props.onChange && this.props.onChange(event)
   }
@@ -72,6 +107,7 @@ class DatePicker extends Component {
         disabled={this.props.disabled}
         excludeDates={this.props.excludeDates}
         excludeTimes={this.props.excludeTimes}
+        fixedHeight={this.props.direction === 'up'}
         id={this.props.id}
         includeDates={this.props.includeDates}
         includeTimes={this.props.includeTimes}
@@ -80,6 +116,7 @@ class DatePicker extends Component {
         minDate={this.props.minDate}
         name={this.props.name}
         placeholderText={this.props.placeholder}
+        popperModifiers={this.popperModifiers}
         readOnly={this.props.readOnly}
         required={this.props.required}
         selected={this.props.value}
@@ -99,7 +136,9 @@ class DatePicker extends Component {
 }
 
 DatePicker.defaultProps = {
+  align: 'left',
   autoFocus: false,
+  direction: 'down',
   disabled: false,
   error: false,
   label: '',
@@ -111,8 +150,12 @@ DatePicker.defaultProps = {
 DatePicker.propTypes = {
   /** @ignore Forwarded Ref */
   forwardedRef: refShape,
+  /** Popper alignment in relation to the input */
+  align: PropTypes.oneOf(['left', 'right']),
   /** Spec attribute  */
   autoFocus: PropTypes.bool,
+  /** Popper position in relation to the input */
+  direction: PropTypes.oneOf(['down', 'up']),
   /** Spec attribute  */
   disabled: PropTypes.bool,
   /** Error highlight  */
