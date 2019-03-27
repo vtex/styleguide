@@ -7,11 +7,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Get changes made at version `v8.46.2`.
+
 ## [8.46.2] - 2019-05-16
 
 ### Fixed
 
 - **Table** add offset in table content height so the horizontal scroll bar does not overlap its content.
+
+## [9.46.1] - 2019-05-16
+
+### Changed
+
+- Get changes made at version `v8.46.1`.
 
 ## [8.46.1] - 2019-05-16
 
@@ -49,15 +59,41 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - **FilterOptions** component added to the styleguide.
 
+## [9.44.2] - 2019-05-10
+
+### Changed
+
+- Get changes made at version `v8.44.2`.
+
 ## [8.44.2] - 2019-05-10
 
 ### Fixed
 
 - **Table** resize.
 
+## [9.38.1] - 2019-05-09
+
+## [9.38.0] - 2019-05-09
+
+### Changed
+
+- Get changes made at version `v8.44.1`.
+
+## [9.37.0] - 2019-04-18
+
+## [9.36.1] - 2019-04-18
+
 ## [8.44.1] - 2019-05-09
 
+### Fixed
+
+- **ramda** dependency.
+
 ## [8.44.0] - 2019-05-09
+
+### Added
+
+- **Table** buldActions.
 
 ## [8.43.0] - 2019-05-09
 
@@ -122,6 +158,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - **Tabs** fix partial width content.
 
+### Changed
+
+- Get changes made at version `v8.37.0`.
+- Get changes made at version `v8.36.1`.
+
 ## [8.37.0] - 2019-04-18
 
 ### Added
@@ -140,11 +181,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - **Table**: `Toolbar` without the search input now aligns to the right.
 
+## [9.36.0] - 2019-04-17
+
+### Changed
+
+- Get changes made at version `v8.36.0`.
+
 ## [8.36.0] - 2019-04-17
 
 ### Added
 
 - **EXPERIMENTAL_ButtonWithAction** new component in _EXPERIMENTAL_ mode.
+
+## [9.35.1] - 2019-04-16
+
+### Changed
+
+- Get changes made at version `v8.35.1`.
 
 ## [8.35.1] - 2019-04-16
 
@@ -161,17 +214,31 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - **Experimental_SELECT** add `clearable` prop.
 
+## [9.35.0] - 2019-04-16
+
+### Changed
+
+- Get changes made at version `v8.35.0`.
+
 ## [8.35.0] - 2019-04-16
 
 ### Added
 
 - **Table** added disabled state to `newLine` toolbar prop.
 
+## [9.34.0] - 2019-04-15
+
 ## [8.34.0] - 2019-04-15
 
 ### Added
 
 - **Tabs** added _sticky_ property.
+
+## [9.33.0] - 2019-04-11
+
+### Changed
+
+- Get changes made at version `v.8.33.0`.
 
 ## [8.33.0] - 2019-04-11
 
@@ -184,6 +251,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - **Table** height behavior.
 
+## [9.32.0] - 2019-04-11
+
+### Changed
+
+- Get changes made at version `v8.32.0`.
+
 ## [8.32.0] - 2019-04-11
 
 ### Added
@@ -195,6 +268,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - **Box** added a new noPadding prop.
+
+## [9.27.4] - 2019-04-10
+
+### Changed
+
+- Get changes made at version `v8.30.2`.
+
+## [9.27.3] - 2019-04-04
+
+### Changed
+
+- Get changes made at version `v8.27.4`.
 
 ## [8.30.2] - 2019-04-10
 
@@ -252,6 +337,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Fixed **Table** pagination when total items was not a multiple of rows length.
 
+## [9.27.2] - 2019-04-03
+
 ## [8.27.3] - 2019-04-03
 
 ### Fixed
@@ -259,6 +346,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fixed error caused by `instanceof` `null` on `withFowardedRef` module.
 
 ## [8.27.2] - 2019-04-03
+
+## [9.27.1] - 2019-03-28
 
 ## [8.27.1] - 2019-03-28
 
