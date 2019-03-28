@@ -171,7 +171,10 @@ class SimpleTable extends Component {
                     hideTopRightGridScrollbar={!disableHeader}
                     overscanRowCount={0}
                     styleTopRightGrid={
-                      fixFirstColumn ? { overflowX: 'hidden' } : {}
+                      fixFirstColumn ? { overflow: 'hidden' } : {}
+                    }
+                    styleTopLeftGrid={
+                      fixFirstColumn ? { overflow: 'hidden' } : {}
                     }
                     fixedColumnCount={fixFirstColumn ? 1 : 0}
                     columnCount={properties.length}
@@ -207,7 +210,7 @@ class SimpleTable extends Component {
                             }}
                             className={`flex items-center w-100 h-100 c-muted-2 f6 truncate ph4 ${
                               columnIndex === 0 && fixFirstColumn ? 'br' : ''
-                            } bt bb b--muted-4`}>
+                            } bt bb b--muted-4 overflow-x-hidden`}>
                             {schema.properties[property].sortable ? (
                               <span
                                 className="pointer c-muted-1 b t-small"

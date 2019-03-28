@@ -123,13 +123,14 @@ class EXPERIMENTAL_Filter extends PureComponent {
       alwaysVisibleFilters,
       clearAllFiltersButtonLabel,
       statements,
+      collapseLeft,
     } = this.props
     const { visibleExtraOptions } = this.state
     const optionsKeys = Object.keys(options)
 
     return (
       optionsKeys.length > 0 && (
-        <div className="flex flex-wrap w-100">
+        <div className={`flex flex-wrap w-100 ${collapseLeft ? 'nl5' : ''}`}>
           {optionsKeys
             .filter(
               key =>
@@ -205,6 +206,7 @@ EXPERIMENTAL_Filter.defaultProps = {
   options: [],
   moreOptionsLabel: 'More',
   alwaysVisibleFilters: [],
+  collapseLeft: false,
 }
 
 EXPERIMENTAL_Filter.propTypes = {
@@ -220,6 +222,8 @@ EXPERIMENTAL_Filter.propTypes = {
   alwaysVisibleFilters: PropTypes.arrayOf(PropTypes.string),
   /** if this label is passed, when some filter is not empty a clear all button will appear */
   clearAllFiltersButtonLabel: PropTypes.string,
+  /** Cancels out left padding */
+  collapseLeft: PropTypes.bool,
 }
 
 export default EXPERIMENTAL_Filter

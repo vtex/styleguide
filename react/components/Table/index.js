@@ -4,9 +4,11 @@ import reduce from 'lodash/reduce'
 
 import Box from '../Box'
 import Pagination from '../Pagination'
+import EmptyState from '../EmptyState'
+import Filter from '../EXPERIMENTAL_Filter'
+
 import SimpleTable from './SimpleTable'
 import Toolbar from './Toolbar'
-import EmptyState from '../EmptyState'
 import Totalizers from './Totalizers'
 
 const TABLE_HEADER_HEIGHT = 36
@@ -94,6 +96,7 @@ class Table extends PureComponent {
       lineActions,
       loading,
       totalizers,
+      filters,
     } = this.props
     const { hiddenFields, tableRowHeight, selectedDensity } = this.state
 
@@ -130,6 +133,11 @@ class Table extends PureComponent {
           schema={schema}
           actions={toolbar}
         />
+        {filters && (
+          <div className="mb5">
+            <Filter {...filters} />
+          </div>
+        )}
         {totalizers && totalizers.length > 0 && (
           <Totalizers items={totalizers} />
         )}
@@ -270,6 +278,8 @@ Table.propTypes = {
   }),
   /** Totalizers property  */
   totalizers: PropTypes.array,
+  /** Filters property  */
+  filters: PropTypes.shape({ ...Filter.propTypes }),
 }
 
 export default Table

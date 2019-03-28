@@ -9,8 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- **Filter** as Experimental component.
-- **Conditions** add dangerous `ommitsubject`, `ommitverb` and `onChangeObjectCallback` props.
+- **EXPERIMENTAL_Filter** as Experimental component.
+- **EXPERIMENTAL_Conditions** add dangerous `ommitsubject`, `ommitverb` and `onChangeObjectCallback` props.
+- **Table** add example with filter.
 
 ## [8.29.0] - 2019-04-08
 
