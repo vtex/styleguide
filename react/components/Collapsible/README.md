@@ -1,9 +1,13 @@
 Usage
 
 ```js
+initialState = { opened1: false, opened2: false }
 ;<div>
   <div className="mb6">
-    <Collapsible header={<span>Here goes your header</span>}>
+    <Collapsible
+      header={<span>Here goes your header</span>}
+      onClick={e => setState({ opened1: !e.target.opened })}
+      opened={state.opened1}>
       <span>Here goes your content</span>
     </Collapsible>
   </div>
@@ -14,8 +18,10 @@ Usage
           Here goes your <strong>muted</strong> header
         </span>
       }
+      onClick={e => setState({ opened2: !e.target.opened })}
+      opened={state.opened2}
       muted>
-      <span>Here goes your content</span>
+      <span>Here goes another content</span>
     </Collapsible>
   </div>
 </div>
@@ -25,6 +31,7 @@ Usage
 
 ```js
 const Input = require('../Input').default
+initialState = { opened: false }
 ;<div>
   <div className="mb3">
     <Input label="Name" />
@@ -32,7 +39,8 @@ const Input = require('../Input').default
   <div className="mb5 mt5">
     <Collapsible
       header={<span className="c-action-primary">Advanced naming</span>}
-      initiallyOpened>
+      onClick={e => setState({ opened: !e.target.opened })}
+      opened={state.opened}>
       <div className="mb3">
         <Input label="Surname" />
       </div>
@@ -51,6 +59,7 @@ Align
 
 ```js
 const PageBlock = require('../PageBlock').default
+initialState = { opened1: false, opened2: false }
 ;<div>
   <div className="bg-muted-5 pa8">
     <PageBlock
@@ -58,7 +67,10 @@ const PageBlock = require('../PageBlock').default
       subtitle="Use right alignment only in small width scenarios."
       variation="half">
       <div>
-        <Collapsible header={<span>Recurrence settings</span>}>
+        <Collapsible
+          header={<span>Recurrence settings</span>}
+          onClick={e => setState({ opened1: !e.target.opened })}
+          opened={state.opened1}>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
             dictum, eros nec posuere elementum, magna risus semper lorem, id
@@ -77,7 +89,11 @@ const PageBlock = require('../PageBlock').default
         </Collapsible>
       </div>
       <div>
-        <Collapsible header={<span>Recurrence settings</span>} align="right">
+        <Collapsible
+          header={<span>Recurrence settings</span>}
+          align="right"
+          onClick={e => setState({ opened2: !e.target.opened })}
+          opened={state.opened2}>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
             dictum, eros nec posuere elementum, magna risus semper lorem, id
