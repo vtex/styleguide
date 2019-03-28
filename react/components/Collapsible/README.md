@@ -6,7 +6,7 @@ initialState = { opened1: false, opened2: false }
   <div className="mb6">
     <Collapsible
       header={<span>Here goes your header</span>}
-      onClick={e => setState({ opened1: !e.target.opened })}
+      onClick={e => setState({ opened1: e.target.opened })}
       opened={state.opened1}>
       <span>Here goes your content</span>
     </Collapsible>
@@ -18,7 +18,7 @@ initialState = { opened1: false, opened2: false }
           Here goes your <strong>muted</strong> header
         </span>
       }
-      onClick={e => setState({ opened2: !e.target.opened })}
+      onClick={e => setState({ opened2: e.target.opened })}
       opened={state.opened2}
       muted>
       <span>Here goes another content</span>
@@ -39,7 +39,7 @@ initialState = { opened: false }
   <div className="mb5 mt5">
     <Collapsible
       header={<span className="c-action-primary">Advanced naming</span>}
-      onClick={e => setState({ opened: !e.target.opened })}
+      onClick={e => setState({ opened: e.target.opened })}
       opened={state.opened}>
       <div className="mb3">
         <Input label="Surname" />
@@ -69,7 +69,7 @@ initialState = { opened1: false, opened2: false }
       <div>
         <Collapsible
           header={<span>Recurrence settings</span>}
-          onClick={e => setState({ opened1: !e.target.opened })}
+          onClick={e => setState({ opened1: e.target.opened })}
           opened={state.opened1}>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
@@ -92,7 +92,7 @@ initialState = { opened1: false, opened2: false }
         <Collapsible
           header={<span>Recurrence settings</span>}
           align="right"
-          onClick={e => setState({ opened2: !e.target.opened })}
+          onClick={e => setState({ opened2: e.target.opened })}
           opened={state.opened2}>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque

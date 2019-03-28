@@ -8,7 +8,7 @@ function handleClick(callback, opened) {
   callback &&
     callback({
       target: {
-        opened: !opened,
+        opened,
       },
     })
 }
