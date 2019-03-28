@@ -58,10 +58,10 @@ class FilterTag extends PureComponent {
         nextProps.statements,
         nextProps.subject,
         nextProps.options
-      )
+      )[0]
       return {
         isMenuOpen: prevState.isMenuOpen,
-        virtualStatement: statement,
+        virtualStatement: merge({}, statement, prevState.virtualStatement),
       }
     }
   }
@@ -100,22 +100,15 @@ class FilterTag extends PureComponent {
   onChangeStatement = (newValue, structure) => {
     this.setState(state => {
       return {
-        virtualStatement: {
-          ...state.virtualStatement,
-          [structure]: newValue,
-        },
+        virtualStatement: merge({}, state.virtualStatement, { [structure]: newValue })
       }
     })
   }
 
   resetVirtualStatement = () => {
-    const { subject } = this.props
-    this.setState({
-      virtualStatement: {
-        ...emptyVirtualStatement,
-        subject,
-      },
-    })
+    const { subject, options } = this.props
+    const statement = filterStatementBySubject([], subject, options)
+    this.setState({ virtualStatement: statement })
   }
 
   render() {
@@ -213,7 +206,7 @@ class FilterTag extends PureComponent {
                 statements={
                   isMoreOptions
                     ? [virtualStatement]
-                    : [merge(statement, virtualStatement)]
+                    : [merge({}, statement, virtualStatement)]
                 }
                 onChangeStatement={this.onChangeStatement}
                 onChangeObjectCallback={value =>

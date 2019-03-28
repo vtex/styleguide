@@ -138,41 +138,27 @@ class MyFilter extends React.Component {
     extraParams,
     onChangeObjectCallback,
   }) {
-    const isFirstSelect = !values
     const initialValue = {
       vip: true,
       gold: true,
       silver: true,
       platinum: true,
+      ...(values || {}),
     }
-    let virtualValues = null
     const toggleValueByKey = key => {
-      const newValues = isFirstSelect
-        ? {
-            ...initialValue,
-            [key]: false,
-          }
-        : {
-            ...values,
-            [key]: !values[key],
-          }
-      // wtf is this shitty side-effect, hooks send helps
-      virtualValues = newValues
+      const newValues = {
+        ...(values || initialValue),
+        [key]: values ? !values[key] : false,
+      }
       return newValues
     }
     return (
       <div>
-        {Object.keys(initialValue).map(opt => {
+        {Object.keys(initialValue).map((opt, index) => {
           return (
-            <div className="mb3">
+            <div className="mb3" key={`class-statment-object-${opt}-${index}`}>
               <Checkbox
-                checked={
-                  isFirstSelect
-                    ? true
-                    : virtualValues
-                    ? virtualValues[key]
-                    : values[opt]
-                }
+                checked={values ? values[opt] : initialValue[opt]}
                 label={opt}
                 name="default-checkbox-group"
                 onChange={() =>
@@ -356,192 +342,6 @@ class MyFilter extends React.Component {
                 value: 'contains',
                 object: {
                   renderFn: this.cpfInputObject,
-                  extraParams: {},
-                },
-              },
-            ],
-          },
-        }}
-      />
-    )
-  }
-}
-;<MyFilter />
-```
-
-Filter orders with initial values
-
-```js
-const isToday = dateIsoString =>
-  dateIsoString.includes(
-    `${new Date(dateIsoString).getFullYear()}-${(
-      '0' +
-      (new Date(dateIsoString).getMonth() + 1)
-    ).slice(-2)}-${('0' + new Date(dateIsoString).getDate()).slice(-2)}`
-  )
-
-class MyFilter extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      statements: [
-        {
-          subject: 'date',
-          verb: '=',
-          object: new Date().toISOString(),
-        },
-      ],
-    }
-    this.simpleInputObject = this.simpleInputObject.bind(this)
-  }
-
-  simpleInputObject({
-    statements,
-    values,
-    statementIndex,
-    error,
-    extraParams,
-    onChangeObjectCallback,
-  }) {
-    return (
-      <Input
-        value={values || ''}
-        onChange={e => onChangeObjectCallback(e.target.value)}
-      />
-    )
-  }
-
-  statusSelectorObject({
-    statements,
-    values,
-    statementIndex,
-    error,
-    extraParams,
-    onChangeObjectCallback,
-  }) {
-    const isFirstSelect = !values
-    const initialValue = {
-      'payment-pending': true,
-      canceling: true,
-      canceled: true,
-      'cancellation-requested': true,
-      invoiced: true,
-      processing: true,
-      created: true,
-      'payment-approved': true,
-      'ready-for-handling': true,
-      'window-to-cancellation': true,
-    }
-    const toggleValueByKey = key => {
-      return isFirstSelect
-        ? {
-            ...initialValue,
-            [key]: false,
-          }
-        : {
-            ...values,
-            [key]: !values[key],
-          }
-    }
-    return (
-      <div>
-        {Object.keys(initialValue).map(opt => {
-          return (
-            <div className="mb3">
-              <Checkbox
-                checked={isFirstSelect ? true : values[opt]}
-                label={opt.split('-').join(' ')}
-                name="default-checkbox-group"
-                onChange={() =>
-                  onChangeObjectCallback(toggleValueByKey(`${opt}`))
-                }
-                value={opt}
-              />
-            </div>
-          )
-        })}
-      </div>
-    )
-  }
-
-  render() {
-    return (
-      <EXPERIMENTAL_Filter
-        alwaysVisibleFilters={['date', 'status']}
-        statements={this.state.statements}
-        onChangeStatements={statements => this.setState({ statements })}
-        clearAllFiltersButtonLabel="Clear All"
-        options={{
-          date: {
-            label: 'Date',
-            renderFilterLabel: st => {
-              if (!st || !st.object) {
-                // you should treat empty object cases only for alwaysVisibleFilters
-                return 'All'
-              } else if (st.object && isToday(st.object)) {
-                return 'Today'
-              } else {
-                return st.object
-              }
-            },
-            verbs: [
-              {
-                label: 'is',
-                value: '=',
-                object: {
-                  renderFn: this.simpleInputObject,
-                  extraParams: {},
-                },
-              },
-            ],
-          },
-          status: {
-            label: 'Status',
-            renderFilterLabel: st =>
-              st
-                ? st.object
-                  ? () => {
-                      const keys = Object.keys(st.object)
-                      let label = ''
-                      keys.forEach((key, i) => {
-                        label += `${key.split('-').join('  ')}${
-                          i === 0 ? '' : ', '
-                        }`
-                      })
-                      return label
-                    }
-                  : '…'
-                : 'All',
-            // ^ you should treat empty object cases only for alwaysVisibleFilters
-            verbs: [
-              {
-                label: 'is',
-                value: '=',
-                object: {
-                  renderFn: this.statusSelectorObject,
-                  extraParams: {},
-                },
-              },
-            ],
-          },
-          id: {
-            label: 'Order ID',
-            renderFilterLabel: st =>
-              `${st.verb === '=' ? 'is' : 'contains'} ${st.object}`,
-            verbs: [
-              {
-                label: 'is',
-                value: '=',
-                object: {
-                  renderFn: this.simpleInputObject,
-                  extraParams: {},
-                },
-              },
-              {
-                label: 'contains',
-                value: 'contains',
-                object: {
-                  renderFn: this.simpleInputObject,
                   extraParams: {},
                 },
               },
