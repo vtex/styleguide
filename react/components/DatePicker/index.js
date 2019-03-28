@@ -22,11 +22,17 @@ class DatePicker extends Component {
   get popperModifiers() {
     const { align, direction, size, useTime } = this.props
 
+    const BASE_MODIFIERS = {
+      preventOverflow: {
+        enabled: false,
+      },
+    }
+
     const isRightAligned = align === 'right'
     const isUpwards = direction === 'up'
 
     if (!isRightAligned && !isUpwards) {
-      return undefined
+      return BASE_MODIFIERS
     }
 
     const offsetX = isRightAligned
@@ -42,6 +48,7 @@ class DatePicker extends Component {
     const offsetY = isUpwards ? offsetYBySize[size] - (useTime ? 18 : 0) : 0
 
     return {
+      ...BASE_MODIFIERS,
       flip: {
         enabled: !isUpwards,
       },
