@@ -100,6 +100,7 @@ module.exports = {
             'react/components/EmptyState/index.js',
             'react/components/Table/index.js',
             'react/components/Tag/index.js',
+            'react/components/Collapsible/index.js',
           ],
         },
         {
