@@ -230,7 +230,10 @@ class FilterTag extends PureComponent {
           {!isEmpty && !isMoreOptions && (
             <div
               className="flex items-center c-link"
-              onClick={() => onClickClear()}>
+              onClick={() => {
+                this.resetVirtualStatement()
+                onClickClear()
+              }}>
               <IconClear solid size={16} />
             </div>
           )}
