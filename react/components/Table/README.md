@@ -268,6 +268,7 @@ const jsonschema = {
     number: {
       type: 'number',
       title: 'Number',
+      width: 150,
     },
     color: {
       type: 'object',
@@ -308,6 +309,7 @@ class ResourceListExample extends React.Component {
     this.numberInputObject = this.numberInputObject.bind(this)
     this.numberInputRangeObject = this.numberInputRangeObject.bind(this)
     this.colorSelectorObject = this.colorSelectorObject.bind(this)
+    this.handleFiltersChange = this.handleFiltersChange.bind(this)
   }
 
   handleNextClick() {
@@ -337,11 +339,17 @@ class ResourceListExample extends React.Component {
   }
 
   handleRowsChange(e, value) {
-    this.setState({
-      tableLength: parseInt(value),
-      slicedData: sampleData.items.slice(0, parseInt(value)),
-      currentItemTo: parseInt(value),
-    })
+    this.setState(
+      {
+        tableLength: parseInt(value),
+        currentItemTo: parseInt(value),
+      },
+      () => {
+        // this callback garantees new sliced items respect filters and tableLength
+        const { filterStatements } = this.state
+        this.handleFiltersChange(filterStatements)
+      }
+    )
   }
 
   handleInputSearchChange(e) {
@@ -393,11 +401,7 @@ class ResourceListExample extends React.Component {
           return 'Any'
         }
         return `${
-          st.verb === '='
-            ? 'is'
-            : st.verb === '!='
-            ? 'is not'
-            : 'contains'
+          st.verb === '=' ? 'is' : st.verb === '!=' ? 'is not' : 'contains'
         } ${st.object}`
       },
       verbs: [
@@ -537,6 +541,58 @@ class ResourceListExample extends React.Component {
     )
   }
 
+  handleFiltersChange(statements = []) {
+    // here you should receive filter values, so you can fire mutations ou fetch filtered data from APIs
+    // For the sake of example I'll filter the data manually since there is no API
+    const { tableLength } = this.state
+    let newData = sampleData.items.slice()
+    statements.forEach(st => {
+      if (!st || !st.object) return
+      const { subject, verb, object } = st
+      switch (subject) {
+        case 'color':
+          if (!object) return
+          const colorsMap = {
+            '#F71963': 'pink',
+            '#00BBD4': 'blue',
+            '#D6D8E0': 'gray',
+            '#142032': 'black',
+          }
+          newData = newData.filter(item => object[colorsMap[item.color.color]])
+          break
+        case 'name':
+        case 'email':
+          if (verb === 'contains') {
+            newData = newData.filter(item => item[subject].includes(object))
+          } else if (verb === '=') {
+            newData = newData.filter(item => item[subject] === object)
+          } else if (verb === '!=') {
+            newData = newData.filter(item => item[subject] !== object)
+          }
+          break
+        case 'number':
+          if (verb === '=') {
+            newData = newData.filter(item => item.number === parseInt(object))
+          } else if (verb === 'between') {
+            newData = newData.filter(
+              item =>
+                item.number >= parseInt(object.first) &&
+                item.number <= parseInt(object.last)
+            )
+          }
+          break
+      }
+    })
+    const newDataLength = newData.length
+    const newSlicedData = newData.slice(0, tableLength)
+    this.setState({
+      filterStatements: statements,
+      slicedData: newSlicedData,
+      itemsLength: newDataLength,
+      currentItemTo: tableLength > newDataLength ? newDataLength : tableLength,
+    })
+  }
+
   render() {
     return (
       <Table
@@ -629,33 +685,31 @@ class ResourceListExample extends React.Component {
         filters={{
           alwaysVisibleFilters: ['color', 'name'],
           statements: this.state.filterStatements,
-          onChangeStatements: statements => this.setState({
-            filterStatements: statements
-          }),
-          clearAllFiltersButtonLabel: "Clear All",
+          onChangeStatements: this.handleFiltersChange,
+          clearAllFiltersButtonLabel: 'Clear All',
           collapseLeft: true,
           options: {
             color: {
               label: 'Color',
               renderFilterLabel: st => {
-              if (!st || !st.object) {
-                // you should treat empty object cases only for alwaysVisibleFilters
-                return 'All'
-              }
-              const keys = st.object ? Object.keys(st.object) : {}
-              const isAllTrue = !keys.some(key => !st.object[key])
-              const isAllFalse = !keys.some(key => st.object[key])
-              const trueKeys = keys.filter(key => st.object[key])
-              let trueKeysLabel = ''
-              trueKeys.forEach((key, index) => {
-                trueKeysLabel += `${key}${
-                  index === trueKeys.length - 1 ? '' : ', '
+                if (!st || !st.object) {
+                  // you should treat empty object cases only for alwaysVisibleFilters
+                  return 'All'
+                }
+                const keys = st.object ? Object.keys(st.object) : {}
+                const isAllTrue = !keys.some(key => !st.object[key])
+                const isAllFalse = !keys.some(key => st.object[key])
+                const trueKeys = keys.filter(key => st.object[key])
+                let trueKeysLabel = ''
+                trueKeys.forEach((key, index) => {
+                  trueKeysLabel += `${key}${
+                    index === trueKeys.length - 1 ? '' : ', '
+                  }`
+                })
+                return `${
+                  isAllTrue ? 'All' : isAllFalse ? 'None' : `${trueKeysLabel}`
                 }`
-              })
-              return `${
-                isAllTrue ? 'All' : isAllFalse ? 'None' : `${trueKeysLabel}`
-              }`
-            },
+              },
               verbs: [
                 {
                   label: 'includes',
@@ -702,7 +756,7 @@ class ResourceListExample extends React.Component {
                 },
               ],
             },
-          }
+          },
         }}
       />
     )
