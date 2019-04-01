@@ -179,7 +179,7 @@ class MyFilter extends React.Component {
         alwaysVisibleFilters={['name', 'email', 'class']}
         statements={this.state.statements}
         onChangeStatements={statements => this.setState({ statements })}
-        clearAllFiltersButtonLabel="Clear All"
+        clearAllFiltersButtonLabel="Clear Filters"
         options={{
           name: {
             label: 'Name',

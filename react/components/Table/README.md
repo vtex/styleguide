@@ -529,9 +529,15 @@ class ResourceListExample extends React.Component {
                 checked={values ? values[opt] : initialValue[opt]}
                 label={opt}
                 name="default-checkbox-group"
-                onChange={() =>
-                  onChangeObjectCallback(toggleValueByKey(`${opt}`))
-                }
+                onChange={() => {
+                  const newValue = toggleValueByKey(`${opt}`)
+                  console.log('aeHOO NEW FILTER VALUES: ', newValue)
+                  const newValueKeys = Object.keys(newValue)
+                  console.log('aeHOO NEW FILTER VALUES KEYS: ', newValueKeys)
+                  const isEmptyFilter = !newValueKeys.some(key => !newValue[key])
+                  console.log('aeHOO NEW FILTER VALUES EMPTY?: ', isEmptyFilter)
+                  onChangeObjectCallback(isEmptyFilter ? null : newValue)
+                }}
                 value={opt}
               />
             </div>
@@ -686,7 +692,7 @@ class ResourceListExample extends React.Component {
           alwaysVisibleFilters: ['color', 'name'],
           statements: this.state.filterStatements,
           onChangeStatements: this.handleFiltersChange,
-          clearAllFiltersButtonLabel: 'Clear All',
+          clearAllFiltersButtonLabel: 'Clear Filters',
           collapseLeft: true,
           options: {
             color: {

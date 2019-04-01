@@ -52,25 +52,23 @@ class EXPERIMENTAL_Filter extends PureComponent {
   }
 
   handleSubmitFilter = st => {
-    if (isStatementComplete(st)) {
-      const { statements } = this.props
-      const hasStatement = statements.some(_st => _st.subject === st.subject)
-      if (hasStatement) {
-        const newStatements = statements.map(_st => {
-          if (_st.subject === st.subject) {
-            return {
-              ..._st,
-              ...st,
-            }
+    const { statements } = this.props
+    const hasStatement = statements.some(_st => _st.subject === st.subject)
+    if (hasStatement) {
+      const newStatements = statements.map(_st => {
+        if (_st.subject === st.subject) {
+          return {
+            ..._st,
+            ...st,
           }
-          return _st
-        })
-        this.changeStatementsCallback(newStatements)
-      } else {
-        const newStatements = statements.slice(0)
-        newStatements.push(st)
-        this.changeStatementsCallback(newStatements)
-      }
+        }
+        return _st
+      })
+      this.changeStatementsCallback(newStatements)
+    } else {
+      const newStatements = statements.slice(0)
+      newStatements.push(st)
+      this.changeStatementsCallback(newStatements)
     }
   }
 
@@ -130,7 +128,7 @@ class EXPERIMENTAL_Filter extends PureComponent {
 
     return (
       optionsKeys.length > 0 && (
-        <div className={`flex flex-wrap w-100 ${collapseLeft ? 'nl5' : ''}`}>
+        <div className={`flex flex-wrap ${collapseLeft ? 'nl5' : ''}`}>
           {optionsKeys
             .filter(
               key =>
@@ -186,11 +184,15 @@ class EXPERIMENTAL_Filter extends PureComponent {
             statements.some(st => !!st && !!st.object) && (
               <div className="ml-auto mt1">
                 <ButtonWithIcon
-                  icon={<IconClose size={13} color="c-on-base" />}
+                  icon={
+                    <span className="flex items-center c-muted-2">
+                      <IconClose size={13} />
+                    </span>
+                  }
                   size="small"
                   variation="tertiary"
                   onClick={this.handleClearAllfilters}>
-                  <span className="c-on-base">
+                  <span className="c-muted-2">
                     {clearAllFiltersButtonLabel}
                   </span>
                 </ButtonWithIcon>
