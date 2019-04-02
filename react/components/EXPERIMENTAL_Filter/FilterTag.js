@@ -9,6 +9,7 @@ import IconCaretDown from '../icon/CaretDown'
 import Statement from './UncoupledStatement'
 import Menu from './Menu'
 
+const OPEN_MENU_STYLE = { backgroundColor: '#dbe9fd' }
 const emptyVirtualStatement = {
   subject: null,
   verb: null,
@@ -139,16 +140,17 @@ class FilterTag extends PureComponent {
     return (
       <div
         ref={this.filterMenuContainer}
+        style={{
+          ...(isMenuOpen && OPEN_MENU_STYLE),
+        }}
         className={`br-pill ${
           isEmpty || isMoreOptions ? '' : 'pr4'
         } pv1 dib bn ${
-          isMenuOpen
-            ? 'bg-action-secondary'
-            : alwaysVisible && isEmpty
+          alwaysVisible && isEmpty
             ? 'bg-transparent hover-bg-muted-5'
             : isMoreOptions
             ? 'hover-bg-muted-5'
-            : 'bg-muted-4 hover-bg-muted-5'
+            : 'bg-action-secondary hover-bg-action-secondary'
         } c-on-base`}>
         <div className="flex items-stretch">
           <Menu
@@ -181,16 +183,18 @@ class FilterTag extends PureComponent {
               </button>
             }>
             <div className="ma5">
-              <div className="flex flex-wrap mb5">
+              <div className={`flex flex-wrap ${isMoreOptions ? 'mb6' : 'mb3'}`}>
                 {isMoreOptions && (
                   <span className="f4 mh3">New Filter</span>
                 )}
-                {shouldOmmitSubject && (
-                  <span className="f4 mh3">{options[subject].label}</span>
-                )}
-                {shouldOmmitVerb && (
-                  <span className="f4 mh3">{options[subject].verbs[0].label}</span>
-                )}
+                <div className="flex flex-column">
+                  {shouldOmmitSubject && (
+                    <span className="f4 mh3 mb5">{options[subject].label}</span>
+                  )}
+                  {shouldOmmitVerb && (
+                    <span className="mh3">{options[subject].verbs[0].label}</span>
+                  )}
+                </div>
                 <div
                   className="ml-auto mr3 items-center pointer"
                   onClick={this.closeMenu}>
@@ -229,7 +233,7 @@ class FilterTag extends PureComponent {
           </Menu>
           {!isEmpty && !isMoreOptions && (
             <div
-              className="flex items-center c-link"
+              className="flex items-center c-link hover-c-link pointer"
               onClick={() => {
                 this.resetVirtualStatement()
                 onClickClear()
