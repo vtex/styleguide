@@ -58,14 +58,18 @@ class Statement extends React.Component {
               ? ommitVerbs
                 ? [<ObjectAtom key="object" {...atomProps} />]
                 : [
-                    <VerbAtom
-                      key="verb"
-                      {...atomProps}
-                      onChangeStatement={(value, structure) => {
-                        this.handleChangeStatement(value, structure)
-                      }}
-                    />,
-                    <ObjectAtom key="object" {...atomProps} />,
+                    condition.subject && (
+                      <VerbAtom
+                        key="verb"
+                        {...atomProps}
+                        onChangeStatement={(value, structure) => {
+                          this.handleChangeStatement(value, structure)
+                        }}
+                      />
+                    ),
+                    condition.verb && (
+                      <ObjectAtom key="object" {...atomProps} />
+                    ),
                   ]
               : [
                   <SubjectAtom
@@ -77,14 +81,16 @@ class Statement extends React.Component {
                       this.resetPredicate(value)
                     }}
                   />,
-                  <VerbAtom
-                    key="verb"
-                    {...atomProps}
-                    onChangeStatement={(value, structure) => {
-                      this.handleChangeStatement(value, structure)
-                    }}
-                  />,
-                  <ObjectAtom key="object" {...atomProps} />,
+                  condition.subject && (
+                    <VerbAtom
+                      key="verb"
+                      {...atomProps}
+                      onChangeStatement={(value, structure) => {
+                        this.handleChangeStatement(value, structure)
+                      }}
+                    />
+                  ),
+                  condition.verb && <ObjectAtom key="object" {...atomProps} />,
                 ]}
           </div>
           {condition.error && condition.error.message && (
