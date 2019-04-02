@@ -71,14 +71,28 @@ class FilterTag extends PureComponent {
     if (this.state.isMenuOpen) return
 
     document.addEventListener('mousedown', this.handleClickOutside)
-    this.setState({ isMenuOpen: true })
+    this.setState({
+      isMenuOpen: true,
+      virtualStatement: filterStatementBySubject(
+        this.props.statements,
+        this.props.subject,
+        this.props.options
+      )[0],
+    })
   }
 
   closeMenu = () => {
     if (!this.state.isMenuOpen) return
 
     document.removeEventListener('mousedown', this.handleClickOutside)
-    this.setState({ isMenuOpen: false })
+    this.setState({
+      isMenuOpen: false,
+      virtualStatement: filterStatementBySubject(
+        [],
+        this.props.subject,
+        this.props.options
+      )[0],
+    })
   }
 
   handleClickOutside = e => {
