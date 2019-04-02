@@ -1,6 +1,5 @@
 #### InputCurrency lets an user easily enter monetary values. The component understands currency codes and locales, so it can automatically format the input with the correct combination of commas, periods, etc.
 
-
 Sizes
 
 ```js
@@ -14,7 +13,7 @@ initialState = { value: undefined }
       locale="pt-BR"
       currencyCode="BRL"
       value={state.value}
-      onChange={e => setState({ value: e.target.value })}
+      onChange={e => setState({ value: e.target.floatValue })}
     />
   </div>
   <div className="mb5">
@@ -24,7 +23,7 @@ initialState = { value: undefined }
       locale="pt-BR"
       currencyCode="BRL"
       value={state.value}
-      onChange={e => setState({ value: e.target.value })}
+      onChange={e => setState({ value: e.target.floatValue })}
     />
   </div>
   <div className="mb5">
@@ -35,7 +34,7 @@ initialState = { value: undefined }
       locale="pt-BR"
       currencyCode="BRL"
       value={state.value}
-      onChange={e => setState({ value: e.target.value })}
+      onChange={e => setState({ value: e.target.floatValue })}
     />
   </div>
 </div>
@@ -92,7 +91,7 @@ class InputExamples extends React.Component {
             locale="pt-BR"
             currencyCode={selectedCurrency}
             value={value}
-            onChange={e => this.setState({ value: e.target.value })}
+            onChange={e => this.setState({ value: e.target.floatValue })}
           />
         </div>
       </div>

@@ -29,12 +29,14 @@ const baseNumber = 9999999999.9999999999
 
 class InputCurrency extends Component {
   handleChange = ({ floatValue }) => {
-    this.props.onChange &&
-      this.props.onChange({
+    const { onChange } = this.props
+    onChange &&
+      onChange({
         ...event,
         target: {
           ...event.target,
           value: floatValue,
+          floatValue: floatValue,
         },
       })
   }
@@ -96,6 +98,8 @@ class InputCurrency extends Component {
 InputCurrency.propTypes = {
   /** @ignore Forwarded Ref */
   forwardedRef: refShape,
+  /** _onChange event. You can get the numeric value of the input from the event
+   * as _event.target.floatValue_ */
   onChange: PropTypes.func,
   onClear: PropTypes.func,
   size: PropTypes.string,
