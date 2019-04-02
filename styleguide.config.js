@@ -92,6 +92,7 @@ module.exports = {
           components: [
             'react/components/Box/index.js',
             'react/components/Card/index.js',
+            'react/components/Collapsible/index.js',
           ],
         },
         {
@@ -100,7 +101,6 @@ module.exports = {
             'react/components/EmptyState/index.js',
             'react/components/Table/index.js',
             'react/components/Tag/index.js',
-            'react/components/Collapsible/index.js',
           ],
         },
         {
