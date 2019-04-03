@@ -1,13 +1,13 @@
 Usage
 
 ```js
-initialState = { opened1: false, opened2: false }
+initialState = { isOpen1: false, isOpen2: false }
 ;<div>
   <div className="mb6">
     <Collapsible
       header={<span>Here goes your header</span>}
-      onClick={e => setState({ opened1: e.target.opened })}
-      opened={state.opened1}>
+      onClick={e => setState({ isOpen1: e.target.isOpen })}
+      isOpen={state.isOpen1}>
       <span>Here goes your content</span>
     </Collapsible>
   </div>
@@ -18,8 +18,8 @@ initialState = { opened1: false, opened2: false }
           Here goes your <strong>muted</strong> header
         </span>
       }
-      onClick={e => setState({ opened2: e.target.opened })}
-      opened={state.opened2}
+      onClick={e => setState({ isOpen2: e.target.isOpen })}
+      isOpen={state.isOpen2}
       muted>
       <span>Here goes another content</span>
     </Collapsible>
@@ -31,7 +31,7 @@ initialState = { opened1: false, opened2: false }
 
 ```js
 const Input = require('../Input').default
-initialState = { opened: false }
+initialState = { isOpen: false }
 ;<div>
   <div className="mb3">
     <Input label="Name" />
@@ -39,8 +39,8 @@ initialState = { opened: false }
   <div className="mb5 mt5">
     <Collapsible
       header={<span className="c-action-primary">Advanced naming</span>}
-      onClick={e => setState({ opened: e.target.opened })}
-      opened={state.opened}>
+      onClick={e => setState({ isOpen: e.target.isOpen })}
+      isOpen={state.isOpen}>
       <div className="mb3">
         <Input label="Surname" />
       </div>
@@ -59,7 +59,7 @@ Align
 
 ```js
 const PageBlock = require('../PageBlock').default
-initialState = { opened1: false, opened2: false }
+initialState = { isOpen1: false, isOpen2: false }
 ;<div>
   <div className="bg-muted-5 pa8">
     <PageBlock
@@ -69,8 +69,8 @@ initialState = { opened1: false, opened2: false }
       <div>
         <Collapsible
           header={<span>Recurrence settings</span>}
-          onClick={e => setState({ opened1: e.target.opened })}
-          opened={state.opened1}>
+          onClick={e => setState({ isOpen1: e.target.isOpen })}
+          isOpen={state.isOpen1}>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
             dictum, eros nec posuere elementum, magna risus semper lorem, id
@@ -92,8 +92,8 @@ initialState = { opened1: false, opened2: false }
         <Collapsible
           header={<span>Recurrence settings</span>}
           align="right"
-          onClick={e => setState({ opened2: e.target.opened })}
-          opened={state.opened2}>
+          onClick={e => setState({ isOpen2: e.target.isOpen })}
+          isOpen={state.isOpen2}>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
             dictum, eros nec posuere elementum, magna risus semper lorem, id
