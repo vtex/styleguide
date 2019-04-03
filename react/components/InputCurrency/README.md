@@ -1,6 +1,5 @@
 #### InputCurrency lets an user easily enter monetary values. The component understands currency codes and locales, so it can automatically format the input with the correct combination of commas, periods, etc.
 
-
 Sizes
 
 ```js
