@@ -8,10 +8,112 @@
 
 - Not filter
 
+Simple product filter example
+
+```js
+class MySimpleFilter extends React.Component {
+  constructor() {
+    super()
+    this.state = { statements: [] }
+    this.simpleInputObject = this.simpleInputObject.bind(this)
+    this.getSimpleVerbs = this.getSimpleVerbs.bind(this)
+    this.renderSimpleFilterLabel = this.renderSimpleFilterLabel.bind(this)
+  }
+
+  simpleInputObject({
+    statements,
+    values,
+    statementIndex,
+    error,
+    extraParams,
+    onChangeObjectCallback,
+  }) {
+    return (
+      <Input
+        value={values || ''}
+        onChange={e => onChangeObjectCallback(e.target.value)}
+      />
+    )
+  }
+
+  getSimpleVerbs() {
+    return [
+      {
+        label: 'is',
+        value: '=',
+        object: {
+          renderFn: this.simpleInputObject,
+          extraParams: {},
+        },
+      },
+      {
+        label: 'is not',
+        value: '!=',
+        object: {
+          renderFn: this.simpleInputObject,
+          extraParams: {},
+        },
+      },
+      {
+        label: 'contains',
+        value: 'contains',
+        object: {
+          renderFn: this.simpleInputObject,
+          extraParams: {},
+        },
+      },
+    ]
+  }
+
+  renderSimpleFilterLabel(statement) {
+    if (!statement || !statement.object) {
+      // you should treat empty object cases only for alwaysVisibleFilters
+      return 'Any'
+    }
+    return `${
+      statement.verb === '='
+        ? 'is'
+        : statement.verb === '!='
+        ? 'is not'
+        : 'contains'
+    } ${statement.object}`
+  }
+
+  render() {
+    return (
+      <EXPERIMENTAL_Filter
+        alwaysVisibleFilters={['id', 'category', 'brand']}
+        statements={this.state.statements}
+        onChangeStatements={statements => this.setState({ statements })}
+        clearAllFiltersButtonLabel="Clear Filters"
+        options={{
+          id: {
+            label: 'ID',
+            renderFilterLabel: this.renderSimpleFilterLabel,
+            verbs: this.getSimpleVerbs(),
+          },
+          category: {
+            label: 'Category',
+            renderFilterLabel: this.renderSimpleFilterLabel,
+            verbs: this.getSimpleVerbs(),
+          },
+          brand: {
+            label: 'Brand',
+            renderFilterLabel: this.renderSimpleFilterLabel,
+            verbs: this.getSimpleVerbs(),
+          },
+        }}
+      />
+    )
+  }
+}
+;<MySimpleFilter />
+```
+
 Filter users example
 
 ```js
-class MyFilter extends React.Component {
+class MyUsersFilter extends React.Component {
   constructor() {
     super()
     this.state = { statements: [] }
@@ -352,5 +454,288 @@ class MyFilter extends React.Component {
     )
   }
 }
-;<MyFilter />
+;<MyUsersFilter />
+```
+
+Filter orders example
+
+```js
+class MyOrdersFilter extends React.Component {
+  constructor() {
+    super()
+    this.state = { statements: [] }
+    this.simpleInputObject = this.simpleInputObject.bind(this)
+    this.simpleInputVerbs = this.simpleInputVerbs.bind(this)
+    this.datePickerObject = this.datePickerObject.bind(this)
+    this.datePickerRangeObject = this.datePickerRangeObject.bind(this)
+    this.statusSelectorObject = this.statusSelectorObject.bind(this)
+  }
+
+  simpleInputObject({
+    statements,
+    values,
+    statementIndex,
+    error,
+    extraParams,
+    onChangeObjectCallback,
+  }) {
+    return (
+      <Input
+        value={values || ''}
+        onChange={e => onChangeObjectCallback(e.target.value)}
+      />
+    )
+  }
+
+  simpleInputVerbs() {
+    return [
+      {
+        label: 'is',
+        value: '=',
+        object: {
+          renderFn: this.simpleInputObject,
+          extraParams: {},
+        },
+      },
+      {
+        label: 'is not',
+        value: '!=',
+        object: {
+          renderFn: this.simpleInputObject,
+          extraParams: {},
+        },
+      },
+      {
+        label: 'contains',
+        value: 'contains',
+        object: {
+          renderFn: this.simpleInputObject,
+          extraParams: {},
+        },
+      },
+    ]
+  }
+
+  datePickerObject({
+    statements,
+    values,
+    statementIndex,
+    error,
+    onChangeObjectCallback,
+  }) {
+    return (
+      <div className="w-100">
+        <DatePicker
+          value={values || new Date()}
+          onChange={date => {
+            onChangeObjectCallback(date)
+          }}
+          locale="pt-BR"
+        />
+      </div>
+    )
+  }
+
+  datePickerRangeObject({
+    statements,
+    values,
+    statementIndex,
+    error,
+    extraParams,
+    onChangeObjectCallback,
+  }) {
+    return (
+      <div className="flex flex-column w-100">
+        <br />
+        <DatePicker
+          label="from"
+          value={values && values.from || new Date()}
+          onChange={date => {
+            onChangeObjectCallback({ ...(values || {}), from: date })
+          }}
+          locale="pt-BR"
+        />
+        <br />
+        <DatePicker
+          label="to"
+          value={values && values.to || new Date()}
+          onChange={date => {
+            onChangeObjectCallback({ ...(values || {}), to: date })
+          }}
+          locale="pt-BR"
+        />
+      </div>
+    )
+  }
+
+  statusSelectorObject({
+    statements,
+    values,
+    statementIndex,
+    error,
+    extraParams,
+    onChangeObjectCallback,
+  }) {
+    const initialValue = {
+      'Window to cancelation': true,
+      'Canceling': true,
+      'Canceled': true,
+      'Payment pending': true,
+      'Payment approved': true,
+      'Ready for handling': true,
+      'Handling shipping': true,
+      'Ready for invoice': true,
+      'Invoiced': true,
+      'Complete': true,
+      ...(values || {}),
+    }
+    const toggleValueByKey = key => {
+      const newValues = {
+        ...(values || initialValue),
+        [key]: values ? !values[key] : false,
+      }
+      return newValues
+    }
+    return (
+      <div>
+        {Object.keys(initialValue).map((opt, index) => {
+          return (
+            <div className="mb3" key={`class-statment-object-${opt}-${index}`}>
+              <Checkbox
+                checked={values ? values[opt] : initialValue[opt]}
+                label={opt}
+                name="default-checkbox-group"
+                onChange={() =>
+                  onChangeObjectCallback(toggleValueByKey(`${opt}`))
+                }
+                value={opt}
+              />
+            </div>
+          )
+        })}
+      </div>
+    )
+  }
+
+  render() {
+    return (
+      <EXPERIMENTAL_Filter
+        alwaysVisibleFilters={['id', 'email', 'status', 'invoicedate']}
+        statements={this.state.statements}
+        onChangeStatements={statements => this.setState({ statements })}
+        clearAllFiltersButtonLabel="Clear Filters"
+        options={{
+          id: {
+            label: 'Order ID',
+            renderFilterLabel: st => {
+              if (!st || !st.object) {
+                // you should treat empty object cases only for alwaysVisibleFilters
+                return 'Any'
+              }
+              return `${
+                st.verb === '='
+                  ? 'is'
+                  : st.verb === '!='
+                  ? 'is not'
+                  : 'contains'
+              } ${st.object}`
+            },
+            verbs: this.simpleInputVerbs(),
+          },
+          email: {
+            label: 'Email',
+            renderFilterLabel: st => {
+              if (!st || !st.object) {
+                // you should treat empty object cases only for alwaysVisibleFilters
+                return 'Any'
+              }
+              return `${
+                st.verb === '='
+                  ? 'is'
+                  : st.verb === '!='
+                  ? 'is not'
+                  : 'contains '
+              } ${st.object}`
+            },
+            verbs: this.simpleInputVerbs(),
+          },
+          status: {
+            label: 'Status',
+            renderFilterLabel: st => {
+              if (!st || !st.object) {
+                // you should treat empty object cases only for alwaysVisibleFilters
+                return 'All'
+              }
+              const keys = st.object ? Object.keys(st.object) : {}
+              const isAllTrue = !keys.some(key => !st.object[key])
+              const isAllFalse = !keys.some(key => st.object[key])
+              const trueKeys = keys.filter(key => st.object[key])
+              let trueKeysLabel = ''
+              trueKeys.forEach((key, index) => {
+                trueKeysLabel += `${key}${
+                  index === trueKeys.length - 1 ? '' : ', '
+                }`
+              })
+              return `${
+                isAllTrue ? 'All' : isAllFalse ? 'None' : `${trueKeysLabel}`
+              }`
+            },
+            verbs: [
+              {
+                label: 'includes',
+                value: 'includes',
+                object: {
+                  renderFn: this.statusSelectorObject,
+                  extraParams: {},
+                },
+              },
+            ],
+          },
+          invoicedate: {
+            label: 'Invoiced date',
+            renderFilterLabel: st => {
+              if (!st || !st.object) return 'All'
+              return `${
+                st.verb === 'between'
+                  ? `between ${st.object.from} and ${st.object.to}`
+                  : `is ${st.object}`
+              }`
+            },
+            verbs: [
+              {
+                label: 'is',
+                value: '=',
+                object: {
+                  renderFn: this.datePickerObject,
+                  extraParams: {},
+                },
+              },
+              {
+                label: 'is between',
+                value: 'between',
+                object: {
+                  renderFn: this.datePickerRangeObject,
+                  extraParams: {},
+                },
+              },
+            ],
+          },
+          utm: {
+            label: 'UTM Source',
+            renderFilterLabel: st =>
+              `${st.verb === '=' ? 'is' : 'contains'} ${st.object}`,
+            verbs: this.simpleInputVerbs(),
+          },
+          seller: {
+            label: 'Seller',
+            renderFilterLabel: st =>
+              `${st.verb === '=' ? 'is' : 'contains'} ${st.object}`,
+            verbs: this.simpleInputVerbs(),
+          },
+        }}
+      />
+    )
+  }
+}
+;<MyOrdersFilter />
 ```
