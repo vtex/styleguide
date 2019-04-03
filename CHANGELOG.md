@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- Fixed error caused by `intanceof` null on `withFowardedRef` module.
+- Fixed error caused by `instanceof` `null` on `withFowardedRef` module.
 
 ## [8.27.2] - 2019-04-03
 
