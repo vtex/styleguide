@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- **DatePicker** input now respects parent width instead of allways being 199px wide.
+
 ### Added
 
 - **EXPERIMENTAL_Filter** as Experimental component.
