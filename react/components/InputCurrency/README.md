@@ -13,7 +13,7 @@ initialState = { value: undefined }
       locale="pt-BR"
       currencyCode="BRL"
       value={state.value}
-      onChange={e => setState({ value: e.target.floatValue })}
+      onChange={e => setState({ value: e.target.value })}
     />
   </div>
   <div className="mb5">
@@ -23,7 +23,7 @@ initialState = { value: undefined }
       locale="pt-BR"
       currencyCode="BRL"
       value={state.value}
-      onChange={e => setState({ value: e.target.floatValue })}
+      onChange={e => setState({ value: e.target.value })}
     />
   </div>
   <div className="mb5">
@@ -34,7 +34,7 @@ initialState = { value: undefined }
       locale="pt-BR"
       currencyCode="BRL"
       value={state.value}
-      onChange={e => setState({ value: e.target.floatValue })}
+      onChange={e => setState({ value: e.target.value })}
     />
   </div>
 </div>
@@ -91,7 +91,7 @@ class InputExamples extends React.Component {
             locale="pt-BR"
             currencyCode={selectedCurrency}
             value={value}
-            onChange={e => this.setState({ value: e.target.floatValue })}
+            onChange={e => this.setState({ value: e.target.value })}
           />
         </div>
       </div>

@@ -16,6 +16,7 @@ import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
  */
 const BaseInput = props => {
   const { inputPrefix: prefix, inputSuffix: suffix, inputRef: ref } = props
+
   return <Input {...props} prefix={prefix} suffix={suffix} ref={ref} />
 }
 
@@ -36,13 +37,21 @@ class InputCurrency extends Component {
         target: {
           ...event.target,
           value: floatValue,
-          floatValue: floatValue,
         },
       })
   }
 
   render() {
-    const { locale, currencyCode, forwardedRef, ...props } = this.props
+    const {
+      locale,
+      currencyCode,
+      forwardedRef,
+      /** We exclude the onChange event because
+       * NumberFormat uses onValueChange instead */
+      /* eslint-disable-next-line no-unused-vars */
+      onChange,
+      ...props
+    } = this.props
 
     const formatter = new Intl.NumberFormat(locale, {
       style: 'currency',
