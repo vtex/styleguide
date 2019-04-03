@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.27.3] - 2019-04-03
+
+### Fixed
+
+- Fixed error caused by `instanceof` `null` on `withFowardedRef` module.
+
 ## [8.27.2] - 2019-04-03
 
 ## [8.27.1] - 2019-03-28
