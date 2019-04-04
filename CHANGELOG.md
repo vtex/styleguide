@@ -7,11 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- loading state to **ModalDialog**.
+
 ## [8.55.3] - 2019-06-27
 
 ### Fixed
 
- - Updates eslint dependency to fix a possible security vulnerability.
+- Updates eslint dependency to fix a possible security vulnerability.
 - **FilterBar** properly remove filter statement when filterTag clear button is clicked.
 
 ## [8.55.2] - 2019-06-26
