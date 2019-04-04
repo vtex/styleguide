@@ -7,6 +7,8 @@ import IconClose from '../icon/Close'
 
 import FilterTag from './FilterTag'
 
+const HEAVY_ICON_OPTICAL_COMPENSATION = { marginTop: '1px' }
+
 const isStatementComplete = st => st.subject && st.verb && st.object
 const filterExtraOptions = (options, alwaysVisibleFilters, statements) => {
   const newOptions = { ...options }
@@ -185,7 +187,9 @@ class EXPERIMENTAL_Filter extends PureComponent {
               <div className="ml-auto mt1">
                 <ButtonWithIcon
                   icon={
-                    <span className="flex items-center c-muted-2">
+                    <span
+                      className="flex items-center c-muted-2"
+                      style={HEAVY_ICON_OPTICAL_COMPENSATION}>
                       <IconClose size={13} />
                     </span>
                   }
