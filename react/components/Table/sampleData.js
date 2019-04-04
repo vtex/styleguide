@@ -327,17 +327,5 @@ export default {
       color5: generateRandomColorObject(),
       color6: generateRandomColorObject(),
     },
-    {
-      email: 'Alicia.Ullrich@yahoo.com',
-      name: 'Oren Beatty V',
-      number: 25.6073,
-      color: generateRandomColorObject(),
-      color1: generateRandomColorObject(),
-      color2: generateRandomColorObject(),
-      color3: generateRandomColorObject(),
-      color4: generateRandomColorObject(),
-      color5: generateRandomColorObject(),
-      color6: generateRandomColorObject(),
-    },
   ],
 }
