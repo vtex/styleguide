@@ -38,12 +38,22 @@ class Pagination extends PureComponent {
   }
 
   render() {
-    const { rowsOptions } = this.props
+    const {
+      rowsOptions,
+      totalItems,
+      currentItemFrom,
+      currentItemTo,
+      textOf,
+      textShowRows,
+    } = this.props
     const { selectedRowsOptionIndex } = this.state
+
     const dropdownOptions = this.createRowOptions(rowsOptions)
 
-    const isPrevDisabled = this.props.currentItemFrom === 1
-    const isNextDisabled = this.props.currentItemTo >= this.props.totalItems
+    const isPrevDisabled = currentItemFrom === 1
+    const isNextDisabled = currentItemTo >= totalItems
+
+    const itemTo = currentItemTo > totalItems ? totalItems : currentItemTo
 
     return (
       <div
@@ -53,7 +63,7 @@ class Pagination extends PureComponent {
         {dropdownOptions && (
           <div className="flex flex-row pt5 items-baseline">
             <span className="mr4 c-muted-2 t-small self-center">
-              {this.props.textShowRows}
+              {textShowRows}
             </span>
             <Dropdown
               size="small"
@@ -66,10 +76,9 @@ class Pagination extends PureComponent {
 
         <div className="flex flex-row pt5 items-center">
           <div className="c-muted-2 t-small">
-            {this.props.currentItemFrom}
+            {currentItemFrom}
             {' - '}
-            {this.props.currentItemTo} {this.props.textOf}{' '}
-            {this.props.totalItems}
+            {itemTo} {textOf} {totalItems}
           </div>
           <div className="ml4">
             <Button

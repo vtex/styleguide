@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Fixed **Table** pagination when total items was not a multiple of rows length.
+
 ## [8.27.3] - 2019-04-03
 
 ### Fixed
