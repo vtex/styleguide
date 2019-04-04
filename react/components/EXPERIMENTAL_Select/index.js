@@ -33,7 +33,7 @@ class Select extends Component {
   componentDidUpdate(prevProps, prevState) {
     const { searchTerm } = this.state
     const { searchTerm: prevSearchTerm } = prevState
-    const { loading } = this.props
+    const { loading, valuesMaxHeight } = this.props
     const { loading: prevLoading } = prevProps
 
     if (searchTerm !== prevSearchTerm || loading !== prevLoading) {
@@ -151,6 +151,8 @@ class Select extends Component {
           backgroundColor: state.isDisabled
             ? COLORS.lightGray
             : style.backgroundColor,
+          maxHeight: `${valuesMaxHeight}px`,
+          overflowY: 'auto',
         }),
         theme: theme => ({
           ...theme,
@@ -248,6 +250,8 @@ Select.propTypes = {
       })
     ),
   ]),
+  /** Max height (in _px_) of the selected values container */
+  valuesMaxHeight: PropTypes.number,
 }
 
 export default withForwardedRef(Select)
