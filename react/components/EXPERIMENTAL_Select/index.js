@@ -33,7 +33,7 @@ class Select extends Component {
   componentDidUpdate(prevProps, prevState) {
     const { searchTerm } = this.state
     const { searchTerm: prevSearchTerm } = prevState
-    const { loading, valuesMaxHeight } = this.props
+    const { loading } = this.props
     const { loading: prevLoading } = prevProps
 
     if (searchTerm !== prevSearchTerm || loading !== prevLoading) {
@@ -59,6 +59,7 @@ class Select extends Component {
       placeholder,
       size,
       value,
+      valuesMaxHeight,
     } = this.props
 
     const reactSelectComponentProps = {
