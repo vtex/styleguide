@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.28.0] - 2019-04-04
+
 ### Added
 
 - **Experimental_SELECT** `valuesMaxHeight` props added, giving the user an option to deal with a lot of selected values.
