@@ -23,6 +23,7 @@ class DatePicker extends Component {
     const { align, direction, size, useTime } = this.props
 
     const BASE_MODIFIERS = {
+      hide: { enabled: false },
       preventOverflow: {
         enabled: false,
       },
