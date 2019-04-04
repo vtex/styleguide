@@ -59,6 +59,7 @@ class Select extends Component {
       placeholder,
       size,
       value,
+      valuesMaxHeight,
     } = this.props
 
     const reactSelectComponentProps = {
@@ -151,6 +152,8 @@ class Select extends Component {
           backgroundColor: state.isDisabled
             ? COLORS.lightGray
             : style.backgroundColor,
+          maxHeight: `${valuesMaxHeight}px`,
+          overflowY: 'auto',
         }),
         theme: theme => ({
           ...theme,
@@ -248,6 +251,8 @@ Select.propTypes = {
       })
     ),
   ]),
+  /** Max height (in _px_) of the selected values container */
+  valuesMaxHeight: PropTypes.number,
 }
 
 export default withForwardedRef(Select)
