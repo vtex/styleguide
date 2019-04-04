@@ -3,6 +3,9 @@ import PropTypes from 'prop-types'
 import reduce from 'lodash/reduce'
 
 import Box from '../Box'
+import Button from '../Button'
+import ButtonWithIcon from '../ButtonWithIcon'
+import Close from '../icon/Close'
 import Pagination from '../Pagination'
 import EmptyState from '../EmptyState'
 import FilterBar from '../FilterBar'
@@ -10,17 +13,13 @@ import FilterBar from '../FilterBar'
 import SimpleTable from './SimpleTable'
 import Toolbar from './Toolbar'
 import EmptyState from '../EmptyState'
-// import Checkbox from '../Checkbox'
 import CheckboxContainer from './CheckboxContainer'
 import Totalizers from './Totalizers'
 
 const TABLE_HEADER_HEIGHT = 36
 const EMPTY_STATE_SIZE_IN_ROWS = 5
 
-// const generateId = () =>
-//   `tableRow_${Math.random()
-//     .toString(36)
-//     .substr(2, 9)}`
+const close = <Close />
 
 class Table extends PureComponent {
   constructor(props) {
@@ -30,6 +29,7 @@ class Table extends PureComponent {
       tableRowHeight: this.getRowHeight(props.density),
       selectedDensity: props.density,
       allChecked: false,
+      selectedRows: [2],
     }
   }
 
@@ -87,12 +87,36 @@ class Table extends PureComponent {
     return TABLE_HEADER_HEIGHT + tableRowHeight * multiplicator
   }
 
-  handleSelectAll = () => {
-    console.log('handleSelectAll')
-    this.setState({ allChecked: !this.state.allChecked })
+  handleSelectAllLines = () => {
+    const { items } = this.props
+    const { selectedRows } = this.state
+    const itemsLength = items.length
+
+    if (selectedRows.length === itemsLength) {
+      this.handleDeselectAllLines()
+    } else {
+      const selectedRows = []
+      for (let i = 0; i < itemsLength; i++) {
+        selectedRows.push(i)
+      }
+      this.setState({ selectedRows })
+    }
   }
-  handleSelectBox = id => {
-    this.setState({ [id]: !this.state[id] })
+
+  handleSelectLine = id => {
+    const selectedRows = this.state.selectedRows.slice(0)
+
+    if (selectedRows.includes(id)) {
+      const filteredRows = selectedRows.filter(value => value !== id)
+      this.setState({ selectedRows: filteredRows })
+    } else {
+      selectedRows.push(id)
+      this.setState({ selectedRows })
+    }
+  }
+
+  handleDeselectAllLines = () => {
+    this.setState({ selectedRows: [] })
   }
 
   render() {
@@ -117,26 +141,29 @@ class Table extends PureComponent {
       totalizers,
       filters,
     } = this.props
-    const { hiddenFields, tableRowHeight, selectedDensity } = this.state
+    const {
+      hiddenFields,
+      tableRowHeight,
+      selectedDensity,
+      selectedRows,
+    } = this.state
 
-    if (bulkActions) {
+    if (bulkActions.length > 0) {
       schema.properties = {
         bulk: {
           width: 40,
           headerRenderer: () => (
             <CheckboxContainer
-              checked={this.state.allChecked || false}
-              onClick={this.handleSelectAll}
+              checked={this.state.selectedRows.length === items.length}
+              onClick={this.handleSelectAllLines}
               id="all"
             />
           ),
-          cellRenderer: ({ rowData }) => (
+          cellRenderer: ({ rowData: { id } }) => (
             <CheckboxContainer
-              checked={
-                this.state.allChecked || (this.state[rowData.id] || false)
-              }
-              onClick={this.handleSelectBox}
-              id={rowData.id}
+              checked={this.state.selectedRows.includes(id)}
+              onClick={this.handleSelectLine}
+              id={id}
             />
           ),
         },
@@ -189,6 +216,29 @@ class Table extends PureComponent {
         {totalizers && totalizers.length > 0 && (
           <Totalizers items={totalizers} />
         )}
+        {selectedRows.length > 0 && (
+          <div className="flex flex-row justify-between pa4 bg-action-primary c-on-action-primary br3 br--top">
+            <div>
+              {bulkActions.map(action => (
+                <span key={action} onClick={action}>
+                  action
+                </span>
+              ))}
+            </div>
+            <div className="tr">
+              <span className="mr2 c-muted-4">
+                {selectedRows.length} rows selected
+              </span>
+              <span className="mr2">
+                <Button>select all</Button>
+              </span>
+              <ButtonWithIcon
+                icon={close}
+                onClick={this.handleDeselectAllLines}
+              />
+            </div>
+          </div>
+        )}
         {emptyState ? (
           <Box>
             <EmptyState title={emptyStateLabel}>
@@ -234,7 +284,7 @@ Table.defaultProps = {
   },
   emptyStateLabel: 'Nothing to show.',
   fullWidth: false,
-  bulkActions: false,
+  bulkActions: [],
   totalizers: [],
 }
 

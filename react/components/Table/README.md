@@ -962,7 +962,10 @@ const defaultSchema = {
       schema={defaultSchema}
       items={itemsCopy}
       density="high"
-      bulkActions
+      bulkActions={[
+        () => console.log('action 1'),
+        () => console.log('action 2'),
+      ]}
       oonRowClick={({ rowData }) => {
         alert(
           `you just clicked ${rowData.name}, number is ${
