@@ -158,6 +158,7 @@ class DatePickerExample extends React.Component {
       readOnlyDate: new Date(),
       requiredDate: null,
       rightAlignedDate: new Date(),
+      timeRangeDate: new Date(),
       upwardsDate: new Date(),
     }
 
@@ -231,6 +232,17 @@ class DatePickerExample extends React.Component {
           </span>
           <span className="mr4">
             <DatePicker
+              label="Time range"
+              locale="pt-BR"
+              maxTime={setHours(setMinutes(new Date(), 0), 17)}
+              minTime={setHours(setMinutes(new Date(), 0), 9)}
+              onChange={date => this.setState({ timeRangeDate: date })}
+              useTime
+              value={this.state.timeRangeDate}
+            />
+          </span>
+          <span className="mr4">
+            <DatePicker
               excludeTimes={[
                 setHours(setMinutes(new Date(), 0), 17),
                 setHours(setMinutes(new Date(), 30), 18),
@@ -244,6 +256,9 @@ class DatePickerExample extends React.Component {
               locale="pt-BR"
             />
           </span>
+        </div>
+
+        <div className="mb5">
           <span className="mr4">
             <DatePicker
               label="Include times"
@@ -259,9 +274,6 @@ class DatePickerExample extends React.Component {
               locale="pt-BR"
             />
           </span>
-        </div>
-
-        <div className="mb5">
           <span className="mr4">
             <DatePicker
               align="right"
