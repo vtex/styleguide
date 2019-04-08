@@ -11,16 +11,14 @@ const HEAVY_ICON_OPTICAL_COMPENSATION = { marginTop: '1px' }
 
 const isStatementComplete = st => st.subject && st.verb && st.object
 const filterExtraOptions = (options, alwaysVisibleFilters, statements) => {
-  const newOptions = { ...options }
+  const newOptions = {}
   const optionsKeys = Object.keys(options)
   optionsKeys.forEach(key => {
-    if (alwaysVisibleFilters.includes(key)) {
-      delete newOptions[key]
-    }
-  })
-  statements.forEach(st => {
-    if (st && st.object) {
-      delete newOptions[st.subject]
+    if (
+      !alwaysVisibleFilters.includes(key) ||
+      statements.some(st => st && st.object && st.subject && st.subject === key)
+    ) {
+      newOptions[key] = options[key]
     }
   })
   return newOptions
