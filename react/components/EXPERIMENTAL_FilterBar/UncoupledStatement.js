@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 
 import SubjectAtom from '../EXPERIMENTAL_Conditions/Atoms/SubjectAtom'
 import VerbAtom from '../EXPERIMENTAL_Conditions/Atoms/VerbAtom'
 import ObjectAtom from '../EXPERIMENTAL_Conditions/Atoms/ObjectAtom'
 
-class Statement extends React.Component {
+class Statement extends Component {
   handleChangeStatement = (newValue, structure) => {
     this.props.onChangeStatement(newValue, structure)
   }
@@ -44,7 +44,7 @@ class Statement extends React.Component {
       options: options,
       isFullWidth: isFullWidth,
       statementIndex: statementIndex,
-      onChangeObjectCallback: onChangeObjectCallback,
+      onChangeObjectCallback,
     }
 
     return (
@@ -54,34 +54,12 @@ class Statement extends React.Component {
             className={`flex w-100 items-start ${
               isFullWidth ? 'flex-column items-stretch' : ''
             }`}>
-            {omitSubject
-              ? omitVerbs
-                ? [<ObjectAtom key="object" {...atomProps} />]
-                : [
-                    condition.subject && (
-                      <VerbAtom
-                        key="verb"
-                        {...atomProps}
-                        onChangeStatement={(value, structure) => {
-                          this.handleChangeStatement(value, structure)
-                        }}
-                      />
-                    ),
-                    condition.verb && (
-                      <ObjectAtom key="object" {...atomProps} />
-                    ),
-                  ]
-              : [
-                  <SubjectAtom
-                    key="subject"
-                    {...atomProps}
-                    placeholder={subjectPlaceholder}
-                    onChangeStatement={(value, structure) => {
-                      this.handleChangeStatement(value, structure)
-                      this.resetPredicate(value)
-                    }}
-                  />,
-                  condition.subject && (
+            {omitSubject ? (
+              omitVerbs ? (
+                <ObjectAtom key="object" {...atomProps} />
+              ) : (
+                <Fragment>
+                  {condition.subject && (
                     <VerbAtom
                       key="verb"
                       {...atomProps}
@@ -89,9 +67,33 @@ class Statement extends React.Component {
                         this.handleChangeStatement(value, structure)
                       }}
                     />
-                  ),
-                  condition.verb && <ObjectAtom key="object" {...atomProps} />,
-                ]}
+                  )}
+                  {condition.verb && <ObjectAtom key="object" {...atomProps} />}
+                </Fragment>
+              )
+            ) : (
+              <Fragment>
+                <SubjectAtom
+                  key="subject"
+                  {...atomProps}
+                  placeholder={subjectPlaceholder}
+                  onChangeStatement={(value, structure) => {
+                    this.handleChangeStatement(value, structure)
+                    this.resetPredicate(value)
+                  }}
+                />
+                {condition.subject && (
+                  <VerbAtom
+                    key="verb"
+                    {...atomProps}
+                    onChangeStatement={(value, structure) => {
+                      this.handleChangeStatement(value, structure)
+                    }}
+                  />
+                )}
+                {condition.verb && <ObjectAtom key="object" {...atomProps} />}
+              </Fragment>
+            )}
           </div>
           {condition.error && condition.error.message && (
             <div className="red t-small mh3 mt2 lh-title">
@@ -135,9 +137,11 @@ Statement.propTypes = {
   onChangeStatement: PropTypes.func,
   /** To which row does this Statement belong to?  */
   statementIndex: PropTypes.number,
-  /** Please use the 3 following ones with caution, i did not test them, so they can break everything */
+  /** Omits statement subject */
   omitSubject: PropTypes.bool,
+  /** Omits statement verb */
   omitVerbs: PropTypes.bool,
+  /** callback injected in object atom onChange so the state can be controlled by a HOC */
   onChangeObjectCallback: PropTypes.func,
 }
 
