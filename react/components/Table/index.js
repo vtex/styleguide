@@ -5,7 +5,7 @@ import reduce from 'lodash/reduce'
 import Box from '../Box'
 import Pagination from '../Pagination'
 import EmptyState from '../EmptyState'
-import Filter from '../EXPERIMENTAL_Filter'
+import FilterBar from '../EXPERIMENTAL_FilterBar'
 
 import SimpleTable from './SimpleTable'
 import Toolbar from './Toolbar'
@@ -135,7 +135,7 @@ class Table extends PureComponent {
         />
         {filters && (
           <div className="mb5">
-            <Filter {...filters} />
+            <FilterBar {...filters} />
           </div>
         )}
         {totalizers && totalizers.length > 0 && (
@@ -279,7 +279,7 @@ Table.propTypes = {
   /** Totalizers property  */
   totalizers: PropTypes.array,
   /** Filters property  */
-  filters: PropTypes.shape({ ...Filter.propTypes }),
+  filters: PropTypes.shape({ ...FilterBar.propTypes }),
 }
 
 export default Table

@@ -33,9 +33,9 @@ const truncateFilterValue = filterValue =>
   }`
 
 /**
- * @visibleName Filter
+ * @visibleName FilterBar
  */
-class EXPERIMENTAL_Filter extends PureComponent {
+class EXPERIMENTAL_FilterBar extends PureComponent {
   constructor(props) {
     super(props)
 
@@ -208,14 +208,14 @@ class EXPERIMENTAL_Filter extends PureComponent {
   }
 }
 
-EXPERIMENTAL_Filter.defaultProps = {
+EXPERIMENTAL_FilterBar.defaultProps = {
   options: [],
   moreOptionsLabel: 'More',
   alwaysVisibleFilters: [],
   collapseLeft: false,
 }
 
-EXPERIMENTAL_Filter.propTypes = {
+EXPERIMENTAL_FilterBar.propTypes = {
   /** filter options (mirroring statements from Conditions component) */
   options: PropTypes.object.isRequired,
   /** filter statements (mirroring statements from Conditions component) */
@@ -232,4 +232,4 @@ EXPERIMENTAL_Filter.propTypes = {
   collapseLeft: PropTypes.bool,
 }
 
-export default EXPERIMENTAL_Filter
+export default EXPERIMENTAL_FilterBar

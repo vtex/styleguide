@@ -1,4 +1,4 @@
-#### Filters are for filtering
+#### FilterBar
 
 ### 👍 Dos
 
@@ -81,7 +81,7 @@ class MySimpleFilter extends React.Component {
 
   render() {
     return (
-      <EXPERIMENTAL_Filter
+      <EXPERIMENTAL_FilterBar
         alwaysVisibleFilters={['id', 'category', 'brand']}
         statements={this.state.statements}
         onChangeStatements={statements => this.setState({ statements })}
@@ -277,7 +277,7 @@ class MyUsersFilter extends React.Component {
 
   render() {
     return (
-      <EXPERIMENTAL_Filter
+      <EXPERIMENTAL_FilterBar
         alwaysVisibleFilters={['name', 'email', 'class']}
         statements={this.state.statements}
         onChangeStatements={statements => this.setState({ statements })}
@@ -619,7 +619,7 @@ class MyOrdersFilter extends React.Component {
 
   render() {
     return (
-      <EXPERIMENTAL_Filter
+      <EXPERIMENTAL_FilterBar
         alwaysVisibleFilters={['id', 'email', 'status', 'invoicedate']}
         statements={this.state.statements}
         onChangeStatements={statements => this.setState({ statements })}
