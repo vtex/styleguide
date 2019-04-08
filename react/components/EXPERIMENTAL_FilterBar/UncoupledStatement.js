@@ -34,8 +34,8 @@ class Statement extends React.Component {
       isFullWidth,
       statements,
       statementIndex,
-      ommitSubject,
-      ommitVerbs,
+      omitSubject,
+      omitVerbs,
       onChangeObjectCallback,
     } = this.props
     const condition = statements[statementIndex]
@@ -54,8 +54,8 @@ class Statement extends React.Component {
             className={`flex w-100 items-start ${
               isFullWidth ? 'flex-column items-stretch' : ''
             }`}>
-            {ommitSubject
-              ? ommitVerbs
+            {omitSubject
+              ? omitVerbs
                 ? [<ObjectAtom key="object" {...atomProps} />]
                 : [
                     condition.subject && (
@@ -111,8 +111,8 @@ Statement.defaultProps = {
   statements: [{ subject: '', verb: '', object: null, error: null }],
   isFullWidth: false,
   statementIndex: 0,
-  ommitSubject: false,
-  ommitVerbs: false,
+  omitSubject: false,
+  omitVerbs: false,
 }
 
 Statement.propTypes = {
@@ -136,8 +136,8 @@ Statement.propTypes = {
   /** To which row does this Statement belong to?  */
   statementIndex: PropTypes.number,
   /** Please use the 3 following ones with caution, i did not test them, so they can break everything */
-  ommitSubject: PropTypes.bool,
-  ommitVerbs: PropTypes.bool,
+  omitSubject: PropTypes.bool,
+  omitVerbs: PropTypes.bool,
   onChangeObjectCallback: PropTypes.func,
 }
 

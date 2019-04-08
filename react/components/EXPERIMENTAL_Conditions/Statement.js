@@ -68,8 +68,6 @@ class Statement extends React.Component {
       statements,
       statementIndex,
       labels,
-      ommitSubject,
-      ommitVerbs,
       onChangeObjectCallback,
     } = this.props
     const condition = statements[statementIndex]
@@ -81,41 +79,27 @@ class Statement extends React.Component {
       onChangeObjectCallback: onChangeObjectCallback,
     }
 
-    const statementAtoms = ommitSubject
-      ? ommitVerbs
-        ? [<ObjectAtom key="object" {...atomProps} />]
-        : [
-            <VerbAtom
-              ref={condition.refs.verb}
-              key="verb"
-              {...atomProps}
-              onChangeStatement={(value, structure) => {
-                this.handleChangeStatement(value, structure)
-              }}
-            />,
-            <ObjectAtom key="object" {...atomProps} />,
-          ]
-      : [
-          <SubjectAtom
-            ref={condition.refs.subject}
-            key="subject"
-            {...atomProps}
-            placeholder={subjectPlaceholder}
-            onChangeStatement={(value, structure) => {
-              this.handleChangeStatement(value, structure)
-              this.resetPredicate(value)
-            }}
-          />,
-          <VerbAtom
-            ref={condition.refs.verb}
-            key="verb"
-            {...atomProps}
-            onChangeStatement={(value, structure) => {
-              this.handleChangeStatement(value, structure)
-            }}
-          />,
-          <ObjectAtom key="object" {...atomProps} />,
-        ]
+    const statementAtoms = [
+      <SubjectAtom
+        ref={condition.refs.subject}
+        key="subject"
+        {...atomProps}
+        placeholder={subjectPlaceholder}
+        onChangeStatement={(value, structure) => {
+          this.handleChangeStatement(value, structure)
+          this.resetPredicate(value)
+        }}
+      />,
+      <VerbAtom
+        ref={condition.refs.verb}
+        key="verb"
+        {...atomProps}
+        onChangeStatement={(value, structure) => {
+          this.handleChangeStatement(value, structure)
+        }}
+      />,
+      <ObjectAtom key="object" {...atomProps} />,
+    ]
 
     return (
       <div>
@@ -177,8 +161,6 @@ Statement.defaultProps = {
   isFullWidth: false,
   statementIndex: 0,
   labels: { delete: 'DELETE' },
-  ommitSubject: false,
-  ommitVerbs: false,
 }
 
 Statement.propTypes = {
@@ -211,9 +193,7 @@ Statement.propTypes = {
   labels: PropTypes.shape({
     delete: PropTypes.string,
   }),
-  /** Please use the 3 following ones with caution, i did not test them, so they can break everything */
-  ommitSubject: PropTypes.bool,
-  ommitVerbs: PropTypes.bool,
+  /** Please use the following one with caution, I did not test it, so it can break everything */
   onChangeObjectCallback: PropTypes.func,
 }
 

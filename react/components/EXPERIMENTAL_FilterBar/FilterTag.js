@@ -146,8 +146,8 @@ class FilterTag extends PureComponent {
       (!statement || (statement && !statement.object))
     )
 
-    const shouldOmmitSubject = !isMoreOptions
-    const shouldOmmitVerb = isMoreOptions
+    const shouldOmitSubject = !isMoreOptions
+    const shouldOmitVerb = isMoreOptions
       ? false
       : options[subject].verbs.length === 1
 
@@ -202,10 +202,10 @@ class FilterTag extends PureComponent {
                   <span className="f4 mh3">New Filter</span>
                 )}
                 <div className="flex flex-column">
-                  {shouldOmmitSubject && (
+                  {shouldOmitSubject && (
                     <span className="f4 mh3 mb5">{options[subject].label}</span>
                   )}
-                  {shouldOmmitVerb && (
+                  {shouldOmitVerb && (
                     <span className="mh3">{options[subject].verbs[0].label}</span>
                   )}
                 </div>
@@ -217,8 +217,8 @@ class FilterTag extends PureComponent {
               </div>
               <Statement
                 isFullWidth
-                ommitSubject={shouldOmmitSubject}
-                ommitVerbs={shouldOmmitVerb}
+                omitSubject={shouldOmitSubject}
+                omitVerbs={shouldOmitVerb}
                 options={options}
                 subjectPlaceholder={subjectPlaceholder}
                 statements={

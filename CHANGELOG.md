@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - **EXPERIMENTAL_Filter** as Experimental component.
-- **EXPERIMENTAL_Conditions** add dangerous `ommitsubject`, `ommitverb` and `onChangeObjectCallback` props.
+- **EXPERIMENTAL_Conditions** add dangerous `omitsubject`, `omitverb` and `onChangeObjectCallback` props.
 - **Table** add FilterBar option in toolbar and example with FilterBar.
 
 ## [8.29.0] - 2019-04-08
