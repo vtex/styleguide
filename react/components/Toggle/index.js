@@ -146,7 +146,9 @@ class Toggle extends Component {
 
     return (
       <label htmlFor={id || undefined}>
-        <div className={`flex flex-row items-center relative ${!disabled && 'pointer'}`}>
+        <div
+          className={`flex flex-row items-center relative ${!disabled &&
+            'pointer'}`}>
           <div className={`vtex-toggle ${classes}`} style={style}>
             <div className={circleClasses} style={circleStyle} />
             {semantic && (
