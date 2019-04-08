@@ -1,8 +1,8 @@
-/* eslint-disable */
 import React, { PureComponent, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import merge from 'lodash/merge'
 
+import Button from '../Button'
 import IconClear from '../icon/Clear'
 import IconClose from '../icon/Close'
 import IconCaretDown from '../icon/CaretDown'
@@ -17,17 +17,17 @@ const emptyVirtualStatement = {
   error: null,
 }
 
-const filterStatementBySubject = (statements = [], sbj, options = {}) => {
-  const hasStatement = statements.some(st => st.subject === sbj)
+const filterStatementBySubject = (statements = [], subject, options = {}) => {
+  const hasStatement = statements.some(st => st.subject === subject)
   return hasStatement
-    ? statements.filter(st => st.subject === sbj)
+    ? statements.filter(st => st.subject === subject)
     : [
         {
           ...emptyVirtualStatement,
-          subject: sbj,
+          subject: subject,
           verb:
-            options[sbj] && options[sbj].verbs.length === 1
-              ? options[sbj].verbs[0].value
+            options[subject] && options[subject].verbs.length === 1
+              ? options[subject].verbs[0].value
               : null,
         },
       ]
@@ -61,10 +61,10 @@ class FilterTag extends PureComponent {
         nextProps.options
       )[0]
       return {
-        isMenuOpen: prevState.isMenuOpen,
         virtualStatement: merge({}, statement, prevState.virtualStatement),
       }
     }
+    return prevState
   }
 
   openMenu = () => {
@@ -112,10 +112,12 @@ class FilterTag extends PureComponent {
     }
   }
 
-  onChangeStatement = (newValue, structure) => {
+  handleChangeStatement = (newValue, structure) => {
     this.setState(state => {
       return {
-        virtualStatement: merge({}, state.virtualStatement, { [structure]: newValue })
+        virtualStatement: merge({}, state.virtualStatement, {
+          [structure]: newValue,
+        }),
       }
     })
   }
@@ -197,21 +199,23 @@ class FilterTag extends PureComponent {
               </button>
             }>
             <div className="ma5">
-              <div className={`flex flex-wrap ${isMoreOptions ? 'mb6' : 'mb3'}`}>
-                {isMoreOptions && (
-                  <span className="f4 mh3">New Filter</span>
-                )}
+              <div
+                className={`flex flex-wrap ${isMoreOptions ? 'mb6' : 'mb3'}`}>
+                {/** TO DO: Before removing the EXPERIMENTAL make a label prop for this */}
+                {isMoreOptions && <span className="f4 mh3">New Filter</span>}
                 <div className="flex flex-column">
                   {shouldOmitSubject && (
                     <span className="f4 mh3 mb5">{options[subject].label}</span>
                   )}
                   {shouldOmitVerb && (
-                    <span className="mh3">{options[subject].verbs[0].label}</span>
+                    <span className="mh3">
+                      {options[subject].verbs[0].label}
+                    </span>
                   )}
                 </div>
                 <div
                   className="ml-auto mr3 items-center pointer"
-                  onClick={this.closeMenu}>
+                  onClick={() => this.closeMenu()}>
                   <IconClose size={18} />
                 </div>
               </div>
@@ -226,9 +230,9 @@ class FilterTag extends PureComponent {
                     ? [virtualStatement]
                     : [merge({}, statement, virtualStatement)]
                 }
-                onChangeStatement={this.onChangeStatement}
+                onChangeStatement={this.handleChangeStatement}
                 onChangeObjectCallback={value =>
-                  this.onChangeStatement(value, 'object')
+                  this.handleChangeStatement(value, 'object')
                 }
               />
               <div className="flex justify-end mt4 mh3">
