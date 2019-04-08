@@ -1,12 +1,21 @@
 #### FilterBar
 
+Overview
+The Filter Bar offers a slim, optimized way of displaying filter atoms. Although natively supported in Table, the component can be used on its own with any other way you chose to display your data.
+
+Different from regular filter panels, ours optimizes for both the screen real-estate and discoverability of new filters. You can have dozens of different, complex available filters, and still present to the user a slim and simple-to-use interface.
+
+
 ### 👍 Dos
 
-- Filter
+ - Apply user research to choose which filters to show in the highlighted section.
+ - Use the FilterBar always on top of the content that will be filtered.
+ - Try offering as many filters and operators as possible. With the diversity of operations VTEX supports, we can never predict all the diverse use cases our merchants need.
+
 
 ### 👎 Don'ts
 
-- Not filter
+- Don't present too many filters in the highlighted zone.
 
 Simple product filter example
 
