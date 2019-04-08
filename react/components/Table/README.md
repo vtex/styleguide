@@ -531,11 +531,8 @@ class ResourceListExample extends React.Component {
                 name="default-checkbox-group"
                 onChange={() => {
                   const newValue = toggleValueByKey(`${opt}`)
-                  console.log('aeHOO NEW FILTER VALUES: ', newValue)
                   const newValueKeys = Object.keys(newValue)
-                  console.log('aeHOO NEW FILTER VALUES KEYS: ', newValueKeys)
                   const isEmptyFilter = !newValueKeys.some(key => !newValue[key])
-                  console.log('aeHOO NEW FILTER VALUES EMPTY?: ', isEmptyFilter)
                   onChangeObjectCallback(isEmptyFilter ? null : newValue)
                 }}
                 value={opt}
