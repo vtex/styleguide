@@ -76,7 +76,7 @@ class Statement extends React.Component {
       options: options,
       isFullWidth: isFullWidth,
       statementIndex: statementIndex,
-      onChangeObjectCallback: onChangeObjectCallback,
+      onChangeObjectCallback,
     }
 
     const statementAtoms = [

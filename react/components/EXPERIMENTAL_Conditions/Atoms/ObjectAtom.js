@@ -11,13 +11,14 @@ class ObjectAtom extends React.Component {
     </div>
   )
 
-  handleOnChangeObjectCallback = (newValue, structure) => {
-    const { onChangeObjectCallback } = this.props
-    onChangeObjectCallback(newValue, structure)
-  }
-
   render() {
-    const { options, isFullWidth, statements, statementIndex } = this.props
+    const {
+      options,
+      isFullWidth,
+      statements,
+      statementIndex,
+      onChangeObjectCallback,
+    } = this.props
     const condition = statements[statementIndex]
     const myChoice = options[condition.subject]
 
@@ -46,7 +47,7 @@ class ObjectAtom extends React.Component {
           values: condition.object,
           error: null,
           extraParams: currentVerb.object.extraParams,
-          onChangeObjectCallback: this.handleOnChangeObjectCallback,
+          onChangeObjectCallback,
         })}
       </div>
     )
