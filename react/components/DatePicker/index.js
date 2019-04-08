@@ -113,6 +113,7 @@ class DatePicker extends Component {
         customInputRef={'legacyRef'}
         dateFormat={this.props.useTime ? 'Pp' : 'P'}
         disabled={this.props.disabled}
+        endDate={this.props.dateRangeEnd}
         excludeDates={this.props.excludeDates}
         excludeTimes={this.props.excludeTimes}
         fixedHeight={this.props.direction === 'up'}
@@ -121,14 +122,20 @@ class DatePicker extends Component {
         includeTimes={this.props.includeTimes}
         locale={this.props.locale}
         maxDate={this.props.maxDate}
+        maxTime={this.props.maxTime}
         minDate={this.props.minDate}
+        minTime={this.props.minTime}
         name={this.props.name}
         placeholderText={this.props.placeholder}
         popperModifiers={this.popperModifiers}
         readOnly={this.props.readOnly}
         required={this.props.required}
         selected={this.props.value}
+        selectsEnd={this.props.isRangeEnd}
+        selectsStart={this.props.isRangeStart}
+        showDisabledMonthNavigation={this.props.limitMonthNavigation}
         showTimeSelect={this.props.useTime}
+        startDate={this.props.dateRangeStart}
         tabIndex={this.props.tabIndex}
         timeFormat="p"
         timeIntervals={this.props.timeIntervals}
@@ -150,6 +157,7 @@ DatePicker.defaultProps = {
   disabled: false,
   error: false,
   label: '',
+  limitMonthNavigation: false,
   readOnly: false,
   required: false,
   size: 'regular',
@@ -162,6 +170,10 @@ DatePicker.propTypes = {
   align: PropTypes.oneOf(['left', 'right']),
   /** Spec attribute  */
   autoFocus: PropTypes.bool,
+  /** @ignore Date range end date */
+  dateRangeEnd: PropTypes.instanceOf(Date),
+  /** @ignore Date range start date */
+  dateRangeStart: PropTypes.instanceOf(Date),
   /** Popper position in relation to the input */
   direction: PropTypes.oneOf(['down', 'up']),
   /** Spec attribute  */
@@ -182,14 +194,24 @@ DatePicker.propTypes = {
   includeDates: PropTypes.arrayOf(PropTypes.instanceOf(Date)),
   /** Dates to be included  */
   includeTimes: PropTypes.arrayOf(PropTypes.instanceOf(Date)),
+  /** @ignore Indicates that the input represents the end date of a date range */
+  isRangeEnd: PropTypes.bool,
+  /** @ignore Indicates that the input represents the start date of a date range */
+  isRangeStart: PropTypes.bool,
   /** Label  */
   label: PropTypes.string,
+  /** Disables out-of-bounds month navigation */
+  limitMonthNavigation: PropTypes.bool,
   /** Locale string ('en-US', 'pt-BR', ...)  */
   locale: PropTypes.string.isRequired,
   /** Max possible date  */
   maxDate: PropTypes.instanceOf(Date),
+  /** Upper time limit */
+  maxTime: PropTypes.instanceOf(Date),
   /** Minimum possible date  */
   minDate: PropTypes.instanceOf(Date),
+  /** Lower time limit */
+  minTime: PropTypes.instanceOf(Date),
   /** Spec attribute  */
   name: PropTypes.string,
   /** onChange event  */

@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.29.0] - 2019-04-08
+
+### Added
+
+- **DatePicker** props:
+  - `limitMonthNavigation`, for preventing users from navigating to months that are not inside the specified date range;
+  - `maxTime` and `minTime`, for setting a time range.
+
 ## [8.28.0] - 2019-04-04
 
 ### Added
