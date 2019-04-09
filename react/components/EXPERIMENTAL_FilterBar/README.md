@@ -1,10 +1,10 @@
-#### FilterBar
+#### The FilterBar is a slim, optimized way of displaying filter atoms. Although tailored to be used with the Table component, it can also be used on its own with any other way you chose to display your data.
 
-Overview
-The Filter Bar offers a slim, optimized way of displaying filter atoms. Although natively supported in Table, the component can be used on its own with any other way you chose to display your data.
+<div className="center mw7 pv6">
+  ![](./filters_table.png)
+</div>
 
 Different from regular filter panels, ours optimizes for both the screen real-estate and discoverability of new filters. You can have dozens of different, complex available filters, and still present to the user a slim and simple-to-use interface.
-
 
 ### 👍 Dos
 
