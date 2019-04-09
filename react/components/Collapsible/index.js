@@ -54,7 +54,7 @@ class Collapsible extends Component {
     const childrenContainerStyle = {
       height,
       overflow: 'hidden',
-      transition: 'height 420ms ease-in-out',
+      transition: 'height 250ms ease-in-out',
     }
 
     const color = muted ? 'c-muted-3' : 'c-action-primary'
