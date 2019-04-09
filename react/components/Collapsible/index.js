@@ -33,7 +33,7 @@ function Collapsible({
             <div className={`${color} mr3`}>
               {isOpen ? <CaretUp /> : <CaretDown />}
             </div>
-            <div>{header}</div>
+            <div className="flex-grow-1">{header}</div>
           </Fragment>
         ) : (
           <Fragment>
@@ -44,7 +44,7 @@ function Collapsible({
           </Fragment>
         )}
       </div>
-      {isOpen && <div className="mt4">{children}</div>}
+      {isOpen && children}
     </div>
   )
 }
