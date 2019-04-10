@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
@@ -30,10 +29,7 @@ const truncateFilterValue = filterValue =>
     filterValue.length <= FILTER_VALUE_LABEL_MAX_LENGTH ? '' : '…'
   }`
 
-/**
- * @visibleName FilterBar
- */
-class EXPERIMENTAL_FilterBar extends PureComponent {
+class FilterBar extends PureComponent {
   constructor(props) {
     super(props)
 
@@ -102,16 +98,6 @@ class EXPERIMENTAL_FilterBar extends PureComponent {
   handleClearAllfilters = () => {
     this.setState({ visibleExtraOptions: [] })
     this.changeStatementsCallback([])
-  }
-
-  componentDidMount() {
-    console.warn(
-      `Experimental component warning:
-
-       Filter component is in an experimental state.
-       This component may suffer breaking changes in a near future, even in minor or patch versions.
-       It may even cease to exist without further notice 👻`
-    )
   }
 
   render() {
@@ -206,14 +192,14 @@ class EXPERIMENTAL_FilterBar extends PureComponent {
   }
 }
 
-EXPERIMENTAL_FilterBar.defaultProps = {
+FilterBar.defaultProps = {
   options: [],
   moreOptionsLabel: 'More',
   alwaysVisibleFilters: [],
   collapseLeft: false,
 }
 
-EXPERIMENTAL_FilterBar.propTypes = {
+FilterBar.propTypes = {
   /** filter options (mirroring statements from Conditions component) */
   options: PropTypes.object.isRequired,
   /** filter statements (mirroring statements from Conditions component) */
@@ -230,4 +216,4 @@ EXPERIMENTAL_FilterBar.propTypes = {
   collapseLeft: PropTypes.bool,
 }
 
-export default EXPERIMENTAL_FilterBar
+export default FilterBar

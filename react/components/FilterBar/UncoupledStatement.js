@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 
-import SubjectAtom from '../EXPERIMENTAL_Conditions/Atoms/SubjectAtom'
-import VerbAtom from '../EXPERIMENTAL_Conditions/Atoms/VerbAtom'
-import ObjectAtom from '../EXPERIMENTAL_Conditions/Atoms/ObjectAtom'
+import SubjectAtom from './Atoms/SubjectAtom'
+import VerbAtom from './Atoms/VerbAtom'
+import ObjectAtom from './Atoms/ObjectAtom'
 
 class Statement extends Component {
   handleChangeStatement = (newValue, structure) => {
