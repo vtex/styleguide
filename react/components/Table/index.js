@@ -122,18 +122,20 @@ class Table extends PureComponent {
 
     return (
       <div className="vtex-table__container">
-        <Toolbar
-          loading={loading}
-          toolbar={toolbar}
-          hiddenFields={hiddenFields}
-          toggleColumn={this.toggleColumn}
-          handleHideAllColumns={this.onHideAllColumns}
-          handleShowAllColumns={this.onShowAllColumns}
-          handleToggleDensity={this.toggleTableRowHeight}
-          selectedDensity={selectedDensity}
-          schema={schema}
-          actions={toolbar}
-        />
+        {toolbar && (
+          <Toolbar
+            loading={loading}
+            toolbar={toolbar}
+            hiddenFields={hiddenFields}
+            toggleColumn={this.toggleColumn}
+            handleHideAllColumns={this.onHideAllColumns}
+            handleShowAllColumns={this.onShowAllColumns}
+            handleToggleDensity={this.toggleTableRowHeight}
+            selectedDensity={selectedDensity}
+            schema={schema}
+            actions={toolbar}
+          />
+        )}
         {filters && (
           <div className="mb5">
             <FilterBar {...filters} />

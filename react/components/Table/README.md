@@ -60,7 +60,7 @@ const defaultSchema = {
 </div>
 ```
 
-Empty state
+Custom empty state
 
 ```js
 const sampleData = require('./sampleData').default
@@ -90,7 +90,7 @@ const defaultSchema = {
 }
 
 ;<div>
-  <div className="mb5">
+  <div>
     <Table
       fullWidth
       schema={defaultSchema}
