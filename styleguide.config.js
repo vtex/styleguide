@@ -99,6 +99,8 @@ module.exports = {
           name: 'Display',
           components: [
             'react/components/EmptyState/index.js',
+            'react/components/FilterBar/index.js',
+            'react/components/Spinner/index.js',
             'react/components/Table/index.js',
             'react/components/Tag/index.js',
           ],
@@ -106,17 +108,17 @@ module.exports = {
         {
           name: 'Forms',
           components: [
+            'react/components/ActionMenu/index.js',
             'react/components/Button/index.js',
             'react/components/ButtonWithIcon/index.js',
             'react/components/Checkbox/index.js',
             'react/components/ColorPicker/index.js',
             'react/components/DatePicker/index.js',
             'react/components/Dropdown/index.js',
-            'react/components/ActionMenu/index.js',
             'react/components/Input/index.js',
+            'react/components/InputCurrency/index.js',
             'react/components/InputPassword/index.js',
             'react/components/InputSearch/index.js',
-            'react/components/InputCurrency/index.js',
             'react/components/MultiSelect/index.js',
             'react/components/NumericStepper/index.js',
             'react/components/RadioGroup/index.js',
@@ -148,19 +150,11 @@ module.exports = {
           ],
         },
         {
-          name: 'Other',
-          components: [
-            'react/components/Tag/index.js',
-            'react/components/Spinner/index.js',
-          ],
-        },
-        {
           name: '👻 Experimental',
           content: './docs/components_experimental.md',
           components: [
             'react/components/EXPERIMENTAL_Conditions/index.js',
             'react/components/EXPERIMENTAL_Select/index.js',
-            'react/components/EXPERIMENTAL_FilterBar/index.js',
           ],
         },
       ],
