@@ -10,7 +10,7 @@ const Element =
 export const refShape = PropTypes.oneOfType([
   PropTypes.func,
   PropTypes.shape({
-    current: PropTypes.oneOfType([null, PropTypes.instanceOf(Element)]),
+    current: PropTypes.instanceOf(Element),
   }),
 ])
 
