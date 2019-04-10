@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.30.1] - 2019-04-10
+
 ### Fixed
 
 - **Toggle** Set checkbox input parent's position to relative.
