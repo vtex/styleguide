@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.30.0] - 2019-04-10
+
+### Added
+
+- **Collapsible** new component!
+
 ## [8.29.1] - 2019-04-08
 
 ### Fixed
