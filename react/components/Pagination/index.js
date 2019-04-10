@@ -2,8 +2,11 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import CaretLeft from '../icon/CaretLeft'
 import CaretRight from '../icon/CaretRight'
-import Button from '../Button'
+import ButtonWithIcon from '../ButtonWithIcon'
 import Dropdown from '../Dropdown'
+
+const caretLeft = <CaretLeft />
+const caretRight = <CaretRight />
 
 class Pagination extends PureComponent {
   constructor(props) {
@@ -81,24 +84,22 @@ class Pagination extends PureComponent {
             {itemTo} {textOf} {totalItems}
           </div>
           <div className="ml4">
-            <Button
-              icon
+            <ButtonWithIcon
+              icon={caretLeft}
               variation="secondary"
               size="small"
               disabled={isPrevDisabled}
-              onClick={this.handlePrevPage}>
-              <CaretLeft color="currentColor" />
-            </Button>
+              onClick={this.handlePrevPage}
+            />
           </div>
           <div className="ml2">
-            <Button
-              icon
+            <ButtonWithIcon
+              icon={caretRight}
               variation="secondary"
               size="small"
               disabled={isNextDisabled}
-              onClick={this.handleNextPage}>
-              <CaretRight color="currentColor" />
-            </Button>
+              onClick={this.handleNextPage}
+            />
           </div>
         </div>
       </div>
