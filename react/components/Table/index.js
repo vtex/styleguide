@@ -84,6 +84,7 @@ class Table extends PureComponent {
       schema,
       disableHeader,
       emptyStateLabel,
+      emptyStateChildren,
       fixFirstColumn,
       onRowClick,
       sort,
@@ -143,7 +144,9 @@ class Table extends PureComponent {
         )}
         {emptyState ? (
           <Box>
-            <EmptyState title={emptyStateLabel} />
+            <EmptyState title={emptyStateLabel}>
+              {emptyStateChildren}
+            </EmptyState>
           </Box>
         ) : (
           <SimpleTable
@@ -154,6 +157,7 @@ class Table extends PureComponent {
             rowHeight={tableRowHeight}
             disableHeader={disableHeader}
             emptyStateLabel={emptyStateLabel}
+            emptyStateChildren={emptyStateChildren}
             onRowClick={onRowClick}
             sort={sort}
             onSort={onSort}
@@ -212,6 +216,8 @@ Table.propTypes = {
   density: PropTypes.oneOf(['low', 'medium', 'high']),
   /** Label for emptystate  */
   emptyStateLabel: PropTypes.string,
+  /** Children for emptystate  */
+  emptyStateChildren: PropTypes.node,
   /** Full width property  */
   fullWidth: PropTypes.bool,
   /** Line actions column */

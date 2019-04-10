@@ -105,6 +105,7 @@ class SimpleTable extends Component {
       fixFirstColumn,
       disableHeader,
       emptyStateLabel,
+      emptyStateChildren,
       onRowClick,
       containerHeight,
       sort: { sortOrder, sortedBy },
@@ -304,7 +305,9 @@ class SimpleTable extends Component {
             </AutoSizer>
             {items.length === 0 && (
               <div style={{ height: containerHeight - HEADER_HEIGHT }}>
-                <EmptyState title={emptyStateLabel} />
+                <EmptyState title={emptyStateLabel}>
+                  {emptyStateChildren}
+                </EmptyState>
               </div>
             )}
           </div>
@@ -334,6 +337,7 @@ SimpleTable.propTypes = {
   disableHeader: PropTypes.bool,
   onRowClick: PropTypes.func,
   emptyStateLabel: PropTypes.string,
+  emptyStateChildren: PropTypes.node,
   sort: PropTypes.shape({
     sortOrder: PropTypes.oneOf(['ASC', 'DESC']),
     sortedBy: PropTypes.string,
