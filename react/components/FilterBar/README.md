@@ -269,8 +269,9 @@ class MyUsersFilter extends React.Component {
             <div className="mb3" key={`class-statment-object-${opt}-${index}`}>
               <Checkbox
                 checked={values ? values[opt] : initialValue[opt]}
+                id={`class-${opt}`}
                 label={opt}
-                name="default-checkbox-group"
+                name="class-checkbox-group"
                 onChange={() =>
                   onChangeObjectCallback(toggleValueByKey(`${opt}`))
                 }
@@ -611,8 +612,9 @@ class MyOrdersFilter extends React.Component {
             <div className="mb3" key={`class-statment-object-${opt}-${index}`}>
               <Checkbox
                 checked={values ? values[opt] : initialValue[opt]}
+                id={`status-${opt}`}
                 label={opt}
-                name="default-checkbox-group"
+                name="status-checkbox-group"
                 onChange={() =>
                   onChangeObjectCallback(toggleValueByKey(`${opt}`))
                 }
