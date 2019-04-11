@@ -89,3 +89,21 @@ class TabsExample extends React.Component {
 }
 ;<TabsExample />
 ```
+
+Sticky Example
+
+```jsx
+const Tab = require('./Tab').default;
+<div className="h4">
+  <Tabs sticky>
+    <Tab label="Tab 1" active>
+      <div className="h5 flex flex-column">
+        <p>Scroll to see full content</p>
+        <div className="flex items-end h-100">
+          <p>The end!</p>
+        </div>
+      </div>
+    </Tab>
+  </Tabs>
+</div>
+```
