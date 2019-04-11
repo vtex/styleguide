@@ -23,16 +23,33 @@ class Tag extends PureComponent {
 
   render() {
     const {
-      children,
-      onClick,
-      disabled,
-      color,
       bgColor,
+      children,
+      color,
+      disabled,
+      onClick,
+      size,
       type,
       variation,
     } = this.props
 
-    const baseClasses = 'br-pill t-small pv2 ph4 dib fw5'
+    let sizeClasses = ''
+    switch (size) {
+      case 'small':
+        sizeClasses = 't-mini pv2 ph4'
+        break
+      case 'regular':
+        sizeClasses = 't-small pv2 ph4'
+        break
+      case 'large':
+        sizeClasses = 't-body pv3 ph5'
+        break
+      default:
+        sizeClasses = 't-small pv2 ph4'
+        break
+    }
+
+    const baseClasses = `br-pill dib fw5 ${sizeClasses}`
 
     let theme = ''
     const variationIsLow = variation === 'low'
@@ -100,15 +117,18 @@ class Tag extends PureComponent {
 
 Tag.defaultProps = {
   disabled: false,
+  size: 'regular',
 }
 
 Tag.propTypes = {
-  type: PropTypes.oneOf(['success', 'error', 'warning']),
+  bgColor: PropTypes.string,
   children: PropTypes.node.isRequired,
   color: PropTypes.string,
-  bgColor: PropTypes.string,
-  onClick: PropTypes.func,
   disabled: PropTypes.bool,
+  onClick: PropTypes.func,
+  /** Input size */
+  size: PropTypes.oneOf(['small', 'regular', 'large']),
+  type: PropTypes.oneOf(['success', 'error', 'warning']),
   variation: PropTypes.oneOf(['default', 'low']),
 }
 

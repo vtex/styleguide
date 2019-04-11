@@ -18,6 +18,26 @@ Default
 <Tag>Neutral</Tag>
 ```
 
+Sizes
+
+```js
+<span className="mr4">
+  <Tag size="small">
+    Small
+  </Tag>
+</span>
+<span className="mr4">
+  <Tag size="regular">
+    Regular
+  </Tag>
+</span>
+<span className="mr4">
+  <Tag size="large">
+    Large
+  </Tag>
+</span>
+```
+
 Types
 
 ```js
@@ -43,7 +63,7 @@ Low prominence
 ```js
 <div>
   <span className="mr4">
-    <Tag type="error" variation="low" >
+    <Tag type="error" variation="low">
       Error
     </Tag>
   </span>
@@ -53,14 +73,12 @@ Low prominence
     </Tag>
   </span>
   <span className="mr4">
-    <Tag type="success" variation="low" >
+    <Tag type="success" variation="low">
       Success
     </Tag>
   </span>
   <span className="mr4">
-    <Tag variation="low">
-      Neutral
-    </Tag>
+    <Tag variation="low">Neutral</Tag>
   </span>
 </div>
 ```

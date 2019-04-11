@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.32.0] - 2019-04-11
+
+### Added
+
+- **Tabs** added _small_, _regular_ and _large_ sizes.
+
 ## [8.31.0] - 2019-04-11
 
 ### Added
