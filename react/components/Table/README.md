@@ -60,6 +60,67 @@ const defaultSchema = {
 </div>
 ```
 
+Custom empty state
+
+```js
+const sampleData = require('./sampleData').default
+const itemsCopy = sampleData.items
+  .slice()
+  .reverse()
+  .splice(15)
+const defaultSchema = {
+  properties: {
+    name: {
+      type: 'string',
+      title: 'Name',
+      width: 300,
+    },
+    email: {
+      type: 'string',
+      title: 'Email',
+      minWidth: 350,
+    },
+    number: {
+      type: 'number',
+      title: 'Number',
+      // default is 200px
+      minWidth: 100,
+    },
+  },
+}
+
+;<div>
+  <div>
+    <Table
+      fullWidth
+      schema={defaultSchema}
+      items={[]}
+      emptyStateLabel="This is my custom empty state title"
+      emptyStateChildren={
+        <React.Fragment>
+          <p>
+            A longer explanation of what should be here, and why should I care
+            about what should be here.
+          </p>
+          <div className="pt5">
+            <Button variation="secondary" size="small">
+              <span className="flex align-baseline">Suggested action</span>
+            </Button>
+          </div>
+        </React.Fragment>
+      }
+      onRowClick={({ rowData }) => {
+        alert(
+          `you just clicked ${rowData.name}, number is ${
+            rowData.number
+          } and email ${rowData.email}`
+        )
+      }}
+    />
+  </div>
+</div>
+```
+
 Line actions
 
 ```js
@@ -532,7 +593,9 @@ class ResourceListExample extends React.Component {
                 onChange={() => {
                   const newValue = toggleValueByKey(`${opt}`)
                   const newValueKeys = Object.keys(newValue)
-                  const isEmptyFilter = !newValueKeys.some(key => !newValue[key])
+                  const isEmptyFilter = !newValueKeys.some(
+                    key => !newValue[key]
+                  )
                   onChangeObjectCallback(isEmptyFilter ? null : newValue)
                 }}
                 value={opt}
