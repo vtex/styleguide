@@ -1,5 +1,5 @@
 import React from 'react'
-import Dropdown from '../../Dropdown'
+import Select from '../../EXPERIMENTAL_Select'
 import PropTypes from 'prop-types'
 import { withForwardedRef, refShape } from '../../../modules/withForwardedRef'
 
@@ -54,14 +54,23 @@ class SubjectAtom extends React.Component {
 
     return (
       <div className={`mh3 ${isFullWidth ? 'pb3' : ''}`}>
-        <Dropdown
+        <Select
           ref={forwardedRef}
           placeholder={placeholder}
           options={uniqueOptions}
-          value={!condition.subject ? '' : condition.subject || ''}
-          onChange={(e, value) => {
-            this.handleChangeStatement(value, 'subject')
+          defaultValue={
+            !condition.subject
+              ? null
+              : {
+                  value: condition.subject,
+                  label: condition.subject,
+                }
+          }
+          onChange={option => {
+            this.handleChangeStatement(option && option.value, 'subject')
           }}
+          multi={false}
+          isClearable={false}
         />
       </div>
     )
