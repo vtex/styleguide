@@ -60,6 +60,7 @@ class Select extends Component {
       size,
       value,
       valuesMaxHeight,
+      isClearable,
     } = this.props
 
     const reactSelectComponentProps = {
@@ -88,7 +89,7 @@ class Select extends Component {
       },
       defaultValue,
       getOptionValue,
-      isClearable: true,
+      isClearable,
       isDisabled: disabled,
       isLoading: loading,
       isMulti: multi,
@@ -193,6 +194,7 @@ Select.defaultProps = {
   multi: true,
   placeholder: 'Select...',
   size: 'regular',
+  isClearable: true,
 }
 
 Select.propTypes = {
@@ -253,6 +255,8 @@ Select.propTypes = {
   ]),
   /** Max height (in _px_) of the selected values container */
   valuesMaxHeight: PropTypes.number,
+  /** should clear button appear */
+  isClearable: PropTypes.bool,
 }
 
 export default withForwardedRef(Select)
