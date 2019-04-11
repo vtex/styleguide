@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+- **FilterBar** fix filterExtraOptions logic for "More Filters" option
+- **FilterBar** auto-select first verb for filter statements
+- **FilterBar** make Popover Menu style compatible with Figma
+- **FilterBar** fix checkbox examples clickbox
+- **FilterBar** use Select instead of Dropdown in subject filter statement
+- **FilterBar** add lable props for fix texts
+
+### Added
+
+- **Experimental_SELECT** add `clearable` prop.
+
 ## [8.35.0] - 2019-04-16
 
 ### Added
