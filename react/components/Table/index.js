@@ -30,6 +30,7 @@ class Table extends PureComponent {
       selectedDensity: props.density,
       allChecked: false,
       selectedRows: [],
+      allLinesSelected: false,
     }
   }
 
@@ -87,36 +88,38 @@ class Table extends PureComponent {
     return TABLE_HEADER_HEIGHT + tableRowHeight * multiplicator
   }
 
-  handleSelectAllLines = ({ fromSelectAll }) => {
+  handleSelectAllLines = () => {
+    const { items: selectedRows } = this.props
+    this.setState({ selectedRows, allLinesSelected: true })
+  }
+
+  handleSelectAllVisibleLines = () => {
+    const selectedRows = this.state.selectedRows.slice(0)
     const { items } = this.props
-    const { selectedRows } = this.state
     const itemsLength = items.length
 
-    if (selectedRows.length === itemsLength && !fromSelectAll) {
+    if (selectedRows.length === itemsLength) {
       this.handleDeselectAllLines()
     } else {
-      const selectedRows = []
-      for (let i = 0; i < itemsLength; i++) {
-        selectedRows.push(i)
-      }
-      this.setState({ selectedRows })
+      this.setState({ selectedRows: items })
     }
   }
 
-  handleSelectLine = id => {
+  handleSelectLine = rowData => {
     const selectedRows = this.state.selectedRows.slice(0)
+    const { id } = rowData
 
-    if (selectedRows.includes(id)) {
-      const filteredRows = selectedRows.filter(value => value !== id)
+    if (selectedRows.some(el => el.id === id)) {
+      const filteredRows = selectedRows.filter(row => row.id !== id)
       this.setState({ selectedRows: filteredRows })
     } else {
-      selectedRows.push(id)
+      selectedRows.push({ ...rowData })
       this.setState({ selectedRows })
     }
   }
 
   handleDeselectAllLines = () => {
-    this.setState({ selectedRows: [] })
+    this.setState({ selectedRows: [], allLinesSelected: false })
   }
 
   render() {
@@ -146,6 +149,7 @@ class Table extends PureComponent {
       tableRowHeight,
       selectedDensity,
       selectedRows,
+      allLinesSelected,
     } = this.state
 
     const hasPrimaryBulkAction =
@@ -163,15 +167,17 @@ class Table extends PureComponent {
           headerRenderer: () => (
             <CheckboxContainer
               checked={this.state.selectedRows.length === items.length}
-              onClick={this.handleSelectAllLines}
+              onClick={this.handleSelectAllVisibleLines}
               id="all"
             />
           ),
-          cellRenderer: ({ rowData: { id } }) => (
+          cellRenderer: ({ rowData }) => (
             <CheckboxContainer
-              checked={this.state.selectedRows.includes(id)}
-              onClick={this.handleSelectLine}
-              id={id}
+              checked={this.state.selectedRows.some(
+                row => row.id === rowData.id
+              )}
+              onClick={() => this.handleSelectLine(rowData)}
+              id={rowData.id}
             />
           ),
         },
@@ -200,6 +206,10 @@ class Table extends PureComponent {
       properties: displayProperties,
     }
 
+    const buldkActionsReturnedParameters = allLinesSelected
+      ? { allLinesSelected: true }
+      : { selectedRows }
+
     return (
       <div className="vtex-table__container">
         {toolbar && (
@@ -224,6 +234,7 @@ class Table extends PureComponent {
         {totalizers && totalizers.length > 0 && (
           <Totalizers items={totalizers} />
         )}
+
         {selectedRows.length > 0 && (
           <div className="flex flex-row justify-between pa4 bg-action-primary c-on-action-primary br3 br--top">
             {hasBulkActions && (
@@ -232,31 +243,46 @@ class Table extends PureComponent {
                   <div className="mr4">
                     <Button
                       variation="secondary"
-                      onClick={() => bulkActions.main.onClick()}>
+                      onClick={() =>
+                        bulkActions.main.onClick(buldkActionsReturnedParameters)
+                      }>
                       {bulkActions.main.label}
                     </Button>
                   </div>
                 )}
                 {hasSecondaryBulkActions && (
                   <ActionMenu
-                    label="Actions"
+                    label={bulkActions.texts.secondaryActionsLabel}
                     buttonProps={{ variation: 'secondary' }}
-                    options={bulkActions.others}
+                    options={bulkActions.others.map(el => ({
+                      label: el.label,
+                      onClick: () => el.onClick(buldkActionsReturnedParameters),
+                    }))}
                   />
                 )}
               </div>
             )}
             <div className="tr">
-              <span className="mr2 c-muted-4">
-                {selectedRows.length} rows selected
-              </span>
+              {!allLinesSelected && (
+                <span className="mr4 c-muted-4">
+                  {selectedRows.length} {bulkActions.texts.rowsSelected}
+                </span>
+              )}
               <span className="mr2">
-                <Button
-                  onClick={() =>
-                    this.handleSelectAllLines({ fromSelectAll: true })
-                  }>
-                  select all
-                </Button>
+                {allLinesSelected ? (
+                  <span>
+                    {bulkActions.texts.allRowsSelected}{' '}
+                    <span className="b">{bulkActions.totalItems}</span>
+                  </span>
+                ) : (
+                  <Button onClick={this.handleSelectAllLines}>
+                    <span className="ttu">
+                      {`${bulkActions.texts.selectAll} ${
+                        bulkActions.totalItems
+                      }`}
+                    </span>
+                  </Button>
+                )}
               </span>
               <ButtonWithIcon
                 icon={close}

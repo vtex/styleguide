@@ -963,18 +963,25 @@ const defaultSchema = {
       items={itemsCopy}
       density="high"
       bulkActions={{
+        texts: {
+          secondaryActionsLabel: 'Actions',
+          rowsSelected: 'rows selected',
+          selectAll: 'Select all',
+          allRowsSelected: 'All rows selected:',
+        },
+        totalItems: 122,
         main: {
-          label: 'Main Ac.',
-          onClick: () => console.log('main action'),
+          label: 'Main Action',
+          onClick: params => console.log(params),
         },
         others: [
           {
-            label: 'Ac. 1',
-            onClick: () => console.log('action 1'),
+            label: 'Action 1',
+            onClick: params => console.log(params),
           },
           {
-            label: 'Ac. 2',
-            onClick: () => console.log('action 2'),
+            label: 'Action 2',
+            onClick: params => console.log(params),
           },
         ],
       }}
