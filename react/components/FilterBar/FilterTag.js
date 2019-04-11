@@ -238,6 +238,7 @@ class FilterTag extends PureComponent {
               <div className="flex justify-end mt4 mh3">
                 <Button
                   type="submit"
+                  disabled={virtualStatement && !virtualStatement.object}
                   onClick={() => {
                     onSubmitFilterStatement(virtualStatement)
                     this.resetVirtualStatement()
