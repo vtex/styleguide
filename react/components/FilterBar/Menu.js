@@ -127,8 +127,9 @@ class Menu extends Component {
               transition: isVisible
                 ? `transform 50ms ease-out, opacity 25ms`
                 : 'none',
+              boxShadow: '0px 1px 18px rgba(0, 0, 0, 0.14)',
             }}
-            className={`absolute z-999 ba b--muted-4 br2 shadow-5 bg-base ${
+            className={`absolute z-999 ba bw1 b--muted-4 br2 bg-base ${
               isRight ? 'right-0' : 'left-0'
             }
             ${isVisible ? 'o-100' : 'o-0'}`}>
