@@ -70,7 +70,7 @@ class SubjectAtom extends React.Component {
             this.handleChangeStatement(option && option.value, 'subject')
           }}
           multi={false}
-          isClearable={false}
+          clearable={false}
         />
       </div>
     )

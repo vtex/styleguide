@@ -107,6 +107,9 @@ class FilterBar extends PureComponent {
       clearAllFiltersButtonLabel,
       statements,
       collapseLeft,
+      subjectPlaceholder,
+      submitFilterLable,
+      newFilterLable,
     } = this.props
     const { visibleExtraOptions } = this.state
     const optionsKeys = Object.keys(options)
@@ -137,6 +140,7 @@ class FilterBar extends PureComponent {
                         '…'
                       )
                     }}
+                    submitFilterLable={submitFilterLable}
                     subject={subject}
                     options={options}
                     statements={statements}
@@ -151,8 +155,10 @@ class FilterBar extends PureComponent {
             <div className="ma2">
               <FilterTag
                 isMoreOptions
-                subjectPlaceholder="Select a filter…"
+                subjectPlaceholder={subjectPlaceholder}
                 getFilterLabel={() => moreOptionsLabel}
+                submitFilterLable={submitFilterLable}
+                newFilterLable={newFilterLable}
                 options={{
                   ...filterExtraOptions(
                     options,
@@ -196,6 +202,9 @@ FilterBar.defaultProps = {
   moreOptionsLabel: 'More',
   alwaysVisibleFilters: [],
   collapseLeft: false,
+  subjectPlaceholder: 'Select a filter…',
+  submitFilterLable: 'Ok',
+  newFilterLable: 'New Filter',
 }
 
 FilterBar.propTypes = {
@@ -213,6 +222,12 @@ FilterBar.propTypes = {
   clearAllFiltersButtonLabel: PropTypes.string,
   /** Cancels out left padding */
   collapseLeft: PropTypes.bool,
+  /** Subject select placeholder inside 'More options' */
+  subjectPlaceholder: PropTypes.string,
+  /** Submit button lable for statement inside FilterTag */
+  submitFilterLable: PropTypes.string,
+  /** New Filter title lable for inside the 'More options' menu */
+  newFilterLable: PropTypes.string,
 }
 
 export default FilterBar
