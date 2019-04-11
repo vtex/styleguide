@@ -8,11 +8,11 @@ import ButtonWithIcon from '../ButtonWithIcon'
 import Close from '../icon/Close'
 import Pagination from '../Pagination'
 import EmptyState from '../EmptyState'
-import FilterBar from '../FilterBar'
+import ActionMenu from '../ActionMenu'
+import FilterBar from '../EXPERIMENTAL_FilterBar'
 
 import SimpleTable from './SimpleTable'
 import Toolbar from './Toolbar'
-import EmptyState from '../EmptyState'
 import CheckboxContainer from './CheckboxContainer'
 import Totalizers from './Totalizers'
 
@@ -29,7 +29,7 @@ class Table extends PureComponent {
       tableRowHeight: this.getRowHeight(props.density),
       selectedDensity: props.density,
       allChecked: false,
-      selectedRows: [2],
+      selectedRows: [],
     }
   }
 
@@ -87,12 +87,12 @@ class Table extends PureComponent {
     return TABLE_HEADER_HEIGHT + tableRowHeight * multiplicator
   }
 
-  handleSelectAllLines = () => {
+  handleSelectAllLines = ({ fromSelectAll }) => {
     const { items } = this.props
     const { selectedRows } = this.state
     const itemsLength = items.length
 
-    if (selectedRows.length === itemsLength) {
+    if (selectedRows.length === itemsLength && !fromSelectAll) {
       this.handleDeselectAllLines()
     } else {
       const selectedRows = []
@@ -148,7 +148,15 @@ class Table extends PureComponent {
       selectedRows,
     } = this.state
 
-    if (bulkActions.length > 0) {
+    const hasPrimaryBulkAction =
+      bulkActions &&
+      bulkActions.main &&
+      typeof bulkActions.main.onClick === 'function'
+    const hasSecondaryBulkActions =
+      bulkActions.others && bulkActions.others.length > 0
+    const hasBulkActions = hasPrimaryBulkAction || hasSecondaryBulkActions
+
+    if (hasBulkActions) {
       schema.properties = {
         bulk: {
           width: 40,
@@ -218,19 +226,37 @@ class Table extends PureComponent {
         )}
         {selectedRows.length > 0 && (
           <div className="flex flex-row justify-between pa4 bg-action-primary c-on-action-primary br3 br--top">
-            <div>
-              {bulkActions.map(action => (
-                <span key={action} onClick={action}>
-                  action
-                </span>
-              ))}
-            </div>
+            {hasBulkActions && (
+              <div className="flex flex-row">
+                {hasPrimaryBulkAction && (
+                  <div className="mr4">
+                    <Button
+                      variation="secondary"
+                      onClick={() => bulkActions.main.onClick()}>
+                      {bulkActions.main.label}
+                    </Button>
+                  </div>
+                )}
+                {hasSecondaryBulkActions && (
+                  <ActionMenu
+                    label="Actions"
+                    buttonProps={{ variation: 'secondary' }}
+                    options={bulkActions.others}
+                  />
+                )}
+              </div>
+            )}
             <div className="tr">
               <span className="mr2 c-muted-4">
                 {selectedRows.length} rows selected
               </span>
               <span className="mr2">
-                <Button>select all</Button>
+                <Button
+                  onClick={() =>
+                    this.handleSelectAllLines({ fromSelectAll: true })
+                  }>
+                  select all
+                </Button>
               </span>
               <ButtonWithIcon
                 icon={close}
@@ -284,7 +310,7 @@ Table.defaultProps = {
   },
   emptyStateLabel: 'Nothing to show.',
   fullWidth: false,
-  bulkActions: [],
+  bulkActions: {},
   totalizers: [],
 }
 
@@ -381,7 +407,7 @@ Table.propTypes = {
     textOf: PropTypes.string,
     totalItems: PropTypes.number,
   }),
-  bulkActions: PropTypes.bool,
+  bulkActions: PropTypes.object,
   /** Totalizers property  */
   totalizers: PropTypes.array,
   /** Filters property  */

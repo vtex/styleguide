@@ -910,7 +910,7 @@ class ResourceListExample extends React.Component {
 Bulk actions
 
 ```js
-const sampleData = require('./sampleData').default
+// const sampleData = require('./sampleData').default
 const itemsCopy = [
   {
     email: 'olen.stamm21@yahoo.com',
@@ -962,10 +962,22 @@ const defaultSchema = {
       schema={defaultSchema}
       items={itemsCopy}
       density="high"
-      bulkActions={[
-        () => console.log('action 1'),
-        () => console.log('action 2'),
-      ]}
+      bulkActions={{
+        main: {
+          label: 'Main Ac.',
+          onClick: () => console.log('main action'),
+        },
+        others: [
+          {
+            label: 'Ac. 1',
+            onClick: () => console.log('action 1'),
+          },
+          {
+            label: 'Ac. 2',
+            onClick: () => console.log('action 2'),
+          },
+        ],
+      }}
       oonRowClick={({ rowData }) => {
         alert(
           `you just clicked ${rowData.name}, number is ${
