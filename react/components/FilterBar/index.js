@@ -10,17 +10,16 @@ const HEAVY_ICON_OPTICAL_COMPENSATION = { marginTop: '1px' }
 
 const isStatementComplete = st => st.subject && st.verb && st.object
 const filterExtraOptions = (options, alwaysVisibleFilters, statements) => {
-  const newOptions = {}
-  const optionsKeys = Object.keys(options)
-  optionsKeys.forEach(key => {
-    if (
-      !alwaysVisibleFilters.includes(key) ||
-      statements.some(st => st && st.object && st.subject && st.subject === key)
-    ) {
-      newOptions[key] = options[key]
-    }
-  })
-  return newOptions
+  return Object.keys(options)
+    .filter(
+      key =>
+        !alwaysVisibleFilters.includes(key) &&
+        !statements.some(st => st.subject === key && st.object)
+    )
+    .reduce(
+      (filteredOptions, key) => ({ ...filteredOptions, [key]: options[key] }),
+      {}
+    )
 }
 
 const FILTER_VALUE_LABEL_MAX_LENGTH = 17
