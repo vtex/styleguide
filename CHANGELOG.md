@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- **Box** added a new noPadding prop.
+
 ## [8.30.2] - 2019-04-10
 
 ### Changed
