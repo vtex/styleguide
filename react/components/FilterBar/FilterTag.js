@@ -26,7 +26,7 @@ const filterStatementBySubject = (statements = [], subject, options = {}) => {
           ...emptyVirtualStatement,
           subject: subject,
           verb:
-            options[subject] && options[subject].verbs.length === 1
+            options[subject] && options[subject].verbs.length > 0
               ? options[subject].verbs[0].value
               : null,
         },
