@@ -52,18 +52,21 @@ class SubjectAtom extends React.Component {
       return false
     })
 
+    const valueOption = uniqueOptions.find(op => op.value === condition.subject)
+    const valueLabel = (valueOption && valueOption.label) || condition.subject
+
     return (
       <div className={`mh3 ${isFullWidth ? 'pb3' : ''}`}>
         <Select
           ref={forwardedRef}
           placeholder={placeholder}
           options={uniqueOptions}
-          defaultValue={
+          value={
             !condition.subject
               ? null
               : {
                   value: condition.subject,
-                  label: condition.subject,
+                  label: valueLabel,
                 }
           }
           onChange={option => {

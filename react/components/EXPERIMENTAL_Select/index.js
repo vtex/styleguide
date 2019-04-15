@@ -202,6 +202,8 @@ Select.propTypes = {
   forwardedRef: refShape,
   /** Select auto focus */
   autoFocus: PropTypes.bool,
+  /** Should clear button appear */
+  clearable: PropTypes.bool,
   /** Creatable options. */
   creatable: PropTypes.bool,
   /** Default value */
@@ -255,8 +257,6 @@ Select.propTypes = {
   ]),
   /** Max height (in _px_) of the selected values container */
   valuesMaxHeight: PropTypes.number,
-  /** should clear button appear */
-  clearable: PropTypes.bool,
 }
 
 export default withForwardedRef(Select)
