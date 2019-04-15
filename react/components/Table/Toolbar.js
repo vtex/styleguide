@@ -371,8 +371,8 @@ Toolbar.propTypes = {
       isLoading: PropTypes.bool,
     }),
     newLine: PropTypes.shape({
-      label: PropTypes.string,
-      handleCallback: PropTypes.func,
+      label: PropTypes.string.isRequired,
+      handleCallback: PropTypes.func.isRequired,
       disabled: PropTypes.bool,
     }),
   }),
