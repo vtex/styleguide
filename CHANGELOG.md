@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
 - **FilterBar** fix filterExtraOptions logic for "More Filters" option
 - **FilterBar** auto-select first verb for filter statements
 - **FilterBar** make Popover Menu style compatible with Figma
