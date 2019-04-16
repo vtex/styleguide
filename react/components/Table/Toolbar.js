@@ -116,6 +116,7 @@ class Toolbar extends PureComponent {
     const isExtraActionsVisible =
       extraActions && extraActions.label && extraActions.actions.length > 0
     const isNewLineVisible = newLine && newLine.label
+    const isSearchBarVisible = !!inputSearch
     const isDensityVisible =
       density &&
       density.buttonLabel &&
@@ -124,7 +125,11 @@ class Toolbar extends PureComponent {
       density.highOptionLabel
 
     return (
-      <div id="toolbar" className="mb5 flex flex-row justify-between w-100">
+      <div
+        id="toolbar"
+        className={`mb5 flex flex-row w-100 ${
+          isSearchBarVisible ? 'justify-between' : 'justify-end'
+        }`}>
         {inputSearch && (
           <form className="w-40" onSubmit={this.handleInputSearchSubmit}>
             <InputSearch disabled={loading} {...inputSearch} />
