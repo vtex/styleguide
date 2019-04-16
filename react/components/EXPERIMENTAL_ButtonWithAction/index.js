@@ -18,10 +18,16 @@ function EXPERIMENTAL_ButtonWithAction(props) {
   )
 
   const { actions, ...buttonProps } = props
+  /* eslint-disable-next-line no-unused-vars */
+  const { icon: _, ...actionMenuButtonProps } = buttonProps
   return (
     <div className="flex">
       <ButtonWithIcon {...buttonProps} groupRight />
-      <ActionMenu options={actions} groupLeft />
+      <ActionMenu
+        buttonProps={actionMenuButtonProps}
+        options={actions}
+        groupLeft
+      />
     </div>
   )
 }
