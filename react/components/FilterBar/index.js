@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
@@ -11,17 +10,16 @@ const HEAVY_ICON_OPTICAL_COMPENSATION = { marginTop: '1px' }
 
 const isStatementComplete = st => st.subject && st.verb && st.object
 const filterExtraOptions = (options, alwaysVisibleFilters, statements) => {
-  const newOptions = {}
-  const optionsKeys = Object.keys(options)
-  optionsKeys.forEach(key => {
-    if (
-      !alwaysVisibleFilters.includes(key) ||
-      statements.some(st => st && st.object && st.subject && st.subject === key)
-    ) {
-      newOptions[key] = options[key]
-    }
-  })
-  return newOptions
+  return Object.keys(options)
+    .filter(
+      key =>
+        !alwaysVisibleFilters.includes(key) &&
+        !statements.some(st => st.subject === key && st.object)
+    )
+    .reduce(
+      (filteredOptions, key) => ({ ...filteredOptions, [key]: options[key] }),
+      {}
+    )
 }
 
 const FILTER_VALUE_LABEL_MAX_LENGTH = 17
@@ -30,10 +28,7 @@ const truncateFilterValue = filterValue =>
     filterValue.length <= FILTER_VALUE_LABEL_MAX_LENGTH ? '' : '…'
   }`
 
-/**
- * @visibleName FilterBar
- */
-class EXPERIMENTAL_FilterBar extends PureComponent {
+class FilterBar extends PureComponent {
   constructor(props) {
     super(props)
 
@@ -104,16 +99,6 @@ class EXPERIMENTAL_FilterBar extends PureComponent {
     this.changeStatementsCallback([])
   }
 
-  componentDidMount() {
-    console.warn(
-      `Experimental component warning:
-
-       Filter component is in an experimental state.
-       This component may suffer breaking changes in a near future, even in minor or patch versions.
-       It may even cease to exist without further notice 👻`
-    )
-  }
-
   render() {
     const {
       options,
@@ -122,6 +107,9 @@ class EXPERIMENTAL_FilterBar extends PureComponent {
       clearAllFiltersButtonLabel,
       statements,
       collapseLeft,
+      subjectPlaceholder,
+      submitFilterLable,
+      newFilterLable,
     } = this.props
     const { visibleExtraOptions } = this.state
     const optionsKeys = Object.keys(options)
@@ -152,6 +140,7 @@ class EXPERIMENTAL_FilterBar extends PureComponent {
                         '…'
                       )
                     }}
+                    submitFilterLable={submitFilterLable}
                     subject={subject}
                     options={options}
                     statements={statements}
@@ -166,8 +155,10 @@ class EXPERIMENTAL_FilterBar extends PureComponent {
             <div className="ma2">
               <FilterTag
                 isMoreOptions
-                subjectPlaceholder="Select a filter…"
+                subjectPlaceholder={subjectPlaceholder}
                 getFilterLabel={() => moreOptionsLabel}
+                submitFilterLable={submitFilterLable}
+                newFilterLable={newFilterLable}
                 options={{
                   ...filterExtraOptions(
                     options,
@@ -206,14 +197,17 @@ class EXPERIMENTAL_FilterBar extends PureComponent {
   }
 }
 
-EXPERIMENTAL_FilterBar.defaultProps = {
+FilterBar.defaultProps = {
   options: [],
   moreOptionsLabel: 'More',
   alwaysVisibleFilters: [],
   collapseLeft: false,
+  subjectPlaceholder: 'Select a filter…',
+  submitFilterLable: 'Ok',
+  newFilterLable: 'New Filter',
 }
 
-EXPERIMENTAL_FilterBar.propTypes = {
+FilterBar.propTypes = {
   /** filter options (mirroring statements from Conditions component) */
   options: PropTypes.object.isRequired,
   /** filter statements (mirroring statements from Conditions component) */
@@ -228,6 +222,12 @@ EXPERIMENTAL_FilterBar.propTypes = {
   clearAllFiltersButtonLabel: PropTypes.string,
   /** Cancels out left padding */
   collapseLeft: PropTypes.bool,
+  /** Subject select placeholder inside 'More options' */
+  subjectPlaceholder: PropTypes.string,
+  /** Submit button lable for statement inside FilterTag */
+  submitFilterLable: PropTypes.string,
+  /** New Filter title lable for inside the 'More options' menu */
+  newFilterLable: PropTypes.string,
 }
 
-export default EXPERIMENTAL_FilterBar
+export default FilterBar

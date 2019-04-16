@@ -5,7 +5,7 @@ import reduce from 'lodash/reduce'
 import Box from '../Box'
 import Pagination from '../Pagination'
 import EmptyState from '../EmptyState'
-import FilterBar from '../EXPERIMENTAL_FilterBar'
+import FilterBar from '../FilterBar'
 
 import SimpleTable from './SimpleTable'
 import Toolbar from './Toolbar'

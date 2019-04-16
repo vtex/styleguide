@@ -8,10 +8,9 @@ Different from regular filter panels, ours optimizes for both the screen real-es
 
 ### 👍 Dos
 
- - Apply user research to choose which filters to show in the highlighted section.
- - Use the FilterBar always on top of the content that will be filtered.
- - Try offering as many filters and operators as possible. With the diversity of operations VTEX supports, we can never predict all the diverse use cases our merchants need.
-
+- Apply user research to choose which filters to show in the highlighted section.
+- Use the FilterBar always on top of the content that will be filtered.
+- Try offering as many filters and operators as possible. With the diversity of operations VTEX supports, we can never predict all the diverse use cases our merchants need.
 
 ### 👎 Don'ts
 
@@ -90,7 +89,7 @@ class MySimpleFilter extends React.Component {
 
   render() {
     return (
-      <EXPERIMENTAL_FilterBar
+      <FilterBar
         alwaysVisibleFilters={['id', 'category', 'brand']}
         statements={this.state.statements}
         onChangeStatements={statements => this.setState({ statements })}
@@ -270,8 +269,9 @@ class MyUsersFilter extends React.Component {
             <div className="mb3" key={`class-statment-object-${opt}-${index}`}>
               <Checkbox
                 checked={values ? values[opt] : initialValue[opt]}
+                id={`class-${opt}`}
                 label={opt}
-                name="default-checkbox-group"
+                name="class-checkbox-group"
                 onChange={() =>
                   onChangeObjectCallback(toggleValueByKey(`${opt}`))
                 }
@@ -286,7 +286,7 @@ class MyUsersFilter extends React.Component {
 
   render() {
     return (
-      <EXPERIMENTAL_FilterBar
+      <FilterBar
         alwaysVisibleFilters={['name', 'email', 'class']}
         statements={this.state.statements}
         onChangeStatements={statements => this.setState({ statements })}
@@ -558,7 +558,7 @@ class MyOrdersFilter extends React.Component {
         <br />
         <DatePicker
           label="from"
-          value={values && values.from || new Date()}
+          value={(values && values.from) || new Date()}
           onChange={date => {
             onChangeObjectCallback({ ...(values || {}), from: date })
           }}
@@ -567,7 +567,7 @@ class MyOrdersFilter extends React.Component {
         <br />
         <DatePicker
           label="to"
-          value={values && values.to || new Date()}
+          value={(values && values.to) || new Date()}
           onChange={date => {
             onChangeObjectCallback({ ...(values || {}), to: date })
           }}
@@ -587,15 +587,15 @@ class MyOrdersFilter extends React.Component {
   }) {
     const initialValue = {
       'Window to cancelation': true,
-      'Canceling': true,
-      'Canceled': true,
+      Canceling: true,
+      Canceled: true,
       'Payment pending': true,
       'Payment approved': true,
       'Ready for handling': true,
       'Handling shipping': true,
       'Ready for invoice': true,
-      'Invoiced': true,
-      'Complete': true,
+      Invoiced: true,
+      Complete: true,
       ...(values || {}),
     }
     const toggleValueByKey = key => {
@@ -612,8 +612,9 @@ class MyOrdersFilter extends React.Component {
             <div className="mb3" key={`class-statment-object-${opt}-${index}`}>
               <Checkbox
                 checked={values ? values[opt] : initialValue[opt]}
+                id={`status-${opt}`}
                 label={opt}
-                name="default-checkbox-group"
+                name="status-checkbox-group"
                 onChange={() =>
                   onChangeObjectCallback(toggleValueByKey(`${opt}`))
                 }
@@ -628,7 +629,7 @@ class MyOrdersFilter extends React.Component {
 
   render() {
     return (
-      <EXPERIMENTAL_FilterBar
+      <FilterBar
         alwaysVisibleFilters={['id', 'email', 'status', 'invoicedate']}
         statements={this.state.statements}
         onChangeStatements={statements => this.setState({ statements })}
