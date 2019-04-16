@@ -309,7 +309,7 @@ class Toolbar extends PureComponent {
           {isNewLineVisible && (
             <ButtonWithIcon
               icon={<IconPlus solid size={LIGHT_ICON_SIZE} />}
-              disabled={loading}
+              disabled={loading || newLine.disabled}
               isLoading={newLine.isLoading}
               variation="primary"
               size="small"
@@ -369,6 +369,11 @@ Toolbar.propTypes = {
       ),
       alignMenu: PropTypes.oneOf(['right', 'left']),
       isLoading: PropTypes.bool,
+    }),
+    newLine: PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      handleCallback: PropTypes.func.isRequired,
+      disabled: PropTypes.bool,
     }),
   }),
   schema: PropTypes.object.isRequired,

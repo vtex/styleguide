@@ -272,8 +272,9 @@ Table.propTypes = {
       alignMenu: PropTypes.oneOf(['right', 'left']),
     }),
     newLine: PropTypes.shape({
-      label: PropTypes.string,
-      handleCallback: PropTypes.func,
+      label: PropTypes.string.isRequired,
+      handleCallback: PropTypes.func.isRequired,
+      disabled: PropTypes.bool,
     }),
   }),
   pagination: PropTypes.shape({
