@@ -21,7 +21,7 @@ const Tabs = ({ children, fullWidth, sticky }) => {
         )}
       </div>
       <div
-        className={`vtex-tabs__content w-100 flex ${
+        className={`vtex-tabs__content w-100 ${
           sticky ? 'overflow-y-auto' : ''
         }`}>
         {content}
