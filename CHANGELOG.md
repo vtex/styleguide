@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.36.0] - 2019-04-17
+
+### Added
+
+- **EXPERIMENTAL_ButtonWithAction** new component in _EXPERIMENTAL_ mode.
+
 ## [8.35.1] - 2019-04-16
 
 ### Fixed

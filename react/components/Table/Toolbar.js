@@ -12,6 +12,10 @@ import IconDownload from '../icon/Download'
 import IconPlus from '../icon/Plus'
 import IconUpload from '../icon/Upload'
 import IconOptionsDots from '../icon/OptionsDots'
+
+// eslint-disable-next-line camelcase
+import EXPERIMENTAL_ButtonWithAction from '../EXPERIMENTAL_ButtonWithAction'
+
 const MAX_FIELDS_BOX_HEIGHT = 192
 const FIELDS_BOX_ITEM_HEIGHT = 36
 const FIELDS_BOX_WIDTH = 292
@@ -306,17 +310,29 @@ class Toolbar extends PureComponent {
               />
             </div>
           )}
-          {isNewLineVisible && (
-            <ButtonWithIcon
-              icon={<IconPlus solid size={LIGHT_ICON_SIZE} />}
-              disabled={loading || newLine.disabled}
-              isLoading={newLine.isLoading}
-              variation="primary"
-              size="small"
-              onClick={newLine.handleCallback}>
-              {newLine.label}
-            </ButtonWithIcon>
-          )}
+          {isNewLineVisible &&
+            (newLine.actions ? (
+              /* eslint-disable-next-line react/jsx-pascal-case */
+              <EXPERIMENTAL_ButtonWithAction
+                actions={newLine.actions}
+                disabled={loading || newLine.disabled}
+                isLoading={newLine.isLoading}
+                variation="primary"
+                size="small"
+                onClick={newLine.handleCallback}>
+                {newLine.label}
+              </EXPERIMENTAL_ButtonWithAction>
+            ) : (
+              <ButtonWithIcon
+                icon={<IconPlus solid size={LIGHT_ICON_SIZE} />}
+                disabled={loading || newLine.disabled}
+                isLoading={newLine.isLoading}
+                variation="primary"
+                size="small"
+                onClick={newLine.handleCallback}>
+                {newLine.label}
+              </ButtonWithIcon>
+            ))}
         </div>
       </div>
     )
@@ -374,6 +390,16 @@ Toolbar.propTypes = {
       label: PropTypes.string.isRequired,
       handleCallback: PropTypes.func.isRequired,
       disabled: PropTypes.bool,
+      actions: PropTypes.arrayOf(
+        PropTypes.shape({
+          label: PropTypes.string,
+          handleCallback: PropTypes.func,
+          toggle: PropTypes.shape({
+            checked: PropTypes.bool,
+            semantic: PropTypes.bool,
+          }),
+        })
+      ),
     }),
   }),
   schema: PropTypes.object.isRequired,

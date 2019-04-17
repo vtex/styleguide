@@ -155,6 +155,7 @@ module.exports = {
           components: [
             'react/components/EXPERIMENTAL_Conditions/index.js',
             'react/components/EXPERIMENTAL_Select/index.js',
+            'react/components/EXPERIMENTAL_ButtonWithAction/index.js',
           ],
         },
       ],
