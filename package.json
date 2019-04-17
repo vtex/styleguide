@@ -1,6 +1,6 @@
 {
   "name": "@vtex/styleguide",
-  "version": "9.35.1",
+  "version": "9.36.0",
   "scripts": {
     "test": "react-scripts test --env=jsdom --testPathIgnorePatterns=\"<rootDir>/react/node_modules\" --moduleDirectories=node_modules --testMatch=\"<rootDir>/react/**/?(*.)+(spec|test).js\" --setupTestFrameworkScriptFile=\"<rootDir>/setupTests.js\"",
     "test:codemod": "jest codemod",
