@@ -9,7 +9,7 @@ import Close from '../icon/Close'
 import Pagination from '../Pagination'
 import EmptyState from '../EmptyState'
 import ActionMenu from '../ActionMenu'
-import FilterBar from '../EXPERIMENTAL_FilterBar'
+import FilterBar from '../FilterBar'
 
 import SimpleTable from './SimpleTable'
 import Toolbar from './Toolbar'
