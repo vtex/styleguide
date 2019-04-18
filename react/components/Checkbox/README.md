@@ -17,7 +17,7 @@
 Default
 
 ```js
-initialState = { check1: true, check2: false }
+initialState = { check1: true, check2: false, check3: false }
 ;<div>
   <div className="mb3">
     <Checkbox
@@ -31,21 +31,21 @@ initialState = { check1: true, check2: false }
   </div>
   <div className="mb3">
     <Checkbox
-      checked={false}
+      checked={state.check2}
       partial={true}
       id="option-3"
       label="Partial"
       name="default-checkbox-group"
-      onChange={() => {}}
+      onChange={e => setState({ check2: !state.check2 })}
       value="option-3"
     />
   </div>
   <Checkbox
-    checked={state.check2}
+    checked={state.check3}
     id="option-1"
     label="Not checked"
     name="default-checkbox-group"
-    onChange={e => setState({ check2: !state.check2 })}
+    onChange={e => setState({ check3: !state.check3 })}
     value="option-1"
   />
 </div>
@@ -90,7 +90,7 @@ Disabled
 Without label
 
 ```js
-initialState = { check1: true, check2: false }
+initialState = { check1: true, check2: false, check3: false }
 ;<div>
   <div className="mb3">
     <Checkbox
@@ -102,17 +102,17 @@ initialState = { check1: true, check2: false }
   </div>
   <div className="mb3">
     <Checkbox
-      checked={false}
+      checked={state.check2}
       partial={true}
       name="disabled-checkbox-group"
-      onChange={() => {}}
+      onChange={e => setState({ check2: !state.check2 })}
       value="option-1"
     />
   </div>
   <Checkbox
-    checked={state.check2}
+    checked={state.check3}
     name="disabled-checkbox-group"
-    onChange={e => setState({ check2: !state.check2 })}
+    onChange={e => setState({ check3: !state.check3 })}
     value="option-1"
   />
 </div>
