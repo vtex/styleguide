@@ -17,24 +17,35 @@
 Default
 
 ```js
-initialState = { check1: true, check2: false }
+initialState = { check1: true, check2: false, check3: false }
 ;<div>
   <div className="mb3">
     <Checkbox
       checked={state.check1}
       id="option-0"
-      label="Option 0"
+      label="Checked"
       name="default-checkbox-group"
       onChange={e => setState({ check1: !state.check1 })}
       value="option-0"
     />
   </div>
+  <div className="mb3">
+    <Checkbox
+      checked={state.check2}
+      partial={true}
+      id="option-3"
+      label="Partial"
+      name="default-checkbox-group"
+      onChange={e => setState({ check2: !state.check2 })}
+      value="option-3"
+    />
+  </div>
   <Checkbox
-    checked={state.check2}
+    checked={state.check3}
     id="option-1"
-    label="Option 1"
+    label="Not checked"
     name="default-checkbox-group"
-    onChange={e => setState({ check2: !state.check2 })}
+    onChange={e => setState({ check3: !state.check3 })}
     value="option-1"
   />
 </div>
@@ -43,24 +54,65 @@ initialState = { check1: true, check2: false }
 Disabled
 
 ```js
-initialState = { check1: true, check2: false }
+<div>
+  <div className="mb3">
+    <Checkbox
+      checked={true}
+      disabled
+      label="Option 1"
+      name="disabled-checkbox-group"
+      onChange={() => {}}
+      value="option-1"
+    />
+  </div>
+  <div className="mb3">
+    <Checkbox
+      checked={false}
+      partial={true}
+      disabled
+      label="Option 2"
+      name="disabled-checkbox-group"
+      onChange={() => {}}
+      value="option-2"
+    />
+  </div>
+  <Checkbox
+    checked={false}
+    disabled
+    label="Option 3"
+    name="disabled-checkbox-group"
+    onChange={() => {}}
+    value="option-3"
+  />
+</div>
+```
+
+Without label
+
+```js
+initialState = { check1: true, check2: false, check3: false }
 ;<div>
   <div className="mb3">
     <Checkbox
       checked={state.check1}
-      disabled
-      label="Option 0"
       name="disabled-checkbox-group"
-      onChange={() => {}}
+      onChange={e => setState({ check1: !state.check1 })}
       value="option-0"
     />
   </div>
+  <div className="mb3">
+    <Checkbox
+      checked={state.check2}
+      partial={true}
+      name="disabled-checkbox-group"
+      onChange={e => setState({ check2: !state.check2 })}
+      value="option-1"
+    />
+  </div>
   <Checkbox
-    checked={state.check2}
-    disabled
-    label="Option 1"
+    checked={state.check3}
     name="disabled-checkbox-group"
-    onChange={() => {}}
+    onChange={e => setState({ check3: !state.check3 })}
     value="option-1"
   />
 </div>

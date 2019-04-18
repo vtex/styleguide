@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.37.0] - 2019-04-18
+
+### Added
+
+- **CheckPartial** icon for new partial state in Checkbox.
+
 ## [8.36.2] - 2019-04-18
 ### Fixed
 - Fix `withForwardedRef` type, remove oneOfType usage.
