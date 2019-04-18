@@ -2,15 +2,22 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import CheckIcon from '../icon/Check'
-
-const OPTICAL_COMPENSATION_WITH_LABEL = -1.5
-const OPTICAL_COMPENSATION_WITHOUT_LABEL = -2
+import CheckPartial from '../icon/CheckPartial'
 
 class Checkbox extends PureComponent {
   handleChange = e => !this.props.disabled && this.props.onChange(e)
 
   render() {
-    const { checked, disabled, id, label, name, required, value } = this.props
+    const {
+      checked,
+      disabled,
+      id,
+      label,
+      name,
+      required,
+      value,
+      partial,
+    } = this.props
 
     return (
       <div
@@ -18,37 +25,41 @@ class Checkbox extends PureComponent {
           pointer: !disabled,
         })}>
         <div
-          className={classNames(
-            'h1 w1 relative ba bw1 br1 flex justify-center items-center',
-            {
-              'b--muted-4 pointer': !checked && !disabled,
-              'b--disabled bg-muted-5 c-disabled': !checked && disabled,
-              'b--action-primary bg-action-primary': checked && !disabled,
-              'b--disabled bg-disabled': checked && disabled,
-              mr3: label,
-            }
-          )}
+          className={classNames('h1 w1 relative ba bw1 br1 ', {
+            'b--muted-4 pointer': !checked && !disabled,
+            'b--disabled bg-muted-5 c-disabled': !checked && disabled,
+            'b--action-primary bg-action-primary': checked && !disabled,
+            'b--muted-5 bg-muted-5': partial && !checked && disabled,
+            'b--disabled bg-disabled': checked && disabled,
+            mr3: label,
+          })}
           style={{
             transition: 'background 20ms, border 100ms',
+            backgroundColor: partial && !checked && !disabled && '#dbe9fd',
+            borderColor: partial && !checked && !disabled && '#dbe9fd',
           }}
         />
         <div
           className="absolute w1 h1 flex o-100"
           style={{
-            left: 2,
-            top: label
-              ? OPTICAL_COMPENSATION_WITH_LABEL
-              : OPTICAL_COMPENSATION_WITHOUT_LABEL,
+            left: 0,
+            top: label && 1, // The lack of label creates a small gap
           }}>
           <div
-            className={`absolute top-0 left-0 bottom-0 overflow-hidden ${
+            className={`absolute top-0 left-0 bottom-0 overflow-hidden w-100 flex items-center align-center justify-center ${
               disabled ? 'c-on-disabled' : 'c-on-action-primary'
             }`}
-            style={{
-              right: checked ? 0 : '100%',
-              transition: 'right 110ms ease-in-out 30ms',
-            }}>
-            <CheckIcon size={11} color="currentColor" />
+            style={{ transition: 'right 110ms ease-in-out 30ms' }}>
+            {checked ? (
+              <CheckIcon size={12} color="currentColor" />
+            ) : (
+              partial && (
+                <CheckPartial
+                  size={12}
+                  color={disabled ? '#979899' : '#1346d8'}
+                />
+              )
+            )}
           </div>
         </div>
         <input
@@ -84,6 +95,7 @@ Checkbox.defaultProps = {
   checked: false,
   disabled: false,
   required: false,
+  partial: false,
 }
 
 Checkbox.propTypes = {
@@ -92,7 +104,7 @@ Checkbox.propTypes = {
   /** (Input spec attribute) */
   disabled: PropTypes.bool,
   /** (Input spec attribute) */
-  id: PropTypes.string,
+  id: PropTypes.string.isRequired,
   /** Checkbox label */
   label: PropTypes.string,
   /** (Input spec attribute) */
@@ -103,6 +115,8 @@ Checkbox.propTypes = {
   required: PropTypes.bool,
   /** (Input spec attribute) */
   value: PropTypes.string.isRequired,
+  /** Partial state */
+  partial: PropTypes.bool,
 }
 
 export default Checkbox

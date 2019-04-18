@@ -7,7 +7,7 @@ const iconBase = {
   height: 12,
 }
 
-class Check extends PureComponent {
+class CheckPartial extends PureComponent {
   render() {
     const { color, size, block } = this.props
     const newSize = calcIconSize(iconBase, size)
@@ -20,25 +20,22 @@ class Check extends PureComponent {
         viewBox="0 0 12 12"
         fill="none"
         xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M10.8 4.4L9.4 3L5.4 7L3.4 5L2 6.4L5.4 9.8L10.8 4.4Z"
-          fill={color}
-        />
+        <path d="M2 5V7H10V5H2Z" fill={color} />
       </svg>
     )
   }
 }
 
-Check.defaultProps = {
+CheckPartial.defaultProps = {
   color: 'currentColor',
   size: 16,
   block: false,
 }
 
-Check.propTypes = {
+CheckPartial.propTypes = {
   color: PropTypes.string,
   size: PropTypes.number,
   block: PropTypes.bool,
 }
 
-export default Check
+export default CheckPartial
