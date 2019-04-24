@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- **PageHeader** `title` prop to `node` as the new messages builder requires the use of `<FormatedMessage />`
+
 ## [8.37.1] - 2019-04-24
 
 ### Fixed
