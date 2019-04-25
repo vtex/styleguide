@@ -3,23 +3,24 @@ import PropTypes from 'prop-types'
 import reduce from 'lodash/reduce'
 
 import Box from '../Box'
-import Button from '../Button'
-import ButtonWithIcon from '../ButtonWithIcon'
-import Close from '../icon/Close'
+// import Button from '../Button'
+// import ButtonWithIcon from '../ButtonWithIcon'
+// import Close from '../icon/Close'
 import Pagination from '../Pagination'
 import EmptyState from '../EmptyState'
-import ActionMenu from '../ActionMenu'
+// import ActionMenu from '../ActionMenu'
 import FilterBar from '../FilterBar'
 
 import SimpleTable from './SimpleTable'
 import Toolbar from './Toolbar'
 import CheckboxContainer from './CheckboxContainer'
 import Totalizers from './Totalizers'
+import BulkActions from './BulkActions'
 
 const TABLE_HEADER_HEIGHT = 36
 const EMPTY_STATE_SIZE_IN_ROWS = 5
 
-const close = <Close />
+// const close = <Close />
 
 class Table extends PureComponent {
   constructor(props) {
@@ -217,10 +218,6 @@ class Table extends PureComponent {
       properties: displayProperties,
     }
 
-    const buldkActionsReturnedParameters = allLinesSelected
-      ? { allLinesSelected: true }
-      : { selectedRows }
-
     return (
       <div className="vtex-table__container">
         {toolbar && (
@@ -248,62 +245,15 @@ class Table extends PureComponent {
           <Totalizers items={totalizers} />
         )}
 
-        {selectedRows.length > 0 && (
-          <div className="flex flex-row justify-between pa4 bg-action-primary c-on-action-primary br3 br--top">
-            {hasBulkActions && (
-              <div className="flex flex-row">
-                {hasPrimaryBulkAction && (
-                  <div className="mr4">
-                    <Button
-                      variation="secondary"
-                      onClick={() =>
-                        bulkActions.main.onClick(buldkActionsReturnedParameters)
-                      }>
-                      {bulkActions.main.label}
-                    </Button>
-                  </div>
-                )}
-                {hasSecondaryBulkActions && (
-                  <ActionMenu
-                    label={bulkActions.texts.secondaryActionsLabel}
-                    buttonProps={{ variation: 'secondary' }}
-                    options={bulkActions.others.map(el => ({
-                      label: el.label,
-                      onClick: () => el.onClick(buldkActionsReturnedParameters),
-                    }))}
-                  />
-                )}
-              </div>
-            )}
-            <div className="tr">
-              {!allLinesSelected && (
-                <span className="mr4 c-muted-4">
-                  {selectedRows.length} {bulkActions.texts.rowsSelected}
-                </span>
-              )}
-              <span className="mr2">
-                {allLinesSelected ? (
-                  <span>
-                    {bulkActions.texts.allRowsSelected}{' '}
-                    <span className="b">{bulkActions.totalItems}</span>
-                  </span>
-                ) : (
-                  <Button onClick={this.handleSelectAllLines}>
-                    <span className="ttu">
-                      {`${bulkActions.texts.selectAll} ${
-                        bulkActions.totalItems
-                      }`}
-                    </span>
-                  </Button>
-                )}
-              </span>
-              <ButtonWithIcon
-                icon={close}
-                onClick={this.handleDeselectAllLines}
-              />
-            </div>
-          </div>
-        )}
+        <BulkActions
+          hasPrimaryBulkAction={hasPrimaryBulkAction}
+          hasSecondaryBulkActions={hasSecondaryBulkActions}
+          selectedRows={selectedRows}
+          bulkActions={bulkActions}
+          allLinesSelected={allLinesSelected}
+          onSelectAllLines={this.handleSelectAllLines}
+          onDeselectAllLines={this.handleDeselectAllLines}
+        />
 
         {emptyState ? (
           <Box>
