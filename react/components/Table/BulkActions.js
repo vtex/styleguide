@@ -37,7 +37,7 @@ class BulkActions extends PureComponent {
           }
         )}
         style={{
-          height: hasRowsSelected ? '64px' : 0,
+          height: hasRowsSelected ? '56px' : 0,
           overflow: hasRowsSelected ? 'auto' : 'hidden',
           transition: 'height 0.3s ease-out, padding 0.3s ease',
         }}>
@@ -47,6 +47,7 @@ class BulkActions extends PureComponent {
               <div className="mr4">
                 <Button
                   variation="secondary"
+                  size="small"
                   onClick={() =>
                     bulkActions.main.onClick(bulkActionsReturnedParameters)
                   }>
@@ -57,7 +58,7 @@ class BulkActions extends PureComponent {
             {hasSecondaryBulkActions && (
               <ActionMenu
                 label={bulkActions.texts.secondaryActionsLabel}
-                buttonProps={{ variation: 'secondary' }}
+                buttonProps={{ variation: 'secondary', size: 'small' }}
                 options={bulkActions.others.map(el => ({
                   label: el.label,
                   onClick: () => el.onClick(bulkActionsReturnedParameters),
@@ -66,7 +67,7 @@ class BulkActions extends PureComponent {
             )}
           </div>
         )}
-        <div className="tr">
+        <div className="tr flex flex-row items-center">
           {!allLinesSelected && bulkActions && bulkActions.texts && (
             <span className="mr4 c-muted-4">
               {selectedRows.length} {bulkActions.texts.rowsSelected}
@@ -105,6 +106,7 @@ BulkActions.defaultProps = {
   allLinesSelected: false,
   selectedRows: [],
   bulkActions: {},
+  onSelectAllLines: () => {},
 }
 
 BulkActions.propTypes = {
