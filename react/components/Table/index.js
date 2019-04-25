@@ -164,13 +164,24 @@ class Table extends PureComponent {
       schema.properties = {
         bulk: {
           width: 40,
-          headerRenderer: () => (
-            <CheckboxContainer
-              checked={this.state.selectedRows.length === items.length}
-              onClick={this.handleSelectAllVisibleLines}
-              id="all"
-            />
-          ),
+          headerRenderer: () => {
+            const { selectedRows } = this.state
+            const selectedRowsLength = selectedRows.length
+            const itemsLength = items.length
+
+            const isChecked = selectedRowsLength === itemsLength
+            const isPartial =
+              selectedRowsLength > 0 && selectedRowsLength < itemsLength
+
+            return (
+              <CheckboxContainer
+                checked={isChecked}
+                onClick={this.handleSelectAllVisibleLines}
+                id="all"
+                partial={isPartial}
+              />
+            )
+          },
           cellRenderer: ({ rowData }) => (
             <CheckboxContainer
               checked={this.state.selectedRows.some(
@@ -226,11 +237,13 @@ class Table extends PureComponent {
             actions={toolbar}
           />
         )}
+
         {filters && (
           <div className="mb5">
             <FilterBar {...filters} />
           </div>
         )}
+
         {totalizers && totalizers.length > 0 && (
           <Totalizers items={totalizers} />
         )}
@@ -291,6 +304,7 @@ class Table extends PureComponent {
             </div>
           </div>
         )}
+
         {emptyState ? (
           <Box>
             <EmptyState title={emptyStateLabel}>
@@ -319,6 +333,7 @@ class Table extends PureComponent {
             }
           />
         )}
+
         {!loading && pagination && <Pagination {...pagination} />}
       </div>
     )
