@@ -99,7 +99,7 @@ class Table extends PureComponent {
     const { items } = this.props
     const itemsLength = items.length
 
-    if (selectedRows.length === itemsLength) {
+    if (selectedRows.length <= itemsLength && selectedRows.length !== 0) {
       this.handleDeselectAllLines()
     } else {
       this.setState({ selectedRows: items })

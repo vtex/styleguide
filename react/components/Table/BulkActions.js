@@ -39,7 +39,7 @@ class BulkActions extends PureComponent {
         style={{
           height: hasRowsSelected ? '56px' : 0,
           overflow: hasRowsSelected ? 'auto' : 'hidden',
-          transition: 'height 0.3s ease-out, padding 0.3s ease',
+          transition: 'height 0.2s ease-in-out, padding 0.2s ease-in-out',
         }}>
         {hasBulkActions && (
           <div className="flex flex-row">
