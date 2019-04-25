@@ -966,6 +966,7 @@ const defaultSchema = {
         texts: {
           secondaryActionsLabel: 'Actions',
           rowsSelected: 'rows selected',
+          rowSelected: 'row selected',
           selectAll: 'Select all',
           allRowsSelected: 'All rows selected:',
         },
