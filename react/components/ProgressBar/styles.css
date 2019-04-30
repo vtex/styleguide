@@ -1,0 +1,20 @@
+@keyframes scroll{
+  0% {
+    transform: translate3d(0,0,0);
+  }
+  100% {
+    transform: translate3d(26px,0,0);
+  }
+}
+
+.scrollStep {
+  animation: scroll 300ms infinite linear;
+}
+
+.roundedLeft {
+  border-radius: 4px 0 0 4px
+}
+
+.roundedRight {
+  border-radius: 0 4px 4px 0
+}
