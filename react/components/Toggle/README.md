@@ -1,7 +1,7 @@
 #### A Toggle is a control for turning an option ON or OFF. Its effect is usually automatically applied, which is one of the main differences compared to checkboxes, that need a submit.
 
 ### 👍 Dos
-- The label should reflect the component state, like "On/Off", or "Enabled/Disabled", it shouldn't in imperative form (like "Enable").
+- The label should reflect the component state, like "On/Off", or "Enabled/Disabled", it shouldn't use an imperative tone (like "Enable").
 - Use the Semantic variation if turning this option ON is highly recommended from your application standpoint. In doubt prefer the default variation.
 - Be mindful of the default value of this field.
 - It's usually a good practice to be optimistic about its effect. Even if you're not sure if the resulting network request will be successful, pretend it does and let it change its state.
