@@ -1,1 +1,10 @@
 @import '//io.vtex.com.br/fonts/fabriga/stylesheet.css';
+
+.hover-card {
+  transition: all 0.2s ease-out 0s;
+}
+
+.hover-card:hover {
+  transform: translateY(-3px);
+  box-shadow: rgba(61, 62, 64, 0.1) 0px 6px 9px 0px;
+}
