@@ -19,13 +19,19 @@ class CheckboxContainer extends PureComponent {
     const { checked, partial, id, onClick } = this.props
 
     return (
-      <Checkbox
-        checked={checked}
-        partial={partial}
-        value={`${id}`}
-        name={`row_${id}`}
-        onChange={() => onClick(id)}
-      />
+      <div
+        onClick={e => {
+          e.stopPropagation()
+          // prevents the onRowClick event from happening
+        }}>
+        <Checkbox
+          checked={checked}
+          partial={partial}
+          value={`${id}`}
+          name={`row_${id}`}
+          onChange={() => onClick(id)}
+        />
+      </div>
     )
   }
 }
