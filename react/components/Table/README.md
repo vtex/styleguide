@@ -986,13 +986,6 @@ const defaultSchema = {
           },
         ],
       }}
-      oonRowClick={({ rowData }) => {
-        alert(
-          `you just clicked ${rowData.name}, number is ${
-            rowData.number
-          } and email ${rowData.email}`
-        )
-      }}
     />
   </div>
 </div>

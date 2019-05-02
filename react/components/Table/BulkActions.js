@@ -7,6 +7,8 @@ import ButtonWithIcon from '../ButtonWithIcon'
 import ActionMenu from '../ActionMenu'
 import Close from '../icon/Close'
 
+import BulkActionsSelectedRows from './BulkActionsSelectedRows'
+
 const close = <Close />
 
 class BulkActions extends PureComponent {
@@ -72,7 +74,9 @@ class BulkActions extends PureComponent {
         <div className="tr flex flex-row items-center">
           {!allLinesSelected && bulkActions && bulkActions.texts && (
             <span className="mr4 c-muted-4">
-              {selectedRowsLength}{' '}
+              <BulkActionsSelectedRows
+                selectedRowsLength={selectedRowsLength}
+              />{' '}
               {hasOneRowSelected
                 ? bulkActions.texts.rowSelected
                 : bulkActions.texts.rowsSelected}
