@@ -1031,12 +1031,9 @@ Example structure:
           }}>
             <Checkbox
               checked={this.state.check}
-              id="row-select-option"
-              name="row-select-option"
-              onChange={(e: any) => {
-                console.log(e)
-                this.setState({ check: !this.state.check })
-              }}
+              id="select-option"
+              name="select-option"
+              onChange={() => this.setState({ check: !this.state.check })}
             />
           </div>
          )
