@@ -8,6 +8,15 @@ Our Table was built to be highly composable and flexible. All parts are optional
 - Provide as many domain-specific actions as you want in the dropdown slot.
 - Line actions: should be mostly for actions that are resolved in the same screen, or if it's was identified to be a very recurrent action.
 
+### ⚙️Doc
+
+##### Bulk actions
+
+Bulk actions allow the user to select some or all the rows to apply an action. Texts have to be given to the component via a `texts` object.
+Actions are passed via the `main` object and the `others` array props. Each object is composed of a `label` and the action event via `onClick` key.
+
+Note: `onRowClick` actions are not happening when clicking the checkbox.
+
 <div className="center mw7 pv6">
   ![](./table.png)
 </div>
