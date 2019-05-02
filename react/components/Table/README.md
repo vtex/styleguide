@@ -15,6 +15,8 @@ Our Table was built to be highly composable and flexible. All parts are optional
 Bulk actions allow the user to select some or all the rows to apply an action. Texts have to be given to the component via a `texts` object.
 Actions are passed via the `main` object and the `others` array props. Each object is composed of a `label` and the action event via `onClick` key.
 
+The returned value for all lines selected is an object `allLinesSelected: true` otherwise the data of the rows are returned in the key `selectedRows` as an array.
+
 Note: `onRowClick` actions are not happening when clicking the checkbox.
 
 <div className="center mw7 pv6">
@@ -919,7 +921,6 @@ class ResourceListExample extends React.Component {
 Bulk actions
 
 ```js
-// const sampleData = require('./sampleData').default
 const itemsCopy = [
   {
     email: 'olen.stamm21@yahoo.com',
@@ -964,38 +965,36 @@ const defaultSchema = {
   },
 }
 
-;<div>
-  <div className="mb5">
-    <Table
-      fullWidth
-      schema={defaultSchema}
-      items={itemsCopy}
-      density="high"
-      bulkActions={{
-        texts: {
-          secondaryActionsLabel: 'Actions',
-          rowsSelected: 'rows selected',
-          rowSelected: 'row selected',
-          selectAll: 'Select all',
-          allRowsSelected: 'All rows selected:',
+;<div className="mb5">
+  <Table
+    fullWidth
+    schema={defaultSchema}
+    items={itemsCopy}
+    density="high"
+    bulkActions={{
+      texts: {
+        secondaryActionsLabel: 'Actions',
+        rowsSelected: 'rows selected',
+        rowSelected: 'row selected',
+        selectAll: 'Select all',
+        allRowsSelected: 'All rows selected:',
+      },
+      totalItems: 122,
+      main: {
+        label: 'Main Action',
+        handleCallback: params => console.log(params),
+      },
+      others: [
+        {
+          label: 'Action 1',
+          handleCallback: params => console.log(params),
         },
-        totalItems: 122,
-        main: {
-          label: 'Main Action',
-          onClick: params => console.log(params),
+        {
+          label: 'Action 2',
+          handleCallback: params => console.log(params),
         },
-        others: [
-          {
-            label: 'Action 1',
-            onClick: params => console.log(params),
-          },
-          {
-            label: 'Action 2',
-            onClick: params => console.log(params),
-          },
-        ],
-      }}
-    />
-  </div>
+      ],
+    }}
+  />
 </div>
 ```

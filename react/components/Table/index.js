@@ -3,12 +3,8 @@ import PropTypes from 'prop-types'
 import reduce from 'lodash/reduce'
 
 import Box from '../Box'
-// import Button from '../Button'
-// import ButtonWithIcon from '../ButtonWithIcon'
-// import Close from '../icon/Close'
 import Pagination from '../Pagination'
 import EmptyState from '../EmptyState'
-// import ActionMenu from '../ActionMenu'
 import FilterBar from '../FilterBar'
 
 import SimpleTable from './SimpleTable'
@@ -21,8 +17,6 @@ import { pluck } from 'ramda'
 
 const TABLE_HEADER_HEIGHT = 36
 const EMPTY_STATE_SIZE_IN_ROWS = 5
-
-// const close = <Close />
 
 class Table extends PureComponent {
   constructor(props) {
@@ -158,7 +152,7 @@ class Table extends PureComponent {
     const hasPrimaryBulkAction =
       bulkActions &&
       bulkActions.main &&
-      typeof bulkActions.main.onClick === 'function'
+      typeof bulkActions.main.handleCallback === 'function'
     const hasSecondaryBulkActions =
       bulkActions.others && bulkActions.others.length > 0
     const hasBulkActions = hasPrimaryBulkAction || hasSecondaryBulkActions
@@ -401,7 +395,26 @@ Table.propTypes = {
     textOf: PropTypes.string,
     totalItems: PropTypes.number,
   }),
-  bulkActions: PropTypes.object,
+  bulkActions: PropTypes.shape({
+    texts: PropTypes.shape({
+      secondaryActionsLabel: PropTypes.string.isRequired,
+      rowsSelected: PropTypes.string.isRequired,
+      rowSelected: PropTypes.string.isRequired,
+      selectAll: PropTypes.string.isRequired,
+      allRowsSelected: PropTypes.string.isRequired,
+    }),
+    totalItems: PropTypes.number,
+    main: PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      handleCallback: PropTypes.func.isRequired,
+    }),
+    others: PropTypes.arrayOf(
+      PropTypes.shape({
+        label: PropTypes.string.isRequired,
+        handleCallback: PropTypes.func.isRequired,
+      })
+    ),
+  }),
   /** Totalizers property  */
   totalizers: PropTypes.array,
   /** Filters property  */

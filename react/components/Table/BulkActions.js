@@ -53,7 +53,9 @@ class BulkActions extends PureComponent {
                   variation="secondary"
                   size="small"
                   onClick={() =>
-                    bulkActions.main.onClick(bulkActionsReturnedParameters)
+                    bulkActions.main.handleCallback(
+                      bulkActionsReturnedParameters
+                    )
                   }>
                   {bulkActions.main.label}
                 </Button>
@@ -65,7 +67,8 @@ class BulkActions extends PureComponent {
                 buttonProps={{ variation: 'secondary', size: 'small' }}
                 options={bulkActions.others.map(el => ({
                   label: el.label,
-                  onClick: () => el.onClick(bulkActionsReturnedParameters),
+                  onClick: () =>
+                    el.handleCallback(bulkActionsReturnedParameters),
                 }))}
               />
             )}
