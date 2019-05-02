@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- **vtex-tachyons** version.
+
 ## [8.38.0] - 2019-04-30
 
 ### Added
@@ -26,7 +30,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **CheckPartial** icon for new partial state in Checkbox.
 
 ## [8.36.2] - 2019-04-18
+
 ### Fixed
+
 - Fix `withForwardedRef` type, remove oneOfType usage.
 
 ## [8.36.1] - 2019-04-18
