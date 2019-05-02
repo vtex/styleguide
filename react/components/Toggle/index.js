@@ -145,7 +145,7 @@ class Toggle extends Component {
     iconStyle = { ...iconStyle, ...checkedStyle }
 
     return (
-      <label htmlFor={id || undefined}>
+      <label htmlFor={id}>
         <div
           className={`flex flex-row items-center relative ${!disabled &&
             'pointer'}`}>
@@ -163,11 +163,12 @@ class Toggle extends Component {
             )}
           </div>
           <input
-            id={id || undefined}
+            id={id}
             type="checkbox"
             className="h1 w1 absolute o-0"
             disabled={disabled}
             checked={checked}
+            name={this.props.name}
             onClick={this.props.onClick}
             onChange={this.props.onChange}
             tabIndex={0}
@@ -196,6 +197,7 @@ Toggle.propTypes = {
   disabled: PropTypes.bool,
   id: PropTypes.string,
   label: PropTypes.string,
+  name: PropTypes.string,
   onChange: PropTypes.func,
   onClick: PropTypes.func,
   size: PropTypes.oneOf(['regular', 'large']),

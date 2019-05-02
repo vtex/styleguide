@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- **Toggle** added `name` and pass it down to `input`.
+
 ## [8.38.0] - 2019-04-30
 
 ### Added
