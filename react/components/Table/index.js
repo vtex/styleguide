@@ -305,7 +305,7 @@ Table.defaultProps = {
 Table.propTypes = {
   /** Array of objects with data */
   items: PropTypes.array.isRequired,
-  /** Json Schema data model for the items (example: https://jsonschema.net/) for custom examples see code from custom components */
+  /** JSON defining the data model schema for the items (More info about it after the examples) */
   schema: PropTypes.object.isRequired,
   /** Do not render the table header (only the rows) */
   disableHeader: PropTypes.bool,

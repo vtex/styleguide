@@ -34,17 +34,14 @@ const itemsCopy = sampleData.items
 const defaultSchema = {
   properties: {
     name: {
-      type: 'string',
       title: 'Name',
       width: 300,
     },
     email: {
-      type: 'string',
       title: 'Email',
       minWidth: 350,
     },
     number: {
-      type: 'number',
       title: 'Number',
       // default is 200px
       minWidth: 100,
@@ -82,17 +79,14 @@ const itemsCopy = sampleData.items
 const defaultSchema = {
   properties: {
     name: {
-      type: 'string',
       title: 'Name',
       width: 300,
     },
     email: {
-      type: 'string',
       title: 'Email',
       minWidth: 350,
     },
     number: {
-      type: 'number',
       title: 'Number',
       // default is 200px
       minWidth: 100,
@@ -143,15 +137,12 @@ const itemsCopy = sampleData.items
 const defaultSchema = {
   properties: {
     name: {
-      type: 'string',
       title: 'Name',
     },
     email: {
-      type: 'string',
       title: 'Email',
     },
     number: {
-      type: 'number',
       title: 'Number',
     },
   },
@@ -243,7 +234,6 @@ class CustomTableExample extends React.Component {
     const customSchema = {
       properties: {
         name: {
-          type: 'string',
           title: 'Name',
           width: 300,
           // sortable boolean in a schema property makes it sortable,
@@ -251,12 +241,10 @@ class CustomTableExample extends React.Component {
           sortable: true,
         },
         email: {
-          type: 'string',
           title: 'Email',
           width: 350,
         },
         color: {
-          type: 'object',
           title: 'Color',
           // you can customize cell component render (also header component with headerRenderer)
           cellRenderer: ({ cellData }) => {
@@ -329,29 +317,17 @@ const initialState = {
 const jsonschema = {
   properties: {
     name: {
-      type: 'string',
       title: 'Name',
     },
     email: {
-      type: 'string',
       title: 'Email',
       width: 300,
     },
     number: {
-      type: 'number',
       title: 'Number',
       width: 150,
     },
     color: {
-      type: 'object',
-      properties: {
-        color: {
-          type: 'string',
-        },
-        label: {
-          type: 'string',
-        },
-      },
       title: 'Color',
       cellRenderer: ({ cellData }) => {
         return (
@@ -867,7 +843,6 @@ class ResourceListExample extends React.Component {
 
   customColorTagProperty(index) {
     return {
-      type: 'object',
       title: `Color${index ? ` ${index}` : ''}`,
       cellRenderer: ({ cellData }) => {
         return (
@@ -883,16 +858,13 @@ class ResourceListExample extends React.Component {
     const customSchema = {
       properties: {
         name: {
-          type: 'string',
           title: 'Name',
         },
         email: {
-          type: 'string',
           title: 'Email',
           width: 300,
         },
         number: {
-          type: 'number',
           title: 'Number',
         },
         color: this.customColorTagProperty(),
@@ -1001,3 +973,109 @@ const defaultSchema = {
   />
 </div>
 ```
+## Table schema
+
+The Schema property is a JSON used to define the table columns and how they should behave visually. The Schema has properties and each one of them defines a column in the table.
+Example structure:
+```md
+{
+  properties: {
+    column1: {
+      title: "First Column"
+    },
+    column2: {
+      title: "Second Column",
+      width: 350
+    }
+  }
+}
+```
+
+# Schema props
+
+#### title
+  - this prop is used to control the title which appears on table Header.
+  - It receives only strings.
+  - if you want to customize it with a component, you can use the `headerRenderer` prop.
+
+#### width
+  - this prop is used to control the column width.
+  - it receives only numbers, which are values in pixels.
+  - default value is 200px
+
+#### minWidth
+  - this prop is used to fix a minimum width to the column.
+  - it receives only numbers, which are values in pixels.
+  - default value is 200px
+
+#### cellRenderer
+  - this prop is used to customized the render method of a single column cell.
+  - it receives a function that returns a node (react component).
+  - the function has the following params: ({ cellData, rowData })
+  - default is render the value as a string.
+  - If you have a custom cell component that has a click interaction and at the same time you use the onRowClick Table prop, you might stumble uppon the problem of both click actions being fired. We can work around that by doing a wrapper around cellRenderer to stop click event propagation, like so:
+
+ ```md
+ {
+   properties: {
+     column1: {
+       cellRenderer: ({ cellData, rowData }) => {
+         return (
+          <div onClick={e => {
+            e.stopPropagation()
+            // the click event propagation start on the checkbox click below, and propagates up the DOM tree.
+            // this wrapper is going to catch the event right after it fires and stop it's propagation.
+            // stoping the click event from propagating until the row component node,
+            // so the onRowClick will not be fired.
+            // you can learm more about DOM event propagation here: http://tiny.cc/c1625y
+          }}>
+            <Checkbox
+              checked={this.state.check}
+              id="row-select-option"
+              name="row-select-option"
+              onChange={(e: any) => {
+                console.log(e)
+                this.setState({ check: !this.state.check })
+              }}
+            />
+          </div>
+         )
+       }
+     }
+   }
+ }
+ ```
+
+#### headerRenderer
+  - this prop is used to customized the render method of a single header cell.
+  - it receives a function that returns a node (react component).
+  - the function has the following params: ({ columnIndex, key, rowIndex, style, title })
+  - the style param MUST be used on your outter returned node, so the table can controll the header position, like so:
+
+ ```md
+ {
+   properties: {
+     column1: {
+       headerRenderer: ({ columnIndex, key, rowIndex, style, title }) => {
+         // if you want to customize the style, you can merge a style of your own.
+         // But be warned that if some important param is overwriten it can produce unexpected behaviour.
+         const myStyle = { backgroundColor: 'red', margin: 'auto' }
+         return (
+           <div style={{ ...style, ...myStyle }}>
+            <span class="c-link">
+              {title}
+            </span>
+           </div>
+         )
+       }
+     }
+   }
+ }
+ ```
+
+  - this prop will not work if the `sortable` prop for the same header is active.
+
+#### sortable
+  - this prop is used to sinalize that a column is sortable, so the header will be clickable.
+  - this prop receives a boolean.
+  - On sortable header's click the Table `onSort` callback will be fired.
