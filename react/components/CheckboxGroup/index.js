@@ -52,22 +52,22 @@ class CheckboxGroup extends Component {
   }
 
   render() {
-    const { checkedMap, disabled, name, id, value, label } = this.props
+    const { checkedMap, disabled, name, id, value, label, padded } = this.props
     return (
       <div>
         <Checkbox
           checked={this.isAllChecked()}
           partial={this.isPartialChecked()}
-          id={`${id}`}
+          id={id}
           name={name}
           onChange={this.handleOnGroupChange}
-          value={`${value}`}
+          value={value}
           disabled={disabled}
           label={label}
         />
-        <div className="ml7 mv5">
+        <div className={`${padded ? 'ml7' : ''} mv5`}>
           {Object.keys(checkedMap).map(key => (
-            <div key={key} className="mv6 ">
+            <div key={key} className="mv6">
               <Checkbox
                 checked={checkedMap[key].checked}
                 id={`${id}-${key}`}
@@ -87,6 +87,7 @@ class CheckboxGroup extends Component {
 
 CheckboxGroup.defaultProps = {
   disabled: false,
+  padded: true,
 }
 
 CheckboxGroup.propTypes = {
@@ -109,6 +110,8 @@ CheckboxGroup.propTypes = {
   onGroupChange: PropTypes.func.isRequired,
   /** (Input spec attribute) */
   value: PropTypes.string.isRequired,
+  /** Setting for the padding, set it for false if want the inner checkboxes with no padding in relation to the main checkbox */
+  padded: PropTypes.bool,
 }
 
 export default CheckboxGroup

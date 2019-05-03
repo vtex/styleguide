@@ -62,3 +62,18 @@ initialState = { checkedMap: {
   }}/>
 </div>
 ```
+Without Padding
+
+```js
+initialState = { checkedMap: {
+    check1: {label: "Filter 1", checked: true}, 
+    check2: {label: "Filter 2", checked: false}, 
+    check3: {label: "Filter 3", checked: false}
+   }
+}
+;<div>
+<CheckboxGroup padded={false} name="simpleCheckboxGroup" label="All Filters" checkedMap={state.checkedMap} onGroupChange={newCheckedMap => {
+    setState({checkedMap: newCheckedMap})
+  }}/>
+</div>
+```
