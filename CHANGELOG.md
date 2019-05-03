@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- **CheckboxGroup** added to the styleguide.
+
+### Fixed
+- Fix some component pages references not working properly.
+
 ## [8.39.1] - 2019-05-03
 
 ### Fixed
