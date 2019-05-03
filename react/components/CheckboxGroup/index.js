@@ -12,13 +12,13 @@ class CheckboxGroup extends Component {
     this.state = { groupChecked: false }
   }
 
-  isPartialChecked = () => {
+  isPartiallyChecked = () => {
     const { checkedMap } = this.props
     const checkedValues = Object.values(checkedMap).map(value => value.checked)
     return some(checkedValues) && !every(checkedValues)
   }
 
-  isAllChecked = () => {
+  isFullyChecked = () => {
     const { checkedMap } = this.props
     const checkedValues = Object.values(checkedMap).map(value => value.checked)
     return every(checkedValues)
@@ -33,21 +33,20 @@ class CheckboxGroup extends Component {
     this.props.onGroupChange(newCheckedMap)
   }
 
+  setGroupChecked = value => {
+    const { checkedMap } = this.props
+    const newCheckedMap = { ...checkedMap }
+    Object.keys(checkedMap).forEach(key => {
+      newCheckedMap[key].checked = value
+    })
+    return newCheckedMap
+  }
+
   handleOnGroupChange = () => {
-    if (this.isPartialChecked() || this.isAllChecked()) {
-      const { checkedMap } = this.props
-      const newCheckedMap = { ...checkedMap }
-      Object.keys(checkedMap).forEach(
-        key => (newCheckedMap[key].checked = false)
-      )
-      this.props.onGroupChange(newCheckedMap)
+    if (this.isPartiallyChecked() || this.isFullyChecked()) {
+      this.props.onGroupChange(this.setGroupChecked(false))
     } else {
-      const { checkedMap } = this.props
-      const newCheckedMap = { ...checkedMap }
-      Object.keys(checkedMap).forEach(
-        key => (newCheckedMap[key].checked = true)
-      )
-      this.props.onGroupChange(newCheckedMap)
+      this.props.onGroupChange(this.setGroupChecked(true))
     }
   }
 
@@ -56,8 +55,8 @@ class CheckboxGroup extends Component {
     return (
       <div>
         <Checkbox
-          checked={this.isAllChecked()}
-          partial={this.isPartialChecked()}
+          checked={this.isFullyChecked()}
+          partial={this.isPartiallyChecked()}
           id={id}
           name={name}
           onChange={this.handleOnGroupChange}
