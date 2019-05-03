@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- **Collapsible** not open on first render with `isOpen` set to true.
+
 ## [8.39.0] - 2019-05-03
 
 ### Added
