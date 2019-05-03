@@ -6,7 +6,7 @@
 - It's usually a good practice to be optimistic about its effect. Even if you're not sure if the resulting network request will be successful, pretend it does and let it change its state.
 
 ### Related components
-- Consider using a <a href="#checkbox">Checkbox</a> if it's inside a form, or if the property doesn't have a clear "ON/OFF".
+- Consider using a <a href="#/Components/Forms/Checkbox">Checkbox</a> if it's inside a form, or if the property doesn't have a clear "ON/OFF".
 
 
 Default
