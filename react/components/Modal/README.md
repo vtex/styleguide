@@ -39,6 +39,17 @@ class ModalExample extends React.Component {
           centered
           isOpen={this.state.isModalOpen}
           onClose={this.handleModalToggle}
+          title="Modal title"
+          bottomBarChildren={
+            <div>
+                <span className="mr4">
+                    <Button variation="tertiary" onClick={this.handleModalToggle}>Action 1</Button>
+                </span>
+                <span>
+                    <Button variation="secondary" onClick={this.handleModalToggle}>Action 2</Button>
+                </span>
+            </div>
+          }
         >
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -82,7 +93,20 @@ class ModalExample extends React.Component {
       <div>
         <Button onClick={this.handleOpenModal}>Open modal</Button>
 
-        <Modal isOpen={this.state.isModalOpen} onClose={this.handleCloseModal}>
+        <Modal
+         isOpen={this.state.isModalOpen}
+         title="Modal title"
+         bottomBarChildren={
+            <div>
+                <span className="mr4">
+                    <Button variation="tertiary" onClick={this.handleCloseModal}>Action 1</Button>
+                </span>
+                <span>
+                    <Button variation="secondary" onClick={this.handleCloseModal}>Action 2</Button>
+                </span>
+            </div>
+          }
+        onClose={this.handleCloseModal}>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
             semper eget magna sit amet maximus. In rutrum, justo sodales euismod
