@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import CaretDown from '../icon/CaretDown'
 import CaretUp from '../icon/CaretUp'
+import { jsFocusVisible } from './styles.css'
 
 function handleClick(callback, isOpen) {
   callback &&
@@ -72,7 +73,7 @@ class Collapsible extends Component {
     const color = muted ? 'c-muted-3' : 'c-action-primary'
 
     return (
-      <div>
+      <div className={jsFocusVisible}>
         <div
           className="flex flex-wrap items-center pointer"
           tabIndex={0}

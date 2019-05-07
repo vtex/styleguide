@@ -1,0 +1,4 @@
+.jsFocusVisible :focus:not([data-focus-visible-added]) {
+  outline: none;
+}
+
