@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.40.1] - 2019-05-07
+### Added
+- Remove hover on tertiary buttons which have `collapsedLeft` or `collapsedRight` props set.
+
 ## [8.40.0] - 2019-05-03
 
 ### Added

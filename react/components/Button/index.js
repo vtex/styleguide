@@ -96,7 +96,10 @@ class Button extends Component {
           classes += 'bg-transparent b--transparent c-disabled '
         } else {
           classes +=
-            'bg-transparent b--transparent c-action-primary hover-b--transparent hover-bg-muted-5 '
+            'bg-transparent b--transparent c-action-primary hover-b--transparent '
+        }
+        if (!disabled && !collapseLeft && !collapseRight) {
+          classes += 'hover-bg-muted-5 '
         }
         break
       }
