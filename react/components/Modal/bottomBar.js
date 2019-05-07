@@ -3,12 +3,13 @@ import PropTypes from 'prop-types'
 import { shadowTransition } from './global.css'
 
 const BottomBar = props => {
-  const { children, showTopShadow } = props
+  const { children, showTopShadow, responsiveFullScreen } = props
 
   return (
     <div
       className={`
-        flex justify-content ph7 pv5 bt b--muted-4 flex-row-reverse 
+        flex justify-content bt b--muted-4 flex-row-reverse 
+        ${responsiveFullScreen ? 'ph7 pv5 ph8-ns pv6-ns' : 'ph8 pv6'}
         ${shadowTransition}
         ${showTopShadow ? 'shadow-4' : ''}
       `}>
@@ -20,10 +21,12 @@ const BottomBar = props => {
 BottomBar.propTypes = {
   showTopShadow: PropTypes.bool,
   children: PropTypes.node,
+  responsiveFullScreen: PropTypes.bool,
 }
 
 BottomBar.defaultProps = {
   showTopShadow: false,
+  responsiveFullScreen: false,
 }
 
 export default BottomBar

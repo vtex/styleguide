@@ -83,7 +83,11 @@ const Modal = props => {
         {children}
       </div>
       {bottomBar ? (
-        <BottomBar showTopShadow={shadowBottom}>{bottomBar}</BottomBar>
+        <BottomBar
+          showTopShadow={shadowBottom}
+          responsiveFullScreen={responsiveFullScreen}>
+          {bottomBar}
+        </BottomBar>
       ) : (
         ''
       )}
