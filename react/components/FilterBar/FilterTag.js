@@ -6,7 +6,7 @@ import Button from '../Button'
 import IconClear from '../icon/Clear'
 import IconClose from '../icon/Close'
 import IconCaretDown from '../icon/CaretDown'
-import Statement from './UncoupledStatement'
+import Statement from '../UncoupledStatement/UncoupledStatement'
 import Menu from './Menu'
 
 const OPEN_MENU_STYLE = { backgroundColor: '#dbe9fd' }

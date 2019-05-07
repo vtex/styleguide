@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import merge from 'lodash/merge'
 
-import Statement from './UncoupledStatement'
+import Statement from '../UncoupledStatement/UncoupledStatement'
 import Collapsible from '../Collapsible'
 
 const emptyVirtualStatement = {
