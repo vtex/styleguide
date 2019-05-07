@@ -5,6 +5,12 @@ import CaretDown from '../icon/CaretDown'
 import CaretUp from '../icon/CaretUp'
 import { jsFocusVisible } from './styles.css'
 
+const colorMap = {
+  base: 'c-on-base',
+  primary: 'c-action-primary',
+  muted: 'c-muted-3',
+}
+
 function handleClick(callback, isOpen) {
   callback &&
     callback({
@@ -12,6 +18,10 @@ function handleClick(callback, isOpen) {
         isOpen,
       },
     })
+}
+
+function mapToCSSClass(color) {
+  return colorMap[color]
 }
 
 class Collapsible extends Component {
@@ -63,14 +73,21 @@ class Collapsible extends Component {
       onClick: callback,
       isOpen,
     } = this.props
+    let { caretColor } = this.props
     const { height } = this.state
     const childrenContainerStyle = {
       height,
       overflow: 'hidden',
       transition: 'height 250ms ease-in-out',
     }
+    if (muted) {
+      caretColor = caretColor || 'muted'
+      console.warn(
+        `The "muted" prop on the "Collapsible" component is depreacted and will be removed in a future version. Use "caretColor='muted'" instead.`
+      )
+    }
 
-    const color = muted ? 'c-muted-3' : 'c-action-primary'
+    const color = caretColor ? mapToCSSClass(caretColor) : 'c-action-primary'
 
     return (
       <div className={jsFocusVisible}>
@@ -122,7 +139,7 @@ Collapsible.propTypes = {
   children: PropTypes.node.isRequired,
   /** Component to be used as the header of the collapsible. */
   header: PropTypes.node.isRequired,
-  /** Renders the caret in muted-3 instead of action-primary.
+  /** @deprecated Use the 'muted' option in the caretColor prop instead.
    * To be used only in dense scenarios, or when the affordance is clearly
    * conveyed by the context. */
   muted: PropTypes.bool,
@@ -130,6 +147,8 @@ Collapsible.propTypes = {
   isOpen: PropTypes.bool,
   /** _onClick_ event. */
   onClick: PropTypes.func,
+  /** Color or semantic to be applied to the Caret Icon in the Collapsible header.*/
+  caretColor: PropTypes.oneOf(Object.keys(colorMap)),
 }
 
 export default Collapsible

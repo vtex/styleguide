@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- **Collapsible** now receives a props containing a color name for its caret icon.
+
 ## [8.42.0] - 2019-05-09
 ### Added
 - BottomBar and TopBar to ***Modal***
