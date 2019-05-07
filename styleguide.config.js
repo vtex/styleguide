@@ -24,7 +24,11 @@ webpackConfig.module.rules[1].oneOf.forEach(r => {
 
 module.exports = {
   version: `${version}`,
-  require: ['vtex-tachyons', path.join(__dirname, './docs/styles/styles.css')],
+  require: [
+    'vtex-tachyons',
+    'focus-visible',
+    path.join(__dirname, './docs/styles/styles.css'),
+  ],
   usageMode: 'expand',
   exampleMode: 'collapse',
   pagePerSection: true,
