@@ -8,7 +8,7 @@ const BottomBar = props => {
   return (
     <div
       className={`
-        flex justify-content ph7 pv5 bt b--muted-4 flex-row-reverse flex-shrink-0
+        flex justify-content ph7 pv5 bt b--muted-4 flex-row-reverse 
         ${shadowTransition}
         ${showTopShadow ? 'shadow-4' : ''}
       `}>

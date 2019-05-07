@@ -4,6 +4,7 @@ import ResponsiveModal from 'react-responsive-modal'
 import TopBar from './TopBar'
 import BottomBar from './bottomBar'
 import { mh100, scrollBar } from './global.css'
+import './modal.global.css'
 
 const Modal = props => {
   const {
@@ -13,9 +14,10 @@ const Modal = props => {
     closeOnEsc,
     closeOnOverlayClick,
     showCloseIcon,
-    bottomBarChildren,
+    bottomBar,
     title,
     children,
+    responsiveFullScreen,
   } = props
 
   const [shadowBottom, setShadowBottom] = useState(false)
@@ -40,8 +42,14 @@ const Modal = props => {
       closeOnOverlayClick={closeOnOverlayClick}
       showCloseIcon={false && showCloseIcon}
       classNames={{
-        overlay: 'vtex-modal__overlay',
-        modal: `vtex-modal__modal br2 ${mh100} flex flex-column`,
+        overlay: `vtex-modal__overlay ${
+          responsiveFullScreen ? 'pa5-ns pa0' : ''
+        }`,
+        modal: `vtex-modal__modal ${
+          responsiveFullScreen
+            ? 'br2-ns w-100 w-auto-ns h-100 h-auto-ns'
+            : 'br2'
+        } ${mh100} flex flex-column`,
         closeIcon: 'vtex-modal__close-icon',
       }}
       styles={{
@@ -50,7 +58,7 @@ const Modal = props => {
           zIndex: 10000,
         },
         modal: {
-          padding: '0 0 0 0',
+          padding: 0,
         },
         closeIcon: {
           top: '8px',
@@ -59,14 +67,23 @@ const Modal = props => {
         },
       }}
       closeIconSize={18}>
-      <TopBar title={title} onClose={onClose} showBottomShadow={shadowTop} />
+      <TopBar
+        title={title}
+        onClose={onClose}
+        showBottomShadow={shadowTop}
+        responsiveFullScreen={responsiveFullScreen}
+      />
       <div
-        className={`ph7 overflow-auto flex-shrink-1 ${scrollBar}`}
+        className={`${
+          responsiveFullScreen ? 'ph7 ph8-ns' : 'ph8'
+        } overflow-auto flex-shrink-1 flex-grow-1 ${
+          bottomBar ? '' : 'pb8'
+        } ${scrollBar}`}
         onScroll={handleScroll}>
         {children}
       </div>
-      {bottomBarChildren ? (
-        <BottomBar showTopShadow={shadowBottom}>{bottomBarChildren}</BottomBar>
+      {bottomBar ? (
+        <BottomBar showTopShadow={shadowBottom}>{bottomBar}</BottomBar>
       ) : (
         ''
       )}
@@ -97,7 +114,7 @@ Modal.propTypes = {
   closeOnOverlayClick: PropTypes.bool,
   /** Show the close icon on upper right corner (default true) */
   showCloseIcon: PropTypes.bool,
-  bottomBarChildren: PropTypes.node,
+  bottomBar: PropTypes.node,
   title: PropTypes.string,
   responsiveFullScreen: PropTypes.bool,
 }
