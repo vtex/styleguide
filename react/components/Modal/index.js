@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import ResponsiveModal from 'react-responsive-modal'
 import TopBar from './TopBar'
-import BottomBar from './bottomBar'
+import BottomBar from './BottomBar'
 import { mh100, scrollBar } from './global.css'
 import './modal.global.css'
 
@@ -118,8 +118,11 @@ Modal.propTypes = {
   closeOnOverlayClick: PropTypes.bool,
   /** Show the close icon on upper right corner (default true) */
   showCloseIcon: PropTypes.bool,
+  /** Node to be displayed as the bottom bar of the modal. */
   bottomBar: PropTypes.node,
+  /** Modal title to be displayed in top of the modal. */
   title: PropTypes.string,
+  /** If true, the modal will expand to fullscreen in small view ports (e.g. mobile) */
   responsiveFullScreen: PropTypes.bool,
 }
 
