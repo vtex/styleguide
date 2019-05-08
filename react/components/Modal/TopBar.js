@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
 import IconClose from '../icon/Close'
 import { shadowTransition } from './global.css'
 

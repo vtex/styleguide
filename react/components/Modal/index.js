@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import ResponsiveModal from 'react-responsive-modal'
+
 import TopBar from './TopBar'
 import BottomBar from './BottomBar'
 import { mh100, scrollBar } from './global.css'

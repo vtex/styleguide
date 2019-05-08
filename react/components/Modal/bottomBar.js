@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
 import { shadowTransition } from './global.css'
 
 const BottomBar = props => {

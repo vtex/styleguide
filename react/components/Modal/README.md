@@ -32,7 +32,7 @@ class ModalExample extends React.Component {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         <Button onClick={this.handleModalToggle}>Open modal</Button>
 
         <Modal
@@ -50,7 +50,7 @@ class ModalExample extends React.Component {
             culpa qui officia deserunt mollit anim id est laborum.
           </p>
         </Modal>
-      </div>
+      </React.Fragment>
     )
   }
 }
@@ -79,7 +79,7 @@ class ModalExample extends React.Component {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         <Button onClick={this.handleOpenModal}>Open modal</Button>
 
         <Modal isOpen={this.state.isModalOpen} onClose={this.handleCloseModal}>
@@ -171,7 +171,7 @@ class ModalExample extends React.Component {
             risus quis, eleifend lacinia ligula.
           </p>
         </Modal>
-      </div>
+      </React.Fragment>
     )
   }
 }
@@ -200,7 +200,7 @@ class ModalExample extends React.Component {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         <Button onClick={this.handleOpenModal}>Open modal</Button>
 
         <Modal
@@ -305,7 +305,7 @@ class ModalExample extends React.Component {
             risus quis, eleifend lacinia ligula.
           </p>
         </Modal>
-      </div>
+      </React.Fragment>
     )
   }
 }
@@ -334,7 +334,7 @@ class ModalExample extends React.Component {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         <Button onClick={this.handleOpenModal}>Open modal</Button>
 
         <Modal
@@ -369,7 +369,7 @@ class ModalExample extends React.Component {
             Suspendisse semper fermentum pulvinar.
           </p>
         </Modal>
-      </div>
+      </React.Fragment>
     )
   }
 }
