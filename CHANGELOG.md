@@ -7,29 +7,41 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- **Table** resize.
+
 ## [8.42.0] - 2019-05-09
+
 ### Added
-- BottomBar and TopBar to ***Modal***
-- ResponsiveFullScreen to ***Modal***
+
+- BottomBar and TopBar to **_Modal_**
+- ResponsiveFullScreen to **_Modal_**
 
 ### Changed
-- ***Modal*** scroll to be inside the Modal component
+
+- **_Modal_** scroll to be inside the Modal component
 
 ## [8.41.0] - 2019-05-07
 
 ### Fixed
+
 - **Collapsible** default focus outline removed for non-keyboard users.
 
 ## [8.40.1] - 2019-05-07
+
 ### Added
+
 - Remove hover on tertiary buttons which have `collapsedLeft` or `collapsedRight` props set.
 
 ## [8.40.0] - 2019-05-03
 
 ### Added
+
 - **CheckboxGroup** added to the styleguide.
 
 ### Fixed
+
 - Fix some component pages references not working properly.
 
 ## [8.39.1] - 2019-05-03
@@ -63,7 +75,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **CheckPartial** icon for new partial state in Checkbox.
 
 ## [8.36.2] - 2019-04-18
+
 ### Fixed
+
 - Fix `withForwardedRef` type, remove oneOfType usage.
 
 ## [8.36.1] - 2019-04-18
