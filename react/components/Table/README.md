@@ -8,6 +8,17 @@ Our Table was built to be highly composable and flexible. All parts are optional
 - Provide as many domain-specific actions as you want in the dropdown slot.
 - Line actions: should be mostly for actions that are resolved in the same screen, or if it's was identified to be a very recurrent action.
 
+### ⚙️Doc
+
+##### Bulk actions
+
+Bulk actions allow the user to select some or all the rows to apply an action. Texts have to be given to the component via a `texts` object.
+Actions are passed via the `main` object and the `others` array props. Each object is composed of a `label` and the action event via `onClick` key.
+
+The returned value for all lines selected is an object `allLinesSelected: true` otherwise the data of the rows are returned in the key `selectedRows` as an array.
+
+Note: `onRowClick` actions are not happening when clicking the checkbox.
+
 <div className="center mw7 pv6">
   ![](./table.png)
 </div>
@@ -905,4 +916,88 @@ class ResourceListExample extends React.Component {
   }
 }
 ;<ResourceListExample />
+```
+
+Bulk actions
+
+```js
+const itemsCopy = [
+  {
+    email: 'olen.stamm21@yahoo.com',
+    name: 'Patrick Rothfuss',
+    number: 1.52725,
+  },
+  {
+    email: 'junius0@gmail.com',
+    name: 'Hurricane Skywalker IV',
+    number: 2.84639,
+  },
+  {
+    email: 'judd_gulgowski22@yahoo.com',
+    name: 'Tom Braddy',
+    number: 4.10182,
+  },
+  {
+    email: 'catharine.leuschke62@hotmail.com',
+    name: 'Momochi Zabuza',
+    number: 6.33245,
+  },
+  {
+    email: 'candido_ryan@hotmail.com',
+    name: 'Freddie Mercury',
+    number: 7.96637,
+  },
+]
+const defaultSchema = {
+  properties: {
+    name: {
+      type: 'string',
+      title: 'Name',
+    },
+    email: {
+      type: 'string',
+      title: 'Email',
+    },
+    number: {
+      type: 'number',
+      title: 'Number',
+    },
+  },
+}
+
+;<div className="mb5">
+  <Table
+    fullWidth
+    schema={defaultSchema}
+    items={itemsCopy}
+    density="high"
+    bulkActions={{
+      texts: {
+        secondaryActionsLabel: 'Actions',
+        rowsSelected: qty => (
+          <React.Fragment>Selected rows: {qty}</React.Fragment>
+        ),
+        selectAll: 'Select all',
+        allRowsSelected: qty => (
+          <React.Fragment>All rows selected: {qty}</React.Fragment>
+        ),
+      },
+      totalItems: 122,
+      main: {
+        label: 'Main Action',
+        handleCallback: params => console.log(params),
+      },
+      others: [
+        {
+          label: 'Action 1',
+          handleCallback: params => console.log(params),
+        },
+        {
+          label: 'Action 2',
+          handleCallback: params => console.log(params),
+        },
+      ],
+    }}
+  />
+</div>
 ```

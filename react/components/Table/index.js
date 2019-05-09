@@ -9,7 +9,11 @@ import FilterBar from '../FilterBar'
 
 import SimpleTable from './SimpleTable'
 import Toolbar from './Toolbar'
+import CheckboxContainer from './CheckboxContainer'
 import Totalizers from './Totalizers'
+import BulkActions from './BulkActions'
+
+import { pluck } from 'ramda'
 
 const TABLE_HEADER_HEIGHT = 36
 const EMPTY_STATE_SIZE_IN_ROWS = 5
@@ -21,6 +25,9 @@ class Table extends PureComponent {
       hiddenFields: this.getInitialHiddenFieldsFromSchema(props.schema),
       tableRowHeight: this.getRowHeight(props.density),
       selectedDensity: props.density,
+      allChecked: false,
+      selectedRows: [],
+      allLinesSelected: false,
     }
   }
 
@@ -78,6 +85,40 @@ class Table extends PureComponent {
     return TABLE_HEADER_HEIGHT + tableRowHeight * multiplicator
   }
 
+  handleSelectAllLines = () => {
+    const { items: selectedRows } = this.props
+    this.setState({ selectedRows, allLinesSelected: true })
+  }
+
+  handleSelectAllVisibleLines = () => {
+    const selectedRows = this.state.selectedRows.slice(0)
+    const { items } = this.props
+    const itemsLength = items.length
+
+    if (selectedRows.length <= itemsLength && selectedRows.length !== 0) {
+      this.handleDeselectAllLines()
+    } else {
+      this.setState({ selectedRows: items })
+    }
+  }
+
+  handleSelectLine = rowData => {
+    const selectedRows = this.state.selectedRows.slice(0)
+    const { id } = rowData
+
+    if (selectedRows.some(el => el.id === id)) {
+      const filteredRows = selectedRows.filter(row => row.id !== id)
+      this.setState({ selectedRows: filteredRows })
+    } else {
+      selectedRows.push({ ...rowData })
+      this.setState({ selectedRows })
+    }
+  }
+
+  handleDeselectAllLines = () => {
+    this.setState({ selectedRows: [], allLinesSelected: false })
+  }
+
   render() {
     const {
       items,
@@ -96,10 +137,63 @@ class Table extends PureComponent {
       fullWidth,
       lineActions,
       loading,
+      bulkActions,
       totalizers,
       filters,
     } = this.props
-    const { hiddenFields, tableRowHeight, selectedDensity } = this.state
+    const {
+      hiddenFields,
+      tableRowHeight,
+      selectedDensity,
+      selectedRows,
+      allLinesSelected,
+    } = this.state
+
+    const hasPrimaryBulkAction =
+      bulkActions &&
+      bulkActions.main &&
+      typeof bulkActions.main.handleCallback === 'function'
+    const hasSecondaryBulkActions =
+      bulkActions.others && bulkActions.others.length > 0
+    const hasBulkActions = hasPrimaryBulkAction || hasSecondaryBulkActions
+
+    if (hasBulkActions) {
+      schema.properties = {
+        bulk: {
+          width: 40,
+          headerRenderer: () => {
+            const { selectedRows } = this.state
+            const selectedRowsLength = selectedRows.length
+            const itemsLength = items.length
+
+            const isChecked = selectedRowsLength === itemsLength
+            const isPartial =
+              selectedRowsLength > 0 && selectedRowsLength < itemsLength
+
+            return (
+              <CheckboxContainer
+                checked={isChecked}
+                onClick={this.handleSelectAllVisibleLines}
+                id="all"
+                partial={isPartial}
+              />
+            )
+          },
+          cellRenderer: ({ rowData }) => (
+            <CheckboxContainer
+              checked={this.state.selectedRows.some(
+                row => row.id === rowData.id
+              )}
+              onClick={() => this.handleSelectLine(rowData)}
+              id={rowData.id}
+            />
+          ),
+        },
+        ...schema.properties,
+      }
+
+      items.map((item, i) => (item.id = i))
+    }
 
     const properties = Object.keys(schema.properties)
     const emptyState = !!(
@@ -136,14 +230,27 @@ class Table extends PureComponent {
             actions={toolbar}
           />
         )}
+
         {filters && (
           <div className="mb5">
             <FilterBar {...filters} />
           </div>
         )}
+
         {totalizers && totalizers.length > 0 && (
           <Totalizers items={totalizers} />
         )}
+
+        <BulkActions
+          hasPrimaryBulkAction={hasPrimaryBulkAction}
+          hasSecondaryBulkActions={hasSecondaryBulkActions}
+          selectedRows={selectedRows}
+          bulkActions={bulkActions}
+          allLinesSelected={allLinesSelected}
+          onSelectAllLines={this.handleSelectAllLines}
+          onDeselectAllLines={this.handleDeselectAllLines}
+        />
+
         {emptyState ? (
           <Box>
             <EmptyState title={emptyStateLabel}>
@@ -170,8 +277,10 @@ class Table extends PureComponent {
             containerHeight={
               containerHeight || this.calculateTableHeight(items.length)
             }
+            selectedRowsIndexes={pluck('id', selectedRows)}
           />
         )}
+
         {!loading && pagination && <Pagination {...pagination} />}
       </div>
     )
@@ -189,6 +298,7 @@ Table.defaultProps = {
   },
   emptyStateLabel: 'Nothing to show.',
   fullWidth: false,
+  bulkActions: {},
   totalizers: [],
 }
 
@@ -284,6 +394,25 @@ Table.propTypes = {
     currentItemTo: PropTypes.number,
     textOf: PropTypes.string,
     totalItems: PropTypes.number,
+  }),
+  bulkActions: PropTypes.shape({
+    texts: PropTypes.shape({
+      secondaryActionsLabel: PropTypes.string.isRequired,
+      rowsSelected: PropTypes.func.isRequired,
+      selectAll: PropTypes.string.isRequired,
+      allRowsSelected: PropTypes.func.isRequired,
+    }),
+    totalItems: PropTypes.number,
+    main: PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      handleCallback: PropTypes.func.isRequired,
+    }),
+    others: PropTypes.arrayOf(
+      PropTypes.shape({
+        label: PropTypes.string.isRequired,
+        handleCallback: PropTypes.func.isRequired,
+      })
+    ),
   }),
   /** Totalizers property  */
   totalizers: PropTypes.array,

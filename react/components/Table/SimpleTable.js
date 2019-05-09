@@ -13,6 +13,7 @@ const HEADER_HEIGHT = 36
 const DEFAULT_COLUMN_WIDTH = 200
 const LINE_ACTIONS_COLUMN_WIDTH = 70
 const NO_TITLE_COLUMN = ' '
+const SELECTED_ROW_BACKGROUND = '#dbe9fd'
 
 class SimpleTable extends Component {
   constructor(props) {
@@ -115,6 +116,7 @@ class SimpleTable extends Component {
       fullWidth,
       lineActions,
       loading,
+      selectedRowsIndexes,
     } = this.props
     const { hoverRowIndex } = this.state
 
@@ -262,8 +264,13 @@ class SimpleTable extends Component {
                               fullWidth,
                               fullWidthColWidth
                             ),
+                            backgroundColor: selectedRowsIndexes.includes(
+                              rowIndex - 1
+                            )
+                              ? SELECTED_ROW_BACKGROUND
+                              : '',
                           }}
-                          className={`flex items-center w-100 h-100 ph4 bb 
+                          className={`flex items-center w-100 h-100 ph4 bb
                             b--muted-4 truncate ${
                               disableHeader && rowIndex === 0 ? 'bt' : ''
                             } ${
@@ -327,6 +334,7 @@ SimpleTable.defaultProps = {
     sortedBy: null,
   },
   fullWidth: false,
+  selectedRowsIndexes: [],
 }
 
 SimpleTable.propTypes = {
@@ -355,6 +363,7 @@ SimpleTable.propTypes = {
     })
   ),
   loading: PropTypes.bool,
+  selectedRowsIndexes: PropTypes.array,
 }
 
 export default SimpleTable
