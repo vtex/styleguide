@@ -26,7 +26,6 @@ class BulkActions extends PureComponent {
     const hasBulkActions = hasPrimaryBulkAction || hasSecondaryBulkActions
     const selectedRowsLength = selectedRows.length
     const hasRowsSelected = selectedRowsLength > 0
-    const hasOneRowSelected = selectedRowsLength === 1
 
     const bulkActionsReturnedParameters = allLinesSelected
       ? { allLinesSelected: true }
@@ -77,22 +76,19 @@ class BulkActions extends PureComponent {
         <div className="tr flex flex-row items-center">
           {!allLinesSelected && bulkActions && bulkActions.texts && (
             <span className="mr4 c-muted-4">
-              <BulkActionsSelectedRows
-                selectedRowsLength={selectedRowsLength}
-              />{' '}
-              {hasOneRowSelected
-                ? bulkActions.texts.rowSelected
-                : bulkActions.texts.rowsSelected}
+              {bulkActions.texts.rowsSelected(
+                <BulkActionsSelectedRows
+                  selectedRowsLength={selectedRowsLength}
+                />
+              )}
             </span>
           )}
           <span className="mr2">
             {allLinesSelected ? (
               bulkActions &&
-              bulkActions.texts && (
-                <span>
-                  {bulkActions.texts.allRowsSelected}{' '}
-                  <span className="b">{bulkActions.totalItems}</span>
-                </span>
+              bulkActions.texts &&
+              bulkActions.texts.allRowsSelected(
+                <span className="b">{bulkActions.totalItems}</span>
               )
             ) : (
               <Button onClick={() => onSelectAllLines()}>

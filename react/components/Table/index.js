@@ -398,10 +398,9 @@ Table.propTypes = {
   bulkActions: PropTypes.shape({
     texts: PropTypes.shape({
       secondaryActionsLabel: PropTypes.string.isRequired,
-      rowsSelected: PropTypes.string.isRequired,
-      rowSelected: PropTypes.string.isRequired,
+      rowsSelected: PropTypes.func.isRequired,
       selectAll: PropTypes.string.isRequired,
-      allRowsSelected: PropTypes.string.isRequired,
+      allRowsSelected: PropTypes.func.isRequired,
     }),
     totalItems: PropTypes.number,
     main: PropTypes.shape({

@@ -974,10 +974,13 @@ const defaultSchema = {
     bulkActions={{
       texts: {
         secondaryActionsLabel: 'Actions',
-        rowsSelected: 'rows selected',
-        rowSelected: 'row selected',
+        rowsSelected: qty => (
+          <React.Fragment>Selected rows: {qty}</React.Fragment>
+        ),
         selectAll: 'Select all',
-        allRowsSelected: 'All rows selected:',
+        allRowsSelected: qty => (
+          <React.Fragment>All rows selected: {qty}</React.Fragment>
+        ),
       },
       totalItems: 122,
       main: {
