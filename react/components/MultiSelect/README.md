@@ -1,3 +1,9 @@
+```jsx noeditor
+<Alert type="warning">
+  This component will be soon deprecated. Please prefer using the <a class="mh2 link fw7" href="https://styleguide.vtex.com/#/Components/%F0%9F%91%BB%20Experimental/Select">Select</a> component.
+</Alert>
+```
+
 #### Like a simple dropdown, but users may select more than one option.
 
 ### Related components

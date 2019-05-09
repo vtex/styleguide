@@ -24,7 +24,11 @@ webpackConfig.module.rules[1].oneOf.forEach(r => {
 
 module.exports = {
   version: `${version}`,
-  require: ['vtex-tachyons', path.join(__dirname, './docs/styles/styles.css')],
+  require: [
+    'vtex-tachyons',
+    'focus-visible',
+    path.join(__dirname, './docs/styles/styles.css'),
+  ],
   usageMode: 'expand',
   exampleMode: 'collapse',
   pagePerSection: true,
@@ -114,6 +118,7 @@ module.exports = {
             'react/components/Spinner/index.js',
             'react/components/Table/index.js',
             'react/components/Tag/index.js',
+            'react/components/ProgressBar/index.js',
           ],
         },
         {
@@ -123,6 +128,7 @@ module.exports = {
             'react/components/Button/index.js',
             'react/components/ButtonWithIcon/index.js',
             'react/components/Checkbox/index.js',
+            'react/components/CheckboxGroup/index.js',
             'react/components/ColorPicker/index.js',
             'react/components/DatePicker/index.js',
             'react/components/Dropdown/index.js',

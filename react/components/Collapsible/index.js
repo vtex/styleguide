@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import CaretDown from '../icon/CaretDown'
 import CaretUp from '../icon/CaretUp'
+import { jsFocusVisible } from './styles.css'
 
 function handleClick(callback, isOpen) {
   callback &&
@@ -22,22 +23,34 @@ class Collapsible extends Component {
     }
   }
 
+  openCard = () => {
+    this.childrenRef.current.style.height = 'auto'
+    const childrenHeight = this.childrenRef.current.offsetHeight
+    this.childrenRef.current.style.height = 0
+    /** after force setting element height like the line above
+     * you have to force layout / reflow so the height value
+     * may actually apply. You can do this by requesting
+     * element offsetHeight again, like the line below
+     */
+    this.childrenRef.current.offsetHeight
+    this.setState({
+      height: childrenHeight,
+    })
+  }
+
+  componentDidMount() {
+    if (this.props.isOpen) {
+      this.openCard()
+    }
+  }
+
   componentDidUpdate(prevProps) {
-    if (!prevProps.isOpen && this.props.isOpen) {
-      this.childrenRef.current.style.height = 'auto'
-      const childrenHeight = this.childrenRef.current.offsetHeight
-      this.childrenRef.current.style.height = 0
-      /** after force setting element height like the line above
-       * you have to force layout / reflow so the height value
-       * may actually apply. You can do this by requesting
-       * element offsetHEigh again, like the line below
-       */
-      this.childrenRef.current.offsetHeight
-      this.setState({
-        height: childrenHeight,
-      })
-    } else if (prevProps.isOpen && !this.props.isOpen) {
-      this.setState({ height: 0 })
+    if (prevProps.isOpen !== this.props.isOpen) {
+      if (this.props.isOpen) {
+        this.openCard()
+      } else {
+        this.setState({ height: 0 })
+      }
     }
   }
 
@@ -60,10 +73,14 @@ class Collapsible extends Component {
     const color = muted ? 'c-muted-3' : 'c-action-primary'
 
     return (
-      <div>
+      <div className={jsFocusVisible}>
         <div
           className="flex flex-wrap items-center pointer"
-          onClick={() => handleClick(callback, !isOpen)}>
+          tabIndex={0}
+          role="button"
+          onClick={() => handleClick(callback, !isOpen)}
+          onKeyDown={e => e.key === 'Enter' && handleClick(callback, !isOpen)}
+          aria-expanded={isOpen}>
           {align === 'left' ? (
             <Fragment>
               <div className={`${color} mr3`}>
@@ -80,7 +97,10 @@ class Collapsible extends Component {
             </Fragment>
           )}
         </div>
-        <div ref={this.childrenRef} style={childrenContainerStyle}>
+        <div
+          ref={this.childrenRef}
+          style={childrenContainerStyle}
+          role="region">
           {children}
         </div>
       </div>

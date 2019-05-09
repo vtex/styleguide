@@ -7,6 +7,41 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.41.0] - 2019-05-07
+
+### Fixed
+- **Collapsible** default focus outline removed for non-keyboard users.
+
+## [8.40.1] - 2019-05-07
+### Added
+- Remove hover on tertiary buttons which have `collapsedLeft` or `collapsedRight` props set.
+
+## [8.40.0] - 2019-05-03
+
+### Added
+- **CheckboxGroup** added to the styleguide.
+
+### Fixed
+- Fix some component pages references not working properly.
+
+## [8.39.1] - 2019-05-03
+
+### Fixed
+
+- **Collapsible** not open on first render with `isOpen` set to true.
+
+## [8.39.0] - 2019-05-03
+
+### Added
+
+- **Toggle** added `name` and pass it down to `input`.
+
+## [8.38.0] - 2019-04-30
+
+### Added
+
+- **ProgressBar** added to the styleguide.
+
 ## [8.37.1] - 2019-04-24
 
 ### Fixed

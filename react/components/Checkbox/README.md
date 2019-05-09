@@ -12,7 +12,8 @@
 
 ### Related components
 
-- Consider using a <a href="#toggle">Toggle</a> if the choice could be read as "turning something on or off".
+- Consider using a <a href="#/Components/Forms/Toggle">Toggle</a> if the choice could be read as "turning something on or off".
+- If the checkboxes are related, you can consider the use of a <a href="#/Components/Forms/CheckboxGroup">CheckboxGroup</a>
 
 Default
 
