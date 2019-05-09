@@ -180,122 +180,6 @@ const lineActions = [
 </div>
 ```
 
-Custom cell components / sortable columns
-
-```js
-const sampleData = require('./sampleData').default
-const itemsCopy = sampleData.items
-  .slice()
-  .reverse()
-  .splice(20)
-const Tag = require('../Tag').default
-class CustomTableExample extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      orderedItems: itemsCopy,
-      dataSort: {
-        sortedBy: null,
-        sortOrder: null,
-      },
-    }
-
-    this.sortNameAlphapeticallyASC = this.sortNameAlphapeticallyASC.bind(this)
-    this.sortNameAlphapeticallyDESC = this.sortNameAlphapeticallyDESC.bind(this)
-    this.handleSort = this.handleSort.bind(this)
-  }
-
-  sortNameAlphapeticallyASC(a, b) {
-    return a.name < b.name ? -1 : a.name > b.name ? 1 : 0
-  }
-  sortNameAlphapeticallyDESC(a, b) {
-    return a.name < b.name ? 1 : a.name > b.name ? -1 : 0
-  }
-
-  handleSort({ sortOrder, sortedBy }) {
-    // I'll just handle sort by 'name', but I could handle multiple properties
-    if (sortedBy === 'name') {
-      const orderedItems =
-        sortOrder === 'ASC'
-          ? itemsCopy.slice().sort(this.sortNameAlphapeticallyASC)
-          : itemsCopy.slice().sort(this.sortNameAlphapeticallyDESC)
-      // the above const could come out of an API call to sort items for example
-      this.setState({
-        orderedItems,
-        dataSort: {
-          sortedBy,
-          sortOrder,
-        },
-      })
-    }
-  }
-
-  render() {
-    const customSchema = {
-      properties: {
-        name: {
-          title: 'Name',
-          width: 300,
-          // sortable boolean in a schema property makes it sortable,
-          // (clicking header triggers onSort callback).
-          sortable: true,
-        },
-        email: {
-          title: 'Email',
-          width: 350,
-        },
-        color: {
-          title: 'Color',
-          // you can customize cell component render (also header component with headerRenderer)
-          cellRenderer: ({ cellData }) => {
-            return (
-              <Tag
-                bgColor={cellData.color}
-                color="#fff"
-                onClick={e => {
-                  // if you use cellRender click event AND onRowclick event
-                  // you should stop the event propagation so the cell click fires and row click don't
-                  e.stopPropagation()
-                  alert(
-                    `you just clicked a cell to remove ${
-                      cellData.label
-                    }, HEX: ${cellData.color}`
-                  )
-                }}>
-                <span className="nowrap">{cellData.label}</span>
-              </Tag>
-            )
-          },
-          // you can also customize non sortable headers with the following prop
-          // headerRenderer: ({ columnIndex, key, rowIndex, style, title })
-        },
-      },
-    }
-
-    return (
-      <div>
-        <div className="mb5">
-          <Table
-            schema={customSchema}
-            items={this.state.orderedItems}
-            indexColumnLabel="Index"
-            onRowClick={({ rowData }) => {
-              alert(`you just clicked the row with ${rowData.name}`)
-            }}
-            sort={{
-              sortedBy: this.state.dataSort.sortedBy,
-              sortOrder: this.state.dataSort.sortOrder,
-            }}
-            onSort={this.handleSort}
-          />
-        </div>
-      </div>
-    )
-  }
-}
-;<CustomTableExample />
-```
-
 With Toolbar, Totalizers, Pagination and Filters
 
 ```js
@@ -976,7 +860,7 @@ const defaultSchema = {
 ## Table schema
 
 The Schema property is a JSON used to define the table columns and how they should behave visually. The Schema has properties and each one of them defines a column in the table.
-Example structure:
+Example with simple structure:
 ```md
 {
   properties: {
@@ -1009,7 +893,7 @@ Example structure:
   - default value is 200px
 
 #### cellRenderer
-  - this prop is used to customized the render method of a single column cell.
+  - this prop is used to customize the render method of a single column cell.
   - it receives a function that returns a node (react component).
   - the function has the following params: ({ cellData, rowData })
   - default is render the value as a string.
@@ -1043,36 +927,245 @@ Example structure:
  }
  ```
 
-#### headerRenderer
-  - this prop is used to customized the render method of a single header cell.
-  - it receives a function that returns a node (react component).
-  - the function has the following params: ({ columnIndex, key, rowIndex, style, title })
-  - the style param MUST be used on your outter returned node, so the table can controll the header position, like so:
+example customizing color column cell, with clickable badges
+```js
+const sampleData = require('./sampleData').default
+const itemsCopy = sampleData.items
+  .slice()
+  .reverse()
+  .splice(20)
+const Tag = require('../Tag').default
+class CustomTableExample extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      orderedItems: itemsCopy,
+    }
+  }
 
- ```md
- {
-   properties: {
-     column1: {
-       headerRenderer: ({ columnIndex, key, rowIndex, style, title }) => {
-         // if you want to customize the style, you can merge a style of your own.
-         // But be warned that if some important param is overwriten it can produce unexpected behaviour.
-         const myStyle = { backgroundColor: 'red', margin: 'auto' }
-         return (
-           <div style={{ ...style, ...myStyle }}>
-            <span class="c-link">
-              {title}
-            </span>
-           </div>
-         )
-       }
-     }
-   }
- }
- ```
+  render() {
+    const customSchema = {
+      properties: {
+        name: {
+          title: 'Name',
+          width: 300,
+        },
+        email: {
+          title: 'Email',
+          width: 350,
+        },
+        color: {
+          title: 'Color',
+          // you can customize cell component render (also header component with headerRenderer)
+          cellRenderer: ({ cellData }) => {
+            return (
+              <Tag
+                bgColor={cellData.color}
+                color="#fff"
+                onClick={e => {
+                  // if you use cellRender click event AND onRowclick event
+                  // you should stop the event propagation so the cell click fires and row click don't
+                  e.stopPropagation()
+                  alert(
+                    `you just clicked a cell to remove ${
+                      cellData.label
+                    }, HEX: ${cellData.color}`
+                  )
+                }}>
+                <span className="nowrap">{cellData.label}</span>
+              </Tag>
+            )
+          },
+        },
+      },
+    }
 
-  - this prop will not work if the `sortable` prop for the same header is active.
+    return (
+      <div>
+        <div className="mb5">
+          <Table
+            schema={customSchema}
+            items={this.state.orderedItems}
+            indexColumnLabel="Index"
+            onRowClick={({ rowData }) => {
+              alert(`you just clicked the row with ${rowData.name}`)
+            }}
+          />
+        </div>
+      </div>
+    )
+  }
+}
+;<CustomTableExample />
+```
 
 #### sortable
   - this prop is used to sinalize that a column is sortable, so the header will be clickable.
   - this prop receives a boolean.
   - On sortable header's click the Table `onSort` callback will be fired.
+
+example sortable by Name
+```js
+const sampleData = require('./sampleData').default
+const itemsCopy = sampleData.items
+  .slice()
+  .reverse()
+  .splice(20)
+const Tag = require('../Tag').default
+class CustomTableExample extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      orderedItems: itemsCopy,
+      dataSort: {
+        sortedBy: null,
+        sortOrder: null,
+      },
+    }
+
+    this.sortNameAlphapeticallyASC = this.sortNameAlphapeticallyASC.bind(this)
+    this.sortNameAlphapeticallyDESC = this.sortNameAlphapeticallyDESC.bind(this)
+    this.handleSort = this.handleSort.bind(this)
+  }
+
+  sortNameAlphapeticallyASC(a, b) {
+    return a.name < b.name ? -1 : a.name > b.name ? 1 : 0
+  }
+  sortNameAlphapeticallyDESC(a, b) {
+    return a.name < b.name ? 1 : a.name > b.name ? -1 : 0
+  }
+
+  handleSort({ sortOrder, sortedBy }) {
+    // I'll just handle sort by 'name', but I could handle multiple properties
+    if (sortedBy === 'name') {
+      const orderedItems =
+        sortOrder === 'ASC'
+          ? itemsCopy.slice().sort(this.sortNameAlphapeticallyASC)
+          : itemsCopy.slice().sort(this.sortNameAlphapeticallyDESC)
+      // the above const could come out of an API call to sort items for example
+      this.setState({
+        orderedItems,
+        dataSort: {
+          sortedBy,
+          sortOrder,
+        },
+      })
+    }
+  }
+
+  render() {
+    const customSchema = {
+      properties: {
+        name: {
+          title: 'Name',
+          width: 300,
+          // sortable boolean in a schema property makes it sortable,
+          // (clicking header triggers onSort callback).
+          sortable: true,
+        },
+        email: {
+          title: 'Email',
+          width: 350,
+        },
+        number: {
+          title: 'Number',
+        },
+      },
+    }
+
+    return (
+      <div>
+        <div className="mb5">
+          <Table
+            schema={customSchema}
+            items={this.state.orderedItems}
+            sort={{
+              sortedBy: this.state.dataSort.sortedBy,
+              sortOrder: this.state.dataSort.sortOrder,
+            }}
+            onSort={this.handleSort}
+          />
+        </div>
+      </div>
+    )
+  }
+}
+;<CustomTableExample />
+```
+
+#### headerRenderer
+  - this prop is used to customized the render method of a single header cell.
+  - it receives a function that returns a node (react component).
+  - the function has the following params: ({ columnIndex, key, title })
+  - this prop will not work if the `sortable` prop for the same header is active.
+
+example customizing number column header to use intl FormattedMessage
+```js
+const sampleData = require('./sampleData').default
+const itemsCopy = sampleData.items
+  .slice()
+  .reverse()
+  .splice(20)
+const Tag = require('../Tag').default
+class FormattedMessage extends React.Component {
+  render() {
+    const renderTextByIntlId = id => {
+      switch(id) {
+        case 'some.intl.message.id':
+          return 'Number'
+          break
+        default:
+          return 'Deafult Header title'
+          break
+      }
+    }
+    return (
+      <span>{renderTextByIntlId(this.props.id)}</span>
+    )
+  }
+}
+
+class CustomTableExample extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      orderedItems: itemsCopy,
+    }
+  }
+
+  render() {
+    const customSchema = {
+      properties: {
+        name: {
+          title: 'Name',
+          width: 250,
+        },
+        email: {
+          title: 'Email',
+          width: 300,
+        },
+        number: {
+          title: 'some.intl.message.id',
+          headerRenderer: ({ title }) => {
+            return (
+              <FormattedMessage id={title} />
+            )
+          },
+        },
+      },
+    }
+
+    return (
+      <div>
+        <div className="mb5">
+          <Table
+            schema={customSchema}
+            items={this.state.orderedItems}
+          />
+        </div>
+      </div>
+    )
+  }
+}
+;<CustomTableExample />
+```
