@@ -134,11 +134,8 @@ class SimpleTable extends Component {
           </div>
         ) : (
           <div>
-            <AutoSizer>
+            <AutoSizer key={updateTableKey}>
               {({ width }) => {
-                // updateKey forces grid to rerender when density and window's width change
-                const updateKey = `vtex-table__${rowHeight}--${updateTableKey}--${width}`
-
                 const colsWidth = Object.keys(schema.properties).reduce(
                   (acc, curr) => {
                     const col = schema.properties[curr]
@@ -159,7 +156,6 @@ class SimpleTable extends Component {
 
                 return (
                   <MultiGrid
-                    key={updateKey}
                     height={
                       items.length === 0 ? HEADER_HEIGHT : containerHeight
                     }
