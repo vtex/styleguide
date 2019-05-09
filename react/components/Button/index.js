@@ -31,15 +31,23 @@ class Button extends Component {
       isLoading,
       collapseLeft,
       collapseRight,
+      isGrouped,
+      isActiveOfGroup,
+      isFirstOfGroup,
+      isLastOfGroup,
     } = this.props
 
     const disabled = this.props.disabled || isLoading
     const iconOnly = icon || this.props.iconOnly
 
-    let classes = 'vtex-button bw1 ba fw5 br2 v-mid relative pa0 '
+    let classes = 'vtex-button bw1 ba fw5 v-mid relative pa0 '
     let labelClasses = 'flex items-center justify-center h-100 pv2 '
     let loaderSize = 15
     let horizontalPadding = 0
+
+    classes += !isGrouped ? 'br2 ' : ''
+    classes += isFirstOfGroup ? 'br2 br--left ' : ''
+    classes += isLastOfGroup ? 'br2 br--right ' : ''
 
     switch (size) {
       case 'small':
@@ -71,55 +79,64 @@ class Button extends Component {
       classes += 'icon-button dib '
     }
 
-    switch (variation) {
-      default:
-      case 'primary': {
-        if (disabled) {
-          classes += 'bg-disabled b--disabled c-on-disabled '
-        } else {
-          classes +=
-            'bg-action-primary b--action-primary c-on-action-primary hover-bg-action-primary hover-b--action-primary hover-c-on-action-primary '
+    const primaryEnabledClasses =
+      'bg-action-primary b--action-primary c-on-action-primary hover-bg-action-primary hover-b--action-primary hover-c-on-action-primary '
+    const secondaryEnabledClasses =
+      'bg-action-secondary b--action-secondary c-on-action-secondary hover-bg-action-secondary hover-b--action-secondary hover-c-on-action-secondary '
+
+    if (isGrouped) {
+      classes += isActiveOfGroup
+        ? primaryEnabledClasses
+        : secondaryEnabledClasses
+    } else {
+      switch (variation) {
+        default:
+        case 'primary': {
+          if (disabled) {
+            classes += 'bg-disabled b--disabled c-on-disabled '
+          } else {
+            classes += primaryEnabledClasses
+          }
+          break
         }
-        break
-      }
-      case 'secondary': {
-        if (disabled) {
-          classes += 'bg-disabled b--disabled c-on-disabled '
-        } else {
-          classes +=
-            'bg-action-secondary b--action-secondary c-on-action-secondary hover-bg-action-secondary hover-b--action-secondary hover-c-on-action-secondary '
+        case 'secondary': {
+          if (disabled) {
+            classes += 'bg-disabled b--disabled c-on-disabled '
+          } else {
+            classes += secondaryEnabledClasses
+          }
+          break
         }
-        break
-      }
-      case 'tertiary': {
-        if (disabled) {
-          classes += 'bg-transparent b--transparent c-disabled '
-        } else {
-          classes +=
-            'bg-transparent b--transparent c-action-primary hover-b--transparent '
+        case 'tertiary': {
+          if (disabled) {
+            classes += 'bg-transparent b--transparent c-disabled '
+          } else {
+            classes +=
+              'bg-transparent b--transparent c-action-primary hover-b--transparent '
+          }
+          if (!disabled && !collapseLeft && !collapseRight) {
+            classes += 'hover-bg-muted-5 '
+          }
+          break
         }
-        if (!disabled && !collapseLeft && !collapseRight) {
-          classes += 'hover-bg-muted-5 '
+        case 'danger': {
+          if (disabled) {
+            classes += 'bg-disabled b--disabled c-on-disabled '
+          } else {
+            classes +=
+              'bg-danger b--danger c-on-danger hover-bg-danger hover-b--danger hover-c-on-danger '
+          }
+          break
         }
-        break
-      }
-      case 'danger': {
-        if (disabled) {
-          classes += 'bg-disabled b--disabled c-on-disabled '
-        } else {
-          classes +=
-            'bg-danger b--danger c-on-danger hover-bg-danger hover-b--danger hover-c-on-danger '
+        case 'danger-tertiary': {
+          if (disabled) {
+            classes += 'bg-transparent b--transparent c-disabled '
+          } else {
+            classes +=
+              'bg-transparent b--transparent c-danger hover-b--transparent hover-bg-muted-5 '
+          }
+          break
         }
-        break
-      }
-      case 'danger-tertiary': {
-        if (disabled) {
-          classes += 'bg-transparent b--transparent c-disabled '
-        } else {
-          classes +=
-            'bg-transparent b--transparent c-danger hover-b--transparent hover-bg-muted-5 '
-        }
-        break
       }
     }
 
@@ -177,6 +194,10 @@ Button.defaultProps = {
   icon: false,
   type: 'button',
   isLoading: false,
+  isGrouped: false,
+  isFirstOfGroup: false,
+  isLastOfGroup: false,
+  isActiveOfGroup: false,
 }
 
 Button.propTypes = {
@@ -236,6 +257,14 @@ Button.propTypes = {
   collapseLeft: PropTypes.bool,
   /** Cancels out right padding */
   collapseRight: PropTypes.bool,
+  /** */
+  isGrouped: PropTypes.bool,
+  /** */
+  isFirstOfGroup: PropTypes.bool,
+  /** */
+  isLastOfGroup: PropTypes.bool,
+  /** */
+  isActiveOfGroup: PropTypes.bool,
 }
 
 export default withForwardedRef(Button)

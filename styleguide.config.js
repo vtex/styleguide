@@ -127,6 +127,7 @@ module.exports = {
           components: [
             'react/components/ActionMenu/index.js',
             'react/components/Button/index.js',
+            'react/components/ButtonGroup/index.js',
             'react/components/ButtonWithIcon/index.js',
             'react/components/Checkbox/index.js',
             'react/components/CheckboxGroup/index.js',
