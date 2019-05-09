@@ -1,0 +1,9 @@
+.Modal-overlay-1-1-1.pa0 {
+  padding: 0;
+}
+
+@media screen and (min-width: 40rem) {
+  .Modal-overlay-1-1-1.pa5-ns {
+    padding: 1.25rem;
+  }
+}

@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.42.0] - 2019-05-09
+### Added
+- BottomBar and TopBar to ***Modal***
+- ResponsiveFullScreen to ***Modal***
+
+### Changed
+- ***Modal*** scroll to be inside the Modal component
+
 ## [8.41.0] - 2019-05-07
 
 ### Fixed
