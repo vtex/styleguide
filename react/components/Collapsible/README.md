@@ -64,6 +64,44 @@ initialState = { isOpen: false }
 </div>
 ```
 
+Custom Caret Color Example
+
+```js
+initialState = { isOpen1: false, isOpen2: false, isOpen3: false }
+;<div>
+  <Collapsible
+    header={<span>Here goes your base header</span>}
+    onClick={e => setState({ isOpen1: e.target.isOpen })}
+    isOpen={state.isOpen1}
+    caretColor="base"
+    >
+      <div className="mt4">
+        Here goes your content
+      </div>
+  </Collapsible>
+  <Collapsible
+    header={<span>Here goes your primary header</span>}
+    onClick={e => setState({ isOpen2: e.target.isOpen })}
+    isOpen={state.isOpen2}
+    caretColor="primary"
+    >
+      <div className="mt4">
+        Here goes your content
+      </div>
+  </Collapsible>
+  <Collapsible
+    header={<span>Here goes your muted header</span>}
+    onClick={e => setState({ isOpen3: e.target.isOpen })}
+    isOpen={state.isOpen3}
+    caretColor="muted"
+    >
+      <div className="mt4">
+        Here goes your content
+      </div>
+  </Collapsible>
+</div>
+```
+
 Navigation bar example
 
 ```js
@@ -92,7 +130,7 @@ initialState = { isOpen1: false, isOpen2: false, isOpen3: false }
           align="right"
           onClick={e => setState({ isOpen1: e.target.isOpen })}
           isOpen={state.isOpen1}
-          muted
+          caretColor="muted"
           >
             <div className="ml6 mt4">
               <a href="#" className="mt3 c-muted-1 link db hover-c-link">Products and SKUs</a>
@@ -124,7 +162,7 @@ initialState = { isOpen1: false, isOpen2: false, isOpen3: false }
           align="right"
           onClick={e => setState({ isOpen2: e.target.isOpen })}
           isOpen={state.isOpen2}
-          muted
+          caretColor="muted"
           >
             <div className="ml6 mt4">
               <a href="#" className="mt3 c-muted-1 link db hover-c-link">Transactions</a>
@@ -155,7 +193,7 @@ initialState = { isOpen1: false, isOpen2: false, isOpen3: false }
           align="right"
           onClick={e => setState({ isOpen3: e.target.isOpen })}
           isOpen={state.isOpen3}
-          muted
+          caretColor="muted"
           >
             <div className="ml6 mt4">
               <a href="#" className="mt3 c-muted-1 link db hover-c-link">Dashboard</a>
