@@ -16,6 +16,10 @@ Different from regular filter panels, ours optimizes for both the screen real-es
 
 - Don't present too many filters in the highlighted zone.
 
+### Related components
+- For applications with a small viewport or when working with modals prefer using the <a href="#/Components/Display/FilterOptions">FilterOptions</a> component.
+
+
 Simple product filter example
 
 ```js

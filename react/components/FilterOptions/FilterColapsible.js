@@ -71,6 +71,7 @@ class FilterColapsible extends PureComponent {
         <Collapsible
           isOpen={isCollapsibleOpen}
           align="left"
+          caretColor="base"
           header={
             <div className="flex items-center h-100 ph4 pv5">
               <span className="flex nl3 ">
