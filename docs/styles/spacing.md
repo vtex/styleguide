@@ -158,19 +158,4 @@
             </div>
           </div>
         </section>
-        <div class="mt5 cf">
-          <div class="dib mr4">
-            <h4 class="f6 fw6">Previous</h4>
-            <a href="/docs/layout/box-sizing/" class="link fw6 blue dim">Box Sizing</a>
-          </div>
-          <div class="dib">
-            <h4 class="f6 fw6">Next</h4>
-            <a href="/docs/layout/floats/" class="link fw6 blue dim">Floats</a>
-          </div>
-        </div>
-        <div class="mt5">
-          <h4 class="f6 fw6">Reference</h4>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/margin" class="link fw6 blue dim">MDN - Margin</a>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/padding" class="link fw6 blue dim">MDN - Padding</a>
-        </div>
       </div>

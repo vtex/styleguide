@@ -38,7 +38,18 @@ module.exports = {
   sections: [
     {
       name: 'Introduction',
+      sectionDepth: 2,
       content: './docs/introduction.md',
+      sections: [
+        {
+          name: 'Developing',
+          content: 'docs/developing.md',
+        },
+        {
+          name: 'Designing',
+          content: 'docs/designing.md',
+        },
+      ],
     },
     {
       name: 'Guides',
