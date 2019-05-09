@@ -1,9 +1,9 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import Checkbox from '../Checkbox'
 
-class CheckboxContainer extends PureComponent {
+class CheckboxContainer extends Component {
   static defaultProps = {
     partial: false,
   }
