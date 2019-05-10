@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- **FilterOptions** component added to the styleguide.
+
 ## [8.44.2] - 2019-05-10
 
 ### Fixed
