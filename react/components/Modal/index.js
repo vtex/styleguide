@@ -10,17 +10,30 @@ import './modal.global.css'
 class Modal extends PureComponent {
   constructor(props) {
     super(props)
+    this.contentContainerReference = React.createRef()
     this.state = { shadowBottom: false, shadowTop: false }
   }
 
-  handleScroll = event => {
-    const element = event.target
-    if (element.scrollTop === 0) this.setState({ shadowTop: false })
-    else this.setState({ shadowTop: true })
+  componentDidMount() {
+    this.setShadowState(this.contentContainerReference.current)
+  }
 
-    if (element.scrollHeight - element.scrollTop === element.clientHeight)
-      this.setState({ shadowBottom: false })
-    else this.setState({ shadowBottom: true })
+  componentDidUpdate(prevProps) {
+    if (prevProps.isOpen !== this.props.isOpen)
+      this.setShadowState(this.contentContainerReference.current)
+  }
+
+  handleScroll = event => {
+    this.setShadowState(event.target)
+  }
+
+  setShadowState = element => {
+    if (!element) return
+
+    const { scrollTop, scrollHeight, clientHeight } = element
+
+    this.setState({ shadowTop: scrollTop !== 0 })
+    this.setState({ shadowBottom: scrollHeight - scrollTop !== clientHeight })
   }
 
   render = () => {
@@ -84,6 +97,7 @@ class Modal extends PureComponent {
           } overflow-auto flex-shrink-1 flex-grow-1 ${
             bottomBar ? '' : 'pb8'
           } ${scrollBar}`}
+          ref={this.contentContainerReference}
           onScroll={this.handleScroll}>
           {children}
         </div>
