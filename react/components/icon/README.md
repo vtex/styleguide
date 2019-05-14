@@ -51,6 +51,7 @@ const ICONS = {
   Search: require('./Search').default,
   ShoppingCart: require('./ShoppingCart').default,
   Success: require('./Success').default,
+  TableFilter: require('./TableFilter').default,
   Upload: require('./Upload').default,
   User: require('./User').default,
   VisibilityOff: require('./VisibilityOff').default,
