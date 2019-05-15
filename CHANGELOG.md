@@ -8,15 +8,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ### Added
-- TableFilter Icon
-- Solid prop to Minus Icon
+
+- **Icon** `TableFilter`
+- Solid prop to **Icon** `Minus`
 
 ## [8.45.2] - 2019-05-13
+
 ### Fixed
+
 - ResponsiveFullScreen padding
 
 ## [8.45.1] - 2019-05-10
+
 ### Fixed
+
 - Unexpected Modal shadow behavior on top and bottom bars
 
 ## [8.45.0] - 2019-05-10
