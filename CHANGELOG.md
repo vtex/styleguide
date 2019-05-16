@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.46.2] - 2019-05-16
+
+### Fixed
+
+- **Table** add offset in table content height so the horizontal scroll bar does not overlap its content.
+
 ## [8.46.1] - 2019-05-16
 
 ### Removed
