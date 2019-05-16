@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import reduce from 'lodash/reduce'
+import map from 'lodash/map'
 
 import Box from '../Box'
 import Pagination from '../Pagination'
@@ -12,8 +13,6 @@ import Toolbar from './Toolbar'
 import CheckboxContainer from './CheckboxContainer'
 import Totalizers from './Totalizers'
 import BulkActions from './BulkActions'
-
-import { pluck } from 'ramda'
 
 const TABLE_HEADER_HEIGHT = 36
 const EMPTY_STATE_SIZE_IN_ROWS = 5
@@ -277,7 +276,7 @@ class Table extends PureComponent {
             containerHeight={
               containerHeight || this.calculateTableHeight(items.length)
             }
-            selectedRowsIndexes={pluck('id', selectedRows)}
+            selectedRowsIndexes={map(selectedRows, 'id')}
           />
         )}
 
@@ -356,6 +355,7 @@ Table.propTypes = {
       mediumOptionLabel: PropTypes.string,
       highOptionLabel: PropTypes.string,
       alignMenu: PropTypes.oneOf(['right', 'left']),
+      handleCallback: PropTypes.func,
     }),
     fields: PropTypes.shape({
       label: PropTypes.string,
