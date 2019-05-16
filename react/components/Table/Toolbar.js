@@ -176,6 +176,8 @@ class Toolbar extends PureComponent {
                             onClick={() => {
                               handleToggleDensity(key)
                               this.handleToggleBox('isDensityBoxVisible')
+                              density.handleCallback &&
+                                density.handleCallback(key)
                             }}>
                             <span
                               className={`w-100 ${isKeySelected ? 'fw5' : ''}`}>

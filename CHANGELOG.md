@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.46.1] - 2019-05-16
+
+### Removed
+
+- Remove ramda dependency and uses lodash instead.
+
+### Changed
+
+- **Table** add a callback to line density change.
+- **Table** update docs and examples.
+
 ## [8.46.0] - 2019-05-15
 
 ### Added

@@ -8,22 +8,7 @@ Our Table was built to be highly composable and flexible. All parts are optional
 - Provide as many domain-specific actions as you want in the dropdown slot.
 - Line actions: should be mostly for actions that are resolved in the same screen, or if it's was identified to be a very recurrent action.
 
-### ⚙️Doc
-
-##### Bulk actions
-
-Bulk actions allow the user to select some or all the rows to apply an action. Texts have to be given to the component via a `texts` object.
-Actions are passed via the `main` object and the `others` array props. Each object is composed of a `label` and the action event via `onClick` key.
-
-The returned value for all lines selected is an object `allLinesSelected: true` otherwise the data of the rows are returned in the key `selectedRows` as an array.
-
-Note: `onRowClick` actions are not happening when clicking the checkbox.
-
-<div className="center mw7 pv6">
-  ![](./table.png)
-</div>
-
-Simple (high density)
+Simple example
 
 ```js
 const sampleData = require('./sampleData').default
@@ -34,17 +19,14 @@ const itemsCopy = sampleData.items
 const defaultSchema = {
   properties: {
     name: {
-      type: 'string',
       title: 'Name',
       width: 300,
     },
     email: {
-      type: 'string',
       title: 'Email',
       minWidth: 350,
     },
     number: {
-      type: 'number',
       title: 'Number',
       // default is 200px
       minWidth: 100,
@@ -71,125 +53,154 @@ const defaultSchema = {
 </div>
 ```
 
-Custom empty state
+# Table schema
 
-```js
-const sampleData = require('./sampleData').default
-const itemsCopy = sampleData.items
-  .slice()
-  .reverse()
-  .splice(15)
-const defaultSchema = {
+The Schema property is a JSON used to define the table columns and how they should behave visually. The Schema has properties and each one of them defines a column in the table.
+Example with simple structure:
+```md
+{
   properties: {
-    name: {
-      type: 'string',
-      title: 'Name',
-      width: 300,
+    column1: {
+      title: "First Column"
     },
-    email: {
-      type: 'string',
-      title: 'Email',
-      minWidth: 350,
-    },
-    number: {
-      type: 'number',
-      title: 'Number',
-      // default is 200px
-      minWidth: 100,
-    },
-  },
+    column2: {
+      title: "Second Column",
+      width: 350
+    }
+  }
 }
+```
 
-;<div>
-  <div>
-    <Table
-      fullWidth
-      schema={defaultSchema}
-      items={[]}
-      emptyStateLabel="This is my custom empty state title"
-      emptyStateChildren={
-        <React.Fragment>
-          <p>
-            A longer explanation of what should be here, and why should I care
-            about what should be here.
-          </p>
-          <div className="pt5">
-            <Button variation="secondary" size="small">
-              <span className="flex align-baseline">Suggested action</span>
-            </Button>
+##### title
+  - Control the title which appears on table Header.
+  - It receives only strings.
+  - If you want to customize it with a component, you can use the `headerRenderer` prop.
+
+##### width
+  - Control the column width.
+  - It receives only numbers, which are values in pixels.
+  - Default value is 200px
+
+##### minWidth
+  - Fix a minimum width to the column.
+  - It receives only numbers, which are values in pixels.
+  - Default value is 200px
+
+##### cellRenderer
+  - Customize the render method of a single column cell.
+  - It receives a function that returns a node (react component).
+  - The function has the following params: ({ cellData, rowData })
+  - Default is render the value as a string.
+  - If you have a custom cell component that has a click interaction and at the same time you use the onRowClick Table prop, you might stumble uppon the problem of both click actions being fired. We can work around that by doing a wrapper around cellRenderer to stop click event propagation, like so:
+
+ ```jsx noeditor static
+ {
+   properties: {
+     column1: {
+       cellRenderer: ({ cellData, rowData }) => {
+         return (
+          <div onClick={e => {
+            e.stopPropagation()
+            // the click event propagation start on the checkbox click below, and propagates up the DOM tree.
+            // this wrapper is going to catch the event right after it fires and stop it's propagation.
+            // stoping the click event from propagating until the row component node,
+            // so the onRowClick will not be fired.
+            // you can learm more about DOM event propagation here: http://tiny.cc/c1625y
+          }}>
+            <Checkbox
+              checked={this.state.check}
+              id="select-option"
+              name="select-option"
+              onChange={() => this.setState({ check: !this.state.check })}
+            />
           </div>
-        </React.Fragment>
-      }
-      onRowClick={({ rowData }) => {
-        alert(
-          `you just clicked ${rowData.name}, number is ${
-            rowData.number
-          } and email ${rowData.email}`
-        )
-      }}
-    />
-  </div>
-</div>
-```
+         )
+       }
+     }
+   }
+ }
+ ```
 
-Line actions
+Example customizing color column cell, with clickable badges
 
 ```js
 const sampleData = require('./sampleData').default
 const itemsCopy = sampleData.items
   .slice()
   .reverse()
-  .splice(15)
-const defaultSchema = {
-  properties: {
-    name: {
-      type: 'string',
-      title: 'Name',
-    },
-    email: {
-      type: 'string',
-      title: 'Email',
-    },
-    number: {
-      type: 'number',
-      title: 'Number',
-    },
-  },
+  .splice(20)
+const Tag = require('../Tag').default
+class CustomTableExample extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      orderedItems: itemsCopy,
+    }
+  }
+
+  render() {
+    const customSchema = {
+      properties: {
+        name: {
+          title: 'Name',
+          width: 300,
+        },
+        email: {
+          title: 'Email',
+          width: 350,
+        },
+        color: {
+          title: 'Color',
+          // you can customize cell component render (also header component with headerRenderer)
+          cellRenderer: ({ cellData }) => {
+            return (
+              <Tag
+                bgColor={cellData.color}
+                color="#fff"
+                onClick={e => {
+                  // if you use cellRender click event AND onRowclick event
+                  // you should stop the event propagation so the cell click fires and row click don't
+                  e.stopPropagation()
+                  alert(
+                    `you just clicked a cell to remove ${
+                      cellData.label
+                    }, HEX: ${cellData.color}`
+                  )
+                }}>
+                <span className="nowrap">{cellData.label}</span>
+              </Tag>
+            )
+          },
+        },
+      },
+    }
+
+    return (
+      <div>
+        <div className="mb5">
+          <Table
+            schema={customSchema}
+            items={this.state.orderedItems}
+            indexColumnLabel="Index"
+            onRowClick={({ rowData }) => {
+              alert(`you just clicked the row with ${rowData.name}`)
+            }}
+          />
+        </div>
+      </div>
+    )
+  }
 }
-
-const lineActions = [
-  {
-    label: ({ rowData }) => `Action for ${rowData.name}`,
-    onClick: ({ rowData }) => alert(`Executed action for ${rowData.name}`),
-  },
-  {
-    label: ({ rowData }) => `DANGEROUS action for ${rowData.name}`,
-    isDangerous: true,
-    onClick: ({ rowData }) =>
-      alert(`Executed a DANGEROUS action for ${rowData.name}`),
-  },
-]
-
-;<div>
-  <div className="mb5">
-    <Table
-      fullWidth
-      schema={defaultSchema}
-      items={itemsCopy}
-      onRowClick={({ rowData }) => {
-        alert(
-          `you just clicked ${rowData.name}, number is ${
-            rowData.number
-          } and email ${rowData.email}`
-        )
-      }}
-      lineActions={lineActions}
-    />
-  </div>
-</div>
+;<CustomTableExample />
 ```
 
-Custom cell components / sortable columns
+##### sortable
+  - Sinalize that a column is sortable, so the header will be clickable.
+  - This prop receives a boolean.
+  - On sortable header's click the Table `onSort` callback will be fired.
+
+
+Example sortable by Name
 
 ```js
 const sampleData = require('./sampleData').default
@@ -243,7 +254,6 @@ class CustomTableExample extends React.Component {
     const customSchema = {
       properties: {
         name: {
-          type: 'string',
           title: 'Name',
           width: 300,
           // sortable boolean in a schema property makes it sortable,
@@ -251,35 +261,11 @@ class CustomTableExample extends React.Component {
           sortable: true,
         },
         email: {
-          type: 'string',
           title: 'Email',
           width: 350,
         },
-        color: {
-          type: 'object',
-          title: 'Color',
-          // you can customize cell component render (also header component with headerRenderer)
-          cellRenderer: ({ cellData }) => {
-            return (
-              <Tag
-                bgColor={cellData.color}
-                color="#fff"
-                onClick={e => {
-                  // if you use cellRender click event AND onRowclick event
-                  // you should stop the event propagation so the cell click fires and row click don't
-                  e.stopPropagation()
-                  alert(
-                    `you just clicked a cell to remove ${
-                      cellData.label
-                    }, HEX: ${cellData.color}`
-                  )
-                }}>
-                <span className="nowrap">{cellData.label}</span>
-              </Tag>
-            )
-          },
-          // you can also customize non sortable headers with the following prop
-          // headerRenderer: ({ columnIndex, key, rowIndex, style, title })
+        number: {
+          title: 'Number',
         },
       },
     }
@@ -290,10 +276,6 @@ class CustomTableExample extends React.Component {
           <Table
             schema={customSchema}
             items={this.state.orderedItems}
-            indexColumnLabel="Index"
-            onRowClick={({ rowData }) => {
-              alert(`you just clicked the row with ${rowData.name}`)
-            }}
             sort={{
               sortedBy: this.state.dataSort.sortedBy,
               sortOrder: this.state.dataSort.sortOrder,
@@ -307,6 +289,1064 @@ class CustomTableExample extends React.Component {
 }
 ;<CustomTableExample />
 ```
+
+##### headerRenderer
+  - Customized the render method of a single header cell.
+  - It receives a function that returns a node (react component).
+  - The function has the following params: ({ columnIndex, key, title })
+  - This prop will not work if the `sortable` prop for the same header is active.
+
+example customizing number column header to use intl FormattedMessage
+```js
+const sampleData = require('./sampleData').default
+const itemsCopy = sampleData.items
+  .slice()
+  .reverse()
+  .splice(20)
+const Tag = require('../Tag').default
+class FormattedMessage extends React.Component {
+  render() {
+    const renderTextByIntlId = id => {
+      switch(id) {
+        case 'some.intl.message.id':
+          return 'Number'
+          break
+        default:
+          return 'Deafult Header title'
+          break
+      }
+    }
+    return (
+      <span>{renderTextByIntlId(this.props.id)}</span>
+    )
+  }
+}
+
+class CustomTableExample extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      orderedItems: itemsCopy,
+    }
+  }
+
+  render() {
+    const customSchema = {
+      properties: {
+        name: {
+          title: 'Name',
+          width: 250,
+        },
+        email: {
+          title: 'Email',
+          width: 300,
+        },
+        number: {
+          title: 'some.intl.message.id',
+          headerRenderer: ({ title }) => {
+            return (
+              <FormattedMessage id={title} />
+            )
+          },
+        },
+      },
+    }
+
+    return (
+      <div>
+        <div className="mb5">
+          <Table
+            schema={customSchema}
+            items={this.state.orderedItems}
+          />
+        </div>
+      </div>
+    )
+  }
+}
+;<CustomTableExample />
+```
+
+# Features
+
+<div className="center mw7 pv6">
+  ![](./table.png)
+</div>
+
+##### Custom empty state
+
+Empty states can also be customized, the passed children will be rendered inside an EmptyState component.
+It's worth to customize empty state using this prop so the other table features will behave  accordingly (e.g. the topbar, pagination and totalizers).
+
+```js
+const sampleData = require('./sampleData').default
+const itemsCopy = sampleData.items
+  .slice()
+  .reverse()
+  .splice(15)
+const defaultSchema = {
+  properties: {
+    name: {
+      title: 'Name',
+      width: 300,
+    },
+    email: {
+      title: 'Email',
+      minWidth: 350,
+    },
+    number: {
+      title: 'Number',
+      // default is 200px
+      minWidth: 100,
+    },
+  },
+}
+
+;<div>
+  <div>
+    <Table
+      fullWidth
+      schema={defaultSchema}
+      items={[]}
+      emptyStateLabel="This is my custom empty state title"
+      emptyStateChildren={
+        <React.Fragment>
+          <p>
+            A longer explanation of what should be here, and why should I care
+            about what should be here.
+          </p>
+          <div className="pt5">
+            <Button variation="secondary" size="small">
+              <span className="flex align-baseline">Suggested action</span>
+            </Button>
+          </div>
+        </React.Fragment>
+      }
+      onRowClick={({ rowData }) => {
+        alert(
+          `you just clicked ${rowData.name}, number is ${
+            rowData.number
+          } and email ${rowData.email}`
+        )
+      }}
+    />
+  </div>
+</div>
+```
+
+##### Pagination
+
+This feature uses the pagination component in the bottom, after the table content.
+
+```js
+const ArrowDown = require('../icon/ArrowDown').default
+const ArrowUp = require('../icon/ArrowUp').default
+const sampleData = require('./sampleData').default
+const tableLength = 5
+const initialState = {
+  tableLength,
+  currentPage: 1,
+  slicedData: sampleData.items.slice(0, tableLength),
+  currentItemFrom: 1,
+  currentItemTo: tableLength,
+  itemsLength: sampleData.items.length,
+  emptyStateLabel: 'Nothing to show.',
+}
+const jsonschema = {
+  properties: {
+    name: {
+      title: 'Name',
+    },
+    email: {
+      title: 'Email',
+      width: 300,
+    },
+    number: {
+      title: 'Number',
+      width: 150,
+    },
+    color: {
+      title: 'Color',
+      cellRenderer: ({ cellData }) => {
+        return (
+          <Tag bgColor={cellData.color} color="#fff">
+            <span className="nowrap">{cellData.label}</span>
+          </Tag>
+        )
+      },
+    },
+  },
+}
+
+class ResourceListExample extends React.Component {
+  constructor() {
+    super()
+    this.state = initialState
+
+    this.handleNextClick = this.handleNextClick.bind(this)
+    this.handlePrevClick = this.handlePrevClick.bind(this)
+    this.goToPage = this.goToPage.bind(this)
+    this.handleRowsChange = this.handleRowsChange.bind(this)
+  }
+
+  handleNextClick() {
+    const newPage = this.state.currentPage + 1
+    const itemFrom = this.state.currentItemTo + 1
+    const itemTo = tableLength * newPage
+    const data = sampleData.items.slice(itemFrom - 1, itemTo)
+    this.goToPage(newPage, itemFrom, itemTo, data)
+  }
+
+  handlePrevClick() {
+    if (this.state.currentPage === 0) return
+    const newPage = this.state.currentPage - 1
+    const itemFrom = this.state.currentItemFrom - tableLength
+    const itemTo = this.state.currentItemFrom - 1
+    const data = sampleData.items.slice(itemFrom - 1, itemTo)
+    this.goToPage(newPage, itemFrom, itemTo, data)
+  }
+
+  goToPage(currentPage, currentItemFrom, currentItemTo, slicedData) {
+    this.setState({
+      currentPage,
+      currentItemFrom,
+      currentItemTo,
+      slicedData,
+    })
+  }
+
+  handleRowsChange(e, value) {
+    this.setState(
+      {
+        tableLength: parseInt(value),
+        currentItemTo: parseInt(value),
+      },
+      () => {
+        // this callback garantees new sliced items respect filters and tableLength
+        const { filterStatements } = this.state
+        this.handleFiltersChange(filterStatements)
+      }
+    )
+  }
+
+  render() {
+    return (
+      <Table
+        schema={jsonschema}
+        items={this.state.slicedData}
+        emptyStateLabel={this.state.emptyStateLabel}
+        pagination={{
+          onNextClick: this.handleNextClick,
+          onPrevClick: this.handlePrevClick,
+          currentItemFrom: this.state.currentItemFrom,
+          currentItemTo: this.state.currentItemTo,
+          onRowsChange: this.handleRowsChange,
+          textShowRows: 'Show rows',
+          textOf: 'of',
+          totalItems: this.state.itemsLength,
+          rowsOptions: [5, 10, 15, 25],
+        }}
+      />
+    )
+  }
+}
+;<ResourceListExample />
+```
+
+##### Line actions
+
+This feature creates a last extra column with an ActionMenu component per line.
+
+```js
+const sampleData = require('./sampleData').default
+const itemsCopy = sampleData.items
+  .slice()
+  .reverse()
+  .splice(15)
+const defaultSchema = {
+  properties: {
+    name: {
+      title: 'Name',
+    },
+    email: {
+      title: 'Email',
+    },
+    number: {
+      title: 'Number',
+    },
+  },
+}
+
+const lineActions = [
+  {
+    label: ({ rowData }) => `Action for ${rowData.name}`,
+    onClick: ({ rowData }) => alert(`Executed action for ${rowData.name}`),
+  },
+  {
+    label: ({ rowData }) => `DANGEROUS action for ${rowData.name}`,
+    isDangerous: true,
+    onClick: ({ rowData }) =>
+      alert(`Executed a DANGEROUS action for ${rowData.name}`),
+  },
+]
+
+;<div>
+  <div className="mb5">
+    <Table
+      fullWidth
+      schema={defaultSchema}
+      items={itemsCopy}
+      lineActions={lineActions}
+    />
+  </div>
+</div>
+```
+
+##### Fixed first column
+
+This case is recomended if you have lots of columns, so the most important information could be fixed
+
+```js
+const sampleData = require('./sampleData').default
+const tableLength = 5
+const initialState = {
+  tableLength,
+  currentPage: 1,
+  slicedData: sampleData.items.slice(0, tableLength),
+  currentItemFrom: 1,
+  currentItemTo: tableLength,
+  searchValue: '',
+  itemsLength: sampleData.items.length,
+  emptyStateLabel: 'Nothing to show.',
+}
+
+class ResourceListExample extends React.Component {
+  constructor() {
+    super()
+    this.state = initialState
+    this.customColorTagProperty = this.customColorTagProperty.bind(this)
+  }
+
+  customColorTagProperty(index) {
+    return {
+      title: `Color${index ? ` ${index}` : ''}`,
+      cellRenderer: ({ cellData }) => {
+        return (
+          <Tag bgColor={cellData.color} color="#fff">
+            <span className="nowrap">{cellData.label}</span>
+          </Tag>
+        )
+      },
+    }
+  }
+
+  render() {
+    const customSchema = {
+      properties: {
+        name: {
+          title: 'Name',
+        },
+        email: {
+          title: 'Email',
+          width: 300,
+        },
+        number: {
+          title: 'Number',
+        },
+        color: this.customColorTagProperty(),
+        color1: this.customColorTagProperty(1),
+        color2: this.customColorTagProperty(2),
+        color3: this.customColorTagProperty(3),
+        color4: this.customColorTagProperty(4),
+        color5: this.customColorTagProperty(5),
+        color6: this.customColorTagProperty(6),
+      },
+    }
+
+    return (
+      <Table
+        schema={customSchema}
+        items={this.state.slicedData}
+        fixFirstColumn
+        emptyStateLabel={this.state.emptyStateLabel}
+      />
+    )
+  }
+}
+;<ResourceListExample />
+```
+
+##### Toolbar
+
+The toolbar is a bundle of features, including search input, columns visibility toggler, density controls, import and export buttons, extra actions menu using ActionMenu component and a newLine button to help with entry creation (you can see the illustrative diagram in the begining of the page for a better visualization of this structure)
+
+```js
+const ArrowDown = require('../icon/ArrowDown').default
+const ArrowUp = require('../icon/ArrowUp').default
+const sampleData = require('./sampleData').default
+const tableLength = 5
+const initialState = {
+  slicedData: sampleData.items.slice(0, tableLength),
+  searchValue: '',
+  emptyStateLabel: 'Nothing to show.',
+}
+const jsonschema = {
+  properties: {
+    name: {
+      title: 'Name',
+      width: 170,
+    },
+    email: {
+      title: 'Email',
+      width: 300,
+    },
+    number: {
+      title: 'Number',
+      width: 150,
+    },
+    color: {
+      title: 'Color',
+      width: 170,
+      cellRenderer: ({ cellData }) => {
+        return (
+          <Tag bgColor={cellData.color} color="#fff">
+            <span className="nowrap">{cellData.label}</span>
+          </Tag>
+        )
+      },
+    },
+  },
+}
+
+class ResourceListExample extends React.Component {
+  constructor() {
+    super()
+    this.state = initialState
+
+    this.handleInputSearchChange = this.handleInputSearchChange.bind(this)
+    this.handleInputSearchSubmit = this.handleInputSearchSubmit.bind(this)
+    this.handleInputSearchClear = this.handleInputSearchClear.bind(this)
+  }
+
+  handleInputSearchChange(e) {
+    this.setState({ searchValue: e.target.value })
+  }
+
+  handleInputSearchClear(e) {
+    this.setState({ ...initialState })
+  }
+
+  handleInputSearchSubmit(e) {
+    e.preventDefault()
+
+    if (!this.state.searchValue) {
+      this.setState({ ...initialState })
+    } else {
+      this.setState({
+        slicedData: [],
+        emptyStateLabel: 'No results found.',
+      })
+    }
+  }
+
+  render() {
+    return (
+      <Table
+        schema={jsonschema}
+        items={this.state.slicedData}
+        toolbar={{
+          inputSearch: {
+            value: this.state.searchValue,
+            placeholder: 'Search stuff...',
+            onChange: this.handleInputSearchChange,
+            onClear: this.handleInputSearchClear,
+            onSubmit: this.handleInputSearchSubmit,
+          },
+          density: {
+            buttonLabel: 'Line density',
+            lowOptionLabel: 'Low',
+            mediumOptionLabel: 'Medium',
+            highOptionLabel: 'High',
+          },
+          download: {
+            label: 'Export',
+            handleCallback: () => alert('Callback()'),
+          },
+          upload: {
+            label: 'Import',
+            handleCallback: () => alert('Callback()'),
+          },
+          fields: {
+            label: 'Toggle visible fields',
+            showAllLabel: 'Show All',
+            hideAllLabel: 'Hide All',
+          },
+          extraActions: {
+            label: 'More options',
+            actions: [
+              {
+                label: 'An action',
+                handleCallback: () => alert('An action'),
+              },
+              {
+                label: 'Another action',
+                handleCallback: () => alert('Another action'),
+              },
+              {
+                label: 'A third action',
+                handleCallback: () => alert('A third action'),
+              },
+            ],
+          },
+          newLine: {
+            label: 'New',
+            handleCallback: () => alert('handle new line callback'),
+          },
+        }}
+      />
+    )
+  }
+}
+;<ResourceListExample />
+```
+
+##### Totalizers
+
+This uses the Totalizer component between the toolbar and the table content
+
+```js
+const ArrowDown = require('../icon/ArrowDown').default
+const ArrowUp = require('../icon/ArrowUp').default
+const sampleData = require('./sampleData').default
+const tableLength = 5
+const initialState = {
+  slicedData: sampleData.items.slice(0, tableLength),
+  emptyStateLabel: 'Nothing to show.',
+}
+const jsonschema = {
+  properties: {
+    name: {
+      title: 'Name',
+    },
+    email: {
+      title: 'Email',
+      width: 300,
+    },
+    number: {
+      title: 'Number',
+      width: 150,
+    },
+    color: {
+      title: 'Color',
+      cellRenderer: ({ cellData }) => {
+        return (
+          <Tag bgColor={cellData.color} color="#fff">
+            <span className="nowrap">{cellData.label}</span>
+          </Tag>
+        )
+      },
+    },
+  },
+}
+
+class ResourceListExample extends React.Component {
+  constructor() {
+    super()
+    this.state = initialState
+  }
+
+  render() {
+    return (
+      <Table
+        schema={jsonschema}
+        items={this.state.slicedData}
+        emptyStateLabel={this.state.emptyStateLabel}
+        totalizers={[
+          {
+            label: 'Saldo em conta',
+            value: 23837,
+          },
+          {
+            label: 'Entradas',
+            value: 'R$ 36239,05',
+            iconBackgroundColor: '#eafce3',
+            icon: <ArrowUp color="#79B03A" size={14} />,
+          },
+
+          {
+            label: 'Saídas',
+            value: '- R$ 13.485,26',
+            icon: <ArrowDown size={14} />,
+          },
+          {
+            label: 'Vendas',
+            value: 23837,
+            isLoading: true,
+          },
+        ]}
+      />
+    )
+  }
+}
+;<ResourceListExample />
+```
+
+##### Filters
+
+This feature uses FilterBar component inserting it between the toolbar and table content (just like the Totalizers, it's a separate component).
+
+```js
+const ArrowDown = require('../icon/ArrowDown').default
+const ArrowUp = require('../icon/ArrowUp').default
+const sampleData = require('./sampleData').default
+const tableLength = 7
+const initialState = {
+  tableLength,
+  slicedData: sampleData.items.slice(0, tableLength),
+  emptyStateLabel: 'Nothing to show.',
+  filterStatements: [],
+}
+const jsonschema = {
+  properties: {
+    name: {
+      title: 'Name',
+    },
+    email: {
+      title: 'Email',
+      width: 300,
+    },
+    number: {
+      title: 'Number',
+      width: 150,
+    },
+    color: {
+      title: 'Color',
+      cellRenderer: ({ cellData }) => {
+        return (
+          <Tag bgColor={cellData.color} color="#fff">
+            <span className="nowrap">{cellData.label}</span>
+          </Tag>
+        )
+      },
+    },
+  },
+}
+
+class ResourceListExample extends React.Component {
+  constructor() {
+    super()
+    this.state = initialState
+
+    this.simpleInputObject = this.simpleInputObject.bind(this)
+    this.simpleInputVerbsAndLabel = this.simpleInputVerbsAndLabel.bind(this)
+    this.numberInputObject = this.numberInputObject.bind(this)
+    this.numberInputRangeObject = this.numberInputRangeObject.bind(this)
+    this.colorSelectorObject = this.colorSelectorObject.bind(this)
+    this.handleFiltersChange = this.handleFiltersChange.bind(this)
+  }
+
+  simpleInputObject({
+    statements,
+    values,
+    statementIndex,
+    error,
+    extraParams,
+    onChangeObjectCallback,
+  }) {
+    return (
+      <Input
+        value={values || ''}
+        onChange={e => onChangeObjectCallback(e.target.value)}
+      />
+    )
+  }
+
+  simpleInputVerbsAndLabel() {
+    return {
+      renderFilterLabel: st => {
+        if (!st || !st.object) {
+          // you should treat empty object cases only for alwaysVisibleFilters
+          return 'Any'
+        }
+        return `${
+          st.verb === '=' ? 'is' : st.verb === '!=' ? 'is not' : 'contains'
+        } ${st.object}`
+      },
+      verbs: [
+        {
+          label: 'is',
+          value: '=',
+          object: {
+            renderFn: this.simpleInputObject,
+            extraParams: {},
+          },
+        },
+        {
+          label: 'is not',
+          value: '!=',
+          object: {
+            renderFn: this.simpleInputObject,
+            extraParams: {},
+          },
+        },
+        {
+          label: 'contains',
+          value: 'contains',
+          object: {
+            renderFn: this.simpleInputObject,
+            extraParams: {},
+          },
+        },
+      ],
+    }
+  }
+
+  numberInputObject({
+    statements,
+    values,
+    statementIndex,
+    error,
+    onChangeObjectCallback,
+  }) {
+    return (
+      <Input
+        placeholder="Insert number…"
+        type="number"
+        min="0"
+        max="180"
+        value={values || ''}
+        onChange={e => {
+          onChangeObjectCallback(e.target.value.replace(/\D/g, ''))
+        }}
+      />
+    )
+  }
+
+  numberInputRangeObject({
+    statements,
+    values,
+    statementIndex,
+    error,
+    extraParams,
+    onChangeObjectCallback,
+  }) {
+    return (
+      <div className="flex">
+        <Input
+          placeholder="Number from…"
+          errorMessage={
+            statements[statementIndex].object &&
+            parseInt(statements[statementIndex].object.first) >=
+              parseInt(statements[statementIndex].object.last)
+              ? 'Must be smaller than other input'
+              : ''
+          }
+          value={values && values.first ? values.first : ''}
+          onChange={e => {
+            const currentObject = values || {}
+            currentObject.first = e.target.value.replace(/\D/g, '')
+
+            onChangeObjectCallback(currentObject)
+          }}
+        />
+
+        <div className="mv4 mh3 c-muted-2 b">and</div>
+
+        <Input
+          placeholder="Number to…"
+          value={values && values.last ? values.last : ''}
+          onChange={e => {
+            const currentObject = values || {}
+            currentObject.last = e.target.value.replace(/\D/g, '')
+
+            onChangeObjectCallback(currentObject)
+          }}
+        />
+      </div>
+    )
+  }
+
+  colorSelectorObject({
+    statements,
+    values,
+    statementIndex,
+    error,
+    extraParams,
+    onChangeObjectCallback,
+  }) {
+    const initialValue = {
+      pink: true,
+      black: true,
+      blue: true,
+      gray: true,
+      ...(values || {}),
+    }
+    const toggleValueByKey = key => {
+      const newValues = {
+        ...(values || initialValue),
+        [key]: values ? !values[key] : false,
+      }
+      return newValues
+    }
+    return (
+      <div>
+        {Object.keys(initialValue).map((opt, index) => {
+          return (
+            <div className="mb3" key={`class-statment-object-${opt}-${index}`}>
+              <Checkbox
+                checked={values ? values[opt] : initialValue[opt]}
+                label={opt}
+                name="default-checkbox-group"
+                onChange={() => {
+                  const newValue = toggleValueByKey(`${opt}`)
+                  const newValueKeys = Object.keys(newValue)
+                  const isEmptyFilter = !newValueKeys.some(
+                    key => !newValue[key]
+                  )
+                  onChangeObjectCallback(isEmptyFilter ? null : newValue)
+                }}
+                value={opt}
+              />
+            </div>
+          )
+        })}
+      </div>
+    )
+  }
+
+  handleFiltersChange(statements = []) {
+    // here you should receive filter values, so you can fire mutations ou fetch filtered data from APIs
+    // For the sake of example I'll filter the data manually since there is no API
+    const { tableLength } = this.state
+    let newData = sampleData.items.slice()
+    statements.forEach(st => {
+      if (!st || !st.object) return
+      const { subject, verb, object } = st
+      switch (subject) {
+        case 'color':
+          if (!object) return
+          const colorsMap = {
+            '#F71963': 'pink',
+            '#00BBD4': 'blue',
+            '#D6D8E0': 'gray',
+            '#142032': 'black',
+          }
+          newData = newData.filter(item => object[colorsMap[item.color.color]])
+          break
+        case 'name':
+        case 'email':
+          if (verb === 'contains') {
+            newData = newData.filter(item => item[subject].includes(object))
+          } else if (verb === '=') {
+            newData = newData.filter(item => item[subject] === object)
+          } else if (verb === '!=') {
+            newData = newData.filter(item => item[subject] !== object)
+          }
+          break
+        case 'number':
+          if (verb === '=') {
+            newData = newData.filter(item => item.number === parseInt(object))
+          } else if (verb === 'between') {
+            newData = newData.filter(
+              item =>
+                item.number >= parseInt(object.first) &&
+                item.number <= parseInt(object.last)
+            )
+          }
+          break
+      }
+    })
+    const newDataLength = newData.length
+    const newSlicedData = newData.slice(0, tableLength)
+    this.setState({
+      filterStatements: statements,
+      slicedData: newSlicedData,
+      itemsLength: newDataLength,
+      currentItemTo: tableLength > newDataLength ? newDataLength : tableLength,
+    })
+  }
+
+  render() {
+    return (
+      <Table
+        schema={jsonschema}
+        items={this.state.slicedData}
+        emptyStateLabel={this.state.emptyStateLabel}
+        filters={{
+          alwaysVisibleFilters: ['color', 'name'],
+          statements: this.state.filterStatements,
+          onChangeStatements: this.handleFiltersChange,
+          clearAllFiltersButtonLabel: 'Clear Filters',
+          collapseLeft: true,
+          options: {
+            color: {
+              label: 'Color',
+              renderFilterLabel: st => {
+                if (!st || !st.object) {
+                  // you should treat empty object cases only for alwaysVisibleFilters
+                  return 'All'
+                }
+                const keys = st.object ? Object.keys(st.object) : {}
+                const isAllTrue = !keys.some(key => !st.object[key])
+                const isAllFalse = !keys.some(key => st.object[key])
+                const trueKeys = keys.filter(key => st.object[key])
+                let trueKeysLabel = ''
+                trueKeys.forEach((key, index) => {
+                  trueKeysLabel += `${key}${
+                    index === trueKeys.length - 1 ? '' : ', '
+                  }`
+                })
+                return `${
+                  isAllTrue ? 'All' : isAllFalse ? 'None' : `${trueKeysLabel}`
+                }`
+              },
+              verbs: [
+                {
+                  label: 'includes',
+                  value: 'includes',
+                  object: {
+                    renderFn: this.colorSelectorObject,
+                    extraParams: {},
+                  },
+                },
+              ],
+            },
+            name: {
+              label: 'Name',
+              ...this.simpleInputVerbsAndLabel(),
+            },
+            email: {
+              label: 'Email',
+              ...this.simpleInputVerbsAndLabel(),
+            },
+            number: {
+              label: 'Number',
+              renderFilterLabel: st =>
+                `${
+                  st.verb === 'between'
+                    ? `between ${st.object.first} and ${st.object.last}`
+                    : `is ${st.object}`
+                }`,
+              verbs: [
+                {
+                  label: 'is',
+                  value: '=',
+                  object: {
+                    renderFn: this.numberInputObject,
+                    extraParams: {},
+                  },
+                },
+                {
+                  label: 'is between',
+                  value: 'between',
+                  object: {
+                    renderFn: this.numberInputRangeObject,
+                    extraParams: {},
+                  },
+                },
+              ],
+            },
+          },
+        }}
+      />
+    )
+  }
+}
+;<ResourceListExample />
+```
+
+##### Bulk actions
+
+Bulk actions allow the user to select some or all the rows to apply an action. Texts have to be given to the component via a `texts` object.
+Actions are passed via the `main` object and the `others` array props. Each object is composed of a `label` and the action event via `onClick` key.
+
+The returned value for all lines selected is an object `allLinesSelected: true` otherwise the data of the rows are returned in the key `selectedRows` as an array.
+
+Note: `onRowClick` actions are not happening when clicking the checkbox.
+
+```js
+const itemsCopy = [
+  {
+    email: 'olen.stamm21@yahoo.com',
+    name: 'Patrick Rothfuss',
+    number: 1.52725,
+  },
+  {
+    email: 'junius0@gmail.com',
+    name: 'Hurricane Skywalker IV',
+    number: 2.84639,
+  },
+  {
+    email: 'judd_gulgowski22@yahoo.com',
+    name: 'Tom Braddy',
+    number: 4.10182,
+  },
+  {
+    email: 'catharine.leuschke62@hotmail.com',
+    name: 'Momochi Zabuza',
+    number: 6.33245,
+  },
+  {
+    email: 'candido_ryan@hotmail.com',
+    name: 'Freddie Mercury',
+    number: 7.96637,
+  },
+]
+const defaultSchema = {
+  properties: {
+    name: {
+      type: 'string',
+      title: 'Name',
+    },
+    email: {
+      type: 'string',
+      title: 'Email',
+    },
+    number: {
+      type: 'number',
+      title: 'Number',
+    },
+  },
+}
+
+;<div className="mb5">
+  <Table
+    fullWidth
+    schema={defaultSchema}
+    items={itemsCopy}
+    density="high"
+    bulkActions={{
+      texts: {
+        secondaryActionsLabel: 'Actions',
+        rowsSelected: qty => (
+          <React.Fragment>Selected rows: {qty}</React.Fragment>
+        ),
+        selectAll: 'Select all',
+        allRowsSelected: qty => (
+          <React.Fragment>All rows selected: {qty}</React.Fragment>
+        ),
+      },
+      totalItems: 122,
+      main: {
+        label: 'Main Action',
+        handleCallback: params => console.log(params),
+      },
+      others: [
+        {
+          label: 'Action 1',
+          handleCallback: params => console.log(params),
+        },
+        {
+          label: 'Action 2',
+          handleCallback: params => console.log(params),
+        },
+      ],
+    }}
+  />
+</div>
+```
+
+##### Full blown example
 
 With Toolbar, Totalizers, Pagination and Filters
 
@@ -329,29 +1369,17 @@ const initialState = {
 const jsonschema = {
   properties: {
     name: {
-      type: 'string',
       title: 'Name',
     },
     email: {
-      type: 'string',
       title: 'Email',
       width: 300,
     },
     number: {
-      type: 'number',
       title: 'Number',
       width: 150,
     },
     color: {
-      type: 'object',
-      properties: {
-        color: {
-          type: 'string',
-        },
-        label: {
-          type: 'string',
-        },
-      },
       title: 'Color',
       cellRenderer: ({ cellData }) => {
         return (
@@ -840,164 +1868,4 @@ class ResourceListExample extends React.Component {
   }
 }
 ;<ResourceListExample />
-```
-
-Lots of columns
-
-```js
-const sampleData = require('./sampleData').default
-const tableLength = 5
-const initialState = {
-  tableLength,
-  currentPage: 1,
-  slicedData: sampleData.items.slice(0, tableLength),
-  currentItemFrom: 1,
-  currentItemTo: tableLength,
-  searchValue: '',
-  itemsLength: sampleData.items.length,
-  emptyStateLabel: 'Nothing to show.',
-}
-
-class ResourceListExample extends React.Component {
-  constructor() {
-    super()
-    this.state = initialState
-    this.customColorTagProperty = this.customColorTagProperty.bind(this)
-  }
-
-  customColorTagProperty(index) {
-    return {
-      type: 'object',
-      title: `Color${index ? ` ${index}` : ''}`,
-      cellRenderer: ({ cellData }) => {
-        return (
-          <Tag bgColor={cellData.color} color="#fff">
-            <span className="nowrap">{cellData.label}</span>
-          </Tag>
-        )
-      },
-    }
-  }
-
-  render() {
-    const customSchema = {
-      properties: {
-        name: {
-          type: 'string',
-          title: 'Name',
-        },
-        email: {
-          type: 'string',
-          title: 'Email',
-          width: 300,
-        },
-        number: {
-          type: 'number',
-          title: 'Number',
-        },
-        color: this.customColorTagProperty(),
-        color1: this.customColorTagProperty(1),
-        color2: this.customColorTagProperty(2),
-        color3: this.customColorTagProperty(3),
-        color4: this.customColorTagProperty(4),
-        color5: this.customColorTagProperty(5),
-        color6: this.customColorTagProperty(6),
-      },
-    }
-
-    return (
-      <Table
-        schema={customSchema}
-        items={this.state.slicedData}
-        fixFirstColumn
-        emptyStateLabel={this.state.emptyStateLabel}
-      />
-    )
-  }
-}
-;<ResourceListExample />
-```
-
-Bulk actions
-
-```js
-const itemsCopy = [
-  {
-    email: 'olen.stamm21@yahoo.com',
-    name: 'Patrick Rothfuss',
-    number: 1.52725,
-  },
-  {
-    email: 'junius0@gmail.com',
-    name: 'Hurricane Skywalker IV',
-    number: 2.84639,
-  },
-  {
-    email: 'judd_gulgowski22@yahoo.com',
-    name: 'Tom Braddy',
-    number: 4.10182,
-  },
-  {
-    email: 'catharine.leuschke62@hotmail.com',
-    name: 'Momochi Zabuza',
-    number: 6.33245,
-  },
-  {
-    email: 'candido_ryan@hotmail.com',
-    name: 'Freddie Mercury',
-    number: 7.96637,
-  },
-]
-const defaultSchema = {
-  properties: {
-    name: {
-      type: 'string',
-      title: 'Name',
-    },
-    email: {
-      type: 'string',
-      title: 'Email',
-    },
-    number: {
-      type: 'number',
-      title: 'Number',
-    },
-  },
-}
-
-;<div className="mb5">
-  <Table
-    fullWidth
-    schema={defaultSchema}
-    items={itemsCopy}
-    density="high"
-    bulkActions={{
-      texts: {
-        secondaryActionsLabel: 'Actions',
-        rowsSelected: qty => (
-          <React.Fragment>Selected rows: {qty}</React.Fragment>
-        ),
-        selectAll: 'Select all',
-        allRowsSelected: qty => (
-          <React.Fragment>All rows selected: {qty}</React.Fragment>
-        ),
-      },
-      totalItems: 122,
-      main: {
-        label: 'Main Action',
-        handleCallback: params => console.log(params),
-      },
-      others: [
-        {
-          label: 'Action 1',
-          handleCallback: params => console.log(params),
-        },
-        {
-          label: 'Action 2',
-          handleCallback: params => console.log(params),
-        },
-      ],
-    }}
-  />
-</div>
 ```
