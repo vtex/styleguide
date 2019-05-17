@@ -164,7 +164,7 @@ class Toolbar extends PureComponent {
                   <div className="w-100 b2 br2 bg-base">
                     <div
                       style={{ height: 3 * FIELDS_BOX_ITEM_HEIGHT }}
-                      className="overflow-scroll">
+                      className="overflow-auto">
                       {DENSITY_OPTIONS.map((key, index) => {
                         const isKeySelected = selectedDensity === key
                         return (
@@ -240,7 +240,7 @@ class Toolbar extends PureComponent {
                     </div>
                     <div
                       style={{ height: this.calculateFieldsBoxHeight() }}
-                      className="overflow-scroll">
+                      className="overflow-auto">
                       {Object.keys(schema.properties).map((field, index) => (
                         <div
                           key={index}
