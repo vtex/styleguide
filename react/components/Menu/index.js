@@ -162,7 +162,7 @@ class Menu extends Component {
                 <div className="b2 br2 bg-base">
                   <div
                     style={{ height: menuHeight || 'auto' }}
-                    className={menuHeight ? 'overflow-scroll' : ''}>
+                    className={menuHeight ? 'overflow-auto' : ''}>
                     {options.map((option, index) => (
                       <button
                         key={index}
