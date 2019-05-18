@@ -45,6 +45,7 @@ class FilterOptions extends PureComponent {
                   options={options}
                   statement={statement}
                   onChangeStatement={this.handleStatementChange}
+                  beginWithOpenCollapsibles={optionsKeys.length <= 3}
                 />
               </div>
             )
