@@ -25,9 +25,16 @@ initialState = { checkedMap: {
    }
 }
 ;<div>
-<CheckboxGroup name="simpleCheckboxGroup" label="All Filters" checkedMap={state.checkedMap} onGroupChange={newCheckedMap => {
-    setState({checkedMap: newCheckedMap})
-  }}/>
+  <CheckboxGroup
+    name="simpleCheckboxGroup"
+    label="All Filters"
+    id="simple"
+    value="simple"
+    checkedMap={state.checkedMap}
+    onGroupChange={newCheckedMap => {
+      setState({ checkedMap: newCheckedMap })
+    }}
+  />
 </div>
 ```
 
@@ -41,27 +48,21 @@ initialState = { checkedMap: {
    }
 }
 ;<div>
-<CheckboxGroup name="simpleCheckboxGroup" disabled label="All Filters" checkedMap={state.checkedMap} onGroupChange={newCheckedMap => {
-    setState({checkedMap: newCheckedMap})
-  }}/>
+  <CheckboxGroup
+    name="disabledCheckboxGroup"
+    disabled
+    label="All Filters"
+    id="disabled"
+    value="disabled"
+    checkedMap={state.checkedMap}
+    onGroupChange={newCheckedMap => {
+      setState({ checkedMap: newCheckedMap })
+    }}
+  />
 </div>
+
 ```
 
-Wihtout label group
-
-```js
-initialState = { checkedMap: {
-    check1: {checked: true}, 
-    check2: {checked: false}, 
-    check3: {checked: false}
-   }
-}
-;<div>
-<CheckboxGroup name="simpleCheckboxGroup" checkedMap={state.checkedMap} onGroupChange={newCheckedMap => {
-    setState({checkedMap: newCheckedMap})
-  }}/>
-</div>
-```
 Without Padding
 
 ```js
@@ -72,8 +73,16 @@ initialState = { checkedMap: {
    }
 }
 ;<div>
-<CheckboxGroup padded={false} name="simpleCheckboxGroup" label="All Filters" checkedMap={state.checkedMap} onGroupChange={newCheckedMap => {
-    setState({checkedMap: newCheckedMap})
-  }}/>
+  <CheckboxGroup
+    padded={false}
+    name="withoutPaddingCheckboxGroup"
+    label="All Filters"
+    id="withoutPadding"
+    value="withoutPadding"
+    checkedMap={state.checkedMap}
+    onGroupChange={newCheckedMap => {
+      setState({ checkedMap: newCheckedMap })
+    }}
+  />
 </div>
 ```
