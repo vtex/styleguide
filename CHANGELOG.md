@@ -7,8 +7,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [8.47.1] - 2019-05-20
-
 ### Fixed
 
 - Added required props to **CheckboxGroup** README
