@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.47.1] - 2019-05-20
+
+### Added
+
+- Optional prop to control `Pagination` number of rows.
+
 ## [8.47.0] - 2019-05-20
 
 ### Added
