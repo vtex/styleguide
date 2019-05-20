@@ -15,6 +15,40 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Get changes made at version `v8.46.2`.
 
+## [9.47.0] - 2019-05-20
+
+### Changed
+
+- Get changes made at version `v8.47.0` and `v8.47.1` and `v8.47.2`.
+
+## [8.47.2] - 2019-05-20
+
+### Fixed
+
+- Added required props to **CheckboxGroup** README
+
+### Removed
+
+- **CheckboxGroup** `Without label group` example
+
+## [8.47.1] - 2019-05-20
+
+### Added
+
+- Optional prop to control `Pagination` number of rows.
+
+## [8.47.0] - 2019-05-20
+
+### Added
+
+- **FilterOptions** now begins with open Collapsibles if it has less than four options.
+
+## [9.46.2] - 2019-05-16
+
+### Changed
+
+- Get changes made at version `v8.46.2`.
+
 ## [8.46.2] - 2019-05-16
 
 ### Fixed

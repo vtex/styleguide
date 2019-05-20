@@ -8,7 +8,7 @@ class FilterColapsible extends PureComponent {
   constructor(props) {
     super(props)
     this.state = {
-      isCollapsibleOpen: false,
+      isCollapsibleOpen: props.beginWithOpenCollapsibles,
     }
   }
 
@@ -80,6 +80,7 @@ FilterColapsible.propTypes = {
     })
   ),
   onChangeStatement: PropTypes.func.isRequired,
+  beginWithOpenCollapsibles: PropTypes.bool,
 }
 
 export default FilterColapsible
