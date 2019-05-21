@@ -69,9 +69,33 @@ Now, that you already open a new branch from `master`, let see how the commits s
 
 ##### Commits
 
-```jsx noeditor
-<Tag type="warning">WIP</Tag>
+The commit messages must be written in the English language and follow the following template:
+
 ```
+<Imperative verb> <object of action>
+```
+
+Heres a set of examples:
+
+- Add Facebook Plus as a new login method
+- Remove unused dependecy
+- Update es.json file
+
+If you are close a issue in the commit you must add the `Fix #<Issue Number>` in commit's body, like:
+
+```
+<Imperative verb> <object of action> <--- Commit's title
+                                     <---  Blanck line
+Fix #<Issue number>                  <--- Commit's body
+```
+
+What not to do:
+
+- Put a dot at the end of the sentence. Ex: "Update React Router."
+- Start with lowercase letter
+- Referencing issue number in commit's title
+
+After read theses few lines you are ready to contribute with us through your PR!
 
 #### Releases and changelog
 
