@@ -43,6 +43,12 @@ import Button from '@vtex/styleguide/lib/Button'
 
 #### PRs and Code Review
 
+:loudspeaker: **Disclaimer:** In the course of this document we assume that you know how to use the basics of git as well like do a commit, rebase and merge. Before open a PR, read the [designing section](./designing.md) and take some minutes thinking if your change is appropriate to our styleguide.
+
+As we know, a Pull Request let you tell to others about changes you have pushed to a branch in a GitHub Repo. So, to avoid confusion when we discuss with you your changes, it's convenient to talk how we create our branches and make our commits. We strongly recommend that you follow our standard.
+
+##### Branch
+
 ```jsx noeditor
 <Tag type="warning">WIP</Tag>
 ```
