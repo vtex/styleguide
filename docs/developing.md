@@ -49,6 +49,26 @@ As we know, a Pull Request let you tell to others about changes you have pushed 
 
 ##### Branch
 
+As in many project the `master` branch must reflect what is running in production. All the development branches must be synchronized with the master through `git rebase` command.
+
+Theses development branches, also called feature branches, has the aim to add a new funcionality or do a fix. The name convention must follow the pattern: `<type>/<some-description>`
+
+The allowed types are:
+
+- **feature**: Add a new funcionality or behavoir
+- **fix**: Bug correction
+- **update**: Dependency update
+
+The description needs to be shortly and follow the kebab-case pattern.
+
+```
+Ex: `git checkout -b feature/nice-new-thing`
+```
+
+Now, that you already open a new branch from `master`, let see how the commits should be.
+
+##### Commits
+
 ```jsx noeditor
 <Tag type="warning">WIP</Tag>
 ```
