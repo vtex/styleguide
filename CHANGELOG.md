@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- **Table** labels for download & upload buttons.
+
 ## [8.47.2] - 2019-05-20
 
 ### Fixed
