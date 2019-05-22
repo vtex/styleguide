@@ -86,7 +86,7 @@ The commit messages must be written in the English language and follow the follo
 Heres a set of examples:
 
 - Add Facebook Plus as a new login method
-- Remove unused dependecy
+- Remove unused dependency
 - Update es.json file
 
 If you are close a issue in the commit you must add the `Fix #<Issue Number>` in commit's body, like:
@@ -116,3 +116,4 @@ In parallel to this each PR should update the `CHANGELOG.md` file according to t
 ```
 
 **This is what you need to know to develop with us! Thank you for your contribution!**
+remove un
