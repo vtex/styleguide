@@ -66,6 +66,7 @@ The allowed types are:
 - **feature**: Add a new funcionality or behavoir
 - **fix**: Bug correction
 - **update**: Dependency update
+- **chore**: Tech debt improvement
 
 The description needs to be shortly and follow the kebab-case pattern.
 
