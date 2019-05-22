@@ -273,8 +273,11 @@ class Toolbar extends PureComponent {
                 variation="tertiary"
                 isLoading={download.isLoading}
                 size="small"
-                onClick={download.handleCallback}
-              />
+                onClick={download.handleCallback}>
+                {download.label && (
+                  <span className="c-on-base">{download.label}</span>
+                )}
+              </ButtonWithIcon>
             </div>
           )}
           {isUploadVisible && (
@@ -291,8 +294,11 @@ class Toolbar extends PureComponent {
                 isLoading={upload.isLoading}
                 variation="tertiary"
                 size="small"
-                onClick={upload.handleCallback}
-              />
+                onClick={upload.handleCallback}>
+                {upload.label && (
+                  <span className="c-on-base">{upload.label}</span>
+                )}
+              </ButtonWithIcon>
             </div>
           )}
           {isExtraActionsVisible && (
