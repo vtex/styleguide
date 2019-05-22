@@ -4,7 +4,7 @@ The VTEX team welcomes and thanks you for developing with us. We are committed i
 
 Before start, we must distinguish between our two type of developers who use our styleguide:
 
-- **Those who develop in the VTEX IO**: They need understand how the use our components through our platform. If you are curious and want to know more about our web platform, [see here](https://help.vtex.com/tracks/vtex-io-getting-started--2qYWraccosS2ayg2kusaUo/1LSy4Gkvo4saEQa2OMqC4q)
+- **Those who develop in the VTEX IO**: They need understand how the use our components through our platform. If you are curious and want to know more about our web platform, [see here](https://help.vtex.com/tracks/vtex-io-getting-started--2qYWraccosS2ayg2kusaUo/1LSy4Gkvo4saEQa2OMqC4q).
 - **Other developers**: Those who thoughts that our components incredible and want to use them in their own projects.
 
 ##### VTEX IO apps
@@ -114,3 +114,5 @@ In parallel to this each PR should update the `CHANGELOG.md` file according to t
 ```
 <Imperative verb> <object of action>
 ```
+
+**This is what you need to know to develop with us! Thank you for your contribution!**
