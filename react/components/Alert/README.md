@@ -12,7 +12,7 @@
 
 ### Related components
 
-For low-priority notification prefer a <a href="#toast">Toast</a>.
+For low-priority notification prefer a <a href="#/Components/Notification/ToastProvider">Toast</a>.
 
 ```js
 <div>
