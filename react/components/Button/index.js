@@ -84,7 +84,7 @@ class Button extends Component {
     const secondaryEnabledClasses =
       'bg-action-secondary b--action-secondary c-on-action-secondary hover-bg-action-secondary hover-b--action-secondary hover-c-on-action-secondary '
 
-    if (isGrouped) {
+    if (isGrouped && !disabled) {
       classes += isActiveOfGroup
         ? primaryEnabledClasses
         : secondaryEnabledClasses
