@@ -70,6 +70,10 @@ class ActionMenu extends Component {
       buttonProps,
       hideCaretIcon,
       shouldCloseOnClick,
+      isGrouped,
+      isFirstOfGroup,
+      isLastOfGroup,
+      isActiveOfGroup,
     } = this.props
 
     const { isMenuOpen } = this.state
@@ -92,6 +96,10 @@ class ActionMenu extends Component {
                 (!label && !hideCaretIcon ? iconCaret : <React.Fragment />),
             }}
             {...buttonProps}
+            isGrouped={isGrouped}
+            isFirstOfGroup={isFirstOfGroup}
+            isLastOfGroup={isLastOfGroup}
+            isActiveOfGroup={isActiveOfGroup}
             onClick={this.handleClick}>
             {label && (
               <span className="flex align-baseline items-center">
@@ -112,6 +120,10 @@ ActionMenu.defaultProps = {
   hideCaretIcon: false,
   menuWidth: '100%',
   shouldCloseOnClick: true,
+  isGrouped: false,
+  isFirstOfGroup: false,
+  isLastOfGroup: false,
+  isActiveOfGroup: false,
 }
 
 ActionMenu.propTypes = {
@@ -144,6 +156,14 @@ ActionMenu.propTypes = {
       }),
     })
   ).isRequired,
+  /** */
+  isGrouped: PropTypes.bool,
+  /** */
+  isFirstOfGroup: PropTypes.bool,
+  /** */
+  isLastOfGroup: PropTypes.bool,
+  /** */
+  isActiveOfGroup: PropTypes.bool,
 }
 
 export default ActionMenu

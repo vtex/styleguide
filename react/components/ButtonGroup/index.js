@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import Button from '../Button'
 import ButtonWithIcon from '../ButtonWithIcon'
+import ActionMenu from '../ActionMenu'
 
 class ButtonGroup extends Component {
   render() {
@@ -40,6 +41,7 @@ ButtonGroup.propTypes = {
     PropTypes.oneOfType([
       PropTypes.instanceOf(Button),
       PropTypes.instanceOf(ButtonWithIcon),
+      PropTypes.instanceOf(ActionMenu),
     ])
   ),
 }

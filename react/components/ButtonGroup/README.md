@@ -1,5 +1,9 @@
 Button group receives a list of button components with an extra available prop `isActiveOfGroup` as a boolean to display an active state. This has to be handled on the app side.
 
+### Related components
+
+- <a href="#/Components/Navigation/Tabs">tabs</a>
+
 Default
 
 ```js
@@ -156,6 +160,42 @@ initialState = { active: 1 }
         isActiveOfGroup={state.active === 4}
         onClick={() => setState({ active: 4 })}
         icon={remove}
+      />,
+    ]}
+  />
+</div>
+```
+
+Split Button
+
+```js
+const CaretDown = require('../icon/CaretDown').default
+const caretDown = <CaretDown />
+
+const options = [
+  'General',
+  'Desktop & Screen Saver',
+  'Dock',
+  'Language & Region',
+].map(label => ({
+  label,
+  onClick: () => {},
+}))
+
+initialState = { active: 1 }
+;<div>
+  <ButtonGroup
+    buttons={[
+      <Button isActiveOfGroup>new</Button>,
+      <ActionMenu
+        isActiveOfGroup
+        hideCaretIcon
+        buttonProps={{
+          variation: 'primary',
+          icon: <CaretDown color="currentColor" />,
+          iconPosition: 'right',
+        }}
+        options={options}
       />,
     ]}
   />
