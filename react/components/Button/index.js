@@ -148,6 +148,19 @@ class Button extends Component {
       classes += 'w-100 '
     }
 
+    const style = {}
+
+    if (iconOnly) {
+      style.fontSize = 0
+    }
+
+    // Active state receives the hover color of the Button.
+    // No token available for this.
+    if (isActiveOfGroup && !disabled) {
+      style.backgroundColor = '#0c389f'
+      style.borderColor = '#0c389f'
+    }
+
     return (
       <button
         id={this.props.id}
@@ -166,7 +179,7 @@ class Button extends Component {
         onMouseUp={this.props.onMouseUp}
         onMouseDown={this.props.onMouseDown}
         ref={this.props.forwardedRef}
-        style={iconOnly ? { fontSize: 0 } : {}}>
+        style={style}>
         {isLoading ? (
           <Fragment>
             <span className="top-0 left-0 w-100 h-100 absolute flex justify-center items-center">
