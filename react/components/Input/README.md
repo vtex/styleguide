@@ -10,9 +10,9 @@
 
 ### Related components
 
-- In some cases for numerical inputs you might want a <a href="#numericstepper">NumericStepper</a>.
+- In some cases for numerical inputs you might want a <a href="#/Components/Forms/NumericStepper">NumericStepper</a>.
 - In case of monetary input values you might want to use the <a href="#/Components/Forms/InputCurrency">InputCurrency</a>.
-- If instead of a free-form entry you expect the user to enter a value from a preset of values you might want to use a <a href="#dropdown">Dropdown</a>, for a single value, or a <a href="#multiselect">Multiselect</a> for multiple values.
+- If instead of a free-form entry you expect the user to enter a value from a preset of values you might want to use a <a href="#/Components/Forms/Dropdown">Dropdown</a>, for a single value, or a <a href="#/Components/Forms/MultiSelect">Multiselect</a> for multiple values.
 
 Sizes
 

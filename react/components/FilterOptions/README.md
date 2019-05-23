@@ -1,6 +1,7 @@
 #### The FilterOptions is a more horizontally compacted way of displaying filter atoms. Although designed to be used with the Modal component, it can also be used on its own with any other way you chose to display your data.
 
 The FilterOptions is optimized for small viewport applications which do not provide enough horizontal space to work with. Making use of vertical collapsible components, it displays filter data to the user allowing them to choose which filter suits their needs.
+
 ### 👍 Dos
 
 - Use the FilterOptions near of the content that will be filtered.
@@ -12,7 +13,8 @@ The FilterOptions is optimized for small viewport applications which do not prov
 - Don't present too many filters in one single FilterOptions.
 
 ### Related components
-- For applications with a larger viewport or when working with tables prefer using the <a href="#/Components/Display/FilterTab">FilterTab</a> component.
+
+- For applications with a larger viewport or when working with tables prefer using the <a href="#/Components/Display/FilterBar">FilterBar</a> component.
 
 Simple product filter example
 
@@ -246,24 +248,31 @@ class MyUsersFilter extends React.Component {
     extraParams,
     onChangeObjectCallback,
   }) {
-   const initialValue = {
+    const initialValue = {
       vip: true,
       gold: true,
       silver: true,
       platinum: true,
     }
 
-    const toCheckedMap = ([key, value]) => ([ key, {label: key, checked: value }])
-    const toValues = ([key, value]) => ([ key, value.checked ])
+    const toCheckedMap = ([key, value]) => [key, { label: key, checked: value }]
+    const toValues = ([key, value]) => [key, value.checked]
 
-    const checkedMap = Object.fromEntries(Object.entries({ ...initialValue, ...(values || {})}).map(toCheckedMap)) 
+    const checkedMap = Object.fromEntries(
+      Object.entries({ ...initialValue, ...(values || {}) }).map(toCheckedMap)
+    )
     return (
-      <CheckboxGroup name="simpleCheckboxGroup" label="All Filters" checkedMap={checkedMap} 
+      <CheckboxGroup
+        name="simpleCheckboxGroup"
+        label="All Filters"
+        checkedMap={checkedMap}
         onGroupChange={checkedMap => {
-          const newValues = Object.fromEntries(Object.entries(checkedMap).map(toValues))
+          const newValues = Object.fromEntries(
+            Object.entries(checkedMap).map(toValues)
+          )
           onChangeObjectCallback(newValues)
-        }
-      }/>
+        }}
+      />
     )
   }
 
@@ -580,17 +589,24 @@ class MyOrdersFilter extends React.Component {
       Invoiced: true,
       Complete: true,
     }
-    const toCheckedMap = ([key, value]) => ([ key, {label: key, checked: value }])
-    const toValues = ([key, value]) => ([ key, value.checked ])
+    const toCheckedMap = ([key, value]) => [key, { label: key, checked: value }]
+    const toValues = ([key, value]) => [key, value.checked]
 
-    const checkedMap = Object.fromEntries(Object.entries({ ...initialValue, ...(values || {})}).map(toCheckedMap)) 
+    const checkedMap = Object.fromEntries(
+      Object.entries({ ...initialValue, ...(values || {}) }).map(toCheckedMap)
+    )
     return (
-      <CheckboxGroup name="simpleCheckboxGroup" label="All Filters" checkedMap={checkedMap} 
+      <CheckboxGroup
+        name="simpleCheckboxGroup"
+        label="All Filters"
+        checkedMap={checkedMap}
         onGroupChange={checkedMap => {
-          const newValues = Object.fromEntries(Object.entries(checkedMap).map(toValues))
+          const newValues = Object.fromEntries(
+            Object.entries(checkedMap).map(toValues)
+          )
           onChangeObjectCallback(newValues)
-        }
-      }/>
+        }}
+      />
     )
   }
 
@@ -716,6 +732,7 @@ class MyOrdersFilter extends React.Component {
 }
 ;<MyOrdersFilter />
 ```
+
 Filter Options with Modal Example
 
 ```js
@@ -846,24 +863,31 @@ class MyUsersFilter extends React.Component {
     extraParams,
     onChangeObjectCallback,
   }) {
-   const initialValue = {
+    const initialValue = {
       vip: true,
       gold: true,
       silver: true,
       platinum: true,
     }
 
-    const toCheckedMap = ([key, value]) => ([ key, {label: key, checked: value }])
-    const toValues = ([key, value]) => ([ key, value.checked ])
+    const toCheckedMap = ([key, value]) => [key, { label: key, checked: value }]
+    const toValues = ([key, value]) => [key, value.checked]
 
-    const checkedMap = Object.fromEntries(Object.entries({ ...initialValue, ...(values || {})}).map(toCheckedMap)) 
+    const checkedMap = Object.fromEntries(
+      Object.entries({ ...initialValue, ...(values || {}) }).map(toCheckedMap)
+    )
     return (
-      <CheckboxGroup name="simpleCheckboxGroup" label="All Filters" checkedMap={checkedMap} 
+      <CheckboxGroup
+        name="simpleCheckboxGroup"
+        label="All Filters"
+        checkedMap={checkedMap}
         onGroupChange={checkedMap => {
-          const newValues = Object.fromEntries(Object.entries(checkedMap).map(toValues))
+          const newValues = Object.fromEntries(
+            Object.entries(checkedMap).map(toValues)
+          )
           onChangeObjectCallback(newValues)
-        }
-      }/>
+        }}
+      />
     )
   }
 
@@ -1069,24 +1093,28 @@ class ModalExample extends React.Component {
         <Button onClick={this.handleOpenModal}>Filters</Button>
 
         <Modal
-         isOpen={this.state.isModalOpen}
-         title="User Filters"
-         responsiveFullScreen
-         centered
-         bottomBar={
+          isOpen={this.state.isModalOpen}
+          title="User Filters"
+          responsiveFullScreen
+          centered
+          bottomBar={
             <div className="nowrap">
-                <span className="mr4">
-                    <Button variation="tertiary" onClick={this.handleCloseModal}>Clear</Button>
-                </span>
-                <span>
-                    <Button variation="secondary" onClick={this.handleCloseModal}>Apply</Button>
-                </span>
+              <span className="mr4">
+                <Button variation="tertiary" onClick={this.handleCloseModal}>
+                  Clear
+                </Button>
+              </span>
+              <span>
+                <Button variation="secondary" onClick={this.handleCloseModal}>
+                  Apply
+                </Button>
+              </span>
             </div>
           }
-        onClose={this.handleCloseModal}>
-        <div style={{width: "300px"}}>
-          <MyUsersFilter />
-        </div>
+          onClose={this.handleCloseModal}>
+          <div style={{ width: '300px' }}>
+            <MyUsersFilter />
+          </div>
         </Modal>
       </React.Fragment>
     )

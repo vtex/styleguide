@@ -1,7 +1,8 @@
 #### A simple container for organizing stuff of any sizes or hierarchies.
 
 ### Related components
-For small areas that are interactive consider using a <a href="#card">Card</a>.
+
+For small areas that are interactive consider using a <a href="#/Components/Containers/Card">Card</a>.
 
 ```js
 <div className="bg-muted-5 pa8">
