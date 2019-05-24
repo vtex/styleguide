@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- **Button** now uses `b--muted-5` instead of `b--disabled` when it is `disabled`.
+
 ## [8.48.1] - 2019-05-24
 
 ### Added
