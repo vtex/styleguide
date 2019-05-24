@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.49.0] - 2019-05-24
+
 ### Fixed
 
 - **Spinner** Use CSS animations instead of SVG animations, in order to make the animation work while the page is loading.
