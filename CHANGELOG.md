@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- **Table** schema property `headerRight`.
+
 ## [8.48.0] - 2019-05-23
 
 ### Added
