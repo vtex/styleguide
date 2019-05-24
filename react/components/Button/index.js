@@ -93,7 +93,7 @@ class Button extends Component {
         default:
         case 'primary': {
           if (disabled) {
-            classes += 'bg-disabled b--disabled c-on-disabled '
+            classes += 'bg-disabled b--muted-5 c-on-disabled '
           } else {
             classes += primaryEnabledClasses
           }
@@ -101,7 +101,7 @@ class Button extends Component {
         }
         case 'secondary': {
           if (disabled) {
-            classes += 'bg-disabled b--disabled c-on-disabled '
+            classes += 'bg-disabled b--muted-5 c-on-disabled '
           } else {
             classes += secondaryEnabledClasses
           }
@@ -121,7 +121,7 @@ class Button extends Component {
         }
         case 'danger': {
           if (disabled) {
-            classes += 'bg-disabled b--disabled c-on-disabled '
+            classes += 'bg-disabled b--muted-5 c-on-disabled '
           } else {
             classes +=
               'bg-danger b--danger c-on-danger hover-bg-danger hover-b--danger hover-c-on-danger '
