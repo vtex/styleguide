@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - **ButtonWithIcon** Prop `icon` is not required anymore.
 
+### Added
+
+- **EXPERIMENTAL_Select**: `formatCreateLabel` now allows the user to customize the create option message.
+
 ### Changed
 
 - **Button** now uses `b--muted-5` instead of `b--disabled` when it is `disabled`.

@@ -49,6 +49,7 @@ class Select extends Component {
       defaultValue,
       disabled,
       errorMessage,
+      formatCreateLabel,
       label,
       loading,
       multi,
@@ -88,6 +89,7 @@ class Select extends Component {
         Placeholder,
       },
       defaultValue,
+      formatCreateLabel,
       getOptionValue,
       isClearable: clearable,
       isDisabled: disabled,
@@ -212,6 +214,8 @@ Select.propTypes = {
   disabled: PropTypes.bool,
   /** Error message, e.g., validation error message. */
   errorMessage: PropTypes.string,
+  /** Gets the label for the "Create new..." option in the menu. ({inputValue}) => string | null */
+  formatCreateLabel: PropTypes.func,
   /** Label text. */
   label: PropTypes.string,
   /** Is the select in a state of loading (async). */
