@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - **EXPERIMENTAL_Select**: `formatCreateLabel` now allows the user to customize the create option message.
+- **Textarea**: `resize` property to control the component's resize behaviour. See [resize CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/resize) for more info.
 
 ### Changed
 
