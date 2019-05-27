@@ -24,7 +24,7 @@ class Checkbox extends PureComponent {
         className={classNames('flex items-center relative', {
           pointer: !disabled,
         })}>
-        <div className={classNames('relative mr3 w1 h1', { mr3: label })}>
+        <div className={classNames('relative w1 h1', { mr3: label })}>
           <div
             className={classNames('h1 w1 absolute ba bw1 br1 ', {
               'b--muted-4 pointer': !checked && !disabled,
