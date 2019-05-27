@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "styleguide",
-  "version": "8.48.1",
+  "version": "8.48.2",
   "title": "VTEX Styleguide",
   "description": "The VTEX Styleguide components for the Render framework",
   "builders": {
