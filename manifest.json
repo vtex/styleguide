@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "styleguide",
-  "version": "8.49.0",
+  "version": "8.49.1",
   "title": "VTEX Styleguide",
   "description": "The VTEX Styleguide components for the Render framework",
   "builders": {
@@ -15,5 +15,6 @@
   "registries": [
     "smartcheckout"
   ],
-  "settingsSchema": {}
+  "settingsSchema": {},
+  "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }
