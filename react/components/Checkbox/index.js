@@ -44,7 +44,6 @@ class Checkbox extends PureComponent {
             className="absolute w1 h1 flex o-100"
             style={{
               left: 0,
-              top: label && 1, // The lack of label creates a small gap
             }}>
             <div
               className={`absolute top-0 left-0 bottom-0 overflow-hidden w-100 flex items-center align-center justify-center ${
