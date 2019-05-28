@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.50.0] - 2019-05-28
+
 ### Changed
 
 - **EXPERIMENTAL_Select** now uses the new **Select** component for its atoms.
