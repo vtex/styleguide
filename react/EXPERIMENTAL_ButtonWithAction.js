@@ -1,3 +1,0 @@
-import EXPERIMENTAL_ButtonWithAction from './components/EXPERIMENTAL_ButtonWithAction/index'
-
-export default EXPERIMENTAL_ButtonWithAction
