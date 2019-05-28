@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.50.1] - 2019-05-28
+### Changed
+- Only automatically add `key` prop to `Tabs` children when the prop is not present.
+
 ## [8.50.0] - 2019-05-28
 
 ### Changed
