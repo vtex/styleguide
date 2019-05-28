@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.50.0] - 2019-05-28
+
+### Changed
+
+- **EXPERIMENTAL_Select** now uses the new **Select** component for its atoms.
+- **EXPERIMENTAL_Select** horizontal growth to make it simpler to the user.
+
 ## [8.49.1] - 2019-05-26
 ### Changed
 - **ButtonWithIcon** Prop `icon` is not required anymore.
