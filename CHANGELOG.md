@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.51.0] - 2019-05-29
+### Added
+- **DatePicker** Add `positionFixed` prop, which fixes issues related to `overflow: hidden`.
+
 ## [8.50.1] - 2019-05-28
 ### Changed
 - Only automatically add `key` prop to `Tabs` children when the prop is not present.
