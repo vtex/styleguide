@@ -93,6 +93,14 @@ class DatePicker extends Component {
   }
 
   render() {
+    const { positionFixed } = this.props
+
+    const popperProps = {
+      ...(positionFixed && {
+        positionFixed: true,
+      }),
+    }
+
     return (
       <ReactDatePicker
         autoFocus={this.props.autoFocus}
@@ -128,6 +136,7 @@ class DatePicker extends Component {
         name={this.props.name}
         placeholderText={this.props.placeholder}
         popperModifiers={this.popperModifiers}
+        popperProps={popperProps}
         readOnly={this.props.readOnly}
         required={this.props.required}
         selected={this.props.value}
@@ -236,6 +245,8 @@ DatePicker.propTypes = {
   useTime: PropTypes.bool,
   /** Value of the selected date  */
   value: PropTypes.instanceOf(Date).isRequired,
+  /** Sets the popper to position fixed. Fixes issues with overflow: hidden*/
+  positionFixed: PropTypes.boolean,
 }
 
 export default withForwardedRef(DatePicker)
