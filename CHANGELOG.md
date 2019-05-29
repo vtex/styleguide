@@ -41,8 +41,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **DatePicker** Add `positionFixed` prop, which fixes issues related to `overflow: hidden`.
 
 ## [8.50.1] - 2019-05-28
-
-## [9.50.0] - 2019-05-28
+### Added
+- **DatePicker** Add `positionFixed` prop, which fixes issues related to `overflow: hidden`.
 
 ### Changed
 
