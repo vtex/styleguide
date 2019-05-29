@@ -245,7 +245,7 @@ DatePicker.propTypes = {
   useTime: PropTypes.bool,
   /** Value of the selected date  */
   value: PropTypes.instanceOf(Date).isRequired,
-  /** Sets the popper to position fixed. Fixes issues with overflow: hidden*/
+  /** Sets the popper to position fixed. Fixes issues with overflow: hidden. */
   positionFixed: PropTypes.boolean,
 }
 
