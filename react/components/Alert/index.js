@@ -20,6 +20,7 @@ class Alert extends Component {
 
   render() {
     const { type, onClose, action, forwardedRef } = this.props
+    const innerVerticalPadding = 'pv3'
     let classes = 'ph5 pv4 br2 '
     let showIcon = false
     let Icon = 'div'
@@ -56,8 +57,9 @@ class Alert extends Component {
       <div
         ref={forwardedRef}
         className={`vtex-alert flex justify-between t-body c-on-base ${classes}`}>
-        <div className="flex-ns flex-grow-1 items-center">
-          <div className="flex items-center flex-grow-1">
+        <div className="flex-ns flex-grow-1 items-start">
+          <div
+            className={`flex items-start flex-grow-1 ${innerVerticalPadding}`}>
             {showIcon && (
               <div className={color}>
                 <Icon block color="currentColor" size={18} />
@@ -70,7 +72,8 @@ class Alert extends Component {
           </div>
 
           {displayAction && (
-            <div className="flex flex-grow-1 justify-end">
+            <div
+              className={`flex flex-grow-1 justify-end ${innerVerticalPadding}`}>
               <div className="nt4-ns nb4">
                 <Button variation="tertiary" onClick={handleActionClick}>
                   {action.label}
@@ -83,7 +86,7 @@ class Alert extends Component {
         {onClose && (
           <div
             title="Close"
-            className="vtex-alert__close-icon pointer flex items-center pv2 c-on-base pa3"
+            className={`vtex-alert__close-icon pointer pv2 c-on-base ph3 ${innerVerticalPadding}`}
             onClick={onClose}
             tabIndex={0}>
             <CloseIcon block color="currentColor" size={16} />
