@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.51.2] - 2019-06-06
+
 ### Fixed
 
 - Position of elements in **Alert** to top
