@@ -18,8 +18,12 @@ export const styles = ({ space, fontFamily, fontSize, color }) => ({
 })
 
 export function PathlineRenderer({ classes, children }) {
-  const npmString = `import ${children.componentName} from '@vtex/styleguide/lib/${children.dir}'`
-  const vtexIOString = `import { ${children.componentName} } from 'vtex.styleguide'`
+  const npmString = `import ${
+    children.componentName
+  } from '@vtex/styleguide/lib/${children.dir}'`
+  const vtexIOString = `import { ${
+    children.componentName
+  } } from 'vtex.styleguide'`
 
   return (
     <div className={classes.pathline}>

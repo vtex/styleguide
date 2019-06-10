@@ -185,7 +185,9 @@ class FilterTag extends PureComponent {
                       <span className="fw5">{getFilterLabel()}</span>
                     ) : (
                       <Fragment>
-                        <span className="">{`${options[subject].label}:\xa0`}</span>
+                        <span className="">{`${
+                          options[subject].label
+                        }:\xa0`}</span>
                         <span className="fw5">{`\xa0${getFilterLabel(
                           filterStatementBySubject(statements, subject)
                         )}`}</span>
