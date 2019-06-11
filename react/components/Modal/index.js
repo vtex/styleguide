@@ -21,7 +21,10 @@ class Modal extends PureComponent {
 
   componentDidUpdate(prevProps) {
     const scrollTop = get(this, 'contentContainerReference.current.scrollTop')
-    if (prevProps.isOpen !== this.props.isOpen || scrollTop === 0 && this.state.shadowTop)
+    if (
+      prevProps.isOpen !== this.props.isOpen ||
+      (scrollTop === 0 && this.state.shadowTop)
+    )
       this.setShadowState(this.contentContainerReference.current)
   }
 
