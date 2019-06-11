@@ -14,8 +14,8 @@
 
 ### Related components
 
-- Consider using a <a href="#checkbox">Checkbox</a> if you need the user to select more than one option.
-- Consider using a <a href="#dropdown">Dropdown</a> if you have several options and they don't need much explanation.
+- Consider using a <a href="#/Components/Forms/Checkbox">Checkbox</a> if you need the user to select more than one option.
+- Consider using a <a href="#/Components/Forms/Dropdown">Dropdown</a> if you have several options and they don't need much explanation.
 
 Default
 
@@ -63,7 +63,6 @@ RadioGroup
 
 ```js
 initialState = { value: 'cyan' }
-
 ;<RadioGroup
   name="colors"
   options={[

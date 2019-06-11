@@ -57,56 +57,68 @@ const defaultSchema = {
 
 The Schema property is a JSON used to define the table columns and how they should behave visually. The Schema has properties and each one of them defines a column in the table.
 Example with simple structure:
+
 ```md
 {
-  properties: {
-    column1: {
-      title: "First Column"
-    },
-    column2: {
-      title: "Second Column",
-      width: 350
-    }
-  }
+properties: {
+column1: {
+title: "First Column"
+},
+column2: {
+title: "Second Column",
+width: 350
+}
+}
 }
 ```
 
 ##### title
-  - Control the title which appears on table Header.
-  - It receives only strings.
-  - If you want to customize it with a component, you can use the `headerRenderer` prop.
+
+- Control the title which appears on table Header.
+- It receives only strings.
+- If you want to customize it with a component, you can use the `headerRenderer` prop.
 
 ##### width
-  - Control the column width.
-  - It receives only numbers, which are values in pixels.
-  - Default value is 200px
+
+- Control the column width.
+- It receives only numbers, which are values in pixels.
+- Default value is 200px
 
 ##### minWidth
-  - Fix a minimum width to the column.
-  - It receives only numbers, which are values in pixels.
-  - Default value is 200px
+
+- Fix a minimum width to the column.
+- It receives only numbers, which are values in pixels.
+- Default value is 200px
 
 ##### cellRenderer
-  - Customize the render method of a single column cell.
-  - It receives a function that returns a node (react component).
-  - The function has the following params: ({ cellData, rowData })
-  - Default is render the value as a string.
-  - If you have a custom cell component that has a click interaction and at the same time you use the onRowClick Table prop, you might stumble uppon the problem of both click actions being fired. We can work around that by doing a wrapper around cellRenderer to stop click event propagation, like so:
 
- ```jsx noeditor static
- {
-   properties: {
-     column1: {
-       cellRenderer: ({ cellData, rowData }) => {
-         return (
-          <div onClick={e => {
-            e.stopPropagation()
-            // the click event propagation start on the checkbox click below, and propagates up the DOM tree.
-            // this wrapper is going to catch the event right after it fires and stop it's propagation.
-            // stoping the click event from propagating until the row component node,
-            // so the onRowClick will not be fired.
-            // you can learm more about DOM event propagation here: http://tiny.cc/c1625y
-          }}>
+- Customize the render method of a single column cell.
+- It receives a function that returns a node (react component).
+- The function has the following params: ({ cellData, rowData })
+- Default is render the value as a string.
+- If you have a custom cell component that has a click interaction and at the same time you use the onRowClick Table prop, you might stumble uppon the problem of both click actions being fired. We can work around that by doing a wrapper around cellRenderer to stop click event propagation, like so:
+
+##### headerRight
+
+- Use this boolean property to align right the text of a header. Useful for monetary values.
+- Usage: `headerRight: true`.
+- You will have to use the `cellRenderer` proerty to also align right the content of the column.
+
+```jsx noeditor static
+{
+  properties: {
+    column1: {
+      cellRenderer: ({ cellData, rowData }) => {
+        return (
+          <div
+            onClick={e => {
+              e.stopPropagation()
+              // the click event propagation start on the checkbox click below, and propagates up the DOM tree.
+              // this wrapper is going to catch the event right after it fires and stop it's propagation.
+              // stoping the click event from propagating until the row component node,
+              // so the onRowClick will not be fired.
+              // you can learm more about DOM event propagation here: http://tiny.cc/c1625y
+            }}>
             <Checkbox
               checked={this.state.check}
               id="select-option"
@@ -114,12 +126,12 @@ Example with simple structure:
               onChange={() => this.setState({ check: !this.state.check })}
             />
           </div>
-         )
-       }
-     }
-   }
- }
- ```
+        )
+      }
+    }
+  }
+}
+```
 
 Example customizing color column cell, with clickable badges
 
@@ -195,10 +207,10 @@ class CustomTableExample extends React.Component {
 ```
 
 ##### sortable
-  - Sinalize that a column is sortable, so the header will be clickable.
-  - This prop receives a boolean.
-  - On sortable header's click the Table `onSort` callback will be fired.
 
+- Sinalize that a column is sortable, so the header will be clickable.
+- This prop receives a boolean.
+- On sortable header's click the Table `onSort` callback will be fired.
 
 Example sortable by Name
 
@@ -262,10 +274,14 @@ class CustomTableExample extends React.Component {
         },
         email: {
           title: 'Email',
-          width: 350,
+          width: 300,
         },
         number: {
-          title: 'Number',
+          title: 'Value',
+          headerRight: true,
+          cellRenderer: data => (
+            <div className="w-100 tr">$ {data.cellData}</div>
+          ),
         },
       },
     }
@@ -291,12 +307,14 @@ class CustomTableExample extends React.Component {
 ```
 
 ##### headerRenderer
-  - Customized the render method of a single header cell.
-  - It receives a function that returns a node (react component).
-  - The function has the following params: ({ columnIndex, key, title })
-  - This prop will not work if the `sortable` prop for the same header is active.
+
+- Customized the render method of a single header cell.
+- It receives a function that returns a node (react component).
+- The function has the following params: ({ columnIndex, key, title })
+- This prop will not work if the `sortable` prop for the same header is active.
 
 example customizing number column header to use intl FormattedMessage
+
 ```js
 const sampleData = require('./sampleData').default
 const itemsCopy = sampleData.items
@@ -307,7 +325,7 @@ const Tag = require('../Tag').default
 class FormattedMessage extends React.Component {
   render() {
     const renderTextByIntlId = id => {
-      switch(id) {
+      switch (id) {
         case 'some.intl.message.id':
           return 'Number'
           break
@@ -316,9 +334,7 @@ class FormattedMessage extends React.Component {
           break
       }
     }
-    return (
-      <span>{renderTextByIntlId(this.props.id)}</span>
-    )
+    return <span>{renderTextByIntlId(this.props.id)}</span>
   }
 }
 
@@ -344,9 +360,7 @@ class CustomTableExample extends React.Component {
         number: {
           title: 'some.intl.message.id',
           headerRenderer: ({ title }) => {
-            return (
-              <FormattedMessage id={title} />
-            )
+            return <FormattedMessage id={title} />
           },
         },
       },
@@ -355,10 +369,7 @@ class CustomTableExample extends React.Component {
     return (
       <div>
         <div className="mb5">
-          <Table
-            schema={customSchema}
-            items={this.state.orderedItems}
-          />
+          <Table schema={customSchema} items={this.state.orderedItems} />
         </div>
       </div>
     )
@@ -376,7 +387,7 @@ class CustomTableExample extends React.Component {
 ##### Custom empty state
 
 Empty states can also be customized, the passed children will be rendered inside an EmptyState component.
-It's worth to customize empty state using this prop so the other table features will behave  accordingly (e.g. the topbar, pagination and totalizers).
+It's worth to customize empty state using this prop so the other table features will behave accordingly (e.g. the topbar, pagination and totalizers).
 
 ```js
 const sampleData = require('./sampleData').default

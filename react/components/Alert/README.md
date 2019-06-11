@@ -12,7 +12,7 @@
 
 ### Related components
 
-For low-priority notification prefer a <a href="#toast">Toast</a>.
+For low-priority notification prefer a <a href="#/Components/Notification/ToastProvider">Toast</a>.
 
 ```js
 <div>
@@ -25,6 +25,17 @@ For low-priority notification prefer a <a href="#toast">Toast</a>.
   <div className="mb5">
     <Alert type="warning" onClose={() => console.log('Closed!')}>
       This action is irreversible.
+    </Alert>
+  </div>
+  <div className="mb5">
+    <Alert type="warning" onClose={() => console.log('Closed!')}>
+      This is a large Alert. Lorem ipsum dolor sit amet, consectetur adipiscing
+      elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+      aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+      voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+      sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+      mollit anim id est laborum.
     </Alert>
   </div>
   <div className="mb5">

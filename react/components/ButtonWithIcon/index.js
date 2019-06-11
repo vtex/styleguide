@@ -12,7 +12,7 @@ class ButtonWithIcon extends Component {
     /** @ignore Forwarded Ref */
     forwardedRef: refShape,
     /** The icon image */
-    icon: PropTypes.node.isRequired,
+    icon: PropTypes.node,
     /** Position of the icon */
     iconPosition: PropTypes.oneOf(['left', 'right']),
     /** @ignore Button size, used to calculate the margins of the icon.
@@ -58,14 +58,14 @@ class ButtonWithIcon extends Component {
                 ? `nr${paddingOffset}`
                 : `nl${paddingOffset}`
             }`}>
-            {iconPosition === 'left' && (
+            {icon && iconPosition === 'left' && (
               <div
                 className={`mr${iconMargin} nl${iconMargin} flex items-center`}>
                 {icon}
               </div>
             )}
             <div>{children}</div>
-            {iconPosition === 'right' && (
+            {icon && iconPosition === 'right' && (
               <div
                 className={`ml${iconMargin} nr${iconMargin} flex items-center`}>
                 {icon}

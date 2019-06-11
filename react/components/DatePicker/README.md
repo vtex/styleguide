@@ -1,3 +1,19 @@
+```js noeditor
+  <Alert type="warning">
+    <div class="flex-column">
+      <div>
+        This component has 2 known issues:
+      </div>
+      <div>
+        <a class="link fw5 blue di" href="https://github.com/vtex/styleguide/issues/593">#593 - Time selection does not respect locale internationalization</a>
+      </div>
+      <div>
+        <a class="link fw5 blue di" href="https://github.com/vtex/styleguide/issues/471">#471 - Typing is disabled</a>
+      </div>
+    </div>
+  </Alert>
+```
+
 #### A Datepicker lets the user select a single date and time by interacting with a calendar.
 
 ### 👍 Dos

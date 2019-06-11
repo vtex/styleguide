@@ -194,6 +194,8 @@ class SimpleTable extends Component {
                         // Header row
                         const title =
                           schema.properties[property].title || property
+                        const headerRight =
+                          schema.properties[property].headerRight || false
                         const headerRenderer =
                           schema.properties[property].headerRenderer
                         const arrowIsDown =
@@ -209,24 +211,25 @@ class SimpleTable extends Component {
                             }}
                             className={`flex items-center w-100 h-100 c-muted-2 f6 truncate ph4 ${
                               columnIndex === 0 && fixFirstColumn ? 'br' : ''
-                            } bt bb b--muted-4 overflow-x-hidden`}>
+                            } bt bb b--muted-4 overflow-x-hidden ${
+                              headerRight ? 'tr' : 'tl'
+                            }`}>
                             {schema.properties[property].sortable ? (
-                              <span
-                                className="pointer c-muted-1 b t-small"
+                              <div
+                                className="w-100 pointer c-muted-1 b t-small"
                                 onClick={() => {
                                   onSort(this.toggleSortType(property))
                                 }}>
-                                {`${title} `}
+                                {!headerRight && `${title} `}
                                 {arrowIsDown ? (
                                   <ArrowDown size={ARROW_SIZE} />
                                 ) : arrowIsUp ? (
                                   <ArrowUp size={ARROW_SIZE} />
                                 ) : null}
-                              </span>
-                            ) : columnIndex === 0 && fixFirstColumn ? (
-                              <div className="w-100 flex items-center">
-                                <span>{title}</span>
+                                {headerRight && ` ${title}`}
                               </div>
+                            ) : columnIndex === 0 && fixFirstColumn ? (
+                              <div className="w-100">{title}</div>
                             ) : headerRenderer ? (
                               headerRenderer({
                                 columnIndex,
@@ -236,7 +239,7 @@ class SimpleTable extends Component {
                                 title,
                               })
                             ) : (
-                              title
+                              <span className="w-100">{title}</span>
                             )}
                           </div>
                         )

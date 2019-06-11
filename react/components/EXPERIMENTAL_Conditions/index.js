@@ -73,6 +73,9 @@ class EXPERIMENTAL_Conditions extends React.Component {
 
   handleChangeStatement = (statementIndex, newValue, structure) => {
     const updatedCurrentStatements = [...this.props.statements]
+    if (structure === 'verb') {
+      updatedCurrentStatements[statementIndex].object = null
+    }
     updatedCurrentStatements[statementIndex][structure] = newValue
     this.props.onChangeStatements(updatedCurrentStatements)
   }

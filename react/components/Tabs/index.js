@@ -16,7 +16,10 @@ const Tabs = ({ children, fullWidth, sticky }) => {
         {childrenArray.map(child =>
           cloneElement(child, {
             fullWidth,
-            key: child.props.label.toString(),
+            key:
+              child.props.key != null
+                ? child.props.key
+                : child.props.label.toString(),
           })
         )}
       </div>

@@ -7,6 +7,105 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.51.3] - 2019-06-06
+### Fixed
+
+- **NumericStepper** Fixed issue where buttons would submit forms they were children of.
+
+## [8.51.2] - 2019-06-06
+
+### Fixed
+
+- Position of elements in **Alert** to top
+
+## [8.51.1] - 2019-06-06
+
+### Fixed
+
+- Development documentation
+
+## [8.51.0] - 2019-05-29
+
+### Added
+
+- **DatePicker** Add `positionFixed` prop, which fixes issues related to `overflow: hidden`.
+
+## [8.50.1] - 2019-05-28
+
+### Changed
+
+- Only automatically add `key` prop to `Tabs` children when the prop is not present.
+
+## [8.50.0] - 2019-05-28
+
+### Changed
+
+- **EXPERIMENTAL_Select** now uses the new **Select** component for its atoms.
+- **EXPERIMENTAL_Select** horizontal growth to make it simpler to the user.
+
+## [8.49.1] - 2019-05-26
+
+### Changed
+
+- **ButtonWithIcon** Prop `icon` is not required anymore.
+
+## [8.49.0] - 2019-05-24
+
+### Fixed
+
+- **Spinner** Use CSS animations instead of SVG animations, in order to make the animation work while the page is loading.
+
+### Added
+
+- **EXPERIMENTAL_Select**: `formatCreateLabel` now allows the user to customize the create option message.
+- **Textarea**: `resize` property to control the component's resize behaviour. See [resize CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/resize) for more info.
+
+### Changed
+
+- **Button** now uses `b--muted-5` instead of `b--disabled` when it is `disabled`.
+
+### Removed
+
+- **Spinner** prop `status`
+
+## [8.48.1] - 2019-05-24
+
+### Added
+
+- **Table** schema property `headerRight`.
+
+## [8.48.0] - 2019-05-23
+
+### Added
+
+- **ButtonGroup** component.
+
+## [8.47.3] - 2019-05-22
+
+### Fixed
+
+- **Table** labels for download & upload buttons.
+
+## [8.47.2] - 2019-05-20
+
+### Fixed
+
+- Added required props to **CheckboxGroup** README
+
+### Removed
+
+- **CheckboxGroup** `Without label group` example
+
+## [8.47.1] - 2019-05-20
+
+### Added
+
+- Optional prop to control `Pagination` number of rows.
+
+## [8.47.0] - 2019-05-20
+
+### Added
+
 ## [8.46.3] - 2019-06-11
 
 ### Fixed

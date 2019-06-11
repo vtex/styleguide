@@ -127,6 +127,7 @@ module.exports = {
           components: [
             'react/components/ActionMenu/index.js',
             'react/components/Button/index.js',
+            'react/components/ButtonGroup/index.js',
             'react/components/ButtonWithIcon/index.js',
             'react/components/Checkbox/index.js',
             'react/components/CheckboxGroup/index.js',
@@ -240,14 +241,19 @@ module.exports = {
   template: {
     favicon: 'https://brand.vtex.com/favicon.ico',
     head: {
-      scripts: [
-        {
-          src: 'https://www.googletagmanager.com/gtag/js?id=UA-43760863-25',
-        },
-        {
-          src: './analytics.js',
-        },
-      ],
+      raw: `<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M4WMB9F');</script>
+<!-- End Google Tag Manager -->`
+    },
+    body: {
+      raw: `<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M4WMB9F"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->`
     },
   },
   assetsDir: './assets',

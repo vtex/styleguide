@@ -47,6 +47,7 @@ class Textarea extends Component {
       dataAttributes,
       children,
       maxLength,
+      resize,
     } = this.props
     const { active } = this.state
 
@@ -106,7 +107,7 @@ class Textarea extends Component {
           rows={this.props.rows}
           defaultValue={this.props.defaultValue}
           value={this.props.value}
-          style={{ WebkitAppearance: 'none' }}>
+          style={{ resize, WebkitAppearance: 'none' }}>
           {children}
         </textarea>
 
@@ -139,6 +140,7 @@ Textarea.defaultProps = {
   disabled: false,
   label: '',
   readOnly: false,
+  resize: 'both',
   error: false,
   characterCountdownText: 'characters left',
   rows: 5,
@@ -179,6 +181,8 @@ Textarea.propTypes = {
   readOnly: PropTypes.bool,
   /** Spec attribute */
   required: PropTypes.string,
+  /** Controls if Textarea is resizable and the resize direction. */
+  resize: PropTypes.oneOf(['both', 'horizontal', 'none', 'vertical']),
   /** Spec attribute */
   rows: PropTypes.number,
   /** Spec attribute */

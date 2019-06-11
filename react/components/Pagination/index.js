@@ -48,6 +48,7 @@ class Pagination extends PureComponent {
       currentItemTo,
       textOf,
       textShowRows,
+      selectedOption,
     } = this.props
     const { selectedRowsOptionIndex } = this.state
 
@@ -71,7 +72,9 @@ class Pagination extends PureComponent {
             <Dropdown
               size="small"
               options={dropdownOptions}
-              value={dropdownOptions[selectedRowsOptionIndex].label}
+              value={
+                selectedOption || dropdownOptions[selectedRowsOptionIndex].label
+              }
               onChange={this.handleRowsChange}
             />
           </div>
@@ -118,6 +121,10 @@ Pagination.propTypes = {
   textOf: PropTypes.string.isRequired,
   textShowRows: PropTypes.string.isRequired,
   totalItems: PropTypes.number.isRequired,
+  /**
+   * Use this prop if you want to control the number of rows selected, instead of leaving it to the Pagination component.
+   */
+  selectedOption: PropTypes.number,
 
   onRowsChange: PropTypes.func,
   onNextClick: PropTypes.func,
