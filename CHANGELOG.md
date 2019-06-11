@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- **Layout** can stretch using the `stretch` prop.
+- **PageBlock** can stretch using the `stretch` prop.
+- **Box** can have the container's full height using the `fullHeight` prop.
+
 ## [8.52.0] - 2019-06-11
 
 ### Added

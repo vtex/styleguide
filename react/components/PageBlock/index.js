@@ -6,7 +6,7 @@ import Box from '../Box/index'
 
 class PageBlock extends Component {
   render() {
-    const { title, subtitle, variation, titleAside } = this.props
+    const { title, subtitle, stretch, variation, titleAside } = this.props
     const isAnnotated = variation === 'annotated'
 
     const headerClasses = classNames({
@@ -22,7 +22,7 @@ class PageBlock extends Component {
       <div
         className={`styleguide__pageBlock flex ${
           isAnnotated ? 'flex-row' : 'flex-column'
-        }`}>
+        } ${stretch ? 'flex-auto' : ''}`}>
         {/* Title, subtitle & aside */}
         {(title || subtitle) && (
           <div className={headerClasses}>
@@ -44,29 +44,50 @@ class PageBlock extends Component {
 
         {/* Boxes and the content itself */}
         <div
-          className={`flex flex-column flex-row-ns ${isAnnotated &&
-            'w-two-thirds'}`}>
+          className={`flex flex-column flex-row-ns ${
+            isAnnotated ? 'w-two-thirds' : ''
+          } ${stretch ? 'flex-auto' : ''}`}>
           {variation === 'half' ? (
             <Fragment>
-              <div className="w-50-ns w-100 mr3-ns mb0-ns mb5">
-                <Box>{this.props.children && this.props.children[0]}</Box>
+              <div
+                className={`${
+                  stretch ? 'h-100' : ''
+                } w-50-ns w-100 mr3-ns mb0-ns mb5`}>
+                <Box fullHeight={stretch}>
+                  {this.props.children && this.props.children[0]}
+                </Box>
               </div>
-              <div className="w-50-ns w-100 ml3-ns mb5">
-                <Box>{this.props.children && this.props.children[1]}</Box>
+              <div
+                className={`${
+                  stretch ? 'h-100' : ''
+                } w-50-ns w-100 ml3-ns mb0-ns mb5`}>
+                <Box fullHeight={stretch}>
+                  {this.props.children && this.props.children[1]}
+                </Box>
               </div>
             </Fragment>
           ) : variation === 'aside' ? (
             <Fragment>
-              <div className="w-two-thirds-ns w-100 mr3-ns mb0-ns mb5">
-                <Box>{this.props.children && this.props.children[0]}</Box>
+              <div
+                className={`${
+                  stretch ? 'h-100' : ''
+                } w-two-thirds-ns w-100 mr3-ns mb0-ns mb5`}>
+                <Box fullHeight={stretch}>
+                  {this.props.children && this.props.children[0]}
+                </Box>
               </div>
-              <div className="w-third-ns w-100 ml3-ns mb5">
-                <Box>{this.props.children && this.props.children[1]}</Box>
+              <div
+                className={`${
+                  stretch ? 'h-100' : ''
+                } w-third-ns w-100 ml3-ns mb0-ns mb5`}>
+                <Box fullHeight={stretch}>
+                  {this.props.children && this.props.children[1]}
+                </Box>
               </div>
             </Fragment>
           ) : (
-            <div className="w-100 mb5">
-              <Box>{this.props.children}</Box>
+            <div className={`${stretch ? 'h-100' : ''} w-100 mb5`}>
+              <Box fullHeight={stretch}>{this.props.children}</Box>
             </div>
           )}
         </div>
@@ -77,6 +98,7 @@ class PageBlock extends Component {
 
 PageBlock.defaultProps = {
   variation: 'full',
+  stretch: false,
 }
 
 PageBlock.propTypes = {
@@ -88,6 +110,8 @@ PageBlock.propTypes = {
   subtitle: PropTypes.string,
   /** Content on the right side of the title. */
   titleAside: PropTypes.node,
+  /** If should stretch when inside an element with flex and flex-column properties */
+  stretch: PropTypes.bool,
   /** Contents of the boxes. Can be 1 or 2 nodes depending on the variation chosen. */
   children: function(props, propName, componentName) {
     PropTypes.checkPropTypes(
