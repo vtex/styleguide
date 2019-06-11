@@ -7,7 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.52.0] - 2019-06-11
+
+### Added
+
+- `IconGrid` and `IconInlineGrid` Components.
+
 ## [8.51.3] - 2019-06-06
+
 ### Fixed
 
 - **NumericStepper** Fixed issue where buttons would submit forms they were children of.
