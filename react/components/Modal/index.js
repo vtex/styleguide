@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import ResponsiveModal from 'react-responsive-modal'
+import get from 'lodash/get'
 
 import TopBar from './TopBar'
 import BottomBar from './BottomBar'
@@ -19,7 +20,8 @@ class Modal extends PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.isOpen !== this.props.isOpen)
+    const scrollTop = get(this, 'contentContainerReference.current.scrollTop')
+    if (prevProps.isOpen !== this.props.isOpen || scrollTop === 0 && this.state.shadowTop)
       this.setShadowState(this.contentContainerReference.current)
   }
 

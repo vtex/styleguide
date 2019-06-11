@@ -106,7 +106,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- **FilterOptions** now begins with open Collapsibles if it has less than four options.
+## [8.46.3] - 2019-06-11
+
+### Fixed
+
+- **Modal** fixed unexpected behavion on shadows in top bar
 
 ## [8.46.2] - 2019-05-16
 
