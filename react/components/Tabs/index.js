@@ -13,13 +13,10 @@ const Tabs = ({ children, fullWidth, sticky }) => {
         sticky ? 'overflow-y-hidden' : ''
       }`}>
       <div className="vtex-tabs__nav flex flex-row bb b--muted-4">
-        {childrenArray.map(child =>
+        {childrenArray.map((child, index) =>
           cloneElement(child, {
             fullWidth,
-            key:
-              child.props.key != null
-                ? child.props.key
-                : child.props.label.toString(),
+            key: child.props.key != null ? child.props.key : index,
           })
         )}
       </div>
