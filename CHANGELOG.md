@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - **Table** bulk actions documentation
+- **Checkbox** `label` prop now accepts both string or a node.
 
 ## [8.53.0] - 2019-06-13
 
