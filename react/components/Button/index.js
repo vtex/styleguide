@@ -36,7 +36,6 @@ class Button extends Component {
       isFirstOfGroup,
       isLastOfGroup,
       href,
-      onClick,
       target,
       rel,
       referrerPolicy,
@@ -197,8 +196,8 @@ class Button extends Component {
         value={iconOnly ? undefined : this.props.value}
         tabIndex={0}
         className={classes}
-        href={onClick ? undefined : href}
-        onClick={href ? undefined : this.handleClick}
+        href={href}
+        onClick={this.handleClick}
         onMouseEnter={this.props.onMouseEnter}
         onMouseLeave={this.props.onMouseLeave}
         onMouseOver={this.props.onMouseOver}
