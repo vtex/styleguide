@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.52.1] - 2019-06-13
+
+### Fixed
+
+- **Table** `toolbar` default prop to null.
+
 ## [8.52.0] - 2019-06-11
 
 ### Added

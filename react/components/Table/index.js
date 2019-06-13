@@ -303,11 +303,7 @@ Table.defaultProps = {
   loading: false,
   density: 'medium',
   fixFirstColumn: false,
-  toolbar: {
-    extraActions: {
-      actions: [],
-    },
-  },
+  toolbar: null,
   emptyStateLabel: 'Nothing to show.',
   fullWidth: false,
   bulkActions: {},
