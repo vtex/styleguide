@@ -148,6 +148,48 @@ const Content = () => (
     <div className="mb5">
       Toast position
     </div>
+    <div className="mb8">
+      <ToastConsumer>
+        {({showToast, hideToast}) => (
+          <div className="flex">
+            <div className="mr5">
+              <Button
+                size="small"
+                variation="secondary"
+                onClick={
+                  () => showToast({
+                    message: 'Everything you own in the box to the left',
+                    duration: 3000,
+                    horizontalPosition: 'left'
+                  })
+                }
+              >
+                To the left, to the left
+              </Button>
+            </div>
+            <div className="mr5">
+              <Button
+                size="small"
+                variation="secondary"
+                onClick={
+                  () => showToast({
+                    message: 'All right all right all right',
+                    duration: 3000,
+                    horizontalPosition: 'right'
+                  })
+                }
+              >
+                All right
+              </Button>
+            </div>
+          </div>
+        )}
+      </ToastConsumer>
+    </div>
+
+    <div className="mb5">
+      Link on toast action
+    </div>
     <ToastConsumer>
       {({showToast, hideToast}) => (
         <div className="flex">
@@ -157,28 +199,17 @@ const Content = () => (
               variation="secondary"
               onClick={
                 () => showToast({
-                  message: 'Everything you own in the box to the left',
-                  duration: 3000,
-                  horizontalPosition: 'left'
+                  message: 'Item added to cart',
+                  duration: 8000,
+                  action: {
+                    label: 'See cart',
+                    href: 'http://vtex.com',
+                    target: '_blank'
+                  }
                 })
               }
             >
-              To the left, to the left
-            </Button>
-          </div>
-          <div className="mr5">
-            <Button
-              size="small"
-              variation="secondary"
-              onClick={
-                () => showToast({
-                  message: 'Right',
-                  duration: 3000,
-                  horizontalPosition: 'right'
-                })
-              }
-            >
-              Right
+              Add to cart
             </Button>
           </div>
         </div>

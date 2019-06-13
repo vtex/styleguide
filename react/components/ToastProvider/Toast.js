@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import CloseIcon from '../icon/Close'
+import Button from '../Button'
 
 const nextFrame = callback => {
   const FRAME_DURATION = 16
@@ -163,7 +164,11 @@ export default class Toast extends Component {
   render() {
     const { isOpen, isSingleLine } = this.state
     const { action, dismissable, horizontalPosition, message } = this.props
-    const hasAction = !!(action && action.onClick && action.label)
+    const hasAction = !!(
+      action &&
+      action.label &&
+      (action.onClick || action.href)
+    )
 
     return (
       <div
@@ -189,12 +194,16 @@ export default class Toast extends Component {
             {hasAction && (
               <div className="flex flex-grow-1 justify-end items-center">
                 <div className={`${isSingleLine ? 'nt4' : 'nt4-ns'} nb4`}>
-                  <button
+                  <Button
                     ref={this.buttonElement}
-                    className="bg-transparent b--transparent c-on-base--inverted bw1 ba br2 t-action v-mid relative pv4 pl5 pr4 pointer"
+                    variation="inverted-tertiary"
+                    href={action.href}
+                    target={action.target}
+                    rel={action.rel}
+                    download={action.download}
                     onClick={this.handleActionClick}>
                     {action.label}
-                  </button>
+                  </Button>
                 </div>
               </div>
             )}
@@ -220,7 +229,11 @@ Toast.propTypes = {
   horizontalPosition: PropTypes.oneOf(['left', 'right']),
   action: PropTypes.shape({
     label: PropTypes.string.isRequired,
-    onClick: PropTypes.func.isRequired,
+    onClick: PropTypes.func,
+    href: PropTypes.func,
+    target: PropTypes.string,
+    rel: PropTypes.string,
+    download: PropTypes.string,
   }),
   visible: PropTypes.bool,
   duration: PropTypes.number,

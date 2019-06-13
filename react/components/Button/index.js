@@ -35,6 +35,11 @@ class Button extends Component {
       isActiveOfGroup,
       isFirstOfGroup,
       isLastOfGroup,
+      href,
+      target,
+      rel,
+      referrerPolicy,
+      download,
     } = this.props
 
     const disabled = this.props.disabled || isLoading
@@ -119,6 +124,14 @@ class Button extends Component {
           }
           break
         }
+        case 'inverted-tertiary': {
+          if (disabled) {
+            classes += 'bg-transparent b--transparent c-disabled '
+          } else {
+            classes += 'bg-transparent b--transparent c-on-base--inverted '
+          }
+          break
+        }
         case 'danger': {
           if (disabled) {
             classes += 'bg-disabled b--muted-5 c-on-disabled '
@@ -148,6 +161,10 @@ class Button extends Component {
       classes += 'w-100 '
     }
 
+    if (href) {
+      classes += 'inline-flex items-center no-underline '
+    }
+
     const style = {}
 
     if (iconOnly) {
@@ -161,16 +178,25 @@ class Button extends Component {
       style.borderColor = '#0c389f'
     }
 
+    const linkModeProps = {
+      target,
+      rel,
+      referrerPolicy,
+      download,
+    }
+
+    const Element = href ? 'a' : 'button'
+
     return (
-      <button
+      <Element
         id={this.props.id}
         autoFocus={iconOnly ? undefined : this.props.autoFocus}
         disabled={iconOnly ? undefined : this.props.disabled}
         name={iconOnly ? undefined : this.props.name}
-        type={iconOnly ? undefined : this.props.type}
         value={iconOnly ? undefined : this.props.value}
         tabIndex={0}
         className={classes}
+        href={href}
         onClick={this.handleClick}
         onMouseEnter={this.props.onMouseEnter}
         onMouseLeave={this.props.onMouseLeave}
@@ -179,7 +205,11 @@ class Button extends Component {
         onMouseUp={this.props.onMouseUp}
         onMouseDown={this.props.onMouseDown}
         ref={this.props.forwardedRef}
-        style={style}>
+        style={style}
+        // Button-mode exclusive props
+        type={iconOnly || href ? undefined : this.props.type}
+        // Link-mode exclusive props
+        {...href && linkModeProps}>
         {isLoading ? (
           <Fragment>
             <span className="top-0 left-0 w-100 h-100 absolute flex justify-center items-center">
@@ -193,7 +223,7 @@ class Button extends Component {
         ) : (
           <div className={labelClasses}>{children}</div>
         )}
-      </button>
+      </Element>
     )
   }
 }
@@ -221,6 +251,7 @@ Button.propTypes = {
     'primary',
     'secondary',
     'tertiary',
+    'inverted-tertiary',
     'danger',
     'danger-tertiary',
   ]),
@@ -252,8 +283,10 @@ Button.propTypes = {
   value: PropTypes.string,
   /** Label of the Button */
   children: PropTypes.node.isRequired,
-  /** onClick event */
+  /** onClick event. */
   onClick: PropTypes.func,
+  /** URL for link mode. Converts the button internally to a link. */
+  href: PropTypes.string,
   /** onMouseEnter event */
   onMouseEnter: PropTypes.func,
   /** onMouseLeave event */
@@ -278,6 +311,14 @@ Button.propTypes = {
   isLastOfGroup: PropTypes.bool,
   /** */
   isActiveOfGroup: PropTypes.bool,
+  /** Link spec */
+  target: PropTypes.string,
+  /** Link spec */
+  rel: PropTypes.string,
+  /** Link spec */
+  referrerPolicy: PropTypes.string,
+  /** Link spec */
+  download: PropTypes.string,
 }
 
 export default withForwardedRef(Button)
