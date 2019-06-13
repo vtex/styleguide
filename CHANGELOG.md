@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [8.52.2] - 2019-06-13
 ### Added
 - **Button** `href` prop, along with `<a>` tag props `target`, `rel`, `referrerPolicy`, `download`.
 - **Button** `inverted-tertiary` variation.
