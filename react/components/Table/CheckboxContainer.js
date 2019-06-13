@@ -12,11 +12,12 @@ class CheckboxContainer extends Component {
     checked: PropTypes.bool.isRequired,
     partial: PropTypes.bool,
     onClick: PropTypes.func.isRequired,
+    disabled: PropTypes.bool,
     id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   }
 
   render() {
-    const { checked, partial, id, onClick } = this.props
+    const { checked, partial, id, onClick, disabled } = this.props
 
     return (
       <div
@@ -30,6 +31,7 @@ class CheckboxContainer extends Component {
           value={`${id}`}
           name={`row_${id}`}
           onChange={() => onClick(id)}
+          disabled={disabled}
         />
       </div>
     )
