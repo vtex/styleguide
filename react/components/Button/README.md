@@ -12,39 +12,49 @@ Our Styleguide defines 3 main variations based on the button visual proeminence.
 Types
 
 ```js
-<div>
-  <div>
-    <span className="mr4">
+<div className="flex justify-center">
+  <div className="flex flex-column items-center w-100">
+    <span className="mb4">
       <Button variation="primary">Primary</Button>
     </span>
-    <span className="mr4">
+    <span className="mb4">
       <Button variation="secondary">Secondary</Button>
     </span>
-    <span className="mr4">
+    <span className="mb4">
       <Button variation="tertiary">Tertiary</Button>
     </span>
-    <span className="mr4">
+    <span className="mb4">
       <Button variation="danger">Danger</Button>
     </span>
-    <span className="mr4">
+    <span className="mb4">
       <Button variation="danger-tertiary">Danger Tertiary</Button>
     </span>
+    <span className="bg-base--inverted w-100 pa4 flex justify-center">
+      <span className="mb4">
+        <Button variation="inverted-tertiary">Inverted Tertiary</Button>
+      </span>
+    </span>
   </div>
-  <div className="mt4">
-    <span className="mr4">
+  <div className="flex flex-column items-center w-100">
+    <span className="mb4">
       <Button variation="primary" disabled>Primary</Button>
     </span>
-    <span className="mr4">
+    <span className="mb4">
       <Button variation="secondary" disabled>Secondary</Button>
     </span>
-    <span className="mr4">
+    <span className="mb4">
       <Button variation="tertiary" disabled>Tertiary</Button>
     </span>
-    <span className="mr4">
+    <span className="mb4">
       <Button variation="danger" disabled>Danger</Button>
     </span>
-    <span className="mr4">
+    <span className="mb4">
       <Button variation="danger-tertiary" disabled>Danger Tertiary</Button>
+    </span>
+    <span className="bg-base--inverted w-100 pa4 flex justify-center">
+      <span className="mb4">
+        <Button variation="inverted-tertiary" disabled>Inverted Tertiary</Button>
+      </span>
     </span>
   </div>
 </div>
