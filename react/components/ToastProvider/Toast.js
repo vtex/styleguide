@@ -230,7 +230,7 @@ Toast.propTypes = {
   action: PropTypes.shape({
     label: PropTypes.string.isRequired,
     onClick: PropTypes.func,
-    href: PropTypes.func,
+    href: PropTypes.string,
     target: PropTypes.string,
     rel: PropTypes.string,
     download: PropTypes.string,
