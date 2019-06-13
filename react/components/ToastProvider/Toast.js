@@ -164,7 +164,11 @@ export default class Toast extends Component {
   render() {
     const { isOpen, isSingleLine } = this.state
     const { action, dismissable, horizontalPosition, message } = this.props
-    const hasAction = !!(action && action.onClick && action.label)
+    const hasAction = !!(
+      action &&
+      action.label &&
+      (action.onClick || action.href)
+    )
 
     return (
       <div
@@ -193,6 +197,10 @@ export default class Toast extends Component {
                   <Button
                     ref={this.buttonElement}
                     variation="inverted-tertiary"
+                    href={action.href}
+                    target={action.target}
+                    rel={action.rel}
+                    download={action.download}
                     onClick={this.handleActionClick}>
                     {action.label}
                   </Button>
@@ -221,7 +229,11 @@ Toast.propTypes = {
   horizontalPosition: PropTypes.oneOf(['left', 'right']),
   action: PropTypes.shape({
     label: PropTypes.string.isRequired,
-    onClick: PropTypes.func.isRequired,
+    onClick: PropTypes.func,
+    href: PropTypes.func,
+    target: PropTypes.string,
+    rel: PropTypes.string,
+    download: PropTypes.string,
   }),
   visible: PropTypes.bool,
   duration: PropTypes.number,
