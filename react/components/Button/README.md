@@ -157,6 +157,16 @@ Box types
 </div>
 ```
 
+Link mode
+
+```js
+<div>
+  <div className="mb4">
+    <Button variation="primary" href="http://vtex.com" target="_blank">Sign in</Button>
+  </div>
+</div>
+```
+
 Cancelling out button paddings. Useful for visually aligning tertiary buttons
 
 ```js
