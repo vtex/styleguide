@@ -106,7 +106,7 @@ Checkbox.propTypes = {
   /** (Input spec attribute) */
   id: PropTypes.string.isRequired,
   /** Checkbox label */
-  label: PropTypes.string,
+  label: PropTypes.node,
   /** (Input spec attribute) */
   name: PropTypes.string.isRequired,
   /** onChange event */
