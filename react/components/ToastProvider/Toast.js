@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import CloseIcon from '../icon/Close'
+import Button from '../Button'
 
 const nextFrame = callback => {
   const FRAME_DURATION = 16
@@ -189,12 +190,12 @@ export default class Toast extends Component {
             {hasAction && (
               <div className="flex flex-grow-1 justify-end items-center">
                 <div className={`${isSingleLine ? 'nt4' : 'nt4-ns'} nb4`}>
-                  <button
+                  <Button
                     ref={this.buttonElement}
-                    className="bg-transparent b--transparent c-on-base--inverted bw1 ba br2 t-action v-mid relative pv4 pl5 pr4 pointer"
+                    variation="inverted-tertiary"
                     onClick={this.handleActionClick}>
                     {action.label}
-                  </button>
+                  </Button>
                 </div>
               </div>
             )}
