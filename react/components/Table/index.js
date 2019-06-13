@@ -290,6 +290,7 @@ class Table extends PureComponent {
               containerHeight || this.calculateTableHeight(items.length)
             }
             selectedRowsIndexes={map(selectedRows, 'id')}
+            density={selectedDensity}
           />
         )}
 
