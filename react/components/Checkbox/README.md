@@ -61,6 +61,7 @@ Disabled
       checked={true}
       disabled
       label="Option 1"
+      id="option-1"
       name="disabled-checkbox-group"
       onChange={() => {}}
       value="option-1"
@@ -72,6 +73,7 @@ Disabled
       partial={true}
       disabled
       label="Option 2"
+      id="option-2"
       name="disabled-checkbox-group"
       onChange={() => {}}
       value="option-2"
@@ -81,6 +83,7 @@ Disabled
     checked={false}
     disabled
     label="Option 3"
+    id="option-3"
     name="disabled-checkbox-group"
     onChange={() => {}}
     value="option-3"
@@ -99,6 +102,7 @@ initialState = { check1: true, check2: false, check3: false }
       name="disabled-checkbox-group"
       onChange={e => setState({ check1: !state.check1 })}
       value="option-0"
+      id="option-0"
     />
   </div>
   <div className="mb3">
@@ -108,13 +112,15 @@ initialState = { check1: true, check2: false, check3: false }
       name="disabled-checkbox-group"
       onChange={e => setState({ check2: !state.check2 })}
       value="option-1"
+      id="option-1"
     />
   </div>
   <Checkbox
     checked={state.check3}
     name="disabled-checkbox-group"
     onChange={e => setState({ check3: !state.check3 })}
-    value="option-1"
+    value="option-2"
+    id="option-2"
   />
 </div>
 ```
