@@ -179,12 +179,6 @@ class Button extends Component {
       style.borderColor = '#0c389f'
     }
 
-    if (href && onClick) {
-      console.warn(
-        'A <Button> component is being used with both the props href, which turns it into an <a> element, and onClick, which turns it into a <button> element. This is behaviour is inconsistent and is not supported. Please choose only one of the props'
-      )
-    }
-
     const linkModeProps = {
       target,
       rel,
@@ -290,10 +284,9 @@ Button.propTypes = {
   value: PropTypes.string,
   /** Label of the Button */
   children: PropTypes.node.isRequired,
-  /** onClick event. Shouldn't be used together with href */
+  /** onClick event. */
   onClick: PropTypes.func,
-  /** URL for link mode. Converts the button internally to a link,
-   * and shouldn't be used together with onClick */
+  /** URL for link mode. Converts the button internally to a link. */
   href: PropTypes.string,
   /** onMouseEnter event */
   onMouseEnter: PropTypes.func,
