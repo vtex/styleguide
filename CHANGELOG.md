@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.54.0] - 2019-06-13
+
+### Fixed
+
+- **PageHeader** warning when using formattedMessage as title.
+
 ## [8.53.1] - 2019-06-13
 
 ### Fixed
