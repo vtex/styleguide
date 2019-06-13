@@ -125,6 +125,14 @@ class Button extends Component {
           }
           break
         }
+        case 'inverted-tertiary': {
+          if (disabled) {
+            classes += 'bg-transparent b--transparent c-disabled '
+          } else {
+            classes += 'bg-transparent b--transparent c-on-base--inverted '
+          }
+          break
+        }
         case 'danger': {
           if (disabled) {
             classes += 'bg-disabled b--muted-5 c-on-disabled '
@@ -250,6 +258,7 @@ Button.propTypes = {
     'primary',
     'secondary',
     'tertiary',
+    'inverted-tertiary',
     'danger',
     'danger-tertiary',
   ]),
