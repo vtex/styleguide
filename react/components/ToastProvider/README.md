@@ -173,13 +173,13 @@ const Content = () => (
                 variation="secondary"
                 onClick={
                   () => showToast({
-                    message: 'Right',
+                    message: 'Alright alright alright',
                     duration: 3000,
                     horizontalPosition: 'right'
                   })
                 }
               >
-                Right
+                Alright
               </Button>
             </div>
           </div>
