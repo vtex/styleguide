@@ -1273,7 +1273,16 @@ Actions are passed via the `main` object and the `others` array props. Each obje
 
 The returned value for all lines selected is an object `allLinesSelected: true` otherwise the data of the rows are returned in the key `selectedRows` as an array.
 
-Note: `onRowClick` actions are not happening when clicking the checkbox.
+##### NOTE 1:
+
+`onRowClick` actions are not happening when clicking the checkbox.
+
+##### NOTE 2:
+
+There are two "select all" items.
+
+- The **upper checkbox** on the left side selects the currently visible items, in the example below, 5.
+- The **Select all** button on the right side, selects all items from the database (by concept, since you will probably only load the visible items). Since not all items might be loaded in the table, the callback will only return a flag telling your app to handle all items for the next database operation.
 
 ```js
 const itemsCopy = [
