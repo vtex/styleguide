@@ -1,4 +1,4 @@
-### Styleguide
+# Styleguide
 
 > VTEX Styleguide React components ([Docs](https://vtex.github.io/styleguide))
 
@@ -80,6 +80,21 @@ yarn test --watch
 ```
 
 ### Publishing
+
+---
+
+#### IMPORTANT
+
+Styleguide is currently being developped for two major versions at the same time, `8.x` and `9.x`.
+This means that after a merge of a feature to the `master` branch, `9.x` branch has to be updated to stay at the same version level.
+
+Example:
+
+If `8.52.1` just got released, the update on `9.x` should update the version to `9.52.1`.
+
+[Follow those steps for a clean update](https://gist.github.com/klzns/e0c19c514b27358a771719a79d9a5bca). In case of doubt, ask one of the [top contributors](https://github.com/vtex/styleguide/graphs/contributors).
+
+---
 
 To post the changelog on Github Release Notes, is required to configure a Personal Token. [See more here](https://www.npmjs.com/package/releasy#settings)
 

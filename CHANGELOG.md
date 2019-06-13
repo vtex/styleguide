@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **Button** `inverted-tertiary` variation.
 - **Toast** Allow a link as a prop, via the `href` option on the action parameter.
 
+### Changed
+
+- `readme` section on two majors release flow.
+
 ## [8.52.1] - 2019-06-13
 
 ### Fixed
