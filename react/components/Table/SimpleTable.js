@@ -105,6 +105,7 @@ class SimpleTable extends Component {
       items,
       fixFirstColumn,
       disableHeader,
+      density,
       emptyStateLabel,
       emptyStateChildren,
       onRowClick,
@@ -124,6 +125,7 @@ class SimpleTable extends Component {
       schema.properties = this.addLineActionsToSchema(schema, lineActions)
     const properties = Object.keys(schema.properties)
 
+    const tableKey = `vtex-table--${updateTableKey}--${density}`
     return (
       <div className="vh-100 w-100 dt" style={{ height: containerHeight }}>
         {loading ? (
@@ -134,7 +136,7 @@ class SimpleTable extends Component {
           </div>
         ) : (
           <div>
-            <AutoSizer key={updateTableKey}>
+            <AutoSizer key={tableKey}>
               {({ width }) => {
                 const colsWidth = Object.keys(schema.properties).reduce(
                   (acc, curr) => {
@@ -341,6 +343,7 @@ SimpleTable.propTypes = {
   schema: PropTypes.object.isRequired,
   indexColumnLabel: PropTypes.string,
   fixFirstColumn: PropTypes.bool,
+  density: PropTypes.string,
   disableHeader: PropTypes.bool,
   onRowClick: PropTypes.func,
   emptyStateLabel: PropTypes.string,
