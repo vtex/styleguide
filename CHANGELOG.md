@@ -7,8 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- **Table** `density` changes are now is nativelly considered for rerender and height recalculation.
+
 ## [8.52.2] - 2019-06-13
+
 ### Added
+
 - **Button** `href` prop, along with `<a>` tag props `target`, `rel`, `referrerPolicy`, `download`.
 - **Button** `inverted-tertiary` variation.
 - **Toast** Allow a link as a prop, via the `href` option on the action parameter.
