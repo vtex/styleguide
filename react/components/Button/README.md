@@ -170,10 +170,8 @@ Box types
 Link mode
 
 ```js
-<div>
-  <div className="mb4">
-    <Button variation="primary" href="http://vtex.com" target="_blank">Sign in</Button>
-  </div>
+<div className="mb4">
+  <Button variation="primary" href="http://vtex.com" target="_blank">Sign in</Button>
 </div>
 ```
 
