@@ -59,7 +59,7 @@ class PageHeader extends PureComponent {
 
 PageHeader.propTypes = {
   /** Title for the header */
-  title: PropTypes.string.isRequired,
+  title: PropTypes.node.isRequired,
   /** Subtitle for the header */
   subtitle: PropTypes.string,
   /** Label for the back button */
