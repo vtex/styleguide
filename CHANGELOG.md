@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- **Tab** Repeated keys when using formattedMessage
+
 ## [8.52.3] - 2019-06-13
 
 ### Fixed
