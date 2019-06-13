@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- **Toast** `href` has the correct proptype (i.e. `string`).
+
 ### Added
 
 - **Table** bulk actions documentation
