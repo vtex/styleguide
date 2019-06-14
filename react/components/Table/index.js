@@ -97,9 +97,21 @@ class Table extends PureComponent {
     )
   }
 
+  handleSelectionChange = () => {
+    if (this.props.bulkActions && this.props.bulkActions.onChange) {
+      const selectedParameters = this.state.allLinesSelected
+        ? { allLinesSelected: true }
+        : { selectedRows: this.state.selectedRows }
+      this.props.bulkActions.onChange(selectedParameters)
+    }
+  }
+
   handleSelectAllLines = () => {
     const { items: selectedRows } = this.props
-    this.setState({ selectedRows, allLinesSelected: true })
+    this.setState(
+      { selectedRows, allLinesSelected: true },
+      this.handleSelectionChange
+    )
   }
 
   handleSelectAllVisibleLines = () => {
@@ -110,7 +122,7 @@ class Table extends PureComponent {
     if (selectedRows.length <= itemsLength && selectedRows.length !== 0) {
       this.handleDeselectAllLines()
     } else {
-      this.setState({ selectedRows: items })
+      this.setState({ selectedRows: items }, this.handleSelectionChange)
     }
   }
 
@@ -120,15 +132,18 @@ class Table extends PureComponent {
 
     if (selectedRows.some(el => el.id === id)) {
       const filteredRows = selectedRows.filter(row => row.id !== id)
-      this.setState({ selectedRows: filteredRows })
+      this.setState({ selectedRows: filteredRows }, this.handleSelectionChange)
     } else {
       selectedRows.push({ ...rowData })
-      this.setState({ selectedRows })
+      this.setState({ selectedRows }, this.handleSelectionChange)
     }
   }
 
   handleDeselectAllLines = () => {
-    this.setState({ selectedRows: [], allLinesSelected: false })
+    this.setState(
+      { selectedRows: [], allLinesSelected: false },
+      this.handleSelectionChange
+    )
   }
 
   render() {
@@ -413,6 +428,7 @@ Table.propTypes = {
       allRowsSelected: PropTypes.func.isRequired,
     }),
     totalItems: PropTypes.number,
+    onChange: PropTypes.func,
     main: PropTypes.shape({
       label: PropTypes.string.isRequired,
       handleCallback: PropTypes.func.isRequired,

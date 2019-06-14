@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.54.1] - 2019-06-14
+
+### Added
+
+- **Table** add bulkActions.onChange prop as callback to any selection changes
+
 ## [8.54.0] - 2019-06-13
 
 ### Fixed
