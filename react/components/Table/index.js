@@ -102,13 +102,16 @@ class Table extends PureComponent {
       const selectedParameters = this.state.allLinesSelected
         ? { allLinesSelected: true }
         : { selectedRows: this.state.selectedRows }
-        this.props.bulkActions.onChange(selectedParameters)
+      this.props.bulkActions.onChange(selectedParameters)
     }
   }
 
   handleSelectAllLines = () => {
     const { items: selectedRows } = this.props
-    this.setState({ selectedRows, allLinesSelected: true }, this.handleSelectionChange)
+    this.setState(
+      { selectedRows, allLinesSelected: true },
+      this.handleSelectionChange
+    )
   }
 
   handleSelectAllVisibleLines = () => {
@@ -137,7 +140,10 @@ class Table extends PureComponent {
   }
 
   handleDeselectAllLines = () => {
-    this.setState({ selectedRows: [], allLinesSelected: false }, this.handleSelectionChange)
+    this.setState(
+      { selectedRows: [], allLinesSelected: false },
+      this.handleSelectionChange
+    )
   }
 
   render() {
