@@ -242,6 +242,20 @@ class Table extends PureComponent {
       properties: displayProperties,
     }
 
+    // if pagination and bulk actions features are active at the same time
+    // when paginating, bulk actions active lines should be deselected
+    const paginationClone = pagination ? Object.assign({}, pagination) : null
+    if (paginationClone && hasBulkActions) {
+      paginationClone.onNextClick = () => {
+        this.handleDeselectAllLines()
+        pagination.onNextClick()
+      }
+      paginationClone.onPrevClick = () => {
+        this.handleDeselectAllLines()
+        pagination.onPrevClick()
+      }
+    }
+
     return (
       <div className="vtex-table__container">
         {toolbar && (
@@ -310,7 +324,7 @@ class Table extends PureComponent {
           />
         )}
 
-        {!loading && pagination && <Pagination {...pagination} />}
+        {!loading && paginationClone && <Pagination {...paginationClone} />}
       </div>
     )
   }

@@ -7,9 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.54.2] - 2019-06-17
+
 ### Fixed
 
 - **Table** bulk actions `select all` button now disables all checkboxes so nothing can be unselected
+- **Table** deselects bulk action checked lines when paginating.
 
 ## [8.54.1] - 2019-06-14
 

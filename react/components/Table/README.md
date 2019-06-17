@@ -1810,6 +1810,34 @@ class ResourceListExample extends React.Component {
             isLoading: true,
           },
         ]}
+        bulkActions={{
+          texts: {
+            secondaryActionsLabel: 'Actions',
+            rowsSelected: qty => (
+              <React.Fragment>Selected rows: {qty}</React.Fragment>
+            ),
+            selectAll: 'Select all',
+            allRowsSelected: qty => (
+              <React.Fragment>All rows selected: {qty}</React.Fragment>
+            ),
+          },
+          totalItems: 122,
+          onChange: params => console.log(params),
+          main: {
+            label: 'Main Action',
+            handleCallback: params => console.log(params),
+          },
+          others: [
+            {
+              label: 'Action 1',
+              handleCallback: params => console.log(params),
+            },
+            {
+              label: 'Action 2',
+              handleCallback: params => console.log(params),
+            },
+          ],
+        }}
         filters={{
           alwaysVisibleFilters: ['color', 'name'],
           statements: this.state.filterStatements,
