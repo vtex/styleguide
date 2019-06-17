@@ -213,6 +213,7 @@ class Table extends PureComponent {
               )}
               onClick={() => this.handleSelectLine(rowData)}
               id={rowData.id}
+              disabled={this.state.allLinesSelected}
             />
           ),
         },
