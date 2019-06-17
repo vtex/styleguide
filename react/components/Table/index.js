@@ -243,7 +243,7 @@ class Table extends PureComponent {
     }
 
     // if pagination and bulk actions features are active at the same time
-    // when paginating, bulk actions active lines should be desselected
+    // when paginating, bulk actions active lines should be deselected
     const paginationClone = pagination ? Object.assign({}, pagination) : null
     if (paginationClone && hasBulkActions) {
       paginationClone.onNextClick = () => {
