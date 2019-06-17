@@ -6,6 +6,7 @@ import Checkbox from '../Checkbox'
 class CheckboxContainer extends Component {
   static defaultProps = {
     partial: false,
+    disabled: false,
   }
 
   static propTypes = {
