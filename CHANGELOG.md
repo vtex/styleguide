@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- **Table** issue where the top checkbox state was always inverted
+- **Table** warnings that happened when using bulk actions
+
 ## [8.54.2] - 2019-06-17
 
 ### Fixed

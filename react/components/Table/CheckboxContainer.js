@@ -30,6 +30,7 @@ class CheckboxContainer extends Component {
           checked={checked}
           partial={partial}
           value={`${id}`}
+          id={`${id}`}
           name={`row_${id}`}
           onChange={() => onClick(id)}
           disabled={disabled}
