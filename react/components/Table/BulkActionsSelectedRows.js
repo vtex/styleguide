@@ -1,7 +1,7 @@
-import { PureComponent } from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 
-class BulkActionsSelectedRows extends PureComponent {
+class BulkActionsSelectedRows extends Component {
   shouldComponentUpdate(nextProps) {
     // This prevents the value from showing 0 when bar is closing
     // It reduces the "noise" given to the user from a ux point of view

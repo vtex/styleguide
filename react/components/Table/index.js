@@ -191,7 +191,7 @@ class Table extends PureComponent {
           headerRenderer: () => {
             const { selectedRows } = this.state
             const selectedRowsLength = selectedRows.length
-            const itemsLength = items.length
+            const itemsLength = this.props.items.length
 
             const isChecked = selectedRowsLength === itemsLength
             const isPartial =
