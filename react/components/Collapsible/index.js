@@ -28,9 +28,17 @@ class Collapsible extends Component {
   constructor(props) {
     super(props)
     this.childrenRef = React.createRef()
+    this.openTimeout = null
+    this.closeTimeout = null
     this.state = {
       height: 0,
     }
+  }
+
+  handleTransitionEnd = () => {
+    this.setState({
+      height: this.props.isOpen ? 'auto' : 0,
+    })
   }
 
   openCard = () => {
@@ -48,6 +56,18 @@ class Collapsible extends Component {
     })
   }
 
+  closeCard = () => {
+    const childrenHeight = this.childrenRef.current.offsetHeight
+    this.setState(
+      {
+        height: childrenHeight,
+      },
+      () => {
+        window.requestAnimationFrame(() => this.setState({ height: 0 }))
+      }
+    )
+  }
+
   componentDidMount() {
     if (this.props.isOpen) {
       this.openCard()
@@ -59,7 +79,7 @@ class Collapsible extends Component {
       if (this.props.isOpen) {
         this.openCard()
       } else {
-        this.setState({ height: 0 })
+        this.closeCard()
       }
     }
   }
@@ -117,7 +137,8 @@ class Collapsible extends Component {
         <div
           ref={this.childrenRef}
           style={childrenContainerStyle}
-          role="region">
+          role="region"
+          onTransitionEnd={this.handleTransitionEnd}>
           {children}
         </div>
       </div>
