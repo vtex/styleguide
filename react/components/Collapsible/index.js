@@ -35,13 +35,10 @@ class Collapsible extends Component {
     }
   }
 
-  resetHeight = () => {
-    clearTimeout(this.timeout)
-    this.timeout = setTimeout(() => {
-      this.setState({
-        height: 'auto',
-      })
-    }, 250)
+  handleTransitionEnd = () => {
+    this.setState({
+      height: this.props.isOpen ? 'auto' : 0,
+    })
   }
 
   openCard = () => {
@@ -57,25 +54,16 @@ class Collapsible extends Component {
     this.setState({
       height: childrenHeight,
     })
-    this.resetHeight()
   }
 
   closeCard = () => {
     const childrenHeight = this.childrenRef.current.offsetHeight
-    this.childrenRef.current.style.height = childrenHeight
-    /** after force setting element height like the line above
-     * you have to force layout / reflow so the height value
-     * may actually apply. You can do this by requesting
-     * element offsetHeight again, like the line below
-     */
-    this.childrenRef.current.offsetHeight
     this.setState(
       {
         height: childrenHeight,
       },
       () => {
-        clearTimeout(this.closeTimeout)
-        this.closeTimeout = setTimeout(() => this.setState({ height: 0 }), 0)
+        window.requestAnimationFrame(() => this.setState({ height: 0 }))
       }
     )
   }
@@ -149,7 +137,8 @@ class Collapsible extends Component {
         <div
           ref={this.childrenRef}
           style={childrenContainerStyle}
-          role="region">
+          role="region"
+          onTransitionEnd={this.handleTransitionEnd}>
           {children}
         </div>
       </div>
