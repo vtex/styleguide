@@ -54,7 +54,7 @@ class Pagination extends PureComponent {
 
     const dropdownOptions = this.createRowOptions(rowsOptions)
 
-    const isPrevDisabled = currentItemFrom === 1
+    const isPrevDisabled = currentItemFrom <= 1
     const isNextDisabled = currentItemTo >= totalItems
 
     const itemTo = currentItemTo > totalItems ? totalItems : currentItemTo
