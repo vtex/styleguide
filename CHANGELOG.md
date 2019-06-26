@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.55.2] - 2019-06-26
+
 ### Fixed
 
 - **Pagination** was not disabling the previous page button if `currentItemFrom` was zero.
