@@ -75,16 +75,8 @@ class FilterBar extends PureComponent {
   }
 
   handleFilterClear = subject => {
-    const { alwaysVisibleFilters, options, statements } = this.props
-    const newStatements = statements.map(_st => {
-      if (_st.subject === subject) {
-        return {
-          subject: subject,
-          verb: options[subject].verbs[0].value,
-        }
-      }
-      return _st
-    })
+    const { alwaysVisibleFilters, statements } = this.props
+    const newStatements = statements.filter(_st => _st.subject !== subject)
     this.changeStatementsCallback(newStatements)
     !alwaysVisibleFilters.includes(subject) &&
       this.toggleExtraFilterOption(subject)
