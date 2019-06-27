@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- loading state to **ModalDialog**.
+- **ModalDialog** loading state.
 
 ## [8.55.3] - 2019-06-27
 
