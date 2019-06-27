@@ -5,6 +5,7 @@ import ActionMenu from '../ActionMenu'
 import InputSearch from '../InputSearch'
 import Button from '../Button'
 import ButtonWithIcon from '../ButtonWithIcon'
+import ButtonGroup from '../ButtonGroup'
 import Toggle from '../Toggle'
 import IconColumns from '../icon/Columns'
 import IconDensity from '../icon/Density'
@@ -12,9 +13,6 @@ import IconDownload from '../icon/Download'
 import IconPlus from '../icon/Plus'
 import IconUpload from '../icon/Upload'
 import IconOptionsDots from '../icon/OptionsDots'
-
-// eslint-disable-next-line camelcase
-import EXPERIMENTAL_ButtonWithAction from '../EXPERIMENTAL_ButtonWithAction'
 
 const MAX_FIELDS_BOX_HEIGHT = 192
 const FIELDS_BOX_ITEM_HEIGHT = 36
@@ -123,6 +121,13 @@ class Toolbar extends PureComponent {
       density.lowOptionLabel &&
       density.mediumOptionLabel &&
       density.highOptionLabel
+
+    const newLineButtonProps = {
+      disabled: loading || (newLine && newLine.disabled),
+      isLoading: newLine && newLine.isLoading,
+      variation: 'primary',
+      size: 'small',
+    }
 
     return (
       <div
@@ -325,24 +330,29 @@ class Toolbar extends PureComponent {
           )}
           {isNewLineVisible &&
             (newLine.actions ? (
-              /* eslint-disable-next-line react/jsx-pascal-case */
-              <EXPERIMENTAL_ButtonWithAction
-                actions={newLine.actions}
-                disabled={loading || newLine.disabled}
-                isLoading={newLine.isLoading}
-                variation="primary"
-                size="small"
-                onClick={newLine.handleCallback}>
-                {newLine.label}
-              </EXPERIMENTAL_ButtonWithAction>
+              <ButtonGroup
+                buttons={[
+                  <ButtonWithIcon
+                    isActiveOfGroup
+                    key="new-line-button"
+                    icon={<IconPlus solid size={LIGHT_ICON_SIZE} />}
+                    onClick={newLine.handleCallback}
+                    {...newLineButtonProps}>
+                    {newLine.label}
+                  </ButtonWithIcon>,
+                  <ActionMenu
+                    isActiveOfGroup
+                    key="actions-button"
+                    buttonProps={newLineButtonProps}
+                    options={newLine.actions}
+                  />,
+                ]}
+              />
             ) : (
               <ButtonWithIcon
                 icon={<IconPlus solid size={LIGHT_ICON_SIZE} />}
-                disabled={loading || newLine.disabled}
-                isLoading={newLine.isLoading}
-                variation="primary"
-                size="small"
-                onClick={newLine.handleCallback}>
+                onClick={newLine.handleCallback}
+                {...newLineButtonProps}>
                 {newLine.label}
               </ButtonWithIcon>
             ))}
