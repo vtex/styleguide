@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Get changes made at version `8.57.1`.
+
 ## [8.57.1] - 2019-06-28
 
 ### Changed
@@ -16,6 +20,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - Add hover status to **NumericStepper** lean mode
+
+## [9.57.0] - 2019-06-27
+
+### Changed
+
+- Get changes made at version `8.57.0`.
 
 ## [8.57.0] - 2019-06-27
 
