@@ -189,7 +189,9 @@ class NumericStepper extends Component {
       }
     }
 
-    const borderClasses = lean ? 'bn ' : 'ba b--muted-4 bw1 '
+    if (lean) inputClasses += 'br2 hover-b--muted-4 ba outline-transparent'
+
+    const borderClasses = lean ? 'b--transparent ' : 'ba b--muted-4 bw1 '
 
     const buttonDisabledClasses = lean
       ? 'c-disabled bg-transparent '
@@ -207,27 +209,20 @@ class NumericStepper extends Component {
           </span>
         )}
         <div className="flex self-start">
-          {lean ? (
-            <div
-              className={`order-1 flex items-center justify-center ${inputClasses}`}>
-              {displayValue}
-            </div>
-          ) : (
-            <input
-              type="tel"
-              className={`z-1 order-1 tc bw1 ${borderClasses} br0 ${inputClasses} ${hideDecorators}`}
-              style={{
-                ...(block && {
-                  width: 0,
-                }),
-                WebkitAppearance: 'none',
-              }}
-              value={displayValue}
-              onChange={this.handleTypeQuantity}
-              onFocus={this.handleFocusInput}
-              onBlur={this.handleBlurInput}
-            />
-          )}
+          <input
+            type="tel"
+            className={`z-1 order-1 tc bw1 ${borderClasses} br0 ${inputClasses} ${hideDecorators}`}
+            style={{
+              ...(block && {
+                width: 0,
+              }),
+              WebkitAppearance: 'none',
+            }}
+            value={displayValue}
+            onChange={this.handleTypeQuantity}
+            onFocus={this.handleFocusInput}
+            onBlur={this.handleBlurInput}
+          />
           <div className="z-2 order-2 flex-none">
             <button
               type="button"

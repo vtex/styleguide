@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+- Change **NumericStepper** lean mode to use input instead of div
+
+### Added
+
+- Add hover status to **NumericStepper** lean mode
+
 ## [8.57.0] - 2019-06-27
 
 ### Changed
