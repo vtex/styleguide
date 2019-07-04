@@ -2,30 +2,38 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import IconClose from '../icon/Close'
-import { shadowTransition } from './global.css'
+import styles from './modal.css'
 
 const TopBar = props => {
-  const { title, onClose, showBottomShadow, responsiveFullScreen } = props
+  const {
+    title,
+    onClose,
+    showBottomShadow,
+    responsiveFullScreen,
+    showCloseIcon,
+  } = props
 
   return (
     <div
       className={`
         flex justify-content ${title ? 'pv6' : ''}
         ${responsiveFullScreen ? 'pl7 pl8-ns' : 'pl8'}
-        ${shadowTransition}
+        ${styles.shadowTransition}
         ${showBottomShadow ? 'shadow-4' : ''}
       `}>
       <span className="f3 c-on-base">
         {title}
         {showBottomShadow}
       </span>
-      <div
-        className={`pl7 pointer ml-auto items-center flex ${
-          title ? 'mr6' : 'pv5 mr5'
-        }`}
-        onClick={onClose}>
-        <IconClose size={18} />
-      </div>
+      {showCloseIcon && (
+        <div
+          className={`vtex-modal__close-icon pl7 pointer ml-auto items-center flex ${
+            title ? 'mr6' : 'pv5 mr5'
+          }`}
+          onClick={onClose}>
+          <IconClose size={18} />
+        </div>
+      )}
     </div>
   )
 }
@@ -35,6 +43,7 @@ TopBar.propTypes = {
   onClose: PropTypes.func,
   showBottomShadow: PropTypes.bool,
   responsiveFullScreen: PropTypes.bool,
+  showCloseIcon: PropTypes.bool,
 }
 
 TopBar.defaultProps = {

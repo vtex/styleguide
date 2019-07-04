@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { shadowTransition } from './global.css'
+import styles from './modal.css'
 
 const BottomBar = props => {
   const { children, showTopShadow, responsiveFullScreen } = props
@@ -11,7 +11,7 @@ const BottomBar = props => {
       className={`
         flex justify-content bt b--muted-4 flex-row-reverse
         ${responsiveFullScreen ? 'ph7 pv5 ph8-ns pv6-ns' : 'ph8 pv6'}
-        ${shadowTransition}
+        ${styles.shadowTransition}
         ${showTopShadow ? 'shadow-4' : ''}
       `}>
       {children}

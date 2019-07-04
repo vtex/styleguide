@@ -1,27 +1,28 @@
-.shadow-transition {
+.shadowTransition {
   transition: box-shadow 0.3s ease-in-out;
 }
 
-.mh-100 {
+.mh100 {
   max-height: 100%;
 }
 
-.scroll-bar::-webkit-scrollbar {
+.scrollBar::-webkit-scrollbar {
   background-color: transparent;
-  width:8px;
+  width: 8px;
 }
 
 /* background of the scrollbar except button or resizer */
-.scroll-bar::-webkit-scrollbar-track {
+.scrollBar::-webkit-scrollbar-track {
   background-color: transparent;
 }
 
 /* scrollbar itself */
-.scroll-bar::-webkit-scrollbar-thumb {
-  background-color:#e3e4e6;
-  border-radius:16px;
+.scrollBar::-webkit-scrollbar-thumb {
+  background-color: #e3e4e6;
+  border-radius: 16px;
 }
 
 /* set button(top and bottom of the scrollbar) */
-.scroll-bar::-webkit-scrollbar-button {display:none}
-
+.scrollBar::-webkit-scrollbar-button {
+  display: none;
+}
