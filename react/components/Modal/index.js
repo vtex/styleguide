@@ -5,7 +5,8 @@ import get from 'lodash/get'
 
 import TopBar from './TopBar'
 import BottomBar from './BottomBar'
-import { mh100, scrollBar } from './global.css'
+import styles from './modal.css'
+
 import './modal.global.css'
 
 class Modal extends PureComponent {
@@ -53,6 +54,7 @@ class Modal extends PureComponent {
       title,
       children,
       responsiveFullScreen,
+      showTopBar,
     } = this.props
     const { shadowBottom, shadowTop } = this.state
 
@@ -63,7 +65,7 @@ class Modal extends PureComponent {
         onClose={onClose}
         closeOnEsc={closeOnEsc}
         closeOnOverlayClick={closeOnOverlayClick}
-        showCloseIcon={false && showCloseIcon}
+        showCloseIcon={showTopBar ? false : showCloseIcon}
         classNames={{
           overlay: `vtex-modal__overlay ${
             responsiveFullScreen ? 'pa5-ns pa0' : ''
@@ -72,7 +74,7 @@ class Modal extends PureComponent {
             responsiveFullScreen
               ? 'br2-ns w-100 w-auto-ns h-100 h-auto-ns'
               : 'br2'
-          } ${mh100} flex flex-column`,
+          } ${styles.mh100} flex flex-column`,
           closeIcon: 'vtex-modal__close-icon',
         }}
         styles={{
@@ -90,18 +92,21 @@ class Modal extends PureComponent {
           },
         }}
         closeIconSize={18}>
-        <TopBar
-          title={title}
-          onClose={onClose}
-          showBottomShadow={shadowTop}
-          responsiveFullScreen={responsiveFullScreen}
-        />
+        {showTopBar && (
+          <TopBar
+            title={title}
+            onClose={onClose}
+            showBottomShadow={shadowTop}
+            responsiveFullScreen={responsiveFullScreen}
+            showCloseIcon={showCloseIcon}
+          />
+        )}
         <div
           className={`${
             responsiveFullScreen ? 'ph7 ph8-ns' : 'ph8'
-          } overflow-auto flex-shrink-1 flex-grow-1 ${
-            bottomBar ? '' : 'pb8'
-          } ${scrollBar}`}
+          } overflow-auto flex-shrink-1 flex-grow-1 ${bottomBar ? '' : 'pb8'} ${
+            styles.scrollBar
+          }`}
           ref={this.contentContainerReference}
           onScroll={this.handleScroll}>
           {children}
@@ -125,6 +130,7 @@ Modal.defaultProps = {
   closeOnEsc: true,
   closeOnOverlayClick: true,
   showCloseIcon: true,
+  showTopBar: true,
 }
 
 Modal.propTypes = {
@@ -149,6 +155,8 @@ Modal.propTypes = {
   title: PropTypes.string,
   /** If true, the modal will expand to fullscreen in small view ports (e.g. mobile) */
   responsiveFullScreen: PropTypes.bool,
+  /** If true, show top bar with title */
+  showTopBar: PropTypes.bool,
 }
 
 export default Modal
