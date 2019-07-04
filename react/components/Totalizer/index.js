@@ -10,7 +10,7 @@ const BORDER_COLOR = 'b--muted-4'
 const TOTALIZERS_CLASSES = `w-100 flex flex-column flex-row-ns ba br3 mb5 ${BORDER_COLOR}`
 const TOTALIZER_CLASSES = `flex flex-column flex-auto pa4 ${BORDER_COLOR}`
 
-class Totalizers extends PureComponent {
+class Totalizer extends PureComponent {
   render() {
     const { items } = this.props
 
@@ -51,14 +51,14 @@ class Totalizers extends PureComponent {
   }
 }
 
-Totalizers.defaultProps = {
+Totalizer.defaultProps = {
   value: null,
   iconBackgroundColor: '',
   icon: null,
   isLoading: false,
 }
 
-Totalizers.propTypes = {
+Totalizer.propTypes = {
   items: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string.isRequired,
@@ -70,4 +70,4 @@ Totalizers.propTypes = {
   ).isRequired,
 }
 
-export default Totalizers
+export default Totalizer
