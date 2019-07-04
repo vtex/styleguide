@@ -1,9 +1,9 @@
 import React, { Fragment, PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
-import TotalizerLabel from './totalizers/TotalizerLabel'
-import TotalizerValue from './totalizers/TotalizerValue'
-import TotalizerIcon from './totalizers/TotalizerIcon'
+import TotalizerLabel from './TotalizerLabel'
+import TotalizerValue from './TotalizerValue'
+import TotalizerIcon from './TotalizerIcon'
 
 const BORDER_COLOR = 'b--muted-4'
 
