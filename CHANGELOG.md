@@ -7,11 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Get changes made at version `v8.60.0`.
+
 ## [8.60.0] - 2019-07-04
 
 ### Added
 
 - Prop `showTopBar` in `Modal` to make it possible to hide top bar at modal.
+
+## [9.59.0] - 2019-07-04
 
 ### Changed
 
@@ -1003,7 +1009,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   ```js
   foo = ({ statements, values, statementIndex, error, extraParams }) => {
     // here goes the render logic of you object component
-  };
+  }
   ```
 
 ## [8.11.0] - 2019-01-11
