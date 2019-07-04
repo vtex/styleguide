@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+- Get changes made at version `v8.60.1`.
+
 ## [8.60.1] - 2019-07-05
 
 ### Added
@@ -16,6 +19,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - Fix `Modal` spacing for mobile
+
+## [9.60.0] - 2019-07-04
 
 ### Changed
 
