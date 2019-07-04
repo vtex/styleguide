@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.59.0] - 2019-07-04
+
+### Fixed
+
+- **CheckBox** breaks when the label has more than one line.
+
 ## [8.58.0] - 2019-07-04
 
 ### Fixed
