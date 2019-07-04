@@ -11,7 +11,7 @@ import FilterBar from '../FilterBar'
 import SimpleTable from './SimpleTable'
 import Toolbar from './Toolbar'
 import CheckboxContainer from './CheckboxContainer'
-import Totalizers from '../Totalizers/Totalizers'
+import Totalizers from '../Totalizers'
 import BulkActions from './BulkActions'
 
 const TABLE_HEADER_HEIGHT = 36
