@@ -1,4 +1,4 @@
-#### A Spinner is a way of showing the user something is being loaded, either because of a user action or not. It should be used for short, indeterminate loading times.
+#### Totalizers are used to consolidate important numeric data. It usually displays numbers that the user what to access fastly.
 
 ```jsx noeditor
 <Alert type="warning">
@@ -7,26 +7,28 @@
 ```
 ### 👍 Dos
 
-- 
+- Use icons to support the user scanning the information
+- Create clear clues with titles
+- Display the most important, and needed, numbers
 
 ### 👎 Don'ts
 
-- 
+- Never replace the number with text
+- Avoid using seccondary information
+- Avoid using on the bottom of the page
 
 ### Related components
 
-- 
+- Consider using a <a href="#/Components/Display/Table">Table</a> if the information on totalizers is followed of a list of data.
 
 #### Default
 
 ```js
-//<Spinner />
+<Totalizers />
 ```
 
-#### Custom color and size
+#### Totalizer Icon
 
 ```js
-// <span className="dib c-muted-1">
-//   <Spinner color="currentColor" size={20} />
-// </span>
+<Totalizers icon/>
 ```
