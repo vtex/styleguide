@@ -1,10 +1,5 @@
 #### Totalizers are used to consolidate important numeric data. It usually displays numbers that the user what to access fastly.
 
-```jsx noeditor
-<Alert type="warning">
-  This documentation is a work in progress. We'll inprove it soon.
-</Alert>
-```
 ### 👍 Dos
 
 - Use icons to support the user scanning the information
@@ -24,11 +19,60 @@
 #### Default
 
 ```js
-<Totalizers />
+const Totalizers = require('./index.js').default
+;<Totalizers 
+  items={[
+          {
+            label: 'Saldo em conta',
+            value: 23837,
+          },
+          {
+            label: 'Entradas',
+            value: 'R$ 36239,05',
+          },
+
+          {
+            label: 'Saídas',
+            value: '- R$ 13.485,26',
+          },
+          {
+            label: 'Vendas',
+            value: 23837,
+            isLoading: true,
+          },
+        ]}/>
 ```
 
 #### Totalizer Icon
 
 ```js
-<Totalizers icon/>
+const ArrowDown = require('../icon/ArrowDown').default
+const ArrowUp = require('../icon/ArrowUp').default
+const ShoppingCart = require('../icon/ShoppingCart').default
+
+const Totalizers = require('./index.js').default
+
+;<Totalizers 
+  items={[
+          {
+            label: 'Pedidos',
+            value: 23837,
+            iconBackgroundColor: '#cce8ff',
+            icon: <ShoppingCart color="#368df7" size={14} />,
+          },
+          {
+            label: 'Entradas',
+            value: 'R$ 36239,05',
+            iconBackgroundColor: '#eafce3',
+            icon: <ArrowUp color="#79B03A" size={14} />,
+          },
+
+          {
+            label: 'Saídas',
+            value: '- R$ 13.485,26',
+            iconBackgroundColor: '#fda4a4',
+            icon: <ArrowDown color="#dd1616" size={14} />,
+          },
+
+        ]}/>
 ```
