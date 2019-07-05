@@ -103,6 +103,10 @@ module.exports = {
           ],
         },
         {
+          name: 'DEBUG',
+          components: ['react/components/Totalizer/index.js'],
+        },
+        {
           name: 'Containers',
           components: [
             'react/components/Box/index.js',
@@ -120,7 +124,6 @@ module.exports = {
             'react/components/Table/index.js',
             'react/components/Tag/index.js',
             'react/components/ProgressBar/index.js',
-            'react/components/Totalizer/index.js',
           ],
         },
         {
