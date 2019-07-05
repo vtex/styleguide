@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.60.1] - 2019-07-05
+
+### Added
+ 
+ - Add `showBottomBarBorder` prop to `Modal`
+ 
+### Fixed
+
+- Fix `Modal` spacing for mobile
+
 ## [8.60.0] - 2019-07-04
 
 ### Added

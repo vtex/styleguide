@@ -16,8 +16,8 @@ const TopBar = props => {
   return (
     <div
       className={`
-        flex justify-content ${title ? 'pv6' : ''}
-        ${responsiveFullScreen ? 'pl7 pl8-ns' : 'pl8'}
+        flex justify-content relative ${title ? 'pv5 pv6-ns' : ''}
+        ${responsiveFullScreen ? 'pl7 pr8 pl8-ns pl8-ns' : 'pl6 pr8 pl8-ns'}
         ${styles.shadowTransition}
         ${showBottomShadow ? 'shadow-4' : ''}
       `}>
@@ -27,9 +27,9 @@ const TopBar = props => {
       </span>
       {showCloseIcon && (
         <div
-          className={`vtex-modal__close-icon pl7 pointer ml-auto items-center flex ${
-            title ? 'mr6' : 'pv5 mr5'
-          }`}
+          className={
+            'vtex-modal__close-icon absolute top-0 right-0 pa5 pa6-ns pointer ml-auto items-center flex'
+          }
           onClick={onClose}>
           <IconClose size={18} />
         </div>

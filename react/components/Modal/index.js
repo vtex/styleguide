@@ -55,6 +55,7 @@ class Modal extends PureComponent {
       children,
       responsiveFullScreen,
       showTopBar,
+      showBottomBarBorder,
     } = this.props
     const { shadowBottom, shadowTop } = this.state
 
@@ -103,7 +104,7 @@ class Modal extends PureComponent {
         )}
         <div
           className={`${
-            responsiveFullScreen ? 'ph7 ph8-ns' : 'ph8'
+            responsiveFullScreen ? 'ph7 ph8-ns' : 'ph6 ph8-ns'
           } overflow-auto flex-shrink-1 flex-grow-1 ${bottomBar ? '' : 'pb8'} ${
             styles.scrollBar
           }`}
@@ -114,6 +115,7 @@ class Modal extends PureComponent {
         {bottomBar ? (
           <BottomBar
             showTopShadow={shadowBottom}
+            showBorder={showBottomBarBorder}
             responsiveFullScreen={responsiveFullScreen}>
             {bottomBar}
           </BottomBar>
@@ -131,6 +133,7 @@ Modal.defaultProps = {
   closeOnOverlayClick: true,
   showCloseIcon: true,
   showTopBar: true,
+  showBottomBarBorder: true,
 }
 
 Modal.propTypes = {
@@ -143,6 +146,8 @@ Modal.propTypes = {
 
   onClose: PropTypes.func.isRequired,
 
+  /** Show BottomBar border **/
+  showBottomBarBorder: PropTypes.bool,
   /** Close the modal on ESC key press (default true) */
   closeOnEsc: PropTypes.bool,
   /** Close the modal on overlay click (default true) */
