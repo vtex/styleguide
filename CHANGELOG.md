@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Get changes made at version `v8.61.0`.
+- Get changes made at version `v8.60.4`.
+
 ## [8.61.0] - 2019-07-11
 
 ### Fixed
@@ -18,6 +23,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - Security vulnerabilities
+
+## [9.60.3] - 2019-07-08
 
 ### Changed
 
