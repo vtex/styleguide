@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix `Table` usage breaking automated tests
+
 ## [8.60.2] - 2019-07-05
 
 ### Added
