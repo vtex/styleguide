@@ -10,12 +10,12 @@ const FloatingActionBar = ({ onSave, onCancel, cancelLabel, saveLabel, parentId 
   return createPortal(
     <div className="w-100 bg-base shadow-1 tr pv5 pr7 absolute bottom-0">
       <span className="mr5">
-        <Button variation="secondary" oncClick={onSave}>
+        <Button variation="secondary" onClick={onCancel}>
           {cancelLabel}
         </Button>
       </span>
       <span>
-        <Button variation="primary" onClick={onCancel}>
+        <Button variation="primary" onClick={onSave}>
           {saveLabel}
         </Button>
       </span>
