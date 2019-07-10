@@ -117,6 +117,7 @@ class DatePicker extends Component {
         }
         dateFormat={this.props.useTime ? 'Pp' : 'P'}
         disabled={this.props.disabled}
+        disabledKeyboardNavigation
         endDate={this.props.dateRangeEnd}
         excludeDates={this.props.excludeDates}
         excludeTimes={this.props.excludeTimes}
