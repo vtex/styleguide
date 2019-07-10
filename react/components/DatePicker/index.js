@@ -103,10 +103,10 @@ class DatePicker extends Component {
 
     return (
       <ReactDatePicker
+        ref={this.props.forwardedRef}
         autoFocus={this.props.autoFocus}
         customInput={
           <Input
-            ref={this.props.forwardedRef}
             error={this.props.error}
             errorMessage={this.props.errorMessage || this.state.errorMessage}
             helpText={this.props.helpText}
@@ -115,10 +115,6 @@ class DatePicker extends Component {
             size={this.props.size}
           />
         }
-        // 'legacyRef' customInputRef is a workaround for this https://bit.ly/2W2Fm3U
-        // until this PR  https://github.com/Hacker0x01/react-datepicker/pull/1602
-        // is merged
-        customInputRef={'legacyRef'}
         dateFormat={this.props.useTime ? 'Pp' : 'P'}
         disabled={this.props.disabled}
         endDate={this.props.dateRangeEnd}

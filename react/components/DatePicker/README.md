@@ -354,7 +354,7 @@ class DatePickerExample extends React.Component {
         </div>
 
         <div className="mb5">
-          <Button onClick={() => this.ref.current.focus()}>Focus!</Button>
+          <Button onClick={() => this.ref.current.setFocus()}>Focus!</Button>
         </div>
       </div>
     )
