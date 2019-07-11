@@ -2,7 +2,7 @@ import React, { useState, useRef, useMemo } from 'react'
 import PropTypes from 'prop-types'
 
 import Toggle from '../Toggle'
-import ButtonWithIcon from '../ButtonWithIcon'
+import ToolbarButton from './ToolbarButton'
 import IconColumns from '../icon/Columns'
 import Button from '../Button'
 import useOutsideClick from './useOutsideCick'
@@ -11,7 +11,6 @@ const MAX_FIELDS_BOX_HEIGHT = 192
 const FIELDS_BOX_ITEM_HEIGHT = 36
 const FIELDS_BOX_WIDTH = 292
 const BOX_SHADOW_STYLE = { boxShadow: '0px 1px 18px rgba(0, 0, 0, 0.14)' }
-const ICON_OPTICAL_COMPENSATION = { marginTop: '1.5px' }
 const MEDIUM_ICON_SIZE = 14
 
 const FieldsBtn = ({
@@ -43,22 +42,13 @@ const FieldsBtn = ({
   ])
 
   return (
-    <div
+    <ToolbarButton
       id="toggleFieldsBtn"
       title={fields.label}
       ref={fieldsBtnRef}
-      className="relative mh2">
-      <ButtonWithIcon
-        icon={
-          <span className="c-on-base mh2" style={ICON_OPTICAL_COMPENSATION}>
-            <IconColumns size={MEDIUM_ICON_SIZE} />
-          </span>
-        }
-        disabled={disabled}
-        variation="tertiary"
-        size="small"
-        onClick={() => setFieldsBoxVisible(!isFieldsBoxVisible)}
-      />
+      icon={<IconColumns size={MEDIUM_ICON_SIZE} />}
+      disabled={disabled}
+      onClick={() => setFieldsBoxVisible(!isFieldsBoxVisible)}>
       {isFieldsBoxVisible && (
         <div
           className={`absolute ${
@@ -105,7 +95,7 @@ const FieldsBtn = ({
           </div>
         </div>
       )}
-    </div>
+    </ToolbarButton>
   )
 }
 

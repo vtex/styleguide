@@ -4,18 +4,15 @@ import PropTypes from 'prop-types'
 import ActionMenu from '../ActionMenu'
 import ButtonWithIcon from '../ButtonWithIcon'
 import ButtonGroup from '../ButtonGroup'
-import IconDownload from '../icon/Download'
 import IconPlus from '../icon/Plus'
-import IconUpload from '../icon/Upload'
 import IconOptionsDots from '../icon/OptionsDots'
 import ToolbarInput from './ToolbarInput'
 import DensityBtn from './DensityBtn'
 import FieldsBtn from './FieldsBtn'
+import DownloadBtn from './DownloadBtn'
+import UploadBtn from './UploadBtn'
 
-const ICON_OPTICAL_COMPENSATION = { marginTop: '1.5px' }
 const LIGHT_ICON_SIZE = 16
-const MEDIUM_ICON_SIZE = 14
-const HEAVY_ICON_SIZE = 13
 
 const Toolbar = ({
   actions: {
@@ -86,45 +83,9 @@ const Toolbar = ({
           />
         )}
         {isDownloadVisible && (
-          <div title={download.label} className="mh2">
-            <ButtonWithIcon
-              icon={
-                <span className="c-on-base mh2">
-                  <IconDownload size={MEDIUM_ICON_SIZE} />
-                </span>
-              }
-              disabled={loading}
-              variation="tertiary"
-              isLoading={download.isLoading}
-              size="small"
-              onClick={download.handleCallback}>
-              {download.label && (
-                <span className="c-on-base">{download.label}</span>
-              )}
-            </ButtonWithIcon>
-          </div>
+          <DownloadBtn download={download} disabled={loading} />
         )}
-        {isUploadVisible && (
-          <div title={upload.label} className="mh2">
-            <ButtonWithIcon
-              icon={
-                <span
-                  className="c-on-base mh2"
-                  style={ICON_OPTICAL_COMPENSATION}>
-                  <IconUpload size={HEAVY_ICON_SIZE} />
-                </span>
-              }
-              disabled={loading}
-              isLoading={upload.isLoading}
-              variation="tertiary"
-              size="small"
-              onClick={upload.handleCallback}>
-              {upload.label && (
-                <span className="c-on-base">{upload.label}</span>
-              )}
-            </ButtonWithIcon>
-          </div>
-        )}
+        {isUploadVisible && <UploadBtn upload={upload} disabled={loading} />}
         {isExtraActionsVisible && (
           <div title={extraActions.label} className="mh2">
             <ActionMenu

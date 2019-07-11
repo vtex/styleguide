@@ -2,13 +2,12 @@ import React, { useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 
 import IconDensity from '../icon/Density'
-import ButtonWithIcon from '../ButtonWithIcon'
+import ToolbarButton from './ToolbarButton'
 import useOutsideClick from './useOutsideCick'
 
 const DENSITY_OPTIONS = ['low', 'medium', 'high']
 const FIELDS_BOX_ITEM_HEIGHT = 36
 const BOX_SHADOW_STYLE = { boxShadow: '0px 1px 18px rgba(0, 0, 0, 0.14)' }
-const ICON_OPTICAL_COMPENSATION = { marginTop: '1.5px' }
 const MEDIUM_ICON_SIZE = 14
 
 const DensityBtn = ({
@@ -27,22 +26,13 @@ const DensityBtn = ({
   )
 
   return (
-    <div
+    <ToolbarButton
       id="toggleDensity"
       title={density.buttonLabel}
       ref={densityBtnRef}
-      className="relative mh2">
-      <ButtonWithIcon
-        icon={
-          <span className="c-on-base mh2" style={ICON_OPTICAL_COMPENSATION}>
-            <IconDensity size={MEDIUM_ICON_SIZE} />
-          </span>
-        }
-        disabled={disabled}
-        variation="tertiary"
-        size="small"
-        onClick={() => setDensityBoxVisible(!isDensityBoxVisible)}
-      />
+      icon={<IconDensity size={MEDIUM_ICON_SIZE} />}
+      disabled={disabled}
+      onClick={() => setDensityBoxVisible(!isDensityBoxVisible)}>
       {isDensityBoxVisible && (
         <div
           className={`absolute ${
@@ -76,7 +66,7 @@ const DensityBtn = ({
           </div>
         </div>
       )}
-    </div>
+    </ToolbarButton>
   )
 }
 
