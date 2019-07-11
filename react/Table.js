@@ -1,3 +1,3 @@
-import Table from './components/Table/index'
+import Table from './components/TableCompose/index'
 
 export default Table
