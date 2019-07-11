@@ -2,7 +2,6 @@ import React, { useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 
 import ActionMenu from '../ActionMenu'
-import InputSearch from '../InputSearch'
 import Button from '../Button'
 import ButtonWithIcon from '../ButtonWithIcon'
 import ButtonGroup from '../ButtonGroup'
@@ -14,6 +13,7 @@ import IconPlus from '../icon/Plus'
 import IconUpload from '../icon/Upload'
 import IconOptionsDots from '../icon/OptionsDots'
 import useOutsideClick from './useOutsideCick'
+import ToolbarInput from './ToolbarInput'
 
 const MAX_FIELDS_BOX_HEIGHT = 192
 const FIELDS_BOX_ITEM_HEIGHT = 36
@@ -100,9 +100,11 @@ const Toolbar = ({
         isSearchBarVisible ? 'justify-between' : 'justify-end'
       }`}>
       {inputSearch && (
-        <form className="w-40" onSubmit={handleInputSearchSubmit}>
-          <InputSearch disabled={loading} {...inputSearch} />
-        </form>
+        <ToolbarInput
+          onSubmit={handleInputSearchSubmit}
+          disabled={loading}
+          inputSearch={inputSearch}
+        />
       )}
       <div className="flex flex-row items-center">
         {isDensityVisible && (
