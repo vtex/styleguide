@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "types": ["node", "jest"],
+    "allowSyntheticDefaultImports": true,
+    "jsx": "react",
+    "lib": ["es2017", "dom"],
+    "sourceMap": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "typeRoots": ["node_modules/@types"],
+    "target": "esnext",
+    "declaration": true,
+    "rootDir": "./components"
+  },
+  "typeAcquisition": {
+    "enable": false
+  },
+  "include": ["./**/*"],
+  "exclude": ["node_modules", "*.md"]
+}
