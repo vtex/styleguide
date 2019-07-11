@@ -17,7 +17,6 @@ const LIGHT_ICON_SIZE = 16
 const MEDIUM_ICON_SIZE = 14
 const HEAVY_ICON_SIZE = 13
 
-// TODO : HandleOutsideClicks
 const Toolbar = ({
   actions: {
     inputSearch,

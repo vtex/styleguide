@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useMemo } from 'react'
 import PropTypes from 'prop-types'
 
 import Toggle from '../Toggle'
@@ -37,6 +37,10 @@ const FieldsBtn = ({
       Object.keys(schema.properties).length * FIELDS_BOX_ITEM_HEIGHT
     return estimate > MAX_FIELDS_BOX_HEIGHT ? MAX_FIELDS_BOX_HEIGHT : estimate
   }
+
+  const height = useMemo(() => calculateFieldsBoxHeight, [
+    Object.keys(schema.properties).length,
+  ])
 
   return (
     <div
@@ -82,10 +86,7 @@ const FieldsBtn = ({
                 </Button>
               </div>
             </div>
-            <div
-              // TODO: MEMO
-              style={{ height: calculateFieldsBoxHeight() }}
-              className="overflow-auto">
+            <div style={{ height: height }} className="overflow-auto">
               {Object.keys(schema.properties).map((field, index) => (
                 <div
                   key={index}
