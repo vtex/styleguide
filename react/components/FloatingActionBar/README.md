@@ -13,30 +13,7 @@
 - In some cases for numerical inputs you might want a <a href="#/Components/Forms/NumericStepper">NumericStepper</a>.
 
 
-Sizes
-
-```js
-const Input = require('./index.js').default
-;<div>
-  <div className="mb5">
-    <Input placeholder="Placeholder" size="small" label="Small" />
-  </div>
-
-  <div className="mb5">
-    <Input
-      placeholder="Regular with data-attributes"
-      dataAttributes={{ 'hj-white-list': true, test: 'string' }}
-      label="Regular"
-    />
-  </div>
-
-  <div className="mb5">
-    <Input placeholder="Placeholder" size="large" label="Large" />
-  </div>
-</div>
-```
-
-Variations
+Version
 
 ```js
 const Input = require('./index.js').default
