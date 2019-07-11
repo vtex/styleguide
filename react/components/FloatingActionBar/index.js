@@ -2,8 +2,6 @@ import React from 'react'
 import Button from '../Button'
 import { createPortal } from 'react-dom'
 
-
-
 const FloatingActionBar = ({
   onSave,
   onCancel,
