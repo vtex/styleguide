@@ -7,10 +7,10 @@ import ButtonGroup from '../ButtonGroup'
 import IconPlus from '../icon/Plus'
 import IconOptionsDots from '../icon/OptionsDots'
 import ToolbarInput from './ToolbarInput'
-import DensityBtn from './DensityBtn'
-import FieldsBtn from './FieldsBtn'
-import DownloadBtn from './DownloadBtn'
-import UploadBtn from './UploadBtn'
+import DensityButton from './DensityButton'
+import FieldsButton from './FieldsButton'
+import DownloadButton from './DownloadButton'
+import UploadButton from './UploadButton'
 
 const LIGHT_ICON_SIZE = 16
 
@@ -65,7 +65,7 @@ const Toolbar = ({
       )}
       <div className="flex flex-row items-center">
         {isDensityVisible && (
-          <DensityBtn
+          <DensityButton
             density={density}
             disabled={loading}
             handleToggleDensity={handleToggleDensity}
@@ -73,7 +73,7 @@ const Toolbar = ({
           />
         )}
         {isFieldsVisible && (
-          <FieldsBtn
+          <FieldsButton
             fields={fields}
             hiddenFields={hiddenFields}
             schema={schema}
@@ -83,9 +83,9 @@ const Toolbar = ({
           />
         )}
         {isDownloadVisible && (
-          <DownloadBtn download={download} disabled={loading} />
+          <DownloadButton download={download} disabled={loading} />
         )}
-        {isUploadVisible && <UploadBtn upload={upload} disabled={loading} />}
+        {isUploadVisible && <UploadButton upload={upload} disabled={loading} />}
         {isExtraActionsVisible && (
           <div title={extraActions.label} className="mh2">
             <ActionMenu
