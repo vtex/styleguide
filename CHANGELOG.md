@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Add CODEOWNERS file
+
 ## [8.61.0] - 2019-07-11
 
 ### Fixed
@@ -34,9 +38,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [8.60.1] - 2019-07-05
 
 ### Added
- 
- - Add `showBottomBarBorder` prop to `Modal`
- 
+
+- Add `showBottomBarBorder` prop to `Modal`
+
 ### Fixed
 
 - Fix `Modal` spacing for mobile
