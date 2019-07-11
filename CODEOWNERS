@@ -5,3 +5,13 @@
 # https://git-scm.com/docs/gitignore#_pattern_format
 
 * @vtex/front-end @vtex/designers
+
+# Component Specific Owners
+**/components/Collapsible/*               @ericreis @cmdalbem
+**/components/DatePicker/*                @ericreis @cmdalbem
+**/components/EXPERIMENTAL_Conditions/*   @ericreis @ohmyguigs @cmdalbem
+**/components/EXPERIMENTAL_Select/*       @thiagomurakami @ericreis
+**/components/FilterBar/*                 @ohmyguigs
+**/components/InputCurrency/*             @ericreis
+**/components/Table/*                     @ohmyguigs @kevinch @ericreis
+**/components/Totalizer/*                 @kevinch
