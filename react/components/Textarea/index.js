@@ -48,6 +48,7 @@ class Textarea extends Component {
       children,
       maxLength,
       resize,
+      size,
     } = this.props
     const { active } = this.state
 
@@ -61,7 +62,9 @@ class Textarea extends Component {
     const border = 'bw1 br2 b--solid outline-0'
     const typography = 'c-on-base t-small'
     const padding = 'pv3 ph5'
+
     let classes = `${widthClass} ${box} ${padding} ${border} ${typography} `
+    let labelClasses = `vtex-textarea__label db mb3 w-100 `
 
     if (active) {
       classes += 'b--muted-2 '
@@ -82,10 +85,27 @@ class Textarea extends Component {
       classes += 'bg-base '
     }
 
+    switch(size) {
+      case 'small':
+        classes += 't-small '
+        labelClasses += 't-small '
+        break
+
+      case 'large':
+        classes += 't-body '
+        labelClasses += 't-body '
+        break
+
+      default:
+        classes += 't-body '
+        labelClasses += 't-body '
+        break
+    }
+
     return (
       <label className="vtex-textarea">
         {label && (
-          <span className="vtex-textarea__label db mb3 w-100">{label}</span>
+          <span className={labelClasses}>{label}</span>
         )}
         <textarea
           {...dataAttrs}
@@ -141,6 +161,7 @@ Textarea.defaultProps = {
   label: '',
   readOnly: false,
   resize: 'both',
+  size: 'regular',
   error: false,
   characterCountdownText: 'characters left',
   rows: 5,
@@ -149,6 +170,8 @@ Textarea.defaultProps = {
 Textarea.propTypes = {
   /** Content of the textarea */
   children: PropTypes.string,
+  /* Size of the textarea */
+  size: PropTypes.oneOf(['small', 'regular', 'large']),
   /** Controlled content of the textarea */
   value: PropTypes.string,
   /** Default content of the textarea */
