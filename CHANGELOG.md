@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - `vtex-tachyons` major version from `2` to `3`.
 
+### Added
+
+- **Link** Component
+
 ## [8.62.1] - 2019-07-11
 
 ### Fixed
