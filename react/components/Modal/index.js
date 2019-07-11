@@ -106,8 +106,8 @@ class Modal extends PureComponent {
           className={`${
             responsiveFullScreen ? 'ph7 ph8-ns' : 'ph6 ph8-ns'
           } overflow-auto flex-shrink-1 flex-grow-1 ${bottomBar ? '' : 'pb8'} ${
-            styles.scrollBar
-          }`}
+            title ? '' : 'pt5 pt6-ns'
+          } ${styles.scrollBar}`}
           ref={this.contentContainerReference}
           onScroll={this.handleScroll}>
           {children}
