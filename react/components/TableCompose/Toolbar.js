@@ -1,24 +1,17 @@
-import React, { useRef, useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 import ActionMenu from '../ActionMenu'
-import Button from '../Button'
 import ButtonWithIcon from '../ButtonWithIcon'
 import ButtonGroup from '../ButtonGroup'
-import Toggle from '../Toggle'
-import IconColumns from '../icon/Columns'
 import IconDownload from '../icon/Download'
 import IconPlus from '../icon/Plus'
 import IconUpload from '../icon/Upload'
 import IconOptionsDots from '../icon/OptionsDots'
-import useOutsideClick from './useOutsideCick'
 import ToolbarInput from './ToolbarInput'
 import DensityBtn from './DensityBtn'
+import FieldsBtn from './FieldsBtn'
 
-const MAX_FIELDS_BOX_HEIGHT = 192
-const FIELDS_BOX_ITEM_HEIGHT = 36
-const FIELDS_BOX_WIDTH = 292
-const BOX_SHADOW_STYLE = { boxShadow: '0px 1px 18px rgba(0, 0, 0, 0.14)' }
 const ICON_OPTICAL_COMPENSATION = { marginTop: '1.5px' }
 const LIGHT_ICON_SIZE = 16
 const MEDIUM_ICON_SIZE = 14
@@ -44,25 +37,6 @@ const Toolbar = ({
   selectedDensity,
   loading,
 }) => {
-  const [isFieldsBoxVisible, setFieldsBoxVisible] = useState(false)
-  const fieldsBtnRef = useRef(null)
-
-  useOutsideClick(
-    fieldsBtnRef,
-    () => setFieldsBoxVisible(false),
-    isFieldsBoxVisible
-  )
-
-  const calculateFieldsBoxHeight = () => {
-    const estimate =
-      Object.keys(schema.properties).length * FIELDS_BOX_ITEM_HEIGHT
-    return estimate > MAX_FIELDS_BOX_HEIGHT ? MAX_FIELDS_BOX_HEIGHT : estimate
-  }
-
-  const handleInputSearchSubmit = e => {
-    !!inputSearch.onSubmit && inputSearch.onSubmit(e)
-  }
-
   const isDownloadVisible = download && download.handleCallback
   const isUploadVisible = upload && upload.handleCallback
   const isFieldsVisible = fields && fields.showAllLabel && fields.hideAllLabel
@@ -91,11 +65,7 @@ const Toolbar = ({
         isSearchBarVisible ? 'justify-between' : 'justify-end'
       }`}>
       {inputSearch && (
-        <ToolbarInput
-          onSubmit={handleInputSearchSubmit}
-          disabled={loading}
-          inputSearch={inputSearch}
-        />
+        <ToolbarInput disabled={loading} inputSearch={inputSearch} />
       )}
       <div className="flex flex-row items-center">
         {isDensityVisible && (
@@ -107,75 +77,14 @@ const Toolbar = ({
           />
         )}
         {isFieldsVisible && (
-          <div
-            id="toggleFieldsBtn"
-            title={fields.label}
-            ref={fieldsBtnRef}
-            className="relative mh2">
-            <ButtonWithIcon
-              icon={
-                <span
-                  className="c-on-base mh2"
-                  style={ICON_OPTICAL_COMPENSATION}>
-                  <IconColumns size={MEDIUM_ICON_SIZE} />
-                </span>
-              }
-              disabled={loading}
-              variation="tertiary"
-              size="small"
-              // TODO: REVIEW
-              onClick={() => setFieldsBoxVisible(!isFieldsBoxVisible)}
-            />
-            {isFieldsBoxVisible && (
-              <div
-                className={`absolute ${
-                  fields.alignMenu === 'right' ? 'right-0' : 'left-0'
-                } z-999 ba b--muted-4 br2 mt2 mh2`}>
-                <div
-                  className="w-100 b2 br2 bg-base"
-                  style={{
-                    ...BOX_SHADOW_STYLE,
-                    width: FIELDS_BOX_WIDTH,
-                  }}>
-                  <div className="flex inline-flex bb b--muted-4 w-100 pl6 pv4">
-                    <Button
-                      variation="secondary"
-                      size="small"
-                      onClick={handleShowAllColumns}>
-                      {fields.showAllLabel}
-                    </Button>
-                    <div className="mh4">
-                      <Button
-                        variation="secondary"
-                        size="small"
-                        onClick={handleHideAllColumns}>
-                        {fields.hideAllLabel}
-                      </Button>
-                    </div>
-                  </div>
-                  <div
-                    // TODO: MEMO
-                    style={{ height: calculateFieldsBoxHeight() }}
-                    className="overflow-auto">
-                    {Object.keys(schema.properties).map((field, index) => (
-                      <div
-                        key={index}
-                        className="flex justify-between ph6 pv3 pointer hover-bg-muted-5"
-                        onClick={() => toggleColumn(field)}>
-                        <span className="w-70 truncate">
-                          {schema.properties[field].title || field}
-                        </span>
-                        <Toggle
-                          size="small"
-                          checked={!hiddenFields.includes(field)}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
+          <FieldsBtn
+            fields={fields}
+            hiddenFields={hiddenFields}
+            schema={schema}
+            handleHideAllColumns={handleHideAllColumns}
+            handleShowAllColumns={handleShowAllColumns}
+            toggleColumn={toggleColumn}
+          />
         )}
         {isDownloadVisible && (
           <div title={download.label} className="mh2">
