@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.61.0] - 2019-07-11
+
 ### Fixed
 
 - Add padding-top to **Modal** iff without `title` prop
