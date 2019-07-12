@@ -1,14 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import ActionMenu from '../ActionMenu'
-import IconOptionsDots from '../icon/OptionsDots'
 import ToolbarInput from './ToolbarInput'
 import DensityButton from './DensityButton'
 import FieldsButton from './FieldsButton'
 import DownloadButton from './DownloadButton'
 import UploadButton from './UploadButton'
 import NewLineButton from './NewLineButton'
+import ExtraActions from './ExtraActions'
 
 const Toolbar = ({
   actions: {
@@ -75,28 +74,7 @@ const Toolbar = ({
           <DownloadButton download={download} disabled={loading} />
         )}
         {isUploadVisible && <UploadButton upload={upload} disabled={loading} />}
-        {isExtraActionsVisible && (
-          <div title={extraActions.label} className="mh2">
-            <ActionMenu
-              hideCaretIcon
-              buttonProps={{
-                variation: 'tertiary',
-                icon: (
-                  <span className="c-on-base">
-                    <IconOptionsDots />
-                  </span>
-                ),
-                size: 'small',
-              }}
-              options={extraActions.actions.map(action => {
-                return {
-                  label: action.label,
-                  onClick: action.handleCallback,
-                }
-              })}
-            />
-          </div>
-        )}
+        {isExtraActionsVisible && <ExtraActions extraActions={extraActions} />}
         {isNewLineVisible && (
           <NewLineButton newLine={newLine} disabled={loading} />
         )}

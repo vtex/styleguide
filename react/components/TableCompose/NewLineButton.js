@@ -45,6 +45,7 @@ const NewLineButton = ({ newLine, disabled }) => {
     />
   )
 }
+
 NewLineButton.propTypes = {
   newLine: PropTypes.shape({
     label: PropTypes.string.isRequired,
