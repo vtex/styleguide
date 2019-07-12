@@ -85,10 +85,7 @@ const FieldsBtn = ({
                   <span className="w-70 truncate">
                     {schema.properties[field].title || field}
                   </span>
-                  <Toggle
-                    size="small"
-                    checked={!hiddenFields.includes(field)}
-                  />
+                  <Toggle checked={!hiddenFields.includes(field)} />
                 </div>
               ))}
             </div>
