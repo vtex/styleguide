@@ -16,7 +16,7 @@
 
 ### Related components
 
-- There is no related components, yet.
+- There is no related components, **yet**.
 
 
 Version
