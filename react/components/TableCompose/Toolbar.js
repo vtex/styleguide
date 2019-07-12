@@ -2,17 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import ActionMenu from '../ActionMenu'
-import ButtonWithIcon from '../ButtonWithIcon'
-import ButtonGroup from '../ButtonGroup'
-import IconPlus from '../icon/Plus'
 import IconOptionsDots from '../icon/OptionsDots'
 import ToolbarInput from './ToolbarInput'
 import DensityButton from './DensityButton'
 import FieldsButton from './FieldsButton'
 import DownloadButton from './DownloadButton'
 import UploadButton from './UploadButton'
-
-const LIGHT_ICON_SIZE = 16
+import NewLineButton from './NewLineButton'
 
 const Toolbar = ({
   actions: {
@@ -46,13 +42,6 @@ const Toolbar = ({
     density.lowOptionLabel &&
     density.mediumOptionLabel &&
     density.highOptionLabel
-
-  const newLineButtonProps = {
-    disabled: loading || (newLine && newLine.disabled),
-    isLoading: newLine && newLine.isLoading,
-    variation: 'primary',
-    size: 'small',
-  }
 
   return (
     <div
@@ -108,34 +97,9 @@ const Toolbar = ({
             />
           </div>
         )}
-        {isNewLineVisible &&
-          (newLine.actions ? (
-            <ButtonGroup
-              buttons={[
-                <ButtonWithIcon
-                  isActiveOfGroup
-                  key="new-line-button"
-                  icon={<IconPlus solid size={LIGHT_ICON_SIZE} />}
-                  onClick={newLine.handleCallback}
-                  {...newLineButtonProps}>
-                  {newLine.label}
-                </ButtonWithIcon>,
-                <ActionMenu
-                  isActiveOfGroup
-                  key="actions-button"
-                  buttonProps={newLineButtonProps}
-                  options={newLine.actions}
-                />,
-              ]}
-            />
-          ) : (
-            <ButtonWithIcon
-              icon={<IconPlus solid size={LIGHT_ICON_SIZE} />}
-              onClick={newLine.handleCallback}
-              {...newLineButtonProps}>
-              {newLine.label}
-            </ButtonWithIcon>
-          ))}
+        {isNewLineVisible && (
+          <NewLineButton newLine={newLine} disabled={loading} />
+        )}
       </div>
     </div>
   )
