@@ -19,14 +19,14 @@
 Version
 
 ```js
-    //Bottom of index.js
-    <div id="action-bar"/>
+//Bottom of index.js
+<div id="action-bar"/>
 
-    //[Where you want to call the component].js
-    <FloatingActionBar
-        parentId="action-bar"
-        onSave={() => save(updated)}
-        saveLabel={formatMessage(messages.save)}
-        cancelLabel={formatMessage(messages.cancel)}
-      />
+//[Where you want to call the component].js
+<FloatingActionBar
+    parentId="action-bar"
+    onSave={() => save(updated)}
+    saveLabel={formatMessage(messages.save)}
+    cancelLabel={formatMessage(messages.cancel)}
+/>
 ```
