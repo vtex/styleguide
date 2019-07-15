@@ -1,27 +1,25 @@
-import React, { PureComponent } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 import ExternalLink from '../icon/ExternalLink'
 
-class Link extends PureComponent {
-  render() {
-    const { children, href, target, mediumWeigth } = this.props
-    let classes =
-      'pointer c-link hover-c-link active-c-link no-underline underline-hover  '
-    classes += mediumWeigth ? 'fw5' : ''
-    const isExternal = target === '_blank'
+let classes =
+  'pointer c-link hover-c-link active-c-link no-underline underline-hover '
 
-    return (
-      <a href={href} target={target} className={classes}>
-        {children}
-        {isExternal && (
-          <span className="ml2">
-            <ExternalLink size={12} />
-          </span>
-        )}
-      </a>
-    )
-  }
+const Link = ({ children, href, target, mediumWeigth }) => {
+  classes += mediumWeigth ? 'fw5' : ''
+  const isExternal = target === '_blank'
+
+  return (
+    <a href={href} target={target} className={classes}>
+      {children}
+      {isExternal && (
+        <span className="ml2">
+          <ExternalLink size={12} />
+        </span>
+      )}
+    </a>
+  )
 }
 
 Link.defaultProps = {
