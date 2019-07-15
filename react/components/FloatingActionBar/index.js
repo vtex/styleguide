@@ -5,7 +5,7 @@ import Button from '../Button'
 import './action-bar.global.css'
 
 const FloatingActionBar = ({ onSave, onCancel, cancelLabel, saveLabel }) => (
-  <div className="styleguide__floating-action-bar shadow-active w-100 bg-base tr pv5 absolute fixed bottom-0 left-0 z-2">
+  <div className="styleguide__floating-action-bar shadow-active w-100 bg-base tr pv5 pr7-ns absolute fixed bottom-0 left-0 z-2">
       <span className="mr5">
         <Button variation="secondary" onClick={onCancel}>
           {cancelLabel}
