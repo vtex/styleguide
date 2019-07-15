@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Button from '../Button'
 import { createPortal } from 'react-dom'
 
@@ -32,6 +33,14 @@ const FloatingActionBar = ({
         )
       : null
   }
+}
+
+FloatingActionBar.propTypes = {
+  onSave: PropTypes.func.isRequired,
+  onCancel: PropTypes.func,
+  cancelLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+  saveLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+  parentId: PropTypes.string.isRequired,
 }
 
 export default FloatingActionBar
