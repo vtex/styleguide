@@ -16,6 +16,8 @@
 - There is no related components, **yet**.
 
 ### Usage
+See the action bar at the bottom of this page
+
 
 ```js
 <FloatingActionBar
