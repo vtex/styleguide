@@ -152,6 +152,7 @@ module.exports = {
           components: [
             'react/components/Pagination/index.js',
             'react/components/Tabs/index.js',
+            'react/components/Link/index.js',
           ],
         },
         {
