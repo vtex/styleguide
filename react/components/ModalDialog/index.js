@@ -7,7 +7,7 @@ const NOOP = () => {}
 
 class ModalDialog extends Component {
   handleExit = () => {
-    this.props.onExited && this.props.onExited()
+    this.props.onExit && this.props.onExit()
   }
 
   handleConfirmation = () => {
@@ -29,7 +29,7 @@ class ModalDialog extends Component {
       <Modal
         {...this.props}
         onClose={loading ? NOOP : onClose}
-        onExited={this.handleExit}>
+        onExit={this.handleExit}>
         {this.props.children}
         <div className="vtex-modal__confirmation flex justify-end mt8">
           <span className="mr4">
@@ -67,7 +67,7 @@ ModalDialog.propTypes = {
   }).isRequired,
   onClose: PropTypes.func,
   loading: PropTypes.bool,
-  onExited: PropTypes.func,
+  onExit: PropTypes.func,
 }
 
 export default ModalDialog
