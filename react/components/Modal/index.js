@@ -17,7 +17,6 @@ class Modal extends PureComponent {
   }
 
   componentDidMount() {
-    console.log('altered')
     this.setShadowState(this.contentContainerReference.current)
   }
 

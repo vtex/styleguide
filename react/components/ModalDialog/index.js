@@ -7,7 +7,6 @@ const NOOP = () => {}
 
 class ModalDialog extends Component {
   handleExit = () => {
-    console.log('exited!')
     this.props.onExited && this.props.onExited()
   }
 
