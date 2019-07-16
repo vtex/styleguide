@@ -17,6 +17,7 @@ class Modal extends PureComponent {
   }
 
   componentDidMount() {
+    console.log('altered')
     this.setShadowState(this.contentContainerReference.current)
   }
 
@@ -56,6 +57,7 @@ class Modal extends PureComponent {
       responsiveFullScreen,
       showTopBar,
       showBottomBarBorder,
+      onExited,
     } = this.props
     const { shadowBottom, shadowTop } = this.state
 
@@ -64,6 +66,7 @@ class Modal extends PureComponent {
         open={isOpen}
         little={centered}
         onClose={onClose}
+        onExited={onExited}
         closeOnEsc={closeOnEsc}
         closeOnOverlayClick={closeOnOverlayClick}
         showCloseIcon={showTopBar ? false : showCloseIcon}
@@ -162,6 +165,7 @@ Modal.propTypes = {
   responsiveFullScreen: PropTypes.bool,
   /** If true, show top bar with title */
   showTopBar: PropTypes.bool,
+  onExited: PropTypes.func,
 }
 
 export default Modal
