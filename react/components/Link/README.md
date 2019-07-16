@@ -7,6 +7,7 @@
 ### 👎 Don'ts
 
 - Use for interation, prefer a `<Button>`.
+- Use `mediumWeigth` when the link is inline, eg, within a paragraph.
 
 ### Related components
 
@@ -21,11 +22,7 @@ Within a paragraph:
     Ipsum has been the{' '}
     <Link href="https://www.vtex.com/">industry's standard</Link> dummy text
     ever since the 1500s, when an unknown printer took a galley of type and
-    scrambled it to make a type specimen book. It also supports{' '}
-    <Link href="https://www.vtex.com/" mediumWeigth>
-      medium
-    </Link>{' '}
-    weight links for a better contrast.
+    scrambled it to make a type specimen book.
   </p>
   <p>
     <Link href="https://www.vtex.com/" target="_blank" mediumWeigth>
@@ -43,7 +40,9 @@ Within an unordered list:
     <Link href="#">Item 1</Link>
   </li>
   <li>
-    <Link href="#">Item 2</Link>
+    <Link href="#" mediumWeigth>
+      Item 2
+    </Link>
   </li>
   <li>
     <Link href="#">Item 3</Link>
