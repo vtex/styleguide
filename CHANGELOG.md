@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- `vtex-tachyons` major version from `2` to `3`.
+
 ## [8.62.1] - 2019-07-11
 
 ### Fixed
@@ -48,7 +52,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- Add `showBottomBarBorder` prop to `Modal`
+ - Add `showBottomBarBorder` prop to `Modal`
 
 ### Fixed
 
