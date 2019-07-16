@@ -2,12 +2,12 @@
 
 ### 👍 Dos
 
-- Use for page destination, internal or external.
+- Use them for links. When user needs to take an action, swtich for the <a href="#/Components/Forms/Button">Button</a> component.
+- Use normal and medium weights when outside a paragraph. Designers can choose which one is the best depending on the context and layout.
 
 ### 👎 Don'ts
 
-- Use for interation, prefer a `<Button>`.
-- Use `mediumWeigth` when the link is inline, eg, within a paragraph.
+- Use medium weigth when the link is inline, eg, within a paragraph.
 
 ### Related components
 
