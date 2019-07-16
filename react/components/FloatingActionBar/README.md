@@ -19,8 +19,8 @@
 
 ```js
 <FloatingActionBar
-    onSave={() => save(updated)}
-    saveLabel={formatMessage(messages.save)}
-    cancelLabel={formatMessage(messages.cancel)}
+  onSave={() => alert('This was invoked because save was pressed')}
+  saveLabel={formatMessage(messages.save)}
+  cancelLabel={formatMessage(messages.cancel)}
 />
 ```
