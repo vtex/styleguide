@@ -164,6 +164,7 @@ Modal.propTypes = {
   responsiveFullScreen: PropTypes.bool,
   /** If true, show top bar with title */
   showTopBar: PropTypes.bool,
+  /** Event fired when the closing transition is finished */
   onCloseTransitionFinish: PropTypes.func,
 }
 
