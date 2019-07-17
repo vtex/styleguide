@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - `onCloseTransitionFinish` prop to `ModalDialog`
 
+## [9.64.0] - 2019-07-17
+
 ### Changed
 
 - Get changes made at version `v8.64.0`
