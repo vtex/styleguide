@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- `onExited` prop to `Modal`
+- `onCloseTransitionFinish` prop to `ModalDialog`
 
 ## [8.64.0] - 2019-07-17
 
