@@ -7,11 +7,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.65.0] - 2019-07-17
+
+### Changed
+
+- Get changes made at version `v8.65.0`
+
 ## [8.65.0] - 2019-07-17
 
 ### Added
 
 - `onCloseTransitionFinish` prop to `ModalDialog`
+
+## [9.64.0] - 2019-07-17
 
 ### Changed
 
