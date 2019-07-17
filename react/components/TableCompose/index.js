@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { useEffect, useMemo, useReducer } from 'react'
 import PropTypes from 'prop-types'
 import reduce from 'lodash/reduce'
 import map from 'lodash/map'
@@ -14,320 +14,338 @@ import CheckboxContainer from './CheckboxContainer'
 import Totalizers from '../Totalizer'
 import BulkActions from './BulkActions'
 
-const TABLE_HEADER_HEIGHT = 36
-const EMPTY_STATE_SIZE_IN_ROWS = 5
-const DEFAULT_SCROLLBAR_WIDTH = 17
+import {
+  getRowHeight,
+  getInitialHiddenFieldsFromSchema,
+  calculateTableHeight,
+  handleSelectionChange,
+} from './util'
 
-class Table extends PureComponent {
-  constructor(props) {
-    super(props)
-    this.state = {
-      hiddenFields: this.getInitialHiddenFieldsFromSchema(props.schema),
-      tableRowHeight: this.getRowHeight(props.density),
-      selectedDensity: props.density,
-      allChecked: false,
-      selectedRows: [],
-      allLinesSelected: false,
-    }
-  }
+const types = {
+  SET_DENSITY: 0,
+  DESELECT_ALL_LINES: 1,
+  SELECT_ALL_LINES: 2,
+  SELECT_LINE: 3,
+  HIDE_COLUMN: 4,
+  HIDE_ALL_COLUMNS: 5,
+  UNHIDE_ALL_COLUMNS: 6,
+}
 
-  getInitialHiddenFieldsFromSchema = schema => {
-    const hiddenFields = []
-    Object.keys(schema.properties).forEach(key => {
-      if (schema.properties[key].hidden) {
-        hiddenFields.push(key)
+function reducer(state, action) {
+  switch (action.type) {
+    case types.SET_DENSITY: {
+      return {
+        ...state,
+        selectedDensity: action.density,
+        tableRowHeight: getRowHeight(action.density),
       }
-    })
-    return hiddenFields
-  }
+    }
+    case types.DESELECT_ALL_LINES: {
+      return {
+        ...state,
+        selectedRows: [],
+        allLinesSelected: false,
+      }
+    }
+    case types.SELECT_ALL_LINES: {
+      return {
+        ...state,
+        selectedRows: action.selectedRows,
+        allLinesSelected: true,
+      }
+    }
+    case types.SELECT_LINE: {
+      return state.selectedRows.some(el => el.id === action.row.id)
+        ? {
+            ...state,
+            selectedRows: state.selectedRows.filter(
+              row => row.id !== action.row.id
+            ),
+            allLinesSelected: false,
+          }
+        : {
+            ...state,
+            selectedRows: [...state.selectedRows, action.row],
+          }
+    }
+    case types.HIDE_COLUMN: {
+      const index = state.hiddenFields.indexOf(action.key)
 
-  getRowHeight = density => {
-    switch (density) {
-      case 'low':
-        return 76
-      case 'medium':
-        return 48
-      case 'high':
-        return 32
-      default:
-        return 45
+      return index === -1
+        ? {
+            ...state,
+            hiddenFields: [...state.hiddenFields, action.key],
+          }
+        : {
+            ...state,
+            hiddenFields: state.hiddenFields.filter(
+              field => field !== action.key
+            ),
+          }
+    }
+    case types.HIDE_ALL_COLUMNS: {
+      return {
+        ...state,
+        hiddenFields: action.hiddenFields,
+      }
+    }
+    case types.UNHIDE_ALL_COLUMNS: {
+      return {
+        ...state,
+        hiddenFields: [],
+      }
+    }
+    default: {
+      return state
     }
   }
+}
 
-  toggleTableRowHeight = density => {
-    const { tableRowHeight } = this.state
-    const newHeight = this.getRowHeight(density)
-    if (tableRowHeight !== newHeight) {
-      this.setState({
-        tableRowHeight: newHeight,
-        selectedDensity: density,
+function Table({
+  items,
+  density,
+  schema,
+  disableHeader,
+  emptyStateLabel,
+  emptyStateChildren,
+  fixFirstColumn,
+  onRowClick,
+  sort,
+  onSort,
+  updateTableKey,
+  containerHeight,
+  toolbar,
+  pagination,
+  fullWidth,
+  lineActions,
+  loading,
+  bulkActions,
+  totalizers,
+  filters,
+}) {
+  const [state, dispatch] = useReducer(reducer, {
+    tableRowHeight: getRowHeight(density),
+    selectedRows: [],
+    allLinesSelected: false,
+    selectedDensity: density,
+    hiddenFields: getInitialHiddenFieldsFromSchema(schema),
+  })
+
+  const hasPrimaryBulkAction =
+    bulkActions &&
+    bulkActions.main &&
+    typeof bulkActions.main.handleCallback === 'function'
+
+  const hasSecondaryBulkActions =
+    bulkActions.others && bulkActions.others.length > 0
+
+  const hasBulkActions = hasPrimaryBulkAction || hasSecondaryBulkActions
+
+  const data = useMemo(() => {
+    return hasBulkActions ? items.map((item, i) => ({ id: i, ...item })) : items
+  }, [items])
+
+  const staticSchema = useMemo(
+    () =>
+      hasBulkActions
+        ? {
+            ...schema,
+            properties: {
+              bulk: {
+                width: 40,
+                // eslint-disable-next-line
+                headerRenderer: () => {
+                  const selectedRowsLength = state.selectedRows.length
+                  const itemsLength = data.length
+
+                  const isChecked = selectedRowsLength === itemsLength
+                  const isPartial =
+                    selectedRowsLength > 0 && selectedRowsLength < itemsLength
+
+                  return (
+                    <CheckboxContainer
+                      checked={isChecked}
+                      onClick={handleSelectAllVisibleLines}
+                      id="all"
+                      partial={isPartial}
+                    />
+                  )
+                },
+                // eslint-disable-next-line
+                cellRenderer: ({ rowData }) => (
+                  <CheckboxContainer
+                    checked={state.selectedRows.some(
+                      row => row.id === rowData.id
+                    )}
+                    onClick={() => handleSelectLine(rowData)}
+                    id={rowData.id}
+                    disabled={state.allLinesSelected}
+                  />
+                ),
+              },
+              ...schema.properties,
+            },
+          }
+        : schema,
+    [state.selectedRows, state.allLinesSelected]
+  )
+
+  const displaySchema = useMemo(() => {
+    return {
+      ...staticSchema,
+      properties: reduce(
+        staticSchema.properties,
+        (acc, value, key) => {
+          if (state.hiddenFields.includes && state.hiddenFields.includes(key)) {
+            return acc
+          }
+          return { ...acc, [key]: value }
+        },
+        {}
+      ),
+    }
+  }, [state.hiddenFields, state.selectedRows])
+
+  useEffect(() => {
+    handleSelectionChange(
+      bulkActions,
+      state.allLinesSelected,
+      state.selectedRows
+    )
+  }, [state.selectedRows, state.allLinesSelected, bulkActions])
+
+  function handleToggleDensity(density) {
+    dispatch({ type: types.SET_DENSITY, density: density })
+  }
+
+  function toggleColumn(key) {
+    dispatch({ type: types.HIDE_COLUMN, key: key })
+  }
+
+  function onShowAllColumns() {
+    dispatch({ type: types.UNHIDE_ALL_COLUMNS })
+  }
+
+  function onHideAllColumns() {
+    dispatch({
+      type: types.HIDE_ALL_COLUMNS,
+      hiddenFields: Object.keys(staticSchema.properties),
+    })
+  }
+
+  function handleSelectAllLines() {
+    dispatch({ type: types.SELECT_ALL_LINES, selectedRows: data.selectedRows })
+  }
+
+  function handleSelectAllVisibleLines() {
+    if (
+      state.selectedRows.length <= data.length &&
+      state.selectedRows.length !== 0
+    ) {
+      handleDeselectAllLines()
+    } else {
+      dispatch({
+        type: types.SELECT_ALL_LINES,
+        selectedRows: data,
       })
     }
   }
 
-  toggleColumn = key => {
-    const { hiddenFields } = this.state
-    const newFieldsArray = hiddenFields.slice()
-    const index = hiddenFields.indexOf(key)
-    index === -1 ? newFieldsArray.push(key) : newFieldsArray.splice(index, 1)
-    this.setState({ hiddenFields: newFieldsArray })
+  function handleSelectLine(rowData) {
+    dispatch({ type: types.SELECT_LINE, row: rowData })
   }
 
-  onShowAllColumns = () => this.setState({ hiddenFields: [] })
-
-  onHideAllColumns = () =>
-    this.setState({ hiddenFields: Object.keys(this.props.schema.properties) })
-
-  getScrollbarWidth = () => {
-    if (!window || !document || !document.documentElement)
-      return DEFAULT_SCROLLBAR_WIDTH
-    const scrollbarWidth =
-      window.innerWidth - document.documentElement.clientWidth
-    return isNaN(scrollbarWidth) ? DEFAULT_SCROLLBAR_WIDTH : scrollbarWidth
+  function handleDeselectAllLines() {
+    dispatch({ type: types.DESELECT_ALL_LINES })
   }
 
-  calculateTableHeight = totalItems => {
-    const { tableRowHeight } = this.state
-    const multiplicator =
-      totalItems !== 0 ? totalItems : EMPTY_STATE_SIZE_IN_ROWS
-    return (
-      TABLE_HEADER_HEIGHT +
-      tableRowHeight * multiplicator +
-      this.getScrollbarWidth()
-    )
-  }
+  const properties = Object.keys(staticSchema.properties)
+  const emptyState = !!(
+    properties.length === 0 || properties.length === state.hiddenFields.length
+  )
 
-  handleSelectionChange = () => {
-    if (this.props.bulkActions && this.props.bulkActions.onChange) {
-      const selectedParameters = this.state.allLinesSelected
-        ? { allLinesSelected: true }
-        : { selectedRows: this.state.selectedRows }
-      this.props.bulkActions.onChange(selectedParameters)
+  // if pagination and bulk actions features are active at the same time
+  // when paginating, bulk actions active lines should be deselected
+  const paginationClone = pagination ? Object.assign({}, pagination) : null
+  if (paginationClone && hasBulkActions) {
+    paginationClone.onNextClick = () => {
+      handleDeselectAllLines()
+      pagination.onNextClick()
+    }
+    paginationClone.onPrevClick = () => {
+      handleDeselectAllLines()
+      pagination.onPrevClick()
     }
   }
 
-  handleSelectAllLines = () => {
-    const { items: selectedRows } = this.props
-    this.setState(
-      { selectedRows, allLinesSelected: true },
-      this.handleSelectionChange
-    )
-  }
-
-  handleSelectAllVisibleLines = () => {
-    const selectedRows = this.state.selectedRows.slice(0)
-    const { items } = this.props
-    const itemsLength = items.length
-
-    if (selectedRows.length <= itemsLength && selectedRows.length !== 0) {
-      this.handleDeselectAllLines()
-    } else {
-      this.setState({ selectedRows: items }, this.handleSelectionChange)
-    }
-  }
-
-  handleSelectLine = rowData => {
-    const selectedRows = this.state.selectedRows.slice(0)
-    const { id } = rowData
-
-    if (selectedRows.some(el => el.id === id)) {
-      const filteredRows = selectedRows.filter(row => row.id !== id)
-      this.setState({ selectedRows: filteredRows }, this.handleSelectionChange)
-    } else {
-      selectedRows.push({ ...rowData })
-      this.setState({ selectedRows }, this.handleSelectionChange)
-    }
-  }
-
-  handleDeselectAllLines = () => {
-    this.setState(
-      { selectedRows: [], allLinesSelected: false },
-      this.handleSelectionChange
-    )
-  }
-
-  render() {
-    const {
-      items,
-      schema,
-      disableHeader,
-      emptyStateLabel,
-      emptyStateChildren,
-      fixFirstColumn,
-      onRowClick,
-      sort,
-      onSort,
-      updateTableKey,
-      containerHeight,
-      toolbar,
-      pagination,
-      fullWidth,
-      lineActions,
-      loading,
-      bulkActions,
-      totalizers,
-      filters,
-    } = this.props
-    const {
-      hiddenFields,
-      tableRowHeight,
-      selectedDensity,
-      selectedRows,
-      allLinesSelected,
-    } = this.state
-
-    const hasPrimaryBulkAction =
-      bulkActions &&
-      bulkActions.main &&
-      typeof bulkActions.main.handleCallback === 'function'
-    const hasSecondaryBulkActions =
-      bulkActions.others && bulkActions.others.length > 0
-    const hasBulkActions = hasPrimaryBulkAction || hasSecondaryBulkActions
-
-    if (hasBulkActions) {
-      schema.properties = {
-        bulk: {
-          width: 40,
-          headerRenderer: () => {
-            const { selectedRows } = this.state
-            const selectedRowsLength = selectedRows.length
-            const itemsLength = this.props.items.length
-
-            const isChecked = selectedRowsLength === itemsLength
-            const isPartial =
-              selectedRowsLength > 0 && selectedRowsLength < itemsLength
-
-            return (
-              <CheckboxContainer
-                checked={isChecked}
-                onClick={this.handleSelectAllVisibleLines}
-                id="all"
-                partial={isPartial}
-              />
-            )
-          },
-          cellRenderer: ({ rowData }) => (
-            <CheckboxContainer
-              checked={this.state.selectedRows.some(
-                row => row.id === rowData.id
-              )}
-              onClick={() => this.handleSelectLine(rowData)}
-              id={rowData.id}
-              disabled={this.state.allLinesSelected}
-            />
-          ),
-        },
-        ...schema.properties,
-      }
-
-      items.map((item, i) => (item.id = i))
-    }
-
-    const properties = Object.keys(schema.properties)
-    const emptyState = !!(
-      properties.length === 0 || properties.length === hiddenFields.length
-    )
-    const displayProperties = reduce(
-      schema.properties,
-      (acc, value, key) => {
-        if (hiddenFields.includes && hiddenFields.includes(key)) {
-          return acc
-        }
-        return { ...acc, [key]: value }
-      },
-      {}
-    )
-    const displaySchema = {
-      ...schema,
-      properties: displayProperties,
-    }
-
-    // if pagination and bulk actions features are active at the same time
-    // when paginating, bulk actions active lines should be deselected
-    const paginationClone = pagination ? Object.assign({}, pagination) : null
-    if (paginationClone && hasBulkActions) {
-      paginationClone.onNextClick = () => {
-        this.handleDeselectAllLines()
-        pagination.onNextClick()
-      }
-      paginationClone.onPrevClick = () => {
-        this.handleDeselectAllLines()
-        pagination.onPrevClick()
-      }
-    }
-
-    return (
-      <div className="vtex-table__container">
-        {toolbar && (
-          <Toolbar
-            loading={loading}
-            toolbar={toolbar}
-            hiddenFields={hiddenFields}
-            toggleColumn={this.toggleColumn}
-            handleHideAllColumns={this.onHideAllColumns}
-            handleShowAllColumns={this.onShowAllColumns}
-            handleToggleDensity={this.toggleTableRowHeight}
-            selectedDensity={selectedDensity}
-            schema={schema}
-            actions={toolbar}
-          />
-        )}
-
-        {filters && (
-          <div className="mb5">
-            <FilterBar {...filters} />
-          </div>
-        )}
-
-        {totalizers && totalizers.length > 0 && (
-          <Totalizers items={totalizers} />
-        )}
-
-        <BulkActions
-          hasPrimaryBulkAction={hasPrimaryBulkAction}
-          hasSecondaryBulkActions={hasSecondaryBulkActions}
-          selectedRows={selectedRows}
-          bulkActions={bulkActions}
-          allLinesSelected={allLinesSelected}
-          onSelectAllLines={this.handleSelectAllLines}
-          onDeselectAllLines={this.handleDeselectAllLines}
+  return (
+    <div className="vtex-table__container">
+      {toolbar && (
+        <Toolbar
+          loading={loading}
+          toolbar={toolbar}
+          hiddenFields={state.hiddenFields}
+          toggleColumn={toggleColumn}
+          handleHideAllColumns={onHideAllColumns}
+          handleShowAllColumns={onShowAllColumns}
+          handleToggleDensity={handleToggleDensity}
+          selectedDensity={state.selectedDensity}
+          schema={staticSchema}
+          actions={toolbar}
         />
+      )}
 
-        {emptyState ? (
-          <Box>
-            <EmptyState title={emptyStateLabel}>
-              {emptyStateChildren}
-            </EmptyState>
-          </Box>
-        ) : (
-          <SimpleTable
-            fullWidth={fullWidth}
-            items={items}
-            schema={displaySchema}
-            fixFirstColumn={fixFirstColumn}
-            rowHeight={tableRowHeight}
-            disableHeader={disableHeader}
-            emptyStateLabel={emptyStateLabel}
-            emptyStateChildren={emptyStateChildren}
-            onRowClick={onRowClick}
-            sort={sort}
-            onSort={onSort}
-            key={hiddenFields.toString()}
-            updateTableKey={updateTableKey}
-            lineActions={lineActions}
-            loading={loading}
-            containerHeight={
-              containerHeight || this.calculateTableHeight(items.length)
-            }
-            selectedRowsIndexes={map(selectedRows, 'id')}
-            density={selectedDensity}
-          />
-        )}
+      {filters && (
+        <div className="mb5">
+          <FilterBar {...filters} />
+        </div>
+      )}
 
-        {!loading && paginationClone && <Pagination {...paginationClone} />}
-      </div>
-    )
-  }
+      {totalizers && totalizers.length > 0 && <Totalizers items={totalizers} />}
+
+      <BulkActions
+        hasPrimaryBulkAction={hasPrimaryBulkAction}
+        hasSecondaryBulkActions={hasSecondaryBulkActions}
+        selectedRows={state.selectedRows}
+        bulkActions={bulkActions}
+        allLinesSelected={state.allLinesSelected}
+        onSelectAllLines={handleSelectAllLines}
+        onDeselectAllLines={handleDeselectAllLines}
+      />
+
+      {emptyState ? (
+        <Box>
+          <EmptyState title={emptyStateLabel}>{emptyStateChildren}</EmptyState>
+        </Box>
+      ) : (
+        <SimpleTable
+          fullWidth={fullWidth}
+          items={data}
+          schema={displaySchema}
+          fixFirstColumn={fixFirstColumn}
+          rowHeight={state.tableRowHeight}
+          disableHeader={disableHeader}
+          emptyStateLabel={emptyStateLabel}
+          emptyStateChildren={emptyStateChildren}
+          onRowClick={onRowClick}
+          sort={sort}
+          onSort={onSort}
+          key={state.hiddenFields.toString()}
+          updateTableKey={updateTableKey}
+          lineActions={lineActions}
+          loading={loading}
+          containerHeight={
+            containerHeight ||
+            calculateTableHeight(state.tableRowHeight, data.length)
+          }
+          selectedRowsIndexes={map(state.selectedRows, 'id')}
+          density={state.selectedDensity}
+        />
+      )}
+
+      {!loading && paginationClone && <Pagination {...paginationClone} />}
+    </div>
+  )
 }
 
 Table.defaultProps = {
