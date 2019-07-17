@@ -1,0 +1,7 @@
+.shadow-active {
+  box-shadow: 0px 1px 18px rgba(0, 0, 0, 0.14);
+}
+
+.styleguide__layout .mw8 .styleguide__floating-action-bar{
+  padding-right: calc((100% - 60.2rem) / 2);
+}
