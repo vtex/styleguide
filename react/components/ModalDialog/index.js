@@ -6,8 +6,8 @@ import Button from '../Button'
 const NOOP = () => {}
 
 class ModalDialog extends Component {
-  handleExit = () => {
-    this.props.onExit && this.props.onExit()
+  handleCloseTransitionFinish = () => {
+    this.props.onCloseTransitionFinish && this.props.onCloseTransitionFinish()
   }
 
   handleConfirmation = () => {
@@ -29,7 +29,7 @@ class ModalDialog extends Component {
       <Modal
         {...this.props}
         onClose={loading ? NOOP : onClose}
-        onExit={this.handleExit}>
+        onCloseTransitionFinish={this.handleCloseTransitionFinish}>
         {this.props.children}
         <div className="vtex-modal__confirmation flex justify-end mt8">
           <span className="mr4">
@@ -67,7 +67,7 @@ ModalDialog.propTypes = {
   }).isRequired,
   onClose: PropTypes.func,
   loading: PropTypes.bool,
-  onExit: PropTypes.func,
+  onCloseTransitionFinish: PropTypes.func,
 }
 
 export default ModalDialog
