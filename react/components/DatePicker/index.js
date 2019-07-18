@@ -6,7 +6,6 @@ import * as locales from 'date-fns/locale/index.js'
 
 import Input from '../Input'
 import IconCalendar from '../icon/Calendar'
-import IconClock from '../icon/Clock'
 
 import './react-datepicker.global.css'
 import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
@@ -65,18 +64,18 @@ class DatePicker extends Component {
     }
   }
 
-  handleChange = event => {
-    this.props.onChange && this.props.onChange(event)
+  componentDidMount() {
+    if (this.props.useTime) {
+      console.warn(
+        'DatePicker: The prop "useTime" of the "DatePicker" component has been deprecated, and will be removed in a future version. Please use the "TimePicker" component instead'
+      )
+    }
   }
 
-  handleFocus = event => {
-    this.setState({ active: true })
-    this.props.onFocus && this.props.onFocus(event)
-  }
-
-  handleBlur = event => {
-    this.setState({ active: false })
-    this.props.onBlur && this.props.onBlur(event)
+  componentDidUpdate(prevProps) {
+    if (this.props.locale !== prevProps.locale) {
+      this.handleLocaleChange(this.props.locale)
+    }
   }
 
   handleLocaleChange = locale => {
@@ -89,20 +88,16 @@ class DatePicker extends Component {
     registerLocale(locale, locales[locale.replace('-', '')])
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.locale !== prevProps.locale) {
-      this.handleLocaleChange(this.props.locale)
-    }
-  }
-
   render() {
-    const { positionFixed } = this.props
+    const { positionFixed, useTime, useTimeOnly } = this.props
 
     const popperProps = {
       ...(positionFixed && {
         positionFixed: true,
       }),
     }
+
+    const format = useTimeOnly ? 'p' : useTime ? 'Pp' : 'P'
 
     return (
       <ReactDatePicker
@@ -114,13 +109,11 @@ class DatePicker extends Component {
             errorMessage={this.props.errorMessage || this.state.errorMessage}
             helpText={this.props.helpText}
             label={this.props.label}
-            prefix={this.props.useTimeOnly ? <IconClock /> : <IconCalendar />}
+            prefix={this.props.prefix}
             size={this.props.size}
           />
         }
-        dateFormat={
-          this.props.useTime ? (this.props.useTimeOnly ? 'p' : 'Pp') : 'P'
-        }
+        dateFormat={format}
         disabled={this.props.disabled}
         disabledKeyboardNavigation
         endDate={this.props.dateRangeEnd}
@@ -145,9 +138,9 @@ class DatePicker extends Component {
         selectsEnd={this.props.isRangeEnd}
         selectsStart={this.props.isRangeStart}
         showDisabledMonthNavigation={this.props.limitMonthNavigation}
-        showTimeSelect={this.props.useTime}
+        showTimeSelect={useTime || useTimeOnly}
         startDate={this.props.dateRangeStart}
-        showTimeSelectOnly={this.props.useTimeOnly}
+        showTimeSelectOnly={useTimeOnly}
         tabIndex={this.props.tabIndex}
         timeFormat="p"
         timeIntervals={this.props.timeIntervals}
@@ -167,6 +160,7 @@ DatePicker.defaultProps = {
   error: false,
   label: '',
   limitMonthNavigation: false,
+  prefix: <IconCalendar />,
   readOnly: false,
   required: false,
   size: 'regular',
@@ -233,6 +227,8 @@ DatePicker.propTypes = {
   onBlur: PropTypes.func,
   /** Placeholder text  */
   placeholder: PropTypes.string,
+  /** @ignore Prefix component to be used as the prefix of the input */
+  prefix: PropTypes.node,
   /** Spec attribute  */
   readOnly: PropTypes.bool,
   /** Spec attribute  */
@@ -245,7 +241,7 @@ DatePicker.propTypes = {
   timeIntervals: PropTypes.number,
   /** Flag used for indicating whether to use time or not  */
   useTime: PropTypes.bool,
-  /** @ignore Forwarded Ref */
+  /** @ignore Do not show calendar view */
   useTimeOnly: PropTypes.bool,
   /** Value of the selected date  */
   value: PropTypes.instanceOf(Date).isRequired,

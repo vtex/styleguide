@@ -2,10 +2,19 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import DatePicker from '../DatePicker'
+import IconClock from '../icon/Clock'
+
 import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
 
 function TimePicker(props) {
-  return <DatePicker {...props} ref={props.forwardedRef} useTime useTimeOnly />
+  return (
+    <DatePicker
+      {...props}
+      ref={props.forwardedRef}
+      prefix={<IconClock />}
+      useTimeOnly
+    />
+  )
 }
 
 TimePicker.propTypes = {
