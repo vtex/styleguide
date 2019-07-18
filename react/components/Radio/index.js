@@ -89,6 +89,7 @@ class Radio extends PureComponent {
           ref={this.radio}
         />
         <label
+          style={{ wordBreak: 'break-all' }}
           className={classNames(
             { 'c-disabled': disabled },
             { 'c-on-base pointer': !disabled },
