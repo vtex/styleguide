@@ -7,11 +7,8 @@ import PaperIcon from './PaperIcon'
 const dropzoneRef = createRef()
 
 class InputDropzone extends PureComponent {
-  constructor() {
-    super()
-    this.state = {
-      isHovering: false,
-    }
+  state = {
+    isHovering: false,
   }
 
   handleStartHovering = () => {
@@ -28,10 +25,14 @@ class InputDropzone extends PureComponent {
   }
 
   render() {
+    const { children } = this.props
     const { isHovering } = this.state
-    const classes = `ba tc br2 bw1 b--dashed ${
-      isHovering ? '' : 'b--muted-4'
-    } pa7 pa9-ns`
+
+    const baseClasses = 'flex flex-column items-center justify-center'
+    const hoveredClasses = 'b--action-primary bg-action-secondary'
+    const nonHoveredClasses = 'b--muted-4'
+    let classes = `${baseClasses} ba br2 bw1 b--dashed pa7 pa9-ns `
+    classes += `${isHovering ? hoveredClasses : nonHoveredClasses}`
 
     return (
       <Dropzone
@@ -43,12 +44,7 @@ class InputDropzone extends PureComponent {
           <div className={classes} {...getRootProps()}>
             <input {...getInputProps()} />
             <PaperIcon />
-            <div className="pt7">
-              <span className="f4">Drop here your XLS or </span>
-              <span className="f4 c-link" style={{ cursor: 'pointer' }}>
-                choose a file
-              </span>
-            </div>
+            {children && children}
           </div>
         )}
       </Dropzone>
@@ -58,6 +54,8 @@ class InputDropzone extends PureComponent {
 
 InputDropzone.propTypes = {
   onDrop: PropTypes.func.isRequired,
+  /** Content after the file icon */
+  children: PropTypes.node,
 }
 
 export default InputDropzone
