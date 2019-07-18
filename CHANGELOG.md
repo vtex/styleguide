@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.66.0] - 2019-07-18
+
+### Added
+
+- Icons: Bold, Italic, Underline, Ordered List, Unordered List, Text, Image
+- Prop `size` in Textarea to normalize label sizes with other types of inputs
+
 ## [8.65.0] - 2019-07-17
 
 ### Added
