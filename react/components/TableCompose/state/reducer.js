@@ -1,30 +1,39 @@
-import types from './actionTypes'
-import { getRowHeight } from '../util'
+import { getRowHeight } from './util'
 
-export default (state, action) => {
+export const actionTypes = {
+  SET_DENSITY: 0,
+  DESELECT_ALL_LINES: 1,
+  SELECT_ALL_LINES: 2,
+  SELECT_LINE: 3,
+  HIDE_COLUMN: 4,
+  HIDE_ALL_COLUMNS: 5,
+  UNHIDE_ALL_COLUMNS: 6,
+}
+
+export const reducer = (state, action) => {
   switch (action.type) {
-    case types.SET_DENSITY: {
+    case actionTypes.SET_DENSITY: {
       return {
         ...state,
         selectedDensity: action.density,
         tableRowHeight: getRowHeight(action.density),
       }
     }
-    case types.DESELECT_ALL_LINES: {
+    case actionTypes.DESELECT_ALL_LINES: {
       return {
         ...state,
         selectedRows: [],
         allLinesSelected: false,
       }
     }
-    case types.SELECT_ALL_LINES: {
+    case actionTypes.SELECT_ALL_LINES: {
       return {
         ...state,
         selectedRows: action.selectedRows,
         allLinesSelected: true,
       }
     }
-    case types.SELECT_LINE: {
+    case actionTypes.SELECT_LINE: {
       return state.selectedRows.some(el => el.id === action.row.id)
         ? {
             ...state,
@@ -38,7 +47,7 @@ export default (state, action) => {
             selectedRows: [...state.selectedRows, action.row],
           }
     }
-    case types.HIDE_COLUMN: {
+    case actionTypes.HIDE_COLUMN: {
       const index = state.hiddenFields.indexOf(action.key)
 
       return index === -1
@@ -53,13 +62,13 @@ export default (state, action) => {
             ),
           }
     }
-    case types.HIDE_ALL_COLUMNS: {
+    case actionTypes.HIDE_ALL_COLUMNS: {
       return {
         ...state,
         hiddenFields: action.hiddenFields,
       }
     }
-    case types.UNHIDE_ALL_COLUMNS: {
+    case actionTypes.UNHIDE_ALL_COLUMNS: {
       return {
         ...state,
         hiddenFields: [],

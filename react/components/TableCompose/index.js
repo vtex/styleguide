@@ -12,8 +12,6 @@ import Toolbar from './Toolbar'
 import Totalizers from '../Totalizer'
 import BulkActions from './BulkActions'
 
-import { calculateTableHeight } from './util'
-
 import useTableState from './state/useTableState'
 
 const Table = ({
@@ -52,12 +50,9 @@ const Table = ({
     tablePagination,
     hasPrimaryBulkAction,
     hasSecondaryBulkActions,
+    isEmptyState,
+    tableHeight,
   } = useTableState(schema, items, density, bulkActions, pagination)
-
-  const properties = Object.keys(staticSchema.properties)
-  const emptyState = !!(
-    properties.length === 0 || properties.length === state.hiddenFields.length
-  )
 
   return (
     <div className="vtex-table__container">
@@ -96,7 +91,7 @@ const Table = ({
         onDeselectAllLines={deselectAllRows}
       />
 
-      {emptyState ? (
+      {isEmptyState ? (
         <Box>
           <EmptyState title={emptyStateLabel}>{emptyStateChildren}</EmptyState>
         </Box>
@@ -117,10 +112,7 @@ const Table = ({
           updateTableKey={updateTableKey}
           lineActions={lineActions}
           loading={loading}
-          containerHeight={
-            containerHeight ||
-            calculateTableHeight(state.tableRowHeight, data.length)
-          }
+          containerHeight={containerHeight || tableHeight}
           selectedRowsIndexes={map(state.selectedRows, 'id')}
           density={state.selectedDensity}
         />

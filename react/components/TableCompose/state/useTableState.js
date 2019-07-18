@@ -2,9 +2,12 @@ import React, { useReducer, useMemo, useEffect } from 'react'
 import reduce from 'lodash/reduce'
 
 import CheckboxContainer from '../CheckboxContainer'
-import reducer from './reducer'
-import types from './actionTypes'
-import { getRowHeight, getInitialHiddenFieldsFromSchema } from '../util'
+import { actionTypes, reducer } from './reducer'
+import {
+  getRowHeight,
+  getInitialHiddenFieldsFromSchema,
+  calculateTableHeight,
+} from './util'
 
 const useTableState = (schema, items, density, bulkActions, pagination) => {
   const [state, dispatch] = useReducer(reducer, {
@@ -95,6 +98,18 @@ const useTableState = (schema, items, density, bulkActions, pagination) => {
     }
   }, [state.hiddenFields, state.selectedRows])
 
+  const isEmptyState = useMemo(() => {
+    const properties = Object.keys(staticSchema.properties)
+    return !!(
+      properties.length === 0 || properties.length === state.hiddenFields.length
+    )
+  }, [staticSchema, state.hiddenFields])
+
+  const tableHeight = useMemo(
+    () => calculateTableHeight(state.tableRowHeight, data.length),
+    [state.tableRowHeight]
+  )
+
   useEffect(() => {
     if (bulkActions && bulkActions.onChange) {
       const selectedParameters = state.allLinesSelected
@@ -105,33 +120,33 @@ const useTableState = (schema, items, density, bulkActions, pagination) => {
   }, [state.selectedRows, state.allLinesSelected, bulkActions])
 
   const setDensity = density => {
-    dispatch({ type: types.SET_DENSITY, density })
+    dispatch({ type: actionTypes.SET_DENSITY, density })
   }
 
   const toggleColumn = key => {
-    dispatch({ type: types.HIDE_COLUMN, key: key })
+    dispatch({ type: actionTypes.HIDE_COLUMN, key: key })
   }
 
   const showAllColumns = () => {
-    dispatch({ type: types.UNHIDE_ALL_COLUMNS })
+    dispatch({ type: actionTypes.UNHIDE_ALL_COLUMNS })
   }
 
   const hideAllColumns = properties => {
     dispatch({
-      type: types.HIDE_ALL_COLUMNS,
+      type: actionTypes.HIDE_ALL_COLUMNS,
       hiddenFields: properties,
     })
   }
 
   const selectAllRows = () => {
     dispatch({
-      type: types.SELECT_ALL_LINES,
+      type: actionTypes.SELECT_ALL_LINES,
       selectedRows: data,
     })
   }
 
   const deselectAllRows = () => {
-    dispatch({ type: types.DESELECT_ALL_LINES })
+    dispatch({ type: actionTypes.DESELECT_ALL_LINES })
   }
 
   const selectAllVisibleRows = () => {
@@ -142,14 +157,14 @@ const useTableState = (schema, items, density, bulkActions, pagination) => {
       deselectAllRows()
     } else {
       dispatch({
-        type: types.SELECT_ALL_LINES,
+        type: actionTypes.SELECT_ALL_LINES,
         selectedRows: data,
       })
     }
   }
 
   const selectRow = row => {
-    dispatch({ type: types.SELECT_LINE, row })
+    dispatch({ type: actionTypes.SELECT_LINE, row })
   }
 
   const tablePagination = useMemo(() => {
@@ -187,6 +202,8 @@ const useTableState = (schema, items, density, bulkActions, pagination) => {
     hasSecondaryBulkActions,
     hasBulkActions,
     tablePagination,
+    isEmptyState,
+    tableHeight,
   }
 }
 
