@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.66.0] - 2019-07-18
+
 ### Added
 
 - Icons: Bold, Italic, Underline, Ordered List, Unordered List, Text, Image
