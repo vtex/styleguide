@@ -6,7 +6,7 @@ import reducer from './reducer'
 import types from './actionTypes'
 import { getRowHeight, getInitialHiddenFieldsFromSchema } from '../util'
 
-const useTableState = (schema, items, density, bulkActions) => {
+const useTableState = (schema, items, density, bulkActions, pagination) => {
   const [state, dispatch] = useReducer(reducer, {
     tableRowHeight: getRowHeight(density),
     selectedRows: [],
@@ -54,7 +54,7 @@ const useTableState = (schema, items, density, bulkActions) => {
                   return (
                     <CheckboxContainer
                       checked={isChecked}
-                      onClick={() => selectAllVisibleRows(data)}
+                      onClick={selectAllVisibleRows}
                       id="all"
                       partial={isPartial}
                     />
@@ -123,7 +123,7 @@ const useTableState = (schema, items, density, bulkActions) => {
     })
   }
 
-  const selectAllRows = data => {
+  const selectAllRows = () => {
     dispatch({
       type: types.SELECT_ALL_LINES,
       selectedRows: data,
@@ -134,7 +134,7 @@ const useTableState = (schema, items, density, bulkActions) => {
     dispatch({ type: types.DESELECT_ALL_LINES })
   }
 
-  const selectAllVisibleRows = data => {
+  const selectAllVisibleRows = () => {
     if (
       state.selectedRows.length <= data.length &&
       state.selectedRows.length !== 0
@@ -151,6 +151,23 @@ const useTableState = (schema, items, density, bulkActions) => {
   const selectRow = row => {
     dispatch({ type: types.SELECT_LINE, row })
   }
+
+  const tablePagination = useMemo(() => {
+    if (pagination && hasBulkActions) {
+      const paginationClone = Object.assign({}, pagination)
+      paginationClone.onNextClick = () => {
+        deselectAllRows()
+        pagination.onNextClick()
+      }
+      paginationClone.onPrevClick = () => {
+        deselectAllRows()
+        pagination.onPrevClick()
+      }
+      return paginationClone
+    }
+
+    return pagination
+  }, [pagination])
 
   return {
     state,
@@ -169,6 +186,7 @@ const useTableState = (schema, items, density, bulkActions) => {
     hasPrimaryBulkAction,
     hasSecondaryBulkActions,
     hasBulkActions,
+    tablePagination,
   }
 }
 

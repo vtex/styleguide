@@ -49,29 +49,15 @@ const Table = ({
     displaySchema,
     data,
     staticSchema,
-    hasBulkActions,
+    tablePagination,
     hasPrimaryBulkAction,
     hasSecondaryBulkActions,
-  } = useTableState(schema, items, density, bulkActions)
+  } = useTableState(schema, items, density, bulkActions, pagination)
 
   const properties = Object.keys(staticSchema.properties)
   const emptyState = !!(
     properties.length === 0 || properties.length === state.hiddenFields.length
   )
-
-  // if pagination and bulk actions features are active at the same time
-  // when paginating, bulk actions active lines should be deselected
-  const paginationClone = pagination ? Object.assign({}, pagination) : null
-  if (paginationClone && hasBulkActions) {
-    paginationClone.onNextClick = () => {
-      deselectAllRows()
-      pagination.onNextClick()
-    }
-    paginationClone.onPrevClick = () => {
-      deselectAllRows()
-      pagination.onPrevClick()
-    }
-  }
 
   return (
     <div className="vtex-table__container">
@@ -106,7 +92,7 @@ const Table = ({
         selectedRows={state.selectedRows}
         bulkActions={bulkActions}
         allLinesSelected={state.allLinesSelected}
-        onSelectAllLines={() => selectAllRows(data)}
+        onSelectAllLines={selectAllRows}
         onDeselectAllLines={deselectAllRows}
       />
 
@@ -140,7 +126,7 @@ const Table = ({
         />
       )}
 
-      {!loading && paginationClone && <Pagination {...paginationClone} />}
+      {!loading && tablePagination && <Pagination {...tablePagination} />}
     </div>
   )
 }
