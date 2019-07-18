@@ -85,7 +85,7 @@ class Textarea extends Component {
       classes += 'bg-base '
     }
 
-    switch(size) {
+    switch (size) {
       case 'small':
         classes += 't-small '
         labelClasses += 't-small '
@@ -104,9 +104,7 @@ class Textarea extends Component {
 
     return (
       <label className="vtex-textarea">
-        {label && (
-          <span className={labelClasses}>{label}</span>
-        )}
+        {label && <span className={labelClasses}>{label}</span>}
         <textarea
           {...dataAttrs}
           onBlur={this.handleBlur}
