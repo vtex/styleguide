@@ -93,7 +93,7 @@ const ref = React.createRef()
   </div>
 
   <div className="mb5">
-    <Button onClick={() => ref.current.focus()}>Focus!</Button>
+    <Button onClick={() => ref.current.setFocus()}>Focus!</Button>
   </div>
 </div>
 ```
