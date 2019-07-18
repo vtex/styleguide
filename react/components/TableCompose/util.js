@@ -39,16 +39,3 @@ export const calculateTableHeight = (tableRowHeight, totalItems) => {
     TABLE_HEADER_HEIGHT + tableRowHeight * multiplicator + getScrollbarWidth()
   )
 }
-
-export const handleSelectionChange = (
-  bulkActions,
-  allLinesSelected,
-  selectedRows
-) => {
-  if (bulkActions && bulkActions.onChange) {
-    const selectedParameters = allLinesSelected
-      ? { allLinesSelected: true }
-      : { selectedRows: selectedRows }
-    bulkActions.onChange(selectedParameters)
-  }
-}
