@@ -7,11 +7,15 @@
 * @vtex/front-end @vtex/designers
 
 # Component Specific Owners
-**/components/Collapsible/*               @ericreis @cmdalbem
-**/components/DatePicker/*                @ericreis @cmdalbem
-**/components/EXPERIMENTAL_Conditions/*   @ericreis @ohmyguigs @cmdalbem
-**/components/EXPERIMENTAL_Select/*       @thiagomurakami @ericreis
-**/components/FilterBar/*                 @ohmyguigs
-**/components/InputCurrency/*             @ericreis
-**/components/Table/*                     @ohmyguigs @kevinch @ericreis
-**/components/Totalizer/*                 @kevinch
+# These lines are commented because we decided to stop requiring specific owners
+# reviews, but we think it's a good idea to maintain these here, to serve as a
+# guide to who you should seek for help.
+
+# **/components/Collapsible/*               @ericreis @cmdalbem
+# **/components/DatePicker/*                @ericreis @cmdalbem
+# **/components/EXPERIMENTAL_Conditions/*   @ericreis @ohmyguigs @cmdalbem
+# **/components/EXPERIMENTAL_Select/*       @thiagomurakami @ericreis
+# **/components/FilterBar/*                 @ohmyguigs
+# **/components/InputCurrency/*             @ericreis
+# **/components/Table/*                     @ohmyguigs @kevinch @ericreis
+# **/components/Totalizer/*                 @kevinch
