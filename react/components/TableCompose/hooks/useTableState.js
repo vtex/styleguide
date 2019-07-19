@@ -28,6 +28,7 @@ const useTableState = (
 
   const hasPrimaryBulkAction = useMemo(
     () =>
+      !inheritState &&
       bulkActions &&
       bulkActions.main &&
       typeof bulkActions.main.handleCallback === 'function',
@@ -35,7 +36,11 @@ const useTableState = (
   )
 
   const hasSecondaryBulkActions = useMemo(
-    () => bulkActions && bulkActions.others && bulkActions.others.length > 0,
+    () =>
+      !inheritState &&
+      bulkActions &&
+      bulkActions.others &&
+      bulkActions.others.length > 0,
     [bulkActions]
   )
 
@@ -91,19 +96,24 @@ const useTableState = (
   )
 
   const displaySchema = useMemo(() => {
-    return {
-      ...staticSchema,
-      properties: reduce(
-        staticSchema.properties,
-        (acc, value, key) => {
-          if (state.hiddenFields.includes && state.hiddenFields.includes(key)) {
-            return acc
-          }
-          return { ...acc, [key]: value }
-        },
-        {}
-      ),
-    }
+    return inheritState
+      ? schema
+      : {
+          ...staticSchema,
+          properties: reduce(
+            staticSchema.properties,
+            (acc, value, key) => {
+              if (
+                state.hiddenFields.includes &&
+                state.hiddenFields.includes(key)
+              ) {
+                return acc
+              }
+              return { ...acc, [key]: value }
+            },
+            {}
+          ),
+        }
   }, [state.hiddenFields, state.selectedRows])
 
   const isEmptyState = useMemo(() => {
@@ -114,9 +124,29 @@ const useTableState = (
   }, [staticSchema, state.hiddenFields])
 
   const tableHeight = useMemo(
-    () => calculateTableHeight(state.tableRowHeight, data.length),
+    () =>
+      inheritState
+        ? 0
+        : calculateTableHeight(state.tableRowHeight, data.length),
     [state.tableRowHeight, pagination]
   )
+
+  const tablePagination = useMemo(() => {
+    if (!inheritState && pagination && hasBulkActions) {
+      const paginationClone = Object.assign({}, pagination)
+      paginationClone.onNextClick = () => {
+        deselectAllRows()
+        pagination.onNextClick()
+      }
+      paginationClone.onPrevClick = () => {
+        deselectAllRows()
+        pagination.onPrevClick()
+      }
+      return paginationClone
+    }
+
+    return pagination
+  }, [pagination])
 
   useEffect(() => {
     if (bulkActions && bulkActions.onChange) {
@@ -174,23 +204,6 @@ const useTableState = (
   const selectRow = row => {
     dispatch({ type: actionTypes.SELECT_LINE, row })
   }
-
-  const tablePagination = useMemo(() => {
-    if (pagination && hasBulkActions) {
-      const paginationClone = Object.assign({}, pagination)
-      paginationClone.onNextClick = () => {
-        deselectAllRows()
-        pagination.onNextClick()
-      }
-      paginationClone.onPrevClick = () => {
-        deselectAllRows()
-        pagination.onPrevClick()
-      }
-      return paginationClone
-    }
-
-    return pagination
-  }, [pagination])
 
   return (
     inheritState || {
