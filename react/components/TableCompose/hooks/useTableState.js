@@ -10,7 +10,14 @@ import {
   actionTypes,
 } from '../util'
 
-const useTableState = (schema, items, density, bulkActions, pagination) => {
+const useTableState = (
+  schema = { properties: {} },
+  items = [],
+  density,
+  bulkActions,
+  pagination,
+  inheritState
+) => {
   const [state, dispatch] = useReducer(reducer, {
     tableRowHeight: getRowHeight(density),
     selectedRows: [],
@@ -28,7 +35,7 @@ const useTableState = (schema, items, density, bulkActions, pagination) => {
   )
 
   const hasSecondaryBulkActions = useMemo(
-    () => bulkActions.others && bulkActions.others.length > 0,
+    () => bulkActions && bulkActions.others && bulkActions.others.length > 0,
     [bulkActions]
   )
 
@@ -185,27 +192,29 @@ const useTableState = (schema, items, density, bulkActions, pagination) => {
     return pagination
   }, [pagination])
 
-  return {
-    state,
-    dispatch,
-    setDensity,
-    toggleColumn,
-    showAllColumns,
-    hideAllColumns,
-    selectAllRows,
-    deselectAllRows,
-    selectAllVisibleRows,
-    selectRow,
-    displaySchema,
-    data,
-    staticSchema,
-    hasPrimaryBulkAction,
-    hasSecondaryBulkActions,
-    hasBulkActions,
-    tablePagination,
-    isEmptyState,
-    tableHeight,
-  }
+  return (
+    inheritState || {
+      state,
+      dispatch,
+      setDensity,
+      toggleColumn,
+      showAllColumns,
+      hideAllColumns,
+      selectAllRows,
+      deselectAllRows,
+      selectAllVisibleRows,
+      selectRow,
+      displaySchema,
+      data,
+      staticSchema,
+      hasPrimaryBulkAction,
+      hasSecondaryBulkActions,
+      hasBulkActions,
+      tablePagination,
+      isEmptyState,
+      tableHeight,
+    }
+  )
 }
 
 export default useTableState

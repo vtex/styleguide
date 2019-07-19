@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 
 import InputToolbar from './InputToolbar'
@@ -8,8 +8,7 @@ import ButtonDownload from './ButtonDownload'
 import ButtonUpload from './ButtonUpload'
 import ButtonNewLine from './ButtonNewLine'
 import ExtraActions from './ExtraActions'
-
-import useTableContext from '../hooks/useTableContext'
+import ButtonToolbar from './ButtonToolbar'
 
 const Toolbar = ({
   actions: {
@@ -21,18 +20,9 @@ const Toolbar = ({
     newLine,
     density,
   },
-  handleHideAllColumns,
-  handleShowAllColumns,
   loading,
+  children,
 }) => {
-  const {
-    state,
-    toggleColumn,
-    hideAllColumns,
-    showAllColumns,
-    staticSchema,
-  } = useTableContext()
-
   const isDownloadVisible = download && download.handleCallback
   const isUploadVisible = upload && upload.handleCallback
   const isFieldsVisible = fields && fields.showAllLabel && fields.hideAllLabel
@@ -57,31 +47,39 @@ const Toolbar = ({
         <InputToolbar disabled={loading} inputSearch={inputSearch} />
       )}
       <div className="flex flex-row items-center">
-        {isDensityVisible && (
-          <ButtonDensity density={density} disabled={loading} />
-        )}
-        {isFieldsVisible && (
-          <ButtonFields
-            fields={fields}
-            hiddenFields={state.hiddenFields}
-            schema={staticSchema}
-            handleHideAllColumns={handleHideAllColumns || hideAllColumns}
-            handleShowAllColumns={handleShowAllColumns || showAllColumns}
-            toggleColumn={toggleColumn}
-          />
-        )}
-        {isDownloadVisible && (
-          <ButtonDownload download={download} disabled={loading} />
-        )}
-        {isUploadVisible && <ButtonUpload upload={upload} disabled={loading} />}
-        {isExtraActionsVisible && <ExtraActions extraActions={extraActions} />}
-        {isNewLineVisible && (
-          <ButtonNewLine newLine={newLine} disabled={loading} />
+        {children || (
+          <Fragment>
+            {isDensityVisible && (
+              <ButtonDensity density={density} disabled={loading} />
+            )}
+            {isFieldsVisible && (
+              <ButtonFields fields={fields} disabled={loading} />
+            )}
+            {isDownloadVisible && (
+              <ButtonDownload download={download} disabled={loading} />
+            )}
+            {isUploadVisible && (
+              <ButtonUpload upload={upload} disabled={loading} />
+            )}
+            {isExtraActionsVisible && (
+              <ExtraActions extraActions={extraActions} />
+            )}
+            {isNewLineVisible && (
+              <ButtonNewLine newLine={newLine} disabled={loading} />
+            )}
+          </Fragment>
         )}
       </div>
     </div>
   )
 }
+
+Toolbar.ButtonDensity = ButtonDensity
+Toolbar.ButtonFields = ButtonFields
+Toolbar.ButtonDownload = ButtonDownload
+Toolbar.ButtonUpload = ButtonUpload
+Toolbar.ExtraActions = ExtraActions
+Toolbar.Button = ButtonToolbar
 
 Toolbar.defaultProps = {
   actions: {
@@ -146,14 +144,11 @@ Toolbar.propTypes = {
       ),
     }),
   }),
-  schema: PropTypes.object.isRequired,
-  hiddenFields: PropTypes.array,
-  toggleColumn: PropTypes.func,
-  handleHideAllColumns: PropTypes.func,
-  handleShowAllColumns: PropTypes.func,
-  handleToggleDensity: PropTypes.func,
-  selectedDensity: PropTypes.string,
   loading: PropTypes.bool,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
 }
 
 export default Toolbar

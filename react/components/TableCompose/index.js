@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import map from 'lodash/map'
 
@@ -36,6 +36,8 @@ const Table = ({
   bulkActions,
   totalizers,
   filters,
+  tableState,
+  children,
 }) => {
   const {
     state,
@@ -53,22 +55,34 @@ const Table = ({
     hasSecondaryBulkActions,
     isEmptyState,
     tableHeight,
-  } = useTableState(schema, items, density, bulkActions, pagination)
+  } = useTableState(schema, items, density, bulkActions, pagination, tableState) // eslint-disable-line
+
+  useEffect(() => {
+    if (toolbar && children) {
+      throw new Error('Choose only one aproach')
+    }
+    if (tableState && (schema || items)) {
+      throw new Error('Choose controlled or uncontrolled')
+    }
+  }, [])
 
   return (
     <TableProvider
-      value={{
-        state,
-        toggleColumn,
-        hideAllColumns,
-        showAllColumns,
-        setDensity,
-        staticSchema,
-      }}>
+      value={
+        tableState || {
+          state,
+          toggleColumn,
+          hideAllColumns,
+          showAllColumns,
+          setDensity,
+          staticSchema,
+        }
+      }>
       <div className="vtex-table__container">
-        {toolbar && (
-          <Toolbar loading={loading} toolbar={toolbar} actions={toolbar} />
-        )}
+        {children ||
+          (toolbar && (
+            <Toolbar loading={loading} toolbar={toolbar} actions={toolbar} />
+          ))}
 
         {filters && (
           <div className="mb5">
@@ -125,6 +139,8 @@ const Table = ({
   )
 }
 
+Table.Toolbar = Toolbar
+
 Table.defaultProps = {
   loading: false,
   density: 'medium',
@@ -137,10 +153,12 @@ Table.defaultProps = {
 }
 
 Table.propTypes = {
+  children: PropTypes.any,
+  tableState: PropTypes.any,
   /** Array of objects with data */
-  items: PropTypes.array.isRequired,
+  items: PropTypes.array,
   /** JSON defining the data model schema for the items (More info about it after the examples) */
-  schema: PropTypes.object.isRequired,
+  schema: PropTypes.object,
   /** Do not render the table header (only the rows) */
   disableHeader: PropTypes.bool,
   /** Fix first column so only the following ones scroll horizontaly */

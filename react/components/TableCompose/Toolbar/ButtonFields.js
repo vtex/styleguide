@@ -7,16 +7,17 @@ import IconColumns from '../../icon/Columns'
 import Button from '../../Button'
 import useOutsideClick from '../hooks/useOutsideCick'
 import { constants } from '../util'
+import useTableContext from '../hooks/useTableContext'
 
-const ButtonFields = ({
-  fields,
-  hiddenFields,
-  schema,
-  handleHideAllColumns,
-  handleShowAllColumns,
-  toggleColumn,
-  disabled,
-}) => {
+const ButtonFields = ({ fields, disabled }) => {
+  const {
+    state,
+    staticSchema,
+    hideAllColumns,
+    showAllColumns,
+    toggleColumn,
+  } = useTableContext()
+
   const [isFieldsBoxVisible, setFieldsBoxVisible] = useState(false)
   const fieldsBtnRef = useRef(null)
 
@@ -28,14 +29,15 @@ const ButtonFields = ({
 
   const calculateFieldsBoxHeight = () => {
     const estimate =
-      Object.keys(schema.properties).length * constants.FIELDS_BOX_ITEM_HEIGHT
+      Object.keys(staticSchema.properties).length *
+      constants.FIELDS_BOX_ITEM_HEIGHT
     return estimate > constants.MAX_FIELDS_BOX_HEIGHT
       ? constants.MAX_FIELDS_BOX_HEIGHT
       : estimate
   }
 
   const height = useMemo(() => calculateFieldsBoxHeight, [
-    Object.keys(schema.properties).length,
+    Object.keys(staticSchema.properties).length,
   ])
 
   return (
@@ -61,28 +63,28 @@ const ButtonFields = ({
               <Button
                 variation="secondary"
                 size="small"
-                onClick={handleShowAllColumns}>
+                onClick={showAllColumns}>
                 {fields.showAllLabel}
               </Button>
               <div className="mh4">
                 <Button
                   variation="secondary"
                   size="small"
-                  onClick={handleHideAllColumns}>
+                  onClick={hideAllColumns}>
                   {fields.hideAllLabel}
                 </Button>
               </div>
             </div>
             <div style={{ height: height }} className="overflow-auto">
-              {Object.keys(schema.properties).map((field, index) => (
+              {Object.keys(staticSchema.properties).map((field, index) => (
                 <div
                   key={index}
                   className="flex justify-between ph6 pv3 pointer hover-bg-muted-5"
                   onClick={() => toggleColumn(field)}>
                   <span className="w-70 truncate">
-                    {schema.properties[field].title || field}
+                    {staticSchema.properties[field].title || field}
                   </span>
-                  <Toggle checked={!hiddenFields.includes(field)} />
+                  <Toggle checked={!state.hiddenFields.includes(field)} />
                 </div>
               ))}
             </div>
@@ -101,11 +103,7 @@ ButtonFields.propTypes = {
     alignMenu: PropTypes.oneOf(['right', 'left']),
   }),
   disabled: PropTypes.bool,
-  schema: PropTypes.object.isRequired,
-  hiddenFields: PropTypes.array,
   toggleColumn: PropTypes.func,
-  handleHideAllColumns: PropTypes.func,
-  handleShowAllColumns: PropTypes.func,
 }
 
 export default ButtonFields
