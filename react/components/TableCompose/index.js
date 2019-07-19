@@ -13,6 +13,7 @@ import Totalizers from '../Totalizer'
 import BulkActions from './BulkActions'
 
 import useTableState from './state/useTableState'
+import TableContext from './TableContext'
 
 const Table = ({
   items,
@@ -55,71 +56,72 @@ const Table = ({
   } = useTableState(schema, items, density, bulkActions, pagination)
 
   return (
-    <div className="vtex-table__container">
-      {toolbar && (
-        <Toolbar
-          loading={loading}
-          toolbar={toolbar}
-          hiddenFields={state.hiddenFields}
-          toggleColumn={toggleColumn}
-          handleHideAllColumns={() =>
-            hideAllColumns(Object.keys(staticSchema.properties))
-          }
-          handleShowAllColumns={showAllColumns}
-          handleToggleDensity={setDensity}
-          selectedDensity={state.selectedDensity}
-          schema={staticSchema}
-          actions={toolbar}
+    <TableContext.Provider
+      value={{
+        state,
+        toggleColumn,
+        hideAllColumns,
+        showAllColumns,
+        setDensity,
+        staticSchema,
+      }}>
+      <div className="vtex-table__container">
+        {toolbar && (
+          <Toolbar loading={loading} toolbar={toolbar} actions={toolbar} />
+        )}
+
+        {filters && (
+          <div className="mb5">
+            <FilterBar {...filters} />
+          </div>
+        )}
+
+        {totalizers && totalizers.length > 0 && (
+          <Totalizers items={totalizers} />
+        )}
+
+        <BulkActions
+          hasPrimaryBulkAction={hasPrimaryBulkAction}
+          hasSecondaryBulkActions={hasSecondaryBulkActions}
+          selectedRows={state.selectedRows}
+          bulkActions={bulkActions}
+          allLinesSelected={state.allLinesSelected}
+          onSelectAllLines={selectAllRows}
+          onDeselectAllLines={deselectAllRows}
         />
-      )}
 
-      {filters && (
-        <div className="mb5">
-          <FilterBar {...filters} />
-        </div>
-      )}
+        {isEmptyState ? (
+          <Box>
+            <EmptyState title={emptyStateLabel}>
+              {emptyStateChildren}
+            </EmptyState>
+          </Box>
+        ) : (
+          <SimpleTable
+            fullWidth={fullWidth}
+            items={data}
+            schema={displaySchema}
+            fixFirstColumn={fixFirstColumn}
+            rowHeight={state.tableRowHeight}
+            disableHeader={disableHeader}
+            emptyStateLabel={emptyStateLabel}
+            emptyStateChildren={emptyStateChildren}
+            onRowClick={onRowClick}
+            sort={sort}
+            onSort={onSort}
+            key={state.hiddenFields.toString()}
+            updateTableKey={updateTableKey}
+            lineActions={lineActions}
+            loading={loading}
+            containerHeight={containerHeight || tableHeight}
+            selectedRowsIndexes={map(state.selectedRows, 'id')}
+            density={state.selectedDensity}
+          />
+        )}
 
-      {totalizers && totalizers.length > 0 && <Totalizers items={totalizers} />}
-
-      <BulkActions
-        hasPrimaryBulkAction={hasPrimaryBulkAction}
-        hasSecondaryBulkActions={hasSecondaryBulkActions}
-        selectedRows={state.selectedRows}
-        bulkActions={bulkActions}
-        allLinesSelected={state.allLinesSelected}
-        onSelectAllLines={selectAllRows}
-        onDeselectAllLines={deselectAllRows}
-      />
-
-      {isEmptyState ? (
-        <Box>
-          <EmptyState title={emptyStateLabel}>{emptyStateChildren}</EmptyState>
-        </Box>
-      ) : (
-        <SimpleTable
-          fullWidth={fullWidth}
-          items={data}
-          schema={displaySchema}
-          fixFirstColumn={fixFirstColumn}
-          rowHeight={state.tableRowHeight}
-          disableHeader={disableHeader}
-          emptyStateLabel={emptyStateLabel}
-          emptyStateChildren={emptyStateChildren}
-          onRowClick={onRowClick}
-          sort={sort}
-          onSort={onSort}
-          key={state.hiddenFields.toString()}
-          updateTableKey={updateTableKey}
-          lineActions={lineActions}
-          loading={loading}
-          containerHeight={containerHeight || tableHeight}
-          selectedRowsIndexes={map(state.selectedRows, 'id')}
-          density={state.selectedDensity}
-        />
-      )}
-
-      {!loading && tablePagination && <Pagination {...tablePagination} />}
-    </div>
+        {!loading && tablePagination && <Pagination {...tablePagination} />}
+      </div>
+    </TableContext.Provider>
   )
 }
 

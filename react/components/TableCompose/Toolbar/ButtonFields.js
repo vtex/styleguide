@@ -1,11 +1,11 @@
 import React, { useState, useRef, useMemo } from 'react'
 import PropTypes from 'prop-types'
 
-import Toggle from '../Toggle'
-import ToolbarButton from './ToolbarButton'
-import IconColumns from '../icon/Columns'
-import Button from '../Button'
-import useOutsideClick from './useOutsideCick'
+import Toggle from '../../Toggle'
+import ButtonToolbar from './ButtonToolbar'
+import IconColumns from '../../icon/Columns'
+import Button from '../../Button'
+import useOutsideClick from '../useOutsideCick'
 
 const MAX_FIELDS_BOX_HEIGHT = 192
 const FIELDS_BOX_ITEM_HEIGHT = 36
@@ -13,7 +13,7 @@ const FIELDS_BOX_WIDTH = 292
 const BOX_SHADOW_STYLE = { boxShadow: '0px 1px 18px rgba(0, 0, 0, 0.14)' }
 const MEDIUM_ICON_SIZE = 14
 
-const FieldsBtn = ({
+const ButtonFields = ({
   fields,
   hiddenFields,
   schema,
@@ -42,7 +42,7 @@ const FieldsBtn = ({
   ])
 
   return (
-    <ToolbarButton
+    <ButtonToolbar
       id="toggleFieldsBtn"
       title={fields.label}
       ref={fieldsBtnRef}
@@ -92,11 +92,11 @@ const FieldsBtn = ({
           </div>
         </div>
       )}
-    </ToolbarButton>
+    </ButtonToolbar>
   )
 }
 
-FieldsBtn.propTypes = {
+ButtonFields.propTypes = {
   fields: PropTypes.shape({
     label: PropTypes.string,
     showAllLabel: PropTypes.string,
@@ -111,4 +111,4 @@ FieldsBtn.propTypes = {
   handleShowAllColumns: PropTypes.func,
 }
 
-export default FieldsBtn
+export default ButtonFields

@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 
-import ToolbarInput from './ToolbarInput'
-import DensityButton from './DensityButton'
-import FieldsButton from './FieldsButton'
-import DownloadButton from './DownloadButton'
-import UploadButton from './UploadButton'
-import NewLineButton from './NewLineButton'
+import InputToolbar from './InputToolbar'
+import ButtonDensity from './ButtonDensity'
+import ButtonFields from './ButtonFields'
+import ButtonDownload from './ButtonDownload'
+import ButtonUpload from './ButtonUpload'
+import ButtonNewLine from './ButtonNewLine'
 import ExtraActions from './ExtraActions'
+import TableContext from '../TableContext'
 
 const Toolbar = ({
   actions: {
@@ -19,15 +20,18 @@ const Toolbar = ({
     newLine,
     density,
   },
-  hiddenFields,
-  schema,
   handleHideAllColumns,
   handleShowAllColumns,
-  toggleColumn,
-  handleToggleDensity,
-  selectedDensity,
   loading,
 }) => {
+  const {
+    state,
+    toggleColumn,
+    hideAllColumns,
+    showAllColumns,
+    staticSchema,
+  } = useContext(TableContext)
+
   const isDownloadVisible = download && download.handleCallback
   const isUploadVisible = upload && upload.handleCallback
   const isFieldsVisible = fields && fields.showAllLabel && fields.hideAllLabel
@@ -49,34 +53,29 @@ const Toolbar = ({
         isSearchBarVisible ? 'justify-between' : 'justify-end'
       }`}>
       {inputSearch && (
-        <ToolbarInput disabled={loading} inputSearch={inputSearch} />
+        <InputToolbar disabled={loading} inputSearch={inputSearch} />
       )}
       <div className="flex flex-row items-center">
         {isDensityVisible && (
-          <DensityButton
-            density={density}
-            disabled={loading}
-            handleToggleDensity={handleToggleDensity}
-            selectedDensity={selectedDensity}
-          />
+          <ButtonDensity density={density} disabled={loading} />
         )}
         {isFieldsVisible && (
-          <FieldsButton
+          <ButtonFields
             fields={fields}
-            hiddenFields={hiddenFields}
-            schema={schema}
-            handleHideAllColumns={handleHideAllColumns}
-            handleShowAllColumns={handleShowAllColumns}
+            hiddenFields={state.hiddenFields}
+            schema={staticSchema}
+            handleHideAllColumns={handleHideAllColumns || hideAllColumns}
+            handleShowAllColumns={handleShowAllColumns || showAllColumns}
             toggleColumn={toggleColumn}
           />
         )}
         {isDownloadVisible && (
-          <DownloadButton download={download} disabled={loading} />
+          <ButtonDownload download={download} disabled={loading} />
         )}
-        {isUploadVisible && <UploadButton upload={upload} disabled={loading} />}
+        {isUploadVisible && <ButtonUpload upload={upload} disabled={loading} />}
         {isExtraActionsVisible && <ExtraActions extraActions={extraActions} />}
         {isNewLineVisible && (
-          <NewLineButton newLine={newLine} disabled={loading} />
+          <ButtonNewLine newLine={newLine} disabled={loading} />
         )}
       </div>
     </div>

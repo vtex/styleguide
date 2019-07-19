@@ -1,14 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import IconDownload from '../icon/Download'
-import ToolbarButton from './ToolbarButton'
+import IconDownload from '../../icon/Download'
+import ButtonToolbar from './ButtonToolbar'
 
 const MEDIUM_ICON_SIZE = 14
 
-const DownloadBtn = ({ download, disabled }) => {
+const ButtonDownload = ({ download, disabled }) => {
   return (
-    <ToolbarButton
+    <ButtonToolbar
       id="download"
       title={download.label}
       label={download.label}
@@ -20,7 +20,7 @@ const DownloadBtn = ({ download, disabled }) => {
   )
 }
 
-DownloadBtn.propTypes = {
+ButtonDownload.propTypes = {
   download: PropTypes.shape({
     label: PropTypes.string,
     handleCallback: PropTypes.func,
@@ -29,4 +29,4 @@ DownloadBtn.propTypes = {
   disabled: PropTypes.bool,
 }
 
-export default DownloadBtn
+export default ButtonDownload

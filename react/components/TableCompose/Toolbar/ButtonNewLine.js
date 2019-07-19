@@ -1,14 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import ActionMenu from '../ActionMenu'
-import ButtonGroup from '../ButtonGroup'
-import IconPlus from '../icon/Plus'
-import ToolbarButton from './ToolbarButton'
+import ActionMenu from '../../ActionMenu'
+import ButtonGroup from '../../ButtonGroup'
+import IconPlus from '../../icon/Plus'
+import ButtonToolbar from './ButtonToolbar'
 
 const LIGHT_ICON_SIZE = 16
 
-const NewLineButton = ({ newLine, disabled }) => {
+const ButtonNewLine = ({ newLine, disabled }) => {
   const buttonProps = {
     disabled: disabled || newLine.disabled,
     isLoading: newLine.isLoading,
@@ -19,7 +19,7 @@ const NewLineButton = ({ newLine, disabled }) => {
   return newLine.actions ? (
     <ButtonGroup
       buttons={[
-        <ToolbarButton
+        <ButtonToolbar
           isActiveOfGroup
           key="new-line-button"
           icon={<IconPlus solid size={LIGHT_ICON_SIZE} />}
@@ -36,7 +36,7 @@ const NewLineButton = ({ newLine, disabled }) => {
       ]}
     />
   ) : (
-    <ToolbarButton
+    <ButtonToolbar
       icon={<IconPlus solid size={LIGHT_ICON_SIZE} />}
       onClick={newLine.handleCallback}
       label={newLine.label}
@@ -46,7 +46,7 @@ const NewLineButton = ({ newLine, disabled }) => {
   )
 }
 
-NewLineButton.propTypes = {
+ButtonNewLine.propTypes = {
   newLine: PropTypes.shape({
     label: PropTypes.string.isRequired,
     handleCallback: PropTypes.func.isRequired,
@@ -65,4 +65,4 @@ NewLineButton.propTypes = {
   disabled: PropTypes.bool,
 }
 
-export default NewLineButton
+export default ButtonNewLine

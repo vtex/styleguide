@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import InputSearch from '../InputSearch'
+import InputSearch from '../../InputSearch'
 
-const ToolbarInput = ({ disabled, inputSearch }) => {
+const InputToolbar = ({ disabled, inputSearch }) => {
   const handleInputSearchSubmit = e => {
     !!inputSearch.onSubmit && inputSearch.onSubmit(e)
   }
@@ -15,11 +15,11 @@ const ToolbarInput = ({ disabled, inputSearch }) => {
   )
 }
 
-ToolbarInput.propTypes = {
+InputToolbar.propTypes = {
   inputSearch: PropTypes.shape({
     onSubmit: PropTypes.func,
   }),
   disabled: PropTypes.bool,
 }
 
-export default ToolbarInput
+export default InputToolbar

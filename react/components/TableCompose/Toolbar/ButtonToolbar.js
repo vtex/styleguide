@@ -1,11 +1,11 @@
 import React, { forwardRef } from 'react'
 import PropTypes from 'prop-types'
 
-import ButtonWithIcon from '../ButtonWithIcon'
+import ButtonWithIcon from '../../ButtonWithIcon'
 
 const ICON_OPTICAL_COMPENSATION = { marginTop: '1.5px' }
 
-const ToolbarButton = forwardRef(
+const ButtonToolbar = forwardRef(
   (
     {
       id,
@@ -47,14 +47,14 @@ const ToolbarButton = forwardRef(
   )
 )
 
-ToolbarButton.displayName = 'ToolbarButton'
+ButtonToolbar.displayName = 'ToolbarButton'
 
-ToolbarButton.defaultProps = {
+ButtonToolbar.defaultProps = {
   variation: 'tertiary',
   isActiveOfGroup: false,
 }
 
-ToolbarButton.propTypes = {
+ButtonToolbar.propTypes = {
   id: PropTypes.string,
   children: PropTypes.any,
   label: PropTypes.string,
@@ -67,4 +67,4 @@ ToolbarButton.propTypes = {
   isActiveOfGroup: PropTypes.bool,
 }
 
-export default ToolbarButton
+export default ButtonToolbar

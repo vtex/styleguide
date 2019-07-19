@@ -131,10 +131,10 @@ const useTableState = (schema, items, density, bulkActions, pagination) => {
     dispatch({ type: actionTypes.UNHIDE_ALL_COLUMNS })
   }
 
-  const hideAllColumns = properties => {
+  const hideAllColumns = () => {
     dispatch({
       type: actionTypes.HIDE_ALL_COLUMNS,
-      hiddenFields: properties,
+      hiddenFields: Object.keys(staticSchema.properties),
     })
   }
 

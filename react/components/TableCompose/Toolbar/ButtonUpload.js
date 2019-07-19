@@ -1,14 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import IconUpload from '../icon/Upload'
-import ToolbarButton from './ToolbarButton'
+import IconUpload from '../../icon/Upload'
+import ButtonToolbar from './ButtonToolbar'
 
 const HEAVY_ICON_SIZE = 13
 
-const UploadBtn = ({ upload, disabled }) => {
+const ButtonUpload = ({ upload, disabled }) => {
   return (
-    <ToolbarButton
+    <ButtonToolbar
       id="upload"
       title={upload.label}
       label={upload.label}
@@ -20,7 +20,7 @@ const UploadBtn = ({ upload, disabled }) => {
   )
 }
 
-UploadBtn.propTypes = {
+ButtonUpload.propTypes = {
   upload: PropTypes.shape({
     label: PropTypes.string,
     handleCallback: PropTypes.func,
@@ -29,4 +29,4 @@ UploadBtn.propTypes = {
   disabled: PropTypes.bool,
 }
 
-export default UploadBtn
+export default ButtonUpload

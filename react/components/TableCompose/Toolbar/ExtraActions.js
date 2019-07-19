@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import ActionMenu from '../ActionMenu'
-import IconOptionsDots from '../icon/OptionsDots'
+import ActionMenu from '../../ActionMenu'
+import IconOptionsDots from '../../icon/OptionsDots'
 
 const ExtraActions = ({ extraActions }) => {
   return (

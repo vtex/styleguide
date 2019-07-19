@@ -1,22 +1,19 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useContext } from 'react'
 import PropTypes from 'prop-types'
 
-import IconDensity from '../icon/Density'
-import ToolbarButton from './ToolbarButton'
-import useOutsideClick from './useOutsideCick'
+import IconDensity from '../../icon/Density'
+import ButtonToolbar from './ButtonToolbar'
+import useOutsideClick from '../useOutsideCick'
+import TableContext from '../TableContext'
 
 const DENSITY_OPTIONS = ['low', 'medium', 'high']
 const FIELDS_BOX_ITEM_HEIGHT = 36
 const BOX_SHADOW_STYLE = { boxShadow: '0px 1px 18px rgba(0, 0, 0, 0.14)' }
 const MEDIUM_ICON_SIZE = 14
 
-const DensityBtn = ({
-  density,
-  disabled,
-  handleToggleDensity,
-  selectedDensity,
-}) => {
+const ButtonDensity = ({ density, disabled }) => {
   const [isDensityBoxVisible, setDensityBoxVisible] = useState(false)
+  const { state, setDensity } = useContext(TableContext)
   const densityBtnRef = useRef(null)
 
   useOutsideClick(
@@ -26,7 +23,7 @@ const DensityBtn = ({
   )
 
   return (
-    <ToolbarButton
+    <ButtonToolbar
       id="toggleDensity"
       title={density.buttonLabel}
       ref={densityBtnRef}
@@ -44,7 +41,7 @@ const DensityBtn = ({
               style={{ height: 3 * FIELDS_BOX_ITEM_HEIGHT }}
               className="overflow-auto">
               {DENSITY_OPTIONS.map((key, index) => {
-                const isKeySelected = selectedDensity === key
+                const isKeySelected = state.selectedDensity === key
                 return (
                   <div
                     key={index}
@@ -52,7 +49,7 @@ const DensityBtn = ({
                       isKeySelected ? 'b--emphasis' : 'b--transparent'
                     } pointer hover-bg-muted-5 bl bw1`}
                     onClick={() => {
-                      handleToggleDensity(key)
+                      setDensity(key)
                       setDensityBoxVisible(false)
                       density.handleCallback && density.handleCallback(key)
                     }}>
@@ -66,11 +63,11 @@ const DensityBtn = ({
           </div>
         </div>
       )}
-    </ToolbarButton>
+    </ButtonToolbar>
   )
 }
 
-DensityBtn.propTypes = {
+ButtonDensity.propTypes = {
   density: PropTypes.shape({
     buttonLabel: PropTypes.string,
     lowOptionLabel: PropTypes.string,
@@ -79,8 +76,6 @@ DensityBtn.propTypes = {
     alignMenu: PropTypes.oneOf(['right', 'left']),
   }),
   disabled: PropTypes.bool,
-  handleToggleDensity: PropTypes.func,
-  selectedDensity: PropTypes.string,
 }
 
-export default DensityBtn
+export default ButtonDensity
