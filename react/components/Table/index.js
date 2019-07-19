@@ -406,10 +406,12 @@ Table.propTypes = {
     download: PropTypes.shape({
       label: PropTypes.string,
       handleCallback: PropTypes.func,
+      disabled: PropTypes.bool,
     }),
     upload: PropTypes.shape({
       label: PropTypes.string,
       handleCallback: PropTypes.func,
+      disabled: PropTypes.bool,
     }),
     extraActions: PropTypes.shape({
       label: PropTypes.string,

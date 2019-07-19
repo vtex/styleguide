@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Disabled state for upload & download options in `Table` toolbar
+
 ## [8.66.1] - 2019-07-22
 
 ### Added
