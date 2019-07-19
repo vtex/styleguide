@@ -115,7 +115,7 @@ const useTableState = (
 
   const tableHeight = useMemo(
     () => calculateTableHeight(state.tableRowHeight, data.length),
-    [state.tableRowHeight]
+    [state.tableRowHeight, pagination]
   )
 
   useEffect(() => {
