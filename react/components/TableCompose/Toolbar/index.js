@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 import InputToolbar from './InputToolbar'
@@ -8,7 +8,8 @@ import ButtonDownload from './ButtonDownload'
 import ButtonUpload from './ButtonUpload'
 import ButtonNewLine from './ButtonNewLine'
 import ExtraActions from './ExtraActions'
-import TableContext from '../TableContext'
+
+import useTableContext from '../hooks/useTableContext'
 
 const Toolbar = ({
   actions: {
@@ -30,7 +31,7 @@ const Toolbar = ({
     hideAllColumns,
     showAllColumns,
     staticSchema,
-  } = useContext(TableContext)
+  } = useTableContext()
 
   const isDownloadVisible = download && download.handleCallback
   const isUploadVisible = upload && upload.handleCallback

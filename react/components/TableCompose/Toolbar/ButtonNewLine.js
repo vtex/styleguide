@@ -5,8 +5,7 @@ import ActionMenu from '../../ActionMenu'
 import ButtonGroup from '../../ButtonGroup'
 import IconPlus from '../../icon/Plus'
 import ButtonToolbar from './ButtonToolbar'
-
-const LIGHT_ICON_SIZE = 16
+import { constants } from '../util'
 
 const ButtonNewLine = ({ newLine, disabled }) => {
   const buttonProps = {
@@ -22,7 +21,7 @@ const ButtonNewLine = ({ newLine, disabled }) => {
         <ButtonToolbar
           isActiveOfGroup
           key="new-line-button"
-          icon={<IconPlus solid size={LIGHT_ICON_SIZE} />}
+          icon={<IconPlus solid size={constants.LIGHT_ICON_SIZE} />}
           onClick={newLine.handleCallback}
           label={newLine.label}
           {...buttonProps}
@@ -37,7 +36,7 @@ const ButtonNewLine = ({ newLine, disabled }) => {
     />
   ) : (
     <ButtonToolbar
-      icon={<IconPlus solid size={LIGHT_ICON_SIZE} />}
+      icon={<IconPlus solid size={constants.LIGHT_ICON_SIZE} />}
       onClick={newLine.handleCallback}
       label={newLine.label}
       hasOpticalCompensation={false}

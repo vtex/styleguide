@@ -2,12 +2,13 @@ import React, { useReducer, useMemo, useEffect } from 'react'
 import reduce from 'lodash/reduce'
 
 import CheckboxContainer from '../CheckboxContainer'
-import { actionTypes, reducer } from './reducer'
 import {
   getRowHeight,
   getInitialHiddenFieldsFromSchema,
   calculateTableHeight,
-} from './util'
+  reducer,
+  actionTypes,
+} from '../util'
 
 const useTableState = (schema, items, density, bulkActions, pagination) => {
   const [state, dispatch] = useReducer(reducer, {

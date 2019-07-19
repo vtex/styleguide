@@ -3,8 +3,7 @@ import PropTypes from 'prop-types'
 
 import IconDownload from '../../icon/Download'
 import ButtonToolbar from './ButtonToolbar'
-
-const MEDIUM_ICON_SIZE = 14
+import { constants } from '../util'
 
 const ButtonDownload = ({ download, disabled }) => {
   return (
@@ -12,7 +11,7 @@ const ButtonDownload = ({ download, disabled }) => {
       id="download"
       title={download.label}
       label={download.label}
-      icon={<IconDownload size={MEDIUM_ICON_SIZE} />}
+      icon={<IconDownload size={constants.MEDIUM_ICON_SIZE} />}
       isLoading={download.isLoading}
       disabled={disabled}
       onClick={download.handleCallback}

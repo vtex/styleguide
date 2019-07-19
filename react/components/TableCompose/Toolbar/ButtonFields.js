@@ -5,13 +5,8 @@ import Toggle from '../../Toggle'
 import ButtonToolbar from './ButtonToolbar'
 import IconColumns from '../../icon/Columns'
 import Button from '../../Button'
-import useOutsideClick from '../useOutsideCick'
-
-const MAX_FIELDS_BOX_HEIGHT = 192
-const FIELDS_BOX_ITEM_HEIGHT = 36
-const FIELDS_BOX_WIDTH = 292
-const BOX_SHADOW_STYLE = { boxShadow: '0px 1px 18px rgba(0, 0, 0, 0.14)' }
-const MEDIUM_ICON_SIZE = 14
+import useOutsideClick from '../hooks/useOutsideCick'
+import { constants } from '../util'
 
 const ButtonFields = ({
   fields,
@@ -33,8 +28,10 @@ const ButtonFields = ({
 
   const calculateFieldsBoxHeight = () => {
     const estimate =
-      Object.keys(schema.properties).length * FIELDS_BOX_ITEM_HEIGHT
-    return estimate > MAX_FIELDS_BOX_HEIGHT ? MAX_FIELDS_BOX_HEIGHT : estimate
+      Object.keys(schema.properties).length * constants.FIELDS_BOX_ITEM_HEIGHT
+    return estimate > constants.MAX_FIELDS_BOX_HEIGHT
+      ? constants.MAX_FIELDS_BOX_HEIGHT
+      : estimate
   }
 
   const height = useMemo(() => calculateFieldsBoxHeight, [
@@ -46,7 +43,7 @@ const ButtonFields = ({
       id="toggleFieldsBtn"
       title={fields.label}
       ref={fieldsBtnRef}
-      icon={<IconColumns size={MEDIUM_ICON_SIZE} />}
+      icon={<IconColumns size={constants.MEDIUM_ICON_SIZE} />}
       disabled={disabled}
       onClick={() => setFieldsBoxVisible(!isFieldsBoxVisible)}>
       {isFieldsBoxVisible && (
@@ -57,8 +54,8 @@ const ButtonFields = ({
           <div
             className="w-100 b2 br2 bg-base"
             style={{
-              ...BOX_SHADOW_STYLE,
-              width: FIELDS_BOX_WIDTH,
+              ...constants.BOX_SHADOW_STYLE,
+              width: constants.FIELDS_BOX_WIDTH,
             }}>
             <div className="flex inline-flex bb b--muted-4 w-100 pl6 pv4">
               <Button

@@ -12,8 +12,8 @@ import Toolbar from './Toolbar'
 import Totalizers from '../Totalizer'
 import BulkActions from './BulkActions'
 
-import useTableState from './state/useTableState'
-import TableContext from './TableContext'
+import useTableState from './hooks/useTableState'
+import { TableProvider } from './context'
 
 const Table = ({
   items,
@@ -56,7 +56,7 @@ const Table = ({
   } = useTableState(schema, items, density, bulkActions, pagination)
 
   return (
-    <TableContext.Provider
+    <TableProvider
       value={{
         state,
         toggleColumn,
@@ -121,7 +121,7 @@ const Table = ({
 
         {!loading && tablePagination && <Pagination {...tablePagination} />}
       </div>
-    </TableContext.Provider>
+    </TableProvider>
   )
 }
 

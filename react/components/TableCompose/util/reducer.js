@@ -1,16 +1,7 @@
-import { getRowHeight } from './util'
+import getRowHeight from './getRowHeight'
+import actionTypes from './actionTypes'
 
-export const actionTypes = {
-  SET_DENSITY: 0,
-  DESELECT_ALL_LINES: 1,
-  SELECT_ALL_LINES: 2,
-  SELECT_LINE: 3,
-  HIDE_COLUMN: 4,
-  HIDE_ALL_COLUMNS: 5,
-  UNHIDE_ALL_COLUMNS: 6,
-}
-
-export const reducer = (state, action) => {
+export default (state, action) => {
   switch (action.type) {
     case actionTypes.SET_DENSITY: {
       return {

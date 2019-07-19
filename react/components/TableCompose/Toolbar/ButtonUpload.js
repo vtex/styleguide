@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import IconUpload from '../../icon/Upload'
 import ButtonToolbar from './ButtonToolbar'
 
-const HEAVY_ICON_SIZE = 13
+import { constants } from '../util'
 
 const ButtonUpload = ({ upload, disabled }) => {
   return (
@@ -12,7 +12,7 @@ const ButtonUpload = ({ upload, disabled }) => {
       id="upload"
       title={upload.label}
       label={upload.label}
-      icon={<IconUpload size={HEAVY_ICON_SIZE} />}
+      icon={<IconUpload size={constants.HEAVY_ICON_SIZE} />}
       isLoading={upload.isLoading}
       disabled={disabled}
       onClick={upload.handleCallback}
