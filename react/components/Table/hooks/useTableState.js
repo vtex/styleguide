@@ -10,21 +10,7 @@ import {
   actionTypes,
 } from '../util'
 
-const useTableState = (
-  schema = { properties: {} },
-  items = [],
-  density,
-  bulkActions,
-  pagination,
-  inheritState
-) => {
-  return (
-    // TODO: Find a better way to inherit states
-    inheritState || useHook(schema, items, density, bulkActions, pagination) // eslint-disable-line
-  )
-}
-
-const useHook = (schema, items, density, bulkActions, pagination) => {
+const useTableState = (schema, items, density, bulkActions, pagination) => {
   const [state, dispatch] = useReducer(reducer, {
     tableRowHeight: getRowHeight(density),
     selectedRows: [],

@@ -90,6 +90,7 @@ Toolbar.ButtonFields = ButtonFields
 Toolbar.ButtonDownload = ButtonDownload
 Toolbar.ButtonUpload = ButtonUpload
 Toolbar.ExtraActions = ExtraActions
+Toolbar.ButtonNewLine = ButtonNewLine
 Toolbar.Button = ButtonToolbar
 
 Toolbar.defaultProps = {

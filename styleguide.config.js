@@ -118,7 +118,7 @@ module.exports = {
             'react/components/FilterBar/index.js',
             'react/components/FilterOptions/index.js',
             'react/components/Spinner/index.js',
-            'react/components/TableCompose/index.js',
+            'react/components/Table/index.js',
             'react/components/Tag/index.js',
             'react/components/ProgressBar/index.js',
             'react/components/Totalizer/index.js',

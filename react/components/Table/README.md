@@ -1929,3 +1929,82 @@ class ResourceListExample extends React.Component {
 }
 ;<ResourceListExample />
 ```
+
+#### Composable Toolbar
+
+TODO
+
+```js
+const sampleData = require('./sampleData').default
+const InlineGrid = require('../icon/InlineGrid').default
+
+const tableLength = 5
+
+const schema = {
+  properties: {
+    name: {
+      title: 'Name',
+      width: 170,
+    },
+    email: {
+      title: 'Email',
+      width: 300,
+    },
+    number: {
+      title: 'Number',
+      width: 150,
+    },
+    color: {
+      title: 'Color',
+      width: 170,
+      cellRenderer: ({ cellData }) => {
+        return (
+          <Tag bgColor={cellData.color} color="#fff">
+            <span className="nowrap">{cellData.label}</span>
+          </Tag>
+        )
+      },
+    },
+  },
+}
+
+function ResourceListExample() {
+  const density = {
+    buttonLabel: 'Line density',
+    lowOptionLabel: 'Low',
+    mediumOptionLabel: 'Medium',
+    highOptionLabel: 'High',
+  }
+
+  const download = {
+    label: 'Export',
+    handleCallback: () => alert('Callback()'),
+  }
+
+  const upload = {
+    label: 'Import',
+    handleCallback: () => alert('Callback()'),
+  }
+
+  const fields = {
+    label: 'Toggle visible fields',
+    showAllLabel: 'Show All',
+    hideAllLabel: 'Hide All',
+  }
+
+  return (
+    <Table schema={schema} items={sampleData.items.slice(0, tableLength)}>
+      <Table.Toolbar>
+        <Table.Toolbar.Container justify="center">
+          <Table.Toolbar.ButtonDensity density={density} />
+          <Table.Toolbar.ButtonFields fields={fields} />
+          <Table.Toolbar.ButtonDownload download={download} />
+          <Table.Toolbar.ButtonUpload upload={upload} />
+        </Table.Toolbar.Container>
+      </Table.Toolbar>
+    </Table>
+  )
+}
+
+;<ResourceListExample />
+```
