@@ -129,6 +129,8 @@ class Toolbar extends PureComponent {
       size: 'small',
     }
 
+    const forcedColor = 'c-on-base'
+
     return (
       <div
         id="toolbar"
@@ -270,17 +272,20 @@ class Toolbar extends PureComponent {
             <div title={download.label} className="mh2">
               <ButtonWithIcon
                 icon={
-                  <span className="c-on-base mh2">
+                  <span
+                    className={`${download.disabled ? '' : forcedColor} mh2`}>
                     <IconDownload size={MEDIUM_ICON_SIZE} />
                   </span>
                 }
-                disabled={loading}
                 variation="tertiary"
+                disabled={download.disabled}
                 isLoading={download.isLoading}
                 size="small"
                 onClick={download.handleCallback}>
                 {download.label && (
-                  <span className="c-on-base">{download.label}</span>
+                  <span className={`${download.disabled ? '' : forcedColor}`}>
+                    {download.label}
+                  </span>
                 )}
               </ButtonWithIcon>
             </div>
@@ -290,18 +295,20 @@ class Toolbar extends PureComponent {
               <ButtonWithIcon
                 icon={
                   <span
-                    className="c-on-base mh2"
+                    className={`${upload.disabled ? '' : forcedColor} mh2`}
                     style={ICON_OPTICAL_COMPENSATION}>
                     <IconUpload size={HEAVY_ICON_SIZE} />
                   </span>
                 }
-                disabled={loading}
-                isLoading={upload.isLoading}
                 variation="tertiary"
+                disabled={upload.disabled}
+                isLoading={upload.isLoading}
                 size="small"
                 onClick={upload.handleCallback}>
                 {upload.label && (
-                  <span className="c-on-base">{upload.label}</span>
+                  <span className={`${upload.disabled ? '' : forcedColor}`}>
+                    {upload.label}
+                  </span>
                 )}
               </ButtonWithIcon>
             </div>
@@ -392,11 +399,13 @@ Toolbar.propTypes = {
       label: PropTypes.string,
       handleCallback: PropTypes.func,
       isLoading: PropTypes.bool,
+      disabled: PropTypes.bool,
     }),
     upload: PropTypes.shape({
       label: PropTypes.string,
       handleCallback: PropTypes.func,
       isLoading: PropTypes.bool,
+      disabled: PropTypes.bool,
     }),
     extraActions: PropTypes.shape({
       label: PropTypes.string,
