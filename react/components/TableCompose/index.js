@@ -55,7 +55,7 @@ const Table = ({
     hasSecondaryBulkActions,
     isEmptyState,
     tableHeight,
-  } = useTableState(schema, items, density, bulkActions, pagination, tableState) // eslint-disable-line
+  } = useTableState(schema, items, density, bulkActions, pagination, tableState)
 
   useEffect(() => {
     if (toolbar && children) {

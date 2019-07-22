@@ -18,6 +18,12 @@ const useTableState = (
   pagination,
   inheritState
 ) => {
+  return (
+    inheritState || useHook(schema, items, density, bulkActions, pagination) // eslint-disable-line
+  )
+}
+
+const useHook = (schema, items, density, bulkActions, pagination) => {
   const [state, dispatch] = useReducer(reducer, {
     tableRowHeight: getRowHeight(density),
     selectedRows: [],
@@ -28,7 +34,6 @@ const useTableState = (
 
   const hasPrimaryBulkAction = useMemo(
     () =>
-      !inheritState &&
       bulkActions &&
       bulkActions.main &&
       typeof bulkActions.main.handleCallback === 'function',
@@ -36,11 +41,7 @@ const useTableState = (
   )
 
   const hasSecondaryBulkActions = useMemo(
-    () =>
-      !inheritState &&
-      bulkActions &&
-      bulkActions.others &&
-      bulkActions.others.length > 0,
+    () => bulkActions && bulkActions.others && bulkActions.others.length > 0,
     [bulkActions]
   )
 
@@ -96,24 +97,19 @@ const useTableState = (
   )
 
   const displaySchema = useMemo(() => {
-    return inheritState
-      ? schema
-      : {
-          ...staticSchema,
-          properties: reduce(
-            staticSchema.properties,
-            (acc, value, key) => {
-              if (
-                state.hiddenFields.includes &&
-                state.hiddenFields.includes(key)
-              ) {
-                return acc
-              }
-              return { ...acc, [key]: value }
-            },
-            {}
-          ),
-        }
+    return {
+      ...staticSchema,
+      properties: reduce(
+        staticSchema.properties,
+        (acc, value, key) => {
+          if (state.hiddenFields.includes && state.hiddenFields.includes(key)) {
+            return acc
+          }
+          return { ...acc, [key]: value }
+        },
+        {}
+      ),
+    }
   }, [state.hiddenFields, state.selectedRows])
 
   const isEmptyState = useMemo(() => {
@@ -124,15 +120,12 @@ const useTableState = (
   }, [staticSchema, state.hiddenFields])
 
   const tableHeight = useMemo(
-    () =>
-      inheritState
-        ? 0
-        : calculateTableHeight(state.tableRowHeight, data.length),
+    () => calculateTableHeight(state.tableRowHeight, data.length),
     [state.tableRowHeight, pagination]
   )
 
   const tablePagination = useMemo(() => {
-    if (!inheritState && pagination && hasBulkActions) {
+    if (pagination && hasBulkActions) {
       const paginationClone = Object.assign({}, pagination)
       paginationClone.onNextClick = () => {
         deselectAllRows()
@@ -205,29 +198,27 @@ const useTableState = (
     dispatch({ type: actionTypes.SELECT_LINE, row })
   }
 
-  return (
-    inheritState || {
-      state,
-      dispatch,
-      setDensity,
-      toggleColumn,
-      showAllColumns,
-      hideAllColumns,
-      selectAllRows,
-      deselectAllRows,
-      selectAllVisibleRows,
-      selectRow,
-      displaySchema,
-      data,
-      staticSchema,
-      hasPrimaryBulkAction,
-      hasSecondaryBulkActions,
-      hasBulkActions,
-      tablePagination,
-      isEmptyState,
-      tableHeight,
-    }
-  )
+  return {
+    state,
+    dispatch,
+    setDensity,
+    toggleColumn,
+    showAllColumns,
+    hideAllColumns,
+    selectAllRows,
+    deselectAllRows,
+    selectAllVisibleRows,
+    selectRow,
+    displaySchema,
+    data,
+    staticSchema,
+    hasPrimaryBulkAction,
+    hasSecondaryBulkActions,
+    hasBulkActions,
+    tablePagination,
+    isEmptyState,
+    tableHeight,
+  }
 }
 
 export default useTableState

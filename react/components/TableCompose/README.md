@@ -1936,7 +1936,6 @@ Document
 
 ```js
 const sampleData = require('./sampleData').default
-
 const useTableState = require('./hooks/useTableState').default
 
 const tableLength = 5
