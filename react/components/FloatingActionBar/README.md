@@ -7,13 +7,17 @@
 - This component can be used anywhere but it will always show at the bottom of the page.
 
 ### Usage
-See the action bar at the bottom of this page.
 
+See the action bar at the bottom of this page.
 
 ```js
 <FloatingActionBar
-  onSave={() => alert('This was invoked because save was pressed')}
-  saveLabel="save"
-  cancelLabel="cancel"
+  save={{
+    label: 'save',
+    onClick: () => alert('This was invoked because save was pressed')
+  }}
+  cancel={{
+    label: 'cancel'
+  }}
 />
 ```
