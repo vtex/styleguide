@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.66.1] - 2019-07-22
+
+### Added
+
+- `word-break` css property to the label of the `Radio` component.
+
 ## [8.66.0] - 2019-07-18
 
 ### Added
