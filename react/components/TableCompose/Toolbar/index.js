@@ -10,6 +10,20 @@ import ButtonNewLine from './ButtonNewLine'
 import ExtraActions from './ExtraActions'
 import ButtonToolbar from './ButtonToolbar'
 
+const Container = ({ justify = 'end', children }) => (
+  <div id="toolbar" className={`mb5 flex flex-row w-100 justify-${justify}`}>
+    {children}
+  </div>
+)
+
+Container.propTypes = {
+  justify: PropTypes.oneOf(['between', 'end', 'start', 'around', 'center']),
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
+}
+
 const Toolbar = ({
   actions: {
     inputSearch,
@@ -38,16 +52,12 @@ const Toolbar = ({
     density.highOptionLabel
 
   return (
-    <div
-      id="toolbar"
-      className={`mb5 flex flex-row w-100 ${
-        isSearchBarVisible ? 'justify-between' : 'justify-end'
-      }`}>
-      {inputSearch && (
-        <InputToolbar disabled={loading} inputSearch={inputSearch} />
-      )}
-      <div className="flex flex-row items-center">
-        {children || (
+    children || (
+      <Container justify={isSearchBarVisible ? 'between' : 'end'}>
+        {inputSearch && (
+          <InputToolbar disabled={loading} inputSearch={inputSearch} />
+        )}
+        <div className="flex flex-row items-center">
           <Fragment>
             {isDensityVisible && (
               <ButtonDensity density={density} disabled={loading} />
@@ -68,12 +78,13 @@ const Toolbar = ({
               <ButtonNewLine newLine={newLine} disabled={loading} />
             )}
           </Fragment>
-        )}
-      </div>
-    </div>
+        </div>
+      </Container>
+    )
   )
 }
 
+Toolbar.Container = Container
 Toolbar.ButtonDensity = ButtonDensity
 Toolbar.ButtonFields = ButtonFields
 Toolbar.ButtonDownload = ButtonDownload

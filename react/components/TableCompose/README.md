@@ -1936,6 +1936,7 @@ Document
 
 ```js
 const sampleData = require('./sampleData').default
+const InlineGrid = require('../icon/InlineGrid').default
 const useTableState = require('./hooks/useTableState').default
 
 const tableLength = 5
@@ -1972,7 +1973,7 @@ function ResourceListExample() {
   const tableState = useTableState(
     schema,
     sampleData.items.slice(0, tableLength),
-    'low'
+    'high'
   )
 
   const density = {
@@ -2001,15 +2002,17 @@ function ResourceListExample() {
   return (
     <Table tableState={tableState}>
       <Table.Toolbar>
-        <Table.Toolbar.Button
-          icon={<span>🔥</span>}
-          label="High Density"
-          onClick={() => tableState.setDensity('high')}
-        />
-        <Table.Toolbar.ButtonDensity density={density} />
-        <Table.Toolbar.ButtonFields fields={fields} />
-        <Table.Toolbar.ButtonDownload download={download} />
-        <Table.Toolbar.ButtonUpload upload={upload} />
+        <Table.Toolbar.Container justify="center">
+          <Table.Toolbar.Button
+            icon={<InlineGrid />}
+            label="Low Density"
+            onClick={() => tableState.setDensity('low')}
+          />
+          <Table.Toolbar.ButtonDensity density={density} />
+          <Table.Toolbar.ButtonFields fields={fields} />
+          <Table.Toolbar.ButtonDownload download={download} />
+          <Table.Toolbar.ButtonUpload upload={upload} />
+        </Table.Toolbar.Container>
       </Table.Toolbar>
     </Table>
   )

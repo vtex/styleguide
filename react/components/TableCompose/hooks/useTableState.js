@@ -19,6 +19,7 @@ const useTableState = (
   inheritState
 ) => {
   return (
+    // TODO: Find a better way to inherit states
     inheritState || useHook(schema, items, density, bulkActions, pagination) // eslint-disable-line
   )
 }
@@ -213,7 +214,9 @@ const useHook = (schema, items, density, bulkActions, pagination) => {
 
   return {
     state,
-    dispatch,
+    data,
+    staticSchema,
+    displaySchema,
     setDensity,
     setTableRowHeight,
     setSelectedRows,
@@ -226,9 +229,6 @@ const useHook = (schema, items, density, bulkActions, pagination) => {
     deselectAllRows,
     selectAllVisibleRows,
     selectRow,
-    displaySchema,
-    data,
-    staticSchema,
     hasPrimaryBulkAction,
     hasSecondaryBulkActions,
     hasBulkActions,
