@@ -264,6 +264,7 @@ class Table extends PureComponent {
             toolbar={toolbar}
             hiddenFields={hiddenFields}
             toggleColumn={this.toggleColumn}
+            handleDeselectAllLines={this.handleDeselectAllLines}
             handleHideAllColumns={this.onHideAllColumns}
             handleShowAllColumns={this.onShowAllColumns}
             handleToggleDensity={this.toggleTableRowHeight}

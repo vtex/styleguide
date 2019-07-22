@@ -83,6 +83,9 @@ class Toolbar extends PureComponent {
   }
 
   handleInputSearchSubmit = e => {
+    this.props.handleDeselectAllLines && 
+      this.props.handleDeselectAllLines()
+    
     this.props.actions.inputSearch.onSubmit &&
       this.props.actions.inputSearch.onSubmit(e)
   }
@@ -437,6 +440,7 @@ Toolbar.propTypes = {
   schema: PropTypes.object.isRequired,
   hiddenFields: PropTypes.array,
   toggleColumn: PropTypes.func,
+  handleDeselectAllLines: PropTypes.func,
   handleHideAllColumns: PropTypes.func,
   handleShowAllColumns: PropTypes.func,
   handleToggleDensity: PropTypes.func,

@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- **Table** when search is performed, the selection of itens is removed
+
 ## [8.68.1] - 2019-07-23
 
 ### Fixed
@@ -32,6 +36,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `word-break` css property to the label of the `Radio` component.
 
 ## [8.66.0] - 2019-07-18
+
+## [9.66.0] - 2019-07-18
 
 ### Added
 
