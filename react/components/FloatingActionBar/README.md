@@ -17,7 +17,6 @@ class ActionBar extends React.Component {
     this.state = { loading: false }
   }
   render() {
-  console.log(this.state.loading)
     return (
       <FloatingActionBar
         save={{
