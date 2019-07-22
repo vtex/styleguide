@@ -112,7 +112,7 @@ class Collapsible extends Component {
     return (
       <div className={jsFocusVisible}>
         <div
-          className="flex flex-wrap items-center pointer"
+          className="flex flex-row items-center pointer"
           tabIndex={0}
           role="button"
           onClick={() => handleClick(callback, !isOpen)}
@@ -120,7 +120,7 @@ class Collapsible extends Component {
           aria-expanded={isOpen}>
           {align === 'left' ? (
             <Fragment>
-              <div className={`${color} mr3`}>
+              <div className={`${color} mr3 self-center`}>
                 {isOpen ? <CaretUp /> : <CaretDown />}
               </div>
               <div className="flex-grow-1">{header}</div>
@@ -128,7 +128,7 @@ class Collapsible extends Component {
           ) : (
             <Fragment>
               <div className="flex-grow-1">{header}</div>
-              <div className={`${color} ml3`}>
+              <div className={`${color} ml3 self-center`}>
                 {isOpen ? <CaretUp /> : <CaretDown />}
               </div>
             </Fragment>
