@@ -11,13 +11,33 @@
 See the action bar at the bottom of this page.
 
 ```js
-<FloatingActionBar
-  save={{
-    label: 'save',
-    onClick: () => alert('This was invoked because save was pressed')
-  }}
-  cancel={{
-    label: 'cancel'
-  }}
-/>
+class ActionBar extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = { loading: false }
+  }
+  render() {
+  console.log(this.state.loading)
+    return (
+      <FloatingActionBar
+        save={{
+          label: 'save',
+          isLoading: this.state.loading,
+          onClick: () => {
+            this.setState({ loading: true })
+            setTimeout(() => {
+              alert('This was invoked because save was pressed')
+              this.setState({ loading: false })
+            }, 2000)
+          },
+        }}
+        cancel={{
+          label: 'cancel',
+        }}
+      />
+    )
+  }
+}
+
+;<ActionBar />
 ```
