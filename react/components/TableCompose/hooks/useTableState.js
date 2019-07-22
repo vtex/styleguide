@@ -154,6 +154,22 @@ const useHook = (schema, items, density, bulkActions, pagination) => {
     dispatch({ type: actionTypes.SET_DENSITY, density })
   }
 
+  const setTableRowHeight = tableRowHeight => {
+    dispatch({ type: actionTypes.SET_TABLE_ROW_HEIGHT, tableRowHeight })
+  }
+
+  const setSelectedRows = selectedRows => {
+    dispatch({ type: actionTypes.SET_SELECTED_ROWS, selectedRows })
+  }
+
+  const setAllLinesSelected = allLinesSelected => {
+    dispatch({ type: actionTypes.SET_ALL_LINES_SELECTED, allLinesSelected })
+  }
+
+  const setHiddenFields = hiddenFields => {
+    dispatch({ type: actionTypes.SET_HIDDEN_FIELDS, hiddenFields })
+  }
+
   const toggleColumn = key => {
     dispatch({ type: actionTypes.HIDE_COLUMN, key: key })
   }
@@ -171,13 +187,13 @@ const useHook = (schema, items, density, bulkActions, pagination) => {
 
   const selectAllRows = () => {
     dispatch({
-      type: actionTypes.SELECT_ALL_LINES,
+      type: actionTypes.SELECT_ALL_ROWS,
       selectedRows: data,
     })
   }
 
   const deselectAllRows = () => {
-    dispatch({ type: actionTypes.DESELECT_ALL_LINES })
+    dispatch({ type: actionTypes.DESELECT_ALL_ROWS })
   }
 
   const selectAllVisibleRows = () => {
@@ -187,21 +203,22 @@ const useHook = (schema, items, density, bulkActions, pagination) => {
     ) {
       deselectAllRows()
     } else {
-      dispatch({
-        type: actionTypes.SELECT_ALL_LINES,
-        selectedRows: data,
-      })
+      setSelectedRows(data)
     }
   }
 
   const selectRow = row => {
-    dispatch({ type: actionTypes.SELECT_LINE, row })
+    dispatch({ type: actionTypes.SELECT_ROW, row })
   }
 
   return {
     state,
     dispatch,
     setDensity,
+    setTableRowHeight,
+    setSelectedRows,
+    setAllLinesSelected,
+    setHiddenFields,
     toggleColumn,
     showAllColumns,
     hideAllColumns,

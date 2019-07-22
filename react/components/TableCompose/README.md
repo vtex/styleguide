@@ -1975,8 +1975,6 @@ function ResourceListExample() {
     'low'
   )
 
-  console.log(tableState)
-
   const density = {
     buttonLabel: 'Line density',
     lowOptionLabel: 'Low',

@@ -10,21 +10,45 @@ export default (state, action) => {
         tableRowHeight: getRowHeight(action.density),
       }
     }
-    case actionTypes.DESELECT_ALL_LINES: {
+    case actionTypes.SET_SELECTED_ROWS: {
+      return {
+        ...state,
+        selectedRows: action.selectedRows,
+      }
+    }
+    case actionTypes.SET_ALL_LINES_SELECTED: {
+      return {
+        ...state,
+        allLinesSelected: action.allLinesSelected,
+      }
+    }
+    case actionTypes.SET_HIDDEN_FIELDS: {
+      return {
+        ...state,
+        hiddenFields: action.hiddenFields,
+      }
+    }
+    case actionTypes.SET_TABLE_ROW_HEIGHT: {
+      return {
+        ...state,
+        tableRowHeight: action.tableRowHeight,
+      }
+    }
+    case actionTypes.DESELECT_ALL_ROWS: {
       return {
         ...state,
         selectedRows: [],
         allLinesSelected: false,
       }
     }
-    case actionTypes.SELECT_ALL_LINES: {
+    case actionTypes.SELECT_ALL_ROWS: {
       return {
         ...state,
         selectedRows: action.selectedRows,
         allLinesSelected: true,
       }
     }
-    case actionTypes.SELECT_LINE: {
+    case actionTypes.SELECT_ROW: {
       return state.selectedRows.some(el => el.id === action.row.id)
         ? {
             ...state,
