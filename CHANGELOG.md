@@ -7,7 +7,27 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [8.67.0] - 2019-07-22
+### Changed
+
+- Turn `Toolbar` into a compound component.
+
+## [9.67.0] - 2019-07-22
+
+### Changed
+
+- Get changes made at version `v8.67.0` & fix version.
+
+## [9.63.1] - 2019-07-22
+
+### Changed
+
+- Get changes made at version `v8.66.1`.
+
+## [9.63.0] - 2019-07-16
+
+### Changed
+
+- Get changes made at version `v8.63.0`.
 
 ### Added
 
@@ -72,6 +92,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - Security vulnerabilities
+
+### Changed
+
+- Get changes made at version 'v8.60.3'
 
 ## [8.60.3] - 2019-07-08
 
