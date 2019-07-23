@@ -7,13 +7,36 @@
 - This component can be used anywhere but it will always show at the bottom of the page.
 
 ### Usage
+
 See the action bar at the bottom of this page.
 
-
 ```js
-<FloatingActionBar
-  onSave={() => alert('This was invoked because save was pressed')}
-  saveLabel="save"
-  cancelLabel="cancel"
-/>
+class ActionBar extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = { loading: false }
+  }
+  render() {
+    return (
+      <FloatingActionBar
+        save={{
+          label: 'save',
+          isLoading: this.state.loading,
+          onClick: () => {
+            this.setState({ loading: true })
+            setTimeout(() => {
+              alert('This was invoked because save was pressed')
+              this.setState({ loading: false })
+            }, 2000)
+          },
+        }}
+        cancel={{
+          label: 'cancel',
+        }}
+      />
+    )
+  }
+}
+
+;<ActionBar />
 ```

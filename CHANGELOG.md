@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.68.0] - 2019-07-23
+
+### Fixed
+
+- **FloatingActionBar** now has better props shape.
+
 ## [8.67.0] - 2019-07-22
 
 ### Added
