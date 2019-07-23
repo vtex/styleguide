@@ -7,8 +7,6 @@ import ButtonWithIcon from '../ButtonWithIcon'
 import ActionMenu from '../ActionMenu'
 import Close from '../icon/Close'
 
-import BulkActionsSelectedRows from './BulkActionsSelectedRows'
-
 const close = <Close />
 
 const BulkActions = ({
@@ -70,11 +68,7 @@ const BulkActions = ({
       <div className="tr flex flex-row items-center">
         {!allLinesSelected && bulkActions && bulkActions.texts && (
           <span className="mr4 c-muted-4">
-            {bulkActions.texts.rowsSelected(
-              <BulkActionsSelectedRows
-                selectedRowsLength={selectedRowsLength}
-              />
-            )}
+            {bulkActions.texts.rowsSelected(selectedRowsLength)}
           </span>
         )}
         <span className="mr2">
