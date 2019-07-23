@@ -147,8 +147,6 @@ Table.defaultProps = {
 }
 
 Table.propTypes = {
-  children: PropTypes.any,
-  tableState: PropTypes.any,
   /** Array of objects with data */
   items: PropTypes.array,
   /** JSON defining the data model schema for the items (More info about it after the examples) */
@@ -266,6 +264,11 @@ Table.propTypes = {
   totalizers: PropTypes.array,
   /** Filters property  */
   filters: PropTypes.shape({ ...FilterBar.propTypes }),
+  /** Children that replaces the toolbar */
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
 }
 
 export default Table

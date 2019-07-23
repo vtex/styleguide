@@ -85,6 +85,7 @@ const Toolbar = ({
 }
 
 Toolbar.Container = Container
+Toolbar.SearchInput = InputToolbar
 Toolbar.ButtonDensity = ButtonDensity
 Toolbar.ButtonFields = ButtonFields
 Toolbar.ButtonDownload = ButtonDownload
