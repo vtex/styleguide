@@ -5,7 +5,7 @@ import InputSearch from '../../InputSearch'
 
 const InputToolbar = ({ disabled, inputSearch }) => {
   const handleInputSearchSubmit = e => {
-    !!inputSearch.onSubmit && inputSearch.onSubmit(e)
+    inputSearch.onSubmit && inputSearch.onSubmit(e)
   }
 
   return (

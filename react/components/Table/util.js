@@ -32,13 +32,7 @@ export const calculateTableHeight = (tableRowHeight, totalItems) => {
 }
 
 export const getInitialHiddenFieldsFromSchema = schema => {
-  const hiddenFields = []
-  Object.keys(schema.properties).forEach(key => {
-    if (schema.properties[key].hidden) {
-      hiddenFields.push(key)
-    }
-  })
-  return hiddenFields
+  return Object.keys(schema.properties).filter(key => key.hidden)
 }
 
 export const getRowHeight = density => {

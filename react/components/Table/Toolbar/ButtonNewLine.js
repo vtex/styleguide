@@ -39,7 +39,6 @@ const ButtonNewLine = ({ newLine, disabled }) => {
       icon={<IconPlus solid size={constants.LIGHT_ICON_SIZE} />}
       onClick={newLine.handleCallback}
       label={newLine.label}
-      hasOpticalCompensation={false}
       {...buttonProps}
     />
   )

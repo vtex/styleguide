@@ -8,6 +8,8 @@ import { constants } from '../util'
 import useOutsideClick from '../hooks/useOutsideCick'
 import useTableContext from '../hooks/useTableContext'
 
+const BOX_HEIGHT = 3 * constants.FIELDS_BOX_ITEM_HEIGHT
+
 const ButtonDensity = ({ density, disabled }) => {
   const [isDensityBoxVisible, setDensityBoxVisible] = useState(false)
   const { state, setDensity } = useTableContext()
@@ -34,9 +36,7 @@ const ButtonDensity = ({ density, disabled }) => {
           } z-999 ba b--muted-4 br2 mt2 mh2`}
           style={constants.BOX_SHADOW_STYLE}>
           <div className="w-100 b2 br2 bg-base">
-            <div
-              style={{ height: 3 * constants.FIELDS_BOX_ITEM_HEIGHT }}
-              className="overflow-auto">
+            <div style={{ height: BOX_HEIGHT }} className="overflow-auto">
               {constants.DENSITY_OPTIONS.map((key, index) => {
                 const isKeySelected = state.selectedDensity === key
                 return (
@@ -70,6 +70,7 @@ ButtonDensity.propTypes = {
     lowOptionLabel: PropTypes.string,
     mediumOptionLabel: PropTypes.string,
     highOptionLabel: PropTypes.string,
+    handleCallback: PropTypes.func,
     alignMenu: PropTypes.oneOf(['right', 'left']),
   }),
   disabled: PropTypes.bool,
