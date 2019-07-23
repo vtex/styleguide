@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.68.1] - 2019-07-23
+
 ### Fixed
 
 - Collapse button is not correctly aligned when the header title is longer than the width in the `Collapsible` component.
