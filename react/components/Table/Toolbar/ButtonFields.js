@@ -36,7 +36,7 @@ const ButtonFields = ({ fields, disabled }) => {
       : estimate
   }
 
-  const height = useMemo(() => calculateFieldsBoxHeight, [
+  const height = useMemo(() => calculateFieldsBoxHeight(), [
     Object.keys(staticSchema.properties).length,
   ])
 
