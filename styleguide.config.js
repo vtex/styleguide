@@ -122,6 +122,7 @@ module.exports = {
             'react/components/Tag/index.js',
             'react/components/ProgressBar/index.js',
             'react/components/Totalizer/index.js',
+            'react/components/Hello/index.tsx',
           ],
         },
         {

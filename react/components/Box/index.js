@@ -1,13 +1,7 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-interface Props {
-  /** Content of the box */
-  children: React.ReactNode
-  /** Use the full size of the box. */
-  noPadding?: boolean
-}
-
-const Box: React.FC<Props> = ({ children, noPadding }) => {
+const Box = ({ children, noPadding }) => {
   const padding = noPadding ? '' : 'pa7-ns'
   return (
     <div
@@ -15,6 +9,13 @@ const Box: React.FC<Props> = ({ children, noPadding }) => {
       {children}
     </div>
   )
+}
+
+Box.propTypes = {
+  /** Content of the box */
+  children: PropTypes.node.isRequired,
+  /** Use the full size of the box. */
+  noPadding: PropTypes.bool,
 }
 
 export default Box
