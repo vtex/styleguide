@@ -1932,19 +1932,23 @@ class ResourceListExample extends React.Component {
 
 #### Compound Toolbar
 
-The toolbar is a Compound component.
+⚠️ You can choose the compound OR toolbar prop aproach, never the two at the same time.
+
+The `Toolbar` is a Compound component. This means that you can compose your own, reusing it's internal components. The exported composites are:
 
 | Composite | Description |
 | --- | --- |
 | Container | Main container of the toolbar |
-| Button | Generic button |
-| SearchInput | Input |
+| Button | Generic button that allows creating new buttons that follows the same pattern |
+| SearchInput | Input of the toolbar |
 | ButtonDensity | Button that controls the table density |
 | ButtonFields | Button that controls fields visibility |
-| ButtonDownload | Generic Button for download |
-| ButtonUpload | Button |
+| ButtonDownload | Button to download |
+| ButtonUpload | Button to upload |
 | ButtonNewLine | Button to create a new line |
 | ExtraActions | Extra actions menu |
+
+The following example, reuses the generic button in order to display a modal.
 
 ```js
 const sampleData = require('./sampleData').default
