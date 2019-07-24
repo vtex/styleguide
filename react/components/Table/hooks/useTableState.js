@@ -1,4 +1,5 @@
 import React, { useReducer, useMemo, useEffect } from 'react'
+import PropTypes from 'prop-types'
 import reduce from 'lodash/reduce'
 
 import CheckboxContainer from '../CheckboxContainer'
@@ -37,50 +38,52 @@ const useTableState = (schema, items, density, bulkActions, pagination) => {
     return hasBulkActions ? items.map((item, i) => ({ id: i, ...item })) : items
   }, [items])
 
-  const staticSchema = useMemo(
-    () =>
-      hasBulkActions
-        ? {
-            ...schema,
-            properties: {
-              bulk: {
-                width: 40,
-                // eslint-disable-next-line
-                headerRenderer: () => {
-                  const selectedRowsLength = state.selectedRows.length
-                  const itemsLength = data.length
+  const staticSchema = useMemo(() => {
+    const BulkHeader = () => {
+      const selectedRowsLength = state.selectedRows.length
+      const itemsLength = data.length
 
-                  const isChecked = selectedRowsLength === itemsLength
-                  const isPartial =
-                    selectedRowsLength > 0 && selectedRowsLength < itemsLength
+      const isChecked = selectedRowsLength === itemsLength
+      const isPartial =
+        selectedRowsLength > 0 && selectedRowsLength < itemsLength
 
-                  return (
-                    <CheckboxContainer
-                      checked={isChecked}
-                      onClick={selectAllVisibleRows}
-                      id="all"
-                      partial={isPartial}
-                    />
-                  )
-                },
-                // eslint-disable-next-line
-                cellRenderer: ({ rowData }) => (
-                  <CheckboxContainer
-                    checked={state.selectedRows.some(
-                      row => row.id === rowData.id
-                    )}
-                    onClick={() => selectRow(rowData)}
-                    id={rowData.id}
-                    disabled={state.allLinesSelected}
-                  />
-                ),
-              },
-              ...schema.properties,
+      return (
+        <CheckboxContainer
+          checked={isChecked}
+          onClick={selectAllVisibleRows}
+          id="all"
+          partial={isPartial}
+        />
+      )
+    }
+
+    const BulkCell = ({ rowData }) => (
+      <CheckboxContainer
+        checked={state.selectedRows.some(row => row.id === rowData.id)}
+        onClick={() => selectRow(rowData)}
+        id={rowData.id}
+        disabled={state.allLinesSelected}
+      />
+    )
+
+    BulkCell.propTypes = {
+      rowData: PropTypes.any,
+    }
+
+    return hasBulkActions
+      ? {
+          ...schema,
+          properties: {
+            bulk: {
+              width: 40,
+              headerRenderer: BulkHeader,
+              cellRenderer: BulkCell,
             },
-          }
-        : schema,
-    [state.selectedRows, state.allLinesSelected]
-  )
+            ...schema.properties,
+          },
+        }
+      : schema
+  }, [state.selectedRows, state.allLinesSelected])
 
   const displaySchema = useMemo(() => {
     return {
