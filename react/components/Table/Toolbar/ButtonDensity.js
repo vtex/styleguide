@@ -8,7 +8,8 @@ import { constants } from '../util'
 import useOutsideClick from '../hooks/useOutsideCick'
 import useTableContext from '../hooks/useTableContext'
 
-const BOX_HEIGHT = 3 * constants.FIELDS_BOX_ITEM_HEIGHT
+const BOX_HEIGHT =
+  constants.DENSITY_OPTIONS.length * constants.FIELDS_BOX_ITEM_HEIGHT
 
 const ButtonDensity = ({ density, disabled }) => {
   const [isDensityBoxVisible, setDensityBoxVisible] = useState(false)
