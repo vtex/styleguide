@@ -1930,13 +1930,26 @@ class ResourceListExample extends React.Component {
 ;<ResourceListExample />
 ```
 
-#### Composable Toolbar
+#### Compound Toolbar
 
-TODO
+The toolbar is a Compound component.
+
+| Composite | Description |
+| --- | --- |
+| Container | Main container of the toolbar |
+| Button | Generic button |
+| SearchInput | Input |
+| ButtonDensity | Button that controls the table density |
+| ButtonFields | Button that controls fields visibility |
+| ButtonDownload | Generic Button for download |
+| ButtonUpload | Button |
+| ButtonNewLine | Button to create a new line |
+| ExtraActions | Extra actions menu |
 
 ```js
 const sampleData = require('./sampleData').default
-const InlineGrid = require('../icon/InlineGrid').default
+const PlusLines = require('../icon/PlusLines').default
+const Modal = require('../Modal').default
 
 const tableLength = 5
 
@@ -1969,6 +1982,8 @@ const schema = {
 }
 
 function ResourceListExample() {
+  const [isModalOpen, setModalOpen] = React.useState(false)
+
   const density = {
     buttonLabel: 'Line density',
     lowOptionLabel: 'Low',
@@ -1995,11 +2010,30 @@ function ResourceListExample() {
   return (
     <Table schema={schema} items={sampleData.items.slice(0, tableLength)}>
       <Table.Toolbar>
-        <Table.Toolbar.Container justify="center">
+        <Table.Toolbar.Container>
           <Table.Toolbar.ButtonDensity density={density} />
           <Table.Toolbar.ButtonFields fields={fields} />
           <Table.Toolbar.ButtonDownload download={download} />
           <Table.Toolbar.ButtonUpload upload={upload} />
+          <Table.Toolbar.Button
+            icon={<PlusLines />}
+            label="Open Modal"
+            onClick={() => setModalOpen(true)}>
+            <Modal
+              centered
+              isOpen={isModalOpen}
+              onClose={() => setModalOpen(!isModalOpen)}>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            </Modal>
+          </Table.Toolbar.Button>
         </Table.Toolbar.Container>
       </Table.Toolbar>
     </Table>
@@ -2008,3 +2042,74 @@ function ResourceListExample() {
 
 ;<ResourceListExample />
 ```
+
+**Detailed composite props**
+
+**Container**
+
+| Property | Type | Default | Description |
+| --- | --- | --- | --- |
+| justify | One of: between, end, start, around, center | end | Alignment of the elements |
+| children | One of type: node, node[] | - | Child elements |
+
+**Button**
+
+| Property  | Type | Default | Description |
+| ---| --- | --- | --- |
+| id | string | - | Id of the Button |
+| children | any | - | Button children |
+| label | string  | - | Label of the Button |
+| onClick | func | - | Action to perform when clicked |
+| isLoading | boolean | false | If is loading or not |
+| disabled | boolean | false | If is disabled or not |
+| icon | element | - | Icon of the Button |
+| title | string | - | Title of the Button |
+| variation | One of: primary, tertiary | tertiary | Button variation |
+
+**SearchInput**
+
+| Property | Type | Default | Description |
+| --- | --- | --- | --- |
+| inputSearch | shape({ onSubmit: func }) | - | Input properties |
+| disabled | boolean | false | If is disabled or not |
+
+**ButtonDensity**
+
+| Property | Type | Default | Description |
+| --- | --- | --- | --- |
+| density | shape({<br>&nbsp;&nbsp;buttonLabel: string<br>&nbsp;&nbsp;lowOptionLabel: string<br>&nbsp;&nbsp;mediumOptionLabel: string<br>&nbsp;&nbsp;highOptionLabel: string<br>&nbsp;&nbsp;handleCallback: func<br>&nbsp;&nbsp;alignMenu: One of: right, left<br>}) | - | Density properties |
+| disabled | boolean | false | If is disabled or not |
+
+**ButtonFields**
+
+| Property | Type | Default | Description |
+| --- | --- | --- | --- |
+| fields | shape({<br>&nbsp;&nbsp;label: string<br>&nbsp;&nbsp;showAllLabel: string<br>&nbsp;&nbsp;hideAllLabel: string<br>&nbsp;&nbsp;alignMenu: One of: right, left<br>}) | - | Fields properties |
+| disabled | boolean | false | If is disabled or not |
+
+**ButtonDownload**
+
+| Property | Type | Default | Description |
+| --- | --- | --- | --- |
+| download | shape({<br>&nbsp;&nbsp;label: string<br>&nbsp;&nbsp;handleCallback: func<br>&nbsp;&nbsp;isLoading: boolean<br>}) | - | Download properties |
+| disabled | boolean | false | If is disabled or not |
+
+**ButtonUpload**
+
+| Property | Type | Default | Description |
+| --- | --- | --- | --- |
+| upload | shape({<br>&nbsp;&nbsp;label: string<br>&nbsp;&nbsp;handleCallback: func<br>&nbsp;&nbsp;isLoading: boolean<br>}) | - | Download properties |
+| disabled | boolean | false | If is disabled or not |
+
+**ButtonNewLine**
+
+| Property | Type | Default | Description |
+| --- | --- | --- | --- |
+| newLine | shape({<br>&nbsp;&nbsp;label: string<br>&nbsp;&nbsp;handleCallback: func<br>&nbsp;&nbsp;disabled: boolean<br>&nbsp;&nbsp;actions: Array of shape({<br>&nbsp;&nbsp;&nbsp;&nbsp;label: string<br>&nbsp;&nbsp;&nbsp;&nbsp;handleCallback: func<br>&nbsp;&nbsp;&nbsp;&nbsp;toggle: shape({<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;checked: boolean<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;semantic: boolean<br>&nbsp;&nbsp;&nbsp;&nbsp;})<br>&nbsp;&nbsp;})<br>}) | - | New Line properties |
+| disabled | boolean | false | If is disabled or not |
+
+**ExtraActions**
+
+| Property | Type | Default | Description |
+| --- | --- | --- | --- |
+| extraActions | shape({<br>&nbsp;&nbsp;label: string<br>&nbsp;&nbsp;alignMenu: One of: right, left<br>&nbsp;&nbsp;isLoading: boolean<br>&nbsp;&nbsp;actions: Array of shape({<br>&nbsp;&nbsp;&nbsp;&nbsp;label: string<br>&nbsp;&nbsp;&nbsp;&nbsp;handleCallback: func<br>&nbsp;&nbsp;})<br>}) | - | Extra Actions properties |

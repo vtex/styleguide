@@ -103,7 +103,6 @@ ButtonFields.propTypes = {
     alignMenu: PropTypes.oneOf(['right', 'left']),
   }),
   disabled: PropTypes.bool,
-  toggleColumn: PropTypes.func,
 }
 
 export default ButtonFields
