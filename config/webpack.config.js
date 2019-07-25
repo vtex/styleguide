@@ -71,6 +71,8 @@ const env = getClientEnvironment(publicUrl)
 
 const component = appPackage.component
 
+paths.appSrc = path.join(__dirname, '..', 'react')
+
 module.exports = {
   entry: component
     ? {
@@ -95,7 +97,7 @@ module.exports = {
         // eslint-disable-next-line prefer-template
         require.resolve('webpack-dev-server/client') + '?/',
         require.resolve('webpack/hot/dev-server'),
-        require.resolve('react-dev-utils/webpackHotDevClient'),
+        // require.resolve('react-dev-utils/webpackHotDevClient'),
         // Finally, this is your app's code:
         paths.appIndexJs,
         // We include the app code last so that if there is a runtime error during
@@ -122,12 +124,12 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
+        test: /\.(ts|tsx)?$/,
         loader: 'ts-loader',
         exclude: /node_modules/,
       },
       {
-        test: /\.js?$/,
+        test: /\.(js|jsx)?$/,
         loader: 'babel-loader',
         options: {
           presets: [
@@ -217,13 +219,13 @@ module.exports = {
       {
         test: /\.css$/,
         include: paths.appSrc,
+        exclude: /\.global\.css$/,
         use: [
           require.resolve('style-loader'),
           {
             loader: require.resolve('css-loader'),
             options: {
-              module: true,
-              camelCase: true,
+              modules: true,
               importLoaders: 1,
             },
           },
@@ -257,7 +259,7 @@ module.exports = {
     // To fix this, we prevent you from importing files out of src/ -- if you'd like to,
     // please link the files into your node_modules/ and let module-resolution kick in.
     // Make sure your source files are compiled, as they will not be processed in any way.
-    new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson]),
+    // new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson]),
   ],
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],

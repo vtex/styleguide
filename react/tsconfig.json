@@ -6,7 +6,7 @@
     "lib": ["es2017", "dom"],
     "sourceMap": true,
     "skipLibCheck": true,
-    "strict": true,
+    "strict": false,
     "typeRoots": ["node_modules/@types"],
     "target": "esnext",
     "declaration": true,
