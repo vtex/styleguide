@@ -83,9 +83,8 @@ class Toolbar extends PureComponent {
   }
 
   handleInputSearchSubmit = e => {
-    this.props.handleDeselectAllLines && 
-      this.props.handleDeselectAllLines()
-    
+    this.props.onDeselectAllLines && this.props.onDeselectAllLines()
+
     this.props.actions.inputSearch.onSubmit &&
       this.props.actions.inputSearch.onSubmit(e)
   }
@@ -103,10 +102,10 @@ class Toolbar extends PureComponent {
       },
       hiddenFields,
       schema,
-      handleHideAllColumns,
-      handleShowAllColumns,
-      toggleColumn,
-      handleToggleDensity,
+      onHideAllColumns,
+      onShowAllColumns,
+      onToggleColumn,
+      onToggleDensity,
       selectedDensity,
       loading,
     } = this.props
@@ -184,7 +183,7 @@ class Toolbar extends PureComponent {
                               isKeySelected ? 'b--emphasis' : 'b--transparent'
                             } pointer hover-bg-muted-5 bl bw1`}
                             onClick={() => {
-                              handleToggleDensity(key)
+                              onToggleDensity(key)
                               this.handleToggleBox('isDensityBoxVisible')
                               density.handleCallback &&
                                 density.handleCallback(key)
@@ -236,14 +235,14 @@ class Toolbar extends PureComponent {
                       <Button
                         variation="secondary"
                         size="small"
-                        onClick={handleShowAllColumns}>
+                        onClick={onShowAllColumns}>
                         {fields.showAllLabel}
                       </Button>
                       <div className="mh4">
                         <Button
                           variation="secondary"
                           size="small"
-                          onClick={handleHideAllColumns}>
+                          onClick={onHideAllColumns}>
                           {fields.hideAllLabel}
                         </Button>
                       </div>
@@ -255,7 +254,7 @@ class Toolbar extends PureComponent {
                         <div
                           key={index}
                           className="flex justify-between ph6 pv3 pointer hover-bg-muted-5"
-                          onClick={() => toggleColumn(field)}>
+                          onClick={() => onToggleColumn(field)}>
                           <span className="w-70 truncate">
                             {schema.properties[field].title || field}
                           </span>
@@ -439,11 +438,11 @@ Toolbar.propTypes = {
   }),
   schema: PropTypes.object.isRequired,
   hiddenFields: PropTypes.array,
-  toggleColumn: PropTypes.func,
-  handleDeselectAllLines: PropTypes.func,
-  handleHideAllColumns: PropTypes.func,
-  handleShowAllColumns: PropTypes.func,
-  handleToggleDensity: PropTypes.func,
+  onToggleColumn: PropTypes.func,
+  onDeselectAllLines: PropTypes.func,
+  onHideAllColumns: PropTypes.func,
+  onShowAllColumns: PropTypes.func,
+  onToggleDensity: PropTypes.func,
   selectedDensity: PropTypes.string,
   loading: PropTypes.bool,
 }
