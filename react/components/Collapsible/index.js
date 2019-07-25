@@ -70,7 +70,7 @@ class Collapsible extends Component {
 
   componentDidMount() {
     if (this.props.isOpen) {
-      this.openCard()
+      this.setState({ height: 'auto' })
     }
   }
 
@@ -120,7 +120,7 @@ class Collapsible extends Component {
           aria-expanded={isOpen}>
           {align === 'left' ? (
             <Fragment>
-              <div className={`${color} mr3 self-center`}>
+              <div className={`${color} mr3 self-start`}>
                 {isOpen ? <CaretUp /> : <CaretDown />}
               </div>
               <div className="flex-grow-1">{header}</div>
@@ -128,7 +128,7 @@ class Collapsible extends Component {
           ) : (
             <Fragment>
               <div className="flex-grow-1">{header}</div>
-              <div className={`${color} ml3 self-center`}>
+              <div className={`${color} ml3 self-start`}>
                 {isOpen ? <CaretUp /> : <CaretDown />}
               </div>
             </Fragment>
