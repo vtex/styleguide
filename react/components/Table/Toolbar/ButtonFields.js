@@ -4,10 +4,10 @@ import PropTypes from 'prop-types'
 import Toggle from '../../Toggle'
 import ButtonToolbar from './ButtonToolbar'
 import IconColumns from '../../icon/Columns'
-import Button from '../../Button'
 import useOutsideClick from '../hooks/useOutsideCick'
 import { constants } from '../util'
 import useTableContext from '../hooks/useTableContext'
+import Box from './Box'
 
 const ButtonFields = ({ fields, disabled }) => {
   const {
@@ -49,47 +49,26 @@ const ButtonFields = ({ fields, disabled }) => {
       disabled={disabled}
       onClick={() => setFieldsBoxVisible(!isFieldsBoxVisible)}>
       {isFieldsBoxVisible && (
-        <div
-          className={`absolute ${
-            fields.alignMenu === 'right' ? 'right-0' : 'left-0'
-          } z-999 ba b--muted-4 br2 mt2 mh2`}>
-          <div
-            className="w-100 b2 br2 bg-base"
-            style={{
-              ...constants.BOX_SHADOW_STYLE,
-              width: constants.FIELDS_BOX_WIDTH,
-            }}>
-            <div className="flex inline-flex bb b--muted-4 w-100 pl6 pv4">
-              <Button
-                variation="secondary"
-                size="small"
-                onClick={showAllColumns}>
-                {fields.showAllLabel}
-              </Button>
-              <div className="mh4">
-                <Button
-                  variation="secondary"
-                  size="small"
-                  onClick={hideAllColumns}>
-                  {fields.hideAllLabel}
-                </Button>
-              </div>
+        <Box
+          height={height}
+          alignMenu={fields.alignMenu}
+          width={constants.FIELDS_BOX_WIDTH}
+          groupActions={[
+            { id: 1, label: fields.showAllLabel, handleClick: showAllColumns },
+            { id: 2, label: fields.hideAllLabel, handleClick: hideAllColumns },
+          ]}>
+          {Object.keys(staticSchema.properties).map((field, index) => (
+            <div
+              key={index}
+              className="flex justify-between ph6 pv3 pointer hover-bg-muted-5"
+              onClick={() => toggleColumn(field)}>
+              <span className="w-70 truncate">
+                {staticSchema.properties[field].title || field}
+              </span>
+              <Toggle checked={!state.hiddenFields.includes(field)} />
             </div>
-            <div style={{ height: height }} className="overflow-auto">
-              {Object.keys(staticSchema.properties).map((field, index) => (
-                <div
-                  key={index}
-                  className="flex justify-between ph6 pv3 pointer hover-bg-muted-5"
-                  onClick={() => toggleColumn(field)}>
-                  <span className="w-70 truncate">
-                    {staticSchema.properties[field].title || field}
-                  </span>
-                  <Toggle checked={!state.hiddenFields.includes(field)} />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+          ))}
+        </Box>
       )}
     </ButtonToolbar>
   )

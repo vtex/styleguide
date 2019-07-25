@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import IconDensity from '../../icon/Density'
 import ButtonToolbar from './ButtonToolbar'
+import Box from './Box'
 import { constants } from '../util'
 
 import useOutsideClick from '../hooks/useOutsideCick'
@@ -31,35 +32,27 @@ const ButtonDensity = ({ density, disabled }) => {
       disabled={disabled}
       onClick={() => setDensityBoxVisible(!isDensityBoxVisible)}>
       {isDensityBoxVisible && (
-        <div
-          className={`absolute ${
-            density.alignMenu === 'right' ? 'right-0' : 'left-0'
-          } z-999 ba b--muted-4 br2 mt2 mh2`}
-          style={constants.BOX_SHADOW_STYLE}>
-          <div className="w-100 b2 br2 bg-base">
-            <div style={{ height: BOX_HEIGHT }} className="overflow-auto">
-              {constants.DENSITY_OPTIONS.map((key, index) => {
-                const isKeySelected = state.selectedDensity === key
-                return (
-                  <div
-                    key={index}
-                    className={`flex justify-between ph6 pv3 ${
-                      isKeySelected ? 'b--emphasis' : 'b--transparent'
-                    } pointer hover-bg-muted-5 bl bw1`}
-                    onClick={() => {
-                      setDensity(key)
-                      setDensityBoxVisible(false)
-                      density.handleCallback && density.handleCallback(key)
-                    }}>
-                    <span className={`w-100 ${isKeySelected ? 'fw5' : ''}`}>
-                      {density[`${key}OptionLabel`]}
-                    </span>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-        </div>
+        <Box height={BOX_HEIGHT} alignMenu={density.alignMenu}>
+          {constants.DENSITY_OPTIONS.map((key, index) => {
+            const isKeySelected = state.selectedDensity === key
+            return (
+              <div
+                key={index}
+                className={`flex justify-between ph6 pv3 ${
+                  isKeySelected ? 'b--emphasis' : 'b--transparent'
+                } pointer hover-bg-muted-5 bl bw1`}
+                onClick={() => {
+                  setDensity(key)
+                  setDensityBoxVisible(false)
+                  density.handleCallback && density.handleCallback(key)
+                }}>
+                <span className={`w-100 ${isKeySelected ? 'fw5' : ''}`}>
+                  {density[`${key}OptionLabel`]}
+                </span>
+              </div>
+            )
+          })}
+        </Box>
       )}
     </ButtonToolbar>
   )
