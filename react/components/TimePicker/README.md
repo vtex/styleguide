@@ -2,7 +2,7 @@
 
 ### 👎 Don'ts
 
-- Time suggestions should help the user to find an option more easily given its context of use (per hour, every half hour, 15 minutes, ...) so we recommend not using intervals shorter than 5 minutes.
+- Time suggestions should help the user to find an option more easily given its context of use (per hour, every half hour, 15 minutes, etc.) so we do not recommend using intervals shorter than 5 minutes.
 
 ### Supported locales
 
