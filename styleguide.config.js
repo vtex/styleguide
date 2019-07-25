@@ -217,6 +217,7 @@ module.exports = {
     'slots/CodeTabButton': path.join(__dirname, 'react/docs/CodeTabButton'),
     'slots/UsageTabButton': path.join(__dirname, 'react/docs/UsageTabButton'),
   },
+  // Does not exist anymore :(
   // editorConfig: {
   //   lineWrapping: true,
   //   smartIndent: true,

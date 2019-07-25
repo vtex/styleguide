@@ -33,6 +33,7 @@
     "@babel/core": "^7.5.4",
     "@babel/plugin-transform-modules-commonjs": "^7.5.0",
     "@babel/preset-typescript": "^7.3.3",
+    "@types/prop-types": "^15.7.1",
     "@vtex/react-scripts": "1.2.0",
     "babel-cli": "^6.26.0",
     "babel-eslint": "^10.0.2",
