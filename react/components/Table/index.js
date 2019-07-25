@@ -54,7 +54,7 @@ class Table extends PureComponent {
     }
   }
 
-  toggleTableRowHeight = density => {
+  handleTableRowHeight = density => {
     const { tableRowHeight } = this.state
     const newHeight = this.getRowHeight(density)
     if (tableRowHeight !== newHeight) {
@@ -65,7 +65,7 @@ class Table extends PureComponent {
     }
   }
 
-  toggleColumn = key => {
+  handleToggleColumn = key => {
     const { hiddenFields } = this.state
     const newFieldsArray = hiddenFields.slice()
     const index = hiddenFields.indexOf(key)
@@ -73,10 +73,13 @@ class Table extends PureComponent {
     this.setState({ hiddenFields: newFieldsArray })
   }
 
-  onShowAllColumns = () => this.setState({ hiddenFields: [] })
+  handleShowAllColumns = () => {
+    this.setState({ hiddenFields: [] })
+  }
 
-  onHideAllColumns = () =>
+  handleHideAllColumns = () => {
     this.setState({ hiddenFields: Object.keys(this.props.schema.properties) })
+  }
 
   getScrollbarWidth = () => {
     if (!window || !document || !document.documentElement)
@@ -263,10 +266,11 @@ class Table extends PureComponent {
             loading={loading}
             toolbar={toolbar}
             hiddenFields={hiddenFields}
-            toggleColumn={this.toggleColumn}
-            handleHideAllColumns={this.onHideAllColumns}
-            handleShowAllColumns={this.onShowAllColumns}
-            handleToggleDensity={this.toggleTableRowHeight}
+            onToggleColumn={this.handleToggleColumn}
+            onDeselectAllLines={this.handleDeselectAllLines}
+            onHideAllColumns={this.handleHideAllColumns}
+            onShowAllColumns={this.handleShowAllColumns}
+            onToggleDensity={this.handleTableRowHeight}
             selectedDensity={selectedDensity}
             schema={schema}
             actions={toolbar}

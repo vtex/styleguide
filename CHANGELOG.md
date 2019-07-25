@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.69.0] - 2019-07-25
+
+### Fixed
+
+- **Table** when search is performed, the selection of itens is removed
+
 ## [8.68.1] - 2019-07-23
 
 ### Fixed
