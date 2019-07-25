@@ -48,15 +48,10 @@ const ButtonFields = ({ fields, disabled }) => {
         ],
       }}>
       {Object.keys(staticSchema.properties).map((field, index) => (
-        <div
-          key={index}
-          className="flex justify-between ph6 pv3 pointer hover-bg-muted-5"
-          onClick={() => toggleColumn(field)}>
-          <span className="w-70 truncate">
-            {staticSchema.properties[field].title || field}
-          </span>
+        <Menu.Item key={index} handleCallBack={() => toggleColumn(field)}>
+          {staticSchema.properties[field].title || field}
           <Toggle checked={!state.hiddenFields.includes(field)} />
-        </div>
+        </Menu.Item>
       ))}
     </Menu>
   )

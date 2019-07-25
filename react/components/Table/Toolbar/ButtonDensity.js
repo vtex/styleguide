@@ -25,19 +25,16 @@ const ButtonDensity = ({ density, disabled }) => {
       {constants.DENSITY_OPTIONS.map((key, index) => {
         const isKeySelected = state.selectedDensity === key
         return (
-          <div
+          <Menu.Item
             key={index}
-            className={`flex justify-between ph6 pv3 ${
-              isKeySelected ? 'b--emphasis' : 'b--transparent'
-            } pointer hover-bg-muted-5 bl bw1`}
-            onClick={() => {
+            isSelected={isKeySelected}
+            handleCallBack={() => {
               setDensity(key)
               density.handleCallback && density.handleCallback(key)
-            }}>
-            <span className={`w-100 ${isKeySelected ? 'fw5' : ''}`}>
-              {density[`${key}OptionLabel`]}
-            </span>
-          </div>
+            }}
+            closeMenuOnClick>
+            {density[`${key}OptionLabel`]}
+          </Menu.Item>
         )
       })}
     </Menu>

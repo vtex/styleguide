@@ -1,10 +1,66 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, createContext, useContext } from 'react'
 import PropTypes from 'prop-types'
 
-import ButtonToolbar from './ButtonToolbar'
-import Box from './Box'
-
 import useOutsideClick from '../hooks/useOutsideCick'
+import ButtonToolbar from './ButtonToolbar'
+import { constants } from '../util'
+import Button from '../../Button'
+
+const MenuContext = createContext(null)
+
+const Box = ({ alignMenu, height, width, groupActions, children }) => {
+  return (
+    <div
+      className={`absolute ${
+        alignMenu === 'right' ? 'right-0' : 'left-0'
+      } z-999 ba b--muted-4 br2 mt2 mh2`}
+      style={{
+        ...constants.BOX_SHADOW_STYLE,
+        width: width,
+      }}>
+      <div className="w-100 b2 br2 bg-base">
+        {groupActions && (
+          <div className="flex inline-flex bb b--muted-4 w-100 justify-center pv4">
+            {groupActions.map(action => (
+              <div className="mh2" key={action.id}>
+                <Button
+                  variation="secondary"
+                  size="small"
+                  onClick={action.handleClick}>
+                  {action.label}
+                </Button>
+              </div>
+            ))}
+          </div>
+        )}
+        <div className="overflow-auto" style={{ height: height }}>
+          {children}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+const Item = ({ isSelected, handleCallBack, closeMenuOnClick, children }) => {
+  const { setBoxVisible } = useContext(MenuContext)
+
+  const handleClick = () => {
+    closeMenuOnClick && setBoxVisible(false)
+    handleCallBack()
+  }
+
+  return (
+    <div
+      className={`flex justify-between ph6 pv3 ${
+        isSelected ? 'b--emphasis' : 'b--transparent'
+      } pointer hover-bg-muted-5 bl bw1`}
+      onClick={handleClick}>
+      <span className={`w-100 flex justify-between ${isSelected ? 'fw5' : ''}`}>
+        {children}
+      </span>
+    </div>
+  )
+}
 
 const Menu = ({ button, box, children }) => {
   const [isBoxVisible, setBoxVisible] = useState(false)
@@ -13,13 +69,44 @@ const Menu = ({ button, box, children }) => {
   useOutsideClick(buttonRef, () => setBoxVisible(false), isBoxVisible)
 
   return (
-    <ButtonToolbar
-      {...button}
-      ref={buttonRef}
-      onClick={() => setBoxVisible(!isBoxVisible)}>
-      {isBoxVisible && <Box {...box}>{children}</Box>}
-    </ButtonToolbar>
+    <MenuContext.Provider value={{ isBoxVisible, setBoxVisible }}>
+      <ButtonToolbar
+        {...button}
+        ref={buttonRef}
+        onClick={() => setBoxVisible(!isBoxVisible)}>
+        {isBoxVisible && <Box {...box}>{children}</Box>}
+      </ButtonToolbar>
+    </MenuContext.Provider>
   )
+}
+
+Menu.Item = Item
+
+Item.propTypes = {
+  isSelected: PropTypes.bool,
+  handleCallBack: PropTypes.func,
+  closeMenuOnClick: PropTypes.bool,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
+}
+
+Box.propTypes = {
+  height: PropTypes.number,
+  width: PropTypes.number,
+  alignMenu: PropTypes.oneOf(['right', 'left']),
+  groupActions: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      handleClick: PropTypes.func.isRequired,
+      label: PropTypes.string.isRequired,
+    })
+  ),
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
 }
 
 Menu.propTypes = {
