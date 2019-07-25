@@ -108,10 +108,8 @@ BulkActions.propTypes = {
   hasPrimaryBulkAction: PropTypes.bool,
   hasSecondaryBulkActions: PropTypes.bool,
   allLinesSelected: PropTypes.bool,
-
   selectedRows: PropTypes.array,
   bulkActions: PropTypes.object,
-
   onSelectAllLines: PropTypes.func,
   onDeselectAllLines: PropTypes.func.isRequired,
 }

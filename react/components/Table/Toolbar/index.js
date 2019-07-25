@@ -1,14 +1,16 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 
+import { constants } from '../util'
 import InputToolbar from './InputToolbar'
 import ButtonDensity from './ButtonDensity'
 import ButtonFields from './ButtonFields'
-import ButtonDownload from './ButtonDownload'
-import ButtonUpload from './ButtonUpload'
 import ButtonNewLine from './ButtonNewLine'
 import ExtraActions from './ExtraActions'
 import ButtonToolbar from './ButtonToolbar'
+
+import IconUpload from '../../icon/Upload'
+import IconDownload from '../../icon/Download'
 
 const Container = ({ justify = 'end', children }) => (
   <div id="toolbar" className={`mb5 flex flex-row w-100 justify-${justify}`}>
@@ -16,12 +18,70 @@ const Container = ({ justify = 'end', children }) => (
   </div>
 )
 
-Container.propTypes = {
-  justify: PropTypes.oneOf(['between', 'end', 'start', 'around', 'center']),
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
+const BUTTON_TYPES = {
+  DENSITY: 1,
+  DOWNLOAD: 2,
+  FIELDS: 3,
+  NEW_LINE: 4,
+  GENERIC: 5,
+  UPLOAD: 6,
+  EXTRA_ACTIONS: 7,
+}
+
+const getButton = (type, props) => {
+  switch (type) {
+    case BUTTON_TYPES.DENSITY: {
+      return <ButtonDensity {...props} />
+    }
+    case BUTTON_TYPES.DOWNLOAD: {
+      const {
+        download: { label, isLoading, handleCallback },
+        ...rest
+      } = props
+
+      return (
+        <ButtonToolbar
+          id="download"
+          title={label}
+          isLoading={isLoading}
+          onClick={handleCallback}
+          label={label}
+          icon={<IconDownload size={constants.HEAVY_ICON_SIZE} />}
+          {...rest}
+        />
+      )
+    }
+    case BUTTON_TYPES.FIELDS: {
+      return <ButtonFields {...props} />
+    }
+    case BUTTON_TYPES.NEW_LINE: {
+      return <ButtonNewLine {...props} />
+    }
+    case BUTTON_TYPES.UPLOAD: {
+      const {
+        upload: { label, isLoading, handleCallback },
+        ...rest
+      } = props
+
+      return (
+        <ButtonToolbar
+          id="upload"
+          title={label}
+          isLoading={isLoading}
+          onClick={handleCallback}
+          label={label}
+          icon={<IconUpload size={constants.HEAVY_ICON_SIZE} />}
+          {...rest}
+        />
+      )
+    }
+    case BUTTON_TYPES.EXTRA_ACTIONS: {
+      return <ExtraActions {...props} />
+    }
+    default: {
+      return <ButtonToolbar {...props} />
+    }
+  }
 }
 
 const Toolbar = ({
@@ -59,24 +119,23 @@ const Toolbar = ({
         )}
         <div className="flex flex-row items-center">
           <Fragment>
-            {isDensityVisible && (
-              <ButtonDensity density={density} disabled={loading} />
-            )}
-            {isFieldsVisible && (
-              <ButtonFields fields={fields} disabled={loading} />
-            )}
-            {isDownloadVisible && (
-              <ButtonDownload download={download} disabled={loading} />
-            )}
-            {isUploadVisible && (
-              <ButtonUpload upload={upload} disabled={loading} />
-            )}
-            {isExtraActionsVisible && (
-              <ExtraActions extraActions={extraActions} />
-            )}
-            {isNewLineVisible && (
-              <ButtonNewLine newLine={newLine} disabled={loading} />
-            )}
+            {isDensityVisible &&
+              getButton(BUTTON_TYPES.DENSITY, { density, disabled: loading })}
+
+            {isFieldsVisible &&
+              getButton(BUTTON_TYPES.FIELDS, { fields, disabled: loading })}
+
+            {isDownloadVisible &&
+              getButton(BUTTON_TYPES.DOWNLOAD, { download, disabled: loading })}
+
+            {isUploadVisible &&
+              getButton(BUTTON_TYPES.UPLOAD, { upload, disabled: loading })}
+
+            {isExtraActionsVisible &&
+              getButton(BUTTON_TYPES.EXTRA_ACTIONS, { extraActions })}
+
+            {isNewLineVisible &&
+              getButton(BUTTON_TYPES.NEW_LINE, { newLine, disabled: loading })}
           </Fragment>
         </div>
       </Container>
@@ -84,15 +143,19 @@ const Toolbar = ({
   )
 }
 
+const getComponent = type => {
+  return props => getButton(type, props)
+}
+
 Toolbar.Container = Container
 Toolbar.SearchInput = InputToolbar
-Toolbar.ButtonDensity = ButtonDensity
-Toolbar.ButtonFields = ButtonFields
-Toolbar.ButtonDownload = ButtonDownload
-Toolbar.ButtonUpload = ButtonUpload
-Toolbar.ExtraActions = ExtraActions
-Toolbar.ButtonNewLine = ButtonNewLine
-Toolbar.Button = ButtonToolbar
+Toolbar.ButtonDensity = getComponent(BUTTON_TYPES.DENSITY)
+Toolbar.ButtonFields = getComponent(BUTTON_TYPES.FIELDS)
+Toolbar.ButtonDownload = getComponent(BUTTON_TYPES.DOWNLOAD)
+Toolbar.ButtonUpload = getComponent(BUTTON_TYPES.UPLOAD)
+Toolbar.ExtraActions = getComponent(BUTTON_TYPES.EXTRA_ACTIONS)
+Toolbar.ButtonNewLine = getComponent(BUTTON_TYPES.NEW_LINE)
+Toolbar.Button = getComponent()
 
 Toolbar.defaultProps = {
   actions: {
@@ -100,6 +163,14 @@ Toolbar.defaultProps = {
       actions: [],
     },
   },
+}
+
+Container.propTypes = {
+  justify: PropTypes.oneOf(['between', 'end', 'start', 'around', 'center']),
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
 }
 
 Toolbar.propTypes = {
