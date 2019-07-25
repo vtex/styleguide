@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.70.0] - 2019-07-25
+
+### Added
+
+- **TimePicker** component
+
 ## [8.69.0] - 2019-07-25
 
 ### Fixed
@@ -607,8 +613,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fixed error caused by `instanceof` `null` on `withFowardedRef` module.
 
 ## [8.27.2] - 2019-04-03
-
-## [8.27.1] - 2019-03-28
 
 ### Fixed
 

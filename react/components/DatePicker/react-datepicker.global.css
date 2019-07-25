@@ -6,16 +6,15 @@
   /* todo: replace this with actual variables from VTEX Tachyons */
   --white: #ffffff;
   --near-white: #f0f0f0;
-  --near-black: #2E2E2E;
-  
-  --blue: #134cd8;
-  --light-blue: #DBE9FD;
-  --dark-blue: #0C389F;
-  
-  --gray: #979899;
-  --light-gray: #E3E4E6;
-  --dark-gray: #727273;
+  --near-black: #2e2e2e;
 
+  --blue: #134cd8;
+  --light-blue: #dbe9fd;
+  --dark-blue: #0c389f;
+
+  --gray: #979899;
+  --light-gray: #e3e4e6;
+  --dark-gray: #727273;
 
   /* Sizes */
   --calendar-width: 376px;
@@ -24,33 +23,29 @@
   --time-paddings: 24px 12px;
   --cell-size: 42px;
   --cell-margins: 0;
-  
-  
+
   /* Colors */
   --bg-color: var(--white);
-  
+
   --day-color: var(--near-black);
   --day-disabled-text-color: var(--light-gray);
   --day-hover-bg-color: var(--near-white);
-  --day-hover-text-color: var(--blue); 
+  --day-hover-text-color: var(--blue);
   --day-outside-month-color: var(--dark-gray);
   --day-selected-border-color: var(--blue);
   --day-selected-hover-color: var(--light-blue);
   --day-name-color: var(--gray);
-  
+
   --navigation-arrow-color: var(--blue);
   --navigation-arrow-hover-color: var(--dark-blue);
-  
 
   --time-hover-color: var(--near-white);
   --time-selected-color: var(--blue);
   --time-selected-hover-color: var(--blue);
-  
 
   /* Typography */
   --title-font-size: 20px;
   --font-size: 16px;
-
 
   /* Miscelaneous */
   --shadow: 0px 1px 18px rgba(0, 0, 0, 0.14);
@@ -112,8 +107,8 @@
 }
 
 .react-datepicker__navigation--previous:before {
-	left: 2px;
-	transform: rotate(-135deg);
+  left: 2px;
+  transform: rotate(-135deg);
 }
 
 .react-datepicker__navigation {
@@ -146,7 +141,6 @@
 
 .react-datepicker__time-container {
   width: auto;
-  margin-top: 20px;
   border-left: 1px solid #e3e4e6;
 }
 
@@ -164,6 +158,10 @@
   padding-bottom: 16px;
 }
 
+.react-datepicker__header.react-datepicker__header--time {
+  display: none;
+}
+
 .react-datepicker__time-container
   .react-datepicker__time
   .react-datepicker__time-box {
@@ -173,7 +171,6 @@
 .react-datepicker__time-list {
   height: 333px !important;
 }
-
 
 /* Days */
 
@@ -185,7 +182,7 @@
   height: var(--cell-size);
   line-height: var(--cell-size);
   margin: var(--cell-margins);
-  border-radius: .3rem;
+  border-radius: 0.3rem;
 }
 
 .react-datepicker__day:hover {
