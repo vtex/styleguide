@@ -10,7 +10,7 @@
     "typeRoots": ["node_modules/@types"],
     "target": "esnext",
     "declaration": true,
-    "rootDir": "./components"
+    "rootDir": "./"
   },
   "typeAcquisition": {
     "enable": false
