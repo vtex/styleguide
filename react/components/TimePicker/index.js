@@ -11,6 +11,7 @@ function TimePicker(props) {
     <DatePicker
       {...props}
       ref={props.forwardedRef}
+      timeIntervals={props.interval}
       prefix={<IconClock />}
       useTimeOnly
     />
@@ -40,6 +41,8 @@ TimePicker.propTypes = {
   id: PropTypes.string,
   /** Times to be included  */
   includeTimes: PropTypes.arrayOf(PropTypes.instanceOf(Date)),
+  /** Interval between times */
+  interval: PropTypes.oneOf([5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60]),
   /** Label  */
   label: PropTypes.string,
   /** Locale string ('en-US', 'pt-BR', ...)  */

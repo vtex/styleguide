@@ -2,7 +2,8 @@
 
 ### 👍 Dos
 
-- Combine with Dropdowns or other components if you need more input from the user such as choosing a timezone or for different ways of selecting times.
+- Combine with Dropdowns or other components if you need more input from the user such as choosing a timezone.
+- Combine with the **TimePicker** component for specifing a time when choosing a date.
 - For birthdates or other dates that span far to the past or to the future do disable the calendar popover. It's not (yet) built for that, and the user might see herself forced to do a lot of clicks.
 
 ### 👎 Don'ts

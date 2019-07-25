@@ -1,8 +1,8 @@
 #### A TimePicker lets the user select a single time.
 
-### 👍 Dos
-
 ### 👎 Don'ts
+
+- Time suggestions should help the user to find an option more easily given its context of use (per hour, every half hour, 15 minutes, ...) so we recommend not using intervals shorter than 5 minutes.
 
 ### Supported locales
 
@@ -17,7 +17,7 @@ initialState = { date1: undefined, date2: undefined, date3: undefined }
     <TimePicker
       label="Small"
       size="small"
-      placeholder="Select a time..."
+      placeholder="Select a time or type a custom one..."
       value={state.date1}
       onChange={date => setState({ date1: date })}
       locale="pt-BR"
@@ -26,7 +26,7 @@ initialState = { date1: undefined, date2: undefined, date3: undefined }
   <div className="mb5">
     <TimePicker
       label="Regular"
-      placeholder="Select a time..."
+      placeholder="Select a time or type a custom one..."
       value={state.date2}
       onChange={date => setState({ date2: date })}
       locale="pt-BR"
@@ -35,7 +35,7 @@ initialState = { date1: undefined, date2: undefined, date3: undefined }
   <div className="mb5">
     <TimePicker
       label="Large"
-      placeholder="Select a time..."
+      placeholder="Select a time or type a custom one..."
       size="large"
       value={state.date3}
       onChange={date => setState({ date3: date })}
@@ -66,7 +66,7 @@ initialState = { locale: 'pt-BR', date: undefined }
   </div>
   <div className="mb5">
     <TimePicker
-      placeholder="Select a time..."
+      placeholder="Select a time or type a custom one..."
       locale={state.locale}
       value={state.date}
       onChange={date => setState({ date })}
@@ -85,7 +85,7 @@ const ref = React.createRef()
     <TimePicker
       ref={ref}
       label="Click in the button below to focus on this TimePicker"
-      placeholder="Select a time..."
+      placeholder="Select a time or type a custom one..."
       value={state.date}
       onChange={date => setState({ date })}
       locale="pt-BR"
