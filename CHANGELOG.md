@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.70.0] - 2019-07-25
+
 ### Added
 
 - **TimePicker** component
