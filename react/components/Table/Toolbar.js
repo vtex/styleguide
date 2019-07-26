@@ -387,6 +387,7 @@ Toolbar.propTypes = {
     density: PropTypes.shape({
       buttonLabel: PropTypes.string,
       lowOptionLabel: PropTypes.string,
+      handleCallback: PropTypes.func,
       mediumOptionLabel: PropTypes.string,
       highOptionLabel: PropTypes.string,
       alignMenu: PropTypes.oneOf(['right', 'left']),
@@ -424,6 +425,7 @@ Toolbar.propTypes = {
       label: PropTypes.string.isRequired,
       handleCallback: PropTypes.func.isRequired,
       disabled: PropTypes.bool,
+      isLoading: PropTypes.bool,
       actions: PropTypes.arrayOf(
         PropTypes.shape({
           label: PropTypes.string,
