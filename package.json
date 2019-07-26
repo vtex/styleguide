@@ -10,7 +10,7 @@
     "styleguide": "styleguidist server",
     "start": "styleguidist server",
     "styleguide:build": "styleguidist build && echo 'styleguide.vtex.com' >./styleguide/CNAME",
-    "babel:lib": "NODE_ENV=production babel ./react/components --out-dir ./lib --extensions \".ts,.tsx\" --ignore '__tests__,*.spec.js' --ignore '*.md' --copy-files",
+    "babel:lib": "NODE_ENV=production babel ./react/components --out-dir ./lib --extensions \".js,.jsx,.ts,.tsx\" --ignore '__tests__,*.spec.js' --ignore '*.md' --copy-files",
     "build:types": "tsc --emitDeclarationOnly",
     "babel:modules": "NODE_ENV=production babel ./react/modules --out-dir ./modules --ignore '__tests__,*.spec.js' --ignore '*.md' --copy-files",
     "clean:lib": "rm -rf lib",
@@ -30,6 +30,7 @@
   ],
   "homepage": "https://vtex.github.io/styleguide",
   "devDependencies": {
+    "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.4",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/plugin-transform-modules-commonjs": "^7.5.0",

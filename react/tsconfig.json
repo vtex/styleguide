@@ -9,8 +9,7 @@
     "strict": false,
     "typeRoots": ["node_modules/@types"],
     "target": "esnext",
-    "declaration": true,
-    "rootDir": "./"
+    "declaration": true
   },
   "typeAcquisition": {
     "enable": false
