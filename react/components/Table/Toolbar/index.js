@@ -1,4 +1,4 @@
-import React, { Fragment, Children } from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 
 import { constants } from '../util'
@@ -11,7 +11,6 @@ import ButtonToolbar from './ButtonToolbar'
 
 import IconUpload from '../../icon/Upload'
 import IconDownload from '../../icon/Download'
-import MenuToolbar from './MenuToolbar'
 
 const Container = ({ justify = 'end', children }) => (
   <div id="toolbar" className={`mb5 flex flex-row w-100 justify-${justify}`}>
@@ -85,47 +84,6 @@ const getButton = (type, props) => {
   }
 }
 
-const childrenConstraints = children => {
-  if (children) {
-    const ERROR_MSG = {
-      SINGLE_CHILD:
-        'The Toolbar must have a single child, which is the Container.',
-      CONTAINER_WRAPPER:
-        'All Toolbar composites must be wrapped by the Container.',
-      EXTERNAL_COMPONENTS:
-        'External components are not allowed! Try using the ButtonToolbar, InputToolbar or MenuToolbar to compose your solution.',
-    }
-
-    if (Children.count(children) > 1) {
-      throw new Error(ERROR_MSG.SINGLE_CHILD)
-    }
-
-    if (children.type !== Container) {
-      throw new Error(ERROR_MSG.CONTAINER_WRAPPER)
-    }
-
-    const containerProps = children.props['children']
-
-    const types = ['InputToolbar', 'ButtonToolbar', 'MenuToolbar']
-    Children.forEach(containerProps, child => {
-      const name = child.type.name
-      const displayName = child.type.displayName
-
-      if (name && displayName) {
-        throw new Error(ERROR_MSG.EXTERNAL_COMPONENTS)
-      }
-
-      if (name && !types.includes(name)) {
-        throw new Error(ERROR_MSG.EXTERNAL_COMPONENTS)
-      }
-
-      if (displayName && !types.includes(displayName)) {
-        throw new Error(ERROR_MSG.EXTERNAL_COMPONENTS)
-      }
-    })
-  }
-}
-
 const Toolbar = ({
   actions: {
     inputSearch,
@@ -137,10 +95,7 @@ const Toolbar = ({
     density,
   },
   loading,
-  children,
 }) => {
-  childrenConstraints(children)
-
   const isDownloadVisible = download && download.handleCallback
   const isUploadVisible = upload && upload.handleCallback
   const isFieldsVisible = fields && fields.showAllLabel && fields.hideAllLabel
@@ -156,52 +111,34 @@ const Toolbar = ({
     density.highOptionLabel
 
   return (
-    children || (
-      <Container justify={isSearchBarVisible ? 'between' : 'end'}>
-        {inputSearch && (
-          <InputToolbar disabled={loading} inputSearch={inputSearch} />
-        )}
-        <div className="flex flex-row items-center">
-          <Fragment>
-            {isDensityVisible &&
-              getButton(BUTTON_TYPES.DENSITY, { density, disabled: loading })}
+    <Container justify={isSearchBarVisible ? 'between' : 'end'}>
+      {inputSearch && (
+        <InputToolbar disabled={loading} inputSearch={inputSearch} />
+      )}
+      <div className="flex flex-row items-center">
+        <Fragment>
+          {isDensityVisible &&
+            getButton(BUTTON_TYPES.DENSITY, { density, disabled: loading })}
 
-            {isFieldsVisible &&
-              getButton(BUTTON_TYPES.FIELDS, { fields, disabled: loading })}
+          {isFieldsVisible &&
+            getButton(BUTTON_TYPES.FIELDS, { fields, disabled: loading })}
 
-            {isDownloadVisible &&
-              getButton(BUTTON_TYPES.DOWNLOAD, { download, disabled: loading })}
+          {isDownloadVisible &&
+            getButton(BUTTON_TYPES.DOWNLOAD, { download, disabled: loading })}
 
-            {isUploadVisible &&
-              getButton(BUTTON_TYPES.UPLOAD, { upload, disabled: loading })}
+          {isUploadVisible &&
+            getButton(BUTTON_TYPES.UPLOAD, { upload, disabled: loading })}
 
-            {isExtraActionsVisible &&
-              getButton(BUTTON_TYPES.EXTRA_ACTIONS, { extraActions })}
+          {isExtraActionsVisible &&
+            getButton(BUTTON_TYPES.EXTRA_ACTIONS, { extraActions })}
 
-            {isNewLineVisible &&
-              getButton(BUTTON_TYPES.NEW_LINE, { newLine, disabled: loading })}
-          </Fragment>
-        </div>
-      </Container>
-    )
+          {isNewLineVisible &&
+            getButton(BUTTON_TYPES.NEW_LINE, { newLine, disabled: loading })}
+        </Fragment>
+      </div>
+    </Container>
   )
 }
-
-const getComponent = type => {
-  const ButtonToolbar = props => getButton(type, props)
-  return ButtonToolbar
-}
-
-Toolbar.Container = Container
-Toolbar.SearchInput = InputToolbar
-Toolbar.Menu = MenuToolbar
-Toolbar.ButtonDensity = getComponent(BUTTON_TYPES.DENSITY)
-Toolbar.ButtonFields = getComponent(BUTTON_TYPES.FIELDS)
-Toolbar.ButtonDownload = getComponent(BUTTON_TYPES.DOWNLOAD)
-Toolbar.ButtonUpload = getComponent(BUTTON_TYPES.UPLOAD)
-Toolbar.ExtraActions = getComponent(BUTTON_TYPES.EXTRA_ACTIONS)
-Toolbar.ButtonNewLine = getComponent(BUTTON_TYPES.NEW_LINE)
-Toolbar.Button = getComponent()
 
 Toolbar.defaultProps = {
   actions: {
@@ -275,7 +212,6 @@ Toolbar.propTypes = {
     }),
   }),
   loading: PropTypes.bool,
-  children: PropTypes.node,
 }
 
 export default Toolbar

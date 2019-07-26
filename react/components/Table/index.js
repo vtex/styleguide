@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import map from 'lodash/map'
 
@@ -36,7 +36,6 @@ const Table = ({
   bulkActions,
   totalizers,
   filters,
-  children,
 }) => {
   const {
     state,
@@ -56,12 +55,6 @@ const Table = ({
     tableHeight,
   } = useTableState(schema, items, density, bulkActions, pagination)
 
-  useEffect(() => {
-    if (toolbar && children) {
-      throw new Error('Choose only one aproach')
-    }
-  }, [])
-
   return (
     <TableProvider
       value={{
@@ -73,21 +66,17 @@ const Table = ({
         staticSchema,
       }}>
       <div className="vtex-table__container">
-        {children ||
-          (toolbar && (
-            <Toolbar loading={loading} toolbar={toolbar} actions={toolbar} />
-          ))}
-
+        {toolbar && (
+          <Toolbar loading={loading} toolbar={toolbar} actions={toolbar} />
+        )}
         {filters && (
           <div className="mb5">
             <FilterBar {...filters} />
           </div>
         )}
-
         {totalizers && totalizers.length > 0 && (
           <Totalizers items={totalizers} />
         )}
-
         <BulkActions
           hasPrimaryBulkAction={hasPrimaryBulkAction}
           hasSecondaryBulkActions={hasSecondaryBulkActions}
@@ -97,7 +86,6 @@ const Table = ({
           onSelectAllLines={selectAllRows}
           onDeselectAllLines={deselectAllRows}
         />
-
         {isEmptyState ? (
           <Box>
             <EmptyState title={emptyStateLabel}>
@@ -126,14 +114,11 @@ const Table = ({
             density={state.selectedDensity}
           />
         )}
-
         {!loading && tablePagination && <Pagination {...tablePagination} />}
       </div>
     </TableProvider>
   )
 }
-
-Table.Toolbar = Toolbar
 
 Table.defaultProps = {
   loading: false,
@@ -264,11 +249,6 @@ Table.propTypes = {
   totalizers: PropTypes.array,
   /** Filters property  */
   filters: PropTypes.shape({ ...FilterBar.propTypes }),
-  /** Children that replaces the toolbar */
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
 }
 
 export default Table

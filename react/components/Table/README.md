@@ -1987,6 +1987,7 @@ const schema = {
 
 function ResourceListExample() {
   const [isModalOpen, setModalOpen] = React.useState(false)
+  const [inputValue, setInputValue] = React.useState('') 
 
   const density = {
     buttonLabel: 'Line density',
@@ -2010,51 +2011,24 @@ function ResourceListExample() {
     showAllLabel: 'Show All',
     hideAllLabel: 'Hide All',
   }
+  
+  const inputSearch = {
+    value: inputValue,
+    placeholder: 'Search stuff...',
+    onChange: e => setInputValue(e.target.value),
+    onClear: () => setInputValue(''),
+    onSubmit: e => { 
+      e.preventDefault()
+      alert('InputValue', inputValue)
+    },
+  }
 
   return (
-    <Table schema={schema} items={sampleData.items.slice(0, tableLength)}>
-      <Table.Toolbar>
-        <Table.Toolbar.Container>
-          <Table.Toolbar.ButtonDensity density={density} />
-          <Table.Toolbar.ButtonFields fields={fields} />
-          <Table.Toolbar.ButtonDownload download={download} />
-          <Table.Toolbar.ButtonUpload upload={upload} />
-          <Table.Toolbar.Menu 
-            button={{
-              id: 'exampleMenu',
-              title: 'exampleTitle',
-              icon: <PlusLines />,
-            }}
-            box={{
-              alignMenu: 'left'
-            }}
-          >
-            <Table.Toolbar.Menu.Item handleCallback={() => alert('Clicked')} closeMenuOnClick>
-              Example Item
-            </Table.Toolbar.Menu.Item>
-          </Table.Toolbar.Menu>
-          <Table.Toolbar.Button
-            icon={<PlusLines />}
-            label="Open Modal"
-            onClick={() => setModalOpen(true)}>
-            <Modal
-              centered
-              isOpen={isModalOpen}
-              onClose={() => setModalOpen(!isModalOpen)}>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
-            </Modal>
-          </Table.Toolbar.Button>
-        </Table.Toolbar.Container>
-      </Table.Toolbar>
-    </Table>
+    <Table 
+      schema={schema}
+      toolbar={{ inputSearch, density, fields, download, upload }}
+      items={sampleData.items.slice(0, tableLength)}
+    />
   )
 }
 
