@@ -20,4 +20,6 @@ const Box: React.FC<Props> = ({ children, noPadding }) => {
   )
 }
 
+Box.propTypes = propTypes
+
 export default Box
