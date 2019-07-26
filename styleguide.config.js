@@ -88,7 +88,7 @@ module.exports = {
         {
           name: 'Containers',
           components: [
-            'react/components/Box/index.js',
+            'react/components/Box/index.tsx',
             'react/components/Card/index.js',
             'react/components/Collapsible/index.js',
           ],
@@ -104,7 +104,6 @@ module.exports = {
             'react/components/Tag/index.js',
             'react/components/ProgressBar/index.js',
             'react/components/Totalizer/index.js',
-            'react/components/Hello/index.tsx',
           ],
         },
         {
