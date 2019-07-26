@@ -391,6 +391,7 @@ It's worth to customize empty state using this prop so the other table features 
 
 ```js
 const sampleData = require('./sampleData').default
+const Button = require('../Button').default
 const itemsCopy = sampleData.items
   .slice()
   .reverse()
@@ -453,6 +454,7 @@ This feature uses the pagination component in the bottom, after the table conten
 const ArrowDown = require('../icon/ArrowDown').default
 const ArrowUp = require('../icon/ArrowUp').default
 const sampleData = require('./sampleData').default
+const Tag = require('../Tag').default
 const tableLength = 5
 const initialState = {
   tableLength,
@@ -619,6 +621,7 @@ This case is recomended if you have lots of columns, so the most important infor
 
 ```js
 const sampleData = require('./sampleData').default
+const Tag = require('../Tag').default
 const tableLength = 5
 const initialState = {
   tableLength,
@@ -695,6 +698,7 @@ The toolbar is a bundle of features, including search input, columns visibility 
 const ArrowDown = require('../icon/ArrowDown').default
 const ArrowUp = require('../icon/ArrowUp').default
 const sampleData = require('./sampleData').default
+const Tag = require('../Tag').default
 const tableLength = 5
 const initialState = {
   slicedData: sampleData.items.slice(0, tableLength),
@@ -829,6 +833,7 @@ This uses the Totalizer component between the toolbar and the table content
 const ArrowDown = require('../icon/ArrowDown').default
 const ArrowUp = require('../icon/ArrowUp').default
 const sampleData = require('./sampleData').default
+const Tag = require('../Tag').default
 const tableLength = 5
 const initialState = {
   slicedData: sampleData.items.slice(0, tableLength),
@@ -910,6 +915,7 @@ This feature uses FilterBar component inserting it between the toolbar and table
 const ArrowDown = require('../icon/ArrowDown').default
 const ArrowUp = require('../icon/ArrowUp').default
 const sampleData = require('./sampleData').default
+const Tag = require('../Tag').default
 const tableLength = 7
 const initialState = {
   tableLength,
@@ -1377,6 +1383,7 @@ With Toolbar, Totalizers, Pagination and Filters
 const ArrowDown = require('../icon/ArrowDown').default
 const ArrowUp = require('../icon/ArrowUp').default
 const sampleData = require('./sampleData').default
+const Tag = require('../Tag').default
 const tableLength = 5
 const initialState = {
   tableLength,

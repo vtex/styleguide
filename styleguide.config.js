@@ -8,6 +8,7 @@ module.exports = {
   version: `${version}`,
   require: [
     'vtex-tachyons',
+    require.resolve('./config/polyfills'),
     'focus-visible',
     path.join(__dirname, './docs/styles/styles.css'),
   ],

@@ -17,7 +17,6 @@
 Sizes
 
 ```js
-const Input = require('./index.js').default
 ;<div>
   <div className="mb5">
     <Input placeholder="Placeholder" size="small" label="Small" />
@@ -40,7 +39,6 @@ const Input = require('./index.js').default
 Variations
 
 ```js
-const Input = require('./index.js').default
 const IconHelp = require('../icon/Help').default
 const IconSearch = require('../icon/Search').default
 class InputExamples extends React.Component {
@@ -130,7 +128,7 @@ class InputExamples extends React.Component {
 Using ref
 
 ```js
-const Input = require('./index.js').default
+const Button = require('../Button').default
 this.input = React.createRef()
 
 const handleFocusClick = () => {

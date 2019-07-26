@@ -57,6 +57,7 @@ For low-priority notification prefer a <a href="#/Components/Notification/ToastP
 Using ref
 
 ```js
+const Button = require('../Button').default
 const alertRef = React.createRef()
 
 ;<div>

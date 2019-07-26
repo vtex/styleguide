@@ -1,9 +1,9 @@
 // eslint-disable-next-line import/unambiguous
 module.exports = {
   presets: [
-    '@babel/react',
-    '@babel/typescript',
-    ['@babel/env', { modules: false }],
+    '@babel/preset-react',
+    '@babel/preset-typescript',
+    ['@babel/preset-env', { loose: true }],
   ],
   plugins: [
     '@babel/plugin-proposal-class-properties',

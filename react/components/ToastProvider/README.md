@@ -9,8 +9,8 @@
 - Due to its low to mild priority usage and dismissability, warning and error semantic styles do not apply to Toasts.
 
 
-```
-const ToastProvider = require('./index').ToastProvider
+```js
+const Button = require('../Button').default
 const ToastConsumer = require('./index').ToastConsumer
 
 const App = () => (

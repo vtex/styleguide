@@ -16,7 +16,6 @@ const appNodeModules = path.join(__dirname, '..', 'react', 'node_modules')
 // https://github.com/styleguidist/react-styleguidist/blob/981eeaaa83478c7b1077ece09900b9954ba1df69/src/scripts/make-webpack-config.js
 module.exports = {
   entry: [
-    require.resolve('./polyfills'),
     // We don't need to set our code's entry. Styleguidist already does that for us.
   ],
   module: {

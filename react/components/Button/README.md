@@ -178,7 +178,9 @@ Link mode
 Cancelling out button paddings. Useful for visually aligning tertiary buttons
 
 ```js
-<div className="flex justify-center">
+const Box = require('../Box').default
+
+;<div className="flex justify-center">
   <div className="flex flex-column w-60">
     <div className="t-heading-6 mb4">Using collapse props</div>
     <div className="w-100 mb4">
@@ -191,7 +193,7 @@ Cancelling out button paddings. Useful for visually aligning tertiary buttons
   </div>
 </div>
 
-<div className="flex justify-center mt6">
+;<div className="flex justify-center mt6">
   <div className="flex flex-column w-60">
     <div className="t-heading-6 mb4">No collapse props</div>
     <div className="w-100 mb4">

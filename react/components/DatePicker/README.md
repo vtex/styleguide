@@ -17,8 +17,6 @@ You can check out the list of supported locales [here](https://github.com/date-f
 #### Simple DatePicker
 
 ```js
-const DatePicker = require('./index.js').default
-
 class DatePickerExample extends React.Component {
   constructor() {
     super()
@@ -78,7 +76,6 @@ class DatePickerExample extends React.Component {
 
 ```js
 const { subDays, addDays, setHours, setMinutes } = require('date-fns')
-const DatePicker = require('./index.js').default
 
 class DatePickerExample extends React.Component {
   constructor() {
@@ -184,7 +181,6 @@ class DatePickerExample extends React.Component {
 #### Using ref
 
 ```js
-const DatePicker = require('./index.js').default
 const Button = require('../Button/index.js').default
 
 class DatePickerExample extends React.Component {
