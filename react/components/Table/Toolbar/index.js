@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, Children } from 'react'
 import PropTypes from 'prop-types'
 
 import { constants } from '../util'
@@ -84,6 +84,34 @@ const getButton = (type, props) => {
   }
 }
 
+const childrenConstraints = children => {
+  if (children) {
+    if (Children.count(children) > 1) {
+      throw new Error(
+        'The Toolbar must have a single child, which is the Container.'
+      )
+    }
+
+    if (children.type !== Container) {
+      throw new Error(
+        'All Toolbar composites must be wrapped by the Container.'
+      )
+    }
+
+    const containerProps = children.props['children']
+
+    const types = ['InputToolbar', 'ButtonToolbar']
+
+    Children.forEach(containerProps, child => {
+      if (!types.includes(child.type.name)) {
+        throw new Error(
+          'External components are not allowed! Try using the ButtonToolbar or InputToolbar to compose your solution.'
+        )
+      }
+    })
+  }
+}
+
 const Toolbar = ({
   actions: {
     inputSearch,
@@ -97,6 +125,8 @@ const Toolbar = ({
   loading,
   children,
 }) => {
+  childrenConstraints(children)
+
   const isDownloadVisible = download && download.handleCallback
   const isUploadVisible = upload && upload.handleCallback
   const isFieldsVisible = fields && fields.showAllLabel && fields.hideAllLabel
@@ -144,7 +174,8 @@ const Toolbar = ({
 }
 
 const getComponent = type => {
-  return props => getButton(type, props)
+  const ButtonToolbar = props => getButton(type, props)
+  return ButtonToolbar
 }
 
 Toolbar.Container = Container
@@ -229,10 +260,7 @@ Toolbar.propTypes = {
     }),
   }),
   loading: PropTypes.bool,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
+  children: PropTypes.node,
 }
 
 export default Toolbar

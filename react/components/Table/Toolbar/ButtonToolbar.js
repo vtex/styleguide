@@ -47,7 +47,8 @@ const ButtonToolbar = forwardRef(
   )
 )
 
-ButtonToolbar.displayName = 'ToolbarButton'
+ButtonToolbar.displayName = 'ButtonToolbar'
+ButtonToolbar.name = 'ButtonToolbar'
 
 ButtonToolbar.defaultProps = {
   variation: 'tertiary',
