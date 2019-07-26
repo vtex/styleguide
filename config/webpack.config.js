@@ -16,9 +16,6 @@ const appNodeModules = path.join(__dirname, '..', 'react', 'node_modules')
 module.exports = {
   entry: [
     require.resolve('./polyfills'),
-    // eslint-disable-next-line prefer-template
-    require.resolve('webpack-dev-server/client') + '?/',
-    require.resolve('webpack/hot/dev-server'),
     // We don't need to set our code's entry. Styleguidist already does that for us.
   ],
   module: {

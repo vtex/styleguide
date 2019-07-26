@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import TabButton from 'rsg-components/TabButton'
-import MdCode from 'react-icons/lib/md/code'
+import { MdCode } from 'react-icons/md'
 
 const CodeTabButton = props => (
   <TabButton {...props}>
