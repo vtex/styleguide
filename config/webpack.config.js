@@ -7,6 +7,7 @@ const webpack = require('webpack')
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin')
 
+const babelConfig = require('../babel.config.js')
 const appSrc = path.join(__dirname, '..', 'react')
 const appNodeModules = path.join(__dirname, '..', 'react', 'node_modules')
 
@@ -26,16 +27,7 @@ module.exports = {
         test: /\.(js|jsx|ts|tsx)?$/,
         loader: 'babel-loader',
         options: {
-          presets: [
-            '@babel/react',
-            '@babel/typescript',
-            ['@babel/env', { modules: false }],
-          ],
-          plugins: [
-            '@babel/plugin-proposal-class-properties',
-            'transform-es2015-modules-commonjs',
-            'dynamic-import-node',
-          ],
+          ...babelConfig,
         },
         exclude: /node_modules/,
       },
