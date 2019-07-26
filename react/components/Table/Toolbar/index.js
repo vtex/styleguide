@@ -11,6 +11,7 @@ import ButtonToolbar from './ButtonToolbar'
 
 import IconUpload from '../../icon/Upload'
 import IconDownload from '../../icon/Download'
+import InputAutoComplete from './InputAutoComplete'
 
 const Container = ({ justify = 'end', children }) => (
   <div id="toolbar" className={`mb5 flex flex-row w-100 justify-${justify}`}>
@@ -112,9 +113,12 @@ const Toolbar = ({
 
   return (
     <Container justify={isSearchBarVisible ? 'between' : 'end'}>
-      {inputSearch && (
-        <InputToolbar disabled={loading} inputSearch={inputSearch} />
-      )}
+      {inputSearch &&
+        (inputSearch.autoComplete ? (
+          <InputAutoComplete disabled={loading} inputSearch={inputSearch} />
+        ) : (
+          <InputToolbar disabled={loading} inputSearch={inputSearch} />
+        ))}
       <div className="flex flex-row items-center">
         <Fragment>
           {isDensityVisible &&
@@ -160,6 +164,9 @@ Toolbar.propTypes = {
   actions: PropTypes.shape({
     inputSearch: PropTypes.shape({
       onSubmit: PropTypes.func,
+      autoComplete: PropTypes.shape({
+        isLoading: PropTypes.bool,
+      }),
     }),
     density: PropTypes.shape({
       buttonLabel: PropTypes.string,

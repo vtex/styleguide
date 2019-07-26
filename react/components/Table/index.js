@@ -178,6 +178,9 @@ Table.propTypes = {
   toolbar: PropTypes.shape({
     inputSearch: PropTypes.shape({
       onSubmit: PropTypes.func,
+      autoComplete: PropTypes.shape({
+        isLoading: PropTypes.bool,
+      }),
     }),
     density: PropTypes.shape({
       buttonLabel: PropTypes.string,

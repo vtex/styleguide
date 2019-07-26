@@ -2021,6 +2021,9 @@ function ResourceListExample() {
       e.preventDefault()
       alert('InputValue', inputValue)
     },
+    autoComplete: {
+      isLoading: true
+    }
   }
 
   return (
