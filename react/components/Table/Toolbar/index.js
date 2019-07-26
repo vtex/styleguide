@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 
 import { constants } from '../util'
-import InputToolbar from './InputToolbar'
+import SimpleInput from './SimpleInput'
 import ButtonDensity from './ButtonDensity'
 import ButtonFields from './ButtonFields'
 import ButtonNewLine from './ButtonNewLine'
@@ -117,7 +117,7 @@ const Toolbar = ({
         (inputSearch.autoComplete ? (
           <InputAutoComplete disabled={loading} inputSearch={inputSearch} />
         ) : (
-          <InputToolbar disabled={loading} inputSearch={inputSearch} />
+          <SimpleInput disabled={loading} inputSearch={inputSearch} />
         ))}
       <div className="flex flex-row items-center">
         <Fragment>
