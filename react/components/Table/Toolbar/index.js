@@ -87,34 +87,40 @@ const getButton = (type, props) => {
 
 const childrenConstraints = children => {
   if (children) {
+    const ERROR_MSG = {
+      SINGLE_CHILD:
+        'The Toolbar must have a single child, which is the Container.',
+      CONTAINER_WRAPPER:
+        'All Toolbar composites must be wrapped by the Container.',
+      EXTERNAL_COMPONENTS:
+        'External components are not allowed! Try using the ButtonToolbar, InputToolbar or MenuToolbar to compose your solution.',
+    }
+
     if (Children.count(children) > 1) {
-      throw new Error(
-        'The Toolbar must have a single child, which is the Container.'
-      )
+      throw new Error(ERROR_MSG.SINGLE_CHILD)
     }
 
     if (children.type !== Container) {
-      throw new Error(
-        'All Toolbar composites must be wrapped by the Container.'
-      )
+      throw new Error(ERROR_MSG.CONTAINER_WRAPPER)
     }
 
     const containerProps = children.props['children']
 
     const types = ['InputToolbar', 'ButtonToolbar', 'MenuToolbar']
-
     Children.forEach(containerProps, child => {
-      console.log(child)
-      if (child.type.name && !types.includes(child.type.name)) {
-        throw new Error(
-          'External components are not allowed! Try using the ButtonToolbar or InputToolbar to compose your solution.'
-        )
+      const name = child.type.name
+      const displayName = child.type.displayName
+
+      if (name && displayName) {
+        throw new Error(ERROR_MSG.EXTERNAL_COMPONENTS)
       }
 
-      if (child.type.displayName && !types.includes(child.type.displayName)) {
-        throw new Error(
-          'External components are not allowed! Try using the ButtonToolbar or InputToolbar to compose your solution.'
-        )
+      if (name && !types.includes(name)) {
+        throw new Error(ERROR_MSG.EXTERNAL_COMPONENTS)
+      }
+
+      if (displayName && !types.includes(displayName)) {
+        throw new Error(ERROR_MSG.EXTERNAL_COMPONENTS)
       }
     })
   }
