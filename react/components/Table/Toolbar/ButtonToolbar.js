@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import ButtonWithIcon from '../../ButtonWithIcon'
 
-const ICON_OPTICAL_COMPENSATION = { marginTop: '1.5px' }
+const ICON_OPTICAL_COMPENSATION = { marginTop: 1.5 }
 
 const ButtonToolbar = forwardRef(
   (
