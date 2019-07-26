@@ -3,13 +3,10 @@ import PropTypes from 'prop-types'
 
 import InputSearch from '../../InputSearch'
 
-const InputToolbar = ({ disabled, inputSearch }) => {
-  const handleInputSearchSubmit = e => {
-    inputSearch.onSubmit && inputSearch.onSubmit(e)
-  }
-
+const InputToolbar = ({ inputSearch, disabled }) => {
+  const { onSubmit: handleSubmit } = inputSearch
   return (
-    <form className="w-40" onSubmit={handleInputSearchSubmit}>
+    <form className="w-40" onSubmit={handleSubmit}>
       <InputSearch disabled={disabled} {...inputSearch} />
     </form>
   )
@@ -17,8 +14,8 @@ const InputToolbar = ({ disabled, inputSearch }) => {
 
 InputToolbar.propTypes = {
   inputSearch: PropTypes.shape({
-    onSubmit: PropTypes.func,
-  }),
+    onSubmit: PropTypes.func.isRequired,
+  }).isRequired,
   disabled: PropTypes.bool,
 }
 

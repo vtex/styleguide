@@ -64,30 +64,33 @@ const SimpleTable = ({
   }
 
   const addLineActionsToSchema = (schema, lineActions) => {
+    const LineActions = ({ rowData }) => (
+      <ActionMenu
+        buttonProps={{
+          variation: 'tertiary',
+          icon: <OptionsDots />,
+          onMouseEnter: () => setLineActionsHovered(true),
+          onMouseLeave: () => setLineActionsHovered(false),
+        }}
+        options={lineActions.map(action => ({
+          ...action,
+          label: action.label({ rowData }),
+          onClick: () => action.onClick({ rowData }),
+        }))}
+      />
+    )
+
+    LineActions.propTypes = {
+      rowData: PropTypes.any,
+    }
+
     return {
       ...schema.properties,
       // eslint-disable-next-line camelcase
       _VTEX_Table_Internal_lineActions: {
         title: NO_TITLE_COLUMN,
         width: LINE_ACTIONS_COLUMN_WIDTH,
-        // eslint-disable-next-line
-        cellRenderer: ({ rowData }) => {
-          return (
-            <ActionMenu
-              buttonProps={{
-                variation: 'tertiary',
-                icon: <OptionsDots />,
-                onMouseEnter: () => setLineActionsHovered(true),
-                onMouseLeave: () => setLineActionsHovered(false),
-              }}
-              options={lineActions.map(action => ({
-                ...action,
-                label: action.label({ rowData }),
-                onClick: () => action.onClick({ rowData }),
-              }))}
-            />
-          )
-        },
+        cellRenderer: LineActions,
       },
     }
   }
@@ -110,20 +113,15 @@ const SimpleTable = ({
         <div>
           <AutoSizer key={tableKey}>
             {({ width }) => {
-              const colsWidth = Object.keys(schema.properties).reduce(
-                (acc, curr) => {
-                  const col = schema.properties[curr]
-                  return acc + (col.width ? col.width : 0)
-                },
-                0
-              )
+              const colsWidth = properties.reduce((acc, curr) => {
+                const col = schema.properties[curr]
+                return acc + (col.width ? col.width : 0)
+              }, 0)
 
-              const colsWithoutWidth = Object.keys(schema.properties).filter(
-                curr => {
-                  const col = schema.properties[curr]
-                  return !col.width
-                }
-              )
+              const colsWithoutWidth = properties.filter(curr => {
+                const col = schema.properties[curr]
+                return !col.width
+              })
 
               const fullWidthColWidth =
                 (width - colsWidth) / colsWithoutWidth.length
