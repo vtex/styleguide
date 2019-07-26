@@ -85,6 +85,8 @@
     "webpack": "^4.37.0"
   },
   "dependencies": {
+    "autoprefixer": "^9.6.1",
+    "case-sensitive-paths-webpack-plugin": "^2.2.0",
     "focus-visible": "^4.1.5",
     "fromentries": "^1.1.0",
     "react-color": "^2.17.0",
@@ -105,6 +107,18 @@
     "hooks": {
       "pre-push": "npm run prettier-conflict-check && npm run lint"
     }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "jest": {
     "collectCoverageFrom": [
