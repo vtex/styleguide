@@ -736,6 +736,10 @@ class MyOrdersFilter extends React.Component {
 Filter Options with Modal Example
 
 ```js
+const Button = require('../Button').default
+const Modal = require('../Modal').default
+const Input = require('../Input').default
+
 class MyUsersFilter extends React.Component {
   constructor() {
     super()
