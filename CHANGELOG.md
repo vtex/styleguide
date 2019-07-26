@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Typescript support (made with ❤ by UFCG).
+
 ## [8.70.4] - 2019-07-31
 
 ### Added
