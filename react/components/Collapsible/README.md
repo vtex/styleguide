@@ -212,6 +212,8 @@ FAQ accordion example
 
 ```js
 const PageBlock = require('../PageBlock').default
+const Box = require('../Box').default
+
 initialState = { openQuestion: null }
 
 function toggleAccordion(questionNbr) {
