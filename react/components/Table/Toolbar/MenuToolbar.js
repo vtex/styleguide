@@ -41,12 +41,12 @@ const Box = ({ alignMenu, height, width, groupActions, children }) => {
   )
 }
 
-const Item = ({ isSelected, handleCallBack, closeMenuOnClick, children }) => {
+const Item = ({ isSelected, handleCallback, closeMenuOnClick, children }) => {
   const { setBoxVisible } = useContext(MenuContext)
 
   const handleClick = () => {
     closeMenuOnClick && setBoxVisible(false)
-    handleCallBack()
+    handleCallback()
   }
 
   return (
@@ -62,7 +62,7 @@ const Item = ({ isSelected, handleCallBack, closeMenuOnClick, children }) => {
   )
 }
 
-const Menu = ({ button, box, children }) => {
+const MenuToolbar = ({ button, box, children }) => {
   const [isBoxVisible, setBoxVisible] = useState(false)
   const buttonRef = useRef(null)
 
@@ -80,11 +80,11 @@ const Menu = ({ button, box, children }) => {
   )
 }
 
-Menu.Item = Item
+MenuToolbar.Item = Item
 
 Item.propTypes = {
   isSelected: PropTypes.bool,
-  handleCallBack: PropTypes.func,
+  handleCallback: PropTypes.func,
   closeMenuOnClick: PropTypes.bool,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
@@ -109,7 +109,7 @@ Box.propTypes = {
   ]),
 }
 
-Menu.propTypes = {
+MenuToolbar.propTypes = {
   button: PropTypes.shape({
     id: PropTypes.id,
     title: PropTypes.string,
@@ -134,4 +134,4 @@ Menu.propTypes = {
   ]),
 }
 
-export default Menu
+export default MenuToolbar

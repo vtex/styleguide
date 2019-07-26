@@ -2019,6 +2019,20 @@ function ResourceListExample() {
           <Table.Toolbar.ButtonFields fields={fields} />
           <Table.Toolbar.ButtonDownload download={download} />
           <Table.Toolbar.ButtonUpload upload={upload} />
+          <Table.Toolbar.Menu 
+            button={{
+              id: 'exampleMenu',
+              title: 'exampleTitle',
+              icon: <PlusLines />,
+            }}
+            box={{
+              alignMenu: 'left'
+            }}
+          >
+            <Table.Toolbar.Menu.Item handleCallback={() => alert('Clicked')} closeMenuOnClick>
+              Example Item
+            </Table.Toolbar.Menu.Item>
+          </Table.Toolbar.Menu>
           <Table.Toolbar.Button
             icon={<PlusLines />}
             label="Open Modal"

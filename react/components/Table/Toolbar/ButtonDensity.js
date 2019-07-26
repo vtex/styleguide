@@ -5,7 +5,7 @@ import IconDensity from '../../icon/Density'
 import { constants } from '../util'
 
 import useTableContext from '../hooks/useTableContext'
-import Menu from './Menu'
+import MenuToolbar from './MenuToolbar'
 
 const BOX_HEIGHT =
   constants.DENSITY_OPTIONS.length * constants.FIELDS_BOX_ITEM_HEIGHT
@@ -14,7 +14,7 @@ const ButtonDensity = ({ density, disabled }) => {
   const { state, setDensity } = useTableContext()
 
   return (
-    <Menu
+    <MenuToolbar
       button={{
         id: 'toggleDensity',
         title: density.buttonLabel,
@@ -25,19 +25,19 @@ const ButtonDensity = ({ density, disabled }) => {
       {constants.DENSITY_OPTIONS.map((key, index) => {
         const isKeySelected = state.selectedDensity === key
         return (
-          <Menu.Item
+          <MenuToolbar.Item
             key={index}
             isSelected={isKeySelected}
-            handleCallBack={() => {
+            handleCallback={() => {
               setDensity(key)
               density.handleCallback && density.handleCallback(key)
             }}
             closeMenuOnClick>
             {density[`${key}OptionLabel`]}
-          </Menu.Item>
+          </MenuToolbar.Item>
         )
       })}
-    </Menu>
+    </MenuToolbar>
   )
 }
 

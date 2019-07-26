@@ -11,6 +11,7 @@ import ButtonToolbar from './ButtonToolbar'
 
 import IconUpload from '../../icon/Upload'
 import IconDownload from '../../icon/Download'
+import MenuToolbar from './MenuToolbar'
 
 const Container = ({ justify = 'end', children }) => (
   <div id="toolbar" className={`mb5 flex flex-row w-100 justify-${justify}`}>
@@ -100,10 +101,17 @@ const childrenConstraints = children => {
 
     const containerProps = children.props['children']
 
-    const types = ['InputToolbar', 'ButtonToolbar']
+    const types = ['InputToolbar', 'ButtonToolbar', 'MenuToolbar']
 
     Children.forEach(containerProps, child => {
-      if (!types.includes(child.type.name)) {
+      console.log(child)
+      if (child.type.name && !types.includes(child.type.name)) {
+        throw new Error(
+          'External components are not allowed! Try using the ButtonToolbar or InputToolbar to compose your solution.'
+        )
+      }
+
+      if (child.type.displayName && !types.includes(child.type.displayName)) {
         throw new Error(
           'External components are not allowed! Try using the ButtonToolbar or InputToolbar to compose your solution.'
         )
@@ -180,6 +188,7 @@ const getComponent = type => {
 
 Toolbar.Container = Container
 Toolbar.SearchInput = InputToolbar
+Toolbar.Menu = MenuToolbar
 Toolbar.ButtonDensity = getComponent(BUTTON_TYPES.DENSITY)
 Toolbar.ButtonFields = getComponent(BUTTON_TYPES.FIELDS)
 Toolbar.ButtonDownload = getComponent(BUTTON_TYPES.DOWNLOAD)

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import Toggle from '../../Toggle'
 import IconColumns from '../../icon/Columns'
-import Menu from './Menu'
+import MenuToolbar from './MenuToolbar'
 
 import { constants } from '../util'
 import useTableContext from '../hooks/useTableContext'
@@ -31,7 +31,7 @@ const ButtonFields = ({ fields, disabled }) => {
   ])
 
   return (
-    <Menu
+    <MenuToolbar
       button={{
         id: 'toggleFieldsBtn',
         title: fields.label,
@@ -48,12 +48,14 @@ const ButtonFields = ({ fields, disabled }) => {
         ],
       }}>
       {Object.keys(staticSchema.properties).map((field, index) => (
-        <Menu.Item key={index} handleCallBack={() => toggleColumn(field)}>
+        <MenuToolbar.Item
+          key={index}
+          handleCallback={() => toggleColumn(field)}>
           {staticSchema.properties[field].title || field}
           <Toggle checked={!state.hiddenFields.includes(field)} />
-        </Menu.Item>
+        </MenuToolbar.Item>
       ))}
-    </Menu>
+    </MenuToolbar>
   )
 }
 
