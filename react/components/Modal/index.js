@@ -57,6 +57,7 @@ class Modal extends PureComponent {
       showTopBar,
       showBottomBarBorder,
       onCloseTransitionFinish,
+      container,
     } = this.props
     const { shadowBottom, shadowTop } = this.state
 
@@ -64,6 +65,7 @@ class Modal extends PureComponent {
       <ResponsiveModal
         open={isOpen}
         center={centered}
+        container={container}
         onClose={onClose}
         onExited={onCloseTransitionFinish}
         closeOnEsc={closeOnEsc}
@@ -143,6 +145,8 @@ Modal.propTypes = {
   children: PropTypes.node.isRequired,
   /** Center the modal (for small content) */
   centered: PropTypes.bool,
+  /** Container in which the modal is rendered */
+  container: PropTypes.object,
   /** Show or hide the modal */
   isOpen: PropTypes.bool.isRequired,
 
