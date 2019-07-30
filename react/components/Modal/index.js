@@ -74,12 +74,12 @@ class Modal extends PureComponent {
         classNames={{
           overlay: `vtex-modal__overlay ${
             responsiveFullScreen ? 'pa5-ns pa0' : ''
-            }`,
+          }`,
           modal: `vtex-modal__modal ${
             responsiveFullScreen
               ? 'br2-ns w-100 w-auto-ns h-100 h-auto-ns'
               : 'br2'
-            } ${styles.mh100} flex flex-column`,
+          } ${styles.mh100} flex flex-column`,
           closeIcon: 'vtex-modal__close-icon',
         }}
         styles={{
@@ -109,9 +109,9 @@ class Modal extends PureComponent {
         <div
           className={`${
             responsiveFullScreen ? 'ph7 ph8-ns' : 'ph6 ph8-ns'
-            } overflow-auto flex-shrink-1 flex-grow-1 ${bottomBar ? '' : 'pb8'} ${
+          } overflow-auto flex-shrink-1 flex-grow-1 ${bottomBar ? '' : 'pb8'} ${
             title ? '' : 'pt5 pt6-ns'
-            } ${styles.scrollBar}`}
+          } ${styles.scrollBar}`}
           ref={this.contentContainerReference}
           onScroll={this.handleScroll}>
           {children}
@@ -124,8 +124,8 @@ class Modal extends PureComponent {
             {bottomBar}
           </BottomBar>
         ) : (
-            ''
-          )}
+          ''
+        )}
       </ResponsiveModal>
     )
   }
