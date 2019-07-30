@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- **Modal** and **ModalDialog** now accept an optional "container" prop which lets the user choose where they are rendered
+
 ## [8.70.3] - 2019-07-31
 
 ### Fixed
