@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- `Collapsible` arrow position.
+
 ## [8.70.2] - 2019-07-31
 
 ### Removed
