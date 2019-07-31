@@ -59,6 +59,7 @@ const ICONS = {
   VisibilityOff: require('./VisibilityOff').default,
   VisibilityOn: require('./VisibilityOn').default,
   Warning: require('./Warning').default,
+  Info: require('./Info').default,
 }
 const DEMO_SIZE = 20
 const DEMO_LABEL = 'pb3 code c-muted-1 f6'
