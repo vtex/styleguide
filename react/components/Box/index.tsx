@@ -1,5 +1,5 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { FC } from 'react'
+import PropTypes, { InferProps } from 'prop-types'
 
 const propTypes = {
   /** Content of the box */
@@ -8,9 +8,9 @@ const propTypes = {
   noPadding: PropTypes.bool,
 }
 
-type Props = PropTypes.InferProps<typeof propTypes>
+type Props = InferProps<typeof propTypes>
 
-const Box: React.FC<Props> = ({ children, noPadding }) => {
+const Box: FC<Props> = ({ children, noPadding }) => {
   const padding = noPadding ? '' : 'pa7-ns'
   return (
     <div
