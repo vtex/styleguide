@@ -146,8 +146,7 @@ HelloWorld.defaultProps = defaultProps
 
 export default Hello
 ```
-
-After that, **for IO Apps**, you only need your component to be at the `/react` folder and the Builder Hub will generate the typings.
+After that, **for IO Apps**, you only need your component being imported and exported be at the `/react` folder in a `.ts` file (not `.tsx` yet, because we still have `.js` files) and the Builder Hub will generate the typings.
 
 With all this, you are ready to develop Typescript components into our Styleguide :)
 
