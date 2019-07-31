@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.70.2] - 2019-07-31
+
+### Removed
+
+- Animation of the `Collapsible` when it is mounted for the first time.
+
 ## [8.70.1] - 2019-07-26
 
 ### Fixed
