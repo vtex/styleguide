@@ -40,11 +40,7 @@ export default function deprecated({ useNewComponent, useNewProps }) {
       componentDidMount() {
         if (useNewComponent) {
           console.warn(
-            `"${
-              useNewComponent.old
-            }" component is deprecated, you should use "${
-              useNewComponent.new
-            }" instead`
+            `"${useNewComponent.old}" component is deprecated, you should use "${useNewComponent.new}" instead`
           )
         }
         if (useNewProps) {
