@@ -9,11 +9,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- Typescript support (made with ❤ by UFCG).
+- TypeScript support (made with ❤ by UFCG).
 
 ### Changed
 
-- **Box** component now is typescript based.
+- **Box** component now is TypeScript based.
 
 ## [8.70.4] - 2019-07-31
 

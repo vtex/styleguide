@@ -116,12 +116,12 @@ In parallel to this each PR should update the `CHANGELOG.md` file according to t
 <Imperative verb> <object of action>
 ```
 
-#### Typescript components
+#### TypeScript components
 
-VTEX Styleguide now supports typescript components and this is how you can build them:
+VTEX Styleguide now supports TypeScript components and this is how you can build them:
 
 - You need to create a _components/ComponentName/index.tsx_ file and start from there.
-- The second thing is `prop-types`. We still use `prop-types` to define and to document our components but with typescript you need to it like this:
+- The second thing is `prop-types`. We still use `prop-types` to define and to document our components but with TypeScript you need to it like this:
 
 ```tsx
 import React from 'react'
@@ -136,7 +136,7 @@ const defaultProps = {
   message: 'Hello world!'
 }
 
-// This is the Typescript "trick"
+// This is the TypeScript "trick"
 type Props = PropTypes.InferProps<typeof propTypes, typeof defaultProps>
 
 const HelloWorld: React.FC<Props> = ({ message }) => <span>{message}</span>
@@ -148,6 +148,6 @@ export default Hello
 ```
 After that, **for IO Apps**, you only need your component being imported and exported be at the `/react` folder in a `.ts` file (not `.tsx` yet, because we still have `.js` files) and the Builder Hub will generate the typings.
 
-With all this, you are ready to develop Typescript components into our Styleguide :)
+With all this, you are ready to develop TypeScript components into our Styleguide :)
 
 **This is what you need to know to develop with us! Thank you for your contribution!**
