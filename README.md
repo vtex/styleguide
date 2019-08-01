@@ -18,13 +18,13 @@ For instructions on how to use the Styleguide in your project refer to the page 
 
 ### Setup
 
-```sh
+```shell
 yarn install
 ```
 
 ### Running
 
-```sh
+```shell
 yarn styleguide
 ```
 
@@ -32,7 +32,7 @@ yarn styleguide
 
 Run this in this repo:
 
-```sh
+```shell
 yarn develop
 ```
 
@@ -56,7 +56,7 @@ To add tests to a component, just add a test file with the `.test.js` extension 
 
 Example:
 
-```sh
+```shell
 react/components/Alert/
 ├── README.md
 ├── index.js
@@ -69,13 +69,13 @@ We use [react-testing-library](https://github.com/kentcdodds/react-testing-libra
 
 To run the test use:
 
-```sh
+```shell
 yarn test
 ```
 
 You can also pass the `--watch` flag:
 
-```sh
+```shell
 yarn test --watch
 ```
 
@@ -100,7 +100,7 @@ To post the changelog on Github Release Notes, is required to configure a Person
 
 We use [releasy](https://www.npmjs.com/package/releasy) to publish our styleguide. To publish on both npm and render(VTEX IO) with Github Release Notes, execute the command below:
 
-```sh
+```shell
 releasy --stable
 ```
 
@@ -108,7 +108,7 @@ releasy --stable
 
 To update the docs:
 
-```sh
+```shell
 yarn deploy
 ```
 

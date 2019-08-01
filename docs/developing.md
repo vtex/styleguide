@@ -11,7 +11,7 @@ Before start, we must distinguish between our two type of developers who use our
 
 Add the styleguide to dependencies on `manifest.json`:
 
-```sh noeditor static
+```json noeditor static
 "dependencies": {
   "vtex.styleguide": "9.x"
 },
@@ -25,7 +25,7 @@ import { Button } from 'vtex.styleguide'
 
 And to run, just do as in any other VTEX App, execute the command:
 
-```sh noeditor static
+```shell noeditor static
 vtex link
 ```
 
@@ -35,7 +35,7 @@ To learn more about how to link apps in your workspace, [see here](https://help.
 
 Use your favorite package manager to add the styleguide in your dependencies.
 
-```sh noeditor static
+```shell noeditor static
 yarn add @vtex/styleguide
 # or
 npm install @vtex/styleguide
@@ -70,9 +70,7 @@ The allowed types are:
 
 The description needs to be shortly and follow the kebab-case pattern.
 
-```
 Ex: `git checkout -b feature/nice-new-thing`
-```
 
 Now, that you already open a new branch from `master`, let see how the commits should be.
 
@@ -80,7 +78,7 @@ Now, that you already open a new branch from `master`, let see how the commits s
 
 The commit messages must be written in the English language and follow the following template:
 
-```
+```diff
 <Imperative verb> <object of action>
 ```
 
@@ -92,7 +90,7 @@ Heres a set of examples:
 
 If you are close a issue in the commit you must add the `Fix #<Issue Number>` in commit's body, like:
 
-```
+```diff
 <Imperative verb> <object of action> <--- Commit's title
                                      <---  Blanck line
 Fix #<Issue number>                  <--- Commit's body
@@ -112,7 +110,7 @@ To keep every change traceable, we use the [releasy](ttps://www.npmjs.com/packag
 
 In parallel to this each PR should update the `CHANGELOG.md` file according to the format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/). The change messages must follow the template:
 
-```
+```diff
 <Imperative verb> <object of action>
 ```
 
