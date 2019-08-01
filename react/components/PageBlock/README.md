@@ -69,7 +69,9 @@ With Title and subtitle
 With Title, subtitle and aside children
 
 ```js
-<div className="bg-muted-5 pa8">
+const Dropdown = require('../Dropdown').default
+
+;<div className="bg-muted-5 pa8">
   <PageBlock
     title="Section"
     subtitle="Some explanation for your section."
@@ -98,6 +100,11 @@ Full-blown example
 
 ```js
 const Tab = require('../Tabs/Tab').default
+const Tabs = require('../Tabs').default
+const Dropdown = require('../Dropdown').default
+const Input = require('../Input').default
+const Button = require('../Button').default
+const Table = require('../Table').default
 
 ;<div className="bg-muted-5 pa8">
   <PageBlock variation="full">

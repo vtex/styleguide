@@ -7,6 +7,7 @@ Button group receives a list of button components with an extra available prop `
 Default
 
 ```js
+const Button = require('../Button').default
 initialState = { active: 1 }
 ;<div>
   <ButtonGroup
@@ -34,6 +35,7 @@ initialState = { active: 1 }
 Sizes
 
 ```js
+const Button = require('../Button').default
 initialState = { active: 1 }
 ;<div>
   <ButtonGroup
@@ -83,6 +85,7 @@ initialState = { active: 1 }
 Misc
 
 ```js
+const Button = require('../Button').default
 initialState = { active: 1 }
 ;<div>
   <ButtonGroup
@@ -129,6 +132,7 @@ const ArrowBack = require('../icon/ArrowBack').default
 const Delete = require('../icon/Delete').default
 const Edit = require('../icon/Edit').default
 const PlusLines = require('../icon/PlusLines').default
+const ButtonWithIcon = require('../ButtonWithIcon').default
 
 const arrow = <ArrowBack />
 const remove = <Delete />
@@ -169,6 +173,8 @@ initialState = { active: 1 }
 Split Button
 
 ```js
+const Button = require('../Button').default
+const ActionMenu = require('../ActionMenu').default
 const CaretDown = require('../icon/CaretDown').default
 const caretDown = <CaretDown />
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import copy from 'clipboard-copy'
-import MdContentCopy from 'react-icons/lib/md/content-copy'
+import { MdContentCopy } from 'react-icons/md'
 import ToolbarButton from 'rsg-components/ToolbarButton'
 import Styled from 'rsg-components/Styled'
 
@@ -18,12 +18,8 @@ export const styles = ({ space, fontFamily, fontSize, color }) => ({
 })
 
 export function PathlineRenderer({ classes, children }) {
-  const npmString = `import ${
-    children.componentName
-  } from '@vtex/styleguide/lib/${children.dir}'`
-  const vtexIOString = `import { ${
-    children.componentName
-  } } from 'vtex.styleguide'`
+  const npmString = `import ${children.componentName} from '@vtex/styleguide/lib/${children.dir}'`
+  const vtexIOString = `import { ${children.componentName} } from 'vtex.styleguide'`
 
   return (
     <div className={classes.pathline}>

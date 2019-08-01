@@ -30,6 +30,8 @@
 Simple
 
 ```js
+const Input = require('../Input').default
+
 class SimpleConditionsCase extends React.Component {
   constructor() {
     super()
@@ -139,6 +141,8 @@ class SimpleConditionsCase extends React.Component {
 Complex
 
 ```js
+const Dropdown = require('../Dropdown').default
+
 const possibleColors = [
   { label: 'White', value: 'white' },
   { label: 'Black', value: 'black' },
@@ -450,6 +454,9 @@ class ComplexConditionsCase extends React.Component {
 Using ref
 
 ```js
+const Button = require('../Button').default
+const Input = require('../Input').default
+
 class SimpleConditionsCase extends React.Component {
   constructor() {
     super()

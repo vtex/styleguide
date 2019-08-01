@@ -35,7 +35,9 @@ With link
 With children
 
 ```js
-<PageHeader
+const Button = require('../Button').default
+
+;<PageHeader
   title="Order details"
   linkLabel="Orders"
   onLinkClick={e => {
@@ -52,7 +54,9 @@ With children
 With children and subtitle
 
 ```js
-<PageHeader
+const Button = require('../Button').default
+
+;<PageHeader
   title="Order details"
   subtitle="Some explanation or description for your page"
   linkLabel="Orders"

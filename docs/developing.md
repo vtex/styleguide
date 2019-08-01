@@ -11,7 +11,7 @@ Before start, we must distinguish between our two type of developers who use our
 
 Add the styleguide to dependencies on `manifest.json`:
 
-```sh noeditor static
+```json noeditor static
 "dependencies": {
   "vtex.styleguide": "9.x"
 },
@@ -25,7 +25,7 @@ import { Button } from 'vtex.styleguide'
 
 And to run, just do as in any other VTEX App, execute the command:
 
-```sh noeditor static
+```shell noeditor static
 vtex link
 ```
 
@@ -35,7 +35,7 @@ To learn more about how to link apps in your workspace, [see here](https://help.
 
 Use your favorite package manager to add the styleguide in your dependencies.
 
-```sh noeditor static
+```shell noeditor static
 yarn add @vtex/styleguide
 # or
 npm install @vtex/styleguide
@@ -70,9 +70,7 @@ The allowed types are:
 
 The description needs to be shortly and follow the kebab-case pattern.
 
-```
 Ex: `git checkout -b feature/nice-new-thing`
-```
 
 Now, that you already open a new branch from `master`, let see how the commits should be.
 
@@ -80,7 +78,7 @@ Now, that you already open a new branch from `master`, let see how the commits s
 
 The commit messages must be written in the English language and follow the following template:
 
-```
+```diff
 <Imperative verb> <object of action>
 ```
 
@@ -92,9 +90,9 @@ Heres a set of examples:
 
 If you are close a issue in the commit you must add the `Fix #<Issue Number>` in commit's body, like:
 
-```
+```diff
 <Imperative verb> <object of action> <--- Commit's title
-                                     <---  Blanck line
+                                     <---  Blank line
 Fix #<Issue number>                  <--- Commit's body
 ```
 
@@ -112,9 +110,42 @@ To keep every change traceable, we use the [releasy](ttps://www.npmjs.com/packag
 
 In parallel to this each PR should update the `CHANGELOG.md` file according to the format [Keep a Changelog](https://keepachangelog.com/en/1.0.0/). The change messages must follow the template:
 
-```
+```diff
 <Imperative verb> <object of action>
 ```
 
+#### TypeScript components
+
+VTEX Styleguide now supports TypeScript components and this is how you can build them:
+
+- You need to create a _components/ComponentName/index.tsx_ file and start from there.
+- The second thing is `prop-types`. We still use `prop-types` to define and to document our components but with TypeScript you need to it like this:
+
+```tsx
+import React from 'react'
+import PropTypes from 'prop-types'
+
+const propTypes = {
+  /** Optional message */
+  message: PropTypes.string
+}
+
+const defaultProps = {
+  message: 'Hello world!'
+}
+
+// This is the TypeScript "trick"
+type Props = PropTypes.InferProps<typeof propTypes, typeof defaultProps>
+
+const HelloWorld: React.FC<Props> = ({ message }) => <span>{message}</span>
+
+HelloWorld.propTypes = propTypes
+HelloWorld.defaultProps = defaultProps
+
+export default Hello
+```
+After that, **for IO Apps**, you only need your component being imported and exported be at the `/react` folder in a `.ts` file (not `.tsx` yet, because we still have `.js` files) and the Builder Hub will generate the typings.
+
+With all this, you are ready to develop TypeScript components into our Styleguide :)
+
 **This is what you need to know to develop with us! Thank you for your contribution!**
-remove un

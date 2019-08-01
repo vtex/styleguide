@@ -4,7 +4,7 @@
 
 For small areas that are interactive consider using a <a href="#/Components/Containers/Card">Card</a>.
 
-```js
+```
 <div className="bg-muted-5 pa8">
   <Box>
     <h3>Lorem Ipsum</h3>

@@ -1,6 +1,8 @@
 Default
 
 ```js
+const Button = require('../Button').default
+
 class ModalDialogExample extends React.Component {
   constructor() {
     super()
@@ -48,6 +50,8 @@ class ModalDialogExample extends React.Component {
 Loading
 
 ```js
+const Button = require('../Button').default
+
 class ModalDialogExample extends React.Component {
   constructor() {
     super()

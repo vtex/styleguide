@@ -10,8 +10,6 @@ Color Picker lets users select a color value using three differenets way: RGBA (
 #### Simple ColorPicker
 
 ```js
-const ColorPicker = require('./index.js').default
-
 class ColorPickerExample extends React.Component {
   constructor() {
     super()
@@ -50,8 +48,6 @@ class ColorPickerExample extends React.Component {
 #### ColorPicker with Title
 
 ```js
-const ColorPicker = require('./index.js').default
-
 class ColorPickerExample extends React.Component {
   constructor() {
     super()
@@ -89,7 +85,6 @@ class ColorPickerExample extends React.Component {
 #### Multiples ColorPickers
 
 ```js
-const ColorPicker = require('./index.js').default
 const black = require('./index.js').COLOR
 
 class ColorPickerExample extends React.Component {
@@ -150,8 +145,6 @@ class ColorPickerExample extends React.Component {
 #### ColorPicker Disabled
 
 ```js
-const ColorPicker = require('./index.js').default
-
 class ColorPickerExample extends React.Component {
   constructor() {
     super()

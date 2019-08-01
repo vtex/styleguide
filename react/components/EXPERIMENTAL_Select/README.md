@@ -242,6 +242,8 @@ const options = [
 Using ref
 
 ```js
+const Button = require('../Button').default
+
 const options = [
   {
     value: 'first-option',

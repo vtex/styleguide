@@ -48,6 +48,7 @@ initialState = { date1: undefined, date2: undefined, date3: undefined }
 Locale
 
 ```js
+const RadioGroup = require('../RadioGroup').default
 initialState = { locale: 'pt-BR', date: undefined }
 ;<div>
   <div className="mb5">
@@ -78,6 +79,7 @@ initialState = { locale: 'pt-BR', date: undefined }
 Using ref
 
 ```js
+const Button = require('../Button').default
 initialState = { date: undefined }
 const ref = React.createRef()
 ;<div>
