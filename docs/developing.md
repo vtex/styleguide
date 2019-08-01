@@ -92,7 +92,7 @@ If you are close a issue in the commit you must add the `Fix #<Issue Number>` in
 
 ```diff
 <Imperative verb> <object of action> <--- Commit's title
-                                     <---  Blanck line
+                                     <---  Blank line
 Fix #<Issue number>                  <--- Commit's body
 ```
 
