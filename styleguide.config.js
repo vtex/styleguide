@@ -1,31 +1,14 @@
 /* eslint-disable import/unambiguous */
 const path = require('path')
-const webpackConfig = require('@vtex/react-scripts/config/webpack.config.dev.js')
+const webpackConfig = require('./config/webpack.config.js')
 const { version } = require('./manifest.json')
 const { styles, theme } = require('./styleguide.styles.js')
-
-// Monkey patch webpackConfig to change src/ to react/
-const originalAppSrc = webpackConfig.module.rules[0].include
-const appSrc = path.join(__dirname, 'react')
-
-webpackConfig.module.rules[0].include = path.join(__dirname, 'react')
-
-// Monkey patch webpackConfig to use eslint-loader instead of its default eslint rules
-webpackConfig.module.rules[0].use = ['eslint-loader']
-
-webpackConfig.module.rules[1].oneOf.forEach(r => {
-  if (r.include === originalAppSrc) {
-    r.include = appSrc
-  }
-  if (r.exclude === originalAppSrc) {
-    r.exclude = appSrc
-  }
-})
 
 module.exports = {
   version: `${version}`,
   require: [
     'vtex-tachyons',
+    require.resolve('./config/polyfills'),
     'focus-visible',
     path.join(__dirname, './docs/styles/styles.css'),
   ],
@@ -106,7 +89,7 @@ module.exports = {
         {
           name: 'Containers',
           components: [
-            'react/components/Box/index.js',
+            'react/components/Box/index.tsx',
             'react/components/Card/index.js',
             'react/components/Collapsible/index.js',
           ],
@@ -135,6 +118,7 @@ module.exports = {
             'react/components/CheckboxGroup/index.js',
             'react/components/ColorPicker/index.js',
             'react/components/DatePicker/index.js',
+            'react/components/TimePicker/index.js',
             'react/components/Dropdown/index.js',
             'react/components/Input/index.js',
             'react/components/InputCurrency/index.js',
@@ -222,7 +206,7 @@ module.exports = {
     )
   },
   webpackConfig: {
-    ...require('@vtex/react-scripts/config/webpack.config.dev.js'),
+    ...webpackConfig,
     devServer: {
       disableHostCheck: true,
     },
@@ -232,13 +216,6 @@ module.exports = {
     HeadingRenderer: path.join(__dirname, 'react/docs/HeadingRenderer'),
     'slots/CodeTabButton': path.join(__dirname, 'react/docs/CodeTabButton'),
     'slots/UsageTabButton': path.join(__dirname, 'react/docs/UsageTabButton'),
-  },
-  editorConfig: {
-    lineWrapping: true,
-    smartIndent: true,
-    matchBrackets: true,
-    lineNumbers: false,
-    theme: 'monokai', // more themes: https://codemirror.net/theme/
   },
   template: {
     favicon: 'https://brand.vtex.com/favicon.ico',

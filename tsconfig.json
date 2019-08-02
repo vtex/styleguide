@@ -1,0 +1,6 @@
+{
+  "extends": "./react/tsconfig",
+  "compilerOptions": {
+    "declarationDir": "./lib"
+  }
+}

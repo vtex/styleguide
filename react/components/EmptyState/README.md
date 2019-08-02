@@ -12,7 +12,9 @@
 
 
 ```js
-<div>
+const Button = require('../Button').default
+
+;<div>
   <EmptyState title="A big headline">
     <p>
       A longer explanation of what should be here, and why should I care about

@@ -169,9 +169,11 @@ Statement.propTypes = {
   /** Current selected options for this Statement */
   statements: PropTypes.arrayOf(
     PropTypes.shape({
-      subject: PropTypes.string,
-      verb: PropTypes.string,
-      object: PropTypes.any,
+      refs: PropTypes.shape({
+        subject: PropTypes.string,
+        verb: PropTypes.string,
+        object: PropTypes.any,
+      }),
       error: PropTypes.string,
     })
   ),

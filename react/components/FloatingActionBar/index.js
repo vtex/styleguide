@@ -4,15 +4,18 @@ import Button from '../Button'
 
 import './action-bar.global.css'
 
-const FloatingActionBar = ({ onSave, onCancel, cancelLabel, saveLabel }) => (
+const FloatingActionBar = ({
+  save: { label: saveLabel, ...saveProps } = {},
+  cancel: { label: cancelLabel, ...cancelProps } = {},
+}) => (
   <div className="styleguide__floating-action-bar shadow-active w-100 bg-base tr pv5 pr7-ns absolute fixed bottom-0 left-0 z-2">
     <span className="mr5">
-      <Button variation="tertiary" onClick={onCancel}>
+      <Button variation="tertiary" {...cancelProps}>
         {cancelLabel}
       </Button>
     </span>
     <span>
-      <Button variation="primary" onClick={onSave}>
+      <Button variation="primary" {...saveProps}>
         {saveLabel}
       </Button>
     </span>
@@ -20,14 +23,20 @@ const FloatingActionBar = ({ onSave, onCancel, cancelLabel, saveLabel }) => (
 )
 
 FloatingActionBar.propTypes = {
-  /** Invoked when save button is pressed */
-  onSave: PropTypes.func.isRequired,
-  /** Invoked when cancel button is pressed */
-  onCancel: PropTypes.func,
-  /** Label to save button*/
-  saveLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-  /** Label to cancel button*/
-  cancelLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+  /** The Save button props (label + Styleguide Button props) */
+  save: PropTypes.shape({
+    /** Label to save button */
+    label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+    /** Styleguide Button props */
+    ...Button.propTypes,
+  }),
+  /** The Cancel button props (label + Styleguide Button props) */
+  cancel: PropTypes.shape({
+    /** Label to save button */
+    label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+    /** Styleguide Button props */
+    ...Button.propTypes,
+  }),
 }
 
 export default FloatingActionBar

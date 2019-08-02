@@ -8,8 +8,12 @@ The centered version has a max width. This layout version will keep the page con
 - Use to guide the user through an action
 - Use to draw attention to specific actions
 
-```js
-<Layout pageHeader={<PageHeader title="Page title centered" />}>
+```
+const PageHeader = require('../PageHeader').default
+const PageBlock = require('../PageBlock').default
+const Button = require('../Button').default
+
+;<Layout pageHeader={<PageHeader title="Page title centered" />}>
   <PageBlock>
     <Button>click me</Button>
   </PageBlock>
@@ -25,8 +29,12 @@ The Full version will take the whole screen width. This layout version must be u
 - Use to display interactions that must to be simultaneous
 
 
-```js
-<Layout
+```
+const PageHeader = require('../PageHeader').default
+const PageBlock = require('../PageBlock').default
+const Button = require('../Button').default
+
+;<Layout
   fullWidth
   pageHeader={
     <PageHeader

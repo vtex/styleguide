@@ -14,6 +14,8 @@
 Default
 
 ```js
+const Button = require('../Button').default
+
 class ModalExample extends React.Component {
   constructor() {
     super()
@@ -61,6 +63,8 @@ class ModalExample extends React.Component {
 Long content
 
 ```js
+const Button = require('../Button').default
+
 class ModalExample extends React.Component {
   constructor() {
     super()
@@ -182,6 +186,8 @@ class ModalExample extends React.Component {
 With title and BottomBar
 
 ```js
+const Button = require('../Button').default
+
 class ModalExample extends React.Component {
   constructor() {
     super()
@@ -316,6 +322,8 @@ class ModalExample extends React.Component {
 Using responsiveFullScreen
 
 ```js
+const Button = require('../Button').default
+
 class ModalExample extends React.Component {
   constructor() {
     super()

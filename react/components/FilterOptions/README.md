@@ -19,6 +19,8 @@ The FilterOptions is optimized for small viewport applications which do not prov
 Simple product filter example
 
 ```js
+const Input = require('../Input').default
+
 class MySimpleFilter extends React.Component {
   constructor() {
     super()
@@ -736,6 +738,11 @@ class MyOrdersFilter extends React.Component {
 Filter Options with Modal Example
 
 ```js
+const Button = require('../Button').default
+const Modal = require('../Modal').default
+const Input = require('../Input').default
+const CheckboxGroup = require('../CheckboxGroup').default
+
 class MyUsersFilter extends React.Component {
   constructor() {
     super()

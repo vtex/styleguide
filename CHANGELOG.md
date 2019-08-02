@@ -7,27 +7,71 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-### Changed
+## [8.72.0] - 2019-08-02
 
-- Turn `Toolbar` into a compound component.
+### Added
 
-## [9.67.0] - 2019-07-22
+- **Icon** `Info`.
 
-### Changed
+## [8.71.0] - 2019-08-01
 
-- Get changes made at version `v8.67.0` & fix version.
+### Added
 
-## [9.63.1] - 2019-07-22
-
-### Changed
-
-- Get changes made at version `v8.66.1`.
-
-## [9.63.0] - 2019-07-16
+- TypeScript support (made with ❤ by UFCG).
 
 ### Changed
 
-- Get changes made at version `v8.63.0`.
+- **Box** component now is TypeScript based.
+
+## [8.70.4] - 2019-07-31
+
+### Added
+
+- **Modal** and **ModalDialog** now accept an optional "container" prop which lets the user choose where they are rendered
+
+## [8.70.3] - 2019-07-31
+
+### Fixed
+
+- `Collapsible` arrow position.
+
+## [8.70.2] - 2019-07-31
+
+### Removed
+
+- Animation of the `Collapsible` when it is mounted for the first time.
+
+## [8.70.1] - 2019-07-26
+
+### Fixed
+
+- **Button** tertiary now correctly collapse (including compensating the border width)
+
+## [8.70.0] - 2019-07-25
+
+### Added
+
+- **TimePicker** component
+
+## [8.69.0] - 2019-07-25
+
+### Fixed
+
+- **Table** when search is performed, the selection of itens is removed
+
+## [8.68.1] - 2019-07-23
+
+### Fixed
+
+- Collapse button is not correctly aligned when the header title is longer than the width in the `Collapsible` component.
+
+## [8.68.0] - 2019-07-23
+
+### Fixed
+
+- **FloatingActionBar** now has better props shape.
+
+## [8.67.0] - 2019-07-22
 
 ### Added
 
@@ -613,8 +657,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fixed error caused by `instanceof` `null` on `withFowardedRef` module.
 
 ## [8.27.2] - 2019-04-03
-
-## [8.27.1] - 2019-03-28
 
 ### Fixed
 

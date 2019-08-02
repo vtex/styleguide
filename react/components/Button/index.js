@@ -45,6 +45,11 @@ class Button extends Component {
     const disabled = this.props.disabled || isLoading
     const iconOnly = icon || this.props.iconOnly
 
+    const isTertiary =
+      variation === 'tertiary' ||
+      variation === 'inverted-tertiary' ||
+      variation === 'danger-tertiary'
+
     let classes = 'vtex-button bw1 ba fw5 v-mid relative pa0 '
     let labelClasses = 'flex items-center justify-center h-100 pv2 '
     let loaderSize = 15
@@ -75,9 +80,15 @@ class Button extends Component {
 
     if (collapseLeft) {
       classes += `nl${horizontalPadding} `
+      if (isTertiary) {
+        labelClasses += 'nl1 '
+      }
     }
     if (collapseRight) {
       classes += `nr${horizontalPadding} `
+      if (isTertiary) {
+        labelClasses += 'nr1 '
+      }
     }
 
     if (iconOnly) {
