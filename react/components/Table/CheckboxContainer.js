@@ -22,8 +22,10 @@ class CheckboxContainer extends Component {
 
     return (
       <div
+        className="h-75 flex items-center"
         onClick={e => {
           e.stopPropagation()
+          onClick(id)
           // prevents the onRowClick event from happening
         }}>
         <Checkbox
@@ -32,7 +34,6 @@ class CheckboxContainer extends Component {
           value={`${id}`}
           id={`${id}`}
           name={`row_${id}`}
-          onChange={() => onClick(id)}
           disabled={disabled}
         />
       </div>

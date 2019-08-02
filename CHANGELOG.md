@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Expanded checkbox click area for table row selection 
+
 ## [8.72.3] - 2019-08-08
 
 ### Changed
