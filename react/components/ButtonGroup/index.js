@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 
 import Button from '../Button'
 import ButtonWithIcon from '../ButtonWithIcon'
 import ActionMenu from '../ActionMenu'
+import { childrenOf } from '../utils'
 
 class ButtonGroup extends Component {
   render() {
@@ -37,13 +37,7 @@ class ButtonGroup extends Component {
 ButtonGroup.defaultProps = {}
 
 ButtonGroup.propTypes = {
-  buttons: PropTypes.arrayOf(
-    PropTypes.oneOfType([
-      PropTypes.instanceOf(Button),
-      PropTypes.instanceOf(ButtonWithIcon),
-      PropTypes.instanceOf(ActionMenu),
-    ])
-  ),
+  buttons: childrenOf(Button, ButtonWithIcon, ActionMenu),
 }
 
 export default ButtonGroup

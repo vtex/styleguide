@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Proptypes verification of `ButtonGroup`
+
 ## [8.72.1] - 2019-08-07
 
 ### Fixed
