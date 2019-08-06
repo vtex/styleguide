@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Apply same spacing to `Box` in all screen sizes
+
 ## [8.72.0] - 2019-08-02
 
 ### Added
