@@ -11,10 +11,10 @@ const propTypes = {
 type Props = InferProps<typeof propTypes>
 
 const Box: FC<Props> = ({ children, noPadding }) => {
-  const padding = noPadding ? '' : 'pa7-ns'
+  const padding = noPadding ? '' : 'pa7'
   return (
     <div
-      className={`styleguide__box bg-base t-body c-on-base ${padding} br3-ns b--muted-4 bt bb bl-ns br-ns`}>
+      className={`styleguide__box bg-base t-body c-on-base ${padding} br3 b--muted-4 bt bb bl br`}>
       {children}
     </div>
   )
