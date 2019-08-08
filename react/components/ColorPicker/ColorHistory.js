@@ -14,9 +14,7 @@ class ColorHistory extends React.Component {
     const color = rgba || hsva || hex || '#FFFFFF'
     const colorInRGB = colorutil.any.to.rgb(color)
     const styleColorBox = {
-      backgroundColor: `rgba(${colorInRGB.r},${colorInRGB.g},${colorInRGB.b},${
-        colorInRGB.a
-      })`,
+      backgroundColor: `rgba(${colorInRGB.r},${colorInRGB.g},${colorInRGB.b},${colorInRGB.a})`,
       height: '1.5rem',
     }
     const output = {
