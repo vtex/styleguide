@@ -123,14 +123,128 @@ class SimpleConditionsCase extends React.Component {
 
     return (
       <Conditions
-        options={options}
-        subjectPlaceholder="Select subject"
-        statements={this.state.simpleStatements}
-        operator={this.state.operator}
+        canDelete
         onChangeOperator={this.handleToggleOperator}
         onChangeStatements={statements => {
           this.setState({ simpleStatements: statements })
         }}
+        operator={this.state.operator}
+        options={options}
+        subjectPlaceholder="Select subject"
+        statements={this.state.simpleStatements}
+      />
+    )
+  }
+}
+;<SimpleConditionsCase />
+```
+
+Mobile
+
+```js
+const Input = require('../Input').default
+
+class SimpleConditionsCase extends React.Component {
+  constructor() {
+    super()
+
+    this.state = {
+      simpleStatements: [],
+      operator: 'all',
+    }
+
+    this.handleToggleOperator = this.handleToggleOperator.bind(this)
+    this.simpleInputObject = this.simpleInputObject.bind(this)
+  }
+
+  handleToggleOperator(operator) {
+    this.setState({ operator: this.state.operator === 'all' ? 'any' : 'all' })
+  }
+
+  simpleInputObject({
+    statements,
+    values,
+    statementIndex,
+    error,
+    extraParams,
+  }) {
+    return (
+      <Input
+        value={values}
+        onChange={e => {
+          statements[statementIndex].object = e.target.value
+          this.setState({ simpleStatements: statements })
+        }}
+      />
+    )
+  }
+
+  render() {
+    const options = {
+      name: {
+        label: 'User name',
+        verbs: [
+          {
+            label: 'is',
+            value: '=',
+            object: {
+              renderFn: this.simpleInputObject,
+              extraParams: {},
+            },
+          },
+          {
+            label: 'is not',
+            value: '!=',
+            object: {
+              renderFn: this.simpleInputObject,
+              extraParams: {},
+            },
+          },
+        ],
+      },
+      email: {
+        label: 'Email',
+        verbs: [
+          {
+            label: 'contains',
+            value: 'contains',
+            object: {
+              renderFn: this.simpleInputObject,
+              extraParams: {},
+            },
+          },
+          {
+            label: 'is',
+            value: '=',
+            object: {
+              renderFn: this.simpleInputObject,
+              extraParams: {},
+            },
+          },
+          {
+            label: 'is not',
+            value: '!=',
+            object: {
+              renderFn: this.simpleInputObject,
+              extraParams: {},
+            },
+          },
+        ],
+      },
+    }
+
+    return (
+      <Conditions
+        canDelete
+        isFullWidth
+        onChangeOperator={this.handleToggleOperator}
+        onChangeStatements={statements => {
+          this.setState({ simpleStatements: statements })
+        }}
+        operator={this.state.operator}
+        options={options}
+        subjectPlaceholder="Select subject"
+        statements={this.state.simpleStatements}
       />
     )
   }
