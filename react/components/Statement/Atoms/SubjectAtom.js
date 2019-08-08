@@ -56,9 +56,12 @@ class SubjectAtom extends React.Component {
     const valueLabel = (valueOption && valueOption.label) || condition.subject
 
     return (
-      <div className={`mh3 ${isFullWidth ? 'pb3' : ''}`}>
+      <div
+        className={`mh3 ${isFullWidth ? 'pb3' : ''}`}
+        style={{ minWidth: '20%' }}>
         <Select
           ref={forwardedRef}
+          clearable={false}
           placeholder={placeholder}
           options={uniqueOptions}
           value={

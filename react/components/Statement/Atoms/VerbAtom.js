@@ -1,5 +1,5 @@
 import React from 'react'
-import Dropdown from '../../Dropdown'
+import Select from '../../EXPERIMENTAL_Select'
 import PropTypes from 'prop-types'
 import { withForwardedRef, refShape } from '../../../modules/withForwardedRef'
 
@@ -20,16 +20,25 @@ class VerbAtom extends React.Component {
     const myChoice = options[condition.subject]
     const verbs = (myChoice && myChoice.verbs) || [{ label: '', value: '' }]
     return (
-      <div className={`mh3 ${isFullWidth ? 'pb3' : ''}`}>
-        <Dropdown
+      <div
+        className={`mh3 ${isFullWidth ? 'pb3' : ''}`}
+        style={{ minWidth: '20%' }}>
+        <Select
           ref={forwardedRef}
-          disabled={!condition.subject}
+          clearable={false}
+          placeholder=""
           options={verbs}
-          value={!condition.subject ? '' : condition.verb || ''}
-          onChange={(e, value) => {
-            const foundVerb = verbs.find(verb => verb.value === value)
-            this.handleChangeStatement(foundVerb.value, 'verb')
+          value={
+            !condition.subject
+              ? ''
+              : verbs.find(verb => verb.value === condition.verb) || ''
+          }
+          onChange={value => {
+            const verb = value !== null ? value.value : null
+            this.handleChangeStatement(verb, 'verb')
           }}
+          multi={false}
+          disabled={!condition.subject}
         />
       </div>
     )
