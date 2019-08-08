@@ -12,6 +12,7 @@ Our Table was built to be highly composable and flexible. All parts are optional
 
 ```js
 const useTableState = require('./hooks/useTableState.ts').default
+const Tag = require('../Tag/index.js').default
 
 columns = {
   name: {
@@ -22,6 +23,9 @@ columns = {
   },
   number: {
     title: 'Number',
+    renderer: ({ data }) => {
+      return <Tag>{data}</Tag>
+    },
   },
   country: {
     title: 'Country',
@@ -61,7 +65,7 @@ function Example() {
     items: items,
   })
 
-  return <Table tableState={tableState} />
+  return <Table {...tableState} />
 }
 ;<Example />
 ```
