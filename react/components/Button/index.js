@@ -218,7 +218,7 @@ class Button extends Component {
         ref={this.props.forwardedRef}
         style={style}
         // Button-mode exclusive props
-        type={iconOnly || href ? undefined : this.props.type}
+        type={href ? undefined : this.props.type}
         // Link-mode exclusive props
         {...(href && linkModeProps)}>
         {isLoading ? (
