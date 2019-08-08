@@ -47,60 +47,45 @@ class Statement extends Component {
       onChangeObjectCallback,
     }
 
+    const statementAtoms = [
+      !omitSubject && (
+        <SubjectAtom
+          ref={condition.refs.subject}
+          key="subject"
+          {...atomProps}
+          placeholder={subjectPlaceholder}
+          onChangeStatement={(value, structure) => {
+            this.handleChangeStatement(value, structure)
+            this.resetPredicate(value)
+          }}
+        />
+      ),
+      !omitVerbs && (
+        <VerbAtom
+          ref={condition.refs.verb}
+          key="verb"
+          {...atomProps}
+          onChangeStatement={(value, structure) => {
+            this.handleChangeStatement(value, structure)
+          }}
+        />
+      ),
+      condition.verb && <ObjectAtom key="object" {...atomProps} />,
+    ]
+
     return (
-      <div>
-        <div className="flex-column w-100 mv3">
-          <div
-            className={`flex w-100 items-start ${
-              isFullWidth ? 'flex-column items-stretch' : ''
-            }`}>
-            {omitSubject ? (
-              omitVerbs ? (
-                <ObjectAtom key="object" {...atomProps} />
-              ) : (
-                <Fragment>
-                  {condition.subject && (
-                    <VerbAtom
-                      key="verb"
-                      {...atomProps}
-                      onChangeStatement={(value, structure) => {
-                        this.handleChangeStatement(value, structure)
-                      }}
-                    />
-                  )}
-                  {condition.verb && <ObjectAtom key="object" {...atomProps} />}
-                </Fragment>
-              )
-            ) : (
-              <Fragment>
-                <SubjectAtom
-                  key="subject"
-                  {...atomProps}
-                  placeholder={subjectPlaceholder}
-                  onChangeStatement={(value, structure) => {
-                    this.handleChangeStatement(value, structure)
-                    this.resetPredicate(value)
-                  }}
-                />
-                {condition.subject && (
-                  <VerbAtom
-                    key="verb"
-                    {...atomProps}
-                    onChangeStatement={(value, structure) => {
-                      this.handleChangeStatement(value, structure)
-                    }}
-                  />
-                )}
-                {condition.verb && <ObjectAtom key="object" {...atomProps} />}
-              </Fragment>
-            )}
-          </div>
-          {condition.error && condition.error.message && (
-            <div className="red t-small mh3 mt2 lh-title">
-              {condition.error.message}
-            </div>
-          )}
+      <div className="flex-column w-100 mv3">
+        <div
+          className={`flex w-100 items-start ${
+            isFullWidth ? 'flex-column items-stretch' : ''
+          }`}>
+          {statementAtoms}
         </div>
+        {condition.error && condition.error.message && (
+          <div className="red t-small mh3 mt2 lh-title">
+            {condition.error.message}
+          </div>
+        )}
       </div>
     )
   }

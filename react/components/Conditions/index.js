@@ -36,6 +36,11 @@ class Conditions extends React.Component {
       subject: '',
       verb: '',
       object: null,
+      refs: {
+        subject: React.createRef(),
+        verb: React.createRef(),
+        object: React.createRef(),
+      },
     }
 
     this.props.onChangeStatements([...this.props.statements, emptyStatement])
