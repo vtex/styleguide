@@ -17,12 +17,14 @@ Different from regular filter panels, ours optimizes for both the screen real-es
 - Don't present too many filters in the highlighted zone.
 
 ### Related components
-- For applications with a small viewport or when working with modals prefer using the <a href="#/Components/Display/FilterOptions">FilterOptions</a> component.
 
+- For applications with a small viewport or when working with modals prefer using the <a href="#/Components/Display/FilterOptions">FilterOptions</a> component.
 
 Simple product filter example
 
 ```js
+const Input = require('../Input').default
+
 class MySimpleFilter extends React.Component {
   constructor() {
     super()
@@ -125,6 +127,9 @@ class MySimpleFilter extends React.Component {
 Filter users example
 
 ```js
+const Input = require('../Input').default
+const Checkbox = require('../Checkbox').default
+
 class MyUsersFilter extends React.Component {
   constructor() {
     super()
@@ -473,6 +478,10 @@ class MyUsersFilter extends React.Component {
 Filter orders example
 
 ```js
+const Input = require('../Input').default
+const Checkbox = require('../Checkbox').default
+const DatePicker = require('../DatePicker').default
+
 class MyOrdersFilter extends React.Component {
   constructor() {
     super()
