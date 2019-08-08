@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
-import Statement from '../UncoupledStatement'
+import Statement from '../Statement'
 import Collapsible from '../Collapsible'
 
 class FilterColapsible extends PureComponent {
