@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.72.3] - 2019-08-08
+
+### Changed
+
+- Condition to unset `Button`'s `type` property now doesn't use `iconOnly` prop.
+
 ## [8.72.2] - 2019-08-08
 
 ### Fixed
