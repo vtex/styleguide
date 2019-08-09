@@ -21,20 +21,23 @@ class CheckboxContainer extends Component {
     const { checked, partial, id, onClick, disabled } = this.props
 
     return (
-      <div
-        onClick={e => {
-          e.stopPropagation()
-          // prevents the onRowClick event from happening
-        }}>
-        <Checkbox
-          checked={checked}
-          partial={partial}
-          value={`${id}`}
-          id={`${id}`}
-          name={`row_${id}`}
-          onChange={() => onClick(id)}
-          disabled={disabled}
-        />
+      <div className="flex items-center justify-center aspect-ratio--object">
+        <div
+          className="br2 h2 w2 flex items-center justify-center"
+          onClick={e => {
+            e.stopPropagation()
+            onClick(id)
+            // prevents the onRowClick event from happening
+          }}>
+          <Checkbox
+            checked={checked}
+            partial={partial}
+            value={`${id}`}
+            id={`${id}`}
+            name={`row_${id}`}
+            disabled={disabled}
+          />
+        </div>
       </div>
     )
   }
