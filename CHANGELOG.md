@@ -7,11 +7,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- **ActionMenu**: set default `menuWidth` to `292` to make it consistent with `Menu`'s width previous behavior.
+
+### Fixed
+
+- **Menu** uses `width` property instead of always using `DEFAULT_WIDTH`.
+
 ## [8.72.4] - 2019-08-09
 
 ### Changed
 
-- Expanded checkbox click area for table row selection 
+- Expanded checkbox click area for table row selection
 
 ## [8.72.3] - 2019-08-08
 
