@@ -114,7 +114,7 @@ class Menu extends Component {
   }
 
   render() {
-    const { options, align, open, onClose, children } = this.props
+    const { options, align, open, onClose, children, width } = this.props
     const { hasCalculatedSize, isUpwards, isVisible, menuHeight } = this.state
 
     const isRight = align === 'right'
@@ -153,7 +153,7 @@ class Menu extends Component {
                   [isRight ? 'right' : 'left']: isRight
                     ? clientWidth - right
                     : left + scrollLeft,
-                  width: DEFAULT_WIDTH,
+                  width: width || DEFAULT_WIDTH,
                 }}
                 className={`absolute z-999 ba b--muted-4 br2 shadow-5 ${
                   isRight ? 'right-0' : 'left-0'

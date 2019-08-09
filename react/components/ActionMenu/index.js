@@ -118,7 +118,7 @@ ActionMenu.defaultProps = {
   options: [],
   align: 'right',
   hideCaretIcon: false,
-  menuWidth: '100%',
+  menuWidth: 292,
   shouldCloseOnClick: true,
   isGrouped: false,
   isFirstOfGroup: false,
