@@ -7,27 +7,31 @@ import { constants } from '../util'
 const SimpleTable: FC = () => {
   const { columns, items } = useTableContext()
 
-  const renderHeadingRow = (heading: string, headingIndex: number) => (
-    <Cell
-      key={`col-${headingIndex}`}
-      content={columns[heading].title}
-      isHeading
-    />
-  )
+  const renderHeadingRow = (headerData: string, headingIndex: number) => {
+    const headerRender = columns[headerData].headerRender
+    const content = headerRender
+      ? headerRender({ headerData })
+      : columns[headerData].title
+    return <Cell key={`col-${headingIndex}`} content={content} isHeading />
+  }
 
-  const renderRow = (row: Object, rowIndex: number) => (
-    <tr
-      style={{ height: constants.ROW_HEIGHT }}
-      className="w-100 h-100 ph4 truncate"
-      key={`row-${rowIndex}`}>
-      {Object.keys(row).map((cel: string, cellIndex: number) => {
-        const renderer = columns[cel].renderer
-        const data = row[cel]
-        const content = renderer ? renderer({ data }) : data
-        return <Cell key={`${rowIndex}-${cellIndex}`} content={content} />
-      })}
-    </tr>
-  )
+  const renderRow = (rowData: Object, rowIndex: number) => {
+    return (
+      <tr
+        style={{ height: constants.ROW_HEIGHT }}
+        className="w-100 h-100 ph4 truncate"
+        key={`row-${rowIndex}`}>
+        {Object.keys(rowData).map((cel: string, cellIndex: number) => {
+          const cellRender = columns[cel].cellRender
+          const cellData = rowData[cel]
+          const content = cellRender
+            ? cellRender({ cellData, rowData })
+            : cellData
+          return <Cell key={`${rowIndex}-${cellIndex}`} content={content} />
+        })}
+      </tr>
+    )
+  }
 
   const headings = (
     <tr

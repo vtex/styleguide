@@ -6,7 +6,15 @@ import SimpleTable from './SimpleTable/index'
 import { TableProvider } from './context'
 
 const propTypes = {
-  columns: PropTypes.object,
+  schema: PropTypes.shape({
+    columns: PropTypes.objectOf(
+      PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        cellRender: PropTypes.func,
+      })
+    ).isRequired,
+    rowRender: PropTypes.func,
+  }),
   items: PropTypes.arrayOf(PropTypes.object),
   isEmpty: PropTypes.bool,
   tableHeight: PropTypes.number,

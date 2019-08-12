@@ -1,8 +1,17 @@
 import { calculateTableHeight, constants } from '../util'
+import { useMemo } from 'react'
 
-const useTableState = ({ columns, items }: TableStateHookInput): TableState => {
-  const isEmpty = Object.keys(columns).length === 0
-  const tableHeight = calculateTableHeight(constants.ROW_HEIGHT, items.length)
+interface Input {
+  columns: ColumnObject
+  items: Array<any>
+}
+
+const useTableState = ({ columns, items }: Input): TableState => {
+  const isEmpty = useMemo(() => Object.keys(columns).length === 0, [columns])
+  const tableHeight = useMemo(
+    () => calculateTableHeight(constants.ROW_HEIGHT, items.length),
+    [items]
+  )
 
   return {
     columns,

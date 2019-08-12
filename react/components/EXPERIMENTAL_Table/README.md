@@ -1,19 +1,46 @@
-#### A table displays any kind of structured data and offers controls to easily navigate, search and filter through it. Data may be from just numbers to complex entities that employ other components to represent itself, like images, tags, links, etc.
+# Table Columns
 
-Our Table was built to be highly composable and flexible. All parts are optional, and you can compose your table with any other Styleguide components. A Table may be used from a small table with numbers to full CRUD-like functionalities, from a small data display to the main screen of a complex module. All parts are plug'n'play parts that you can turn on and off to match your needs.
+The columns property is a JSON used to define the table columns and how they should behave visually. The Schema has properties and each one of them defines a column in the table.
+Example with simple structure:
 
-# Features
+```ts
+{
+  <property_id>: {
+    title: 'Property',
+    cellRender: ({ cellData, rowData }) => {
+      return <span className="classname">{cellData}</span>
+    },
+  }
+  // ...
+}
+```
 
-<div className="center mw7 pv6">
-  ![](./table.png)
-</div>
+##### title
 
-#### Simple Table
+- Control the title which appears on table Header.
+- It receives only strings.
+- If you want to customize it with a component, you can use the `headerRender` prop.
+
+##### cellRender
+
+- Customize the render method of a single column cell.
+- It receives a function that returns a node (react component).
+- The function has the following params: ({ cellData, rowData })
+- Default is render the value as a string.
+- If you have a custom cell component that has a click interaction and at the same time you use the onRowClick Table prop, you might stumble uppon the problem of both click actions being fired. We can work around that by doing a wrapper around cellRenderer to stop click event propagation, like so:
+
+#### State Hook
+
+Different than the previous version the `Table v2` is completely stateless, meaning that the parent has full control of its states. This is made possible by the `useTableState` hook. Its input is an `Object` containing `columns` (the columns definition) and `items` (the actual items to show, which described by the columns).
+
+### Example Of Usage
 
 ```js
+// Imports
 const useTableState = require('./hooks/useTableState.ts').default
 const Tag = require('../Tag/index.js').default
 
+// Define the columns
 columns = {
   name: {
     title: 'Name',
@@ -23,8 +50,8 @@ columns = {
   },
   number: {
     title: 'Number',
-    renderer: ({ data }) => {
-      return <Tag>{data}</Tag>
+    cellRender: ({ cellData }) => {
+      return <Tag>{cellData}</Tag>
     },
   },
   country: {
@@ -32,6 +59,7 @@ columns = {
   },
 }
 
+// Define the items
 items = [
   {
     name: "T'Chala",
@@ -59,13 +87,29 @@ items = [
   },
 ]
 
-function Example() {
+function StateHookExample() {
   const tableState = useTableState({
-    columns: columns,
-    items: items,
+    columns,
+    items,
   })
 
   return <Table {...tableState} />
 }
-;<Example />
+;<StateHookExample />
 ```
+
+### Input Object
+
+| Property | Type             | Description                         |
+| -------- | ---------------- | ----------------------------------- |
+| columns  | Object of Column | Definition of the table columns     |
+| items    | Array of Object  | The actual items that will be shown |
+
+### Return Values
+
+| Property    | Type             | Description                         |
+| ----------- | ---------------- | ----------------------------------- |
+| columns     | Object of Column | Definition of the table columns     |
+| items       | Array of Object  | The actual items that will be shown |
+| isEmpty     | Boolean          | If there are items to show or not   |
+| tableHeight | Number           | Table calculated height             |
