@@ -4,7 +4,7 @@ import { calcIconSize, baseClassname } from '../utils'
 
 const iconBase = {
   width: 16,
-  height: 16,
+  height: 15,
 }
 
 class Printer extends PureComponent {
@@ -17,7 +17,7 @@ class Printer extends PureComponent {
         className={`${baseClassname('Printer')} ${block ? 'db' : ''}`}
         width={newSize.width}
         height={newSize.height}
-        viewBox="0 0 16 16"
+        viewBox="0 0 16 15"
         fill="none"
         xmlns="http://www.w3.org/2000/svg">
         <path
