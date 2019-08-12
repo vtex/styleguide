@@ -119,6 +119,8 @@ class Menu extends Component {
 
     const isRight = align === 'right'
 
+    console.log(options)
+
     return (
       <div className="relative">
         <div ref={this.containerElement}>{children}</div>
@@ -220,7 +222,7 @@ Menu.propTypes = {
   /** Menu options */
   options: PropTypes.arrayOf(
     PropTypes.shape({
-      label: PropTypes.string,
+      label: PropTypes.node,
       onClick: PropTypes.func,
       /** whether option has inline toggle */
       toggle: PropTypes.shape({
