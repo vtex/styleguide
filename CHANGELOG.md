@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.72.5] - 2019-08-12
+
 ### Changed
 
 - **ActionMenu**: set default `menuWidth` to `292` to make it consistent with `Menu`'s width previous behavior.
