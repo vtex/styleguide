@@ -6,71 +6,85 @@ import VerbAtom from './Atoms/VerbAtom'
 import ObjectAtom from './Atoms/ObjectAtom'
 
 class Statement extends Component {
-  handleChangeStatement = (newValue, structure) => {
-    this.props.onChangeStatement(newValue, structure)
-  }
-
-  resetPredicate = subjectValue => {
-    const { options } = this.props
-
-    this.handleChangeStatement(
-      options[subjectValue].verbs[0].value ||
-        Statement.defaultProps.statements[0].verb,
-      'verb'
-    )
-
-    this.handleChangeStatement(
-      Statement.defaultProps.statements[0].object,
-      'object'
-    )
-
-    this.handleChangeStatement(null, 'error')
-  }
-
   render() {
     const {
-      options,
-      subjectPlaceholder,
       isFullWidth,
-      statements,
-      statementIndex,
       omitSubject,
       omitVerbs,
-      onChangeObjectCallback,
+      onChangeStatement,
+      options,
+      statement,
+      subjectPlaceholder,
     } = this.props
-    const condition = statements[statementIndex]
-    const atomProps = {
-      statements: statements,
-      options: options,
-      isFullWidth: isFullWidth,
-      statementIndex: statementIndex,
-      onChangeObjectCallback,
-    }
 
     const statementAtoms = [
       !omitSubject && (
         <SubjectAtom
-          ref={condition.refs.subject}
           key="subject"
-          {...atomProps}
-          placeholder={subjectPlaceholder}
-          onChangeStatement={(value, structure) => {
-            this.handleChangeStatement(value, structure)
-            this.resetPredicate(value)
+          isFullWidth={isFullWidth}
+          onChange={subject => {
+            const newStatement = {
+              ...statement,
+              subject,
+              verb: options[subject].verbs[0].value,
+              object: null,
+              error: null,
+            }
+            onChangeStatement(newStatement)
           }}
+          options={options}
+          placeholder={subjectPlaceholder}
+          subject={statement.subject}
         />
       ),
       !omitVerbs && (
         <VerbAtom
-          ref={condition.refs.verb}
           key="verb"
-          {...atomProps}
-          onChangeStatement={(value, structure) => {
-            this.handleChangeStatement(value, structure)
+          disabled={!statement.subject}
+          isFullWidth={isFullWidth}
+          onChange={verb => {
+            const newStatement = {
+              ...statement,
+              verb,
+              object: null,
+              error: null,
+            }
+            onChangeStatement(newStatement)
+          }}
+          verb={statement.verb}
+          verbOptions={
+            statement.subject ? options[statement.subject].verbs : []
+          }
+        />
+      ),
+      statement.verb && ( // remove if there should be a disabled object input
+        <ObjectAtom
+          key="object"
+          disabled={!statement.verb}
+          isFullWidth={isFullWidth}
+          object={statement.object}
+          objectComponent={
+            options[statement.subject].verbs.find(
+              verb => verb.value === statement.verb
+            ).object
+          }
+          onChange={object => {
+            const newStatement = {
+              ...statement,
+              object,
+              error: null,
+            }
+            onChangeStatement(newStatement)
+          }}
+          onError={error => {
+            const newStatement = {
+              ...statement,
+              error,
+            }
+            onChangeStatement(newStatement)
           }}
         />
       ),
-      condition.verb && <ObjectAtom key="object" {...atomProps} />,
     ]
 
     return (
@@ -81,9 +95,9 @@ class Statement extends Component {
           }`}>
           {statementAtoms}
         </div>
-        {condition.error && condition.error.message && (
+        {statement.error && statement.error.message && (
           <div className="red t-small mh3 mt2 lh-title">
-            {condition.error.message}
+            {statement.error.message}
           </div>
         )}
       </div>
@@ -92,8 +106,6 @@ class Statement extends Component {
 }
 
 Statement.defaultProps = {
-  onRemoveStatement: () => {},
-  onChangeStatement: () => {},
   onChangeObjectCallback: () => {},
   statements: [{ subject: '', verb: '', object: null, error: null }],
   isFullWidth: false,
@@ -104,14 +116,12 @@ Statement.defaultProps = {
 
 Statement.propTypes = {
   /** Current selected options for this Statement */
-  statements: PropTypes.arrayOf(
-    PropTypes.shape({
-      subject: PropTypes.string,
-      verb: PropTypes.string,
-      object: PropTypes.any,
-      error: PropTypes.string,
-    })
-  ),
+  statement: PropTypes.shape({
+    subject: PropTypes.string,
+    verb: PropTypes.string,
+    object: PropTypes.any,
+    error: PropTypes.string,
+  }),
   /** Possible options and respective data types, verb options */
   options: PropTypes.object.isRequired,
   /** Placeholder for subject dropdown */
@@ -119,7 +129,7 @@ Statement.propTypes = {
   /** Stretch component to 100% of the width */
   isFullWidth: PropTypes.bool,
   /** Statement change callback */
-  onChangeStatement: PropTypes.func,
+  onChangeStatement: PropTypes.func.isRequired,
   /** To which row does this Statement belong to?  */
   statementIndex: PropTypes.number,
   /** Omits statement subject */

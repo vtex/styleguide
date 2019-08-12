@@ -32,6 +32,10 @@ Simple
 ```js
 const Input = require('../Input').default
 
+function SimpleInputObject({ object, onChange }) {
+  return <Input value={object || ''} onChange={e => onChange(e.target.value)} />
+}
+
 class SimpleConditionsCase extends React.Component {
   constructor() {
     super()
@@ -42,29 +46,10 @@ class SimpleConditionsCase extends React.Component {
     }
 
     this.handleToggleOperator = this.handleToggleOperator.bind(this)
-    this.simpleInputObject = this.simpleInputObject.bind(this)
   }
 
   handleToggleOperator(operator) {
     this.setState({ operator: this.state.operator === 'all' ? 'any' : 'all' })
-  }
-
-  simpleInputObject({
-    statements,
-    values,
-    statementIndex,
-    error,
-    extraParams,
-  }) {
-    return (
-      <Input
-        value={values}
-        onChange={e => {
-          statements[statementIndex].object = e.target.value
-          this.setState({ simpleStatements: statements })
-        }}
-      />
-    )
   }
 
   render() {
@@ -75,18 +60,12 @@ class SimpleConditionsCase extends React.Component {
           {
             label: 'is',
             value: '=',
-            object: {
-              renderFn: this.simpleInputObject,
-              extraParams: {},
-            },
+            object: <SimpleInputObject />,
           },
           {
             label: 'is not',
             value: '!=',
-            object: {
-              renderFn: this.simpleInputObject,
-              extraParams: {},
-            },
+            object: <SimpleInputObject />,
           },
         ],
       },
@@ -96,26 +75,17 @@ class SimpleConditionsCase extends React.Component {
           {
             label: 'contains',
             value: 'contains',
-            object: {
-              renderFn: this.simpleInputObject,
-              extraParams: {},
-            },
+            object: <SimpleInputObject />,
           },
           {
             label: 'is',
             value: '=',
-            object: {
-              renderFn: this.simpleInputObject,
-              extraParams: {},
-            },
+            object: <SimpleInputObject />,
           },
           {
             label: 'is not',
             value: '!=',
-            object: {
-              renderFn: this.simpleInputObject,
-              extraParams: {},
-            },
+            object: <SimpleInputObject />,
           },
         ],
       },
@@ -126,6 +96,123 @@ class SimpleConditionsCase extends React.Component {
         canDelete
         onChangeOperator={this.handleToggleOperator}
         onChangeStatements={statements => {
+          console.log('Changed statements to:', statements)
+          this.setState({ simpleStatements: statements })
+        }}
+        operator={this.state.operator}
+        options={options}
+        subjectPlaceholder="Select subject"
+        statements={this.state.simpleStatements}
+      />
+    )
+  }
+}
+;<SimpleConditionsCase />
+```
+
+Unique
+
+```js
+const Input = require('../Input').default
+
+function SimpleInputObject({ object, onChange }) {
+  return <Input value={object || ''} onChange={e => onChange(e.target.value)} />
+}
+
+class SimpleConditionsCase extends React.Component {
+  constructor() {
+    super()
+
+    this.state = {
+      simpleStatements: [],
+      operator: 'all',
+    }
+
+    this.handleToggleOperator = this.handleToggleOperator.bind(this)
+  }
+
+  handleToggleOperator(operator) {
+    this.setState({ operator: this.state.operator === 'all' ? 'any' : 'all' })
+  }
+
+  render() {
+    const options = {
+      name: {
+        label: 'User name',
+        verbs: [
+          {
+            label: 'is',
+            value: '=',
+            object: <SimpleInputObject />,
+          },
+          {
+            label: 'is not',
+            value: '!=',
+            object: <SimpleInputObject />,
+          },
+        ],
+        unique: true,
+      },
+      surname: {
+        label: 'Last name',
+        verbs: [
+          {
+            label: 'is',
+            value: '=',
+            object: <SimpleInputObject />,
+          },
+          {
+            label: 'is not',
+            value: '!=',
+            object: <SimpleInputObject />,
+          },
+        ],
+        unique: true,
+      },
+      country: {
+        label: 'Country of residence',
+        verbs: [
+          {
+            label: 'is',
+            value: '=',
+            object: <SimpleInputObject />,
+          },
+          {
+            label: 'is not',
+            value: '!=',
+            object: <SimpleInputObject />,
+          },
+        ],
+        unique: true,
+      },
+      email: {
+        label: 'Email',
+        verbs: [
+          {
+            label: 'contains',
+            value: 'contains',
+            object: <SimpleInputObject />,
+          },
+          {
+            label: 'is',
+            value: '=',
+            object: <SimpleInputObject />,
+          },
+          {
+            label: 'is not',
+            value: '!=',
+            object: <SimpleInputObject />,
+          },
+        ],
+      },
+    }
+
+    return (
+      <Conditions
+        canDelete
+        onChangeOperator={this.handleToggleOperator}
+        onChangeStatements={statements => {
+          console.log('Changed statements to:', statements)
           this.setState({ simpleStatements: statements })
         }}
         operator={this.state.operator}
@@ -144,6 +231,10 @@ Mobile
 ```js
 const Input = require('../Input').default
 
+function SimpleInputObject({ object, onChange }) {
+  return <Input value={object || ''} onChange={e => onChange(e.target.value)} />
+}
+
 class SimpleConditionsCase extends React.Component {
   constructor() {
     super()
@@ -154,29 +245,10 @@ class SimpleConditionsCase extends React.Component {
     }
 
     this.handleToggleOperator = this.handleToggleOperator.bind(this)
-    this.simpleInputObject = this.simpleInputObject.bind(this)
   }
 
   handleToggleOperator(operator) {
     this.setState({ operator: this.state.operator === 'all' ? 'any' : 'all' })
-  }
-
-  simpleInputObject({
-    statements,
-    values,
-    statementIndex,
-    error,
-    extraParams,
-  }) {
-    return (
-      <Input
-        value={values}
-        onChange={e => {
-          statements[statementIndex].object = e.target.value
-          this.setState({ simpleStatements: statements })
-        }}
-      />
-    )
   }
 
   render() {
@@ -187,18 +259,12 @@ class SimpleConditionsCase extends React.Component {
           {
             label: 'is',
             value: '=',
-            object: {
-              renderFn: this.simpleInputObject,
-              extraParams: {},
-            },
+            object: <SimpleInputObject />,
           },
           {
             label: 'is not',
             value: '!=',
-            object: {
-              renderFn: this.simpleInputObject,
-              extraParams: {},
-            },
+            object: <SimpleInputObject />,
           },
         ],
       },
@@ -208,26 +274,17 @@ class SimpleConditionsCase extends React.Component {
           {
             label: 'contains',
             value: 'contains',
-            object: {
-              renderFn: this.simpleInputObject,
-              extraParams: {},
-            },
+            object: <SimpleInputObject />,
           },
           {
             label: 'is',
             value: '=',
-            object: {
-              renderFn: this.simpleInputObject,
-              extraParams: {},
-            },
+            object: <SimpleInputObject />,
           },
           {
             label: 'is not',
             value: '!=',
-            object: {
-              renderFn: this.simpleInputObject,
-              extraParams: {},
-            },
+            object: <SimpleInputObject />,
           },
         ],
       },
@@ -239,6 +296,7 @@ class SimpleConditionsCase extends React.Component {
         isFullWidth
         onChangeOperator={this.handleToggleOperator}
         onChangeStatements={statements => {
+          console.log('Changed statements to:', statements)
           this.setState({ simpleStatements: statements })
         }}
         operator={this.state.operator}
@@ -255,7 +313,10 @@ class SimpleConditionsCase extends React.Component {
 Complex
 
 ```js
+const DatePicker = require('../DatePicker').default
 const Dropdown = require('../Dropdown').default
+const Input = require('../Input').default
+const Select = require('../EXPERIMENTAL_Select').default
 
 const possibleColors = [
   { label: 'White', value: 'white' },
@@ -274,6 +335,131 @@ const possibleColors = [
   { label: 'Light-blue', value: 'light-blue' },
 ]
 
+function SimpleInputObject({ object, onChange }) {
+  return <Input value={object || ''} onChange={e => onChange(e.target.value)} />
+}
+
+function ComplexDropdownObject({ object, onChange }) {
+  return (
+    <Dropdown
+      value={object}
+      options={possibleColors}
+      onChange={(e, value) => {
+        onChange(value)
+      }}
+    />
+  )
+}
+
+function ComplexSelectObject({ object, onChange }) {
+  return (
+    <Select
+      multi
+      onChange={values => onChange(values)}
+      options={possibleColors}
+    />
+  )
+}
+
+function ComplexNumericInputObject({ object, onChange }) {
+  return (
+    <Input
+      min="0"
+      onChange={e => onChange(e.target.value.replace(/\D/g, ''))}
+      placeholder="Insert age..."
+      type="number"
+      value={object || ''}
+    />
+  )
+}
+
+function ComplexNumericInputRangeObject({ object, onChange }) {
+  return (
+    <div className="flex">
+      <Input
+        type="number"
+        min="0"
+        placeholder="Age from..."
+        errorMessage={
+          object && parseInt(object.first) >= parseInt(object.last)
+            ? 'Must be smaller than other input'
+            : ''
+        }
+        value={object && object.first ? object.first : ''}
+        onChange={e =>
+          onChange({
+            ...object,
+            first: e.target.value.replace(/\D/g, ''),
+          })
+        }
+      />
+
+      <div className="mv4 mh3 c-muted-2 b">and</div>
+
+      <Input
+        type="number"
+        min={(object && `${parseInt(object.first) + 1}`) || '0'}
+        placeholder="Age to..."
+        value={object && object.last ? object.last : ''}
+        onChange={e =>
+          onChange({
+            ...object,
+            last: e.target.value.replace(/\D/g, ''),
+          })
+        }
+      />
+    </div>
+  )
+}
+
+function ComplexDatePickerObject({ object, onChange }) {
+  console.log(object)
+  return (
+    <DatePicker
+      locale="en-US"
+      onChange={date => onChange(date)}
+      value={object}
+    />
+  )
+}
+
+function ComplexDatePickerRangeObject({ object, onChange }) {
+  return (
+    <div className="flex">
+      <div style={{ maxWidth: 140 }}>
+        <DatePicker
+          errorMessage={
+            object && object.from >= object.to ? 'Must be before end date' : ''
+          }
+          locale="en-US"
+          onChange={date =>
+            onChange({
+              ...object,
+              from: date,
+            })
+          }
+          value={object && object.from}
+        />
+      </div>
+
+      <div className="mv4 mh3 c-muted-2 b">and</div>
+
+      <div style={{ maxWidth: 140 }}>
+        <DatePicker
+          locale="en-US"
+          onChange={date =>
+            onChange({
+              ...object,
+              to: date,
+            })
+          }
+          value={object && object.to}
+        />
+      </div>
+    </div>
+  )
+}
+
 class ComplexConditionsCase extends React.Component {
   constructor() {
     super()
@@ -284,198 +470,10 @@ class ComplexConditionsCase extends React.Component {
     }
 
     this.handleToggleOperator = this.handleToggleOperator.bind(this)
-    this.complexDropdownObject = this.complexDropdownObject.bind(this)
-    this.complexMultiselectObject = this.complexMultiselectObject.bind(this)
-    this.complexDatePickerObject = this.complexDatePickerObject.bind(this)
-    this.complexDatePickerRangeObject = this.complexDatePickerRangeObject.bind(
-      this
-    )
-    this.complexNumericInputObject = this.complexNumericInputObject.bind(this)
-    this.complexNumericInputRangeObject = this.complexNumericInputRangeObject.bind(
-      this
-    )
   }
 
   handleToggleOperator(operator) {
     this.setState({ operator: this.state.operator === 'all' ? 'any' : 'all' })
-  }
-
-  complexDropdownObject({
-    statements,
-    values,
-    statementIndex,
-    error,
-    extraParams,
-  }) {
-    return (
-      <Dropdown
-        value={values}
-        options={possibleColors}
-        onChange={(e, value) => {
-          statements[statementIndex].object = value
-
-          this.setState({ statements })
-        }}
-      />
-    )
-  }
-
-  complexMultiselectObject({
-    statements,
-    values,
-    statementIndex,
-    error,
-    extraParams,
-  }) {
-    return (
-      <div className="nt3">
-        <MultiSelect
-          emptyState={term => {
-            return `Your search for the color "${term}" did not find any results.`
-          }}
-          options={possibleColors}
-          onChange={selected => {
-            statements[statementIndex].object = selected
-
-            this.setState({ statements })
-          }}
-          selected={values || []}
-        />
-      </div>
-    )
-  }
-
-  complexDatePickerObject({
-    statements,
-    values,
-    statementIndex,
-    error,
-    extraParams,
-  }) {
-    return (
-      <DatePicker
-        value={values || new Date()}
-        onChange={date => {
-          statements[statementIndex].object = date
-          this.setState({ statements })
-        }}
-        locale="en-US"
-      />
-    )
-  }
-
-  complexDatePickerRangeObject({
-    statements,
-    values,
-    statementIndex,
-    error,
-    extraParams,
-  }) {
-    return (
-      <div className="flex">
-        <div style={{ maxWidth: 140 }}>
-          <DatePicker
-            style={{ maxWidth: 140 }}
-            value={values && values.from}
-            errorMessage={
-              statements[statementIndex].object &&
-              statements[statementIndex].object.from >=
-                statements[statementIndex].object.to
-                ? 'Must be before end date'
-                : ''
-            }
-            onChange={date => {
-              statements[statementIndex].object = {
-                ...(statements[statementIndex].object || {}),
-                from: date,
-              }
-
-              this.setState({ statements })
-            }}
-            locale="en-US"
-          />
-        </div>
-
-        <div className="mv4 mh3 c-muted-2 b">and</div>
-
-        <div style={{ maxWidth: 140 }}>
-          <DatePicker
-            value={values && values.to}
-            onChange={date => {
-              statements[statementIndex].object = {
-                ...(statements[statementIndex].object || {}),
-                to: date,
-              }
-
-              this.setState({ statements })
-            }}
-            locale="en-US"
-          />
-        </div>
-      </div>
-    )
-  }
-
-  complexNumericInputObject({ statements, values, statementIndex, error }) {
-    return (
-      <Input
-        placeholder="Insert age..."
-        type="number"
-        min={0}
-        value={values}
-        onChange={e => {
-          statements[statementIndex].object = e.target.value.replace(/\D/g, '')
-          this.setState({ statements })
-        }}
-      />
-    )
-  }
-
-  complexNumericInputRangeObject({
-    statements,
-    values,
-    statementIndex,
-    error,
-    extraParams,
-  }) {
-    return (
-      <div className="flex">
-        <Input
-          placeholder="Age from..."
-          errorMessage={
-            statements[statementIndex].object &&
-            parseInt(statements[statementIndex].object.first) >=
-              parseInt(statements[statementIndex].object.last)
-              ? 'Must be smaller than other input'
-              : ''
-          }
-          value={values && values.first ? values.first : ''}
-          onChange={e => {
-            const currentObject = statements[statementIndex].object || {}
-            currentObject.first = e.target.value.replace(/\D/g, '')
-
-            statements[statementIndex].object = currentObject
-
-            this.setState({ statements })
-          }}
-        />
-
-        <div className="mv4 mh3 c-muted-2 b">and</div>
-
-        <Input
-          placeholder="Age to..."
-          value={values && values.last ? values.last : ''}
-          onChange={e => {
-            const currentObject = statements[statementIndex].object || {}
-            currentObject.last = e.target.value.replace(/\D/g, '')
-
-            statements[statementIndex].object = currentObject
-
-            this.setState({ statements })
-          }}
-        />
-      </div>
-    )
   }
 
   render() {
@@ -487,18 +485,12 @@ class ComplexConditionsCase extends React.Component {
           {
             label: 'is',
             value: '=',
-            object: {
-              renderFn: this.complexNumericInputObject,
-              extraParams: {},
-            },
+            object: <ComplexNumericInputObject />,
           },
           {
             label: 'is between',
             value: 'between',
-            object: {
-              renderFn: this.complexNumericInputRangeObject,
-              extraParams: {},
-            },
+            object: <ComplexNumericInputRangeObject />,
           },
         ],
       },
@@ -509,18 +501,12 @@ class ComplexConditionsCase extends React.Component {
           {
             label: 'is',
             value: '=',
-            object: {
-              renderFn: this.complexDropdownObject,
-              extraParams: {},
-            },
+            object: <ComplexDropdownObject />,
           },
           {
             label: 'is any of',
             value: 'any',
-            object: {
-              renderFn: this.complexMultiselectObject,
-              extraParams: {},
-            },
+            object: <ComplexSelectObject />,
           },
         ],
       },
@@ -531,18 +517,12 @@ class ComplexConditionsCase extends React.Component {
           {
             label: 'is',
             value: '=',
-            object: {
-              renderFn: this.complexDatePickerObject,
-              extraParams: {},
-            },
+            object: <ComplexDatePickerObject />,
           },
           {
             label: 'is between',
             value: 'between',
-            object: {
-              renderFn: this.complexDatePickerRangeObject,
-              extraParams: {},
-            },
+            object: <ComplexDatePickerRangeObject />,
           },
         ],
       },
@@ -550,125 +530,18 @@ class ComplexConditionsCase extends React.Component {
 
     return (
       <Conditions
-        options={options}
-        subjectPlaceholder="Select subject"
-        statements={this.state.statements}
-        operator={this.state.operator}
-        onChangeOperator={this.handleToggleOperator}
         onChangeStatements={statements => {
+          console.log('Changed statements to:', statements)
           this.setState({ statements })
         }}
+        onChangeOperator={this.handleToggleOperator}
+        operator={this.state.operator}
+        options={options}
+        statements={this.state.statements}
+        subjectPlaceholder="Select subject"
       />
     )
   }
 }
 ;<ComplexConditionsCase />
-```
-
-Using ref
-
-```js
-const Button = require('../Button').default
-const Input = require('../Input').default
-
-class SimpleConditionsCase extends React.Component {
-  constructor() {
-    super()
-
-    this.state = {
-      simpleStatements: [
-        { subject: 'name', verb: '=', object: 'a', error: null },
-        { subject: 'name', verb: '=', object: 'b', error: null },
-        { subject: 'name', verb: '=', object: 'c', error: null },
-      ],
-      operator: 'all',
-    }
-
-    this.handleToggleOperator = this.handleToggleOperator.bind(this)
-    this.simpleInputObject = this.simpleInputObject.bind(this)
-  }
-
-  handleToggleOperator(operator) {
-    this.setState({ operator: this.state.operator === 'all' ? 'any' : 'all' })
-  }
-
-  simpleInputObject({
-    statements,
-    values,
-    statementIndex,
-    error,
-    extraParams,
-  }) {
-    return (
-      <Input
-        ref={statements[statementIndex].refs.object}
-        value={values}
-        onChange={e => {
-          statements[statementIndex].object = e.target.value
-          this.setState({ simpleStatements: statements })
-        }}
-      />
-    )
-  }
-
-  render() {
-    const options = {
-      name: {
-        label: 'User name',
-        verbs: [
-          {
-            label: 'is',
-            value: '=',
-            object: {
-              renderFn: this.simpleInputObject,
-              extraParams: {},
-            },
-          },
-        ],
-      },
-    }
-
-    return (
-      <div>
-        <Conditions
-          options={options}
-          subjectPlaceholder="Select subject"
-          statements={this.state.simpleStatements}
-          operator={this.state.operator}
-          onChangeOperator={this.handleToggleOperator}
-          onChangeStatements={statements => {
-            this.setState({ simpleStatements: statements })
-          }}
-        />
-        <div className="mt4">
-          <span className="mr4">
-            <Button
-              onClick={() =>
-                this.state.simpleStatements[0].refs.subject.current.focus()
-              }>
-              Focus on first subject
-            </Button>
-          </span>
-          <span className="mr4">
-            <Button
-              onClick={() =>
-                this.state.simpleStatements[0].refs.verb.current.focus()
-              }>
-              Focus on first verb
-            </Button>
-          </span>
-          <span className="mr4">
-            <Button
-              onClick={() =>
-                this.state.simpleStatements[0].refs.object.current.focus()
-              }>
-              Focus on first object
-            </Button>
-          </span>
-        </div>
-      </div>
-    )
-  }
-}
-;<SimpleConditionsCase />
 ```

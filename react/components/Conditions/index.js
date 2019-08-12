@@ -36,11 +36,6 @@ class Conditions extends React.Component {
       subject: '',
       verb: '',
       object: null,
-      refs: {
-        subject: React.createRef(),
-        verb: React.createRef(),
-        object: React.createRef(),
-      },
     }
 
     this.props.onChangeStatements([...this.props.statements, emptyStatement])
@@ -55,15 +50,6 @@ class Conditions extends React.Component {
     this.props.onChangeStatements(updatedStatements)
   }
 
-  handleChangeStatement = (statementIndex, newValue, structure) => {
-    const updatedCurrentStatements = [...this.props.statements]
-    if (structure === 'verb') {
-      updatedCurrentStatements[statementIndex].object = null
-    }
-    updatedCurrentStatements[statementIndex][structure] = newValue
-    this.props.onChangeStatements(updatedCurrentStatements)
-  }
-
   render() {
     const {
       canDelete,
@@ -75,6 +61,7 @@ class Conditions extends React.Component {
       labels,
       showOperator,
       operator,
+      onChangeStatements,
     } = this.props
 
     return (
@@ -99,6 +86,25 @@ class Conditions extends React.Component {
           ) : (
             <div className="mv5">
               {statements.map((statement, statementIndex) => {
+                // if statement is configured as unique we should filter subject
+                // options that were already selected in other statements.
+                const uniqueBasedSubjects = Object.keys(options).filter(
+                  subject =>
+                    !options[subject].unique ||
+                    !statements.some(
+                      (stmt, idx) =>
+                        stmt.subject === subject && idx !== statementIndex
+                    )
+                )
+
+                const uniqueBasedOptions = uniqueBasedSubjects.reduce(
+                  (uniqueOptions, subject) => ({
+                    ...uniqueOptions,
+                    [subject]: options[subject],
+                  }),
+                  {}
+                )
+
                 return (
                   <div
                     className="flex flex-column w-100 mv3"
@@ -114,20 +120,18 @@ class Conditions extends React.Component {
                           canDelete={canDelete}
                           isRtl={isRtl}
                           isFullWidth={isFullWidth}
-                          onChangeStatement={(newValue, structure) => {
-                            this.handleChangeStatement(
-                              statementIndex,
-                              newValue,
-                              structure
+                          onChangeStatement={newStatement => {
+                            const newStatements = statements.map(
+                              (statement, idx) =>
+                                idx === statementIndex
+                                  ? newStatement
+                                  : statement
                             )
+                            onChangeStatements(newStatements)
                           }}
-                          onRemoveStatement={() =>
-                            this.handleRemoveStatement(statementIndex)
-                          }
-                          options={options}
+                          options={uniqueBasedOptions}
                           subjectPlaceholder={subjectPlaceholder}
-                          statements={statements}
-                          statementIndex={statementIndex}
+                          statement={statement}
                           labels={labels}
                         />
                       </div>
@@ -246,7 +250,7 @@ Conditions.propTypes = {
     headerSufix: PropTypes.string,
   }),
   /** Conditions change callback: array of statement definitions */
-  onChangeStatements: PropTypes.func,
+  onChangeStatements: PropTypes.func.isRequired,
   /** Operator (any, all) change callback  */
   onChangeOperator: PropTypes.func,
   /** Operator indicates whether all the statements should be met or any of them */
