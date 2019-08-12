@@ -10,15 +10,16 @@ class VerbAtom extends React.Component {
 
   render() {
     const {
+      disabled,
       forwardedRef,
-      options,
       isFullWidth,
-      statements,
-      statementIndex,
+      onChange,
+      verb,
+      verbOptions,
     } = this.props
-    const condition = statements[statementIndex]
-    const myChoice = options[condition.subject]
-    const verbs = (myChoice && myChoice.verbs) || [{ label: '', value: '' }]
+
+    const value = verbOptions.find(option => option.value === verb)
+
     return (
       <div
         className={`mh3 ${isFullWidth ? 'pb3' : ''}`}
@@ -26,19 +27,12 @@ class VerbAtom extends React.Component {
         <Select
           ref={forwardedRef}
           clearable={false}
-          placeholder=""
-          options={verbs}
-          value={
-            !condition.subject
-              ? ''
-              : verbs.find(verb => verb.value === condition.verb) || ''
-          }
-          onChange={value => {
-            const verb = value !== null ? value.value : null
-            this.handleChangeStatement(verb, 'verb')
-          }}
+          disabled={disabled}
           multi={false}
-          disabled={!condition.subject}
+          onChange={option => onChange(option && option.value)}
+          options={verbOptions}
+          placeholder=""
+          value={value}
         />
       </div>
     )
@@ -52,23 +46,16 @@ VerbAtom.defaultProps = {
 VerbAtom.propTypes = {
   /** @ignore Forwarded Ref */
   forwardedRef: refShape,
-  /** Current selected options for this Statement */
-  statements: PropTypes.arrayOf(
-    PropTypes.shape({
-      subject: PropTypes.string,
-      verb: PropTypes.string,
-      object: PropTypes.any,
-      error: PropTypes.string,
-    })
-  ),
-  /** Possible options and respective data types, verb options */
-  options: PropTypes.object.isRequired,
+  /** Select disabled state */
+  disabled: PropTypes.bool,
   /** Stretch component to 100% of the width */
   isFullWidth: PropTypes.bool,
-  /** To which row does this Statement belong to?  */
-  statementIndex: PropTypes.number,
+  /** Current selected verb for this Statement */
+  verb: PropTypes.string,
+  /** Possible options and respective data types, verb options */
+  verbOptions: PropTypes.array.isRequired,
   /** Value changed callback */
-  onChangeStatement: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
 }
 
 export default withForwardedRef(VerbAtom)
