@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- `Action Menu` props to accept formatted message texts
+- `Page Header` props to accept formatted message texts
+- `Pagination` props to accept formatted message texts
+- `Table` props to accept formatted message texts
+- `Alert` props to accept formatted message texts
+- `Menu` props to accept formatted message texts
+
+### Fixed
+
+- Sortable columns title's breaking entirely when using Formatted Message on `Table` component
+
 ## [8.72.6] - 2019-08-13
 
 ### Fixed
