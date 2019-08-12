@@ -119,8 +119,6 @@ class Menu extends Component {
 
     const isRight = align === 'right'
 
-    console.log(options)
-
     return (
       <div className="relative">
         <div ref={this.containerElement}>{children}</div>

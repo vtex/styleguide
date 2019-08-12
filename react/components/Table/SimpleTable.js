@@ -222,13 +222,18 @@ class SimpleTable extends Component {
                                 onClick={() => {
                                   onSort(this.toggleSortType(property))
                                 }}>
-                                {!headerRight && `${title} `}
-                                {arrowIsDown ? (
-                                  <ArrowDown size={ARROW_SIZE} />
-                                ) : arrowIsUp ? (
-                                  <ArrowUp size={ARROW_SIZE} />
-                                ) : null}
-                                {headerRight && ` ${title}`}
+                                {!headerRight && title}
+                                <div
+                                  className={`inline-flex ${
+                                    headerRight ? 'pr2' : 'pl3'
+                                  }`}>
+                                  {arrowIsDown ? (
+                                    <ArrowDown size={ARROW_SIZE} />
+                                  ) : arrowIsUp ? (
+                                    <ArrowUp size={ARROW_SIZE} />
+                                  ) : null}
+                                </div>
+                                {headerRight && title}
                               </div>
                             ) : columnIndex === 0 && fixFirstColumn ? (
                               <div className="w-100">{title}</div>
