@@ -39,7 +39,7 @@ const TopBar = props => {
 }
 
 TopBar.propTypes = {
-  title: PropTypes.string,
+  title: PropTypes.node,
   onClose: PropTypes.func,
   showBottomShadow: PropTypes.bool,
   responsiveFullScreen: PropTypes.bool,

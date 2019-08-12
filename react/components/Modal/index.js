@@ -163,7 +163,7 @@ Modal.propTypes = {
   /** Node to be displayed as the bottom bar of the modal. */
   bottomBar: PropTypes.node,
   /** Modal title to be displayed in top of the modal. */
-  title: PropTypes.string,
+  title: PropTypes.node,
   /** If true, the modal will expand to fullscreen in small view ports (e.g. mobile) */
   responsiveFullScreen: PropTypes.bool,
   /** If true, show top bar with title */

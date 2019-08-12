@@ -61,9 +61,9 @@ PageHeader.propTypes = {
   /** Title for the header */
   title: PropTypes.node.isRequired,
   /** Subtitle for the header */
-  subtitle: PropTypes.string,
+  subtitle: PropTypes.node,
   /** Label for the back button */
-  linkLabel: PropTypes.string,
+  linkLabel: PropTypes.node,
   onLinkClick: PropTypes.func,
   children: PropTypes.node,
 }
