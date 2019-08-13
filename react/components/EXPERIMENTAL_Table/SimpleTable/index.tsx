@@ -2,7 +2,7 @@ import React, { FC, memo } from 'react'
 
 import Cell from './Cell'
 import useTableContext from '../hooks/useTableContext'
-import { constants } from '../util'
+import constants from '../constants'
 
 const SimpleTable: FC = () => {
   const { columns, items } = useTableContext()
@@ -48,7 +48,7 @@ const SimpleTable: FC = () => {
   const body = items.map(renderRow)
 
   return (
-    <div className="mw-100">
+    <div className="vtex__tablev2 mw-100">
       <div className="overflow-x-auto">
         <div className="dt w-100" style={{ borderSpacing: 0 }}>
           {header}

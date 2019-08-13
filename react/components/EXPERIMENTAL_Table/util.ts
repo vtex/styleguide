@@ -1,9 +1,4 @@
-export const constants = {
-  TABLE_HEADER_HEIGHT: 36,
-  ROW_HEIGHT: 48,
-  EMPTY_STATE_SIZE_IN_ROWS: 5,
-  DEFAULT_SCROLLBAR_WIDTH: 17,
-}
+import constants from './constants'
 
 export const getScrollbarWidth = () => {
   if (!window || !document || !document.documentElement)

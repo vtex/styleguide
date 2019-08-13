@@ -1,5 +1,7 @@
-import { calculateTableHeight, constants } from '../util'
 import { useMemo } from 'react'
+
+import { calculateTableHeight } from '../util'
+import constants from '../constants'
 
 interface Input {
   columns: ColumnObject

@@ -25,7 +25,7 @@ type Props = InferProps<typeof propTypes>
 const Table: FC<Props> = props => {
   return (
     <TableProvider value={props}>
-      <div className="vtex-table__container">
+      <div className="vtex-tablev2__container">
         <SimpleTable />
       </div>
     </TableProvider>
