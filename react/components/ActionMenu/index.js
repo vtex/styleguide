@@ -139,7 +139,7 @@ ActionMenu.propTypes = {
   /** @deprecated Button icon: use buttonProps instead */
   icon: PropTypes.element,
   /** Button text label */
-  label: PropTypes.string,
+  label: PropTypes.node,
   /** Hide the automatic caret icon */
   hideCaretIcon: PropTypes.bool,
   /** Menu width*/
@@ -147,7 +147,7 @@ ActionMenu.propTypes = {
   /** Menu options */
   options: PropTypes.arrayOf(
     PropTypes.shape({
-      label: PropTypes.string,
+      label: PropTypes.node,
       handleCallback: PropTypes.func,
       /** whether option has inline toggle */
       toggle: PropTypes.shape({

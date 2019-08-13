@@ -438,7 +438,7 @@ Table.propTypes = {
     onPrevClick: PropTypes.func,
     currentItemFrom: PropTypes.number,
     currentItemTo: PropTypes.number,
-    textOf: PropTypes.string,
+    textOf: PropTypes.node,
     totalItems: PropTypes.number,
   }),
   bulkActions: PropTypes.shape({

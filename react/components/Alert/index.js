@@ -111,7 +111,7 @@ Alert.propTypes = {
   /** If this object is defined, an action button will appear on the right side of the alert. */
   action: PropTypes.shape({
     onClick: PropTypes.func.isRequired,
-    label: PropTypes.string.isRequired,
+    label: PropTypes.node.isRequired,
   }),
 }
 

@@ -220,7 +220,7 @@ Menu.propTypes = {
   /** Menu options */
   options: PropTypes.arrayOf(
     PropTypes.shape({
-      label: PropTypes.string,
+      label: PropTypes.node,
       onClick: PropTypes.func,
       /** whether option has inline toggle */
       toggle: PropTypes.shape({

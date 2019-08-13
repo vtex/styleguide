@@ -118,8 +118,8 @@ Pagination.propTypes = {
   rowsOptions: PropTypes.array,
   currentItemFrom: PropTypes.number.isRequired,
   currentItemTo: PropTypes.number.isRequired,
-  textOf: PropTypes.string.isRequired,
-  textShowRows: PropTypes.string.isRequired,
+  textOf: PropTypes.node.isRequired,
+  textShowRows: PropTypes.node.isRequired,
   totalItems: PropTypes.number.isRequired,
   /**
    * Use this prop if you want to control the number of rows selected, instead of leaving it to the Pagination component.
