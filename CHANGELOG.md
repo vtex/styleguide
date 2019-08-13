@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- `EXPERIMENTAL_Table` component
+- `EXPERIMENTAL_TableV2` component
 
 ## [9.73.0] - 2019-08-15
 

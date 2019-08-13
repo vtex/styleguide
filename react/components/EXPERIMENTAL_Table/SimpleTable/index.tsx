@@ -6,20 +6,21 @@ import { constants } from '../util'
 
 const SimpleTable: FC = () => {
   const { columns, items } = useTableContext()
+  const rowClassNames = 'dt-row w-100 h-100 ph4 truncate overflow-x-hidden'
 
-  const renderHeadingRow = (headerData: string, headingIndex: number) => {
+  const renderHeader = (headerData: string, headerIndex: number) => {
     const headerRender = columns[headerData].headerRender
     const content = headerRender
       ? headerRender({ headerData })
       : columns[headerData].title
-    return <Cell key={`col-${headingIndex}`} content={content} isHeading />
+    return <Cell key={`col-${headerIndex}`} content={content} isHeader />
   }
 
   const renderRow = (rowData: Object, rowIndex: number) => {
     return (
-      <tr
+      <div
         style={{ height: constants.ROW_HEIGHT }}
-        className="w-100 h-100 ph4 truncate"
+        className={rowClassNames}
         key={`row-${rowIndex}`}>
         {Object.keys(rowData).map((cel: string, cellIndex: number) => {
           const cellRender = columns[cel].cellRender
@@ -29,19 +30,19 @@ const SimpleTable: FC = () => {
             : cellData
           return <Cell key={`${rowIndex}-${cellIndex}`} content={content} />
         })}
-      </tr>
+      </div>
     )
   }
 
-  const headings = (
-    <tr
-      key="heading"
-      className="w-100 h-100 c-muted-2 f6 truncate ph4 overflow-x-hidden"
+  const header = (
+    <div
+      key="header"
+      className={`${rowClassNames} c-muted-2 f6`}
       style={{
         height: constants.TABLE_HEADER_HEIGHT,
       }}>
-      {Object.keys(columns).map(renderHeadingRow)}
-    </tr>
+      {Object.keys(columns).map(renderHeader)}
+    </div>
   )
 
   const body = items.map(renderRow)
@@ -49,10 +50,10 @@ const SimpleTable: FC = () => {
   return (
     <div className="mw-100">
       <div className="overflow-x-auto">
-        <table className="w-100" style={{ borderSpacing: 0 }}>
-          <thead>{headings}</thead>
-          <tbody>{body}</tbody>
-        </table>
+        <div className="dt w-100" style={{ borderSpacing: 0 }}>
+          {header}
+          {body}
+        </div>
       </div>
     </div>
   )
