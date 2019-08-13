@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import config from 'vtex-tachyons/config.json'
 
 import { hideDecorators } from './edge.css'
 import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
@@ -89,19 +88,24 @@ class Input extends Component {
 
     const widthClass = 'w-100'
     const box = 'ma0 border-box'
-    const borderRadius = `br2 ${groupBottom ? 'br--top' : ''}`
-    const border = `bw1 ${borderRadius} b--solid outline-0`
-    // On bw1 change, update config.borderRadius[1] below accordingly
+    const borderRadiusBase = 'br2'
+    const borderBase = `bw1 b--solid`
 
-    const topBottomHeight = config.borderRadius[1] * 2 // 2 is top AND BOTTOM
-    const prefixAndSuffixPosition = `${config.borderRadius[1]}rem`
-    const calcPrefixAndSuffixHeight = `calc(100% - ${topBottomHeight}rem)`
-    let classes = `${widthClass} ${box} ${border} ${hideDecorators} `
+    const borderRadius = `${borderRadiusBase} ${
+      prefix ? 'bl-0 br--right ' : ''
+    } ${suffix ? 'br-0 br--left ' : ''}`
+    let prefixClasses = `${borderRadiusBase} br-0 br--left `
+    let suffixClasses = `${borderRadiusBase} bl-0 br--right `
 
+    let classes = `${widthClass} ${box} ${hideDecorators} ${borderRadius} bn outline-0 `
     let labelClasses = 'vtex-input__label db mb3 w-100 c-on-base '
-
     let prefixAndSuffixClasses =
-      'vtex-input__prefix absolute c-muted-2 fw5 flex items-center '
+      'vtex-input__prefix c-muted-2 fw5 flex items-center c-muted-2 t-body '
+    let prefixSuffixGroupClasses =
+      'vtex-input-prefix__group flex flex-row items-stretch '
+    prefixSuffixGroupClasses += `${borderRadiusBase} ${borderBase} ${
+      groupBottom ? 'br--top ' : ''
+    }`
 
     if (token) {
       classes += 'code '
@@ -109,65 +113,74 @@ class Input extends Component {
 
     if (this.props.disabled) {
       classes += 'bg-disabled b--disabled c-disabled '
+      prefixAndSuffixClasses += 'bg-disabled  '
+      prefixSuffixGroupClasses += 'b--disabled c-disabled '
     } else {
       classes += 'bg-base c-on-base '
+      prefixAndSuffixClasses += 'bg-base '
 
       if (error || errorMessage) {
         classes += 'b--danger hover-b--danger '
+        prefixSuffixGroupClasses += 'b--danger hover-b--danger '
       } else if (active) {
         classes += 'b--muted-2 '
+        prefixSuffixGroupClasses += 'b--muted-2 '
       } else {
         classes += 'b--muted-4 '
+        prefixSuffixGroupClasses += 'b--muted-4 '
         if (!this.props.readOnly) {
           classes += 'hover-b--muted-3 '
+          prefixSuffixGroupClasses += 'hover-b--muted-3 '
         }
       }
     }
 
     switch (size) {
       case 'small':
-        classes += `${!token ? 't-small' : ''} h-small ${
-          prefix ? 'pl7 pr5' : 'ph5'
-        } ${suffix ? 'pr7' : ''}`
+        classes += `${!token ? 't-small' : ''} h-small `
+        classes += `${
+          prefix && suffix ? '' : prefix ? 'pr5 ' : suffix ? 'pl5 ' : 'ph5 '
+        }`
         labelClasses += 't-small '
-        prefixAndSuffixClasses += 'ph3 t-body '
+        prefixClasses += 'pl5 pr3 '
+        suffixClasses += 'pr5 pl3 '
         break
       case 'large':
-        classes += `${!token ? 't-body' : ''} h-large ${
-          prefix ? 'pl8 pr6' : 'ph5'
-        } ${suffix ? 'pr8' : ''}`
+        classes += `${!token ? 't-body' : ''} h-large `
+        classes += `${
+          prefix && suffix ? '' : prefix ? 'pr5 ' : suffix ? 'pl5 ' : 'ph5 '
+        }`
         labelClasses += 't-body '
-        prefixAndSuffixClasses += 'ph4 t-body'
+        prefixClasses += 'pl5 pr4 '
+        suffixClasses += 'pr5 pl4 '
         break
       case 'x-large':
         // DEPRECATED
-        classes += `${!token ? 't-body' : ''} pv5 ${
-          prefix ? 'pl8 pr7' : 'ph7'
-        } ${suffix ? 'pr8' : ''}`
+        classes += `${!token ? 't-body' : ''} pv5 `
+        classes += `${
+          prefix && suffix ? '' : prefix ? 'pr7 ' : suffix ? 'pl7 ' : 'ph7 '
+        }`
         labelClasses += 't-body '
-        prefixAndSuffixClasses += 'ph5 t-body '
+        prefixClasses += 'pl5 pr3 '
+        suffixClasses += 'pr5 pl3 '
         break
       default:
-        classes += `${!token ? 't-small' : ''} h-regular ${
-          prefix ? 'pl7 pr5' : 'ph5'
-        } ${suffix ? 'pr7' : ''}`
+        classes += `${!token ? 't-small' : ''} h-regular `
+        classes += `${
+          prefix && suffix ? '' : prefix ? 'pr5 ' : suffix ? 'pl5 ' : 'ph5 '
+        }`
         labelClasses += 't-small '
-        prefixAndSuffixClasses += 'ph3 t-small '
+        prefixClasses += 'pl5 pr3 '
+        suffixClasses += 'pr5 pl3 '
         break
     }
 
     return (
       <label className="vtex-input w-100">
         {label && <span className={labelClasses}>{label}</span>}
-        <div className="flex vtex-input-prefix__group relative">
+        <div className={prefixSuffixGroupClasses}>
           {prefix && (
-            <span
-              style={{
-                height: calcPrefixAndSuffixHeight,
-                top: prefixAndSuffixPosition,
-                left: prefixAndSuffixPosition,
-              }}
-              className={prefixAndSuffixClasses}>
+            <span className={`${prefixAndSuffixClasses} ${prefixClasses}`}>
               {prefix}
             </span>
           )}
@@ -212,13 +225,7 @@ class Input extends Component {
             }}
           />
           {suffix && (
-            <span
-              style={{
-                height: calcPrefixAndSuffixHeight,
-                top: prefixAndSuffixPosition,
-                right: prefixAndSuffixPosition,
-              }}
-              className={prefixAndSuffixClasses}>
+            <span className={`${prefixAndSuffixClasses} ${suffixClasses}`}>
               {suffix}
             </span>
           )}

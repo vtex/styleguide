@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.72.6] - 2019-08-13
+
+### Fixed
+
+- Dynamic width for prefixes & suffixes in `<Input />` component
+
 ## [8.72.5] - 2019-08-12
 
 ### Changed
