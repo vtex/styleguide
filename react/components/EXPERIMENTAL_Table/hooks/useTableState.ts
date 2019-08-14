@@ -1,21 +1,27 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 
-import { calculateTableHeight } from '../util'
+import { calculateTableHeight, getRowHeight } from '../util'
 import constants from '../constants'
 
 interface Input {
   columns: ColumnObject
   items: Array<any>
+  density: Density
 }
 
-const useTableState = ({ columns, items }: Input): TableState => {
+const useTableState = ({ columns, items, density }: Input): TableState => {
+  const [selectedDensity, setSelectedDensity] = useState<Density>(density)
   const isEmpty = useMemo(
     () => items.length === 0 || Object.keys(columns).length === 0,
     [columns, items]
   )
+  const rowHeight = useMemo(() => getRowHeight(selectedDensity), [
+    selectedDensity,
+  ])
+
   const tableHeight = useMemo(
-    () => calculateTableHeight(constants.ROW_HEIGHT, items.length),
-    [items]
+    () => calculateTableHeight(rowHeight, items.length),
+    [items, rowHeight]
   )
 
   return {
@@ -23,6 +29,9 @@ const useTableState = ({ columns, items }: Input): TableState => {
     items,
     isEmpty,
     tableHeight,
+    rowHeight,
+    selectedDensity,
+    setSelectedDensity,
   }
 }
 

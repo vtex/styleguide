@@ -18,6 +18,9 @@ const propTypes = {
   items: PropTypes.arrayOf(PropTypes.object),
   isEmpty: PropTypes.bool,
   tableHeight: PropTypes.number,
+  rowHeight: PropTypes.number,
+  selectedDensity: PropTypes.oneOf(['low', 'medium', 'high']),
+  setSelectedDensity: PropTypes.func,
 }
 
 type Props = InferProps<typeof propTypes>
