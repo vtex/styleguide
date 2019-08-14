@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, Children } from 'react'
 import PropTypes, { InferProps } from 'prop-types'
 
 import SimpleTable from './SimpleTable/index'
@@ -25,10 +25,11 @@ const propTypes = {
 
 type Props = InferProps<typeof propTypes>
 
-const Table: FC<Props> = props => {
+const Table: FC<Props> = ({ children, ...props }) => {
   return (
     <TableProvider value={props}>
       <div className="vtex-tablev2__container">
+        {children}
         <SimpleTable />
       </div>
     </TableProvider>

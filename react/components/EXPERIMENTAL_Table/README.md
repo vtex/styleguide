@@ -118,3 +118,81 @@ function StateHookExample() {
 | rowHeight          | Number           | Table calculated row height         |
 | selectedDensity    | Density          | Current selected density            |
 | setSelectedDensity | Function         | selectedDensity setter              |
+
+#### Toolbar
+
+```js
+// Imports
+const useTableState = require('./hooks/useTableState.ts').default
+const Toolbar = require('./Toolbar/index.tsx').default
+
+// Define the columns
+columns = {
+  name: {
+    title: 'Name',
+  },
+  email: {
+    title: 'Email',
+  },
+  number: {
+    title: 'Number',
+  },
+  country: {
+    title: 'Country',
+  },
+}
+
+// Define the items
+items = [
+  {
+    name: "T'Chala",
+    email: 'black.panther@gmail.com',
+    number: 1.88191,
+    country: '🇰🇪Wakanda',
+  },
+  {
+    name: 'Peter Parker',
+    email: 'spider.man@gmail.com',
+    number: 3.09191,
+    country: '🇺🇸USA',
+  },
+  {
+    name: 'Shang-Chi',
+    email: 'kungfu.master@gmail.com',
+    number: 39.09222,
+    country: '🇨🇳China',
+  },
+  {
+    name: 'Natasha Romanoff',
+    email: 'black.widow@gmail.com',
+    number: 5.09291,
+    country: '🇷🇺Russia',
+  },
+]
+
+function StateHookExample() {
+  const tableState = useTableState({
+    columns,
+    items,
+    density: 'medium',
+  })
+
+  const density = {
+    label: 'Line density',
+    lowOptionLabel: 'Low',
+    mediumOptionLabel: 'Medium',
+    highOptionLabel: 'High',
+  }
+
+  return (
+    <Table {...tableState}>
+      <Toolbar>
+        <Toolbar.ButtonGroup>
+          <Toolbar.ButtonGroup.Density {...density} />
+        </Toolbar.ButtonGroup>
+      </Toolbar>
+    </Table>
+  )
+}
+;<StateHookExample />
+```

@@ -14,7 +14,7 @@ interface TableState {
   isEmpty?: boolean
   tableHeight?: number
   rowHeight?: number
-  selectedDensity?: Density
+  selectedDensity?: string
   setSelectedDensity?: (density: Density) => void
 }
 
