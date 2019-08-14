@@ -1,4 +1,4 @@
-import React, { FC, Children } from 'react'
+import React, { FC } from 'react'
 import PropTypes, { InferProps } from 'prop-types'
 
 import SimpleTable from './SimpleTable/index'
