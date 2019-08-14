@@ -1,11 +1,11 @@
-import React, { Component, Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 import SubjectAtom from './Atoms/SubjectAtom'
 import VerbAtom from './Atoms/VerbAtom'
 import ObjectAtom from './Atoms/ObjectAtom'
 
-class Statement extends Component {
+class Statement extends React.Component {
   render() {
     const {
       isFullWidth,
@@ -63,11 +63,6 @@ class Statement extends Component {
           disabled={!statement.verb}
           isFullWidth={isFullWidth}
           object={statement.object}
-          objectComponent={
-            options[statement.subject].verbs.find(
-              verb => verb.value === statement.verb
-            ).object
-          }
           onChange={object => {
             const newStatement = {
               ...statement,
@@ -83,6 +78,11 @@ class Statement extends Component {
             }
             onChangeStatement(newStatement)
           }}
+          renderObject={
+            options[statement.subject].verbs.find(
+              verb => verb.value === statement.verb
+            ).object
+          }
         />
       ),
     ]

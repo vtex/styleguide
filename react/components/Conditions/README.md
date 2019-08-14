@@ -60,12 +60,12 @@ class SimpleConditionsCase extends React.Component {
           {
             label: 'is',
             value: '=',
-            object: <SimpleInputObject />,
+            object: props => <SimpleInputObject {...props} />,
           },
           {
             label: 'is not',
             value: '!=',
-            object: <SimpleInputObject />,
+            object: props => <SimpleInputObject {...props} />,
           },
         ],
       },
@@ -75,17 +75,17 @@ class SimpleConditionsCase extends React.Component {
           {
             label: 'contains',
             value: 'contains',
-            object: <SimpleInputObject />,
+            object: props => <SimpleInputObject {...props} />,
           },
           {
             label: 'is',
             value: '=',
-            object: <SimpleInputObject />,
+            object: props => <SimpleInputObject {...props} />,
           },
           {
             label: 'is not',
             value: '!=',
-            object: <SimpleInputObject />,
+            object: props => <SimpleInputObject {...props} />,
           },
         ],
       },
@@ -143,12 +143,12 @@ class SimpleConditionsCase extends React.Component {
           {
             label: 'is',
             value: '=',
-            object: <SimpleInputObject />,
+            object: props => <SimpleInputObject {...props} />,
           },
           {
             label: 'is not',
             value: '!=',
-            object: <SimpleInputObject />,
+            object: props => <SimpleInputObject {...props} />,
           },
         ],
         unique: true,
@@ -159,12 +159,12 @@ class SimpleConditionsCase extends React.Component {
           {
             label: 'is',
             value: '=',
-            object: <SimpleInputObject />,
+            object: props => <SimpleInputObject {...props} />,
           },
           {
             label: 'is not',
             value: '!=',
-            object: <SimpleInputObject />,
+            object: props => <SimpleInputObject {...props} />,
           },
         ],
         unique: true,
@@ -175,12 +175,12 @@ class SimpleConditionsCase extends React.Component {
           {
             label: 'is',
             value: '=',
-            object: <SimpleInputObject />,
+            object: props => <SimpleInputObject {...props} />,
           },
           {
             label: 'is not',
             value: '!=',
-            object: <SimpleInputObject />,
+            object: props => <SimpleInputObject {...props} />,
           },
         ],
         unique: true,
@@ -191,17 +191,17 @@ class SimpleConditionsCase extends React.Component {
           {
             label: 'contains',
             value: 'contains',
-            object: <SimpleInputObject />,
+            object: props => <SimpleInputObject {...props} />,
           },
           {
             label: 'is',
             value: '=',
-            object: <SimpleInputObject />,
+            object: props => <SimpleInputObject {...props} />,
           },
           {
             label: 'is not',
             value: '!=',
-            object: <SimpleInputObject />,
+            object: props => <SimpleInputObject {...props} />,
           },
         ],
       },
@@ -259,12 +259,12 @@ class SimpleConditionsCase extends React.Component {
           {
             label: 'is',
             value: '=',
-            object: <SimpleInputObject />,
+            object: props => <SimpleInputObject {...props} />,
           },
           {
             label: 'is not',
             value: '!=',
-            object: <SimpleInputObject />,
+            object: props => <SimpleInputObject {...props} />,
           },
         ],
       },
@@ -274,17 +274,17 @@ class SimpleConditionsCase extends React.Component {
           {
             label: 'contains',
             value: 'contains',
-            object: <SimpleInputObject />,
+            object: props => <SimpleInputObject {...props} />,
           },
           {
             label: 'is',
             value: '=',
-            object: <SimpleInputObject />,
+            object: props => <SimpleInputObject {...props} />,
           },
           {
             label: 'is not',
             value: '!=',
-            object: <SimpleInputObject />,
+            object: props => <SimpleInputObject {...props} />,
           },
         ],
       },
@@ -485,12 +485,12 @@ class ComplexConditionsCase extends React.Component {
           {
             label: 'is',
             value: '=',
-            object: <ComplexNumericInputObject />,
+            object: props => <ComplexNumericInputObject {...props} />,
           },
           {
             label: 'is between',
             value: 'between',
-            object: <ComplexNumericInputRangeObject />,
+            object: props => <ComplexNumericInputRangeObject {...props} />,
           },
         ],
       },
@@ -501,12 +501,12 @@ class ComplexConditionsCase extends React.Component {
           {
             label: 'is',
             value: '=',
-            object: <ComplexDropdownObject />,
+            object: props => <ComplexDropdownObject {...props} />,
           },
           {
             label: 'is any of',
             value: 'any',
-            object: <ComplexSelectObject />,
+            object: props => <ComplexSelectObject {...props} />,
           },
         ],
       },
@@ -517,12 +517,12 @@ class ComplexConditionsCase extends React.Component {
           {
             label: 'is',
             value: '=',
-            object: <ComplexDatePickerObject />,
+            object: props => <ComplexDatePickerObject {...props} />,
           },
           {
             label: 'is between',
             value: 'between',
-            object: <ComplexDatePickerRangeObject />,
+            object: props => <ComplexDatePickerRangeObject {...props} />,
           },
         ],
       },
