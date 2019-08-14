@@ -124,7 +124,6 @@ function StateHookExample() {
 ```js
 // Imports
 const useTableState = require('./hooks/useTableState.ts').default
-const Toolbar = require('./Toolbar/index.tsx').default
 
 // Define the columns
 columns = {
@@ -186,11 +185,11 @@ function StateHookExample() {
 
   return (
     <Table {...tableState}>
-      <Toolbar>
-        <Toolbar.ButtonGroup>
-          <Toolbar.ButtonGroup.Density {...density} />
-        </Toolbar.ButtonGroup>
-      </Toolbar>
+      <Table.Toolbar>
+        <Table.Toolbar.ButtonGroup>
+          <Table.Toolbar.ButtonGroup.Density {...density} />
+        </Table.Toolbar.ButtonGroup>
+      </Table.Toolbar>
     </Table>
   )
 }

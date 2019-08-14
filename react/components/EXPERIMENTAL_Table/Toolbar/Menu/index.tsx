@@ -11,11 +11,11 @@ type Props = {
   box: BoxProps
 }
 
-interface MenuComposites {
+interface Composites {
   Item: FC<ItemProps>
 }
 
-const Menu: FC<Props> & MenuComposites = ({ button, box, children }) => {
+const Menu: FC<Props> & Composites = ({ button, box, children }) => {
   const [isBoxVisible, setBoxVisible] = useState(false)
   const buttonRef = useRef(null)
 

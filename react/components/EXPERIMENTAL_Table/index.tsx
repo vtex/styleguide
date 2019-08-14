@@ -4,6 +4,7 @@ import PropTypes, { InferProps } from 'prop-types'
 import SimpleTable from './SimpleTable/index'
 
 import { TableProvider } from './context'
+import Toolbar from './Toolbar/index'
 
 const propTypes = {
   schema: PropTypes.shape({
@@ -25,7 +26,11 @@ const propTypes = {
 
 type Props = InferProps<typeof propTypes>
 
-const Table: FC<Props> = ({ children, ...props }) => {
+interface Composites {
+  Toolbar: FC
+}
+
+const Table: FC<Props> & Composites = ({ children, ...props }) => {
   return (
     <TableProvider value={props}>
       <div className="vtex-tablev2__container">
@@ -36,6 +41,7 @@ const Table: FC<Props> = ({ children, ...props }) => {
   )
 }
 
+Table.Toolbar = Toolbar
 Table.propTypes = propTypes
 
 export default Table

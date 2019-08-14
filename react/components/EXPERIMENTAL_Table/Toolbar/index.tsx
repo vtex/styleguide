@@ -3,11 +3,11 @@ import React, { FC } from 'react'
 import Container from './Container'
 import ButtonGroup from './ButtonGroup'
 
-interface ToolbarComposites {
-  ButtonGroup: any
+interface Composites {
+  ButtonGroup: FC
 }
 
-const Toolbar: FC & ToolbarComposites = ({ children }) => {
+const Toolbar: FC & Composites = ({ children }) => {
   return <Container>{children}</Container>
 }
 

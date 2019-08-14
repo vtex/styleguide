@@ -1,15 +1,16 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { FC } from 'react'
 
-import ButtonDensity from './ButtonDensity'
+import ButtonDensity, { ButtonDensityProps } from './ButtonDensity'
 
-const BUTTON_TYPES = {
-  DENSITY: 1,
+type ButtonType = 'density'
+
+interface Composites {
+  Density: FC<ButtonDensityProps>
 }
 
-const getButton = (type, props) => {
+const getButton = (type: ButtonType, props: ButtonDensityProps) => {
   switch (type) {
-    case BUTTON_TYPES.DENSITY: {
+    case 'density': {
       return (
         <span className="order-1">
           <ButtonDensity {...props} />
@@ -22,18 +23,14 @@ const getButton = (type, props) => {
   }
 }
 
-const getComponent = type => {
-  return props => getButton(type, props)
+const getComponent = (type: ButtonType) => {
+  return (props: ButtonDensityProps) => getButton(type, props)
 }
 
-const ButtonGroup = ({ children }) => (
+const ButtonGroup: FC & Composites = ({ children }) => (
   <div className="flex flex-row items-center">{children}</div>
 )
 
-ButtonGroup.Density = getComponent(BUTTON_TYPES.DENSITY)
-
-ButtonGroup.propTyes = {
-  children: PropTypes.any,
-}
+ButtonGroup.Density = getComponent('density')
 
 export default ButtonGroup

@@ -8,7 +8,7 @@ import Menu from './Menu/index'
 const BOX_HEIGHT =
   constants.DENSITY_OPTIONS.length * constants.FIELDS_BOX_ITEM_HEIGHT
 
-type DensityProps = {
+export type ButtonDensityProps = {
   label: string
   lowOptionLabel: string
   mediumOptionLabel: string
@@ -18,7 +18,7 @@ type DensityProps = {
   disabled: boolean
 }
 
-const ButtonDensity: FC<DensityProps> = ({
+const ButtonDensity: FC<ButtonDensityProps> = ({
   label,
   handleCallback,
   disabled,
