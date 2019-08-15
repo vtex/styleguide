@@ -26,8 +26,19 @@ class Table extends PureComponent {
       tableRowHeight: this.getRowHeight(props.density),
       selectedDensity: props.density,
       allChecked: false,
-      selectedRows: [],
+      selectedRows: this.props.bulkActions.selectedRows || [],
       allLinesSelected: false,
+    }
+  }
+
+  componentDidUpdate() {
+    const { bulkActions } = this.props
+    const { selectedRows } = this.state
+
+    if(bulkActions
+      && bulkActions.selectedRows
+      && bulkActions.selectedRows !== selectedRows) {
+      this.setState({selectedRows: bulkActions.selectedRows})
     }
   }
 
@@ -450,6 +461,7 @@ Table.propTypes = {
     }),
     totalItems: PropTypes.number,
     onChange: PropTypes.func,
+    selectedRows: PropTypes.array,
     main: PropTypes.shape({
       label: PropTypes.string.isRequired,
       handleCallback: PropTypes.func.isRequired,

@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.72.8] - 2019-08-15
+
+### Added
+
+- Optional prop `selectedRows` that can control the table selected items
+
 ## [8.72.7] - 2019-08-13
 
 ### Changed
