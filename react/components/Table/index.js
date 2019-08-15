@@ -35,10 +35,12 @@ class Table extends PureComponent {
     const { bulkActions } = this.props
     const { selectedRows } = this.state
 
-    if(bulkActions
-      && bulkActions.selectedRows
-      && bulkActions.selectedRows !== selectedRows) {
-      this.setState({selectedRows: bulkActions.selectedRows})
+    if (
+      bulkActions &&
+      bulkActions.selectedRows &&
+      bulkActions.selectedRows !== selectedRows
+    ) {
+      this.setState({ selectedRows: bulkActions.selectedRows })
     }
   }
 
