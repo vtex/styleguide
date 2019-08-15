@@ -49,6 +49,7 @@ const ICONS = {
   OptionsDots: require('./OptionsDots').default,
   Plus: require('./Plus').default,
   PlusLines: require('./PlusLines').default,
+  Printer: require('./Printer').default,
   Save: require('./Save').default,
   Search: require('./Search').default,
   ShoppingCart: require('./ShoppingCart').default,
