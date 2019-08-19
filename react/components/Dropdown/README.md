@@ -16,8 +16,7 @@
 Sizes
 
 ```js
-const Dropdown = require('./index.js').default
-;<div>
+<div>
   <div className="mb5">
     <Dropdown
       label="Small"
