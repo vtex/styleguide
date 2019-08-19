@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.73.1] - 2019-08-19
+
+### Added
+
+- `EXPERIMENTAL_TableV2` component
+
 ## [9.73.0] - 2019-08-15
 
 ### Changed
