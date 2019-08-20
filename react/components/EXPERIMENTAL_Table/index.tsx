@@ -5,6 +5,7 @@ import SimpleTable from './SimpleTable/index'
 
 import { TableProvider } from './context'
 import Toolbar from './Toolbar/index'
+import { DENSITY_OPTIONS } from './constants'
 
 const propTypes = {
   schema: PropTypes.shape({
@@ -20,7 +21,7 @@ const propTypes = {
   isEmpty: PropTypes.bool,
   tableHeight: PropTypes.number,
   rowHeight: PropTypes.number,
-  selectedDensity: PropTypes.oneOf(['low', 'medium', 'high']),
+  selectedDensity: PropTypes.oneOf(DENSITY_OPTIONS),
   setSelectedDensity: PropTypes.func,
 }
 
