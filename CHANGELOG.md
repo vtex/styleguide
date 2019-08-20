@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Toggle click area
+
 ## [9.73.6] - 2019-08-22
 
 ### Added
