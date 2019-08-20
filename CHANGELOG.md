@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- `Toolbar` component to `EXPERIMENTAL_TableV2`
+- `ButtonGroup` component to `EXPERIMENTAL_TableV2`
+- `ButtonDensity` component to `EXPERIMENTAL_TableV2`
+- Allow `EXPERIMENTAL_TableV2` to have multiple densities
+
 ## [9.73.5] - 2019-08-21
 
 ### Fixed
