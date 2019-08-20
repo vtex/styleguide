@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 
 import Cell from './Cell'
-import constants from '../constants'
+import { TABLE_HEADER_HEIGHT } from '../constants'
 import useTableContext from '../hooks/useTableContext'
 
 const Header: FC = () => {
@@ -19,7 +19,7 @@ const Header: FC = () => {
       key="header"
       className="dt-row w-100 h-100 ph4 truncate overflow-x-hidden c-muted-2 f6"
       style={{
-        height: constants.TABLE_HEADER_HEIGHT,
+        height: TABLE_HEADER_HEIGHT,
       }}>
       {Object.keys(columns).map(renderHeader)}
     </div>

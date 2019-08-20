@@ -5,7 +5,7 @@ import { calculateTableHeight, getRowHeight } from '../util'
 interface Input {
   columns: ColumnObject
   items: Array<any>
-  density: Density
+  density?: Density
 }
 
 const useTableState = ({ columns, items, density }: Input): TableState => {

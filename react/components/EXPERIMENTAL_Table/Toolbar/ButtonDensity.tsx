@@ -1,12 +1,15 @@
 import React, { FC } from 'react'
 
 import IconDensity from '../../icon/Density/index.js'
-import constants from '../constants'
+import {
+  DENSITY_OPTIONS,
+  FIELDS_BOX_ITEM_HEIGHT,
+  MEDIUM_ICON_SIZE,
+} from '../constants'
 import useTableContext from '../hooks/useTableContext'
 import Menu from './Menu/index'
 
-const BOX_HEIGHT =
-  constants.DENSITY_OPTIONS.length * constants.FIELDS_BOX_ITEM_HEIGHT
+const BOX_HEIGHT = DENSITY_OPTIONS.length * FIELDS_BOX_ITEM_HEIGHT
 
 export type ButtonDensityProps = {
   label: string
@@ -31,11 +34,11 @@ const ButtonDensity: FC<ButtonDensityProps> = ({
       button={{
         id: 'toggleDensity',
         title: label,
-        icon: <IconDensity size={constants.MEDIUM_ICON_SIZE} />,
+        icon: <IconDensity size={MEDIUM_ICON_SIZE} />,
         disabled,
       }}
       box={{ height: BOX_HEIGHT, alignMenu }}>
-      {constants.DENSITY_OPTIONS.map((key: Density, index) => {
+      {DENSITY_OPTIONS.map((key: Density, index) => {
         const isKeySelected = selectedDensity === key
         return (
           <Menu.Item

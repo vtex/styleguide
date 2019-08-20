@@ -1,8 +1,11 @@
-export default {
-  TABLE_HEADER_HEIGHT: 36,
-  EMPTY_STATE_SIZE_IN_ROWS: 5,
-  DEFAULT_SCROLLBAR_WIDTH: 17,
-  DENSITY_OPTIONS: ['low', 'medium', 'high'],
-  FIELDS_BOX_ITEM_HEIGHT: 36,
-  MEDIUM_ICON_SIZE: 14,
+export const DENSITIES = {
+  LOW: 'low',
+  MEDIUM: 'medium',
+  HIGH: 'high',
 }
+export const TABLE_HEADER_HEIGHT = 36
+export const EMPTY_STATE_SIZE_IN_ROWS = 5
+export const DEFAULT_SCROLLBAR_WIDTH = 17
+export const FIELDS_BOX_ITEM_HEIGHT = 36
+export const MEDIUM_ICON_SIZE = 14
+export const DENSITY_OPTIONS = [DENSITIES.LOW, DENSITIES.MEDIUM, DENSITIES.HIGH]
