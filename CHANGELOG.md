@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- **Dropdown** docs example was not displaying.
+- **Dropdown** font size.
+- **Input** height was slightly off.
+
 ## [9.73.2] - 2019-08-20
 
 ### Fixed
