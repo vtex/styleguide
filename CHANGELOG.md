@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- **FloatingActionBar** padding in mobile devices.
+
 ## [9.73.1] - 2019-08-19
 
 ### Added
