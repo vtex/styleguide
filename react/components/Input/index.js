@@ -137,7 +137,8 @@ class Input extends Component {
 
     switch (size) {
       case 'small':
-        classes += `${!token ? 't-small' : ''} h-small `
+        prefixSuffixGroupClasses += 'h-small '
+        classes += `${!token ? 't-small' : ''} `
         classes += `${
           prefix && suffix ? '' : prefix ? 'pr5 ' : suffix ? 'pl5 ' : 'ph5 '
         }`
@@ -146,7 +147,8 @@ class Input extends Component {
         suffixClasses += 'pr5 pl3 '
         break
       case 'large':
-        classes += `${!token ? 't-body' : ''} h-large `
+        prefixSuffixGroupClasses += 'h-large '
+        classes += `${!token ? 't-body' : ''} `
         classes += `${
           prefix && suffix ? '' : prefix ? 'pr5 ' : suffix ? 'pl5 ' : 'ph5 '
         }`
@@ -165,7 +167,8 @@ class Input extends Component {
         suffixClasses += 'pr5 pl3 '
         break
       default:
-        classes += `${!token ? 't-small' : ''} h-regular `
+        prefixSuffixGroupClasses += 'h-regular '
+        classes += `${!token ? 't-small' : ''} `
         classes += `${
           prefix && suffix ? '' : prefix ? 'pr5 ' : suffix ? 'pl5 ' : 'ph5 '
         }`
