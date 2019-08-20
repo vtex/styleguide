@@ -83,7 +83,7 @@ module.exports = {
             'react/components/Layout/index.js',
             'react/components/PageBlock/index.js',
             'react/components/PageHeader/index.js',
-            'react/components/FloatingActionBar/index.js',
+            'react/components/FloatingActionBar/index.tsx',
           ],
         },
         {
