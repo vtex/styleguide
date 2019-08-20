@@ -165,7 +165,7 @@ class Toggle extends Component {
           <input
             id={id}
             type="checkbox"
-            className="h1 w1 absolute o-0"
+            className="h100 w100 absolute o-0"
             disabled={disabled}
             checked={checked}
             name={this.props.name}
