@@ -2,21 +2,23 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Input from '../../Input'
 
+export type RenderProps = {
+  error: Props['error']
+  onChange: Props['onChange']
+  value: Props['object']
+}
+
 type Props = {
   /** Disabled state */
   disabled?: boolean
+  /** Statement error message */
+  error?: string
   /** Current selected object for this Statement */
   object: unknown
   /** Object Value changed callback */
-  onChange: () => void
-  /** Statement Error changed callback */
-  onError: () => void
+  onChange: (value: Props['object'], error?: Props['error']) => void
   /** Possible options and respective data types, verb options */
-  renderObject: ({
-    object,
-    onChange,
-    onError,
-  }: Pick<Props, 'object' | 'onChange' | 'onError'>) => React.ReactElement
+  renderObject: (renderProps: RenderProps) => React.ReactElement
 }
 
 const EmptyObjectAtom = () => (
@@ -29,9 +31,9 @@ const EmptyObjectAtom = () => (
 
 const ObjectAtom: React.FC<Props> = ({
   disabled,
+  error,
   object,
   onChange,
-  onError,
   renderObject,
 }) => {
   if (disabled) {
@@ -40,7 +42,11 @@ const ObjectAtom: React.FC<Props> = ({
 
   return (
     <div className="mh3 flex-auto">
-      {renderObject({ object, onChange, onError })}
+      {renderObject({
+        error,
+        onChange,
+        value: object,
+      })}
     </div>
   )
 }

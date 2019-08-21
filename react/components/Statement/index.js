@@ -61,19 +61,13 @@ class Statement extends React.Component {
         <ObjectAtom
           key="object"
           disabled={!statement.verb}
+          error={statement.error}
           isFullWidth={isFullWidth}
           object={statement.object}
-          onChange={object => {
+          onChange={(object, error) => {
             const newStatement = {
               ...statement,
               object,
-              error: null,
-            }
-            onChangeStatement(newStatement)
-          }}
-          onError={error => {
-            const newStatement = {
-              ...statement,
               error,
             }
             onChangeStatement(newStatement)
