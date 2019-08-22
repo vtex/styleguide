@@ -40,6 +40,7 @@ class Button extends Component {
       rel,
       referrerPolicy,
       download,
+      noUpperCase,
     } = this.props
 
     const disabled = this.props.disabled || isLoading
@@ -79,6 +80,7 @@ class Button extends Component {
     if (!(isTertiary && (collapseLeft || collapseRight))) {
       labelClasses += `ph${horizontalPadding} `
     }
+    labelClasses += isTertiary && noUpperCase ? 'ttn ' : ''
 
     if (collapseLeft && isTertiary) {
       labelClasses += 'nl1 ph1 hover-c-link'
@@ -327,6 +329,8 @@ Button.propTypes = {
   referrerPolicy: PropTypes.string,
   /** Link spec */
   download: PropTypes.string,
+  /** When terciary, the upper case can be prevented */
+  noUpperCase: PropTypes.bool,
 }
 
 export default withForwardedRef(Button)
