@@ -114,4 +114,3 @@ yarn deploy
 - We currently have two majors of the Styleguide, `8.x` and `9.x` (master branch).
 Each major supports a specific VTEX's Render version.
   This means that we develop new features only on the `master` branch (9.x major) and do bug fixes on both `master and `8.x` branches.
-  with bug fixes only. To contribute with new features, use master (9.x).
