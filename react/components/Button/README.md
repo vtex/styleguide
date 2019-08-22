@@ -207,6 +207,25 @@ const Box = require('../Box').default
       </div>
     </div>
   </div>
+  <div className="flex justify-center mt6">
+    <div className="flex flex-column w-60">
+      <div className="t-heading-6 mb4">Collapse props don't work on primary and secondary variations (and it shouldn't)</div>
+      <div className="w-100 mb4">
+        <Box />
+      </div>
+      <div className="mb4 flex justify-between">
+        <Button variation="primary" collapseLeft>Collapse left</Button>
+        <Button variation="primary" collapseRight>Collapse right</Button>
+      </div>
+      <div className="w-100 mb4">
+        <Box />
+      </div>
+      <div className="mb4 flex justify-between">
+        <Button variation="secondary" collapseLeft>Collapse left</Button>
+        <Button variation="secondary" collapseRight>Collapse right</Button>
+      </div>
+    </div>
+  </div>
 </>;
 ```
 Colored container background
