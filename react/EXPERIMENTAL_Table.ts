@@ -1,5 +1,5 @@
 import Table from './components/EXPERIMENTAL_Table/index'
-import { DENSITIES } from './components/EXPERIMENTAL_Table/constants'
+import { TABLE_DENSITIES } from './components/EXPERIMENTAL_Table/constants'
 
 export default Table
-export { DENSITIES }
+export { TABLE_DENSITIES }

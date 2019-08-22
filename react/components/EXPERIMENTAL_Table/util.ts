@@ -21,16 +21,3 @@ export const calculateTableHeight = (
     TABLE_HEADER_HEIGHT + tableRowHeight * multiplicator + getScrollbarWidth()
   )
 }
-
-export const getRowHeight = (density: Density) => {
-  switch (density) {
-    case 'low':
-      return 76
-    case 'medium':
-      return 48
-    case 'high':
-      return 32
-    default:
-      return 45
-  }
-}
