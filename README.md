@@ -111,7 +111,7 @@ yarn deploy
 
   For more info, please refer to https://github.com/vtex/styleguide/issues/483
 
-- Currently, we have two majors of the styleguide, namely 8.x and 9.x (master).
+- We currently have two majors of the Styleguide, `8.x` and `9.x` (master branch).
   This happens because of the `VTEX IO` platform web framework, which has two majors as well.
   So, in order to the styleguide to be able to run in both, we are still maintaining the version 8.x
   with bug fixes only. To contribute with new features, use master (9.x).
