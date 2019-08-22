@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- `Link` force underline.
+
 ## [9.73.5] - 2019-08-21
 
 ### Fixed

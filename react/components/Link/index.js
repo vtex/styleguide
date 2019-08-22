@@ -3,8 +3,7 @@ import PropTypes from 'prop-types'
 
 import ExternalLink from '../icon/ExternalLink'
 
-const classes =
-  'pointer c-link hover-c-link active-c-link no-underline underline-hover'
+const classes = 'pointer c-link hover-c-link active-c-link underline'
 
 const Link = ({ children, href, target, mediumWeigth }) => (
   <a
