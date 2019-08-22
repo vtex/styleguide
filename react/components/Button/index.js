@@ -81,13 +81,13 @@ class Button extends Component {
     if (collapseLeft) {
       classes += `nl${horizontalPadding} `
       if (isTertiary) {
-        labelClasses += 'nl1 '
+        labelClasses += 'nl1 hover-c-link'
       }
     }
     if (collapseRight) {
       classes += `nr${horizontalPadding} `
       if (isTertiary) {
-        labelClasses += 'nr1 '
+        labelClasses += 'nr1 hover-c-link'
       }
     }
 
