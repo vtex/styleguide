@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Make Layout component always have the height of its viewport
+
 ## [9.73.8] - 2019-08-22
 
 ### Fixed
