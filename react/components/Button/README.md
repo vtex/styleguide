@@ -183,7 +183,7 @@ const Box = require('../Box').default
 ;<>
   <div className="flex justify-center">
     <div className="flex flex-column w-60">
-      <div className="t-heading-6 mb4">✅Do: use collapse props</div>
+      <div className="t-heading-6 mb4">Use collapse props when tertiary button is alone, to align it with the other elements</div>
       <div className="w-100 mb4">
         <Box />
       </div>
@@ -195,13 +195,15 @@ const Box = require('../Box').default
   </div>
   <div className="flex justify-center mt6">
     <div className="flex flex-column w-60">
-      <div className="t-heading-6 mb4">❌Don't: no collapse props</div>
+      <div className="t-heading-6 mb4">Don't collapse when the button is not alone</div>
       <div className="w-100 mb4">
         <Box />
       </div>
-      <div className="mb4 flex justify-between">
+      <div className="mb4 flex">
         <Button variation="tertiary">Default</Button>
-        <Button variation="tertiary">Default</Button>
+        <div className="ml2">
+          <Button variation="secondary">Another Button</Button>
+        </div>
       </div>
     </div>
   </div>
