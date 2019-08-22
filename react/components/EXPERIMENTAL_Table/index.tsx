@@ -4,6 +4,8 @@ import PropTypes, { InferProps } from 'prop-types'
 import SimpleTable from './SimpleTable/index'
 
 import { TableProvider } from './context'
+import Toolbar from './Toolbar/index'
+import { DENSITY_OPTIONS } from './constants'
 
 const propTypes = {
   schema: PropTypes.shape({
@@ -18,20 +20,29 @@ const propTypes = {
   items: PropTypes.arrayOf(PropTypes.object),
   isEmpty: PropTypes.bool,
   tableHeight: PropTypes.number,
+  rowHeight: PropTypes.number,
+  selectedDensity: PropTypes.oneOf(DENSITY_OPTIONS),
+  setSelectedDensity: PropTypes.func,
 }
 
 type Props = InferProps<typeof propTypes>
 
-const Table: FC<Props> = props => {
+interface Composites {
+  Toolbar: FC
+}
+
+const Table: FC<Props> & Composites = ({ children, ...props }) => {
   return (
     <TableProvider value={props}>
       <div className="vtex-tablev2__container">
+        {children}
         <SimpleTable />
       </div>
     </TableProvider>
   )
 }
 
+Table.Toolbar = Toolbar
 Table.propTypes = propTypes
 
 export default Table

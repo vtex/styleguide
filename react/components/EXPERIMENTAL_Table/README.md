@@ -31,7 +31,7 @@ Example with simple structure:
 
 #### State Hook
 
-Different than the previous version the `Table v2` is completely stateless, meaning that the parent has full control of its states. This is made possible by the `useTableState` hook. Its input is an `Object` containing `columns` (the columns definition) and `items` (the actual items to show, which described by the columns).
+Different than the previous version the `Table v2` is completely stateless, meaning that the parent has full control of its states. This is made possible by the `useTableState` hook. Its input is an `Object` containing `columns` (the columns definition), `items` (the actual items to show, which described by the columns) and `density` (density of the table rows).
 
 ### Example Of Usage
 
@@ -91,6 +91,7 @@ function StateHookExample() {
   const tableState = useTableState({
     columns,
     items,
+    density: 'medium',
   })
 
   return <Table {...tableState} />
@@ -100,16 +101,97 @@ function StateHookExample() {
 
 ### Input Object
 
-| Property | Type             | Description                         |
-| -------- | ---------------- | ----------------------------------- |
-| columns  | Object of Column | Definition of the table columns     |
-| items    | Array of Object  | The actual items that will be shown |
+| Property | Type                      | Description                         |
+| -------- | ------------------------- | ----------------------------------- |
+| columns  | Object of Column          | Definition of the table columns     |
+| items    | Array of Object           | The actual items that will be shown |
+| density  | 'low', 'medium' or 'high' | Density of table rows               |
 
 ### Return Values
 
-| Property    | Type             | Description                         |
-| ----------- | ---------------- | ----------------------------------- |
-| columns     | Object of Column | Definition of the table columns     |
-| items       | Array of Object  | The actual items that will be shown |
-| isEmpty     | Boolean          | If there are items to show or not   |
-| tableHeight | Number           | Table calculated height             |
+| Property           | Type             | Description                         |
+| ------------------ | ---------------- | ----------------------------------- |
+| columns            | Object of Column | Definition of the table columns     |
+| items              | Array of Object  | The actual items that will be shown |
+| isEmpty            | Boolean          | If there are items to show or not   |
+| tableHeight        | Number           | Table calculated height             |
+| rowHeight          | Number           | Table calculated row height         |
+| selectedDensity    | Density          | Current selected density            |
+| setSelectedDensity | Function         | selectedDensity setter              |
+
+#### Toolbar
+
+```js
+// Imports
+const useTableState = require('./hooks/useTableState.ts').default
+
+// Define the columns
+columns = {
+  name: {
+    title: 'Name',
+  },
+  email: {
+    title: 'Email',
+  },
+  number: {
+    title: 'Number',
+  },
+  country: {
+    title: 'Country',
+  },
+}
+
+// Define the items
+items = [
+  {
+    name: "T'Chala",
+    email: 'black.panther@gmail.com',
+    number: 1.88191,
+    country: '🇰🇪Wakanda',
+  },
+  {
+    name: 'Peter Parker',
+    email: 'spider.man@gmail.com',
+    number: 3.09191,
+    country: '🇺🇸USA',
+  },
+  {
+    name: 'Shang-Chi',
+    email: 'kungfu.master@gmail.com',
+    number: 39.09222,
+    country: '🇨🇳China',
+  },
+  {
+    name: 'Natasha Romanoff',
+    email: 'black.widow@gmail.com',
+    number: 5.09291,
+    country: '🇷🇺Russia',
+  },
+]
+
+function StateHookExample() {
+  const tableState = useTableState({
+    columns,
+    items,
+    density: 'medium',
+  })
+
+  const density = {
+    label: 'Line density',
+    lowOptionLabel: 'Low',
+    mediumOptionLabel: 'Medium',
+    highOptionLabel: 'High',
+  }
+
+  return (
+    <Table {...tableState}>
+      <Table.Toolbar>
+        <Table.Toolbar.ButtonGroup>
+          <Table.Toolbar.ButtonGroup.Density {...density} />
+        </Table.Toolbar.ButtonGroup>
+      </Table.Toolbar>
+    </Table>
+  )
+}
+;<StateHookExample />
+```

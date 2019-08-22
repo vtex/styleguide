@@ -13,4 +13,9 @@ interface TableState {
   items?: Array<Object>
   isEmpty?: boolean
   tableHeight?: number
+  rowHeight?: number
+  selectedDensity?: string
+  setSelectedDensity?: (density: Density) => void
 }
+
+type Density = 'low' | 'medium' | 'high'
