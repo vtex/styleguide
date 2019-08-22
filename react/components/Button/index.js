@@ -76,19 +76,15 @@ class Button extends Component {
         break
     }
 
-    labelClasses += `ph${horizontalPadding} `
-
-    if (collapseLeft) {
-      classes += `nl${horizontalPadding} `
-      if (isTertiary) {
-        labelClasses += 'nl1 hover-c-link'
-      }
+    if (!(isTertiary && (collapseLeft || collapseRight))) {
+      labelClasses += `ph${horizontalPadding} `
     }
-    if (collapseRight) {
-      classes += `nr${horizontalPadding} `
-      if (isTertiary) {
-        labelClasses += 'nr1 hover-c-link'
-      }
+
+    if (collapseLeft && isTertiary) {
+      labelClasses += 'nl1 ph1 hover-c-link'
+    }
+    if (collapseRight && isTertiary) {
+      labelClasses += 'nr1 ph1 hover-c-link'
     }
 
     if (iconOnly) {
