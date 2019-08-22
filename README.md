@@ -110,3 +110,7 @@ yarn deploy
   with duplicated dependencies in these `package.json` files.
 
   For more info, please refer to https://github.com/vtex/styleguide/issues/483
+
+- We currently have two majors of the Styleguide, `8.x` and `9.x` (master branch).
+  Each major supports a specific VTEX's Render version.
+  This means that we develop new features only on the `master` branch (9.x major) and do bug fixes on both `master` and `8.x` branches.
