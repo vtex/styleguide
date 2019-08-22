@@ -76,19 +76,15 @@ class Button extends Component {
         break
     }
 
-    labelClasses += `ph${horizontalPadding} `
-
-    if (collapseLeft) {
-      classes += `nl${horizontalPadding} `
-      if (isTertiary) {
-        labelClasses += 'nl1 '
-      }
+    if (!(isTertiary && (collapseLeft || collapseRight))) {
+      labelClasses += `ph${horizontalPadding} `
     }
-    if (collapseRight) {
-      classes += `nr${horizontalPadding} `
-      if (isTertiary) {
-        labelClasses += 'nr1 '
-      }
+
+    if (collapseLeft && isTertiary) {
+      labelClasses += 'nl1 ph1 hover-c-link'
+    }
+    if (collapseRight && isTertiary) {
+      labelClasses += 'nr1 ph1 hover-c-link'
     }
 
     if (iconOnly) {
@@ -220,7 +216,7 @@ class Button extends Component {
         // Button-mode exclusive props
         type={href ? undefined : this.props.type}
         // Link-mode exclusive props
-        {...href && linkModeProps}>
+        {...(href && linkModeProps)}>
         {isLoading ? (
           <Fragment>
             <span className="top-0 left-0 w-100 h-100 absolute flex justify-center items-center">

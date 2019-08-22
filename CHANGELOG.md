@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.73.8] - 2019-08-22
+
+### Fixed
+
+- **Button** `tertiary` variation hover text color.
+- **Button** `tertiary` variation collapsed example.
+
 ## [9.73.7] - 2019-08-22
 
 ### Fixed

@@ -180,31 +180,53 @@ Cancelling out button paddings. Useful for visually aligning tertiary buttons
 ```js
 const Box = require('../Box').default
 
-;<div className="flex justify-center">
-  <div className="flex flex-column w-60">
-    <div className="t-heading-6 mb4">Using collapse props</div>
-    <div className="w-100 mb4">
-      <Box />
-    </div>
-    <div className="mb4 flex justify-between">
-      <Button variation="tertiary" collapseLeft>Collapse left</Button>
-      <Button variation="tertiary" collapseRight>Collapse right</Button>
-    </div>
-  </div>
-</div>
-
-;<div className="flex justify-center mt6">
-  <div className="flex flex-column w-60">
-    <div className="t-heading-6 mb4">No collapse props</div>
-    <div className="w-100 mb4">
-      <Box />
-    </div>
-    <div className="mb4 flex justify-between">
-      <Button variation="tertiary">Default</Button>
-      <Button variation="tertiary">Default</Button>
+;<>
+  <div className="flex justify-center">
+    <div className="flex flex-column w-60">
+      <div className="t-heading-6 mb4">Use collapse props when tertiary button is alone, to align it with the other elements</div>
+      <div className="w-100 mb4">
+        <Box />
+      </div>
+      <div className="mb4 flex justify-between">
+        <Button variation="tertiary" collapseLeft>Collapse left</Button>
+        <Button variation="tertiary" collapseRight>Collapse right</Button>
+      </div>
     </div>
   </div>
-</div>
+  <div className="flex justify-center mt6">
+    <div className="flex flex-column w-60">
+      <div className="t-heading-6 mb4">Don't collapse when the button is not alone</div>
+      <div className="w-100 mb4">
+        <Box />
+      </div>
+      <div className="mb4 flex">
+        <Button variation="tertiary">Default</Button>
+        <div className="ml2">
+          <Button variation="secondary">Another Button</Button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div className="flex justify-center mt6">
+    <div className="flex flex-column w-60">
+      <div className="t-heading-6 mb4">Collapse props don't work on primary and secondary variations (and it shouldn't)</div>
+      <div className="w-100 mb4">
+        <Box />
+      </div>
+      <div className="mb4 flex justify-between">
+        <Button variation="primary" collapseLeft>Collapse left</Button>
+        <Button variation="primary" collapseRight>Collapse right</Button>
+      </div>
+      <div className="w-100 mb4">
+        <Box />
+      </div>
+      <div className="mb4 flex justify-between">
+        <Button variation="secondary" collapseLeft>Collapse left</Button>
+        <Button variation="secondary" collapseRight>Collapse right</Button>
+      </div>
+    </div>
+  </div>
+</>;
 ```
 Colored container background
 
