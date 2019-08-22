@@ -220,7 +220,7 @@ class Button extends Component {
         // Button-mode exclusive props
         type={href ? undefined : this.props.type}
         // Link-mode exclusive props
-        {...(href && linkModeProps)}>
+        {...href && linkModeProps}>
         {isLoading ? (
           <Fragment>
             <span className="top-0 left-0 w-100 h-100 absolute flex justify-center items-center">
