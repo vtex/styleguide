@@ -74,22 +74,42 @@ items = [
     country: '🇺🇸USA',
     children: [
       {
+        name: 'Aunt May',
+        email: 'may.parker@gmail.com',
+        number: 0.91841,
+        country: '🇺🇸USA',
+      },
+      {
+        name: 'Uncle Ben',
+        email: 'ben.parker@gmail.com',
+        number: 0.91842,
+        country: '🇺🇸USA',
+      },
+      {
         name: 'Marry Jane',
-        email: 'mjaaay.man@gmail.com',
+        email: 'mjaaay@gmail.com',
         number: 7.91841,
         country: '🇺🇸USA',
         children: [
           {
             name: 'Harry Osbourne',
-            email: 'harry.man@gmail.com',
+            email: 'harry@gmail.com',
             number: 1.91111,
             country: '🇺🇸USA',
           },
           {
             name: 'Normal Osbourne',
-            email: 'norman.man@gmail.com',
+            email: 'norman@gmail.com',
             number: 2.11122,
             country: '🇺🇸USA',
+            children: [
+              {
+                name: 'Green Goblin',
+                email: 'norman.green@gmail.com',
+                number: 1.0001,
+                country: '🇺🇸USA',
+              },
+            ],
           },
         ],
       },
@@ -98,7 +118,7 @@ items = [
   {
     name: 'Shang-Chi',
     email: 'kungfu.master@gmail.com',
-    number: 39.09222,
+    number: 39.0922,
     country: '🇨🇳China',
   },
   {
@@ -116,7 +136,7 @@ function StateHookExample() {
     density: 'medium',
   })
 
-  return <Table {...tableState} />
+  return <Table state={tableState} nestedRows />
 }
 ;<StateHookExample />
 ```
@@ -206,7 +226,7 @@ function StateHookExample() {
   }
 
   return (
-    <Table {...tableState}>
+    <Table state={tableState}>
       <Table.Toolbar>
         <Table.Toolbar.ButtonGroup>
           <Table.Toolbar.ButtonGroup.Density {...density} />

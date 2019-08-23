@@ -8,6 +8,10 @@ interface ColumnObject {
   [key: string]: Column
 }
 
+interface TableProps {
+  nestedRows?: boolean
+}
+
 interface TableState {
   columns?: ColumnObject
   items?: Array<Object>

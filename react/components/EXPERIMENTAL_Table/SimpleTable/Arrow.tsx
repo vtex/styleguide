@@ -6,7 +6,14 @@ import ButtonWithIcon from '../../ButtonWithIcon/index.js'
 
 const Arrow: FC<ArrowProps> = ({ active, onClick }) => {
   const icon = active ? <CaretDown /> : <CaretRight />
-  return <ButtonWithIcon onClick={onClick} icon={icon} variation="tertiary" />
+  return (
+    <ButtonWithIcon
+      size="small"
+      onClick={onClick}
+      icon={icon}
+      variation="tertiary"
+    />
+  )
 }
 
 export interface ArrowProps {
