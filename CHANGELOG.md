@@ -7,11 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Nested rows to `EXPERIMENTAL_TableV2`
+
 ## [9.73.11] - 2019-08-26
 
 ### Fixed
 
 - Add a class to Button component to fix its label alignment when using `href` and `block` props.
+
 
 ## [9.73.10] - 2019-08-23
 
