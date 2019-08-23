@@ -166,6 +166,7 @@ class Button extends Component {
 
     if (block) {
       classes += 'w-100 '
+      labelClasses += 'w-100 '
     }
 
     if (href) {
