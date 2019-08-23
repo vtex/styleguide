@@ -72,53 +72,11 @@ items = [
     email: 'spider.man@gmail.com',
     number: 3.09191,
     country: '🇺🇸USA',
-    children: [
-      {
-        name: 'Aunt May',
-        email: 'may.parker@gmail.com',
-        number: 0.91841,
-        country: '🇺🇸USA',
-      },
-      {
-        name: 'Uncle Ben',
-        email: 'ben.parker@gmail.com',
-        number: 0.91842,
-        country: '🇺🇸USA',
-      },
-      {
-        name: 'Marry Jane',
-        email: 'mjaaay@gmail.com',
-        number: 7.91841,
-        country: '🇺🇸USA',
-        children: [
-          {
-            name: 'Harry Osbourne',
-            email: 'harry@gmail.com',
-            number: 1.91111,
-            country: '🇺🇸USA',
-          },
-          {
-            name: 'Normal Osbourne',
-            email: 'norman@gmail.com',
-            number: 2.11122,
-            country: '🇺🇸USA',
-            children: [
-              {
-                name: 'Green Goblin',
-                email: 'norman.green@gmail.com',
-                number: 1.0001,
-                country: '🇺🇸USA',
-              },
-            ],
-          },
-        ],
-      },
-    ],
   },
   {
     name: 'Shang-Chi',
     email: 'kungfu.master@gmail.com',
-    number: 39.0922,
+    number: 39.09222,
     country: '🇨🇳China',
   },
   {
@@ -133,10 +91,9 @@ function StateHookExample() {
   const tableState = useTableState({
     columns,
     items,
-    density: 'medium',
   })
 
-  return <Table state={tableState} nestedRows />
+  return <Table state={tableState} />
 }
 ;<StateHookExample />
 ```
@@ -161,7 +118,96 @@ function StateHookExample() {
 | selectedDensity    | Density          | Current selected density            |
 | setSelectedDensity | Function         | selectedDensity setter              |
 
-#### Toolbar
+# Nested Rows
+
+`TableV2` allows nested rows that are enabled via the `nestedRows` prop. Each `item` object of `items` array may have a special property named `children` that is an array of objects with the same shape of `item`. It's important to notice that your row tree can have unlimited depth.
+
+```js
+// Imports
+const useTableState = require('./hooks/useTableState.ts').default
+const Tag = require('../Tag/index.js').default
+
+// Define the columns
+columns = {
+  name: {
+    title: 'Name',
+  },
+  email: {
+    title: 'Email',
+  },
+  country: {
+    title: 'Country',
+  },
+}
+
+// Define the items with children
+items = [
+  {
+    name: "T'Chala",
+    email: 'black.panther@gmail.com',
+    country: '🇰🇪Wakanda',
+  },
+  {
+    name: 'Peter Parker',
+    email: 'spider.man@gmail.com',
+    country: '🇺🇸USA',
+    children: [
+      {
+        name: 'Aunt May',
+        email: 'may.parker@gmail.com',
+        country: '🇺🇸USA',
+      },
+      {
+        name: 'Uncle Ben',
+        email: 'ben.parker@gmail.com',
+        country: '🇺🇸USA',
+      },
+      {
+        name: 'Marry Jane',
+        email: 'mjaaay@gmail.com',
+        country: '🇺🇸USA',
+        children: [
+          {
+            name: 'Harry Osbourne',
+            email: 'harry@gmail.com',
+            country: '🇺🇸USA',
+          },
+          {
+            name: 'Normal Osbourne',
+            email: 'norman@gmail.com',
+            country: '🇺🇸USA',
+            children: [
+              {
+                name: 'Green Goblin',
+                email: 'norman.green@gmail.com',
+                country: '🇺🇸USA',
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    name: 'Shang-Chi',
+    email: 'kungfu.master@gmail.com',
+    country: '🇨🇳China',
+  },
+]
+
+function StateHookExample() {
+  const tableState = useTableState({
+    columns,
+    items,
+    density: 'medium',
+  })
+
+  return <Table state={tableState} nestedRows />
+}
+;<StateHookExample />
+```
+
+# Toolbar
 
 ```js
 // Imports

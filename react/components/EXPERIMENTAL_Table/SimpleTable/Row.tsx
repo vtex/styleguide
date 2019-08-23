@@ -2,8 +2,11 @@ import React, { FC, useState } from 'react'
 
 import Cell from './Cell'
 import useTableContext from '../hooks/useTableContext'
-import { COLLAPSIBLE_ROW_PREFIX_WIDTH } from '../constants'
+import { NESTED_ROW_PREFIX_WIDTH } from '../constants'
 
+/**
+ * Container of each table row
+ */
 const RowContainer: FC = ({ children }) => {
   const { rowHeight } = useTableContext()
   return (
@@ -15,12 +18,19 @@ const RowContainer: FC = ({ children }) => {
   )
 }
 
+/**
+ * Row of the Table (suports nesting)
+ * 🤓Be aware that the subRows are rendered recursivelly
+ */
 const Row: FC<RowProps> = ({ data, index, depth }) => {
   const { columns, nestedRows } = useTableContext()
   const [collapsed, setCollapsed] = useState(false)
 
   const { children, ...rowData } = data
 
+  /**
+   * Render subRows recursivelly increasing the depth
+   */
   const subRows =
     nestedRows &&
     children &&
@@ -28,18 +38,13 @@ const Row: FC<RowProps> = ({ data, index, depth }) => {
       <Row depth={depth + 1} index={index} data={data} />
     ))
 
-  const renderPrefix = (renderIf: boolean, child?: any) => {
-    return (
-      renderIf && (
-        <span
-          className="dib tr pr2"
-          style={{ width: depth * COLLAPSIBLE_ROW_PREFIX_WIDTH }}>
-          {child}
-        </span>
-      )
-    )
-  }
+  /** Calculate the amount of indentation of the first column */
+  const prefixWidth = depth * NESTED_ROW_PREFIX_WIDTH
 
+  /**
+   * Base case
+   * Just render a leaf (Row that does not have children)
+   */
   const renderLeaf = () => {
     return (
       <RowContainer key={`row-${index}`}>
@@ -51,7 +56,9 @@ const Row: FC<RowProps> = ({ data, index, depth }) => {
             : cellData
           return (
             <Cell key={`${index}-${cellIndex}`}>
-              {nestedRows && renderPrefix(cellIndex === 0)}
+              {nestedRows && cellIndex === 0 && (
+                <Cell.Prefix width={prefixWidth} />
+              )}
               {content}
             </Cell>
           )
@@ -60,6 +67,10 @@ const Row: FC<RowProps> = ({ data, index, depth }) => {
     )
   }
 
+  /**
+   * Recursive step
+   * Render the Node itself and its subRows
+   */
   const renderNode = () => {
     return (
       <>
@@ -72,12 +83,13 @@ const Row: FC<RowProps> = ({ data, index, depth }) => {
               : cellData
             return (
               <Cell key={`${index}-${cellIndex}`}>
-                {renderPrefix(
-                  cellIndex === 0,
-                  <Cell.Arrow
-                    active={collapsed}
-                    onClick={() => setCollapsed(!collapsed)}
-                  />
+                {cellIndex === 0 && (
+                  <Cell.Prefix width={prefixWidth}>
+                    <Cell.Prefix.Arrow
+                      active={collapsed}
+                      onClick={() => setCollapsed(!collapsed)}
+                    />
+                  </Cell.Prefix>
                 )}
                 {content}
               </Cell>

@@ -16,9 +16,30 @@ const Arrow: FC<ArrowProps> = ({ active, onClick }) => {
   )
 }
 
+const CellPrefix: FC<CellPrefixProps> & CellPrefixComposites = ({
+  children,
+  width,
+}) => {
+  return (
+    <span className="dib tr pr2" style={{ width }}>
+      {children}
+    </span>
+  )
+}
+
+CellPrefix.Arrow = Arrow
+
+export interface CellPrefixComposites {
+  Arrow?: FC<ArrowProps>
+}
+
 export interface ArrowProps {
   active: boolean
   onClick: Function
 }
 
-export default Arrow
+export interface CellPrefixProps {
+  width: number
+}
+
+export default CellPrefix
