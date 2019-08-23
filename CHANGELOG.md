@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Add a class to Button component to fix its label alignment when using `href` and `block` props.
+
 ## [9.73.10] - 2019-08-23
 
 ### Fixed
