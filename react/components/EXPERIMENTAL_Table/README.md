@@ -72,6 +72,28 @@ items = [
     email: 'spider.man@gmail.com',
     number: 3.09191,
     country: '🇺🇸USA',
+    children: [
+      {
+        name: 'Marry Jane',
+        email: 'mjaaay.man@gmail.com',
+        number: 7.91841,
+        country: '🇺🇸USA',
+        children: [
+          {
+            name: 'Harry Osbourne',
+            email: 'harry.man@gmail.com',
+            number: 1.91111,
+            country: '🇺🇸USA',
+          },
+          {
+            name: 'Normal Osbourne',
+            email: 'norman.man@gmail.com',
+            number: 2.11122,
+            country: '🇺🇸USA',
+          },
+        ],
+      },
+    ],
   },
   {
     name: 'Shang-Chi',

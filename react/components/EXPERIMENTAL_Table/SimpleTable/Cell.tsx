@@ -1,24 +1,25 @@
 import React, { FC } from 'react'
-import PropTypes, { InferProps } from 'prop-types'
 
-const propTypes = {
-  content: PropTypes.any,
-  isHeader: PropTypes.bool,
-}
+import Arrow, { ArrowProps } from './Arrow'
 
-type Props = InferProps<typeof propTypes>
-
-const Cell: FC<Props> = ({ content, isHeader }) => (
+const Cell: FC<CellProps> & Composites = ({ children, isHeader }) => (
   <div className={`dtc v-mid pa2 tl bb b--muted-4 ${isHeader ? 'bt' : ''}`}>
-    {content}
+    {children}
   </div>
 )
 
+Cell.Arrow = Arrow
+
 Cell.defaultProps = {
-  content: '',
   isHeader: false,
 }
 
-Cell.propTypes = propTypes
+interface Composites {
+  Arrow?: FC<ArrowProps>
+}
+
+interface CellProps {
+  isHeader?: boolean
+}
 
 export default Cell

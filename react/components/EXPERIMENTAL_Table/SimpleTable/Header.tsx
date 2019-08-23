@@ -11,7 +11,11 @@ const Header: FC = () => {
     const content = headerRender
       ? headerRender({ headerData })
       : columns[headerData].title
-    return <Cell key={`col-${headerIndex}`} content={content} isHeader />
+    return (
+      <Cell key={`col-${headerIndex}`} isHeader>
+        {content}
+      </Cell>
+    )
   }
 
   return (
