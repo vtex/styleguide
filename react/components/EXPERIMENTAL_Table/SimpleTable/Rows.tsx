@@ -12,7 +12,7 @@ const Rows: FC = () => {
   return (
     <>
       {items.map((data, index) => (
-        <Row data={data} index={index} />
+        <Row key={`row-${index}`} data={data} index={index} />
       ))}
     </>
   )

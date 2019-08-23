@@ -28,6 +28,8 @@ const Row: FC<RowProps> = ({ data, index, depth }) => {
 
   const { children, ...rowData } = data
 
+  const rowKey = `row-${index}-${depth}`
+
   /**
    * Render subRows recursivelly increasing the depth
    */
@@ -35,7 +37,12 @@ const Row: FC<RowProps> = ({ data, index, depth }) => {
     nestedRows &&
     children &&
     children.map((data, index) => (
-      <Row depth={depth + 1} index={index} data={data} />
+      <Row
+        key={`${rowKey}__child-${index}`}
+        depth={depth + 1}
+        index={index}
+        data={data}
+      />
     ))
 
   /** Calculate the amount of indentation of the first column */
@@ -47,7 +54,7 @@ const Row: FC<RowProps> = ({ data, index, depth }) => {
    */
   const renderLeaf = () => {
     return (
-      <RowContainer key={`row-${index}`}>
+      <RowContainer key={rowKey}>
         {Object.keys(rowData).map((cel: string, cellIndex: number) => {
           const cellRender = columns[cel].cellRender
           const cellData = rowData[cel]
@@ -55,7 +62,7 @@ const Row: FC<RowProps> = ({ data, index, depth }) => {
             ? cellRender({ cellData, rowData })
             : cellData
           return (
-            <Cell key={`${index}-${cellIndex}`}>
+            <Cell key={`cel-${index}-${cellIndex}-${depth}`}>
               {nestedRows && cellIndex === 0 && (
                 <Cell.Prefix width={prefixWidth} />
               )}
@@ -74,7 +81,7 @@ const Row: FC<RowProps> = ({ data, index, depth }) => {
   const renderNode = () => {
     return (
       <>
-        <RowContainer key={`row-${index}`}>
+        <RowContainer key={rowKey}>
           {Object.keys(rowData).map((cel: string, cellIndex: number) => {
             const cellRender = columns[cel].cellRender
             const cellData = rowData[cel]
@@ -82,7 +89,7 @@ const Row: FC<RowProps> = ({ data, index, depth }) => {
               ? cellRender({ cellData, rowData })
               : cellData
             return (
-              <Cell key={`${index}-${cellIndex}`}>
+              <Cell key={`cel-${index}-${cellIndex}-${depth}`}>
                 {cellIndex === 0 && (
                   <Cell.Prefix width={prefixWidth}>
                     <Cell.Prefix.Arrow
