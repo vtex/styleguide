@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.73.10] - 2019-08-23
+
+### Fixed
+
+- Fix mismatched versions of `react-responsive-modal` lib between the two existing package.json files
+
 ## [9.73.9] - 2019-08-22
 
 ### Fixed
