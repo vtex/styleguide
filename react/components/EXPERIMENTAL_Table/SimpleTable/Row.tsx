@@ -49,10 +49,10 @@ const Row: FC<RowProps> = ({ data, index, depth }) => {
   const prefixWidth = depth * NESTED_ROW_PREFIX_WIDTH
 
   /**
-   * Base case
-   * Just render a leaf (Row that does not have children)
+   * Renders the entire row
+   * @param arrow if has arrow on first cell, or not
    */
-  const renderLeaf = () => {
+  const renderCells = (arrow?: boolean) => {
     return (
       <RowContainer key={rowKey}>
         {Object.keys(rowData).map((cel: string, cellIndex: number) => {
@@ -64,7 +64,14 @@ const Row: FC<RowProps> = ({ data, index, depth }) => {
           return (
             <Cell key={`cel-${index}-${cellIndex}-${depth}`}>
               {nestedRows && cellIndex === 0 && (
-                <Cell.Prefix width={prefixWidth} />
+                <Cell.Prefix width={prefixWidth}>
+                  {arrow && (
+                    <Cell.Prefix.Arrow
+                      active={collapsed}
+                      onClick={() => setCollapsed(!collapsed)}
+                    />
+                  )}
+                </Cell.Prefix>
               )}
               {content}
             </Cell>
@@ -75,34 +82,19 @@ const Row: FC<RowProps> = ({ data, index, depth }) => {
   }
 
   /**
+   * Base case
+   * Just render a leaf (Row that does not have children)
+   */
+  const renderLeaf = () => renderCells()
+
+  /**
    * Recursive step
    * Render the Node itself and its subRows
    */
   const renderNode = () => {
     return (
       <>
-        <RowContainer key={rowKey}>
-          {Object.keys(rowData).map((cel: string, cellIndex: number) => {
-            const cellRender = columns[cel].cellRender
-            const cellData = rowData[cel]
-            const content = cellRender
-              ? cellRender({ cellData, rowData })
-              : cellData
-            return (
-              <Cell key={`cel-${index}-${cellIndex}-${depth}`}>
-                {cellIndex === 0 && (
-                  <Cell.Prefix width={prefixWidth}>
-                    <Cell.Prefix.Arrow
-                      active={collapsed}
-                      onClick={() => setCollapsed(!collapsed)}
-                    />
-                  </Cell.Prefix>
-                )}
-                {content}
-              </Cell>
-            )
-          })}
-        </RowContainer>
+        {renderCells(true)}
         {collapsed && subRows}
       </>
     )
