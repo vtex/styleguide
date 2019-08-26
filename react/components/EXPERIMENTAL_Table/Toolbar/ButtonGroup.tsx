@@ -1,19 +1,49 @@
 import React, { FC } from 'react'
 
+import IconDownload from '../../icon/Download/index.js'
+import IconUpload from '../../icon/Upload/index.js'
 import ButtonDensity, { ButtonDensityProps } from './ButtonDensity'
+import Button, { ButtonProps } from './Button'
+import { ICON_SIZE } from '../constants'
 
-type ButtonType = 'density'
+type ButtonType = 'density' | 'download' | 'upload'
 
 interface Composites {
   Density: FC<ButtonDensityProps>
+  Download: FC<ButtonProps>
+  Upload: FC<ButtonProps>
 }
 
-const getButton = (type: ButtonType, props: ButtonDensityProps) => {
+type Props = ButtonProps | ButtonDensityProps
+
+const getButton = (type: ButtonType, props: Props) => {
   switch (type) {
     case 'density': {
       return (
         <span className="order-1">
-          <ButtonDensity {...props} />
+          <ButtonDensity {...(props as ButtonDensityProps)} />
+        </span>
+      )
+    }
+    case 'download': {
+      return (
+        <span className="order-2">
+          <Button
+            id="download"
+            icon={<IconDownload size={ICON_SIZE.HEAVY} />}
+            {...(props as ButtonProps)}
+          />
+        </span>
+      )
+    }
+    case 'upload': {
+      return (
+        <span className="order-3">
+          <Button
+            id="upload"
+            icon={<IconUpload size={ICON_SIZE.HEAVY} />}
+            {...(props as ButtonProps)}
+          />
         </span>
       )
     }
@@ -24,7 +54,7 @@ const getButton = (type: ButtonType, props: ButtonDensityProps) => {
 }
 
 const getComponent = (type: ButtonType) => {
-  return (props: ButtonDensityProps) => getButton(type, props)
+  return (props: Props) => getButton(type, props)
 }
 
 const ButtonGroup: FC & Composites = ({ children }) => (
@@ -32,5 +62,7 @@ const ButtonGroup: FC & Composites = ({ children }) => (
 )
 
 ButtonGroup.Density = getComponent('density')
+ButtonGroup.Download = getComponent('download')
+ButtonGroup.Upload = getComponent('upload')
 
 export default ButtonGroup

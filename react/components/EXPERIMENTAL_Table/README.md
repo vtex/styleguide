@@ -289,11 +289,23 @@ function StateHookExample() {
     highOptionLabel: 'High',
   }
 
+  const download = {
+    label: 'Export',
+    onClick: () => alert('Clicked EXPORT'),
+  }
+
+  const upload = {
+    label: 'Import',
+    onClick: () => alert('Clicked IMPORT'),
+  }
+
   return (
     <Table state={tableState}>
       <Table.Toolbar>
         <Table.Toolbar.ButtonGroup>
           <Table.Toolbar.ButtonGroup.Density {...density} />
+          <Table.Toolbar.ButtonGroup.Download {...download} />
+          <Table.Toolbar.ButtonGroup.Upload {...upload} />
         </Table.Toolbar.ButtonGroup>
       </Table.Toolbar>
     </Table>
