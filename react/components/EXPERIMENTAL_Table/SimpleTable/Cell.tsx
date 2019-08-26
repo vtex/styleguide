@@ -4,7 +4,7 @@ import CellPrefix, { CellPrefixProps, CellPrefixComposites } from './CellPrefix'
 
 const Cell: FC<CellProps> & Composites = ({ children, isHeader, width }) => (
   <div
-    style={{ maxWidth: width }}
+    style={{ minWidth: width }}
     className={`dtc truncate v-mid pa2 tl bb b--muted-4  ${
       isHeader ? 'bt' : ''
     }`}>

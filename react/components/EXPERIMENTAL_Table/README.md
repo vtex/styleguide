@@ -142,6 +142,7 @@ columns = [
   {
     id: 'name',
     title: 'Name',
+    width: 280,
   },
   {
     id: 'email',
