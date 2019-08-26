@@ -39,17 +39,8 @@ ButtonNewLine.defaultProps = {
   size: 'small',
 }
 
-type Action = {
-  label: string
-  onClick: Function
-  toggle: {
-    checked: boolean
-    semantic: boolean
-  }
-}
-
 export type ButtonNewLineProps = ButtonProps & {
-  actions: Array<Action>
+  actions: Array<MenuAction>
 }
 
 export default ButtonNewLine

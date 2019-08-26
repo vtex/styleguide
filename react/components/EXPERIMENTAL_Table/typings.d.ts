@@ -1,3 +1,11 @@
+interface MenuAction {
+  label: string
+  onClick: Function
+  toggle: {
+    checked: boolean
+    semantic: boolean
+  }
+}
 interface Column {
   id: string
   title: string

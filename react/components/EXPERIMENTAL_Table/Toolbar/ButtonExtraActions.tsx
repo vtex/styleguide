@@ -32,10 +32,10 @@ const ButtonExtraActions: FC<ButtonExtraActionsProps> = ({
 }
 
 export type ButtonExtraActionsProps = {
-  label: string
-  actions: Array<{ label: string; onClick: Function }>
-  alignMenu: 'right' | 'left'
-  isLoading: boolean
+  label?: string
+  actions: Array<MenuAction>
+  alignMenu?: 'right' | 'left'
+  isLoading?: boolean
 }
 
 export default ButtonExtraActions
