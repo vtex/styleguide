@@ -2,8 +2,12 @@ import React, { FC } from 'react'
 
 import CellPrefix, { CellPrefixProps, CellPrefixComposites } from './CellPrefix'
 
-const Cell: FC<CellProps> & Composites = ({ children, isHeader }) => (
-  <div className={`dtc v-mid pa2 tl bb b--muted-4 ${isHeader ? 'bt' : ''}`}>
+const Cell: FC<CellProps> & Composites = ({ children, isHeader, width }) => (
+  <div
+    style={{ maxWidth: width }}
+    className={`dtc truncate v-mid pa2 tl bb b--muted-4  ${
+      isHeader ? 'bt' : ''
+    }`}>
     {children}
   </div>
 )
@@ -20,6 +24,7 @@ interface Composites {
 
 interface CellProps {
   isHeader?: boolean
+  width?: number
 }
 
 export default Cell

@@ -56,13 +56,13 @@ const Row: FC<RowProps> = ({ data, index, depth }) => {
     return (
       <RowContainer key={rowKey}>
         {Object.keys(rowData).map((cel: string, cellIndex: number) => {
-          const cellRender = columns[cel].cellRender
+          const { cellRender, width } = columns[cel]
           const cellData = rowData[cel]
           const content = cellRender
             ? cellRender({ cellData, rowData })
             : cellData
           return (
-            <Cell key={`cel-${index}-${cellIndex}-${depth}`}>
+            <Cell width={width} key={`cel-${index}-${cellIndex}-${depth}`}>
               {nestedRows && cellIndex === 0 && (
                 <Cell.Prefix width={prefixWidth}>
                   {arrow && (

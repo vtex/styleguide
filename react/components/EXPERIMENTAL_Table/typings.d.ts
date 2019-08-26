@@ -1,5 +1,6 @@
 interface Column {
   title: string
+  width?: number
   cellRender?: ({ cellData: any, rowData: any }) => React.ReactNode
   headerRender?: ({ headerData: any }) => React.ReactNode
 }

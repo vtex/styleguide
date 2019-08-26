@@ -7,12 +7,10 @@ import useTableContext from '../hooks/useTableContext'
 const Header: FC = () => {
   const { columns } = useTableContext()
   const renderHeader = (headerData: string, headerIndex: number) => {
-    const headerRender = columns[headerData].headerRender
-    const content = headerRender
-      ? headerRender({ headerData })
-      : columns[headerData].title
+    const { headerRender, title, width } = columns[headerData]
+    const content = headerRender ? headerRender({ headerData }) : title
     return (
-      <Cell key={`col-${headerIndex}`} isHeader>
+      <Cell key={`col-${headerIndex}`} width={width} isHeader>
         {content}
       </Cell>
     )
