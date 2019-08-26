@@ -81,26 +81,22 @@ const Row: FC<RowProps> = ({ data, index, depth }) => {
     )
   }
 
-  /**
-   * Base case
-   * Just render a leaf (Row that does not have children)
-   */
-  const renderLeaf = () => renderCells()
-
-  /**
-   * Recursive step
-   * Render the Node itself and its subRows
-   */
-  const renderNode = () => {
-    return (
-      <>
-        {renderCells(true)}
-        {collapsed && subRows}
-      </>
-    )
-  }
-
-  return subRows ? renderNode() : renderLeaf()
+  return subRows ? (
+    /**
+     * Recursive step
+     * Render the Node itself and its subRows
+     */
+    <>
+      {renderCells(true)}
+      {collapsed && subRows}
+    </>
+  ) : (
+    /**
+     * Base case
+     * Just render a leaf (Row that does not have children)
+     */
+    renderCells()
+  )
 }
 
 interface RowProps {
