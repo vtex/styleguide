@@ -9,6 +9,7 @@ export type ButtonProps = {
   onClick?: Function
   isLoading?: boolean
   disabled?: boolean
+  size?: 'small' | 'regular' | 'large'
   icon?: any
   title?: string
   variation?: 'primary' | 'secondary' | 'tertiary'
@@ -63,6 +64,7 @@ const Button = forwardRef<Ref, ButtonProps>(
 Button.defaultProps = {
   variation: 'tertiary',
   isActiveOfGroup: false,
+  size: 'small',
 }
 
 export default Button

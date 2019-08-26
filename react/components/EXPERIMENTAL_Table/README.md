@@ -299,6 +299,20 @@ function StateHookExample() {
     onClick: () => alert('Clicked IMPORT'),
   }
 
+  const newLine = {
+    label: 'New',
+    onClick: () => alert('handle new line callback'),
+    actions: [
+      'General',
+      'Desktop & Screen Saver',
+      'Dock',
+      'Language & Region',
+    ].map(label => ({
+      label,
+      onClick: () => alert(`Clicked ${label}`),
+    })),
+  }
+
   return (
     <Table state={tableState}>
       <Table.Toolbar>
@@ -306,6 +320,7 @@ function StateHookExample() {
           <Table.Toolbar.ButtonGroup.Density {...density} />
           <Table.Toolbar.ButtonGroup.Download {...download} />
           <Table.Toolbar.ButtonGroup.Upload {...upload} />
+          <Table.Toolbar.ButtonGroup.NewLine {...newLine} />
         </Table.Toolbar.ButtonGroup>
       </Table.Toolbar>
     </Table>

@@ -2,16 +2,20 @@ import React, { FC } from 'react'
 
 import IconDownload from '../../icon/Download/index.js'
 import IconUpload from '../../icon/Upload/index.js'
-import ButtonDensity, { ButtonDensityProps } from './ButtonDensity'
+
 import Button, { ButtonProps } from './Button'
+import ButtonDensity, { ButtonDensityProps } from './ButtonDensity'
+import ButtonNewLine, { ButtonNewLineProps } from './ButtonNewLine'
+
 import { ICON_SIZE } from '../constants'
 
-type ButtonType = 'density' | 'download' | 'upload'
+type ButtonType = 'density' | 'download' | 'upload' | 'newLine'
 
 interface Composites {
   Density: FC<ButtonDensityProps>
   Download: FC<ButtonProps>
   Upload: FC<ButtonProps>
+  NewLine: FC<ButtonNewLineProps>
 }
 
 type Props = ButtonProps | ButtonDensityProps
@@ -47,6 +51,13 @@ const getButton = (type: ButtonType, props: Props) => {
         </span>
       )
     }
+    case 'newLine': {
+      return (
+        <span className="order-5">
+          <ButtonNewLine {...(props as ButtonNewLineProps)} />
+        </span>
+      )
+    }
     default: {
       return null
     }
@@ -64,5 +75,6 @@ const ButtonGroup: FC & Composites = ({ children }) => (
 ButtonGroup.Density = getComponent('density')
 ButtonGroup.Download = getComponent('download')
 ButtonGroup.Upload = getComponent('upload')
+ButtonGroup.NewLine = getComponent('newLine')
 
 export default ButtonGroup
