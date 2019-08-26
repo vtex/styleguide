@@ -55,9 +55,9 @@ const Row: FC<RowProps> = ({ data, index, depth }) => {
   const renderCells = (arrow?: boolean) => {
     return (
       <RowContainer key={rowKey}>
-        {Object.keys(rowData).map((cel: string, cellIndex: number) => {
-          const { cellRender, width } = columns[cel]
-          const cellData = rowData[cel]
+        {columns.map((column: Column, cellIndex: number) => {
+          const { cellRender, width } = column
+          const cellData = rowData[column.id]
           const content = cellRender
             ? cellRender({ cellData, rowData })
             : cellData

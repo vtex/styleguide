@@ -6,8 +6,9 @@ import useTableContext from '../hooks/useTableContext'
 
 const Header: FC = () => {
   const { columns } = useTableContext()
-  const renderHeader = (headerData: string, headerIndex: number) => {
-    const { headerRender, title, width } = columns[headerData]
+
+  const renderHeader = (headerData: Column, headerIndex: number) => {
+    const { headerRender, title, width } = headerData
     const content = headerRender ? headerRender({ headerData }) : title
     return (
       <Cell key={`col-${headerIndex}`} width={width} isHeader>
@@ -23,7 +24,7 @@ const Header: FC = () => {
       style={{
         height: TABLE_HEADER_HEIGHT,
       }}>
-      {Object.keys(columns).map(renderHeader)}
+      {columns.map(renderHeader)}
     </div>
   )
 }

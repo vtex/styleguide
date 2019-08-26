@@ -1,12 +1,9 @@
 interface Column {
+  id: string
   title: string
   width?: number
   cellRender?: ({ cellData: any, rowData: any }) => React.ReactNode
   headerRender?: ({ headerData: any }) => React.ReactNode
-}
-
-interface ColumnObject {
-  [key: string]: Column
 }
 
 interface TableProps {
@@ -14,7 +11,7 @@ interface TableProps {
 }
 
 interface TableState {
-  columns?: ColumnObject
+  columns?: Array<Column>
   items?: Array<Object>
   isEmpty?: boolean
   tableHeight?: number

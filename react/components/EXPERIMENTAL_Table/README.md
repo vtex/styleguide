@@ -1,19 +1,25 @@
 # Table Columns
 
-The columns property is a JSON used to define the table columns and how they should behave visually. The Schema has properties and each one of them defines a column in the table.
+The columns property is a LIST used to define the table columns and how they should behave visually. The Schema has properties and each one of them defines a column in the table.
 Example with simple structure:
 
 ```ts
-{
-  <property_id>: {
+;[
+  {
+    id: 'property',
     title: 'Property',
     cellRender: ({ cellData, rowData }) => {
       return <span className="classname">{cellData}</span>
     },
-  }
+  },
   // ...
-}
+]
 ```
+
+##### id
+
+- Defines the property name.
+- This property is required.
 
 ##### title
 
@@ -31,7 +37,7 @@ Example with simple structure:
 
 #### State Hook
 
-Different than the previous version the `Table v2` is completely stateless, meaning that the parent has full control of its states. This is made possible by the `useTableState` hook. Its input is an `Object` containing `columns` (the columns definition), `items` (the actual items to show, which described by the columns) and `density` (density of the table rows).
+Different than the previous version the `Table v2` is completely stateless, meaning that the parent has full control of its states. This is made possible by the `useTableState` hook. Its input is an `List` containing `columns` (the columns definition), `items` (the actual items to show, which described by the columns) and `density` (density of the table rows).
 
 ### Example Of Usage
 
@@ -41,23 +47,27 @@ const useTableState = require('./hooks/useTableState.ts').default
 const Tag = require('../Tag/index.js').default
 
 // Define the columns
-columns = {
-  name: {
+columns = [
+  {
+    id: 'name',
     title: 'Name',
   },
-  email: {
+  {
+    id: 'email',
     title: 'Email',
   },
-  number: {
+  {
+    id: 'number',
     title: 'Number',
     cellRender: ({ cellData }) => {
       return <Tag>{cellData}</Tag>
     },
   },
-  country: {
+  {
+    id: 'country',
     title: 'Country',
   },
-}
+]
 
 // Define the items
 items = [
@@ -102,21 +112,21 @@ function StateHookExample() {
 
 | Property | Type                      | Description                         |
 | -------- | ------------------------- | ----------------------------------- |
-| columns  | Object of Column          | Definition of the table columns     |
+| columns  | List of Columns           | Definition of the table columns     |
 | items    | Array of Object           | The actual items that will be shown |
 | density  | 'low', 'medium' or 'high' | Density of table rows               |
 
 ### Return Values
 
-| Property           | Type             | Description                         |
-| ------------------ | ---------------- | ----------------------------------- |
-| columns            | Object of Column | Definition of the table columns     |
-| items              | Array of Object  | The actual items that will be shown |
-| isEmpty            | Boolean          | If there are items to show or not   |
-| tableHeight        | Number           | Table calculated height             |
-| rowHeight          | Number           | Table calculated row height         |
-| selectedDensity    | Density          | Current selected density            |
-| setSelectedDensity | Function         | selectedDensity setter              |
+| Property           | Type            | Description                         |
+| ------------------ | --------------- | ----------------------------------- |
+| columns            | List of Columns | Definition of the table columns     |
+| items              | Array of Object | The actual items that will be shown |
+| isEmpty            | Boolean         | If there are items to show or not   |
+| tableHeight        | Number          | Table calculated height             |
+| rowHeight          | Number          | Table calculated row height         |
+| selectedDensity    | Density         | Current selected density            |
+| setSelectedDensity | Function        | selectedDensity setter              |
 
 # Nested Rows
 
@@ -128,17 +138,20 @@ const useTableState = require('./hooks/useTableState.ts').default
 const Tag = require('../Tag/index.js').default
 
 // Define the columns
-columns = {
-  name: {
+columns = [
+  {
+    id: 'name',
     title: 'Name',
   },
-  email: {
+  {
+    id: 'email',
     title: 'Email',
   },
-  country: {
+  {
+    id: 'country',
     title: 'Country',
   },
-}
+]
 
 // Define the items with children
 items = [
@@ -214,20 +227,24 @@ function StateHookExample() {
 const useTableState = require('./hooks/useTableState.ts').default
 
 // Define the columns
-columns = {
-  name: {
+columns = [
+  {
+    id: 'name',
     title: 'Name',
   },
-  email: {
+  {
+    id: 'email',
     title: 'Email',
   },
-  number: {
+  {
+    id: 'number',
     title: 'Number',
   },
-  country: {
+  {
+    id: 'country',
     title: 'Country',
   },
-}
+]
 
 // Define the items
 items = [
