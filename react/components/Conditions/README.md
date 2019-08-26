@@ -32,8 +32,8 @@ Simple
 ```js
 const Input = require('../Input').default
 
-function SimpleInputObject({ object, onChange }) {
-  return <Input value={object || ''} onChange={e => onChange(e.target.value)} />
+function SimpleInputObject({ value, onChange }) {
+  return <Input value={value || ''} onChange={e => onChange(e.target.value)} />
 }
 
 class SimpleConditionsCase extends React.Component {
@@ -115,8 +115,8 @@ Unique
 ```js
 const Input = require('../Input').default
 
-function SimpleInputObject({ object, onChange }) {
-  return <Input value={object || ''} onChange={e => onChange(e.target.value)} />
+function SimpleInputObject({ value, onChange }) {
+  return <Input value={value || ''} onChange={e => onChange(e.target.value)} />
 }
 
 class SimpleConditionsCase extends React.Component {
@@ -231,8 +231,8 @@ Mobile
 ```js
 const Input = require('../Input').default
 
-function SimpleInputObject({ object, onChange }) {
-  return <Input value={object || ''} onChange={e => onChange(e.target.value)} />
+function SimpleInputObject({ value, onChange }) {
+  return <Input value={value || ''} onChange={e => onChange(e.target.value)} />
 }
 
 class SimpleConditionsCase extends React.Component {
@@ -335,14 +335,14 @@ const possibleColors = [
   { label: 'Light-blue', value: 'light-blue' },
 ]
 
-function SimpleInputObject({ object, onChange }) {
-  return <Input value={object || ''} onChange={e => onChange(e.target.value)} />
+function SimpleInputObject({ value, onChange }) {
+  return <Input value={value || ''} onChange={e => onChange(e.target.value)} />
 }
 
-function ComplexDropdownObject({ object, onChange }) {
+function ComplexDropdownObject({ value, onChange }) {
   return (
     <Dropdown
-      value={object}
+      value={value}
       options={possibleColors}
       onChange={(e, value) => {
         onChange(value)
@@ -351,29 +351,30 @@ function ComplexDropdownObject({ object, onChange }) {
   )
 }
 
-function ComplexSelectObject({ object, onChange }) {
+function ComplexSelectObject({ value, onChange }) {
   return (
     <Select
       multi
+      value={value}
       onChange={values => onChange(values)}
       options={possibleColors}
     />
   )
 }
 
-function ComplexNumericInputObject({ object, onChange }) {
+function ComplexNumericInputObject({ value, onChange }) {
   return (
     <Input
       min="0"
       onChange={e => onChange(e.target.value.replace(/\D/g, ''))}
       placeholder="Insert age..."
       type="number"
-      value={object || ''}
+      value={value || ''}
     />
   )
 }
 
-function ComplexNumericInputRangeObject({ object, onChange }) {
+function ComplexNumericInputRangeObject({ value, onChange }) {
   return (
     <div className="flex">
       <Input
@@ -381,14 +382,14 @@ function ComplexNumericInputRangeObject({ object, onChange }) {
         min="0"
         placeholder="Age from..."
         errorMessage={
-          object && parseInt(object.first) >= parseInt(object.last)
+          value && parseInt(value.first) >= parseInt(value.last)
             ? 'Must be smaller than other input'
             : ''
         }
-        value={object && object.first ? object.first : ''}
+        value={value && value.first ? value.first : ''}
         onChange={e =>
           onChange({
-            ...object,
+            ...value,
             first: e.target.value.replace(/\D/g, ''),
           })
         }
@@ -398,12 +399,12 @@ function ComplexNumericInputRangeObject({ object, onChange }) {
 
       <Input
         type="number"
-        min={(object && `${parseInt(object.first) + 1}`) || '0'}
+        min={(value && `${parseInt(value.first) + 1}`) || '0'}
         placeholder="Age to..."
-        value={object && object.last ? object.last : ''}
+        value={value && value.last ? value.last : ''}
         onChange={e =>
           onChange({
-            ...object,
+            ...value,
             last: e.target.value.replace(/\D/g, ''),
           })
         }
@@ -412,33 +413,32 @@ function ComplexNumericInputRangeObject({ object, onChange }) {
   )
 }
 
-function ComplexDatePickerObject({ object, onChange }) {
-  console.log(object)
+function ComplexDatePickerObject({ value, onChange }) {
   return (
     <DatePicker
       locale="en-US"
       onChange={date => onChange(date)}
-      value={object}
+      value={value}
     />
   )
 }
 
-function ComplexDatePickerRangeObject({ object, onChange }) {
+function ComplexDatePickerRangeObject({ value, onChange }) {
   return (
     <div className="flex">
       <div style={{ maxWidth: 140 }}>
         <DatePicker
           errorMessage={
-            object && object.from >= object.to ? 'Must be before end date' : ''
+            value && value.from >= value.to ? 'Must be before end date' : ''
           }
           locale="en-US"
           onChange={date =>
             onChange({
-              ...object,
+              ...value,
               from: date,
             })
           }
-          value={object && object.from}
+          value={value && value.from}
         />
       </div>
 
@@ -449,11 +449,11 @@ function ComplexDatePickerRangeObject({ object, onChange }) {
           locale="en-US"
           onChange={date =>
             onChange({
-              ...object,
+              ...value,
               to: date,
             })
           }
-          value={object && object.to}
+          value={value && value.to}
         />
       </div>
     </div>
