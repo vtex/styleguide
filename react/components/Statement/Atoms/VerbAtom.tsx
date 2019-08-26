@@ -1,5 +1,5 @@
 import React from 'react'
-import Select from '../../EXPERIMENTAL_Select'
+import Select from '../../EXPERIMENTAL_Select/index'
 import PropTypes from 'prop-types'
 import { withForwardedRef, refShape } from '../../../modules/withForwardedRef'
 

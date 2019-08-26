@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Input from '../../Input'
+import Input from '../../Input/index'
 
 export type RenderProps = {
   error: Props['error']
