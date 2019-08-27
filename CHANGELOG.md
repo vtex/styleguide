@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- **Tooltip** added.
+- **Tooltip** component.
 
 ## [9.76.1] - 2019-09-02
 

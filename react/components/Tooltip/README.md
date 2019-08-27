@@ -22,10 +22,10 @@
 ```jsx
 <div className="flex flex-column w-100">
   <Tooltip
-    label="Tooltip will be on bottom!"
+    label="Tooltip will be at the bottom!"
     position="right"
     fallbackPosition="left">
-    <div className="ba br3 pa3">Tooltip on right with left as fallback</div>
+    <div className="ba br3 pa3">Tooltip on the right with left as fallback</div>
   </Tooltip>
   <Tooltip label="Tooltip will be on bottom!" position="right">
     <div className="ba br3 pa3 mt2">
