@@ -1,19 +1,25 @@
 # Table Columns
 
-The columns property is a JSON used to define the table columns and how they should behave visually. The Schema has properties and each one of them defines a column in the table.
+The columns property is a LIST used to define the table columns and how they should behave visually. The Schema has properties and each one of them defines a column in the table.
 Example with simple structure:
 
 ```ts
-{
-  <property_id>: {
+;[
+  {
+    id: 'property',
     title: 'Property',
     cellRender: ({ cellData, rowData }) => {
       return <span className="classname">{cellData}</span>
     },
-  }
+  },
   // ...
-}
+]
 ```
+
+##### id
+
+- Defines the property name.
+- This property is required.
 
 ##### title
 
@@ -31,7 +37,7 @@ Example with simple structure:
 
 #### State Hook
 
-Different than the previous version the `Table v2` is completely stateless, meaning that the parent has full control of its states. This is made possible by the `useTableState` hook. Its input is an `Object` containing `columns` (the columns definition), `items` (the actual items to show, which described by the columns) and `density` (density of the table rows).
+Different than the previous version the `Table v2` is completely stateless, meaning that the parent has full control of its states. This is made possible by the `useTableState` hook. Its input is an `List` containing `columns` (the columns definition), `items` (the actual items to show, which described by the columns) and `density` (density of the table rows).
 
 ### Example Of Usage
 
@@ -41,23 +47,27 @@ const useTableState = require('./hooks/useTableState.ts').default
 const Tag = require('../Tag/index.js').default
 
 // Define the columns
-columns = {
-  name: {
+columns = [
+  {
+    id: 'name',
     title: 'Name',
   },
-  email: {
+  {
+    id: 'email',
     title: 'Email',
   },
-  number: {
+  {
+    id: 'number',
     title: 'Number',
     cellRender: ({ cellData }) => {
       return <Tag>{cellData}</Tag>
     },
   },
-  country: {
+  {
+    id: 'country',
     title: 'Country',
   },
-}
+]
 
 // Define the items
 items = [
@@ -91,10 +101,9 @@ function StateHookExample() {
   const tableState = useTableState({
     columns,
     items,
-    density: 'medium',
   })
 
-  return <Table {...tableState} />
+  return <Table state={tableState} />
 }
 ;<StateHookExample />
 ```
@@ -103,43 +112,140 @@ function StateHookExample() {
 
 | Property | Type                      | Description                         |
 | -------- | ------------------------- | ----------------------------------- |
-| columns  | Object of Column          | Definition of the table columns     |
+| columns  | List of Columns           | Definition of the table columns     |
 | items    | Array of Object           | The actual items that will be shown |
 | density  | 'low', 'medium' or 'high' | Density of table rows               |
 
 ### Return Values
 
-| Property           | Type             | Description                         |
-| ------------------ | ---------------- | ----------------------------------- |
-| columns            | Object of Column | Definition of the table columns     |
-| items              | Array of Object  | The actual items that will be shown |
-| isEmpty            | Boolean          | If there are items to show or not   |
-| tableHeight        | Number           | Table calculated height             |
-| rowHeight          | Number           | Table calculated row height         |
-| selectedDensity    | Density          | Current selected density            |
-| setSelectedDensity | Function         | selectedDensity setter              |
+| Property           | Type            | Description                         |
+| ------------------ | --------------- | ----------------------------------- |
+| columns            | List of Columns | Definition of the table columns     |
+| items              | Array of Object | The actual items that will be shown |
+| isEmpty            | Boolean         | If there are items to show or not   |
+| tableHeight        | Number          | Table calculated height             |
+| rowHeight          | Number          | Table calculated row height         |
+| selectedDensity    | Density         | Current selected density            |
+| setSelectedDensity | Function        | selectedDensity setter              |
 
-#### Toolbar
+# Nested Rows
+
+`TableV2` allows nested rows that are enabled via the `nestedRows` prop. Each `item` object of `items` array may have a special property named `children` that is an array of objects with the same shape of `item`. It's important to notice that your row tree can have unlimited depth.
+
+```js
+// Imports
+const useTableState = require('./hooks/useTableState.ts').default
+const Tag = require('../Tag/index.js').default
+
+// Define the columns
+columns = [
+  {
+    id: 'name',
+    title: 'Name',
+    width: 280,
+  },
+  {
+    id: 'email',
+    title: 'Email',
+  },
+  {
+    id: 'country',
+    title: 'Country',
+  },
+]
+
+// Define the items with children
+items = [
+  {
+    name: "T'Chala",
+    email: 'black.panther@gmail.com',
+    country: '🇰🇪Wakanda',
+  },
+  {
+    name: 'Peter Parker',
+    email: 'spider.man@gmail.com',
+    country: '🇺🇸USA',
+    children: [
+      {
+        name: 'Aunt May',
+        email: 'may.parker@gmail.com',
+        country: '🇺🇸USA',
+      },
+      {
+        name: 'Uncle Ben',
+        email: 'ben.parker@gmail.com',
+        country: '🇺🇸USA',
+      },
+      {
+        name: 'Marry Jane',
+        email: 'mjaaay@gmail.com',
+        country: '🇺🇸USA',
+        children: [
+          {
+            name: 'Harry Osbourne',
+            email: 'harry@gmail.com',
+            country: '🇺🇸USA',
+          },
+          {
+            name: 'Normal Osbourne',
+            email: 'norman@gmail.com',
+            country: '🇺🇸USA',
+            children: [
+              {
+                name: 'Green Goblin',
+                email: 'norman.green@gmail.com',
+                country: '🇺🇸USA',
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    name: 'Shang-Chi',
+    email: 'kungfu.master@gmail.com',
+    country: '🇨🇳China',
+  },
+]
+
+function StateHookExample() {
+  const tableState = useTableState({
+    columns,
+    items,
+    density: 'medium',
+  })
+
+  return <Table state={tableState} nestedRows />
+}
+;<StateHookExample />
+```
+
+# Toolbar
 
 ```js
 // Imports
 const useTableState = require('./hooks/useTableState.ts').default
 
 // Define the columns
-columns = {
-  name: {
+columns = [
+  {
+    id: 'name',
     title: 'Name',
   },
-  email: {
+  {
+    id: 'email',
     title: 'Email',
   },
-  number: {
+  {
+    id: 'number',
     title: 'Number',
   },
-  country: {
+  {
+    id: 'country',
     title: 'Country',
   },
-}
+]
 
 // Define the items
 items = [
@@ -184,7 +290,7 @@ function StateHookExample() {
   }
 
   return (
-    <Table {...tableState}>
+    <Table state={tableState}>
       <Table.Toolbar>
         <Table.Toolbar.ButtonGroup>
           <Table.Toolbar.ButtonGroup.Density {...density} />

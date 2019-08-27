@@ -8,21 +8,24 @@ import Toolbar from './Toolbar/index'
 import { DENSITY_OPTIONS } from './constants'
 
 const propTypes = {
-  schema: PropTypes.shape({
-    columns: PropTypes.objectOf(
-      PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        cellRender: PropTypes.func,
-      })
-    ).isRequired,
-    rowRender: PropTypes.func,
+  nestedRows: PropTypes.bool,
+  state: PropTypes.shape({
+    schema: PropTypes.shape({
+      columns: PropTypes.objectOf(
+        PropTypes.shape({
+          title: PropTypes.string.isRequired,
+          cellRender: PropTypes.func,
+        })
+      ).isRequired,
+      rowRender: PropTypes.func,
+    }),
+    items: PropTypes.arrayOf(PropTypes.object),
+    isEmpty: PropTypes.bool,
+    tableHeight: PropTypes.number,
+    rowHeight: PropTypes.number,
+    selectedDensity: PropTypes.oneOf(DENSITY_OPTIONS),
+    setSelectedDensity: PropTypes.func,
   }),
-  items: PropTypes.arrayOf(PropTypes.object),
-  isEmpty: PropTypes.bool,
-  tableHeight: PropTypes.number,
-  rowHeight: PropTypes.number,
-  selectedDensity: PropTypes.oneOf(DENSITY_OPTIONS),
-  setSelectedDensity: PropTypes.func,
 }
 
 type Props = InferProps<typeof propTypes>
@@ -31,9 +34,9 @@ interface Composites {
   Toolbar: FC
 }
 
-const Table: FC<Props> & Composites = ({ children, ...props }) => {
+const Table: FC<Props> & Composites = ({ children, state, ...props }) => {
   return (
-    <TableProvider value={props}>
+    <TableProvider value={{ ...state, ...props }}>
       <div className="vtex-tablev2__container">
         {children}
         <SimpleTable />

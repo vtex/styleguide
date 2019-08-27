@@ -4,7 +4,7 @@ import { calculateTableHeight } from '../util'
 import useDensity from './useDensity'
 
 interface Input {
-  columns: ColumnObject
+  columns: Array<Column>
   items: Array<any>
   density?: Density
 }
