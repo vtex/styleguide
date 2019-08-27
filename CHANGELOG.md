@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.73.13] - 2019-08-27
+
+### Fixed
+
+- Bumps `eslint-utils` dependency to 1.4.1 due to security warnings.
+
 ## [9.73.12] - 2019-08-27
 
 ### Added
