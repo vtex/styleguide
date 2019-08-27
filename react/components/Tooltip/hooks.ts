@@ -24,8 +24,8 @@ export function useRect(nodeRef, observe = true) {
 export function useTooltip({
   trigger,
 }: {
-  trigger: Trigger
-}): [
+  trigger?: Trigger
+} = {}): [
   (c: React.ReactElement) => object,
   { childRef: RefObject<HTMLElement>; visible: boolean }
 ] {
