@@ -5,6 +5,7 @@ import {
   DENSITY_OPTIONS,
   FIELDS_BOX_ITEM_HEIGHT,
   ICON_SIZE,
+  NAMESPACES,
 } from '../constants'
 import useTableContext from '../hooks/useTableContext'
 import Menu from './Menu/index'
@@ -32,7 +33,7 @@ const ButtonDensity: FC<ButtonDensityProps> = ({
   return (
     <Menu
       button={{
-        id: 'toggleDensity',
+        id: NAMESPACES.TOOLBAR.BUTTON_DENSITY,
         title: label,
         icon: <IconDensity size={ICON_SIZE.MEDIUM} />,
         disabled,

@@ -1,3 +1,20 @@
+export const NAMESPACE_PREFIX = 'vtex-table-v2'
+export const NAMESPACES = {
+  CONTAINER: `${NAMESPACE_PREFIX}__container`,
+  TABLE: `${NAMESPACE_PREFIX}`,
+  HEADER: `${NAMESPACE_PREFIX}__header`,
+  ROW: `${NAMESPACE_PREFIX}__row`,
+  CELL: `${NAMESPACE_PREFIX}__cell`,
+  TOOLBAR: {
+    CONTAINER: `${NAMESPACE_PREFIX}__toolbar__container`,
+    BUTTON_GROUP: `${NAMESPACE_PREFIX}__toolbar__button-group`,
+    BUTTON_DENSITY: `${NAMESPACE_PREFIX}__toolbar__button-density`,
+    BUTTON_DOWNLOAD: `${NAMESPACE_PREFIX}__toolbar__button-donwload`,
+    BUTTON_UPLOAD: `${NAMESPACE_PREFIX}__toolbar__button-upload`,
+    BUTTON_NEWLINE: `${NAMESPACE_PREFIX}__toolbar__button-newline`,
+    BUTTON_EXTRA_ACTIONS: `${NAMESPACE_PREFIX}__toolbar__button-extra-actions`,
+  },
+}
 export const TABLE_DENSITIES = {
   LOW: 'low',
   MEDIUM: 'medium',

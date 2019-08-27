@@ -2,13 +2,18 @@ import React, { FC } from 'react'
 
 import ActionMenu from '../../ActionMenu/index'
 import IconOptionsDots from '../../icon/OptionsDots/index'
+import { NAMESPACES } from '../constants'
 
 const ButtonExtraActions: FC<ButtonExtraActionsProps> = ({
   label,
+  size,
   actions,
 }) => {
   return (
-    <div title={label} className="mh2 order-4">
+    <div
+      id={NAMESPACES.TOOLBAR.BUTTON_EXTRA_ACTIONS}
+      title={label}
+      className="mh2 order-4">
       <ActionMenu
         hideCaretIcon
         buttonProps={{
@@ -18,7 +23,7 @@ const ButtonExtraActions: FC<ButtonExtraActionsProps> = ({
               <IconOptionsDots />
             </span>
           ),
-          size: 'small',
+          size: size,
         }}
         options={actions.map(action => {
           return {
@@ -31,11 +36,16 @@ const ButtonExtraActions: FC<ButtonExtraActionsProps> = ({
   )
 }
 
+ButtonExtraActions.defaultProps = {
+  size: 'small',
+}
+
 export type ButtonExtraActionsProps = {
   label?: string
   actions: Array<MenuAction>
   alignMenu?: 'right' | 'left'
   isLoading?: boolean
+  size?: 'small' | 'regular' | 'large'
 }
 
 export default ButtonExtraActions

@@ -10,7 +10,7 @@ import ButtonExtraActions, {
 } from './ButtonExtraActions'
 import ButtonNewLine, { ButtonNewLineProps } from './ButtonNewLine'
 
-import { ICON_SIZE } from '../constants'
+import { ICON_SIZE, NAMESPACES } from '../constants'
 
 type ButtonType = 'density' | 'download' | 'upload' | 'extraActions' | 'newLine'
 
@@ -41,7 +41,7 @@ const getButton = (type: ButtonType, props: Props) => {
       return (
         <span className="order-2">
           <Button
-            id="download"
+            id={NAMESPACES.TOOLBAR.BUTTON_DOWNLOAD}
             icon={<IconDownload size={ICON_SIZE.HEAVY} />}
             {...(props as ButtonProps)}
           />
@@ -52,7 +52,7 @@ const getButton = (type: ButtonType, props: Props) => {
       return (
         <span className="order-3">
           <Button
-            id="upload"
+            id={NAMESPACES.TOOLBAR.BUTTON_UPLOAD}
             icon={<IconUpload size={ICON_SIZE.HEAVY} />}
             {...(props as ButtonProps)}
           />
@@ -84,7 +84,11 @@ const getComponent = (type: ButtonType) => {
 }
 
 const ButtonGroup: FC & Composites = ({ children }) => (
-  <div className="flex flex-row items-center">{children}</div>
+  <div
+    id={NAMESPACES.TOOLBAR.BUTTON_GROUP}
+    className="flex flex-row items-center">
+    {children}
+  </div>
 )
 
 ButtonGroup.Density = getComponent('density')
