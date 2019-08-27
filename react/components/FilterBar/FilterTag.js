@@ -112,11 +112,11 @@ class FilterTag extends PureComponent {
     }
   }
 
-  handleChangeStatement = (newValue, structure) => {
+  handleChangeStatement = statement => {
     this.setState(state => {
       return {
         virtualStatement: merge({}, state.virtualStatement, {
-          [structure]: newValue,
+          ...statement,
         }),
       }
     })
@@ -154,6 +154,38 @@ class FilterTag extends PureComponent {
     const shouldOmitVerb = isMoreOptions
       ? false
       : options[subject].verbs.length === 1
+
+    const compatibleOptions = {}
+    Object.keys(options).forEach(opt => {
+      compatibleOptions[opt] = merge({}, { ...options[opt] })
+      compatibleOptions[opt].verbs = options[opt].verbs.map(verb => {
+        if (typeof verb.object === 'function') {
+          return verb
+        }
+        console.warn(
+          '[Deprecation alert]',
+          'FilterBar prop "options" will change contract due to Conditions and Statement refactor.',
+          'please if you are using it let @guigs and @eric know...'
+        )
+        return {
+          ...verb,
+          object: ({ error, onChange, value }) => {
+            return (
+              <>
+                {verb.object.renderFn({
+                  statements: [merge({}, statement, virtualStatement)],
+                  values: value,
+                  statementIndex: 0,
+                  error,
+                  extraParams: verb.object && verb.object.extraParams,
+                  onChangeObjectCallback: onChange,
+                })}
+              </>
+            )
+          },
+        }
+      })
+    })
 
     return (
       <div
@@ -224,16 +256,19 @@ class FilterTag extends PureComponent {
                 isFullWidth
                 omitSubject={shouldOmitSubject}
                 omitVerbs={shouldOmitVerb}
-                options={options}
+                options={compatibleOptions}
                 subjectPlaceholder={subjectPlaceholder}
-                statements={
+                statement={
                   isMoreOptions
-                    ? [virtualStatement]
-                    : [merge({}, statement, virtualStatement)]
+                    ? virtualStatement
+                    : merge({}, statement, virtualStatement)
                 }
                 onChangeStatement={this.handleChangeStatement}
-                onChangeObjectCallback={value =>
-                  this.handleChangeStatement(value, 'object')
+                onChangeObjectCallback={st =>
+                  this.handleChangeStatement({
+                    ...st,
+                    error: null,
+                  })
                 }
               />
               <div className="flex justify-end mt4 mh3">
