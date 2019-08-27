@@ -64,7 +64,7 @@ class Statement extends React.Component {
           error={statement.error}
           isFullWidth={isFullWidth}
           object={statement.object}
-          onChange={(object, error) => {
+          onChange={(object, error = null) => {
             const newStatement = {
               ...statement,
               object,
