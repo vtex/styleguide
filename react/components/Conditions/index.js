@@ -117,7 +117,6 @@ class Conditions extends React.Component {
                       }`}>
                       <div className="flex-grow-1">
                         <Statement
-                          canDelete={canDelete}
                           isRtl={isRtl}
                           isFullWidth={isFullWidth}
                           onChangeStatement={newStatement => {
