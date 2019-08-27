@@ -11,13 +11,26 @@ const OFFSET = 8
 const hasComputedDimensions = rect => rect && rect.width && rect.height
 
 const propTypes = {
+  /** Tooltip content */
+  label: PropTypes.node.isRequired,
+  /** Tooltip position */
   position: PropTypes.oneOf<Position>(['top', 'bottom', 'left', 'right']),
-  fallbackPosition: PropTypes.oneOf<Position>(['top', 'bottom', 'left', 'right']),
-  label: PropTypes.string.isRequired,
+  /** Fallback position (when the tooltip cannot appear in the original position) */
+  fallbackPosition: PropTypes.oneOf<Position>([
+    'top',
+    'bottom',
+    'left',
+    'right',
+  ]),
+  /** Boolean to see if the popup should appear */
   visible: PropTypes.bool,
+  /** Delay to show the tooltip */
   delay: PropTypes.number,
+  /** Tooltip animation duration */
   duration: PropTypes.number,
+  /** Tooltip timming function used to animate the tooltip */
   timmingFn: PropTypes.string,
+  /** Child ref. Used to correctly position the tooltip */
   childRef: PropTypes.shape({
     current: PropTypes.instanceOf(HTMLElement),
   }),
@@ -25,9 +38,6 @@ const propTypes = {
 
 const defaultProps = {
   visible: false,
-  delay: 0,
-  duration: 200,
-  timmingFn: 'ease-in-out',
 }
 
 const TooltipPopup: FC<PropTypes.InferProps<typeof propTypes>> = ({
@@ -86,7 +96,7 @@ const TooltipPopup: FC<PropTypes.InferProps<typeof propTypes>> = ({
 
 const getStyles = (childRect, popupRect, position, fallbackPosition) => {
   return childRect && popupRect && window
-    ? positionDefault(childRect, popupRect, position, fallbackPosition)
+    ? getPopupPosition(childRect, popupRect, position, fallbackPosition)
     : {}
 }
 
@@ -100,7 +110,21 @@ const FALLBACK_POSITION = {
 const getFallbackPosition = (position, fallback) =>
   fallback || FALLBACK_POSITION[position]
 
-const positionDefault = (childRect, popupRect, position, fallbackPosition) => {
+const getPopupPosition = (childRect, popupRect, position, fallbackPosition) =>
+  getPopupPositionRecursively(
+    childRect,
+    popupRect,
+    position,
+    fallbackPosition,
+    position
+  )
+const getPopupPositionRecursively = (
+  childRect,
+  popupRect,
+  position,
+  fallbackPosition,
+  originalPosition
+) => {
   const horizontalMax = window.innerWidth + window.pageXOffset
   const verticalMax = window.innerHeight + window.pageYOffset
   const styles = {
@@ -128,27 +152,29 @@ const positionDefault = (childRect, popupRect, position, fallbackPosition) => {
 
   const collisions = {
     top: styles.top < window.pageYOffset,
-    right: (styles.left + popupRect.width) > horizontalMax,
+    right: styles.left + popupRect.width > horizontalMax,
     bottom: styles.top + popupRect.height > verticalMax,
     left: styles.left < window.pageXOffset,
   }
 
-  if (!Object.values(collisions).some(collision => !collision)) {
-    return null
+  if (collisions[position]) {
+    fallbackPosition = getFallbackPosition(position, fallbackPosition)
+    // If there is no place without collisions, it will not be shown
+    return fallbackPosition === originalPosition
+      ? null
+      : getPopupPositionRecursively(
+          childRect,
+          popupRect,
+          fallbackPosition,
+          null,
+          originalPosition
+        )
   }
-
-  return collisions[position]
-    ? positionDefault(
-        childRect,
-        popupRect,
-        getFallbackPosition(position, fallbackPosition),
-        null
-      )
-    : {
-        ...styles,
-        top: Math.min(styles.top, verticalMax - popupRect.height - 1),
-        left: Math.min(styles.left, horizontalMax - popupRect.width - 1),
-      }
+  return {
+    ...styles,
+    top: Math.min(styles.top, verticalMax - popupRect.height - 1),
+    left: Math.min(styles.left, horizontalMax - popupRect.width - 1),
+  }
 }
 
 TooltipPopup.propTypes = propTypes

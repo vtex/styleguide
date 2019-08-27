@@ -13,37 +13,46 @@ import React, {
 import TooltipPopup, { Position } from './TooltipPopup'
 import { useTooltip, Trigger } from './hooks'
 
-
 const propTypes = {
-  label: PropTypes.string.isRequired,
+  /** Label to be shown. As element, can be a string, number...*/
+  label: PropTypes.node.isRequired,
+  /** Tooltip position */
   position: PropTypes.oneOf<Position>(['top', 'right', 'bottom', 'left']),
-  fallbackPosition: PropTypes.oneOf<Position>(['top', 'right', 'bottom', 'left']),
+  /** Fallback position. Used when the tooltip cannot be shown in the original position */
+  fallbackPosition: PropTypes.oneOf<Position>([
+    'top',
+    'right',
+    'bottom',
+    'left',
+  ]),
+  /** Event to trigger the tooltip */
   trigger: PropTypes.oneOf<Trigger>(['click', 'hover', 'focus']),
+  /** Element that will trigger the event */
   children: PropTypes.element.isRequired,
+  /** Delay to show and hide the tooltip (ms) */
+  delay: PropTypes.number,
+  /** Tooltip animation duration (ms) */
+  duration: PropTypes.number,
+  /** Tooltip timming function used to animate the tooltip */
+  timmingFn: PropTypes.string,
 }
 
-const defaultProps: { trigger: Trigger; position: Position } = {
+type Props = PropTypes.InferProps<typeof propTypes>
+
+const defaultProps: Props = {
   trigger: 'hover',
   position: 'top',
+  delay: 0,
+  duration: 200,
+  timmingFn: 'ease-in-out',
 }
 
-const Tooltip: FC<PropTypes.InferProps<typeof propTypes>> = ({
-  trigger,
-  label,
-  position,
-  fallbackPosition,
-  children,
-}) => {
+const Tooltip: FC<Props> = ({ trigger, children, ...popupProps }) => {
   const [handleTooltip, tooltip] = useTooltip({ trigger })
   const child = Children.only(children)
   return (
     <>
-      <TooltipPopup
-        {...tooltip}
-        fallbackPosition={fallbackPosition}
-        position={position}
-        label={label}
-      />
+      <TooltipPopup {...tooltip} {...popupProps} />
       {cloneElement(child, handleTooltip(child))}
     </>
   )

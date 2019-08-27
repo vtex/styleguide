@@ -36,7 +36,7 @@ export default (node, cb) => ({
       observedNodes.get(node).callbacks.push(cb)
     } else {
       observedNodes.set(node, {
-        rect: null,
+        rect: undefined,
         hasRectChanged: true,
         callbacks: [cb],
       })
