@@ -11,7 +11,7 @@ const InputSearch: FC<InputSearchProps> = ({ onSubmit, ...inputProps }) => {
   return (
     <form
       id={NAMESPACES.TOOLBAR.INPUT_SEARCH}
-      className="w-40"
+      className="order-0 w-40"
       onSubmit={onSubmit}>
       <Input {...inputProps} />
     </form>

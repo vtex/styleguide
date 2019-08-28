@@ -86,7 +86,7 @@ const getComponent = (type: ButtonType) => {
 const ButtonGroup: FC & Composites = ({ children }) => (
   <div
     id={NAMESPACES.TOOLBAR.BUTTON_GROUP}
-    className="flex flex-row items-center">
+    className="order-1 flex flex-row items-center">
     {children}
   </div>
 )
