@@ -209,43 +209,7 @@ class NumericStepper extends Component {
           </span>
         )}
         <div className="flex self-start">
-          <input
-            type="tel"
-            className={`z-1 order-1 tc bw1 ${borderClasses} br0 ${inputClasses} ${hideDecorators}`}
-            style={{
-              ...(block && {
-                width: 0,
-              }),
-              WebkitAppearance: 'none',
-            }}
-            value={displayValue}
-            onChange={this.handleTypeQuantity}
-            onFocus={this.handleFocusInput}
-            onBlur={this.handleBlurInput}
-          />
-          <div className="z-2 order-2 flex-none">
-            <button
-              type="button"
-              className={`br2 pa0 bl-0 flex items-center justify-center ${borderClasses} ${buttonClasses} ${
-                isMax ? buttonDisabledClasses : buttonEnabledClasses
-              }`}
-              style={{
-                borderTopLeftRadius: 0,
-                borderBottomLeftRadius: 0,
-                width: lean ? '2em' : '3em',
-                transition: 'opacity 150ms',
-              }}
-              disabled={isMax}
-              aria-label="+"
-              tabIndex={0}
-              onClick={this.handleIncreaseValue}>
-              <div className="b">
-                {/* fullwidth plus sign (U+FF0B) http://graphemica.com/%EF%BC%8B */}
-                ＋
-              </div>
-            </button>
-          </div>
-          <div className="z-2 order-0 flex-none">
+          <div className="z-2 flex-none">
             <button
               type="button"
               className={`br2 pa0 br-0 flex items-center justify-center ${borderClasses} ${buttonClasses} ${
@@ -268,6 +232,42 @@ class NumericStepper extends Component {
                 {/* fullwidth hyphen-minus (U+FF0D) http://graphemica.com/%EF%BC%8D */}
                 －
               </span>
+            </button>
+          </div>
+          <input
+            type="tel"
+            className={`tc bw1 ${borderClasses} br0 ${inputClasses} ${hideDecorators}`}
+            style={{
+              ...(block && {
+                width: 0,
+              }),
+              WebkitAppearance: 'none',
+            }}
+            value={displayValue}
+            onChange={this.handleTypeQuantity}
+            onFocus={this.handleFocusInput}
+            onBlur={this.handleBlurInput}
+          />
+          <div className="z-2 flex-none">
+            <button
+              type="button"
+              className={`br2 pa0 bl-0 flex items-center justify-center ${borderClasses} ${buttonClasses} ${
+                isMax ? buttonDisabledClasses : buttonEnabledClasses
+              }`}
+              style={{
+                borderTopLeftRadius: 0,
+                borderBottomLeftRadius: 0,
+                width: lean ? '2em' : '3em',
+                transition: 'opacity 150ms',
+              }}
+              disabled={isMax}
+              aria-label="+"
+              tabIndex={0}
+              onClick={this.handleIncreaseValue}>
+              <div className="b">
+                {/* fullwidth plus sign (U+FF0B) http://graphemica.com/%EF%BC%8B */}
+                ＋
+              </div>
             </button>
           </div>
         </div>
