@@ -15,23 +15,52 @@ export const NAMESPACES = {
     BUTTON_EXTRA_ACTIONS: `${NAMESPACE_PREFIX}__toolbar__button-extra-actions`,
   },
 }
+
 export const TABLE_DENSITIES = {
-  LOW: 'low',
-  MEDIUM: 'medium',
-  HIGH: 'high',
-}
-export const TABLE_HEADER_HEIGHT = 36
-export const EMPTY_STATE_SIZE_IN_ROWS = 5
-export const DEFAULT_SCROLLBAR_WIDTH = 17
-export const FIELDS_BOX_ITEM_HEIGHT = 36
-export const ICON_SIZE = {
-  HEAVY: 13,
-  MEDIUM: 14,
-  LIGHT: 16,
+  LOW: 'low' as Density,
+  MEDIUM: 'medium' as Density,
+  HIGH: 'high' as Density,
 }
 export const DENSITY_OPTIONS = [
   TABLE_DENSITIES.LOW,
   TABLE_DENSITIES.MEDIUM,
   TABLE_DENSITIES.HIGH,
 ]
+
+export const TABLE_HEADER_HEIGHT = 36
+export const EMPTY_STATE_SIZE_IN_ROWS = 5
+export const DEFAULT_SCROLLBAR_WIDTH = 17
+export const FIELDS_BOX_ITEM_HEIGHT = 36
 export const NESTED_ROW_PREFIX_WIDTH = 36
+
+export const ICON_SIZE = {
+  HEAVY: 13,
+  MEDIUM: 14,
+  LIGHT: 16,
+}
+
+export const BUTTON = {
+  SIZE: {
+    SMALL: 'small' as Size,
+    REGULAR: 'regular' as Size,
+    LARGE: 'large' as Size,
+  },
+  VARIATION: {
+    PRIMARY: 'primary' as Variation,
+    SECONDARY: 'secondary' as Variation,
+    TERTIARY: 'tertiary' as Variation,
+  },
+}
+
+export const BOX_ALIGNMENT = {
+  RIGHT: 'right' as Alignment,
+  LEFT: 'left' as Alignment,
+}
+
+export const JUSTIFY_OPTIONS = {
+  BETWEEN: 'between' as FlexJustify,
+  END: 'end' as FlexJustify,
+  START: 'start' as FlexJustify,
+  AROUND: 'around' as FlexJustify,
+  CENTER: 'center' as FlexJustify,
+}

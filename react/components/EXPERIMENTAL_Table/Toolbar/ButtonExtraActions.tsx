@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 
 import ActionMenu from '../../ActionMenu/index'
 import IconOptionsDots from '../../icon/OptionsDots/index'
-import { NAMESPACES } from '../constants'
+import { NAMESPACES, BUTTON } from '../constants'
 
 const ButtonExtraActions: FC<ButtonExtraActionsProps> = ({
   label,
@@ -17,7 +17,7 @@ const ButtonExtraActions: FC<ButtonExtraActionsProps> = ({
       <ActionMenu
         hideCaretIcon
         buttonProps={{
-          variation: 'tertiary',
+          variation: BUTTON.VARIATION.TERTIARY,
           icon: (
             <span className="c-on-base">
               <IconOptionsDots />
@@ -37,15 +37,15 @@ const ButtonExtraActions: FC<ButtonExtraActionsProps> = ({
 }
 
 ButtonExtraActions.defaultProps = {
-  size: 'small',
+  size: BUTTON.SIZE.SMALL,
 }
 
 export type ButtonExtraActionsProps = {
   label?: string
   actions: Array<MenuAction>
-  alignMenu?: 'right' | 'left'
+  alignMenu?: Alignment
   isLoading?: boolean
-  size?: 'small' | 'regular' | 'large'
+  size?: Size
 }
 
 export default ButtonExtraActions

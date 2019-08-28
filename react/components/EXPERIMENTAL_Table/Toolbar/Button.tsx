@@ -1,6 +1,7 @@
 import React, { forwardRef, ReactNode } from 'react'
 
 import ButtonWithIcon from '../../ButtonWithIcon/index.js'
+import { BUTTON } from '../constants.js'
 const ICON_OPTICAL_COMPENSATION = { marginTop: 1.5 }
 
 export type ButtonProps = {
@@ -9,10 +10,10 @@ export type ButtonProps = {
   onClick?: Function
   isLoading?: boolean
   disabled?: boolean
-  size?: 'small' | 'regular' | 'large'
+  size?: Size
   icon?: any
   title?: string
-  variation?: 'primary' | 'secondary' | 'tertiary'
+  variation?: Variation
   isActiveOfGroup?: boolean
   children?: ReactNode
 }
@@ -32,39 +33,41 @@ const Button = forwardRef<Ref, ButtonProps>(
       label,
       variation,
       isActiveOfGroup,
+      size,
     },
     ref
-  ) => (
-    <div id={id} title={title} ref={ref} className="relative mh2">
-      <ButtonWithIcon
-        icon={
-          <span
-            className={`${variation === 'tertiary' ? 'c-on-base mh2' : ''}`}
-            style={ICON_OPTICAL_COMPENSATION}>
-            {icon}
-          </span>
-        }
-        isActiveOfGroup={isActiveOfGroup}
-        disabled={disabled}
-        isLoading={isLoading}
-        variation={variation}
-        size="small"
-        onClick={onClick}>
-        {label && (
-          <span className={variation === 'tertiary' ? 'c-on-base' : ''}>
-            {label}
-          </span>
-        )}
-      </ButtonWithIcon>
-      {children}
-    </div>
-  )
+  ) => {
+    const isTertiary = variation === BUTTON.VARIATION.TERTIARY
+    return (
+      <div id={id} title={title} ref={ref} className="relative mh2">
+        <ButtonWithIcon
+          icon={
+            <span
+              className={`${isTertiary ? 'c-on-base mh2' : ''}`}
+              style={ICON_OPTICAL_COMPENSATION}>
+              {icon}
+            </span>
+          }
+          isActiveOfGroup={isActiveOfGroup}
+          disabled={disabled}
+          isLoading={isLoading}
+          variation={variation}
+          size={size}
+          onClick={onClick}>
+          {label && (
+            <span className={isTertiary ? 'c-on-base' : ''}>{label}</span>
+          )}
+        </ButtonWithIcon>
+        {children}
+      </div>
+    )
+  }
 )
 
 Button.defaultProps = {
-  variation: 'tertiary',
+  variation: BUTTON.VARIATION.TERTIARY,
   isActiveOfGroup: false,
-  size: 'small',
+  size: BUTTON.SIZE.SMALL,
 }
 
 export default Button

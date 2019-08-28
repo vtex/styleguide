@@ -18,7 +18,7 @@ export type ButtonDensityProps = {
   mediumOptionLabel: string
   highOptionLabel: string
   handleCallback: Function
-  alignMenu: 'right' | 'left'
+  alignMenu: Alignment
   disabled: boolean
 }
 

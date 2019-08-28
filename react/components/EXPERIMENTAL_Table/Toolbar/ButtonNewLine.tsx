@@ -5,7 +5,7 @@ import ButtonGroup from '../../ButtonGroup/index.js'
 import IconPlus from '../../icon/Plus/index.js'
 
 import Button, { ButtonProps } from './Button'
-import { ICON_SIZE, NAMESPACES } from '../constants'
+import { ICON_SIZE, NAMESPACES, BUTTON } from '../constants'
 
 const ButtonNewLine: FC<ButtonNewLineProps> = ({ actions, ...buttonProps }) => {
   const namespace = NAMESPACES.TOOLBAR.BUTTON_NEWLINE
@@ -16,7 +16,7 @@ const ButtonNewLine: FC<ButtonNewLineProps> = ({ actions, ...buttonProps }) => {
           isActiveOfGroup
           id={namespace}
           key={namespace}
-          variation="primary"
+          variation={BUTTON.VARIATION.PRIMARY}
           icon={<IconPlus solid size={ICON_SIZE.LIGHT} />}
           {...buttonProps}
         />,
@@ -33,14 +33,14 @@ const ButtonNewLine: FC<ButtonNewLineProps> = ({ actions, ...buttonProps }) => {
     <Button
       id={NAMESPACES.TOOLBAR.BUTTON_NEWLINE}
       icon={<IconPlus solid size={ICON_SIZE.LIGHT} />}
-      variation="primary"
+      variation={BUTTON.VARIATION.PRIMARY}
       {...buttonProps}
     />
   )
 }
 
 ButtonNewLine.defaultProps = {
-  size: 'small',
+  size: BUTTON.SIZE.SMALL,
 }
 
 export type ButtonNewLineProps = ButtonProps & {
