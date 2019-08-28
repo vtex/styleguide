@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.73.15] - 2019-08-28
+
 ### Fixed
 
 - Wrong import of `constants` into `Button` at `EXPERIMENTAL_TableV2`
