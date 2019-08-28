@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
-import { get } from 'lodash'
+import get from 'lodash/get'
 import React, {
   FC,
   cloneElement,

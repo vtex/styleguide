@@ -62,7 +62,7 @@ const TooltipPopup: FC<PropTypes.InferProps<typeof propTypes>> = ({
   }, [visible])
 
   const popupClasses = classNames(
-    'absolute pa3 bg-near-black white br2 shadow-1 f6',
+    'absolute pa3 bg-base--inverted c-on-base--inverted br2 shadow-1 f6',
     {
       dn: (!visible && !showPopup) || !childRect || !popupRect,
       'o-0': !visible || !hasComputedDimensions(popupRect),
@@ -170,10 +170,11 @@ const getPopupPositionRecursively = (
           originalPosition
         )
   }
+
+  const top = Math.min(styles.top, verticalMax - popupRect.height - 1)
+  const left = Math.min(styles.left, horizontalMax - popupRect.width - 1)
   return {
-    ...styles,
-    top: Math.min(styles.top, verticalMax - popupRect.height - 1),
-    left: Math.min(styles.left, horizontalMax - popupRect.width - 1),
+    transform: `translate3d(${left}px, -${document.body.offsetHeight - top}px, 0)`
   }
 }
 

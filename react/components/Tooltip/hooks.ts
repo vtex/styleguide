@@ -1,4 +1,4 @@
-import { get } from 'lodash'
+import get from 'lodash/get'
 import { RefObject, useState, useRef, useLayoutEffect } from 'react'
 
 import observeRect from './utils/dom'
@@ -7,8 +7,8 @@ import { setRef } from '../utils/react'
 export type Trigger = 'click' | 'hover' | 'focus'
 
 export function useRect(nodeRef, observe = true) {
-  let [rect, setRect] = useState(null)
-  let observerRef = useRef(null)
+  const [rect, setRect] = useState(null)
+  const observerRef = useRef(null)
   useLayoutEffect(() => {
     if (!observerRef.current && nodeRef.current) {
       observerRef.current = observeRect(nodeRef.current, setRect)
