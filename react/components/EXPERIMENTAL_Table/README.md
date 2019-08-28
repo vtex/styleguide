@@ -277,20 +277,28 @@ items = [
 
 function StateHookExample() {
   const [inputValue, setInputValue] = React.useState('')
+  const [displayItems, setDisplayItems] = React.useState(items)
+
   const tableState = useTableState({
     columns,
-    items,
+    items: displayItems,
     density: 'medium',
   })
 
   const inputSearch = {
     value: inputValue,
     placeholder: 'Search stuff...',
-    onChange: e => setInputValue(e.target.value),
-    onClear: () => setInputValue(''),
+    onChange: e => setInputValue(e.currentTarget.value),
+    onClear: () => {
+      setInputValue('')
+      setDisplayItems(items)
+    },
     onSubmit: e => {
       e.preventDefault()
-      alert(inputValue)
+      const isInputClear = inputValue === ''
+      const filterFn = item =>
+        item.name.toLowerCase().includes(inputValue.toLowerCase())
+      setDisplayItems(isInputClear ? items : items.filter(filterFn))
     },
   }
 

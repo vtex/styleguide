@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- `InputSearch` to `EXPERIMENTAL_TableV2`
+
 ## [9.73.15] - 2019-08-28
 
 ### Fixed

@@ -1,6 +1,7 @@
 import React, { FC, FormEvent, InputHTMLAttributes } from 'react'
 
 import Input from '../../InputSearch/index'
+import { NAMESPACES } from '../constants'
 
 export type InputSearchProps = InputHTMLAttributes<HTMLInputElement> & {
   onSubmit: (event: FormEvent<HTMLFormElement>) => void
@@ -8,7 +9,10 @@ export type InputSearchProps = InputHTMLAttributes<HTMLInputElement> & {
 
 const InputSearch: FC<InputSearchProps> = ({ onSubmit, ...inputProps }) => {
   return (
-    <form className="w-40" onSubmit={onSubmit}>
+    <form
+      id={NAMESPACES.TOOLBAR.INPUT_SEARCH}
+      className="w-40"
+      onSubmit={onSubmit}>
       <Input {...inputProps} />
     </form>
   )
