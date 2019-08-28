@@ -7,6 +7,7 @@ export const NAMESPACES = {
   CELL: `${NAMESPACE_PREFIX}__cell`,
   TOOLBAR: {
     CONTAINER: `${NAMESPACE_PREFIX}__toolbar__container`,
+    INPUT_SEARCH: `${NAMESPACE_PREFIX}__toolbar__input-search`,
     BUTTON_GROUP: `${NAMESPACE_PREFIX}__toolbar__button-group`,
     BUTTON_DENSITY: `${NAMESPACE_PREFIX}__toolbar__button-density`,
     BUTTON_DOWNLOAD: `${NAMESPACE_PREFIX}__toolbar__button-donwload`,

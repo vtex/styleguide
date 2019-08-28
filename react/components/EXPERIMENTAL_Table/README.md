@@ -276,11 +276,31 @@ items = [
 ]
 
 function StateHookExample() {
+  const [inputValue, setInputValue] = React.useState('')
+  const [displayItems, setDisplayItems] = React.useState(items)
+
   const tableState = useTableState({
     columns,
-    items,
+    items: displayItems,
     density: 'medium',
   })
+
+  const inputSearch = {
+    value: inputValue,
+    placeholder: 'Search stuff...',
+    onChange: e => setInputValue(e.currentTarget.value),
+    onClear: () => {
+      setInputValue('')
+      setDisplayItems(items)
+    },
+    onSubmit: e => {
+      e.preventDefault()
+      const isInputClear = inputValue === ''
+      const filterFn = item =>
+        item.name.toLowerCase().includes(inputValue.toLowerCase())
+      setDisplayItems(isInputClear ? items : items.filter(filterFn))
+    },
+  }
 
   const density = {
     label: 'Line density',
@@ -334,6 +354,7 @@ function StateHookExample() {
   return (
     <Table state={tableState}>
       <Table.Toolbar>
+        <Table.Toolbar.InputSearch {...inputSearch} />
         <Table.Toolbar.ButtonGroup>
           <Table.Toolbar.ButtonGroup.Density {...density} />
           <Table.Toolbar.ButtonGroup.Download {...download} />
