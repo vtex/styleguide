@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Invalid `PropType` for the `positionFixed` prop in `DatePicker` component.
+
 ## [9.74.1] - 2019-08-29
 
 ### Added
