@@ -1,7 +1,7 @@
 import React, { forwardRef, ReactNode } from 'react'
 
 import ButtonWithIcon from '../../ButtonWithIcon/index.js'
-import { BUTTON } from '../constants.js'
+import { BUTTON } from '../constants'
 const ICON_OPTICAL_COMPENSATION = { marginTop: 1.5 }
 
 export type ButtonProps = {
