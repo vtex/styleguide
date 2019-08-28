@@ -6,6 +6,7 @@ import SimpleTable from './SimpleTable/index'
 import { TableProvider } from './context'
 import Toolbar from './Toolbar/index'
 import { DENSITY_OPTIONS, NAMESPACES } from './constants'
+import Pagination, { PaginationProps } from './Pagination'
 
 const propTypes = {
   nestedRows: PropTypes.bool,
@@ -32,12 +33,13 @@ type Props = InferProps<typeof propTypes>
 
 interface Composites {
   Toolbar: FC
+  Pagination: FC<PaginationProps>
 }
 
 const Table: FC<Props> & Composites = ({ children, state, ...props }) => {
   return (
     <TableProvider value={{ ...state, ...props }}>
-      <div id={NAMESPACES.CONTAINER}>
+      <div id={NAMESPACES.CONTAINER} className="flex flex-column">
         {children}
         <SimpleTable />
       </div>
@@ -46,6 +48,7 @@ const Table: FC<Props> & Composites = ({ children, state, ...props }) => {
 }
 
 Table.Toolbar = Toolbar
+Table.Pagination = Pagination
 Table.propTypes = propTypes
 
 export default Table

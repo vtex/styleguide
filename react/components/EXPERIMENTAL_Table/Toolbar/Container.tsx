@@ -8,7 +8,7 @@ type Props = {
 const Container: FC<Props> = ({ justify, children }) => (
   <div
     id={NAMESPACES.TOOLBAR.CONTAINER}
-    className={`mb5 flex flex-row w-100 justify-${justify}`}>
+    className={`order-0 mb5 flex flex-row w-100 justify-${justify}`}>
     {children}
   </div>
 )

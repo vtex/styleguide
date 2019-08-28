@@ -6,7 +6,7 @@ import { NAMESPACES } from '../constants'
 
 const SimpleTable: FC = () => {
   return (
-    <div id={NAMESPACES.TABLE} className="mw-100">
+    <div id={NAMESPACES.TABLE} className="order-1 mw-100">
       <div className="overflow-x-auto">
         <div className="dt w-100" style={{ borderSpacing: 0 }}>
           <Header />
