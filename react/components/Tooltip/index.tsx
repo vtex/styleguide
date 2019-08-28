@@ -10,7 +10,7 @@ import React, {
   useState,
 } from 'react'
 
-import TooltipPopup, { Position } from './TooltipPopup'
+import TooltipPopup, { Position, Size } from './TooltipPopup'
 import { useTooltip, Trigger } from './hooks'
 
 const propTypes = {
@@ -18,6 +18,8 @@ const propTypes = {
   label: PropTypes.node.isRequired,
   /** Tooltip position */
   position: PropTypes.oneOf<Position>(['top', 'right', 'bottom', 'left']),
+  /** Tooltip font size */
+  size: PropTypes.oneOf<Size>(['mini', 'small']),
   /** Fallback position. Used when the tooltip cannot be shown in the original position */
   fallbackPosition: PropTypes.oneOf<Position>([
     'top',
@@ -42,6 +44,7 @@ type Props = PropTypes.InferProps<typeof propTypes>
 const defaultProps: Props = {
   trigger: 'hover',
   position: 'top',
+  size: 'mini',
   delay: 0,
   duration: 200,
   timmingFn: 'ease-in-out',

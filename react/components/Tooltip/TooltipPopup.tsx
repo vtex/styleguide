@@ -6,8 +6,9 @@ import Portal from './Portal'
 import { useRect } from './hooks'
 
 export type Position = 'top' | 'right' | 'bottom' | 'left'
+export type Size = 'mini' | 'small'
 
-const OFFSET = 8
+const OFFSET = 16
 const hasComputedDimensions = rect => rect && rect.width && rect.height
 
 const propTypes = {
@@ -15,6 +16,8 @@ const propTypes = {
   label: PropTypes.node.isRequired,
   /** Tooltip position */
   position: PropTypes.oneOf<Position>(['top', 'bottom', 'left', 'right']),
+  /** Tooltip font size */
+  size: PropTypes.oneOf<Size>(['mini', 'small']),
   /** Fallback position (when the tooltip cannot appear in the original position) */
   fallbackPosition: PropTypes.oneOf<Position>([
     'top',
@@ -42,6 +45,7 @@ const defaultProps = {
 
 const TooltipPopup: FC<PropTypes.InferProps<typeof propTypes>> = ({
   position,
+  size,
   fallbackPosition,
   label,
   visible,
@@ -62,11 +66,13 @@ const TooltipPopup: FC<PropTypes.InferProps<typeof propTypes>> = ({
   }, [visible])
 
   const popupClasses = classNames(
-    'absolute pa3 bg-base--inverted c-on-base--inverted br2 shadow-1 f6',
+    'absolute pv2 ph3 bg-base--inverted c-on-base--inverted br2 shadow-1',
     {
       dn: (!visible && !showPopup) || !childRect || !popupRect,
       'o-0': !visible || !hasComputedDimensions(popupRect),
       'o-100': visible && hasComputedDimensions(popupRect),
+      't-mini': size === 'mini',
+      't-small': size === 'small'
     }
   )
 
