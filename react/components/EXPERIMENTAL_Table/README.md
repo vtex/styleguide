@@ -128,6 +128,79 @@ function StateHookExample() {
 | selectedDensity    | Density         | Current selected density            |
 | setSelectedDensity | Function        | selectedDensity setter              |
 
+# Pagination
+
+```js
+// Imports
+const useTablePagination = require('./hooks/useTablePagination.ts').default
+const useTableState = require('./hooks/useTableState.ts').default
+const Tag = require('../Tag/index.js').default
+const Pagination = require('../Pagination/index.js').default
+
+// Define the columns
+columns = [
+  {
+    id: 'name',
+    title: 'Name',
+  },
+  {
+    id: 'country',
+    title: 'Country',
+  },
+]
+
+// Define the items
+items = [
+  {
+    name: "T'Chala",
+    country: '🇰🇪Wakanda',
+  },
+  {
+    name: 'Peter Parker',
+    country: '🇺🇸USA',
+  },
+  {
+    name: 'Shang-Chi',
+    country: '🇨🇳China',
+  },
+  {
+    name: 'Natasha Romanoff',
+    country: '🇷🇺Russia',
+  },
+  {
+    name: 'Stephen Strange',
+    country: '🇺🇸USA',
+  },
+  {
+    name: 'Steve Rogers',
+    country: '🇺🇸USA',
+  },
+]
+
+function StateHookExample() {
+  const tp = useTablePagination(items, 5)
+
+  const tableState = useTableState({
+    columns,
+    items: tp.slicedItems,
+  })
+
+  const pagination = {
+    ...tp,
+    textShowRows: 'Show rows',
+    textOf: 'of',
+    rowsOptions: [5, 10, 15, 25],
+  }
+
+  return (
+    <Table state={tableState}>
+      <Pagination {...pagination} />
+    </Table>
+  )
+}
+;<StateHookExample />
+```
+
 # Nested Rows
 
 `TableV2` allows nested rows that are enabled via the `nestedRows` prop. Each `item` object of `items` array may have a special property named `children` that is an array of objects with the same shape of `item`. It's important to notice that your row tree can have unlimited depth.
