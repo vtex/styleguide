@@ -2,15 +2,16 @@ import React, { FC, useState } from 'react'
 
 import Cell from './Cell'
 import useTableContext from '../hooks/useTableContext'
-import { NESTED_ROW_PREFIX_WIDTH } from '../constants'
+import { NESTED_ROW_PREFIX_WIDTH, NAMESPACES } from '../constants'
 
 /**
  * Container of each table row
  */
-const RowContainer: FC = ({ children }) => {
+const RowContainer: FC<{ id: string }> = ({ id, children }) => {
   const { rowHeight } = useTableContext()
   return (
     <div
+      id={id}
       style={{ height: rowHeight }}
       className="dt-row w-100 h-100 ph4 truncate overflow-x-hidden">
       {children}
@@ -54,7 +55,7 @@ const Row: FC<RowProps> = ({ data, index, depth }) => {
    */
   const renderCells = (arrow?: boolean) => {
     return (
-      <RowContainer key={rowKey}>
+      <RowContainer id={`${NAMESPACES.ROW}-${index}-${depth}`} key={rowKey}>
         {columns.map((column: Column, cellIndex: number) => {
           const { cellRender, width } = column
           const cellData = rowData[column.id]
@@ -62,7 +63,10 @@ const Row: FC<RowProps> = ({ data, index, depth }) => {
             ? cellRender({ cellData, rowData })
             : cellData
           return (
-            <Cell width={width} key={`cel-${index}-${cellIndex}-${depth}`}>
+            <Cell
+              id={`${index}-${cellIndex}-${depth}`}
+              key={`cel-${index}-${cellIndex}-${depth}`}
+              width={width}>
               {nestedRows && cellIndex === 0 && (
                 <Cell.Prefix width={prefixWidth}>
                   {arrow && (

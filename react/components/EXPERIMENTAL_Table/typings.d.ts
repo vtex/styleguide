@@ -1,3 +1,11 @@
+interface MenuAction {
+  label: string
+  onClick: Function
+  toggle: {
+    checked: boolean
+    semantic: boolean
+  }
+}
 interface Column {
   id: string
   title: string
@@ -21,3 +29,7 @@ interface TableState {
 }
 
 type Density = 'low' | 'medium' | 'high'
+type Size = 'small' | 'regular' | 'large'
+type Alignment = 'left' | 'right'
+type Variation = 'primary' | 'secondary' | 'tertiary'
+type FlexJustify = 'between' | 'end' | 'start' | 'around' | 'center'

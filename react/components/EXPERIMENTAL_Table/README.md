@@ -289,11 +289,57 @@ function StateHookExample() {
     highOptionLabel: 'High',
   }
 
+  const download = {
+    label: 'Export',
+    onClick: () => alert('Clicked EXPORT'),
+  }
+
+  const upload = {
+    label: 'Import',
+    onClick: () => alert('Clicked IMPORT'),
+  }
+
+  const extraActions = {
+    label: 'More options',
+    actions: [
+      {
+        label: 'An action',
+        onClick: () => alert('An action'),
+      },
+      {
+        label: 'Another action',
+        onClick: () => alert('Another action'),
+      },
+      {
+        label: 'A third action',
+        onClick: () => alert('A third action'),
+      },
+    ],
+  }
+
+  const newLine = {
+    label: 'New',
+    onClick: () => alert('handle new line callback'),
+    actions: [
+      'General',
+      'Desktop & Screen Saver',
+      'Dock',
+      'Language & Region',
+    ].map(label => ({
+      label,
+      onClick: () => alert(`Clicked ${label}`),
+    })),
+  }
+
   return (
     <Table state={tableState}>
       <Table.Toolbar>
         <Table.Toolbar.ButtonGroup>
           <Table.Toolbar.ButtonGroup.Density {...density} />
+          <Table.Toolbar.ButtonGroup.Download {...download} />
+          <Table.Toolbar.ButtonGroup.Upload {...upload} />
+          <Table.Toolbar.ButtonGroup.ExtraActions {...extraActions} />
+          <Table.Toolbar.ButtonGroup.NewLine {...newLine} />
         </Table.Toolbar.ButtonGroup>
       </Table.Toolbar>
     </Table>

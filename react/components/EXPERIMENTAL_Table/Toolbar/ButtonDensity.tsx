@@ -4,7 +4,8 @@ import IconDensity from '../../icon/Density/index.js'
 import {
   DENSITY_OPTIONS,
   FIELDS_BOX_ITEM_HEIGHT,
-  MEDIUM_ICON_SIZE,
+  ICON_SIZE,
+  NAMESPACES,
 } from '../constants'
 import useTableContext from '../hooks/useTableContext'
 import Menu from './Menu/index'
@@ -17,7 +18,7 @@ export type ButtonDensityProps = {
   mediumOptionLabel: string
   highOptionLabel: string
   handleCallback: Function
-  alignMenu: 'right' | 'left'
+  alignMenu: Alignment
   disabled: boolean
 }
 
@@ -32,9 +33,9 @@ const ButtonDensity: FC<ButtonDensityProps> = ({
   return (
     <Menu
       button={{
-        id: 'toggleDensity',
+        id: NAMESPACES.TOOLBAR.BUTTON_DENSITY,
         title: label,
-        icon: <IconDensity size={MEDIUM_ICON_SIZE} />,
+        icon: <IconDensity size={ICON_SIZE.MEDIUM} />,
         disabled,
       }}
       box={{ height: BOX_HEIGHT, alignMenu }}>

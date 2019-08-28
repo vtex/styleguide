@@ -5,7 +5,7 @@ import SimpleTable from './SimpleTable/index'
 
 import { TableProvider } from './context'
 import Toolbar from './Toolbar/index'
-import { DENSITY_OPTIONS } from './constants'
+import { DENSITY_OPTIONS, NAMESPACES } from './constants'
 
 const propTypes = {
   nestedRows: PropTypes.bool,
@@ -37,7 +37,7 @@ interface Composites {
 const Table: FC<Props> & Composites = ({ children, state, ...props }) => {
   return (
     <TableProvider value={{ ...state, ...props }}>
-      <div className="vtex-tablev2__container">
+      <div id={NAMESPACES.CONTAINER}>
         {children}
         <SimpleTable />
       </div>
