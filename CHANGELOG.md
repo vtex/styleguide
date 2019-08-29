@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
+- Add a class to Button component to fix its label alignment when using `href` and `block` props.
+
+### Fixed
+
 - Toggle click area
 
 ## [8.73.0] - 2019-08-15
