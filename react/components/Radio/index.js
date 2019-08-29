@@ -30,7 +30,7 @@ class Radio extends PureComponent {
 
     return (
       <div
-        className={classNames('flex items-center mb3 relative', {
+        className={classNames('flex items-start mb3 relative', {
           pointer: !disabled,
         })}
         ref={this.container}

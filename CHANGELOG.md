@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
+- Radio circle position to `items-start`.
+
+## [8.73.0] - 2019-08-29
+
 - Add a class to Button component to fix its label alignment when using `href` and `block` props.
 
 ### Fixed
