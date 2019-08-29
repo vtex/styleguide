@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import { hideDecorators } from './edge.css'
+import styles from './edge.css'
 import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
 
 class Input extends Component {
@@ -97,7 +97,7 @@ class Input extends Component {
     let prefixClasses = `${borderRadiusBase} br-0 br--left `
     let suffixClasses = `${borderRadiusBase} bl-0 br--right `
 
-    let classes = `${widthClass} ${box} ${hideDecorators} ${borderRadius} bn outline-0 `
+    let classes = `${widthClass} ${box} ${styles.hideDecorators} ${styles.noAppearance} ${borderRadius} bn outline-0 `
     let labelClasses = 'vtex-input__label db mb3 w-100 c-on-base '
     let prefixAndSuffixClasses =
       'vtex-input__prefix c-muted-2 fw5 flex items-center c-muted-2 t-body '
@@ -223,9 +223,6 @@ class Input extends Component {
             type={this.props.type}
             value={this.props.value}
             id={this.props.id}
-            style={{
-              WebkitAppearance: 'none',
-            }}
           />
           {suffix && (
             <span className={`${prefixAndSuffixClasses} ${suffixClasses}`}>

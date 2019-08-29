@@ -1,3 +1,7 @@
 .hideDecorators::-ms-clear{
   display: none;
 }
+
+.noAppearance {
+  appearance: none;
+}
