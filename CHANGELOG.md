@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.74.1] - 2019-08-29
+
+### Added
+
+- `nowrap` class to button labels.
+
 ## [9.74.0] - 2019-08-29
 
 ### Added
