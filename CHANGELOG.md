@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.73.3] - 2019-08-29
+
 ## [8.73.2] - 2019-08-29
 
 - Radio circle position to `items-start`.
