@@ -7,7 +7,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [8.73.1] - 2019-08-29
+## [8.73.2] - 2019-08-29
+
+## [9.75.0] - 2019-08-29
+
+### Added
+
+- `InputCustom` to `EXPERIMENTAL_TableV2`
+
+## [9.74.3] - 2019-08-29
+
+### Changed
+
+- `value` prop to be not required in the `Checkbox` component.
 
 ## [9.74.2] - 2019-08-29
 
@@ -63,10 +75,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [9.73.11] - 2019-08-26
 
 ### Fixed
-
-- Radio circle position to `items-start`.
-
-## [8.73.0] - 2019-08-29
 
 - Add a class to Button component to fix its label alignment when using `href` and `block` props.
 
