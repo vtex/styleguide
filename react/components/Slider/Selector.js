@@ -63,8 +63,8 @@ export default function Selector({
       <div
         className={dragCircleClasses}
         style={{
-          height: '0.6875rem',
-          width: '0.6875rem',
+          height: '0.75rem',
+          width: '0.75rem',
           boxShadow: '-1px 1px 3px rgba(0, 0, 0, 0.15)',
         }}>
         {icon}
