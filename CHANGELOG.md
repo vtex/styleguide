@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- `InputCustom` to `EXPERIMENTAL_TableV2`
+
 ## [9.74.3] - 2019-08-29
 
 ### Changed

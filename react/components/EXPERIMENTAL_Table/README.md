@@ -368,3 +368,115 @@ function StateHookExample() {
 }
 ;<StateHookExample />
 ```
+
+### UNSAFE Custom Input
+
+The `UNSAFE_InputCustom` provides a simple way of passing a custom input to the `Table`'s toolbar.
+
+⚠️ Be aware that this component is temporary and WILL change in the future!
+
+```js
+// Imports
+const useTableState = require('./hooks/useTableState.ts').default
+const Input = require('../Input/index.js').default
+
+/** Define the columns */
+const columns = [
+  {
+    id: 'name',
+    title: 'Name',
+  },
+  {
+    id: 'email',
+    title: 'Email',
+  },
+  {
+    id: 'number',
+    title: 'Number',
+  },
+  {
+    id: 'country',
+    title: 'Country',
+  },
+]
+
+/** Define the items */
+const items = [
+  {
+    name: "T'Chala",
+    email: 'black.panther@gmail.com',
+    number: 1.88191,
+    country: '🇰🇪Wakanda',
+  },
+  {
+    name: 'Peter Parker',
+    email: 'spider.man@gmail.com',
+    number: 3.09191,
+    country: '🇺🇸USA',
+  },
+  {
+    name: 'Shang-Chi',
+    email: 'kungfu.master@gmail.com',
+    number: 39.09222,
+    country: '🇨🇳China',
+  },
+  {
+    name: 'Natasha Romanoff',
+    email: 'black.widow@gmail.com',
+    number: 5.09291,
+    country: '🇷🇺Russia',
+  },
+]
+
+/** Custom hook to filter items and keep track of input props */
+function useItemsFilter() {
+  const [displayItems, setDisplayItems] = React.useState(items)
+  const [inputValue, setInputValue] = React.useState('')
+
+  return {
+    displayItems,
+    value: inputValue,
+    placeholder: 'Hey, This input is custom 🙂',
+    onChange: e => setInputValue(e.currentTarget.value),
+    onClear: () => {
+      setInputValue('')
+      setDisplayItems(items)
+    },
+    onSubmit: e => {
+      e.preventDefault()
+      const isInputClear = inputValue === ''
+      const filterFn = item =>
+        item.name.toLowerCase().includes(inputValue.toLowerCase())
+      setDisplayItems(isInputClear ? items : items.filter(filterFn))
+    },
+  }
+}
+
+/** Custom input example */
+function InputCustom({ onSubmit, ...inputProps }) {
+  return (
+    <form onSubmit={onSubmit}>
+      <Input {...inputProps} />
+    </form>
+  )
+}
+
+function UnsafeInputExample() {
+  const { displayItems, ...inputProps } = useItemsFilter()
+  const tableState = useTableState({
+    columns,
+    items: displayItems,
+  })
+
+  return (
+    <Table state={tableState}>
+      <Table.Toolbar>
+        <Table.Toolbar.UNSAFE_InputCustom
+          input={<InputCustom {...inputProps} />}
+        />
+      </Table.Toolbar>
+    </Table>
+  )
+}
+;<UnsafeInputExample />
+```
