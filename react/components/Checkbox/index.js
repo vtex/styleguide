@@ -115,7 +115,7 @@ Checkbox.propTypes = {
   /** (Input spec attribute) */
   required: PropTypes.bool,
   /** (Input spec attribute) */
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
   /** Partial state */
   partial: PropTypes.bool,
 }

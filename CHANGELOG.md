@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- `value` prop to be not required in the `Checkbox` component.
+
 ## [9.74.2] - 2019-08-29
 
 ### Fixed
