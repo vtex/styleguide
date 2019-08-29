@@ -112,9 +112,8 @@ class Input extends Component {
     }
 
     if (this.props.disabled) {
-      classes += 'bg-disabled b--disabled c-disabled '
-      prefixAndSuffixClasses += 'bg-disabled  '
-      prefixSuffixGroupClasses += 'b--disabled c-disabled '
+      classes += 'bg-transparent b--disabled c-disabled '
+      prefixSuffixGroupClasses += 'bg-disabled b--disabled c-disabled '
     } else {
       classes += 'bg-base c-on-base '
       prefixAndSuffixClasses += 'bg-base '

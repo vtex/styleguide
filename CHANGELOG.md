@@ -21,6 +21,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
+ - `Input` disabled background.
+
+### Fixed
+
 - Toggle click area
 
 ## [8.73.0] - 2019-08-15
