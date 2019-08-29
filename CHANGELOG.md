@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- `Input` disabled background.
+
 ## [9.77.4] - 2019-09-04
 ### Changed
 - Move `appearance: none` inline style to class in `Input` component.
