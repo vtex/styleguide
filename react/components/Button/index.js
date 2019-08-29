@@ -51,7 +51,7 @@ class Button extends Component {
       variation === 'danger-tertiary'
 
     let classes = 'vtex-button bw1 ba fw5 v-mid relative pa0 '
-    let labelClasses = 'flex items-center justify-center h-100 pv2 '
+    let labelClasses = 'flex items-center justify-center h-100 pv2 nowrap '
     let loaderSize = 15
     let horizontalPadding = 0
 
