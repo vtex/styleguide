@@ -7,152 +7,25 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [8.73.1] - 2019-08-29
-
-## [9.74.2] - 2019-08-29
-
-### Fixed
-
-- Invalid `PropType` for the `positionFixed` prop in `DatePicker` component.
-
-## [9.74.1] - 2019-08-29
-
-### Added
-
-- `nowrap` class to button labels.
-
-## [9.74.0] - 2019-08-29
-
-### Added
-
-- prop `noUpperCase` to `Button`.
-
-## [9.73.16] - 2019-08-28
-
-### Added
-
-- `InputSearch` to `EXPERIMENTAL_TableV2`
-
-## [9.73.15] - 2019-08-28
-
-### Fixed
-
-- Wrong import of `constants` into `Button` at `EXPERIMENTAL_TableV2`
-
-## [9.73.14] - 2019-08-28
-
-### Added
-
-- `ButtonDownload` to `EXPERIMENTAL_TableV2`
-- `ButtonUpload` to `EXPERIMENTAL_TableV2`
-- `ButtonExtraActions` to `EXPERIMENTAL_TableV2`
-- `ButtonNewLine` to `EXPERIMENTAL_TableV2`
-
-## [9.73.13] - 2019-08-27
-
-### Fixed
-
-- Bumps `eslint-utils` dependency to 1.4.1 due to security warnings.
-
-## [9.73.12] - 2019-08-27
-
-### Added
-
-- Nested rows to `EXPERIMENTAL_TableV2`
-
-## [9.73.11] - 2019-08-26
-
-### Fixed
+## [8.73.2] - 2019-08-29
 
 - Radio circle position to `items-start`.
 
-## [8.73.0] - 2019-08-29
+## [8.73.1] - 2019-08-29
+
+### Fixed
 
 - Add a class to Button component to fix its label alignment when using `href` and `block` props.
-
-## [9.73.10] - 2019-08-23
-
-### Fixed
-
-- Fix mismatched versions of `react-responsive-modal` lib between the two existing package.json files
-
-## [9.73.9] - 2019-08-22
-
-### Fixed
-
-- Make Layout component always have the height of its viewport
-
-## [9.73.8] - 2019-08-22
-
-### Fixed
-
-- **Button** `tertiary` variation hover text color.
-- **Button** `tertiary` variation collapsed example.
-
-## [9.73.7] - 2019-08-22
 
 ### Fixed
 
 - Toggle click area
-
-## [9.73.6] - 2019-08-22
-
-### Added
-
-- `Toolbar` component to `EXPERIMENTAL_TableV2`
-- `ButtonGroup` component to `EXPERIMENTAL_TableV2`
-- `ButtonDensity` component to `EXPERIMENTAL_TableV2`
-- Allow `EXPERIMENTAL_TableV2` to have multiple densities
-
-## [9.73.5] - 2019-08-21
-
-### Fixed
-
-- Latest release had no `lib` folder
-
-## [9.73.4] - 2019-08-20
-
-### Fixed
-
-- **Dropdown** docs example was not displaying.
-- **Dropdown** font size.
-- **Input** height was slightly off.
-
-## [9.73.2] - 2019-08-20
-
-### Fixed
-
-- **FloatingActionBar** padding in mobile devices.
-
-## [9.73.1] - 2019-08-19
-
-### Added
-
-- `EXPERIMENTAL_TableV2` component
-
-## [9.73.0] - 2019-08-15
-
-### Changed
-
-- Get changes made at version `v8.73.0`
 
 ## [8.73.0] - 2019-08-15
 
 ### Added
 
 - **Icon** `Printer`.
-
-## [9.72.8] - 2019-08-15
-
-### Changed
-
-- Get changes made at version `v8.72.8`
-
-## [9.72.7] - 2019-08-13
-
-### Changed
-
-- Get changes made at version `v8.72.7`
 
 ## [8.72.8] - 2019-08-15
 
@@ -175,23 +48,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Sortable columns title's breaking entirely when using Formatted Message on `Table` component
 
-## [9.72.6] - 2019-08-13
-
-### Changes
-
-- Get changes made at version `v8.72.6`.
-
 ## [8.72.6] - 2019-08-13
 
 ### Fixed
 
 - Dynamic width for prefixes & suffixes in `<Input />` component
-
-## [9.72.5] - 2019-08-12
-
-### Changes
-
-- Get changes made at version `v8.72.5`.
 
 ## [8.72.5] - 2019-08-12
 
@@ -203,23 +64,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - **Menu** uses `width` property instead of always using `DEFAULT_WIDTH`.
 
-## [9.72.4] - 2019-08-09
-
-### Changes
-
-- Get changes made at version `v8.72.4`.
-
 ## [8.72.4] - 2019-08-09
-
-### Changes
-
-- Expanded checkbox click area for table row selection
-
-## [9.72.3] - 2019-08-08
 
 ### Changed
 
-- Get changes made at version `v8.72.3`.
+- Expanded checkbox click area for table row selection
 
 ## [8.72.3] - 2019-08-08
 
@@ -227,23 +76,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Condition to unset `Button`'s `type` property now doesn't use `iconOnly` prop.
 
-## [9.72.2] - 2019-08-08
-
-### Changes
-
-- Get changes made at version `v8.72.2`.
-
 ## [8.72.2] - 2019-08-08
 
 ### Fixed
 
 - Proptypes verification of `ButtonGroup`
-
-## [9.72.1] - 2019-08-07
-
-### Changes
-
-- Get changes made at version `v8.72.1`.
 
 ## [8.72.1] - 2019-08-07
 
@@ -251,23 +88,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Apply same spacing to `Box` in all screen sizes
 
-## [9.72.0] - 2019-08-07
-
-### Changed
-
-- Get changes made at version `v8.72.0`.
-
 ## [8.72.0] - 2019-08-02
 
 ### Added
 
 - **Icon** `Info`.
-
-## [9.71.0] - 2019-08-01
-
-### Changed
-
-- Get changes made at version `v8.71.0`.
 
 ## [8.71.0] - 2019-08-01
 
@@ -278,12 +103,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 - **Box** component now is TypeScript based.
-
-## [9.70.2] - 2019-07-31
-
-### Changed
-
-- Get changes made at version `v8.70.4`
 
 ## [8.70.4] - 2019-07-31
 
@@ -303,23 +122,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Animation of the `Collapsible` when it is mounted for the first time.
 
-## [9.70.1] - 2019-07-26
-
-### Changed
-
-- Get changes made at version `v8.70.1`.
-
 ## [8.70.1] - 2019-07-26
 
 ### Fixed
 
 - **Button** tertiary now correctly collapse (including compensating the border width)
-
-## [9.70.0] - 2019-07-25
-
-### Changed
-
-- Get changes made at version `v8.70.0`.
 
 ## [8.70.0] - 2019-07-25
 
@@ -327,60 +134,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - **TimePicker** component
 
-## [9.69.0] - 2019-07-25
-
-### Changed
-
-- Get changes made at version `v8.69.0`.
-
 ## [8.69.0] - 2019-07-25
 
 ### Fixed
 
 - **Table** when search is performed, the selection of itens is removed
 
-## [9.68.1] - 2019-07-23
-
-### Changed
-
-- Get changes made at version `v8.68.1`.
-
 ## [8.68.1] - 2019-07-23
 
 ### Fixed
 
 - Collapse button is not correctly aligned when the header title is longer than the width in the `Collapsible` component.
-  s
-
-## [9.68.0] - 2019-07-23
-
-### Changed
-
-- Get changes made at version `v8.68.0`.
 
 ## [8.68.0] - 2019-07-23
 
 ### Fixed
 
 - **FloatingActionBar** now has better props shape.
-
-## [9.67.0] - 2019-07-22
-
-### Changed
-
-- Get changes made at version `v8.67.0` & fix version.
-
-## [9.63.1] - 2019-07-22
-
-### Changed
-
-- Get changes made at version `v8.66.1`.
-
-## [9.63.0] - 2019-07-16
-
-### Changed
-
-- Get changes made at version `v8.63.0`.
 
 ## [8.67.0] - 2019-07-22
 
@@ -423,12 +193,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - **Link** Component
 
-## [9.62.1] - 2019-07-11
-
-### Changed
-
-- Get changes made at version `v8.62.1`.
-
 ## [8.62.1] - 2019-07-11
 
 ### Fixed
@@ -436,24 +200,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **DatePicker** fix time selection internationalization
 - **DatePicker** enable input raw change (keyboard typing changes)
 
-## [9.62.0] - 2019-07-11
-
-### Changed
-
-- Get changes made at version `v8.62.0`.
-
 ## [8.62.0] - 2019-07-11
 
 ### Added
 
 - Add CODEOWNERS file
-
-## [9.61.0] - 2019-07-11
-
-### Changed
-
-- Get changes made at version `v8.61.0`.
-- Get changes made at version `v8.60.4`.
 
 ## [8.61.0] - 2019-07-11
 
@@ -467,23 +218,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Security vulnerabilities
 
-## [9.60.3] - 2019-07-08
-
-### Changed
-
-- Get changes made at version 'v8.60.3'
-
 ## [8.60.3] - 2019-07-08
 
 ### Fixed
 
 - Fix `Table` usage breaking automated tests
-
-## [9.60.2] - 2019-07-05
-
-### Changed
-
-- Get changes made at version 'v8.60.2'
 
 ## [8.60.2] - 2019-07-05
 
@@ -564,24 +303,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - **Colapsible** open/close transition animation when content resizes.
 
-## [9.55.0] - 2019-06-18
-
-### Changed
-
-- Get changes made at version `8.55.0`.
-
 ## [8.55.0] - 2019-06-18
 
 ### Fixed
 
 - **Table** issue where the top checkbox state was always inverted
 - **Table** warnings that happened when using bulk actions
-
-## [9.54.2] - 2019-06-17
-
-### Changed
-
-- Get changes made at version `8.54.2`.
 
 ## [8.54.2] - 2019-06-17
 
@@ -590,23 +317,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **Table** bulk actions `select all` button now disables all checkboxes so nothing can be unselected
 - **Table** deselects bulk action checked lines when paginating.
 
-## [9.54.1] - 2019-06-14
-
-### Changed
-
-- Get changes made at version `8.54.1`.
-
 ## [8.54.1] - 2019-06-14
 
 ### Added
 
 - **Table** add bulkActions.onChange prop as callback to any selection changes
-
-## [9.54.0] - 2019-06-13
-
-### Changed
-
-- Get changes made at version `8.54.0`.
 
 ## [8.54.0] - 2019-06-13
 
@@ -625,35 +340,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **Table** bulk actions documentation
 - **Checkbox** `label` prop now accepts both string or a node.
 
-## [9.53.0] - 2019-06-13
-
-### Changed
-
-- Get changes made at version `8.53.0`.
-
 ## [8.53.0] - 2019-06-13
 
 ### Fixed
 
 - **Tab** Repeated keys when using formattedMessage
 
-## [9.52.3] - 2019-06-13
-
-### Changed
-
-- Get changes made at version `8.52.3`.
-
 ## [8.52.3] - 2019-06-13
 
 ### Fixed
 
 - **Table** `density` changes are now is nativelly considered for rerender and height recalculation.
-
-## [9.52.2] - 2019-06-13
-
-### Changed
-
-- Get changes made at version `8.52.2`.
 
 ## [8.52.2] - 2019-06-13
 
@@ -667,35 +364,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - `readme` section on two majors release flow.
 
-## [9.52.1] - 2019-06-13
-
-### Changed
-
-- Get changes made at version `8.52.1`.
-
 ## [8.52.1] - 2019-06-13
 
 ### Fixed
 
 - **Table** `toolbar` default prop to null.
 
-## [9.52.0] - 2019-06-11
-
-### Changed
-
-- Get changes made at version `8.52.0`.
-
 ## [8.52.0] - 2019-06-11
 
 ### Added
 
 - `IconGrid` and `IconInlineGrid` Components.
-
-## [9.51.3] - 2019-06-11
-
-### Changed
-
-- Get changes made at `8.51.3`.
 
 ## [8.51.3] - 2019-06-06
 
@@ -723,10 +402,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [8.50.1] - 2019-05-28
 
-### Added
-
-- **DatePicker** Add `positionFixed` prop, which fixes issues related to `overflow: hidden`.
-
 ### Changed
 
 - Only automatically add `key` prop to `Tabs` children when the prop is not present.
@@ -738,23 +413,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **EXPERIMENTAL_Select** now uses the new **Select** component for its atoms.
 - **EXPERIMENTAL_Select** horizontal growth to make it simpler to the user.
 
-## [9.49.1] - 2019-05-26
-
-## [9.49.0] - 2019-05-24
-
-### Changed
-
-- Get changes made at `8.49.1`.
-
 ## [8.49.1] - 2019-05-26
 
 ### Changed
 
 - **ButtonWithIcon** Prop `icon` is not required anymore.
-
-### Changed
-
-- Get changes made at `8.49.0`.
 
 ## [8.49.0] - 2019-05-24
 
@@ -775,23 +438,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - **Spinner** prop `status`
 
-## [9.48.1] - 2019-05-24
-
-### Added
-
-- Get changes made at `8.48.1`.
-
 ## [8.48.1] - 2019-05-24
 
 ### Added
 
 - **Table** schema property `headerRight`.
-
-## [9.48.0] - 2019-05-23
-
-### Added
-
-- Get changes made at `8.48.0`.
 
 ## [8.48.0] - 2019-05-23
 
