@@ -321,8 +321,8 @@ export default class Slider extends Component {
             ref={this.sliderRef}
             className="vtex-slider__base w-100 bg-muted-4 absolute br-pill overflow-hidden"
             style={{
-              height: 3,
-              top: 10.5,
+              height: '0.25rem',
+              top: '0.7rem',
             }}>
             <div
               className={classNames('absolute h-100', {
