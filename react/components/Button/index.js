@@ -80,7 +80,10 @@ class Button extends Component {
     if (!(isTertiary && (collapseLeft || collapseRight))) {
       labelClasses += `ph${horizontalPadding} `
     }
-    labelClasses += isTertiary && noUpperCase ? 'ttn ' : ''
+
+    if (isTertiary && noUpperCase) {
+      labelClasses += 'ttn '
+    }
 
     if (collapseLeft && isTertiary) {
       labelClasses += 'nl1 ph1 hover-c-link'
