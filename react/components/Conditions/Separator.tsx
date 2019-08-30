@@ -1,6 +1,10 @@
 import React from 'react'
 
-export default function Separator({ label }) {
+interface Props {
+ label: string
+}
+
+export default function Separator<Props>({ label }) {
   return (
     <div>
       <div

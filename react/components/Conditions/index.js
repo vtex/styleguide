@@ -168,8 +168,8 @@ class Conditions extends React.Component {
                       <Separator
                         label={
                           operator === 'all'
-                            ? labels.operatorAnd
-                            : labels.operatorOr
+                            ? labels.operatorAnd || 'and'
+                            : labels.operatorOr || 'or'
                         }
                       />
                     )}
