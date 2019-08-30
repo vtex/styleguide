@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- **Table** with FilterBar example.
+- **FilterBar** examples that were broken.
+
+### Added
+
+- **Conditions** component now it's not EXPERIMENTAL anymore.
+- **Statement** refactor so it can be shared between FilterTag and Conditions components.
+
 ## [9.75.2] - 2019-08-29
 
 ## [9.75.1] - 2019-08-29
