@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- **Conditions** component now it's not EXPERIMENTAL anymore.
+- **Conditions** component. Not EXPERIMENTAL anymore.
 - **Statement** refactor so it can be shared between FilterTag and Conditions components.
 
 ## [9.77.5] - 2019-09-05
