@@ -41,6 +41,7 @@ class Button extends Component {
       referrerPolicy,
       download,
       noUpperCase,
+      noWrap,
     } = this.props
 
     const disabled = this.props.disabled || isLoading
@@ -52,7 +53,7 @@ class Button extends Component {
       variation === 'danger-tertiary'
 
     let classes = 'vtex-button bw1 ba fw5 v-mid relative pa0 '
-    let labelClasses = 'flex items-center justify-center h-100 pv2 nowrap '
+    let labelClasses = 'flex items-center justify-center h-100 pv2 '
     let loaderSize = 15
     let horizontalPadding = 0
 
@@ -90,6 +91,9 @@ class Button extends Component {
     }
     if (collapseRight && isTertiary) {
       labelClasses += 'nr1 ph1 hover-c-link'
+    }
+    if (noWrap) {
+      labelClasses += 'nowrap '
     }
 
     if (iconOnly) {
@@ -334,6 +338,8 @@ Button.propTypes = {
   download: PropTypes.string,
   /** When terciary, the upper case can be prevented */
   noUpperCase: PropTypes.bool,
+  /** Disables label wrapping */
+  noWrap: PropTypes.bool,
 }
 
 export default withForwardedRef(Button)
