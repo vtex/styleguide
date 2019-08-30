@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.76.0] - 2019-08-30
+
 ### Fixed
 
 - Fix `Button` label text leaving button when too big (`nowrap` class)
