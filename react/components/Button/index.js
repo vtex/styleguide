@@ -87,10 +87,10 @@ class Button extends Component {
     }
 
     if (collapseLeft && isTertiary) {
-      labelClasses += 'nl1 ph1 hover-c-link'
+      labelClasses += 'nl1 ph1 hover-c-link '
     }
     if (collapseRight && isTertiary) {
-      labelClasses += 'nr1 ph1 hover-c-link'
+      labelClasses += 'nr1 ph1 hover-c-link '
     }
     if (noWrap) {
       labelClasses += 'nowrap '
