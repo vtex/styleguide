@@ -3,6 +3,8 @@ import Select from '../../EXPERIMENTAL_Select/index'
 import PropTypes from 'prop-types'
 import { withForwardedRef, refShape } from '../../../modules/withForwardedRef'
 
+const ATOM_COMPONENT_MIN_WIDTH = '20%'
+
 const propTypes = {
   /** @ignore Forwarded Ref */
   forwardedRef: refShape,
@@ -40,7 +42,7 @@ const SubjectAtom: React.FC<Props> = ({
   return (
     <div
       className={`mh3 ${isFullWidth ? 'pb3' : ''}`}
-      style={{ minWidth: '20%' }}>
+      style={{ minWidth: ATOM_COMPONENT_MIN_WIDTH }}>
       <Select
         ref={forwardedRef}
         clearable={false}

@@ -155,6 +155,7 @@ class FilterTag extends PureComponent {
       ? false
       : options[subject].verbs.length === 1
 
+    // this is temporary just to assure backward compatibility
     const compatibleOptions = {}
     Object.keys(options).forEach(opt => {
       compatibleOptions[opt] = merge({}, { ...options[opt] })

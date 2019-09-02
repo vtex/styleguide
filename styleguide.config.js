@@ -118,7 +118,7 @@ module.exports = {
             'react/components/Checkbox/index.js',
             'react/components/CheckboxGroup/index.js',
             'react/components/ColorPicker/index.js',
-            'react/components/Conditions/index.js',
+            'react/components/Conditions/index.tsx',
             'react/components/DatePicker/index.js',
             'react/components/TimePicker/index.js',
             'react/components/Dropdown/index.js',
