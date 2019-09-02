@@ -1344,6 +1344,8 @@ With Toolbar, Totalizers, Pagination and Filters
 ```js
 const ArrowDown = require('../icon/ArrowDown').default
 const ArrowUp = require('../icon/ArrowUp').default
+const Checkbox = require('../Checkbox').default
+const Input = require('../Input').default
 const sampleData = require('./sampleData').default
 const Tag = require('../Tag').default
 const tableLength = 5
