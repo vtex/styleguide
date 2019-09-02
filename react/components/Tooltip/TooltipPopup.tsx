@@ -66,13 +66,13 @@ const TooltipPopup: FC<PropTypes.InferProps<typeof propTypes>> = ({
   }, [visible])
 
   const popupClasses = classNames(
-    'absolute pv2 ph3 bg-base--inverted c-on-base--inverted br2 shadow-1',
+    'absolute pv2 ph3 bg-base--inverted c-on-base--inverted br2 shadow-1 mw5 overflow-hidden',
     {
       dn: (!visible && !showPopup) || !childRect || !popupRect,
       'o-0': !visible || !hasComputedDimensions(popupRect),
       'o-100': visible && hasComputedDimensions(popupRect),
       't-mini': size === 'mini',
-      't-small': size === 'small'
+      't-small': size === 'small',
     }
   )
 
@@ -94,7 +94,7 @@ const TooltipPopup: FC<PropTypes.InferProps<typeof propTypes>> = ({
         }}
         ref={popupRef}
         onTransitionEnd={() => setShowPopup(visible)}>
-        {label}
+        <span style={{ maxWidth: '220ch' }}>{label}</span>
       </div>
     </Portal>
   ) : null
@@ -177,10 +177,17 @@ const getPopupPositionRecursively = (
         )
   }
 
-  const top = Math.min(styles.top, verticalMax - popupRect.height - 1)
-  const left = Math.min(styles.left, horizontalMax - popupRect.width - 1)
+  const top = Math.max(
+    window.pageYOffset + 1,
+    Math.min(styles.top, verticalMax - popupRect.height - 1)
+  )
+  const left = Math.max(
+    window.pageXOffset + 1,
+    Math.min(styles.left, horizontalMax - popupRect.width - 1)
+  )
   return {
-    transform: `translate3d(${left}px, -${document.body.offsetHeight - top}px, 0)`
+    transform: `translate3d(${left}px, -${document.body.offsetHeight -
+      top}px, 0)`,
   }
 }
 
