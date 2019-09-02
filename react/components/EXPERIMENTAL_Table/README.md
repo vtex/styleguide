@@ -27,13 +27,26 @@ Example with simple structure:
 - It receives only strings.
 - If you want to customize it with a component, you can use the `headerRender` prop.
 
+##### headerRender
+
+- Customize the render method of a single header column cell.
+- It receives a function that returns a node (react component).
+- The function has the following params: ({ headerData })
+- Default is render the value as a string.
+- If you have a custom cell component that has a click interaction and at the same time you use the onRowClick Table prop, you might stumble uppon the problem of both click actions being fired. We can work around that by doing a wrapper around cellRenderer to stop click event propagation.
+
 ##### cellRender
 
 - Customize the render method of a single column cell.
 - It receives a function that returns a node (react component).
 - The function has the following params: ({ cellData, rowData })
 - Default is render the value as a string.
-- If you have a custom cell component that has a click interaction and at the same time you use the onRowClick Table prop, you might stumble uppon the problem of both click actions being fired. We can work around that by doing a wrapper around cellRenderer to stop click event propagation, like so:
+- If you have a custom cell component that has a click interaction and at the same time you use the onRowClick Table prop, you might stumble uppon the problem of both click actions being fired. We can work around that by doing a wrapper around cellRenderer to stop click event propagation.
+
+##### hidden
+
+- Defines if a columns is initially hidden or not.
+- ⚠️ You should use the `Columns` button of the toolbar to enable toggle columns visibility.
 
 #### State Hook
 
