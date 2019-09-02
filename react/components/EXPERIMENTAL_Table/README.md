@@ -529,6 +529,12 @@ function ToolbarExample() {
     },
   }
 
+  const buttonColumns = {
+    label: 'Toggle visible fields',
+    showAllLabel: 'Show All',
+    hideAllLabel: 'Hide All',
+  }
+
   const density = {
     label: 'Line density',
     lowOptionLabel: 'Low',
@@ -583,6 +589,7 @@ function ToolbarExample() {
       <Table.Toolbar>
         <Table.Toolbar.InputSearch {...inputSearch} />
         <Table.Toolbar.ButtonGroup>
+          <Table.Toolbar.ButtonGroup.Columns {...buttonColumns} />
           <Table.Toolbar.ButtonGroup.Density {...density} />
           <Table.Toolbar.ButtonGroup.Download {...download} />
           <Table.Toolbar.ButtonGroup.Upload {...upload} />

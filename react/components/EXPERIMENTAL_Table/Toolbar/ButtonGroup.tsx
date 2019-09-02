@@ -4,6 +4,7 @@ import IconDownload from '../../icon/Download/index.js'
 import IconUpload from '../../icon/Upload/index.js'
 
 import Button, { ButtonProps } from './Button'
+import ButtonColumns, { ButtonColumnsProps } from './ButtonColumns'
 import ButtonDensity, { ButtonDensityProps } from './ButtonDensity'
 import ButtonExtraActions, {
   ButtonExtraActionsProps,
@@ -12,9 +13,16 @@ import ButtonNewLine, { ButtonNewLineProps } from './ButtonNewLine'
 
 import { ICON_SIZE, NAMESPACES } from '../constants'
 
-type ButtonType = 'density' | 'download' | 'upload' | 'extraActions' | 'newLine'
+type ButtonType =
+  | 'columns'
+  | 'density'
+  | 'download'
+  | 'upload'
+  | 'extraActions'
+  | 'newLine'
 
 interface Composites {
+  Columns: FC<ButtonColumnsProps>
   Density: FC<ButtonDensityProps>
   Download: FC<ButtonProps>
   Upload: FC<ButtonProps>
@@ -24,12 +32,20 @@ interface Composites {
 
 type Props =
   | ButtonProps
+  | ButtonColumnsProps
   | ButtonDensityProps
   | ButtonExtraActionsProps
   | ButtonNewLineProps
 
 const getButton = (type: ButtonType, props: Props) => {
   switch (type) {
+    case 'columns': {
+      return (
+        <span className="order-0">
+          <ButtonColumns {...(props as ButtonColumnsProps)} />
+        </span>
+      )
+    }
     case 'density': {
       return (
         <span className="order-1">
@@ -91,6 +107,7 @@ const ButtonGroup: FC & Composites = ({ children }) => (
   </div>
 )
 
+ButtonGroup.Columns = getComponent('columns')
 ButtonGroup.Density = getComponent('density')
 ButtonGroup.Download = getComponent('download')
 ButtonGroup.Upload = getComponent('upload')

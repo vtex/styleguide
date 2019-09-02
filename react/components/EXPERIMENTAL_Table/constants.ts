@@ -9,6 +9,7 @@ export const NAMESPACES = {
     CONTAINER: `${NAMESPACE_PREFIX}__toolbar__container`,
     INPUT_SEARCH: `${NAMESPACE_PREFIX}__toolbar__input-search`,
     BUTTON_GROUP: `${NAMESPACE_PREFIX}__toolbar__button-group`,
+    BUTTON_COLUMNS: `${NAMESPACE_PREFIX}__toolbar__button-columns`,
     BUTTON_DENSITY: `${NAMESPACE_PREFIX}__toolbar__button-density`,
     BUTTON_DOWNLOAD: `${NAMESPACE_PREFIX}__toolbar__button-donwload`,
     BUTTON_UPLOAD: `${NAMESPACE_PREFIX}__toolbar__button-upload`,
@@ -29,10 +30,16 @@ export const DENSITY_OPTIONS = [
   TABLE_DENSITIES.HIGH,
 ]
 
+export const COLUMNS_BOX = {
+  MAX_HEIGHT: 192,
+  WIDTH: 292,
+  ITEM_HEIGHT: 36,
+}
+
+export const FIELDS_BOX_ITEM_HEIGHT = 36
 export const TABLE_HEADER_HEIGHT = 36
 export const EMPTY_STATE_SIZE_IN_ROWS = 5
 export const DEFAULT_SCROLLBAR_WIDTH = 17
-export const FIELDS_BOX_ITEM_HEIGHT = 36
 export const NESTED_ROW_PREFIX_WIDTH = 36
 
 export const ICON_SIZE = {

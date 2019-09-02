@@ -5,7 +5,7 @@ import { TABLE_HEADER_HEIGHT, NAMESPACES } from '../constants'
 import useTableContext from '../hooks/useTableContext'
 
 const Header: FC = () => {
-  const { columns } = useTableContext()
+  const { visibleColumns } = useTableContext()
 
   const renderHeader = (headerData: Column, headerIndex: number) => {
     const { headerRender, title, width } = headerData
@@ -26,7 +26,7 @@ const Header: FC = () => {
       style={{
         height: TABLE_HEADER_HEIGHT,
       }}>
-      {columns.map(renderHeader)}
+      {visibleColumns.map(renderHeader)}
     </div>
   )
 }

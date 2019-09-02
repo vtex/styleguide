@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 
 import { calculateTableHeight } from '../util'
 import useDensity from './useDensity'
+import useHiddenColumns from './useHiddenColumns'
 
 interface Input {
   columns: Array<Column>
@@ -11,10 +12,17 @@ interface Input {
 
 const useTableState = ({ columns, items, density }: Input): TableState => {
   const { selectedDensity, setSelectedDensity, rowHeight } = useDensity(density)
+  const {
+    hiddenColumns,
+    visibleColumns,
+    toggleColumn,
+    showAllColumns,
+    hideAllColumns,
+  } = useHiddenColumns(columns)
 
   const isEmpty = useMemo(
-    () => items.length === 0 || Object.keys(columns).length === 0,
-    [columns, items]
+    () => items.length === 0 || Object.keys(visibleColumns).length === 0,
+    [visibleColumns, items]
   )
 
   const tableHeight = useMemo(
@@ -24,12 +32,17 @@ const useTableState = ({ columns, items, density }: Input): TableState => {
 
   return {
     columns,
+    visibleColumns,
+    hiddenColumns,
     items,
     isEmpty,
     tableHeight,
     rowHeight,
     selectedDensity,
     setSelectedDensity,
+    toggleColumn,
+    showAllColumns,
+    hideAllColumns,
   }
 }
 
