@@ -15,6 +15,7 @@ export const NAMESPACES = {
     BUTTON_NEWLINE: `${NAMESPACE_PREFIX}__toolbar__button-newline`,
     BUTTON_EXTRA_ACTIONS: `${NAMESPACE_PREFIX}__toolbar__button-extra-actions`,
   },
+  PAGINATION: `${NAMESPACE_PREFIX}__pagination`,
 }
 
 export const TABLE_DENSITIES = {

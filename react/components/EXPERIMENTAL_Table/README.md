@@ -47,7 +47,7 @@ const useTableState = require('./hooks/useTableState.ts').default
 const Tag = require('../Tag/index.js').default
 
 // Define the columns
-columns = [
+const columns = [
   {
     id: 'name',
     title: 'Name',
@@ -70,7 +70,7 @@ columns = [
 ]
 
 // Define the items
-items = [
+const items = [
   {
     name: "T'Chala",
     email: 'black.panther@gmail.com',
@@ -128,6 +128,175 @@ function StateHookExample() {
 | selectedDensity    | Density         | Current selected density            |
 | setSelectedDensity | Function        | selectedDensity setter              |
 
+# Pagination
+
+```js
+// Imports
+const useTableState = require('./hooks/useTableState.ts').default
+
+// Define the columns
+const columns = [
+  {
+    id: 'name',
+    title: 'Name',
+  },
+  {
+    id: 'country',
+    title: 'Country',
+  },
+]
+
+// Define the items
+const items = [
+  {
+    name: "T'Chala",
+    country: '🇰🇪Wakanda',
+  },
+  {
+    name: 'Peter Parker',
+    country: '🇺🇸USA',
+  },
+  {
+    name: 'Shang-Chi',
+    country: '🇨🇳China',
+  },
+  {
+    name: 'Natasha Romanoff',
+    country: '🇷🇺Russia',
+  },
+  {
+    name: 'Stephen Strange',
+    country: '🇺🇸USA',
+  },
+  {
+    name: 'Steve Rogers',
+    country: '🇺🇸USA',
+  },
+  {
+    name: 'Abdul Alhazred',
+    country: '🇸🇦Saudi Arabia',
+  },
+  {
+    name: 'Carol Danvers',
+    country: '🇺🇸USA',
+  },
+  {
+    name: 'Scott Lang',
+    country: '🇺🇸USA',
+  },
+  {
+    name: 'En Sabah Nuh',
+    country: '🇨🇺Cuba',
+  },
+  {
+    name: 'Abdul Qamar',
+    country: '🇸🇦Saudi Arabia',
+  },
+  {
+    name: 'Goose the Cat',
+    country: '🇺🇸USA',
+  },
+  {
+    name: 'Brian Braddock',
+    country: '🇬🇧Great Britain',
+  },
+  {
+    name: 'Marc Spector',
+    country: '🇺🇸USA',
+  },
+  {
+    name: 'John Walker',
+    country: '🇺🇸USA',
+  },
+  {
+    name: 'Dane Whitman',
+    country: '🇺🇸USA',
+  },
+]
+
+function usePagination(initialSize) {
+  const [state, setState] = React.useState({
+    tableSize: initialSize,
+    currentPage: 1,
+    currentItemFrom: 1,
+    currentItemTo: initialSize,
+    slicedItems: [...items].slice(0, initialSize),
+  })
+
+  const onNextClick = () => {
+    const newPage = state.currentPage + 1
+    const itemFrom = state.currentItemTo + 1
+    const itemTo = state.tableSize * newPage
+    const newItems = [...items].slice(itemFrom - 1, itemTo)
+    setState(state => ({
+      ...state,
+      currentPage: newPage,
+      currentItemFrom: itemFrom,
+      currentItemTo: itemTo,
+      slicedItems: newItems,
+    }))
+  }
+
+  const onPrevClick = () => {
+    if (state.currentPage === 0) return
+    const newPage = state.currentPage - 1
+    const itemFrom = state.currentItemFrom - state.tableSize
+    const itemTo = state.currentItemFrom - 1
+    const newItems = [...items].slice(itemFrom - 1, itemTo)
+    setState(state => ({
+      ...state,
+      currentPage: newPage,
+      currentItemFrom: itemFrom,
+      currentItemTo: itemTo,
+      slicedItems: newItems,
+    }))
+  }
+
+  const onRowsChange = (e, value) => {
+    const rowValue = parseInt(value)
+    setState(state => ({
+      ...state,
+      tableSize: rowValue,
+      currentItemTo: rowValue,
+      slicedItems: [...items].slice(state.currentItemFrom - 1, rowValue),
+    }))
+  }
+
+  return {
+    onNextClick,
+    onPrevClick,
+    onRowsChange,
+    slicedItems: state.slicedItems,
+    currentItemFrom: state.currentItemFrom,
+    currentItemTo: state.currentItemTo,
+  }
+}
+
+function PaginationExample() {
+  const { slicedItems, ...paginationProps } = usePagination(5)
+
+  const tableState = useTableState({
+    columns,
+    items: slicedItems,
+  })
+
+  const pagination = {
+    ...paginationProps,
+    textOf: 'of',
+    rowsOptions: [5, 10, 15],
+    textShowRows: 'Show rows',
+    totalItems: items.length,
+  }
+
+  return (
+    <Table state={tableState}>
+      <Table.Pagination {...pagination} />
+    </Table>
+  )
+}
+;<PaginationExample />
+```
+
 # Nested Rows
 
 `TableV2` allows nested rows that are enabled via the `nestedRows` prop. Each `item` object of `items` array may have a special property named `children` that is an array of objects with the same shape of `item`. It's important to notice that your row tree can have unlimited depth.
@@ -138,7 +307,7 @@ const useTableState = require('./hooks/useTableState.ts').default
 const Tag = require('../Tag/index.js').default
 
 // Define the columns
-columns = [
+const columns = [
   {
     id: 'name',
     title: 'Name',
@@ -155,7 +324,7 @@ columns = [
 ]
 
 // Define the items with children
-items = [
+const items = [
   {
     name: "T'Chala",
     email: 'black.panther@gmail.com',
@@ -209,7 +378,7 @@ items = [
   },
 ]
 
-function StateHookExample() {
+function NestedExample() {
   const tableState = useTableState({
     columns,
     items,
@@ -218,7 +387,7 @@ function StateHookExample() {
 
   return <Table state={tableState} nestedRows />
 }
-;<StateHookExample />
+;<NestedExample />
 ```
 
 # Toolbar
@@ -228,7 +397,7 @@ function StateHookExample() {
 const useTableState = require('./hooks/useTableState.ts').default
 
 // Define the columns
-columns = [
+const columns = [
   {
     id: 'name',
     title: 'Name',
@@ -248,7 +417,7 @@ columns = [
 ]
 
 // Define the items
-items = [
+const items = [
   {
     name: "T'Chala",
     email: 'black.panther@gmail.com',
@@ -275,7 +444,7 @@ items = [
   },
 ]
 
-function StateHookExample() {
+function ToolbarExample() {
   const [inputValue, setInputValue] = React.useState('')
   const [displayItems, setDisplayItems] = React.useState(items)
 
@@ -366,7 +535,7 @@ function StateHookExample() {
     </Table>
   )
 }
-;<StateHookExample />
+;<ToolbarExample />
 ```
 
 ### UNSAFE Custom Input

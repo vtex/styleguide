@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.75.3] - 2019-09-02
+
+### Added
+
+- `Pagination` to `EXPERIMENTAL_TableV2`
+
+### Changed
+
+- Export `useTableState` hook from `EXPERIMENTAL_TableV2`
+
 ## [9.75.2] - 2019-08-29
 
 ## [9.75.1] - 2019-08-29
