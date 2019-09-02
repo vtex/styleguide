@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.76.1] - 2019-09-02
+
+### Fixed
+
+- Fix release v9.76.0 and get changes from v9.75.3
+
+## [9.76.0] - 2019-08-30
+
+### Fixed
+
+- Fix `Button` label text leaving button when too big (`nowrap` class)
+- Potential bug when using more then one `Button` prop related to the label
+
+### Added
+
+- `Button` prop `noWrap`, which allows the button's label not to wrap
+
 ## [9.75.3] - 2019-09-02
 
 ### Added
