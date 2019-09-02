@@ -8,9 +8,9 @@
 ### 👎 Don'ts
 
 - Don't change the tooltip colors.
-- Don't use long texts in tooltips - a good character limit is 200.
+- Don't use long texts in tooltips - a good character limit is 220.
 
-### Positioning tooltip
+#### Positioning tooltip
 
 The position where the tooltip appears can be set and its fallback position too. By default the tooltip appears at the top and follows clockwise.
 
@@ -33,7 +33,7 @@ const Button = require('../Button').default
 </div>
 ```
 
-### Label and Informative text
+#### Label and Informative text
 
 ```jsx
 const Edit = require('../icon/Edit').default
@@ -48,7 +48,7 @@ const Info = require('../icon/Info').default
     </Tooltip>
   </div>
   <div className="ph9">
-    <Tooltip label="Info">
+    <Tooltip label="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
       <span className="c-on-base pointer">
         <Info />
       </span>
@@ -57,7 +57,7 @@ const Info = require('../icon/Info').default
 </div>
 ```
 
-### Hover vs Focused
+#### Hover vs Focused
 
 ```jsx
 const Button = require('../Button').default

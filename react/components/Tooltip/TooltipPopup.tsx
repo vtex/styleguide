@@ -5,6 +5,8 @@ import React, { FC, useEffect, useRef, useState } from 'react'
 import Portal from './Portal'
 import { useRect } from './hooks'
 
+import style from './tooltip.css'
+
 export type Position = 'top' | 'right' | 'bottom' | 'left'
 export type Size = 'mini' | 'small'
 
@@ -66,7 +68,8 @@ const TooltipPopup: FC<PropTypes.InferProps<typeof propTypes>> = ({
   }, [visible])
 
   const popupClasses = classNames(
-    'absolute pv2 ph3 bg-base--inverted c-on-base--inverted br2 shadow-1 mw5 overflow-hidden',
+    'absolute pv2 ph3 bg-base--inverted c-on-base--inverted br2 shadow-1 mw5 overflow-hidden truncate',
+    style.popup,
     {
       dn: (!visible && !showPopup) || !childRect || !popupRect,
       'o-0': !visible || !hasComputedDimensions(popupRect),
