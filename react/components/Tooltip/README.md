@@ -63,15 +63,15 @@ const Info = require('../icon/Info').default
 const Button = require('../Button').default
 
 ;<div className="flex w-100 items-center justify-center">
-  <Tooltip label="Tooltip text">
-    <div className="pa3">
+  <div className="pa3">
+    <Tooltip label="Tooltip text">
       <Button variation="tertiary">Hover</Button>
-    </div>
-  </Tooltip>
-  <Tooltip label="Tooltip text" trigger="focus">
-    <div className="pa3">
+    </Tooltip>
+  </div>
+  <div className="pa3">
+    <Tooltip label="Tooltip text" trigger="focus">
       <Button variation="tertiary">Focused</Button>
-    </div>
-  </Tooltip>
+    </Tooltip>
+  </div>
 </div>
 ```

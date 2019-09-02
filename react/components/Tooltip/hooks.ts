@@ -29,7 +29,7 @@ export function useTooltip({
   (c: React.ReactElement) => object,
   { childRef: RefObject<HTMLElement>; visible: boolean }
 ] {
-  const childRef = useRef()
+  const childRef = useRef<HTMLElement>()
   const [visible, setVisible] = useState(false)
   const handleTooltip = (child: React.ReactElement & { ref?: any }) => {
     return {
@@ -61,6 +61,17 @@ export function useTooltip({
         : {}),
       ...(trigger === 'click' || trigger === 'focus'
         ? {
+            onClick: (...args) => {
+              // Firefox and Safari, both on Mac OS, doesn't focus on click, like
+              // Google Chrome does, so...
+              if (childRef.current) {
+                childRef.current.focus()
+              }
+              const onClick = get(child, 'props.onClick')
+              if (onClick) {
+                return onClick.call(child.props, ...args)
+              }
+            },
             onFocus: (...args) => {
               setVisible(true)
               const onFocus = get(child, 'props.onFocus')

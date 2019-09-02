@@ -86,7 +86,7 @@ const TooltipPopup: FC<PropTypes.InferProps<typeof propTypes>> = ({
     fallbackPosition
   )
 
-  return positionStyle ? (
+  return (
     <Portal>
       <div
         role="tooltip"
@@ -97,16 +97,16 @@ const TooltipPopup: FC<PropTypes.InferProps<typeof propTypes>> = ({
         }}
         ref={popupRef}
         onTransitionEnd={() => setShowPopup(visible)}>
-        <span style={{ maxWidth: '220ch' }}>{label}</span>
+        {label}
       </div>
     </Portal>
-  ) : null
+  )
 }
 
 const getStyles = (childRect, popupRect, position, fallbackPosition) => {
-  return childRect && popupRect && window
+  return childRect && popupRect && window && hasComputedDimensions(popupRect)
     ? getPopupPosition(childRect, popupRect, position, fallbackPosition)
-    : {}
+    : { top: 0, left: 0 }
 }
 
 const FALLBACK_POSITION = {
@@ -137,26 +137,24 @@ const getPopupPositionRecursively = (
   const horizontalMax = window.innerWidth + window.pageXOffset
   const verticalMax = window.innerHeight + window.pageYOffset
   const styles = {
-    left: hasComputedDimensions(popupRect)
-      ? childRect.left +
-        window.pageXOffset +
-        (childRect.width - popupRect.width) / 2 +
-        (position === 'right'
-          ? (childRect.width + popupRect.width) / 2 + OFFSET
-          : 0) -
-        (position === 'left'
-          ? (childRect.width + popupRect.width) / 2 + OFFSET
-          : 0)
-      : 0,
-    top: hasComputedDimensions(popupRect)
-      ? childRect.top +
-        window.pageYOffset -
-        (position === 'top' ? popupRect.height + OFFSET : 0) +
-        (position === 'bottom' ? childRect.height + OFFSET : 0) +
-        (position === 'right' || position === 'left'
-          ? (childRect.height - popupRect.height) / 2
-          : 0)
-      : 0,
+    left:
+      childRect.left +
+      window.pageXOffset +
+      (childRect.width - popupRect.width) / 2 +
+      (position === 'right'
+        ? (childRect.width + popupRect.width) / 2 + OFFSET
+        : 0) -
+      (position === 'left'
+        ? (childRect.width + popupRect.width) / 2 + OFFSET
+        : 0),
+    top:
+      childRect.top +
+      window.pageYOffset -
+      (position === 'top' ? popupRect.height + OFFSET : 0) +
+      (position === 'bottom' ? childRect.height + OFFSET : 0) +
+      (position === 'right' || position === 'left'
+        ? (childRect.height - popupRect.height) / 2
+        : 0),
   }
 
   const collisions = {
@@ -188,9 +186,14 @@ const getPopupPositionRecursively = (
     window.pageXOffset + 1,
     Math.min(styles.left, horizontalMax - popupRect.width - 1)
   )
+
+  const transform = `translate3d(${Math.round(left)}px, -${Math.round(
+    document.body.offsetHeight - top
+  )}px, 0)`
+
   return {
-    transform: `translate3d(${left}px, -${document.body.offsetHeight -
-      top}px, 0)`,
+    transform,
+    WebkitTransform: transform,
   }
 }
 
