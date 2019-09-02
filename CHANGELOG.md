@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- **MultiSelect** docs.
+
 ## [9.78.5] - 2019-09-06
 
 ### Fixed
