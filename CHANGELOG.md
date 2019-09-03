@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix `Button` label escaping loading button when the prop `block` exists
+
 ## [9.77.2] - 2019-09-03
 
 ### Fixed
