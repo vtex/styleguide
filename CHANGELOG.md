@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.77.1] - 2019-09-03
+
+### Fixed
+
+- `tsconfig.json` module resolution to be `node`.
+
 ## [9.77.0] - 2019-09-03
 
 ### Added

@@ -9,7 +9,8 @@
     "strict": false,
     "typeRoots": ["node_modules/@types"],
     "target": "esnext",
-    "declaration": true
+    "declaration": true,
+    "moduleResolution": "node"
   },
   "typeAcquisition": {
     "enable": false
