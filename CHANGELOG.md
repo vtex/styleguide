@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.77.0] - 2019-09-03
+
 ### Added
 
 - **Tooltip** component.
