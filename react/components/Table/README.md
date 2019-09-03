@@ -1369,6 +1369,11 @@ const defaultSchema = {
           label: 'Action 2',
           handleCallback: params => console.log(params),
         },
+        {
+          label: 'Dangerous action',
+          isDangerous: true,
+          handleCallback: params => console.log(params),
+        },
       ],
     }}
   />
@@ -1850,6 +1855,11 @@ class ResourceListExample extends React.Component {
             },
             {
               label: 'Action 2',
+              handleCallback: params => console.log(params),
+            },
+            {
+              label: 'Dangerous action',
+              isDangerous: true,
               handleCallback: params => console.log(params),
             },
           ],
