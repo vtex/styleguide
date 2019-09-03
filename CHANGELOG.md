@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- isDangerous style to bulk actions.
+- **Table** allow `isDangerous` style to bulk actions.
 
 ## [9.77.1] - 2019-09-03
 
