@@ -221,6 +221,8 @@ class Button extends Component {
         onMouseOut={this.props.onMouseOut}
         onMouseUp={this.props.onMouseUp}
         onMouseDown={this.props.onMouseDown}
+        onFocus={this.props.onFocus}
+        onBlur={this.props.onBlur}
         ref={this.props.forwardedRef}
         style={style}
         // Button-mode exclusive props
@@ -316,6 +318,10 @@ Button.propTypes = {
   onMouseUp: PropTypes.func,
   /** onMouseDown event */
   onMouseDown: PropTypes.func,
+  /** onFocus event */
+  onFocus: PropTypes.func,
+  /** onBlur event */
+  onBlur: PropTypes.func,
   /** Cancels out left padding */
   collapseLeft: PropTypes.bool,
   /** Cancels out right padding */

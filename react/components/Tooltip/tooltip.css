@@ -1,0 +1,5 @@
+.popup {
+  max-height: 11rem;
+  will-change: transform;
+}
+
