@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - **Table** with FilterBar example.
 - **FilterBar** examples that were broken.
+- **Button** variation `tertiary` hover when disabled (there shouldn't be hover if disabled).
 
 ### Added
 
