@@ -1,4 +1,4 @@
-/* Edge-specific */
+/* removes edge clear button on input */
 .hideDecorators::-ms-clear{
   display: none;
 }
