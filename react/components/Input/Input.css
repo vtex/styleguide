@@ -1,0 +1,8 @@
+/* removes edge clear button on input */
+.hideDecorators::-ms-clear{
+  display: none;
+}
+
+.noAppearance {
+  appearance: none;
+}
