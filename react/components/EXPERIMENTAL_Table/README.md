@@ -563,6 +563,99 @@ function PaginationExample() {
 ;<PaginationExample />
 ```
 
+# Bulk Actions
+
+```js
+// Imports
+const useTableState = require('./hooks/useTableState.ts').default
+const useTableBulkActions = require('./hooks/useTableBulkActions.tsx').default
+
+// Define the columns
+const columns = [
+  {
+    id: 'name',
+    title: 'Name',
+  },
+  {
+    id: 'email',
+    title: 'Email',
+  },
+  {
+    id: 'country',
+    title: 'Country',
+  },
+]
+
+// Define the items with children
+const items = [
+  {
+    name: "T'Chala",
+    email: 'black.panther@gmail.com',
+    country: '🇰🇪Wakanda',
+  },
+  {
+    name: 'Peter Parker',
+    email: 'spider.man@gmail.com',
+    number: 3.09191,
+    country: '🇺🇸USA',
+  },
+  {
+    name: 'Shang-Chi',
+    email: 'kungfu.master@gmail.com',
+    country: '🇨🇳China',
+  },
+]
+
+function BulkExample() {
+  const bulkActions = {
+    texts: {
+      secondaryActionsLabel: 'Actions',
+      rowsSelected: qty => (
+        <React.Fragment>Selected rows: {qty}</React.Fragment>
+      ),
+      selectAll: 'Select all',
+      allRowsSelected: qty => (
+        <React.Fragment>All rows selected: {qty}</React.Fragment>
+      ),
+    },
+    totalItems: 4,
+    onChange: params => console.log(params),
+    main: {
+      label: 'Main Action',
+      handleCallback: params => console.log(params),
+    },
+    others: [
+      {
+        label: 'Action 1',
+        handleCallback: params => console.log(params),
+      },
+      {
+        label: 'Action 2',
+        handleCallback: params => console.log(params),
+      },
+    ],
+  }
+
+  const { bulkedColumns, bulkedItems, ...bulkHandlers } = useTableBulkActions({
+    columns,
+    items,
+    bulkActions,
+  })
+
+  const tableState = useTableState({
+    columns: bulkedColumns,
+    items: bulkedItems,
+  })
+
+  return (
+    <Table state={{ ...tableState, ...bulkHandlers }}>
+      <Table.BulkActions />
+    </Table>
+  )
+}
+;<BulkExample />
+```
+
 # Toolbar
 
 ```js
@@ -723,6 +816,7 @@ function ToolbarExample() {
 ```
 
 # Line actions
+
 This feature creates a last extra column with an ActionMenu component per line.
 
 ```js
@@ -792,7 +886,11 @@ function LineActionsExample() {
     },
   ]
 
-  const { itemsWithLineActions, columnsWithLineActions } = useTableLineActions({items, columns, lineActions})
+  const { itemsWithLineActions, columnsWithLineActions } = useTableLineActions({
+    items,
+    columns,
+    lineActions,
+  })
   const tableState = useTableState({
     columns: columnsWithLineActions,
     items: itemsWithLineActions,

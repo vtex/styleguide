@@ -10,6 +10,7 @@ import Pagination, { PaginationProps } from './Pagination'
 import { STATE_NOT_FOUND_ERROR } from './errors'
 import { TableContainer, Thead } from './Styled'
 import DataTable from './DataTable'
+import BulkActions from './BulkActions/index'
 
 const Table: FC<Props> & TableComposites = ({ children, state, ...props }) => {
   if (!state) {
@@ -71,11 +72,13 @@ export type TableComposites = {
   Toolbar: FC
   Pagination?: FC<PaginationProps>
   LineActions?: FC<LineActionProps>
+  BulkActions: FC<any>
 }
 
 Table.Toolbar = Toolbar
 Table.Pagination = Pagination
 Table.LineActions = LineActions
 Table.propTypes = tablePropTypes
+Table.BulkActions = BulkActions
 
 export default Table
