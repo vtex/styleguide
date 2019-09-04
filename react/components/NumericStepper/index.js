@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import { hideDecorators } from '../Input/edge.css'
+import styles from '../Input/Input.css'
 
 const normalizeMin = min => (min == null ? -Infinity : min)
 const normalizeMax = max => (max == null ? Infinity : max)
@@ -211,7 +211,7 @@ class NumericStepper extends Component {
         <div className="flex self-start">
           <input
             type="tel"
-            className={`z-1 order-1 tc bw1 ${borderClasses} br0 ${inputClasses} ${hideDecorators}`}
+            className={`z-1 order-1 tc bw1 ${borderClasses} br0 ${inputClasses} ${styles.hideDecorators}`}
             style={{
               ...(block && {
                 width: 0,

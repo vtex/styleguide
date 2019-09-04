@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import styles from './edge.css'
+import styles from './Input.css'
 import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
 
 class Input extends Component {
