@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - **Table** allow `isDangerous` style to bulk actions.
 
+## [9.77.3] - 2019-09-04
+
 ### Fixed
 
 - Fix `Button` label escaping loading button when the prop `block` exists
