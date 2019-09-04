@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import classNames from 'classnames'
 
 import Button from '../../Button'
@@ -8,9 +8,7 @@ import Close from '../../icon/Close'
 
 import useTableContext from '../hooks/useTableContext'
 
-const close = <Close />
-
-const BulkActions = () => {
+const BulkActions: FC = () => {
   const {
     bulkState,
     selectAllRows,
@@ -91,7 +89,7 @@ const BulkActions = () => {
             </Button>
           )}
         </span>
-        <ButtonWithIcon icon={close} onClick={() => deselectAllRows()} />
+        <ButtonWithIcon icon={<Close />} onClick={() => deselectAllRows()} />
       </div>
     </div>
   )

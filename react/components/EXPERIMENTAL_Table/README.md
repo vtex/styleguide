@@ -596,7 +596,6 @@ const items = [
   {
     name: 'Peter Parker',
     email: 'spider.man@gmail.com',
-    number: 3.09191,
     country: '🇺🇸USA',
   },
   {
@@ -647,8 +646,20 @@ function BulkExample() {
     items: bulkedItems,
   })
 
+  const density = {
+    label: 'Line density',
+    lowOptionLabel: 'Low',
+    mediumOptionLabel: 'Medium',
+    highOptionLabel: 'High',
+  }
+
   return (
     <Table state={{ ...tableState, ...bulkHandlers }}>
+      <Table.Toolbar>
+        <Table.Toolbar.ButtonGroup>
+          <Table.Toolbar.ButtonGroup.Density {...density} />
+        </Table.Toolbar.ButtonGroup>
+      </Table.Toolbar>
       <Table.BulkActions />
     </Table>
   )

@@ -1,62 +1,5 @@
 import React, { useMemo, useEffect, useReducer } from 'react'
-import PropTypes from 'prop-types'
-import CheckboxContainer from '../BulkActions/Checkbox'
-
-const actionTypes = {
-  SET_SELECTED_ROWS: 0,
-  SET_ALL_LINES_SELECTED: 1,
-  DESELECT_ALL_ROWS: 2,
-  SELECT_ALL_ROWS: 3,
-  SELECT_ROW: 4,
-}
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case actionTypes.SET_SELECTED_ROWS: {
-      return {
-        ...state,
-        selectedRows: action.selectedRows,
-      }
-    }
-    case actionTypes.SET_ALL_LINES_SELECTED: {
-      return {
-        ...state,
-        allLinesSelected: action.allLinesSelected,
-      }
-    }
-    case actionTypes.DESELECT_ALL_ROWS: {
-      return {
-        ...state,
-        selectedRows: [],
-        allLinesSelected: false,
-      }
-    }
-    case actionTypes.SELECT_ALL_ROWS: {
-      return {
-        ...state,
-        selectedRows: action.selectedRows,
-        allLinesSelected: true,
-      }
-    }
-    case actionTypes.SELECT_ROW: {
-      return state.selectedRows.some(el => el.id === action.row.id)
-        ? {
-            ...state,
-            selectedRows: state.selectedRows.filter(
-              row => row.id !== action.row.id
-            ),
-            allLinesSelected: false,
-          }
-        : {
-            ...state,
-            selectedRows: [...state.selectedRows, action.row],
-          }
-    }
-    default: {
-      return state
-    }
-  }
-}
+import Checkbox from '../BulkActions/Checkbox'
 
 const useTableBulkActions = ({ items, columns, bulkActions }) => {
   const [bulkState, dispatch] = useReducer(reducer, {
@@ -79,30 +22,20 @@ const useTableBulkActions = ({ items, columns, bulkActions }) => {
 
   const hasBulkActions = hasPrimaryBulkAction || hasSecondaryBulkActions
 
-  useEffect(() => {
-    if (bulkActions && bulkActions.onChange) {
-      const selectedParameters = bulkState.allLinesSelected
-        ? { allLinesSelected: true }
-        : { selectedRows: bulkState.selectedRows }
-      bulkActions.onChange(selectedParameters)
-    }
-  }, [bulkState.selectedRows, bulkState.allLinesSelected, bulkActions])
-
   const bulkedItems = useMemo(() => {
     return hasBulkActions && items.map((item, i) => ({ id: i, ...item }))
   }, [items, columns])
 
   const bulkedColumns = useMemo(() => {
-    const BulkHeader = () => {
+    const headerRender = () => {
       const selectedRowsLength = bulkState.selectedRows.length
       const itemsLength = bulkedItems.length
-
       const isChecked = selectedRowsLength === itemsLength
       const isPartial =
         selectedRowsLength > 0 && selectedRowsLength < itemsLength
 
       return (
-        <CheckboxContainer
+        <Checkbox
           checked={isChecked}
           onClick={selectAllVisibleRows}
           id="all"
@@ -111,8 +44,8 @@ const useTableBulkActions = ({ items, columns, bulkActions }) => {
       )
     }
 
-    const BulkCell = ({ rowData }) => (
-      <CheckboxContainer
+    const cellRender = ({ rowData }) => (
+      <Checkbox
         checked={bulkState.selectedRows.some(row => row.id === rowData.id)}
         onClick={() => selectRow(rowData)}
         id={rowData.id}
@@ -125,47 +58,44 @@ const useTableBulkActions = ({ items, columns, bulkActions }) => {
           {
             id: 'bulk',
             width: 40,
-            headerRender: BulkHeader,
-            cellRender: BulkCell,
+            headerRender,
+            cellRender,
           },
           ...columns,
         ]
       : columns
   }, [bulkState.selectedRows, bulkState.allLinesSelected])
 
-  function selectAllRows() {
+  useEffect(() => {
+    if (bulkActions && bulkActions.onChange) {
+      const selectedParameters = bulkState.allLinesSelected
+        ? { allLinesSelected: true }
+        : { selectedRows: bulkState.selectedRows }
+      bulkActions.onChange(selectedParameters)
+    }
+  }, [bulkState.selectedRows, bulkState.allLinesSelected, bulkActions])
+
+  const selectAllRows = () =>
     dispatch({
-      type: actionTypes.SELECT_ALL_ROWS,
+      type: 'SELECT_ALL_ROWS',
       selectedRows: bulkedItems,
     })
-  }
 
-  function deselectAllRows() {
-    dispatch({ type: actionTypes.DESELECT_ALL_ROWS })
-  }
+  const deselectAllRows = () => dispatch({ type: 'DESELECT_ALL_ROWS' })
 
-  function selectAllVisibleRows() {
-    if (
-      bulkState.selectedRows.length <= bulkedItems.length &&
-      bulkState.selectedRows.length !== 0
-    ) {
-      deselectAllRows()
-    } else {
-      setSelectedRows(bulkedItems)
-    }
-  }
+  const selectRow = (row: BulkedItem) => dispatch({ type: 'SELECT_ROW', row })
 
-  function selectRow(row) {
-    dispatch({ type: actionTypes.SELECT_ROW, row })
-  }
+  const setSelectedRows = (selectedRows: Array<BulkedItem>) =>
+    dispatch({ type: 'SET_SELECTED_ROWS', selectedRows })
 
-  function setSelectedRows(selectedRows) {
-    dispatch({ type: actionTypes.SET_SELECTED_ROWS, selectedRows })
-  }
+  const setAllLinesSelected = (allLinesSelected: boolean) =>
+    dispatch({ type: 'SET_ALL_LINES_SELECTED', allLinesSelected })
 
-  function setAllLinesSelected(allLinesSelected) {
-    dispatch({ type: actionTypes.SET_ALL_LINES_SELECTED, allLinesSelected })
-  }
+  const selectAllVisibleRows = () =>
+    bulkState.selectedRows.length <= bulkedItems.length &&
+    bulkState.selectedRows.length !== 0
+      ? deselectAllRows()
+      : setSelectedRows(bulkedItems)
 
   return {
     hasBulkActions,
@@ -187,6 +117,77 @@ const useTableBulkActions = ({ items, columns, bulkActions }) => {
     selectRow,
     setSelectedRows,
     setAllLinesSelected,
+  }
+}
+
+type BulkedItem = unknown & {
+  id: number
+}
+
+type BulkState = {
+  selectedRows: Array<BulkedItem>
+  allLinesSelected: boolean
+}
+
+type BulkAction = {
+  type:
+    | 'SET_SELECTED_ROWS'
+    | 'SET_ALL_LINES_SELECTED'
+    | 'DESELECT_ALL_ROWS'
+    | 'SELECT_ALL_ROWS'
+    | 'SELECT_ROW'
+  selectedRows?: Array<BulkedItem>
+  allLinesSelected?: boolean
+  row?: BulkedItem
+}
+
+function reducer(state: BulkState, action: BulkAction) {
+  switch (action.type) {
+    case 'SET_SELECTED_ROWS': {
+      return {
+        ...state,
+        selectedRows: action.selectedRows,
+      }
+    }
+    case 'SET_ALL_LINES_SELECTED': {
+      return {
+        ...state,
+        allLinesSelected: action.allLinesSelected,
+      }
+    }
+    case 'DESELECT_ALL_ROWS': {
+      return {
+        ...state,
+        selectedRows: [],
+        allLinesSelected: false,
+      }
+    }
+    case 'SELECT_ALL_ROWS': {
+      return {
+        ...state,
+        selectedRows: action.selectedRows,
+        allLinesSelected: true,
+      }
+    }
+    case 'SELECT_ROW': {
+      return state.selectedRows.some(
+        selectedRow => selectedRow.id === action.row.id
+      )
+        ? {
+            ...state,
+            selectedRows: state.selectedRows.filter(
+              row => row.id !== action.row.id
+            ),
+            allLinesSelected: false,
+          }
+        : {
+            ...state,
+            selectedRows: [...state.selectedRows, action.row],
+          }
+    }
+    default: {
+      return state
+    }
   }
 }
 

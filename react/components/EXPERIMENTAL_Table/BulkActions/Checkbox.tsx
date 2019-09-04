@@ -1,39 +1,35 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { FC } from 'react'
 
 import CheckboxBase from '../../Checkbox/index.js'
 
-const Checkbox = ({ checked, partial, id, onClick, disabled }) => {
-  return (
-    <div
-      onClick={e => {
-        e.stopPropagation()
-        // prevents the onRowClick event from happening
-      }}>
-      <CheckboxBase
-        checked={checked}
-        partial={partial}
-        value={`${id}`}
-        id={`${id}`}
-        name={`row_${id}`}
-        onChange={() => onClick(id)}
-        disabled={disabled}
-      />
-    </div>
-  )
+/**
+ * Wrapper around Checkbox to avoid event propagation
+ */
+const Checkbox: FC<Props> = ({ checked, partial, id, onClick, disabled }) => (
+  <div onClick={e => e.stopPropagation()}>
+    <CheckboxBase
+      checked={checked}
+      partial={partial}
+      value={`${id}`}
+      id={`${id}`}
+      name={`row_${id}`}
+      onChange={() => onClick(id)}
+      disabled={disabled}
+    />
+  </div>
+)
+
+type Props = {
+  id: string | number
+  checked: boolean
+  onClick: Function
+  disabled?: boolean
+  partial?: boolean
 }
 
 Checkbox.defaultProps = {
   partial: false,
   disabled: false,
-}
-
-Checkbox.propTypes = {
-  checked: PropTypes.bool.isRequired,
-  partial: PropTypes.bool,
-  onClick: PropTypes.func.isRequired,
-  disabled: PropTypes.bool,
-  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }
 
 export default Checkbox
