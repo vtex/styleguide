@@ -66,6 +66,7 @@ class BulkActions extends PureComponent {
                 buttonProps={{ variation: 'secondary', size: 'small' }}
                 options={bulkActions.others.map(el => ({
                   label: el.label,
+                  isDangerous: el.isDangerous,
                   onClick: () =>
                     el.handleCallback(bulkActionsReturnedParameters),
                 }))}
