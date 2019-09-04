@@ -1,23 +1,14 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import IconCaretDown from '../icon/CaretDown/index.js'
 
-const SMALL_ICON_SIZE = 14
+import { Labels, Operator } from "./typings";
+import { DEFAULT_LABELS, SMALL_ICON_SIZE } from './constants';
 
-const propTypes = {
-  /** Operator indicates whether all the conditions should be met or any of them */
-  operator: PropTypes.oneOf(['all', 'any']),
-  /** Operator change callback: one of 'any', 'all' */
-  onChangeOperator: PropTypes.func,
-  /** Labels for the controls and texts, default is english */
-  labels: PropTypes.shape({
-    operatorAll: PropTypes.string,
-    operatorAny: PropTypes.string,
-    headerPrefix: PropTypes.string,
-    headerSufix: PropTypes.string,
-  }),
+type Props = {
+  labels: Pick<Labels, 'headerPrefix' | 'headerSufix' | 'operatorAll' | 'operatorAny'>
+  onChangeOperator: (operator: Props['operator']) => void
+  operator: Operator
 }
-type Props = PropTypes.InferProps<typeof propTypes>
 
 const StrategySelector: React.FC<Props> = ({
   operator,
@@ -33,12 +24,12 @@ const StrategySelector: React.FC<Props> = ({
 
   return (
     <div className="flex flex-row nowrap">
-      <span>{labels.headerPrefix}</span>
+      <span>{labels.headerPrefix || DEFAULT_LABELS.headerPrefix}</span>
       <div className="c-link relative">
         <span className="mh3 b">
           {operator === 'all'
-            ? labels.operatorAll
-            : labels.operatorAny}
+            ? labels.operatorAll || DEFAULT_LABELS.operatorAll
+            : labels.operatorAny || DEFAULT_LABELS.operatorAny}
         </span>
         <select
           className="o-0 absolute top-0 left-0 w-100 bottom-0 pointer t-small"
@@ -48,12 +39,12 @@ const StrategySelector: React.FC<Props> = ({
             // safari select height fix
             WebkitAppearance: 'menulist-button',
           }}>
-          <option value="all">{labels.operatorAll}</option>
-          <option value="any">{labels.operatorAny}</option>
+          <option value="all">{labels.operatorAll || DEFAULT_LABELS.operatorAll}</option>
+          <option value="any">{labels.operatorAny || DEFAULT_LABELS.operatorAny}</option>
         </select>
         <IconCaretDown size={SMALL_ICON_SIZE} />
       </div>
-      <span className="ml3">{labels.headerSufix}</span>
+      <span className="ml3">{labels.headerSufix || DEFAULT_LABELS.headerSufix}</span>
     </div>
   )
 }

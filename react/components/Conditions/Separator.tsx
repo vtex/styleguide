@@ -1,13 +1,10 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 const SEPARATOR_LINE_OPTICAL_COMPENSATION = '32px'
 
-const propTypes = {
-  label: PropTypes.string
+type Props = {
+  label?: string
 }
-
-type Props = PropTypes.InferProps<typeof propTypes>
 
 const Separator: React.FC<Props> = ({ label }) => {
   return (
