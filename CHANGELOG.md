@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- **Conditions** `hideOperator` default value was wrong.
+
 ## [9.78.2] - 2019-09-05
 
 ### Added
