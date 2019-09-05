@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect, useReducer } from 'react'
+import React, { useMemo, useEffect, useReducer, useCallback } from 'react'
 import Checkbox from '../BulkActions/Checkbox'
 
 const useTableBulkActions = ({ items, columns, bulkActions }) => {
@@ -75,27 +75,45 @@ const useTableBulkActions = ({ items, columns, bulkActions }) => {
     }
   }, [bulkState.selectedRows, bulkState.allLinesSelected, bulkActions])
 
-  const selectAllRows = () =>
-    dispatch({
-      type: 'SELECT_ALL_ROWS',
-      selectedRows: bulkedItems,
-    })
+  const selectAllRows = useCallback(
+    () =>
+      dispatch({
+        type: 'SELECT_ALL_ROWS',
+        selectedRows: bulkedItems,
+      }),
+    [bulkState.selectedRows]
+  )
 
-  const deselectAllRows = () => dispatch({ type: 'DESELECT_ALL_ROWS' })
+  const deselectAllRows = useCallback(
+    () => dispatch({ type: 'DESELECT_ALL_ROWS' }),
+    [bulkState.selectedRows]
+  )
 
-  const selectRow = (row: BulkedItem) => dispatch({ type: 'SELECT_ROW', row })
+  const selectRow = useCallback(
+    (row: BulkedItem) => dispatch({ type: 'SELECT_ROW', row }),
+    [bulkState.selectedRows]
+  )
 
-  const setSelectedRows = (selectedRows: Array<BulkedItem>) =>
-    dispatch({ type: 'SET_SELECTED_ROWS', selectedRows })
+  const setSelectedRows = useCallback(
+    (selectedRows: Array<BulkedItem>) =>
+      dispatch({ type: 'SET_SELECTED_ROWS', selectedRows }),
+    [bulkState.selectedRows]
+  )
 
-  const setAllLinesSelected = (allLinesSelected: boolean) =>
-    dispatch({ type: 'SET_ALL_LINES_SELECTED', allLinesSelected })
+  const setAllLinesSelected = useCallback(
+    (allLinesSelected: boolean) =>
+      dispatch({ type: 'SET_ALL_LINES_SELECTED', allLinesSelected }),
+    [bulkState.allLinesSelected]
+  )
 
-  const selectAllVisibleRows = () =>
-    bulkState.selectedRows.length <= bulkedItems.length &&
-    bulkState.selectedRows.length !== 0
-      ? deselectAllRows()
-      : setSelectedRows(bulkedItems)
+  const selectAllVisibleRows = useCallback(
+    () =>
+      bulkState.selectedRows.length <= bulkedItems.length &&
+      bulkState.selectedRows.length !== 0
+        ? deselectAllRows()
+        : setSelectedRows(bulkedItems),
+    [bulkState.selectedRows, bulkState.allLinesSelected]
+  )
 
   return {
     hasBulkActions,
