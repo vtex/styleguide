@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import classNames from 'classnames'
+import csx from 'classnames'
 
 import Button from '../../Button'
 import ButtonWithIcon from '../../ButtonWithIcon'
@@ -7,6 +7,7 @@ import ActionMenu from '../../ActionMenu'
 import Close from '../../icon/Close'
 
 import useTableContext from '../hooks/useTableContext'
+import { ORDER_CLASSNAMES } from '../constants'
 
 const BulkActions: FC = () => {
   const {
@@ -28,11 +29,12 @@ const BulkActions: FC = () => {
 
   return (
     <div
-      className={classNames(
+      className={csx(
         'flex flex-row justify-between bg-action-primary c-on-action-primary br3 br--top ph4',
         {
           pv4: hasRowsSelected,
-        }
+        },
+        ORDER_CLASSNAMES.BULK_ACTIONS
       )}
       style={{
         height: hasRowsSelected ? '56px' : 0,

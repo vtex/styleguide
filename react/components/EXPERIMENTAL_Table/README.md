@@ -655,11 +655,6 @@ function BulkExample() {
 
   return (
     <Table state={{ ...tableState, ...bulkHandlers }}>
-      <Table.Toolbar>
-        <Table.Toolbar.ButtonGroup>
-          <Table.Toolbar.ButtonGroup.Density {...density} />
-        </Table.Toolbar.ButtonGroup>
-      </Table.Toolbar>
       <Table.BulkActions />
     </Table>
   )

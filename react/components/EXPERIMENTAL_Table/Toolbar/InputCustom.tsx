@@ -1,6 +1,6 @@
 import React, { FC, InputHTMLAttributes } from 'react'
 
-import { NAMESPACES } from '../constants'
+import { NAMESPACES, ORDER_CLASSNAMES } from '../constants'
 
 export type InputCustomProps = InputHTMLAttributes<HTMLInputElement> & {
   input: Element
@@ -8,7 +8,9 @@ export type InputCustomProps = InputHTMLAttributes<HTMLInputElement> & {
 
 const UNSAFE_InputCustom: FC<InputCustomProps> = ({ input }) => {
   return (
-    <span className="order-0 w-40" id={NAMESPACES.TOOLBAR.INPUT_SEARCH}>
+    <span
+      className={`${ORDER_CLASSNAMES.TOOLBAR_CHILD.INPUT} w-40`}
+      id={NAMESPACES.TOOLBAR.INPUT_SEARCH}>
       {input}
     </span>
   )
