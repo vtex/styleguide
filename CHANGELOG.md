@@ -195,6 +195,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
+- `BulkActions` to `EXPERIMENTAL_TableV2`
+
+### Added
+
 - **Table** allow `isDangerous` style to bulk actions.
 
 ## [9.77.3] - 2019-09-04
