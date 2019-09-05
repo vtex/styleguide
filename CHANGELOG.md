@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.78.0] - 2019-09-05
+
+### Fixed
+
+- **Table** with FilterBar example.
+- **FilterBar** examples that were broken.
+- **Button** variation `tertiary` hover when disabled (there shouldn't be hover if disabled).
+
+### Added
+
+- **Conditions** component. Not EXPERIMENTAL anymore.
+- **Statement** refactor so it can be shared between FilterTag and Conditions components.
+
 ## [9.77.5] - 2019-09-05
 
 ### Fixed
@@ -14,6 +27,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Input` disabled background.
 
 ## [9.77.4] - 2019-09-04
+
 ### Changed
 - Move `appearance: none` inline style to class in `Input` component.
 

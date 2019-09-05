@@ -914,6 +914,8 @@ This feature uses FilterBar component inserting it between the toolbar and table
 ```js
 const ArrowDown = require('../icon/ArrowDown').default
 const ArrowUp = require('../icon/ArrowUp').default
+const Checkbox = require('../Checkbox').default
+const Input = require('../Input').default
 const sampleData = require('./sampleData').default
 const Tag = require('../Tag').default
 const tableLength = 7
@@ -962,18 +964,11 @@ class ResourceListExample extends React.Component {
     this.handleFiltersChange = this.handleFiltersChange.bind(this)
   }
 
-  simpleInputObject({
-    statements,
-    values,
-    statementIndex,
-    error,
-    extraParams,
-    onChangeObjectCallback,
-  }) {
+  simpleInputObject({ value, onChange }) {
     return (
       <Input
-        value={values || ''}
-        onChange={e => onChangeObjectCallback(e.target.value)}
+        value={value || ''}
+        onChange={e => onChange(e.target.value)}
       />
     )
   }
@@ -993,117 +988,88 @@ class ResourceListExample extends React.Component {
         {
           label: 'is',
           value: '=',
-          object: {
-            renderFn: this.simpleInputObject,
-            extraParams: {},
-          },
+          object: this.simpleInputObject,
         },
         {
           label: 'is not',
           value: '!=',
-          object: {
-            renderFn: this.simpleInputObject,
-            extraParams: {},
-          },
+          object: this.simpleInputObject,
         },
         {
           label: 'contains',
           value: 'contains',
-          object: {
-            renderFn: this.simpleInputObject,
-            extraParams: {},
-          },
+          object: this.simpleInputObject,
         },
       ],
     }
   }
 
-  numberInputObject({
-    statements,
-    values,
-    statementIndex,
-    error,
-    onChangeObjectCallback,
-  }) {
+  numberInputObject({ value, onChange }) {
     return (
       <Input
         placeholder="Insert number…"
         type="number"
         min="0"
         max="180"
-        value={values || ''}
+        value={value || ''}
         onChange={e => {
-          onChangeObjectCallback(e.target.value.replace(/\D/g, ''))
+          onChange(e.target.value.replace(/\D/g, ''))
         }}
       />
     )
   }
 
-  numberInputRangeObject({
-    statements,
-    values,
-    statementIndex,
-    error,
-    extraParams,
-    onChangeObjectCallback,
-  }) {
+  numberInputRangeObject({ value, onChange }) {
     return (
       <div className="flex">
         <Input
-          placeholder="Number from…"
+          placeholder="from…"
           errorMessage={
-            statements[statementIndex].object &&
-            parseInt(statements[statementIndex].object.first) >=
-              parseInt(statements[statementIndex].object.last)
+            value && value.first && value.last &&
+            parseInt(value.first) >=
+              parseInt(value.last)
               ? 'Must be smaller than other input'
               : ''
           }
-          value={values && values.first ? values.first : ''}
+          value={value && value.first ? value.first : ''}
           onChange={e => {
-            const currentObject = values || {}
+            const currentObject = value || {}
             currentObject.first = e.target.value.replace(/\D/g, '')
 
-            onChangeObjectCallback(currentObject)
+            onChange(currentObject)
           }}
         />
 
         <div className="mv4 mh3 c-muted-2 b">and</div>
 
         <Input
-          placeholder="Number to…"
-          value={values && values.last ? values.last : ''}
+          placeholder="to…"
+          value={value && value.last ? value.last : ''}
           onChange={e => {
-            const currentObject = values || {}
+            const currentObject = value || {}
             currentObject.last = e.target.value.replace(/\D/g, '')
 
-            onChangeObjectCallback(currentObject)
+            onChange(currentObject)
           }}
         />
       </div>
     )
   }
 
-  colorSelectorObject({
-    statements,
-    values,
-    statementIndex,
-    error,
-    extraParams,
-    onChangeObjectCallback,
-  }) {
+  colorSelectorObject({ value, onChange }) {
     const initialValue = {
       pink: true,
       black: true,
       blue: true,
       gray: true,
-      ...(values || {}),
+      ...(value || {}),
     }
     const toggleValueByKey = key => {
-      const newValues = {
-        ...(values || initialValue),
-        [key]: values ? !values[key] : false,
+      const newValue = {
+        ...(value || initialValue),
+        [key]: value ? !value[key] : false,
       }
-      return newValues
+      return newValue
     }
     return (
       <div>
@@ -1111,7 +1077,7 @@ class ResourceListExample extends React.Component {
           return (
             <div className="mb3" key={`class-statment-object-${opt}-${index}`}>
               <Checkbox
-                checked={values ? values[opt] : initialValue[opt]}
+                checked={value ? value[opt] : initialValue[opt]}
                 label={opt}
                 name="default-checkbox-group"
                 onChange={() => {
@@ -1120,7 +1086,7 @@ class ResourceListExample extends React.Component {
                   const isEmptyFilter = !newValueKeys.some(
                     key => !newValue[key]
                   )
-                  onChangeObjectCallback(isEmptyFilter ? null : newValue)
+                  onChange(isEmptyFilter ? null : newValue)
                 }}
                 value={opt}
               />
@@ -1221,10 +1187,7 @@ class ResourceListExample extends React.Component {
                 {
                   label: 'includes',
                   value: 'includes',
-                  object: {
-                    renderFn: this.colorSelectorObject,
-                    extraParams: {},
-                  },
+                  object: this.colorSelectorObject,
                 },
               ],
             },
@@ -1248,18 +1211,12 @@ class ResourceListExample extends React.Component {
                 {
                   label: 'is',
                   value: '=',
-                  object: {
-                    renderFn: this.numberInputObject,
-                    extraParams: {},
-                  },
+                  object: this.numberInputObject,
                 },
                 {
                   label: 'is between',
                   value: 'between',
-                  object: {
-                    renderFn: this.numberInputRangeObject,
-                    extraParams: {},
-                  },
+                  object: this.numberInputRangeObject,
                 },
               ],
             },
@@ -1387,6 +1344,8 @@ With Toolbar, Totalizers, Pagination and Filters
 ```js
 const ArrowDown = require('../icon/ArrowDown').default
 const ArrowUp = require('../icon/ArrowUp').default
+const Checkbox = require('../Checkbox').default
+const Input = require('../Input').default
 const sampleData = require('./sampleData').default
 const Tag = require('../Tag').default
 const tableLength = 5
