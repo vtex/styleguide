@@ -141,6 +141,12 @@ function StateHookExample() {
 | selectedDensity    | Density         | Current selected density            |
 | setSelectedDensity | Function        | selectedDensity setter              |
 
+# Features
+
+<div className="center mw7 pv6">
+  ![](./table.png)
+</div>
+
 # Clickable rows
 
 ```js
@@ -564,6 +570,24 @@ function PaginationExample() {
 ```
 
 # Bulk Actions
+
+Bulk actions allow the user to select some or all the rows to apply an action. Texts have to be given to the component via a `texts` object.
+Actions are passed via the `main` object and the `others` array props. Each object is composed of a `label` and the action event via `onClick` key.
+
+The returned value for all lines selected is an object `allLinesSelected: true` otherwise the data of the rows are returned in the key `selectedRows` as an array.
+
+##### NOTE 1:
+
+`onRowClick` actions are not happening when clicking the checkbox.
+
+##### NOTE 2:
+
+There are two "select all" items.
+
+- The **upper checkbox** on the left side selects the currently visible items, in the example below, 5.
+- The **Select all** button on the right side, selects all items from the database (by concept, since you will probably only load the visible items). Since not all items might be loaded in the table, the callback will only return a flag telling your app to handle all items for the next database operation.
+
+Check the console when selecting/unselecting rows or clicking an action button in the example below to see the action parameters
 
 ```js
 // Imports
