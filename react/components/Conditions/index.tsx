@@ -253,7 +253,7 @@ Conditions.propTypes = {
 
 Conditions.defaultProps = {
   operator: 'any',
-  hideOperator: true,
+  hideOperator: false,
   statements: [],
   onChangeOperator: () => {},
   onChangeStatements: () => {},
