@@ -16,6 +16,7 @@ interface Column {
 
 interface TableProps {
   nestedRows?: boolean
+  loading?: boolean
 }
 
 interface TableState {

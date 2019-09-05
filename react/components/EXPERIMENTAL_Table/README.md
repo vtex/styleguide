@@ -128,6 +128,64 @@ function StateHookExample() {
 | selectedDensity    | Density         | Current selected density            |
 | setSelectedDensity | Function        | selectedDensity setter              |
 
+# Loading
+
+```js
+// Imports
+const useTableState = require('./hooks/useTableState.ts').default
+const Toggle = require('../Toggle/index.js').default
+
+const columns = [
+  {
+    id: 'name',
+    title: 'Name',
+  },
+  {
+    id: 'country',
+    title: 'Country',
+  },
+]
+
+const items = [
+  {
+    name: 'En Sabah Nuh',
+    country: '🇨🇺Cuba',
+  },
+  {
+    name: 'Abdul Qamar',
+    country: '🇸🇦Saudi Arabia',
+  },
+  {
+    name: 'Goose the Cat',
+    country: '🇺🇸USA',
+  },
+  {
+    name: 'Brian Braddock',
+    country: '🇬🇧Great Britain',
+  },
+]
+
+function LoadingExample() {
+  const [loading, setLoading] = React.useState(false)
+  const tableState = useTableState({
+    columns,
+    items,
+  })
+
+  return (
+    <div>
+      <Toggle
+        label="Toggle table loading"
+        checked={loading}
+        onChange={() => setLoading(!loading)}
+      />
+      <Table state={tableState} loading={loading} />
+    </div>
+  )
+}
+;<LoadingExample />
+```
+
 # Pagination
 
 ```js
