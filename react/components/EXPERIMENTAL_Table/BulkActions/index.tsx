@@ -7,7 +7,7 @@ import ActionMenu from '../../ActionMenu'
 import Close from '../../icon/Close'
 
 import useTableContext from '../hooks/useTableContext'
-import { ORDER_CLASSNAMES } from '../constants'
+import { ORDER_CLASSNAMES, NAMESPACES } from '../constants'
 
 const BulkActions: FC = () => {
   const {
@@ -29,6 +29,7 @@ const BulkActions: FC = () => {
 
   return (
     <div
+      id={NAMESPACES.BULK_ACTIONS}
       className={csx(
         'flex flex-row justify-between bg-action-primary c-on-action-primary br3 br--top ph4',
         {

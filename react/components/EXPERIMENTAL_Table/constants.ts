@@ -35,6 +35,7 @@ export const NAMESPACES = {
     BUTTON_NEWLINE: `${NAMESPACE_PREFIX}__toolbar__button-newline`,
     BUTTON_EXTRA_ACTIONS: `${NAMESPACE_PREFIX}__toolbar__button-extra-actions`,
   },
+  BULK_ACTIONS: `${NAMESPACE_PREFIX}__bulk-actions`,
   PAGINATION: `${NAMESPACE_PREFIX}__pagination`,
 }
 
