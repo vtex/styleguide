@@ -16,7 +16,7 @@
     "clean:lib": "rm -rf lib",
     "clean:modules": "rm -rf modules",
     "compile": "run-s clean:lib clean:modules build:types babel:lib babel:modules",
-    "prepublishOnly": "run-s compile deploy",
+    "prepublishOnly": "run-s compile",
     "postreleasy": "vtex publish --public --verbose",
     "lint": "eslint react",
     "lint-fix": "eslint react --fix --max-warnings 0",
