@@ -1,11 +1,12 @@
 import { useContext } from 'react'
 
 import Context from '../context'
+import { OUT_OF_SCOPE_COMPOSITES_ERROR } from '../errors'
 
 const useTableContext = () => {
   const context = useContext(Context)
   if (!context) {
-    throw new Error('Ooops! Table composites cannot be used outside of it')
+    throw OUT_OF_SCOPE_COMPOSITES_ERROR
   }
   return context
 }

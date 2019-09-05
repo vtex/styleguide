@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.78.2] - 2019-09-05
+
+### Added
+
+- `Loading` to `EXPERIMENTAL_TableV2`
+
 ## [9.78.1] - 2019-09-05
 
  - Redeploy to generate lib folder in npm package that broke on last deploy
@@ -33,6 +39,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [9.77.4] - 2019-09-04
 
 ### Changed
+
 - Move `appearance: none` inline style to class in `Input` component.
 
 ### Added

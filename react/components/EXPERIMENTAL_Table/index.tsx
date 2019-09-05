@@ -7,9 +7,12 @@ import { TableProvider } from './context'
 import Toolbar from './Toolbar/index'
 import { DENSITY_OPTIONS, NAMESPACES } from './constants'
 import Pagination, { PaginationProps } from './Pagination'
+import { STATE_NOT_FOUND_ERROR } from './errors'
 
 const propTypes = {
   nestedRows: PropTypes.bool,
+  loading: PropTypes.bool,
+  itemsSizeEstimate: PropTypes.number,
   state: PropTypes.shape({
     schema: PropTypes.shape({
       columns: PropTypes.objectOf(
@@ -37,6 +40,9 @@ interface Composites {
 }
 
 const Table: FC<Props> & Composites = ({ children, state, ...props }) => {
+  if (!state) {
+    throw STATE_NOT_FOUND_ERROR
+  }
   return (
     <TableProvider value={{ ...state, ...props }}>
       <div id={NAMESPACES.CONTAINER} className="flex flex-column">
