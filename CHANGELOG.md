@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Removed
+
+- `deploy` task.
+
 ## [8.73.4] - 2019-09-05
 
 ## [8.73.3] - 2019-08-29
