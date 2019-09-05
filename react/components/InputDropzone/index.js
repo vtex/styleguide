@@ -9,41 +9,61 @@ const dropzoneRef = createRef()
 class InputDropzone extends PureComponent {
   state = {
     isHovering: false,
+    fileDropped: false,
   }
 
-  handleStartHovering = () => {
+  handleDragEnter = () => {
     this.setState({ isHovering: true })
   }
 
-  handleStopHovering = () => {
+  handleDragLeave = () => {
     this.setState({ isHovering: false })
   }
 
   handleDrop = files => {
-    this.setState({ isHovering: false })
+    this.setState({ isHovering: false, fileDropped: true })
     this.props.onDrop(files)
   }
 
   render() {
     const { children } = this.props
-    const { isHovering } = this.state
+    const { isHovering, fileDropped } = this.state
 
-    const baseClasses = 'flex flex-column items-center justify-center'
-    const hoveredClasses = 'b--action-primary bg-action-secondary'
-    const nonHoveredClasses = 'b--muted-4'
-    let classes = `${baseClasses} ba br2 bw1 b--dashed pa7 pa9-ns `
-    classes += `${isHovering ? hoveredClasses : nonHoveredClasses}`
+    const baseClasses =
+      'flex flex-column items-center justify-center b--light-blue '
+
+    const hoveredClasses = 'b--action-primary bg-action-secondary '
+
+    let dropzoneContainerClasses = `${baseClasses} ba br2 bw1 b--dashed pa7 pa9-ns `
+
+    const holderSize = '120px'
+    let iconHolderClasses =
+      'icon-holder-classes pa6 flex items-center justify-center '
+    const iconHolderStyles = {
+      borderRadius: '100%',
+      width: holderSize,
+      height: holderSize,
+    }
+
+    dropzoneContainerClasses += `${
+      isHovering || fileDropped ? hoveredClasses : ''
+    }`
+    iconHolderClasses += `${
+      isHovering || fileDropped ? 'bg-action-primary ' : 'bg-near-white '
+    }`
 
     return (
       <Dropzone
         ref={dropzoneRef}
         onDrop={this.handleDrop}
-        onDragEnter={this.handleStartHovering}
-        onDragLeave={this.handleStopHovering}>
+        onDragEnter={this.handleDragEnter}
+        onDragLeave={this.handleDragLeave}>
         {({ getRootProps, getInputProps }) => (
-          <div className={classes} {...getRootProps()}>
+          <div className={dropzoneContainerClasses} {...getRootProps()}>
             <input {...getInputProps()} />
-            <PaperIcon />
+            <div className={iconHolderClasses} style={iconHolderStyles}>
+              <PaperIcon />
+            </div>
             {children && children}
           </div>
         )}
