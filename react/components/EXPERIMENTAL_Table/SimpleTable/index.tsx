@@ -9,18 +9,16 @@ import Loading from './Loading'
 const SimpleTable: FC = () => {
   const { loading } = useTableContext()
   return (
-    <div id={NAMESPACES.TABLE} className="order-1 mw-100">
-      <div className="overflow-x-auto">
-        <div className="dt w-100" style={{ borderSpacing: 0 }}>
-          {loading ? (
-            <Loading />
-          ) : (
-            <>
-              <Header />
-              <Rows />
-            </>
-          )}
-        </div>
+    <div id={NAMESPACES.TABLE} className="order-1 mw-100 overflow-x-auto">
+      <div className="dt w-100" style={{ borderSpacing: 0 }}>
+        {loading ? (
+          <Loading />
+        ) : (
+          <>
+            <Header />
+            <Rows />
+          </>
+        )}
       </div>
     </div>
   )
