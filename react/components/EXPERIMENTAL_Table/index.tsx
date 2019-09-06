@@ -70,6 +70,15 @@ export const tablePropTypes = {
     selectAllVisibleRows: PropTypes.func,
   }),
   state: PropTypes.shape({
+    visibleColumns: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string,
+        title: PropTypes.string,
+        width: PropTypes.number,
+        cellRender: PropTypes.func,
+        headerRender: PropTypes.func,
+      })
+    ),
     columns: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.string,
