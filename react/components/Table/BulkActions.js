@@ -84,24 +84,24 @@ class BulkActions extends PureComponent {
               )}
             </span>
           )}
-          <span className="mr2">
-            {allLinesSelected ? (
-              bulkActions &&
-              bulkActions.texts &&
-              bulkActions.texts.allRowsSelected(
-                <span className="b">{bulkActions.totalItems}</span>
-              )
-            ) : (
-              <Button onClick={() => onSelectAllLines()}>
-                <span className="ttu">
-                  {bulkActions &&
-                    `${bulkActions.texts && bulkActions.texts.selectAll} ${
-                      bulkActions.totalItems
-                    }`}
-                </span>
-              </Button>
+          {bulkActions &&
+            bulkActions.texts &&
+            bulkActions.texts.selectAll &&
+            bulkActions.texts.allRowsSelected && (
+              <span className="mr2">
+                {allLinesSelected ? (
+                  bulkActions.texts.allRowsSelected(
+                    <span className="b">{bulkActions.totalItems}</span>
+                  )
+                ) : (
+                  <Button onClick={() => onSelectAllLines()}>
+                    <span className="ttu">
+                      {`${bulkActions.texts.selectAll} ${bulkActions.totalItems}`}
+                    </span>
+                  </Button>
+                )}
+              </span>
             )}
-          </span>
           <ButtonWithIcon icon={close} onClick={() => onDeselectAllLines()} />
         </div>
       </div>
