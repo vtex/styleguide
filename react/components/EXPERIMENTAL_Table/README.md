@@ -637,29 +637,29 @@ function BulkExample() {
         <React.Fragment>Selected rows: {qty}</React.Fragment>
       ),
       selectAll: 'Select all',
-      allRowsSelected: qty => (
-        <React.Fragment>All rows selected: {qty}</React.Fragment>
+      allRowsSelected: element => (
+        <React.Fragment>All rows selected: {element}</React.Fragment>
       ),
     },
     totalItems: 4,
     onChange: params => console.log(params),
     main: {
       label: 'Main Action',
-      handleCallback: params => console.log(params),
+      onClick: params => console.log(params),
     },
     others: [
       {
         label: 'Action 1',
-        handleCallback: params => console.log(params),
+        onClick: params => console.log(params),
       },
       {
         label: 'Action 2',
-        handleCallback: params => console.log(params),
+        onClick: params => console.log(params),
       },
     ],
   }
 
-  const { bulkedColumns, bulkedItems, ...bulkHandlers } = useTableBulkActions({
+  const { bulkedColumns, bulkedItems, ...bulk } = useTableBulkActions({
     columns,
     items,
     bulkActions,
@@ -678,8 +678,8 @@ function BulkExample() {
   }
 
   return (
-    <Table state={{ ...tableState, ...bulkHandlers }}>
-      <Table.BulkActions />
+    <Table state={tableState} bulk={bulk}>
+      <Table.BulkActions {...bulkActions} />
     </Table>
   )
 }

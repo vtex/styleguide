@@ -1,7 +1,12 @@
 import React, { useMemo, useEffect, useReducer, useCallback } from 'react'
 import Checkbox from '../BulkActions/Checkbox'
+import { BulkActionsProps } from '../BulkActions'
 
-const useTableBulkActions = ({ items, columns, bulkActions }) => {
+const useTableBulkActions = ({
+  items,
+  columns,
+  bulkActions,
+}: hookInput): hookReturn => {
   const [bulkState, dispatch] = useReducer(reducer, {
     selectedRows: [],
     allLinesSelected: false,
@@ -11,7 +16,7 @@ const useTableBulkActions = ({ items, columns, bulkActions }) => {
     () =>
       bulkActions &&
       bulkActions.main &&
-      typeof bulkActions.main.handleCallback === 'function',
+      typeof bulkActions.main.onClick === 'function',
     [bulkActions]
   )
 
@@ -26,7 +31,7 @@ const useTableBulkActions = ({ items, columns, bulkActions }) => {
     return hasBulkActions && items.map((item, i) => ({ id: i, ...item }))
   }, [items, columns])
 
-  const bulkedColumns = useMemo(() => {
+  const bulkedColumns = useMemo<Array<Column>>(() => {
     const headerRender = () => {
       const selectedRowsLength = bulkState.selectedRows.length
       const itemsLength = bulkedItems.length
@@ -126,7 +131,6 @@ const useTableBulkActions = ({ items, columns, bulkActions }) => {
     /** data */
     bulkedColumns,
     bulkedItems,
-    bulkActions,
 
     /** handler fn */
     selectAllRows,
@@ -138,28 +142,7 @@ const useTableBulkActions = ({ items, columns, bulkActions }) => {
   }
 }
 
-type BulkedItem = unknown & {
-  id: number
-}
-
-type BulkState = {
-  selectedRows: Array<BulkedItem>
-  allLinesSelected: boolean
-}
-
-type BulkAction = {
-  type:
-    | 'SET_SELECTED_ROWS'
-    | 'SET_ALL_LINES_SELECTED'
-    | 'DESELECT_ALL_ROWS'
-    | 'SELECT_ALL_ROWS'
-    | 'SELECT_ROW'
-  selectedRows?: Array<BulkedItem>
-  allLinesSelected?: boolean
-  row?: BulkedItem
-}
-
-function reducer(state: BulkState, action: BulkAction) {
+function reducer(state: BulkState, action: Action) {
   switch (action.type) {
     case 'SET_SELECTED_ROWS': {
       return {
@@ -207,6 +190,39 @@ function reducer(state: BulkState, action: BulkAction) {
       return state
     }
   }
+}
+
+type Action = {
+  type:
+    | 'SET_SELECTED_ROWS'
+    | 'SET_ALL_LINES_SELECTED'
+    | 'DESELECT_ALL_ROWS'
+    | 'SELECT_ALL_ROWS'
+    | 'SELECT_ROW'
+  selectedRows?: Array<BulkedItem>
+  allLinesSelected?: boolean
+  row?: BulkedItem
+}
+
+type hookInput = {
+  items: Array<Object>
+  columns: Array<Column>
+  bulkActions: BulkActionsProps
+}
+
+type hookReturn = {
+  bulkedColumns?: Array<Column>
+  bulkedItems?: Array<BulkedItem>
+  bulkState?: BulkState
+  hasBulkActions?: boolean
+  hasPrimaryBulkAction?: boolean
+  hasSecondaryBulkActions?: boolean
+  selectAllRows?: () => void
+  deselectAllRows?: () => void
+  selectRow?: (row: BulkedItem) => void
+  setSelectedRows?: (selectedRows: Array<BulkedItem>) => void
+  setAllLinesSelected?: (allLinesSelected: boolean) => void
+  selectAllVisibleRows?: () => void
 }
 
 export default useTableBulkActions
