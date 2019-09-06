@@ -62,6 +62,8 @@ export const EMPTY_STATE_SIZE_IN_ROWS = 5
 export const DEFAULT_SCROLLBAR_WIDTH = 17
 export const NESTED_ROW_PREFIX_WIDTH = 36
 export const SELECTED_ROW_BACKGROUND = '#dbe9fd'
+export const BULK_ACTIONS_HEIGHT = 56
+export const BULK_ACTIONS_TRANSITION = 'height 0.2s ease-in-out, padding 0.2s ease-in-out'
 
 export const ICON_SIZE = {
   HEAVY: 13,

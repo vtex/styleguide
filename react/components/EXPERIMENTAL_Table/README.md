@@ -571,10 +571,10 @@ function PaginationExample() {
 
 # Bulk Actions
 
-Bulk actions allow the user to select some or all the rows to apply an action. Texts have to be given to the component via a `texts` object.
+Bulk actions allow the user to select some or all the rows to execute an action. Texts have to be given to the component via a `texts` object.
 Actions are passed via the `main` object and the `others` array props. Each object is composed of a `label` and the action event via `onClick` key.
 
-The returned value for all lines selected is an object `allLinesSelected: true` otherwise the data of the rows are returned in the key `selectedRows` as an array.
+The returned value for all selected lines is an object `allLinesSelected: true` otherwise the data of the rows are returned in the key `selectedRows` as an array.
 
 ##### NOTE 1:
 
