@@ -81,15 +81,18 @@ const BulkActions: FC<BulkActionsProps> = ({
             {texts.rowsSelected(selectedRowsLength)}
           </span>
         )}
-        <span className="mr2">
-          {bulkState.allLinesSelected ? (
-            texts.allRowsSelected(<span className="b">{totalItems}</span>)
-          ) : (
-            <Button onClick={() => selectAllRows()}>
-              <span className="ttu">{`${texts.selectAll} ${totalItems}`}</span>
-            </Button>
-          )}
-        </span>
+        {texts.selectAll && texts.allRowsSelected && (
+          <span className="mr2">
+            {bulkState.allLinesSelected ? (
+              texts.allRowsSelected(<span className="b">{totalItems}</span>)
+            ) : (
+              <Button onClick={() => selectAllRows()}>
+                <span className="ttu">{`${texts.selectAll} ${totalItems}`}</span>
+              </Button>
+            )}
+          </span>
+        )}
+
         <ButtonWithIcon icon={<Close />} onClick={() => deselectAllRows()} />
       </div>
     </div>
