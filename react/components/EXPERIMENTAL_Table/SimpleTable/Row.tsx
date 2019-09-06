@@ -24,7 +24,7 @@ const RowContainer: FC<{ id: string }> = ({ id, children }) => {
  * 🤓Be aware that the subRows are rendered recursivelly
  */
 const Row: FC<RowProps> = ({ data, index, depth }) => {
-  const { columns, nestedRows } = useTableContext()
+  const { visibleColumns, nestedRows } = useTableContext()
   const [collapsed, setCollapsed] = useState(false)
 
   const { children, ...rowData } = data
@@ -56,7 +56,7 @@ const Row: FC<RowProps> = ({ data, index, depth }) => {
   const renderCells = (arrow?: boolean) => {
     return (
       <RowContainer id={`${NAMESPACES.ROW}-${index}-${depth}`} key={rowKey}>
-        {columns.map((column: Column, cellIndex: number) => {
+        {visibleColumns.map((column: Column, cellIndex: number) => {
           const { cellRender, width } = column
           const cellData = rowData[column.id]
           const content = cellRender

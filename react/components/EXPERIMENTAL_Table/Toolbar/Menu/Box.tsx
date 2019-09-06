@@ -1,4 +1,7 @@
 import React, { FC } from 'react'
+
+import Button from '../../../Button/index.js'
+
 import { BOX_ALIGNMENT } from '../../constants'
 
 export type BoxProps = {
@@ -7,6 +10,7 @@ export type BoxProps = {
   alignMenu?: Alignment
   noMargin?: boolean
   borderClasses?: string
+  groupActions?: Array<MenuAction>
 }
 
 const Box: FC<BoxProps> = ({
@@ -15,6 +19,7 @@ const Box: FC<BoxProps> = ({
   width,
   noMargin,
   borderClasses,
+  groupActions,
   children,
 }) => {
   const isAlignRight = alignMenu === BOX_ALIGNMENT.RIGHT
@@ -27,6 +32,20 @@ const Box: FC<BoxProps> = ({
         width: width,
       }}>
       <div className="w-100 b2 br2 bg-base">
+        {groupActions && (
+          <div className="flex inline-flex bb b--muted-4 w-100 justify-center pv4">
+            {groupActions.map(action => (
+              <div className="mh2" key={action.id}>
+                <Button
+                  variation="secondary"
+                  size="small"
+                  onClick={action.onClick}>
+                  {action.label}
+                </Button>
+              </div>
+            ))}
+          </div>
+        )}
         <div className="overflow-auto" style={{ height: height }}>
           {children}
         </div>

@@ -3,9 +3,9 @@ import React, { FC } from 'react'
 import { useMenuContext } from './context'
 
 export type ItemProps = {
-  isSelected: boolean
   handleCallback: Function
-  closeMenuOnClick: boolean
+  isSelected?: boolean
+  closeMenuOnClick?: boolean
 }
 
 const Item: FC<ItemProps> = ({
