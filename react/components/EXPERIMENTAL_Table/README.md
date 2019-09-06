@@ -585,7 +585,7 @@ The returned value for all selected lines is an object `allLinesSelected: true` 
 There are two "select all" items.
 
 - The **upper checkbox** on the left side selects the currently visible items, in the example below, 5.
-- The **Select all** button on the right side, selects all items from the database (by concept, since you will probably only load the visible items). Since not all items might be loaded in the table, the callback will only return a flag telling your app to handle all items for the next database operation.
+- Beeing **optional**, the **Select all** button on the right side, selects all items from the database (by concept, since you will probably only load the visible items). Since not all items might be loaded in the table, the callback will only return a flag telling your app to handle all items for the next database operation.
 
 Check the console when selecting/unselecting rows or clicking an action button in the example below to see the action parameters
 
