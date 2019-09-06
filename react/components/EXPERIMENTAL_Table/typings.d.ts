@@ -9,8 +9,9 @@ type MenuAction = {
 }
 
 type Column = {
-  id: string
-  title: string
+  id?: string
+  title?: string
+
   width?: number
   cellRender?: ({ cellData: any, rowData: any }) => React.ReactNode
   headerRender?: ({ headerData: any }) => React.ReactNode
@@ -29,6 +30,28 @@ type TableProps = {
     children?: Element
   }
   onRowClick?: ({ rowData: unknown }) => void
+}
+
+type BulkedItem = unknown & {
+  id: number
+}
+
+type BulkState = {
+  selectedRows?: Array<BulkedItem>
+  allLinesSelected?: boolean
+}
+
+type Bulk = {
+  bulkState?: BulkState
+  hasBulkActions?: boolean
+  hasPrimaryBulkAction?: boolean
+  hasSecondaryBulkActions?: boolean
+  selectAllRows?: () => void
+  deselectAllRows?: () => void
+  selectRow?: (row: BulkedItem) => void
+  setSelectedRows?: (selectedRows: Array<BulkedItem>) => void
+  setAllLinesSelected?: (allLinesSelected: boolean) => void
+  selectAllVisibleRows?: () => void
 }
 
 type TableState = {

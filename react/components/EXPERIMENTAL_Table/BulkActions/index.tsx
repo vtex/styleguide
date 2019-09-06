@@ -9,12 +9,16 @@ import Close from '../../icon/Close'
 import useTableContext from '../hooks/useTableContext'
 import { ORDER_CLASSNAMES, NAMESPACES } from '../constants'
 
-const BulkActions: FC = () => {
+const BulkActions: FC<BulkActionsProps> = ({
+  texts,
+  main,
+  totalItems,
+  others,
+}) => {
   const {
     bulkState,
     selectAllRows,
     deselectAllRows,
-    bulkActions,
     hasBulkActions,
     hasPrimaryBulkAction,
     hasSecondaryBulkActions,
@@ -49,46 +53,35 @@ const BulkActions: FC = () => {
               <Button
                 variation="secondary"
                 size="small"
-                onClick={() =>
-                  bulkActions.main.handleCallback(bulkActionsReturnedParameters)
-                }>
-                {bulkActions.main.label}
+                onClick={() => main.onClick(bulkActionsReturnedParameters)}>
+                {main.label}
               </Button>
             </div>
           )}
           {hasSecondaryBulkActions && (
             <ActionMenu
-              label={bulkActions.texts.secondaryActionsLabel}
+              label={texts.secondaryActionsLabel}
               buttonProps={{ variation: 'secondary', size: 'small' }}
-              options={bulkActions.others.map(el => ({
+              options={others.map(el => ({
                 label: el.label,
-                onClick: () => el.handleCallback(bulkActionsReturnedParameters),
+                onClick: () => el.onClick(bulkActionsReturnedParameters),
               }))}
             />
           )}
         </div>
       )}
       <div className="tr flex flex-row items-center">
-        {!bulkState.allLinesSelected && bulkActions && bulkActions.texts && (
+        {!bulkState.allLinesSelected && (
           <span className="mr4 c-muted-4">
-            {bulkActions.texts.rowsSelected(selectedRowsLength)}
+            {texts.rowsSelected(selectedRowsLength)}
           </span>
         )}
         <span className="mr2">
           {bulkState.allLinesSelected ? (
-            bulkActions &&
-            bulkActions.texts &&
-            bulkActions.texts.allRowsSelected(
-              <span className="b">{bulkActions.totalItems}</span>
-            )
+            texts.allRowsSelected(<span className="b">{totalItems}</span>)
           ) : (
             <Button onClick={() => selectAllRows()}>
-              <span className="ttu">
-                {bulkActions &&
-                  `${bulkActions.texts && bulkActions.texts.selectAll} ${
-                    bulkActions.totalItems
-                  }`}
-              </span>
+              <span className="ttu">{`${texts.selectAll} ${totalItems}`}</span>
             </Button>
           )}
         </span>
@@ -96,6 +89,19 @@ const BulkActions: FC = () => {
       </div>
     </div>
   )
+}
+
+export type BulkActionsProps = {
+  texts: {
+    secondaryActionsLabel: string
+    rowsSelected: (qty: number) => React.ReactNode
+    selectAll: string
+    allRowsSelected: (element: React.ReactElement) => React.ReactNode
+  }
+  totalItems: number
+  onChange: Function
+  main: MenuAction
+  others: Array<MenuAction>
 }
 
 export default BulkActions
