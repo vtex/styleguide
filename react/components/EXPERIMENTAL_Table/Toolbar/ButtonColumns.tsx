@@ -30,14 +30,10 @@ const ButtonColumns: FC<ButtonColumnsProps> = ({
     toggleColumn,
   } = useTableContext()
 
-  const calculateFieldsBoxHeight = () => {
-    const estimate = Object.keys(columns).length * COLUMNS_BOX.ITEM_HEIGHT
-    return estimate > COLUMNS_BOX.MAX_HEIGHT ? COLUMNS_BOX.MAX_HEIGHT : estimate
-  }
-
-  const height = useMemo(() => calculateFieldsBoxHeight(), [
-    Object.keys(columns).length,
-  ])
+  const height = Math.min(
+    columns.length * COLUMNS_BOX.ITEM_HEIGHT,
+    COLUMNS_BOX.MAX_HEIGHT
+  )
 
   return (
     <Menu
