@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.78.5] - 2019-09-06
+
 ### Fixed
 
 - **PageHeader** `subtitle` was rendering even if there is no prop to render it.
