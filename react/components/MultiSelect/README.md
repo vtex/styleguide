@@ -1,5 +1,6 @@
 ```jsx noeditor
-<Alert type="warning">
+const Alert = require('../Alert').default
+;<Alert type="warning">
   This component will be soon deprecated. Please prefer using the{' '}
   <a
     class="mh2 link fw7"
