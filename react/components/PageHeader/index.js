@@ -48,9 +48,11 @@ class PageHeader extends PureComponent {
             </div>
           )}
           <div className="w-100" style={{ height: 0 }} />
-          <div className="vtex-pageHeader__subtitle t-body lh-copy c-muted-1 mv5 order-1 order-0-ns">
-            {subtitle}
-          </div>
+          {subtitle && (
+            <div className="vtex-pageHeader__subtitle t-body lh-copy c-muted-1 mv5 order-1 order-0-ns">
+              {subtitle}
+            </div>
+          )}
         </div>
       </div>
     )
