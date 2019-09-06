@@ -6,13 +6,15 @@ import ButtonWithIcon from '../../ButtonWithIcon'
 import ActionMenu from '../../ActionMenu'
 import Close from '../icon/Close'
 
-import useTableContext from './hooks/useTableContext'
+import useTableContext from '../hooks/useTableContext'
+
 import {
   ORDER_CLASSNAMES,
   NAMESPACES,
   BULK_ACTIONS_HEIGHT,
   BULK_ACTIONS_TRANSITION,
 } from './constants'
+
 import { BULK_STATE_NOT_FOUND_ERROR } from './errors'
 
 const BulkActions: FC<BulkActionsProps> = ({
