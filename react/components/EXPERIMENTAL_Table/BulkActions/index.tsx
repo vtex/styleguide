@@ -7,7 +7,12 @@ import ActionMenu from '../../ActionMenu'
 import Close from '../../icon/Close'
 
 import useTableContext from '../hooks/useTableContext'
-import { ORDER_CLASSNAMES, NAMESPACES } from '../constants'
+import {
+  ORDER_CLASSNAMES,
+  NAMESPACES,
+  BULK_ACTIONS_HEIGHT,
+  BULK_ACTIONS_TRANSITION,
+} from '../constants'
 
 const BulkActions: FC<BulkActionsProps> = ({
   texts,
@@ -42,9 +47,9 @@ const BulkActions: FC<BulkActionsProps> = ({
         ORDER_CLASSNAMES.BULK_ACTIONS
       )}
       style={{
-        height: hasRowsSelected ? '56px' : 0,
+        height: hasRowsSelected ? BULK_ACTIONS_HEIGHT : 0,
         overflow: hasRowsSelected ? 'auto' : 'hidden',
-        transition: 'height 0.2s ease-in-out, padding 0.2s ease-in-out',
+        transition: BULK_ACTIONS_TRANSITION,
       }}>
       {hasBulkActions && (
         <div className="flex flex-row">

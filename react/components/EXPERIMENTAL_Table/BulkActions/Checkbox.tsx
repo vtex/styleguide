@@ -5,22 +5,19 @@ import CheckboxBase from '../../Checkbox/index.js'
 /**
  * Wrapper around Checkbox to avoid event propagation
  */
-const Checkbox: FC<Props> = ({ checked, partial, id, onClick, disabled }) => (
+const Checkbox: FC<Props> = ({ id, onClick, ...props }) => (
   <div onClick={e => e.stopPropagation()}>
     <CheckboxBase
-      checked={checked}
-      partial={partial}
-      value={`${id}`}
-      id={`${id}`}
+      id={id}
       name={`row_${id}`}
       onChange={() => onClick(id)}
-      disabled={disabled}
+      {...props}
     />
   </div>
 )
 
 type Props = {
-  id: string | number
+  id: string
   checked: boolean
   onClick: Function
   disabled?: boolean

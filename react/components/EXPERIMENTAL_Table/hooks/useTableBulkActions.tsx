@@ -53,7 +53,7 @@ const useTableBulkActions = ({
       <Checkbox
         checked={bulkState.selectedRows.some(row => row.id === rowData.id)}
         onClick={() => selectRow(rowData)}
-        id={rowData.id}
+        id={`${rowData.id}`}
         disabled={bulkState.allLinesSelected}
       />
     )
