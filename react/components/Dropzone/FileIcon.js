@@ -1,6 +1,6 @@
 import React from 'react'
 
-const PaperIcon = () => (
+const FileIcon = () => (
   <svg width="40" height="46" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       d="M24.793.793A1 1 0 0 0 24.086.5H1.5a1 1 0 0 0-1 1v43a1 1 0 0 0 1 1h37a1 1 0 0 0 1-1V15.914a1 1 0 0 0-.293-.707L24.793.793z"
@@ -26,4 +26,4 @@ const PaperIcon = () => (
   </svg>
 )
 
-export default PaperIcon
+export default FileIcon
