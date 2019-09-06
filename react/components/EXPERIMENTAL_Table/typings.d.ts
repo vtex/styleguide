@@ -57,6 +57,7 @@ type Bulk = {
 type TableState = {
   visibleColumns?: Array<Column>
   columns?: Array<Column>
+  visibleColumns?: Array<Column>
   items?: Array<Object>
   isEmpty?: boolean
   tableHeight?: number

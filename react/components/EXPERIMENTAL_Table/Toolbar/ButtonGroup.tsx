@@ -42,7 +42,8 @@ const getButton = (type: ButtonType, props: Props) => {
   switch (type) {
     case 'columns': {
       return (
-        <span className="order-0">
+        <span
+          className={ORDER_CLASSNAMES.TOOLBAR_CHILD.BUTTON_GROUP_CHILD.COLUMNS}>
           <ButtonColumns {...(props as ButtonColumnsProps)} />
         </span>
       )
