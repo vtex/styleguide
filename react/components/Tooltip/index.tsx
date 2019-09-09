@@ -44,7 +44,7 @@ type Props = PropTypes.InferProps<typeof propTypes>
 const defaultProps: Props = {
   trigger: 'hover',
   position: 'top',
-  size: 'mini',
+  size: 'small',
   delay: 0,
   duration: 200,
   timmingFn: 'ease-in-out',

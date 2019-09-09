@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- **Tooltip** offset size, default font size and shadow css class.
+
 ## [9.78.9] - 2019-09-09
 
 ## [9.78.8] - 2019-09-09

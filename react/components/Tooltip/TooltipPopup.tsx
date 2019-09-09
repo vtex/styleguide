@@ -10,7 +10,7 @@ import style from './tooltip.css'
 export type Position = 'top' | 'right' | 'bottom' | 'left'
 export type Size = 'mini' | 'small'
 
-const OFFSET = 16
+const OFFSET = 8
 const hasComputedDimensions = rect => rect && rect.width && rect.height
 
 const propTypes = {
@@ -68,7 +68,7 @@ const TooltipPopup: FC<PropTypes.InferProps<typeof propTypes>> = ({
   }, [visible])
 
   const popupClasses = classNames(
-    'absolute pv3 ph4 bg-base--inverted c-on-base--inverted br2 shadow-1 mw5 overflow-hidden',
+    'absolute pv3 ph4 bg-base--inverted c-on-base--inverted br2 shadow-4 mw5 overflow-hidden',
     style.popup,
     {
       dn: (!visible && !showPopup) || !childRect || !popupRect,
