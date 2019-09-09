@@ -58,7 +58,7 @@ const Table: FC<Props> & Composites = ({
     <TableProvider value={{ ...state, ...props }}>
       <div id={NAMESPACES.CONTAINER} className="flex flex-column">
         {children}
-        {state.isEmpty ? (
+        {state.isEmpty && emptyState ? (
           <Box>
             <EmptyState title={emptyState.label}>
               {emptyState.children}

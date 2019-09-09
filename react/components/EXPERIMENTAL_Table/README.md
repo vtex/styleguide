@@ -604,6 +604,10 @@ function ToolbarExample() {
     density: 'medium',
   })
 
+  const emptyState = {
+    label: 'The table is empty',
+  }
+
   const inputSearch = {
     value: inputValue,
     placeholder: 'Search stuff...',
@@ -677,7 +681,7 @@ function ToolbarExample() {
   }
 
   return (
-    <Table state={tableState}>
+    <Table state={tableState} emptyState={emptyState}>
       <Table.Toolbar>
         <Table.Toolbar.InputSearch {...inputSearch} />
         <Table.Toolbar.ButtonGroup>
