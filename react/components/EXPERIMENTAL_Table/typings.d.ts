@@ -28,6 +28,7 @@ type TableProps = {
     label?: string
     children?: Element
   }
+  onRowClick?: ({ rowData: unknown }) => void
 }
 
 type TableState = {
