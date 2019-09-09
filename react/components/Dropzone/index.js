@@ -29,6 +29,19 @@ class Dropzone extends PureComponent {
     this.props.onDrop(files)
   }
 
+  handleRemoveFile = fileIndex => {
+    const { files } = this.state
+
+    if (files.length > 1) {
+      const filteredFiles = files.filter((_, i) => i !== fileIndex)
+      this.setState({ files: filteredFiles }, () =>
+        this.props.onFileReset(filteredFiles)
+      )
+    } else {
+      this.handleReset()
+    }
+  }
+
   handleReset = () => {
     this.setState({ files: [], fileDropped: false })
   }
@@ -42,8 +55,7 @@ class Dropzone extends PureComponent {
       'flex flex-column items-center justify-center b--light-blue ba br2 bw1 b--dashed '
     let iconHolderClasses =
       'flex items-center justify-center pa6  bg-near-white '
-    const droppedContainerClasses =
-      'bg-light-silver flex flex-row justify-between w-100 items-top'
+    const droppedContainerClasses = 'bg-light-silver w-100 '
 
     const holderSize = '120px'
     const iconHolderStyles = {
@@ -76,24 +88,22 @@ class Dropzone extends PureComponent {
           <div className={dropzoneContainerClasses} {...getRootProps()}>
             {fileDropped ? (
               <div className={droppedContainerClasses}>
-                <div className="flex flex-column">
-                  {files.map((file, fileIndex) => (
-                    <div
-                      key={file.name}
-                      className={`black-70 ${
-                        files.length > 1 && fileIndex !== files.length - 1
-                          ? 'mb2'
-                          : ''
-                      }`}>
-                      {file.name}
-                    </div>
-                  ))}
-                </div>
-                <ButtonWithIcon
-                  onClick={this.handleReset}
-                  variation="tertiary"
-                  icon={<IconClose />}
-                />
+                {files.map((file, fileIndex) => (
+                  <div
+                    key={file.name}
+                    className={`black-70 flex flex-row justify-between items-center ${
+                      files.length > 1 && fileIndex !== files.length - 1
+                        ? 'mb2'
+                        : ''
+                    }`}>
+                    <span>{file.name}</span>
+                    <ButtonWithIcon
+                      onClick={() => this.handleRemoveFile(fileIndex)}
+                      variation="tertiary"
+                      icon={<IconClose />}
+                    />
+                  </div>
+                ))}
               </div>
             ) : isLoading ? (
               <div className={iconHolderClasses} style={iconHolderStyles}>
@@ -120,11 +130,14 @@ Dropzone.defaultProps = {
   icon: null,
   isLoading: false,
   isLoadingText: null,
+  onFileReset: () => {},
 }
 
 Dropzone.propTypes = {
-  /** Callback with the conten of the file(s) */
+  /** Callback when file(s) is(are) droppped */
   onDrop: PropTypes.func.isRequired,
+  /** Callback when a file is removed */
+  onFileReset: PropTypes.func,
   /** Content after the file icon */
   children: PropTypes.node,
   /** Loading state */
