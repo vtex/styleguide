@@ -68,10 +68,6 @@ module.exports = {
       content: 'react/components/icon/README.md',
     },
     {
-      name: 'Charts',
-      content: './docs/charts.md',
-    },
-    {
       name: 'Components',
       content: './docs/components.md',
       skipComponentsWithoutExample: true,
