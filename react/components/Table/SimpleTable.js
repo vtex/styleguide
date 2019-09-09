@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { MultiGrid, AutoSizer } from 'react-virtualized'
+import {
+  MultiGrid,
+  AutoSizer,
+  CellMeasurer,
+  CellMeasurerCache,
+} from 'react-virtualized'
 import ArrowDown from '../icon/ArrowDown'
 import ArrowUp from '../icon/ArrowUp'
 import OptionsDots from '../icon/OptionsDots'
@@ -22,6 +27,12 @@ class SimpleTable extends Component {
     this.state = {
       hoverRowIndex: -1,
     }
+
+    this._cache = new CellMeasurerCache({
+      defaultHeight: props.rowHeight,
+      minHeight: props.rowHeight,
+      fixedWidth: true,
+    })
   }
 
   toggleSortType = key => {
@@ -71,6 +82,20 @@ class SimpleTable extends Component {
       : DEFAULT_COLUMN_WIDTH
   }
 
+  calculateRowHeight = index => {
+    const { disableHeader, dynamicRowHeight, rowHeight } = this.props
+    const isHeader = !disableHeader && index === 0
+    if (isHeader) {
+      return HEADER_HEIGHT
+    }
+
+    if (dynamicRowHeight) {
+      return this._cache.rowHeight({ index })
+    }
+
+    return rowHeight
+  }
+
   addLineActionsToSchema = (schema, lineActions) => {
     return {
       ...schema.properties,
@@ -101,6 +126,19 @@ class SimpleTable extends Component {
     }
   }
 
+  calculateContainerHeight = () => {
+    const { disableHeader, items } = this.props
+
+    const rowCount = disableHeader ? items.length : items.length + 1
+
+    let containerHeight = 0
+    for (let rowIndex = 0; rowIndex < rowCount; rowIndex++) {
+      containerHeight += this.calculateRowHeight(rowIndex)
+    }
+
+    return containerHeight
+  }
+
   render() {
     const {
       schema,
@@ -111,11 +149,9 @@ class SimpleTable extends Component {
       emptyStateLabel,
       emptyStateChildren,
       onRowClick,
-      containerHeight,
       sort: { sortOrder, sortedBy },
       onSort,
       updateTableKey,
-      rowHeight,
       fullWidth,
       lineActions,
       loading,
@@ -128,6 +164,9 @@ class SimpleTable extends Component {
     const properties = Object.keys(schema.properties)
 
     const tableKey = `vtex-table--${updateTableKey}--${density}`
+
+    const containerHeight = this.calculateContainerHeight()
+
     return (
       <div className="vh-100 w-100 dt" style={{ height: containerHeight }}>
         {loading ? (
@@ -137,9 +176,9 @@ class SimpleTable extends Component {
             <Spinner />
           </div>
         ) : (
-          <div>
+          <div className="h-100">
             <AutoSizer key={tableKey}>
-              {({ width }) => {
+              {({ width, height }) => {
                 const colsWidth = Object.keys(schema.properties).reduce(
                   (acc, curr) => {
                     const col = schema.properties[curr]
@@ -160,16 +199,13 @@ class SimpleTable extends Component {
 
                 return (
                   <MultiGrid
-                    height={
-                      items.length === 0 ? HEADER_HEIGHT : containerHeight
-                    }
+                    height={height}
                     width={width}
+                    deferredMeasurementCache={this._cache}
                     tabIndex={null}
                     fixedRowCount={disableHeader ? 0 : 1}
                     rowCount={disableHeader ? items.length : items.length + 1}
-                    rowHeight={({ index }) =>
-                      index === 0 && !disableHeader ? HEADER_HEIGHT : rowHeight
-                    }
+                    rowHeight={({ index }) => this.calculateRowHeight(index)}
                     enableFixedRowScroll={!disableHeader}
                     hideTopRightGridScrollbar={!disableHeader}
                     overscanRowCount={0}
@@ -192,7 +228,13 @@ class SimpleTable extends Component {
                     }
                     enableFixedColumnScroll
                     overscanColumnCount={0}
-                    cellRenderer={({ columnIndex, key, rowIndex, style }) => {
+                    cellRenderer={({
+                      columnIndex,
+                      key,
+                      rowIndex,
+                      style,
+                      parent,
+                    }) => {
                       const property = properties[columnIndex]
                       if (!disableHeader && rowIndex === 0) {
                         // Header row
@@ -207,50 +249,57 @@ class SimpleTable extends Component {
                         const arrowIsUp =
                           sortOrder === 'DESC' && sortedBy === property
                         return (
-                          <div
+                          <CellMeasurer
+                            cache={this._cache}
+                            columnIndex={columnIndex}
                             key={key}
-                            style={{
-                              ...style,
-                              height: HEADER_HEIGHT,
-                            }}
-                            className={`flex items-center w-100 h-100 c-muted-2 f6 truncate ph4 ${
-                              columnIndex === 0 && fixFirstColumn ? 'br' : ''
-                            } bt bb b--muted-4 overflow-x-hidden ${
-                              headerRight ? 'tr' : 'tl'
-                            }`}>
-                            {schema.properties[property].sortable ? (
-                              <div
-                                className="w-100 pointer c-muted-1 b t-small"
-                                onClick={() => {
-                                  onSort(this.toggleSortType(property))
-                                }}>
-                                {!headerRight && title}
+                            parent={parent}
+                            rowIndex={rowIndex}>
+                            <div
+                              key={key}
+                              style={{
+                                ...style,
+                                height: HEADER_HEIGHT,
+                              }}
+                              className={`flex items-center w-100 h-100 c-muted-2 f6 truncate ph4 ${
+                                columnIndex === 0 && fixFirstColumn ? 'br' : ''
+                              } bt bb b--muted-4 overflow-x-hidden ${
+                                headerRight ? 'tr' : 'tl'
+                              }`}>
+                              {schema.properties[property].sortable ? (
                                 <div
-                                  className={`inline-flex ${
-                                    headerRight ? 'pr2' : 'pl3'
-                                  }`}>
-                                  {arrowIsDown ? (
-                                    <ArrowDown size={ARROW_SIZE} />
-                                  ) : arrowIsUp ? (
-                                    <ArrowUp size={ARROW_SIZE} />
-                                  ) : null}
+                                  className="w-100 pointer c-muted-1 b t-small"
+                                  onClick={() => {
+                                    onSort(this.toggleSortType(property))
+                                  }}>
+                                  {!headerRight && title}
+                                  <div
+                                    className={`inline-flex ${
+                                      headerRight ? 'pr2' : 'pl3'
+                                    }`}>
+                                    {arrowIsDown ? (
+                                      <ArrowDown size={ARROW_SIZE} />
+                                    ) : arrowIsUp ? (
+                                      <ArrowUp size={ARROW_SIZE} />
+                                    ) : null}
+                                  </div>
+                                  {headerRight && title}
                                 </div>
-                                {headerRight && title}
-                              </div>
-                            ) : columnIndex === 0 && fixFirstColumn ? (
-                              <div className="w-100">{title}</div>
-                            ) : headerRenderer ? (
-                              headerRenderer({
-                                columnIndex,
-                                key,
-                                rowIndex,
-                                style,
-                                title,
-                              })
-                            ) : (
-                              <span className="w-100">{title}</span>
-                            )}
-                          </div>
+                              ) : columnIndex === 0 && fixFirstColumn ? (
+                                <div className="w-100">{title}</div>
+                              ) : headerRenderer ? (
+                                headerRenderer({
+                                  columnIndex,
+                                  key,
+                                  rowIndex,
+                                  style,
+                                  title,
+                                })
+                              ) : (
+                                <span className="w-100">{title}</span>
+                              )}
+                            </div>
+                          </CellMeasurer>
                         )
                       }
                       const cellRenderer =
@@ -260,58 +309,67 @@ class SimpleTable extends Component {
                       const cellData = rowData[property]
 
                       return (
-                        <div
+                        <CellMeasurer
+                          cache={this._cache}
+                          columnIndex={columnIndex}
                           key={key}
-                          style={{
-                            ...style,
-                            height: rowHeight,
-                            width: this.calculateColWidth(
-                              schema,
-                              properties,
-                              columnIndex,
-                              fullWidth,
-                              fullWidthColWidth
-                            ),
-                            backgroundColor: selectedRowsIndexes.includes(
-                              rowIndex - 1
-                            )
-                              ? SELECTED_ROW_BACKGROUND
-                              : '',
-                          }}
-                          className={`flex items-center w-100 h-100 ph4 bb
-                            b--muted-4 truncate ${
-                              disableHeader && rowIndex === 0 ? 'bt' : ''
+                          parent={parent}
+                          rowIndex={rowIndex}>
+                          <div
+                            key={key}
+                            style={{
+                              ...style,
+                              height: this.calculateRowHeight(rowIndex),
+                              width: this.calculateColWidth(
+                                schema,
+                                properties,
+                                columnIndex,
+                                fullWidth,
+                                fullWidthColWidth
+                              ),
+                              backgroundColor: selectedRowsIndexes.includes(
+                                rowIndex - 1
+                              )
+                                ? SELECTED_ROW_BACKGROUND
+                                : '',
+                            }}
+                            className={`flex items-center w-100 h-100 ph4 bb
+                                b--muted-4 truncate ${
+                                  disableHeader && rowIndex === 0 ? 'bt' : ''
+                                } ${
+                              onRowClick && rowIndex === hoverRowIndex
+                                ? 'pointer bg-near-white c-link'
+                                : ''
                             } ${
-                            onRowClick && rowIndex === hoverRowIndex
-                              ? 'pointer bg-near-white c-link'
-                              : ''
-                          } ${columnIndex === 0 && fixFirstColumn ? 'br' : ''}`}
-                          onClick={
-                            onRowClick &&
-                            property !== '_VTEX_Table_Internal_lineActions'
-                              ? event =>
-                                  onRowClick({
-                                    event,
-                                    index: rowIndex,
-                                    rowData,
-                                  })
-                              : null
-                          }
-                          onMouseEnter={
-                            onRowClick
-                              ? () => this.handleRowHover(rowIndex)
-                              : null
-                          }
-                          onMouseLeave={
-                            onRowClick ? () => this.handleRowHover(-1) : null
-                          }>
-                          {cellRenderer
-                            ? cellRenderer({
-                                cellData,
-                                rowData,
-                              })
-                            : cellData}
-                        </div>
+                              columnIndex === 0 && fixFirstColumn ? 'br' : ''
+                            }`}
+                            onClick={
+                              onRowClick &&
+                              property !== '_VTEX_Table_Internal_lineActions'
+                                ? event =>
+                                    onRowClick({
+                                      event,
+                                      index: rowIndex,
+                                      rowData,
+                                    })
+                                : null
+                            }
+                            onMouseEnter={
+                              onRowClick
+                                ? () => this.handleRowHover(rowIndex)
+                                : null
+                            }
+                            onMouseLeave={
+                              onRowClick ? () => this.handleRowHover(-1) : null
+                            }>
+                            {cellRenderer
+                              ? cellRenderer({
+                                  cellData,
+                                  rowData,
+                                })
+                              : cellData}
+                          </div>
+                        </CellMeasurer>
                       )
                     }}
                   />
@@ -342,6 +400,7 @@ SimpleTable.defaultProps = {
     sortedBy: null,
   },
   fullWidth: false,
+  dynamicRowHeight: false,
   selectedRowsIndexes: [],
 }
 
@@ -364,6 +423,7 @@ SimpleTable.propTypes = {
   updateTableKey: PropTypes.string,
   containerHeight: PropTypes.number,
   rowHeight: PropTypes.number.isRequired,
+  dynamicRowHeight: PropTypes.number,
   fullWidth: PropTypes.bool,
   lineActions: PropTypes.arrayOf(
     PropTypes.shape({

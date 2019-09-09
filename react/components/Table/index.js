@@ -178,6 +178,7 @@ class Table extends PureComponent {
       toolbar,
       pagination,
       fullWidth,
+      dynamicRowHeight,
       lineActions,
       loading,
       bulkActions,
@@ -326,6 +327,7 @@ class Table extends PureComponent {
             disableHeader={disableHeader}
             emptyStateLabel={emptyStateLabel}
             emptyStateChildren={emptyStateChildren}
+            dynamicRowHeight={dynamicRowHeight}
             onRowClick={onRowClick}
             sort={sort}
             onSort={onSort}
@@ -388,6 +390,8 @@ Table.propTypes = {
   emptyStateChildren: PropTypes.node,
   /** Full width property  */
   fullWidth: PropTypes.bool,
+  /** Dynamic row height property */
+  dynamicRowHeight: PropTypes.bool,
   /** Line actions column */
   lineActions: PropTypes.arrayOf(
     PropTypes.shape({
