@@ -250,20 +250,25 @@ class Toolbar extends PureComponent {
                     <div
                       style={{ height: this.calculateFieldsBoxHeight() }}
                       className="overflow-auto">
-                      {Object.keys(schema.properties).map((field, index) => (
-                        <div
-                          key={index}
-                          className="flex justify-between ph6 pv3 pointer hover-bg-muted-5"
-                          onClick={() => onToggleColumn(field)}>
-                          <span className="w-70 truncate">
-                            {schema.properties[field].title || field}
-                          </span>
-                          <Toggle
-                            size="small"
-                            checked={!hiddenFields.includes(field)}
-                          />
-                        </div>
-                      ))}
+                      {Object.keys(schema.properties)
+                        .filter(
+                          field =>
+                            !!(schema.properties[field].title || field).trim()
+                        )
+                        .map((field, index) => (
+                          <div
+                            key={index}
+                            className="flex justify-between ph6 pv3 pointer hover-bg-muted-5"
+                            onClick={() => onToggleColumn(field)}>
+                            <span className="w-70 truncate">
+                              {schema.properties[field].title || field}
+                            </span>
+                            <Toggle
+                              size="small"
+                              checked={!hiddenFields.includes(field)}
+                            />
+                          </div>
+                        ))}
                     </div>
                   </div>
                 </div>
