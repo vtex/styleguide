@@ -232,7 +232,8 @@ function EmptyExample() {
 ```
 
 Empty states can also be customized, the passed children will be rendered inside an EmptyState component.
-It's worth to customize empty state using this prop so the other table features will behave accordingly (e.g. the topbar, pagination and totalizers).
+
+⚠️ Customize the empty state using just the `emptyState` prop, so the other table features will behave correctly (e.g. the topbar, pagination, and totalizers).
 
 ```js
 // Imports
