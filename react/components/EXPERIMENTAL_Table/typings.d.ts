@@ -19,6 +19,10 @@ interface Column {
 interface TableProps {
   nestedRows?: boolean
   loading?: boolean
+  emptyState?: {
+    label?: string
+    children?: Element
+  }
 }
 
 interface TableState {

@@ -1,8 +1,10 @@
 import React, { FC } from 'react'
 import PropTypes, { InferProps } from 'prop-types'
 
-import SimpleTable from './SimpleTable/index'
+import Box from '../Box/index'
+import EmptyState from '../EmptyState/index.js'
 
+import SimpleTable from './SimpleTable/index'
 import { TableProvider } from './context'
 import Toolbar from './Toolbar/index'
 import { DENSITY_OPTIONS, NAMESPACES } from './constants'
@@ -30,6 +32,10 @@ const propTypes = {
     selectedDensity: PropTypes.oneOf(DENSITY_OPTIONS),
     setSelectedDensity: PropTypes.func,
   }),
+  emptyState: PropTypes.shape({
+    label: PropTypes.string,
+    children: PropTypes.element,
+  }),
 }
 
 type Props = InferProps<typeof propTypes>
@@ -39,7 +45,12 @@ interface Composites {
   Pagination: FC<PaginationProps>
 }
 
-const Table: FC<Props> & Composites = ({ children, state, ...props }) => {
+const Table: FC<Props> & Composites = ({
+  children,
+  emptyState,
+  state,
+  ...props
+}) => {
   if (!state) {
     throw STATE_NOT_FOUND_ERROR
   }
@@ -47,7 +58,15 @@ const Table: FC<Props> & Composites = ({ children, state, ...props }) => {
     <TableProvider value={{ ...state, ...props }}>
       <div id={NAMESPACES.CONTAINER} className="flex flex-column">
         {children}
-        <SimpleTable />
+        {state.isEmpty ? (
+          <Box>
+            <EmptyState title={emptyState.label}>
+              {emptyState.children}
+            </EmptyState>
+          </Box>
+        ) : (
+          <SimpleTable />
+        )}
       </div>
     </TableProvider>
   )

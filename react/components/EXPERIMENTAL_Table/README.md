@@ -199,6 +199,85 @@ function LoadingExample() {
 ;<LoadingExample />
 ```
 
+# Empty state
+
+```js
+// Imports
+const useTableState = require('./hooks/useTableState.ts').default
+
+const columns = [
+  {
+    id: 'name',
+    title: 'Name',
+  },
+  {
+    id: 'country',
+    title: 'Country',
+  },
+]
+
+function EmptyExample() {
+  const tableState = useTableState({
+    columns,
+    items: [],
+  })
+
+  const emptyState = {
+    label: 'This is an default empty state title',
+  }
+
+  return <Table state={tableState} emptyState={emptyState} />
+}
+;<EmptyExample />
+```
+
+Empty states can also be customized, the passed children will be rendered inside an EmptyState component.
+It's worth to customize empty state using this prop so the other table features will behave accordingly (e.g. the topbar, pagination and totalizers).
+
+```js
+// Imports
+const useTableState = require('./hooks/useTableState.ts').default
+const Button = require('../Button/index.js').default
+
+const columns = [
+  {
+    id: 'name',
+    title: 'Name',
+  },
+  {
+    id: 'country',
+    title: 'Country',
+  },
+]
+
+function CustomEmptyStateExample() {
+  const tableState = useTableState({
+    columns,
+    items: [],
+  })
+
+  const emptyState = {
+    label: 'This is an default empty state title',
+    children: (
+      <React.Fragment>
+        <p>
+          A longer explanation of what should be here, and why should I care
+          about what should be here.
+        </p>
+        <div className="pt5">
+          <Button variation="secondary" size="small">
+            <span className="flex align-baseline">Suggested action</span>
+          </Button>
+        </div>
+      </React.Fragment>
+    ),
+  }
+
+  return <Table state={tableState} emptyState={emptyState} />
+}
+;<CustomEmptyStateExample />
+```
+
 # Pagination
 
 ```js
