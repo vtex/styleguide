@@ -24,7 +24,15 @@ const propTypes = {
 const Option: React.FunctionComponent<
   PropTypes.InferProps<typeof propTypes>
 > = props => {
-  const { icon, selected, roundedBottom, searchTerm, value, key, onClick } = props
+  const {
+    icon,
+    selected,
+    roundedBottom,
+    searchTerm,
+    value,
+    key,
+    onClick,
+  } = props
   const [highlightOption, setHighlightOption] = useState(false)
 
   const renderOptionValue = (): string | React.ReactElement => {
@@ -37,9 +45,9 @@ const Option: React.FunctionComponent<
     const suffix = value.substring(index + highlight.length)
     return (
       <span className="truncate">
-        {prefix}
-        <span className="fw7">{highlight}</span>
-        {suffix}
+        <span className="fw7">{prefix}</span>
+        {highlight}
+        <span className="fw7">{suffix}</span>
       </span>
     )
   }

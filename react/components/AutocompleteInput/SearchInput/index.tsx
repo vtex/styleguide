@@ -6,7 +6,7 @@ import IconSearch from '../../icon/Search'
 
 import style from './style.css'
 
-import ClearInputIcon from '../icon/ClearInput'
+import ClearInputIcon from '../../icon/Clear'
 
 const propTypes = {
   /** Determine if the input's bottom corners should be rounded or not */
