@@ -41,12 +41,12 @@ const Option: React.FunctionComponent<
       return value
     }
     const prefix = value.substring(0, index)
-    const highlight = value.substr(index, searchTerm.length)
-    const suffix = value.substring(index + highlight.length)
+    const match = value.substr(index, searchTerm.length)
+    const suffix = value.substring(index + match.length)
     return (
       <span className="truncate">
         <span className="fw7">{prefix}</span>
-        {highlight}
+        {match}
         <span className="fw7">{suffix}</span>
       </span>
     )
