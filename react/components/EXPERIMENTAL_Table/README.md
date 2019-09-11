@@ -199,6 +199,73 @@ function LoadingExample() {
 ;<LoadingExample />
 ```
 
+### Custom Loading
+
+```js
+// Imports
+const useTableState = require('./hooks/useTableState.ts').default
+const Toggle = require('../Toggle/index.js').default
+const Spinner = require('../Spinner/index.js').default
+
+const columns = [
+  {
+    id: 'name',
+    title: 'Name',
+  },
+  {
+    id: 'country',
+    title: 'Country',
+  },
+]
+
+const items = [
+  {
+    name: 'En Sabah Nuh',
+    country: '🇨🇺Cuba',
+  },
+  {
+    name: 'Abdul Qamar',
+    country: '🇸🇦Saudi Arabia',
+  },
+  {
+    name: 'Goose the Cat',
+    country: '🇺🇸USA',
+  },
+  {
+    name: 'Brian Braddock',
+    country: '🇬🇧Great Britain',
+  },
+]
+
+function CustomLoadingExample() {
+  const [isLoading, setIsLoading] = React.useState(false)
+  const tableState = useTableState({
+    columns,
+    items,
+  })
+
+  const loading = isLoading && {
+    loading: {
+      renderAs: () => {
+        return <Spinner color="red" size={50} />
+      },
+    },
+  }
+
+  return (
+    <div>
+      <Toggle
+        label="Toggle table loading"
+        checked={isLoading}
+        onChange={() => setIsLoading(!isLoading)}
+      />
+      <Table state={tableState} {...loading} containerHeight={500} />
+    </div>
+  )
+}
+;<CustomLoadingExample />
+```
+
 # Empty state
 
 ```js

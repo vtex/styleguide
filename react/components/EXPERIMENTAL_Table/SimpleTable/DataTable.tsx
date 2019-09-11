@@ -25,7 +25,13 @@ const DataTableContainer: FC = ({ children }) => {
       style={{ height }}
       className="order-1 mw-100 overflow-x-auto">
       {children}
-      {!isEmpty && loading && <Loading />}
+      {!isEmpty && loading && (
+        <Loading>
+          {typeof loading !== 'boolean' &&
+            loading.renderAs &&
+            loading.renderAs()}
+        </Loading>
+      )}
       {isEmpty && (
         <EmptyState title={emptyState.label}>{emptyState.children}</EmptyState>
       )}

@@ -11,7 +11,12 @@ import { STATE_NOT_FOUND_ERROR } from './errors'
 const propTypes = {
   containerHeight: PropTypes.number,
   nestedRows: PropTypes.bool,
-  loading: PropTypes.bool,
+  loading: PropTypes.oneOfType([
+    PropTypes.shape({
+      renderAs: PropTypes.func,
+    }),
+    PropTypes.bool,
+  ]),
   itemsSizeEstimate: PropTypes.number,
   state: PropTypes.shape({
     schema: PropTypes.shape({
