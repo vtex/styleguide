@@ -5,11 +5,10 @@ import useTableContext from '../hooks/useTableContext'
 import { TABLE_HEADER_HEIGHT } from '../constants'
 
 const Loading = () => {
-  const { tableHeight } = useTableContext()
+  const { containerHeight, tableHeight } = useTableContext()
+  const height = (containerHeight || tableHeight) - TABLE_HEADER_HEIGHT
   return (
-    <div
-      className="dtc v-mid tc"
-      style={{ height: tableHeight - TABLE_HEADER_HEIGHT }}>
+    <div className="flex justify-center items-center" style={{ height }}>
       <Spinner />
     </div>
   )

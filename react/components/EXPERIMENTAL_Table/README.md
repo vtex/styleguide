@@ -192,7 +192,7 @@ function LoadingExample() {
         checked={loading}
         onChange={() => setLoading(!loading)}
       />
-      <Table state={tableState} loading={loading} />
+      <Table state={tableState} loading={loading} containerHeight={500} />
     </div>
   )
 }

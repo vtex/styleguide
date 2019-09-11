@@ -17,6 +17,7 @@ interface Column {
 }
 
 interface TableProps {
+  containerHeight?: number
   nestedRows?: boolean
   loading?: boolean
   emptyState?: {
