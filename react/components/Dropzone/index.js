@@ -27,12 +27,13 @@ class Dropzone extends PureComponent {
   handleDropAccepted = files => {
     console.log('handleDropAccepted', files)
     this.setState({ isHovering: false, fileDropped: true, files })
-    this.props.onDrop(files)
+    this.props.onDropAccepted(files)
   }
 
   handleDropRejected = files => {
     console.log('handleDropRejected', files)
     this.setState({ isHovering: false })
+    this.props.onDropRejected(files)
   }
 
   handleRemoveFile = fileIndex => {
@@ -134,6 +135,7 @@ class Dropzone extends PureComponent {
 }
 
 Dropzone.defaultProps = {
+  onDropRejected: () => {},
   children: null,
   icon: null,
   isLoading: false,
@@ -142,8 +144,10 @@ Dropzone.defaultProps = {
 }
 
 Dropzone.propTypes = {
-  /** Callback when file(s) is(are) droppped */
-  onDrop: PropTypes.func.isRequired,
+  /** Callback when file(s) is(are) droppped and accepted */
+  onDropAccepted: PropTypes.func.isRequired,
+  /** Callback when file(s) is(are) droppped and rejected (e.g: when props.multiple is false and multiple files are dragged and dropped.*/
+  onDropRejected: PropTypes.func,
   /** Callback when a file is removed */
   onFileReset: PropTypes.func,
   /** Content after the file icon */
