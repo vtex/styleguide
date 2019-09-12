@@ -13,6 +13,7 @@ import {
   BULK_ACTIONS_HEIGHT,
   BULK_ACTIONS_TRANSITION,
 } from '../constants'
+import { BULK_STATE_NOT_FOUND_ERROR } from '../errors'
 
 const BulkActions: FC<BulkActionsProps> = ({
   texts,
@@ -28,6 +29,10 @@ const BulkActions: FC<BulkActionsProps> = ({
     hasPrimaryBulkAction,
     hasSecondaryBulkActions,
   } = useTableContext()
+
+  if (!bulkState) {
+    throw BULK_STATE_NOT_FOUND_ERROR
+  }
 
   const selectedRowsLength = bulkState.selectedRows.length
   const hasRowsSelected = selectedRowsLength > 0

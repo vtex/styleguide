@@ -15,13 +15,14 @@ import BulkActions from './BulkActions/index'
 const Table: FC<TableProps> & TableComposites = ({
   children,
   state,
+  bulk,
   ...props
 }) => {
   if (!state) {
     throw STATE_NOT_FOUND_ERROR
   }
   return (
-    <TableProvider value={{ ...state, ...props }}>
+    <TableProvider value={{ ...state, ...bulk, ...props }}>
       <TableContainer>
         {children}
 
