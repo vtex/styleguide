@@ -144,6 +144,38 @@ function StateHookExample() {
 # Clickable rows
 
 ```js
+const useTableState = require('./hooks/useTableState.ts').default
+
+const columns = [
+  {
+    id: 'name',
+    title: 'Name',
+  },
+  {
+    id: 'country',
+    title: 'Country',
+  },
+]
+
+const items = [
+  {
+    name: 'En Sabah Nuh',
+    country: '🇨🇺Cuba',
+  },
+  {
+    name: 'Abdul Qamar',
+    country: '🇸🇦Saudi Arabia',
+  },
+  {
+    name: 'Goose the Cat',
+    country: '🇺🇸USA',
+  },
+  {
+    name: 'Brian Braddock',
+    country: '🇬🇧Great Britain',
+  },
+]
+
 function ClickExample() {
   const tableState = useTableState({
     columns,
@@ -258,6 +290,7 @@ const items = [
 
 function CustomLoadingExample() {
   const [isLoading, setIsLoading] = React.useState(false)
+  const tableState = useTableState({ columns, items })
 
   const loading = isLoading && {
     loading: {
