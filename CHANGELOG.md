@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### CHANGED
+
+- `EXPERIMENTAL_Table` to be clickable
+
 ## [9.80.1] - 2019-09-23
 
 ### Added
@@ -52,7 +56,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- Css class to the vtex toast container
+- # Css class to the vtex toast container
 
 ## [9.78.11] - 2019-09-12
 
