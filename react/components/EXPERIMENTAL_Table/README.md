@@ -199,6 +199,153 @@ function LoadingExample() {
 ;<LoadingExample />
 ```
 
+### Custom Loading
+
+```js
+// Imports
+const useTableState = require('./hooks/useTableState.ts').default
+const Toggle = require('../Toggle/index.js').default
+const Spinner = require('../Spinner/index.js').default
+
+const columns = [
+  {
+    id: 'name',
+    title: 'Name',
+  },
+  {
+    id: 'country',
+    title: 'Country',
+  },
+]
+
+const items = [
+  {
+    name: 'En Sabah Nuh',
+    country: '🇨🇺Cuba',
+  },
+  {
+    name: 'Abdul Qamar',
+    country: '🇸🇦Saudi Arabia',
+  },
+  {
+    name: 'Goose the Cat',
+    country: '🇺🇸USA',
+  },
+  {
+    name: 'Brian Braddock',
+    country: '🇬🇧Great Britain',
+  },
+]
+
+function CustomLoadingExample() {
+  const [isLoading, setIsLoading] = React.useState(false)
+  const tableState = useTableState({
+    columns,
+    items,
+  })
+
+  const loading = isLoading && {
+    loading: {
+      renderAs: () => {
+        return <Spinner color="red" size={50} />
+      },
+    },
+  }
+
+  return (
+    <div>
+      <Toggle
+        label="Toggle table loading"
+        checked={isLoading}
+        onChange={() => setIsLoading(!isLoading)}
+      />
+      <Table state={tableState} {...loading} />
+    </div>
+  )
+}
+;<CustomLoadingExample />
+```
+
+# Empty state
+
+```js
+// Imports
+const useTableState = require('./hooks/useTableState.ts').default
+
+const columns = [
+  {
+    id: 'name',
+    title: 'Name',
+  },
+  {
+    id: 'country',
+    title: 'Country',
+  },
+]
+
+function EmptyExample() {
+  const tableState = useTableState({
+    columns,
+    items: [],
+  })
+
+  const emptyState = {
+    label: 'This is an default empty state title',
+  }
+
+  return <Table state={tableState} emptyState={emptyState} />
+}
+;<EmptyExample />
+```
+
+Empty states can also be customized, the passed children will be rendered inside an EmptyState component.
+
+⚠️ Customize the empty state using just the `emptyState` prop, so the other table features will behave correctly (e.g. the topbar, pagination, and totalizers).
+
+```js
+// Imports
+const useTableState = require('./hooks/useTableState.ts').default
+const Button = require('../Button/index.js').default
+
+const columns = [
+  {
+    id: 'name',
+    title: 'Name',
+  },
+  {
+    id: 'country',
+    title: 'Country',
+  },
+]
+
+function CustomEmptyStateExample() {
+  const tableState = useTableState({
+    columns,
+    items: [],
+  })
+
+  const emptyState = {
+    label: 'This is an default empty state title',
+    children: (
+      <React.Fragment>
+        <p>
+          A longer explanation of what should be here, and why should I care
+          about what should be here.
+        </p>
+        <div className="pt5">
+          <Button variation="secondary" size="small">
+            <span className="flex align-baseline">Suggested action</span>
+          </Button>
+        </div>
+      </React.Fragment>
+    ),
+  }
+
+  return <Table state={tableState} emptyState={emptyState} />
+}
+;<CustomEmptyStateExample />
+```
+
 # Pagination
 
 ```js
@@ -525,6 +672,10 @@ function ToolbarExample() {
     density: 'medium',
   })
 
+  const emptyState = {
+    label: 'The table is empty',
+  }
+
   const inputSearch = {
     value: inputValue,
     placeholder: 'Search stuff...',
@@ -598,7 +749,7 @@ function ToolbarExample() {
   }
 
   return (
-    <Table state={tableState}>
+    <Table state={tableState} emptyState={emptyState}>
       <Table.Toolbar>
         <Table.Toolbar.InputSearch {...inputSearch} />
         <Table.Toolbar.ButtonGroup>

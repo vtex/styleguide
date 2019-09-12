@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.78.11] - 2019-09-12
+
+### Added
+
+- `EmptyState` to `EXPERIMENTAL_TableV2`
+
 ## [9.78.10] - 2019-09-10
 
 ### Fixed

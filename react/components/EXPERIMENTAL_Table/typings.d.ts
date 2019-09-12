@@ -17,8 +17,17 @@ interface Column {
 }
 
 interface TableProps {
+  containerHeight?: number
   nestedRows?: boolean
-  loading?: boolean
+  loading?:
+    | boolean
+    | {
+        renderAs?: () => React.ReactNode
+      }
+  emptyState?: {
+    label?: string
+    children?: Element
+  }
 }
 
 interface TableState {

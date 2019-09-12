@@ -1,16 +1,15 @@
-import React from 'react'
+import React, { FC } from 'react'
 
 import Spinner from '../../Spinner/index.js'
 import useTableContext from '../hooks/useTableContext'
 import { TABLE_HEADER_HEIGHT } from '../constants'
 
-const Loading = () => {
-  const { tableHeight } = useTableContext()
+const Loading: FC = ({ children }) => {
+  const { containerHeight, tableHeight } = useTableContext()
+  const height = (containerHeight || tableHeight) - TABLE_HEADER_HEIGHT
   return (
-    <div
-      className="dtc v-mid tc"
-      style={{ height: tableHeight - TABLE_HEADER_HEIGHT }}>
-      <Spinner />
+    <div className="flex justify-center items-center" style={{ height }}>
+      {children || <Spinner />}
     </div>
   )
 }
