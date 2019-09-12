@@ -24,10 +24,15 @@ class Dropzone extends PureComponent {
     this.setState({ isHovering: false })
   }
 
-  handleDrop = files => {
-    console.log('handleDrop', files)
+  handleDropAccepted = files => {
+    console.log('handleDropAccepted', files)
     this.setState({ isHovering: false, fileDropped: true, files })
     this.props.onDrop(files)
+  }
+
+  handleDropRejected = files => {
+    console.log('handleDropRejected', files)
+    this.setState({ isHovering: false })
   }
 
   handleRemoveFile = fileIndex => {
@@ -83,7 +88,8 @@ class Dropzone extends PureComponent {
       <ReactDropZone
         ref={dropzoneRef}
         multiple={multiple}
-        onDrop={this.handleDrop}
+        onDropAccepted={this.handleDropAccepted}
+        onDropRejected={this.handleDropRejected}
         onDragEnter={this.handleDragEnter}
         onDragLeave={this.handleDragLeave}>
         {({ getRootProps, getInputProps }) => (
