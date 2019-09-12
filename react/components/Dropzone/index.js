@@ -5,7 +5,7 @@ import ReactDropZone from 'react-dropzone'
 import FileIcon from './FileIcon'
 import Spinner from '../Spinner'
 import ButtonWithIcon from '../ButtonWithIcon'
-import IconClose from '../icon/Close'
+import IconDelete from '../icon/Delete'
 
 const dropzoneRef = createRef()
 
@@ -25,6 +25,7 @@ class Dropzone extends PureComponent {
   }
 
   handleDrop = files => {
+    console.log('handleDrop', files)
     this.setState({ isHovering: false, fileDropped: true, files })
     this.props.onDrop(files)
   }
@@ -34,11 +35,12 @@ class Dropzone extends PureComponent {
 
     if (files.length > 1) {
       const filteredFiles = files.filter((_, i) => i !== fileIndex)
-      this.setState({ files: filteredFiles }, () =>
+      this.setState({ files: filteredFiles }, () => {
         this.props.onFileReset(filteredFiles)
-      )
+      })
     } else {
       this.handleReset()
+      this.props.onFileReset()
     }
   }
 
@@ -47,7 +49,7 @@ class Dropzone extends PureComponent {
   }
 
   render() {
-    const { children, isLoading, icon } = this.props
+    const { children, isLoading, icon, multiple } = this.props
     const { isHovering, fileDropped, files } = this.state
     const initialState = !isHovering && !fileDropped
 
@@ -55,7 +57,7 @@ class Dropzone extends PureComponent {
       'flex flex-column items-center justify-center b--light-blue ba br2 bw1 b--dashed '
     let iconHolderClasses =
       'flex items-center justify-center pa6  bg-near-white '
-    const droppedContainerClasses = 'bg-light-silver w-100 '
+    const droppedContainerClasses = 'w-100 '
 
     const holderSize = '120px'
     const iconHolderStyles = {
@@ -65,11 +67,11 @@ class Dropzone extends PureComponent {
     }
 
     if (initialState) {
-      dropzoneContainerClasses += 'pa7 '
+      dropzoneContainerClasses += 'pa8 '
     }
 
     if (isHovering) {
-      dropzoneContainerClasses += 'pa7 b--action-primary bg-action-secondary '
+      dropzoneContainerClasses += 'pa8 b--action-primary bg-action-secondary '
       iconHolderClasses += 'bg-action-primary '
     }
 
@@ -80,13 +82,17 @@ class Dropzone extends PureComponent {
     return (
       <ReactDropZone
         ref={dropzoneRef}
-        multiple
+        multiple={multiple}
         onDrop={this.handleDrop}
         onDragEnter={this.handleDragEnter}
         onDragLeave={this.handleDragLeave}>
         {({ getRootProps, getInputProps }) => (
           <div className={dropzoneContainerClasses} {...getRootProps()}>
-            {fileDropped ? (
+            {isLoading ? (
+              <div className={iconHolderClasses} style={iconHolderStyles}>
+                <Spinner size="32" />
+              </div>
+            ) : fileDropped ? (
               <div className={droppedContainerClasses}>
                 {files.map((file, fileIndex) => (
                   <div
@@ -100,14 +106,10 @@ class Dropzone extends PureComponent {
                     <ButtonWithIcon
                       onClick={() => this.handleRemoveFile(fileIndex)}
                       variation="tertiary"
-                      icon={<IconClose />}
+                      icon={<IconDelete />}
                     />
                   </div>
                 ))}
-              </div>
-            ) : isLoading ? (
-              <div className={iconHolderClasses} style={iconHolderStyles}>
-                <Spinner size="32" />
               </div>
             ) : (
               <>
@@ -129,8 +131,8 @@ Dropzone.defaultProps = {
   children: null,
   icon: null,
   isLoading: false,
-  isLoadingText: null,
   onFileReset: () => {},
+  multiple: false,
 }
 
 Dropzone.propTypes = {
@@ -144,6 +146,8 @@ Dropzone.propTypes = {
   isLoading: PropTypes.bool,
   /** Custom icon */
   icon: PropTypes.node,
+  /** Allow multiple files drop */
+  multiple: PropTypes.bool,
 }
 
 export default Dropzone

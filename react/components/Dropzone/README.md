@@ -11,12 +11,19 @@ class MyDropZone extends React.Component {
   }
 
   handleFile(files) {
-    console.log(files)
+    console.log('DROP', files)
+  }
+
+  handleReset(files) {
+    console.log('RESET')
+    if (files) {
+      console.log(files)
+    }
   }
 
   render() {
     return (
-      <Dropzone onDrop={this.handleFile} onFileReset={this.handleFile}>
+      <Dropzone onDrop={this.handleFile} onFileReset={this.handleReset}>
         <div className="pt7">
           <div>
             <span className="f4">Drop here your XLS or </span>
