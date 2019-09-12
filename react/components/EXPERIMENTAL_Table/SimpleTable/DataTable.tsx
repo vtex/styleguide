@@ -32,7 +32,7 @@ const DataTableContainer: FC = ({ children }) => {
             loading.renderAs()}
         </Loading>
       )}
-      {isEmpty && (
+      {isEmpty && emptyState && (
         <EmptyState title={emptyState.label}>{emptyState.children}</EmptyState>
       )}
     </div>

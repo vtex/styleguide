@@ -192,7 +192,7 @@ function LoadingExample() {
         checked={loading}
         onChange={() => setLoading(!loading)}
       />
-      <Table state={tableState} loading={loading} containerHeight={500} />
+      <Table state={tableState} loading={loading} />
     </div>
   )
 }
@@ -259,7 +259,7 @@ function CustomLoadingExample() {
         checked={isLoading}
         onChange={() => setIsLoading(!isLoading)}
       />
-      <Table state={tableState} {...loading} containerHeight={500} />
+      <Table state={tableState} {...loading} />
     </div>
   )
 }
