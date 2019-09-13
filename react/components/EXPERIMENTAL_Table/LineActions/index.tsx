@@ -4,25 +4,24 @@ import PropTypes, { InferProps } from 'prop-types'
 import ActionMenu from '../../ActionMenu'
 import OptionsDots from '../../icon/OptionsDots'
 
-const LineAction: FC<LineActionProps> = ({ lineActions }) => {
-    return (
-    <div>
-      <ActionMenu
-        buttonProps={{
-          variation: 'tertiary',
-          icon: <OptionsDots />,
-          onMouseEnter: () => {},
-          onMouseLeave: () => {},
-        }}
-        options={lineActions.map(action => ({
-          ...action,
-          label: action.label,
-          onClick: () => action.onClick,
-        }))}
-      />
-    </div>
-  )
-}
+const LineAction: FC<LineActionProps> = ({ lineActions }) => (
+  <div>
+    <ActionMenu
+      buttonProps={{
+        variation: 'tertiary',
+        icon: <OptionsDots />,
+        onMouseEnter: () => {},
+        onMouseLeave: () => {},
+      }}
+      options={lineActions.map(action => ({
+        ...action,
+        label: action.label,
+        onClick: () => action.onClick,
+      }))}
+    />
+  </div>
+)
+
 
 const propTypes = {
   lineActions: PropTypes.arrayOf(
