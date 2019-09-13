@@ -3,7 +3,11 @@ import PropTypes, { InferProps } from 'prop-types'
 
 import { TableProvider } from './context'
 import Toolbar from './Toolbar/index'
+
 import { DENSITY_OPTIONS } from './constants'
+
+import LineActions, { LineActionProps } from './LineActions/index'
+
 import Pagination, { PaginationProps } from './Pagination'
 import { STATE_NOT_FOUND_ERROR } from './errors'
 import { TableContainer, Thead } from './Styled'
@@ -68,10 +72,12 @@ export type Props = InferProps<typeof tablePropTypes>
 export type TableComposites = {
   Toolbar: FC
   Pagination: FC<PaginationProps>
+  LineActions: FC<LineActionProps>
 }
 
 Table.Toolbar = Toolbar
 Table.Pagination = Pagination
+Table.LineActions = LineActions
 Table.propTypes = tablePropTypes
 
 export default Table

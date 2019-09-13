@@ -2,10 +2,28 @@ import React, { FC } from 'react'
 import PropTypes, { InferProps } from 'prop-types'
 
 import ActionMenu from '../../ActionMenu'
+import OptionsDots from '../../icon/OptionsDots'
 
-const LineActions: FC<Props> = ({ lineActions }) => {
-    return <div></div>
+const LineAction: FC<LineActionProps> = ({ lineActions }) => {
+    return (
+    <div>
+      <ActionMenu
+        buttonProps={{
+          variation: 'tertiary',
+          icon: <OptionsDots />,
+          onMouseEnter: () => {},
+          onMouseLeave: () => {},
+        }}
+        options={lineActions.map(action => ({
+          ...action,
+          label: action.label,
+          onClick: () => action.onClick,
+        }))}
+      />
+    </div>
+  )
 }
+
 const propTypes = {
   lineActions: PropTypes.arrayOf(
     PropTypes.shape({
@@ -18,6 +36,7 @@ const propTypes = {
     })
   )
 }
-type Props = InferProps<typeof propTypes>
 
-export default LineActions
+export type LineActionProps = InferProps<typeof propTypes>
+
+export default LineAction
