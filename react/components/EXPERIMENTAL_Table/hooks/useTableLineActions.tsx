@@ -1,5 +1,5 @@
 import LineAction, { LineActionProps } from '../LineActions'
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 
 const useTableLineActions = ({
     items,
@@ -10,7 +10,7 @@ const useTableLineActions = ({
     const lineActionColumns = useMemo<Array<Column>>(() => {
 
         const cellRender = ({ rowData }) => (
-            <LineAction lineActions/>
+            <LineAction lineActions={lineActions}/>
         )
 
         

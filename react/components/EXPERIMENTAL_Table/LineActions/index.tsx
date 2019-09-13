@@ -22,20 +22,14 @@ const LineAction: FC<LineActionProps> = ({ lineActions }) => (
   </div>
 )
 
-
-const propTypes = {
-  lineActions: PropTypes.arrayOf(
-    PropTypes.shape({
-      /** Function that returns a string for the action label */
-      label: PropTypes.func,
-      /** Mark whether the action performs a dangerous option or not */
-      isDangerous: PropTypes.bool,
-      /** Handles the callback function of the action */
-      onClick: PropTypes.func,
-    })
-  )
+type LineAction = {
+  label: Function,
+  isDangerous: Boolean,
+  onClick: Function,
 }
 
-export type LineActionProps = InferProps<typeof propTypes>
+export type LineActionProps = {
+  lineActions: Array<LineAction>
+}
 
 export default LineAction
