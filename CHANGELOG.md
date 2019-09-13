@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - **Table** with FilterBar example.
 - **FilterBar** examples that were broken.
+-**Layout** Add marging bottom so the bottom space is bigger than bottom bar.
 
 ### Added
 
