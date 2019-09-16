@@ -12,7 +12,7 @@ const useTableLineActions = ({
   
   const withLineActionItems = useMemo<Array<Object>>(() => {
     return lineActions ? items.map((item) => ({ lineAction: true, ...item })): items
-  }, [items, columns])
+  }, [items])
 
   const withLineActionColumns = useMemo<Array<Column>>(() => {
     const cellRender = ({ rowData }) => (
@@ -30,7 +30,7 @@ const useTableLineActions = ({
         cellRender,
       },
     ]: columns
-  }, [items, columns])
+  }, [columns])
 
   return {
     withLineActionColumns,
