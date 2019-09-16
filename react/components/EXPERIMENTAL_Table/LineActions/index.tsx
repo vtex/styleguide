@@ -19,14 +19,14 @@ const LineAction: FC<LineActionProps> = ({ lineActions, rowData }) => (
   </>
 )
 
-type LineAction = {
+export type LineActionObject = {
   label: Function,
   isDangerous: Boolean,
   onClick: Function,
 }
 
-export type LineActionProps = {
-  lineActions: Array<LineAction>,
+type LineActionProps = {
+  lineActions: Array<LineActionObject>,
   rowData: Object,
 }
 

@@ -792,10 +792,10 @@ function LineActionsExample() {
     },
   ]
 
-  const { lineActionItems, lineActionColumns } = useTableLineActions({items, columns, lineActions})
+  const { withLineActionItems, withLineActionColumns } = useTableLineActions({items, columns, lineActions})
   const tableState = useTableState({
-    columns: lineActionColumns,
-    items: lineActionItems,
+    columns: withLineActionColumns,
+    items: withLineActionItems,
   })
 
   return <Table state={tableState} />
