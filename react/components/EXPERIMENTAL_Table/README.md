@@ -175,11 +175,10 @@ const lineActions = [
   },
 ]
 function StateHookExample() {
-  const {lineActionColumns} = useTableLineActions({columns, lineActions})
-  console.log(useTableLineActions(columns, lineActions))
+  const { lineActionItems, lineActionColumns} = useTableLineActions({items, columns, lineActions})
   const tableState = useTableState({
-    columns: columns,
-    items: items,
+    columns: lineActionColumns,
+    items: lineActionItems,
   })
 
   return <Table state={tableState} />
