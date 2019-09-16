@@ -1,21 +1,18 @@
 import React, { FC } from 'react'
 
-import Row from './Row'
+import NodeRow from './NodeRow'
 import useTableContext from '../hooks/useTableContext'
 
-/**
- * Component that maps items into Rows
- */
-const Rows: FC = () => {
+const RowTree: FC = () => {
   const { items } = useTableContext()
 
   return (
     <>
       {items.map((data, index) => (
-        <Row key={`row-${index}`} data={data} index={index} />
+        <NodeRow key={`row-${index}`} data={data} index={index} />
       ))}
     </>
   )
 }
 
-export default Rows
+export default RowTree

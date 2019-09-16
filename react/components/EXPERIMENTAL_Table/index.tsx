@@ -1,13 +1,14 @@
 import React, { FC } from 'react'
 import PropTypes, { InferProps } from 'prop-types'
 
-import SimpleTable from './SimpleTable/index'
 import { TableProvider } from './context'
 import Toolbar from './Toolbar/index'
 import { DENSITY_OPTIONS, NAMESPACES } from './constants'
 import Pagination, { PaginationProps } from './Pagination'
 import { STATE_NOT_FOUND_ERROR } from './errors'
 import useTableContext from './hooks/useTableContext'
+
+import DataTable from './DataTable'
 
 const propTypes = {
   containerHeight: PropTypes.number,
@@ -50,7 +51,7 @@ interface Composites {
 }
 
 const TableContainer: FC = ({ children }) => {
-  const { containerHeight, tableHeight } = useTableContext() 
+  const { containerHeight, tableHeight } = useTableContext()
   return (
     <div
       style={{ minHeight: containerHeight || tableHeight }}
@@ -61,7 +62,12 @@ const TableContainer: FC = ({ children }) => {
   )
 }
 
-const Table: FC<Props> & Composites = ({ children, state, ...props }) => {
+const Table: FC<Props> & Composites = ({
+  children,
+  state,
+  nestedRows,
+  ...props
+}) => {
   if (!state) {
     throw STATE_NOT_FOUND_ERROR
   }
@@ -69,7 +75,10 @@ const Table: FC<Props> & Composites = ({ children, state, ...props }) => {
     <TableProvider value={{ ...state, ...props }}>
       <TableContainer>
         {children}
-        <SimpleTable />
+        <DataTable>
+          <DataTable.Header />
+          {nestedRows ? <DataTable.RowTree /> : <DataTable.Rows />}
+        </DataTable>
       </TableContainer>
     </TableProvider>
   )

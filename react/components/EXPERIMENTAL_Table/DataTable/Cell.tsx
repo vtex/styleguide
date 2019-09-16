@@ -1,14 +1,8 @@
 import React, { FC } from 'react'
 
-import CellPrefix, { CellPrefixProps, CellPrefixComposites } from './CellPrefix'
 import { NAMESPACES } from '../constants'
 
-const Cell: FC<CellProps> & Composites = ({
-  id,
-  children,
-  isHeader,
-  width,
-}) => (
+const Cell: FC<CellProps> = ({ id, children, isHeader, width }) => (
   <div
     id={`${NAMESPACES.CELL}-${id}`}
     style={{ minWidth: width }}
@@ -19,14 +13,8 @@ const Cell: FC<CellProps> & Composites = ({
   </div>
 )
 
-Cell.Prefix = CellPrefix
-
 Cell.defaultProps = {
   isHeader: false,
-}
-
-interface Composites {
-  Prefix?: FC<CellPrefixProps> & CellPrefixComposites
 }
 
 interface CellProps {

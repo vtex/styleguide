@@ -1,44 +1,29 @@
 import React, { FC, useState } from 'react'
 
-import Cell from './Cell'
+import Cell from '../DataTable/Cell'
+import CellPrefix from './CellPrefix'
 import useTableContext from '../hooks/useTableContext'
 import { NESTED_ROW_PREFIX_WIDTH, NAMESPACES } from '../constants'
+import RowContainer from '../DataTable/RowContainer'
 
 /**
- * Container of each table row
+ * Row of the Table Tree
+ * 🤓 Be aware that the subRows are rendered recursivelly
  */
-const RowContainer: FC<{ id: string }> = ({ id, children }) => {
-  const { rowHeight } = useTableContext()
-  return (
-    <div
-      id={id}
-      style={{ height: rowHeight }}
-      className="dt-row w-100 h-100 ph4 truncate overflow-x-hidden">
-      {children}
-    </div>
-  )
-}
-
-/**
- * Row of the Table (suports nesting)
- * 🤓Be aware that the subRows are rendered recursivelly
- */
-const Row: FC<RowProps> = ({ data, index, depth }) => {
-  const { visibleColumns, nestedRows } = useTableContext()
+const NodeRow: FC<NodeRowProps> = ({ data, index, depth }) => {
+  const { visibleColumns } = useTableContext()
   const [collapsed, setCollapsed] = useState(false)
 
   const { children, ...rowData } = data
-
   const rowKey = `row-${index}-${depth}`
 
   /**
    * Render subRows recursivelly increasing the depth
    */
   const subRows =
-    nestedRows &&
     children &&
     children.map((data, index) => (
-      <Row
+      <NodeRow
         key={`${rowKey}__child-${index}`}
         depth={depth + 1}
         index={index}
@@ -67,15 +52,15 @@ const Row: FC<RowProps> = ({ data, index, depth }) => {
               id={`${index}-${cellIndex}-${depth}`}
               key={`cel-${index}-${cellIndex}-${depth}`}
               width={width}>
-              {nestedRows && cellIndex === 0 && (
-                <Cell.Prefix width={prefixWidth}>
+              {cellIndex === 0 && (
+                <CellPrefix width={prefixWidth}>
                   {arrow && (
-                    <Cell.Prefix.Arrow
+                    <CellPrefix.Arrow
                       active={collapsed}
                       onClick={() => setCollapsed(!collapsed)}
                     />
                   )}
-                </Cell.Prefix>
+                </CellPrefix>
               )}
               {content}
             </Cell>
@@ -103,14 +88,14 @@ const Row: FC<RowProps> = ({ data, index, depth }) => {
   )
 }
 
-interface RowProps {
+interface NodeRowProps {
   data: { children?: Array<unknown> }
   index: number
   depth?: number
 }
 
-Row.defaultProps = {
+NodeRow.defaultProps = {
   depth: 1,
 }
 
-export default Row
+export default NodeRow
