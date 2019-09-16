@@ -1,4 +1,4 @@
-import LineAction, { LineActionProps } from '../LineActions'
+import LineAction from '../LineActions'
 import React, { useMemo } from 'react';
 
 const NO_TITLE_COLUMN = ' '
@@ -11,7 +11,7 @@ const useTableLineActions = ({
 }: hookInput): hookReturn => {
   
   const lineActionItems = useMemo<Array<Object>>(() => {
-    return lineActions ? items.map((item) => ({ lineAction: true, ...item })) : items
+    return lineActions ? items.map((item) => ({ lineAction: true, ...item })): items
   }, [items, columns])
 
   const lineActionColumns = useMemo<Array<Column>>(() => {

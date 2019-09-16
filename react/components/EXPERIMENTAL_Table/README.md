@@ -121,71 +121,6 @@ function StateHookExample() {
 ;<StateHookExample />
 ```
 
-```js
-// Imports
-const useTableLineActions = require('./hooks/useTableLineActions.tsx').default
-const useTableState = require('./hooks/useTableState.ts').default
-
-// Define the columns
-const columns = [
-  {
-    id: 'name',
-    title: 'Name',
-  },
-  {
-    id: 'email',
-    title: 'Email',
-  },
-  {
-    id: 'number',
-    title: 'Number',
-  },
-  {
-    id: 'country',
-    title: 'Country',
-  },
-]
-
-// Define the items
-const items = [
-  {
-    name: "T'Chala",
-    email: 'black.panther@gmail.com',
-    number: 1.88191,
-    country: '🇰🇪Wakanda',
-  },
-  {
-    name: 'Peter Parker',
-    email: 'spider.man@gmail.com',
-    number: 3.09191,
-    country: '🇺🇸USA',
-  },
-]
-
-const lineActions = [
-  {
-    label: ({ rowData }) => `Action for ${rowData.name}`,
-    onClick: ({ rowData }) => alert(`Executed action for ${rowData.name}`),
-  },
-  {
-    label: ({ rowData }) => `DANGEROUS action for ${rowData.name}`,
-    isDangerous: true,
-    onClick: ({ rowData }) =>
-      alert(`Executed a DANGEROUS action for ${rowData.name}`),
-  },
-]
-function StateHookExample() {
-  const { lineActionItems, lineActionColumns} = useTableLineActions({items, columns, lineActions})
-  const tableState = useTableState({
-    columns: lineActionColumns,
-    items: lineActionItems,
-  })
-
-  return <Table state={tableState} />
-}
-;<StateHookExample />
-```
-
 ### Input Object
 
 | Property | Type                      | Description                         |
@@ -785,6 +720,87 @@ function ToolbarExample() {
   )
 }
 ;<ToolbarExample />
+```
+
+# Line actions
+This feature creates a last extra column with an ActionMenu component per line.
+
+```js
+// Imports
+const useTableLineActions = require('./hooks/useTableLineActions.tsx').default
+const useTableState = require('./hooks/useTableState.ts').default
+
+// Define the columns
+const columns = [
+  {
+    id: 'name',
+    title: 'Name',
+  },
+  {
+    id: 'email',
+    title: 'Email',
+  },
+  {
+    id: 'number',
+    title: 'Number',
+  },
+  {
+    id: 'country',
+    title: 'Country',
+  },
+]
+
+// Define the items
+const items = [
+  {
+    name: "T'Chala",
+    email: 'black.panther@gmail.com',
+    number: 1.88191,
+    country: '🇰🇪Wakanda',
+  },
+  {
+    name: 'Peter Parker',
+    email: 'spider.man@gmail.com',
+    number: 3.09191,
+    country: '🇺🇸USA',
+  },
+  {
+    name: 'Shang-Chi',
+    email: 'kungfu.master@gmail.com',
+    number: 39.09222,
+    country: '🇨🇳China',
+  },
+  {
+    name: 'Natasha Romanoff',
+    email: 'black.widow@gmail.com',
+    number: 5.09291,
+    country: '🇷🇺Russia',
+  },
+]
+
+function LineActionsExample() {
+  const lineActions = [
+    {
+      label: ({ rowData }) => `Action for ${rowData.name}`,
+      onClick: ({ rowData }) => alert(`Executed action for ${rowData.name}`),
+    },
+    {
+      label: ({ rowData }) => `DANGEROUS action for ${rowData.name}`,
+      isDangerous: true,
+      onClick: ({ rowData }) =>
+        alert(`Executed a DANGEROUS action for ${rowData.name}`),
+    },
+  ]
+
+  const { lineActionItems, lineActionColumns } = useTableLineActions({items, columns, lineActions})
+  const tableState = useTableState({
+    columns: lineActionColumns,
+    items: lineActionItems,
+  })
+
+  return <Table state={tableState} />
+}
+;<LineActionsExample />
 ```
 
 ### UNSAFE Custom Input
