@@ -4,8 +4,8 @@ import PropTypes, { InferProps } from 'prop-types'
 import ActionMenu from '../../ActionMenu'
 import OptionsDots from '../../icon/OptionsDots'
 
-const LineAction: FC<LineActionProps> = ({ lineActions }) => (
-  <div>
+const LineAction: FC<LineActionProps> = ({ lineActions, rowData }) => (
+  <>
     <ActionMenu
       buttonProps={{
         variation: 'tertiary',
@@ -15,11 +15,11 @@ const LineAction: FC<LineActionProps> = ({ lineActions }) => (
       }}
       options={lineActions.map(action => ({
         ...action,
-        label: action.label,
-        onClick: () => action.onClick,
+        label: action.label({ rowData }),
+        onClick: () => action.onClick({ rowData }),
       }))}
     />
-  </div>
+  </>
 )
 
 type LineAction = {
@@ -29,7 +29,8 @@ type LineAction = {
 }
 
 export type LineActionProps = {
-  lineActions: Array<LineAction>
+  lineActions: Array<LineAction>,
+  rowData: Object,
 }
 
 export default LineAction

@@ -121,6 +121,72 @@ function StateHookExample() {
 ;<StateHookExample />
 ```
 
+```js
+// Imports
+const useTableLineActions = require('./hooks/useTableLineActions.tsx').default
+const useTableState = require('./hooks/useTableState.ts').default
+
+// Define the columns
+const columns = [
+  {
+    id: 'name',
+    title: 'Name',
+  },
+  {
+    id: 'email',
+    title: 'Email',
+  },
+  {
+    id: 'number',
+    title: 'Number',
+  },
+  {
+    id: 'country',
+    title: 'Country',
+  },
+]
+
+// Define the items
+const items = [
+  {
+    name: "T'Chala",
+    email: 'black.panther@gmail.com',
+    number: 1.88191,
+    country: '🇰🇪Wakanda',
+  },
+  {
+    name: 'Peter Parker',
+    email: 'spider.man@gmail.com',
+    number: 3.09191,
+    country: '🇺🇸USA',
+  },
+]
+
+const lineActions = [
+  {
+    label: ({ rowData }) => `Action for ${rowData.name}`,
+    onClick: ({ rowData }) => alert(`Executed action for ${rowData.name}`),
+  },
+  {
+    label: ({ rowData }) => `DANGEROUS action for ${rowData.name}`,
+    isDangerous: true,
+    onClick: ({ rowData }) =>
+      alert(`Executed a DANGEROUS action for ${rowData.name}`),
+  },
+]
+function StateHookExample() {
+  const {lineActionColumns} = useTableLineActions({columns, lineActions})
+  console.log(useTableLineActions(columns, lineActions))
+  const tableState = useTableState({
+    columns: columns,
+    items: items,
+  })
+
+  return <Table state={tableState} />
+}
+;<StateHookExample />
+```
+
 ### Input Object
 
 | Property | Type                      | Description                         |

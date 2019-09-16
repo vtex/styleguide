@@ -5,9 +5,7 @@ import { TableProvider } from './context'
 import Toolbar from './Toolbar/index'
 
 import { DENSITY_OPTIONS } from './constants'
-
 import LineActions, { LineActionProps } from './LineActions/index'
-
 import Pagination, { PaginationProps } from './Pagination'
 import { STATE_NOT_FOUND_ERROR } from './errors'
 import { TableContainer, Thead } from './Styled'
