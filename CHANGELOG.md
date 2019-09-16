@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- `EXPERIMENTAL_TableV2` to have both rows and rowTrees
+
 ## [9.80.0] - 2019-09-20
 
 ### Added
@@ -17,11 +21,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- **Tooltip** `z-index` is now set to avoid being shadowed by some components.
-
 ## [9.79.3] - 2019-09-19
 
 ### Fixed
+
 - **RadioGroup** remove unnecessary paddings and margins if `hideBorder` is ON.
 - **RadioGroup** updates examples in documentation to encourage usage without borders.
 
