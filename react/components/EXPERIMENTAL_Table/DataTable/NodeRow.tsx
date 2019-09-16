@@ -31,14 +31,30 @@ const NodeRow: FC<NodeRowProps> = ({ data, index, depth }) => {
       />
     ))
 
-  /** Calculate the amount of indentation of the first column */
-  const prefixWidth = depth * NESTED_ROW_PREFIX_WIDTH
+  /**
+   * Render the first cell prefixes
+   * @param isFirstCell
+   * @param hasChild
+   */
+  const renderPrefix = (isFirstCell?: boolean, hasChild?: boolean) =>
+    isFirstCell ? (
+      <CellPrefix width={depth * NESTED_ROW_PREFIX_WIDTH}>
+        {hasChild && (
+          <CellPrefix.Arrow
+            active={collapsed}
+            onClick={() => setCollapsed(!collapsed)}
+          />
+        )}
+      </CellPrefix>
+    ) : (
+      <></>
+    )
 
   /**
    * Renders the entire row
-   * @param arrow if has arrow on first cell, or not
+   * @param hasChild if has arrow has children or not
    */
-  const renderCells = (arrow?: boolean) => {
+  const renderCells = (hasChild?: boolean) => {
     return (
       <RowContainer id={`${NAMESPACES.ROW}-${index}-${depth}`} key={rowKey}>
         {visibleColumns.map((column: Column, cellIndex: number) => {
@@ -52,16 +68,7 @@ const NodeRow: FC<NodeRowProps> = ({ data, index, depth }) => {
               id={`${index}-${cellIndex}-${depth}`}
               key={`cel-${index}-${cellIndex}-${depth}`}
               width={width}>
-              {cellIndex === 0 && (
-                <CellPrefix width={prefixWidth}>
-                  {arrow && (
-                    <CellPrefix.Arrow
-                      active={collapsed}
-                      onClick={() => setCollapsed(!collapsed)}
-                    />
-                  )}
-                </CellPrefix>
-              )}
+              {renderPrefix(cellIndex === 0, hasChild)}
               {content}
             </Cell>
           )
