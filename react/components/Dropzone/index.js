@@ -97,7 +97,7 @@ class Dropzone extends PureComponent {
           <div className={dropzoneContainerClasses} {...getRootProps()}>
             {isLoading ? (
               <div className={iconHolderClasses} style={iconHolderStyles}>
-                <Spinner size="32" />
+                <Spinner size={32} />
               </div>
             ) : fileDropped ? (
               <div className={droppedContainerClasses}>
