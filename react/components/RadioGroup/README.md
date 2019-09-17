@@ -131,3 +131,19 @@ Entire group disabled
   onChange={() => {}}
 />
 ```
+
+Hiding border
+
+```js
+<RadioGroup
+  name="radioGroupExample3"
+  hideBorder
+  options={[
+    { value: 'value1', label: 'Hue' },
+    { value: 'value2', label: 'Saturation' },
+    { value: 'value3', label: 'Value' },
+  ]}
+  value="value1"
+  onChange={() => {}}
+/>
+```
