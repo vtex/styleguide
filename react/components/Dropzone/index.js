@@ -25,13 +25,11 @@ class Dropzone extends PureComponent {
   }
 
   handleDropAccepted = files => {
-    console.log('handleDropAccepted', files)
     this.setState({ isHovering: false, fileDropped: true, files })
     this.props.onDropAccepted(files)
   }
 
   handleDropRejected = files => {
-    console.log('handleDropRejected', files)
     this.setState({ isHovering: false })
     this.props.onDropRejected(files)
   }

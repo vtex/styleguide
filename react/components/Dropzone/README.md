@@ -11,11 +11,10 @@ class MyDropZone extends React.Component {
   }
 
   handleFile(files) {
-    console.log('DROP', files)
+    console.log(files)
   }
 
   handleReset(files) {
-    console.log('RESET')
     if (files) {
       console.log(files)
     }
