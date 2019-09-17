@@ -3,11 +3,10 @@ import PropTypes, { InferProps } from 'prop-types'
 
 import { TableProvider } from './context'
 import Toolbar from './Toolbar/index'
-import { DENSITY_OPTIONS, NAMESPACES } from './constants'
+import { DENSITY_OPTIONS } from './constants'
 import Pagination, { PaginationProps } from './Pagination'
 import { STATE_NOT_FOUND_ERROR } from './errors'
-import useTableContext from './hooks/useTableContext'
-
+import TableContainer from './Container'
 import DataTable from './DataTable'
 
 const propTypes = {
@@ -50,18 +49,6 @@ interface Composites {
   Pagination: FC<PaginationProps>
 }
 
-const TableContainer: FC = ({ children }) => {
-  const { containerHeight, tableHeight } = useTableContext()
-  return (
-    <div
-      style={{ minHeight: containerHeight || tableHeight }}
-      id={NAMESPACES.CONTAINER}
-      className="flex flex-column">
-      {children}
-    </div>
-  )
-}
-
 const Table: FC<Props> & Composites = ({
   children,
   state,
@@ -77,7 +64,7 @@ const Table: FC<Props> & Composites = ({
         {children}
         <DataTable>
           <DataTable.Header />
-          {nestedRows ? <DataTable.RowTree /> : <DataTable.Rows />}
+          <DataTable.Rows />
         </DataTable>
       </TableContainer>
     </TableProvider>

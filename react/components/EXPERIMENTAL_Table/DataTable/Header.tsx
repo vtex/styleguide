@@ -19,15 +19,16 @@ const Header: FC = () => {
   }
 
   return (
-    <div
-      key="header"
+    <thead
       id={NAMESPACES.HEADER}
-      className="dt-row w-100 h-100 ph4 truncate overflow-x-hidden c-muted-2 f6"
-      style={{
-        height: TABLE_HEADER_HEIGHT,
-      }}>
-      {visibleColumns.map(renderHeader)}
-    </div>
+      className="w-100 h-100 ph4 truncate overflow-x-hidden c-muted-2 f6">
+      <tr
+        style={{
+          height: TABLE_HEADER_HEIGHT,
+        }}>
+        {visibleColumns.map(renderHeader)}
+      </tr>
+    </thead>
   )
 }
 

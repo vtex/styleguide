@@ -1,12 +1,3 @@
-interface MenuAction {
-  label: string
-  onClick: Function
-  toggle?: {
-    checked: boolean
-    semantic: boolean
-  }
-  id?: number | string
-}
 interface Column {
   id: string
   title: string
@@ -18,6 +9,7 @@ interface Column {
 
 interface TableProps {
   containerHeight?: number
+  nestedRows?: boolean
   loading?:
     | boolean
     | {
@@ -43,9 +35,3 @@ interface TableState {
   showAllColumns?: () => void
   hideAllColumns?: () => void
 }
-
-type Density = 'low' | 'medium' | 'high'
-type Size = 'small' | 'regular' | 'large'
-type Alignment = 'left' | 'right'
-type Variation = 'primary' | 'secondary' | 'tertiary'
-type FlexJustify = 'between' | 'end' | 'start' | 'around' | 'center'

@@ -4,7 +4,6 @@ import EmptyState from '../../EmptyState/index.js'
 
 import Header from './Header'
 import Rows from './Rows'
-import RowTree from './RowTree'
 import { NAMESPACES } from '../constants'
 import useTableContext from '../hooks/useTableContext'
 import Loading from './Loading'
@@ -23,7 +22,7 @@ const DataTableContainer: FC = ({ children }) => {
   return (
     <div
       id={NAMESPACES.TABLE}
-      style={{ height }}
+      style={{ minHeight: height }}
       className="order-1 mw-100 overflow-x-auto">
       {children}
       {!isEmpty && loading && (
@@ -45,31 +44,28 @@ const DataTable: FC & DataTableComposites = ({ children }) => {
   const hideRows = isEmpty || loading
   return (
     <DataTableContainer>
-      <div className="dt w-100" style={{ borderSpacing: 0 }}>
+      <table className="w-100" style={{ borderSpacing: 0 }}>
         {React.Children.map(children, (child: DataTableChild) => {
-          const isRowsChild =
-            child.type.name === 'Rows' || child.type.name === 'RowTree'
+          const isRowsChild = child.type.name === 'Rows'
           return isRowsChild && hideRows ? null : child
         })}
-      </div>
+      </table>
     </DataTableContainer>
   )
 }
 
 type DataTableChild = {
   type: {
-    name: 'Header' | 'Rows' | 'RowTree'
+    name: 'Header' | 'Rows'
   }
 }
 
 type DataTableComposites = {
   Header?: FC
   Rows?: FC
-  RowTree?: FC
 }
 
 DataTable.Header = Header
 DataTable.Rows = Rows
-DataTable.RowTree = RowTree
 
 export default DataTable
