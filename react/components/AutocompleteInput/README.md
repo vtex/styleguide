@@ -10,7 +10,7 @@
 
 - 6 is a great number of suggestions. Don't exceed 10 suggestions.
 
-#### Simple Autocomplete mocking server responses.
+#### Simple Autocomplete mocking server responses
 
 ```jsx
 import { uniq } from 'lodash'
@@ -135,7 +135,7 @@ const UsersAutocomplete = () => {
 ;<UsersAutocomplete />
 ```
 
-#### Custom option rendering.
+#### Custom option rendering
 
 ```jsx
 import { uniq } from 'lodash'
