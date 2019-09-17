@@ -2,25 +2,25 @@ import React, { FC } from 'react'
 
 import ActionMenu from '../../ActionMenu'
 import OptionsDots from '../../icon/OptionsDots'
+import { render } from 'react-dom';
 
 const LineAction: FC<LineActionProps> = ({ lineActions, rowData }) => (
-  <>
-    <ActionMenu
-      buttonProps={{
-        variation: 'tertiary',
-        icon: <OptionsDots />
-      }}
-      options={lineActions.map(action => ({
-        ...action,
-        label: action.label({ rowData }),
-        onClick: () => action.onClick({ rowData }),
-      }))}
-    />
-  </>
+  <ActionMenu
+    buttonProps={{
+      variation: 'tertiary',
+      icon: <OptionsDots />
+    }}
+    options={lineActions.map(action => ({
+      ...action,
+      label: action.renderLabel? action.renderLabel({ rowData }): action.label,
+      onClick: () => action.onClick({ rowData }),
+    }))}
+  />
 )
 
 export type LineActionObject = {
-  label: Function,
+  label: String,
+  renderLabel?: ({ rowData: unknow}) => React.ReactNode,
   isDangerous: Boolean,
   onClick: Function,
 }

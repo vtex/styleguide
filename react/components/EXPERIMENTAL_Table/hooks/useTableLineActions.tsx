@@ -10,11 +10,11 @@ const useTableLineActions = ({
   lineActions
 }: hookInput): hookReturn => {
   
-  const withLineActionItems = useMemo<Array<Object>>(() => {
+  const itemsWithLineActions = useMemo<Array<Object>>(() => {
     return lineActions ? items.map((item) => ({ lineAction: true, ...item })): items
   }, [items])
 
-  const withLineActionColumns = useMemo<Array<Column>>(() => {
+  const columnsWithLineActions = useMemo<Array<Column>>(() => {
     const cellRender = ({ rowData }) => (
       <LineAction
         lineActions={lineActions}
@@ -32,9 +32,10 @@ const useTableLineActions = ({
     ]: columns
   }, [columns])
 
+  console.log(columnsWithLineActions);
   return {
-    withLineActionColumns,
-    withLineActionItems,
+    itemsWithLineActions,
+    columnsWithLineActions,
   }
 }
 
@@ -45,8 +46,8 @@ type hookInput = {
 }
 
 type hookReturn = {
-  withLineActionColumns?: Array<Column>,
-  withLineActionItems?: Array<Object>,
+  columnsWithLineActions?: Array<Column>,
+  itemsWithLineActions?: Array<Object>,
 }
 
 export default useTableLineActions

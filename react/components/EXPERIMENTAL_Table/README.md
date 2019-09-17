@@ -781,21 +781,21 @@ const items = [
 function LineActionsExample() {
   const lineActions = [
     {
-      label: ({ rowData }) => `Action for ${rowData.name}`,
+      label: 'Action 1',
       onClick: ({ rowData }) => alert(`Executed action for ${rowData.name}`),
     },
     {
-      label: ({ rowData }) => `DANGEROUS action for ${rowData.name}`,
+      label: 'DANGEROUS Action',
       isDangerous: true,
       onClick: ({ rowData }) =>
         alert(`Executed a DANGEROUS action for ${rowData.name}`),
     },
   ]
 
-  const { withLineActionItems, withLineActionColumns } = useTableLineActions({items, columns, lineActions})
+  const { itemsWithLineActions, columnsWithLineActions } = useTableLineActions({items, columns, lineActions})
   const tableState = useTableState({
-    columns: withLineActionColumns,
-    items: withLineActionItems,
+    columns: columnsWithLineActions,
+    items: itemsWithLineActions,
   })
 
   return <Table state={tableState} />
