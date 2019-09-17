@@ -4,26 +4,8 @@ import React, { useState, useEffect, useRef } from 'react'
 import Spinner from '../Spinner'
 
 import { useClickOutside, useArrowNavigation } from './hooks'
-import Option from './Option'
+import Option, { AutocompleteOption, autocompleteOptionShape, getTermFromOption } from './Option'
 import SearchInput from './SearchInput'
-
-/** Structured Autocomplete option shape */
-const structuredAutocompleteOptionShape = PropTypes.shape({
-  value: PropTypes.any,
-  label: PropTypes.string.isRequired,
-})
-
-type StructuredAutocompleteOption = PropTypes.InferType<
-  typeof structuredAutocompleteOptionShape
->
-
-export type AutocompleteOption = string | StructuredAutocompleteOption
-
-/** Autocomplete option shape */
-const autocompleteOptionShape = PropTypes.oneOfType([
-  PropTypes.string,
-  structuredAutocompleteOptionShape,
-])
 
 const propTypes = {
   /** Input props. All HTMLInput props can be added too */
@@ -48,7 +30,7 @@ const propTypes = {
     loading: PropTypes.bool,
     /**
      * Function that makes possible to the dev to customly render option.
-     * Called with: (option: Value, index: number) and should return a React Node
+     * Called with all props needed: `(props: { key: string, selected: boolean, value: OptionValue, searchTerm: string, roundedBottom: boolean, icon: ReactElement, onClick: () => void }, index: number)` and should return a React Node
      */
     renderOption: PropTypes.func,
     /**
@@ -88,9 +70,6 @@ const propTypes = {
     }),
   }).isRequired,
 }
-
-export const getTermFromOption = (option: AutocompleteOption): string =>
-  typeof option === 'string' ? option : option.label
 
 const AutocompleteInput: React.FunctionComponent<
   PropTypes.InferProps<typeof propTypes>
@@ -180,7 +159,7 @@ const AutocompleteInput: React.FunctionComponent<
   const getOptionProps = (option, index) => ({
     key: `${getTermFromOption(option)}-${index}`,
     selected: index === selectedOptionIndex,
-    value: getTermFromOption(option),
+    value: option,
     searchTerm: term,
     roundedBottom: index === showedOptions.length - 1,
     icon: typeof option !== 'string' && icon ? icon : null,
@@ -206,11 +185,10 @@ const AutocompleteInput: React.FunctionComponent<
     </div>
   )
 
-  const popoverOpened =
-    showPopover && (!!showedOptions.length || loading)
+  const popoverOpened = showPopover && (!!showedOptions.length || loading)
 
   return (
-    <div ref={containerRef} className="flex flex-column">
+    <div ref={containerRef} className="flex flex-column w-100">
       <SearchInput
         {...inputProps}
         value={
