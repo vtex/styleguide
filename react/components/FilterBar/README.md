@@ -108,9 +108,7 @@ Filter users example
 const Input = require('../Input').default
 const Checkbox = require('../Checkbox').default
 
-const CPF_VALIDATION_REGEX = RegExp(
-  '[0-9]{3}\.[0-9]{3}\.[0-9]{3}\-[0-9]{2}'
-)
+const CPF_VALIDATION_REGEX = RegExp('[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}')
 
 function SimpleInputObject({ value, onChange }) {
   return <Input value={value || ''} onChange={e => onChange(e.target.value)} />
@@ -128,17 +126,18 @@ function CpfInputObject({ value, error, onChange }) {
 }
 
 function CpfInputObjectWithValidation({ onChange, ...props }) {
-  return <CpfInputObject {...props} onChange={value => {
-    if (
-      value &&
-      value.length < 15 &&
-      CPF_VALIDATION_REGEX.test(value)
-    ) {
-      onChange(value)
-    } else {
-      onChange(value, 'Invalid CPF')
-    }
-  }} />
+  return (
+    <CpfInputObject
+      {...props}
+      onChange={value => {
+        if (value && value.length < 15 && CPF_VALIDATION_REGEX.test(value)) {
+          onChange(value)
+        } else {
+          onChange(value, 'Invalid CPF')
+        }
+      }}
+    />
+  )
 }
 
 function AgeInputObject({ value, onChange }) {
@@ -163,8 +162,7 @@ function AgeInputRangeObject({ value, onChange }) {
       <Input
         placeholder="Age from…"
         errorMessage={
-          parseInt(from) >=
-            parseInt(to)
+          parseInt(from) >= parseInt(to)
             ? 'Must be smaller than other input'
             : ''
         }
@@ -193,11 +191,7 @@ function AgeInputRangeObject({ value, onChange }) {
   )
 }
 
-function ClassSelectorObject({
-  value,
-  error,
-  onChange,
-}) {
+function ClassSelectorObject({ value, error, onChange }) {
   const initialValue = {
     vip: true,
     gold: true,
@@ -373,7 +367,7 @@ class MyUsersFilter extends React.Component {
               {
                 label: 'is',
                 value: '=',
-                object: props => <CpfInputObjectWithValidation {...props} />
+                object: props => <CpfInputObjectWithValidation {...props} />,
               },
               {
                 label: 'contains',
