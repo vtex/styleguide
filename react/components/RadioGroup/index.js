@@ -9,7 +9,7 @@ class RadioGroup extends React.Component {
   }
 
   render() {
-    const { options, value, name, disabled } = this.props
+    const { options, value, name, disabled, hideBorder } = this.props
 
     return (
       <div>
@@ -20,7 +20,9 @@ class RadioGroup extends React.Component {
           const id = `${name}-${i}`
           return (
             <label
-              className={`db pv2 ph4 ba b--muted-4 br3 ${classNames({
+              className={`db pv2 ph4 br3 ${classNames({
+                'b--muted-4': !hideBorder,
+                ba: !hideBorder,
                 pointer: !isDisabled,
               })}`}
               key={id}
@@ -72,10 +74,13 @@ RadioGroup.propTypes = {
   onChange: PropTypes.func.isRequired,
   /** Disable the entire group */
   disabled: PropTypes.bool,
+  /** Hide group border */
+  hideBorder: PropTypes.bool,
 }
 
 RadioGroup.defaultProps = {
   disabled: false,
+  hideBorder: false,
 }
 
 export default RadioGroup
