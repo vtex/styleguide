@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.79.0] - 2019-09-17
+
 ## [9.78.12] - 2019-09-17
 ### Added
 - Css class to the vtex toast container
