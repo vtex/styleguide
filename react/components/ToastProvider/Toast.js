@@ -172,7 +172,7 @@ export default class Toast extends Component {
 
     return (
       <div
-        className={`absolute bottom-0 ${horizontalPosition}-0 z-5 ma7-ns mb0-s w-100 w-auto-ns mw6-m mw-40-l`}
+        className={`vtex-toast-container absolute bottom-0 ${horizontalPosition}-0 z-5 ma7-ns mb0-s w-100 w-auto-ns mw6-m mw-40-l`}
         onMouseOver={this.handleMouseOver}
         onMouseOut={this.handleMouseOut}
         style={{
