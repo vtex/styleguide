@@ -1,7 +1,6 @@
 import uniq from 'lodash/uniq'
 import PropTypes from 'prop-types'
 import React, { useState, useEffect, useRef } from 'react'
-import IconSearch from '../icon/Search'
 import Spinner from '../Spinner'
 
 import { useClickOutside, useArrowNavigation } from './hooks'
@@ -62,7 +61,7 @@ const propTypes = {
      * Icon representing the entity.
      * Shown when a value is an object to show the difference
      */
-    icon: PropTypes.element.isRequired,
+    icon: PropTypes.element,
     /**
      * Callback called when an option is selected
      * (clicked or via arrow keys + enter)
@@ -81,7 +80,7 @@ const propTypes = {
       value: PropTypes.arrayOf(autocompleteOptionShape).isRequired,
       /**
        * Last searched change handler.
-       * Called when a term is searched or an option is selected
+       * Called when a term is searched or an option is selected.
        */
       onChange: PropTypes.func,
       /** Last Searched options's title */
@@ -123,10 +122,7 @@ const AutocompleteInput: React.FunctionComponent<
     return []
   }
 
-  const showedOptions = (term.length
-    ? [term as AutocompleteOption]
-    : []
-  ).concat(getShowedOptions())
+  const showedOptions = getShowedOptions()
 
   const noSelectedOptionIndex = -1
   const [selectedOptionIndex, setSelectedOptionIndex] = useArrowNavigation(
@@ -187,7 +183,7 @@ const AutocompleteInput: React.FunctionComponent<
     value: getTermFromOption(option),
     searchTerm: term,
     roundedBottom: index === showedOptions.length - 1,
-    icon: typeof option !== 'string' ? icon : <IconSearch size={14} />,
+    icon: typeof option !== 'string' && icon ? icon : null,
     onClick: () => {
       addToLastSearched(option)
       handleOptionClick(option)
@@ -211,13 +207,17 @@ const AutocompleteInput: React.FunctionComponent<
   )
 
   const popoverOpened =
-    showPopover && (!!showedOptions.length || loading || !!term.length)
+    showPopover && (!!showedOptions.length || loading)
 
   return (
     <div ref={containerRef} className="flex flex-column">
       <SearchInput
         {...inputProps}
-        value={term}
+        value={
+          selectedOptionIndex === -1
+            ? term
+            : getTermFromOption(showedOptions[selectedOptionIndex])
+        }
         roundedBottom={!popoverOpened}
         onKeyDown={handleKeyDown}
         onFocus={() => setShowPopover(true)}

@@ -2,8 +2,6 @@ import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React, { useState } from 'react'
 
-import IconSearch from '../icon/Search'
-
 const propTypes = {
   /** Determine if the option should have a rounded bottom */
   roundedBottom: PropTypes.bool,
@@ -67,9 +65,7 @@ const Option: React.FunctionComponent<
       onMouseLeave={() => setHighlightOption(false)}
       onClick={onClick}>
       <span className="h1 flex items-center">
-        <span className="mr3 c-muted-2 flex pt1">
-          {icon || <IconSearch size={14} />}
-        </span>
+        <span className="mr3 c-muted-2 flex pt1">{icon}</span>
         {renderOptionValue()}
       </span>
     </button>
