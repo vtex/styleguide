@@ -20,9 +20,11 @@ class RadioGroup extends React.Component {
           const id = `${name}-${i}`
           return (
             <label
-              className={`db pv2 ph4 br3 ${classNames({
+              className={`db br3 ${classNames({
                 'b--muted-4': !hideBorder,
                 ba: !hideBorder,
+                pv2: !hideBorder,
+                ph4: !hideBorder,
                 pointer: !isDisabled,
               })}`}
               key={id}
@@ -37,7 +39,7 @@ class RadioGroup extends React.Component {
                   borderBottomRightRadius: 0,
                 }),
               }}>
-              <div className="mt3">
+              <div className={classNames({ mt3: !hideBorder })}>
                 <Radio
                   id={id}
                   name={name}

@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- **RadioGroup** remove unnecessary paddings and margins if `hideBorder` is ON.
+- **RadioGroup** updates examples in documentation to encourage usage without borders.
+
 ## [9.79.2] - 2019-09-19
 
 ### Fixed
