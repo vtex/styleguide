@@ -7,9 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- `EXPERIMENTAL_TableTree` component
+
 ### Changed
 
-- `EXPERIMENTAL_TableV2` to have both rows and rowTrees
+- `EXPERIMENTAL_Table` to not deal with rows with children
 
 ## [9.80.0] - 2019-09-20
 
