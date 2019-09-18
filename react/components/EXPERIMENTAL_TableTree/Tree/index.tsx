@@ -12,7 +12,7 @@ const Node: FC<NodeProps> = ({ data, index, depth }) => {
 
   const { children, ...rowData } = data
 
-  const subRows =
+  const childs =
     children &&
     children.map((data, index) => (
       <Node
@@ -59,10 +59,10 @@ const Node: FC<NodeProps> = ({ data, index, depth }) => {
     )
   }
 
-  return subRows ? (
+  return childs ? (
     <>
       {renderCells(true)}
-      {collapsed && subRows}
+      {collapsed && childs}
     </>
   ) : (
     renderCells()
