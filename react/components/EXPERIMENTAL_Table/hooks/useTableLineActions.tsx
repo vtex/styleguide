@@ -32,7 +32,6 @@ const useTableLineActions = ({
     ]: columns
   }, [columns])
 
-  console.log(columnsWithLineActions);
   return {
     itemsWithLineActions,
     columnsWithLineActions,

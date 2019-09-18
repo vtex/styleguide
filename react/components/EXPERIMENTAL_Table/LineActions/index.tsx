@@ -2,7 +2,6 @@ import React, { FC } from 'react'
 
 import ActionMenu from '../../ActionMenu'
 import OptionsDots from '../../icon/OptionsDots'
-import { render } from 'react-dom';
 
 const LineAction: FC<LineActionProps> = ({ lineActions, rowData }) => (
   <ActionMenu
