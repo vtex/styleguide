@@ -1,4 +1,4 @@
-interface MenuAction {
+type MenuAction = {
   label: string
   onClick: Function
   toggle?: {
@@ -7,7 +7,8 @@ interface MenuAction {
   }
   id?: number | string
 }
-interface Column {
+
+type Column = {
   id: string
   title: string
   width?: number
@@ -16,7 +17,7 @@ interface Column {
   hidden?: boolean
 }
 
-interface TableProps {
+type TableProps = {
   containerHeight?: number
   loading?:
     | boolean
@@ -29,7 +30,7 @@ interface TableProps {
   }
 }
 
-interface TableState {
+type TableState = {
   visibleColumns?: Array<Column>
   columns?: Array<Column>
   items?: Array<Object>

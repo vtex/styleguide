@@ -1,13 +1,13 @@
 import React, { FC, useState } from 'react'
 
 import CellPrefix from './CellPrefix'
-import useTableTreeContext from '../hooks/useTableTreeContext'
 import Cell from '../../EXPERIMENTAL_Table/DataTable/Cell'
+import useTableContext from '../../EXPERIMENTAL_Table/hooks/useTableContext'
 
 const PREFIX_WIDTH = 36
 
 const Node: FC<NodeProps> = ({ data, index, depth }) => {
-  const { visibleColumns, rowHeight } = useTableTreeContext()
+  const { visibleColumns, rowHeight } = useTableContext()
   const [collapsed, setCollapsed] = useState(false)
 
   const { children, ...rowData } = data
@@ -70,7 +70,7 @@ const Node: FC<NodeProps> = ({ data, index, depth }) => {
 }
 
 const Tree: FC = () => {
-  const { items } = useTableTreeContext()
+  const { items } = useTableContext()
 
   return (
     <>

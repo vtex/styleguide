@@ -9,9 +9,25 @@ import { STATE_NOT_FOUND_ERROR } from './errors'
 import TableContainer from './Container'
 import DataTable from './DataTable'
 
-const propTypes = {
+const Table: FC<Props> & TableComposites = ({ children, state, ...props }) => {
+  if (!state) {
+    throw STATE_NOT_FOUND_ERROR
+  }
+  return (
+    <TableProvider value={{ ...state, ...props }}>
+      <TableContainer>
+        {children}
+        <DataTable>
+          <DataTable.Header />
+          <DataTable.Rows />
+        </DataTable>
+      </TableContainer>
+    </TableProvider>
+  )
+}
+
+export const tablePropTypes = {
   containerHeight: PropTypes.number,
-  nestedRows: PropTypes.bool,
   loading: PropTypes.oneOfType([
     PropTypes.shape({
       renderAs: PropTypes.func,
@@ -42,37 +58,15 @@ const propTypes = {
   }),
 }
 
-type Props = InferProps<typeof propTypes>
+export type Props = InferProps<typeof tablePropTypes>
 
-interface Composites {
+export type TableComposites = {
   Toolbar: FC
   Pagination: FC<PaginationProps>
 }
 
-const Table: FC<Props> & Composites = ({
-  children,
-  state,
-  nestedRows,
-  ...props
-}) => {
-  if (!state) {
-    throw STATE_NOT_FOUND_ERROR
-  }
-  return (
-    <TableProvider value={{ ...state, ...props }}>
-      <TableContainer>
-        {children}
-        <DataTable>
-          <DataTable.Header />
-          <DataTable.Rows />
-        </DataTable>
-      </TableContainer>
-    </TableProvider>
-  )
-}
-
 Table.Toolbar = Toolbar
 Table.Pagination = Pagination
-Table.propTypes = propTypes
+Table.propTypes = tablePropTypes
 
 export default Table

@@ -1,9 +1,9 @@
 #### Toolbar
 
 ```js
-// Imports
 const useTableState = require('../EXPERIMENTAL_Table/hooks/useTableState.ts')
   .default
+const sampleData = require('./sampleData.ts').default
 
 // Define the columns
 const columns = [
@@ -26,73 +26,7 @@ const columns = [
 ]
 
 // Define the items
-const items = [
-  {
-    name: "T'Chala",
-    email: 'black.panther@gmail.com',
-    number: 1.88191,
-    country: '🇰🇪Wakanda',
-  },
-  {
-    name: 'Peter Parker',
-    email: 'spider.man@gmail.com',
-    number: 3.09191,
-    country: '🇺🇸USA',
-  },
-  {
-    name: 'Shang-Chi',
-    email: 'kungfu.master@gmail.com',
-    number: 39.09222,
-    country: '🇨🇳China',
-  },
-  {
-    name: 'Natasha Romanoff',
-    email: 'black.widow@gmail.com',
-    number: 5.09291,
-    country: '🇷🇺Russia',
-  },
-  {
-    name: 'Peter Parker',
-    email: 'spider.man@gmail.com',
-    country: '🇺🇸USA',
-    children: [
-      {
-        name: 'Aunt May',
-        email: 'may.parker@gmail.com',
-        country: '🇺🇸USA',
-      },
-      {
-        name: 'Uncle Ben',
-        email: 'ben.parker@gmail.com',
-        country: '🇺🇸USA',
-      },
-      {
-        name: 'Marry Jane',
-        email: 'mjaaay@gmail.com',
-        country: '🇺🇸USA',
-        children: [
-          {
-            name: 'Harry Osbourne',
-            email: 'harry@gmail.com',
-            country: '🇺🇸USA',
-          },
-          {
-            name: 'Normal Osbourne',
-            email: 'norman@gmail.com',
-            country: '🇺🇸USA',
-            children: [
-              {
-                name: 'Green Goblin',
-                email: 'norman.green@gmail.com',
-                country: '🇺🇸USA',
-              },
-            ],
-          },
-        ],
-      },
-    ],
-  },
-]
+const items = sampleData
 
 function ToolbarExample() {
   const [inputValue, setInputValue] = React.useState('')
