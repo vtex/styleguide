@@ -11,9 +11,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - `EXPERIMENTAL_TableTree` component
 
-### Changed
+### Removed
 
-- `EXPERIMENTAL_Table` to not deal with rows with children
+- `EXPERIMENTAL_Table` ability to deal with child rows
 
 ## [9.80.0] - 2019-09-20
 

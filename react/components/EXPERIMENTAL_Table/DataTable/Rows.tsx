@@ -12,7 +12,7 @@ const Rows: FC<RowProps> = ({ cellProps, as: Tag }) => {
     <Tag
       key={`${NAMESPACES.ROW}-${uuid()}`}
       style={{ height: rowHeight }}
-      className="w-100 h-100 ph4 truncate overflow-x-hidden">
+      className="w-100 ph4 truncate overflow-x-hidden">
       {visibleColumns.map((column: Column, cellIndex: number) => {
         const { cellRender, width } = column
         const cellData = rowData[column.id]
