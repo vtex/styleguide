@@ -4,8 +4,6 @@ import React, { useState } from 'react'
 
 import IconSearch from '../../icon/Search'
 
-import style from './style.css'
-
 import ClearInputIcon from '../../icon/Clear'
 
 const propTypes = {
@@ -72,7 +70,7 @@ const SearchInput: React.FC<
   const activeClass = classnames({
     'b--muted-3': focused,
     'b--muted-4': !focused,
-    [`${style['br--bottom-left-0']} ${style['br--bottom-right-0']}`]: !roundedBottom,
+    'br--top': !roundedBottom,
   })
 
   const buttonClasses = classnames(
