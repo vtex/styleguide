@@ -5,7 +5,7 @@ import Toolbar from '../EXPERIMENTAL_Table/Toolbar'
 import Pagination from '../EXPERIMENTAL_Table/Pagination'
 import DataTable from '../EXPERIMENTAL_Table/DataTable'
 import Tree from './Tree'
-import TableContainer from '../EXPERIMENTAL_Table/Container'
+import { TableContainer, Thead } from '../EXPERIMENTAL_Table/Styled'
 import { tablePropTypes, TableComposites } from '../EXPERIMENTAL_Table'
 import { InferProps } from 'prop-types'
 
@@ -19,8 +19,12 @@ const TableTree: FC<Props> & TableComposites = ({
       <TableContainer>
         {children}
         <DataTable>
-          <DataTable.Header />
-          <Tree />
+          <Thead>
+            <DataTable.Headings />
+          </Thead>
+          <tbody>
+            <Tree />
+          </tbody>
         </DataTable>
       </TableContainer>
     </TableProvider>

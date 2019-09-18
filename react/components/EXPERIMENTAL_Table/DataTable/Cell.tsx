@@ -2,30 +2,27 @@ import React, { FC } from 'react'
 
 import { NAMESPACES } from '../constants'
 
-const Cell: FC<CellProps> = ({ id, children, isHeader, width }) => {
-  const Tag: CellTag = isHeader ? 'th' : 'td'
+const Cell: FC<CellProps> = ({ id, children, width, as: Tag, className }) => {
   return (
     <Tag
       id={`${NAMESPACES.CELL}-${id}`}
       style={{ minWidth: width }}
-      className={`truncate v-mid pa2 tl bb b--muted-4  ${
-        isHeader ? 'bt' : ''
-      }`}>
+      className={`truncate v-mid pa2 tl bb b--muted-4 ${className}`}>
       {children}
     </Tag>
   )
 }
 
 Cell.defaultProps = {
-  isHeader: false,
+  as: 'td',
+  className: '',
 }
 
-type CellProps = {
-  id: string
-  isHeader?: boolean
+export type CellProps = {
+  id?: string
   width?: number
+  as?: 'th' | 'td' | 'div' | 'li'
+  className?: string
 }
-
-type CellTag = 'th' | 'td'
 
 export default Cell

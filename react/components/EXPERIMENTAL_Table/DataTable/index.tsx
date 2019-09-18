@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 
 import EmptyState from '../../EmptyState/index.js'
 
-import Header from './Header'
+import Headings from './Headings'
 import Rows from './Rows'
 import { NAMESPACES } from '../constants'
 import useTableContext from '../hooks/useTableContext'
@@ -39,33 +39,47 @@ const DataTableContainer: FC = ({ children }) => {
   )
 }
 
-const DataTable: FC & DataTableComposites = ({ children }) => {
+const DataTable: FC<DataTableProps> & DataTableComposites = ({
+  children,
+  className,
+  as: Tag,
+}) => {
   const { loading, isEmpty } = useTableContext()
   const hideRows = isEmpty || loading
   return (
     <DataTableContainer>
-      <table className="w-100" style={{ borderSpacing: 0 }}>
+      <Tag className={`w-100 ${className}`} style={{ borderSpacing: 0 }}>
         {React.Children.map(children, (child: DataTableChild) => {
           const isRowsChild = child.type.name === 'Rows'
           return isRowsChild && hideRows ? null : child
         })}
-      </table>
+      </Tag>
     </DataTableContainer>
   )
 }
 
-type DataTableChild = {
+DataTable.defaultProps = {
+  as: 'table',
+  className: '',
+}
+
+export type DataTableProps = {
+  as?: 'table' | 'div' | 'section'
+  className?: string
+}
+
+export type DataTableChild = {
   type: {
-    name: 'Header' | 'Rows'
+    name: 'Headings' | 'Rows' | 'Thead'
   }
 }
 
-type DataTableComposites = {
-  Header?: FC
+export type DataTableComposites = {
+  Headings?: FC
   Rows?: FC
 }
 
-DataTable.Header = Header
+DataTable.Headings = Headings
 DataTable.Rows = Rows
 
 export default DataTable

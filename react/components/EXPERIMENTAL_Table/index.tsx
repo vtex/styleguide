@@ -6,7 +6,7 @@ import Toolbar from './Toolbar/index'
 import { DENSITY_OPTIONS } from './constants'
 import Pagination, { PaginationProps } from './Pagination'
 import { STATE_NOT_FOUND_ERROR } from './errors'
-import TableContainer from './Container'
+import { TableContainer, Thead } from './Styled'
 import DataTable from './DataTable'
 
 const Table: FC<Props> & TableComposites = ({ children, state, ...props }) => {
@@ -18,8 +18,12 @@ const Table: FC<Props> & TableComposites = ({ children, state, ...props }) => {
       <TableContainer>
         {children}
         <DataTable>
-          <DataTable.Header />
-          <DataTable.Rows />
+          <Thead>
+            <DataTable.Headings />
+          </Thead>
+          <tbody>
+            <DataTable.Rows />
+          </tbody>
         </DataTable>
       </TableContainer>
     </TableProvider>

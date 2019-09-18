@@ -3,7 +3,7 @@ import React, { FC } from 'react'
 import useTableContext from './hooks/useTableContext'
 import { NAMESPACES } from './constants'
 
-const TableContainer: FC = ({ children }) => {
+export const TableContainer: FC = ({ children }) => {
   const { containerHeight, tableHeight } = useTableContext()
   return (
     <div
@@ -15,4 +15,10 @@ const TableContainer: FC = ({ children }) => {
   )
 }
 
-export default TableContainer
+export const Thead: FC = ({ children }) => (
+  <thead
+    id={NAMESPACES.HEADER}
+    className="w-100 h-100 ph4 truncate overflow-x-hidden c-muted-2 f6">
+    {children}
+  </thead>
+)

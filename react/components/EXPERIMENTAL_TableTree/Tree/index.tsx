@@ -1,4 +1,5 @@
 import React, { FC, useState } from 'react'
+import uuid from 'uuid'
 
 import CellPrefix from './CellPrefix'
 import Cell from '../../EXPERIMENTAL_Table/DataTable/Cell'
@@ -6,7 +7,7 @@ import useTableContext from '../../EXPERIMENTAL_Table/hooks/useTableContext'
 
 const PREFIX_WIDTH = 36
 
-const Node: FC<NodeProps> = ({ data, index, depth }) => {
+const Node: FC<NodeProps> = ({ data, depth }) => {
   const { visibleColumns, rowHeight } = useTableContext()
   const [collapsed, setCollapsed] = useState(false)
 
@@ -15,12 +16,7 @@ const Node: FC<NodeProps> = ({ data, index, depth }) => {
   const childs =
     children &&
     children.map((data, index) => (
-      <Node
-        key={`row-${index}-${depth}__child-${index}`}
-        depth={depth + 1}
-        index={index}
-        data={data}
-      />
+      <Node key={`row-child-${uuid()}`} depth={depth + 1} data={data} />
     ))
 
   const renderPrefix = (hasChild?: boolean) => (
@@ -46,10 +42,7 @@ const Node: FC<NodeProps> = ({ data, index, depth }) => {
             ? cellRender({ cellData, rowData })
             : cellData
           return (
-            <Cell
-              id={`${index}-${cellIndex}-${depth}`}
-              key={`cel-${index}-${cellIndex}-${depth}`}
-              width={width}>
+            <Cell key={`cel-${uuid()}`} width={width}>
               {cellIndex === 0 && renderPrefix(hasChild)}
               {content}
             </Cell>
@@ -74,8 +67,8 @@ const Tree: FC = () => {
 
   return (
     <>
-      {items.map((data, index) => (
-        <Node key={`row-${index}`} data={data} index={index} />
+      {items.map(data => (
+        <Node key={`row-${uuid()}`} data={data} />
       ))}
     </>
   )
@@ -83,7 +76,6 @@ const Tree: FC = () => {
 
 type NodeProps = {
   data: { children?: Array<unknown> }
-  index: number
   depth?: number
 }
 
