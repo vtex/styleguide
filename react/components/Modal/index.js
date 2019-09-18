@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import ResponsiveModal from 'react-responsive-modal'
 import get from 'lodash/get'
 
+import zIndex from '../utils/zIndex'
 import TopBar from './TopBar'
 import BottomBar from './BottomBar'
 import styles from './modal.css'
@@ -85,7 +86,7 @@ class Modal extends PureComponent {
         styles={{
           overlay: {
             backgroundColor: 'rgba(0, 0, 0, 0.8)',
-            zIndex: 10000,
+            zIndex: zIndex.modal,
           },
           modal: {
             padding: 0,
