@@ -8,7 +8,7 @@
 
 ### 👎 Don'ts
 
-- 6 is a great number of suggestions. Don't exceed 10 suggestions.
+- Exceed 10 suggestions. 6 is a great number of suggestions.
 
 #### Simple Autocomplete mocking server responses
 

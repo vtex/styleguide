@@ -64,7 +64,7 @@ const Option: React.FunctionComponent<
     )
   }
 
-  const buttonClasses = classnames('bn  w-100 tl pointer pa4 f6', {
+  const buttonClasses = classnames('bn w-100 tl pointer pa4 f6', {
     'br2 br--bottom': roundedBottom,
     'bg-muted-5': highlightOption || selected,
     'bg-base': !highlightOption && !selected,

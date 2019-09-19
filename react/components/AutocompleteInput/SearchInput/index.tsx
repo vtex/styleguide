@@ -9,8 +9,8 @@ import ClearInputIcon from '../../icon/Clear'
 const propTypes = {
   /** Determine if the input's bottom corners should be rounded or not */
   roundedBottom: PropTypes.bool,
-  /* Input props */
 
+  /* Input props */
   /** Input value */
   value: PropTypes.string,
   /** Clear event handler */
