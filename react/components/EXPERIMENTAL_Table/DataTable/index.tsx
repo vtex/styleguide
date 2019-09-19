@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, Children } from 'react'
 
 import EmptyState from '../../EmptyState/index.js'
 
@@ -7,6 +7,7 @@ import Rows from './Rows'
 import { NAMESPACES } from '../constants'
 import useTableContext from '../hooks/useTableContext'
 import Loading from './Loading'
+import { HtmlAttributes } from 'csstype'
 
 const DataTableContainer: FC = ({ children }) => {
   const {
@@ -45,14 +46,24 @@ const DataTable: FC<DataTableProps> & DataTableComposites = ({
   as: Tag,
 }) => {
   const { loading, isEmpty } = useTableContext()
+
   const hideRows = isEmpty || loading
+
+  const isRowsChild = (child: DataTableChild) => child.type.name === 'Rows'
+
+  const isRowsContainer = (child: DataTableChild) =>
+    child.props.children &&
+    Children.toArray(child.props.children).some(isRowsChild)
+
+  const childRenderer = (child: DataTableChild) => {
+    const hasRowsChild = isRowsChild(child) || isRowsContainer(child)
+    return hasRowsChild && hideRows ? null : child
+  }
+
   return (
     <DataTableContainer>
       <Tag className={`w-100 ${className}`} style={{ borderSpacing: 0 }}>
-        {React.Children.map(children, (child: DataTableChild) => {
-          const isRowsChild = child.type.name === 'Rows'
-          return isRowsChild && hideRows ? null : child
-        })}
+        {Children.map(children, childRenderer)}
       </Tag>
     </DataTableContainer>
   )
@@ -70,7 +81,10 @@ export type DataTableProps = {
 
 export type DataTableChild = {
   type: {
-    name: 'Headings' | 'Rows' | 'Thead'
+    name?: 'Headings' | 'Rows'
+  }
+  props: {
+    children?: Array<DataTableChild>
   }
 }
 
