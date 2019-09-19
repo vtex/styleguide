@@ -20,50 +20,9 @@
 Default
 
 ```js
-const Radio = require('../Radio').default
-initialState = { checkedRadioValue: 'option-1' }
-;<div>
-  <Radio
-    checked={state.checkedRadioValue === 'option-0'}
-    id="radio-0"
-    label="Option 0"
-    name="radio-group"
-    onChange={e => setState({ checkedRadioValue: 'option-0' })}
-    value="option-0"
-  />
-  <Radio
-    checked={state.checkedRadioValue === 'option-1'}
-    id="radio-1"
-    label="Option 1"
-    name="radio-group"
-    onChange={e => setState({ checkedRadioValue: 'option-1' })}
-    value="option-1"
-  />
-  <Radio
-    checked={state.checkedRadioValue === 'option-2'}
-    id="radio-2"
-    label="Option 2"
-    name="radio-group"
-    onChange={e => setState({ checkedRadioValue: 'option-2' })}
-    value="option-2"
-  />
-  <Radio
-    checked={state.checkedRadioValue === 'option-3'}
-    disabled
-    id="radio-3"
-    label="Option 3"
-    name="radio-group"
-    onChange={e => setState({ checkedRadioValue: 'option-3' })}
-    value="option-3"
-  />
-</div>
-```
-
-RadioGroup
-
-```js
 initialState = { value: 'cyan' }
 ;<RadioGroup
+  hideBorder
   name="colors"
   options={[
     { value: 'cyan', label: 'Cyan' },
@@ -80,6 +39,7 @@ One option disabled
 
 ```js
 <RadioGroup
+  hideBorder
   name="radioGroupExample2"
   options={[
     {
@@ -120,6 +80,7 @@ Entire group disabled
 
 ```js
 <RadioGroup
+  hideBorder
   name="radioGroupExample3"
   disabled
   options={[
@@ -132,12 +93,11 @@ Entire group disabled
 />
 ```
 
-Hiding border
+With optional border
 
 ```js
 <RadioGroup
   name="radioGroupExample3"
-  hideBorder
   options={[
     { value: 'value1', label: 'Hue' },
     { value: 'value2', label: 'Saturation' },
