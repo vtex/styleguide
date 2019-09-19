@@ -22,7 +22,7 @@ class RadioGroup extends React.Component {
             <label
               className={`db br3 ${classNames({
                 'b--muted-4': !hideBorder,
-                ba: !hideBorder,
+                'b--muted-4 ba pv2 ph4': !hideBorder,
                 pv2: !hideBorder,
                 ph4: !hideBorder,
                 pointer: !isDisabled,
