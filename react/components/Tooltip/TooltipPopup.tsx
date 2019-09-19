@@ -5,6 +5,7 @@ import React, { FC, useEffect, useRef, useState } from 'react'
 import Portal from './Portal'
 import { useRect } from './hooks'
 
+import zIndex from '../utils/zIndex'
 import style from './tooltip.css'
 
 export type Position = 'top' | 'right' | 'bottom' | 'left'
@@ -93,6 +94,7 @@ const TooltipPopup: FC<PropTypes.InferProps<typeof propTypes>> = ({
         className={popupClasses}
         style={{
           ...positionStyle,
+          zIndex: zIndex.tooltip,
           transition: `opacity ${duration}ms ${timmingFn} ${delay}ms`,
         }}
         ref={popupRef}
