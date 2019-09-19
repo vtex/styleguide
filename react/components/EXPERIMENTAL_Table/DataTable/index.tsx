@@ -7,7 +7,6 @@ import Rows from './Rows'
 import { NAMESPACES } from '../constants'
 import useTableContext from '../hooks/useTableContext'
 import Loading from './Loading'
-import { HtmlAttributes } from 'csstype'
 
 const DataTableContainer: FC = ({ children }) => {
   const {
