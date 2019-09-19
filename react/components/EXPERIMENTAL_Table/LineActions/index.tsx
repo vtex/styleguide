@@ -18,9 +18,9 @@ const LineAction: FC<LineActionProps> = ({ lineActions, rowData }) => (
 )
 
 export type LineActionObject = {
-  label: String,
+  label: string,
   renderLabel?: ({ rowData: unknow}) => React.ReactNode,
-  isDangerous: Boolean,
+  isDangerous: boolean,
   onClick: Function,
 }
 
