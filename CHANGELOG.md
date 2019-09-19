@@ -61,6 +61,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
+### Fixed
+
+- `Input`'s placeholder style.
+
 ## [9.79.3] - 2019-09-19
 
 ### Fixed
