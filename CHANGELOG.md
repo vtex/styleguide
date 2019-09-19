@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- `readOnly` style of `Input`.
+
 ## [8.73.5] - 2019-09-05
 
 ### Removed
@@ -29,7 +33,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
- - `Input` disabled background.
+- `Input` disabled background.
 
 ### Fixed
 

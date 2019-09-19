@@ -76,6 +76,8 @@ class Input extends Component {
       suffix: suffixProp,
       suffixIcon,
       groupBottom,
+      disabled,
+      readOnly,
     } = this.props
     const { active } = this.state
 
@@ -111,9 +113,11 @@ class Input extends Component {
       classes += 'code '
     }
 
-    if (this.props.disabled) {
-      classes += 'bg-transparent b--disabled c-disabled '
-      prefixSuffixGroupClasses += 'bg-disabled b--disabled c-disabled '
+    if (disabled || readOnly) {
+      classes += `bg-transparent b--disabled ${disabled ? 'c-disabled' : ''} `
+      prefixSuffixGroupClasses += `bg-disabled b--disabled ${
+        disabled ? 'c-disabled' : ''
+      } `
     } else {
       classes += 'bg-base c-on-base '
       prefixAndSuffixClasses += 'bg-base '
@@ -127,7 +131,7 @@ class Input extends Component {
       } else {
         classes += 'b--muted-4 '
         prefixSuffixGroupClasses += 'b--muted-4 '
-        if (!this.props.readOnly) {
+        if (!readOnly) {
           classes += 'hover-b--muted-3 '
           prefixSuffixGroupClasses += 'hover-b--muted-3 '
         }
@@ -193,7 +197,7 @@ class Input extends Component {
             onKeyDown={this.handleKeyDown}
             onKeyUp={this.handleKeyUp}
             className={classes}
-            disabled={this.props.disabled}
+            disabled={disabled}
             accept={this.props.accept}
             autoComplete={this.props.autoComplete}
             autoCorrect={this.props.autoCorrect}
@@ -210,7 +214,7 @@ class Input extends Component {
             name={this.props.name}
             pattern={this.props.pattern}
             placeholder={this.props.placeholder}
-            readOnly={this.props.readOnly}
+            readOnly={readOnly}
             required={this.props.required}
             spellCheck={this.props.spellCheck}
             src={this.props.src}
