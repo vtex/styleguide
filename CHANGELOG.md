@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.80.0] - 2019-09-20
+
+### Added
+
+- **AutocompleteInput** component.
+
 ## [9.79.4] - 2019-09-19
 
 ### Fixed

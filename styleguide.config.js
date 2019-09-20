@@ -123,6 +123,7 @@ module.exports = {
             'react/components/InputCurrency/index.js',
             'react/components/InputPassword/index.js',
             'react/components/InputSearch/index.js',
+            'react/components/AutocompleteInput/index.tsx',
             'react/components/MultiSelect/index.js',
             'react/components/NumericStepper/index.js',
             'react/components/RadioGroup/index.js',
