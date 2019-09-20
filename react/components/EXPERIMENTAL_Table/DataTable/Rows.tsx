@@ -1,42 +1,35 @@
 import React, { FC } from 'react'
 import uuid from 'uuid'
 
-import Cell, { CellProps } from './Cell'
 import useTableContext from '../hooks/useTableContext'
 import { NAMESPACES } from '../constants'
+import { Row, RowProps, CellProps } from '../Styled'
 
-const Rows: FC<RowProps> = ({ cellProps, as: Tag }) => {
-  const { visibleColumns, items, rowHeight } = useTableContext()
+const Rows: FC<RowsProps> = ({ cellProps, rowProps }) => {
+  const { visibleColumns, items } = useTableContext()
 
-  const renderRow = (rowData: unknown, index: number) => (
-    <Tag
-      key={`${NAMESPACES.ROW}-${uuid()}`}
-      style={{ height: rowHeight }}
-      className="w-100 ph4 truncate overflow-x-hidden">
-      {visibleColumns.map((column: Column, cellIndex: number) => {
+  const renderRow = (rowData: unknown) => (
+    <Row {...rowProps} key={`${NAMESPACES.ROW}-${uuid()}`}>
+      {visibleColumns.map((column: Column) => {
         const { cellRender, width } = column
         const cellData = rowData[column.id]
         const content = cellRender
           ? cellRender({ cellData, rowData })
           : cellData
         return (
-          <Cell {...cellProps} key={`cel-${uuid()}`} width={width}>
+          <Row.Cell {...cellProps} key={`cel-${uuid()}`} width={width}>
             {content}
-          </Cell>
+          </Row.Cell>
         )
       })}
-    </Tag>
+    </Row>
   )
 
   return <>{items.map(renderRow)}</>
 }
 
-Rows.defaultProps = {
-  as: 'tr',
-}
-
-export type RowProps = {
-  as: 'tr' | 'div' | 'ul'
+export type RowsProps = {
+  rowProps?: RowProps
   cellProps?: Pick<CellProps, 'as' | 'className'>
 }
 

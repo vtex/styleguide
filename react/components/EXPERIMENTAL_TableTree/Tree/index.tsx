@@ -2,20 +2,20 @@ import React, { FC, useState } from 'react'
 import uuid from 'uuid'
 
 import CellPrefix from './CellPrefix'
-import Cell from '../../EXPERIMENTAL_Table/DataTable/Cell'
+import { Row } from '../../EXPERIMENTAL_Table/Styled'
 import useTableContext from '../../EXPERIMENTAL_Table/hooks/useTableContext'
 
 const PREFIX_WIDTH = 36
 
 const Node: FC<NodeProps> = ({ data, depth }) => {
-  const { visibleColumns, rowHeight } = useTableContext()
+  const { visibleColumns } = useTableContext()
   const [collapsed, setCollapsed] = useState(false)
 
   const { children, ...rowData } = data
 
   const childs =
     children &&
-    children.map((data, index) => (
+    children.map(data => (
       <Node key={`row-child-${uuid()}`} depth={depth + 1} data={data} />
     ))
 
@@ -32,9 +32,7 @@ const Node: FC<NodeProps> = ({ data, depth }) => {
 
   const renderCells = (hasChild?: boolean) => {
     return (
-      <tr
-        style={{ height: rowHeight }}
-        className="w-100 h-100 ph4 truncate overflow-x-hidden">
+      <Row>
         {visibleColumns.map((column: Column, cellIndex: number) => {
           const { cellRender, width } = column
           const cellData = rowData[column.id]
@@ -42,13 +40,13 @@ const Node: FC<NodeProps> = ({ data, depth }) => {
             ? cellRender({ cellData, rowData })
             : cellData
           return (
-            <Cell key={`cel-${uuid()}`} width={width}>
+            <Row.Cell key={`cel-${uuid()}`} width={width}>
               {cellIndex === 0 && renderPrefix(hasChild)}
               {content}
-            </Cell>
+            </Row.Cell>
           )
         })}
-      </tr>
+      </Row>
     )
   }
 
