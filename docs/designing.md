@@ -22,7 +22,8 @@ These are the elements that are expected to be designed for a component before i
 Studying other awesome Design Systems is a great way of projecting ourselves to what we could be in the future — and choose to either go there or not. Seeing how other big companies have approached specific components can give us ideas of how to generalize and scale our own design decisions.
 
 ```jsx noeditor
-<div className="w-two-thirds mv7 hover-card center">
+const Card = require('../react/components/Card').default
+;<div className="w-two-thirds mv7 hover-card center">
   <a
     href="https://docs.google.com/document/d/1-L3xllgWx1nF6mhOryHMw4o8d1_3-AKtC9pGO2VywBg/edit#"
     className="link c-on-base">
@@ -115,7 +116,8 @@ Since early 2018 Figma has been the Design tool we chose to use in VTEX. It's a 
 Part of the native features of the tool is the support for reusable components and styles, which made it the perfect tool for us to create our Design System.
 
 ```jsx noeditor
-<div className="w-two-thirds mv7 hover-card center">
+const Card = require('../react/components/Card').default
+;<div className="w-two-thirds mv7 hover-card center">
   <a
     href="https://www.figma.com/file/a94lX91ZmYGIDBxvb8shwLn8/VTEX-Styleguide"
     className="link c-on-base">
