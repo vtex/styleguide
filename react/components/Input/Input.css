@@ -10,17 +10,17 @@
 /* placeholders are using c-muted-1's value */
 ::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
-  color: #727273;
+  color: #979899;
 }
 ::-moz-placeholder {
   /* Firefox 19+ */
-  color: #727273;
+  color: #979899;
 }
 :-ms-input-placeholder {
   /* IE 10+ */
-  color: #727273;
+  color: #979899;
 }
 :-moz-placeholder {
   /* Firefox 18- */
-  color: #727273;
+  color: #979899;
 }

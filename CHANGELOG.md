@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- `Input`'s placeholder style.
+
 ## [9.81.2] - 2019-09-26
 
 ### Removed
@@ -58,12 +62,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **AutocompleteInput** component.
 
 ## [9.79.4] - 2019-09-19
-
-### Fixed
-
-### Fixed
-
-- `Input`'s placeholder style.
 
 ## [9.79.3] - 2019-09-19
 
