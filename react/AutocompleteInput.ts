@@ -1,1 +1,1 @@
-export { default } from './components/Autocomplete'
+export { default } from './components/AutocompleteInput'
