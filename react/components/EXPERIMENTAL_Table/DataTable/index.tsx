@@ -48,7 +48,8 @@ const DataTable: FC<DataTableProps> & DataTableComposites = ({
 
   const hideRows = isEmpty || loading
 
-  const isRowsChild = (child: DataTableChild) => child.type.name === 'Rows'
+  const isRowsChild = (child: DataTableChild) =>
+    child.type.name && child.type.name.toLowerCase() === 'rows'
 
   const isRowsContainer = (child: DataTableChild) =>
     child.props.children &&
@@ -80,7 +81,7 @@ export type DataTableProps = {
 
 export type DataTableChild = {
   type: {
-    name?: 'Headings' | 'Rows'
+    name?: 'headings' | 'rows'
   }
   props: {
     children?: Array<DataTableChild>
