@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import csx from 'classnames'
 import uuid from 'uuid'
 
 import useTableContext from './hooks/useTableContext'
@@ -28,14 +29,18 @@ export const Row: FC<RowProps> & RowComposites = ({
   as: Tag = 'tr',
   children,
   height,
+  onClick,
 }) => {
   const { rowHeight } = useTableContext()
-
+  const className = csx('w-100 ph4 truncate overflow-x-hidden', {
+    'pointer hover-c-link hover-bg-muted-5': onClick,
+  })
   return (
     <Tag
       key={`${NAMESPACES.ROW}-${uuid()}`}
       style={{ height: height || rowHeight }}
-      className="w-100 ph4 truncate overflow-x-hidden">
+      onClick={onClick}
+      className={className}>
       {children}
     </Tag>
   )
@@ -72,6 +77,7 @@ export type CellProps = {
 export type RowProps = {
   as?: 'tr' | 'div' | 'ul'
   height?: number
+  onClick?: () => void
 }
 
 Row.Cell = Cell

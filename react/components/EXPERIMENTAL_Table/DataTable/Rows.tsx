@@ -6,24 +6,31 @@ import { NAMESPACES } from '../constants'
 import { Row, RowProps, CellProps } from '../Styled'
 
 const Rows: FC<RowsProps> = ({ cellProps, rowProps }) => {
-  const { visibleColumns, items } = useTableContext()
+  const { visibleColumns, items, onRowClick } = useTableContext()
 
-  const renderRow = (rowData: unknown) => (
-    <Row {...rowProps} key={`${NAMESPACES.ROW}-${uuid()}`}>
-      {visibleColumns.map((column: Column) => {
-        const { cellRender, width } = column
-        const cellData = rowData[column.id]
-        const content = cellRender
-          ? cellRender({ cellData, rowData })
-          : cellData
-        return (
-          <Row.Cell {...cellProps} key={`cel-${uuid()}`} width={width}>
-            {content}
-          </Row.Cell>
-        )
-      })}
-    </Row>
-  )
+  const renderRow = (rowData: unknown) => {
+    const clickable = onRowClick
+      ? {
+          onClick: () => onRowClick({ rowData }),
+        }
+      : {}
+    return (
+      <Row {...rowProps} {...clickable} key={`${NAMESPACES.ROW}-${uuid()}`}>
+        {visibleColumns.map((column: Column) => {
+          const { cellRender, width } = column
+          const cellData = rowData[column.id]
+          const content = cellRender
+            ? cellRender({ cellData, rowData })
+            : cellData
+          return (
+            <Row.Cell {...cellProps} key={`cel-${uuid()}`} width={width}>
+              {content}
+            </Row.Cell>
+          )
+        })}
+      </Row>
+    )
+  }
 
   return <>{items.map(renderRow)}</>
 }
