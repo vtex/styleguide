@@ -1,17 +1,37 @@
 import React, { FC } from 'react'
 import PropTypes, { InferProps } from 'prop-types'
 
-import SimpleTable from './SimpleTable/index'
 import { TableProvider } from './context'
 import Toolbar from './Toolbar/index'
-import { DENSITY_OPTIONS, NAMESPACES } from './constants'
+import { DENSITY_OPTIONS } from './constants'
 import Pagination, { PaginationProps } from './Pagination'
 import { STATE_NOT_FOUND_ERROR } from './errors'
-import useTableContext from './hooks/useTableContext'
+import { TableContainer, Thead } from './Styled'
+import DataTable from './DataTable'
 
-const propTypes = {
+const Table: FC<Props> & TableComposites = ({ children, state, ...props }) => {
+  if (!state) {
+    throw STATE_NOT_FOUND_ERROR
+  }
+  return (
+    <TableProvider value={{ ...state, ...props }}>
+      <TableContainer>
+        {children}
+        <DataTable>
+          <Thead>
+            <DataTable.Headings />
+          </Thead>
+          <tbody>
+            <DataTable.Rows />
+          </tbody>
+        </DataTable>
+      </TableContainer>
+    </TableProvider>
+  )
+}
+
+export const tablePropTypes = {
   containerHeight: PropTypes.number,
-  nestedRows: PropTypes.bool,
   loading: PropTypes.oneOfType([
     PropTypes.shape({
       renderAs: PropTypes.func,
@@ -42,41 +62,15 @@ const propTypes = {
   }),
 }
 
-type Props = InferProps<typeof propTypes>
+export type Props = InferProps<typeof tablePropTypes>
 
-interface Composites {
+export type TableComposites = {
   Toolbar: FC
   Pagination: FC<PaginationProps>
 }
 
-const TableContainer: FC = ({ children }) => {
-  const { containerHeight, tableHeight } = useTableContext() 
-  return (
-    <div
-      style={{ minHeight: containerHeight || tableHeight }}
-      id={NAMESPACES.CONTAINER}
-      className="flex flex-column">
-      {children}
-    </div>
-  )
-}
-
-const Table: FC<Props> & Composites = ({ children, state, ...props }) => {
-  if (!state) {
-    throw STATE_NOT_FOUND_ERROR
-  }
-  return (
-    <TableProvider value={{ ...state, ...props }}>
-      <TableContainer>
-        {children}
-        <SimpleTable />
-      </TableContainer>
-    </TableProvider>
-  )
-}
-
 Table.Toolbar = Toolbar
 Table.Pagination = Pagination
-Table.propTypes = propTypes
+Table.propTypes = tablePropTypes
 
 export default Table

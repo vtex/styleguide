@@ -4,13 +4,7 @@ import { calculateTableHeight } from '../util'
 import useDensity from './useDensity'
 import useHiddenColumns from './useHiddenColumns'
 
-interface Input {
-  columns: Array<Column>
-  items: Array<any>
-  density?: Density
-}
-
-const useTableState = ({ columns, items, density }: Input): TableState => {
+const useTableState = ({ columns, items, density }: hookInput): TableState => {
   const { selectedDensity, setSelectedDensity, rowHeight } = useDensity(density)
   const {
     hiddenColumns,
@@ -44,6 +38,12 @@ const useTableState = ({ columns, items, density }: Input): TableState => {
     showAllColumns,
     hideAllColumns,
   }
+}
+
+export type hookInput = {
+  columns: Array<Column>
+  items: Array<any>
+  density?: Density
 }
 
 export default useTableState
