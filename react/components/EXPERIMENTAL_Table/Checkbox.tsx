@@ -14,14 +14,17 @@ const Checkbox: FC<CheckboxProps> = ({ id, onClick, ...props }) => (
 )
 
 export type CheckboxProps = {
-  id: string
-  checked: boolean
-  onClick: Function
+  id?: string
+  onClick?: Function
+  checked?: boolean
   disabled?: boolean
   partial?: boolean
 }
 
 Checkbox.defaultProps = {
+  id: '',
+  onClick: () => {},
+  checked: false,
   partial: false,
   disabled: false,
 }

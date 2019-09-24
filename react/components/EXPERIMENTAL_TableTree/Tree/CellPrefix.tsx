@@ -1,20 +1,7 @@
 import React, { FC } from 'react'
 
-import CaretRight from '../../icon/CaretRight/index.js'
-import CaretDown from '../../icon/CaretDown/index.js'
-import ButtonWithIcon from '../../ButtonWithIcon/index.js'
-
-const Arrow: FC<ArrowProps> = ({ active, onClick }) => {
-  const icon = active ? <CaretDown /> : <CaretRight />
-  return (
-    <ButtonWithIcon
-      size="small"
-      onClick={onClick}
-      icon={icon}
-      variation="tertiary"
-    />
-  )
-}
+import Arrow, { ArrowProps } from './Arrow'
+import Checkbox, { CheckboxProps } from '../../EXPERIMENTAL_Table/Checkbox'
 
 const CellPrefix: FC<CellPrefixProps> & CellPrefixComposites = ({
   children,
@@ -22,23 +9,20 @@ const CellPrefix: FC<CellPrefixProps> & CellPrefixComposites = ({
 }) => {
   return (
     <span className="dib tr pr2" style={{ width }}>
-      {children}
+      <span className="flex w-100 justify-end items-center">{children}</span>
     </span>
   )
 }
 
 CellPrefix.Arrow = Arrow
+CellPrefix.Checkbox = Checkbox
 
-export interface CellPrefixComposites {
+export type CellPrefixComposites = {
   Arrow?: FC<ArrowProps>
+  Checkbox?: FC<CheckboxProps>
 }
 
-export interface ArrowProps {
-  active: boolean
-  onClick: Function
-}
-
-export interface CellPrefixProps {
+export type CellPrefixProps = {
   width: number
 }
 

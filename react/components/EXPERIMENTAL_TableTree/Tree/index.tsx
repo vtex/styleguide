@@ -5,7 +5,7 @@ import CellPrefix from './CellPrefix'
 import { Row } from '../../EXPERIMENTAL_Table/Styled'
 import useTableContext from '../../EXPERIMENTAL_Table/hooks/useTableContext'
 
-const PREFIX_WIDTH = 36
+const PREFIX_WIDTH = 64
 
 const Node: FC<NodeProps> = ({ data, depth }) => {
   const { visibleColumns } = useTableContext()
@@ -27,6 +27,9 @@ const Node: FC<NodeProps> = ({ data, depth }) => {
           onClick={() => setCollapsed(!collapsed)}
         />
       )}
+      <span className="ph2">
+        <CellPrefix.Checkbox />
+      </span>
     </CellPrefix>
   )
 
