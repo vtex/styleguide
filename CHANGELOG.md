@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.80.4] - 2019-09-24
+
+### Fixed
+
+- `withForwardedRef` propType
+
 ## [9.80.3] - 2019-09-24
 
 - `LineActions` to `EXPERIMENTAL_TableV2`
