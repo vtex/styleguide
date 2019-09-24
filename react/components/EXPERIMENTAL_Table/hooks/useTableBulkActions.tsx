@@ -1,5 +1,5 @@
 import React, { useMemo, useEffect, useReducer, useCallback } from 'react'
-import Checkbox from '../BulkActions/Checkbox'
+import Checkbox from '../Checkbox'
 import { BulkActionsProps } from '../BulkActions'
 
 const useTableBulkActions = ({
@@ -192,13 +192,15 @@ function reducer(state: BulkState, action: Action) {
   }
 }
 
+type ActionType =
+  | 'SET_SELECTED_ROWS'
+  | 'SET_ALL_LINES_SELECTED'
+  | 'DESELECT_ALL_ROWS'
+  | 'SELECT_ALL_ROWS'
+  | 'SELECT_ROW'
+
 type Action = {
-  type:
-    | 'SET_SELECTED_ROWS'
-    | 'SET_ALL_LINES_SELECTED'
-    | 'DESELECT_ALL_ROWS'
-    | 'SELECT_ALL_ROWS'
-    | 'SELECT_ROW'
+  type: ActionType
   selectedRows?: Array<BulkedItem>
   allLinesSelected?: boolean
   row?: BulkedItem
