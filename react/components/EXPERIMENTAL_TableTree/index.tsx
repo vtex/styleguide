@@ -2,7 +2,6 @@ import React, { FC } from 'react'
 
 import { TableProvider } from '../EXPERIMENTAL_Table/context'
 import Toolbar from '../EXPERIMENTAL_Table/Toolbar'
-import Pagination from '../EXPERIMENTAL_Table/Pagination'
 import DataTable from '../EXPERIMENTAL_Table/DataTable'
 import Tree from './Tree'
 import { TableContainer, Thead } from '../EXPERIMENTAL_Table/Styled'
@@ -34,7 +33,6 @@ const TableTree: FC<Props> & TableComposites = ({
 type Props = InferProps<typeof tablePropTypes>
 
 TableTree.Toolbar = Toolbar
-TableTree.Pagination = Pagination
 TableTree.propTypes = tablePropTypes
 
 export default TableTree
