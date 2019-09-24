@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.80.2] - 2019-09-24
+
+### CHANGED
+
+- `EXPERIMENTAL_Table` to be clickable
+
 ## [9.80.1] - 2019-09-23
 
 ### Added

@@ -39,6 +39,7 @@ export const tablePropTypes = {
     PropTypes.bool,
   ]),
   itemsSizeEstimate: PropTypes.number,
+  onRowClick: PropTypes.func,
   state: PropTypes.shape({
     schema: PropTypes.shape({
       columns: PropTypes.objectOf(

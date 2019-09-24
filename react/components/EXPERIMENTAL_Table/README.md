@@ -141,6 +141,57 @@ function StateHookExample() {
 | selectedDensity    | Density         | Current selected density            |
 | setSelectedDensity | Function        | selectedDensity setter              |
 
+# Clickable rows
+
+```js
+const useTableState = require('./hooks/useTableState.ts').default
+
+const columns = [
+  {
+    id: 'name',
+    title: 'Name',
+  },
+  {
+    id: 'country',
+    title: 'Country',
+  },
+]
+
+const items = [
+  {
+    name: 'En Sabah Nuh',
+    country: '🇨🇺Cuba',
+  },
+  {
+    name: 'Abdul Qamar',
+    country: '🇸🇦Saudi Arabia',
+  },
+  {
+    name: 'Goose the Cat',
+    country: '🇺🇸USA',
+  },
+  {
+    name: 'Brian Braddock',
+    country: '🇬🇧Great Britain',
+  },
+]
+
+function ClickExample() {
+  const tableState = useTableState({
+    columns,
+    items,
+  })
+
+  const onRowClick = ({ rowData }) => {
+    const { name, country } = rowData
+    alert(`Your character is ${name}, from ${country}`)
+  }
+
+  return <Table onRowClick={onRowClick} state={tableState} />
+}
+;<ClickExample />
+```
+
 # Loading
 
 ```js
@@ -239,10 +290,7 @@ const items = [
 
 function CustomLoadingExample() {
   const [isLoading, setIsLoading] = React.useState(false)
-  const tableState = useTableState({
-    columns,
-    items,
-  })
+  const tableState = useTableState({ columns, items })
 
   const loading = isLoading && {
     loading: {
