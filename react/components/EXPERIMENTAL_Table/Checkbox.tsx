@@ -1,11 +1,8 @@
 import React, { FC } from 'react'
 
-import CheckboxBase from '../../Checkbox/index.js'
+import CheckboxBase from '../Checkbox/index.js'
 
-/**
- * Wrapper around Checkbox to avoid event propagation
- */
-const Checkbox: FC<Props> = ({ id, onClick, ...props }) => (
+const Checkbox: FC<CheckboxProps> = ({ id, onClick, ...props }) => (
   <div onClick={e => e.stopPropagation()}>
     <CheckboxBase
       id={id}
@@ -16,7 +13,7 @@ const Checkbox: FC<Props> = ({ id, onClick, ...props }) => (
   </div>
 )
 
-type Props = {
+export type CheckboxProps = {
   id: string
   checked: boolean
   onClick: Function

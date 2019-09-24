@@ -10,7 +10,7 @@ import Pagination, { PaginationProps } from './Pagination'
 import { STATE_NOT_FOUND_ERROR } from './errors'
 import { TableContainer, Thead } from './Styled'
 import DataTable from './DataTable'
-import BulkActions from './BulkActions/index'
+import BulkActions from './BulkActions'
 
 const Table: FC<TableProps> & TableComposites = ({
   children,
@@ -48,9 +48,7 @@ export const tablePropTypes = {
     PropTypes.bool,
   ]),
   itemsSizeEstimate: PropTypes.number,
-
   onRowClick: PropTypes.func,
-
   bulk: PropTypes.shape({
     bulkState: PropTypes.shape({
       selectedRows: arrayOf(
