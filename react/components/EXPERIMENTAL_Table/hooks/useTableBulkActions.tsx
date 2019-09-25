@@ -83,32 +83,32 @@ const useTableBulkActions = ({
   const selectAllRows = useCallback(
     () =>
       dispatch({
-        type: REDUCER_ACTIONS.SELECT_ALL_ROWS,
+        type: ActionType.SelectAllRows,
         selectedRows: bulkedItems,
       }),
     [bulkState.selectedRows]
   )
 
   const deselectAllRows = useCallback(
-    () => dispatch({ type: REDUCER_ACTIONS.DESELECT_ALL_ROWS }),
+    () => dispatch({ type: ActionType.DeselectAllRows }),
     [bulkState.selectedRows]
   )
 
   const selectRow = useCallback(
-    (row: BulkedItem) => dispatch({ type: REDUCER_ACTIONS.SELECT_ROW, row }),
+    (row: BulkedItem) => dispatch({ type: ActionType.SelectRow, row }),
     [bulkState.selectedRows]
   )
 
   const setSelectedRows = useCallback(
     (selectedRows: Array<BulkedItem>) =>
-      dispatch({ type: REDUCER_ACTIONS.SET_SELECTED_ROWS, selectedRows }),
+      dispatch({ type: ActionType.SetSelectedRows, selectedRows }),
     [bulkState.selectedRows]
   )
 
   const setAllLinesSelected = useCallback(
     (allLinesSelected: boolean) =>
       dispatch({
-        type: REDUCER_ACTIONS.SET_ALL_LINES_SELECTED,
+        type: ActionType.SetAllLinesSelected,
         allLinesSelected,
       }),
     [bulkState.allLinesSelected]
@@ -147,33 +147,33 @@ const useTableBulkActions = ({
 
 function reducer(state: BulkState, action: Action) {
   switch (action.type) {
-    case REDUCER_ACTIONS.SET_SELECTED_ROWS: {
+    case ActionType.SetSelectedRows: {
       return {
         ...state,
         selectedRows: action.selectedRows,
       }
     }
-    case REDUCER_ACTIONS.SET_ALL_LINES_SELECTED: {
+    case ActionType.SetAllLinesSelected: {
       return {
         ...state,
         allLinesSelected: action.allLinesSelected,
       }
     }
-    case REDUCER_ACTIONS.DESELECT_ALL_ROWS: {
+    case ActionType.DeselectAllRows: {
       return {
         ...state,
         selectedRows: [],
         allLinesSelected: false,
       }
     }
-    case REDUCER_ACTIONS.SELECT_ALL_ROWS: {
+    case ActionType.SelectAllRows: {
       return {
         ...state,
         selectedRows: action.selectedRows,
         allLinesSelected: true,
       }
     }
-    case REDUCER_ACTIONS.SELECT_ROW: {
+    case ActionType.SelectRow: {
       return state.selectedRows.some(
         selectedRow => selectedRow.id === action.row.id
       )
@@ -195,20 +195,13 @@ function reducer(state: BulkState, action: Action) {
   }
 }
 
-export const REDUCER_ACTIONS = {
-  SET_SELECTED_ROWS: 'SET_SELECTED_ROWS' as ActionType,
-  SET_ALL_LINES_SELECTED: 'SET_ALL_LINES_SELECTED' as ActionType,
-  DESELECT_ALL_ROWS: 'DESELECT_ALL_ROWS' as ActionType,
-  SELECT_ALL_ROWS: 'SELECT_ALL_ROWS' as ActionType,
-  SELECT_ROW: 'SELECT_ROW' as ActionType,
+enum ActionType {
+  SetSelectedRows,
+  SetAllLinesSelected,
+  DeselectAllRows,
+  SelectAllRows,
+  SelectRow,
 }
-
-type ActionType =
-  | 'SET_SELECTED_ROWS'
-  | 'SET_ALL_LINES_SELECTED'
-  | 'DESELECT_ALL_ROWS'
-  | 'SELECT_ALL_ROWS'
-  | 'SELECT_ROW'
 
 type Action = {
   type: ActionType
