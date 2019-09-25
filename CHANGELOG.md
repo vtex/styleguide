@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.81.0] - 2019-09-25
+
 ### Added
 
 - Preferential sort order to a sortable table column, which can be used to set the first sort order when sorting is set. Defaults to `ASC`, which is the previous behaviour.
