@@ -8,7 +8,7 @@ import { Row, RowProps, CellProps } from '../Styled'
 const Rows: FC<RowsProps> = ({ cellProps, rowProps }) => {
   const { visibleColumns, items, onRowClick, bulkState } = useTableContext()
 
-  const renderRow = (rowData: any) => {
+  const renderRow = (rowData: BulkedItem) => {
     const clickable = onRowClick
       ? {
           onClick: () => onRowClick({ rowData }),

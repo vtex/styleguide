@@ -14,33 +14,9 @@ import ButtonNewLine, { ButtonNewLineProps } from './ButtonNewLine'
 
 import { ICON_SIZE, NAMESPACES, ORDER_CLASSNAMES } from '../constants'
 
-type ButtonType =
-  | 'columns'
-  | 'density'
-  | 'download'
-  | 'upload'
-  | 'extraActions'
-  | 'newLine'
-
-interface Composites {
-  Columns: FC<ButtonColumnsProps>
-  Density: FC<ButtonDensityProps>
-  Download: FC<ButtonProps>
-  Upload: FC<ButtonProps>
-  ExtraActions: FC<ButtonExtraActionsProps>
-  NewLine: FC<ButtonNewLineProps>
-}
-
-type Props =
-  | ButtonProps
-  | ButtonColumnsProps
-  | ButtonDensityProps
-  | ButtonExtraActionsProps
-  | ButtonNewLineProps
-
 const getButton = (type: ButtonType, props: Props) => {
   switch (type) {
-    case 'columns': {
+    case ButtonType.Columns: {
       return (
         <span
           className={ORDER_CLASSNAMES.TOOLBAR_CHILD.BUTTON_GROUP_CHILD.COLUMNS}>
@@ -48,7 +24,7 @@ const getButton = (type: ButtonType, props: Props) => {
         </span>
       )
     }
-    case 'density': {
+    case ButtonType.Density: {
       return (
         <span
           className={ORDER_CLASSNAMES.TOOLBAR_CHILD.BUTTON_GROUP_CHILD.DENSITY}>
@@ -56,7 +32,7 @@ const getButton = (type: ButtonType, props: Props) => {
         </span>
       )
     }
-    case 'download': {
+    case ButtonType.Download: {
       return (
         <span
           className={
@@ -70,7 +46,7 @@ const getButton = (type: ButtonType, props: Props) => {
         </span>
       )
     }
-    case 'upload': {
+    case ButtonType.Upload: {
       return (
         <span
           className={ORDER_CLASSNAMES.TOOLBAR_CHILD.BUTTON_GROUP_CHILD.UPLOAD}>
@@ -82,7 +58,7 @@ const getButton = (type: ButtonType, props: Props) => {
         </span>
       )
     }
-    case 'extraActions': {
+    case ButtonType.ExtraActions: {
       return (
         <span
           className={
@@ -92,7 +68,7 @@ const getButton = (type: ButtonType, props: Props) => {
         </span>
       )
     }
-    case 'newLine': {
+    case ButtonType.NewLine: {
       return (
         <span
           className={ORDER_CLASSNAMES.TOOLBAR_CHILD.BUTTON_GROUP_CHILD.NEWLINE}>
@@ -121,11 +97,36 @@ const ButtonGroup: FC & Composites = ({ children }) => (
   </div>
 )
 
-ButtonGroup.Columns = getComponent('columns')
-ButtonGroup.Density = getComponent('density')
-ButtonGroup.Download = getComponent('download')
-ButtonGroup.Upload = getComponent('upload')
-ButtonGroup.ExtraActions = getComponent('extraActions')
-ButtonGroup.NewLine = getComponent('newLine')
+enum ButtonType {
+  Columns,
+  Density,
+  Download,
+  Upload,
+  ExtraActions,
+  NewLine,
+}
+
+type Composites = {
+  Columns: FC<ButtonColumnsProps>
+  Density: FC<ButtonDensityProps>
+  Download: FC<ButtonProps>
+  Upload: FC<ButtonProps>
+  ExtraActions: FC<ButtonExtraActionsProps>
+  NewLine: FC<ButtonNewLineProps>
+}
+
+type Props =
+  | ButtonProps
+  | ButtonColumnsProps
+  | ButtonDensityProps
+  | ButtonExtraActionsProps
+  | ButtonNewLineProps
+
+ButtonGroup.Columns = getComponent(ButtonType.Columns)
+ButtonGroup.Density = getComponent(ButtonType.Density)
+ButtonGroup.Download = getComponent(ButtonType.Download)
+ButtonGroup.Upload = getComponent(ButtonType.Upload)
+ButtonGroup.ExtraActions = getComponent(ButtonType.ExtraActions)
+ButtonGroup.NewLine = getComponent(ButtonType.NewLine)
 
 export default ButtonGroup

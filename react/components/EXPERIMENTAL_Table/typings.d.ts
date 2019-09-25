@@ -31,7 +31,7 @@ type TableProps = {
   onRowClick?: ({ rowData: unknown }) => void
 }
 
-type BulkedItem = unknown & {
+type BulkedItem = {
   id: number
 }
 
