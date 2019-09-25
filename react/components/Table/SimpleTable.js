@@ -26,16 +26,18 @@ class SimpleTable extends Component {
 
   toggleSortType = key => {
     const {
-      sort: { sortOrder, sortedBy },
+      sort: { preferentialSortOrder = 'ASC', sortOrder, sortedBy },
     } = this.props
-    if (sortedBy !== key || (sortedBy === key && sortOrder !== 'ASC')) {
+
+    if (sortedBy !== key) {
       return {
-        sortOrder: 'ASC',
+        sortOrder: preferentialSortOrder,
         sortedBy: key,
       }
     }
+
     return {
-      sortOrder: 'DESC',
+      sortOrder: sortOrder === 'ASC' ? 'DESC' : 'ASC',
       sortedBy: key,
     }
   }
@@ -356,6 +358,7 @@ SimpleTable.propTypes = {
   sort: PropTypes.shape({
     sortOrder: PropTypes.oneOf(['ASC', 'DESC']),
     sortedBy: PropTypes.string,
+    preferentialSortOrder: PropTypes.oneOf(['ASC', 'DESC']),
   }),
   onSort: PropTypes.func,
   updateTableKey: PropTypes.string,
