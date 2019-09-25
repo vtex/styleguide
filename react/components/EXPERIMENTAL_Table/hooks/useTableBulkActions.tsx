@@ -1,6 +1,8 @@
 import React, { useMemo, useEffect, useReducer, useCallback } from 'react'
+
 import Checkbox from '../Checkbox'
 import { BulkActionsProps } from '../BulkActions'
+import { NAMESPACES } from '../constants'
 
 const useTableBulkActions = ({
   items,
@@ -43,7 +45,7 @@ const useTableBulkActions = ({
         <Checkbox
           checked={isChecked}
           onClick={selectAllVisibleRows}
-          id="all"
+          id={`${NAMESPACES.CHECKBOX}-all`}
           partial={isPartial}
         />
       )
@@ -53,7 +55,7 @@ const useTableBulkActions = ({
       <Checkbox
         checked={bulkState.selectedRows.some(row => row.id === rowData.id)}
         onClick={() => selectRow(rowData)}
-        id={`${rowData.id}`}
+        id={`${NAMESPACES.CHECKBOX}-${rowData.id}`}
         disabled={bulkState.allLinesSelected}
       />
     )
