@@ -57,7 +57,7 @@ class Alert extends Component {
       <div
         ref={forwardedRef}
         className={`vtex-alert flex justify-between t-body c-on-base ${classes}`}>
-        <div className="flex-ns flex-grow-1 items-start">
+        <div className="flex-ns flex-wrap flex-grow-1 items-start">
           <div
             className={`flex items-start flex-grow-1 ${innerVerticalPadding}`}>
             {showIcon && (

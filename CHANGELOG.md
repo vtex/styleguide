@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix problem with responsive spaces on alert component
+
 ## [9.81.4] - 2019-09-26
 
 ### Fixed
