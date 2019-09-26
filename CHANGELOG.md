@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.81.2] - 2019-09-26
+
+### Removed
+
+- Multiselect documentation (deprecated).
+
 ## [9.81.1] - 2019-09-26
 
 ### Fixed
