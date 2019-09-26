@@ -1,22 +1,9 @@
 import React, { forwardRef, ReactNode } from 'react'
+import csx from 'classnames'
 
 import ButtonWithIcon from '../../ButtonWithIcon/index.js'
 import { BUTTON } from '../constants'
 const ICON_OPTICAL_COMPENSATION = { marginTop: 1.5 }
-
-export type ButtonProps = {
-  id?: string
-  label?: string
-  onClick?: Function
-  isLoading?: boolean
-  disabled?: boolean
-  size?: Size
-  icon?: any
-  title?: string
-  variation?: Variation
-  isActiveOfGroup?: boolean
-  children?: ReactNode
-}
 
 type Ref = HTMLDivElement
 
@@ -33,13 +20,19 @@ const Button = forwardRef<Ref, ButtonProps>(
       label,
       variation,
       isActiveOfGroup,
+      isGrouped,
+      isFirstOfGroup,
       size,
     },
     ref
   ) => {
     const isTertiary = variation === BUTTON.VARIATION.TERTIARY
     return (
-      <div id={id} title={title} ref={ref} className="relative mh2">
+      <div
+        id={id}
+        title={title}
+        ref={ref}
+        className={csx('relative', { mh2: isTertiary })}>
         <ButtonWithIcon
           icon={
             <span
@@ -48,6 +41,8 @@ const Button = forwardRef<Ref, ButtonProps>(
               {icon}
             </span>
           }
+          isGrouped={isGrouped}
+          isFirstOfGroup={isFirstOfGroup}
           isActiveOfGroup={isActiveOfGroup}
           disabled={disabled}
           isLoading={isLoading}
@@ -64,9 +59,27 @@ const Button = forwardRef<Ref, ButtonProps>(
   }
 )
 
+export type ButtonProps = {
+  id?: string
+  label?: string
+  onClick?: Function
+  isLoading?: boolean
+  disabled?: boolean
+  size?: Size
+  icon?: any
+  title?: string
+  variation?: Variation
+  isActiveOfGroup?: boolean
+  isGrouped?: boolean
+  isFirstOfGroup?: boolean
+  children?: ReactNode
+}
+
 Button.defaultProps = {
   variation: BUTTON.VARIATION.TERTIARY,
   isActiveOfGroup: false,
+  isGrouped: false,
+  isFirstOfGroup: false,
   size: BUTTON.SIZE.SMALL,
 }
 

@@ -16,6 +16,8 @@ const ButtonNewLine: FC<ButtonNewLineProps> = ({ actions, ...buttonProps }) => {
           isActiveOfGroup
           id={namespace}
           key={namespace}
+          isGrouped
+          isFirstOfGroup
           variation={BUTTON.VARIATION.PRIMARY}
           icon={<IconPlus solid size={ICON_SIZE.LIGHT} />}
           {...buttonProps}
