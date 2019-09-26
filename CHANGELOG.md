@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- `EXPERIMENTAL_Table`'s `ButtonNewLine` presentation.
+
 ### Changed
 
 - **Filters**: little style corrections and design improvements.
