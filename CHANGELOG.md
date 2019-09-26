@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- `EXPERIMENTAL_Table`'s `ButtonNewLine` presentation.
+- `EXPERIMENTAL_Table`'s `ButtonNewLine` style.
 
 ### Changed
 
