@@ -98,7 +98,6 @@ class FilterBar extends PureComponent {
       alwaysVisibleFilters,
       clearAllFiltersButtonLabel,
       statements,
-      collapseLeft,
       subjectPlaceholder,
       submitFilterLable,
       newFilterLable,
@@ -108,7 +107,7 @@ class FilterBar extends PureComponent {
 
     return (
       optionsKeys.length > 0 && (
-        <div className={`flex flex-wrap ${collapseLeft ? 'nl5' : ''}`}>
+        <div className={`flex flex-wrap nl1`}>
           {optionsKeys
             .filter(
               key =>
@@ -193,9 +192,8 @@ FilterBar.defaultProps = {
   options: [],
   moreOptionsLabel: 'More',
   alwaysVisibleFilters: [],
-  collapseLeft: false,
   subjectPlaceholder: 'Select a filter…',
-  submitFilterLable: 'Ok',
+  submitFilterLable: 'Apply',
   newFilterLable: 'New Filter',
 }
 
@@ -212,8 +210,6 @@ FilterBar.propTypes = {
   alwaysVisibleFilters: PropTypes.arrayOf(PropTypes.string),
   /** if this label is passed, when some filter is not empty a clear all button will appear */
   clearAllFiltersButtonLabel: PropTypes.string,
-  /** Cancels out left padding */
-  collapseLeft: PropTypes.bool,
   /** Subject select placeholder inside 'More options' */
   subjectPlaceholder: PropTypes.string,
   /** Submit button lable for statement inside FilterTag */
