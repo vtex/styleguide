@@ -150,7 +150,7 @@ class Toolbar extends PureComponent {
               id="toggleDensity"
               title={density.buttonLabel}
               ref={this.densityBtnRef}
-              className="relative mh2">
+              className="relative mh1">
               <ButtonWithIcon
                 icon={
                   <span
@@ -206,7 +206,7 @@ class Toolbar extends PureComponent {
               id="toggleFieldsBtn"
               title={fields.label}
               ref={this.fieldsBtnRef}
-              className="relative mh2">
+              className="relative mh1">
               <ButtonWithIcon
                 icon={
                   <span

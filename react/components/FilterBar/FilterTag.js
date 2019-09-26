@@ -4,7 +4,6 @@ import merge from 'lodash/merge'
 
 import Button from '../Button'
 import IconClear from '../icon/Clear'
-import IconClose from '../icon/Close'
 import IconCaretDown from '../icon/CaretDown'
 import Statement from '../Statement'
 import Menu from './Menu'
@@ -194,14 +193,14 @@ class FilterTag extends PureComponent {
         style={{
           ...(isMenuOpen && OPEN_MENU_STYLE),
         }}
-        className={`br-pill ${
+        className={`br2 ba b--solid ${
           isEmpty || isMoreOptions ? '' : 'pr4'
-        } pv1 dib bn ${
+        } pv1 dib ${
           alwaysVisible && isEmpty
-            ? 'bg-transparent hover-bg-muted-5'
+            ? 'bg-transparent hover-bg-muted-5 b--muted-4'
             : isMoreOptions
-            ? 'hover-bg-muted-5'
-            : 'bg-action-secondary hover-bg-action-secondary'
+            ? 'hover-bg-muted-5 b--muted-4'
+            : 'bg-action-secondary hover-bg-action-secondary b--action-secondary'
         } c-on-base`}>
         <div className="flex items-stretch">
           <Menu
@@ -219,7 +218,7 @@ class FilterTag extends PureComponent {
                     ) : (
                       <Fragment>
                         <span>{`${options[subject].label}:\xa0`}</span>
-                        <span className="fw5">{`\xa0${getFilterLabel(
+                        <span className="fw5">{`${getFilterLabel(
                           filterStatementBySubject(statements, subject)
                         )}`}</span>
                       </Fragment>
@@ -238,19 +237,11 @@ class FilterTag extends PureComponent {
                   <span className="f4 mh3">{newFilterLable}</span>
                 )}
                 <div className="flex flex-column">
-                  {shouldOmitSubject && (
-                    <span className="f4 mh3 mb5">{options[subject].label}</span>
-                  )}
                   {shouldOmitVerb && (
                     <span className="mh3">
                       {options[subject].verbs[0].label}
                     </span>
                   )}
-                </div>
-                <div
-                  className="ml-auto mr3 items-center pointer"
-                  onClick={() => this.closeMenu()}>
-                  <IconClose size={18} />
                 </div>
               </div>
               <Statement
@@ -272,7 +263,7 @@ class FilterTag extends PureComponent {
                   })
                 }
               />
-              <div className="flex justify-end mt4 mh3">
+              <div className="flex justify-start mt4 mh3">
                 <Button
                   type="submit"
                   disabled={virtualStatement && !virtualStatement.object}
