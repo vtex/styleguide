@@ -4,7 +4,6 @@ import merge from 'lodash/merge'
 
 import Button from '../Button'
 import IconClear from '../icon/Clear'
-import IconClose from '../icon/Close'
 import IconCaretDown from '../icon/CaretDown'
 import Statement from '../Statement'
 import Menu from './Menu'
