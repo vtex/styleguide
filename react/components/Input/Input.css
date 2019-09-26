@@ -1,8 +1,26 @@
 /* removes edge clear button on input */
-.hideDecorators::-ms-clear{
+.hideDecorators::-ms-clear {
   display: none;
 }
 
 .noAppearance {
   appearance: none;
+}
+
+/* placeholders are using c-muted-1's value */
+::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  color: #979899;
+}
+::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #979899;
+}
+:-ms-input-placeholder {
+  /* IE 10+ */
+  color: #979899;
+}
+:-moz-placeholder {
+  /* Firefox 18- */
+  color: #979899;
 }
