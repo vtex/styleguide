@@ -384,3 +384,73 @@ class ModalExample extends React.Component {
 
 ;<ModalExample />
 ```
+
+Using with Table component
+
+```js
+const Button = require('../Button').default
+const Table = require('../Table').default
+const sampleData = require('../Table/sampleData').default
+const itemsCopy = sampleData.items
+  .slice()
+  .reverse()
+  .splice(15)
+const defaultSchema = {
+  properties: {
+    name: {
+      title: 'Name',
+      width: 300,
+    },
+    email: {
+      title: 'Email',
+      minWidth: 350,
+    },
+    number: {
+      title: 'Number',
+      // default is 200px
+      minWidth: 100,
+    },
+  },
+}
+
+class ModalExample extends React.Component {
+  constructor() {
+    super()
+    this.state = { isModalOpen: false }
+    this.handleToggleModal = this.handleToggleModal.bind(this)
+  }
+
+  handleToggleModal() {
+    this.setState({ isModalOpen: !this.state.isModalOpen })
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+        <Button onClick={this.handleToggleModal}>Open modal</Button>
+
+        <Modal
+          isOpen={this.state.isModalOpen}
+          title="Modal title"
+          responsiveFullScreen
+          centered
+          onClose={this.handleToggleModal}>
+          <Table
+            fullWidth
+            schema={defaultSchema}
+            items={itemsCopy}
+            density="high"
+            onRowClick={({ rowData }) => {
+              alert(
+                `you just clicked ${rowData.name}, number is ${rowData.number} and email ${rowData.email}`
+              )
+            }}
+          />
+        </Modal>
+      </React.Fragment>
+    )
+  }
+}
+
+;<ModalExample />
+```
