@@ -13,6 +13,8 @@ const Node: FC<NodeProps> = ({ data, depth }) => {
 
   const { children, ...rowData } = data
 
+  console.log(data)
+
   const childs =
     children &&
     children.map(data => (

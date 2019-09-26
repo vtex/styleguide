@@ -4,6 +4,8 @@
 const useTableState = require('../EXPERIMENTAL_Table/hooks/useTableState.ts')
   .default
 const sampleData = require('./sampleData.ts').default
+const useTableTreeCheckboxes = require('./hooks/useTableTreeCheckboxes.tsx')
+  .default
 
 // Define the columns
 const columns = [
@@ -32,9 +34,14 @@ function ToolbarExample() {
   const [inputValue, setInputValue] = React.useState('')
   const [displayItems, setDisplayItems] = React.useState(items)
 
+  const { bulkedItems } = useTableTreeCheckboxes({
+    columns,
+    items,
+  })
+
   const tableState = useTableState({
     columns,
-    items: displayItems,
+    items: bulkedItems,
     density: 'medium',
   })
 
