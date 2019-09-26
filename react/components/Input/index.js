@@ -86,6 +86,7 @@ class Input extends Component {
       groupBottom,
       disabled,
       readOnly,
+      testId,
     } = this.props
     const { active } = this.state
 
@@ -190,7 +191,7 @@ class Input extends Component {
     }
 
     return (
-      <label className="vtex-input w-100">
+      <label className="vtex-input w-100" data-testid={testId}>
         {label && <span className={labelClasses}>{label}</span>}
         <div className={prefixSuffixGroupClasses}>
           {prefix && (
@@ -305,6 +306,8 @@ Input.propTypes = {
   groupBottom: PropTypes.bool,
   /** Spec attribute */
   id: PropTypes.string,
+  /** Data attribute */
+  testId: PropTypes.string,
   /** Spec attribute */
   inputMode: PropTypes.string,
   /** Spec attribute */
