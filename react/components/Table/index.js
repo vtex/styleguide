@@ -92,14 +92,6 @@ class Table extends PureComponent {
     this.setState({ hiddenFields: Object.keys(this.props.schema.properties) })
   }
 
-  getScrollbarWidth = () => {
-    if (!window || !document || !document.documentElement)
-      return DEFAULT_SCROLLBAR_WIDTH
-    const scrollbarWidth =
-      window.innerWidth - document.documentElement.clientWidth
-    return isNaN(scrollbarWidth) ? DEFAULT_SCROLLBAR_WIDTH : scrollbarWidth
-  }
-
   handleSelectionChange = () => {
     if (this.props.bulkActions && this.props.bulkActions.onChange) {
       const selectedParameters = this.state.allLinesSelected
