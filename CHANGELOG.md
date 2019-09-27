@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Option for dynamic row heights in table.
+
 ## [9.83.1] - 2019-10-01
 
 ### Added

@@ -14,8 +14,6 @@ import CheckboxContainer from './CheckboxContainer'
 import Totalizers from '../Totalizer'
 import BulkActions from './BulkActions'
 
-const DEFAULT_SCROLLBAR_WIDTH = 17
-
 class Table extends PureComponent {
   constructor(props) {
     super(props)
