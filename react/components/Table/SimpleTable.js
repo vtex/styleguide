@@ -19,6 +19,8 @@ const DEFAULT_COLUMN_WIDTH = 200
 const LINE_ACTIONS_COLUMN_WIDTH = 70
 const NO_TITLE_COLUMN = ' '
 const SELECTED_ROW_BACKGROUND = '#dbe9fd'
+const DEFAULT_SCROLLBAR_WIDTH = 17
+const EMPTY_STATE_SIZE_IN_ROWS = 5
 
 class SimpleTable extends Component {
   constructor(props) {
@@ -126,17 +128,33 @@ class SimpleTable extends Component {
     }
   }
 
+  getScrollbarWidth = () => {
+    if (!window || !document || !document.documentElement)
+      return DEFAULT_SCROLLBAR_WIDTH
+    const scrollbarWidth =
+      window.innerWidth - document.documentElement.clientWidth
+    return isNaN(scrollbarWidth) ? DEFAULT_SCROLLBAR_WIDTH : scrollbarWidth
+  }
+
   calculateContainerHeight = () => {
-    const { disableHeader, items } = this.props
+    const { rowHeight, items, disableHeader } = this.props
+
+    if (items.length === 0) {
+      return (
+        HEADER_HEIGHT +
+        rowHeight * EMPTY_STATE_SIZE_IN_ROWS +
+        this.getScrollbarWidth()
+      )
+    }
 
     const rowCount = disableHeader ? items.length : items.length + 1
 
-    let containerHeight = 0
+    let rawTableHeight = 0
     for (let rowIndex = 0; rowIndex < rowCount; rowIndex++) {
-      containerHeight += this.calculateRowHeight(rowIndex)
+      rawTableHeight += this.calculateRowHeight(rowIndex)
     }
 
-    return containerHeight
+    return rawTableHeight + this.getScrollbarWidth()
   }
 
   render() {
@@ -149,6 +167,7 @@ class SimpleTable extends Component {
       emptyStateLabel,
       emptyStateChildren,
       onRowClick,
+      containerHeight,
       sort: { sortOrder, sortedBy },
       onSort,
       updateTableKey,
@@ -165,14 +184,14 @@ class SimpleTable extends Component {
 
     const tableKey = `vtex-table--${updateTableKey}--${density}`
 
-    const containerHeight = this.calculateContainerHeight()
+    const tableHeight = containerHeight || this.calculateContainerHeight()
 
     return (
-      <div className="vh-100 w-100 dt" style={{ height: containerHeight }}>
+      <div className="vh-100 w-100 dt" style={{ height: tableHeight }}>
         {loading ? (
           <div
             className="dtc v-mid tc"
-            style={{ height: containerHeight - HEADER_HEIGHT }}>
+            style={{ height: tableHeight - HEADER_HEIGHT }}>
             <Spinner />
           </div>
         ) : (
