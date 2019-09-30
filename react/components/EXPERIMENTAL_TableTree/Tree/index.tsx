@@ -8,25 +8,30 @@ import CheckboxesContext from '../checkboxesContext'
 import { ItemTree } from '../hooks/useTableTreeCheckboxes'
 import { PREFIX_WIDTH } from '../constants'
 
-const Node: FC<NodeProps> = ({ data, depth }) => {
+const Node: FC<NodeProps> = ({
+  data,
+  depth,
+  collapsedItems,
+  toggleCollapsed,
+}) => {
   const { visibleColumns } = useTableContext()
   const { toggle, isChecked, isPartiallyChecked } = useContext(
     CheckboxesContext
   )
-  const [collapsed, setCollapsed] = useState(false)
 
   const { children, ...rowData } = data
 
   const isRowChecked = isChecked(data)
   const isRowPartiallyChecked = isPartiallyChecked(data)
   const isRowSelected = isRowChecked || isRowPartiallyChecked
+  const isCollapsed = collapsedItems.includes(data.id)
 
   const renderPrefix = (hasChild?: boolean) => (
     <CellPrefix width={depth * PREFIX_WIDTH}>
       {hasChild && (
         <CellPrefix.Arrow
-          active={collapsed}
-          onClick={() => setCollapsed(!collapsed)}
+          active={isCollapsed}
+          onClick={() => toggleCollapsed(data.id)}
         />
       )}
       <span className="ph2">
@@ -62,9 +67,15 @@ const Node: FC<NodeProps> = ({ data, depth }) => {
   return children ? (
     <>
       {renderCells(true)}
-      {collapsed &&
+      {isCollapsed &&
         children.map(data => (
-          <Node key={`row-child-${uuid()}`} depth={depth + 1} data={data} />
+          <Node
+            collapsedItems={collapsedItems}
+            toggleCollapsed={toggleCollapsed}
+            key={`row-child-${uuid()}`}
+            depth={depth + 1}
+            data={data}
+          />
         ))}
     </>
   ) : (
@@ -74,11 +85,21 @@ const Node: FC<NodeProps> = ({ data, depth }) => {
 
 const Tree: FC = () => {
   const { items } = useTableContext()
-
+  const [collapsedItems, setCollapsedItems] = useState([])
+  const toggleCollapsed = (id: string) => {
+    collapsedItems.includes(id)
+      ? setCollapsedItems(collapsedItems.filter(cid => cid === id))
+      : setCollapsedItems([...collapsedItems, id])
+  }
   return (
     <>
       {items.children.map(data => (
-        <Node key={`row-${uuid()}`} data={data} />
+        <Node
+          collapsedItems={collapsedItems}
+          toggleCollapsed={toggleCollapsed}
+          key={`row-${uuid()}`}
+          data={data}
+        />
       ))}
     </>
   )
@@ -87,6 +108,8 @@ const Tree: FC = () => {
 type NodeProps = {
   data: ItemTree
   depth?: number
+  collapsedItems?: Array<string>
+  toggleCollapsed?: (id: string) => void
 }
 
 Node.defaultProps = {
