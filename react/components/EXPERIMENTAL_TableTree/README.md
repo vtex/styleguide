@@ -34,14 +34,14 @@ function ToolbarExample() {
   const [inputValue, setInputValue] = React.useState('')
   const [displayItems, setDisplayItems] = React.useState(items)
 
-  const { bulkedItems } = useTableTreeCheckboxes({
+  const checkboxes = useTableTreeCheckboxes({
     columns,
     items,
   })
 
   const tableState = useTableState({
     columns,
-    items: bulkedItems,
+    items: checkboxes.parsedItems,
     density: 'medium',
   })
 
@@ -122,7 +122,10 @@ function ToolbarExample() {
   }
 
   return (
-    <TableTree state={tableState} emptyState={emptyState}>
+    <TableTree
+      checkboxes={checkboxes}
+      state={tableState}
+      emptyState={emptyState}>
       <TableTree.Toolbar>
         <TableTree.Toolbar.InputSearch {...inputSearch} />
         <TableTree.Toolbar.ButtonGroup>
