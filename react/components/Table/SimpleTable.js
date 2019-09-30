@@ -195,9 +195,9 @@ class SimpleTable extends Component {
             <Spinner />
           </div>
         ) : (
-          <div className="h-100">
+          <div>
             <AutoSizer key={tableKey}>
-              {({ width, height }) => {
+              {({ width }) => {
                 const colsWidth = Object.keys(schema.properties).reduce(
                   (acc, curr) => {
                     const col = schema.properties[curr]
@@ -218,7 +218,7 @@ class SimpleTable extends Component {
 
                 return (
                   <MultiGrid
-                    height={height}
+                    height={tableHeight}
                     width={width}
                     deferredMeasurementCache={this._cache}
                     tabIndex={null}
@@ -442,7 +442,7 @@ SimpleTable.propTypes = {
   updateTableKey: PropTypes.string,
   containerHeight: PropTypes.number,
   rowHeight: PropTypes.number.isRequired,
-  dynamicRowHeight: PropTypes.number,
+  dynamicRowHeight: PropTypes.bool,
   fullWidth: PropTypes.bool,
   lineActions: PropTypes.arrayOf(
     PropTypes.shape({
