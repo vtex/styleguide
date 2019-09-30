@@ -1454,10 +1454,8 @@ class ResourceListExample extends React.Component {
     this.setState({ ...initialState })
   }
 
-  handleInputSearchSubmit(e) {
-    e.preventDefault()
-
-    if (!this.state.searchValue) {
+  handleInputSearchSubmit(value) {
+    if (!value) {
       this.setState({ ...initialState })
     } else {
       this.setState({
