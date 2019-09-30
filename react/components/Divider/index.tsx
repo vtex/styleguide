@@ -19,10 +19,9 @@ const propTypes = {
 }
 
 const Divider: React.FC<PropTypes.InferProps<typeof propTypes>> = props => {
-  const size =
-    props.orientation === 'horizontal'
-      ? { height: props.size }
-      : { width: props.size }
+  const size = {
+    [props.orientation === 'horizontal' ? 'height' : 'width']: props.size,
+  }
   const gap =
     props.orientation === 'horizontal'
       ? `mt${props.gap} mb${props.gap}`
