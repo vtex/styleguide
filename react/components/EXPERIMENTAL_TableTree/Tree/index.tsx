@@ -5,16 +5,15 @@ import CellPrefix from './CellPrefix'
 import { Row } from '../../EXPERIMENTAL_Table/Styled'
 import useTableContext from '../../EXPERIMENTAL_Table/hooks/useTableContext'
 import CheckboxesContext from '../checkboxesContext'
-import { ParsedItem } from '../hooks/useTableTreeCheckboxes'
-
-const PREFIX_WIDTH = 64
+import { ItemTree } from '../hooks/useTableTreeCheckboxes'
+import { PREFIX_WIDTH } from '../constants'
 
 const Node: FC<NodeProps> = ({ data, depth }) => {
   const { visibleColumns } = useTableContext()
   const { toggle, isChecked, isPartiallyChecked } = useContext(
     CheckboxesContext
   )
-  const [collapsed, setCollapsed] = useState(true)
+  const [collapsed, setCollapsed] = useState(false)
 
   const { children, ...rowData } = data
 
@@ -86,7 +85,7 @@ const Tree: FC = () => {
 }
 
 type NodeProps = {
-  data: ParsedItem
+  data: ItemTree
   depth?: number
 }
 

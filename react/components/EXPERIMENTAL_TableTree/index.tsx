@@ -9,6 +9,7 @@ import { TableContainer, Thead } from '../EXPERIMENTAL_Table/Styled'
 import { tablePropTypes, TableComposites } from '../EXPERIMENTAL_Table'
 import { InferProps } from 'prop-types'
 import { CheckboxesProvider } from './checkboxesContext'
+import TreeHeadings from './Tree/TreeHeadings'
 
 const TableTree: FC<Props> & TableComposites = ({
   children,
@@ -23,7 +24,7 @@ const TableTree: FC<Props> & TableComposites = ({
           {children}
           <DataTable>
             <Thead>
-              <DataTable.Headings />
+              <TreeHeadings />
             </Thead>
             <tbody>
               <Tree />

@@ -41,7 +41,7 @@ function ToolbarExample() {
 
   const tableState = useTableState({
     columns,
-    items: checkboxes.parsedItems,
+    items: checkboxes.itemTree,
     density: 'medium',
   })
 
