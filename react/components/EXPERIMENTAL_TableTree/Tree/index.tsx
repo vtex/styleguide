@@ -1,4 +1,4 @@
-import React, { FC, useState, useContext } from 'react'
+import React, { FC, useState, useContext, createContext } from 'react'
 import uuid from 'uuid'
 
 import CellPrefix from './CellPrefix'
@@ -8,29 +8,26 @@ import CheckboxesContext from '../checkboxesContext'
 import { ItemTree } from '../hooks/useTableTreeCheckboxes'
 import { PREFIX_WIDTH } from '../constants'
 
-const Node: FC<NodeProps> = ({
-  data,
-  depth,
-  collapsedItems,
-  toggleCollapsed,
-}) => {
+const CollapsibleContext = createContext<CollapsibleContext>(null)
+
+const Node: FC<NodeProps> = ({ data, depth }) => {
   const { visibleColumns } = useTableContext()
   const { toggle, isChecked, isPartiallyChecked } = useContext(
     CheckboxesContext
   )
+  const { toggleCollapsed, isCollapsed } = useContext(CollapsibleContext)
 
   const { children, ...rowData } = data
 
   const isRowChecked = isChecked(data)
   const isRowPartiallyChecked = isPartiallyChecked(data)
   const isRowSelected = isRowChecked || isRowPartiallyChecked
-  const isCollapsed = collapsedItems.includes(data.id)
 
   const renderPrefix = (hasChild?: boolean) => (
     <CellPrefix width={depth * PREFIX_WIDTH}>
       {hasChild && (
         <CellPrefix.Arrow
-          active={isCollapsed}
+          active={isCollapsed(data.id)}
           onClick={() => toggleCollapsed(data.id)}
         />
       )}
@@ -67,15 +64,9 @@ const Node: FC<NodeProps> = ({
   return children ? (
     <>
       {renderCells(true)}
-      {isCollapsed &&
+      {isCollapsed(data.id) &&
         children.map(data => (
-          <Node
-            collapsedItems={collapsedItems}
-            toggleCollapsed={toggleCollapsed}
-            key={`row-child-${uuid()}`}
-            depth={depth + 1}
-            data={data}
-          />
+          <Node key={`row-child-${uuid()}`} depth={depth + 1} data={data} />
         ))}
     </>
   ) : (
@@ -91,17 +82,18 @@ const Tree: FC = () => {
       ? setCollapsedItems(collapsedItems.filter(cid => cid === id))
       : setCollapsedItems([...collapsedItems, id])
   }
+  const isCollapsed = (id: string) => collapsedItems.includes(id)
   return (
-    <>
+    <CollapsibleContext.Provider
+      value={{
+        collapsedItems,
+        toggleCollapsed,
+        isCollapsed,
+      }}>
       {items.children.map(data => (
-        <Node
-          collapsedItems={collapsedItems}
-          toggleCollapsed={toggleCollapsed}
-          key={`row-${uuid()}`}
-          data={data}
-        />
+        <Node key={`row-${uuid()}`} data={data} />
       ))}
-    </>
+    </CollapsibleContext.Provider>
   )
 }
 
@@ -110,6 +102,12 @@ type NodeProps = {
   depth?: number
   collapsedItems?: Array<string>
   toggleCollapsed?: (id: string) => void
+}
+
+type CollapsibleContext = {
+  collapsedItems: Array<string>
+  toggleCollapsed: (id: string) => void
+  isCollapsed: (id: string) => boolean
 }
 
 Node.defaultProps = {
