@@ -88,6 +88,7 @@ module.exports = {
             'react/components/Box/index.tsx',
             'react/components/Card/index.js',
             'react/components/Collapsible/index.js',
+            'react/components/Divider/index.tsx',
           ],
         },
         {
