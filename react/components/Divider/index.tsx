@@ -18,10 +18,6 @@ const propTypes = {
   color: PropTypes.string,
 }
 
-// width: 2px;
-// margin: 6px 0;
-// background: blue;
-
 const Divider: React.FC<PropTypes.InferProps<typeof propTypes>> = props => {
   const size =
     props.orientation === 'horizontal'
