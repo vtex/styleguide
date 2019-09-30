@@ -14,24 +14,53 @@ const useTableTreeCheckboxes = ({
 }: hookInput): checkboxesHookReturn => {
   const [checkboxesState, dispatch] = useReducer(reducer, {
     checked: [],
-    partial: [],
     allChecked: false,
   })
 
   const parsedItems = useMemo(() => {
-    return items.map((item, i) => parseTree(item, i))
+    return { id: 'root', children: items.map((item, i) => parseTree(item, i)) }
   }, [items, columns])
 
   const toggle = (item: ParsedItem): void => {
     dispatch({ type: ActionType.Toggle, item })
   }
 
+  useEffect(() => {
+    console.log(checkboxesState.checked)
+  })
+
+  const shake = (tree: ParsedItem) => {
+    const { children } = tree
+    const { checked } = checkboxesState
+    const checkedIds = idsFrom(checked)
+
+    if (!children) return
+
+    const areChildsChecked = children.every(child =>
+      checkedIds.includes(child.id)
+    )
+    const isRootChecked = checkedIds.includes(tree.id)
+
+    if (areChildsChecked && !isRootChecked)
+      dispatch({ type: ActionType.Check, item: tree })
+
+    if (!areChildsChecked && isRootChecked)
+      dispatch({ type: ActionType.Uncheck, item: tree })
+
+    children.forEach(shake)
+  }
+
+  useEffect(() => {
+    shake(parsedItems)
+  }, [checkboxesState.checked])
+
   const isChecked = (item: ParsedItem) => {
     const { children } = item
     const { checked, allChecked } = checkboxesState
-    return children
+    const condition = children
       ? children.every(child => idsFrom(checked).includes(child.id))
       : allChecked || checked.some(row => row.id === item.id)
+    return condition
   }
 
   const isPartiallyChecked = (item: ParsedItem) => {
@@ -39,7 +68,8 @@ const useTableTreeCheckboxes = ({
     const { checked } = checkboxesState
     const flatChildren = getFlat(item).slice(1)
     return (
-      children && flatChildren.some(child => idsFrom(checked).includes(child.id))
+      children &&
+      flatChildren.some(child => idsFrom(checked).includes(child.id))
     )
   }
 
@@ -48,30 +78,28 @@ const useTableTreeCheckboxes = ({
 
 function reducer(state: CheckboxesState, action: Action) {
   switch (action.type) {
-    case ActionType.SetChecked: {
+    case ActionType.Check: {
       return {
         ...state,
-        checked: action.checked,
+        checked: [...state.checked, action.item],
       }
     }
-    case ActionType.SetPartial: {
+    case ActionType.Uncheck: {
       return {
         ...state,
-        partial: action.partial,
+        checked: state.checked.filter(row => row.id !== action.item.id),
       }
     }
     case ActionType.UncheckAll: {
       return {
         ...state,
         checked: [],
-        partial: [],
         allChecked: false,
       }
     }
     case ActionType.CheckAll: {
       return {
         ...state,
-        partial: [],
         checked: action.checked,
         allChecked: true,
       }
@@ -104,7 +132,11 @@ function reducer(state: CheckboxesState, action: Action) {
             }
           : {
               ...state,
-              checked: [...checked, ...flatItems],
+              checked: [...checked, ...flatItems].reduce(
+                (acc, item) =>
+                  idsFrom(acc).includes(item.id) ? acc : [...acc, item],
+                []
+              ),
             }
       }
     }
@@ -119,11 +151,10 @@ function idsFrom(arr: Array<any>): Array<string> {
 }
 
 function getFlat(tree: ParsedItem, arr: Array<ParsedItem> = []) {
-  const { children, ...root } = tree
-  arr.push(root)
-  if (!children) return arr
+  arr.push(tree)
+  if (!tree.children) return arr
   else {
-    children.forEach(child => getFlat(child, arr))
+    tree.children.forEach(child => getFlat(child, arr))
     return arr
   }
 }
@@ -146,13 +177,12 @@ function parseTree(item: Item, index: number, path: string = '') {
 
 export type CheckboxesState = {
   checked?: Array<ParsedItem>
-  partial?: Array<ParsedItem>
   allChecked?: boolean
 }
 
 enum ActionType {
-  SetChecked,
-  SetPartial,
+  Check,
+  Uncheck,
   Toggle,
   CheckAll,
   UncheckAll,
@@ -162,7 +192,6 @@ type Action = {
   type: ActionType
   item?: ParsedItem
   checked?: Array<ParsedItem>
-  partial?: Array<ParsedItem>
 }
 
 type Item = {
@@ -180,7 +209,7 @@ export type ParsedItem = Item & {
 
 export type checkboxesHookReturn = {
   checkboxesState?: CheckboxesState
-  parsedItems?: Array<ParsedItem>
+  parsedItems?: ParsedItem
   toggle?: (item: ParsedItem) => void
   isChecked?: (item: ParsedItem) => boolean
   isPartiallyChecked?: (item: ParsedItem) => boolean

@@ -11,13 +11,10 @@ const PREFIX_WIDTH = 64
 
 const Node: FC<NodeProps> = ({ data, depth }) => {
   const { visibleColumns } = useTableContext()
-  const {
-    checkboxesState: { checked, allChecked },
-    toggle,
-    isChecked,
-    isPartiallyChecked,
-  } = useContext(CheckboxesContext)
-  const [collapsed, setCollapsed] = useState(false)
+  const { toggle, isChecked, isPartiallyChecked } = useContext(
+    CheckboxesContext
+  )
+  const [collapsed, setCollapsed] = useState(true)
 
   const { children, ...rowData } = data
 
@@ -81,7 +78,7 @@ const Tree: FC = () => {
 
   return (
     <>
-      {items.map(data => (
+      {items.children.map(data => (
         <Node key={`row-${uuid()}`} data={data} />
       ))}
     </>
