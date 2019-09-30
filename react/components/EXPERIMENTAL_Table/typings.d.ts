@@ -57,7 +57,7 @@ type TableState = {
   visibleColumns?: Array<Column>
   columns?: Array<Column>
   visibleColumns?: Array<Column>
-  items?: Array<Object>
+  items?: Array<Object> | any
   isEmpty?: boolean
   tableHeight?: number
   rowHeight?: number

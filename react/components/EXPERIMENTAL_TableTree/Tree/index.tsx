@@ -4,17 +4,15 @@ import uuid from 'uuid'
 import CellPrefix from './CellPrefix'
 import { Row } from '../../EXPERIMENTAL_Table/Styled'
 import useTableContext from '../../EXPERIMENTAL_Table/hooks/useTableContext'
-import CheckboxesContext from '../checkboxesContext'
 import { ItemTree } from '../hooks/useTableTreeCheckboxes'
 import { PREFIX_WIDTH } from '../constants'
+import useCheckboxesContext from '../hooks/useCheckboxesContext'
 
 const CollapsibleContext = createContext<CollapsibleContext>(null)
 
 const Node: FC<NodeProps> = ({ data, depth }) => {
   const { visibleColumns } = useTableContext()
-  const { toggle, isChecked, isPartiallyChecked } = useContext(
-    CheckboxesContext
-  )
+  const { toggle, isChecked, isPartiallyChecked } = useCheckboxesContext()
   const { toggleCollapsed, isCollapsed } = useContext(CollapsibleContext)
 
   const { children, ...rowData } = data

@@ -1,120 +1,97 @@
-import { useMemo, useEffect, useReducer } from 'react'
+import { useMemo, useCallback, useEffect, useReducer } from 'react'
 
 const useTableTreeCheckboxes = ({
   items,
   columns,
 }: hookInput): checkboxesHookReturn => {
-  const [checkboxesState, dispatch] = useReducer(reducer, {
-    checked: [],
-  })
+  const [checkedItems, dispatch] = useReducer(reducer, [])
 
   const itemTree = useMemo(() => {
     return { id: 'root', children: items.map((item, i) => parseTree(item, i)) }
   }, [items, columns])
 
-  const toggle = (item: ItemTree): void => {
-    dispatch({ type: ActionType.Toggle, item })
-  }
+  const toggle = useCallback(
+    (item: ItemTree): void => {
+      dispatch({ type: ActionType.Toggle, item })
+    },
+    [checkedItems]
+  )
 
   useEffect(() => {
-    console.log(checkboxesState.checked)
-  })
+    const shake = (tree: ItemTree) => {
+      const { children } = tree
+      const checkedIds = idsFrom(checkedItems)
 
-  const shake = (tree: ItemTree) => {
-    const { children } = tree
-    const { checked } = checkboxesState
-    const checkedIds = idsFrom(checked)
+      if (!children) return
 
-    if (!children) return
+      const areChildsChecked = children.every(child =>
+        checkedIds.includes(child.id)
+      )
+      const isRootChecked = checkedIds.includes(tree.id)
 
-    const areChildsChecked = children.every(child =>
-      checkedIds.includes(child.id)
-    )
-    const isRootChecked = checkedIds.includes(tree.id)
+      if (areChildsChecked && !isRootChecked)
+        dispatch({ type: ActionType.Check, item: tree })
 
-    if (areChildsChecked && !isRootChecked)
-      dispatch({ type: ActionType.Check, item: tree })
+      if (!areChildsChecked && isRootChecked)
+        dispatch({ type: ActionType.Uncheck, item: tree })
 
-    if (!areChildsChecked && isRootChecked)
-      dispatch({ type: ActionType.Uncheck, item: tree })
-
-    children.forEach(shake)
-  }
-
-  useEffect(() => {
+      children.forEach(shake)
+    }
     shake(itemTree)
-  }, [checkboxesState.checked])
+  }, [checkedItems])
 
-  const isChecked = (item: ItemTree) => {
-    const { children } = item
-    const { checked } = checkboxesState
-    const condition = children
-      ? children.every(child => idsFrom(checked).includes(child.id))
-      : checked.some(row => row.id === item.id)
-    return condition
-  }
+  const isChecked = useCallback(
+    (item: ItemTree) => {
+      const { children } = item
+      const condition = children
+        ? children.every(child => idsFrom(checkedItems).includes(child.id))
+        : checkedItems.some(row => row.id === item.id)
+      return condition
+    },
+    [checkedItems]
+  )
 
-  const isPartiallyChecked = (item: ItemTree) => {
-    const { children } = item
-    const { checked } = checkboxesState
-    const flatChildren = getFlat(item).slice(1)
-    return (
-      children &&
-      flatChildren.some(child => idsFrom(checked).includes(child.id))
-    )
-  }
+  const isPartiallyChecked = useCallback(
+    (item: ItemTree) => {
+      const { children } = item
+      const flatChildren = getFlat(item).slice(1)
+      return (
+        children &&
+        flatChildren.some(child => idsFrom(checkedItems).includes(child.id))
+      )
+    },
+    [checkedItems]
+  )
 
-  return { checkboxesState, isChecked, isPartiallyChecked, itemTree, toggle }
+  return { checkedItems, isChecked, isPartiallyChecked, itemTree, toggle }
 }
 
-function reducer(state: CheckboxesState, action: Action) {
+function reducer(state: Array<ItemTree>, action: Action) {
   switch (action.type) {
     case ActionType.Check: {
-      return {
-        ...state,
-        checked: [...state.checked, action.item],
-      }
+      return [...state, action.item]
     }
     case ActionType.Uncheck: {
-      return {
-        ...state,
-        checked: state.checked.filter(row => row.id !== action.item.id),
-      }
+      return state.filter(row => row.id !== action.item.id)
     }
     case ActionType.Toggle: {
       const { item } = action
-      const { checked } = state
 
       if (!item) return state
 
       if (!item.children) {
-        return checked.some(row => row.id === item.id)
-          ? {
-              ...state,
-              checked: checked.filter(row => row.id !== item.id),
-              allChecked: false,
-            }
-          : {
-              ...state,
-              checked: [...checked, item],
-            }
+        return state.some(row => row.id === item.id)
+          ? state.filter(row => row.id !== item.id)
+          : [...state, item]
       } else {
         const flatItems = getFlat(item)
-        return checked.some(row => row.id === item.id)
-          ? {
-              ...state,
-              checked: checked.filter(
-                row => !idsFrom(flatItems).includes(row.id)
-              ),
-            }
-          : {
-              ...state,
-              checked: [...checked, ...flatItems].reduce(
-                (acc, item) =>
-                  idsFrom(acc).includes(item.id) ? acc : [...acc, item],
-                []
-              ),
-            }
+        return state.some(row => row.id === item.id)
+          ? state.filter(row => !idsFrom(flatItems).includes(row.id))
+          : [...state, ...flatItems].reduce(
+              (acc, item) =>
+                idsFrom(acc).includes(item.id) ? acc : [...acc, item],
+              []
+            )
       }
     }
     default: {
@@ -178,12 +155,8 @@ export type ItemTree = {
   id?: string
 }
 
-export type CheckboxesState = {
-  checked?: Array<ItemTree>
-}
-
 export type checkboxesHookReturn = {
-  checkboxesState?: CheckboxesState
+  checkedItems?: Array<ItemTree>
   itemTree?: ItemTree
   toggle?: (item: ItemTree) => void
   isChecked?: (item: ItemTree) => boolean
