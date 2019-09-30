@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- `InputSearch` update component style with figma's design.
+
 ## [9.82.0] - 2019-10-01
 
 ### Added
