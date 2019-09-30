@@ -66,6 +66,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [9.81.4] - 2019-09-26
 
+### Added
+
+- **Icon** `SimpleBasket`.
+
 ### Fixed
 
 - `EXPERIMENTAL_Table`'s `ButtonNewLine` style.
