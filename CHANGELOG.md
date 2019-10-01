@@ -7,9 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.82.0] - 2019-10-01
+
 ### Added
 
-- New component to split elements
+- New component to split elements.
 
 ## [9.81.4] - 2019-09-26
 
