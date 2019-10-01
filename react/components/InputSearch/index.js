@@ -58,42 +58,40 @@ class InputSearch extends Component {
       InputSearch.iconSizes[size] || InputSearch.iconSizes.regular
 
     return (
-      <div
+      <Input
+        {...this.props}
+        onFocus={() => this.handleFocus(true)}
+        onBlur={() => this.handleFocus(false)}
         onMouseEnter={() => this.handleHovering(true)}
-        onMouseLeave={() => this.handleHovering(false)}>
-        <Input
-          {...this.props}
-          onFocus={() => this.handleFocus(true)}
-          onBlur={() => this.handleFocus(false)}
-          onKeyUp={e => e.key === 'Enter' && this.handleSubmit()}
-          type="search"
-          suffix={
-            <div className="flex flex-row items-center">
-              {this.props.value && (
-                <span
-                  tabIndex={0}
-                  onClick={this.handleClickClear}
-                  className="pointer mr4 c-muted-3">
-                  <ClearIcon size={iconSize} />
-                </span>
-              )}
-              <div
-                className={`mh2 bw1 bl ${
-                  focus ? 'b--muted-2' : hover ? 'b--muted-3' : 'b--muted-4'
-                }`}
-                style={{
-                  height:
-                    InputSearch.separatorHeight[size] ||
-                    InputSearch.separatorHeight.regular,
-                }}
-              />
-              <span className="pointer pl4 c-link" onClick={this.handleSubmit}>
-                <SearchIcon size={iconSize} />
+        onMouseLeave={() => this.handleHovering(false)}
+        onKeyUp={e => e.key === 'Enter' && this.handleSubmit()}
+        type="search"
+        suffix={
+          <div className="flex flex-row items-center">
+            {this.props.value && (
+              <span
+                tabIndex={0}
+                onClick={this.handleClickClear}
+                className="pointer mr4 c-muted-3">
+                <ClearIcon size={iconSize} />
               </span>
-            </div>
-          }
-        />
-      </div>
+            )}
+            <div
+              className={`mh2 bw1 bl ${
+                focus ? 'b--muted-2' : hover ? 'b--muted-3' : 'b--muted-4'
+              }`}
+              style={{
+                height:
+                  InputSearch.separatorHeight[size] ||
+                  InputSearch.separatorHeight.regular,
+              }}
+            />
+            <span className="pointer pl4 c-link" onClick={this.handleSubmit}>
+              <SearchIcon size={iconSize} />
+            </span>
+          </div>
+        }
+      />
     )
   }
 }
