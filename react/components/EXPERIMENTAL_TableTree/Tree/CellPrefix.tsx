@@ -8,7 +8,7 @@ const CellPrefix: FC<CellPrefixProps> & CellPrefixComposites = ({
   width,
 }) => {
   return (
-    <span className="dib tr pr2" style={{ width }}>
+    <span className="dib pr2" style={{ width }}>
       <span className="flex w-100 justify-end items-center">{children}</span>
     </span>
   )
