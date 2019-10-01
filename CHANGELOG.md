@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Checkboxes to `EXPERIMENTAL_TableTree`
+
 ## [9.86.2] - 2019-10-04
 
 ### Fixed
