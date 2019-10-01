@@ -77,8 +77,10 @@ const Tree: FC = () => {
   const [collapsedItems, setCollapsedItems] = useState([])
   const toggleCollapsed = (id: string) => {
     collapsedItems.includes(id)
-      ? setCollapsedItems(collapsedItems.filter(cid => cid === id))
-      : setCollapsedItems([...collapsedItems, id])
+      ? setCollapsedItems(collapsedItems =>
+          collapsedItems.filter(cid => cid !== id)
+        )
+      : setCollapsedItems(collapsedItems => [...collapsedItems, id])
   }
   const isCollapsed = (id: string) => collapsedItems.includes(id)
   return (
