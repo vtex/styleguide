@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import csx from 'classnames'
 import uuid from 'uuid'
 
-import useTableContext from './hooks/useTableContext'
+import { useTableContext } from './contexts'
 import { NAMESPACES } from './constants'
 
 export const TableContainer: FC = ({ children }) => {

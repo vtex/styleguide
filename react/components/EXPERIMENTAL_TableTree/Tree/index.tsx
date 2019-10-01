@@ -3,9 +3,9 @@ import uuid from 'uuid'
 
 import CellPrefix from './CellPrefix'
 import { Row } from '../../EXPERIMENTAL_Table/Styled'
-import useTableContext from '../../EXPERIMENTAL_Table/hooks/useTableContext'
+import { useTableContext } from '../../EXPERIMENTAL_Table/contexts'
+import { useCheckboxesContext } from '../contexts'
 import { ItemTree } from '../hooks/useTableTreeCheckboxes'
-import useCheckboxesContext from '../hooks/useCheckboxesContext'
 
 const CollapsibleContext = createContext<CollapsibleContext>(null)
 

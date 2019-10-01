@@ -1,12 +1,14 @@
 import React, { FC } from 'react'
 import uuid from 'uuid'
 
-import useTableContext from '../hooks/useTableContext'
+import { useTableContext, useBulkContext } from '../contexts'
 import { NAMESPACES } from '../constants'
 import { Row, RowProps, CellProps } from '../Styled'
+import { BulkedItem } from '../hooks/useTableBulkActions'
 
 const Rows: FC<RowsProps> = ({ cellProps, rowProps }) => {
-  const { visibleColumns, items, onRowClick, bulkState } = useTableContext()
+  const { visibleColumns, items, onRowClick } = useTableContext()
+  const bulkContext = useBulkContext()
 
   const renderRow = (rowData: BulkedItem) => {
     const clickable = onRowClick
@@ -15,7 +17,9 @@ const Rows: FC<RowsProps> = ({ cellProps, rowProps }) => {
         }
       : {}
     const isSelected =
-      bulkState && bulkState.selectedRows.some(row => row.id === rowData.id)
+      bulkContext &&
+      bulkContext.bulkState &&
+      bulkContext.bulkState.selectedRows.some(row => row.id === rowData.id)
     return (
       <Row
         {...rowProps}

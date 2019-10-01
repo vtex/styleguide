@@ -233,4 +233,26 @@ type hookReturn = {
   selectAllVisibleRows?: () => void
 }
 
+export type BulkedItem = {
+  id: number
+}
+
+export type BulkState = {
+  selectedRows?: Array<BulkedItem>
+  allLinesSelected?: boolean
+}
+
+export type Bulk = {
+  bulkState?: BulkState
+  hasBulkActions?: boolean
+  hasPrimaryBulkAction?: boolean
+  hasSecondaryBulkActions?: boolean
+  selectAllRows?: () => void
+  deselectAllRows?: () => void
+  selectRow?: (row: BulkedItem) => void
+  setSelectedRows?: (selectedRows: Array<BulkedItem>) => void
+  setAllLinesSelected?: (allLinesSelected: boolean) => void
+  selectAllVisibleRows?: () => void
+}
+
 export default useTableBulkActions

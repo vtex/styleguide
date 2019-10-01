@@ -1,14 +1,14 @@
 import React, { FC } from 'react'
 import PropTypes from 'prop-types'
 
-import { TableProvider } from '../EXPERIMENTAL_Table/context'
+import { TableContext } from '../EXPERIMENTAL_Table/contexts'
+import { CheckboxesContext } from './contexts'
 import Toolbar from '../EXPERIMENTAL_Table/Toolbar'
 import DataTable from '../EXPERIMENTAL_Table/DataTable'
 import Tree from './Tree'
 import { TableContainer, Thead } from '../EXPERIMENTAL_Table/Styled'
 import { tablePropTypes, TableComposites } from '../EXPERIMENTAL_Table'
 import { InferProps } from 'prop-types'
-import { CheckboxesProvider } from './checkboxContext'
 import TreeHeadings from './Tree/TreeHeadings'
 
 const TableTree: FC<Props> & TableComposites = ({
@@ -18,8 +18,8 @@ const TableTree: FC<Props> & TableComposites = ({
   ...props
 }) => {
   return (
-    <TableProvider value={{ ...state, ...props }}>
-      <CheckboxesProvider value={{ ...checkboxes }}>
+    <TableContext.Provider value={{ ...state, ...props }}>
+      <CheckboxesContext.Provider value={{ ...checkboxes }}>
         <TableContainer>
           {children}
           <DataTable>
@@ -31,8 +31,8 @@ const TableTree: FC<Props> & TableComposites = ({
             </tbody>
           </DataTable>
         </TableContainer>
-      </CheckboxesProvider>
-    </TableProvider>
+      </CheckboxesContext.Provider>
+    </TableContext.Provider>
   )
 }
 
@@ -51,10 +51,10 @@ const checkboxesPropTypes = {
   }),
 }
 
-type Props = InferProps<typeof tablePropTypes> &
-  InferProps<typeof checkboxesPropTypes>
+const propTypes = { ...tablePropTypes, ...checkboxesPropTypes }
+type Props = InferProps<typeof propTypes>
 
 TableTree.Toolbar = Toolbar
-TableTree.propTypes = tablePropTypes
+TableTree.propTypes = propTypes
 
 export default TableTree

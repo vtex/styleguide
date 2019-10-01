@@ -31,28 +31,6 @@ type TableProps = {
   onRowClick?: ({ rowData: unknown }) => void
 }
 
-type BulkedItem = {
-  id: number
-}
-
-type BulkState = {
-  selectedRows?: Array<BulkedItem>
-  allLinesSelected?: boolean
-}
-
-type Bulk = {
-  bulkState?: BulkState
-  hasBulkActions?: boolean
-  hasPrimaryBulkAction?: boolean
-  hasSecondaryBulkActions?: boolean
-  selectAllRows?: () => void
-  deselectAllRows?: () => void
-  selectRow?: (row: BulkedItem) => void
-  setSelectedRows?: (selectedRows: Array<BulkedItem>) => void
-  setAllLinesSelected?: (allLinesSelected: boolean) => void
-  selectAllVisibleRows?: () => void
-}
-
 type TableState = {
   visibleColumns?: Array<Column>
   columns?: Array<Column>

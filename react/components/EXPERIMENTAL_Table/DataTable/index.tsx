@@ -5,7 +5,7 @@ import EmptyState from '../../EmptyState/index.js'
 import Headings from './Headings'
 import Rows from './Rows'
 import { NAMESPACES } from '../constants'
-import useTableContext from '../hooks/useTableContext'
+import { useTableContext } from '../contexts'
 import Loading from './Loading'
 
 const DataTableContainer: FC = ({ children }) => {

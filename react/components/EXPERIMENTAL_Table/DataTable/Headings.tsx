@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import uuid from 'uuid'
 
 import { TABLE_HEADER_HEIGHT } from '../constants'
-import useTableContext from '../hooks/useTableContext'
+import { useTableContext } from '../contexts'
 import { Row, CellProps, RowProps } from '../Styled'
 
 const Headings: FC<HeadingsProps> = ({ cellProps, rowProps }) => {

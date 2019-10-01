@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 
 import Spinner from '../../Spinner/index.js'
-import useTableContext from '../hooks/useTableContext'
+import { useTableContext } from '../contexts'
 import { TABLE_HEADER_HEIGHT } from '../constants'
 
 const Loading: FC = ({ children }) => {
