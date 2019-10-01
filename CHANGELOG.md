@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
+- Label PropTypes of `Input`, `TextArea` and `Toggle`.
+- Value PropType of `Input`.
 - `Button` hover state in collapsed tertiary buttons
 
 ## [9.86.0] - 2019-10-03
