@@ -106,7 +106,7 @@ export type TableComposites = {
   Toolbar: FC
   Pagination?: FC<PaginationProps>
   LineActions?: FC<LineActionProps>
-  BulkActions: FC
+  BulkActions?: FC
 }
 
 Table.Toolbar = Toolbar
