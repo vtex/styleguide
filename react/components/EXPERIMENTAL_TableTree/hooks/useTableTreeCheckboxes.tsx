@@ -3,6 +3,7 @@ import { useMemo, useCallback, useEffect, useReducer } from 'react'
 const useTableTreeCheckboxes = ({
   items,
   columns,
+  onToggle,
 }: hookInput): checkboxesHookReturn => {
   const [checkedItems, dispatch] = useReducer(reducer, [])
 
@@ -16,6 +17,10 @@ const useTableTreeCheckboxes = ({
     },
     [checkedItems]
   )
+
+  useEffect(() => {
+    onToggle({ checkedItems })
+  }, [toggle])
 
   useEffect(() => {
     const shake = (tree: ItemTree) => {
@@ -148,6 +153,7 @@ type UnparsedItem = {
 type hookInput = {
   items: Array<UnparsedItem>
   columns: Array<Column>
+  onToggle?: ({ checkedItems }) => void
 }
 
 export type ItemTree = {

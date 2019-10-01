@@ -5,7 +5,6 @@ import { TABLE_HEADER_HEIGHT } from '../../EXPERIMENTAL_Table/constants'
 import useTableContext from '../../EXPERIMENTAL_Table/hooks/useTableContext'
 import { Row, CellProps, RowProps } from '../../EXPERIMENTAL_Table/Styled'
 import CellPrefix from './CellPrefix'
-import { PREFIX_WIDTH } from '../constants'
 import useCheckboxesContext from '../hooks/useCheckboxesContext'
 
 const TreeHeadings: FC<TreeHeadingsProps> = ({ cellProps, rowProps }) => {
@@ -29,7 +28,7 @@ const TreeHeadings: FC<TreeHeadingsProps> = ({ cellProps, rowProps }) => {
             key={`heading-${uuid()}`}
             width={width}>
             {headerIndex === 0 && (
-              <CellPrefix width={PREFIX_WIDTH}>
+              <CellPrefix>
                 <span className="ph2">
                   <CellPrefix.Checkbox
                     checked={isChecked(itemTree)}

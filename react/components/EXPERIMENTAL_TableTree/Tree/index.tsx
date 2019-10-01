@@ -5,7 +5,6 @@ import CellPrefix from './CellPrefix'
 import { Row } from '../../EXPERIMENTAL_Table/Styled'
 import useTableContext from '../../EXPERIMENTAL_Table/hooks/useTableContext'
 import { ItemTree } from '../hooks/useTableTreeCheckboxes'
-import { PREFIX_WIDTH } from '../constants'
 import useCheckboxesContext from '../hooks/useCheckboxesContext'
 
 const CollapsibleContext = createContext<CollapsibleContext>(null)
@@ -22,7 +21,7 @@ const Node: FC<NodeProps> = ({ data, depth }) => {
   const isRowSelected = isRowChecked || isRowPartiallyChecked
 
   const renderPrefix = (hasChild?: boolean) => (
-    <CellPrefix width={depth * PREFIX_WIDTH}>
+    <CellPrefix depth={depth}>
       {hasChild && (
         <CellPrefix.Arrow
           active={isCollapsed(data.id)}

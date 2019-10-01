@@ -36,14 +36,18 @@ const TableTree: FC<Props> & TableComposites = ({
   )
 }
 
+const itemTreeShape = PropTypes.shape({
+  children: PropTypes.any,
+  id: PropTypes.string,
+})
+
 const checkboxesPropTypes = {
   checkboxes: PropTypes.shape({
-    checkboxesState: PropTypes.shape({
-      checked: PropTypes.arrayOf(PropTypes.string),
-      partial: PropTypes.arrayOf(PropTypes.string),
-      allChecked: PropTypes.bool,
-    }),
+    checkedItems: PropTypes.arrayOf(itemTreeShape),
+    itemTree: itemTreeShape,
     toggle: PropTypes.func,
+    isChecked: PropTypes.func,
+    isPartiallyChecked: PropTypes.func,
   }),
 }
 

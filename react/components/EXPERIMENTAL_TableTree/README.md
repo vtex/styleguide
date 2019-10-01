@@ -34,9 +34,14 @@ function ToolbarExample() {
   const [inputValue, setInputValue] = React.useState('')
   const [displayItems, setDisplayItems] = React.useState(items)
 
+  const onToggle = ({ checkedItems }) => {
+    console.log(checkedItems)
+  }
+
   const checkboxes = useTableTreeCheckboxes({
     columns,
     items,
+    onToggle,
   })
 
   const tableState = useTableState({
