@@ -5,7 +5,4 @@ export const CheckboxesContext = createContext<Partial<checkboxesHookReturn>>(
   {}
 )
 
-export const useCheckboxesContext = () => {
-  const context = useContext(CheckboxesContext)
-  return context
-}
+export const useCheckboxesContext = () => useContext(CheckboxesContext)
