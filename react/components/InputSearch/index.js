@@ -73,7 +73,7 @@ class InputSearch extends Component {
                 <span
                   tabIndex={0}
                   onClick={this.handleClickClear}
-                  className="pointer mr4 c-muted-4">
+                  className="pointer mr4 c-muted-3">
                   <ClearIcon size={iconSize} />
                 </span>
               )}
