@@ -1,3 +1,22 @@
+export const ORDER_CLASSNAMES = {
+  TOOLBAR: 'order-0',
+  TOOLBAR_CHILD: {
+    INPUT: 'order-0',
+    BUTTON_GROUP: 'order-1',
+    BUTTON_GROUP_CHILD: {
+      COLUMNS: 'order-0',
+      DENSITY: 'order-1',
+      DOWNLOAD: 'order-2',
+      UPLOAD: 'order-3',
+      EXTRA_ACTIONS: 'order-4',
+      NEWLINE: 'order-5',
+    },
+  },
+  BULK_ACTIONS: 'order-1',
+  TABLE: 'order-2',
+  PAGINATION: 'order-3',
+}
+
 export const NAMESPACE_PREFIX = 'vtex-table-v2'
 export const NAMESPACES = {
   CONTAINER: `${NAMESPACE_PREFIX}__container`,
@@ -16,6 +35,8 @@ export const NAMESPACES = {
     BUTTON_NEWLINE: `${NAMESPACE_PREFIX}__toolbar__button-newline`,
     BUTTON_EXTRA_ACTIONS: `${NAMESPACE_PREFIX}__toolbar__button-extra-actions`,
   },
+  BULK_ACTIONS: `${NAMESPACE_PREFIX}__bulk-actions`,
+  CHECKBOX: `${NAMESPACE_PREFIX}__checkbox`,
   PAGINATION: `${NAMESPACE_PREFIX}__pagination`,
 }
 
@@ -40,6 +61,10 @@ export const FIELDS_BOX_ITEM_HEIGHT = 36
 export const TABLE_HEADER_HEIGHT = 36
 export const EMPTY_STATE_SIZE_IN_ROWS = 5
 export const DEFAULT_SCROLLBAR_WIDTH = 17
+export const NESTED_ROW_PREFIX_WIDTH = 36
+export const BULK_ACTIONS_HEIGHT = 56
+export const BULK_ACTIONS_TRANSITION =
+  'height 0.2s ease-in-out, padding 0.2s ease-in-out'
 
 export const ICON_SIZE = {
   HEAVY: 13,

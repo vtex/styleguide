@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import csx from 'classnames'
 
 import IconDownload from '../../icon/Download/index.js'
 import IconUpload from '../../icon/Upload/index.js'
@@ -11,51 +12,32 @@ import ButtonExtraActions, {
 } from './ButtonExtraActions'
 import ButtonNewLine, { ButtonNewLineProps } from './ButtonNewLine'
 
-import { ICON_SIZE, NAMESPACES } from '../constants'
-
-type ButtonType =
-  | 'columns'
-  | 'density'
-  | 'download'
-  | 'upload'
-  | 'extraActions'
-  | 'newLine'
-
-interface Composites {
-  Columns: FC<ButtonColumnsProps>
-  Density: FC<ButtonDensityProps>
-  Download: FC<ButtonProps>
-  Upload: FC<ButtonProps>
-  ExtraActions: FC<ButtonExtraActionsProps>
-  NewLine: FC<ButtonNewLineProps>
-}
-
-type Props =
-  | ButtonProps
-  | ButtonColumnsProps
-  | ButtonDensityProps
-  | ButtonExtraActionsProps
-  | ButtonNewLineProps
+import { ICON_SIZE, NAMESPACES, ORDER_CLASSNAMES } from '../constants'
 
 const getButton = (type: ButtonType, props: Props) => {
   switch (type) {
-    case 'columns': {
+    case ButtonType.Columns: {
       return (
-        <span className="order-0">
+        <span
+          className={ORDER_CLASSNAMES.TOOLBAR_CHILD.BUTTON_GROUP_CHILD.COLUMNS}>
           <ButtonColumns {...(props as ButtonColumnsProps)} />
         </span>
       )
     }
-    case 'density': {
+    case ButtonType.Density: {
       return (
-        <span className="order-1">
+        <span
+          className={ORDER_CLASSNAMES.TOOLBAR_CHILD.BUTTON_GROUP_CHILD.DENSITY}>
           <ButtonDensity {...(props as ButtonDensityProps)} />
         </span>
       )
     }
-    case 'download': {
+    case ButtonType.Download: {
       return (
-        <span className="order-2">
+        <span
+          className={
+            ORDER_CLASSNAMES.TOOLBAR_CHILD.BUTTON_GROUP_CHILD.DOWNLOAD
+          }>
           <Button
             id={NAMESPACES.TOOLBAR.BUTTON_DOWNLOAD}
             icon={<IconDownload size={ICON_SIZE.HEAVY} />}
@@ -64,9 +46,10 @@ const getButton = (type: ButtonType, props: Props) => {
         </span>
       )
     }
-    case 'upload': {
+    case ButtonType.Upload: {
       return (
-        <span className="order-3">
+        <span
+          className={ORDER_CLASSNAMES.TOOLBAR_CHILD.BUTTON_GROUP_CHILD.UPLOAD}>
           <Button
             id={NAMESPACES.TOOLBAR.BUTTON_UPLOAD}
             icon={<IconUpload size={ICON_SIZE.HEAVY} />}
@@ -75,16 +58,20 @@ const getButton = (type: ButtonType, props: Props) => {
         </span>
       )
     }
-    case 'extraActions': {
+    case ButtonType.ExtraActions: {
       return (
-        <span className="order-4">
+        <span
+          className={
+            ORDER_CLASSNAMES.TOOLBAR_CHILD.BUTTON_GROUP_CHILD.EXTRA_ACTIONS
+          }>
           <ButtonExtraActions {...(props as ButtonExtraActionsProps)} />
         </span>
       )
     }
-    case 'newLine': {
+    case ButtonType.NewLine: {
       return (
-        <span className="order-5">
+        <span
+          className={ORDER_CLASSNAMES.TOOLBAR_CHILD.BUTTON_GROUP_CHILD.NEWLINE}>
           <ButtonNewLine {...(props as ButtonNewLineProps)} />
         </span>
       )
@@ -102,16 +89,44 @@ const getComponent = (type: ButtonType) => {
 const ButtonGroup: FC & Composites = ({ children }) => (
   <div
     id={NAMESPACES.TOOLBAR.BUTTON_GROUP}
-    className="order-1 flex flex-row items-center">
+    className={csx(
+      ORDER_CLASSNAMES.TOOLBAR_CHILD.BUTTON_GROUP_CHILD.DENSITY,
+      'flex flex-row items-center'
+    )}>
     {children}
   </div>
 )
 
-ButtonGroup.Columns = getComponent('columns')
-ButtonGroup.Density = getComponent('density')
-ButtonGroup.Download = getComponent('download')
-ButtonGroup.Upload = getComponent('upload')
-ButtonGroup.ExtraActions = getComponent('extraActions')
-ButtonGroup.NewLine = getComponent('newLine')
+enum ButtonType {
+  Columns,
+  Density,
+  Download,
+  Upload,
+  ExtraActions,
+  NewLine,
+}
+
+type Composites = {
+  Columns: FC<ButtonColumnsProps>
+  Density: FC<ButtonDensityProps>
+  Download: FC<ButtonProps>
+  Upload: FC<ButtonProps>
+  ExtraActions: FC<ButtonExtraActionsProps>
+  NewLine: FC<ButtonNewLineProps>
+}
+
+type Props =
+  | ButtonProps
+  | ButtonColumnsProps
+  | ButtonDensityProps
+  | ButtonExtraActionsProps
+  | ButtonNewLineProps
+
+ButtonGroup.Columns = getComponent(ButtonType.Columns)
+ButtonGroup.Density = getComponent(ButtonType.Density)
+ButtonGroup.Download = getComponent(ButtonType.Download)
+ButtonGroup.Upload = getComponent(ButtonType.Upload)
+ButtonGroup.ExtraActions = getComponent(ButtonType.ExtraActions)
+ButtonGroup.NewLine = getComponent(ButtonType.NewLine)
 
 export default ButtonGroup

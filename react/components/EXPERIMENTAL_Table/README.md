@@ -141,6 +141,12 @@ function StateHookExample() {
 | selectedDensity    | Density         | Current selected density            |
 | setSelectedDensity | Function        | selectedDensity setter              |
 
+# Features
+
+<div className="center mw7 pv6">
+  ![](./table.png)
+</div>
+
 # Clickable rows
 
 ```js
@@ -563,6 +569,123 @@ function PaginationExample() {
 ;<PaginationExample />
 ```
 
+# Bulk Actions
+
+Bulk actions allow the user to select some or all the rows to execute an action. Texts have to be given to the component via a `texts` object.
+Actions are passed via the `main` object and the `others` array props. Each object is composed of a `label` and the action event via `onClick` key.
+
+The returned value for all selected lines is an object `allLinesSelected: true` otherwise the data of the rows are returned in the key `selectedRows` as an array.
+
+##### NOTE 1:
+
+`onRowClick` actions are not happening when clicking the checkbox.
+
+##### NOTE 2:
+
+There are two "select all" items.
+
+- The **upper checkbox** on the left side selects the currently visible items, in the example below, 5.
+- Beeing **optional**, the **Select all** button on the right side, selects all items from the database (by concept, since you will probably only load the visible items). Since not all items might be loaded in the table, the callback will only return a flag telling your app to handle all items for the next database operation.
+
+Check the console when selecting/unselecting rows or clicking an action button in the example below to see the action parameters
+
+```js
+// Imports
+const useTableState = require('./hooks/useTableState.ts').default
+const useTableBulkActions = require('./hooks/useTableBulkActions.tsx').default
+
+// Define the columns
+const columns = [
+  {
+    id: 'name',
+    title: 'Name',
+  },
+  {
+    id: 'email',
+    title: 'Email',
+  },
+  {
+    id: 'country',
+    title: 'Country',
+  },
+]
+
+// Define the items with children
+const items = [
+  {
+    name: "T'Chala",
+    email: 'black.panther@gmail.com',
+    country: '🇰🇪Wakanda',
+  },
+  {
+    name: 'Peter Parker',
+    email: 'spider.man@gmail.com',
+    country: '🇺🇸USA',
+  },
+  {
+    name: 'Shang-Chi',
+    email: 'kungfu.master@gmail.com',
+    country: '🇨🇳China',
+  },
+]
+
+function BulkExample() {
+  const bulkActions = {
+    texts: {
+      secondaryActionsLabel: 'Actions',
+      rowsSelected: qty => (
+        <React.Fragment>Selected rows: {qty}</React.Fragment>
+      ),
+      selectAll: 'Select all',
+      allRowsSelected: element => (
+        <React.Fragment>All rows selected: {element}</React.Fragment>
+      ),
+    },
+    totalItems: 4,
+    onChange: params => console.log(params),
+    main: {
+      label: 'Main Action',
+      onClick: params => console.log(params),
+    },
+    others: [
+      {
+        label: 'Action 1',
+        onClick: params => console.log(params),
+      },
+      {
+        label: 'Action 2',
+        onClick: params => console.log(params),
+      },
+    ],
+  }
+
+  const { bulkedColumns, bulkedItems, ...bulk } = useTableBulkActions({
+    columns,
+    items,
+    bulkActions,
+  })
+
+  const tableState = useTableState({
+    columns: bulkedColumns,
+    items: bulkedItems,
+  })
+
+  const density = {
+    label: 'Line density',
+    lowOptionLabel: 'Low',
+    mediumOptionLabel: 'Medium',
+    highOptionLabel: 'High',
+  }
+
+  return (
+    <Table state={tableState} bulk={bulk}>
+      <Table.BulkActions {...bulkActions} />
+    </Table>
+  )
+}
+;<BulkExample />
+```
+
 # Toolbar
 
 ```js
@@ -723,6 +846,7 @@ function ToolbarExample() {
 ```
 
 # Line actions
+
 This feature creates a last extra column with an ActionMenu component per line.
 
 ```js
@@ -792,7 +916,11 @@ function LineActionsExample() {
     },
   ]
 
-  const { itemsWithLineActions, columnsWithLineActions } = useTableLineActions({items, columns, lineActions})
+  const { itemsWithLineActions, columnsWithLineActions } = useTableLineActions({
+    items,
+    columns,
+    lineActions,
+  })
   const tableState = useTableState({
     columns: columnsWithLineActions,
     items: itemsWithLineActions,

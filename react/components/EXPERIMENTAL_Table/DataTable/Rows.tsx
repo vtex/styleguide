@@ -6,16 +6,22 @@ import { NAMESPACES } from '../constants'
 import { Row, RowProps, CellProps } from '../Styled'
 
 const Rows: FC<RowsProps> = ({ cellProps, rowProps }) => {
-  const { visibleColumns, items, onRowClick } = useTableContext()
+  const { visibleColumns, items, onRowClick, bulkState } = useTableContext()
 
-  const renderRow = (rowData: unknown) => {
+  const renderRow = (rowData: BulkedItem) => {
     const clickable = onRowClick
       ? {
           onClick: () => onRowClick({ rowData }),
         }
       : {}
+    const isSelected =
+      bulkState && bulkState.selectedRows.some(row => row.id === rowData.id)
     return (
-      <Row {...rowProps} {...clickable} key={`${NAMESPACES.ROW}-${uuid()}`}>
+      <Row
+        {...rowProps}
+        {...clickable}
+        isSelected={isSelected}
+        key={`${NAMESPACES.ROW}-${uuid()}`}>
         {visibleColumns.map((column: Column) => {
           const { cellRender, width } = column
           const cellData = rowData[column.id]
