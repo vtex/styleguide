@@ -43,6 +43,14 @@ class Input extends Component {
     }
   }
 
+  handleMouseEnter = event => {
+    this.props.onMouseEnter && this.props.onMouseEnter(event)
+  }
+
+  handleMouseLeave = event => {
+    this.props.onMouseLeave && this.props.onMouseLeave(event)
+  }
+
   componentDidMount() {
     if (this.props.size === 'x-large') {
       console.warn(
@@ -199,6 +207,8 @@ class Input extends Component {
             onKeyPress={this.handleKeyPress}
             onKeyDown={this.handleKeyDown}
             onKeyUp={this.handleKeyUp}
+            onMouseEnter={this.handleMouseEnter}
+            onMouseLeave={this.handleMouseLeave}
             className={classes}
             disabled={disabled}
             accept={this.props.accept}
@@ -347,6 +357,10 @@ Input.propTypes = {
   onFocus: PropTypes.func,
   /** onBlur event */
   onBlur: PropTypes.func,
+  /** onMouseEnter event */
+  onMouseEnter: PropTypes.func,
+  /** onMouseLeave event */
+  onMouseLeave: PropTypes.func,
 }
 
 export default withForwardedRef(Input)
