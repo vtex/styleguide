@@ -6,7 +6,7 @@ import ButtonWithIcon from '../../ButtonWithIcon'
 import ActionMenu from '../../ActionMenu'
 import Close from '../icon/Close'
 
-import useTableContext from '../hooks/useTableContext'
+import useTableContext from './hooks/useTableContext'
 
 import {
   ORDER_CLASSNAMES,
