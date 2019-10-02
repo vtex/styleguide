@@ -1,4 +1,10 @@
 import { useMemo, useCallback, useEffect, useReducer } from 'react'
+import {
+  getFlat,
+  getToggledState,
+  getItemTree,
+  equalsId,
+} from './checkboxesUtils'
 
 const useTableTreeCheckboxes = ({
   items,
@@ -8,7 +14,7 @@ const useTableTreeCheckboxes = ({
   const [checkedItems, dispatch] = useReducer(reducer, [])
 
   const itemTree = useMemo(() => {
-    return { id: 'root', children: items.map((item, i) => parseTree(item, i)) }
+    return getItemTree(items)
   }, [items, columns])
 
   const toggle = useCallback(
@@ -25,14 +31,13 @@ const useTableTreeCheckboxes = ({
   useEffect(() => {
     const shake = (tree: ItemTree) => {
       const { children } = tree
-      const checkedIds = idsFrom(checkedItems)
 
       if (!children) return
 
       const areChildsChecked = children.every(child =>
-        checkedIds.includes(child.id)
+        checkedItems.some(equalsId(child))
       )
-      const isRootChecked = checkedIds.includes(tree.id)
+      const isRootChecked = checkedItems.some(equalsId(tree))
 
       if (areChildsChecked && !isRootChecked)
         dispatch({ type: ActionType.Check, item: tree })
@@ -47,22 +52,20 @@ const useTableTreeCheckboxes = ({
 
   const isChecked = useCallback(
     (item: ItemTree) => {
-      const { children } = item
-      const condition = children
-        ? children.every(child => idsFrom(checkedItems).includes(child.id))
-        : checkedItems.some(row => row.id === item.id)
-      return condition
+      return item.children
+        ? item.children.every(child => checkedItems.some(equalsId(child)))
+        : checkedItems.some(equalsId(item))
     },
     [checkedItems]
   )
 
   const isPartiallyChecked = useCallback(
     (item: ItemTree) => {
-      const { children } = item
-      const flatChildren = getFlat(item).slice(1)
       return (
-        children &&
-        flatChildren.some(child => idsFrom(checkedItems).includes(child.id))
+        item.children &&
+        getFlat(item)
+          .slice(1)
+          .some(child => checkedItems.some(equalsId(child)))
       )
     },
     [checkedItems]
@@ -81,56 +84,12 @@ function reducer(state: Array<ItemTree>, action: Action) {
     }
     case ActionType.Toggle: {
       const { item } = action
-
       if (!item) return state
-
-      if (!item.children) {
-        return state.some(row => row.id === item.id)
-          ? state.filter(row => row.id !== item.id)
-          : [...state, item]
-      } else {
-        const flatItems = getFlat(item)
-        return state.some(row => row.id === item.id)
-          ? state.filter(row => !idsFrom(flatItems).includes(row.id))
-          : [...state, ...flatItems].reduce(
-              (acc, item) =>
-                idsFrom(acc).includes(item.id) ? acc : [...acc, item],
-              []
-            )
-      }
+      return getToggledState(state, item)
     }
     default: {
       return state
     }
-  }
-}
-
-function idsFrom(arr: Array<any>): Array<string> {
-  return arr.map(item => (item.id ? item.id : ''))
-}
-
-function getFlat(tree: ItemTree, arr: Array<ItemTree> = []) {
-  arr.push(tree)
-  if (!tree.children) return arr
-  else {
-    tree.children.forEach(child => getFlat(child, arr))
-    return arr
-  }
-}
-
-function parseTree(item: UnparsedItem, index: number, path: string = '') {
-  const { children, ...rest } = item
-
-  if (!children) return { id: `${path}.${index}`, ...item }
-
-  const parsedChilden = children.map((child, i) => {
-    return parseTree(child, i, `${path}.${index}`)
-  })
-
-  return {
-    id: `${path}.${index}`,
-    children: parsedChilden,
-    ...rest,
   }
 }
 
@@ -146,20 +105,19 @@ type Action = {
   checked?: Array<ItemTree>
 }
 
-type UnparsedItem = {
-  children?: Array<UnparsedItem>
-}
-
 type hookInput = {
   items: Array<UnparsedItem>
   columns: Array<Column>
   onToggle?: ({ checkedItems }) => void
 }
 
-export type ItemTree = {
-  children?: Array<ItemTree>
-  id?: string
-}
+export type ItemTree = Partial<{
+  children: Array<ItemTree>
+  id: string
+  [key: string]: unknown
+}>
+
+export type UnparsedItem = Partial<{ children: any; [key: string]: unknown }>
 
 export type checkboxesHookReturn = {
   checkedItems?: Array<ItemTree>
