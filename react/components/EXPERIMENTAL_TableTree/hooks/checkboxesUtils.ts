@@ -34,11 +34,8 @@ export function getToggledState(
  */
 export function getFlat(tree: ItemTree, arr: Array<ItemTree> = []) {
   arr.push(tree)
-  if (!tree.children) return arr
-  else {
-    tree.children.forEach(child => getFlat(child, arr))
-    return arr
-  }
+  tree.children && tree.children.forEach(child => getFlat(child, arr))
+  return arr
 }
 
 /**

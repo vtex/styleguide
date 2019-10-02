@@ -15,7 +15,7 @@ const Checkbox: FC<CheckboxProps> = ({ id, onClick, ...props }) => (
 
 export type CheckboxProps = {
   id?: string
-  onClick?: Function
+  onClick?: (id: string) => void
   checked?: boolean
   disabled?: boolean
   partial?: boolean
