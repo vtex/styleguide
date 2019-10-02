@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 
-import Arrow, { ArrowProps } from './Arrow'
+import CollapseToggle, { CollapseToggleProps } from './CollapseToggle'
 import Checkbox, { CheckboxProps } from '../../EXPERIMENTAL_Table/Checkbox'
 
 const PREFIX_WIDTH = 64
@@ -20,11 +20,11 @@ CellPrefix.defaultProps = {
   depth: 1,
 }
 
-CellPrefix.Arrow = Arrow
+CellPrefix.CollapseToggle = CollapseToggle
 CellPrefix.Checkbox = Checkbox
 
 export type CellPrefixComposites = {
-  Arrow?: FC<ArrowProps>
+  CollapseToggle?: FC<CollapseToggleProps>
   Checkbox?: FC<CheckboxProps>
 }
 

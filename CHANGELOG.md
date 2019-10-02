@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Checkboxes to `EXPERIMENTAL_TableTree`
 
-### Chagend
+### Changed
 
 - Separate `EXPERIMENTAL_Table`'s BulkContext from TableContext
 

@@ -25,7 +25,7 @@ const Node: FC<NodeProps> = ({ data, depth }) => {
   const renderPrefix = (hasChild?: boolean) => (
     <CellPrefix depth={depth}>
       {hasChild && (
-        <CellPrefix.Arrow
+        <CellPrefix.CollapseToggle
           active={isCollapsed(data.id)}
           onClick={() => toggleCollapsed(data.id)}
         />
