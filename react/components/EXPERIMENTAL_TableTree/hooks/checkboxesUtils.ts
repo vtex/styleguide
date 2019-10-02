@@ -1,4 +1,4 @@
-import { UnparsedItem, ItemTree } from './useTableTreeCheckboxes'
+import { UnparsedItem, ItemTree, ChildKey } from './useTableTreeCheckboxes'
 
 /**
  * Return new state with items toggled
@@ -7,11 +7,13 @@ import { UnparsedItem, ItemTree } from './useTableTreeCheckboxes'
  */
 export function getToggledState(
   state: Array<ItemTree>,
-  item: ItemTree
+  item: ItemTree,
+  childsKey: string = 'children'
 ): Array<ItemTree> {
   const stateIncludesItem = state.some(row => row.id === item.id)
 
-  const bulkFilter = (row: ItemTree) => !getFlat(item).some(equalsId(row))
+  const bulkFilter = (row: ItemTree) =>
+    !getFlat(item, [], childsKey).some(equalsId(row))
 
   const filter = (row: ItemTree) => row.id !== item.id
 
@@ -19,45 +21,55 @@ export function getToggledState(
     const reduction = (acc: Array<ItemTree>, item: ItemTree) =>
       acc.some(equalsId(item)) ? acc : [...acc, item]
 
-    return [...state, ...getFlat(item)].reduce(reduction, [])
+    return [...state, ...getFlat(item, [], childsKey)].reduce(reduction, [])
   }
 
   if (stateIncludesItem) {
-    return item.children ? state.filter(bulkFilter) : state.filter(filter)
+    return item[childsKey] ? state.filter(bulkFilter) : state.filter(filter)
   } else {
-    return item.children ? bulkCheck(state, item) : [...state, item]
+    return item[childsKey] ? bulkCheck(state, item) : [...state, item]
   }
 }
 
 /**
  * Represents a tree section on a single array.
  */
-export function getFlat(tree: ItemTree, arr: Array<ItemTree> = []) {
+export function getFlat(
+  tree: ItemTree,
+  arr: Array<ItemTree> = [],
+  childsKey: string = 'children'
+) {
   arr.push(tree)
-  tree.children && tree.children.forEach(child => getFlat(child, arr))
+  if (tree[childsKey])
+    (tree[childsKey] as Array<ItemTree>).forEach(child =>
+      getFlat(child, arr, childsKey)
+    )
   return arr
 }
 
 /**
  * Get a tree from unparsed items array
  */
-export function getItemTree(items: Array<UnparsedItem>) {
+export function getItemTree(
+  items: Array<UnparsedItem>,
+  childsKey: string = 'children'
+) {
   function parseTree(item: UnparsedItem, index: number, path: string = '') {
-    const { children, ...rest } = item
+    if (!item[childsKey]) return { id: `${path}.${index}`, ...item }
 
-    if (!children) return { id: `${path}.${index}`, ...item }
-
-    const parsedChilden = children.map((child, i) => {
-      return parseTree(child, i, `${path}.${index}`)
-    })
+    const parsedChilden = (item[childsKey] as Array<ItemTree>).map(
+      (child, i) => {
+        return parseTree(child, i, `${path}.${index}`)
+      }
+    )
 
     return {
+      ...item,
       id: `${path}.${index}`,
-      children: parsedChilden,
-      ...rest,
+      [childsKey]: parsedChilden,
     }
   }
-  return { id: 'root', children: items.map((item, i) => parseTree(item, i)) }
+  return { id: 'root', [childsKey]: items.map((item, i) => parseTree(item, i)) }
 }
 
 /** Compares ids  */

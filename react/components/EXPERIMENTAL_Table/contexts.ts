@@ -13,7 +13,4 @@ export const useTableContext = () => {
   return context
 }
 
-export const useBulkContext = () => {
-  const context = useContext(BulkContext)
-  return context
-}
+export const useBulkContext = () => useContext(BulkContext)
