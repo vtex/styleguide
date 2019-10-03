@@ -59,7 +59,7 @@ export const Cell: FC<CellProps> = ({
     <Tag
       id={`${NAMESPACES.CELL}-${id}`}
       style={{ minWidth: width }}
-      className={`truncate v-mid pa2 tl bb b--muted-4 ${className}`}>
+      className={`truncate v-mid ph2 pv0 tl bb b--muted-4 ${className}`}>
       {children}
     </Tag>
   )

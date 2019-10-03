@@ -188,7 +188,7 @@ function reducer(state: BulkState, action: Action) {
         ? {
             ...state,
             selectedRows: state.selectedRows.filter(
-              r => r[unicityKey] !== row[unicityKey]
+              selectedRow => selectedRow[unicityKey] !== row[unicityKey]
             ),
             allLinesSelected: false,
           }
