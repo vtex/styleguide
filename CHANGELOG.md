@@ -200,6 +200,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - example of modal with table
+- `Box`: added title prop
 - Workspace link reminder in pull request template
 
 ## [9.85.0] - 2019-10-03
