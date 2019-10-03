@@ -16,13 +16,14 @@ const Table: FC<Props> & TableComposites = ({
   children,
   state,
   bulk,
+  unicityKey,
   ...props
 }) => {
   if (!state) {
     throw STATE_NOT_FOUND_ERROR
   }
   return (
-    <TableContext.Provider value={{ ...state, ...bulk, ...props }}>
+    <TableContext.Provider value={{ ...state, ...bulk, ...props, unicityKey }}>
       <BulkContext.Provider value={bulk}>
         <TableContainer>
           {children}
@@ -39,6 +40,10 @@ const Table: FC<Props> & TableComposites = ({
       </BulkContext.Provider>
     </TableContext.Provider>
   )
+}
+
+Table.defaultProps = {
+  unicityKey: 'id',
 }
 
 export const bulkPropTypes = {
@@ -65,6 +70,7 @@ export const bulkPropTypes = {
 
 export const tablePropTypes = {
   containerHeight: PropTypes.number,
+  unicityKey: PropTypes.string,
   loading: PropTypes.oneOfType([
     PropTypes.shape({
       renderAs: PropTypes.func,

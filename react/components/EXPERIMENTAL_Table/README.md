@@ -613,16 +613,19 @@ const columns = [
 // Define the items with children
 const items = [
   {
+    id: 1,
     name: "T'Chala",
     email: 'black.panther@gmail.com',
     country: '🇰🇪Wakanda',
   },
   {
+    id: 2,
     name: 'Peter Parker',
     email: 'spider.man@gmail.com',
     country: '🇺🇸USA',
   },
   {
+    id: 3,
     name: 'Shang-Chi',
     email: 'kungfu.master@gmail.com',
     country: '🇨🇳China',
@@ -659,7 +662,7 @@ function BulkExample() {
     ],
   }
 
-  const { bulkedColumns, bulkedItems, ...bulk } = useTableBulkActions({
+  const { bulkedColumns, ...bulk } = useTableBulkActions({
     columns,
     items,
     bulkActions,
@@ -667,7 +670,7 @@ function BulkExample() {
 
   const tableState = useTableState({
     columns: bulkedColumns,
-    items: bulkedItems,
+    items,
   })
 
   const density = {

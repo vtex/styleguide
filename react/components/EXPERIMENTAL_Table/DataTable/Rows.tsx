@@ -4,13 +4,12 @@ import uuid from 'uuid'
 import { useTableContext, useBulkContext } from '../contexts'
 import { NAMESPACES } from '../constants'
 import { Row, RowProps, CellProps } from '../Styled'
-import { BulkedItem } from '../hooks/useTableBulkActions'
 
 const Rows: FC<RowsProps> = ({ cellProps, rowProps }) => {
-  const { visibleColumns, items, onRowClick } = useTableContext()
+  const { visibleColumns, items, onRowClick, unicityKey } = useTableContext()
   const bulkContext = useBulkContext()
 
-  const renderRow = (rowData: BulkedItem) => {
+  const renderRow = (rowData: unknown) => {
     const clickable = onRowClick
       ? {
           onClick: () => onRowClick({ rowData }),
@@ -19,7 +18,9 @@ const Rows: FC<RowsProps> = ({ cellProps, rowProps }) => {
     const isSelected =
       bulkContext &&
       bulkContext.bulkState &&
-      bulkContext.bulkState.selectedRows.some(row => row.id === rowData.id)
+      bulkContext.bulkState.selectedRows.some(
+        row => row[unicityKey] === rowData[unicityKey]
+      )
     return (
       <Row
         {...rowProps}

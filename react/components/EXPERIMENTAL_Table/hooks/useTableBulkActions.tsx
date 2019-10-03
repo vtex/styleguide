@@ -1,4 +1,5 @@
 import React, { useMemo, useEffect, useReducer, useCallback } from 'react'
+import uuid from 'uuid'
 
 import Checkbox from '../Checkbox'
 import { BulkActionsProps } from '../BulkActions'
@@ -8,6 +9,7 @@ const useTableBulkActions = ({
   items,
   columns,
   bulkActions,
+  unicityKey = 'id',
 }: hookInput): hookReturn => {
   const [bulkState, dispatch] = useReducer(reducer, {
     selectedRows: [],
@@ -29,14 +31,10 @@ const useTableBulkActions = ({
 
   const hasBulkActions = hasPrimaryBulkAction || hasSecondaryBulkActions
 
-  const bulkedItems = useMemo(() => {
-    return hasBulkActions && items.map((item, i) => ({ id: i, ...item }))
-  }, [items, columns])
-
   const bulkedColumns = useMemo<Array<Column>>(() => {
     const headerRender = () => {
       const selectedRowsLength = bulkState.selectedRows.length
-      const itemsLength = bulkedItems.length
+      const itemsLength = items.length
       const isChecked = selectedRowsLength === itemsLength
       const isPartial =
         selectedRowsLength > 0 && selectedRowsLength < itemsLength
@@ -53,9 +51,11 @@ const useTableBulkActions = ({
 
     const cellRender = ({ rowData }) => (
       <Checkbox
-        checked={bulkState.selectedRows.some(row => row.id === rowData.id)}
+        checked={bulkState.selectedRows.some(
+          row => row[unicityKey] === rowData[unicityKey]
+        )}
         onClick={() => selectRow(rowData)}
-        id={`${NAMESPACES.CHECKBOX}-${rowData.id}`}
+        id={`${NAMESPACES.CHECKBOX}-${rowData}-${uuid()}`}
         disabled={bulkState.allLinesSelected}
       />
     )
@@ -63,7 +63,7 @@ const useTableBulkActions = ({
     return hasBulkActions
       ? [
           {
-            id: 'bulk',
+            [unicityKey]: 'bulk',
             width: 40,
             headerRender,
             cellRender,
@@ -86,7 +86,7 @@ const useTableBulkActions = ({
     () =>
       dispatch({
         type: ActionType.SelectAllRows,
-        selectedRows: bulkedItems,
+        selectedRows: items,
       }),
     [bulkState.selectedRows]
   )
@@ -97,12 +97,16 @@ const useTableBulkActions = ({
   )
 
   const selectRow = useCallback(
-    (row: BulkedItem) => dispatch({ type: ActionType.SelectRow, row }),
+    (row: unknown) =>
+      dispatch({
+        type: ActionType.SelectRow,
+        rowToToggle: { row, unicityKey },
+      }),
     [bulkState.selectedRows]
   )
 
   const setSelectedRows = useCallback(
-    (selectedRows: Array<BulkedItem>) =>
+    (selectedRows: Array<unknown>) =>
       dispatch({ type: ActionType.SetSelectedRows, selectedRows }),
     [bulkState.selectedRows]
   )
@@ -118,10 +122,10 @@ const useTableBulkActions = ({
 
   const selectAllVisibleRows = useCallback(
     () =>
-      bulkState.selectedRows.length <= bulkedItems.length &&
+      bulkState.selectedRows.length <= items.length &&
       bulkState.selectedRows.length !== 0
         ? deselectAllRows()
-        : setSelectedRows(bulkedItems),
+        : setSelectedRows(items),
     [bulkState.selectedRows, bulkState.allLinesSelected]
   )
 
@@ -135,7 +139,6 @@ const useTableBulkActions = ({
 
     /** data */
     bulkedColumns,
-    bulkedItems,
 
     /** handler fn */
     selectAllRows,
@@ -176,19 +179,22 @@ function reducer(state: BulkState, action: Action) {
       }
     }
     case ActionType.SelectRow: {
+      const {
+        rowToToggle: { row, unicityKey },
+      } = action
       return state.selectedRows.some(
-        selectedRow => selectedRow.id === action.row.id
+        selectedRow => selectedRow[unicityKey] === row[unicityKey]
       )
         ? {
             ...state,
             selectedRows: state.selectedRows.filter(
-              row => row.id !== action.row.id
+              r => r[unicityKey] !== row[unicityKey]
             ),
             allLinesSelected: false,
           }
         : {
             ...state,
-            selectedRows: [...state.selectedRows, action.row],
+            selectedRows: [...state.selectedRows, row],
           }
     }
     default: {
@@ -207,38 +213,39 @@ enum ActionType {
 
 type Action = {
   type: ActionType
-  selectedRows?: Array<BulkedItem>
+  selectedRows?: Array<unknown>
   allLinesSelected?: boolean
-  row?: BulkedItem
+  row?: unknown
+  rowToToggle?: {
+    row?: unknown
+    unicityKey: string
+  }
 }
 
 type hookInput = {
-  items: Array<Object>
+  items: Array<unknown>
   columns: Array<Column>
   bulkActions: BulkActionsProps
+  unicityKey: string
 }
 
 type hookReturn = {
   bulkedColumns?: Array<Column>
-  bulkedItems?: Array<BulkedItem>
+  bulkedItems?: Array<unknown>
   bulkState?: BulkState
   hasBulkActions?: boolean
   hasPrimaryBulkAction?: boolean
   hasSecondaryBulkActions?: boolean
   selectAllRows?: () => void
   deselectAllRows?: () => void
-  selectRow?: (row: BulkedItem) => void
-  setSelectedRows?: (selectedRows: Array<BulkedItem>) => void
+  selectRow?: (row: unknown) => void
+  setSelectedRows?: (selectedRows: Array<unknown>) => void
   setAllLinesSelected?: (allLinesSelected: boolean) => void
   selectAllVisibleRows?: () => void
 }
 
-export type BulkedItem = {
-  id: number
-}
-
 export type BulkState = {
-  selectedRows?: Array<BulkedItem>
+  selectedRows?: Array<unknown>
   allLinesSelected?: boolean
 }
 
@@ -249,8 +256,8 @@ export type Bulk = {
   hasSecondaryBulkActions?: boolean
   selectAllRows?: () => void
   deselectAllRows?: () => void
-  selectRow?: (row: BulkedItem) => void
-  setSelectedRows?: (selectedRows: Array<BulkedItem>) => void
+  selectRow?: (row: unknown) => void
+  setSelectedRows?: (selectedRows: Array<unknown>) => void
   setAllLinesSelected?: (allLinesSelected: boolean) => void
   selectAllVisibleRows?: () => void
 }

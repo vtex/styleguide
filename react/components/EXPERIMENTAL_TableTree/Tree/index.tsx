@@ -14,14 +14,9 @@ import { useCheckboxesContext, useTreeContext } from '../contexts'
 import { Item } from '../hooks/useTableTreeCheckboxes'
 
 const Node: FC<NodeProps> = ({ data, depth }) => {
-  const { visibleColumns } = useTableContext()
+  const { visibleColumns, unicityKey } = useTableContext()
   const { toggle, isChecked, isPartiallyChecked } = useCheckboxesContext()
-  const {
-    toggleCollapsed,
-    isCollapsed,
-    nodesKey,
-    unicityKey,
-  } = useTreeContext()
+  const { toggleCollapsed, isCollapsed, nodesKey } = useTreeContext()
 
   const isRowChecked = isChecked(data)
   const isRowPartiallyChecked = isPartiallyChecked(data)

@@ -29,13 +29,14 @@ type TableProps = {
     children?: Element
   }
   onRowClick?: ({ rowData: unknown }) => void
+  unicityKey?: string
 }
 
 type TableState = {
   visibleColumns?: Array<Column>
   columns?: Array<Column>
   visibleColumns?: Array<Column>
-  items?: Array<Object> | any
+  items?: Array<unknown> | any
   isEmpty?: boolean
   tableHeight?: number
   rowHeight?: number
