@@ -43,9 +43,7 @@ const defaultSchema = {
       density="high"
       onRowClick={({ rowData }) => {
         alert(
-          `you just clicked ${rowData.name}, number is ${
-            rowData.number
-          } and email ${rowData.email}`
+          `you just clicked ${rowData.name}, number is ${rowData.number} and email ${rowData.email}`
         )
       }}
     />
@@ -174,9 +172,7 @@ class CustomTableExample extends React.Component {
                   // you should stop the event propagation so the cell click fires and row click don't
                   e.stopPropagation()
                   alert(
-                    `you just clicked a cell to remove ${
-                      cellData.label
-                    }, HEX: ${cellData.color}`
+                    `you just clicked a cell to remove ${cellData.label}, HEX: ${cellData.color}`
                   )
                 }}>
                 <span className="nowrap">{cellData.label}</span>
@@ -436,9 +432,7 @@ const defaultSchema = {
       }
       onRowClick={({ rowData }) => {
         alert(
-          `you just clicked ${rowData.name}, number is ${
-            rowData.number
-          } and email ${rowData.email}`
+          `you just clicked ${rowData.name}, number is ${rowData.number} and email ${rowData.email}`
         )
       }}
     />
@@ -966,10 +960,7 @@ class ResourceListExample extends React.Component {
 
   simpleInputObject({ value, onChange }) {
     return (
-      <Input
-        value={value || ''}
-        onChange={e => onChange(e.target.value)}
-      />
+      <Input value={value || ''} onChange={e => onChange(e.target.value)} />
     )
   }
 
@@ -1025,9 +1016,10 @@ class ResourceListExample extends React.Component {
         <Input
           placeholder="from…"
           errorMessage={
-            value && value.first && value.last &&
-            parseInt(value.first) >=
-              parseInt(value.last)
+            value &&
+            value.first &&
+            value.last &&
+            parseInt(value.first) >= parseInt(value.last)
               ? 'Must be smaller than other input'
               : ''
           }
@@ -1456,16 +1448,14 @@ class ResourceListExample extends React.Component {
 
   handleInputSearchSubmit(e) {
     const value = e && e.target && e.target.value
+    const regex = new RegExp(value, 'i')
     if (!value) {
       this.setState({ ...initialState })
     } else {
       this.setState({
-        currentPage: 0,
-        currentItemFrom: 0,
-        currentItemTo: 0,
-        slicedData: [],
-        emptyStateLabel: 'No results found.',
-        itemsLength: 0,
+        slicedData: initialState.slicedData
+          .slice()
+          .filter(item => regex.test(item.name) || regex.test(item.email)),
       })
     }
   }
