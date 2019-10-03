@@ -82,6 +82,16 @@ const Conditions: React.FC<Props> = ({
     onChangeStatements(updatedStatements)
   }
 
+  const handleUpdatestatement = (newStatement, statementIndex) => {
+    const newStatements = statements.map(
+      (statement, idx) =>
+        idx === statementIndex
+          ? newStatement
+          : statement
+    )
+    onChangeStatements(newStatements)
+  }
+
   return (
     <div>
       {!hideOperator && (
@@ -136,13 +146,7 @@ const Conditions: React.FC<Props> = ({
                     isRtl={isRtl}
                     isFullWidth={isFullWidth}
                     onChangeStatement={newStatement => {
-                      const newStatements = statements.map(
-                        (statement, idx) =>
-                          idx === statementIndex
-                            ? newStatement
-                            : statement
-                      )
-                      onChangeStatements(newStatements)
+                      handleUpdatestatement(newStatement, statementIndex)
                     }}
                     options={uniqueBasedOptions}
                     subjectPlaceholder={subjectPlaceholder}
