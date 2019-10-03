@@ -38,9 +38,16 @@ class InputSearch extends Component {
     this.props.onClear && this.props.onClear(event)
   }
 
-  handleSubmit = () => {
+  handleSubmit = event => {
     const { onSubmit, value } = this.props
-    onSubmit && onSubmit(value)
+    onSubmit &&
+      onSubmit({
+        ...event,
+        target: {
+          ...event.target,
+          value,
+        },
+      })
   }
 
   handleHovering = hover => {
@@ -64,7 +71,9 @@ class InputSearch extends Component {
         onBlur={() => this.handleFocus(false)}
         onMouseEnter={() => this.handleHovering(true)}
         onMouseLeave={() => this.handleHovering(false)}
-        onKeyUp={e => e.key === 'Enter' && this.handleSubmit()}
+        onKeyUp={e =>
+          e.key === 'Enter' && this.handleSubmit(new Event('submit'))
+        }
         type="search"
         suffix={
           <div className="flex flex-row items-center">

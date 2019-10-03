@@ -16,8 +16,9 @@ initialState = { value1: '', value2: '', value3: '' }
       label="Small"
       size="small"
       onChange={e => setState({ value1: e.target.value })}
-      onSubmit={value => {
-        console.log('submited! search this: ', value)
+      onSubmit={e => {
+        e.preventDefault()
+        console.log('submited! search this: ', e.target.value)
       }}
     />
     <br />
@@ -28,7 +29,8 @@ initialState = { value1: '', value2: '', value3: '' }
       size="regular"
       onChange={e => setState({ value2: e.target.value })}
       onSubmit={value => {
-        console.log('submited! search this: ', value)
+        e.preventDefault()
+        console.log('submited! search this: ', e.target.value)
       }}
     />
     <br />
@@ -39,7 +41,8 @@ initialState = { value1: '', value2: '', value3: '' }
       size="large"
       onChange={e => setState({ value3: e.target.value })}
       onSubmit={value => {
-        console.log('submited! search this: ', value)
+        e.preventDefault()
+        console.log('submited! search this: ', e.target.value)
       }}
     />
   </form>
