@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- `Button` fixes hover in collapsed tertiary buttons
+- `Button` hover state in collapsed tertiary buttons
 
 ### Added
 
