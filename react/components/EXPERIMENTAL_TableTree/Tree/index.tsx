@@ -11,12 +11,17 @@ import CellPrefix from './CellPrefix'
 import { Row } from '../../EXPERIMENTAL_Table/Styled'
 import { useTableContext } from '../../EXPERIMENTAL_Table/contexts'
 import { useCheckboxesContext, useTreeContext } from '../contexts'
-import { ItemTree } from '../hooks/useTableTreeCheckboxes'
+import { Item } from '../hooks/useTableTreeCheckboxes'
 
 const Node: FC<NodeProps> = ({ data, depth }) => {
   const { visibleColumns } = useTableContext()
   const { toggle, isChecked, isPartiallyChecked } = useCheckboxesContext()
-  const { toggleCollapsed, isCollapsed, childsKey } = useTreeContext()
+  const {
+    toggleCollapsed,
+    isCollapsed,
+    childsKey,
+    unicityKey,
+  } = useTreeContext()
 
   const isRowChecked = isChecked(data)
   const isRowPartiallyChecked = isPartiallyChecked(data)
@@ -26,8 +31,8 @@ const Node: FC<NodeProps> = ({ data, depth }) => {
     <CellPrefix depth={depth}>
       {hasChild && (
         <CellPrefix.CollapseToggle
-          active={isCollapsed(data.id)}
-          onClick={() => toggleCollapsed(data.id)}
+          collapsed={isCollapsed(data[unicityKey])}
+          onClick={() => toggleCollapsed(data[unicityKey])}
         />
       )}
       <span className="ph2">
@@ -63,8 +68,8 @@ const Node: FC<NodeProps> = ({ data, depth }) => {
   return data[childsKey] ? (
     <>
       {renderCells(true)}
-      {isCollapsed(data.id) &&
-        (data[childsKey] as Array<ItemTree>).map(data => (
+      {isCollapsed(data[unicityKey]) &&
+        (data[childsKey] as Array<Item>).map(data => (
           <Node key={`row-child-${uuid()}`} depth={depth + 1} data={data} />
         ))}
     </>
@@ -85,10 +90,9 @@ const Tree: FC = () => {
 }
 
 type NodeProps = {
-  data: ItemTree
+  data: Item
   depth?: number
   collapsedItems?: Array<string>
-  toggleCollapsed?: (id: string) => void
 }
 
 Node.defaultProps = {

@@ -4,15 +4,15 @@ const useTreeState = () => {
   const [collapsedItems, setCollapsedItems] = useState([])
 
   const toggleCollapsed = useCallback(
-    (id: string) => {
-      collapsedItems.includes(id)
-        ? setCollapsedItems(collapsedItems.filter(cid => cid !== id))
-        : setCollapsedItems([...collapsedItems, id])
+    (uniqueKey: unknown) => {
+      collapsedItems.includes(uniqueKey)
+        ? setCollapsedItems(collapsedItems.filter(key => key !== uniqueKey))
+        : setCollapsedItems([...collapsedItems, uniqueKey])
     },
     [collapsedItems]
   )
 
-  const isCollapsed = (id: string) => collapsedItems.includes(id)
+  const isCollapsed = (uniqueKey: unknown) => collapsedItems.includes(uniqueKey)
 
   return { collapsedItems, toggleCollapsed, isCollapsed }
 }

@@ -42,6 +42,7 @@ function ToolbarExample() {
     columns,
     items,
     onToggle,
+    unicityKey: 'email',
   })
 
   const tableState = useTableState({
@@ -129,6 +130,7 @@ function ToolbarExample() {
   return (
     <TableTree
       checkboxes={checkboxes}
+      unicityKey="email"
       state={tableState}
       emptyState={emptyState}>
       <TableTree.Toolbar>

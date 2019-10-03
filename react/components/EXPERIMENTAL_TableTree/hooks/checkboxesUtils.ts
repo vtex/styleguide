@@ -1,4 +1,4 @@
-import { UnparsedItem, ItemTree, ChildKey } from './useTableTreeCheckboxes'
+import { Item } from './useTableTreeCheckboxes'
 
 /**
  * Return new state with items toggled
@@ -6,22 +6,26 @@ import { UnparsedItem, ItemTree, ChildKey } from './useTableTreeCheckboxes'
  * @param item
  */
 export function getToggledState(
-  state: Array<ItemTree>,
-  item: ItemTree,
-  childsKey: string = 'children'
-): Array<ItemTree> {
-  const stateIncludesItem = state.some(row => row.id === item.id)
+  state: Array<Item>,
+  item: Item,
+  childsKey: string = 'children',
+  unicityKey: string = 'id'
+): Array<Item> {
+  const equalsKey = eqProp(unicityKey)
 
-  const bulkFilter = (row: ItemTree) =>
-    !getFlat(item, [], childsKey).some(equalsId(row))
+  const stateIncludesItem = state.some(equalsKey(item))
 
-  const filter = (row: ItemTree) => row.id !== item.id
+  const bulkFilter = (row: Item) =>
+    !getFlat(item, [], childsKey).some(equalsKey(row))
 
-  const bulkCheck = (state: Array<ItemTree>, item: ItemTree) => {
-    const reduction = (acc: Array<ItemTree>, item: ItemTree) =>
-      acc.some(equalsId(item)) ? acc : [...acc, item]
+  const filter = (row: Item) => row[unicityKey] !== item[unicityKey]
 
-    return [...state, ...getFlat(item, [], childsKey)].reduce(reduction, [])
+  const bulkCheck = (state: Array<Item>, item: Item): Array<Item> => {
+    return [...state, ...getFlat(item, [], childsKey)].reduce(
+      (acc: Array<Item>, item: Item) =>
+        acc.some(equalsKey(item)) ? acc : [...acc, item],
+      []
+    ) as Array<Item>
   }
 
   if (stateIncludesItem) {
@@ -35,43 +39,18 @@ export function getToggledState(
  * Represents a tree section on a single array.
  */
 export function getFlat(
-  tree: ItemTree,
-  arr: Array<ItemTree> = [],
+  tree: Item,
+  arr: Array<Item> = [],
   childsKey: string = 'children'
 ) {
   arr.push(tree)
   if (tree[childsKey])
-    (tree[childsKey] as Array<ItemTree>).forEach(child =>
+    (tree[childsKey] as Array<Item>).forEach(child =>
       getFlat(child, arr, childsKey)
     )
   return arr
 }
 
-/**
- * Get a tree from unparsed items array
- */
-export function getItemTree(
-  items: Array<UnparsedItem>,
-  childsKey: string = 'children'
-) {
-  function parseTree(item: UnparsedItem, index: number, path: string = '') {
-    if (!item[childsKey]) return { id: `${path}.${index}`, ...item }
-
-    const parsedChilden = (item[childsKey] as Array<ItemTree>).map(
-      (child, i) => {
-        return parseTree(child, i, `${path}.${index}`)
-      }
-    )
-
-    return {
-      ...item,
-      id: `${path}.${index}`,
-      [childsKey]: parsedChilden,
-    }
-  }
-  return { id: 'root', [childsKey]: items.map((item, i) => parseTree(item, i)) }
-}
-
-/** Compares ids  */
-export const equalsId = (item: any) => (candidate: any) =>
-  item.id === candidate.id
+/** Compares one prop of item and candidate  */
+export const eqProp = (prop: string) => (item: any) => (candidate: any) =>
+  item[prop] === candidate[prop]

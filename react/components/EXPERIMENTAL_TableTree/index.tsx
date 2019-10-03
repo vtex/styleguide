@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import PropTypes from 'prop-types'
 
 import { TableContext } from '../EXPERIMENTAL_Table/contexts'
-import { CheckboxesContext, TreeContext } from './contexts'
+import { CheckboxesContext, TreeProvider } from './contexts'
 import Toolbar from '../EXPERIMENTAL_Table/Toolbar'
 import DataTable from '../EXPERIMENTAL_Table/DataTable'
 import Tree from './Tree'
@@ -10,19 +10,18 @@ import { TableContainer, Thead } from '../EXPERIMENTAL_Table/Styled'
 import { tablePropTypes, TableComposites } from '../EXPERIMENTAL_Table'
 import { InferProps } from 'prop-types'
 import TreeHeadings from './Tree/TreeHeadings'
-import useTreeState from './hooks/useTreeState'
 
 const TableTree: FC<Props> & TableComposites = ({
   children,
   state,
   checkboxes,
   childsKey,
+  unicityKey,
   ...props
 }) => {
-  const treeState = useTreeState()
   return (
     <TableContext.Provider value={{ ...state, ...props }}>
-      <TreeContext.Provider value={{ ...treeState, childsKey }}>
+      <TreeProvider childsKey={childsKey} unicityKey={unicityKey}>
         <CheckboxesContext.Provider value={{ ...checkboxes }}>
           <TableContainer>
             {children}
@@ -36,16 +35,18 @@ const TableTree: FC<Props> & TableComposites = ({
             </DataTable>
           </TableContainer>
         </CheckboxesContext.Provider>
-      </TreeContext.Provider>
+      </TreeProvider>
     </TableContext.Provider>
   )
 }
 
 TableTree.defaultProps = {
   childsKey: 'children',
+  unicityKey: 'id',
 }
 
 const treePropTypes = {
+  unicityKey: PropTypes.string,
   childsKey: PropTypes.string,
 }
 
@@ -77,6 +78,7 @@ TableTree.propTypes = propTypes
 
 export type TreeProps = {
   childsKey?: string
+  unicityKey?: string
 }
 
 export type TreeState = {

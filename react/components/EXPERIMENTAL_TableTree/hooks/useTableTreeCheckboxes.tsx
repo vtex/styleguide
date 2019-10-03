@@ -1,26 +1,26 @@
 import { useMemo, useCallback, useEffect, useReducer } from 'react'
-import {
-  getFlat,
-  getToggledState,
-  getItemTree,
-  equalsId,
-} from './checkboxesUtils'
+import { getFlat, getToggledState, eqProp } from './checkboxesUtils'
 
 const useTableTreeCheckboxes = ({
   items,
   columns,
   onToggle,
   childsKey = 'children',
+  unicityKey = 'id',
 }: hookInput): checkboxesHookReturn => {
   const [checkedItems, dispatch] = useReducer(reducer, [])
+  const equalsUnicityKey = eqProp(unicityKey)
 
   const itemTree = useMemo(() => {
-    return getItemTree(items, childsKey)
+    return { [unicityKey]: 'root', [childsKey]: items }
   }, [items, columns])
 
   const toggle = useCallback(
-    (item: ItemTree): void => {
-      dispatch({ type: ActionType.Toggle, itemToToggle: { item, childsKey } })
+    (item: Item): void => {
+      dispatch({
+        type: ActionType.Toggle,
+        itemToToggle: { item, childsKey, unicityKey },
+      })
     },
     [checkedItems]
   )
@@ -30,21 +30,24 @@ const useTableTreeCheckboxes = ({
   }, [toggle])
 
   useEffect(() => {
-    const shake = (tree: ItemTree) => {
-      const childs = tree[childsKey] as Array<ItemTree>
+    const shake = (tree: Item) => {
+      const childs = tree[childsKey] as Array<Item>
 
       if (!childs) return
 
       const areChildsChecked = childs.every(child =>
-        checkedItems.some(equalsId(child))
+        checkedItems.some(equalsUnicityKey(child))
       )
-      const isRootChecked = checkedItems.some(equalsId(tree))
+      const isRootChecked = checkedItems.some(equalsUnicityKey(tree))
 
       if (areChildsChecked && !isRootChecked)
         dispatch({ type: ActionType.Check, item: tree })
 
       if (!areChildsChecked && isRootChecked)
-        dispatch({ type: ActionType.Uncheck, item: tree })
+        dispatch({
+          type: ActionType.Uncheck,
+          itemToToggle: { item: tree, unicityKey },
+        })
 
       childs.forEach(shake)
     }
@@ -52,22 +55,22 @@ const useTableTreeCheckboxes = ({
   }, [checkedItems])
 
   const isChecked = useCallback(
-    (item: ItemTree) => {
-      const childs = item[childsKey] as Array<ItemTree>
+    (item: Item) => {
+      const childs = item[childsKey] as Array<Item>
       return childs
-        ? childs.every(child => checkedItems.some(equalsId(child)))
-        : checkedItems.some(equalsId(item))
+        ? childs.every(child => checkedItems.some(equalsUnicityKey(child)))
+        : checkedItems.some(equalsUnicityKey(item))
     },
     [checkedItems]
   )
 
   const isPartiallyChecked = useCallback(
-    (item: ItemTree) => {
+    (item: Item) => {
       return (
-        (item[childsKey] as Array<ItemTree>) &&
+        (item[childsKey] as Array<Item>) &&
         getFlat(item, [], childsKey)
           .slice(1)
-          .some(child => checkedItems.some(equalsId(child)))
+          .some(child => checkedItems.some(equalsUnicityKey(child)))
       )
     },
     [checkedItems]
@@ -76,18 +79,26 @@ const useTableTreeCheckboxes = ({
   return { checkedItems, isChecked, isPartiallyChecked, itemTree, toggle }
 }
 
-function reducer(state: Array<ItemTree>, action: Action) {
+function reducer(state: Array<Item>, action: Action) {
   switch (action.type) {
     case ActionType.Check: {
       return [...state, action.item]
     }
     case ActionType.Uncheck: {
-      return state.filter(row => row.id !== action.item.id)
+      const {
+        itemToToggle: { item, unicityKey },
+      } = action
+      return state.filter(row => row[unicityKey] !== item[unicityKey])
     }
     case ActionType.Toggle: {
       const { itemToToggle } = action
       if (!itemToToggle) return state
-      return getToggledState(state, itemToToggle.item, itemToToggle.childsKey)
+      return getToggledState(
+        state,
+        itemToToggle.item,
+        itemToToggle.childsKey,
+        itemToToggle.unicityKey
+      )
     }
     default: {
       return state
@@ -103,36 +114,35 @@ enum ActionType {
 
 type Action = {
   type: ActionType
-  item?: ItemTree
-  checked?: Array<ItemTree>
+  item?: Item
+  checked?: Array<Item>
   itemToToggle?: {
-    item: ItemTree
-    childsKey: string
+    item: Item
+    childsKey?: string
+    unicityKey?: string
   }
 }
 
 type hookInput = {
-  items: Array<UnparsedItem>
+  items: Array<Item>
   columns: Array<Column>
   onToggle?: ({ checkedItems }) => void
   childsKey?: string
+  unicityKey?: string
 }
 
-export type ChildKey = { [key: string]: Array<ItemTree> }
+export type ChildKey = { [key: string]: Array<Item> }
 
-export type ItemTree = Partial<{
-  id: string
-  [key: string]: unknown
+export type Item = Partial<{
+  [key: string]: any
 }>
 
-export type UnparsedItem = Partial<{ [key: string]: unknown }>
-
 export type checkboxesHookReturn = {
-  checkedItems?: Array<ItemTree>
-  itemTree?: ItemTree
-  toggle?: (item: ItemTree) => void
-  isChecked?: (item: ItemTree) => boolean
-  isPartiallyChecked?: (item: ItemTree) => boolean
+  checkedItems?: Array<Item>
+  itemTree?: Item
+  toggle?: (item: Item) => void
+  isChecked?: (item: Item) => boolean
+  isPartiallyChecked?: (item: Item) => boolean
 }
 
 export default useTableTreeCheckboxes

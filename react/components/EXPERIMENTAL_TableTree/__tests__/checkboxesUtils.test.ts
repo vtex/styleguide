@@ -1,12 +1,9 @@
-import { getItemTree, getFlat, getToggledState } from '../hooks/checkboxesUtils'
+import { getFlat, getToggledState } from '../hooks/checkboxesUtils'
 
 const props = ['children', 'related', 'friends']
+const unicityKey = 'name'
 
 props.forEach(prop => {
-  test(`Tree is parsed correctly for prop ${prop}`, () => {
-    expect(getItemTree(itemsForProp(prop), prop)).toEqual(treeForProp(prop))
-  })
-
   test(`Tree is flattened correctly for prop ${prop}`, () => {
     expect(getFlat(treeForProp(prop), [], prop)).toEqual(
       flattenedTreeForProp(prop)
@@ -14,11 +11,11 @@ props.forEach(prop => {
   })
 
   test(`The state is toggled correctly on a item without childs on ${prop} prop`, () => {
-    expect(getToggledState([], { id: '.0.0', name: 'Alok' }, prop)).toEqual([
-      { id: '.0.0', name: 'Alok' },
+    expect(getToggledState([], { name: 'Alok' }, prop, unicityKey)).toEqual([
+      { name: 'Alok' },
     ])
-    expect(getToggledState([], { id: '.0.1.0', name: 'KVSH' }, prop)).toEqual([
-      { id: '.0.1.0', name: 'KVSH' },
+    expect(getToggledState([], { name: 'KVSH' }, prop, unicityKey)).toEqual([
+      { name: 'KVSH' },
     ])
   })
 
@@ -27,71 +24,62 @@ props.forEach(prop => {
       getToggledState(
         [],
         {
-          id: '.0',
           name: 'Vintage Culture',
           [prop]: [
-            { id: '.0.0', name: 'Alok' },
+            { name: 'Alok' },
             {
-              id: '.0.1',
               name: 'Cat Dealers',
-              [prop]: [{ id: '.0.1.0', name: 'KVSH' }],
+              [prop]: [{ name: 'KVSH' }],
             },
           ],
         },
-        prop
+        prop,
+        unicityKey
       )
     ).toEqual([
       {
-        id: '.0',
         name: 'Vintage Culture',
         [prop]: [
-          { id: '.0.0', name: 'Alok' },
+          { name: 'Alok' },
           {
-            id: '.0.1',
             name: 'Cat Dealers',
-            [prop]: [{ id: '.0.1.0', name: 'KVSH' }],
+            [prop]: [{ name: 'KVSH' }],
           },
         ],
       },
-      { id: '.0.0', name: 'Alok' },
+      { name: 'Alok' },
       {
-        id: '.0.1',
         name: 'Cat Dealers',
-        [prop]: [{ id: '.0.1.0', name: 'KVSH' }],
+        [prop]: [{ name: 'KVSH' }],
       },
-      { id: '.0.1.0', name: 'KVSH' },
+      { name: 'KVSH' },
     ])
   })
 })
 
-function treeForProp(prop) {
+function treeForProp(prop: string) {
   return {
-    id: 'root',
+    [unicityKey]: 'root',
     [prop]: [
       {
-        id: '.0',
         name: 'Vintage Culture',
         [prop]: [
-          { id: '.0.0', name: 'Alok' },
+          { name: 'Alok' },
           {
-            id: '.0.1',
             name: 'Cat Dealers',
-            [prop]: [{ id: '.0.1.0', name: 'KVSH' }],
+            [prop]: [{ name: 'KVSH' }],
           },
         ],
       },
       {
-        id: '.1',
         name: 'Metallica',
         [prop]: [
           {
-            id: '.1.0',
             name: 'Iron Maiden',
             [prop]: [
               {
-                id: '.1.0.0',
                 name: 'Pantera',
-                [prop]: [{ id: '.1.0.0.0', name: 'Slayer' }],
+                [prop]: [{ name: 'Slayer' }],
               },
             ],
           },
@@ -101,41 +89,20 @@ function treeForProp(prop) {
   }
 }
 
-function itemsForProp(prop) {
-  return [
-    {
-      name: 'Vintage Culture',
-      [prop]: [
-        { name: 'Alok' },
-        { name: 'Cat Dealers', [prop]: [{ name: 'KVSH' }] },
-      ],
-    },
-    {
-      name: 'Metallica',
-      [prop]: [
-        {
-          name: 'Iron Maiden',
-          [prop]: [{ name: 'Pantera', [prop]: [{ name: 'Slayer' }] }],
-        },
-      ],
-    },
-  ]
-}
-
-function flattenedTreeForProp(prop) {
+function flattenedTreeForProp(prop: string) {
   return [
     {
       [prop]: [
         {
           [prop]: [
-            { id: '.0.0', name: 'Alok' },
+            { name: 'Alok' },
             {
-              [prop]: [{ id: '.0.1.0', name: 'KVSH' }],
-              id: '.0.1',
+              [prop]: [{ name: 'KVSH' }],
+
               name: 'Cat Dealers',
             },
           ],
-          id: '.0',
+
           name: 'Vintage Culture',
         },
         {
@@ -143,73 +110,65 @@ function flattenedTreeForProp(prop) {
             {
               [prop]: [
                 {
-                  [prop]: [{ id: '.1.0.0.0', name: 'Slayer' }],
-                  id: '.1.0.0',
+                  [prop]: [{ name: 'Slayer' }],
+
                   name: 'Pantera',
                 },
               ],
-              id: '.1.0',
+
               name: 'Iron Maiden',
             },
           ],
-          id: '.1',
           name: 'Metallica',
         },
       ],
-      id: 'root',
+      [unicityKey]: 'root',
     },
     {
       [prop]: [
-        { id: '.0.0', name: 'Alok' },
+        { name: 'Alok' },
         {
-          [prop]: [{ id: '.0.1.0', name: 'KVSH' }],
-          id: '.0.1',
+          [prop]: [{ name: 'KVSH' }],
+
           name: 'Cat Dealers',
         },
       ],
-      id: '.0',
       name: 'Vintage Culture',
     },
-    { id: '.0.0', name: 'Alok' },
+    { name: 'Alok' },
     {
-      [prop]: [{ id: '.0.1.0', name: 'KVSH' }],
-      id: '.0.1',
+      [prop]: [{ name: 'KVSH' }],
       name: 'Cat Dealers',
     },
-    { id: '.0.1.0', name: 'KVSH' },
+    { name: 'KVSH' },
     {
       [prop]: [
         {
           [prop]: [
             {
-              [prop]: [{ id: '.1.0.0.0', name: 'Slayer' }],
-              id: '.1.0.0',
+              [prop]: [{ name: 'Slayer' }],
               name: 'Pantera',
             },
           ],
-          id: '.1.0',
           name: 'Iron Maiden',
         },
       ],
-      id: '.1',
       name: 'Metallica',
     },
     {
       [prop]: [
         {
-          [prop]: [{ id: '.1.0.0.0', name: 'Slayer' }],
-          id: '.1.0.0',
+          [prop]: [{ name: 'Slayer' }],
+
           name: 'Pantera',
         },
       ],
-      id: '.1.0',
       name: 'Iron Maiden',
     },
     {
-      [prop]: [{ id: '.1.0.0.0', name: 'Slayer' }],
-      id: '.1.0.0',
+      [prop]: [{ name: 'Slayer' }],
       name: 'Pantera',
     },
-    { id: '.1.0.0.0', name: 'Slayer' },
+    { name: 'Slayer' },
   ]
 }
