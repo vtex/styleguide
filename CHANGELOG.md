@@ -11,8 +11,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - `Button` hover state in collapsed tertiary buttons
 
+## [9.86.0] - 2019-10-03
+
+### Fixed
+
+- removing auto modal width
+- **Conditions** `isRtl` prop was not working after refactor.
+
 ### Added
 
+- example of modal with table
 - Workspace link reminder in pull request template
 
 ## [9.85.0] - 2019-10-03
