@@ -77,7 +77,7 @@ class Modal extends PureComponent {
             responsiveFullScreen ? 'pa5-ns pa0' : ''
           }`,
           modal: `vtex-modal__modal ${
-            responsiveFullScreen ? 'br2-ns w-100 h-100 h-auto-ns' : 'br2'
+            responsiveFullScreen ? 'br2-ns w-100 h-100 h-auto-ns' : 'br2 w-100'
           } ${styles.mh100} flex flex-column`,
           closeIcon: 'vtex-modal__close-icon',
         }}
