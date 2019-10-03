@@ -1,11 +1,11 @@
 import React, { FC } from 'react'
 
 import PaginationBase from '../Pagination/index'
-import { NAMESPACES } from './constants'
+import { NAMESPACES, ORDER_CLASSNAMES } from './constants'
 
 const Pagination: FC<PaginationProps> = props => {
   return (
-    <span id={NAMESPACES.PAGINATION} className="order-2">
+    <span id={NAMESPACES.PAGINATION} className={ORDER_CLASSNAMES.PAGINATION}>
       <PaginationBase {...props} />
     </span>
   )

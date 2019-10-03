@@ -15,6 +15,28 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - example of modal with table
 
+### Added
+
+- Workspace link reminder in pull request template
+
+## [9.85.0] - 2019-10-03
+
+### Added
+
+- `data-testid` attribute for testing purposes on `Input`, `Dropdown`, `EmptyState`, `Button` & `PageBlock`
+
+## [9.84.0] - 2019-10-01
+
+### Added
+
+- Option for dynamic row heights in table.
+
+## [9.83.1] - 2019-10-01
+
+### Added
+
+- `BulkActions` to `EXPERIMENTAL_TableV2`
+
 ## [9.83.0] - 2019-10-01
 
 ### Fixed

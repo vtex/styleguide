@@ -14,10 +14,6 @@ import CheckboxContainer from './CheckboxContainer'
 import Totalizers from '../Totalizer'
 import BulkActions from './BulkActions'
 
-const TABLE_HEADER_HEIGHT = 36
-const EMPTY_STATE_SIZE_IN_ROWS = 5
-const DEFAULT_SCROLLBAR_WIDTH = 17
-
 class Table extends PureComponent {
   constructor(props) {
     super(props)
@@ -94,25 +90,6 @@ class Table extends PureComponent {
     this.setState({ hiddenFields: Object.keys(this.props.schema.properties) })
   }
 
-  getScrollbarWidth = () => {
-    if (!window || !document || !document.documentElement)
-      return DEFAULT_SCROLLBAR_WIDTH
-    const scrollbarWidth =
-      window.innerWidth - document.documentElement.clientWidth
-    return isNaN(scrollbarWidth) ? DEFAULT_SCROLLBAR_WIDTH : scrollbarWidth
-  }
-
-  calculateTableHeight = totalItems => {
-    const { tableRowHeight } = this.state
-    const multiplicator =
-      totalItems !== 0 ? totalItems : EMPTY_STATE_SIZE_IN_ROWS
-    return (
-      TABLE_HEADER_HEIGHT +
-      tableRowHeight * multiplicator +
-      this.getScrollbarWidth()
-    )
-  }
-
   handleSelectionChange = () => {
     if (this.props.bulkActions && this.props.bulkActions.onChange) {
       const selectedParameters = this.state.allLinesSelected
@@ -178,6 +155,7 @@ class Table extends PureComponent {
       toolbar,
       pagination,
       fullWidth,
+      dynamicRowHeight,
       lineActions,
       loading,
       bulkActions,
@@ -326,6 +304,7 @@ class Table extends PureComponent {
             disableHeader={disableHeader}
             emptyStateLabel={emptyStateLabel}
             emptyStateChildren={emptyStateChildren}
+            dynamicRowHeight={dynamicRowHeight}
             onRowClick={onRowClick}
             sort={sort}
             onSort={onSort}
@@ -333,9 +312,7 @@ class Table extends PureComponent {
             updateTableKey={updateTableKey}
             lineActions={lineActions}
             loading={loading}
-            containerHeight={
-              containerHeight || this.calculateTableHeight(items.length)
-            }
+            containerHeight={containerHeight}
             selectedRowsIndexes={map(selectedRows, 'id')}
             density={selectedDensity}
           />
@@ -388,6 +365,8 @@ Table.propTypes = {
   emptyStateChildren: PropTypes.node,
   /** Full width property  */
   fullWidth: PropTypes.bool,
+  /** Dynamic row height property */
+  dynamicRowHeight: PropTypes.bool,
   /** Line actions column */
   lineActions: PropTypes.arrayOf(
     PropTypes.shape({

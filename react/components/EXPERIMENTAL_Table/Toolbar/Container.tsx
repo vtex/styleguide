@@ -1,5 +1,7 @@
 import React, { FC } from 'react'
-import { NAMESPACES, JUSTIFY_OPTIONS } from '../constants'
+import csx from 'classnames'
+
+import { NAMESPACES, JUSTIFY_OPTIONS, ORDER_CLASSNAMES } from '../constants'
 
 type Props = {
   justify?: FlexJustify
@@ -8,7 +10,10 @@ type Props = {
 const Container: FC<Props> = ({ justify, children }) => (
   <div
     id={NAMESPACES.TOOLBAR.CONTAINER}
-    className={`order-0 mb5 flex flex-row w-100 justify-${justify}`}>
+    className={csx(
+      ORDER_CLASSNAMES.TOOLBAR,
+      'mb5 flex flex-row w-100 justify-${justify}'
+    )}>
     {children}
   </div>
 )

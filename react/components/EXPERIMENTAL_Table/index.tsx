@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import PropTypes, { InferProps } from 'prop-types'
+import PropTypes, { InferProps, arrayOf } from 'prop-types'
 
 import { TableProvider } from './context'
 import Toolbar from './Toolbar/index'
@@ -10,15 +10,22 @@ import Pagination, { PaginationProps } from './Pagination'
 import { STATE_NOT_FOUND_ERROR } from './errors'
 import { TableContainer, Thead } from './Styled'
 import DataTable from './DataTable'
+import BulkActions from './BulkActions'
 
-const Table: FC<Props> & TableComposites = ({ children, state, ...props }) => {
+const Table: FC<TableProps> & TableComposites = ({
+  children,
+  state,
+  bulk,
+  ...props
+}) => {
   if (!state) {
     throw STATE_NOT_FOUND_ERROR
   }
   return (
-    <TableProvider value={{ ...state, ...props }}>
+    <TableProvider value={{ ...state, ...bulk, ...props }}>
       <TableContainer>
         {children}
+
         <DataTable>
           <Thead>
             <DataTable.Headings />
@@ -42,16 +49,44 @@ export const tablePropTypes = {
   ]),
   itemsSizeEstimate: PropTypes.number,
   onRowClick: PropTypes.func,
-  state: PropTypes.shape({
-    schema: PropTypes.shape({
-      columns: PropTypes.objectOf(
+  bulk: PropTypes.shape({
+    bulkState: PropTypes.shape({
+      selectedRows: arrayOf(
         PropTypes.shape({
-          title: PropTypes.string.isRequired,
-          cellRender: PropTypes.func,
+          id: PropTypes.number,
         })
-      ).isRequired,
-      rowRender: PropTypes.func,
+      ),
+      allLinesSelected: PropTypes.bool,
     }),
+    hasBulkActions: PropTypes.bool,
+    hasPrimaryBulkAction: PropTypes.bool,
+    hasSecondaryBulkActions: PropTypes.bool,
+    selectAllRows: PropTypes.func,
+    deselectAllRows: PropTypes.func,
+    selectRow: PropTypes.func,
+    setSelectedRows: PropTypes.func,
+    setAllLinesSelected: PropTypes.func,
+    selectAllVisibleRows: PropTypes.func,
+  }),
+  state: PropTypes.shape({
+    visibleColumns: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string,
+        title: PropTypes.string,
+        width: PropTypes.number,
+        cellRender: PropTypes.func,
+        headerRender: PropTypes.func,
+      })
+    ),
+    columns: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string,
+        title: PropTypes.string,
+        width: PropTypes.number,
+        cellRender: PropTypes.func,
+        headerRender: PropTypes.func,
+      })
+    ),
     items: PropTypes.arrayOf(PropTypes.object),
     isEmpty: PropTypes.bool,
     tableHeight: PropTypes.number,
@@ -65,17 +100,19 @@ export const tablePropTypes = {
   }),
 }
 
-export type Props = InferProps<typeof tablePropTypes>
+export type TableProps = InferProps<typeof tablePropTypes>
 
 export type TableComposites = {
   Toolbar: FC
   Pagination?: FC<PaginationProps>
   LineActions?: FC<LineActionProps>
+  BulkActions?: FC
 }
 
 Table.Toolbar = Toolbar
 Table.Pagination = Pagination
 Table.LineActions = LineActions
 Table.propTypes = tablePropTypes
+Table.BulkActions = BulkActions
 
 export default Table

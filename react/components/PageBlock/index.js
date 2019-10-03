@@ -6,7 +6,7 @@ import Box from '../Box/index'
 
 class PageBlock extends Component {
   render() {
-    const { title, subtitle, variation, titleAside } = this.props
+    const { title, subtitle, variation, titleAside, testId } = this.props
     const isAnnotated = variation === 'annotated'
 
     const headerClasses = classNames({
@@ -22,7 +22,8 @@ class PageBlock extends Component {
       <div
         className={`styleguide__pageBlock flex ${
           isAnnotated ? 'flex-row' : 'flex-column'
-        }`}>
+        }`}
+        data-testid={testId}>
         {/* Title, subtitle & aside */}
         {(title || subtitle) && (
           <div className={headerClasses}>
@@ -84,6 +85,8 @@ PageBlock.propTypes = {
   variation: PropTypes.oneOf(['full', 'half', 'annotated', 'aside']),
   /** Title for the block. */
   title: PropTypes.string,
+  /** Data attribute */
+  testId: PropTypes.string,
   /** Subtitle for the block. */
   subtitle: PropTypes.string,
   /** Content on the right side of the title. */
