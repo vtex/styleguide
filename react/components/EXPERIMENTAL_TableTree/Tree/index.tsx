@@ -19,7 +19,7 @@ const Node: FC<NodeProps> = ({ data, depth }) => {
   const {
     toggleCollapsed,
     isCollapsed,
-    childsKey,
+    nodesKey,
     unicityKey,
   } = useTreeContext()
 
@@ -65,11 +65,11 @@ const Node: FC<NodeProps> = ({ data, depth }) => {
     )
   }
 
-  return data[childsKey] ? (
+  return data[nodesKey] ? (
     <>
       {renderCells(true)}
       {isCollapsed(data[unicityKey]) &&
-        (data[childsKey] as Array<Item>).map(data => (
+        (data[nodesKey] as Array<Item>).map(data => (
           <Node key={`row-child-${uuid()}`} depth={depth + 1} data={data} />
         ))}
     </>

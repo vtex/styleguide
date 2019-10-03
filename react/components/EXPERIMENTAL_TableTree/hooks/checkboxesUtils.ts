@@ -8,7 +8,7 @@ import { Item } from './useTableTreeCheckboxes'
 export function getToggledState(
   state: Array<Item>,
   item: Item,
-  childsKey: string = 'children',
+  nodesKey: string = 'children',
   unicityKey: string = 'id'
 ): Array<Item> {
   const equalsKey = eqProp(unicityKey)
@@ -16,12 +16,12 @@ export function getToggledState(
   const stateIncludesItem = state.some(equalsKey(item))
 
   const bulkFilter = (row: Item) =>
-    !getFlat(item, [], childsKey).some(equalsKey(row))
+    !getFlat(item, [], nodesKey).some(equalsKey(row))
 
   const filter = (row: Item) => row[unicityKey] !== item[unicityKey]
 
   const bulkCheck = (state: Array<Item>, item: Item): Array<Item> => {
-    return [...state, ...getFlat(item, [], childsKey)].reduce(
+    return [...state, ...getFlat(item, [], nodesKey)].reduce(
       (acc: Array<Item>, item: Item) =>
         acc.some(equalsKey(item)) ? acc : [...acc, item],
       []
@@ -29,9 +29,9 @@ export function getToggledState(
   }
 
   if (stateIncludesItem) {
-    return item[childsKey] ? state.filter(bulkFilter) : state.filter(filter)
+    return item[nodesKey] ? state.filter(bulkFilter) : state.filter(filter)
   } else {
-    return item[childsKey] ? bulkCheck(state, item) : [...state, item]
+    return item[nodesKey] ? bulkCheck(state, item) : [...state, item]
   }
 }
 
@@ -41,12 +41,12 @@ export function getToggledState(
 export function getFlat(
   tree: Item,
   arr: Array<Item> = [],
-  childsKey: string = 'children'
+  nodesKey: string = 'children'
 ) {
   arr.push(tree)
-  if (tree[childsKey])
-    (tree[childsKey] as Array<Item>).forEach(child =>
-      getFlat(child, arr, childsKey)
+  if (tree[nodesKey])
+    (tree[nodesKey] as Array<Item>).forEach(child =>
+      getFlat(child, arr, nodesKey)
     )
   return arr
 }

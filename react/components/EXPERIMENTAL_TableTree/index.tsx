@@ -15,13 +15,13 @@ const TableTree: FC<Props> & TableComposites = ({
   children,
   state,
   checkboxes,
-  childsKey,
+  nodesKey,
   unicityKey,
   ...props
 }) => {
   return (
     <TableContext.Provider value={{ ...state, ...props }}>
-      <TreeProvider childsKey={childsKey} unicityKey={unicityKey}>
+      <TreeProvider nodesKey={nodesKey} unicityKey={unicityKey}>
         <CheckboxesContext.Provider value={{ ...checkboxes }}>
           <TableContainer>
             {children}
@@ -41,13 +41,13 @@ const TableTree: FC<Props> & TableComposites = ({
 }
 
 TableTree.defaultProps = {
-  childsKey: 'children',
+  nodesKey: 'children',
   unicityKey: 'id',
 }
 
 const treePropTypes = {
   unicityKey: PropTypes.string,
-  childsKey: PropTypes.string,
+  nodesKey: PropTypes.string,
 }
 
 const checkboxesPropTypes = {
@@ -77,7 +77,7 @@ TableTree.Toolbar = Toolbar
 TableTree.propTypes = propTypes
 
 export type TreeProps = {
-  childsKey?: string
+  nodesKey?: string
   unicityKey?: string
 }
 

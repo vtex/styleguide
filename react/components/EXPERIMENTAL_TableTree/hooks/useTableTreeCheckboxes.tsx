@@ -5,21 +5,21 @@ const useTableTreeCheckboxes = ({
   items,
   columns,
   onToggle,
-  childsKey = 'children',
+  nodesKey = 'children',
   unicityKey = 'id',
 }: hookInput): checkboxesHookReturn => {
   const [checkedItems, dispatch] = useReducer(reducer, [])
   const equalsUnicityKey = eqProp(unicityKey)
 
   const itemTree = useMemo(() => {
-    return { [unicityKey]: 'root', [childsKey]: items }
+    return { [unicityKey]: 'root', [nodesKey]: items }
   }, [items, columns])
 
   const toggle = useCallback(
     (item: Item): void => {
       dispatch({
         type: ActionType.Toggle,
-        itemToToggle: { item, childsKey, unicityKey },
+        itemToToggle: { item, nodesKey, unicityKey },
       })
     },
     [checkedItems]
@@ -31,11 +31,11 @@ const useTableTreeCheckboxes = ({
 
   useEffect(() => {
     const shake = (tree: Item) => {
-      const childs = tree[childsKey] as Array<Item>
+      const childNodes = tree[nodesKey] as Array<Item>
 
-      if (!childs) return
+      if (!childNodes) return
 
-      const areChildsChecked = childs.every(child =>
+      const areChildsChecked = childNodes.every(child =>
         checkedItems.some(equalsUnicityKey(child))
       )
       const isRootChecked = checkedItems.some(equalsUnicityKey(tree))
@@ -49,14 +49,14 @@ const useTableTreeCheckboxes = ({
           itemToToggle: { item: tree, unicityKey },
         })
 
-      childs.forEach(shake)
+      childNodes.forEach(shake)
     }
     shake(itemTree)
   }, [checkedItems])
 
   const isChecked = useCallback(
     (item: Item) => {
-      const childs = item[childsKey] as Array<Item>
+      const childs = item[nodesKey] as Array<Item>
       return childs
         ? childs.every(child => checkedItems.some(equalsUnicityKey(child)))
         : checkedItems.some(equalsUnicityKey(item))
@@ -67,8 +67,8 @@ const useTableTreeCheckboxes = ({
   const isPartiallyChecked = useCallback(
     (item: Item) => {
       return (
-        (item[childsKey] as Array<Item>) &&
-        getFlat(item, [], childsKey)
+        (item[nodesKey] as Array<Item>) &&
+        getFlat(item, [], nodesKey)
           .slice(1)
           .some(child => checkedItems.some(equalsUnicityKey(child)))
       )
@@ -96,7 +96,7 @@ function reducer(state: Array<Item>, action: Action) {
       return getToggledState(
         state,
         itemToToggle.item,
-        itemToToggle.childsKey,
+        itemToToggle.nodesKey,
         itemToToggle.unicityKey
       )
     }
@@ -118,7 +118,7 @@ type Action = {
   checked?: Array<Item>
   itemToToggle?: {
     item: Item
-    childsKey?: string
+    nodesKey?: string
     unicityKey?: string
   }
 }
@@ -127,7 +127,7 @@ type hookInput = {
   items: Array<Item>
   columns: Array<Column>
   onToggle?: ({ checkedItems }) => void
-  childsKey?: string
+  nodesKey?: string
   unicityKey?: string
 }
 
