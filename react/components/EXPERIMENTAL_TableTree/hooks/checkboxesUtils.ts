@@ -52,5 +52,6 @@ export function getFlat(
 }
 
 /** Compares one prop of item and candidate  */
-export const eqProp = (prop: string) => (item: any) => (candidate: any) =>
-  item[prop] === candidate[prop]
+export const eqProp = (prop: string) => (item: unknown) => (
+  candidate: unknown
+) => item[prop] === candidate[prop]
