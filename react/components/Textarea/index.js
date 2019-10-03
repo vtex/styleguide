@@ -181,7 +181,7 @@ Textarea.propTypes = {
   /** Help text */
   helpText: PropTypes.node,
   /** Label */
-  label: PropTypes.string,
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   /** Spec attribute */
   autoComplete: PropTypes.string,
   /** Spec attribute */

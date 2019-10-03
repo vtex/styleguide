@@ -196,7 +196,7 @@ Toggle.propTypes = {
   semantic: PropTypes.bool,
   disabled: PropTypes.bool,
   id: PropTypes.string,
-  label: PropTypes.string,
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   name: PropTypes.string,
   onChange: PropTypes.func,
   onClick: PropTypes.func,

@@ -283,7 +283,7 @@ Input.propTypes = {
   /** Input size */
   size: PropTypes.oneOf(['small', 'regular', 'large']),
   /** Label */
-  label: PropTypes.string,
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   /** Prefix */
   prefix: PropTypes.node,
   /** Spec attribute */
@@ -347,7 +347,7 @@ Input.propTypes = {
   /** Spec attribute */
   type: PropTypes.string,
   /** Spec attribute */
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /** onChange event */
   onChange: PropTypes.func,
   /** onKeyDown event */
