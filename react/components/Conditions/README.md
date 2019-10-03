@@ -545,3 +545,96 @@ class ComplexConditionsCase extends React.Component {
 }
 ;<ComplexConditionsCase />
 ```
+
+RTL example
+
+```js
+const Input = require('../Input').default
+
+function SimpleInputObject({ value, onChange }) {
+  return <Input value={value || ''} onChange={e => onChange(e.target.value)} />
+}
+
+class SimpleConditionsCase extends React.Component {
+  constructor() {
+    super()
+
+    this.state = {
+      simpleStatements: [],
+      operator: 'all',
+    }
+
+    this.handleToggleOperator = this.handleToggleOperator.bind(this)
+  }
+
+  handleToggleOperator(operator) {
+    this.setState({ operator: this.state.operator === 'all' ? 'any' : 'all' })
+  }
+
+  render() {
+    const options = {
+      name: {
+        label: 'שם משתמש',
+        verbs: [
+          {
+            label: 'הוא',
+            value: '=',
+            object: props => <SimpleInputObject {...props} />,
+          },
+          {
+            label: 'לא',
+            value: '!=',
+            object: props => <SimpleInputObject {...props} />,
+          },
+        ],
+      },
+      email: {
+        label: 'דוא"ל',
+        verbs: [
+          {
+            label: 'מכיל',
+            value: 'contains',
+            object: props => <SimpleInputObject {...props} />,
+          },
+          {
+            label: 'הוא',
+            value: '=',
+            object: props => <SimpleInputObject {...props} />,
+          },
+          {
+            label: 'לא',
+            value: '!=',
+            object: props => <SimpleInputObject {...props} />,
+          },
+        ],
+      },
+    }
+
+    return (
+      <Conditions
+        canDelete
+        isRtl={true}
+        onChangeOperator={this.handleToggleOperator}
+        onChangeStatements={statements => {
+          console.log('Changed statements to:', statements)
+          this.setState({ simpleStatements: statements })
+        }}
+        operator={this.state.operator}
+        options={options}
+        subjectPlaceholder="בחר נושא"
+        statements={this.state.simpleStatements}
+        labels={{
+          headerPrefix: 'מהתנאים הבאים',
+          operatorAll: 'כל',
+          operatorAny: 'לכל אחד',
+          headerSufix: 'תואם',
+          addNewCondition: 'הוסף תנאי חדש',
+          operatorAnd: 'ו',
+          operatorOr: 'או',
+        }}
+      />
+    )
+  }
+}
+;<SimpleConditionsCase />
+```

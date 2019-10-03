@@ -7,9 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.86.0] - 2019-10-03
+
 ### Fixed
 
 - removing auto modal width
+- **Conditions** `isRtl` prop was not working after refactor.
 
 ### Added
 

@@ -82,11 +82,22 @@ const Conditions: React.FC<Props> = ({
     onChangeStatements(updatedStatements)
   }
 
+  const handleUpdatestatement = (newStatement, statementIndex) => {
+    const newStatements = statements.map(
+      (statement, idx) =>
+        idx === statementIndex
+          ? newStatement
+          : statement
+    )
+    onChangeStatements(newStatements)
+  }
+
   return (
     <div>
       {!hideOperator && (
-        <div className="mh6">
+        <div className={`mh6 ${isRtl ? 'flex justify-end' : ''}`}>
           <StrategySelector
+            isRtl={isRtl}
             operator={operator}
             labels={labels}
             onChangeOperator={operator =>
@@ -129,6 +140,45 @@ const Conditions: React.FC<Props> = ({
                 {}
               )
 
+              const statementContent = [
+                <div className="flex-grow-1">
+                  <Statement
+                    isRtl={isRtl}
+                    isFullWidth={isFullWidth}
+                    onChangeStatement={newStatement => {
+                      handleUpdatestatement(newStatement, statementIndex)
+                    }}
+                    options={uniqueBasedOptions}
+                    subjectPlaceholder={subjectPlaceholder}
+                    statement={statement}
+                  />
+                </div>,
+                (canDelete &&
+                  (!isFullWidth ? (
+                    <div
+                      className="ma3 c-muted-2 pointer hover-c-danger"
+                      onClick={() =>
+                        handleRemoveStatement(statementIndex)
+                      }>
+                      <IconClose size={25} />
+                    </div>
+                  ) : (
+                    <div className="tr mh3">
+                      <ButtonWithIcon
+                        variation="tertiary"
+                        collapseRight
+                        size="small"
+                        icon={<IconClose className="c-on-action-primary" />}
+                        onClick={() =>
+                          handleRemoveStatement(statementIndex)
+                        }>
+                          {labels.delete || DEFAULT_LABELS.delete}
+                      </ButtonWithIcon>
+                    </div>
+                  ))
+                ),
+              ]
+
               return (
                 <div
                   className="flex flex-column w-100 mv3"
@@ -139,48 +189,9 @@ const Conditions: React.FC<Props> = ({
                         ? 'flex-column items-strech'
                         : 'flex-row items-center'
                     }`}>
-                    <div className="flex-grow-1">
-                      <Statement
-                        isRtl={isRtl}
-                        isFullWidth={isFullWidth}
-                        onChangeStatement={newStatement => {
-                          const newStatements = statements.map(
-                            (statement, idx) =>
-                              idx === statementIndex
-                                ? newStatement
-                                : statement
-                          )
-                          onChangeStatements(newStatements)
-                        }}
-                        options={uniqueBasedOptions}
-                        subjectPlaceholder={subjectPlaceholder}
-                        statement={statement}
-                      />
-                    </div>
 
-                    {canDelete &&
-                      (!isFullWidth ? (
-                        <div
-                          className="ma3 c-muted-2 pointer hover-c-danger"
-                          onClick={() =>
-                            handleRemoveStatement(statementIndex)
-                          }>
-                          <IconClose size={25} />
-                        </div>
-                      ) : (
-                        <div className="tr mh3">
-                          <ButtonWithIcon
-                            variation="tertiary"
-                            collapseRight
-                            size="small"
-                            icon={<IconClose className="c-on-action-primary" />}
-                            onClick={() =>
-                              handleRemoveStatement(statementIndex)
-                            }>
-                              {labels.delete || DEFAULT_LABELS.delete}
-                          </ButtonWithIcon>
-                        </div>
-                      ))}
+                    {isRtl ? statementContent.reverse() : statementContent}
+
                   </div>
 
                   {statementIndex !== statements.length - 1 && (
@@ -198,12 +209,13 @@ const Conditions: React.FC<Props> = ({
           </div>
         )}
         <Separator />
-        <div className="mv5 mh3">
+        <div className={`mv5 mh3 ${isRtl ? 'flex justify-end' : ''}`}>
           <ButtonWithIcon
             variation="tertiary"
             collapseLeft
             size="small"
             icon={<IconPlus solid size={MEDIUM_ICON_SIZE} />}
+            iconPosition={isRtl ? 'right' : 'left'}
             disabled={!canAddNewCondition()}
             onClick={handleAddNewCondition}>
             {labels.addNewCondition || DEFAULT_LABELS.addNewCondition}
