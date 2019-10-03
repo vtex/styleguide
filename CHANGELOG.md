@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- removing auto modal width
+
+### Added
+
+- example of modal with table
+
 ### Added
 
 - Workspace link reminder in pull request template
