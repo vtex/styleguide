@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- `Button` fixes hover in collapsed tertiary buttons
+
 ### Added
 
 - Workspace link reminder in pull request template
