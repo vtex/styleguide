@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- `Button` hover state in collapsed tertiary buttons
+
 ## [9.86.0] - 2019-10-03
 
 ### Fixed
@@ -17,9 +21,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - example of modal with table
-
-### Added
-
 - Workspace link reminder in pull request template
 
 ## [9.85.0] - 2019-10-03

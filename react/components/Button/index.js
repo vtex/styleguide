@@ -78,19 +78,21 @@ class Button extends Component {
         break
     }
 
-    if (!(isTertiary && (collapseLeft || collapseRight))) {
-      labelClasses += `ph${horizontalPadding} `
+    if (isTertiary && (collapseLeft || collapseRight)) {
+      horizontalPadding = 2
     }
+
+    labelClasses += `ph${horizontalPadding} `
 
     if (isTertiary && noUpperCase) {
       labelClasses += 'ttn '
     }
 
     if (collapseLeft && isTertiary) {
-      labelClasses += `nl1 ph1 ${!disabled && 'hover-c-link'} `
+      labelClasses += `nl1 `
     }
     if (collapseRight && isTertiary) {
-      labelClasses += `nr1 ph1 ${!disabled && 'hover-c-link'} `
+      labelClasses += `nr1 `
     }
     if (noWrap) {
       labelClasses += 'nowrap '
@@ -135,7 +137,7 @@ class Button extends Component {
             classes +=
               'bg-transparent b--transparent c-action-primary hover-b--transparent '
           }
-          if (!disabled && !collapseLeft && !collapseRight) {
+          if (!disabled) {
             classes += 'hover-bg-muted-5 '
           }
           break
