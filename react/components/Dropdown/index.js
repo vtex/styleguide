@@ -83,6 +83,7 @@ class Dropdown extends Component {
     const {
       label,
       id,
+      testId,
       value,
       size,
       disabled,
@@ -174,7 +175,8 @@ class Dropdown extends Component {
       <div
         className={`vtex-dropdown ${
           isInline ? 'vtex-dropdown--inline dib' : ''
-        }`}>
+        }`}
+        data-testid={testId}>
         <label>
           {label && <span className={labelClasses}>{label}</span>}
           <div className={containerClasses} style={containerStyle}>
@@ -277,6 +279,8 @@ Dropdown.propTypes = {
   preventTruncate: PropTypes.bool,
   /** Spec attribute */
   id: PropTypes.string,
+  /** Data attribute */
+  testId: PropTypes.string,
   /** Spec attribute */
   autoFocus: PropTypes.bool,
   /** Spec attribute */

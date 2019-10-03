@@ -207,6 +207,7 @@ class Button extends Component {
     return (
       <Element
         id={this.props.id}
+        data-testid={this.props.testId}
         autoFocus={iconOnly ? undefined : this.props.autoFocus}
         disabled={iconOnly ? undefined : this.props.disabled}
         name={iconOnly ? undefined : this.props.name}
@@ -286,6 +287,8 @@ Button.propTypes = {
   iconOnly: PropTypes.bool,
   /** (Button spec attribute) */
   id: PropTypes.string,
+  /** Data attribute */
+  testId: PropTypes.string,
   /** (Button spec attribute) */
   autoFocus: PropTypes.bool,
   /** (Button spec attribute) */
