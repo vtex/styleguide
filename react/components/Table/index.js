@@ -141,8 +141,13 @@ class Table extends PureComponent {
   }
 
   handleInputSearchClearWithBulkAction = event => {
+    const {
+      toolbar: {
+        inputSearch: { onClear = () => {} },
+      },
+    } = this.props
     this.handleDeselectAllLines()
-    this.props.toolbar.inputSearch.onClear(event)
+    onClear(event)
   }
 
   render() {
