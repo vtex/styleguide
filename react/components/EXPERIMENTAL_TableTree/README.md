@@ -39,7 +39,6 @@ function ToolbarExample() {
   }
 
   const checkboxes = useTableTreeCheckboxes({
-    columns,
     items,
     onToggle,
     unicityKey: 'email',

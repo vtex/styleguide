@@ -3,7 +3,6 @@ import { getFlat, getToggledState, eqProp } from './checkboxesUtils'
 
 const useTableTreeCheckboxes = ({
   items,
-  columns,
   onToggle,
   nodesKey = 'children',
   unicityKey = 'id',
@@ -13,7 +12,7 @@ const useTableTreeCheckboxes = ({
 
   const itemTree = useMemo(() => {
     return { [unicityKey]: 'root', [nodesKey]: items }
-  }, [items, columns])
+  }, [items])
 
   const toggle = useCallback(
     (item: Item): void => {
@@ -125,7 +124,6 @@ type Action = {
 
 type hookInput = {
   items: Array<Item>
-  columns: Array<Column>
   onToggle?: ({ checkedItems }) => void
   nodesKey?: string
   unicityKey?: string
