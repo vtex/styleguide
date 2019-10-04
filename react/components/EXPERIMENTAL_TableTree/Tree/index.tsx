@@ -14,7 +14,7 @@ import { useCheckboxesContext, useTreeContext } from '../contexts'
 import { Item } from '../hooks/useTableTreeCheckboxes'
 
 const Node: FC<NodeProps> = ({ data, depth }) => {
-  const { visibleColumns, unicityKey } = useTableContext()
+  const { visibleColumns, unicityKey, rowHeight } = useTableContext()
   const { toggle, isChecked, isPartiallyChecked } = useCheckboxesContext()
   const { toggleCollapsed, isCollapsed, nodesKey } = useTreeContext()
 
@@ -47,7 +47,7 @@ const Node: FC<NodeProps> = ({ data, depth }) => {
           const { cellRender, width } = column
           const cellData = data[column.id]
           const content = cellRender
-            ? cellRender({ cellData, rowData: data })
+            ? cellRender({ cellData, rowData: data, rowHeight })
             : cellData
           return (
             <Row.Cell key={`cel-${uuid()}`} width={width}>

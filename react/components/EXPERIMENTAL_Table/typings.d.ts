@@ -12,7 +12,11 @@ type Column = {
   id?: string
   title?: string
   width?: number
-  cellRender?: ({ cellData: any, rowData: any }) => React.ReactNode
+  cellRender?: ({
+    cellData: any,
+    rowData: any,
+    rowHeight: number,
+  }) => React.ReactNode
   headerRender?: ({ headerData: any }) => React.ReactNode
   hidden?: boolean
 }

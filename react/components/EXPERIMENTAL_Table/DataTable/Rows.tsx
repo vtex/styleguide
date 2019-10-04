@@ -6,7 +6,13 @@ import { NAMESPACES } from '../constants'
 import { Row, RowProps, CellProps } from '../Styled'
 
 const Rows: FC<RowsProps> = ({ cellProps, rowProps }) => {
-  const { visibleColumns, items, onRowClick, unicityKey } = useTableContext()
+  const {
+    visibleColumns,
+    items,
+    onRowClick,
+    unicityKey,
+    rowHeight,
+  } = useTableContext()
   const bulkContext = useBulkContext()
 
   const renderRow = (rowData: unknown) => {
@@ -31,7 +37,7 @@ const Rows: FC<RowsProps> = ({ cellProps, rowProps }) => {
           const { cellRender, width } = column
           const cellData = rowData[column.id]
           const content = cellRender
-            ? cellRender({ cellData, rowData })
+            ? cellRender({ cellData, rowData, rowHeight })
             : cellData
           return (
             <Row.Cell {...cellProps} key={`cel-${uuid()}`} width={width}>

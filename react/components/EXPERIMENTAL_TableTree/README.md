@@ -10,6 +10,11 @@ const useTableTreeCheckboxes = require('./hooks/useTableTreeCheckboxes.tsx')
 // Define the columns
 const columns = [
   {
+    id: 'image',
+    title: 'Image',
+    cellRender: ({ rowHeight }) => <Image size={rowHeight - 10} />,
+  },
+  {
     id: 'name',
     title: 'Name',
   },
@@ -29,6 +34,20 @@ const columns = [
 
 // Define the items
 const items = sampleData
+
+function Image({ size }) {
+  return (
+    <div className="dib v-mid">
+      <svg
+        width={size}
+        height={size}
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <rect width={size} height={size} rx="4" fill="#D3E1EB" />
+      </svg>
+    </div>
+  )
+}
 
 function ToolbarExample() {
   const [inputValue, setInputValue] = React.useState('')
