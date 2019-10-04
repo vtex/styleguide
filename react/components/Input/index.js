@@ -43,6 +43,14 @@ class Input extends Component {
     }
   }
 
+  handleMouseEnter = event => {
+    this.props.onMouseEnter && this.props.onMouseEnter(event)
+  }
+
+  handleMouseLeave = event => {
+    this.props.onMouseLeave && this.props.onMouseLeave(event)
+  }
+
   componentDidMount() {
     if (this.props.size === 'x-large') {
       console.warn(
@@ -78,6 +86,7 @@ class Input extends Component {
       groupBottom,
       disabled,
       readOnly,
+      testId,
     } = this.props
     const { active } = this.state
 
@@ -182,7 +191,7 @@ class Input extends Component {
     }
 
     return (
-      <label className="vtex-input w-100">
+      <label className="vtex-input w-100" data-testid={testId}>
         {label && <span className={labelClasses}>{label}</span>}
         <div className={prefixSuffixGroupClasses}>
           {prefix && (
@@ -199,6 +208,8 @@ class Input extends Component {
             onKeyPress={this.handleKeyPress}
             onKeyDown={this.handleKeyDown}
             onKeyUp={this.handleKeyUp}
+            onMouseEnter={this.handleMouseEnter}
+            onMouseLeave={this.handleMouseLeave}
             className={classes}
             disabled={disabled}
             accept={this.props.accept}
@@ -272,7 +283,7 @@ Input.propTypes = {
   /** Input size */
   size: PropTypes.oneOf(['small', 'regular', 'large']),
   /** Label */
-  label: PropTypes.string,
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   /** Prefix */
   prefix: PropTypes.node,
   /** Spec attribute */
@@ -295,6 +306,8 @@ Input.propTypes = {
   groupBottom: PropTypes.bool,
   /** Spec attribute */
   id: PropTypes.string,
+  /** Data attribute */
+  testId: PropTypes.string,
   /** Spec attribute */
   inputMode: PropTypes.string,
   /** Spec attribute */
@@ -334,7 +347,7 @@ Input.propTypes = {
   /** Spec attribute */
   type: PropTypes.string,
   /** Spec attribute */
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /** onChange event */
   onChange: PropTypes.func,
   /** onKeyDown event */
@@ -347,6 +360,10 @@ Input.propTypes = {
   onFocus: PropTypes.func,
   /** onBlur event */
   onBlur: PropTypes.func,
+  /** onMouseEnter event */
+  onMouseEnter: PropTypes.func,
+  /** onMouseLeave event */
+  onMouseLeave: PropTypes.func,
 }
 
 export default withForwardedRef(Input)

@@ -1,3 +1,5 @@
+Sizes
+
 ```js
 initialState = { value1: '', value2: '', value3: '' }
 ;<div>
@@ -10,12 +12,34 @@ initialState = { value1: '', value2: '', value3: '' }
   >
     <InputSearch
       placeholder="Search..."
+      value={state.value1}
+      label="Small"
+      size="small"
+      onChange={e => setState({ value1: e.target.value })}
+      onSubmit={value => {
+        console.log('submited! search this: ', value)
+      }}
+    />
+    <br />
+    <InputSearch
+      placeholder="Search..."
       value={state.value2}
-      size="large"
+      label="Regular"
+      size="regular"
       onChange={e => setState({ value2: e.target.value })}
-      onSubmit={e => {
-        e.preventDefault()
-        console.log(state.value2)
+      onSubmit={value => {
+        console.log('submited! search this: ', value)
+      }}
+    />
+    <br />
+    <InputSearch
+      placeholder="Search..."
+      value={state.value3}
+      label="Large"
+      size="large"
+      onChange={e => setState({ value3: e.target.value })}
+      onSubmit={value => {
+        console.log('submited! search this: ', value)
       }}
     />
   </form>

@@ -22,6 +22,7 @@ type Props = {
 
 const Statement: React.FC<Props> = ({
   isFullWidth = false,
+  isRtl,
   omitSubject,
   omitVerbs,
   onChangeStatement,
@@ -97,7 +98,7 @@ const Statement: React.FC<Props> = ({
           className={`flex w-100 items-start ${
             isFullWidth ? 'flex-column items-stretch' : ''
           }`}>
-          {statementAtoms}
+          {isRtl ? statementAtoms.reverse() : statementAtoms}
         </div>
         {statement.error && (
           <div className="red t-small mh3 mt2 lh-title">

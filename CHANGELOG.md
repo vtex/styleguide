@@ -11,6 +11,57 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Fix problem with responsive spaces on alert component
 
+## [9.86.1] - 2019-10-03
+
+### Fixed
+
+- Label PropTypes of `Input`, `TextArea` and `Toggle`.
+- Value PropType of `Input`.
+- `Button` hover state in collapsed tertiary buttons
+
+## [9.86.0] - 2019-10-03
+
+### Fixed
+
+- removing auto modal width
+- **Conditions** `isRtl` prop was not working after refactor.
+
+### Added
+
+- example of modal with table
+- Workspace link reminder in pull request template
+
+## [9.85.0] - 2019-10-03
+
+### Added
+
+- `data-testid` attribute for testing purposes on `Input`, `Dropdown`, `EmptyState`, `Button` & `PageBlock`
+
+## [9.84.0] - 2019-10-01
+
+### Added
+
+- Option for dynamic row heights in table.
+
+## [9.83.1] - 2019-10-01
+
+### Added
+
+- `BulkActions` to `EXPERIMENTAL_TableV2`
+
+## [9.83.0] - 2019-10-01
+
+### Fixed
+
+- `InputSearch` update component style with figma's design.
+- `Input` add `onMouseEnter` and `onMouseLeave` events support.
+
+## [9.82.0] - 2019-10-01
+
+### Added
+
+- New component to split elements.
+
 ## [9.81.4] - 2019-09-26
 
 ### Fixed
