@@ -280,8 +280,6 @@ class Table extends PureComponent {
         }
       : null
 
-    console.log(extendedToolbar)
-
     return (
       <div className="vtex-table__container">
         {extendedToolbar && (
