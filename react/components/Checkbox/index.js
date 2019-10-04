@@ -17,10 +17,12 @@ class Checkbox extends PureComponent {
       required,
       value,
       partial,
+      title
     } = this.props
 
     return (
       <div
+        title={title}
         className={classNames('flex items-center relative', {
           pointer: !disabled,
         })}>
@@ -108,6 +110,8 @@ Checkbox.propTypes = {
   id: PropTypes.string.isRequired,
   /** Checkbox label */
   label: PropTypes.node,
+  /** Checkbox label */
+  title: PropTypes.string,
   /** (Input spec attribute) */
   name: PropTypes.string.isRequired,
   /** onChange event */

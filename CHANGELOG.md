@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Title attribute to checkbox
+
 ## [9.88.2] - 2019-10-16
 
 ### Fixed

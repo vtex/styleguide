@@ -25,6 +25,7 @@ initialState = { check1: true, check2: false, check3: false }
       checked={state.check1}
       id="option-0"
       label="Checked"
+      title="Checked"
       name="default-checkbox-group"
       onChange={e => setState({ check1: !state.check1 })}
       value="option-0"
@@ -36,6 +37,7 @@ initialState = { check1: true, check2: false, check3: false }
       partial={true}
       id="option-3"
       label="Partial"
+      title="Partial"
       name="default-checkbox-group"
       onChange={e => setState({ check2: !state.check2 })}
       value="option-3"
