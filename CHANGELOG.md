@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Fix problem with responsive spaces on alert component
 
+### Added
+
+- **Icon** `Trophy`, `SimpleBasket`, `Ban`.
+
 ## [9.86.1] - 2019-10-03
 
 ### Fixed
@@ -65,10 +69,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - New component to split elements.
 
 ## [9.81.4] - 2019-09-26
-
-### Added
-
-- **Icon** `Trophy`, `SimpleBasket`, `Ban`.
 
 ### Fixed
 
