@@ -10,13 +10,14 @@ const useTableTreeCheckboxes = require('./hooks/useTableTreeCheckboxes.tsx')
 // Define the columns
 const columns = [
   {
-    id: 'image',
-    title: 'Image',
-    cellRender: ({ rowHeight }) => <Image size={rowHeight - 10} />,
-  },
-  {
     id: 'name',
-    title: 'Name',
+    title: 'Description',
+    cellRender: ({ rowHeight, cellData }) => (
+      <span>
+        <Image size={rowHeight - 10} />
+        <span className="ph4">{cellData}</span>
+      </span>
+    ),
   },
   {
     id: 'email',
@@ -43,7 +44,7 @@ function Image({ size }) {
         height={size}
         fill="none"
         xmlns="http://www.w3.org/2000/svg">
-        <rect width={size} height={size} rx="4" fill="#D3E1EB" />
+        <rect width={size} height={size} rx="4" fill="#cce8ff" />
       </svg>
     </div>
   )
