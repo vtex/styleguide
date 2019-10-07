@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import PropTypes, { InferProps, arrayOf } from 'prop-types'
 
-import { TableProvider } from './context'
+import { TableContext, BulkContext } from './contexts'
 import Toolbar from './Toolbar/index'
 
 import { DENSITY_OPTIONS } from './constants'
@@ -12,43 +12,41 @@ import { TableContainer, Thead } from './Styled'
 import DataTable from './DataTable'
 import BulkActions from './BulkActions'
 
-const Table: FC<TableProps> & TableComposites = ({
+const Table: FC<Props> & TableComposites = ({
   children,
   state,
   bulk,
+  unicityKey,
   ...props
 }) => {
   if (!state) {
     throw STATE_NOT_FOUND_ERROR
   }
   return (
-    <TableProvider value={{ ...state, ...bulk, ...props }}>
-      <TableContainer>
-        {children}
+    <TableContext.Provider value={{ ...state, ...bulk, ...props, unicityKey }}>
+      <BulkContext.Provider value={bulk}>
+        <TableContainer>
+          {children}
 
-        <DataTable>
-          <Thead>
-            <DataTable.Headings />
-          </Thead>
-          <tbody>
-            <DataTable.Rows />
-          </tbody>
-        </DataTable>
-      </TableContainer>
-    </TableProvider>
+          <DataTable>
+            <Thead>
+              <DataTable.Headings />
+            </Thead>
+            <tbody>
+              <DataTable.Rows />
+            </tbody>
+          </DataTable>
+        </TableContainer>
+      </BulkContext.Provider>
+    </TableContext.Provider>
   )
 }
 
-export const tablePropTypes = {
-  containerHeight: PropTypes.number,
-  loading: PropTypes.oneOfType([
-    PropTypes.shape({
-      renderAs: PropTypes.func,
-    }),
-    PropTypes.bool,
-  ]),
-  itemsSizeEstimate: PropTypes.number,
-  onRowClick: PropTypes.func,
+Table.defaultProps = {
+  unicityKey: 'id',
+}
+
+export const bulkPropTypes = {
   bulk: PropTypes.shape({
     bulkState: PropTypes.shape({
       selectedRows: arrayOf(
@@ -68,6 +66,19 @@ export const tablePropTypes = {
     setAllLinesSelected: PropTypes.func,
     selectAllVisibleRows: PropTypes.func,
   }),
+}
+
+export const tablePropTypes = {
+  containerHeight: PropTypes.number,
+  unicityKey: PropTypes.string,
+  loading: PropTypes.oneOfType([
+    PropTypes.shape({
+      renderAs: PropTypes.func,
+    }),
+    PropTypes.bool,
+  ]),
+  itemsSizeEstimate: PropTypes.number,
+  onRowClick: PropTypes.func,
   state: PropTypes.shape({
     visibleColumns: PropTypes.arrayOf(
       PropTypes.shape({
@@ -101,6 +112,7 @@ export const tablePropTypes = {
 }
 
 export type TableProps = InferProps<typeof tablePropTypes>
+type Props = TableProps & InferProps<typeof bulkPropTypes>
 
 export type TableComposites = {
   Toolbar: FC

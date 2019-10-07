@@ -7,7 +7,7 @@ import {
   ICON_SIZE,
   NAMESPACES,
 } from '../constants'
-import useTableContext from '../hooks/useTableContext'
+import { useTableContext } from '../contexts'
 import Menu from './Menu/index'
 
 const BOX_HEIGHT = DENSITY_OPTIONS.length * FIELDS_BOX_ITEM_HEIGHT

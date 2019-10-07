@@ -6,12 +6,6 @@ export default [
     country: '🇰🇪Wakanda',
   },
   {
-    name: 'Peter Parker',
-    email: 'spider.man@gmail.com',
-    number: 3.09191,
-    country: '🇺🇸USA',
-  },
-  {
     name: 'Shang-Chi',
     email: 'kungfu.master@gmail.com',
     number: 39.09222,

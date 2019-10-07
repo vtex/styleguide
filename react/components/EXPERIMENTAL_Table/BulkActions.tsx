@@ -6,14 +6,14 @@ import ButtonWithIcon from '../../ButtonWithIcon'
 import ActionMenu from '../../ActionMenu'
 import Close from '../icon/Close'
 
-import useTableContext from './hooks/useTableContext'
+import { useBulkContext } from './contexts'
+
 import {
   ORDER_CLASSNAMES,
   NAMESPACES,
   BULK_ACTIONS_HEIGHT,
   BULK_ACTIONS_TRANSITION,
 } from './constants'
-import { BULK_STATE_NOT_FOUND_ERROR } from './errors'
 
 const BulkActions: FC<BulkActionsProps> = ({
   texts,
@@ -28,11 +28,7 @@ const BulkActions: FC<BulkActionsProps> = ({
     hasBulkActions,
     hasPrimaryBulkAction,
     hasSecondaryBulkActions,
-  } = useTableContext()
-
-  if (!bulkState) {
-    throw BULK_STATE_NOT_FOUND_ERROR
-  }
+  } = useBulkContext()
 
   const selectedRowsLength = bulkState.selectedRows.length
   const hasRowsSelected = selectedRowsLength > 0

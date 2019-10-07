@@ -1,45 +1,35 @@
 import React, { FC } from 'react'
 
-import CaretRight from '../../icon/CaretRight/index.js'
-import CaretDown from '../../icon/CaretDown/index.js'
-import ButtonWithIcon from '../../ButtonWithIcon/index.js'
+import CollapseToggle, { CollapseToggleProps } from './CollapseToggle'
+import Checkbox, { CheckboxProps } from '../../EXPERIMENTAL_Table/Checkbox'
 
-const Arrow: FC<ArrowProps> = ({ active, onClick }) => {
-  const icon = active ? <CaretDown /> : <CaretRight />
-  return (
-    <ButtonWithIcon
-      size="small"
-      onClick={onClick}
-      icon={icon}
-      variation="tertiary"
-    />
-  )
-}
+const PREFIX_WIDTH = 64
 
 const CellPrefix: FC<CellPrefixProps> & CellPrefixComposites = ({
   children,
-  width,
+  depth,
 }) => {
   return (
-    <span className="dib tr pr2" style={{ width }}>
-      {children}
+    <span className="dib pr2" style={{ width: PREFIX_WIDTH * depth }}>
+      <span className="flex w-100 justify-end items-center">{children}</span>
     </span>
   )
 }
 
-CellPrefix.Arrow = Arrow
-
-export interface CellPrefixComposites {
-  Arrow?: FC<ArrowProps>
+CellPrefix.defaultProps = {
+  depth: 1,
 }
 
-export interface ArrowProps {
-  active: boolean
-  onClick: Function
+CellPrefix.CollapseToggle = CollapseToggle
+CellPrefix.Checkbox = Checkbox
+
+export type CellPrefixComposites = {
+  CollapseToggle?: FC<CollapseToggleProps>
+  Checkbox?: FC<CheckboxProps>
 }
 
-export interface CellPrefixProps {
-  width: number
+export type CellPrefixProps = {
+  depth?: number
 }
 
 export default CellPrefix

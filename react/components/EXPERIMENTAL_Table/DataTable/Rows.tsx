@@ -1,21 +1,32 @@
 import React, { FC } from 'react'
 import uuid from 'uuid'
 
-import useTableContext from '../hooks/useTableContext'
+import { useTableContext, useBulkContext } from '../contexts'
 import { NAMESPACES } from '../constants'
 import { Row, RowProps, CellProps } from '../Styled'
 
 const Rows: FC<RowsProps> = ({ cellProps, rowProps }) => {
-  const { visibleColumns, items, onRowClick, bulkState } = useTableContext()
+  const {
+    visibleColumns,
+    items,
+    onRowClick,
+    unicityKey,
+    rowHeight,
+  } = useTableContext()
+  const bulkContext = useBulkContext()
 
-  const renderRow = (rowData: BulkedItem) => {
+  const renderRow = (rowData: unknown) => {
     const clickable = onRowClick
       ? {
           onClick: () => onRowClick({ rowData }),
         }
       : {}
     const isSelected =
-      bulkState && bulkState.selectedRows.some(row => row.id === rowData.id)
+      bulkContext &&
+      bulkContext.bulkState &&
+      bulkContext.bulkState.selectedRows.some(
+        row => row[unicityKey] === rowData[unicityKey]
+      )
     return (
       <Row
         {...rowProps}
@@ -26,7 +37,7 @@ const Rows: FC<RowsProps> = ({ cellProps, rowProps }) => {
           const { cellRender, width } = column
           const cellData = rowData[column.id]
           const content = cellRender
-            ? cellRender({ cellData, rowData })
+            ? cellRender({ cellData, rowData, rowHeight })
             : cellData
           return (
             <Row.Cell {...cellProps} key={`cel-${uuid()}`} width={width}>

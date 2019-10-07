@@ -5,7 +5,7 @@ import IconColumns from '../../icon/Columns/index'
 import Menu from './Menu/index'
 
 import { ICON_SIZE, COLUMNS_BOX, NAMESPACES } from '../constants'
-import useTableContext from '../hooks/useTableContext'
+import { useTableContext } from '../contexts'
 
 export type ButtonColumnsProps = {
   label: string

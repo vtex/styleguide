@@ -12,7 +12,11 @@ type Column = {
   id?: string
   title?: string
   width?: number
-  cellRender?: ({ cellData: any, rowData: any }) => React.ReactNode
+  cellRender?: ({
+    cellData: any,
+    rowData: any,
+    rowHeight: number,
+  }) => React.ReactNode
   headerRender?: ({ headerData: any }) => React.ReactNode
   hidden?: boolean
 }
@@ -29,35 +33,14 @@ type TableProps = {
     children?: Element
   }
   onRowClick?: ({ rowData: unknown }) => void
-}
-
-type BulkedItem = {
-  id: number
-}
-
-type BulkState = {
-  selectedRows?: Array<BulkedItem>
-  allLinesSelected?: boolean
-}
-
-type Bulk = {
-  bulkState?: BulkState
-  hasBulkActions?: boolean
-  hasPrimaryBulkAction?: boolean
-  hasSecondaryBulkActions?: boolean
-  selectAllRows?: () => void
-  deselectAllRows?: () => void
-  selectRow?: (row: BulkedItem) => void
-  setSelectedRows?: (selectedRows: Array<BulkedItem>) => void
-  setAllLinesSelected?: (allLinesSelected: boolean) => void
-  selectAllVisibleRows?: () => void
+  unicityKey?: string
 }
 
 type TableState = {
   visibleColumns?: Array<Column>
   columns?: Array<Column>
   visibleColumns?: Array<Column>
-  items?: Array<Object>
+  items?: Array<unknown> | any
   isEmpty?: boolean
   tableHeight?: number
   rowHeight?: number

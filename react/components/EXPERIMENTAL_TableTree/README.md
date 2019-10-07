@@ -4,12 +4,20 @@
 const useTableState = require('../EXPERIMENTAL_Table/hooks/useTableState.ts')
   .default
 const sampleData = require('./sampleData.ts').default
+const useTableTreeCheckboxes = require('./hooks/useTableTreeCheckboxes.tsx')
+  .default
 
 // Define the columns
 const columns = [
   {
     id: 'name',
-    title: 'Name',
+    title: 'Description',
+    cellRender: ({ rowHeight, cellData }) => (
+      <span>
+        <Image size={rowHeight - 10} />
+        <span className="ph4">{cellData}</span>
+      </span>
+    ),
   },
   {
     id: 'email',
@@ -28,13 +36,37 @@ const columns = [
 // Define the items
 const items = sampleData
 
+function Image({ size }) {
+  return (
+    <div className="dib v-mid">
+      <svg
+        width={size}
+        height={size}
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <rect width={size} height={size} rx="4" fill="#cce8ff" />
+      </svg>
+    </div>
+  )
+}
+
 function ToolbarExample() {
   const [inputValue, setInputValue] = React.useState('')
   const [displayItems, setDisplayItems] = React.useState(items)
 
+  const onToggle = ({ checkedItems }) => {
+    console.log(checkedItems)
+  }
+
+  const checkboxes = useTableTreeCheckboxes({
+    items,
+    onToggle,
+    unicityKey: 'email',
+  })
+
   const tableState = useTableState({
     columns,
-    items: displayItems,
+    items: checkboxes.itemTree,
     density: 'medium',
   })
 
@@ -115,7 +147,11 @@ function ToolbarExample() {
   }
 
   return (
-    <TableTree state={tableState} emptyState={emptyState}>
+    <TableTree
+      checkboxes={checkboxes}
+      unicityKey="email"
+      state={tableState}
+      emptyState={emptyState}>
       <TableTree.Toolbar>
         <TableTree.Toolbar.InputSearch {...inputSearch} />
         <TableTree.Toolbar.ButtonGroup>

@@ -1,43 +1,53 @@
-import React, { FC, useState } from 'react'
+import React, {
+  FC,
+  useState,
+  useContext,
+  createContext,
+  useCallback,
+} from 'react'
 import uuid from 'uuid'
 
 import CellPrefix from './CellPrefix'
 import { Row } from '../../EXPERIMENTAL_Table/Styled'
-import useTableContext from '../../EXPERIMENTAL_Table/hooks/useTableContext'
-
-const PREFIX_WIDTH = 36
+import { useTableContext } from '../../EXPERIMENTAL_Table/contexts'
+import { useCheckboxesContext, useTreeContext } from '../contexts'
+import { Item } from '../hooks/useTableTreeCheckboxes'
 
 const Node: FC<NodeProps> = ({ data, depth }) => {
-  const { visibleColumns } = useTableContext()
-  const [collapsed, setCollapsed] = useState(false)
+  const { visibleColumns, unicityKey, rowHeight } = useTableContext()
+  const { toggle, isChecked, isPartiallyChecked } = useCheckboxesContext()
+  const { toggleCollapsed, isCollapsed, nodesKey } = useTreeContext()
 
-  const { children, ...rowData } = data
-
-  const childs =
-    children &&
-    children.map(data => (
-      <Node key={`row-child-${uuid()}`} depth={depth + 1} data={data} />
-    ))
+  const isRowChecked = isChecked(data)
+  const isRowPartiallyChecked = isPartiallyChecked(data)
+  const isRowSelected = isRowChecked || isRowPartiallyChecked
 
   const renderPrefix = (hasChild?: boolean) => (
-    <CellPrefix width={depth * PREFIX_WIDTH}>
+    <CellPrefix depth={depth}>
       {hasChild && (
-        <CellPrefix.Arrow
-          active={collapsed}
-          onClick={() => setCollapsed(!collapsed)}
+        <CellPrefix.CollapseToggle
+          collapsed={isCollapsed(data[unicityKey])}
+          onClick={() => toggleCollapsed(data[unicityKey])}
         />
       )}
+      <span className="ph2">
+        <CellPrefix.Checkbox
+          checked={isRowChecked}
+          partial={isRowPartiallyChecked}
+          onClick={() => toggle(data)}
+        />
+      </span>
     </CellPrefix>
   )
 
   const renderCells = (hasChild?: boolean) => {
     return (
-      <Row>
+      <Row isSelected={isRowSelected}>
         {visibleColumns.map((column: Column, cellIndex: number) => {
           const { cellRender, width } = column
-          const cellData = rowData[column.id]
+          const cellData = data[column.id]
           const content = cellRender
-            ? cellRender({ cellData, rowData })
+            ? cellRender({ cellData, rowData: data, rowHeight })
             : cellData
           return (
             <Row.Cell key={`cel-${uuid()}`} width={width}>
@@ -50,10 +60,13 @@ const Node: FC<NodeProps> = ({ data, depth }) => {
     )
   }
 
-  return childs ? (
+  return data[nodesKey] ? (
     <>
       {renderCells(true)}
-      {collapsed && childs}
+      {isCollapsed(data[unicityKey]) &&
+        (data[nodesKey] as Array<Item>).map(data => (
+          <Node key={`row-child-${uuid()}`} depth={depth + 1} data={data} />
+        ))}
     </>
   ) : (
     renderCells()
@@ -62,10 +75,9 @@ const Node: FC<NodeProps> = ({ data, depth }) => {
 
 const Tree: FC = () => {
   const { items } = useTableContext()
-
   return (
     <>
-      {items.map(data => (
+      {items.children.map(data => (
         <Node key={`row-${uuid()}`} data={data} />
       ))}
     </>
@@ -73,8 +85,9 @@ const Tree: FC = () => {
 }
 
 type NodeProps = {
-  data: { children?: Array<unknown> }
+  data: Item
   depth?: number
+  collapsedItems?: Array<string>
 }
 
 Node.defaultProps = {
