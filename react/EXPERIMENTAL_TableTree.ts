@@ -1,3 +1,1 @@
-import Table from './components/EXPERIMENTAL_TableTree/index'
-
-export default Table
+export { default } from './components/EXPERIMENTAL_TableTree/index'
