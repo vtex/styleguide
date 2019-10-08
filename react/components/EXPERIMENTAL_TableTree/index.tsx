@@ -10,6 +10,7 @@ import { TableContainer, Thead } from '../EXPERIMENTAL_Table/Styled'
 import { tablePropTypes, TableComposites } from '../EXPERIMENTAL_Table'
 import { InferProps } from 'prop-types'
 import TreeHeadings from './Tree/TreeHeadings'
+import Pagination from '../EXPERIMENTAL_Table/Pagination'
 
 const TableTree: FC<Props> & TableComposites = ({
   children,
@@ -71,6 +72,7 @@ const propTypes = {
 type Props = InferProps<typeof propTypes>
 
 TableTree.Toolbar = Toolbar
+TableTree.Pagination = Pagination
 TableTree.propTypes = propTypes
 
 export type TreeProps = {

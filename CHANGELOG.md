@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Export for `EXPERIMENTAL_useTableTreeCheckboxes`.
+
+### Changed
+
+- Allow `EXPERIMENTAL_TableTree` to use pagination.
+
 ## [9.86.3] - 2019-10-07
 
 ### Added

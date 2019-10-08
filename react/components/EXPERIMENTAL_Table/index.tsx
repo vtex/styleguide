@@ -117,13 +117,11 @@ type Props = TableProps & InferProps<typeof bulkPropTypes>
 export type TableComposites = {
   Toolbar: FC
   Pagination?: FC<PaginationProps>
-  LineActions?: FC<LineActionProps>
   BulkActions?: FC
 }
 
 Table.Toolbar = Toolbar
 Table.Pagination = Pagination
-Table.LineActions = LineActions
 Table.propTypes = tablePropTypes
 Table.BulkActions = BulkActions
 

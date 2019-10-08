@@ -1,3 +1,1 @@
-import useTableState from './components/EXPERIMENTAL_Table/hooks/useTableState'
-
-export default useTableState
+export { default } from './components/EXPERIMENTAL_Table/hooks/useTableState'
