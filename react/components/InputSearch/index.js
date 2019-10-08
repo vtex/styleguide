@@ -47,6 +47,7 @@ class InputSearch extends Component {
           ...event.target,
           value,
         },
+        preventDefault: event.preventDefault || (() => {}),
       })
   }
 
@@ -71,9 +72,7 @@ class InputSearch extends Component {
         onBlur={() => this.handleFocus(false)}
         onMouseEnter={() => this.handleHovering(true)}
         onMouseLeave={() => this.handleHovering(false)}
-        onKeyUp={e =>
-          e.key === 'Enter' && this.handleSubmit(new Event('submit'))
-        }
+        onKeyUp={e => e.key === 'Enter' && this.handleSubmit(e)}
         type="search"
         suffix={
           <div className="flex flex-row items-center">
