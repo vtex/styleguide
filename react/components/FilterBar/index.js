@@ -197,8 +197,6 @@ FilterBar.defaultProps = {
   newFilterLable: 'New Filter',
 }
 
-FilterBar.propTypes = filterBarPropTypes
-
 export const filterBarPropTypes = {
   /** filter options (mirroring statements from Conditions component) */
   options: PropTypes.object.isRequired,
@@ -219,5 +217,7 @@ export const filterBarPropTypes = {
   /** New Filter title lable for inside the 'More options' menu */
   newFilterLable: PropTypes.string,
 }
+
+FilterBar.propTypes = filterBarPropTypes
 
 export default FilterBar
