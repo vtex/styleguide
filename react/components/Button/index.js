@@ -157,7 +157,7 @@ class Button extends Component {
             classes += 'bg-transparent b--transparent c-disabled '
           } else {
             classes +=
-              'bg-transparent b--transparent c-danger hover-b--transparent hover-bg-muted-5 '
+              'bg-transparent b--transparent c-danger hover-bg-danger--faded hover-b--danger--faded '
           }
           break
         }
@@ -165,7 +165,7 @@ class Button extends Component {
     }
 
     if (!disabled) {
-      classes += 'pointer '
+      classes += 'hover-bg-action-secondary hover-b--action-secondary '
     }
 
     if (block) {

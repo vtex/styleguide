@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- `Button` fixes hover colors of Tertiary and Danger Tertiary to more consistent ones
+
 ## [8.73.7] - 2019-09-19
 
 ## [8.73.6] - 2019-09-19
