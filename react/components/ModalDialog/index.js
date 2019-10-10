@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+
 import Modal from '../Modal'
 import Button from '../Button'
 
@@ -44,7 +45,7 @@ class ModalDialog extends Component {
 
           <Button
             size="small"
-            variation="primary"
+            variation={confirmation.isDangerous ? 'danger' : 'primary'}
             isLoading={loading}
             onClick={this.handleConfirmation}>
             {confirmation.label}
@@ -60,6 +61,7 @@ ModalDialog.propTypes = {
   confirmation: PropTypes.shape({
     label: PropTypes.string.isRequired,
     onClick: PropTypes.func.isRequired,
+    isDangerous: PropTypes.bool,
   }).isRequired,
   cancelation: PropTypes.shape({
     label: PropTypes.string.isRequired,
