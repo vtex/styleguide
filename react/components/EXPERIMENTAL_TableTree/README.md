@@ -62,6 +62,34 @@ function ToolbarExample() {
     items,
     onToggle,
     unicityKey: 'email',
+    checked: [
+      {
+        name: "T'Chala",
+        email: 'black.panther@gmail.com',
+        number: 1.88191,
+        country: '🇰🇪Wakanda',
+      },
+      {
+        name: 'Harry Osbourne',
+        email: 'harry@gmail.com',
+        country: '🇺🇸USA',
+      },
+      {
+        name: 'Green Goblin',
+        email: 'norman.green@gmail.com',
+        country: '🇺🇸USA',
+      },
+      {
+        name: 'Aunt May',
+        email: 'may.parker@gmail.com',
+        country: '🇺🇸USA',
+      },
+      {
+        name: 'Uncle Ben',
+        email: 'ben.parker@gmail.com',
+        country: '🇺🇸USA',
+      },
+    ],
   })
 
   const tableState = useTableState({
