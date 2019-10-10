@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.87.0] - 2019-10-10
+
 ### Added
 
 - **isDangerous** prop to `ModalDialog`component.
