@@ -140,8 +140,12 @@ class Toolbar extends PureComponent {
           isSearchBarVisible ? 'justify-between' : 'justify-end'
         }`}>
         {inputSearch && (
-          <form className="w-40" onSubmit={this.handleInputSearchSubmit}>
-            <InputSearch disabled={loading} {...inputSearch} />
+          <form className="w-40">
+            <InputSearch
+              disabled={loading}
+              {...inputSearch}
+              onSubmit={this.handleInputSearchSubmit}
+            />
           </form>
         )}
         <div className="flex flex-row items-center">
