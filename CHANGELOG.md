@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- size prop to checkbox.
+
 ### Changed
 
 - `Table`'s `headerRenderer` can be used in columns that are either fixed or sortable
