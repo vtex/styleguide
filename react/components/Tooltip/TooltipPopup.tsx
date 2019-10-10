@@ -189,8 +189,8 @@ const getPopupPositionRecursively = (
     Math.min(styles.left, horizontalMax - popupRect.width - 1)
   )
 
-  const transform = `translate3d(${Math.round(left)}px, -${Math.round(
-    document.body.offsetHeight - top
+  const transform = `translate3d(${Math.round(left)}px, ${Math.round(
+    top - document.body.offsetHeight
   )}px, 0)`
 
   return {
