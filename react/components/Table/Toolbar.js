@@ -82,11 +82,11 @@ class Toolbar extends PureComponent {
     return estimate > MAX_FIELDS_BOX_HEIGHT ? MAX_FIELDS_BOX_HEIGHT : estimate
   }
 
-  handleInputSearchSubmit = value => {
+  handleInputSearchSubmit = e => {
     this.props.onDeselectAllLines && this.props.onDeselectAllLines()
 
     this.props.actions.inputSearch.onSubmit &&
-      this.props.actions.inputSearch.onSubmit(value)
+      this.props.actions.inputSearch.onSubmit(e)
   }
 
   render() {
