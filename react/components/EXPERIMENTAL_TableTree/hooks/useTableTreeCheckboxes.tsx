@@ -6,8 +6,9 @@ const useTableTreeCheckboxes = ({
   onToggle,
   nodesKey = 'children',
   unicityKey = 'id',
+  checked = [],
 }: hookInput): checkboxesHookReturn => {
-  const [checkedItems, dispatch] = useReducer(reducer, [])
+  const [checkedItems, dispatch] = useReducer(reducer, checked)
   const equalsUnicityKey = eqProp(unicityKey)
 
   const itemTree = useMemo(() => {
@@ -127,6 +128,7 @@ type hookInput = {
   onToggle?: ({ checkedItems }) => void
   nodesKey?: string
   unicityKey?: string
+  checked?: Array<unknown>
 }
 
 export type ChildKey = { [key: string]: Array<Item> }

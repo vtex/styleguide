@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.87.2] - 2019-10-10
+
+### Added
+
+- **checked** prop to `EXPERIMENTAL_useTableTreeCheckboxes`
+
 ## [9.87.1] - 2019-10-10
 
 ### Fixed
