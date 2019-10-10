@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.86.5] - 2019-10-10
+
 ### Fixed
 
 - **InputSearch** `onSubmit` prop function had a value as param instead of an event as the contract requires.
