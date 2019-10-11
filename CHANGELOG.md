@@ -7,17 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-<<<<<<< HEAD
 ## [9.87.2] - 2019-10-10
 
 ### Added
 
 - **checked** prop to `EXPERIMENTAL_useTableTreeCheckboxes`
-=======
-## Added
-
 - New prop to Input component to show a submit button
->>>>>>> Add new prop to Input component to show a submit button
 
 ## [9.87.1] - 2019-10-10
 
