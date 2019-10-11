@@ -148,3 +148,16 @@ const handleFocusClick = () => {
   </div>
 </div>
 ```
+
+With submit button
+
+```js
+;<div>
+  <div className="mb5">
+    <Input placeholder="Placeholder" size="regular" label="Regular" submitButton="Submit" />
+  </div>
+  <div>
+    <Input placeholder="Placeholder" size="large" label="Large" submitButton="Submit" />
+  </div>
+</div>
+```

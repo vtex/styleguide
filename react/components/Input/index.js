@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import Button from '../Button'
+
 import styles from './Input.css'
 import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
 
@@ -83,6 +85,7 @@ class Input extends Component {
       prefix,
       suffix: suffixProp,
       suffixIcon,
+      submitButton,
       groupBottom,
       disabled,
       readOnly,
@@ -243,6 +246,16 @@ class Input extends Component {
               {suffix}
             </span>
           )}
+          {submitButton && size !== 'small' && (
+            <span className="flex items-center mr1">
+              <Button
+                variation="secondary"
+                size={size === 'large' ? 'regular' : 'small'}
+                type="submit">
+                {submitButton}
+              </Button>
+            </span>
+          )}
         </div>
         {errorMessage && (
           <div className="c-danger t-small mt3 lh-title">{errorMessage}</div>
@@ -338,6 +351,8 @@ Input.propTypes = {
   src: PropTypes.string,
   /** Spec attribute */
   step: PropTypes.string,
+  /** Spec attribute */
+  submitButton: PropTypes.string,
   /** Suffix attribute */
   suffix: PropTypes.node,
   /** DEPRECATED: Suffix icon attribute */
