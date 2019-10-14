@@ -85,7 +85,7 @@ class Input extends Component {
       prefix,
       suffix: suffixProp,
       suffixIcon,
-      submitButton,
+      button,
       groupBottom,
       disabled,
       readOnly,
@@ -246,13 +246,14 @@ class Input extends Component {
               {suffix}
             </span>
           )}
-          {submitButton && size !== 'small' && (
+          {button && size !== 'small' && (
             <span className="flex items-center mr1">
               <Button
-                variation="secondary"
+                disabled={disabled}
                 size={size === 'large' ? 'regular' : 'small'}
-                type="submit">
-                {submitButton}
+                type="submit"
+                variation="secondary">
+                {button}
               </Button>
             </span>
           )}
@@ -311,6 +312,9 @@ Input.propTypes = {
   autoFocus: PropTypes.bool,
   /** Spec attribute */
   autoSave: PropTypes.string,
+  /** @ignore
+   * Spec attribute */
+  button: PropTypes.string,
   /** List of data attributes as a object like `{'locale': 'en-US'}` */
   dataAttributes: PropTypes.object,
   /** Spec attribute */
@@ -351,8 +355,6 @@ Input.propTypes = {
   src: PropTypes.string,
   /** Spec attribute */
   step: PropTypes.string,
-  /** Spec attribute */
-  submitButton: PropTypes.string,
   /** Suffix attribute */
   suffix: PropTypes.node,
   /** DEPRECATED: Suffix icon attribute */
