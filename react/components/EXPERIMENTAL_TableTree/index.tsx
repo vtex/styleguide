@@ -11,6 +11,7 @@ import { tablePropTypes, TableComposites } from '../EXPERIMENTAL_Table'
 import { InferProps } from 'prop-types'
 import TreeHeadings from './Tree/TreeHeadings'
 import Pagination from '../EXPERIMENTAL_Table/Pagination'
+import FilterBar from '../EXPERIMENTAL_Table/FilterBar'
 
 const TableTree: FC<Props> & TableComposites = ({
   children,
@@ -72,6 +73,7 @@ const propTypes = {
 type Props = InferProps<typeof propTypes>
 
 TableTree.Toolbar = Toolbar
+TableTree.FilterBar = FilterBar
 TableTree.Pagination = Pagination
 TableTree.propTypes = propTypes
 

@@ -689,6 +689,434 @@ function BulkExample() {
 ;<BulkExample />
 ```
 
+# Line actions
+
+This feature creates a last extra column with an ActionMenu component per line.
+
+```js
+// Imports
+const useTableLineActions = require('./hooks/useTableLineActions.tsx').default
+const useTableState = require('./hooks/useTableState.ts').default
+
+// Define the columns
+const columns = [
+  {
+    id: 'name',
+    title: 'Name',
+  },
+  {
+    id: 'email',
+    title: 'Email',
+  },
+  {
+    id: 'number',
+    title: 'Number',
+  },
+  {
+    id: 'country',
+    title: 'Country',
+  },
+]
+
+// Define the items
+const items = [
+  {
+    name: "T'Chala",
+    email: 'black.panther@gmail.com',
+    number: 1.88191,
+    country: '🇰🇪Wakanda',
+  },
+  {
+    name: 'Peter Parker',
+    email: 'spider.man@gmail.com',
+    number: 3.09191,
+    country: '🇺🇸USA',
+  },
+  {
+    name: 'Shang-Chi',
+    email: 'kungfu.master@gmail.com',
+    number: 39.09222,
+    country: '🇨🇳China',
+  },
+  {
+    name: 'Natasha Romanoff',
+    email: 'black.widow@gmail.com',
+    number: 5.09291,
+    country: '🇷🇺Russia',
+  },
+]
+
+function LineActionsExample() {
+  const lineActions = [
+    {
+      label: 'Action 1',
+      onClick: ({ rowData }) => alert(`Executed action for ${rowData.name}`),
+    },
+    {
+      label: 'DANGEROUS Action',
+      isDangerous: true,
+      onClick: ({ rowData }) =>
+        alert(`Executed a DANGEROUS action for ${rowData.name}`),
+    },
+  ]
+
+  const { itemsWithLineActions, columnsWithLineActions } = useTableLineActions({
+    items,
+    columns,
+    lineActions,
+  })
+  const tableState = useTableState({
+    columns: columnsWithLineActions,
+    items: itemsWithLineActions,
+  })
+
+  return <Table state={tableState} />
+}
+;<LineActionsExample />
+```
+
+# Filter Bar
+
+```js
+const useTableState = require('./hooks/useTableState.ts').default
+const Input = require('../Input').default
+const Checkbox = require('../Checkbox').default
+
+const columns = [
+  {
+    id: 'name',
+    title: 'Name',
+  },
+  {
+    id: 'email',
+    title: 'Email',
+  },
+  {
+    id: 'number',
+    title: 'Number',
+  },
+  {
+    id: 'country',
+    title: 'Country',
+  },
+]
+
+const items = [
+  {
+    name: "T'Chala",
+    email: 'black.panther@gmail.com',
+    number: 1.88191,
+    country: '🇰🇪Wakanda',
+  },
+  {
+    name: 'Peter Parker',
+    email: 'spider.man@gmail.com',
+    number: 3.09191,
+    country: '🇺🇸USA',
+  },
+  {
+    name: 'Shang-Chi',
+    email: 'kungfu.master@gmail.com',
+    number: 39.09222,
+    country: '🇨🇳China',
+  },
+  {
+    name: 'Natasha Romanoff',
+    email: 'black.widow@gmail.com',
+    number: 5.09291,
+    country: '🇷🇺Russia',
+  },
+]
+
+function simpleInputObject({ values, onChangeObjectCallback }) {
+  return (
+    <Input
+      value={values || ''}
+      onChange={e => onChangeObjectCallback(e.target.value)}
+    />
+  )
+}
+
+function simpleInputVerbsAndLabel() {
+  return {
+    renderFilterLabel: st => {
+      if (!st || !st.object) {
+        // you should treat empty object cases only for alwaysVisibleFilters
+        return 'Any'
+      }
+      return `${
+        st.verb === '=' ? 'is' : st.verb === '!=' ? 'is not' : 'contains'
+      } ${st.object}`
+    },
+    verbs: [
+      {
+        label: 'is',
+        value: '=',
+        object: {
+          renderFn: simpleInputObject,
+          extraParams: {},
+        },
+      },
+      {
+        label: 'is not',
+        value: '!=',
+        object: {
+          renderFn: simpleInputObject,
+          extraParams: {},
+        },
+      },
+      {
+        label: 'contains',
+        value: 'contains',
+        object: {
+          renderFn: simpleInputObject,
+          extraParams: {},
+        },
+      },
+    ],
+  }
+}
+
+function numberInputObject({ values, onChangeObjectCallback }) {
+  return (
+    <Input
+      placeholder="Insert number…"
+      type="number"
+      min="0"
+      max="180"
+      value={values || ''}
+      onChange={e => {
+        onChangeObjectCallback(e.target.value.replace(/\D/g, ''))
+      }}
+    />
+  )
+}
+
+function numberInputRangeObject({
+  statements,
+  values,
+  statementIndex,
+  onChangeObjectCallback,
+}) {
+  return (
+    <div className="flex">
+      <Input
+        placeholder="Number from…"
+        errorMessage={
+          statements[statementIndex].object &&
+          parseInt(statements[statementIndex].object.first) >=
+            parseInt(statements[statementIndex].object.last)
+            ? 'Must be smaller than other input'
+            : ''
+        }
+        value={values && values.first ? values.first : ''}
+        onChange={e => {
+          const currentObject = values || {}
+          currentObject.first = e.target.value.replace(/\D/g, '')
+
+          onChangeObjectCallback(currentObject)
+        }}
+      />
+
+      <div className="mv4 mh3 c-muted-2 b">and</div>
+
+      <Input
+        placeholder="Number to…"
+        value={values && values.last ? values.last : ''}
+        onChange={e => {
+          const currentObject = values || {}
+          currentObject.last = e.target.value.replace(/\D/g, '')
+
+          onChangeObjectCallback(currentObject)
+        }}
+      />
+    </div>
+  )
+}
+
+function countrySelectorObject({ values, onChangeObjectCallback }) {
+  const initialValue = {
+    '🇰🇪Wakanda': true,
+    '🇺🇸USA': true,
+    '🇨🇳China': true,
+    '🇷🇺Russia': true,
+    ...(values || {}),
+  }
+  const toggleValueByKey = key => {
+    const newValues = {
+      ...(values || initialValue),
+      [key]: values ? !values[key] : false,
+    }
+    return newValues
+  }
+  return (
+    <div>
+      {Object.keys(initialValue).map((opt, index) => {
+        return (
+          <div className="mb3" key={`class-statment-object-${opt}-${index}`}>
+            <Checkbox
+              checked={values ? values[opt] : initialValue[opt]}
+              label={opt}
+              name="default-checkbox-group"
+              onChange={() => {
+                const newValue = toggleValueByKey(`${opt}`)
+                const newValueKeys = Object.keys(newValue)
+                const isEmptyFilter = !newValueKeys.some(key => !newValue[key])
+                onChangeObjectCallback(isEmptyFilter ? null : newValue)
+              }}
+              value={opt}
+            />
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+
+function FilterBarExample() {
+  const [filteredItems, setFilteredItems] = React.useState(items)
+
+  React.useEffect(() => {
+    console.log(filteredItems)
+  })
+
+  const tableState = useTableState({
+    columns,
+    items: filteredItems,
+  })
+
+  const [filterStatements, setFilterStatements] = React.useState([])
+
+  function handleFiltersChange(statements = []) {
+    let newData = items.slice()
+    statements.forEach(st => {
+      if (!st || !st.object) return
+      const { subject, verb, object } = st
+      switch (subject) {
+        case 'name':
+        case 'email':
+          if (verb === 'contains') {
+            newData = newData.filter(item => item[subject].includes(object))
+          } else if (verb === '=') {
+            newData = newData.filter(item => item[subject] === object)
+          } else if (verb === '!=') {
+            newData = newData.filter(item => item[subject] !== object)
+          }
+          break
+
+        case 'number':
+          if (verb === '=') {
+            newData = newData.filter(item => item.number === parseInt(object))
+          } else if (verb === 'between') {
+            newData = newData.filter(
+              item =>
+                item.number >= parseInt(object.first) &&
+                item.number <= parseInt(object.last)
+            )
+          }
+          break
+
+        case 'country':
+          if (!object) return
+          const selectedCountries = Object.keys(object).reduce(
+            (acc, item) => (object[item] ? [...acc, item] : acc),
+            []
+          )
+          newData = newData.filter(item =>
+            selectedCountries.includes(item[subject])
+          )
+          break
+      }
+    })
+    setFilteredItems(newData)
+    setFilterStatements(statements)
+  }
+
+  const filters = {
+    alwaysVisibleFilters: ['name', 'country'],
+    statements: filterStatements,
+    onChangeStatements: handleFiltersChange,
+    clearAllFiltersButtonLabel: 'Clear Filters',
+    collapseLeft: true,
+    options: {
+      name: {
+        label: 'Name',
+        ...simpleInputVerbsAndLabel(),
+      },
+      email: {
+        label: 'Email',
+        ...simpleInputVerbsAndLabel(),
+      },
+      number: {
+        label: 'Number',
+        renderFilterLabel: st =>
+          `${
+            st.verb === 'between'
+              ? `between ${st.object.first} and ${st.object.last}`
+              : `is ${st.object}`
+          } `,
+        verbs: [
+          {
+            label: 'is',
+            value: '=',
+            object: {
+              renderFn: numberInputObject,
+              extraParams: {},
+            },
+          },
+          {
+            label: 'is between',
+            value: 'between',
+            object: {
+              renderFn: numberInputRangeObject,
+              extraParams: {},
+            },
+          },
+        ],
+      },
+      country: {
+        label: 'Country',
+        renderFilterLabel: st => {
+          if (!st || !st.object) {
+            return 'All'
+          }
+          const keys = st.object ? Object.keys(st.object) : {}
+          const isAllTrue = !keys.some(key => !st.object[key])
+          const isAllFalse = !keys.some(key => st.object[key])
+          const trueKeys = keys.filter(key => st.object[key])
+          let trueKeysLabel = ''
+          trueKeys.forEach((key, index) => {
+            trueKeysLabel += `${key}${
+              index === trueKeys.length - 1 ? '' : ', '
+            }`
+          })
+          return `${
+            isAllTrue ? 'All' : isAllFalse ? 'None' : `${trueKeysLabel}`
+          }`
+        },
+        verbs: [
+          {
+            label: 'includes',
+            value: 'includes',
+            object: {
+              renderFn: countrySelectorObject,
+              extraParams: {},
+            },
+          },
+        ],
+      },
+    },
+  }
+
+  return (
+    <Table state={tableState}>
+      <Table.FilterBar {...filters} />
+    </Table>
+  )
+}
+;<FilterBarExample />
+```
+
 # Toolbar
 
 ```js
@@ -846,92 +1274,6 @@ function ToolbarExample() {
   )
 }
 ;<ToolbarExample />
-```
-
-# Line actions
-
-This feature creates a last extra column with an ActionMenu component per line.
-
-```js
-// Imports
-const useTableLineActions = require('./hooks/useTableLineActions.tsx').default
-const useTableState = require('./hooks/useTableState.ts').default
-
-// Define the columns
-const columns = [
-  {
-    id: 'name',
-    title: 'Name',
-  },
-  {
-    id: 'email',
-    title: 'Email',
-  },
-  {
-    id: 'number',
-    title: 'Number',
-  },
-  {
-    id: 'country',
-    title: 'Country',
-  },
-]
-
-// Define the items
-const items = [
-  {
-    name: "T'Chala",
-    email: 'black.panther@gmail.com',
-    number: 1.88191,
-    country: '🇰🇪Wakanda',
-  },
-  {
-    name: 'Peter Parker',
-    email: 'spider.man@gmail.com',
-    number: 3.09191,
-    country: '🇺🇸USA',
-  },
-  {
-    name: 'Shang-Chi',
-    email: 'kungfu.master@gmail.com',
-    number: 39.09222,
-    country: '🇨🇳China',
-  },
-  {
-    name: 'Natasha Romanoff',
-    email: 'black.widow@gmail.com',
-    number: 5.09291,
-    country: '🇷🇺Russia',
-  },
-]
-
-function LineActionsExample() {
-  const lineActions = [
-    {
-      label: 'Action 1',
-      onClick: ({ rowData }) => alert(`Executed action for ${rowData.name}`),
-    },
-    {
-      label: 'DANGEROUS Action',
-      isDangerous: true,
-      onClick: ({ rowData }) =>
-        alert(`Executed a DANGEROUS action for ${rowData.name}`),
-    },
-  ]
-
-  const { itemsWithLineActions, columnsWithLineActions } = useTableLineActions({
-    items,
-    columns,
-    lineActions,
-  })
-  const tableState = useTableState({
-    columns: columnsWithLineActions,
-    items: itemsWithLineActions,
-  })
-
-  return <Table state={tableState} />
-}
-;<LineActionsExample />
 ```
 
 ### UNSAFE Custom Input

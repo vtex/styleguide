@@ -7,35 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [9.87.2] - 2019-10-10
+## [9.87.3] - 2019-10-14
 
 ### Added
 
-- **checked** prop to `EXPERIMENTAL_useTableTreeCheckboxes`
-
-## [9.87.1] - 2019-10-10
-
-### Fixed
-
-- **Tooltip** popup's position.
-
-## [9.87.0] - 2019-10-10
-
-### Added
-
-- **isDangerous** prop to `ModalDialog`component.
-
-## [9.86.6] - 2019-10-10
-
-### Fixed
-
-- `Button` fixes hover colors of Tertiary and Danger Tertiary to more consistent ones
-
-## [9.86.5] - 2019-10-10
-
-### Fixed
-
-- **InputSearch** `onSubmit` prop function had a value as param instead of an event as the contract requires.
+- Added `FilterBar` to `EXPERIMENTAL_Table` and `EXPERIMENTAL_TableTree`.
 
 ## [9.86.4] - 2019-10-08
 
