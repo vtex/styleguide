@@ -453,6 +453,7 @@ Table.propTypes = {
         handleCallback: PropTypes.func.isRequired,
       })
     ),
+    fixed: PropTypes.bool,
   }),
   /** Totalizers property  */
   totalizers: PropTypes.array,

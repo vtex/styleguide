@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
+import Sticky from 'react-stickynode'
 
 import Button from '../Button'
 import ButtonWithIcon from '../ButtonWithIcon'
@@ -8,10 +9,25 @@ import ActionMenu from '../ActionMenu'
 import Close from '../icon/Close'
 
 import BulkActionsSelectedRows from './BulkActionsSelectedRows'
+import { TABLE_CONTENT_CLASS } from './SimpleTable'
 
 const close = <Close />
 
 class BulkActions extends PureComponent {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      sticky: false,
+    }
+  }
+
+  handleStickyChange = status => {
+    this.setState({
+      sticky: status.status === Sticky.STATUS_FIXED,
+    })
+  }
+
   render() {
     const {
       hasPrimaryBulkAction,
@@ -26,85 +42,95 @@ class BulkActions extends PureComponent {
     const hasBulkActions = hasPrimaryBulkAction || hasSecondaryBulkActions
     const selectedRowsLength = selectedRows.length
     const hasRowsSelected = selectedRowsLength > 0
+    const fixed = bulkActions && bulkActions.fixed
 
     const bulkActionsReturnedParameters = allLinesSelected
       ? { allLinesSelected: true }
       : { selectedRows }
 
     return (
-      <div
-        className={classNames(
-          'flex flex-row justify-between bg-action-primary c-on-action-primary br3 br--top ph4',
-          {
-            pv4: hasRowsSelected,
-          }
-        )}
-        style={{
-          height: hasRowsSelected ? '56px' : 0,
-          overflow: hasRowsSelected ? 'auto' : 'hidden',
-          transition: 'height 0.2s ease-in-out, padding 0.2s ease-in-out',
-        }}>
-        {hasBulkActions && (
-          <div className="flex flex-row">
-            {hasPrimaryBulkAction && (
-              <div className="mr4">
-                <Button
-                  variation="secondary"
-                  size="small"
-                  onClick={() =>
-                    bulkActions.main.handleCallback(
-                      bulkActionsReturnedParameters
-                    )
-                  }>
-                  {bulkActions.main.label}
-                </Button>
-              </div>
-            )}
-            {hasSecondaryBulkActions && (
-              <ActionMenu
-                label={bulkActions.texts.secondaryActionsLabel}
-                buttonProps={{ variation: 'secondary', size: 'small' }}
-                options={bulkActions.others.map(el => ({
-                  label: el.label,
-                  isDangerous: el.isDangerous,
-                  onClick: () =>
-                    el.handleCallback(bulkActionsReturnedParameters),
-                }))}
-              />
-            )}
-          </div>
-        )}
-        <div className="tr flex flex-row items-center">
-          {!allLinesSelected && bulkActions && bulkActions.texts && (
-            <span className="mr4 c-muted-4">
-              {bulkActions.texts.rowsSelected(
-                <BulkActionsSelectedRows
-                  selectedRowsLength={selectedRowsLength}
+      <Sticky
+        enabled={fixed && hasRowsSelected}
+        innerZ="1"
+        activeClass="shadow-4"
+        bottomBoundary={`.${TABLE_CONTENT_CLASS}`}
+        onStateChange={this.handleStickyChange}>
+        <div
+          className={classNames(
+            'flex flex-row justify-between bg-action-primary c-on-action-primary ph4',
+            {
+              pv4: hasRowsSelected,
+              'shadow-4': hasRowsSelected && this.state.sticky,
+              'br3 br--top': !this.state.sticky,
+            }
+          )}
+          style={{
+            height: hasRowsSelected ? '56px' : 0,
+            overflow: hasRowsSelected ? 'auto' : 'hidden',
+            transition: 'height 0.2s ease-in-out, padding 0.2s ease-in-out',
+          }}>
+          {hasBulkActions && (
+            <div className="flex flex-row">
+              {hasPrimaryBulkAction && (
+                <div className="mr4">
+                  <Button
+                    variation="secondary"
+                    size="small"
+                    onClick={() =>
+                      bulkActions.main.handleCallback(
+                        bulkActionsReturnedParameters
+                      )
+                    }>
+                    {bulkActions.main.label}
+                  </Button>
+                </div>
+              )}
+              {hasSecondaryBulkActions && (
+                <ActionMenu
+                  label={bulkActions.texts.secondaryActionsLabel}
+                  buttonProps={{ variation: 'secondary', size: 'small' }}
+                  options={bulkActions.others.map(el => ({
+                    label: el.label,
+                    isDangerous: el.isDangerous,
+                    onClick: () =>
+                      el.handleCallback(bulkActionsReturnedParameters),
+                  }))}
                 />
               )}
-            </span>
+            </div>
           )}
-          {bulkActions &&
-            bulkActions.texts &&
-            bulkActions.texts.selectAll &&
-            bulkActions.texts.allRowsSelected && (
-              <span className="mr2">
-                {allLinesSelected ? (
-                  bulkActions.texts.allRowsSelected(
-                    <span className="b">{bulkActions.totalItems}</span>
-                  )
-                ) : (
-                  <Button onClick={() => onSelectAllLines()}>
-                    <span className="ttu">
-                      {`${bulkActions.texts.selectAll} ${bulkActions.totalItems}`}
-                    </span>
-                  </Button>
+          <div className="tr flex flex-row items-center">
+            {!allLinesSelected && bulkActions && bulkActions.texts && (
+              <span className="mr4 c-muted-4">
+                {bulkActions.texts.rowsSelected(
+                  <BulkActionsSelectedRows
+                    selectedRowsLength={selectedRowsLength}
+                  />
                 )}
               </span>
             )}
-          <ButtonWithIcon icon={close} onClick={() => onDeselectAllLines()} />
+            {bulkActions &&
+              bulkActions.texts &&
+              bulkActions.texts.selectAll &&
+              bulkActions.texts.allRowsSelected && (
+                <span className="mr2">
+                  {allLinesSelected ? (
+                    bulkActions.texts.allRowsSelected(
+                      <span className="b">{bulkActions.totalItems}</span>
+                    )
+                  ) : (
+                    <Button onClick={() => onSelectAllLines()}>
+                      <span className="ttu">
+                        {`${bulkActions.texts.selectAll} ${bulkActions.totalItems}`}
+                      </span>
+                    </Button>
+                  )}
+                </span>
+              )}
+            <ButtonWithIcon icon={close} onClick={() => onDeselectAllLines()} />
+          </div>
         </div>
-      </div>
+      </Sticky>
     )
   }
 }

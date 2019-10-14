@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- `Fixed` option to bulk actions for a sticky behaviour
+
 ## [9.87.3] - 2019-10-14
 
 ### Added
