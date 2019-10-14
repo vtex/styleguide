@@ -18,7 +18,7 @@ const Node: FC<NodeProps> = ({ data, depth }) => {
   const isRowSelected = isRowChecked || isRowPartiallyChecked
 
   const renderPrefix = (hasChild?: boolean) => (
-    <CellPrefix depth={depth}>
+    <CellPrefix depth={depth} hasCheckbox={!!checkboxes}>
       {hasChild && (
         <CellPrefix.CollapseToggle
           collapsed={isCollapsed(data[unicityKey])}

@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Table tree not rendering if checkboxes are not allowed
+
 ## [9.88.0] - 2019-10-15
 
 ### Added
