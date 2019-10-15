@@ -21,6 +21,7 @@ const NO_TITLE_COLUMN = ' '
 const SELECTED_ROW_BACKGROUND = '#dbe9fd'
 const DEFAULT_SCROLLBAR_WIDTH = 17
 const EMPTY_STATE_SIZE_IN_ROWS = 5
+export const TABLE_CONTENT_CLASS = 'vtex-table__content'
 
 class SimpleTable extends Component {
   constructor(props) {
@@ -187,7 +188,9 @@ class SimpleTable extends Component {
     const tableHeight = containerHeight || this.calculateContainerHeight()
 
     return (
-      <div className="vh-100 w-100 dt" style={{ height: tableHeight }}>
+      <div
+        className={`vh-100 w-100 dt ${TABLE_CONTENT_CLASS}`}
+        style={{ height: tableHeight }}>
         {loading ? (
           <div
             className="dtc v-mid tc"
