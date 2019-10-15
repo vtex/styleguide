@@ -195,6 +195,7 @@ FilterBar.defaultProps = {
   subjectPlaceholder: 'Select a filter…',
   submitFilterLable: 'Apply',
   newFilterLable: 'New Filter',
+  statements: [],
 }
 
 export const filterBarPropTypes = {
