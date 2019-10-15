@@ -11,6 +11,7 @@ import Close from '../icon/Close'
 import BulkActionsSelectedRows from './BulkActionsSelectedRows'
 import { TABLE_CONTENT_CLASS } from './SimpleTable'
 
+const DEFAULT_BAR_HEIGHT_PX = '56px'
 const close = <Close />
 
 class BulkActions extends PureComponent {
@@ -18,13 +19,13 @@ class BulkActions extends PureComponent {
     super(props)
 
     this.state = {
-      sticky: false,
+      isStickingToTop: false,
     }
   }
 
   handleStickyChange = status => {
     this.setState({
-      sticky: status.status === Sticky.STATUS_FIXED,
+      isStickingToTop: status.status === Sticky.STATUS_FIXED,
     })
   }
 
@@ -59,14 +60,14 @@ class BulkActions extends PureComponent {
           className={classNames(
             'flex flex-row justify-between bg-action-primary c-on-action-primary ph4',
             {
-              pv4: hasRowsSelected,
-              'shadow-4': hasRowsSelected && this.state.sticky,
-              'br3 br--top': !this.state.sticky,
+              'pv4 overflow-auto': hasRowsSelected,
+              'overflow-hidden': !hasRowsSelected,
+              'shadow-4': hasRowsSelected && this.state.isStickingToTop,
+              'br3 br--top': !this.state.isStickingToTop,
             }
           )}
           style={{
-            height: hasRowsSelected ? '56px' : 0,
-            overflow: hasRowsSelected ? 'auto' : 'hidden',
+            height: hasRowsSelected ? DEFAULT_BAR_HEIGHT_PX : 0,
             transition: 'height 0.2s ease-in-out, padding 0.2s ease-in-out',
           }}>
           {hasBulkActions && (
