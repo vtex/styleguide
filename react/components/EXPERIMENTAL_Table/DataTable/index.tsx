@@ -1,10 +1,11 @@
 import React, { FC, Children } from 'react'
+import csx from 'classnames'
 
 import EmptyState from '../../EmptyState/index.js'
 
 import Headings from './Headings'
 import Rows from './Rows'
-import { NAMESPACES } from '../constants'
+import { NAMESPACES, ORDER_CLASSNAMES } from '../constants'
 import { useTableContext } from '../contexts'
 import Loading from './Loading'
 
@@ -23,7 +24,7 @@ const DataTableContainer: FC = ({ children }) => {
     <div
       id={NAMESPACES.TABLE}
       style={{ minHeight: height }}
-      className="order-1 mw-100 overflow-x-auto">
+      className={csx('order-1 mw-100 overflow-x-auto', ORDER_CLASSNAMES.TABLE)}>
       {children}
       {!isEmpty && loading && (
         <Loading>
