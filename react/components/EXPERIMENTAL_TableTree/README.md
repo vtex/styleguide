@@ -1,4 +1,45 @@
-#### Toolbar
+#### NodesKey Prop
+
+```js
+const useTableState = require('../EXPERIMENTAL_Table/hooks/useTableState.ts')
+  .default
+const sampleData = require('./sampleData.ts').default
+
+// Define the columns
+const columns = [
+  {
+    id: 'name',
+    title: 'Name',
+  },
+  {
+    id: 'email',
+    title: 'Email',
+  },
+  {
+    id: 'number',
+    title: 'Number',
+  },
+  {
+    id: 'country',
+    title: 'Country',
+  },
+]
+
+// Define the items
+const items = sampleData
+
+function ToolbarExample() {
+  const tableState = useTableState({
+    columns,
+    items,
+  })
+
+  return <TableTree unicityKey="email" nodesKey="children" state={tableState} />
+}
+;<ToolbarExample />
+```
+
+#### Full Example
 
 ```js
 const useTableState = require('../EXPERIMENTAL_Table/hooks/useTableState.ts')

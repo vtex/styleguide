@@ -1,10 +1,4 @@
-import React, {
-  FC,
-  useState,
-  useContext,
-  createContext,
-  useCallback,
-} from 'react'
+import React, { FC } from 'react'
 import uuid from 'uuid'
 
 import CellPrefix from './CellPrefix'
@@ -15,28 +9,31 @@ import { Item } from '../hooks/useTableTreeCheckboxes'
 
 const Node: FC<NodeProps> = ({ data, depth }) => {
   const { visibleColumns, unicityKey, rowHeight } = useTableContext()
-  const { toggle, isChecked, isPartiallyChecked } = useCheckboxesContext()
+  const checkboxes = useCheckboxesContext()
   const { toggleCollapsed, isCollapsed, nodesKey } = useTreeContext()
 
-  const isRowChecked = isChecked(data)
-  const isRowPartiallyChecked = isPartiallyChecked(data)
+  const isRowChecked = checkboxes && checkboxes.isChecked(data)
+  const isRowPartiallyChecked =
+    checkboxes && checkboxes.isPartiallyChecked(data)
   const isRowSelected = isRowChecked || isRowPartiallyChecked
 
   const renderPrefix = (hasChild?: boolean) => (
-    <CellPrefix depth={depth}>
+    <CellPrefix depth={depth} hasCheckbox={!!checkboxes}>
       {hasChild && (
         <CellPrefix.CollapseToggle
           collapsed={isCollapsed(data[unicityKey])}
           onClick={() => toggleCollapsed(data[unicityKey])}
         />
       )}
-      <span className="ph2">
-        <CellPrefix.Checkbox
-          checked={isRowChecked}
-          partial={isRowPartiallyChecked}
-          onClick={() => toggle(data)}
-        />
-      </span>
+      {checkboxes && (
+        <span className="ph2">
+          <CellPrefix.Checkbox
+            checked={isRowChecked}
+            partial={isRowPartiallyChecked}
+            onClick={() => checkboxes.toggle(data)}
+          />
+        </span>
+      )}
     </CellPrefix>
   )
 
@@ -75,9 +72,12 @@ const Node: FC<NodeProps> = ({ data, depth }) => {
 
 const Tree: FC = () => {
   const { items } = useTableContext()
+  const { nodesKey } = useTreeContext()
+  const checkboxes = useCheckboxesContext()
+  const listToRender = checkboxes ? items[nodesKey] : items
   return (
     <>
-      {items.children.map(data => (
+      {listToRender.map(data => (
         <Node key={`row-${uuid()}`} data={data} />
       ))}
     </>

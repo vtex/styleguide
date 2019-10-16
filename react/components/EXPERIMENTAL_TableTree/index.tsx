@@ -12,6 +12,7 @@ import { InferProps } from 'prop-types'
 import TreeHeadings from './Tree/TreeHeadings'
 import Pagination from '../EXPERIMENTAL_Table/Pagination'
 import FilterBar from '../EXPERIMENTAL_Table/FilterBar'
+import { checkboxesHookReturn } from './hooks/useTableTreeCheckboxes'
 
 const TableTree: FC<Props> & TableComposites = ({
   children,
@@ -23,7 +24,8 @@ const TableTree: FC<Props> & TableComposites = ({
   return (
     <TableContext.Provider value={{ ...state, ...props }}>
       <TreeProvider nodesKey={nodesKey}>
-        <CheckboxesContext.Provider value={{ ...checkboxes }}>
+        <CheckboxesContext.Provider
+          value={checkboxes ? { ...checkboxes } : null}>
           <TableContainer>
             {children}
             <DataTable>
@@ -70,6 +72,7 @@ const propTypes = {
   ...tablePropTypes,
   ...checkboxesPropTypes,
 }
+
 type Props = InferProps<typeof propTypes>
 
 TableTree.Toolbar = Toolbar
@@ -79,6 +82,7 @@ TableTree.propTypes = propTypes
 
 export type TreeProps = {
   nodesKey?: string
+  checkboxes?: checkboxesHookReturn
 }
 
 export type TreeState = {
