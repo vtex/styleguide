@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- **FilterBar** `VerbAtom` behavior when there is only one verb option to show a `span` tag instead of a `Select`.
+
 ## [9.88.3] - 2019-10-17
 
 ### Fixed
