@@ -17,7 +17,7 @@ class Checkbox extends PureComponent {
       required,
       value,
       partial,
-      title
+      title,
     } = this.props
 
     return (
