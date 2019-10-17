@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.73.9] - 2019-10-17
+
+- **Select** `defaultValue` warning when receiving an array of options.
+
 ## [8.73.8] - 2019-10-17
 
 ### Fixed
