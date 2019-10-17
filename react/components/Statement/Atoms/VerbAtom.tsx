@@ -30,7 +30,6 @@ const VerbAtom: React.FC<Props> = ({
 }) => {
   const value = verbOptions.find(option => option.value === verb)
 
-  console.log(value)
   return (
     <div
       className={`mh3 ${isFullWidth ? 'pb3' : ''} flex justify-center`}
