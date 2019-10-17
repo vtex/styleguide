@@ -30,20 +30,27 @@ const VerbAtom: React.FC<Props> = ({
 }) => {
   const value = verbOptions.find(option => option.value === verb)
 
+  console.log(value)
   return (
     <div
-      className={`mh3 ${isFullWidth ? 'pb3' : ''}`}
+      className={`mh3 ${isFullWidth ? 'pb3' : ''} flex justify-center`}
       style={{ minWidth: '20%' }}>
-      <Select
-        ref={forwardedRef}
-        clearable={false}
-        disabled={disabled}
-        multi={false}
-        onChange={option => onChange(option && option.value)}
-        options={verbOptions}
-        placeholder=""
-        value={value}
-      />
+      {verbOptions.length !== 1 ? (
+        <div className="flex-auto">
+          <Select
+            ref={forwardedRef}
+            clearable={false}
+            disabled={disabled}
+            multi={false}
+            onChange={option => onChange(option && option.value)}
+            options={verbOptions}
+            placeholder=""
+            value={value}
+          />
+        </div>
+      ) : (
+        <span>{value.label}</span>
+      )}
     </div>
   )
 }
