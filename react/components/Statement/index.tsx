@@ -95,7 +95,7 @@ const Statement: React.FC<Props> = ({
     return (
       <div className="flex-column w-100 mv3">
         <div
-          className={`flex w-100 items-start ${
+          className={`flex w-100 items-center ${
             isFullWidth ? 'flex-column items-stretch' : ''
           }`}>
           {isRtl ? statementAtoms.reverse() : statementAtoms}

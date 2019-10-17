@@ -32,8 +32,8 @@ const VerbAtom: React.FC<Props> = ({
 
   return (
     <div
-      className={`mh3 ${isFullWidth ? 'pb3' : ''} flex justify-center`}
-      style={{ minWidth: '20%' }}>
+      className={`mh3 ${isFullWidth ? 'pb3' : ''} flex items-center`}
+      style={verbOptions.length !== 1 ? { minWidth: '20%' } : {}}>
       {verbOptions.length !== 1 ? (
         <div className="flex-auto">
           <Select
