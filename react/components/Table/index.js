@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import { StickyContainer } from 'react-sticky'
 import PropTypes from 'prop-types'
 import reduce from 'lodash/reduce'
 import map from 'lodash/map'
@@ -277,46 +278,47 @@ class Table extends PureComponent {
         {totalizers && totalizers.length > 0 && (
           <Totalizers items={totalizers} />
         )}
-
-        <BulkActions
-          hasPrimaryBulkAction={hasPrimaryBulkAction}
-          hasSecondaryBulkActions={hasSecondaryBulkActions}
-          selectedRows={selectedRows}
-          bulkActions={bulkActions}
-          allLinesSelected={allLinesSelected}
-          onSelectAllLines={this.handleSelectAllLines}
-          onDeselectAllLines={this.handleDeselectAllLines}
-        />
-
-        {emptyState ? (
-          <Box>
-            <EmptyState title={emptyStateLabel}>
-              {emptyStateChildren}
-            </EmptyState>
-          </Box>
-        ) : (
-          <SimpleTable
-            fullWidth={fullWidth}
-            items={items}
-            schema={displaySchema}
-            fixFirstColumn={fixFirstColumn}
-            rowHeight={tableRowHeight}
-            disableHeader={disableHeader}
-            emptyStateLabel={emptyStateLabel}
-            emptyStateChildren={emptyStateChildren}
-            dynamicRowHeight={dynamicRowHeight}
-            onRowClick={onRowClick}
-            sort={sort}
-            onSort={onSort}
-            key={hiddenFields.toString()}
-            updateTableKey={updateTableKey}
-            lineActions={lineActions}
-            loading={loading}
-            containerHeight={containerHeight}
-            selectedRowsIndexes={map(selectedRows, 'id')}
-            density={selectedDensity}
+        <StickyContainer>
+          <BulkActions
+            hasPrimaryBulkAction={hasPrimaryBulkAction}
+            hasSecondaryBulkActions={hasSecondaryBulkActions}
+            selectedRows={selectedRows}
+            bulkActions={bulkActions}
+            allLinesSelected={allLinesSelected}
+            onSelectAllLines={this.handleSelectAllLines}
+            onDeselectAllLines={this.handleDeselectAllLines}
           />
-        )}
+
+          {emptyState ? (
+            <Box>
+              <EmptyState title={emptyStateLabel}>
+                {emptyStateChildren}
+              </EmptyState>
+            </Box>
+          ) : (
+            <SimpleTable
+              fullWidth={fullWidth}
+              items={items}
+              schema={displaySchema}
+              fixFirstColumn={fixFirstColumn}
+              rowHeight={tableRowHeight}
+              disableHeader={disableHeader}
+              emptyStateLabel={emptyStateLabel}
+              emptyStateChildren={emptyStateChildren}
+              dynamicRowHeight={dynamicRowHeight}
+              onRowClick={onRowClick}
+              sort={sort}
+              onSort={onSort}
+              key={hiddenFields.toString()}
+              updateTableKey={updateTableKey}
+              lineActions={lineActions}
+              loading={loading}
+              containerHeight={containerHeight}
+              selectedRowsIndexes={map(selectedRows, 'id')}
+              density={selectedDensity}
+            />
+          )}
+        </StickyContainer>
 
         {!loading && paginationClone && <Pagination {...paginationClone} />}
       </div>
