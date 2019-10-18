@@ -6,11 +6,11 @@ import { useTableContext } from '../contexts'
 import { Row, CellProps, RowProps } from '../Styled'
 
 const Headings: FC<HeadingsProps> = ({ cellProps, rowProps }) => {
-  const { visibleColumns } = useTableContext()
+  const { columns } = useTableContext()
 
   return (
     <Row {...rowProps} height={TABLE_HEADER_HEIGHT}>
-      {visibleColumns.map((headerData: Column) => {
+      {columns.map((headerData: Column) => {
         const { headerRender, title, width } = headerData
         const content = headerRender ? headerRender({ headerData }) : title
         return (

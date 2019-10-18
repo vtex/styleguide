@@ -1129,6 +1129,7 @@ function FilterBarExample() {
 // Imports
 const useTableState = require('./hooks/useTableState.ts').default
 const useTableMeasures = require('./stateContainers/tableMeasures.tsx').default
+const useTableVisibility = require('./stateContainers/visibility.ts').default
 
 // Define the columns
 const columns = [
@@ -1182,8 +1183,13 @@ function ToolbarExample() {
   const [inputValue, setInputValue] = React.useState('')
   const [displayItems, setDisplayItems] = React.useState(items)
 
-  const tableState = useTableState({
+  const visibility = useTableVisibility({
     columns,
+    items,
+  })
+
+  const tableState = useTableState({
+    columns: visibility.visibleColumns,
     items: displayItems,
   })
 
@@ -1216,6 +1222,7 @@ function ToolbarExample() {
     label: 'Toggle visible fields',
     showAllLabel: 'Show All',
     hideAllLabel: 'Hide All',
+    visibility
   }
 
   const density = {

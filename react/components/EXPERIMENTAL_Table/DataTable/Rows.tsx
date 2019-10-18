@@ -9,7 +9,7 @@ import useTableMeasures, {
 } from '../stateContainers/tableMeasures'
 
 const Rows: FC<RowsProps> = ({ cellProps, rowProps }) => {
-  const { visibleColumns, items, onRowClick, unicityKey } = useTableContext()
+  const { columns, items, onRowClick, unicityKey } = useTableContext()
   const { rowHeight } = useMeasuresState()
   const bulkContext = useBulkContext()
 
@@ -32,7 +32,7 @@ const Rows: FC<RowsProps> = ({ cellProps, rowProps }) => {
         height={rowHeight}
         isSelected={isSelected}
         key={`${NAMESPACES.ROW}-${uuid()}`}>
-        {visibleColumns.map((column: Column) => {
+        {columns.map((column: Column) => {
           const { cellRender, width } = column
           const cellData = rowData[column.id]
           const content = cellRender

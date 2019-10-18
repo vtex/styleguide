@@ -6,6 +6,7 @@ import Menu from './Menu/index'
 
 import { ICON_SIZE, COLUMNS_BOX, NAMESPACES } from '../constants'
 import { useTableContext } from '../contexts'
+import useTableVisibility from '../stateContainers/visibility'
 
 export type ButtonColumnsProps = {
   label: string
@@ -13,6 +14,7 @@ export type ButtonColumnsProps = {
   hideAllLabel: string
   alignMenu: Alignment
   disabled: boolean
+  visibility: ReturnType<typeof useTableVisibility>
 }
 
 const ButtonColumns: FC<ButtonColumnsProps> = ({
@@ -21,14 +23,15 @@ const ButtonColumns: FC<ButtonColumnsProps> = ({
   hideAllLabel,
   alignMenu,
   disabled,
+  visibility,
 }) => {
   const {
     hiddenColumns,
-    columns,
     hideAllColumns,
     showAllColumns,
     toggleColumn,
-  } = useTableContext()
+    columns,
+  } = visibility
 
   const height = Math.min(
     columns.length * COLUMNS_BOX.ITEM_HEIGHT,
