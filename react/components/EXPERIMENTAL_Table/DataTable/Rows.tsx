@@ -4,9 +4,7 @@ import uuid from 'uuid'
 import { useTableContext, useBulkContext } from '../contexts'
 import { NAMESPACES } from '../constants'
 import { Row, RowProps, CellProps } from '../Styled'
-import useTableMeasures, {
-  useMeasuresState,
-} from '../stateContainers/tableMeasures'
+import { useMeasuresState } from '../stateContainers/tableMeasures'
 
 const Rows: FC<RowsProps> = ({ cellProps, rowProps }) => {
   const { columns, items, onRowClick, unicityKey } = useTableContext()

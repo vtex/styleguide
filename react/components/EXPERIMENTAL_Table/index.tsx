@@ -5,34 +5,47 @@ import { TableContext, BulkContext } from './contexts'
 import Toolbar from './Toolbar/index'
 
 import { DENSITY_OPTIONS } from './constants'
-import LineActions, { LineActionProps } from './LineActions'
 import Pagination, { PaginationProps } from './Pagination'
-import { STATE_NOT_FOUND_ERROR } from './errors'
 import { TableContainer, Thead } from './Styled'
 import DataTable from './DataTable'
 import BulkActions from './BulkActions'
 import FilterBar from './FilterBar'
 import { MeasuresProvider } from './stateContainers/tableMeasures'
 
+function TableProvider({ children, value }) {
+  return <TableContext.Provider value={value}>{children}</TableContext.Provider>
+}
+
+function BulkProvider({ children, value }) {
+  return <BulkContext.Provider value={value}>{children}</BulkContext.Provider>
+}
+
 const Table: FC<Props> & TableComposites = ({
   children,
   measures,
-  state,
   bulk,
-  unicityKey,
   ...props
 }) => {
-  if (!state) {
-    throw STATE_NOT_FOUND_ERROR
+  if (!measures) {
+    //TODO
+    console.warn('Passing measures is highly recomended')
   }
+  if (!props.items) {
+    //TODO
+    console.warn('Items not provided')
+  }
+  if (!props.columns) {
+    //TODO
+    console.warn('Columns not provided')
+  }
+
   return (
-    <TableContext.Provider value={{ ...state, ...bulk, ...props, unicityKey }}>
+    <TableProvider value={props}>
       //@ts-ignore
       <MeasuresProvider value={measures}>
-        <BulkContext.Provider value={bulk}>
+        <BulkProvider value={bulk}>
           <TableContainer>
             {children}
-
             <DataTable>
               <Thead>
                 <DataTable.Headings />
@@ -42,9 +55,9 @@ const Table: FC<Props> & TableComposites = ({
               </tbody>
             </DataTable>
           </TableContainer>
-        </BulkContext.Provider>
+        </BulkProvider>
       </MeasuresProvider>
-    </TableContext.Provider>
+    </TableProvider>
   )
 }
 
@@ -85,6 +98,16 @@ export const tablePropTypes = {
   measures: PropTypes.shape(measuresPropTypes),
   containerHeight: PropTypes.number,
   unicityKey: PropTypes.string,
+  columns: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      title: PropTypes.string,
+      width: PropTypes.number,
+      cellRender: PropTypes.func,
+      headerRender: PropTypes.func,
+    })
+  ),
+  items: PropTypes.arrayOf(PropTypes.object),
   loading: PropTypes.oneOfType([
     PropTypes.shape({
       renderAs: PropTypes.func,
@@ -93,32 +116,6 @@ export const tablePropTypes = {
   ]),
   itemsSizeEstimate: PropTypes.number,
   onRowClick: PropTypes.func,
-  state: PropTypes.shape({
-    visibleColumns: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string,
-        title: PropTypes.string,
-        width: PropTypes.number,
-        cellRender: PropTypes.func,
-        headerRender: PropTypes.func,
-      })
-    ),
-    columns: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string,
-        title: PropTypes.string,
-        width: PropTypes.number,
-        cellRender: PropTypes.func,
-        headerRender: PropTypes.func,
-      })
-    ),
-    items: PropTypes.arrayOf(PropTypes.object),
-    isEmpty: PropTypes.bool,
-    tableHeight: PropTypes.number,
-    rowHeight: PropTypes.number,
-    selectedDensity: PropTypes.oneOf(DENSITY_OPTIONS),
-    setSelectedDensity: PropTypes.func,
-  }),
   emptyState: PropTypes.shape({
     label: PropTypes.string,
     children: PropTypes.element,

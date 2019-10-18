@@ -56,7 +56,6 @@ Different than the previous version the `Table v2` is completely stateless, mean
 
 ```js
 // Imports
-const useTableState = require('./hooks/useTableState.ts').default
 const useTableMeasures = require('./stateContainers/tableMeasures.tsx').default
 const Tag = require('../Tag/index.js').default
 
@@ -116,13 +115,7 @@ function StateHookExample() {
     items,
   })
 
-  console.log(measures)
-  const tableState = useTableState({
-    columns,
-    items,
-  })
-
-  return <Table measures={measures} state={tableState} />
+  return <Table measures={measures} columns={columns} items={items} />
 }
 ;<StateHookExample />
 ```
@@ -156,7 +149,7 @@ function StateHookExample() {
 # Clickable rows
 
 ```js
-const useTableState = require('./hooks/useTableState.ts').default
+const useTableMeasures = require('./stateContainers/tableMeasures.tsx').default
 
 const columns = [
   {
@@ -189,8 +182,7 @@ const items = [
 ]
 
 function ClickExample() {
-  const tableState = useTableState({
-    columns,
+  const measures = useTableMeasures({
     items,
   })
 
@@ -199,7 +191,14 @@ function ClickExample() {
     alert(`Your character is ${name}, from ${country}`)
   }
 
-  return <Table onRowClick={onRowClick} state={tableState} />
+  return (
+    <Table
+      measures={measures}
+      columns={columns}
+      items={items}
+      onRowClick={onRowClick}
+    />
+  )
 }
 ;<ClickExample />
 ```
@@ -208,7 +207,7 @@ function ClickExample() {
 
 ```js
 // Imports
-const useTableState = require('./hooks/useTableState.ts').default
+const useTableMeasures = require('./stateContainers/tableMeasures.tsx').default
 const Toggle = require('../Toggle/index.js').default
 
 const columns = [
@@ -243,10 +242,7 @@ const items = [
 
 function LoadingExample() {
   const [loading, setLoading] = React.useState(false)
-  const tableState = useTableState({
-    columns,
-    items,
-  })
+  const measures = useTableMeasures({ items })
 
   return (
     <div>
@@ -255,7 +251,12 @@ function LoadingExample() {
         checked={loading}
         onChange={() => setLoading(!loading)}
       />
-      <Table state={tableState} loading={loading} />
+      <Table
+        measures={measures}
+        columns={columns}
+        items={items}
+        loading={loading}
+      />
     </div>
   )
 }
@@ -266,7 +267,7 @@ function LoadingExample() {
 
 ```js
 // Imports
-const useTableState = require('./hooks/useTableState.ts').default
+const useTableMeasures = require('./stateContainers/tableMeasures.tsx').default
 const Toggle = require('../Toggle/index.js').default
 const Spinner = require('../Spinner/index.js').default
 
@@ -302,7 +303,7 @@ const items = [
 
 function CustomLoadingExample() {
   const [isLoading, setIsLoading] = React.useState(false)
-  const tableState = useTableState({ columns, items })
+  const measures = useTableMeasures({ items })
 
   const loading = isLoading && {
     loading: {
@@ -319,7 +320,7 @@ function CustomLoadingExample() {
         checked={isLoading}
         onChange={() => setIsLoading(!isLoading)}
       />
-      <Table state={tableState} {...loading} />
+      <Table measures={measures} columns={columns} items={items} {...loading} />
     </div>
   )
 }
@@ -330,7 +331,7 @@ function CustomLoadingExample() {
 
 ```js
 // Imports
-const useTableState = require('./hooks/useTableState.ts').default
+const useTableMeasures = require('./stateContainers/tableMeasures.tsx').default
 
 const columns = [
   {
@@ -344,16 +345,20 @@ const columns = [
 ]
 
 function EmptyExample() {
-  const tableState = useTableState({
-    columns,
-    items: [],
-  })
+  const measures = useTableMeasures({ items: [] })
 
   const emptyState = {
     label: 'This is an default empty state title',
   }
 
-  return <Table state={tableState} emptyState={emptyState} />
+  return (
+    <Table
+      measures={measures}
+      columns={columns}
+      items={[]}
+      emptyState={emptyState}
+    />
+  )
 }
 ;<EmptyExample />
 ```
@@ -410,7 +415,7 @@ function CustomEmptyStateExample() {
 
 ```js
 // Imports
-const useTableState = require('./hooks/useTableState.ts').default
+const useTableMeasures = require('./stateContainers/tableMeasures.tsx').default
 
 // Define the columns
 const columns = [
@@ -553,10 +558,7 @@ function usePagination(initialSize) {
 function PaginationExample() {
   const { slicedItems, ...paginationProps } = usePagination(5)
 
-  const tableState = useTableState({
-    columns,
-    items: slicedItems,
-  })
+  const measures = useTableMeasures({ items: slicedItems })
 
   const pagination = {
     ...paginationProps,
@@ -567,7 +569,7 @@ function PaginationExample() {
   }
 
   return (
-    <Table state={tableState}>
+    <Table measures={measures} items={slicedItems} columns={columns}>
       <Table.Pagination {...pagination} />
     </Table>
   )
@@ -597,7 +599,7 @@ Check the console when selecting/unselecting rows or clicking an action button i
 
 ```js
 // Imports
-const useTableState = require('./hooks/useTableState.ts').default
+const useTableMeasures = require('./stateContainers/tableMeasures.tsx').default
 const useTableBulkActions = require('./hooks/useTableBulkActions.tsx').default
 
 // Define the columns
@@ -674,8 +676,7 @@ function BulkExample() {
     bulkActions,
   })
 
-  const tableState = useTableState({
-    columns: bulkedColumns,
+  const measures = useTableMeasures({
     items,
   })
 
@@ -687,7 +688,11 @@ function BulkExample() {
   }
 
   return (
-    <Table state={tableState} bulk={bulk}>
+    <Table
+      measures={measures}
+      columns={bulkedColumns}
+      items={items}
+      bulk={bulk}>
       <Table.BulkActions {...bulkActions} />
     </Table>
   )
@@ -702,7 +707,7 @@ This feature creates a last extra column with an ActionMenu component per line.
 ```js
 // Imports
 const useTableLineActions = require('./hooks/useTableLineActions.tsx').default
-const useTableState = require('./hooks/useTableState.ts').default
+const useTableMeasures = require('./stateContainers/tableMeasures.tsx').default
 
 // Define the columns
 const columns = [
@@ -771,12 +776,15 @@ function LineActionsExample() {
     columns,
     lineActions,
   })
-  const tableState = useTableState({
-    columns: columnsWithLineActions,
-    items: itemsWithLineActions,
-  })
+  const measures = useTableMeasures({ items: itemsWithLineActions })
 
-  return <Table state={tableState} />
+  return (
+    <Table
+      measures={measures}
+      items={itemsWithLineActions}
+      columns={columnsWithLineActions}
+    />
+  )
 }
 ;<LineActionsExample />
 ```
@@ -784,7 +792,7 @@ function LineActionsExample() {
 # Filter Bar
 
 ```js
-const useTableState = require('./hooks/useTableState.ts').default
+const useTableMeasures = require('./stateContainers/tableMeasures.tsx').default
 const Input = require('../Input').default
 const Checkbox = require('../Checkbox').default
 
@@ -986,10 +994,7 @@ function FilterBarExample() {
     console.log(filteredItems)
   })
 
-  const tableState = useTableState({
-    columns,
-    items: filteredItems,
-  })
+  const measures = useTableMeasures({ items: filteredItems })
 
   const [filterStatements, setFilterStatements] = React.useState([])
 
@@ -1115,7 +1120,7 @@ function FilterBarExample() {
   }
 
   return (
-    <Table state={tableState}>
+    <Table measures={measures} columns={columns} items={filteredItems}>
       <Table.FilterBar {...filters} />
     </Table>
   )
@@ -1127,7 +1132,6 @@ function FilterBarExample() {
 
 ```js
 // Imports
-const useTableState = require('./hooks/useTableState.ts').default
 const useTableMeasures = require('./stateContainers/tableMeasures.tsx').default
 const useTableVisibility = require('./stateContainers/visibility.ts').default
 
@@ -1188,11 +1192,6 @@ function ToolbarExample() {
     items,
   })
 
-  const tableState = useTableState({
-    columns: visibility.visibleColumns,
-    items: displayItems,
-  })
-
   const measures = useTableMeasures({
     items,
   })
@@ -1222,7 +1221,7 @@ function ToolbarExample() {
     label: 'Toggle visible fields',
     showAllLabel: 'Show All',
     hideAllLabel: 'Hide All',
-    visibility
+    visibility,
   }
 
   const density = {
@@ -1275,7 +1274,11 @@ function ToolbarExample() {
   }
 
   return (
-    <Table measures={measures} state={tableState} emptyState={emptyState}>
+    <Table
+      measures={measures}
+      items={displayItems}
+      columns={visibility.visibleColumns}
+      emptyState={emptyState}>
       <Table.Toolbar>
         <Table.Toolbar.InputSearch {...inputSearch} />
         <Table.Toolbar.ButtonGroup>
@@ -1301,7 +1304,7 @@ The `UNSAFE_InputCustom` provides a simple way of passing a custom input to the 
 
 ```js
 // Imports
-const useTableState = require('./hooks/useTableState.ts').default
+const useTableMeasures = require('./stateContainers/tableMeasures.tsx').default
 const Input = require('../Input/index.js').default
 
 /** Define the columns */
@@ -1387,13 +1390,12 @@ function InputCustom({ onSubmit, ...inputProps }) {
 
 function UnsafeInputExample() {
   const { displayItems, ...inputProps } = useItemsFilter()
-  const tableState = useTableState({
-    columns,
+  const measures = useTableMeasures({
     items: displayItems,
   })
 
   return (
-    <Table state={tableState}>
+    <Table measures={measures} columns={columns} items={displayItems}>
       <Table.Toolbar>
         <Table.Toolbar.UNSAFE_InputCustom
           input={<InputCustom {...inputProps} />}
