@@ -32,18 +32,24 @@ const VerbAtom: React.FC<Props> = ({
 
   return (
     <div
-      className={`mh3 ${isFullWidth ? 'pb3' : ''}`}
-      style={{ minWidth: '20%' }}>
-      <Select
-        ref={forwardedRef}
-        clearable={false}
-        disabled={disabled}
-        multi={false}
-        onChange={option => onChange(option && option.value)}
-        options={verbOptions}
-        placeholder=""
-        value={value}
-      />
+      className={`mh3 ${isFullWidth ? 'pb3' : ''} flex items-center`}
+      style={verbOptions.length !== 1 ? { minWidth: '20%' } : {}}>
+      {verbOptions.length !== 1 ? (
+        <div className="flex-auto">
+          <Select
+            ref={forwardedRef}
+            clearable={false}
+            disabled={disabled}
+            multi={false}
+            onChange={option => onChange(option && option.value)}
+            options={verbOptions}
+            placeholder=""
+            value={value}
+          />
+        </div>
+      ) : (
+        <span>{value.label}</span>
+      )}
     </div>
   )
 }

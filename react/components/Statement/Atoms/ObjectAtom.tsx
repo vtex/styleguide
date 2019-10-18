@@ -22,7 +22,7 @@ type Props = {
 }
 
 const EmptyObjectAtom = () => (
-  <div className="flex-auto mh3 mb3">
+  <div className="flex-auto mh3">
     <Input disabled />
   </div>
 )
