@@ -1,8 +1,8 @@
 #### NodesKey Prop
 
 ```js
-const useTableState = require('../EXPERIMENTAL_Table/hooks/useTableState.ts')
-  .default
+/*const useTableState = require('../EXPERIMENTAL_Table/hooks/useTableState.ts')
+  .default*/
 const sampleData = require('./sampleData.ts').default
 
 // Define the columns
@@ -42,8 +42,8 @@ function ToolbarExample() {
 #### Full Example
 
 ```js
-const useTableState = require('../EXPERIMENTAL_Table/hooks/useTableState.ts')
-  .default
+/*const useTableState = require('../EXPERIMENTAL_Table/hooks/useTableState.ts')
+  .default*/
 const sampleData = require('./sampleData.ts').default
 const useTableTreeCheckboxes = require('./hooks/useTableTreeCheckboxes.tsx')
   .default

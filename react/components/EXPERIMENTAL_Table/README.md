@@ -369,7 +369,7 @@ Empty states can also be customized, the passed children will be rendered inside
 
 ```js
 // Imports
-const useTableState = require('./hooks/useTableState.ts').default
+const useTableMeasures = require('./stateContainers/tableMeasures.tsx').default
 const Button = require('../Button/index.js').default
 
 const columns = [
@@ -384,10 +384,7 @@ const columns = [
 ]
 
 function CustomEmptyStateExample() {
-  const tableState = useTableState({
-    columns,
-    items: [],
-  })
+  const measures = useTableMeasures({ items: []})
 
   const emptyState = {
     label: 'This is an default empty state title',
@@ -406,7 +403,7 @@ function CustomEmptyStateExample() {
     ),
   }
 
-  return <Table state={tableState} emptyState={emptyState} />
+  return <Table columns={columns} items={[]} emptyState={emptyState} />
 }
 ;<CustomEmptyStateExample />
 ```
