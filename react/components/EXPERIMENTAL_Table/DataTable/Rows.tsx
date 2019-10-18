@@ -1,15 +1,16 @@
 import React, { FC } from 'react'
 import uuid from 'uuid'
 
-import { useTableContext, useBulkContext } from '../contexts'
+import { useTableContext } from '../contexts'
 import { NAMESPACES } from '../constants'
 import { Row, RowProps, CellProps } from '../Styled'
 import { useMeasuresState } from '../stateContainers/tableMeasures'
+import { useBulkActionsState } from '../stateContainers/bulkActions'
 
 const Rows: FC<RowsProps> = ({ cellProps, rowProps }) => {
   const { columns, items, onRowClick, unicityKey } = useTableContext()
   const { rowHeight } = useMeasuresState()
-  const bulkContext = useBulkContext()
+  const bulkContext = useBulkActionsState()
 
   const renderRow = (rowData: unknown) => {
     const clickable = onRowClick

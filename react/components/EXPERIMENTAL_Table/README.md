@@ -600,7 +600,7 @@ Check the console when selecting/unselecting rows or clicking an action button i
 ```js
 // Imports
 const useTableMeasures = require('./stateContainers/tableMeasures.tsx').default
-const useTableBulkActions = require('./hooks/useTableBulkActions.tsx').default
+const useTableBulkActions = require('./stateContainers/bulkActions.tsx').default
 
 // Define the columns
 const columns = [

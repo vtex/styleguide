@@ -11,13 +11,10 @@ import DataTable from './DataTable'
 import BulkActions from './BulkActions'
 import FilterBar from './FilterBar'
 import { MeasuresProvider } from './stateContainers/tableMeasures'
+import { BulkActionsProvider } from './stateContainers/bulkActions'
 
 function TableProvider({ children, value }) {
   return <TableContext.Provider value={value}>{children}</TableContext.Provider>
-}
-
-function BulkProvider({ children, value }) {
-  return <BulkContext.Provider value={value}>{children}</BulkContext.Provider>
 }
 
 const Table: FC<Props> & TableComposites = ({
@@ -43,7 +40,8 @@ const Table: FC<Props> & TableComposites = ({
     <TableProvider value={props}>
       //@ts-ignore
       <MeasuresProvider value={measures}>
-        <BulkProvider value={bulk}>
+        //@ts-ignore
+        <BulkActionsProvider value={bulk}>
           <TableContainer>
             {children}
             <DataTable>
@@ -55,7 +53,7 @@ const Table: FC<Props> & TableComposites = ({
               </tbody>
             </DataTable>
           </TableContainer>
-        </BulkProvider>
+        </BulkActionsProvider>
       </MeasuresProvider>
     </TableProvider>
   )

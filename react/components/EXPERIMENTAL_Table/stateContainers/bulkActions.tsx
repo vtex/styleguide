@@ -1,16 +1,29 @@
-import React, { useMemo, useEffect, useReducer, useCallback } from 'react'
+import React, {
+  useMemo,
+  useEffect,
+  useReducer,
+  useCallback,
+  createContext,
+  useContext,
+  ReactNode,
+} from 'react'
 import uuid from 'uuid'
 
 import Checkbox from '../Checkbox'
 import { BulkActionsProps } from '../BulkActions'
 import { NAMESPACES } from '../constants'
 
-const useTableBulkActions = ({
+export default function useTableBulkActions({
   items,
   columns,
   bulkActions,
   unicityKey = 'id',
-}: hookInput): hookReturn => {
+}: {
+  items: Array<unknown>
+  columns: Array<Column>
+  bulkActions: BulkActionsProps
+  unicityKey: string
+}) {
   const [bulkState, dispatch] = useReducer(reducer, {
     selectedRows: [],
     allLinesSelected: false,
@@ -130,6 +143,7 @@ const useTableBulkActions = ({
   )
 
   return {
+    /** constraints */
     hasBulkActions,
     hasPrimaryBulkAction,
     hasSecondaryBulkActions,
@@ -148,6 +162,29 @@ const useTableBulkActions = ({
     setSelectedRows,
     setAllLinesSelected,
   }
+}
+
+const BulkActionsContext = createContext<
+  Partial<ReturnType<typeof useTableBulkActions>>
+>(null)
+
+export function useBulkActionsState() {
+  const state = useContext(BulkActionsContext)
+  return state
+}
+
+export function BulkActionsProvider({
+  value,
+  children,
+}: {
+  value: ReturnType<typeof useTableBulkActions>
+  children: ReactNode
+}) {
+  return (
+    <BulkActionsContext.Provider value={value}>
+      {children}
+    </BulkActionsContext.Provider>
+  )
 }
 
 function reducer(state: BulkState, action: Action) {
@@ -222,44 +259,7 @@ type Action = {
   }
 }
 
-type hookInput = {
-  items: Array<unknown>
-  columns: Array<Column>
-  bulkActions: BulkActionsProps
-  unicityKey: string
-}
-
-type hookReturn = {
-  bulkedColumns?: Array<Column>
-  bulkedItems?: Array<unknown>
-  bulkState?: BulkState
-  hasBulkActions?: boolean
-  hasPrimaryBulkAction?: boolean
-  hasSecondaryBulkActions?: boolean
-  selectAllRows?: () => void
-  deselectAllRows?: () => void
-  selectRow?: (row: unknown) => void
-  setSelectedRows?: (selectedRows: Array<unknown>) => void
-  setAllLinesSelected?: (allLinesSelected: boolean) => void
-  selectAllVisibleRows?: () => void
-}
-
 export type BulkState = {
   selectedRows?: Array<unknown>
   allLinesSelected?: boolean
 }
-
-export type Bulk = {
-  bulkState?: BulkState
-  hasBulkActions?: boolean
-  hasPrimaryBulkAction?: boolean
-  hasSecondaryBulkActions?: boolean
-  selectAllRows?: () => void
-  deselectAllRows?: () => void
-  selectRow?: (row: unknown) => void
-  setSelectedRows?: (selectedRows: Array<unknown>) => void
-  setAllLinesSelected?: (allLinesSelected: boolean) => void
-  selectAllVisibleRows?: () => void
-}
-
-export default useTableBulkActions
