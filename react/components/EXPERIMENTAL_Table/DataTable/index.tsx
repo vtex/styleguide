@@ -8,15 +8,11 @@ import Rows from './Rows'
 import { NAMESPACES, ORDER_CLASSNAMES } from '../constants'
 import { useTableContext } from '../contexts'
 import Loading from './Loading'
+import { useMeasuresState } from '../stateContainers/tableMeasures'
 
 const DataTableContainer: FC = ({ children }) => {
-  const {
-    loading,
-    isEmpty,
-    tableHeight,
-    containerHeight,
-    emptyState,
-  } = useTableContext()
+  const { loading, isEmpty, containerHeight, emptyState } = useTableContext()
+  const { tableHeight } = useMeasuresState()
 
   const height = isEmpty || loading ? containerHeight : tableHeight
 

@@ -57,6 +57,7 @@ Different than the previous version the `Table v2` is completely stateless, mean
 ```js
 // Imports
 const useTableState = require('./hooks/useTableState.ts').default
+const useTableMeasures = require('./stateContainers/tableMeasures.tsx').default
 const Tag = require('../Tag/index.js').default
 
 // Define the columns
@@ -111,12 +112,17 @@ const items = [
 ]
 
 function StateHookExample() {
+  const measures = useTableMeasures({
+    items,
+  })
+
+  console.log(measures)
   const tableState = useTableState({
     columns,
     items,
   })
 
-  return <Table state={tableState} />
+  return <Table measures={measures} state={tableState} />
 }
 ;<StateHookExample />
 ```
@@ -1122,6 +1128,7 @@ function FilterBarExample() {
 ```js
 // Imports
 const useTableState = require('./hooks/useTableState.ts').default
+const useTableMeasures = require('./stateContainers/tableMeasures.tsx').default
 
 // Define the columns
 const columns = [
@@ -1178,7 +1185,10 @@ function ToolbarExample() {
   const tableState = useTableState({
     columns,
     items: displayItems,
-    density: 'medium',
+  })
+
+  const measures = useTableMeasures({
+    items,
   })
 
   const emptyState = {
@@ -1258,7 +1268,7 @@ function ToolbarExample() {
   }
 
   return (
-    <Table state={tableState} emptyState={emptyState}>
+    <Table measures={measures} state={tableState} emptyState={emptyState}>
       <Table.Toolbar>
         <Table.Toolbar.InputSearch {...inputSearch} />
         <Table.Toolbar.ButtonGroup>

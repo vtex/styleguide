@@ -32,7 +32,6 @@ export const Row: FC<RowProps> & RowComposites = ({
   onClick,
   isSelected,
 }) => {
-  const { rowHeight } = useTableContext()
   const className = csx('w-100 ph4 truncate overflow-x-hidden', {
     'pointer hover-c-link hover-bg-muted-5': onClick,
     'bg-action-secondary': isSelected,
@@ -40,7 +39,7 @@ export const Row: FC<RowProps> & RowComposites = ({
   return (
     <Tag
       key={`${NAMESPACES.ROW}-${uuid()}`}
-      style={{ height: height || rowHeight }}
+      style={{ height: height }}
       onClick={onClick}
       className={className}>
       {children}

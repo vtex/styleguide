@@ -9,6 +9,7 @@ import {
 } from '../constants'
 import { useTableContext } from '../contexts'
 import Menu from './Menu/index'
+import { useMeasuresState, Density } from '../stateContainers/tableMeasures'
 
 const BOX_HEIGHT = DENSITY_OPTIONS.length * FIELDS_BOX_ITEM_HEIGHT
 
@@ -29,7 +30,7 @@ const ButtonDensity: FC<ButtonDensityProps> = ({
   alignMenu,
   ...options
 }) => {
-  const { selectedDensity, setSelectedDensity } = useTableContext()
+  const { selectedDensity, setSelectedDensity } = useMeasuresState()
   return (
     <Menu
       button={{

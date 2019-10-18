@@ -4,15 +4,13 @@ import uuid from 'uuid'
 import { useTableContext, useBulkContext } from '../contexts'
 import { NAMESPACES } from '../constants'
 import { Row, RowProps, CellProps } from '../Styled'
+import useTableMeasures, {
+  useMeasuresState,
+} from '../stateContainers/tableMeasures'
 
 const Rows: FC<RowsProps> = ({ cellProps, rowProps }) => {
-  const {
-    visibleColumns,
-    items,
-    onRowClick,
-    unicityKey,
-    rowHeight,
-  } = useTableContext()
+  const { visibleColumns, items, onRowClick, unicityKey } = useTableContext()
+  const { rowHeight } = useMeasuresState()
   const bulkContext = useBulkContext()
 
   const renderRow = (rowData: unknown) => {
@@ -31,6 +29,7 @@ const Rows: FC<RowsProps> = ({ cellProps, rowProps }) => {
       <Row
         {...rowProps}
         {...clickable}
+        height={rowHeight}
         isSelected={isSelected}
         key={`${NAMESPACES.ROW}-${uuid()}`}>
         {visibleColumns.map((column: Column) => {

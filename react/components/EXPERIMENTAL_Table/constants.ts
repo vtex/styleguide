@@ -47,6 +47,7 @@ export const TABLE_DENSITIES = {
   MEDIUM: 'medium' as Density,
   HIGH: 'high' as Density,
 }
+
 export const DENSITY_OPTIONS = [
   TABLE_DENSITIES.LOW,
   TABLE_DENSITIES.MEDIUM,

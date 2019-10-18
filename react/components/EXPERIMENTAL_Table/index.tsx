@@ -12,9 +12,11 @@ import { TableContainer, Thead } from './Styled'
 import DataTable from './DataTable'
 import BulkActions from './BulkActions'
 import FilterBar from './FilterBar'
+import { MeasuresProvider } from './stateContainers/tableMeasures'
 
 const Table: FC<Props> & TableComposites = ({
   children,
+  measures,
   state,
   bulk,
   unicityKey,
@@ -25,26 +27,36 @@ const Table: FC<Props> & TableComposites = ({
   }
   return (
     <TableContext.Provider value={{ ...state, ...bulk, ...props, unicityKey }}>
-      <BulkContext.Provider value={bulk}>
-        <TableContainer>
-          {children}
+      //@ts-ignore
+      <MeasuresProvider value={measures}>
+        <BulkContext.Provider value={bulk}>
+          <TableContainer>
+            {children}
 
-          <DataTable>
-            <Thead>
-              <DataTable.Headings />
-            </Thead>
-            <tbody>
-              <DataTable.Rows />
-            </tbody>
-          </DataTable>
-        </TableContainer>
-      </BulkContext.Provider>
+            <DataTable>
+              <Thead>
+                <DataTable.Headings />
+              </Thead>
+              <tbody>
+                <DataTable.Rows />
+              </tbody>
+            </DataTable>
+          </TableContainer>
+        </BulkContext.Provider>
+      </MeasuresProvider>
     </TableContext.Provider>
   )
 }
 
 Table.defaultProps = {
   unicityKey: 'id',
+}
+
+export const measuresPropTypes = {
+  tableHeight: PropTypes.number,
+  rowHeight: PropTypes.number,
+  selectedDensity: PropTypes.oneOf(DENSITY_OPTIONS),
+  setSelectedDensity: PropTypes.func,
 }
 
 export const bulkPropTypes = {
@@ -70,6 +82,7 @@ export const bulkPropTypes = {
 }
 
 export const tablePropTypes = {
+  measures: PropTypes.shape(measuresPropTypes),
   containerHeight: PropTypes.number,
   unicityKey: PropTypes.string,
   loading: PropTypes.oneOfType([
