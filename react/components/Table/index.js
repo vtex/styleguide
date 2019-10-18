@@ -95,8 +95,11 @@ class Table extends PureComponent {
   }
 
   getScrollbarWidth = () => {
-    if (!window || !document || !document.documentElement)
+    const isSSR = typeof document === 'undefined'
+    if (isSSR) {
       return DEFAULT_SCROLLBAR_WIDTH
+    }
+
     const scrollbarWidth =
       window.innerWidth - document.documentElement.clientWidth
     return isNaN(scrollbarWidth) ? DEFAULT_SCROLLBAR_WIDTH : scrollbarWidth
