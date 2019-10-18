@@ -706,7 +706,7 @@ This feature creates a last extra column with an ActionMenu component per line.
 
 ```js
 // Imports
-const useTableLineActions = require('./hooks/useTableLineActions.tsx').default
+const useTableLineActions = require('./stateContainers/lineActions.tsx').default
 const useTableMeasures = require('./stateContainers/tableMeasures.tsx').default
 
 // Define the columns
