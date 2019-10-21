@@ -1,5 +1,6 @@
 import LineAction, { LineActionObject } from '../LineActions'
 import React, { useMemo } from 'react'
+import { Items, Column } from './data'
 
 const NO_TITLE_COLUMN = ' '
 const LINE_ACTION_ID = 'lineAction'
@@ -8,11 +9,7 @@ export default function useTableLineActions({
   items,
   columns,
   lineActions,
-}: {
-  items: Array<Object>
-  columns: Array<Column>
-  lineActions: Array<LineActionObject>
-}) {
+}: LineActionsData) {
   const itemsWithLineActions = useMemo<Array<Object>>(() => {
     return lineActions
       ? items.map(item => ({ lineAction: true, ...item }))
@@ -40,4 +37,10 @@ export default function useTableLineActions({
     itemsWithLineActions,
     columnsWithLineActions,
   }
+}
+
+export type LineActionsData = {
+  items: Items
+  columns: Array<Column>
+  lineActions: Array<LineActionObject>
 }

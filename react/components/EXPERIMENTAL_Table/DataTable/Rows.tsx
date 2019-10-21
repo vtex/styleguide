@@ -6,9 +6,10 @@ import { NAMESPACES } from '../constants'
 import { Row, RowProps, CellProps } from '../Styled'
 import { useMeasuresState } from '../stateContainers/tableMeasures'
 import { useBulkActionsState } from '../stateContainers/bulkActions'
+import { Column, useDataState } from '../stateContainers/data'
 
 const Rows: FC<RowsProps> = ({ cellProps, rowProps }) => {
-  const { columns, items, onRowClick, unicityKey } = useTableContext()
+  const { columns, items, onRowClick, unicityKey } = useDataState()
   const { rowHeight } = useMeasuresState()
   const bulkContext = useBulkActionsState()
 

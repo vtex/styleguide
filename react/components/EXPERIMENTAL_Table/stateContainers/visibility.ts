@@ -1,12 +1,7 @@
 import { useMemo, useState, useCallback } from 'react'
+import { Column, Items } from './data'
 
-export default function useTableVisibility({
-  columns,
-  items,
-}: {
-  columns: Array<Column>
-  items: Array<any>
-}) {
+export default function useTableVisibility({ columns, items }: VisibilityData) {
   const [hiddenColumns, setHiddenColumns] = useState(getHiddenColumns(columns))
 
   const visibleColumns = useMemo(() => {
@@ -48,6 +43,11 @@ export default function useTableVisibility({
     showAllColumns,
     hideAllColumns,
   }
+}
+
+export type VisibilityData = {
+  columns: Array<Column>
+  items: Items
 }
 
 function getHiddenColumns(columns: Array<Column>): Array<string> {

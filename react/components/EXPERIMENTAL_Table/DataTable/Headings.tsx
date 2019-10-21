@@ -2,11 +2,11 @@ import React, { FC } from 'react'
 import uuid from 'uuid'
 
 import { TABLE_HEADER_HEIGHT } from '../constants'
-import { useTableContext } from '../contexts'
 import { Row, CellProps, RowProps } from '../Styled'
+import { Column, useDataState } from '../stateContainers/data'
 
 const Headings: FC<HeadingsProps> = ({ cellProps, rowProps }) => {
-  const { columns } = useTableContext()
+  const { columns } = useDataState()
 
   return (
     <Row {...rowProps} height={TABLE_HEADER_HEIGHT}>

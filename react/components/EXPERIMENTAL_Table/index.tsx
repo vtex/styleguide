@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import PropTypes, { InferProps, arrayOf } from 'prop-types'
 
-import { TableContext, BulkContext } from './contexts'
+import { TableContext } from './contexts'
 import Toolbar from './Toolbar/index'
 
 import { DENSITY_OPTIONS } from './constants'
@@ -12,10 +12,7 @@ import BulkActions from './BulkActions'
 import FilterBar from './FilterBar'
 import { MeasuresProvider } from './stateContainers/tableMeasures'
 import { BulkActionsProvider } from './stateContainers/bulkActions'
-
-function TableProvider({ children, value }) {
-  return <TableContext.Provider value={value}>{children}</TableContext.Provider>
-}
+import { DataProvider } from './stateContainers/data'
 
 const Table: FC<Props> & TableComposites = ({
   children,
@@ -37,7 +34,8 @@ const Table: FC<Props> & TableComposites = ({
   }
 
   return (
-    <TableProvider value={props}>
+    //@ts-ignore
+    <DataProvider value={props}>
       //@ts-ignore
       <MeasuresProvider value={measures}>
         //@ts-ignore
@@ -55,7 +53,7 @@ const Table: FC<Props> & TableComposites = ({
           </TableContainer>
         </BulkActionsProvider>
       </MeasuresProvider>
-    </TableProvider>
+    </DataProvider>
   )
 }
 

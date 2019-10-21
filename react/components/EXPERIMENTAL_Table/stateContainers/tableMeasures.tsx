@@ -11,14 +11,12 @@ import {
   EMPTY_STATE_SIZE_IN_ROWS,
   DEFAULT_SCROLLBAR_WIDTH,
 } from '../constants'
+import { Items } from './data'
 
 export default function useTableMeasures({
   items,
   density = Density.MEDIUM,
-}: {
-  items: Array<unknown>
-  density: Density
-}) {
+}: MeasuresData) {
   const [selectedDensity, setSelectedDensity] = useState<Density>(density)
   const rowHeight = getRowHeight(selectedDensity)
 
@@ -33,6 +31,11 @@ export default function useTableMeasures({
     tableHeight,
     setSelectedDensity,
   }
+}
+
+export type MeasuresData = {
+  items: Items
+  density: Density
 }
 
 const MeasuresContext = createContext<Partial<

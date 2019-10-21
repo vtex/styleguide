@@ -12,18 +12,14 @@ import uuid from 'uuid'
 import Checkbox from '../Checkbox'
 import { BulkActionsProps } from '../BulkActions'
 import { NAMESPACES } from '../constants'
+import { Column } from './data'
 
 export default function useTableBulkActions({
   items,
   columns,
   bulkActions,
   unicityKey = 'id',
-}: {
-  items: Array<unknown>
-  columns: Array<Column>
-  bulkActions: BulkActionsProps
-  unicityKey: string
-}) {
+}: BulkActionsData) {
   const [bulkState, dispatch] = useReducer(reducer, {
     selectedRows: [],
     allLinesSelected: false,
@@ -162,6 +158,13 @@ export default function useTableBulkActions({
     setSelectedRows,
     setAllLinesSelected,
   }
+}
+
+export type BulkActionsData = {
+  items: Array<unknown>
+  columns: Array<Column>
+  bulkActions: BulkActionsProps
+  unicityKey: string
 }
 
 const BulkActionsContext = createContext<
