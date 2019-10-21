@@ -332,6 +332,7 @@ function CustomLoadingExample() {
 ```js
 // Imports
 const useTableMeasures = require('./stateContainers/tableMeasures.tsx').default
+const useTableVisibility = require('./stateContainers/visibility.ts').default
 
 const columns = [
   {
@@ -346,6 +347,10 @@ const columns = [
 
 function EmptyExample() {
   const measures = useTableMeasures({ items: [] })
+  const { isEmpty } = useTableVisibility({
+    columns,
+    items: [],
+  })
 
   const emptyState = {
     label: 'This is an default empty state title',
@@ -356,6 +361,7 @@ function EmptyExample() {
       measures={measures}
       columns={columns}
       items={[]}
+      isEmpty={isEmpty}
       emptyState={emptyState}
     />
   )
@@ -370,6 +376,7 @@ Empty states can also be customized, the passed children will be rendered inside
 ```js
 // Imports
 const useTableMeasures = require('./stateContainers/tableMeasures.tsx').default
+const useTableVisibility = require('./stateContainers/visibility.ts').default
 const Button = require('../Button/index.js').default
 
 const columns = [
@@ -385,6 +392,10 @@ const columns = [
 
 function CustomEmptyStateExample() {
   const measures = useTableMeasures({ items: [] })
+  const { isEmpty } = useTableVisibility({
+    columns,
+    items: [],
+  })
 
   const emptyState = {
     label: 'This is an default empty state title',
@@ -403,7 +414,15 @@ function CustomEmptyStateExample() {
     ),
   }
 
-  return <Table columns={columns} items={[]} emptyState={emptyState} />
+  return (
+    <Table
+      measures={measures}
+      isEmpty={isEmpty}
+      columns={columns}
+      items={[]}
+      emptyState={emptyState}
+    />
+  )
 }
 ;<CustomEmptyStateExample />
 ```
@@ -1272,6 +1291,7 @@ function ToolbarExample() {
 
   return (
     <Table
+      isEmpty={visibility.isEmpty}
       measures={measures}
       items={displayItems}
       columns={visibility.visibleColumns}

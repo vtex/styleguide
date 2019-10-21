@@ -43,7 +43,7 @@ const Rows: FC<RowsProps> = ({
     )
   }
 
-  return <>{items.map(renderRow)}</>
+  return <>{items && items.map(renderRow)}</>
 }
 
 export type RowsProps = {

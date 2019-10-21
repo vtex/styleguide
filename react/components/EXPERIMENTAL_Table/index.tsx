@@ -1,9 +1,10 @@
 import React, { FC } from 'react'
-import PropTypes, { InferProps, arrayOf } from 'prop-types'
+import PropTypes, { InferProps } from 'prop-types'
 
 import Toolbar from './Toolbar/index'
-
-import { DENSITY_OPTIONS, NAMESPACES } from './constants'
+import Spinner from '../Spinner/index.js'
+import EmptyState from '../EmptyState/index.js'
+import { DENSITY_OPTIONS, NAMESPACES, TABLE_HEADER_HEIGHT } from './constants'
 import Pagination, { PaginationProps } from './Pagination'
 import DataTable from './DataTable'
 import BulkActions from './BulkActions'
@@ -11,10 +12,21 @@ import FilterBar from './FilterBar'
 import Headings from './DataTable/Headings'
 import Rows from './DataTable/Rows'
 
+const Loading: FC<{ height: number }> = ({ height, children }) => {
+  return (
+    <div className="flex justify-center items-center" style={{ height }}>
+      {children || <Spinner />}
+    </div>
+  )
+}
+
 const Table: FC<TableProps> & TableComposites = ({
   children,
   measures,
   isRowActive,
+  loading,
+  emptyState,
+  isEmpty,
   ...props
 }) => {
   if (!measures) {
@@ -36,25 +48,38 @@ const Table: FC<TableProps> & TableComposites = ({
       id={NAMESPACES.CONTAINER}
       className="flex flex-column">
       {children}
-      <DataTable
-        height={measures.tableHeight}
-        emptyState={props.emptyState}
-        loading={props.loading}
-        isEmpty={props.isEmpty}>
+      <DataTable height={measures.tableHeight}>
         <thead
           id={NAMESPACES.HEADER}
           className="w-100 ph4 truncate overflow-x-hidden c-muted-2 f6">
           <Headings columns={props.columns} />
         </thead>
-        <tbody>
-          <Rows
-            columns={props.columns}
-            items={props.items}
-            rowHeight={measures.rowHeight}
-            onRowClick={props.onRowClick}
-            isRowActive={isRowActive}
-          />
-        </tbody>
+
+        {!isEmpty && loading && (
+          <Loading height={measures.tableHeight - TABLE_HEADER_HEIGHT}>
+            {typeof loading !== 'boolean' &&
+              loading.renderAs &&
+              loading.renderAs()}
+          </Loading>
+        )}
+
+        {isEmpty && emptyState && (
+          <EmptyState title={emptyState.label}>
+            {emptyState.children}
+          </EmptyState>
+        )}
+
+        {!isEmpty && !loading && (
+          <tbody>
+            <Rows
+              columns={props.columns}
+              items={props.items}
+              rowHeight={measures.rowHeight}
+              onRowClick={props.onRowClick}
+              isRowActive={isRowActive}
+            />
+          </tbody>
+        )}
       </DataTable>
     </div>
   )
