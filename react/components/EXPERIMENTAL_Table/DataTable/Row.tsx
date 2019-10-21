@@ -9,11 +9,11 @@ const Row: FC<RowProps> & RowComposites = ({
   children,
   height,
   onClick,
-  isSelected,
+  isActive,
 }) => {
   const className = csx('w-100 ph4 truncate overflow-x-hidden', {
     'pointer hover-c-link hover-bg-muted-5': onClick,
-    'bg-action-secondary': isSelected,
+    'bg-action-secondary': isActive,
   })
   return (
     <Tag
@@ -56,7 +56,7 @@ export type CellProps = {
 
 export type RowProps = {
   as?: 'tr' | 'div' | 'ul'
-  isSelected?: boolean
+  isActive?: boolean
   height?: number
   onClick?: () => void
 }

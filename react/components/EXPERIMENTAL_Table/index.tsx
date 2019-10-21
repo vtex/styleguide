@@ -13,10 +13,10 @@ import { DataProvider } from './stateContainers/data'
 import Headings from './DataTable/Headings'
 import Rows from './DataTable/Rows'
 
-const Table: FC<Props> & TableComposites = ({
+const Table: FC<TableProps> & TableComposites = ({
   children,
   measures,
-  bulk,
+  isRowActive,
   ...props
 }) => {
   if (!measures) {
@@ -55,9 +55,8 @@ const Table: FC<Props> & TableComposites = ({
             columns={props.columns}
             items={props.items}
             rowHeight={measures.rowHeight}
-            unicityKey={props.unicityKey}
             onRowClick={props.onRowClick}
-            bulkState={bulk && bulk.bulkState}
+            isRowActive={isRowActive}
           />
         </tbody>
       </DataTable>
@@ -74,28 +73,6 @@ export const measuresPropTypes = {
   rowHeight: PropTypes.number,
   selectedDensity: PropTypes.oneOf(DENSITY_OPTIONS),
   setSelectedDensity: PropTypes.func,
-}
-
-export const bulkPropTypes = {
-  bulk: PropTypes.shape({
-    bulkState: PropTypes.shape({
-      selectedRows: arrayOf(
-        PropTypes.shape({
-          id: PropTypes.number,
-        })
-      ),
-      allLinesSelected: PropTypes.bool,
-    }),
-    hasBulkActions: PropTypes.bool,
-    hasPrimaryBulkAction: PropTypes.bool,
-    hasSecondaryBulkActions: PropTypes.bool,
-    selectAllRows: PropTypes.func,
-    deselectAllRows: PropTypes.func,
-    selectRow: PropTypes.func,
-    setSelectedRows: PropTypes.func,
-    setAllLinesSelected: PropTypes.func,
-    selectAllVisibleRows: PropTypes.func,
-  }),
 }
 
 export const tablePropTypes = {
@@ -121,6 +98,7 @@ export const tablePropTypes = {
   ]),
   itemsSizeEstimate: PropTypes.number,
   onRowClick: PropTypes.func,
+  isRowActive: PropTypes.func,
   emptyState: PropTypes.shape({
     label: PropTypes.string,
     children: PropTypes.element,
@@ -128,7 +106,6 @@ export const tablePropTypes = {
 }
 
 export type TableProps = InferProps<typeof tablePropTypes>
-type Props = TableProps & InferProps<typeof bulkPropTypes>
 
 export type TableComposites = {
   Toolbar: FC

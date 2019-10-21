@@ -667,7 +667,7 @@ function BulkExample() {
     ],
   }
 
-  const { bulkedColumns, ...bulk } = useTableBulkActions({
+  const { bulkedColumns, isRowSelected, ...bulkData } = useTableBulkActions({
     columns,
     items,
     bulkActions,
@@ -685,8 +685,12 @@ function BulkExample() {
   }
 
   return (
-    <Table measures={measures} columns={bulkedColumns} items={items}>
-      <Table.BulkActions data={bulk} {...bulkActions} />
+    <Table
+      measures={measures}
+      isRowActive={isRowSelected}
+      columns={bulkedColumns}
+      items={items}>
+      <Table.BulkActions data={bulkData} {...bulkActions} />
     </Table>
   )
 }

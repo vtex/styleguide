@@ -130,6 +130,18 @@ export default function useTableBulkActions({
     [bulkState.selectedRows, bulkState.allLinesSelected]
   )
 
+  const isRowSelected = useCallback(
+    (row: unknown) => {
+      return (
+        bulkState &&
+        bulkState.selectedRows.some(
+          selectedRow => selectedRow[unicityKey] === row[unicityKey]
+        )
+      )
+    },
+    [bulkState.selectedRows, bulkState.allLinesSelected]
+  )
+
   return {
     /** constraints */
     hasBulkActions,
@@ -143,6 +155,7 @@ export default function useTableBulkActions({
     bulkedColumns,
 
     /** handler fn */
+    isRowSelected,
     selectAllRows,
     deselectAllRows,
     selectAllVisibleRows,
