@@ -3,8 +3,7 @@ import uuid from 'uuid'
 
 import CellPrefix from './CellPrefix'
 import Row from '../../EXPERIMENTAL_Table/DataTable/Row'
-import { useTreeContext } from '../contexts'
-import useTableTreeCheckboxes, { Item } from '../hooks/useTableTreeCheckboxes'
+import useTableTreeCheckboxes, { Item } from '../stateContainers/checkboxes'
 import { Column, Items } from '../../EXPERIMENTAL_Table'
 
 const Node: FC<NodeProps> = ({
@@ -125,7 +124,7 @@ type TreeProps = {
   columns: Array<Column>
   unicityKey: string
   rowHeight: number
-  checkboxes?: ReturnType<typeof useTableTreeCheckboxes>
+  checkboxes?: Partial<ReturnType<typeof useTableTreeCheckboxes>>
 }
 
 type NodeProps = {
@@ -135,7 +134,7 @@ type NodeProps = {
   unicityKey: string
   rowHeight: number
   nodesKey: string
-  checkboxes?: ReturnType<typeof useTableTreeCheckboxes>
+  checkboxes?: Partial<ReturnType<typeof useTableTreeCheckboxes>>
   data: Item
   depth?: number
 }

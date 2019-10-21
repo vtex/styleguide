@@ -1,7 +1,6 @@
 import React, { FC } from 'react'
 import PropTypes from 'prop-types'
 
-import { CheckboxesContext, TreeProvider } from './contexts'
 import Toolbar from '../EXPERIMENTAL_Table/Toolbar'
 import DataTable from '../EXPERIMENTAL_Table/DataTable'
 import Tree from './Tree'
@@ -10,7 +9,6 @@ import { InferProps } from 'prop-types'
 import TreeHeadings from './Tree/TreeHeadings'
 import Pagination from '../EXPERIMENTAL_Table/Pagination'
 import FilterBar from '../EXPERIMENTAL_Table/FilterBar'
-import { checkboxesHookReturn } from './hooks/useTableTreeCheckboxes'
 
 const TableTree: FC<Props> & TableComposites = ({
   children,
@@ -20,14 +18,20 @@ const TableTree: FC<Props> & TableComposites = ({
   nodesKey,
   unicityKey,
   measures,
-  ...props
+  loading,
+  isEmpty,
+  emptyState,
 }) => {
   return (
     <div
       style={{ minHeight: measures.tableHeight }}
       className="flex flex-column">
       {children}
-      <DataTable height={measures.tableHeight}>
+      <DataTable
+        loading={loading}
+        emptyState={emptyState}
+        isEmpty={isEmpty}
+        height={measures.tableHeight}>
         <thead className="w-100 ph4 truncate overflow-x-hidden c-muted-2 f6">
           <TreeHeadings
             checkboxes={checkboxes}
@@ -86,11 +90,6 @@ TableTree.Toolbar = Toolbar
 TableTree.FilterBar = FilterBar
 TableTree.Pagination = Pagination
 TableTree.propTypes = propTypes
-
-export type TreeProps = {
-  nodesKey?: string
-  checkboxes?: checkboxesHookReturn
-}
 
 export type TreeState = {
   collapsedItems: Array<string>

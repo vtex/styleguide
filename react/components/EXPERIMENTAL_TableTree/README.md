@@ -55,7 +55,7 @@ const useTableMeasures = require('../EXPERIMENTAL_Table/stateContainers/tableMea
 const useTableVisibility = require('../EXPERIMENTAL_Table/stateContainers/visibility.ts')
   .default
 const sampleData = require('./sampleData.ts').default
-const useTableTreeCheckboxes = require('./hooks/useTableTreeCheckboxes.tsx')
+const useTableTreeCheckboxes = require('./stateContainers/checkboxes.tsx')
   .default
 
 // Define the columns

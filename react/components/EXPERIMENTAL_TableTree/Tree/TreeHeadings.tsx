@@ -1,4 +1,4 @@
-import React, { FC, useContext } from 'react'
+import React, { FC } from 'react'
 import uuid from 'uuid'
 
 import { TABLE_HEADER_HEIGHT } from '../../EXPERIMENTAL_Table/constants'
@@ -8,7 +8,7 @@ import Row, {
 } from '../../EXPERIMENTAL_Table/DataTable/Row'
 import CellPrefix from './CellPrefix'
 import { Column } from '../../EXPERIMENTAL_Table'
-import useTableTreeCheckboxes from '../hooks/useTableTreeCheckboxes'
+import useTableTreeCheckboxes from '../stateContainers/checkboxes'
 
 const TreeHeadings: FC<TreeHeadingsProps> = ({
   checkboxes,
@@ -58,7 +58,7 @@ type TreeHeadingsProps = {
   items: any
   rowProps?: RowProps
   cellProps?: Pick<CellProps, 'as'>
-  checkboxes?: ReturnType<typeof useTableTreeCheckboxes>
+  checkboxes?: Partial<ReturnType<typeof useTableTreeCheckboxes>>
 }
 
 export default React.memo(TreeHeadings)

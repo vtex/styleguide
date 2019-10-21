@@ -1,4 +1,4 @@
-import { getFlat, getToggledState } from '../hooks/checkboxesUtils'
+import { getFlat, getToggledState } from '../checkboxesUtils'
 
 const props = ['children', 'related', 'friends']
 const unicityKey = 'name'
