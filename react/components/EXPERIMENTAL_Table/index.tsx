@@ -5,12 +5,10 @@ import Toolbar from './Toolbar/index'
 
 import { DENSITY_OPTIONS, NAMESPACES } from './constants'
 import Pagination, { PaginationProps } from './Pagination'
-import { TableContainer, Thead } from './Styled'
 import DataTable from './DataTable'
 import BulkActions from './BulkActions'
 import FilterBar from './FilterBar'
 import { MeasuresProvider } from './stateContainers/tableMeasures'
-import { BulkActionsProvider } from './stateContainers/bulkActions'
 import { DataProvider } from './stateContainers/data'
 import Headings from './DataTable/Headings'
 import Rows from './DataTable/Rows'
@@ -40,9 +38,7 @@ const Table: FC<Props> & TableComposites = ({
       id={NAMESPACES.CONTAINER}
       className="flex flex-column">
       <DataProvider value={props}>
-        <MeasuresProvider value={measures}>
-          <BulkActionsProvider value={bulk}>{children}</BulkActionsProvider>
-        </MeasuresProvider>
+        <MeasuresProvider value={measures}>{children}</MeasuresProvider>
       </DataProvider>
       <DataTable
         height={measures.tableHeight}

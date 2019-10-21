@@ -1,12 +1,4 @@
-import React, {
-  useMemo,
-  useEffect,
-  useReducer,
-  useCallback,
-  createContext,
-  useContext,
-  ReactNode,
-} from 'react'
+import React, { useMemo, useEffect, useReducer, useCallback } from 'react'
 import uuid from 'uuid'
 
 import Checkbox from '../Checkbox'
@@ -19,7 +11,7 @@ export default function useTableBulkActions({
   columns,
   bulkActions,
   unicityKey = 'id',
-}: BulkActionsData) {
+}: BulkActionsInput) {
   const [bulkState, dispatch] = useReducer(reducer, {
     selectedRows: [],
     allLinesSelected: false,
@@ -160,34 +152,11 @@ export default function useTableBulkActions({
   }
 }
 
-export type BulkActionsData = {
+export type BulkActionsInput = {
   items: Array<unknown>
   columns: Array<Column>
   bulkActions: BulkActionsProps
   unicityKey: string
-}
-
-const BulkActionsContext = createContext<
-  Partial<ReturnType<typeof useTableBulkActions>>
->(null)
-
-export function useBulkActionsState() {
-  const state = useContext(BulkActionsContext)
-  return state
-}
-
-export function BulkActionsProvider({
-  value,
-  children,
-}: {
-  value: ReturnType<typeof useTableBulkActions>
-  children: ReactNode
-}) {
-  return (
-    <BulkActionsContext.Provider value={value}>
-      {children}
-    </BulkActionsContext.Provider>
-  )
 }
 
 function reducer(state: BulkState, action: Action) {

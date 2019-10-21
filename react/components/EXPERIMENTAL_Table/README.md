@@ -384,7 +384,7 @@ const columns = [
 ]
 
 function CustomEmptyStateExample() {
-  const measures = useTableMeasures({ items: []})
+  const measures = useTableMeasures({ items: [] })
 
   const emptyState = {
     label: 'This is an default empty state title',
@@ -685,12 +685,8 @@ function BulkExample() {
   }
 
   return (
-    <Table
-      measures={measures}
-      columns={bulkedColumns}
-      items={items}
-      bulk={bulk}>
-      <Table.BulkActions {...bulkActions} />
+    <Table measures={measures} columns={bulkedColumns} items={items}>
+      <Table.BulkActions data={bulk} {...bulkActions} />
     </Table>
   )
 }

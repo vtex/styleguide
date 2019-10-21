@@ -12,13 +12,14 @@ import {
   BULK_ACTIONS_HEIGHT,
   BULK_ACTIONS_TRANSITION,
 } from './constants'
-import { useBulkActionsState } from './stateContainers/bulkActions'
+import useTableBulkActions from './stateContainers/bulkActions'
 
 const BulkActions: FC<BulkActionsProps> = ({
   texts,
   main,
   totalItems,
   others,
+  data,
 }) => {
   const {
     bulkState,
@@ -27,8 +28,7 @@ const BulkActions: FC<BulkActionsProps> = ({
     hasBulkActions,
     hasPrimaryBulkAction,
     hasSecondaryBulkActions,
-  } = useBulkActionsState()
-
+  } = data
   const selectedRowsLength = bulkState.selectedRows.length
   const hasRowsSelected = selectedRowsLength > 0
 
@@ -110,6 +110,7 @@ export type BulkActionsProps = {
   onChange: Function
   main: MenuAction
   others: Array<MenuAction>
+  data: ReturnType<typeof useTableBulkActions>
 }
 
 export default BulkActions
