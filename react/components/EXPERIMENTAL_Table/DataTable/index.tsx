@@ -1,48 +1,19 @@
 import React, { FC, Children } from 'react'
 import csx from 'classnames'
 
+import Spinner from '../../Spinner/index.js'
 import EmptyState from '../../EmptyState/index.js'
+import { NAMESPACES, ORDER_CLASSNAMES, TABLE_HEADER_HEIGHT } from '../constants'
 
-import Headings from './Headings'
-import Rows from './Rows'
-import { NAMESPACES, ORDER_CLASSNAMES } from '../constants'
-import { useTableContext } from '../contexts'
-import Loading from './Loading'
-import { useMeasuresState } from '../stateContainers/tableMeasures'
-
-const DataTableContainer: FC = ({ children }) => {
-  const { loading, isEmpty, containerHeight, emptyState } = useTableContext()
-  const { tableHeight } = useMeasuresState()
-
-  const height = isEmpty || loading ? containerHeight : tableHeight
-
-  return (
-    <div
-      id={NAMESPACES.TABLE}
-      style={{ minHeight: height }}
-      className={csx('order-1 mw-100 overflow-x-auto', ORDER_CLASSNAMES.TABLE)}>
-      {children}
-      {!isEmpty && loading && (
-        <Loading>
-          {typeof loading !== 'boolean' &&
-            loading.renderAs &&
-            loading.renderAs()}
-        </Loading>
-      )}
-      {isEmpty && emptyState && (
-        <EmptyState title={emptyState.label}>{emptyState.children}</EmptyState>
-      )}
-    </div>
-  )
-}
-
-const DataTable: FC<DataTableProps> & DataTableComposites = ({
+const DataTable: FC<DataTableProps> = ({
   children,
+  height,
+  isEmpty,
+  loading,
+  emptyState,
   className,
   as: Tag,
 }) => {
-  const { loading, isEmpty } = useTableContext()
-
   const hideRows = isEmpty || loading
 
   const isRowsChild = (child: DataTableChild) =>
@@ -58,11 +29,32 @@ const DataTable: FC<DataTableProps> & DataTableComposites = ({
   }
 
   return (
-    <DataTableContainer>
+    <div
+      id={NAMESPACES.TABLE}
+      style={{ minHeight: height }}
+      className={csx('order-1 mw-100 overflow-x-auto', ORDER_CLASSNAMES.TABLE)}>
       <Tag className={`w-100 ${className}`} style={{ borderSpacing: 0 }}>
         {Children.map(children, childRenderer)}
       </Tag>
-    </DataTableContainer>
+      {!isEmpty && loading && (
+        <Loading height={height - TABLE_HEADER_HEIGHT}>
+          {typeof loading !== 'boolean' &&
+            loading.renderAs &&
+            loading.renderAs()}
+        </Loading>
+      )}
+      {isEmpty && emptyState && (
+        <EmptyState title={emptyState.label}>{emptyState.children}</EmptyState>
+      )}
+    </div>
+  )
+}
+
+const Loading: FC<{ height: number }> = ({ height, children }) => {
+  return (
+    <div className="flex justify-center items-center" style={{ height }}>
+      {children || <Spinner />}
+    </div>
   )
 }
 
@@ -72,8 +64,19 @@ DataTable.defaultProps = {
 }
 
 export type DataTableProps = {
+  height: number
   as?: 'table' | 'div' | 'section'
   className?: string
+  isEmpty?: boolean
+  loading?:
+    | boolean
+    | {
+        renderAs?: () => React.ReactNode
+      }
+  emptyState?: {
+    label?: string
+    children?: Element
+  }
 }
 
 export type DataTableChild = {
@@ -84,13 +87,5 @@ export type DataTableChild = {
     children?: Array<DataTableChild>
   }
 }
-
-export type DataTableComposites = {
-  Headings?: FC
-  Rows?: FC
-}
-
-DataTable.Headings = Headings
-DataTable.Rows = Rows
 
 export default DataTable

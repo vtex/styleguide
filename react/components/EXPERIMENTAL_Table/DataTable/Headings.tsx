@@ -2,12 +2,10 @@ import React, { FC } from 'react'
 import uuid from 'uuid'
 
 import { TABLE_HEADER_HEIGHT } from '../constants'
-import { Row, CellProps, RowProps } from '../Styled'
-import { Column, useDataState } from '../stateContainers/data'
+import Row, { CellProps, RowProps } from './Row'
+import { Column } from '../stateContainers/data'
 
-const Headings: FC<HeadingsProps> = ({ cellProps, rowProps }) => {
-  const { columns } = useDataState()
-
+const Headings: FC<HeadingsProps> = ({ columns, cellProps, rowProps }) => {
   return (
     <Row {...rowProps} height={TABLE_HEADER_HEIGHT}>
       {columns.map((headerData: Column) => {
@@ -34,6 +32,7 @@ Headings.defaultProps = {
 }
 
 type HeadingsProps = {
+  columns?: Array<Column>
   rowProps?: RowProps
   cellProps?: Pick<CellProps, 'as'>
 }

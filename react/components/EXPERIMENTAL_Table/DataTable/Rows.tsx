@@ -1,18 +1,22 @@
 import React, { FC } from 'react'
 import uuid from 'uuid'
 
-import { useTableContext } from '../contexts'
 import { NAMESPACES } from '../constants'
-import { Row, RowProps, CellProps } from '../Styled'
+import Row, { RowProps, CellProps } from './Row'
 import { useMeasuresState } from '../stateContainers/tableMeasures'
-import { useBulkActionsState } from '../stateContainers/bulkActions'
-import { Column, useDataState } from '../stateContainers/data'
+import { BulkState } from '../stateContainers/bulkActions'
+import { Column, Items } from '../stateContainers/data'
 
-const Rows: FC<RowsProps> = ({ cellProps, rowProps }) => {
-  const { columns, items, onRowClick, unicityKey } = useDataState()
-  const { rowHeight } = useMeasuresState()
-  const bulkContext = useBulkActionsState()
-
+const Rows: FC<RowsProps> = ({
+  columns,
+  items,
+  onRowClick,
+  unicityKey,
+  cellProps,
+  rowProps,
+  bulkState,
+  rowHeight,
+}) => {
   const renderRow = (rowData: unknown) => {
     const clickable = onRowClick
       ? {
@@ -20,9 +24,8 @@ const Rows: FC<RowsProps> = ({ cellProps, rowProps }) => {
         }
       : {}
     const isSelected =
-      bulkContext &&
-      bulkContext.bulkState &&
-      bulkContext.bulkState.selectedRows.some(
+      bulkState &&
+      bulkState.selectedRows.some(
         row => row[unicityKey] === rowData[unicityKey]
       )
     return (
@@ -52,7 +55,13 @@ const Rows: FC<RowsProps> = ({ cellProps, rowProps }) => {
 }
 
 export type RowsProps = {
+  columns: Array<Column>
+  items: Items
+  onRowClick: ({ rowData: unknown }) => void
+  bulkState: BulkState
+  unicityKey: string
   rowProps?: RowProps
+  rowHeight: number
   cellProps?: Pick<CellProps, 'as' | 'className'>
 }
 

@@ -1,10 +1,9 @@
 import React, { FC } from 'react'
 import PropTypes, { InferProps, arrayOf } from 'prop-types'
 
-import { TableContext } from './contexts'
 import Toolbar from './Toolbar/index'
 
-import { DENSITY_OPTIONS } from './constants'
+import { DENSITY_OPTIONS, NAMESPACES } from './constants'
 import Pagination, { PaginationProps } from './Pagination'
 import { TableContainer, Thead } from './Styled'
 import DataTable from './DataTable'
@@ -13,6 +12,8 @@ import FilterBar from './FilterBar'
 import { MeasuresProvider } from './stateContainers/tableMeasures'
 import { BulkActionsProvider } from './stateContainers/bulkActions'
 import { DataProvider } from './stateContainers/data'
+import Headings from './DataTable/Headings'
+import Rows from './DataTable/Rows'
 
 const Table: FC<Props> & TableComposites = ({
   children,
@@ -34,26 +35,37 @@ const Table: FC<Props> & TableComposites = ({
   }
 
   return (
-    //@ts-ignore
-    <DataProvider value={props}>
-      //@ts-ignore
-      <MeasuresProvider value={measures}>
-        //@ts-ignore
-        <BulkActionsProvider value={bulk}>
-          <TableContainer>
-            {children}
-            <DataTable>
-              <Thead>
-                <DataTable.Headings />
-              </Thead>
-              <tbody>
-                <DataTable.Rows />
-              </tbody>
-            </DataTable>
-          </TableContainer>
-        </BulkActionsProvider>
-      </MeasuresProvider>
-    </DataProvider>
+    <div
+      style={{ minHeight: measures.tableHeight }}
+      id={NAMESPACES.CONTAINER}
+      className="flex flex-column">
+      <DataProvider value={props}>
+        <MeasuresProvider value={measures}>
+          <BulkActionsProvider value={bulk}>{children}</BulkActionsProvider>
+        </MeasuresProvider>
+      </DataProvider>
+      <DataTable
+        height={measures.tableHeight}
+        emptyState={props.emptyState}
+        loading={props.loading}
+        isEmpty={props.isEmpty}>
+        <thead
+          id={NAMESPACES.HEADER}
+          className="w-100 ph4 truncate overflow-x-hidden c-muted-2 f6">
+          <Headings columns={props.columns} />
+        </thead>
+        <tbody>
+          <Rows
+            columns={props.columns}
+            items={props.items}
+            rowHeight={measures.rowHeight}
+            unicityKey={props.unicityKey}
+            onRowClick={props.onRowClick}
+            bulkState={bulk && bulk.bulkState}
+          />
+        </tbody>
+      </DataTable>
+    </div>
   )
 }
 
@@ -94,6 +106,7 @@ export const tablePropTypes = {
   measures: PropTypes.shape(measuresPropTypes),
   containerHeight: PropTypes.number,
   unicityKey: PropTypes.string,
+  isEmpty: PropTypes.bool,
   columns: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
