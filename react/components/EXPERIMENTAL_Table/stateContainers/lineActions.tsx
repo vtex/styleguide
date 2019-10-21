@@ -1,6 +1,6 @@
 import LineAction, { LineActionObject } from '../LineActions'
 import React, { useMemo } from 'react'
-import { Items, Column } from './data'
+import { Items, Column } from '../index'
 
 const NO_TITLE_COLUMN = ' '
 const LINE_ACTION_ID = 'lineAction'

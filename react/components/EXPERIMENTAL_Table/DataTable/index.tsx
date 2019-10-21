@@ -1,13 +1,18 @@
 import React, { FC } from 'react'
 import csx from 'classnames'
 
-import { NAMESPACES, ORDER_CLASSNAMES } from '../constants'
+import EmptyState from '../../EmptyState/index.js'
+import { NAMESPACES, ORDER_CLASSNAMES, TABLE_HEADER_HEIGHT } from '../constants'
+import Loading from './Loading'
 
 const DataTable: FC<DataTableProps> = ({
   children,
   height,
   className,
   as: Tag,
+  isEmpty,
+  loading,
+  emptyState,
 }) => {
   return (
     <div
@@ -17,6 +22,17 @@ const DataTable: FC<DataTableProps> = ({
       <Tag className={`w-100 ${className}`} style={{ borderSpacing: 0 }}>
         {children}
       </Tag>
+      {!isEmpty && loading && (
+        <Loading height={height - TABLE_HEADER_HEIGHT}>
+          {typeof loading !== 'boolean' &&
+            loading.renderAs &&
+            loading.renderAs()}
+        </Loading>
+      )}
+
+      {isEmpty && emptyState && (
+        <EmptyState title={emptyState.label}>{emptyState.children}</EmptyState>
+      )}
     </div>
   )
 }
@@ -30,6 +46,16 @@ export type DataTableProps = {
   height: number
   as?: 'table' | 'div' | 'section'
   className?: string
+  isEmpty: boolean
+  loading?:
+    | boolean
+    | {
+        renderAs?: () => React.ReactNode
+      }
+  emptyState?: {
+    label?: string
+    children?: Element
+  }
 }
 
 export default DataTable

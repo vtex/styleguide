@@ -11,7 +11,7 @@ import {
   EMPTY_STATE_SIZE_IN_ROWS,
   DEFAULT_SCROLLBAR_WIDTH,
 } from '../constants'
-import { Items } from './data'
+import { Items } from '../index'
 
 export default function useTableMeasures({
   items,

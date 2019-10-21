@@ -1,8 +1,8 @@
 #### NodesKey Prop
 
 ```js
-/*const useTableState = require('../EXPERIMENTAL_Table/hooks/useTableState.ts')
-  .default*/
+const useTableMeasures = require('../EXPERIMENTAL_Table/stateContainers/tableMeasures.tsx')
+  .default
 const sampleData = require('./sampleData.ts').default
 
 // Define the columns
@@ -29,12 +29,20 @@ const columns = [
 const items = sampleData
 
 function ToolbarExample() {
-  const tableState = useTableState({
+  const measures = useTableMeasures({
     columns,
     items,
   })
 
-  return <TableTree unicityKey="email" nodesKey="children" state={tableState} />
+  return (
+    <TableTree
+      measures={measures}
+      columns={columns}
+      items={items}
+      unicityKey="email"
+      nodesKey="children"
+    />
+  )
 }
 ;<ToolbarExample />
 ```
@@ -42,8 +50,10 @@ function ToolbarExample() {
 #### Full Example
 
 ```js
-/*const useTableState = require('../EXPERIMENTAL_Table/hooks/useTableState.ts')
-  .default*/
+const useTableMeasures = require('../EXPERIMENTAL_Table/stateContainers/tableMeasures.tsx')
+  .default
+const useTableVisibility = require('../EXPERIMENTAL_Table/stateContainers/visibility.ts')
+  .default
 const sampleData = require('./sampleData.ts').default
 const useTableTreeCheckboxes = require('./hooks/useTableTreeCheckboxes.tsx')
   .default
@@ -133,10 +143,14 @@ function ToolbarExample() {
     ],
   })
 
-  const tableState = useTableState({
+  const measures = useTableMeasures({
     columns,
-    items: checkboxes.itemTree,
-    density: 'medium',
+    items,
+  })
+
+  const visibility = useTableVisibility({
+    columns,
+    items,
   })
 
   const emptyState = {
@@ -219,13 +233,21 @@ function ToolbarExample() {
     <TableTree
       checkboxes={checkboxes}
       unicityKey="email"
-      state={tableState}
-      emptyState={emptyState}>
+      columns={visibility.visibleColumns}
+      items={checkboxes.itemTree}
+      emptyState={emptyState}
+      measures={measures}>
       <TableTree.Toolbar>
         <TableTree.Toolbar.InputSearch {...inputSearch} />
         <TableTree.Toolbar.ButtonGroup>
-          <TableTree.Toolbar.ButtonGroup.Columns {...buttonColumns} />
-          <TableTree.Toolbar.ButtonGroup.Density {...density} />
+          <TableTree.Toolbar.ButtonGroup.Columns
+            visibility={visibility}
+            {...buttonColumns}
+          />
+          <TableTree.Toolbar.ButtonGroup.Density
+            density={measures}
+            {...density}
+          />
           <TableTree.Toolbar.ButtonGroup.Download {...download} />
           <TableTree.Toolbar.ButtonGroup.Upload {...upload} />
           <TableTree.Toolbar.ButtonGroup.ExtraActions {...extraActions} />

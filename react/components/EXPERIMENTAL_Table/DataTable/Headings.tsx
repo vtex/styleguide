@@ -3,7 +3,7 @@ import uuid from 'uuid'
 
 import { TABLE_HEADER_HEIGHT } from '../constants'
 import Row, { CellProps, RowProps } from './Row'
-import { Column } from '../stateContainers/data'
+import { Column } from '../index'
 
 const Headings: FC<HeadingsProps> = ({ columns, cellProps, rowProps }) => {
   return (

@@ -3,7 +3,7 @@ import uuid from 'uuid'
 
 import { NAMESPACES } from '../constants'
 import Row, { RowProps, CellProps } from './Row'
-import { Column, Items } from '../stateContainers/data'
+import { Column, Items } from '../index'
 
 const Rows: FC<RowsProps> = ({
   columns,

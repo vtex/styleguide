@@ -1,12 +1,10 @@
 import React, { FC } from 'react'
 import PropTypes from 'prop-types'
 
-import { TableContext } from '../EXPERIMENTAL_Table/contexts'
 import { CheckboxesContext, TreeProvider } from './contexts'
 import Toolbar from '../EXPERIMENTAL_Table/Toolbar'
 import DataTable from '../EXPERIMENTAL_Table/DataTable'
 import Tree from './Tree'
-import { TableContainer, Thead } from '../EXPERIMENTAL_Table/Styled'
 import { tablePropTypes, TableComposites } from '../EXPERIMENTAL_Table'
 import { InferProps } from 'prop-types'
 import TreeHeadings from './Tree/TreeHeadings'
@@ -16,30 +14,39 @@ import { checkboxesHookReturn } from './hooks/useTableTreeCheckboxes'
 
 const TableTree: FC<Props> & TableComposites = ({
   children,
-  state,
+  columns,
+  items,
   checkboxes,
   nodesKey,
+  unicityKey,
+  measures,
   ...props
 }) => {
   return (
-    <TableContext.Provider value={{ ...state, ...props }}>
-      <TreeProvider nodesKey={nodesKey}>
-        <CheckboxesContext.Provider
-          value={checkboxes ? { ...checkboxes } : null}>
-          <TableContainer>
-            {children}
-            <DataTable>
-              <Thead>
-                <TreeHeadings />
-              </Thead>
-              <tbody>
-                <Tree />
-              </tbody>
-            </DataTable>
-          </TableContainer>
-        </CheckboxesContext.Provider>
-      </TreeProvider>
-    </TableContext.Provider>
+    <div
+      style={{ minHeight: measures.tableHeight }}
+      className="flex flex-column">
+      {children}
+      <DataTable height={measures.tableHeight}>
+        <thead className="w-100 ph4 truncate overflow-x-hidden c-muted-2 f6">
+          <TreeHeadings
+            checkboxes={checkboxes}
+            columns={columns}
+            items={items}
+          />
+        </thead>
+        <tbody>
+          <Tree
+            checkboxes={checkboxes}
+            columns={columns}
+            items={items}
+            unicityKey={unicityKey}
+            nodesKey={nodesKey}
+            rowHeight={measures.rowHeight}
+          />
+        </tbody>
+      </DataTable>
+    </div>
   )
 }
 

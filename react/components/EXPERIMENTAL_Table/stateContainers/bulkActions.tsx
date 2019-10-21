@@ -4,7 +4,7 @@ import uuid from 'uuid'
 import Checkbox from '../Checkbox'
 import { BulkActionsProps } from '../BulkActions'
 import { NAMESPACES } from '../constants'
-import { Column } from './data'
+import { Column } from '../index'
 
 export default function useTableBulkActions({
   items,
