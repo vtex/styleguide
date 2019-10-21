@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.73.10] - 2019-10-21
+
 ### Fixed
 
 - **Table** SSR errors
