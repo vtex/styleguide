@@ -1280,7 +1280,7 @@ function ToolbarExample() {
         <Table.Toolbar.InputSearch {...inputSearch} />
         <Table.Toolbar.ButtonGroup>
           <Table.Toolbar.ButtonGroup.Columns {...buttonColumns} />
-          <Table.Toolbar.ButtonGroup.Density {...density} />
+          <Table.Toolbar.ButtonGroup.Density density={measures} {...density} />
           <Table.Toolbar.ButtonGroup.Download {...download} />
           <Table.Toolbar.ButtonGroup.Upload {...upload} />
           <Table.Toolbar.ButtonGroup.ExtraActions {...extraActions} />

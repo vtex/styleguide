@@ -7,30 +7,20 @@ import {
   ICON_SIZE,
   NAMESPACES,
 } from '../constants'
-import { useTableContext } from '../contexts'
 import Menu from './Menu/index'
-import { useMeasuresState, Density } from '../stateContainers/tableMeasures'
+import useTableMeasures, { Density } from '../stateContainers/tableMeasures'
 
 const BOX_HEIGHT = DENSITY_OPTIONS.length * FIELDS_BOX_ITEM_HEIGHT
-
-export type ButtonDensityProps = {
-  label: string
-  lowOptionLabel: string
-  mediumOptionLabel: string
-  highOptionLabel: string
-  handleCallback: Function
-  alignMenu: Alignment
-  disabled: boolean
-}
 
 const ButtonDensity: FC<ButtonDensityProps> = ({
   label,
   handleCallback,
   disabled,
   alignMenu,
+  density,
   ...options
 }) => {
-  const { selectedDensity, setSelectedDensity } = useMeasuresState()
+  const { selectedDensity, setSelectedDensity } = density
   return (
     <Menu
       button={{
@@ -57,6 +47,17 @@ const ButtonDensity: FC<ButtonDensityProps> = ({
       })}
     </Menu>
   )
+}
+
+export type ButtonDensityProps = {
+  density: ReturnType<typeof useTableMeasures>
+  label: string
+  lowOptionLabel: string
+  mediumOptionLabel: string
+  highOptionLabel: string
+  handleCallback: Function
+  alignMenu: Alignment
+  disabled: boolean
 }
 
 export default ButtonDensity

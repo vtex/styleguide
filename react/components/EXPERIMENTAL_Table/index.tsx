@@ -8,8 +8,6 @@ import Pagination, { PaginationProps } from './Pagination'
 import DataTable from './DataTable'
 import BulkActions from './BulkActions'
 import FilterBar from './FilterBar'
-import { MeasuresProvider } from './stateContainers/tableMeasures'
-import { DataProvider } from './stateContainers/data'
 import Headings from './DataTable/Headings'
 import Rows from './DataTable/Rows'
 
@@ -37,9 +35,7 @@ const Table: FC<TableProps> & TableComposites = ({
       style={{ minHeight: measures.tableHeight }}
       id={NAMESPACES.CONTAINER}
       className="flex flex-column">
-      <DataProvider value={props}>
-        <MeasuresProvider value={measures}>{children}</MeasuresProvider>
-      </DataProvider>
+      {children}
       <DataTable
         height={measures.tableHeight}
         emptyState={props.emptyState}

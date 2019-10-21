@@ -1,22 +1,4 @@
-import React, { createContext, useContext, ReactNode } from 'react'
-
-const DataContext = createContext<Partial<TableData> | null>(null)
-
-export function useDataState() {
-  const state = useContext(DataContext)
-  if (!state) throw new Error('This component is not under the Data Context')
-  return state
-}
-
-export function DataProvider({
-  value,
-  children,
-}: {
-  value: TableData
-  children: ReactNode
-}) {
-  return <DataContext.Provider value={value}>{children}</DataContext.Provider>
-}
+import React from 'react'
 
 export type TableData = {
   columns: Array<Column>
