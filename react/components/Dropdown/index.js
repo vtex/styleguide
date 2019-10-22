@@ -180,7 +180,7 @@ class Dropdown extends Component {
         <label>
           {label && <span className={labelClasses}>{label}</span>}
           <div className={containerClasses} style={containerStyle}>
-            <div id={id} className={`vtex-dropdown__button ${classes}`}>
+            <div className={`vtex-dropdown__button ${classes}`}>
               <div className={`flex ${isInline ? '' : 'h-100'}`}>
                 <div
                   className={`vtex-dropdown__caption flex-auto tl truncate ${
@@ -201,6 +201,7 @@ class Dropdown extends Component {
             </div>
 
             <select
+              id={id}
               disabled={disabled}
               className={selectClasses}
               onChange={this.handleChange}

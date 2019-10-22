@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- ID now belongs to `<select>` element in Dropdown component.
+
 ## [9.88.5] - 2019-10-18
 
 ### Fixed
