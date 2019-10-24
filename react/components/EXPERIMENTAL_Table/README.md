@@ -56,7 +56,7 @@ Different than the previous version the `Table v2` is completely stateless, mean
 
 ```js
 // Imports
-const useTableMeasures = require('./stateContainers/tableMeasures.tsx').default
+const useTableMeasures = require('./stateContainers/measures.tsx').default
 const Tag = require('../Tag/index.js').default
 
 // Define the columns
@@ -149,7 +149,7 @@ function StateHookExample() {
 # Clickable rows
 
 ```js
-const useTableMeasures = require('./stateContainers/tableMeasures.tsx').default
+const useTableMeasures = require('./stateContainers/measures.tsx').default
 
 const columns = [
   {
@@ -207,7 +207,7 @@ function ClickExample() {
 
 ```js
 // Imports
-const useTableMeasures = require('./stateContainers/tableMeasures.tsx').default
+const useTableMeasures = require('./stateContainers/measures.tsx').default
 const Toggle = require('../Toggle/index.js').default
 
 const columns = [
@@ -267,7 +267,7 @@ function LoadingExample() {
 
 ```js
 // Imports
-const useTableMeasures = require('./stateContainers/tableMeasures.tsx').default
+const useTableMeasures = require('./stateContainers/measures.tsx').default
 const Toggle = require('../Toggle/index.js').default
 const Spinner = require('../Spinner/index.js').default
 
@@ -331,7 +331,7 @@ function CustomLoadingExample() {
 
 ```js
 // Imports
-const useTableMeasures = require('./stateContainers/tableMeasures.tsx').default
+const useTableMeasures = require('./stateContainers/measures.tsx').default
 const useTableVisibility = require('./stateContainers/visibility.ts').default
 
 const columns = [
@@ -375,7 +375,7 @@ Empty states can also be customized, the passed children will be rendered inside
 
 ```js
 // Imports
-const useTableMeasures = require('./stateContainers/tableMeasures.tsx').default
+const useTableMeasures = require('./stateContainers/measures.tsx').default
 const useTableVisibility = require('./stateContainers/visibility.ts').default
 const Button = require('../Button/index.js').default
 
@@ -431,7 +431,7 @@ function CustomEmptyStateExample() {
 
 ```js
 // Imports
-const useTableMeasures = require('./stateContainers/tableMeasures.tsx').default
+const useTableMeasures = require('./stateContainers/measures.tsx').default
 
 // Define the columns
 const columns = [
@@ -615,7 +615,7 @@ Check the console when selecting/unselecting rows or clicking an action button i
 
 ```js
 // Imports
-const useTableMeasures = require('./stateContainers/tableMeasures.tsx').default
+const useTableMeasures = require('./stateContainers/measures.tsx').default
 const useTableBulkActions = require('./stateContainers/bulkActions.tsx').default
 
 // Define the columns
@@ -723,7 +723,7 @@ This feature creates a last extra column with an ActionMenu component per line.
 ```js
 // Imports
 const useTableLineActions = require('./stateContainers/lineActions.tsx').default
-const useTableMeasures = require('./stateContainers/tableMeasures.tsx').default
+const useTableMeasures = require('./stateContainers/measures.tsx').default
 
 // Define the columns
 const columns = [
@@ -808,7 +808,7 @@ function LineActionsExample() {
 # Filter Bar
 
 ```js
-const useTableMeasures = require('./stateContainers/tableMeasures.tsx').default
+const useTableMeasures = require('./stateContainers/measures.tsx').default
 const Input = require('../Input').default
 const Checkbox = require('../Checkbox').default
 
@@ -1148,7 +1148,7 @@ function FilterBarExample() {
 
 ```js
 // Imports
-const useTableMeasures = require('./stateContainers/tableMeasures.tsx').default
+const useTableMeasures = require('./stateContainers/measures.tsx').default
 const useTableVisibility = require('./stateContainers/visibility.ts').default
 
 // Define the columns
@@ -1321,7 +1321,7 @@ The `UNSAFE_InputCustom` provides a simple way of passing a custom input to the 
 
 ```js
 // Imports
-const useTableMeasures = require('./stateContainers/tableMeasures.tsx').default
+const useTableMeasures = require('./stateContainers/measures.tsx').default
 const Input = require('../Input/index.js').default
 
 /** Define the columns */

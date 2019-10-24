@@ -8,7 +8,7 @@ import {
   NAMESPACES,
 } from '../constants'
 import Menu from './Menu/index'
-import useTableMeasures, { Density } from '../stateContainers/tableMeasures'
+import useTableMeasures, { Density } from '../stateContainers/measures'
 
 const BOX_HEIGHT = DENSITY_OPTIONS.length * FIELDS_BOX_ITEM_HEIGHT
 
