@@ -1,1 +1,1 @@
-export { default } from './components/ButtonPlain/index'
+export { default } from './components/ButtonPlain'
