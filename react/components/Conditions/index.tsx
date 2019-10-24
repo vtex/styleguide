@@ -245,7 +245,7 @@ Conditions.propTypes = {
   /** Operator indicates whether all the statements should be met or any of them */
   operator: PropTypes.oneOf(['all', 'any']),
   /** Possible options and respective data types, verb options */
-  options: PropTypes.object.isRequired,
+  options: PropTypes.any.isRequired,
   /** Show or hide the header that selects the operator (any vs all) */
   hideOperator: PropTypes.bool,
   /** one statement = {subject: string, verb: string, object: unknown, error: string} */
