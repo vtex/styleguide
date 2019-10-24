@@ -1,3 +1,3 @@
 export {
   default,
-} from './components/EXPERIMENTAL_TableTree/hooks/useTableTreeCheckboxes'
+} from './components/EXPERIMENTAL_TableTree/stateContainers/checkboxes'

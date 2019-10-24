@@ -56,4 +56,4 @@ export type RowsProps = {
   cellProps?: Pick<CellProps, 'as' | 'className'>
 }
 
-export default Rows
+export default React.memo(Rows)

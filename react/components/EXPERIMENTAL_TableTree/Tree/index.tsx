@@ -143,4 +143,4 @@ Node.defaultProps = {
   depth: 1,
 }
 
-export default Tree
+export default React.memo(Tree)

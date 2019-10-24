@@ -1,3 +1,3 @@
 export {
   default,
-} from './components/EXPERIMENTAL_Table/hooks/useTableLineActions'
+} from './components/EXPERIMENTAL_Table/stateContainers/lineActions'

@@ -50,7 +50,7 @@ export type RowComposites = {
 export type CellProps = {
   id?: string
   width?: number
-  as?: 'th' | 'td' | 'div' | 'li'
+  as?: 'td' | 'th' | 'div' | 'li'
   className?: string
 }
 

@@ -25,7 +25,7 @@ const TreeHeadings: FC<TreeHeadingsProps> = ({
         return (
           <Row.Cell
             {...cellProps}
-            className="bt"
+            className="bt normal"
             key={`heading-${uuid()}`}
             width={width}>
             {checkboxes && headerIndex === 0 && (

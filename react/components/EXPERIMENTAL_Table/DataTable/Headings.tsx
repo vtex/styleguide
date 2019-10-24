@@ -14,7 +14,7 @@ const Headings: FC<HeadingsProps> = ({ columns, cellProps, rowProps }) => {
         return (
           <Row.Cell
             {...cellProps}
-            className="bt"
+            className="bt normal"
             key={`heading-${uuid()}`}
             width={width}>
             {content}
@@ -37,4 +37,4 @@ type HeadingsProps = {
   cellProps?: Pick<CellProps, 'as'>
 }
 
-export default Headings
+export default React.memo(Headings)
