@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import ButtonWithIcon from '../ButtonWithIcon'
 import IconClose from '../icon/Close'
+import deprecated from '../../modules/deprecated'
 
 import FilterTag from './FilterTag'
 
@@ -99,8 +100,8 @@ class FilterBar extends PureComponent {
       clearAllFiltersButtonLabel,
       statements,
       subjectPlaceholder,
-      submitFilterLable,
-      newFilterLable,
+      submitFilterLabel,
+      newFilterLabel,
     } = this.props
     const { visibleExtraOptions } = this.state
     const optionsKeys = Object.keys(options)
@@ -131,7 +132,7 @@ class FilterBar extends PureComponent {
                         '…'
                       )
                     }}
-                    submitFilterLable={submitFilterLable}
+                    submitFilterLabel={submitFilterLabel}
                     subject={subject}
                     options={options}
                     statements={statements}
@@ -148,8 +149,8 @@ class FilterBar extends PureComponent {
                 isMoreOptions
                 subjectPlaceholder={subjectPlaceholder}
                 getFilterLabel={() => moreOptionsLabel}
-                submitFilterLable={submitFilterLable}
-                newFilterLable={newFilterLable}
+                submitFilterLabel={submitFilterLabel}
+                newFilterLabel={newFilterLabel}
                 options={{
                   ...filterExtraOptions(
                     options,
@@ -193,8 +194,8 @@ FilterBar.defaultProps = {
   moreOptionsLabel: 'More',
   alwaysVisibleFilters: [],
   subjectPlaceholder: 'Select a filter…',
-  submitFilterLable: 'Apply',
-  newFilterLable: 'New Filter',
+  submitFilterLabel: 'Apply',
+  newFilterLabel: 'New Filter',
   statements: [],
 }
 
@@ -205,7 +206,7 @@ export const filterBarPropTypes = {
   statements: PropTypes.array,
   /** Filters change callback: returns array of statement definitions */
   onChangeStatements: PropTypes.func.isRequired,
-  /** lable for MORE options */
+  /** label for MORE options */
   moreOptionsLabel: PropTypes.string,
   /** filter options that are always visible outside MORE options */
   alwaysVisibleFilters: PropTypes.arrayOf(PropTypes.string),
@@ -213,12 +214,17 @@ export const filterBarPropTypes = {
   clearAllFiltersButtonLabel: PropTypes.string,
   /** Subject select placeholder inside 'More options' */
   subjectPlaceholder: PropTypes.string,
-  /** Submit button lable for statement inside FilterTag */
-  submitFilterLable: PropTypes.string,
-  /** New Filter title lable for inside the 'More options' menu */
-  newFilterLable: PropTypes.string,
+  /** Submit button label for statement inside FilterTag */
+  submitFilterLabel: PropTypes.string,
+  /** New Filter title label for inside the 'More options' menu */
+  newFilterLabel: PropTypes.string,
 }
 
 FilterBar.propTypes = filterBarPropTypes
 
-export default FilterBar
+export default deprecated({
+  useNewProps: {
+    submitFilterLable: 'submitFilterLabel',
+    newFilterLable: 'newFilterLabel',
+  },
+})(FilterBar)

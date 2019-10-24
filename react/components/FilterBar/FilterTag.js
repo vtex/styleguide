@@ -138,8 +138,8 @@ class FilterTag extends PureComponent {
       onClickClear,
       isMoreOptions,
       onSubmitFilterStatement,
-      submitFilterLable,
-      newFilterLable,
+      submitFilterLabel,
+      newFilterLabel,
     } = this.props
     const { isMenuOpen, virtualStatement } = this.state
 
@@ -234,7 +234,7 @@ class FilterTag extends PureComponent {
               <div
                 className={`flex flex-wrap ${isMoreOptions ? 'mb6' : 'mb3'}`}>
                 {isMoreOptions && (
-                  <span className="f4 mh3">{newFilterLable}</span>
+                  <span className="f4 mh3">{newFilterLabel}</span>
                 )}
                 <div className="flex flex-column">
                   {shouldOmitVerb && (
@@ -272,7 +272,7 @@ class FilterTag extends PureComponent {
                     this.resetVirtualStatement()
                     this.closeMenu()
                   }}>
-                  {submitFilterLable}
+                  {submitFilterLabel}
                 </Button>
               </div>
             </div>
@@ -297,7 +297,7 @@ FilterTag.defaultProps = {
   alwaysVisible: false,
   isMoreOptions: false,
   subjectPlaceholder: '…',
-  newFilterLable: '…',
+  newFilterLabel: 'New filter',
 }
 
 FilterTag.propTypes = {
@@ -310,8 +310,8 @@ FilterTag.propTypes = {
   onClickClear: PropTypes.func,
   isMoreOptions: PropTypes.bool,
   onSubmitFilterStatement: PropTypes.func.isRequired,
-  submitFilterLable: PropTypes.string.isRequired,
-  newFilterLable: PropTypes.string,
+  submitFilterLabel: PropTypes.string.isRequired,
+  newFilterLabel: PropTypes.string,
 }
 
 export default FilterTag
