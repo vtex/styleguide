@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
+- `InputButton` component.
 - `ButtonPlain` component.
 
 ## [9.90.7] - 2019-10-29
