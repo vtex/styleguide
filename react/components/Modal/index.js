@@ -59,6 +59,7 @@ class Modal extends PureComponent {
       showBottomBarBorder,
       onCloseTransitionFinish,
       container,
+      staticHeight,
     } = this.props
     const { shadowBottom, shadowTop } = this.state
 
@@ -88,6 +89,8 @@ class Modal extends PureComponent {
           },
           modal: {
             padding: 0,
+            maxHeight: staticHeight,
+            minHeight: staticHeight,
           },
           closeIcon: {
             top: '8px',
@@ -169,6 +172,8 @@ Modal.propTypes = {
   showTopBar: PropTypes.bool,
   /** Event fired when the closing transition is finished */
   onCloseTransitionFinish: PropTypes.func,
+  /** Delimits modal height when a static height is needed */
+  staticHeight: PropTypes.string,
 }
 
 export default Modal

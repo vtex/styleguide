@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- `staticHeight` prop on `Modal` component to allow selection of modal height and keep it static.
+
 ## [9.90.3] - 2019-10-25
 
 ### Fixed
@@ -24,7 +28,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - `w-100` style on `TopBar` title className from `Modal` component.
-- `arrowAlign` prop on `Collapsible` to allow icon position selection. 
+- `arrowAlign` prop on `Collapsible` to allow icon position selection.
 
 ## [9.90.0] - 2019-10-24
 
