@@ -9,8 +9,9 @@ import Separator from './Separator'
 import StrategySelector from './StrategySelector'
 import Statement from '../Statement/index'
 
-import { Labels, Operator } from "./typings";
-import { DEFAULT_LABELS, MEDIUM_ICON_SIZE } from './constants';
+import { Labels, Operator } from './typings'
+import { DEFAULT_LABELS, MEDIUM_ICON_SIZE } from './constants'
+import { SubjectOptions } from '../Statement/Atoms/SubjectAtom'
 
 type Props = {
   canDelete?: boolean
@@ -20,7 +21,7 @@ type Props = {
   onChangeStatements: (statement: Props['statements']) => void
   onChangeOperator: (operator: Props['operator']) => void
   operator: Operator
-  options: object
+  options: SubjectOptions
   hideOperator?: boolean
   statements: {
     subject: string
@@ -83,11 +84,8 @@ const Conditions: React.FC<Props> = ({
   }
 
   const handleUpdatestatement = (newStatement, statementIndex) => {
-    const newStatements = statements.map(
-      (statement, idx) =>
-        idx === statementIndex
-          ? newStatement
-          : statement
+    const newStatements = statements.map((statement, idx) =>
+      idx === statementIndex ? newStatement : statement
     )
     onChangeStatements(newStatements)
   }
@@ -100,9 +98,7 @@ const Conditions: React.FC<Props> = ({
             isRtl={isRtl}
             operator={operator}
             labels={labels}
-            onChangeOperator={operator =>
-              onChangeOperator(operator)
-            }
+            onChangeOperator={operator => onChangeOperator(operator)}
           />
         </div>
       )}
@@ -113,7 +109,9 @@ const Conditions: React.FC<Props> = ({
             <Statement
               isRtl={isRtl}
               isFullWidth={isFullWidth}
-              onChangeStatement={newStatement => onChangeStatements([newStatement])}
+              onChangeStatement={newStatement =>
+                onChangeStatements([newStatement])
+              }
               options={options}
               subjectPlaceholder={subjectPlaceholder}
             />
@@ -153,13 +151,11 @@ const Conditions: React.FC<Props> = ({
                     statement={statement}
                   />
                 </div>,
-                (canDelete &&
+                canDelete &&
                   (!isFullWidth ? (
                     <div
                       className="ma3 c-muted-2 pointer hover-c-danger"
-                      onClick={() =>
-                        handleRemoveStatement(statementIndex)
-                      }>
+                      onClick={() => handleRemoveStatement(statementIndex)}>
                       <IconClose size={25} />
                     </div>
                   ) : (
@@ -169,14 +165,11 @@ const Conditions: React.FC<Props> = ({
                         collapseRight
                         size="small"
                         icon={<IconClose className="c-on-action-primary" />}
-                        onClick={() =>
-                          handleRemoveStatement(statementIndex)
-                        }>
-                          {labels.delete || DEFAULT_LABELS.delete}
+                        onClick={() => handleRemoveStatement(statementIndex)}>
+                        {labels.delete || DEFAULT_LABELS.delete}
                       </ButtonWithIcon>
                     </div>
-                  ))
-                ),
+                  )),
               ]
 
               return (
@@ -189,9 +182,7 @@ const Conditions: React.FC<Props> = ({
                         ? 'flex-column items-strech'
                         : 'flex-row items-center'
                     }`}>
-
                     {isRtl ? statementContent.reverse() : statementContent}
-
                   </div>
 
                   {statementIndex !== statements.length - 1 && (
@@ -254,7 +245,7 @@ Conditions.propTypes = {
   /** Operator indicates whether all the statements should be met or any of them */
   operator: PropTypes.oneOf(['all', 'any']),
   /** Possible options and respective data types, verb options */
-  options: PropTypes.object.isRequired,
+  options: PropTypes.any.isRequired,
   /** Show or hide the header that selects the operator (any vs all) */
   hideOperator: PropTypes.bool,
   /** one statement = {subject: string, verb: string, object: unknown, error: string} */

@@ -7,7 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.90.0] - 2019-10-24
+
+- **Conditions** `group` property to contract. This allows conditions subject to be grouped by the given string value.
+- **Select** grouping options documentation.
+
 ## [9.89.0] - 2019-10-24
+
+### Added
+
+- vtex-tachyons mention in non-io docs
 
 ## [9.88.5] - 2019-10-18
 
