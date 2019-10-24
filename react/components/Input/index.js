@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import Button from '../Button'
+
 import styles from './Input.css'
 import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
 
@@ -83,6 +85,7 @@ class Input extends Component {
       prefix,
       suffix: suffixProp,
       suffixIcon,
+      button,
       groupBottom,
       disabled,
       readOnly,
@@ -243,6 +246,17 @@ class Input extends Component {
               {suffix}
             </span>
           )}
+          {button && size !== 'small' && (
+            <span className="flex items-center mr1">
+              <Button
+                disabled={disabled}
+                size={size === 'large' ? 'regular' : 'small'}
+                type="submit"
+                variation="secondary">
+                {button}
+              </Button>
+            </span>
+          )}
         </div>
         {errorMessage && (
           <div className="c-danger t-small mt3 lh-title">{errorMessage}</div>
@@ -298,6 +312,9 @@ Input.propTypes = {
   autoFocus: PropTypes.bool,
   /** Spec attribute */
   autoSave: PropTypes.string,
+  /** @ignore
+   * Spec attribute */
+  button: PropTypes.string,
   /** List of data attributes as a object like `{'locale': 'en-US'}` */
   dataAttributes: PropTypes.object,
   /** Spec attribute */
