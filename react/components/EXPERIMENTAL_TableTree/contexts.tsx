@@ -3,9 +3,7 @@ import { checkboxesHookReturn } from './hooks/useTableTreeCheckboxes'
 import { TreeProps, TreeState } from './index'
 import useTreeState from './hooks/useTreeState'
 
-export const CheckboxesContext = createContext<Partial<checkboxesHookReturn>>(
-  {}
-)
+export const CheckboxesContext = createContext<checkboxesHookReturn>(null)
 
 export const TreeContext = createContext<Partial<TreeProps & TreeState>>({})
 

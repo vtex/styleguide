@@ -195,9 +195,10 @@ FilterBar.defaultProps = {
   subjectPlaceholder: 'Select a filter…',
   submitFilterLable: 'Apply',
   newFilterLable: 'New Filter',
+  statements: [],
 }
 
-FilterBar.propTypes = {
+export const filterBarPropTypes = {
   /** filter options (mirroring statements from Conditions component) */
   options: PropTypes.object.isRequired,
   /** filter statements (mirroring statements from Conditions component) */
@@ -217,5 +218,7 @@ FilterBar.propTypes = {
   /** New Filter title lable for inside the 'More options' menu */
   newFilterLable: PropTypes.string,
 }
+
+FilterBar.propTypes = filterBarPropTypes
 
 export default FilterBar

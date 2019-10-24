@@ -11,6 +11,7 @@ import { STATE_NOT_FOUND_ERROR } from './errors'
 import { TableContainer, Thead } from './Styled'
 import DataTable from './DataTable'
 import BulkActions from './BulkActions'
+import FilterBar from './FilterBar'
 
 const Table: FC<Props> & TableComposites = ({
   children,
@@ -116,11 +117,13 @@ type Props = TableProps & InferProps<typeof bulkPropTypes>
 
 export type TableComposites = {
   Toolbar: FC
+  FilterBar?: FC
   Pagination?: FC<PaginationProps>
   BulkActions?: FC
 }
 
 Table.Toolbar = Toolbar
+Table.FilterBar = FilterBar
 Table.Pagination = Pagination
 Table.propTypes = tablePropTypes
 Table.BulkActions = BulkActions

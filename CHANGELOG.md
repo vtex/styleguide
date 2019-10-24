@@ -11,36 +11,53 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - New InputButton component
 
-## [9.87.2] - 2019-10-10
+### Changed
 
-### Added
-
-- **checked** prop to `EXPERIMENTAL_useTableTreeCheckboxes`
 - New prop to Input component to show a submit button
 
-## [9.87.1] - 2019-10-10
+## [9.89.0] - 2019-10-24
+
+## [9.88.5] - 2019-10-18
 
 ### Fixed
 
-- **Tooltip** popup's position.
+- **Table** SSR errors
 
-## [9.87.0] - 2019-10-10
+## [9.88.4] - 2019-10-18
+
+### Fixed
+
+- **FilterBar** `VerbAtom` behavior when there is only one verb option to show a `span` tag instead of a `Select`.
+
+## [9.88.3] - 2019-10-17
+
+### Fixed
+
+- **Select** `defaultValue` warning when receiving an array of options.
+
+## [9.88.2] - 2019-10-16
+
+### Fixed
+
+- **FilterBar** `statement` must be an empty array in `defaultProps`.
+
+## [9.88.1] - 2019-10-16
+
+### Fixed
+
+- Table tree not rendering if checkboxes are not allowed
+
+## [9.88.0] - 2019-10-15
 
 ### Added
 
-- **isDangerous** prop to `ModalDialog`component.
+- `Fixed` option to bulk actions for a sticky behaviour
 
-## [9.86.6] - 2019-10-10
+## [9.87.3] - 2019-10-14
 
-### Fixed
+### Added
 
-- `Button` fixes hover colors of Tertiary and Danger Tertiary to more consistent ones
-
-## [9.86.5] - 2019-10-10
-
-### Fixed
-
-- **InputSearch** `onSubmit` prop function had a value as param instead of an event as the contract requires.
+- Added `FilterBar` to `EXPERIMENTAL_Table` and `EXPERIMENTAL_TableTree`.
 
 ## [9.86.4] - 2019-10-08
 

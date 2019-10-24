@@ -12,9 +12,10 @@ export const ORDER_CLASSNAMES = {
       NEWLINE: 'order-5',
     },
   },
-  BULK_ACTIONS: 'order-1',
-  TABLE: 'order-2',
-  PAGINATION: 'order-3',
+  FILTER_BAR: 'order-1',
+  BULK_ACTIONS: 'order-2',
+  TABLE: 'order-3',
+  PAGINATION: 'order-4',
 }
 
 export const NAMESPACE_PREFIX = 'vtex-table-v2'
@@ -35,6 +36,7 @@ export const NAMESPACES = {
     BUTTON_NEWLINE: `${NAMESPACE_PREFIX}__toolbar__button-newline`,
     BUTTON_EXTRA_ACTIONS: `${NAMESPACE_PREFIX}__toolbar__button-extra-actions`,
   },
+  FILTER_BAR: `${NAMESPACE_PREFIX}__filter-bar`,
   BULK_ACTIONS: `${NAMESPACE_PREFIX}__bulk-actions`,
   CHECKBOX: `${NAMESPACE_PREFIX}__checkbox`,
   PAGINATION: `${NAMESPACE_PREFIX}__pagination`,
