@@ -225,6 +225,6 @@ FilterBar.propTypes = filterBarPropTypes
 export default deprecated({
   useNewProps: {
     submitFilterLable: 'submitFilterLabel',
-    newFilterLable: 'newFilterLabel'
-  }
+    newFilterLable: 'newFilterLabel',
+  },
 })(FilterBar)
