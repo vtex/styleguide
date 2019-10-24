@@ -208,6 +208,13 @@ const OptionShape = PropTypes.shape({
 
 const OptionsShape = PropTypes.arrayOf(OptionShape)
 
+const GroupedOptionsShape = PropTypes.arrayOf(
+  PropTypes.shape({
+    label: PropTypes.string,
+    options: OptionsShape,
+  })
+)
+
 Select.propTypes = {
   /** @ignore Forwarded Ref */
   forwardedRef: refShape,
@@ -244,7 +251,7 @@ Select.propTypes = {
   /** Handle events on search input */
   onSearchInputChange: PropTypes.func,
   /** Array of options. Options have the shape { label, value }. */
-  options: OptionsShape,
+  options: PropTypes.oneOfType([OptionsShape, GroupedOptionsShape]),
   /** Text for the select value.  */
   placeholder: PropTypes.string,
   /** Select size */
