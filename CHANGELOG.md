@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.90.2] - 2019-10-24
+
 ### Fixed
 
 - **FilterBar** `submitFilterLable` and `newFilterLable` prop names typos.
