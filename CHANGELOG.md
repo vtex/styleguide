@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 - **Conditions** `group` property to contract. This allows conditions subject to be grouped by the given string value.
+- **Select** grouping options documentation.
 
 ## [9.89.0] - 2019-10-24
 
