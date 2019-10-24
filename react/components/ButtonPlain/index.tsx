@@ -196,7 +196,7 @@ const ButtonPlain: FunctionComponent<Props> = props => {
         <Fragment>
           <span className="top-0 left-0 w-100 h-100 absolute flex justify-center items-center">
             <Spinner
-              secondary={variation === 'primary' || variation === 'danger'}
+              secondary={variation === VARIATION.DANGER}
               size={loaderSize[size]}
             />
           </span>
