@@ -10,8 +10,9 @@ const propTypes = {
   noPadding: PropTypes.bool,
   selected: PropTypes.bool,
   onClick: PropTypes.func,
-  /** Use theese to group cards on the left/right. */
+  /** Use this to group cards on the left. */
   hasGroupLeft: PropTypes.bool,
+  /** Use this to group cards on the right. */
   hasGroupRight: PropTypes.bool,
 }
 
