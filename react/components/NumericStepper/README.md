@@ -93,7 +93,7 @@ initialState = {
 ;<React.Fragment>
   <div className="mb5">
     <NumericStepper
-      label="default"
+      label="Default"
       minValue={1}
       value={state.value1}
       onChange={event => setState({ value1: event.value })}
@@ -110,19 +110,19 @@ initialState = {
   </div>
   <div className="mb5">
     <NumericStepper
-      label="disabled"
+      label="Read Only"
       minValue={1}
-      disabled
+      readOnly
       value={state.value3}
       onChange={event => setState({ value3: event.value })}
     />
   </div>
   <div className="mb5">
     <NumericStepper
-      label="lean disabled"
+      label="lean Read Only"
       minValue={1}
       lean
-      disabled
+      readOnly
       value={state.value4}
       onChange={event => setState({ value4: event.value })}
     />
