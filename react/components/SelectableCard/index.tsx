@@ -9,7 +9,7 @@ const propTypes = {
   /** Use the full size of the card. */
   noPadding: PropTypes.bool,
   selected: PropTypes.bool,
-  onClick: PropTypes.func,
+  onClick: PropTypes.func.isRequired,
   /** Use this to group cards on the left. */
   hasGroupLeft: PropTypes.bool,
   /** Use this to group cards on the right. */
@@ -28,15 +28,12 @@ const SelectableCard: FC<PropTypes.InferProps<typeof propTypes>> = ({
 
   return (
     <div
-      className={`ba br2 relative ${
+      className={`ba br2 bw2 relative ${
         selected ? 'b--action-primary z-999' : 'b--transparent'
-      } nh2`}
-      style={{ borderWidth: '4px' }}>
+      } nh2`}>
       {selected ? (
-        <div className="absolute right--1 top--1 br-100 h2 w2 bg-action-primary z-999">
-          <div className="pa3">
-            <CheckIcon color="white" />
-          </div>
+        <div className="absolute right--1 top--1 br-100 h2 w2 bg-action-primary z-999 pa3">
+          <CheckIcon color="white" />
         </div>
       ) : null}
       <div
@@ -46,10 +43,8 @@ const SelectableCard: FC<PropTypes.InferProps<typeof propTypes>> = ({
             hasGroupLeft ? '0px' : '-10px'
           })`,
         }}
-        className={`vtex-card card w-100 b2 br2 bg-base c-on-base ${padding} ${
-          onClick ? 'pointer' : ''
-        }`}
-        onClick={onClick ? () => onClick() : null}>
+        className={`vtex-card card w-100 b2 br2 bg-base c-on-base ${padding} pointer`}
+        onClick={onClick}>
         {children}
       </div>
     </div>
