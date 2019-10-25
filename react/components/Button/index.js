@@ -52,8 +52,8 @@ class Button extends Component {
       variation === 'inverted-tertiary' ||
       variation === 'danger-tertiary'
 
-    let classes = 'vtex-button bw1 ba fw5 v-mid relative pa0 '
-    let labelClasses = 'flex items-center justify-center h-100 pv2 '
+    let classes = 'vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid '
+    let labelClasses = 'flex items-center justify-center h-100 '
     let loaderSize = 15
     let horizontalPadding = 0
 
@@ -243,7 +243,14 @@ class Button extends Component {
             <span className={`${labelClasses} o-0`}>{children}</span>
           </Fragment>
         ) : (
-          <div className={labelClasses}>{children}</div>
+          <div
+            className={labelClasses}
+            style={{
+              paddingTop: '.25em',
+              paddingBottom: '.32em',
+            }}>
+            {children}
+          </div>
         )}
       </Element>
     )
