@@ -173,7 +173,7 @@ Modal.propTypes = {
   /** Event fired when the closing transition is finished */
   onCloseTransitionFinish: PropTypes.func,
   /** Delimits modal height when a static height is needed */
-  staticHeight: PropTypes.string,
+  staticHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }
 
 export default Modal
