@@ -146,7 +146,15 @@ class NumericStepper extends Component {
 
   render() {
     const { value, displayValue } = this.state
-    const { maxValue, minValue, size, block, label, lean, disabled } = this.props
+    const {
+      maxValue,
+      minValue,
+      size,
+      block,
+      label,
+      lean,
+      disabled,
+    } = this.props
 
     const isMin = value <= normalizeMin(minValue)
     const isMax = value >= normalizeMax(maxValue)
