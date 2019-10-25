@@ -84,18 +84,50 @@ Styling
 
 ```js
 initialState = {
-  value: 1,
+  value1: 1,
+  value2: 1,
+  value3: 1,
+  value4: 1,
 }
 
-;<div className="mb5">
-  <NumericStepper
-    label="Lean mode"
-    minValue={1}
-    lean
-    value={state.value}
-    onChange={event => setState({ value: event.value })}
-  />
-</div>
+;<React.Fragment>
+  <div className="mb5">
+    <NumericStepper
+      label="Default"
+      minValue={1}
+      value={state.value1}
+      onChange={event => setState({ value1: event.value })}
+    />
+  </div>
+  <div className="mb5">
+    <NumericStepper
+      label="Lean mode"
+      minValue={1}
+      lean
+      value={state.value2}
+      onChange={event => setState({ value2: event.value })}
+    />
+  </div>
+  <div className="mb5">
+    <NumericStepper
+      label="Read Only"
+      minValue={1}
+      readOnly
+      value={state.value3}
+      onChange={event => setState({ value3: event.value })}
+    />
+  </div>
+  <div className="mb5">
+    <NumericStepper
+      label="lean Read Only"
+      minValue={1}
+      lean
+      readOnly
+      value={state.value4}
+      onChange={event => setState({ value4: event.value })}
+    />
+  </div>
+</React.Fragment>
 ```
 
 Box types
