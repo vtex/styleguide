@@ -168,6 +168,11 @@ module.exports = {
             'react/components/EXPERIMENTAL_TableTree/index.tsx',
           ],
         },
+        {
+          name: '👻 Charts',
+          content: './docs/components_experimental.md',
+          components: ['react/components/Charts/LineChart/index.tsx'],
+        },
       ],
     },
     {
