@@ -1,32 +1,35 @@
-import React, { useRef, useState, FC, createContext, useContext } from 'react'
+import React, {
+  useRef,
+  useState,
+  FC,
+  useLayoutEffect,
+  useCallback,
+} from 'react'
 
-import useOutsideClick from '../hooks/useOutsideClick'
-import ToolbarButton, { ButtonProps } from './Button'
 import Button from '../../Button/index.js'
 import { BOX_ALIGNMENT } from '../constants'
 
-const MenuContext = createContext<MenuContext>(null)
-
-const MenuProvider: FC<{ value: MenuContext }> = ({ children, value }) => {
-  return <MenuContext.Provider value={value}>{children}</MenuContext.Provider>
-}
-
-const Menu: FC<MenuProps> & MenuComposites = ({ button, box, children }) => {
+export default function usePopoverMenu() {
   const [isBoxVisible, setBoxVisible] = useState(false)
   const buttonRef = useRef(null)
 
-  useOutsideClick(buttonRef, () => setBoxVisible(false), isBoxVisible)
+  const handleOutsideClick = (e: Event) =>
+    buttonRef &&
+    buttonRef.current &&
+    e.target instanceof Node &&
+    !buttonRef.current.contains(e.target) &&
+    setBoxVisible(false)
 
-  return (
-    <MenuProvider value={{ isBoxVisible, setBoxVisible }}>
-      <ToolbarButton
-        {...button}
-        ref={buttonRef}
-        onClick={() => setBoxVisible(!isBoxVisible)}>
-        {isBoxVisible && <Box {...box}>{children}</Box>}
-      </ToolbarButton>
-    </MenuProvider>
-  )
+  useLayoutEffect(() => {
+    isBoxVisible && document.addEventListener('mousedown', handleOutsideClick)
+    return () => document.removeEventListener('mousedown', handleOutsideClick)
+  }, [isBoxVisible])
+
+  const toggleBox = useCallback(() => {
+    setBoxVisible(!isBoxVisible)
+  }, [isBoxVisible])
+
+  return { isBoxVisible, setBoxVisible, buttonRef, toggleBox }
 }
 
 export const Box: FC<BoxProps> = ({
@@ -39,6 +42,7 @@ export const Box: FC<BoxProps> = ({
   children,
 }) => {
   const isAlignRight = alignMenu === BOX_ALIGNMENT.RIGHT
+
   return (
     <div
       className={`absolute z-999 shadow-4 ${
@@ -70,42 +74,18 @@ export const Box: FC<BoxProps> = ({
   )
 }
 
-export const Item: FC<ItemProps> = ({
-  isSelected,
-  handleCallback,
-  closeMenuOnClick,
-  children,
-}) => {
-  const { setBoxVisible } = useContext(MenuContext)
-
-  const handleClick = () => {
-    closeMenuOnClick && setBoxVisible(false)
-    handleCallback()
-  }
-
+export const Item: FC<ItemProps> = ({ isSelected, onClick, children }) => {
   return (
     <div
       className={`flex justify-between ph6 pv3 ${
         isSelected ? 'b--emphasis' : 'b--transparent'
       } pointer hover-bg-muted-5 bl bw1`}
-      onClick={handleClick}>
+      onClick={onClick}>
       <span className={`w-100 flex justify-between ${isSelected ? 'fw5' : ''}`}>
         {children}
       </span>
     </div>
   )
-}
-
-Menu.Item = Item
-
-type MenuContext = {
-  isBoxVisible: boolean
-  setBoxVisible: (isBoxVisible: boolean) => void
-}
-
-type MenuProps = {
-  button: ButtonProps
-  box: BoxProps
 }
 
 type BoxProps = {
@@ -118,13 +98,8 @@ type BoxProps = {
 }
 
 type ItemProps = {
-  handleCallback: Function
+  onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
   isSelected?: boolean
-  closeMenuOnClick?: boolean
-}
-
-type MenuComposites = {
-  Item: FC<ItemProps>
 }
 
 export type MenuAction = {
@@ -136,5 +111,3 @@ export type MenuAction = {
   }
   id?: number | string
 }
-
-export default Menu
