@@ -22,16 +22,20 @@ const TableTree: FC<Props> & TableComposites = ({
   isEmpty,
   emptyState,
 }) => {
+  if (!measures) {
+    throw new Error('Provide measures to the TableTree')
+  }
+
+  const { tableHeight, rowHeight } = measures
+
   return (
-    <div
-      style={{ minHeight: measures.tableHeight }}
-      className="flex flex-column">
+    <div style={{ minHeight: tableHeight }} className="flex flex-column">
       {children}
       <DataTable
         loading={loading}
         emptyState={emptyState}
         isEmpty={isEmpty}
-        height={measures.tableHeight}>
+        height={tableHeight}>
         <thead className="w-100 ph4 truncate overflow-x-hidden c-muted-2 f6">
           <TreeHeadings
             checkboxes={checkboxes}
@@ -39,16 +43,18 @@ const TableTree: FC<Props> & TableComposites = ({
             items={items}
           />
         </thead>
-        <tbody>
-          <Tree
-            checkboxes={checkboxes}
-            columns={columns}
-            items={items}
-            unicityKey={unicityKey}
-            nodesKey={nodesKey}
-            rowHeight={measures.rowHeight}
-          />
-        </tbody>
+        {!isEmpty && !loading && (
+          <tbody>
+            <Tree
+              checkboxes={checkboxes}
+              columns={columns}
+              items={items}
+              unicityKey={unicityKey}
+              nodesKey={nodesKey}
+              rowHeight={rowHeight}
+            />
+          </tbody>
+        )}
       </DataTable>
     </div>
   )

@@ -30,8 +30,7 @@ const items = sampleData
 
 function ToolbarExample() {
   const measures = useTableMeasures({
-    columns,
-    items,
+    size: items.length,
   })
 
   return (
@@ -144,13 +143,11 @@ function ToolbarExample() {
   })
 
   const measures = useTableMeasures({
-    columns,
-    items,
+    size: items.length,
   })
 
   const visibility = useTableVisibility({
     columns,
-    items,
   })
 
   const emptyState = {
@@ -229,12 +226,20 @@ function ToolbarExample() {
     })),
   }
 
+  const isEmpty = React.useMemo(
+    () =>
+      displayItems.length === 0 ||
+      Object.keys(visibility.visibleColumns).length === 0,
+    [visibility.visibleColumns, displayItems]
+  )
+
   return (
     <TableTree
       checkboxes={checkboxes}
       unicityKey="email"
       columns={visibility.visibleColumns}
       items={checkboxes.itemTree}
+      isEmpty={isEmpty}
       emptyState={emptyState}
       measures={measures}>
       <TableTree.Toolbar>
@@ -245,7 +250,10 @@ function ToolbarExample() {
             {...buttonColumns}
           />
           <TableTree.Toolbar.ButtonGroup.Density
-            density={measures}
+            density={{
+              selectedDensity: measures.selectedDensity,
+              setSelectedDensity: measures.setSelectedDensity,
+            }}
             {...density}
           />
           <TableTree.Toolbar.ButtonGroup.Download {...download} />
