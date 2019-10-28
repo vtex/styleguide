@@ -39,6 +39,7 @@
     "@babel/preset-typescript": "^7.3.3",
     "@types/jest": "^24.0.15",
     "@types/prop-types": "^15.7.1",
+    "@types/recharts": "^1.8.0",
     "babel-eslint": "^10.0.2",
     "babel-loader": "^8.0.6",
     "babel-plugin-dynamic-import-node": "^1.2.0",
@@ -100,6 +101,7 @@
     "react-responsive-modal": "^3.1.0",
     "react-select": "^2.1.2",
     "react-virtualized": "^9.19.1",
+    "recharts": "^1.8.5",
     "uuid": "^3.3.2",
     "vtex-tachyons": "^3.2.0",
     "whatwg-fetch": "2.0.4"
