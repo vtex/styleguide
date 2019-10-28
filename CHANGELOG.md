@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- **Table** stale height on first render when using `dynamicRowHeight`.
+
 ## [9.93.0] - 2019-11-07
 
 ### Changed

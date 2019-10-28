@@ -28,6 +28,7 @@ class SimpleTable extends Component {
 
     this.state = {
       hoverRowIndex: -1,
+      tableHeight: 0,
     }
 
     this._cache = new CellMeasurerCache({
@@ -162,6 +163,26 @@ class SimpleTable extends Component {
     return rawTableHeight + this.getScrollbarWidth()
   }
 
+  componentDidMount() {
+    this.setState({
+      tableHeight:
+        this.props.containerHeight || this.calculateContainerHeight(),
+    })
+  }
+
+  componentDidUpdate() {
+    if (this.props.containerHeight) {
+      return
+    }
+
+    const calculatedContainerHeight = this.calculateContainerHeight()
+    if (this.state.tableHeight !== calculatedContainerHeight) {
+      this.setState({
+        tableHeight: calculatedContainerHeight,
+      })
+    }
+  }
+
   render() {
     const {
       schema,
@@ -172,7 +193,6 @@ class SimpleTable extends Component {
       emptyStateLabel,
       emptyStateChildren,
       onRowClick,
-      containerHeight,
       sort: { sortOrder, sortedBy },
       onSort,
       updateTableKey,
@@ -181,15 +201,13 @@ class SimpleTable extends Component {
       loading,
       selectedRowsIndexes,
     } = this.props
-    const { hoverRowIndex } = this.state
+    const { hoverRowIndex, tableHeight } = this.state
 
     if (lineActions)
       schema.properties = this.addLineActionsToSchema(schema, lineActions)
     const properties = Object.keys(schema.properties)
 
     const tableKey = `vtex-table--${updateTableKey}--${density}`
-
-    const tableHeight = containerHeight || this.calculateContainerHeight()
 
     return (
       <div className="vh-100 w-100 dt" style={{ height: tableHeight }}>
