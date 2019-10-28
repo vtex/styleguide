@@ -359,60 +359,67 @@ class SimpleTable extends Component {
                           key={key}
                           parent={parent}
                           rowIndex={rowIndex}>
-                          <div
-                            key={key}
-                            style={{
-                              ...style,
-                              height: this.calculateRowHeight(rowIndex),
-                              width: this.calculateColWidth(
-                                schema,
-                                properties,
-                                columnIndex,
-                                fullWidth,
-                                fullWidthColWidth
-                              ),
-                              backgroundColor: selectedRowsIndexes.includes(
-                                rowIndex - 1
-                              )
-                                ? SELECTED_ROW_BACKGROUND
-                                : '',
-                            }}
-                            className={`flex items-center w-100 h-100 ph4 bb
-                                b--muted-4 truncate ${
-                                  disableHeader && rowIndex === 0 ? 'bt' : ''
-                                } ${
-                              onRowClick && rowIndex === hoverRowIndex
-                                ? 'pointer bg-near-white c-link'
-                                : ''
-                            } ${
-                              columnIndex === 0 && fixFirstColumn ? 'br' : ''
-                            }`}
-                            onClick={
-                              onRowClick &&
-                              property !== '_VTEX_Table_Internal_lineActions'
-                                ? event =>
-                                    onRowClick({
-                                      event,
-                                      index: rowIndex,
-                                      rowData,
-                                    })
-                                : null
-                            }
-                            onMouseEnter={
-                              onRowClick
-                                ? () => this.handleRowHover(rowIndex)
-                                : null
-                            }
-                            onMouseLeave={
-                              onRowClick ? () => this.handleRowHover(-1) : null
-                            }>
-                            {cellRenderer
-                              ? cellRenderer({
-                                  cellData,
-                                  rowData,
-                                })
-                              : cellData}
-                          </div>
+                          {({ measure: updateCellMeasurements }) => (
+                            <div
+                              key={key}
+                              style={{
+                                ...style,
+                                height: this.calculateRowHeight(rowIndex),
+                                width: this.calculateColWidth(
+                                  schema,
+                                  properties,
+                                  columnIndex,
+                                  fullWidth,
+                                  fullWidthColWidth
+                                ),
+                                backgroundColor: selectedRowsIndexes.includes(
+                                  rowIndex - 1
+                                )
+                                  ? SELECTED_ROW_BACKGROUND
+                                  : '',
+                              }}
+                              className={`flex items-center w-100 h-100 ph4 bb
+                                    b--muted-4 truncate ${
+                                      disableHeader && rowIndex === 0
+                                        ? 'bt'
+                                        : ''
+                                    } ${
+                                onRowClick && rowIndex === hoverRowIndex
+                                  ? 'pointer bg-near-white c-link'
+                                  : ''
+                              } ${
+                                columnIndex === 0 && fixFirstColumn ? 'br' : ''
+                              }`}
+                              onClick={
+                                onRowClick &&
+                                property !== '_VTEX_Table_Internal_lineActions'
+                                  ? event =>
+                                      onRowClick({
+                                        event,
+                                        index: rowIndex,
+                                        rowData,
+                                      })
+                                  : null
+                              }
+                              onMouseEnter={
+                                onRowClick
+                                  ? () => this.handleRowHover(rowIndex)
+                                  : null
+                              }
+                              onMouseLeave={
+                                onRowClick
+                                  ? () => this.handleRowHover(-1)
+                                  : null
+                              }>
+                              {cellRenderer
+                                ? cellRenderer({
+                                    cellData,
+                                    rowData,
+                                    updateCellMeasurements,
+                                  })
+                                : cellData}
+                            </div>
+                          )}
                         </CellMeasurer>
                       )
                     }}
