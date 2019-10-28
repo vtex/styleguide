@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- **Table** `onRowHover` optional prop.
+
 ## [9.90.5] - 2019-10-28
 
 ### Added

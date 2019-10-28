@@ -56,7 +56,7 @@ class SimpleTable extends Component {
   }
 
   handleRowHover = rowIndex => {
-    const { onRowClick } = this.props
+    const { onRowClick, onRowHover } = this.props
     const { isLineActionsHovered } = this.state
     if (onRowClick && !isLineActionsHovered) {
       this.setState({
@@ -67,6 +67,8 @@ class SimpleTable extends Component {
         hoverRowIndex: -1,
       })
     }
+
+    onRowHover(rowIndex)
   }
 
   calculateColWidth = (
@@ -424,6 +426,7 @@ SimpleTable.defaultProps = {
   fullWidth: false,
   dynamicRowHeight: false,
   selectedRowsIndexes: [],
+  onRowHover: () => {},
 }
 
 SimpleTable.propTypes = {
@@ -434,6 +437,7 @@ SimpleTable.propTypes = {
   density: PropTypes.string,
   disableHeader: PropTypes.bool,
   onRowClick: PropTypes.func,
+  onRowHover: PropTypes.func,
   emptyStateLabel: PropTypes.string,
   emptyStateChildren: PropTypes.node,
   sort: PropTypes.shape({
