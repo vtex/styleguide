@@ -14,6 +14,8 @@ const DataTable: FC<DataTableProps> = ({
   loading,
   emptyState,
 }) => {
+  const showLoading = !isEmpty && loading
+  const showEmptyState = isEmpty && emptyState
   return (
     <div
       id={NAMESPACES.TABLE}
@@ -22,15 +24,14 @@ const DataTable: FC<DataTableProps> = ({
       <Tag className={`w-100 ${className}`} style={{ borderSpacing: 0 }}>
         {children}
       </Tag>
-      {!isEmpty && loading && (
+      {showLoading && (
         <Loading height={height - TABLE_HEADER_HEIGHT}>
           {typeof loading !== 'boolean' &&
             loading.renderAs &&
             loading.renderAs()}
         </Loading>
       )}
-
-      {isEmpty && emptyState && (
+      {showEmptyState && (
         <EmptyState title={emptyState.label}>{emptyState.children}</EmptyState>
       )}
     </div>

@@ -1,7 +1,7 @@
 import { useMemo, useState, useCallback } from 'react'
 import { Column, Items } from '../index'
 
-export default function useTableVisibility({ columns, items }: VisibilityData) {
+export default function useTableVisibility({ columns }: VisibilityData) {
   const [hiddenColumns, setHiddenColumns] = useState(getHiddenColumns(columns))
 
   const visibleColumns = useMemo(() => {
@@ -28,17 +28,10 @@ export default function useTableVisibility({ columns, items }: VisibilityData) {
     setHiddenColumns(columns.map(col => col.id))
   }
 
-  const isEmpty = useMemo(
-    () => items.length === 0 || Object.keys(visibleColumns).length === 0,
-    [visibleColumns, items]
-  )
-
   return {
     columns,
     visibleColumns,
     hiddenColumns,
-    items,
-    isEmpty,
     toggleColumn,
     showAllColumns,
     hideAllColumns,
@@ -47,7 +40,6 @@ export default function useTableVisibility({ columns, items }: VisibilityData) {
 
 export type VisibilityData = {
   columns: Array<Column>
-  items: Items
 }
 
 function getHiddenColumns(columns: Array<Column>): Array<string> {

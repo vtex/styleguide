@@ -347,10 +347,6 @@ const columns = [
 
 function EmptyExample() {
   const measures = useTableMeasures({})
-  const { isEmpty } = useTableVisibility({
-    columns,
-    items: [],
-  })
 
   const emptyState = {
     label: 'This is an default empty state title',
@@ -358,10 +354,10 @@ function EmptyExample() {
 
   return (
     <Table
-      measures={measures}
       columns={columns}
       items={[]}
-      isEmpty={isEmpty}
+      measures={measures}
+      isEmpty={true}
       emptyState={emptyState}
     />
   )
@@ -392,11 +388,6 @@ const columns = [
 
 function CustomEmptyStateExample() {
   const measures = useTableMeasures({})
-  const { isEmpty } = useTableVisibility({
-    columns,
-    items: [],
-  })
-
   const emptyState = {
     label: 'This is an default empty state title',
     children: (
@@ -416,9 +407,9 @@ function CustomEmptyStateExample() {
 
   return (
     <Table
-      measures={measures}
-      isEmpty={isEmpty}
+      isEmpty={true}
       columns={columns}
+      measures={measures}
       items={[]}
       emptyState={emptyState}
     />
@@ -1216,6 +1207,13 @@ function ToolbarExample() {
     label: 'The table is empty',
   }
 
+  const isEmpty = React.useMemo(
+    () =>
+      displayItems.length === 0 ||
+      Object.keys(visibility.visibleColumns).length === 0,
+    [visibility.visibleColumns, displayItems]
+  )
+
   const inputSearch = {
     value: inputValue,
     placeholder: 'Search stuff...',
@@ -1291,7 +1289,7 @@ function ToolbarExample() {
 
   return (
     <Table
-      isEmpty={visibility.isEmpty}
+      isEmpty={isEmpty}
       measures={measures}
       items={displayItems}
       columns={visibility.visibleColumns}

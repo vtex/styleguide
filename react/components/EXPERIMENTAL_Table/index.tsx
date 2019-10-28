@@ -19,9 +19,16 @@ const Table: FC<TableProps> & TableComposites = ({
   isEmpty,
   ...props
 }) => {
+  if (!measures) {
+    throw new Error('Provide measures to the Table')
+  }
+
+  const { tableHeight, rowHeight } = measures
+  const { columns, onRowClick, items } = props
+
   return (
     <div
-      style={{ minHeight: measures.tableHeight }}
+      style={{ minHeight: tableHeight }}
       id={NAMESPACES.CONTAINER}
       className="flex flex-column">
       {children}
@@ -29,20 +36,20 @@ const Table: FC<TableProps> & TableComposites = ({
         isEmpty={isEmpty}
         loading={loading}
         emptyState={emptyState}
-        height={measures.tableHeight}>
+        height={tableHeight}>
         <thead
           id={NAMESPACES.HEADER}
           className="w-100 ph4 truncate overflow-x-hidden c-muted-2 f6">
-          <Headings columns={props.columns} />
+          <Headings columns={columns} />
         </thead>
 
         {!isEmpty && !loading && (
           <tbody>
             <Rows
-              columns={props.columns}
-              items={props.items}
-              rowHeight={measures.rowHeight}
-              onRowClick={props.onRowClick}
+              columns={columns}
+              items={items}
+              rowHeight={rowHeight}
+              onRowClick={onRowClick}
               isRowActive={isRowActive}
             />
           </tbody>
