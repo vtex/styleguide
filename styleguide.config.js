@@ -166,8 +166,8 @@ module.exports = {
           ],
         },
         {
-          name: '👻 Charts',
-          content: './docs/components_experimental.md',
+          name: '📊 Charts',
+          content: './docs/charts.md',
           components: ['react/components/Charts/LineChart/index.tsx'],
         },
       ],
