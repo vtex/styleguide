@@ -7,23 +7,10 @@ import {
     Tooltip,
     CartesianGrid,
     ResponsiveContainer,
-    CartesianGridProps,
-    XAxisProps,
-    ResponsiveContainerProps
 } from 'recharts'
-import { colors, defaultProps as defaulLineProps } from './constants'
+import { colors, defaultProps } from './constants'
 import withChartProps from '../withChartProps'
 
-
-type BaseGridProps = Pick<CartesianGridProps, 'vertical' | 'horizontal'>
-type BaseAxisProps = Pick<XAxisProps, 'axisLine' | 'tickLine'>
-type BaseContainerProps = Pick<ResponsiveContainerProps, 'height' | 'width'>
-
-type DefaultProps = {
-    axis: BaseAxisProps,
-    container: BaseContainerProps,
-    grid: BaseGridProps
-}
 interface Props extends DefaultProps {
     hasVerticalGrid?: boolean,
     hasHorizontalGrid?: boolean,
@@ -32,13 +19,14 @@ interface Props extends DefaultProps {
     xAxisKey: string,
     yAxisKey?: string,
 }
-const renderLines  = (keys: string[]) => {
+
+const renderLines = (keys: string[]) => {
     return keys.map((key, i) => 
       <Line
         key={key}
         dataKey={key}
         stroke={colors[i]}
-        {...defaulLineProps}
+        {...defaultProps}
       />
     )
   }
@@ -51,6 +39,7 @@ const LineChart: FC<Props> = ({
     hasVerticalGrid,
     ...baseProps
 }) => {
+    console.log({...defaultProps});
     return (
         <ResponsiveContainer {...baseProps.container}>
             <LineChartBase data={data}>

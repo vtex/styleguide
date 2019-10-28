@@ -5,10 +5,9 @@ const colors = [
     '#9F50B6',
     '#479A5E'
 ]
-
-const defaultProps: LineProps = {
+type DefaultLineProps = Pick<LineProps, 'type' | 'strokeWidth' | 'dot'>
+const defaultProps: DefaultLineProps = {
     type: 'monotone',
-    dataKey: 'y',
     strokeWidth: 3,
     dot: false,
 }
