@@ -39,12 +39,19 @@ const LineChart: FC<Props> = ({
     hasVerticalGrid,
     ...baseProps
 }) => {
+
+    const showHorizontalGrid = hasHorizontalGrid || baseProps.grid.horizontal
+    const showVerticalGrid = hasVerticalGrid || baseProps.grid.vertical
+    
     return (
         <ResponsiveContainer {...baseProps.container}>
             <LineChartBase data={data}>
                 <XAxis dataKey={xAxisKey} {...baseProps.axis}/>
                 <YAxis {...baseProps.axis}/>
-                <CartesianGrid {...baseProps.grid}/>
+                <CartesianGrid
+                    horizontal={showHorizontalGrid}
+                    vertical={showVerticalGrid}
+                />
                 <Tooltip cursor={false}/>
                 {renderLines(dataKeys)}
             </LineChartBase>
