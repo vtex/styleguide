@@ -63,7 +63,6 @@ export const COLUMNS_BOX = {
 export const FIELDS_BOX_ITEM_HEIGHT = 36
 export const TABLE_HEADER_HEIGHT = 36
 export const EMPTY_STATE_SIZE_IN_ROWS = 5
-export const DEFAULT_SCROLLBAR_WIDTH = 17
 export const NESTED_ROW_PREFIX_WIDTH = 36
 export const BULK_ACTIONS_HEIGHT = 56
 export const BULK_ACTIONS_TRANSITION =

@@ -19,19 +19,6 @@ const Table: FC<TableProps> & TableComposites = ({
   isEmpty,
   ...props
 }) => {
-  if (!measures) {
-    //TODO
-    console.warn('Passing measures is highly recomended')
-  }
-  if (!props.items) {
-    //TODO
-    console.warn('Items not provided')
-  }
-  if (!props.columns) {
-    //TODO
-    console.warn('Columns not provided')
-  }
-
   return (
     <div
       style={{ minHeight: measures.tableHeight }}

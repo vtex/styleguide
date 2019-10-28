@@ -112,7 +112,7 @@ const items = [
 
 function StateHookExample() {
   const measures = useTableMeasures({
-    items,
+    size: items.length,
   })
 
   return <Table measures={measures} columns={columns} items={items} />
@@ -183,7 +183,7 @@ const items = [
 
 function ClickExample() {
   const measures = useTableMeasures({
-    items,
+    size: items.length,
   })
 
   const onRowClick = ({ rowData }) => {
@@ -242,7 +242,7 @@ const items = [
 
 function LoadingExample() {
   const [loading, setLoading] = React.useState(false)
-  const measures = useTableMeasures({ items })
+  const measures = useTableMeasures({ size: items.length })
 
   return (
     <div>
@@ -303,7 +303,7 @@ const items = [
 
 function CustomLoadingExample() {
   const [isLoading, setIsLoading] = React.useState(false)
-  const measures = useTableMeasures({ items })
+  const measures = useTableMeasures({ size: items.length })
 
   const loading = isLoading && {
     loading: {
@@ -346,7 +346,7 @@ const columns = [
 ]
 
 function EmptyExample() {
-  const measures = useTableMeasures({ items: [] })
+  const measures = useTableMeasures({})
   const { isEmpty } = useTableVisibility({
     columns,
     items: [],
@@ -391,7 +391,7 @@ const columns = [
 ]
 
 function CustomEmptyStateExample() {
-  const measures = useTableMeasures({ items: [] })
+  const measures = useTableMeasures({})
   const { isEmpty } = useTableVisibility({
     columns,
     items: [],
@@ -574,7 +574,7 @@ function usePagination(initialSize) {
 function PaginationExample() {
   const { slicedItems, ...paginationProps } = usePagination(5)
 
-  const measures = useTableMeasures({ items: slicedItems })
+  const measures = useTableMeasures({ size: slicedItems.lenght })
 
   const pagination = {
     ...paginationProps,
@@ -693,7 +693,7 @@ function BulkExample() {
   })
 
   const measures = useTableMeasures({
-    items,
+    size: items.length,
   })
 
   const density = {
@@ -792,7 +792,7 @@ function LineActionsExample() {
     columns,
     lineActions,
   })
-  const measures = useTableMeasures({ items: itemsWithLineActions })
+  const measures = useTableMeasures({ size: items.length })
 
   return (
     <Table
@@ -1010,7 +1010,7 @@ function FilterBarExample() {
     console.log(filteredItems)
   })
 
-  const measures = useTableMeasures({ items: filteredItems })
+  const measures = useTableMeasures({ size: items.length })
 
   const [filterStatements, setFilterStatements] = React.useState([])
 
@@ -1209,7 +1209,7 @@ function ToolbarExample() {
   })
 
   const measures = useTableMeasures({
-    items,
+    size: items.length,
   })
 
   const emptyState = {
@@ -1408,7 +1408,7 @@ function InputCustom({ onSubmit, ...inputProps }) {
 function UnsafeInputExample() {
   const { displayItems, ...inputProps } = useItemsFilter()
   const measures = useTableMeasures({
-    items: displayItems,
+    size: items.length,
   })
 
   return (

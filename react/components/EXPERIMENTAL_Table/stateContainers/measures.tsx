@@ -1,29 +1,23 @@
-import React, {
-  useMemo,
-  useState,
-  createContext,
-  useContext,
-  ReactNode,
-} from 'react'
+import { useMemo, useState } from 'react'
 
-import {
-  TABLE_HEADER_HEIGHT,
-  EMPTY_STATE_SIZE_IN_ROWS,
-  DEFAULT_SCROLLBAR_WIDTH,
-} from '../constants'
-import { Items } from '../index'
+import { TABLE_HEADER_HEIGHT, EMPTY_STATE_SIZE_IN_ROWS } from '../constants'
+
+const DEFAULT_SCROLLBAR_WIDTH = 17
 
 export default function useTableMeasures({
-  items,
+  size = 0,
   density = Density.MEDIUM,
-}: MeasuresData) {
+}: MeasuresInput) {
   const [selectedDensity, setSelectedDensity] = useState<Density>(density)
-  const rowHeight = getRowHeight(selectedDensity)
 
-  const tableHeight = useMemo(
-    () => calculateTableHeight(rowHeight, items.length),
-    [items, rowHeight]
-  )
+  const rowHeight = useMemo(() => getRowHeight(selectedDensity), [
+    selectedDensity,
+  ])
+
+  const tableHeight = useMemo(() => calculateTableHeight(rowHeight, size), [
+    size,
+    selectedDensity,
+  ])
 
   return {
     selectedDensity,
@@ -33,44 +27,17 @@ export default function useTableMeasures({
   }
 }
 
-export type MeasuresData = {
-  items: Items
+export type MeasuresInput = {
+  size: number
   density: Density
 }
 
-const MeasuresContext = createContext<Partial<
-  ReturnType<typeof useTableMeasures>
-> | null>(null)
-
-export function useMeasuresState() {
-  const state = useContext(MeasuresContext)
-  if (!state)
-    throw new Error('This component is not under the Measures Context')
-  return state
-}
-
-export function MeasuresProvider({
-  value,
-  children,
-}: {
-  value: ReturnType<typeof useTableMeasures>
-  children: ReactNode
-}) {
-  return (
-    <MeasuresContext.Provider value={value}>
-      {children}
-    </MeasuresContext.Provider>
-  )
-}
-
 export function calculateTableHeight(
-  tableRowHeight: number,
-  totalItems: number
+  rowHeight: number,
+  tableSize: number
 ): number {
-  const multiplicator = totalItems !== 0 ? totalItems : EMPTY_STATE_SIZE_IN_ROWS
-  return (
-    TABLE_HEADER_HEIGHT + tableRowHeight * multiplicator + getScrollbarWidth()
-  )
+  const multiplicator = tableSize !== 0 ? tableSize : EMPTY_STATE_SIZE_IN_ROWS
+  return TABLE_HEADER_HEIGHT + rowHeight * multiplicator + getScrollbarWidth()
 }
 
 export function getScrollbarWidth(): number {
