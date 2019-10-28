@@ -12,7 +12,7 @@ const Container: FC<Props> = ({ justify, children }) => (
     id={NAMESPACES.TOOLBAR.CONTAINER}
     className={csx(
       ORDER_CLASSNAMES.TOOLBAR,
-      'mb5 flex flex-row w-100 justify-${justify}'
+      `mb5 flex flex-row w-100 justify-${justify}`
     )}>
     {children}
   </div>
