@@ -4,7 +4,7 @@ import csx from 'classnames'
 import IconDownload from '../../icon/Download/index.js'
 import IconUpload from '../../icon/Upload/index.js'
 
-import Button, { ButtonProps } from './Button'
+import Button, { ButtonProps, IconSize } from './Button'
 import ButtonColumns, { ButtonColumnsProps } from './ButtonColumns'
 import ButtonDensity, { ButtonDensityProps } from './ButtonDensity'
 import ButtonExtraActions, {
@@ -12,7 +12,7 @@ import ButtonExtraActions, {
 } from './ButtonExtraActions'
 import ButtonNewLine, { ButtonNewLineProps } from './ButtonNewLine'
 
-import { ICON_SIZE, NAMESPACES, ORDER_CLASSNAMES } from '../constants'
+import { NAMESPACES, ORDER_CLASSNAMES } from '../constants'
 
 const getButton = (type: ButtonType, props: Props) => {
   switch (type) {
@@ -40,7 +40,7 @@ const getButton = (type: ButtonType, props: Props) => {
           }>
           <Button
             id={NAMESPACES.TOOLBAR.BUTTON_DOWNLOAD}
-            icon={<IconDownload size={ICON_SIZE.HEAVY} />}
+            icon={<IconDownload size={IconSize.Heavy} />}
             {...(props as ButtonProps)}
           />
         </span>
@@ -52,7 +52,7 @@ const getButton = (type: ButtonType, props: Props) => {
           className={ORDER_CLASSNAMES.TOOLBAR_CHILD.BUTTON_GROUP_CHILD.UPLOAD}>
           <Button
             id={NAMESPACES.TOOLBAR.BUTTON_UPLOAD}
-            icon={<IconUpload size={ICON_SIZE.HEAVY} />}
+            icon={<IconUpload size={IconSize.Heavy} />}
             {...(props as ButtonProps)}
           />
         </span>

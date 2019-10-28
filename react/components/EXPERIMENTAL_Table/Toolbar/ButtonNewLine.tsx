@@ -4,8 +4,13 @@ import ActionMenu from '../../ActionMenu/index.js'
 import ButtonGroup from '../../ButtonGroup/index.js'
 import IconPlus from '../../icon/Plus/index.js'
 
-import Button, { ButtonProps } from './Button'
-import { ICON_SIZE, NAMESPACES, BUTTON } from '../constants'
+import Button, {
+  ButtonProps,
+  ButtonVariation,
+  ButtonSize,
+  IconSize,
+} from './Button'
+import { NAMESPACES } from '../constants'
 import { MenuAction } from './PopoverMenu'
 
 const ButtonNewLine: FC<ButtonNewLineProps> = ({ actions, ...buttonProps }) => {
@@ -19,8 +24,8 @@ const ButtonNewLine: FC<ButtonNewLineProps> = ({ actions, ...buttonProps }) => {
           key={namespace}
           isGrouped
           isFirstOfGroup
-          variation={BUTTON.VARIATION.PRIMARY}
-          icon={<IconPlus solid size={ICON_SIZE.LIGHT} />}
+          variation={ButtonVariation.Primary}
+          icon={<IconPlus solid size={IconSize.Light} />}
           {...buttonProps}
         />,
         <ActionMenu
@@ -35,15 +40,15 @@ const ButtonNewLine: FC<ButtonNewLineProps> = ({ actions, ...buttonProps }) => {
   ) : (
     <Button
       id={NAMESPACES.TOOLBAR.BUTTON_NEWLINE}
-      icon={<IconPlus solid size={ICON_SIZE.LIGHT} />}
-      variation={BUTTON.VARIATION.PRIMARY}
+      icon={<IconPlus solid size={IconSize.Light} />}
+      variation={ButtonVariation.Primary}
       {...buttonProps}
     />
   )
 }
 
 ButtonNewLine.defaultProps = {
-  size: BUTTON.SIZE.SMALL,
+  size: ButtonSize.Small,
 }
 
 export type ButtonNewLineProps = ButtonProps & {

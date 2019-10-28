@@ -2,7 +2,6 @@ import React, { forwardRef, ReactNode } from 'react'
 import csx from 'classnames'
 
 import ButtonWithIcon from '../../ButtonWithIcon/index.js'
-import { BUTTON } from '../constants'
 const ICON_OPTICAL_COMPENSATION = { marginTop: 1.5 }
 
 type Ref = HTMLDivElement
@@ -26,7 +25,7 @@ const Button = forwardRef<Ref, ButtonProps>(
     },
     ref
   ) => {
-    const isTertiary = variation === BUTTON.VARIATION.TERTIARY
+    const isTertiary = variation === ButtonVariation.Tertiary
     return (
       <div
         id={id}
@@ -59,16 +58,34 @@ const Button = forwardRef<Ref, ButtonProps>(
   }
 )
 
+export enum ButtonVariation {
+  Primary = 'primary',
+  Secondary = 'secondary',
+  Tertiary = 'tertiary',
+}
+
+export enum ButtonSize {
+  Small = 'small',
+  Regular = 'regular',
+  Large = 'large',
+}
+
+export enum IconSize {
+  Heavy = 13,
+  Medium = 14,
+  Light = 16,
+}
+
 export type ButtonProps = {
   id?: string
   label?: string
   onClick?: Function
   isLoading?: boolean
   disabled?: boolean
-  size?: Size
+  size?: ButtonSize
   icon?: any
   title?: string
-  variation?: Variation
+  variation?: ButtonVariation
   isActiveOfGroup?: boolean
   isGrouped?: boolean
   isFirstOfGroup?: boolean
@@ -76,11 +93,11 @@ export type ButtonProps = {
 }
 
 Button.defaultProps = {
-  variation: BUTTON.VARIATION.TERTIARY,
+  variation: ButtonVariation.Tertiary,
   isActiveOfGroup: false,
   isGrouped: false,
   isFirstOfGroup: false,
-  size: BUTTON.SIZE.SMALL,
+  size: ButtonSize.Small,
 }
 
 export default Button

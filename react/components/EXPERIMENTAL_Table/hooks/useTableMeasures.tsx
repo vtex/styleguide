@@ -1,8 +1,8 @@
 import { useMemo, useState } from 'react'
 
-import { TABLE_HEADER_HEIGHT, EMPTY_STATE_SIZE_IN_ROWS } from '../constants'
-
 const DEFAULT_SCROLLBAR_WIDTH = 17
+const EMPTY_STATE_SIZE_IN_ROWS = 5
+export const TABLE_HEADER_HEIGHT = 36
 
 export default function useTableMeasures({
   size = 0,

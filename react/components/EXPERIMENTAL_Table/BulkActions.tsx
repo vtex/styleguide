@@ -6,14 +6,13 @@ import ButtonWithIcon from '../../ButtonWithIcon'
 import ActionMenu from '../../ActionMenu'
 import Close from '../icon/Close'
 
-import {
-  ORDER_CLASSNAMES,
-  NAMESPACES,
-  BULK_ACTIONS_HEIGHT,
-  BULK_ACTIONS_TRANSITION,
-} from './constants'
+import { ORDER_CLASSNAMES, NAMESPACES } from './constants'
 import useTableBulkActions from './hooks/useTableBulkActions'
 import { MenuAction } from './Toolbar/PopoverMenu'
+
+const BULK_ACTIONS_HEIGHT = 56
+const BULK_ACTIONS_TRANSITION =
+  'height 0.2s ease-in-out, padding 0.2s ease-in-out'
 
 const BulkActions: FC<BulkActionsProps> = ({
   texts,

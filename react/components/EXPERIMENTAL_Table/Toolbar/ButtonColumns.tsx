@@ -2,19 +2,16 @@ import React, { FC } from 'react'
 
 import Toggle from '../../../Toggle'
 import IconColumns from '../../icon/Columns/index'
-import usePopoverMenu, { Item, Box } from './PopoverMenu'
-import Button from './Button'
+import usePopoverMenu, { Item, Box, Alignment } from './PopoverMenu'
+import Button, { IconSize } from './Button'
 
-import { ICON_SIZE, COLUMNS_BOX, NAMESPACES } from '../constants'
+import { NAMESPACES } from '../constants'
 import useTableVisibility from '../hooks/useTableVisibility'
 
-export type ButtonColumnsProps = {
-  label: string
-  showAllLabel: string
-  hideAllLabel: string
-  alignMenu: Alignment
-  disabled: boolean
-  visibility: ReturnType<typeof useTableVisibility>
+const COLUMNS_BOX = {
+  MAX_HEIGHT: 192,
+  WIDTH: 292,
+  ITEM_HEIGHT: 36,
 }
 
 const ButtonColumns: FC<ButtonColumnsProps> = ({
@@ -56,7 +53,7 @@ const ButtonColumns: FC<ButtonColumnsProps> = ({
       title={label}
       ref={buttonRef}
       onClick={toggleBox}
-      icon={<IconColumns size={ICON_SIZE.MEDIUM} />}
+      icon={<IconColumns size={IconSize.Medium} />}
       disabled={disabled}>
       {isBoxVisible && (
         <Box {...boxProps}>
@@ -75,6 +72,15 @@ const ButtonColumns: FC<ButtonColumnsProps> = ({
       )}
     </Button>
   )
+}
+
+export type ButtonColumnsProps = {
+  label: string
+  showAllLabel: string
+  hideAllLabel: string
+  alignMenu: Alignment
+  disabled: boolean
+  visibility: ReturnType<typeof useTableVisibility>
 }
 
 export default ButtonColumns

@@ -2,8 +2,9 @@ import React, { FC } from 'react'
 
 import ActionMenu from '../../ActionMenu/index'
 import IconOptionsDots from '../../icon/OptionsDots/index'
-import { NAMESPACES, BUTTON } from '../constants'
-import { MenuAction } from './PopoverMenu'
+import { NAMESPACES } from '../constants'
+import { MenuAction, Alignment } from './PopoverMenu'
+import { ButtonVariation, ButtonSize } from './Button'
 
 const ButtonExtraActions: FC<ButtonExtraActionsProps> = ({
   label,
@@ -18,7 +19,7 @@ const ButtonExtraActions: FC<ButtonExtraActionsProps> = ({
       <ActionMenu
         hideCaretIcon
         buttonProps={{
-          variation: BUTTON.VARIATION.TERTIARY,
+          variation: ButtonVariation.Tertiary,
           icon: (
             <span className="c-on-base">
               <IconOptionsDots />
@@ -38,7 +39,7 @@ const ButtonExtraActions: FC<ButtonExtraActionsProps> = ({
 }
 
 ButtonExtraActions.defaultProps = {
-  size: BUTTON.SIZE.SMALL,
+  size: ButtonSize.Small,
 }
 
 export type ButtonExtraActionsProps = {
@@ -46,7 +47,7 @@ export type ButtonExtraActionsProps = {
   actions: Array<MenuAction>
   alignMenu?: Alignment
   isLoading?: boolean
-  size?: Size
+  size?: ButtonSize
 }
 
 export default ButtonExtraActions

@@ -2,13 +2,14 @@ import React, { FC } from 'react'
 import PropTypes, { InferProps } from 'prop-types'
 
 import Toolbar from './Toolbar/index'
-import { DENSITY_OPTIONS, NAMESPACES } from './constants'
+import { NAMESPACES } from './constants'
 import Pagination, { PaginationProps } from './Pagination'
 import DataTable from './DataTable'
 import BulkActions from './BulkActions'
 import FilterBar from './FilterBar'
 import Headings from './DataTable/Headings'
 import Rows from './DataTable/Rows'
+import { DENSITY_OPTIONS } from './hooks/useTableMeasures'
 
 const Table: FC<TableProps> & TableComposites = ({
   children,

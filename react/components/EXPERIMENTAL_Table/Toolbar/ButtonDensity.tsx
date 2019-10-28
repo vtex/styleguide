@@ -1,17 +1,16 @@
 import React, { FC } from 'react'
 
 import IconDensity from '../../icon/Density/index.js'
-import {
+import { NAMESPACES } from '../constants'
+import Button, { IconSize } from './Button'
+import usePopoverMenu, { Box, Item, Alignment } from './PopoverMenu'
+import useTableMeasures, {
+  Density,
   DENSITY_OPTIONS,
-  FIELDS_BOX_ITEM_HEIGHT,
-  ICON_SIZE,
-  NAMESPACES,
-} from '../constants'
-import Button from './Button'
-import usePopoverMenu, { Box, Item } from './PopoverMenu'
-import useTableMeasures, { Density } from '../hooks/useTableMeasures'
+} from '../hooks/useTableMeasures'
 
-const BOX_HEIGHT = DENSITY_OPTIONS.length * FIELDS_BOX_ITEM_HEIGHT
+const FIELDS_ITEM_HEIGHT = 36
+const BOX_HEIGHT = DENSITY_OPTIONS.length * FIELDS_ITEM_HEIGHT
 
 const ButtonDensity: FC<ButtonDensityProps> = ({
   label,
@@ -29,7 +28,7 @@ const ButtonDensity: FC<ButtonDensityProps> = ({
       title={label}
       ref={buttonRef}
       onClick={toggleBox}
-      icon={<IconDensity size={ICON_SIZE.MEDIUM} />}
+      icon={<IconDensity size={IconSize.Medium} />}
       disabled={disabled}>
       {isBoxVisible && (
         <Box height={BOX_HEIGHT} alignMenu={alignMenu}>

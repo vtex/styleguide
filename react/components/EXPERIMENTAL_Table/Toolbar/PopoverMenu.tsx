@@ -7,7 +7,6 @@ import React, {
 } from 'react'
 
 import Button from '../../Button/index.js'
-import { BOX_ALIGNMENT } from '../constants'
 
 export default function usePopoverMenu() {
   const [isBoxVisible, setBoxVisible] = useState(false)
@@ -41,7 +40,7 @@ export const Box: FC<BoxProps> = ({
   groupActions,
   children,
 }) => {
-  const isAlignRight = alignMenu === BOX_ALIGNMENT.RIGHT
+  const isAlignRight = alignMenu === Alignment.Right
 
   return (
     <div
@@ -110,4 +109,9 @@ export type MenuAction = {
     semantic: boolean
   }
   id?: number | string
+}
+
+export enum Alignment {
+  Left = 'left',
+  Right = 'right',
 }

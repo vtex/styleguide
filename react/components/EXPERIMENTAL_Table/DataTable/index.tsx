@@ -2,7 +2,8 @@ import React, { FC } from 'react'
 import csx from 'classnames'
 
 import EmptyState from '../../EmptyState/index.js'
-import { NAMESPACES, ORDER_CLASSNAMES, TABLE_HEADER_HEIGHT } from '../constants'
+import { NAMESPACES, ORDER_CLASSNAMES } from '../constants'
+import { TABLE_HEADER_HEIGHT } from '../hooks/useTableMeasures'
 import Loading from './Loading'
 
 const DataTable: FC<DataTableProps> = ({

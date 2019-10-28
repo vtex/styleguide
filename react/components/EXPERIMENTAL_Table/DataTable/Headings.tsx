@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import uuid from 'uuid'
 
-import { TABLE_HEADER_HEIGHT } from '../constants'
+import { TABLE_HEADER_HEIGHT } from '../hooks/useTableMeasures'
 import Row, { CellProps, RowProps } from './Row'
 import { Column } from '../index'
 
