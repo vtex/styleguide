@@ -11,7 +11,7 @@ import {
 import { colors, defaultProps } from './constants'
 import withChartProps from '../withChartProps'
 
-interface Props extends DefaultProps {
+interface Props extends ChartProps {
     hasVerticalGrid?: boolean,
     hasHorizontalGrid?: boolean,
     data: any,
