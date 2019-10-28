@@ -23,5 +23,9 @@
         },
     ];
     const keys = ['uv', 'pv', 'amt'];
-    <LineChart data={data} dataKeys={keys} xAxisKey={'name'}/>
+    <LineChart
+        data={data}
+        dataKeys={keys}
+        xAxisKey={'name'}
+    />
 ```
