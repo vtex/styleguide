@@ -7,7 +7,7 @@ import {
   ICON_SIZE,
   NAMESPACES,
 } from '../constants'
-import Menu from './Menu/index'
+import Menu from './PopoverMenu'
 import useTableMeasures, { Density } from '../stateContainers/measures'
 
 const BOX_HEIGHT = DENSITY_OPTIONS.length * FIELDS_BOX_ITEM_HEIGHT

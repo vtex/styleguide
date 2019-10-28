@@ -3,6 +3,7 @@ import React, { FC } from 'react'
 import ActionMenu from '../../ActionMenu/index'
 import IconOptionsDots from '../../icon/OptionsDots/index'
 import { NAMESPACES, BUTTON } from '../constants'
+import { MenuAction } from './PopoverMenu'
 
 const ButtonExtraActions: FC<ButtonExtraActionsProps> = ({
   label,

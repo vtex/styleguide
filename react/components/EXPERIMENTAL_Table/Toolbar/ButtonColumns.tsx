@@ -1,8 +1,8 @@
-import React, { useMemo, FC } from 'react'
+import React, { FC } from 'react'
 
 import Toggle from '../../../Toggle'
 import IconColumns from '../../icon/Columns/index'
-import Menu from './Menu/index'
+import Menu from './PopoverMenu'
 
 import { ICON_SIZE, COLUMNS_BOX, NAMESPACES } from '../constants'
 import useTableVisibility from '../stateContainers/visibility'

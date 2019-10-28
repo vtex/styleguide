@@ -6,6 +6,7 @@ import IconPlus from '../../icon/Plus/index.js'
 
 import Button, { ButtonProps } from './Button'
 import { ICON_SIZE, NAMESPACES, BUTTON } from '../constants'
+import { MenuAction } from './PopoverMenu'
 
 const ButtonNewLine: FC<ButtonNewLineProps> = ({ actions, ...buttonProps }) => {
   const namespace = NAMESPACES.TOOLBAR.BUTTON_NEWLINE
