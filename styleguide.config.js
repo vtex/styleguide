@@ -127,6 +127,7 @@ module.exports = {
             'react/components/AutocompleteInput/index.tsx',
             'react/components/NumericStepper/index.js',
             'react/components/RadioGroup/index.js',
+            'react/components/SelectableCard/index.tsx',
             'react/components/Slider/index.js',
             'react/components/Textarea/index.js',
             'react/components/Toggle/index.js',

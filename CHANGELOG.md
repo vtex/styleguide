@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.90.5] - 2019-10-28
+
+### Added
+
+- New component `Selectable Card`.
+
 ## [9.90.4] - 2019-10-25
 
 ### Added
@@ -30,7 +36,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - `w-100` style on `TopBar` title className from `Modal` component.
-- `arrowAlign` prop on `Collapsible` to allow icon position selection. 
+- `arrowAlign` prop on `Collapsible` to allow icon position selection.
 
 ## [9.90.0] - 2019-10-24
 

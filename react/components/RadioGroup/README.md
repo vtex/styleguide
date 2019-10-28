@@ -16,6 +16,7 @@
 
 - Consider using a <a href="#/Components/Forms/Checkbox">Checkbox</a> if you need the user to select more than one option.
 - Consider using a <a href="#/Components/Forms/Dropdown">Dropdown</a> if you have several options and they don't need much explanation.
+- Consider using a <a href="#/Components/Forms/SelectableCard">Selectable Card</a> if you prefer your options to be displayed horizontally or more detailed.
 
 Default
 
