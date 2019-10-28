@@ -8,7 +8,7 @@ import Row, {
 } from '../../EXPERIMENTAL_Table/DataTable/Row'
 import CellPrefix from './CellPrefix'
 import { Column } from '../../EXPERIMENTAL_Table'
-import useTableTreeCheckboxes from '../stateContainers/checkboxes'
+import useTableTreeCheckboxes from '../hooks/useTableTreeCheckboxes'
 
 const TreeHeadings: FC<TreeHeadingsProps> = ({
   checkboxes,

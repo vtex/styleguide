@@ -12,7 +12,7 @@ import {
   BULK_ACTIONS_HEIGHT,
   BULK_ACTIONS_TRANSITION,
 } from './constants'
-import useTableBulkActions from './stateContainers/bulkActions'
+import useTableBulkActions from './hooks/useTableBulkActions'
 import { MenuAction } from './Toolbar/PopoverMenu'
 
 const BulkActions: FC<BulkActionsProps> = ({

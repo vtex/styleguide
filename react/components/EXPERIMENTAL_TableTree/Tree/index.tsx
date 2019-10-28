@@ -3,7 +3,7 @@ import uuid from 'uuid'
 
 import CellPrefix from './CellPrefix'
 import Row from '../../EXPERIMENTAL_Table/DataTable/Row'
-import useTableTreeCheckboxes, { Item } from '../stateContainers/checkboxes'
+import useTableTreeCheckboxes, { Item } from '../hooks/useTableTreeCheckboxes'
 import { Column, Items } from '../../EXPERIMENTAL_Table'
 
 const Node: FC<NodeProps> = ({

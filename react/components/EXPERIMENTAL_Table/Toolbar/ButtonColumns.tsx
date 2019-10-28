@@ -6,7 +6,7 @@ import usePopoverMenu, { Item, Box } from './PopoverMenu'
 import Button from './Button'
 
 import { ICON_SIZE, COLUMNS_BOX, NAMESPACES } from '../constants'
-import useTableVisibility from '../stateContainers/visibility'
+import useTableVisibility from '../hooks/useTableVisibility'
 
 export type ButtonColumnsProps = {
   label: string

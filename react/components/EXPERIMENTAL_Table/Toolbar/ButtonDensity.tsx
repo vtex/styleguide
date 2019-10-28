@@ -1,4 +1,4 @@
-import React, { FC, useRef } from 'react'
+import React, { FC } from 'react'
 
 import IconDensity from '../../icon/Density/index.js'
 import {
@@ -9,7 +9,7 @@ import {
 } from '../constants'
 import Button from './Button'
 import usePopoverMenu, { Box, Item } from './PopoverMenu'
-import useTableMeasures, { Density } from '../stateContainers/measures'
+import useTableMeasures, { Density } from '../hooks/useTableMeasures'
 
 const BOX_HEIGHT = DENSITY_OPTIONS.length * FIELDS_BOX_ITEM_HEIGHT
 

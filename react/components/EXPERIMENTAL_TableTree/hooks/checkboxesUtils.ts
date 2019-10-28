@@ -1,4 +1,4 @@
-import { Item } from './checkboxes'
+import { Item } from './useTableTreeCheckboxes'
 
 /**
  * Return new state with items toggled

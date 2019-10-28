@@ -1,7 +1,7 @@
 #### NodesKey Prop
 
 ```js
-const useTableMeasures = require('../EXPERIMENTAL_Table/stateContainers/measures.tsx')
+const useTableMeasures = require('../EXPERIMENTAL_Table/hooks/useTableMeasures.tsx')
   .default
 const sampleData = require('./sampleData.ts').default
 
@@ -49,12 +49,12 @@ function ToolbarExample() {
 #### Full Example
 
 ```js
-const useTableMeasures = require('../EXPERIMENTAL_Table/stateContainers/measures.tsx')
+const useTableMeasures = require('../EXPERIMENTAL_Table/hooks/useTableMeasures.tsx')
   .default
-const useTableVisibility = require('../EXPERIMENTAL_Table/stateContainers/visibility.ts')
+const useTableVisibility = require('../EXPERIMENTAL_Table/hooks/useTableVisibility.ts')
   .default
 const sampleData = require('./sampleData.ts').default
-const useTableTreeCheckboxes = require('./stateContainers/checkboxes.tsx')
+const useTableTreeCheckboxes = require('./hooks/useTableTreeCheckboxes.tsx')
   .default
 
 // Define the columns

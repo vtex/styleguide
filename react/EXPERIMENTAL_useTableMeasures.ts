@@ -1,3 +1,1 @@
-export {
-  default,
-} from './components/EXPERIMENTAL_Table/stateContainers/measures'
+export { default } from './components/EXPERIMENTAL_Table/hooks/useTableMeasures'
