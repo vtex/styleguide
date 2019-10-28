@@ -39,7 +39,6 @@ const LineChart: FC<Props> = ({
     hasVerticalGrid,
     ...baseProps
 }) => {
-    console.log({...defaultProps});
     return (
         <ResponsiveContainer {...baseProps.container}>
             <LineChartBase data={data}>
