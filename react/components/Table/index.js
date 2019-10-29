@@ -149,6 +149,7 @@ class Table extends PureComponent {
       emptyStateChildren,
       fixFirstColumn,
       onRowClick,
+      onRowHover,
       sort,
       onSort,
       updateTableKey,
@@ -307,6 +308,7 @@ class Table extends PureComponent {
               emptyStateChildren={emptyStateChildren}
               dynamicRowHeight={dynamicRowHeight}
               onRowClick={onRowClick}
+              onRowHover={onRowHover}
               sort={sort}
               onSort={onSort}
               key={hiddenFields.toString()}
@@ -348,6 +350,8 @@ Table.propTypes = {
   fixFirstColumn: PropTypes.bool,
   /** Callback invoked when a user clicks on a table row. ({ event: Event, index: number, rowData: any }): void */
   onRowClick: PropTypes.func,
+  /** Callback invoked when a user hovers a table row. (rowIndex): void */
+  onRowHover: PropTypes.func,
   /** Sort order and which property (key in schema) is table data sorted by. */
   sort: PropTypes.shape({
     sortOrder: PropTypes.oneOf(['ASC', 'DESC']),
@@ -439,8 +443,8 @@ Table.propTypes = {
     texts: PropTypes.shape({
       secondaryActionsLabel: PropTypes.string.isRequired,
       rowsSelected: PropTypes.func.isRequired,
-      selectAll: PropTypes.string.isRequired,
-      allRowsSelected: PropTypes.func.isRequired,
+      selectAll: PropTypes.string,
+      allRowsSelected: PropTypes.func,
     }),
     totalItems: PropTypes.number,
     onChange: PropTypes.func,
