@@ -23,9 +23,24 @@
         },
     ];
     const keys = ['uv', 'pv', 'amt'];
+    const schema = {
+        container:{
+            height: 300,
+            width: '100%'
+        },
+        axis: {
+            axisLine: false,
+            tickLine: false
+        },
+        grid: {
+            horizontal: false,
+            vertical: false,
+        }
+    }
     <LineChart
         data={data}
         dataKeys={keys}
         xAxisKey={'name'}
+        schema={schema}
     />
 ```

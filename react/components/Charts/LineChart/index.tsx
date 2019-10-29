@@ -9,15 +9,14 @@ import {
     ResponsiveContainer,
 } from 'recharts'
 import { colors, defaultProps } from './constants'
-import withChartProps from '../withChartProps'
+import useChart from '../hooks/useChart'
 
-interface Props extends ChartProps {
-    hasVerticalGrid?: boolean,
-    hasHorizontalGrid?: boolean,
+interface Props {
     data: any,
     dataKeys: string[],
     xAxisKey: string,
     yAxisKey?: string,
+    schema: ChartProps
 }
 
 const renderLines = (keys: string[]) => {
@@ -35,22 +34,19 @@ const LineChart: FC<Props> = ({
     data,
     dataKeys,
     xAxisKey,
-    hasHorizontalGrid,
-    hasVerticalGrid,
-    ...baseProps
+    schema
 }) => {
 
-    const showHorizontalGrid = hasHorizontalGrid || baseProps.grid.horizontal
-    const showVerticalGrid = hasVerticalGrid || baseProps.grid.vertical
+    const configs = useChart(schema); 
     
     return (
-        <ResponsiveContainer {...baseProps.container}>
+        <ResponsiveContainer {...configs.container}>
             <LineChartBase data={data}>
-                <XAxis dataKey={xAxisKey} {...baseProps.axis}/>
-                <YAxis {...baseProps.axis}/>
+                <XAxis dataKey={xAxisKey} {...configs.axis}/>
+                <YAxis {...configs.axis}/>
                 <CartesianGrid
-                    horizontal={showHorizontalGrid}
-                    vertical={showVerticalGrid}
+                    horizontal={configs.grid.horizontal}
+                    vertical={configs.grid.vertical}
                 />
                 <Tooltip cursor={false}/>
                 {renderLines(dataKeys)}
@@ -59,4 +55,4 @@ const LineChart: FC<Props> = ({
     )
 }
 
-export default withChartProps(LineChart)
+export default LineChart
