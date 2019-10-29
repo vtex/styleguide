@@ -21,7 +21,7 @@ const ButtonDensity: FC<ButtonDensityProps> = ({
   ...options
 }) => {
   const { selectedDensity, setSelectedDensity } = density
-  const { buttonRef, toggleBox, setBoxVisible, isBoxVisible } = usePopoverMenu()
+  const { buttonRef, toggleBox, setBoxVisible, boxVisible } = usePopoverMenu()
   return (
     <Button
       id={NAMESPACES.TOOLBAR.BUTTON_DENSITY}
@@ -30,7 +30,7 @@ const ButtonDensity: FC<ButtonDensityProps> = ({
       onClick={toggleBox}
       icon={<IconDensity size={IconSize.Medium} />}
       disabled={disabled}>
-      {isBoxVisible && (
+      {boxVisible && (
         <Box height={BOX_HEIGHT} alignMenu={alignMenu}>
           {DENSITY_OPTIONS.map((key: Density, index) => {
             const isKeySelected = selectedDensity === key

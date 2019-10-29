@@ -27,7 +27,7 @@ const Rows: FC<RowsProps> = ({
         {...rowProps}
         {...clickable}
         height={rowHeight}
-        isActive={isRowActive && isRowActive(rowData)}
+        active={isRowActive && isRowActive(rowData)}
         key={`${NAMESPACES.ROW}-${uuid()}`}>
         {columns.map((column: Column) => {
           const { cellRender, width } = column

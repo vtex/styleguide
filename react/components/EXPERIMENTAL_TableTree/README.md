@@ -226,7 +226,7 @@ function ToolbarExample() {
     })),
   }
 
-  const isEmpty = React.useMemo(
+  const empty = React.useMemo(
     () =>
       displayItems.length === 0 ||
       Object.keys(visibility.visibleColumns).length === 0,
@@ -239,7 +239,7 @@ function ToolbarExample() {
       unicityKey="email"
       columns={visibility.visibleColumns}
       items={checkboxes.itemTree}
-      isEmpty={isEmpty}
+      empty={empty}
       emptyState={emptyState}
       measures={measures}>
       <TableTree.Toolbar>

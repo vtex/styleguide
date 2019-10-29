@@ -17,7 +17,7 @@ const Table: FC<TableProps> & TableComposites = ({
   isRowActive,
   loading,
   emptyState,
-  isEmpty,
+  empty,
   ...props
 }) => {
   if (!measures) {
@@ -34,7 +34,7 @@ const Table: FC<TableProps> & TableComposites = ({
       className="flex flex-column">
       {children}
       <DataTable
-        isEmpty={isEmpty}
+        empty={empty}
         loading={loading}
         emptyState={emptyState}
         height={tableHeight}>
@@ -44,7 +44,7 @@ const Table: FC<TableProps> & TableComposites = ({
           <Headings columns={columns} />
         </thead>
 
-        {!isEmpty && !loading && (
+        {!empty && !loading && (
           <tbody>
             <Rows
               selectedDensity={selectedDensity}
@@ -76,7 +76,7 @@ export const tablePropTypes = {
   measures: PropTypes.shape(measuresPropTypes),
   containerHeight: PropTypes.number,
   unicityKey: PropTypes.string,
-  isEmpty: PropTypes.bool,
+  empty: PropTypes.bool,
   columns: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,

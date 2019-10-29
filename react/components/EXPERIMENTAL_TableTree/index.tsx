@@ -19,7 +19,7 @@ const TableTree: FC<Props> & TableComposites = ({
   unicityKey,
   measures,
   loading,
-  isEmpty,
+  empty,
   emptyState,
 }) => {
   if (!measures) {
@@ -34,7 +34,7 @@ const TableTree: FC<Props> & TableComposites = ({
       <DataTable
         loading={loading}
         emptyState={emptyState}
-        isEmpty={isEmpty}
+        empty={empty}
         height={tableHeight}>
         <thead className="w-100 ph4 truncate overflow-x-hidden c-muted-2 f6">
           <TreeHeadings
@@ -43,7 +43,7 @@ const TableTree: FC<Props> & TableComposites = ({
             items={items}
           />
         </thead>
-        {!isEmpty && !loading && (
+        {!empty && !loading && (
           <tbody>
             <Tree
               selectedDensity={selectedDensity}

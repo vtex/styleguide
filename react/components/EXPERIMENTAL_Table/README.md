@@ -134,7 +134,7 @@ function StateHookExample() {
 | ------------------ | --------------- | ----------------------------------- |
 | columns            | List of Columns | Definition of the table columns     |
 | items              | Array of Object | The actual items that will be shown |
-| isEmpty            | Boolean         | If there are items to show or not   |
+| empty              | Boolean         | If there are items to show or not   |
 | tableHeight        | Number          | Table calculated height             |
 | rowHeight          | Number          | Table calculated row height         |
 | selectedDensity    | Density         | Current selected density            |
@@ -357,7 +357,7 @@ function EmptyExample() {
       columns={columns}
       items={[]}
       measures={measures}
-      isEmpty={true}
+      empty={true}
       emptyState={emptyState}
     />
   )
@@ -407,7 +407,7 @@ function CustomEmptyStateExample() {
 
   return (
     <Table
-      isEmpty={true}
+      empty={true}
       columns={columns}
       measures={measures}
       items={[]}
@@ -1207,7 +1207,7 @@ function ToolbarExample() {
     label: 'The table is empty',
   }
 
-  const isEmpty = React.useMemo(
+  const empty = React.useMemo(
     () =>
       displayItems.length === 0 ||
       Object.keys(visibility.visibleColumns).length === 0,
@@ -1289,7 +1289,7 @@ function ToolbarExample() {
 
   return (
     <Table
-      isEmpty={isEmpty}
+      empty={empty}
       measures={measures}
       items={displayItems}
       columns={visibility.visibleColumns}

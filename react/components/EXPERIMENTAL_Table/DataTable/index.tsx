@@ -11,12 +11,12 @@ const DataTable: FC<DataTableProps> = ({
   height,
   className,
   as: Tag,
-  isEmpty,
+  empty,
   loading,
   emptyState,
 }) => {
-  const showLoading = !isEmpty && loading
-  const showEmptyState = isEmpty && emptyState
+  const showLoading = !empty && loading
+  const showEmptyState = empty && emptyState
   return (
     <div
       id={NAMESPACES.TABLE}
@@ -48,7 +48,7 @@ export type DataTableProps = {
   height: number
   as?: 'table' | 'div' | 'section'
   className?: string
-  isEmpty: boolean
+  empty: boolean
   loading?:
     | boolean
     | {

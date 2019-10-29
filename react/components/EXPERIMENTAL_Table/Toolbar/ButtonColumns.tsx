@@ -22,7 +22,7 @@ const ButtonColumns: FC<ButtonColumnsProps> = ({
   disabled,
   visibility,
 }) => {
-  const { buttonRef, isBoxVisible, toggleBox } = usePopoverMenu()
+  const { buttonRef, boxVisible, toggleBox } = usePopoverMenu()
 
   const {
     hiddenColumns,
@@ -55,7 +55,7 @@ const ButtonColumns: FC<ButtonColumnsProps> = ({
       onClick={toggleBox}
       icon={<IconColumns size={IconSize.Medium} />}
       disabled={disabled}>
-      {isBoxVisible && (
+      {boxVisible && (
         <Box {...boxProps}>
           {columns.map((column, index) => {
             const { id, title } = column

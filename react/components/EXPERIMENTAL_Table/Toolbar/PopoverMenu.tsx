@@ -9,7 +9,7 @@ import React, {
 import Button from '../../Button/index.js'
 
 export default function usePopoverMenu() {
-  const [isBoxVisible, setBoxVisible] = useState(false)
+  const [boxVisible, setBoxVisible] = useState(false)
   const buttonRef = useRef(null)
 
   const handleOutsideClick = (e: Event) =>
@@ -20,15 +20,17 @@ export default function usePopoverMenu() {
     setBoxVisible(false)
 
   useLayoutEffect(() => {
-    isBoxVisible && document.addEventListener('mousedown', handleOutsideClick)
+    if (boxVisible) {
+      document.addEventListener('mousedown', handleOutsideClick)
+    }
     return () => document.removeEventListener('mousedown', handleOutsideClick)
-  }, [isBoxVisible])
+  }, [boxVisible])
 
   const toggleBox = useCallback(() => {
-    setBoxVisible(!isBoxVisible)
-  }, [isBoxVisible])
+    setBoxVisible(!boxVisible)
+  }, [boxVisible])
 
-  return { isBoxVisible, setBoxVisible, buttonRef, toggleBox }
+  return { boxVisible, setBoxVisible, buttonRef, toggleBox }
 }
 
 export const Box: FC<BoxProps> = ({
