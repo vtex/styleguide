@@ -37,7 +37,7 @@ const LineChart: FC<Props> = ({
     schema
 }) => {
 
-    const configs = useChart(schema); 
+    const { configs } = useChart(schema); 
     
     return (
         <ResponsiveContainer {...configs.container}>

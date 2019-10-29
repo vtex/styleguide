@@ -33,7 +33,7 @@
             tickLine: false
         },
         grid: {
-            horizontal: false,
+            horizontal: true,
             vertical: false,
         }
     }
