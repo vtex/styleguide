@@ -26,7 +26,7 @@ const TableTree: FC<Props> & TableComposites = ({
     throw new Error('Provide measures to the TableTree')
   }
 
-  const { tableHeight, rowHeight } = measures
+  const { tableHeight, rowHeight, selectedDensity } = measures
 
   return (
     <div style={{ minHeight: tableHeight }} className="flex flex-column">
@@ -46,6 +46,7 @@ const TableTree: FC<Props> & TableComposites = ({
         {!isEmpty && !loading && (
           <tbody>
             <Tree
+              selectedDensity={selectedDensity}
               checkboxes={checkboxes}
               columns={columns}
               items={items}

@@ -9,7 +9,7 @@ import BulkActions from './BulkActions'
 import FilterBar from './FilterBar'
 import Headings from './DataTable/Headings'
 import Rows from './DataTable/Rows'
-import { DENSITY_OPTIONS } from './hooks/useTableMeasures'
+import { DENSITY_OPTIONS, Density } from './hooks/useTableMeasures'
 
 const Table: FC<TableProps> & TableComposites = ({
   children,
@@ -24,7 +24,7 @@ const Table: FC<TableProps> & TableComposites = ({
     throw new Error('Provide measures to the Table')
   }
 
-  const { tableHeight, rowHeight } = measures
+  const { tableHeight, rowHeight, selectedDensity } = measures
   const { columns, onRowClick, items } = props
 
   return (
@@ -47,6 +47,7 @@ const Table: FC<TableProps> & TableComposites = ({
         {!isEmpty && !loading && (
           <tbody>
             <Rows
+              selectedDensity={selectedDensity}
               columns={columns}
               items={items}
               rowHeight={rowHeight}
@@ -116,6 +117,7 @@ export type CellData = {
   cellData: unknown
   rowData: unknown
   rowHeight: number
+  selectedDensity: Density
 }
 
 export type Column = {

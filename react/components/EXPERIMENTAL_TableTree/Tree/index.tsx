@@ -5,6 +5,7 @@ import CellPrefix from './CellPrefix'
 import Row from '../../EXPERIMENTAL_Table/DataTable/Row'
 import useTableTreeCheckboxes, { Item } from '../hooks/useTableTreeCheckboxes'
 import { Column, Items } from '../../EXPERIMENTAL_Table'
+import { Density } from '../../EXPERIMENTAL_Table/hooks/useTableMeasures'
 
 const Node: FC<NodeProps> = ({
   columns,
@@ -16,6 +17,7 @@ const Node: FC<NodeProps> = ({
   isCollapsed,
   data,
   depth,
+  selectedDensity,
 }) => {
   const isRowChecked = checkboxes && checkboxes.isChecked(data)
   const isRowPartiallyChecked =
@@ -49,7 +51,12 @@ const Node: FC<NodeProps> = ({
           const { cellRender, width } = column
           const cellData = data[column.id]
           const content = cellRender
-            ? cellRender({ cellData, rowData: data, rowHeight })
+            ? cellRender({
+                cellData,
+                rowData: data,
+                rowHeight,
+                selectedDensity,
+              })
             : cellData
           return (
             <Row.Cell key={`cel-${uuid()}`} width={width}>
@@ -68,6 +75,7 @@ const Node: FC<NodeProps> = ({
       {isCollapsed(data[unicityKey]) &&
         (data[nodesKey] as Array<Item>).map(data => (
           <Node
+            selectedDensity={selectedDensity}
             isCollapsed={isCollapsed}
             toggleCollapsed={toggleCollapsed}
             checkboxes={checkboxes}
@@ -120,6 +128,7 @@ const Tree: FC<TreeProps> = ({ checkboxes, items, ...nodeProps }) => {
 
 type TreeProps = {
   items: Items
+  selectedDensity: Density
   nodesKey: string
   columns: Array<Column>
   unicityKey: string
@@ -132,6 +141,7 @@ type NodeProps = {
   isCollapsed: (uniqueKey: unknown) => boolean
   columns: Array<Column>
   unicityKey: string
+  selectedDensity: Density
   rowHeight: number
   nodesKey: string
   checkboxes?: Partial<ReturnType<typeof useTableTreeCheckboxes>>
