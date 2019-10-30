@@ -9,6 +9,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
+- `useTableMeasures` hook
+
+### Changed
+
+- Remove contexts from `EXPERIMENTAL_Table` and `EXPERIMENTAL_TableTree`
+- `useTableState` is now deprecated
+
+### Added
+
 - `ButtonPlain` component.
 
 ## [9.90.7] - 2019-10-29
