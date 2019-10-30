@@ -1,4 +1,4 @@
-import { Item } from './useTableTreeCheckboxes'
+import { Item, comparatorCurry } from './useTableTreeCheckboxes'
 
 /**
  * Return new state with items toggled
@@ -9,21 +9,19 @@ export function getToggledState(
   state: Array<Item>,
   item: Item,
   nodesKey: string = 'children',
-  unicityKey: string = 'id'
+  comparator: comparatorCurry
 ): Array<Item> {
-  const equalsKey = eqProp(unicityKey)
-
-  const stateIncludesItem = state.some(equalsKey(item))
+  const stateIncludesItem = state.some(comparator(item))
 
   const bulkFilter = (row: Item) =>
-    !getFlat(item, [], nodesKey).some(equalsKey(row))
+    !getFlat(item, [], nodesKey).some(comparator(row))
 
-  const filter = (row: Item) => row[unicityKey] !== item[unicityKey]
+  const filter = (row: Item) => !comparator(row)(item)
 
   const bulkCheck = (state: Array<Item>, item: Item): Array<Item> => {
     return [...state, ...getFlat(item, [], nodesKey)].reduce(
       (acc: Array<Item>, item: Item) =>
-        acc.some(equalsKey(item)) ? acc : [...acc, item],
+        acc.some(comparator(item)) ? acc : [...acc, item],
       []
     ) as Array<Item>
   }
@@ -50,8 +48,3 @@ export function getFlat(
     )
   return arr
 }
-
-/** Compares one prop of item and candidate  */
-export const eqProp = (prop: string) => (item: unknown) => (
-  candidate: unknown
-) => item[prop] === candidate[prop]

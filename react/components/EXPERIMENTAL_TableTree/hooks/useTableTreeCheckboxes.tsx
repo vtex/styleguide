@@ -1,25 +1,24 @@
 import { useMemo, useCallback, useEffect, useReducer } from 'react'
-import { getFlat, getToggledState, eqProp } from './checkboxesUtils'
+import { getFlat, getToggledState } from './checkboxesUtils'
 
 export default function useTableTreeCheckboxes({
   items,
   onToggle,
   nodesKey = 'children',
-  unicityKey = 'id',
   checked = [],
+  comparator = defaultComparatorCurry,
 }: hookInput) {
   const [checkedItems, dispatch] = useReducer(reducer, checked)
-  const equalsUnicityKey = eqProp(unicityKey)
 
   const itemTree = useMemo(() => {
-    return { [unicityKey]: 'root', [nodesKey]: items }
+    return { vtexTableTreeRoot: 'root', [nodesKey]: items }
   }, [items])
 
   const toggle = useCallback(
     (item: Item): void => {
       dispatch({
         type: ActionType.Toggle,
-        itemToToggle: { item, nodesKey, unicityKey },
+        itemToToggle: { item, nodesKey, comparator },
       })
     },
     [checkedItems]
@@ -36,9 +35,9 @@ export default function useTableTreeCheckboxes({
       if (!childNodes) return
 
       const areChildsChecked = childNodes.every(child =>
-        checkedItems.some(equalsUnicityKey(child))
+        checkedItems.some(comparator(child))
       )
-      const isRootChecked = checkedItems.some(equalsUnicityKey(tree))
+      const isRootChecked = checkedItems.some(comparator(tree))
 
       if (areChildsChecked && !isRootChecked)
         dispatch({ type: ActionType.Check, item: tree })
@@ -46,7 +45,7 @@ export default function useTableTreeCheckboxes({
       if (!areChildsChecked && isRootChecked)
         dispatch({
           type: ActionType.Uncheck,
-          itemToToggle: { item: tree, unicityKey },
+          itemToToggle: { item: tree, comparator },
         })
 
       childNodes.forEach(shake)
@@ -58,8 +57,8 @@ export default function useTableTreeCheckboxes({
     (item: Item) => {
       const childs = item[nodesKey] as Array<Item>
       return childs
-        ? childs.every(child => checkedItems.some(equalsUnicityKey(child)))
-        : checkedItems.some(equalsUnicityKey(item))
+        ? childs.every(child => checkedItems.some(comparator(child)))
+        : checkedItems.some(comparator(item))
     },
     [checkedItems]
   )
@@ -70,7 +69,7 @@ export default function useTableTreeCheckboxes({
         (item[nodesKey] as Array<Item>) &&
         getFlat(item, [], nodesKey)
           .slice(1)
-          .some(child => checkedItems.some(equalsUnicityKey(child)))
+          .some(child => checkedItems.some(comparator(child)))
       )
     },
     [checkedItems]
@@ -86,9 +85,9 @@ function reducer(state: Array<Item>, action: Action) {
     }
     case ActionType.Uncheck: {
       const {
-        itemToToggle: { item, unicityKey },
+        itemToToggle: { item, comparator },
       } = action
-      return state.filter(row => row[unicityKey] !== item[unicityKey])
+      return state.filter(row => !comparator(row)(item))
     }
     case ActionType.Toggle: {
       const { itemToToggle } = action
@@ -97,7 +96,7 @@ function reducer(state: Array<Item>, action: Action) {
         state,
         itemToToggle.item,
         itemToToggle.nodesKey,
-        itemToToggle.unicityKey
+        itemToToggle.comparator
       )
     }
     default: {
@@ -119,7 +118,7 @@ type Action = {
   itemToToggle?: {
     item: Item
     nodesKey?: string
-    unicityKey?: string
+    comparator?: comparatorCurry
   }
 }
 
@@ -127,11 +126,16 @@ type hookInput = {
   items: Array<Item>
   onToggle?: ({ checkedItems }) => void
   nodesKey?: string
-  unicityKey?: string
   checked?: Array<unknown>
+  comparator?: comparatorCurry
 }
 
+export const defaultComparatorCurry = (item: Item) => (candidate: Item) =>
+  item.id && candidate.id && item.id === candidate.id
+
 export type ChildKey = { [key: string]: Array<Item> }
+
+export type comparatorCurry = (item: any) => (candidate: any) => boolean
 
 export type Item = Partial<{
   [key: string]: any

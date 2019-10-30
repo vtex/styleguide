@@ -33,17 +33,117 @@ function ToolbarExample() {
     size: items.length,
   })
 
+  const comparator = item => candidate => {
+    return item.email === candidate.email
+  }
+
   return (
     <TableTree
+      comparator={comparator}
       measures={measures}
       columns={columns}
       items={items}
-      unicityKey="email"
       nodesKey="children"
     />
   )
 }
 ;<ToolbarExample />
+```
+
+#### Checkboxes
+
+```js
+const useTableMeasures = require('../EXPERIMENTAL_Table/hooks/useTableMeasures.tsx')
+  .default
+const sampleData = require('./sampleData.ts').default
+const useTableTreeCheckboxes = require('./hooks/useTableTreeCheckboxes.tsx')
+  .default
+
+// Define the columns
+const columns = [
+  {
+    id: 'name',
+    title: 'name',
+  },
+  {
+    id: 'email',
+    title: 'Email',
+  },
+  {
+    id: 'number',
+    title: 'Number',
+  },
+  {
+    id: 'country',
+    title: 'Country',
+  },
+]
+
+const items = [
+  {
+    name: "T'Chala",
+    email: 'black.panther@gmail.com',
+    number: 1.88191,
+    country: '🇰🇪Wakanda',
+  },
+  {
+    name: 'Shang-Chi',
+    email: 'kungfu.master@gmail.com',
+    number: 39.09222,
+    country: '🇨🇳China',
+  },
+  {
+    name: 'Natasha Romanoff',
+    email: 'black.widow@gmail.com',
+    number: 5.09291,
+    country: '🇷🇺Russia',
+  },
+  {
+    name: 'Peter Parker',
+    email: 'spider.man@gmail.com',
+    country: '🇺🇸USA',
+    children: [
+      {
+        name: 'Aunt May',
+        email: 'may.parker@gmail.com',
+        country: '🇺🇸USA',
+      },
+    ],
+  },
+]
+
+function Example() {
+  const [inputValue, setInputValue] = React.useState('')
+
+  const comparator = item => candidate => {
+    return item.email === candidate.email
+  }
+
+  const onToggle = ({ checkedItems }) => {
+    console.log(checkedItems)
+  }
+
+  const checkboxes = useTableTreeCheckboxes({
+    comparator,
+    items,
+    onToggle,
+  })
+
+  const measures = useTableMeasures({
+    size: items.length,
+  })
+
+  return (
+    <TableTree
+      comparator={comparator}
+      checkboxes={checkboxes}
+      columns={columns}
+      items={checkboxes.itemTree}
+      measures={measures}
+    />
+  )
+}
+;<Example />
 ```
 
 #### Full Example
@@ -108,9 +208,14 @@ function ToolbarExample() {
     console.log(checkedItems)
   }
 
+  const comparator = item => candidate => {
+    return item.email === candidate.email
+  }
+
   const checkboxes = useTableTreeCheckboxes({
     items,
     onToggle,
+    comparator,
     unicityKey: 'email',
     checked: [
       {
@@ -235,8 +340,8 @@ function ToolbarExample() {
 
   return (
     <TableTree
+      comparator={comparator}
       checkboxes={checkboxes}
-      unicityKey="email"
       columns={visibility.visibleColumns}
       items={checkboxes.itemTree}
       empty={empty}

@@ -9,6 +9,7 @@ import { InferProps } from 'prop-types'
 import TreeHeadings from './Tree/TreeHeadings'
 import Pagination from '../EXPERIMENTAL_Table/Pagination'
 import FilterBar from '../EXPERIMENTAL_Table/FilterBar'
+import { defaultComparatorCurry } from './hooks/useTableTreeCheckboxes'
 
 const TableTree: FC<Props> & TableComposites = ({
   children,
@@ -16,7 +17,7 @@ const TableTree: FC<Props> & TableComposites = ({
   items,
   checkboxes,
   nodesKey,
-  unicityKey,
+  comparator,
   measures,
   loading,
   empty,
@@ -50,7 +51,7 @@ const TableTree: FC<Props> & TableComposites = ({
               checkboxes={checkboxes}
               columns={columns}
               items={items}
-              unicityKey={unicityKey}
+              comparator={comparator}
               nodesKey={nodesKey}
               rowHeight={rowHeight}
             />
@@ -63,10 +64,12 @@ const TableTree: FC<Props> & TableComposites = ({
 
 TableTree.defaultProps = {
   nodesKey: 'children',
+  comparator: defaultComparatorCurry,
 }
 
 const treePropTypes = {
   nodesKey: PropTypes.string,
+  comparator: PropTypes.func,
 }
 
 const checkboxesPropTypes = {
