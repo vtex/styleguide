@@ -1,13 +1,13 @@
 import { useMemo, useCallback, useEffect, useReducer } from 'react'
 import { getFlat, getToggledState, eqProp } from './checkboxesUtils'
 
-const useTableTreeCheckboxes = ({
+export default function useTableTreeCheckboxes({
   items,
   onToggle,
   nodesKey = 'children',
   unicityKey = 'id',
   checked = [],
-}: hookInput): checkboxesHookReturn => {
+}: hookInput) {
   const [checkedItems, dispatch] = useReducer(reducer, checked)
   const equalsUnicityKey = eqProp(unicityKey)
 
@@ -136,13 +136,3 @@ export type ChildKey = { [key: string]: Array<Item> }
 export type Item = Partial<{
   [key: string]: any
 }>
-
-export type checkboxesHookReturn = {
-  checkedItems?: Array<Item>
-  itemTree?: Item
-  toggle?: (item: Item) => void
-  isChecked?: (item: Item) => boolean
-  isPartiallyChecked?: (item: Item) => boolean
-}
-
-export default useTableTreeCheckboxes

@@ -1,22 +1,20 @@
 import React, { FC } from 'react'
 import uuid from 'uuid'
 
-import { TABLE_HEADER_HEIGHT } from '../constants'
-import { useTableContext } from '../contexts'
-import { Row, CellProps, RowProps } from '../Styled'
+import { TABLE_HEADER_HEIGHT } from '../hooks/useTableMeasures'
+import Row, { CellProps, RowProps } from './Row'
+import { Column } from '../index'
 
-const Headings: FC<HeadingsProps> = ({ cellProps, rowProps }) => {
-  const { visibleColumns } = useTableContext()
-
+const Headings: FC<HeadingsProps> = ({ columns, cellProps, rowProps }) => {
   return (
     <Row {...rowProps} height={TABLE_HEADER_HEIGHT}>
-      {visibleColumns.map((headerData: Column) => {
+      {columns.map((headerData: Column) => {
         const { headerRender, title, width } = headerData
         const content = headerRender ? headerRender({ headerData }) : title
         return (
           <Row.Cell
             {...cellProps}
-            className="bt"
+            className="bt normal"
             key={`heading-${uuid()}`}
             width={width}>
             {content}
@@ -34,8 +32,9 @@ Headings.defaultProps = {
 }
 
 type HeadingsProps = {
+  columns?: Array<Column>
   rowProps?: RowProps
   cellProps?: Pick<CellProps, 'as'>
 }
 
-export default Headings
+export default React.memo(Headings)

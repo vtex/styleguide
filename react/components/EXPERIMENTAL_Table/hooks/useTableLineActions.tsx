@@ -1,35 +1,36 @@
 import LineAction, { LineActionObject } from '../LineActions'
-import React, { useMemo } from 'react';
+import React, { useMemo } from 'react'
+import { Items, Column } from '../index'
 
 const NO_TITLE_COLUMN = ' '
 const LINE_ACTION_ID = 'lineAction'
 
-const useTableLineActions = ({
+export default function useTableLineActions({
   items,
   columns,
-  lineActions
-}: hookInput): hookReturn => {
-  
+  lineActions,
+}: LineActionsData) {
   const itemsWithLineActions = useMemo<Array<Object>>(() => {
-    return lineActions ? items.map((item) => ({ lineAction: true, ...item })): items
+    return lineActions
+      ? items.map(item => ({ lineAction: true, ...item }))
+      : items
   }, [items])
 
   const columnsWithLineActions = useMemo<Array<Column>>(() => {
     const cellRender = ({ rowData }) => (
-      <LineAction
-        lineActions={lineActions}
-        rowData={rowData}
-      />
+      <LineAction lineActions={lineActions} rowData={rowData} />
     )
-        
-    return lineActions ? [
-      ...columns,
-      {
-        id: LINE_ACTION_ID,
-        title: NO_TITLE_COLUMN,
-        cellRender,
-      },
-    ]: columns
+
+    return lineActions
+      ? [
+          ...columns,
+          {
+            id: LINE_ACTION_ID,
+            title: NO_TITLE_COLUMN,
+            cellRender,
+          },
+        ]
+      : columns
   }, [columns])
 
   return {
@@ -38,15 +39,8 @@ const useTableLineActions = ({
   }
 }
 
-type hookInput = {
-  items: Array<Object>
+export type LineActionsData = {
+  items: Items
   columns: Array<Column>
-  lineActions: Array<LineActionObject> 
+  lineActions: Array<LineActionObject>
 }
-
-type hookReturn = {
-  columnsWithLineActions?: Array<Column>,
-  itemsWithLineActions?: Array<Object>,
-}
-
-export default useTableLineActions

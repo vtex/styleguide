@@ -1,25 +1,33 @@
 import React, { FC } from 'react'
 import csx from 'classnames'
 
-import { NAMESPACES, JUSTIFY_OPTIONS, ORDER_CLASSNAMES } from '../constants'
+import { NAMESPACES, ORDER_CLASSNAMES } from '../constants'
 
-type Props = {
-  justify?: FlexJustify
-}
-
-const Container: FC<Props> = ({ justify, children }) => (
+const Container: FC<ContainerProps> = ({ justify, children }) => (
   <div
     id={NAMESPACES.TOOLBAR.CONTAINER}
     className={csx(
       ORDER_CLASSNAMES.TOOLBAR,
-      'mb5 flex flex-row w-100 justify-${justify}'
+      `mb5 flex flex-row w-100 justify-${justify}`
     )}>
     {children}
   </div>
 )
 
+export enum Justify {
+  Between = 'between',
+  End = 'end',
+  Start = 'start',
+  Around = 'around',
+  Center = 'center',
+}
+
 Container.defaultProps = {
-  justify: JUSTIFY_OPTIONS.END,
+  justify: Justify.End,
+}
+
+export type ContainerProps = {
+  justify?: Justify
 }
 
 export default Container

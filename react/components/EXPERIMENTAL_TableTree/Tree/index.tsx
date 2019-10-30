@@ -2,16 +2,23 @@ import React, { FC } from 'react'
 import uuid from 'uuid'
 
 import CellPrefix from './CellPrefix'
-import { Row } from '../../EXPERIMENTAL_Table/Styled'
-import { useTableContext } from '../../EXPERIMENTAL_Table/contexts'
-import { useCheckboxesContext, useTreeContext } from '../contexts'
-import { Item } from '../hooks/useTableTreeCheckboxes'
+import Row from '../../EXPERIMENTAL_Table/DataTable/Row'
+import useTableTreeCheckboxes, { Item } from '../hooks/useTableTreeCheckboxes'
+import { Column, Items } from '../../EXPERIMENTAL_Table'
+import { Density } from '../../EXPERIMENTAL_Table/hooks/useTableMeasures'
 
-const Node: FC<NodeProps> = ({ data, depth }) => {
-  const { visibleColumns, unicityKey, rowHeight } = useTableContext()
-  const checkboxes = useCheckboxesContext()
-  const { toggleCollapsed, isCollapsed, nodesKey } = useTreeContext()
-
+const Node: FC<NodeProps> = ({
+  columns,
+  unicityKey,
+  rowHeight,
+  nodesKey,
+  checkboxes,
+  toggleCollapsed,
+  isCollapsed,
+  data,
+  depth,
+  selectedDensity,
+}) => {
   const isRowChecked = checkboxes && checkboxes.isChecked(data)
   const isRowPartiallyChecked =
     checkboxes && checkboxes.isPartiallyChecked(data)
@@ -39,12 +46,17 @@ const Node: FC<NodeProps> = ({ data, depth }) => {
 
   const renderCells = (hasChild?: boolean) => {
     return (
-      <Row isSelected={isRowSelected}>
-        {visibleColumns.map((column: Column, cellIndex: number) => {
+      <Row height={rowHeight} active={isRowSelected}>
+        {columns.map((column: Column, cellIndex: number) => {
           const { cellRender, width } = column
           const cellData = data[column.id]
           const content = cellRender
-            ? cellRender({ cellData, rowData: data, rowHeight })
+            ? cellRender({
+                cellData,
+                rowData: data,
+                rowHeight,
+                selectedDensity,
+              })
             : cellData
           return (
             <Row.Cell key={`cel-${uuid()}`} width={width}>
@@ -62,7 +74,19 @@ const Node: FC<NodeProps> = ({ data, depth }) => {
       {renderCells(true)}
       {isCollapsed(data[unicityKey]) &&
         (data[nodesKey] as Array<Item>).map(data => (
-          <Node key={`row-child-${uuid()}`} depth={depth + 1} data={data} />
+          <Node
+            selectedDensity={selectedDensity}
+            isCollapsed={isCollapsed}
+            toggleCollapsed={toggleCollapsed}
+            checkboxes={checkboxes}
+            nodesKey={nodesKey}
+            unicityKey={unicityKey}
+            rowHeight={rowHeight}
+            columns={columns}
+            key={`row-child-${uuid()}`}
+            depth={depth + 1}
+            data={data}
+          />
         ))}
     </>
   ) : (
@@ -70,28 +94,63 @@ const Node: FC<NodeProps> = ({ data, depth }) => {
   )
 }
 
-const Tree: FC = () => {
-  const { items } = useTableContext()
-  const { nodesKey } = useTreeContext()
-  const checkboxes = useCheckboxesContext()
-  const listToRender = checkboxes ? items[nodesKey] : items
+const Tree: FC<TreeProps> = ({ checkboxes, items, ...nodeProps }) => {
+  const [collapsedItems, setCollapsedItems] = React.useState([])
+
+  const listToRender = checkboxes ? items[nodeProps.nodesKey] : items
+
+  const toggleCollapsed = React.useCallback(
+    (uniqueKey: unknown) => {
+      collapsedItems.includes(uniqueKey)
+        ? setCollapsedItems(collapsedItems.filter(key => key !== uniqueKey))
+        : setCollapsedItems([...collapsedItems, uniqueKey])
+    },
+    [collapsedItems]
+  )
+
+  const isCollapsed = (uniqueKey: unknown) => collapsedItems.includes(uniqueKey)
+
   return (
     <>
       {listToRender.map(data => (
-        <Node key={`row-${uuid()}`} data={data} />
+        <Node
+          isCollapsed={isCollapsed}
+          toggleCollapsed={toggleCollapsed}
+          checkboxes={checkboxes}
+          {...nodeProps}
+          key={`row-${uuid()}`}
+          data={data}
+        />
       ))}
     </>
   )
 }
 
+type TreeProps = {
+  items: Items
+  selectedDensity: Density
+  nodesKey: string
+  columns: Array<Column>
+  unicityKey: string
+  rowHeight: number
+  checkboxes?: Partial<ReturnType<typeof useTableTreeCheckboxes>>
+}
+
 type NodeProps = {
+  toggleCollapsed: (uniqueKey: unknown) => void
+  isCollapsed: (uniqueKey: unknown) => boolean
+  columns: Array<Column>
+  unicityKey: string
+  selectedDensity: Density
+  rowHeight: number
+  nodesKey: string
+  checkboxes?: Partial<ReturnType<typeof useTableTreeCheckboxes>>
   data: Item
   depth?: number
-  collapsedItems?: Array<string>
 }
 
 Node.defaultProps = {
   depth: 1,
 }
 
-export default Tree
+export default React.memo(Tree)

@@ -1,43 +1,39 @@
 import React, { FC } from 'react'
 import uuid from 'uuid'
 
-import { useTableContext, useBulkContext } from '../contexts'
 import { NAMESPACES } from '../constants'
-import { Row, RowProps, CellProps } from '../Styled'
+import Row, { RowProps, CellProps } from './Row'
+import { Column, Items } from '../index'
+import { Density } from '../hooks/useTableMeasures'
 
-const Rows: FC<RowsProps> = ({ cellProps, rowProps }) => {
-  const {
-    visibleColumns,
-    items,
-    onRowClick,
-    unicityKey,
-    rowHeight,
-  } = useTableContext()
-  const bulkContext = useBulkContext()
-
+const Rows: FC<RowsProps> = ({
+  columns,
+  items,
+  onRowClick,
+  cellProps,
+  rowProps,
+  isRowActive,
+  rowHeight,
+  selectedDensity,
+}) => {
   const renderRow = (rowData: unknown) => {
     const clickable = onRowClick
       ? {
           onClick: () => onRowClick({ rowData }),
         }
       : {}
-    const isSelected =
-      bulkContext &&
-      bulkContext.bulkState &&
-      bulkContext.bulkState.selectedRows.some(
-        row => row[unicityKey] === rowData[unicityKey]
-      )
     return (
       <Row
         {...rowProps}
         {...clickable}
-        isSelected={isSelected}
+        height={rowHeight}
+        active={isRowActive && isRowActive(rowData)}
         key={`${NAMESPACES.ROW}-${uuid()}`}>
-        {visibleColumns.map((column: Column) => {
+        {columns.map((column: Column) => {
           const { cellRender, width } = column
           const cellData = rowData[column.id]
           const content = cellRender
-            ? cellRender({ cellData, rowData, rowHeight })
+            ? cellRender({ cellData, rowData, rowHeight, selectedDensity })
             : cellData
           return (
             <Row.Cell {...cellProps} key={`cel-${uuid()}`} width={width}>
@@ -49,12 +45,18 @@ const Rows: FC<RowsProps> = ({ cellProps, rowProps }) => {
     )
   }
 
-  return <>{items.map(renderRow)}</>
+  return <>{items && items.map(renderRow)}</>
 }
 
 export type RowsProps = {
+  columns: Array<Column>
+  items: Items
+  selectedDensity: Density
+  onRowClick?: ({ rowData: unknown }) => void
+  isRowActive?: (rowData: unknown) => boolean
   rowProps?: RowProps
+  rowHeight: number
   cellProps?: Pick<CellProps, 'as' | 'className'>
 }
 
-export default Rows
+export default React.memo(Rows)

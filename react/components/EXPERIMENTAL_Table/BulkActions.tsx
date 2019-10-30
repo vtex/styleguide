@@ -6,20 +6,20 @@ import ButtonWithIcon from '../../ButtonWithIcon'
 import ActionMenu from '../../ActionMenu'
 import Close from '../icon/Close'
 
-import { useBulkContext } from './contexts'
+import { ORDER_CLASSNAMES, NAMESPACES } from './constants'
+import useTableBulkActions from './hooks/useTableBulkActions'
+import { MenuAction } from './Toolbar/PopoverMenu'
 
-import {
-  ORDER_CLASSNAMES,
-  NAMESPACES,
-  BULK_ACTIONS_HEIGHT,
-  BULK_ACTIONS_TRANSITION,
-} from './constants'
+const BULK_ACTIONS_HEIGHT = 56
+const BULK_ACTIONS_TRANSITION =
+  'height 0.2s ease-in-out, padding 0.2s ease-in-out'
 
 const BulkActions: FC<BulkActionsProps> = ({
   texts,
   main,
   totalItems,
   others,
+  data,
 }) => {
   const {
     bulkState,
@@ -28,8 +28,7 @@ const BulkActions: FC<BulkActionsProps> = ({
     hasBulkActions,
     hasPrimaryBulkAction,
     hasSecondaryBulkActions,
-  } = useBulkContext()
-
+  } = data
   const selectedRowsLength = bulkState.selectedRows.length
   const hasRowsSelected = selectedRowsLength > 0
 
@@ -111,6 +110,7 @@ export type BulkActionsProps = {
   onChange: Function
   main: MenuAction
   others: Array<MenuAction>
+  data: ReturnType<typeof useTableBulkActions>
 }
 
 export default BulkActions

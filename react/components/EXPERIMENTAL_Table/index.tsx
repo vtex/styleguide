@@ -1,45 +1,63 @@
 import React, { FC } from 'react'
-import PropTypes, { InferProps, arrayOf } from 'prop-types'
+import PropTypes, { InferProps } from 'prop-types'
 
-import { TableContext, BulkContext } from './contexts'
 import Toolbar from './Toolbar/index'
-
-import { DENSITY_OPTIONS } from './constants'
-import LineActions, { LineActionProps } from './LineActions'
+import { NAMESPACES } from './constants'
 import Pagination, { PaginationProps } from './Pagination'
-import { STATE_NOT_FOUND_ERROR } from './errors'
-import { TableContainer, Thead } from './Styled'
 import DataTable from './DataTable'
 import BulkActions from './BulkActions'
 import FilterBar from './FilterBar'
+import Headings from './DataTable/Headings'
+import Rows from './DataTable/Rows'
+import { DENSITY_OPTIONS, Density } from './hooks/useTableMeasures'
 
-const Table: FC<Props> & TableComposites = ({
+const Table: FC<TableProps> & TableComposites = ({
   children,
-  state,
-  bulk,
-  unicityKey,
+  measures,
+  isRowActive,
+  loading,
+  emptyState,
+  empty,
   ...props
 }) => {
-  if (!state) {
-    throw STATE_NOT_FOUND_ERROR
+  if (!measures) {
+    throw new Error('Provide measures to the Table')
   }
-  return (
-    <TableContext.Provider value={{ ...state, ...bulk, ...props, unicityKey }}>
-      <BulkContext.Provider value={bulk}>
-        <TableContainer>
-          {children}
 
-          <DataTable>
-            <Thead>
-              <DataTable.Headings />
-            </Thead>
-            <tbody>
-              <DataTable.Rows />
-            </tbody>
-          </DataTable>
-        </TableContainer>
-      </BulkContext.Provider>
-    </TableContext.Provider>
+  const { tableHeight, rowHeight, selectedDensity } = measures
+  const { columns, onRowClick, items } = props
+
+  return (
+    <div
+      style={{ minHeight: tableHeight }}
+      id={NAMESPACES.CONTAINER}
+      className="flex flex-column">
+      {children}
+      <DataTable
+        empty={empty}
+        loading={loading}
+        emptyState={emptyState}
+        height={tableHeight}>
+        <thead
+          id={NAMESPACES.HEADER}
+          className="w-100 ph4 truncate overflow-x-hidden c-muted-2 f6">
+          <Headings columns={columns} />
+        </thead>
+
+        {!empty && !loading && (
+          <tbody>
+            <Rows
+              selectedDensity={selectedDensity}
+              columns={columns}
+              items={items}
+              rowHeight={rowHeight}
+              onRowClick={onRowClick}
+              isRowActive={isRowActive}
+            />
+          </tbody>
+        )}
+      </DataTable>
+    </div>
   )
 }
 
@@ -47,31 +65,28 @@ Table.defaultProps = {
   unicityKey: 'id',
 }
 
-export const bulkPropTypes = {
-  bulk: PropTypes.shape({
-    bulkState: PropTypes.shape({
-      selectedRows: arrayOf(
-        PropTypes.shape({
-          id: PropTypes.number,
-        })
-      ),
-      allLinesSelected: PropTypes.bool,
-    }),
-    hasBulkActions: PropTypes.bool,
-    hasPrimaryBulkAction: PropTypes.bool,
-    hasSecondaryBulkActions: PropTypes.bool,
-    selectAllRows: PropTypes.func,
-    deselectAllRows: PropTypes.func,
-    selectRow: PropTypes.func,
-    setSelectedRows: PropTypes.func,
-    setAllLinesSelected: PropTypes.func,
-    selectAllVisibleRows: PropTypes.func,
-  }),
+export const measuresPropTypes = {
+  tableHeight: PropTypes.number,
+  rowHeight: PropTypes.number,
+  selectedDensity: PropTypes.oneOf(DENSITY_OPTIONS),
+  setSelectedDensity: PropTypes.func,
 }
 
 export const tablePropTypes = {
+  measures: PropTypes.shape(measuresPropTypes),
   containerHeight: PropTypes.number,
   unicityKey: PropTypes.string,
+  empty: PropTypes.bool,
+  columns: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      title: PropTypes.string,
+      width: PropTypes.number,
+      cellRender: PropTypes.func,
+      headerRender: PropTypes.func,
+    })
+  ),
+  items: PropTypes.arrayOf(PropTypes.object),
   loading: PropTypes.oneOfType([
     PropTypes.shape({
       renderAs: PropTypes.func,
@@ -80,32 +95,7 @@ export const tablePropTypes = {
   ]),
   itemsSizeEstimate: PropTypes.number,
   onRowClick: PropTypes.func,
-  state: PropTypes.shape({
-    visibleColumns: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string,
-        title: PropTypes.string,
-        width: PropTypes.number,
-        cellRender: PropTypes.func,
-        headerRender: PropTypes.func,
-      })
-    ),
-    columns: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string,
-        title: PropTypes.string,
-        width: PropTypes.number,
-        cellRender: PropTypes.func,
-        headerRender: PropTypes.func,
-      })
-    ),
-    items: PropTypes.arrayOf(PropTypes.object),
-    isEmpty: PropTypes.bool,
-    tableHeight: PropTypes.number,
-    rowHeight: PropTypes.number,
-    selectedDensity: PropTypes.oneOf(DENSITY_OPTIONS),
-    setSelectedDensity: PropTypes.func,
-  }),
+  isRowActive: PropTypes.func,
   emptyState: PropTypes.shape({
     label: PropTypes.string,
     children: PropTypes.element,
@@ -113,13 +103,30 @@ export const tablePropTypes = {
 }
 
 export type TableProps = InferProps<typeof tablePropTypes>
-type Props = TableProps & InferProps<typeof bulkPropTypes>
 
 export type TableComposites = {
   Toolbar: FC
   FilterBar?: FC
   Pagination?: FC<PaginationProps>
   BulkActions?: FC
+}
+
+export type Items = Array<unknown>
+
+export type CellData = {
+  cellData: unknown
+  rowData: unknown
+  rowHeight: number
+  selectedDensity: Density
+}
+
+export type Column = {
+  id?: string
+  title?: string
+  width?: number
+  cellRender?: (cellData: CellData) => React.ReactNode
+  headerRender?: ({ headerData: unknown }) => React.ReactNode
+  hidden?: boolean
 }
 
 Table.Toolbar = Toolbar

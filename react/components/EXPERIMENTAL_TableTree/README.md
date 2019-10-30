@@ -1,7 +1,7 @@
 #### NodesKey Prop
 
 ```js
-const useTableState = require('../EXPERIMENTAL_Table/hooks/useTableState.ts')
+const useTableMeasures = require('../EXPERIMENTAL_Table/hooks/useTableMeasures.tsx')
   .default
 const sampleData = require('./sampleData.ts').default
 
@@ -29,12 +29,19 @@ const columns = [
 const items = sampleData
 
 function ToolbarExample() {
-  const tableState = useTableState({
-    columns,
-    items,
+  const measures = useTableMeasures({
+    size: items.length,
   })
 
-  return <TableTree unicityKey="email" nodesKey="children" state={tableState} />
+  return (
+    <TableTree
+      measures={measures}
+      columns={columns}
+      items={items}
+      unicityKey="email"
+      nodesKey="children"
+    />
+  )
 }
 ;<ToolbarExample />
 ```
@@ -42,7 +49,9 @@ function ToolbarExample() {
 #### Full Example
 
 ```js
-const useTableState = require('../EXPERIMENTAL_Table/hooks/useTableState.ts')
+const useTableMeasures = require('../EXPERIMENTAL_Table/hooks/useTableMeasures.tsx')
+  .default
+const useTableVisibility = require('../EXPERIMENTAL_Table/hooks/useTableVisibility.ts')
   .default
 const sampleData = require('./sampleData.ts').default
 const useTableTreeCheckboxes = require('./hooks/useTableTreeCheckboxes.tsx')
@@ -133,10 +142,12 @@ function ToolbarExample() {
     ],
   })
 
-  const tableState = useTableState({
+  const measures = useTableMeasures({
+    size: items.length,
+  })
+
+  const visibility = useTableVisibility({
     columns,
-    items: checkboxes.itemTree,
-    density: 'medium',
   })
 
   const emptyState = {
@@ -215,17 +226,36 @@ function ToolbarExample() {
     })),
   }
 
+  const empty = React.useMemo(
+    () =>
+      displayItems.length === 0 ||
+      Object.keys(visibility.visibleColumns).length === 0,
+    [visibility.visibleColumns, displayItems]
+  )
+
   return (
     <TableTree
       checkboxes={checkboxes}
       unicityKey="email"
-      state={tableState}
-      emptyState={emptyState}>
+      columns={visibility.visibleColumns}
+      items={checkboxes.itemTree}
+      empty={empty}
+      emptyState={emptyState}
+      measures={measures}>
       <TableTree.Toolbar>
         <TableTree.Toolbar.InputSearch {...inputSearch} />
         <TableTree.Toolbar.ButtonGroup>
-          <TableTree.Toolbar.ButtonGroup.Columns {...buttonColumns} />
-          <TableTree.Toolbar.ButtonGroup.Density {...density} />
+          <TableTree.Toolbar.ButtonGroup.Columns
+            visibility={visibility}
+            {...buttonColumns}
+          />
+          <TableTree.Toolbar.ButtonGroup.Density
+            density={{
+              selectedDensity: measures.selectedDensity,
+              setSelectedDensity: measures.setSelectedDensity,
+            }}
+            {...density}
+          />
           <TableTree.Toolbar.ButtonGroup.Download {...download} />
           <TableTree.Toolbar.ButtonGroup.Upload {...upload} />
           <TableTree.Toolbar.ButtonGroup.ExtraActions {...extraActions} />

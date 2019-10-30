@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 
-import Container from './Container'
+import Container, { Justify } from './Container'
 import ButtonGroup from './ButtonGroup'
 import InputSearch, { InputSearchProps } from './InputSearch'
 import UNSAFE_InputCustom, { InputCustomProps } from './InputCustom'
@@ -20,10 +20,13 @@ type ToolbarChild = {
 const Toolbar: FC & Composites = ({ children }) => {
   const hasSearchBar = React.Children.toArray(children).some(
     (child: ToolbarChild) =>
-      child.type.name === 'InputSearch' || 'UNSAFE_InputCustom'
+      child.type.name === 'InputSearch' ||
+      child.type.name === 'UNSAFE_InputCustom'
   )
   return (
-    <Container justify={hasSearchBar ? 'between' : 'end'}>{children}</Container>
+    <Container justify={hasSearchBar ? Justify.Between : Justify.End}>
+      {children}
+    </Container>
   )
 }
 
