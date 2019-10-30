@@ -38,6 +38,28 @@ class SimpleTable extends Component {
     })
   }
 
+  componentDidMount() {
+    this.setState({
+      tableHeight:
+        this.props.containerHeight || this.calculateContainerHeight(),
+    })
+  }
+
+  componentDidUpdate() {
+    if (!this.props.containerHeight) {
+      this.updateTableHeight()
+    }
+  }
+
+  updateTableHeight() {
+    const calculatedContainerHeight = this.calculateContainerHeight()
+    if (this.state.tableHeight !== calculatedContainerHeight) {
+      this.setState({
+        tableHeight: calculatedContainerHeight,
+      })
+    }
+  }
+
   toggleSortType = key => {
     const {
       sort: { preferentialSortOrder = 'ASC', sortOrder, sortedBy },
@@ -161,26 +183,6 @@ class SimpleTable extends Component {
     }
 
     return rawTableHeight + this.getScrollbarWidth()
-  }
-
-  componentDidMount() {
-    this.setState({
-      tableHeight:
-        this.props.containerHeight || this.calculateContainerHeight(),
-    })
-  }
-
-  componentDidUpdate() {
-    if (this.props.containerHeight) {
-      return
-    }
-
-    const calculatedContainerHeight = this.calculateContainerHeight()
-    if (this.state.tableHeight !== calculatedContainerHeight) {
-      this.setState({
-        tableHeight: calculatedContainerHeight,
-      })
-    }
   }
 
   render() {
