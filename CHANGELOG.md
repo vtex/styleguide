@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
+- `comparator` function to `EXPERIMENTAL_Table` and `EXPERIMENTAL_TableTree`.
+
+### Added
+
 - isLoading prop to InputButton component.
 
 ## [9.91.3] - 2019-10-31

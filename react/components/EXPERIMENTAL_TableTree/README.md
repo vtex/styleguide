@@ -216,7 +216,6 @@ function ToolbarExample() {
     items,
     onToggle,
     comparator,
-    unicityKey: 'email',
     checked: [
       {
         name: "T'Chala",
