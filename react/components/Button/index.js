@@ -19,6 +19,11 @@ class Button extends Component {
         'Button: The prop "icon" of the "Button" component has been deprecated, and will be removed in a future version. Please use the component "ButtonWithIcon" instead'
       )
     }
+    if (this.props.collapseLeft || this.props.collapseRight) {
+      console.warn(
+        'Button: The props "collapseLeft" and "collapseRight" of the "Button" component have been deprecated, and will be removed in a future version. Please use the component "ButtonPlain" instead'
+      )
+    }
   }
 
   render() {
@@ -334,9 +339,11 @@ Button.propTypes = {
   onFocus: PropTypes.func,
   /** onBlur event */
   onBlur: PropTypes.func,
-  /** Cancels out left padding */
+  /** @ignore deprecated
+   * Cancels out left padding */
   collapseLeft: PropTypes.bool,
-  /** Cancels out right padding */
+  /** @ignore deprecated
+   * Cancels out right padding */
   collapseRight: PropTypes.bool,
   /** */
   isGrouped: PropTypes.bool,
