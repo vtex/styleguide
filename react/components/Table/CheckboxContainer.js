@@ -35,6 +35,7 @@ class CheckboxContainer extends Component {
             value={`${id}`}
             id={`${id}`}
             name={`row_${id}`}
+            onChange={() => {}}
             disabled={disabled}
           />
         </div>
