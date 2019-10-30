@@ -42,6 +42,10 @@ export type VisibilityData = {
   columns: Array<Column>
 }
 
-function getHiddenColumns(columns: Array<Column>): Array<string> {
-  return columns.filter(col => col.hidden).map(col => col.id)
+interface Monad<T> extends Array<any> {
+  flatMap?(func: (x: T) => any): Array<any>
+}
+
+function getHiddenColumns(columns: Monad<Column>): Array<string> {
+  return columns.flatMap(col => (col.hidden ? [col.id] : []))
 }

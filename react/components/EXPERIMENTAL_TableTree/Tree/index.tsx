@@ -46,7 +46,7 @@ const Node: FC<NodeProps> = ({
 
   const renderCells = (hasChild?: boolean) => {
     return (
-      <Row height={rowHeight} isActive={isRowSelected}>
+      <Row height={rowHeight} active={isRowSelected}>
         {columns.map((column: Column, cellIndex: number) => {
           const { cellRender, width } = column
           const cellData = data[column.id]
