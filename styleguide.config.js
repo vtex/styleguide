@@ -122,6 +122,7 @@ module.exports = {
             'react/components/Dropdown/index.js',
             'react/components/Dropzone/index.js',
             'react/components/Input/index.js',
+            'react/components/InputButton/index.js',
             'react/components/InputCurrency/index.js',
             'react/components/InputPassword/index.js',
             'react/components/InputSearch/index.js',
