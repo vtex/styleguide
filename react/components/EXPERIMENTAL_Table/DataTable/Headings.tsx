@@ -8,9 +8,9 @@ import { Column } from '../index'
 const Headings: FC<HeadingsProps> = ({ columns, cellProps, rowProps }) => {
   return (
     <Row {...rowProps} height={TABLE_HEADER_HEIGHT}>
-      {columns.map((headerData: Column) => {
-        const { headerRender, title, width } = headerData
-        const content = headerRender ? headerRender({ headerData }) : title
+      {columns.map((columnData: Column) => {
+        const { headerRenderer, title, width } = columnData
+        const content = headerRenderer ? headerRenderer({ columnData }) : title
         return (
           <Row.Cell
             {...cellProps}

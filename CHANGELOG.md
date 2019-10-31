@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+- Names of `cellRender` and `headerRender` in favor of `cellRenderer` and `headerRenderer` on `EXPERIMENTAL_Table`.
+- Remove `hidden` prop from `Column`.
+
 ## [9.96.2] - 2019-11-11
 
 ### Changed
@@ -90,9 +93,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - **Table** warning whenever some line's checkbox was selected
-
-### Added
-
 - `InputButton` component.
 
 ## [9.90.8] - 2019-10-30

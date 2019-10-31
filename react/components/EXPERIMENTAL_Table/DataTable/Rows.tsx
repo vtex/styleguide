@@ -30,10 +30,10 @@ const Rows: FC<RowsProps> = ({
         active={isRowActive && isRowActive(rowData)}
         key={`${NAMESPACES.ROW}-${uuid()}`}>
         {columns.map((column: Column) => {
-          const { cellRender, width } = column
+          const { cellRenderer, width } = column
           const cellData = rowData[column.id]
-          const content = cellRender
-            ? cellRender({ cellData, rowData, rowHeight, selectedDensity })
+          const content = cellRenderer
+            ? cellRenderer({ cellData, rowData, rowHeight, selectedDensity })
             : cellData
           return (
             <Row.Cell {...cellProps} key={`cel-${uuid()}`} width={width}>
