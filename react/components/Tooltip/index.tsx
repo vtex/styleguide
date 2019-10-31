@@ -1,14 +1,5 @@
-import classNames from 'classnames'
 import PropTypes from 'prop-types'
-import get from 'lodash/get'
-import React, {
-  FC,
-  cloneElement,
-  Children,
-  useRef,
-  useEffect,
-  useState,
-} from 'react'
+import React, { FC, cloneElement, Children } from 'react'
 
 import TooltipPopup, { Position, Size } from './TooltipPopup'
 import { useTooltip, Trigger } from './hooks'

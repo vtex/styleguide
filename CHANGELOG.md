@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- `Tooltip` not working with SSR
+
 ## [9.91.1] - 2019-10-31
 
 ### Fixed
@@ -16,6 +20,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - `InputButton` component.
+
 
 ## [9.90.8] - 2019-10-30
 
