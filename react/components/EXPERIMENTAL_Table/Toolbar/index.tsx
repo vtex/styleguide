@@ -1,9 +1,10 @@
 import React, { FC } from 'react'
+import csx from 'classnames'
 
-import Container, { Justify } from './Container'
 import ButtonGroup from './ButtonGroup'
 import InputSearch, { InputSearchProps } from './InputSearch'
 import UNSAFE_InputCustom, { InputCustomProps } from './InputCustom'
+import { ORDER_CLASSNAMES, NAMESPACES } from '../constants'
 
 interface Composites {
   InputSearch: FC<InputSearchProps>
@@ -11,22 +12,21 @@ interface Composites {
   UNSAFE_InputCustom: FC<InputCustomProps>
 }
 
-type ToolbarChild = {
-  type: {
-    name: 'InputSearch' | 'ButtonGroup' | 'UNSAFE_InputCustom'
-  }
-}
-
 const Toolbar: FC & Composites = ({ children }) => {
-  const hasSearchBar = React.Children.toArray(children).some(
-    (child: ToolbarChild) =>
-      child.type.name === 'InputSearch' ||
-      child.type.name === 'UNSAFE_InputCustom'
-  )
+  const positionFixer =
+    React.Children.count(children) > 1 ? null : (
+      <div className={ORDER_CLASSNAMES.TOOLBAR_CHILD.POSITION_FIXER} />
+    )
   return (
-    <Container justify={hasSearchBar ? Justify.Between : Justify.End}>
+    <div
+      id={NAMESPACES.TOOLBAR.CONTAINER}
+      className={csx(
+        ORDER_CLASSNAMES.TOOLBAR,
+        `mb5 flex flex-row w-100 justify-between`
+      )}>
       {children}
-    </Container>
+      {positionFixer}
+    </div>
   )
 }
 
