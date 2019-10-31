@@ -24,7 +24,7 @@ type Column = {
 
 ##### title
 
-- Control the title which appears on the table Header.
+- Controls the title which appears on the table Header.
 - If you want to customize it with a component, you can use the `headerRenderer` prop.
 
 ##### width
@@ -105,9 +105,9 @@ const heroColumns: Array<Column> = [
     /** Custom renderer for email prop */
     headerRenderer: ({ columnData: { title } }) => {
       return (
-        <span>
+        <React.Fragment>
           <Emoji symbol="💌" label="mail" /> {title}
-        </span>
+        </React.Fragment>
       )
     },
   },
@@ -150,9 +150,9 @@ const heroColumns = [
     title: 'Email',
     headerRenderer: ({ columnData: { title } }) => {
       return (
-        <span>
+        <React.Fragment>
           <Emoji symbol="💌" label="mail" /> {title}
-        </span>
+        </React.Fragment>
       )
     },
   },
@@ -215,7 +215,7 @@ function SimpleExample() {
 
 ##### Toggle visibility
 
-It is possible to hide/show columns. This can be done using the `EXPERIMENTAL_useTableVisibility` hook and the `Columns` button (part of the `Toolbar`). Check the working example below:
+It is possible to show/hide columns. This can be done using the `EXPERIMENTAL_useTableVisibility` hook and the `Columns` button (part of the `Toolbar`). Check the working example below:
 
 ```js
 const useTableMeasures = require('./hooks/useTableMeasures.tsx').default

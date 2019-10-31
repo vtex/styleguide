@@ -8,7 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 - Names of `cellRender` and `headerRender` in favor of `cellRenderer` and `headerRenderer` on `EXPERIMENTAL_Table`.
-- Remove `hidden` prop from `Column`.
+
+### Removed
+- `hidden` prop from `Column`.
 
 ## [9.96.2] - 2019-11-11
 
