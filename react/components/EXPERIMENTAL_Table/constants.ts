@@ -2,7 +2,8 @@ export const ORDER_CLASSNAMES = {
   TOOLBAR: 'order-0',
   TOOLBAR_CHILD: {
     INPUT: 'order-0',
-    BUTTON_GROUP: 'order-1',
+    POSITION_FIXER: 'order-1',
+    BUTTON_GROUP: 'order-2',
     BUTTON_GROUP_CHILD: {
       COLUMNS: 'order-0',
       DENSITY: 'order-1',
