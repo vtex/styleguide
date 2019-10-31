@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.91.3] - 2019-10-31
+
 ### Fixed
 
 - `EXPERIMENTAL_Table` toolbar's alignment
