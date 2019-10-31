@@ -213,6 +213,111 @@ function SimpleExample() {
 ;<SimpleExample />
 ```
 
+##### Toggle visibility
+
+It is possible to hide/show columns. This can be done using the `EXPERIMENTAL_useTableVisibility` hook and the `Columns` button (part of the `Toolbar`). Check the working example below:
+
+```js
+const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
+const useTableVisibility = require('./hooks/useTableVisibility.ts').default
+
+const Tag = require('../Tag/index.js').default
+
+const heroColumns = [
+  {
+    id: 'name',
+    title: 'Name',
+  },
+  {
+    id: 'email',
+    title: 'Email',
+    headerRenderer: ({ columnData: { title } }) => {
+      return (
+        <span>
+          <Emoji symbol="💌" label="mail" /> {title}
+        </span>
+      )
+    },
+  },
+  {
+    id: 'age',
+    title: 'Age',
+    cellRenderer: ({ cellData: age }) => {
+      const bgColor = age > 18 ? '#F71963' : '#134CD8'
+      return (
+        <Tag color="#FFFFFF" bgColor={bgColor}>
+          {age} years
+        </Tag>
+      )
+    },
+  },
+  {
+    id: 'country',
+    title: 'Nationality',
+  },
+]
+
+const heroes = [
+  {
+    name: "T'Chala",
+    email: 'black.panther@gmail.com',
+    age: 31,
+    country: '🇰🇪Wakanda',
+  },
+  {
+    name: 'Peter Parker',
+    email: 'spider.man@gmail.com',
+    age: 17,
+    country: '🇺🇸USA',
+  },
+  {
+    name: 'Natasha Romanoff',
+    email: 'black.widow@gmail.com',
+    age: 29,
+    country: '🇷🇺Russia',
+  },
+]
+
+function Emoji({ symbol, label = '' }) {
+  return (
+    <span role="img" arial-label={label} aria-hidden={label ? 'false' : 'true'}>
+      {symbol}
+    </span>
+  )
+}
+
+function ToggleColumnsExample() {
+  const visibility = useTableVisibility({
+    columns: heroColumns,
+  })
+
+  const measures = useTableMeasures({
+    size: heroes.length,
+  })
+
+  const buttonColumns = {
+    label: 'Toggle visible fields',
+    showAllLabel: 'Show All',
+    hideAllLabel: 'Hide All',
+    visibility,
+  }
+
+  return (
+    <Table
+      measures={measures}
+      items={heroes}
+      columns={visibility.visibleColumns}>
+      <Table.Toolbar>
+        <Table.Toolbar.ButtonGroup>
+          <Table.Toolbar.ButtonGroup.Columns {...buttonColumns} />
+        </Table.Toolbar.ButtonGroup>
+      </Table.Toolbar>
+    </Table>
+  )
+}
+;<ToggleColumnsExample />
+```
+
 # Features
 
 <div className="center mw7 pv6">
