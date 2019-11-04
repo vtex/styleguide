@@ -126,8 +126,10 @@ class Input extends Component {
       classes += 'code '
     }
 
-    if (disabled || readOnly) {
-      classes += `bg-transparent b--disabled ${disabled ? 'c-disabled' : ''} `
+    if (disabled || readOnly || isLoadingButton) {
+      classes += `bg-transparent b--disabled ${
+        disabled || isLoadingButton ? 'c-disabled' : ''
+      } `
       prefixSuffixGroupClasses += `bg-disabled b--disabled ${
         disabled ? 'c-disabled' : ''
       } `
