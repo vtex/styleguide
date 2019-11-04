@@ -10,7 +10,7 @@ const propTypes = {
 }
 
 const Progress: React.FC<PropTypes.InferProps<typeof propTypes>> = props => {
-  const percent = `${(props.value / props.max) * 100}%`
+  const percentage = `${Math.round((props.value / props.max) * 100)}%`
   const barClasses = cn(
     styles.progressHeight,
     'br4 overflow-hidden bg-light-silver'
@@ -23,12 +23,12 @@ const Progress: React.FC<PropTypes.InferProps<typeof propTypes>> = props => {
     <div className="flex flex-column">
       {props.showInfo && (
         <div className="flex justify-between mb3 f6 near-black">
-          <div>{percent}</div>
+          <div>{percentage}</div>
           <div>{`${props.value} / ${props.max}`}</div>
         </div>
       )}
       <div className={barClasses}>
-        <div className={stepClasses} style={{ width: percent }} />
+        <div className={stepClasses} style={{ width: percentage }} />
       </div>
     </div>
   )
