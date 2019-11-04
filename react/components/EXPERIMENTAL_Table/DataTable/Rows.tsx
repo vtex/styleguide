@@ -2,7 +2,7 @@ import React, { FC, useCallback } from 'react'
 import uuid from 'uuid'
 
 import { NAMESPACES } from '../constants'
-import Row, { RowProps, CellProps } from './Row'
+import Row, { RowProps, CellProps, useDraftTransition } from './Row'
 import { Column, Items } from '../index'
 import { Density } from '../hooks/useTableMeasures'
 import CellPrefix from './CellPrefix'
@@ -19,6 +19,8 @@ const Rows: FC<RowsProps> = ({
   selectedDensity,
   checkboxes,
 }) => {
+  const animate = useDraftTransition('height', rowHeight)
+
   const renderRow = (rowData: unknown) => {
     const toggleChecked = () => checkboxes.toggle(rowData)
 
@@ -37,7 +39,8 @@ const Rows: FC<RowsProps> = ({
         {...rowProps}
         {...clickable}
         height={rowHeight}
-        active={(isRowActive && isRowActive(rowData)) || isRowSelected}
+        animate={animate}
+        active={isRowActive && isRowActive(rowData)}
         key={`${NAMESPACES.ROW}-${uuid()}`}>
         {columns.map((column: Column, cellIndex: number) => {
           const { cellRenderer, width } = column

@@ -1,24 +1,38 @@
 import React, { FC } from 'react'
 import csx from 'classnames'
 import uuid from 'uuid'
+import { motion } from 'framer-motion'
 
 import { NAMESPACES } from '../constants'
 
+const TRANSITION_DURATION = 0.2
+
 const Row: FC<RowProps> & RowComposites = ({
-  as: Tag = 'tr',
   children,
   height,
   onClick,
   active,
+  animate,
 }) => {
-  const className = csx('w-100 truncate overflow-x-hidden', {
-    'pointer hover-c-link hover-bg-muted-5': onClick,
-    'bg-action-secondary': active,
-  })
-  return (
-    <Tag style={{ height }} onClick={onClick} className={className}>
-      {children}
-    </Tag>
+  const genericProps = {
+    onClick,
+    children,
+    key: `${NAMESPACES.ROW}-${uuid()}`,
+    className: csx('w-100 truncate overflow-x-hidden', {
+      'pointer hover-c-link hover-bg-muted-5': onClick,
+      'bg-action-secondary': active,
+    }),
+  }
+
+  return animate ? (
+    <motion.tr
+      {...genericProps}
+      transition={{ default: { duration: TRANSITION_DURATION } }}
+      initial={animate.from}
+      animate={animate.to}
+    />
+  ) : (
+    <tr {...genericProps} style={{ height }} />
   )
 }
 
@@ -40,6 +54,19 @@ export const Cell: FC<CellProps> = ({
   )
 }
 
+export function useDraftTransition(propName: string, value: any) {
+  const prevValue = React.useRef()
+
+  React.useEffect(() => {
+    prevValue.current = value
+  }, [value])
+
+  return {
+    from: { [propName]: prevValue.current || value },
+    to: { [propName]: value },
+  }
+}
+
 export type RowComposites = {
   Cell: FC<CellProps>
 }
@@ -53,9 +80,9 @@ export type CellProps = {
 }
 
 export type RowProps = {
-  as?: 'tr' | 'div' | 'ul'
   active?: boolean
   height?: number
+  animate?: ReturnType<typeof useDraftTransition>
   onClick?: () => void
 }
 

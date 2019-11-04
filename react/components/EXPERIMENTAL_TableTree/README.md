@@ -194,14 +194,16 @@ const columns = [
 const items = sampleData
 
 function Image({ size }) {
+  const style = {
+    width: '100%',
+    height: '100%',
+    maxWidth: size,
+    maxHeight: size,
+  }
   return (
     <div className="dib v-mid">
-      <svg
-        width={size}
-        height={size}
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg">
-        <rect width={size} height={size} rx="4" fill="#AAAAAA" />
+      <svg style={style} fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect style={style} rx="4" fill="#cce8ff" />
       </svg>
     </div>
   )
