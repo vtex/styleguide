@@ -32,6 +32,29 @@ With submit button
 </div>
 ```
 
+Loading state
+
+```js
+initialState = { isLoading: false };
+<form onSubmit={
+    (e) => {
+      e.preventDefault
+      setState({ isLoading: true })
+      setTimeout(() => { setState({ isLoading: false }) }, 1200)
+    }
+  }>
+  <div className="mb5">
+    <InputButton
+      placeholder="Placeholder"
+      size="regular"
+      label="Regular loading"
+      button="Submit"
+      isLoading={state.isLoading}
+    />
+  </div>
+</form>
+```
+
 Disabled
 
 ```js
