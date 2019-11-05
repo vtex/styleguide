@@ -1,3 +1,24 @@
+#### The line chart shows the data as a data points connected by a line. They are useful to analyze changes over the time, comparisons, and trends.
+
+### 👍 Dos
+- *Coming Soon*
+
+### 👎 Don'ts
+- *Coming Soon*
+
+#### Axis
+- *Coming soon*
+
+#### Grid
+- *Coming soon*
+
+#### Datakeys
+- *Coming soon*
+
+#### XaxisKey
+- *Coming soon*
+
+
 ```js
     const data = [
         {
@@ -33,10 +54,10 @@
             tickLine: false
         },
         grid: {
-            horizontal: true,
+            horizontal: false,
             vertical: false,
         }
-    }
+    };
     <LineChart
         data={data}
         dataKeys={keys}
