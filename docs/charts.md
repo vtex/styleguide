@@ -1,2 +1,3 @@
-Chart components lets you create fully charts that integrate seamlessly with the look and feel of your project. The following guide demonstrates how custom styles and modular chart components are used to create a cohesive chart with distinctive branding.
+There are many ways to visualize data, graphs are one of the best known ways. When using a certain chart type, keep in mind mainly two things: The data you want to communicate, and what you want to demonstrate from that data.
 
+Our chart components enable you to create complete and cohesive graphics that fit the needs of your project. The following guide demonstrates some of the different types, their use cases, and how you can create custom styles.

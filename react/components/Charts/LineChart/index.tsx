@@ -10,6 +10,7 @@ import {
 } from 'recharts'
 import { colors, defaultProps } from './constants'
 import useChart from '../hooks/useChart'
+import PropTypes from 'prop-types'
 
 interface Props {
     data: any,
@@ -54,5 +55,17 @@ const LineChart: FC<Props> = ({
         </ResponsiveContainer>
     )
 }
+
+LineChart.propTypes = {
+    /** The source data, in which each element is an object. */
+    data: PropTypes.arrayOf(PropTypes.object),
+    /** The keys or getter of a group of data which should be unique in a LineChart. */
+    dataKeys: PropTypes.arrayOf(PropTypes.string),
+    /** The key of x-axis which is corresponding to the data. */
+    xAxisKey: PropTypes.string,
+    /** The schema prop defines the style of the component. The chema prop should be given as an object with styles defined for axis, grid and container.*/
+    schema: PropTypes.any.isRequired,
+}
+  
 
 export default LineChart
