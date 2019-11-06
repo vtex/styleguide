@@ -9,7 +9,7 @@
 # Line chart schema
 The schema prop defines the style of the chart. This should be given as an object with styles defined for `axis`, `grid`, `container`, according to your needs. 
 
-```md
+```js noeditor static
 const schema = {
     container:{
         height: 300,
@@ -37,12 +37,39 @@ The axis property is responsible to change visual appearence of the axis in the 
 The Grid property is responsible to show a grid inside the chart.
 
 - `horizontal`: If set true, horizontal grid lines will be drawn.
-- `vertical`: If set true, vertical grid lines will be drawn.  
+- `vertical`: If set true, vertical grid lines will be drawn. 
 
+### Formating values on the tooltip
+
+The formatter prop takes a `function` which will be used to render each content of tooltip. If you want to customize the content of your tooltip, make sure that your function follows this pattern:
+```jsx noeditor static
+const mapper = {
+  'customers': 'Customers',
+  'orders': 'Orders',
+  'totalSpent': 'Total Spent'
+}
+
+const formatter = (value, name) => {
+  if(name == 'totalSpent')
+    value = `$${value}`
+  return [value, mapper[name]]
+}
+
+const formatter2 = (value, name) => {
+  return mapper[name]
+}
+
+<LineChart
+  data={data}
+  dataKeys={keys}
+  xAxisKey='hour'
+  formatter={formatter}
+/>
+```
 
 ```js
 const data = [{
-    hour: '00h',
+    hour: '0h',
     customers: 4000,
     orders: 2400,
     totalSpent: 2400,
@@ -90,7 +117,7 @@ const data = [{
     'orders': 'Orders',
     'totalSpent': 'Total Spent'
   }
-  const formatter = (value, name, entry, index) => {
+  const formatter = (value, name) => {
     if(name == 'totalSpent')
         value = `$${value}`
     return [value, mapper[name]]

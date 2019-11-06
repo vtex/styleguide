@@ -46,7 +46,7 @@ const LineChart: FC<Props> = ({
     return (
         <ResponsiveContainer {...configs.container}>
             <LineChartBase data={data}>
-                <XAxis dataKey={xAxisKey} {...configs.axis}  padding={{ left: 20 }}/>
+                <XAxis dataKey={xAxisKey} {...configs.axis} />
                 <YAxis {...configs.axis}/>
                 <CartesianGrid
                     horizontal={configs.grid.horizontal}
@@ -66,7 +66,9 @@ LineChart.propTypes = {
     dataKeys: PropTypes.arrayOf(PropTypes.string).isRequired,
     /** The key of x-axis which is corresponding to the data. */
     xAxisKey: PropTypes.string.isRequired,
-    /** The schema prop defines the style of the component. The chema prop should be given as an object with styles defined for axis, grid and container.*/
+    /** The formatter function of value in tooltip. If you return an array, the first entry will be the formatted "value", and the second entry will be the formatted "key" */
+    formatter: PropTypes.func,
+    /** The schema prop defines the style of the component. This prop should be given as an object with styles defined for axis, grid and container.*/
     schema: PropTypes.any,
 }
   
