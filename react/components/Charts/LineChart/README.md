@@ -11,18 +11,18 @@ The schema prop defines the style of the chart. This should be given as an objec
 
 ```js noeditor static
 const schema = {
-    container:{
-        height: 300,
-        width: '100%'
-    },
-    axis: {
-        axisLine: false,
-        tickLine: false
-    },
-    grid: {
-        horizontal: false,
-        vertical: false,
-    }
+  container:{
+    height: 300,
+    width: '100%'
+  },
+  axis: {
+    axisLine: false,
+    tickLine: false
+  },
+  grid: {
+    horizontal: false,
+    vertical: false,
+  }
 };
 
 ```
