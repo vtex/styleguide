@@ -1,5 +1,5 @@
 type BaseGridProps = Pick<CartesianGridProps, 'vertical' | 'horizontal'>
-type BaseAxisProps = Pick<XAxisProps, 'axisLine' | 'tickLine'>
+type BaseAxisProps = Pick<XAxisProps, 'axisLine' | 'tickLine', 'minTickGap'>
 type BaseContainerProps = Pick<ResponsiveContainerProps, 'height' | 'width'>
 
 type ChartProps = {

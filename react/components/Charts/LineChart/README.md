@@ -27,7 +27,6 @@ const schema = {
 
 ```
 
-
 #### axis
 The axis property is responsible to change visual appearence of the axis in the chart.
 
@@ -85,10 +84,22 @@ const data = [{
     totalSpent: 2100,
   },
 ];
-    const keys = ['customers', 'orders', 'totalSpent'];;
-    <LineChart
-        data={data}
-        dataKeys={keys}
-        xAxisKey='hour'
-    />
+  const keys = ['customers', 'orders', 'totalSpent'];
+  const mapper = {
+    'customers': 'Customers',
+    'orders': 'Orders',
+    'totalSpent': 'Total Spent'
+  }
+  const formatter = (value, name, entry, index) => {
+    if(name == 'totalSpent')
+        value = `$${value}`
+    return [value, mapper[name]]
+
+  }
+  <LineChart
+    data={data}
+    dataKeys={keys}
+    xAxisKey='hour'
+    formatter={formatter}
+  />
 ```
