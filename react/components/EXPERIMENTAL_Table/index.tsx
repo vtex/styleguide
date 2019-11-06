@@ -61,10 +61,6 @@ const Table: FC<TableProps> & TableComposites = ({
   )
 }
 
-Table.defaultProps = {
-  unicityKey: 'id',
-}
-
 export const measuresPropTypes = {
   tableHeight: PropTypes.number,
   rowHeight: PropTypes.number,
@@ -75,7 +71,6 @@ export const measuresPropTypes = {
 export const tablePropTypes = {
   measures: PropTypes.shape(measuresPropTypes),
   containerHeight: PropTypes.number,
-  unicityKey: PropTypes.string,
   empty: PropTypes.bool,
   columns: PropTypes.arrayOf(
     PropTypes.shape({

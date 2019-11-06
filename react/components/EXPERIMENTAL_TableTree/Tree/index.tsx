@@ -3,13 +3,15 @@ import uuid from 'uuid'
 
 import CellPrefix from './CellPrefix'
 import Row from '../../EXPERIMENTAL_Table/DataTable/Row'
-import useTableTreeCheckboxes, { Item } from '../hooks/useTableTreeCheckboxes'
+import useTableTreeCheckboxes, {
+  Item,
+  comparatorCurry,
+} from '../hooks/useTableTreeCheckboxes'
 import { Column, Items } from '../../EXPERIMENTAL_Table'
 import { Density } from '../../EXPERIMENTAL_Table/hooks/useTableMeasures'
 
 const Node: FC<NodeProps> = ({
   columns,
-  unicityKey,
   rowHeight,
   nodesKey,
   checkboxes,
@@ -28,8 +30,8 @@ const Node: FC<NodeProps> = ({
     <CellPrefix depth={depth} hasCheckbox={!!checkboxes}>
       {hasChild && (
         <CellPrefix.CollapseToggle
-          collapsed={isCollapsed(data[unicityKey])}
-          onClick={() => toggleCollapsed(data[unicityKey])}
+          collapsed={isCollapsed(data)}
+          onClick={() => toggleCollapsed(data)}
         />
       )}
       {checkboxes && (
@@ -72,7 +74,7 @@ const Node: FC<NodeProps> = ({
   return data[nodesKey] ? (
     <>
       {renderCells(true)}
-      {isCollapsed(data[unicityKey]) &&
+      {isCollapsed(data) &&
         (data[nodesKey] as Array<Item>).map(data => (
           <Node
             selectedDensity={selectedDensity}
@@ -80,7 +82,6 @@ const Node: FC<NodeProps> = ({
             toggleCollapsed={toggleCollapsed}
             checkboxes={checkboxes}
             nodesKey={nodesKey}
-            unicityKey={unicityKey}
             rowHeight={rowHeight}
             columns={columns}
             key={`row-child-${uuid()}`}
@@ -94,21 +95,30 @@ const Node: FC<NodeProps> = ({
   )
 }
 
-const Tree: FC<TreeProps> = ({ checkboxes, items, ...nodeProps }) => {
-  const [collapsedItems, setCollapsedItems] = React.useState([])
+const Tree: FC<TreeProps> = ({
+  checkboxes,
+  items,
+  comparator,
+  ...nodeProps
+}) => {
+  const [collapsedItems, setCollapsedItems] = React.useState<Array<Item>>([])
 
   const listToRender = checkboxes ? items[nodeProps.nodesKey] : items
 
   const toggleCollapsed = React.useCallback(
-    (uniqueKey: unknown) => {
-      collapsedItems.includes(uniqueKey)
-        ? setCollapsedItems(collapsedItems.filter(key => key !== uniqueKey))
-        : setCollapsedItems([...collapsedItems, uniqueKey])
+    (item: Item) => {
+      isCollapsed(item)
+        ? setCollapsedItems(
+            collapsedItems.filter(
+              collapsedItem => !comparator(collapsedItem)(item)
+            )
+          )
+        : setCollapsedItems([...collapsedItems, item])
     },
     [collapsedItems]
   )
 
-  const isCollapsed = (uniqueKey: unknown) => collapsedItems.includes(uniqueKey)
+  const isCollapsed = (item: Item) => collapsedItems.some(comparator(item))
 
   return (
     <>
@@ -131,7 +141,7 @@ type TreeProps = {
   selectedDensity: Density
   nodesKey: string
   columns: Array<Column>
-  unicityKey: string
+  comparator: comparatorCurry
   rowHeight: number
   checkboxes?: Partial<ReturnType<typeof useTableTreeCheckboxes>>
 }
@@ -140,7 +150,6 @@ type NodeProps = {
   toggleCollapsed: (uniqueKey: unknown) => void
   isCollapsed: (uniqueKey: unknown) => boolean
   columns: Array<Column>
-  unicityKey: string
   selectedDensity: Density
   rowHeight: number
   nodesKey: string

@@ -1,7 +1,7 @@
 import { getFlat, getToggledState } from '../checkboxesUtils'
 
 const props = ['children', 'related', 'friends']
-const unicityKey = 'name'
+const comparator = item => candidate => item.name === candidate.name
 
 props.forEach(prop => {
   test(`Tree is flattened correctly for prop ${prop}`, () => {
@@ -11,10 +11,10 @@ props.forEach(prop => {
   })
 
   test(`The state is toggled correctly on a item without childs on ${prop} prop`, () => {
-    expect(getToggledState([], { name: 'Alok' }, prop, unicityKey)).toEqual([
+    expect(getToggledState([], { name: 'Alok' }, prop, comparator)).toEqual([
       { name: 'Alok' },
     ])
-    expect(getToggledState([], { name: 'KVSH' }, prop, unicityKey)).toEqual([
+    expect(getToggledState([], { name: 'KVSH' }, prop, comparator)).toEqual([
       { name: 'KVSH' },
     ])
   })
@@ -34,7 +34,7 @@ props.forEach(prop => {
           ],
         },
         prop,
-        unicityKey
+        comparator
       )
     ).toEqual([
       {
@@ -59,7 +59,7 @@ props.forEach(prop => {
 
 function treeForProp(prop: string) {
   return {
-    [unicityKey]: 'root',
+    vtexTableTreeRoot: 'root',
     [prop]: [
       {
         name: 'Vintage Culture',
@@ -122,7 +122,7 @@ function flattenedTreeForProp(prop: string) {
           name: 'Metallica',
         },
       ],
-      [unicityKey]: 'root',
+      vtexTableTreeRoot: 'root',
     },
     {
       [prop]: [
