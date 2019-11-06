@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import { zipWith } from 'ramda'
 import {
   Line,
   LineChart as LineChartBase,
@@ -22,16 +23,15 @@ interface Props {
   formatter: TooltipFormatter
 }
 
-const renderLines = (keys: string[]) => (
-  keys.map((key, i) => 
-    <Line
-      key={key}
-      dataKey={key}
-      stroke={colors[i]}
-      {...defaultProps}
-    />
-  )
+const renderLines = (key, color) => (
+  <Line
+    key={key}
+    dataKey={key}
+    stroke={color}
+    {...defaultProps}
+  />
 )
+
 
 const LineChart: FC<Props> = ({
   data,
@@ -52,7 +52,7 @@ const LineChart: FC<Props> = ({
                 vertical={configs.grid.vertical}
             />
             <Tooltip formatter={formatter} {...tooltipProps}/>
-            {renderLines(dataKeys)}
+            {zipWith(renderLines, dataKeys, colors)}
         </LineChartBase>
     </ResponsiveContainer>
   )
