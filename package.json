@@ -90,6 +90,7 @@
     "case-sensitive-paths-webpack-plugin": "^2.2.0",
     "focus-visible": "^4.1.5",
     "fromentries": "^1.1.0",
+    "lodash.isempty": "^4.4.0",
     "react-color": "^2.17.0",
     "react-datepicker": "^2.3.0",
     "react-docgen-displayname-handler": "^2.1.1",

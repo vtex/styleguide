@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
 import uuid from 'uuid'
+import isEmpty from 'lodash.isempty'
 
 import CellPrefix from './CellPrefix'
 import Row from '../../EXPERIMENTAL_Table/DataTable/Row'
@@ -71,7 +72,7 @@ const Node: FC<NodeProps> = ({
     )
   }
 
-  return data[nodesKey] ? (
+  return data[nodesKey] && !isEmpty(data[nodesKey]) ? (
     <>
       {renderCells(true)}
       {isCollapsed(data) &&
