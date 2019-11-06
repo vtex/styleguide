@@ -10,9 +10,9 @@ import {
   ResponsiveContainer,
   TooltipFormatter,
 } from 'recharts'
-import { colors, defaultProps, tooltipProps } from './constants'
-import useChart from '../hooks/useChart'
 import PropTypes from 'prop-types'
+import { colors, defaultProps, tooltipProps } from './constants'
+import getDefaultProps from '../helpers'
 
 interface Props {
   data: any,
@@ -31,7 +31,6 @@ const renderLine = (key, color) => (
   />
 )
 
-
 const LineChart: FC<Props> = ({
   data,
   dataKeys,
@@ -39,7 +38,7 @@ const LineChart: FC<Props> = ({
   schema,
   formatter
 }) => {
-  const { configs } = useChart(schema); 
+  const { configs } = getDefaultProps(schema); 
 
   return (
     <ResponsiveContainer {...configs.container}>
@@ -74,5 +73,4 @@ LineChart.propTypes = {
   schema: PropTypes.object,
 }
   
-
 export default LineChart
