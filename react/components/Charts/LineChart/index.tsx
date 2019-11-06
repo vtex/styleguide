@@ -58,13 +58,13 @@ const LineChart: FC<Props> = ({
 
 LineChart.propTypes = {
     /** The source data, in which each element is an object. */
-    data: PropTypes.arrayOf(PropTypes.object),
+    data: PropTypes.arrayOf(PropTypes.object).isRequired,
     /** The keys or getter of a group of data which should be unique in a LineChart. */
-    dataKeys: PropTypes.arrayOf(PropTypes.string),
+    dataKeys: PropTypes.arrayOf(PropTypes.string).isRequired,
     /** The key of x-axis which is corresponding to the data. */
-    xAxisKey: PropTypes.string,
+    xAxisKey: PropTypes.string.isRequired,
     /** The schema prop defines the style of the component. The chema prop should be given as an object with styles defined for axis, grid and container.*/
-    schema: PropTypes.any.isRequired,
+    schema: PropTypes.any,
 }
   
 
