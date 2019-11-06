@@ -6,7 +6,7 @@ export const commonDefaultProps = {
   axis: {
     axisLine: false,
     tickLine: false,
-    padding: { left: 20 }
+    padding: { left: 10, right: 10 }
   },
   grid: {
     horizontal: false,
