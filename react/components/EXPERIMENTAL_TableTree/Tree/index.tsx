@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import uuid from 'uuid'
-import isEmpty from 'lodash.isempty'
+import isEmpty from 'lodash/isEmpty'
 
 import CellPrefix from './CellPrefix'
 import Row from '../../EXPERIMENTAL_Table/DataTable/Row'

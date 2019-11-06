@@ -1,5 +1,5 @@
 import { useMemo, useCallback, useEffect, useReducer } from 'react'
-import isEmpty from 'lodash.isempty'
+import isEmpty from 'lodash/isEmpty'
 import { getFlat, getToggledState } from './checkboxesUtils'
 
 export default function useTableTreeCheckboxes({
