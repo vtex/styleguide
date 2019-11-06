@@ -7,8 +7,9 @@ import {
     Tooltip,
     CartesianGrid,
     ResponsiveContainer,
+    TooltipFormatter
 } from 'recharts'
-import { colors, defaultProps } from './constants'
+import { colors, defaultProps, tooltipProps } from './constants'
 import useChart from '../hooks/useChart'
 import PropTypes from 'prop-types'
 
@@ -17,11 +18,12 @@ interface Props {
     dataKeys: string[],
     xAxisKey: string,
     yAxisKey?: string,
-    schema: ChartProps
+    schema: ChartProps,
+    formatter: TooltipFormatter
 }
 
-const renderLines = (keys: string[]) => {
-    return keys.map((key, i) => 
+const renderLines = (keys: string[]) => (
+    keys.map((key, i) => 
       <Line
         key={key}
         dataKey={key}
@@ -29,13 +31,14 @@ const renderLines = (keys: string[]) => {
         {...defaultProps}
       />
     )
-  }
+)
 
 const LineChart: FC<Props> = ({
     data,
     dataKeys,
     xAxisKey,
-    schema
+    schema,
+    formatter
 }) => {
 
     const { configs } = useChart(schema); 
@@ -43,13 +46,13 @@ const LineChart: FC<Props> = ({
     return (
         <ResponsiveContainer {...configs.container}>
             <LineChartBase data={data}>
-                <XAxis dataKey={xAxisKey} {...configs.axis}/>
+                <XAxis dataKey={xAxisKey} {...configs.axis}  padding={{ left: 20 }}/>
                 <YAxis {...configs.axis}/>
                 <CartesianGrid
                     horizontal={configs.grid.horizontal}
                     vertical={configs.grid.vertical}
                 />
-                <Tooltip cursor={false}/>
+                <Tooltip formatter={formatter} {...tooltipProps}/>
                 {renderLines(dataKeys)}
             </LineChartBase>
         </ResponsiveContainer>

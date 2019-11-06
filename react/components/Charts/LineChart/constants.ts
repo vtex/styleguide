@@ -11,5 +11,9 @@ const defaultProps: DefaultLineProps = {
     strokeWidth: 3,
     dot: false,
 }
+const tooltipProps = {
+    cursor: false,
+    labelStyle: {color: '#828282'}
+}
 
-export { colors, defaultProps }
+export { colors, defaultProps, tooltipProps }
