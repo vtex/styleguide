@@ -6,62 +6,89 @@
 ### 👎 Don'ts
 - *Coming Soon*
 
-#### Axis
-- *Coming soon*
+# Line chart schema
+The schema prop defines the style of the chart. This should be given as an object with styles defined for `axis`, `grid`, `container`, according to your needs. 
 
-#### Grid
-- *Coming soon*
+```md
+const schema = {
+    container:{
+        height: 300,
+        width: '100%'
+    },
+    axis: {
+        axisLine: false,
+        tickLine: false
+    },
+    grid: {
+        horizontal: false,
+        vertical: false,
+    }
+};
 
-#### Datakeys
-- *Coming soon*
+```
 
-#### XaxisKey
-- *Coming soon*
+
+#### axis
+The axis property is responsible to change visual appearence of the axis in the chart.
+
+- `tickLine`: If set true, axis tick lines will be drawn
+- `axisLine`: If set true, axis line will be drawn.
+
+#### grid
+The Grid property is responsible to show a grid inside the chart.
+
+- `horizontal`: If set true, horizontal grid lines will be drawn.
+- `vertical`: If set true, vertical grid lines will be drawn.  
 
 
 ```js
-    const data = [
-        {
-        name: 'Page A', uv: 4000, pv: 2400, amt: 2400,
-        },
-        {
-        name: 'Page B', uv: 3000, pv: 1398, amt: 2210,
-        },
-        {
-        name: 'Page C', uv: 2000, pv: 9800, amt: 2290,
-        },
-        {
-        name: 'Page D', uv: 2780, pv: 3908, amt: 2000,
-        },
-        {
-        name: 'Page E', uv: 1890, pv: 4800, amt: 2181,
-        },
-        {
-        name: 'Page F', uv: 2390, pv: 3800, amt: 2500,
-        },
-        {
-        name: 'Page G', uv: 3490, pv: 4300, amt: 2100,
-        },
-    ];
-    const keys = ['uv', 'pv', 'amt'];
-    const schema = {
-        container:{
-            height: 300,
-            width: '100%'
-        },
-        axis: {
-            axisLine: false,
-            tickLine: false
-        },
-        grid: {
-            horizontal: false,
-            vertical: false,
-        }
-    };
+const data = [{
+    hour: '00h',
+    customers: 4000,
+    orders: 2400,
+    totalSpent: 2400,
+  },
+  {
+    hour: '1h',
+    customers: 3000,
+    orders: 1398,
+    totalSpent: 2210,
+  },
+  {
+    hour: '2h',
+    customers: 2000,
+    orders: 9800,
+    totalSpent: 2290,
+  },
+  {
+    hour: '3h',
+    customers: 2780,
+    orders: 3908,
+    totalSpent: 2000,
+  },
+  {
+    hour: '4h',
+    customers: 1890,
+    orders: 4800,
+    totalSpent: 2181,
+  },
+  {
+    hour: '5h',
+    customers: 2390,
+    orders: 3800,
+    totalSpent: 2500,
+  },
+  {
+    hour: '6h',
+    customers: 3490,
+    orders: 4300,
+    totalSpent: 2100,
+  },
+];
+    const keys = ['customers', 'orders', 'totalSpent'];;
     <LineChart
         data={data}
         dataKeys={keys}
-        xAxisKey={'name'}
-        schema={schema}
+        xAxisKey='hour'
     />
 ```
