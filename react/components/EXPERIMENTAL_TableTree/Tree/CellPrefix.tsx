@@ -13,7 +13,7 @@ const CellPrefix: FC<CellPrefixProps> & CellPrefixComposites = ({
   return (
     <>
       <div className="dib" style={{ width }} />
-      <div className="dib pr3">
+      <div className="dib pr3 v-mid">
         <div className="flex w-100 items-center">{children}</div>
       </div>
     </>
