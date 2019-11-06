@@ -1,4 +1,5 @@
 import { useMemo, useCallback, useEffect, useReducer } from 'react'
+import isEmpty from 'lodash.isempty'
 import { getFlat, getToggledState } from './checkboxesUtils'
 
 export default function useTableTreeCheckboxes({
@@ -32,7 +33,7 @@ export default function useTableTreeCheckboxes({
     const shake = (tree: Item) => {
       const childNodes = tree[nodesKey] as Array<Item>
 
-      if (!childNodes) return
+      if (!childNodes || isEmpty(childNodes)) return
 
       const areChildsChecked = childNodes.every(child =>
         checkedItems.some(comparator(child))
@@ -56,7 +57,7 @@ export default function useTableTreeCheckboxes({
   const isChecked = useCallback(
     (item: Item) => {
       const childs = item[nodesKey] as Array<Item>
-      return childs
+      return childs && !isEmpty(childs)
         ? childs.every(child => checkedItems.some(comparator(child)))
         : checkedItems.some(comparator(item))
     },
