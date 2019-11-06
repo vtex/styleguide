@@ -91,6 +91,7 @@ const items = [
     email: 'kungfu.master@gmail.com',
     number: 39.09222,
     country: '🇨🇳China',
+    children: [],
   },
   {
     name: 'Natasha Romanoff',
