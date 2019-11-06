@@ -8,7 +8,7 @@ import {
   Tooltip,
   CartesianGrid,
   ResponsiveContainer,
-  TooltipFormatter
+  TooltipFormatter,
 } from 'recharts'
 import { colors, defaultProps, tooltipProps } from './constants'
 import useChart from '../hooks/useChart'
@@ -18,12 +18,11 @@ interface Props {
   data: any,
   dataKeys: string[],
   xAxisKey: string,
-  yAxisKey?: string,
   schema: ChartProps,
   formatter: TooltipFormatter
 }
 
-const renderLines = (key, color) => (
+const renderLine = (key, color) => (
   <Line
     key={key}
     dataKey={key}
@@ -52,7 +51,7 @@ const LineChart: FC<Props> = ({
                 vertical={configs.grid.vertical}
             />
             <Tooltip formatter={formatter} {...tooltipProps}/>
-            {zipWith(renderLines, dataKeys, colors)}
+            {zipWith(renderLine, dataKeys, colors)}
         </LineChartBase>
     </ResponsiveContainer>
   )
@@ -72,7 +71,7 @@ LineChart.propTypes = {
   formatter: PropTypes.func,
   
   /** The schema prop defines the style of the component. This prop should be given as an object with styles defined for axis, grid and container.*/
-  schema: PropTypes.any,
+  schema: PropTypes.object,
 }
   
 
