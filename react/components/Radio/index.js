@@ -112,23 +112,23 @@ Radio.defaultProps = {
 }
 
 Radio.propTypes = {
-  /** (Button spec attribute) */
+  /** (Radio spec attribute) */
   checked: PropTypes.bool,
-  /** (Button spec attribute) */
+  /** (Radio spec attribute) */
   disabled: PropTypes.bool,
-  /** (Button spec attribute) */
+  /** (Radio spec attribute) */
   id: PropTypes.string.isRequired,
   /** (Radio spec attribute) */
   isLast: PropTypes.string.bool,
   /** Radio label */
   label: PropTypes.node.isRequired,
-  /** (Button spec attribute) */
+  /** (Radio spec attribute) */
   name: PropTypes.string.isRequired,
   /** onChange event */
   onChange: PropTypes.func.isRequired,
-  /** (Button spec attribute) */
+  /** (Radio spec attribute) */
   required: PropTypes.bool,
-  /** (Button spec attribute) */
+  /** (Radio spec attribute) */
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 }
 
