@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- **Tabs** possibility of importing `Tab` directly from the lib folder instead of from 'Tabs/Tab'.
+
 ## [9.96.0] - 2019-11-07
 
 ### Added
