@@ -63,7 +63,7 @@ The Grid property is responsible to show a grid inside the chart.
 
 ### Formating values on the tooltip
 
-The formatter prop takes a `function` which will be used to render each content of tooltip. If you want to customize the content of your tooltip, make sure that your function follows this pattern:
+The formatter prop takes a `function` which will be used to render each content of tooltip. If you want to customize the content of your tooltip, make sure that your function follows this signature:
 
 ```jsx noeditor static
 const mapper = {
