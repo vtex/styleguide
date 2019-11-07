@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.96.0] - 2019-11-07
+
 ### Added
 
 - `updateCellMeasurements` function in **Table** to be used in `cellRenderer` in order to update cell size programatically
