@@ -140,6 +140,16 @@ class Table extends PureComponent {
     )
   }
 
+  handleInputSearchClearWithBulkAction = event => {
+    const {
+      toolbar: {
+        inputSearch: { onClear = () => {} },
+      },
+    } = this.props
+    this.handleDeselectAllLines()
+    onClear(event)
+  }
+
   render() {
     const {
       items,
@@ -252,12 +262,29 @@ class Table extends PureComponent {
       }
     }
 
+    // extend toolbar's input search onClear when bulk action is turned on to
+    // deselect all lines when clearing to avoid weird unwanted behaviors
+    // until a permanent solution for https://github.com/vtex/styleguide/issues/873
+    // is found
+    const extendedToolbar = toolbar
+      ? {
+          ...toolbar,
+          inputSearch: toolbar.inputSearch
+            ? {
+                ...toolbar.inputSearch,
+                onClear: hasBulkActions
+                  ? this.handleInputSearchClearWithBulkAction
+                  : toolbar.inputSearch.onClear,
+              }
+            : null,
+        }
+      : null
+
     return (
       <div className="vtex-table__container">
-        {toolbar && (
+        {extendedToolbar && (
           <Toolbar
             loading={loading}
-            toolbar={toolbar}
             hiddenFields={hiddenFields}
             onToggleColumn={this.handleToggleColumn}
             onDeselectAllLines={this.handleDeselectAllLines}
@@ -266,7 +293,7 @@ class Table extends PureComponent {
             onToggleDensity={this.handleTableRowHeight}
             selectedDensity={selectedDensity}
             schema={schema}
-            actions={toolbar}
+            actions={extendedToolbar}
           />
         )}
 
@@ -390,6 +417,7 @@ Table.propTypes = {
   toolbar: PropTypes.shape({
     inputSearch: PropTypes.shape({
       onSubmit: PropTypes.func,
+      onClear: PropTypes.func,
     }),
     density: PropTypes.shape({
       buttonLabel: PropTypes.string,

@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.93.0] - 2019-11-07
+
+### Changed
+
+- **Table** Deselect all lines when clearing the input search if there are bulk actions.
+
 ## [9.92.0] - 2019-11-07
 
 ### Added
