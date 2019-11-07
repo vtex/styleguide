@@ -1,26 +1,13 @@
 #### A simple container for organizing stuff of any sizes or hierarchies.
 
-### Related components
+### 👎 Don'ts
 
-For small areas that are interactive consider using a <a href="#/Components/Containers/Card">Card</a>.
+- Don't make the whole box as a big interactable area, use a <a href="#/Components/Containers/Card">Card</a> for that.
 
 ```
 <div className="bg-muted-5 pa8">
-  <Box>
-    <h3>Lorem Ipsum</h3>
-    <p>
-      It is simply dummy text of the printing and typesetting industry. Lorem
-      Ipsum has been the industry's standard dummy text ever since the 1500s,
-      when an unknown printer took a galley of type and scrambled it to make a
-      type specimen book.
-    </p>
-    <p>
-      It has survived not only five centuries, but also the leap into electronic
-      typesetting, remaining essentially unchanged. It was popularised in the
-      1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-      and more recently with desktop publishing software like Aldus PageMaker
-      including versions of Lorem Ipsum.
-    </p>
+  <Box title="Lorem ipsum">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse convallis leo id tellus commodo tincidunt. Pellentesque et blandit risus. Duis rhoncus neque odio, quis suscipit lectus venenatis non. Vivamus ornare aliquet facilisis. Nullam eu lacinia felis. Proin dapibus consequat erat, vel aliquam urna commodo a. 
   </Box>
 </div>
 ```

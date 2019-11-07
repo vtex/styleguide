@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.92.0] - 2019-11-07
+
+### Added
+
+- `title` prop for `Box` component
+
 ## [9.91.6] - 2019-11-06
 
 ### Fixed
@@ -200,6 +206,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - example of modal with table
+- `Box`: added title prop
 - Workspace link reminder in pull request template
 
 ## [9.85.0] - 2019-10-03
