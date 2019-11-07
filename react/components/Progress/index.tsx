@@ -1,28 +1,28 @@
-import cn from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
-import styles from './styles.css'
+import ProgressBar, { ProgressBarTypes } from '../ProgressBar'
+import { ProgressLine, ProgressLineTypes } from './Line'
 
 const propTypes = {
-  percent: PropTypes.number.isRequired,
+  type: PropTypes.oneOf(['line', 'steps']),
+  ...ProgressLineTypes,
+  ...ProgressBarTypes,
 }
 
 const Progress: React.FC<PropTypes.InferProps<typeof propTypes>> = props => {
-  const barClasses = cn(
-    styles.progressHeight,
-    'br4 overflow-hidden bg-light-silver'
-  )
-  const stepClasses = cn(styles.progressHeight, 'br4', {
-    'bg-action-primary': props.percent !== 100,
-    'bg-success': props.percent === 100,
-  })
+  if (props.type === 'line') {
+    return <ProgressLine percent={props.percent} />
+  }
+
   return (
-    <div className={barClasses}>
-      <div className={stepClasses} style={{ width: `${props.percent}%` }} />
-    </div>
+    <ProgressBar steps={props.steps} danger={props.danger} slim={props.slim} />
   )
 }
 
 Progress.propTypes = propTypes
+
+Progress.defaultProps = {
+  type: 'steps',
+}
 
 export default Progress
