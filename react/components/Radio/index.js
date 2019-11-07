@@ -21,6 +21,7 @@ class Radio extends PureComponent {
       checked,
       disabled,
       id,
+      isLast,
       label,
       name,
       onChange,
@@ -30,8 +31,9 @@ class Radio extends PureComponent {
 
     return (
       <div
-        className={classNames('flex items-start mb3 relative', {
+        className={classNames('flex items-start relative', {
           pointer: !disabled,
+          mb3: !isLast,
         })}
         ref={this.container}
         onClick={this.handleContainerClick}>
@@ -116,6 +118,8 @@ Radio.propTypes = {
   disabled: PropTypes.bool,
   /** (Button spec attribute) */
   id: PropTypes.string.isRequired,
+  /** (Radio spec attribute) */
+  isLast: PropTypes.string.bool,
   /** Radio label */
   label: PropTypes.node.isRequired,
   /** (Button spec attribute) */

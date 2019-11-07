@@ -39,6 +39,7 @@ class RadioGroup extends React.Component {
               <div className={classNames({ mt3: !hideBorder })}>
                 <Radio
                   id={id}
+                  isLast={isLast}
                   name={name}
                   disabled={isDisabled}
                   onChange={this.handleChange}
