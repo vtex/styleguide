@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Description for the **Table**'s `dynamicRowHeight` property.
+
 ## [9.96.1] - 2019-11-08
 
 ### Added
