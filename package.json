@@ -1,6 +1,6 @@
 {
   "name": "@vtex/styleguide",
-  "version": "9.94.0",
+  "version": "9.94.1",
   "scripts": {
     "test": "node config/test.js",
     "test:codemod": "jest codemod",
