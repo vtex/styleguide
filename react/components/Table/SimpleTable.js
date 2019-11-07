@@ -352,6 +352,17 @@ class SimpleTable extends Component {
                         items[disableHeader ? rowIndex : rowIndex - 1]
                       const cellData = rowData[property]
 
+                      const cellClassNames = `flex items-center w-100 h-100 ph4 bb
+                                    b--muted-4 truncate ${
+                                      disableHeader && rowIndex === 0
+                                        ? 'bt'
+                                        : ''
+                                    } ${
+                        onRowClick && rowIndex === hoverRowIndex
+                          ? 'pointer bg-near-white c-link'
+                          : ''
+                      } ${columnIndex === 0 && fixFirstColumn ? 'br' : ''}`
+
                       return (
                         <CellMeasurer
                           cache={this._cache}
@@ -378,18 +389,7 @@ class SimpleTable extends Component {
                                   ? SELECTED_ROW_BACKGROUND
                                   : '',
                               }}
-                              className={`flex items-center w-100 h-100 ph4 bb
-                                    b--muted-4 truncate ${
-                                      disableHeader && rowIndex === 0
-                                        ? 'bt'
-                                        : ''
-                                    } ${
-                                onRowClick && rowIndex === hoverRowIndex
-                                  ? 'pointer bg-near-white c-link'
-                                  : ''
-                              } ${
-                                columnIndex === 0 && fixFirstColumn ? 'br' : ''
-                              }`}
+                              className={cellClassNames}
                               onClick={
                                 onRowClick &&
                                 property !== '_VTEX_Table_Internal_lineActions'
