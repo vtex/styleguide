@@ -56,16 +56,16 @@ The axis property is responsible to change visual appearence of the axis in the 
 - `axisLine`: If set true, axis line will be drawn.
 
 #### grid
-The Grid property is responsible to show a grid inside the chart.
+The grid property is responsible to show a grid inside the chart.
 
 - `horizontal`: If set true, horizontal grid lines will be drawn.
 - `vertical`: If set true, vertical grid lines will be drawn. 
 
-### Formating values on the tooltip
+### Formatting values on the tooltip
 
 The formatter prop takes a `function` which will be used to render each content of tooltip. If you want to customize the content of your tooltip, make sure that your function follows this signature:
 
-```jsx noeditor static
+```js noeditor static
 const mapper = {
   'customers': 'Customers',
   'orders': 'Orders',
