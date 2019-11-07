@@ -92,8 +92,9 @@ width: 350
 
 - Customize the render method of a single column cell.
 - It receives a function that returns a node (react component).
-- The function has the following params: ({ cellData, rowData })
+- The function has the following params: ({ cellData, rowData, updateCellMeasurements })
 - Default is render the value as a string.
+- If you use `dynamicRowHeights` option in your table, you may need to use `updateCellMeasurements` to update the cell measurement cache (e.g. in an `onLoad` prop for images).
 - If you have a custom cell component that has a click interaction and at the same time you use the onRowClick Table prop, you might stumble uppon the problem of both click actions being fired. We can work around that by doing a wrapper around cellRenderer to stop click event propagation, like so:
 
 ##### headerRight
