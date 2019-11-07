@@ -86,6 +86,7 @@ class Input extends Component {
       suffix: suffixProp,
       suffixIcon,
       button,
+      isLoadingButton,
       groupBottom,
       disabled,
       readOnly,
@@ -125,8 +126,10 @@ class Input extends Component {
       classes += 'code '
     }
 
-    if (disabled || readOnly) {
-      classes += `bg-transparent b--disabled ${disabled ? 'c-disabled' : ''} `
+    if (disabled || readOnly || isLoadingButton) {
+      classes += `bg-transparent b--disabled ${
+        disabled || isLoadingButton ? 'c-disabled' : ''
+      } `
       prefixSuffixGroupClasses += `bg-disabled b--disabled ${
         disabled ? 'c-disabled' : ''
       } `
@@ -214,7 +217,7 @@ class Input extends Component {
             onMouseEnter={this.handleMouseEnter}
             onMouseLeave={this.handleMouseLeave}
             className={classes}
-            disabled={disabled}
+            disabled={disabled || isLoadingButton}
             accept={this.props.accept}
             autoComplete={this.props.autoComplete}
             autoCorrect={this.props.autoCorrect}
@@ -249,7 +252,8 @@ class Input extends Component {
           {button && size !== 'small' && (
             <span className="flex items-center mr1">
               <Button
-                disabled={disabled}
+                disabled={disabled || isLoadingButton}
+                isLoading={isLoadingButton}
                 size={size === 'large' ? 'regular' : 'small'}
                 type="submit"
                 variation="secondary">
@@ -281,6 +285,7 @@ Input.defaultProps = {
   size: 'regular',
   prefix: '',
   type: 'text',
+  isLoadingButton: false,
 }
 
 Input.propTypes = {
@@ -327,6 +332,9 @@ Input.propTypes = {
   testId: PropTypes.string,
   /** Spec attribute */
   inputMode: PropTypes.string,
+  /** @ignore
+   * Loading state */
+  isLoadingButton: PropTypes.bool,
   /** Spec attribute */
   list: PropTypes.string,
   /** Spec attribute */

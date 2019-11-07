@@ -677,8 +677,11 @@ function BulkExample() {
     ],
   }
 
+  const comparator = item => candidate => item.id === candidate.id
+
   const { bulkedColumns, isRowSelected, ...bulkData } = useTableBulkActions({
     columns,
+    comparator,
     items,
     bulkActions,
   })

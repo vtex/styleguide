@@ -11,6 +11,42 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - `Progress` component
 
+## [9.94.0] - 2019-11-07
+
+### Fixed
+
+- **Table** stale height on first render when using `dynamicRowHeight`.
+
+## [9.93.0] - 2019-11-07
+
+### Changed
+
+- **Table** Deselect all lines when clearing the input search if there are bulk actions.
+
+## [9.92.0] - 2019-11-07
+
+### Added
+
+- `title` prop for `Box` component
+
+## [9.91.6] - 2019-11-06
+
+### Fixed
+
+- `EXPERIMENTAL_TableTree` shows arrow with empty `nodesKey`.
+
+## [9.91.5] - 2019-11-06
+
+### Added
+
+- `comparator` function to `EXPERIMENTAL_Table` and `EXPERIMENTAL_TableTree`.
+
+## [9.91.4] - 2019-11-05
+
+### Added
+
+- isLoading prop to InputButton component.
+
 ## [9.91.3] - 2019-10-31
 
 ### Fixed
@@ -186,6 +222,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - example of modal with table
+- `Box`: added title prop
 - Workspace link reminder in pull request template
 
 ## [9.85.0] - 2019-10-03
