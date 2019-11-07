@@ -101,7 +101,6 @@ module.exports = {
             'react/components/Table/index.js',
             'react/components/Tag/index.js',
             'react/components/Progress/index.tsx',
-            'react/components/ProgressBar/index.js',
             'react/components/Totalizer/index.js',
             'react/components/Tooltip/index.tsx',
           ],

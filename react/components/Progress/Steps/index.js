@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Step from './Step'
 
-export const ProgressBarTypes = {
+export const ProgressStepsTypes = {
   /** Array of steps, it should be composed of instances of the following strings:'completed', 'inProgress' and 'toDo' */
   steps: PropTypes.arrayOf(PropTypes.oneOf(['completed', 'inProgress', 'toDo']))
     .isRequired,
@@ -12,7 +12,7 @@ export const ProgressBarTypes = {
   slim: PropTypes.bool,
 }
 
-class ProgressBar extends PureComponent {
+export class ProgressSteps extends PureComponent {
   isFirstElement(index) {
     return index === 0
   }
@@ -45,6 +45,4 @@ class ProgressBar extends PureComponent {
   }
 }
 
-ProgressBar.propTypes = ProgressBarTypes
-
-export default ProgressBar
+ProgressSteps.propTypes = ProgressStepsTypes

@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import ProgressBar, { ProgressBarTypes } from '../ProgressBar'
+import { ProgressSteps, ProgressStepsTypes } from './Steps'
 import { ProgressLine, ProgressLineTypes } from './Line'
 
 const propTypes = {
   type: PropTypes.oneOf(['line', 'steps']),
   ...ProgressLineTypes,
-  ...ProgressBarTypes,
+  ...ProgressStepsTypes,
 }
 
 const Progress: React.FC<PropTypes.InferProps<typeof propTypes>> = props => {
@@ -15,7 +15,11 @@ const Progress: React.FC<PropTypes.InferProps<typeof propTypes>> = props => {
   }
 
   return (
-    <ProgressBar steps={props.steps} danger={props.danger} slim={props.slim} />
+    <ProgressSteps
+      steps={props.steps}
+      danger={props.danger}
+      slim={props.slim}
+    />
   )
 }
 
