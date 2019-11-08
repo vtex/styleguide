@@ -1,3 +1,11 @@
+```md
+To import Tabs children (Tab) when using in `npm` you can either
+
+`import Tab from '@vtex/styleguide/lib/Tab'` or
+
+`import Tab from '@vtex/styleguide/lib/Tabs/Tab'`
+```
+
 #### Tabs are navigation solutions for alternating between content that is in the same level of hierarchy.
 
 ### 👍 Dos
