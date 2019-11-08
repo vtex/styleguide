@@ -23,10 +23,26 @@
 ```
 
 ### 👍 Dos
-- *Coming Soon*
+- Use grids to help your audience trace their finger
+from the data to the axis.
+- Use axis labels clearly and concise, so, you might be want to abbreviate sometimes.
+
 
 ### 👎 Don'ts
-- *Coming Soon*
+-  Avoid spaghetti chart(use more than 4 lines)
+```jsx noeditor
+const sampleData = require('./multilineSample').default;
+const keys = ['uv', 'pv', 'amt', 'gte', 'yaw'];
+const schema = {container: { height: 200, width: '40%'}};
+<LineChart
+  data={sampleData}
+  dataKeys={keys}
+  schema={schema}
+  xAxisKey='name'
+/>
+```
+- Avoid to do grid competes visually with the data.
+
 
 # Line chart schema
 The schema prop defines the style of the chart. This should be given as an object with styles defined for `axis`, `grid`, `container`, according to your needs.  
