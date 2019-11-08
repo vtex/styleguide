@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { zipWith } from 'ramda'
+import { zipWith } from 'lodash'
 import {
   Line,
   LineChart as LineChartBase,
@@ -50,7 +50,7 @@ const LineChart: FC<Props> = ({
           vertical={configs.grid.vertical}
         />
         <Tooltip formatter={formatter} {...tooltipProps}/>
-        {zipWith(renderLine, dataKeys, colors)}
+        {zipWith(dataKeys, colors, renderLine)}
       </LineChartBase>
     </ResponsiveContainer>
   )
