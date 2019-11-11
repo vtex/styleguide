@@ -398,7 +398,7 @@ Table.propTypes = {
   emptyStateChildren: PropTypes.node,
   /** Full width property  */
   fullWidth: PropTypes.bool,
-  /** Dynamic row height property */
+  /** Allows rows to show the full height of their content */
   dynamicRowHeight: PropTypes.bool,
   /** Line actions column */
   lineActions: PropTypes.arrayOf(
