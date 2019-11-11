@@ -5,7 +5,7 @@ export const colors = [
   '#4CAABF',
   '#9F50B6',
   '#479A5E',
-  '#0000FF' //sample
+  '#0000FF'
 ]
 
 type DefaultLineProps = Pick<LineProps, 'type' | 'strokeWidth' | 'dot'>
