@@ -29,7 +29,7 @@ from the data to the axis.
 
 
 ### 👎 Don'ts
--  Avoid spaghetti chart(use more than 4 lines)
+-  Avoid spaghetti chart(don't use more than 4 lines)
 ```jsx noeditor
 const sampleData = require('./multilineSample').default;
 const keys = ['uv', 'pv', 'amt', 'gte', 'yaw'];
@@ -68,8 +68,14 @@ const schema = {
 #### axis
 The axis property is responsible to change visual appearence of the axis in the chart.
 
-- `tickLine`: If set true, axis tick lines will be drawn
+- `tickLine`: If set true, axis tick lines will be drawn.
 - `axisLine`: If set true, axis line will be drawn.
+
+#### container
+The container property is responsible to define the size of box that will render the chart.
+
+- `height`: The percentage value of the chart's width or a fixed width.
+- `width`: The percentage value of the chart's width or a fixed height.
 
 #### grid
 The grid property is responsible to show a grid inside the chart.

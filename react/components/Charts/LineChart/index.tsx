@@ -69,7 +69,7 @@ LineChart.propTypes = {
   /** The formatter function of value in tooltip. If you return an array, the first entry will be the formatted "value", and the second entry will be the formatted "key" */
   formatter: PropTypes.func,
   
-  /** The schema prop defines the style of the component. This prop should be given as an object with styles defined for axis, grid and container.*/
+  /** The schema prop changes some styles of the chart. This prop should be given as an object.*/
   schema: PropTypes.object,
 }
   
