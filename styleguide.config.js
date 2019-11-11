@@ -166,7 +166,7 @@ module.exports = {
           ],
           sections: [
             {
-              name: '📊 Charts',
+              name: 'Charts',
               content: './docs/charts.md',
               components: ['react/components/Charts/LineChart/index.tsx'],
             },
