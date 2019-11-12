@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Alignment between checkboxes and carets on `EXPERIMENTAL_TableTree`.
+
+### Changed
+
+- Carets size to be smaller on `EXPERIMENTAL_TableTree`.
+- EXPERIMENTAL_TableTree collapses on click the first cell.
+
+### Added
+
+- `onRowClick` prop to `EXPERIMENTAL_TableTree`.
+
 ## [9.96.6] - 2019-11-13
 
 ### Fixed
@@ -22,6 +35,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [9.96.4] - 2019-11-12
 
 ### Changed
+
 - `LineChart` to `EXPERIMENTAL_Charts`.
 
 ## [9.96.3] - 2019-11-12
