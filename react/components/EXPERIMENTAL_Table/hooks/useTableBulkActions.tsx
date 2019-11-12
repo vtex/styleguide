@@ -34,7 +34,7 @@ export default function useTableBulkActions({
   const hasBulkActions = hasPrimaryBulkAction || hasSecondaryBulkActions
 
   const bulkedColumns = useMemo<Array<Column>>(() => {
-    const headerRender = () => {
+    const headerRenderer = () => {
       const selectedRowsLength = bulkState.selectedRows.length
       const itemsLength = items.length
       const isChecked = selectedRowsLength === itemsLength
@@ -51,7 +51,7 @@ export default function useTableBulkActions({
       )
     }
 
-    const cellRender = ({ rowData }) => (
+    const cellRenderer = ({ rowData }) => (
       <Checkbox
         checked={bulkState.selectedRows.some(comparator(rowData))}
         onClick={() => selectRow(rowData)}
@@ -65,8 +65,8 @@ export default function useTableBulkActions({
           {
             vtexTableRoot: 'bulk',
             width: 40,
-            headerRender,
-            cellRender,
+            headerRenderer,
+            cellRenderer,
           },
           ...columns,
         ]

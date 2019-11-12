@@ -119,9 +119,8 @@ export type Column = {
   id?: string
   title?: string
   width?: number
-  cellRender?: (cellData: CellData) => React.ReactNode
-  headerRender?: ({ headerData: unknown }) => React.ReactNode
-  hidden?: boolean
+  cellRenderer?: (cellData: CellData) => React.ReactNode
+  headerRenderer?: ({ columnData: unknown }) => React.ReactNode
 }
 
 Table.Toolbar = Toolbar

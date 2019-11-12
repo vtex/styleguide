@@ -1,8 +1,11 @@
 import { useMemo, useState, useCallback } from 'react'
 import { Column } from '../index'
 
-export default function useTableVisibility({ columns }: VisibilityData) {
-  const [hiddenColumns, setHiddenColumns] = useState(getHiddenColumns(columns))
+export default function useTableVisibility({
+  columns,
+  hiddenColumns: initHiddenColumns = [],
+}: VisibilityData) {
+  const [hiddenColumns, setHiddenColumns] = useState(initHiddenColumns)
 
   const visibleColumns = useMemo(() => {
     const reducer = (acc: Array<Column>, col: Column) =>
@@ -40,12 +43,5 @@ export default function useTableVisibility({ columns }: VisibilityData) {
 
 export type VisibilityData = {
   columns: Array<Column>
-}
-
-interface Monad<T> extends Array<any> {
-  flatMap?(func: (x: T) => any): Array<any>
-}
-
-function getHiddenColumns(columns: Monad<Column>): Array<string> {
-  return columns.flatMap(col => (col.hidden ? [col.id] : []))
+  hiddenColumns?: Array<string>
 }

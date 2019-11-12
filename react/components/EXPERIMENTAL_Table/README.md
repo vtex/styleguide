@@ -1,19 +1,20 @@
-# Table Columns
+## Columns
 
-The columns property is a LIST used to define the table columns and how they should behave visually. The Schema has properties and each one of them defines a column in the table.
-Example with simple structure:
+The `columns` property is an `Array` used to define the table columns and how they should behave visually. Each column describes each item field should be handled by the `Table`.
 
 ```ts
-;[
-  {
-    id: 'property',
-    title: 'Property',
-    cellRender: ({ cellData, rowData }) => {
-      return <span className="classname">{cellData}</span>
-    },
-  },
-  // ...
-]
+type Column = {
+  id?: string
+  title?: string
+  width?: number
+  cellRenderer?: ({
+    cellData: unknown
+    rowData: unknown
+    rowHeight: number
+    selectedDensity: 'low' | 'medium' | 'high'
+  }) => React.ReactNode
+  headerRenderer?: ({ columnData: Column }) => React.ReactNode
+}
 ```
 
 ##### id
@@ -23,44 +24,123 @@ Example with simple structure:
 
 ##### title
 
-- Control the title which appears on table Header.
-- It receives only strings.
-- If you want to customize it with a component, you can use the `headerRender` prop.
+- Controls the title which appears on the table Header.
+- If you want to customize it with a component, you can use the `headerRenderer` prop.
 
-##### headerRender
+##### width
+
+- Defines a fixed width for the specific column.
+- By default, the column's width is defined to fit the available space without breaking the content.
+
+##### headerRenderer
 
 - Customize the render method of a single header column cell.
 - It receives a function that returns a node (react component).
-- The function has the following params: ({ headerData })
-- Default is render the value as a string.
-- If you have a custom cell component that has a click interaction and at the same time you use the onRowClick Table prop, you might stumble uppon the problem of both click actions being fired. We can work around that by doing a wrapper around cellRenderer to stop click event propagation.
+- The function has the following params: ({ columnData })
+- The default is rendering the value as a string.
 
-##### cellRender
+##### cellRenderer
 
 - Customize the render method of a single column cell.
 - It receives a function that returns a node (react component).
-- The function has the following params: ({ cellData, rowData })
-- Default is render the value as a string.
-- If you have a custom cell component that has a click interaction and at the same time you use the onRowClick Table prop, you might stumble uppon the problem of both click actions being fired. We can work around that by doing a wrapper around cellRenderer to stop click event propagation.
+- The function has the following params: ({ cellData, rowData, rowHeight, selectedDensity })
+  - cellData: the value of the current cell.
+  - rowData: the value of the current row.
+  - rowHeight: current height of the row.
+  - selectedDensity: current table density.
+- The default is rendering the value as a string.
 
-##### hidden
+To illustrate this info, let's suppose we have a list of heroes, each one with properties `name`, `email`, `age` and `country`:
 
-- Defines if a columns is initially hidden or not.
-- ⚠️ You should use the `Columns` button of the toolbar to enable toggle columns visibility.
+```ts
+type Hero = {
+  name: string
+  email: string
+  age: number
+  country: string
+}
 
-#### State Hook
+const heroes: Array<Hero> = [
+  {
+    name: "T'Chala",
+    email: 'black.panther@gmail.com',
+    age: 31,
+    country: '🇰🇪Wakanda',
+  },
+  {
+    name: 'Peter Parker',
+    email: 'spider.man@gmail.com',
+    age: 17,
+    country: '🇺🇸USA',
+  },
+  {
+    name: 'Natasha Romanoff',
+    email: 'black.widow@gmail.com',
+    age: 29,
+    country: '🇷🇺Russia',
+  },
+]
+```
 
-Different than the previous version the `Table v2` is completely stateless, meaning that the parent has full control of its states. This is made possible by the `useTableState` hook. Its input is an `List` containing `columns` (the columns definition), `items` (the actual items to show, which described by the columns) and `density` (density of the table rows).
+To allow us to see the `Column` features, let's imagine some specifications:
 
-### Example Of Usage
+- The `name` should be rendered as simple as possible
+- The `email` header should contain 💌 emoji
+- Age should be rendered inside of a `Tag` component with de `bgColor` blue for underage heroes and pink for the older age.
+- The header title for `country` prop should be 'Nationality'.
+
+Given these, the columns would be:
+
+```ts
+const heroColumns: Array<Column> = [
+  {
+    /** Definitions for the name prop */
+    id: 'name',
+    title: 'Name',
+  },
+  {
+    /** Definitions for the email prop */
+    id: 'email',
+    title: 'Email',
+    /** Custom renderer for email prop */
+    headerRenderer: ({ columnData: { title } }) => {
+      return (
+        <React.Fragment>
+          <Emoji symbol="💌" label="mail" /> {title}
+        </React.Fragment>
+      )
+    },
+  },
+  {
+    /** Definitions for the age prop */
+    id: 'age',
+    title: 'Age',
+    /** Custom renderer for age prop */
+    cellRenderer: ({ cellData: age }) => {
+      const bgColor = age > 18 ? '#F71963' : '#134CD8'
+      return (
+        <Tag color="#FFFFFF" bgColor={bgColor}>
+          {age} years
+        </Tag>
+      )
+    },
+  },
+  {
+    /** Definitions for the country prop */
+    id: 'country',
+    /** This means that the title shown for the country property will be Nationality */
+    title: 'Nationality',
+  },
+]
+```
+
+##### Working example:
 
 ```js
-// Imports
 const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
 const Tag = require('../Tag/index.js').default
 
-// Define the columns
-const columns = [
+const heroColumns = [
   {
     id: 'name',
     title: 'Name',
@@ -68,77 +148,175 @@ const columns = [
   {
     id: 'email',
     title: 'Email',
+    headerRenderer: ({ columnData: { title } }) => {
+      return (
+        <React.Fragment>
+          <Emoji symbol="💌" label="mail" /> {title}
+        </React.Fragment>
+      )
+    },
   },
   {
-    id: 'number',
-    title: 'Number',
-    cellRender: ({ cellData }) => {
-      return <Tag>{cellData}</Tag>
+    id: 'age',
+    title: 'Age',
+    cellRenderer: ({ cellData: age }) => {
+      const bgColor = age > 18 ? '#F71963' : '#134CD8'
+      return (
+        <Tag color="#FFFFFF" bgColor={bgColor}>
+          {age} years
+        </Tag>
+      )
     },
   },
   {
     id: 'country',
-    title: 'Country',
+    title: 'Nationality',
   },
 ]
 
-// Define the items
-const items = [
+const heroes = [
   {
     name: "T'Chala",
     email: 'black.panther@gmail.com',
-    number: 1.88191,
+    age: 31,
     country: '🇰🇪Wakanda',
   },
   {
     name: 'Peter Parker',
     email: 'spider.man@gmail.com',
-    number: 3.09191,
+    age: 17,
     country: '🇺🇸USA',
-  },
-  {
-    name: 'Shang-Chi',
-    email: 'kungfu.master@gmail.com',
-    number: 39.09222,
-    country: '🇨🇳China',
   },
   {
     name: 'Natasha Romanoff',
     email: 'black.widow@gmail.com',
-    number: 5.09291,
+    age: 29,
     country: '🇷🇺Russia',
   },
 ]
 
-function StateHookExample() {
+function Emoji({ symbol, label = '' }) {
+  return (
+    <span role="img" arial-label={label} aria-hidden={label ? 'false' : 'true'}>
+      {symbol}
+    </span>
+  )
+}
+
+function SimpleExample() {
   const measures = useTableMeasures({
-    size: items.length,
+    size: heroes.length,
   })
 
-  return <Table measures={measures} columns={columns} items={items} />
+  return <Table measures={measures} columns={heroColumns} items={heroes} />
 }
-;<StateHookExample />
+;<SimpleExample />
 ```
 
-### Input Object
+##### Toggle visibility
 
-| Property | Type                      | Description                         |
-| -------- | ------------------------- | ----------------------------------- |
-| columns  | List of Columns           | Definition of the table columns     |
-| items    | Array of Object           | The actual items that will be shown |
-| density  | 'low', 'medium' or 'high' | Density of table rows               |
+It is possible to show/hide columns. This can be done using the `EXPERIMENTAL_useTableVisibility` hook and the `Columns` button (part of the `Toolbar`). Check the working example below:
 
-### Return Values
+```js
+const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
+const useTableVisibility = require('./hooks/useTableVisibility.ts').default
 
-| Property           | Type            | Description                         |
-| ------------------ | --------------- | ----------------------------------- |
-| columns            | List of Columns | Definition of the table columns     |
-| items              | Array of Object | The actual items that will be shown |
-| empty              | Boolean         | If there are items to show or not   |
-| tableHeight        | Number          | Table calculated height             |
-| rowHeight          | Number          | Table calculated row height         |
-| selectedDensity    | Density         | Current selected density            |
-| setSelectedDensity | Function        | selectedDensity setter              |
+const Tag = require('../Tag/index.js').default
+
+const heroColumns = [
+  {
+    id: 'name',
+    title: 'Name',
+  },
+  {
+    id: 'email',
+    title: 'Email',
+    headerRenderer: ({ columnData: { title } }) => {
+      return (
+        <span>
+          <Emoji symbol="💌" label="mail" /> {title}
+        </span>
+      )
+    },
+  },
+  {
+    id: 'age',
+    title: 'Age',
+    cellRenderer: ({ cellData: age }) => {
+      const bgColor = age > 18 ? '#F71963' : '#134CD8'
+      return (
+        <Tag color="#FFFFFF" bgColor={bgColor}>
+          {age} years
+        </Tag>
+      )
+    },
+  },
+  {
+    id: 'country',
+    title: 'Nationality',
+  },
+]
+
+const heroes = [
+  {
+    name: "T'Chala",
+    email: 'black.panther@gmail.com',
+    age: 31,
+    country: '🇰🇪Wakanda',
+  },
+  {
+    name: 'Peter Parker',
+    email: 'spider.man@gmail.com',
+    age: 17,
+    country: '🇺🇸USA',
+  },
+  {
+    name: 'Natasha Romanoff',
+    email: 'black.widow@gmail.com',
+    age: 29,
+    country: '🇷🇺Russia',
+  },
+]
+
+function Emoji({ symbol, label = '' }) {
+  return (
+    <span role="img" arial-label={label} aria-hidden={label ? 'false' : 'true'}>
+      {symbol}
+    </span>
+  )
+}
+
+function ToggleColumnsExample() {
+  const visibility = useTableVisibility({
+    columns: heroColumns,
+  })
+
+  const measures = useTableMeasures({
+    size: heroes.length,
+  })
+
+  const buttonColumns = {
+    label: 'Toggle visible fields',
+    showAllLabel: 'Show All',
+    hideAllLabel: 'Hide All',
+    visibility,
+  }
+
+  return (
+    <Table
+      measures={measures}
+      items={heroes}
+      columns={visibility.visibleColumns}>
+      <Table.Toolbar>
+        <Table.Toolbar.ButtonGroup>
+          <Table.Toolbar.ButtonGroup.Columns {...buttonColumns} />
+        </Table.Toolbar.ButtonGroup>
+      </Table.Toolbar>
+    </Table>
+  )
+}
+;<ToggleColumnsExample />
+```
 
 # Features
 

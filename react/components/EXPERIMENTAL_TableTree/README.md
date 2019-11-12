@@ -163,7 +163,7 @@ const columns = [
   {
     id: 'name',
     title: 'Description',
-    cellRender: ({ rowHeight, cellData }) => (
+    cellRenderer: ({ rowHeight, cellData }) => (
       <span>
         <Image size={rowHeight - 10} />
         <span className="ph4">{cellData}</span>

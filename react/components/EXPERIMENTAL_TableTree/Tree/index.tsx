@@ -51,10 +51,10 @@ const Node: FC<NodeProps> = ({
     return (
       <Row height={rowHeight} active={isRowSelected}>
         {columns.map((column: Column, cellIndex: number) => {
-          const { cellRender, width } = column
+          const { cellRenderer, width } = column
           const cellData = data[column.id]
-          const content = cellRender
-            ? cellRender({
+          const content = cellRenderer
+            ? cellRenderer({
                 cellData,
                 rowData: data,
                 rowHeight,
