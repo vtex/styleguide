@@ -1,26 +1,27 @@
-import React, { FC, Children } from 'react'
+import React, { FC } from 'react'
 
 import CollapseToggle, { CollapseToggleProps } from './CollapseToggle'
 import Checkbox, { CheckboxProps } from '../../EXPERIMENTAL_Table/Checkbox'
 
-const PREFIX_WIDTH = 48
-const CHECKBOXES_WIDTH = 16
+const GAP = 35
 
 const CellPrefix: FC<CellPrefixProps> & CellPrefixComposites = ({
   children,
-  hasCheckbox,
   depth,
 }) => {
-  const width = (PREFIX_WIDTH + (hasCheckbox ? CHECKBOXES_WIDTH : 0)) * depth
+  const width = GAP * depth
   return (
-    <span className="dib pr2" style={{ width }}>
-      <span className="flex w-100 justify-end items-center">{children}</span>
-    </span>
+    <>
+      <div className="dib" style={{ width }} />
+      <div className="dib pr3">
+        <div className="flex w-100 items-center">{children}</div>
+      </div>
+    </>
   )
 }
 
 CellPrefix.defaultProps = {
-  depth: 1,
+  depth: 0,
   hasCheckbox: false,
 }
 

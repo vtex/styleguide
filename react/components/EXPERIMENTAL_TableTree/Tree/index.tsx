@@ -36,7 +36,7 @@ const Node: FC<NodeProps> = ({
         />
       )}
       {checkboxes && (
-        <span className="ph2">
+        <span className="ph3">
           <CellPrefix.Checkbox
             checked={isRowChecked}
             partial={isRowPartiallyChecked}
@@ -160,7 +160,7 @@ type NodeProps = {
 }
 
 Node.defaultProps = {
-  depth: 1,
+  depth: 0,
 }
 
 export default React.memo(Tree)
