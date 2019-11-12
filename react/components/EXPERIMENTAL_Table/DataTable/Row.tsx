@@ -30,14 +30,20 @@ export const Cell: FC<CellProps> = ({
   id,
   children,
   width,
+  onClick,
   as: Tag = 'td',
   className = '',
 }) => {
+  const classNames = csx('truncate v-mid ph2 pv0 tl bb b--muted-4', className, {
+    'pointer hover-c-link hover-bg-muted-5': onClick,
+  })
+
   return (
     <Tag
+      onClick={onClick}
       id={`${NAMESPACES.CELL}-${id}`}
       style={{ minWidth: width }}
-      className={`truncate v-mid ph2 pv0 tl bb b--muted-4 ${className}`}>
+      className={classNames}>
       {children}
     </Tag>
   )
@@ -52,6 +58,7 @@ export type CellProps = {
   width?: number
   as?: 'td' | 'th' | 'div' | 'li'
   className?: string
+  onClick?: () => void
 }
 
 export type RowProps = {

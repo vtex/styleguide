@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useCallback } from 'react'
 import uuid from 'uuid'
 import isEmpty from 'lodash/isEmpty'
 
@@ -21,18 +21,33 @@ const Node: FC<NodeProps> = ({
   data,
   depth,
   selectedDensity,
+  onRowClick,
 }) => {
+  const toggleChildren = useCallback(() => toggleCollapsed(data), [data])
+  const toggleChecked = useCallback(() => checkboxes.toggle(data), [data])
+
   const isRowChecked = checkboxes && checkboxes.isChecked(data)
   const isRowPartiallyChecked =
     checkboxes && checkboxes.isPartiallyChecked(data)
   const isRowSelected = isRowChecked || isRowPartiallyChecked
+  const hasChildren = data[nodesKey] && !isEmpty(data[nodesKey])
+
+  const clickableRow = onRowClick
+    ? { onClick: () => onRowClick({ rowData: data }) }
+    : undefined
+
+  const clickableCell = hasChildren
+    ? !!clickableRow
+      ? undefined
+      : { onClick: toggleChildren }
+    : undefined
 
   const renderPrefix = (hasChild?: boolean) => (
-    <CellPrefix depth={depth} hasCheckbox={!!checkboxes}>
+    <CellPrefix depth={depth}>
       {hasChild && (
         <CellPrefix.CollapseToggle
           collapsed={isCollapsed(data)}
-          onClick={() => toggleCollapsed(data)}
+          onClick={toggleChildren}
         />
       )}
       {checkboxes && (
@@ -40,7 +55,7 @@ const Node: FC<NodeProps> = ({
           <CellPrefix.Checkbox
             checked={isRowChecked}
             partial={isRowPartiallyChecked}
-            onClick={() => checkboxes.toggle(data)}
+            onClick={toggleChecked}
           />
         </span>
       )}
@@ -49,7 +64,7 @@ const Node: FC<NodeProps> = ({
 
   const renderCells = (hasChild?: boolean) => {
     return (
-      <Row height={rowHeight} active={isRowSelected}>
+      <Row {...clickableRow} height={rowHeight} active={isRowSelected}>
         {columns.map((column: Column, cellIndex: number) => {
           const { cellRenderer, width } = column
           const cellData = data[column.id]
@@ -61,9 +76,13 @@ const Node: FC<NodeProps> = ({
                 selectedDensity,
               })
             : cellData
-          return (
+          return cellIndex === 0 ? (
+            <Row.Cell {...clickableCell} key={`cel-${uuid()}`} width={width}>
+              {renderPrefix(hasChild)}
+              {content}
+            </Row.Cell>
+          ) : (
             <Row.Cell key={`cel-${uuid()}`} width={width}>
-              {cellIndex === 0 && renderPrefix(hasChild)}
               {content}
             </Row.Cell>
           )
@@ -72,12 +91,13 @@ const Node: FC<NodeProps> = ({
     )
   }
 
-  return data[nodesKey] && !isEmpty(data[nodesKey]) ? (
+  return hasChildren ? (
     <>
       {renderCells(true)}
       {isCollapsed(data) &&
         (data[nodesKey] as Array<Item>).map(data => (
           <Node
+            onRowClick={onRowClick}
             selectedDensity={selectedDensity}
             isCollapsed={isCollapsed}
             toggleCollapsed={toggleCollapsed}
@@ -145,6 +165,7 @@ type TreeProps = {
   comparator: comparatorCurry
   rowHeight: number
   checkboxes?: Partial<ReturnType<typeof useTableTreeCheckboxes>>
+  onRowClick?: ({ rowData: unknown }) => void
 }
 
 type NodeProps = {
@@ -157,6 +178,7 @@ type NodeProps = {
   checkboxes?: Partial<ReturnType<typeof useTableTreeCheckboxes>>
   data: Item
   depth?: number
+  onRowClick?: ({ rowData: unknown }) => void
 }
 
 Node.defaultProps = {

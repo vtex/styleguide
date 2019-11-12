@@ -37,8 +37,13 @@ function ToolbarExample() {
     return item.email === candidate.email
   }
 
+  const onRowClick = ({ rowData }) => {
+    console.log(rowData)
+  }
+
   return (
     <TableTree
+      onRowClick={onRowClick}
       comparator={comparator}
       measures={measures}
       columns={columns}
@@ -195,7 +200,7 @@ function Image({ size }) {
         height={size}
         fill="none"
         xmlns="http://www.w3.org/2000/svg">
-        <rect width={size} height={size} rx="4" fill="#cce8ff" />
+        <rect width={size} height={size} rx="4" fill="#AAAAAA" />
       </svg>
     </div>
   )

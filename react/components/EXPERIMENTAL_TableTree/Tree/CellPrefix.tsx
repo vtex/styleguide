@@ -22,7 +22,6 @@ const CellPrefix: FC<CellPrefixProps> & CellPrefixComposites = ({
 
 CellPrefix.defaultProps = {
   depth: 0,
-  hasCheckbox: false,
 }
 
 CellPrefix.CollapseToggle = CollapseToggle
@@ -35,7 +34,6 @@ export type CellPrefixComposites = {
 
 export type CellPrefixProps = {
   depth?: number
-  hasCheckbox?: boolean
 }
 
 export default CellPrefix
