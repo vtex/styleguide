@@ -171,7 +171,9 @@ module.exports = {
             {
               name: 'Charts',
               content: './docs/charts.md',
-              components: ['react/components/Charts/LineChart/index.tsx'],
+              components: [
+                'react/components/EXPERIMENTAL_Charts/LineChart/index.tsx',
+              ],
             },
           ],
         },
