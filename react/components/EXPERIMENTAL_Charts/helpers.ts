@@ -5,4 +5,5 @@ const getDefaultProps = (userProps: ChartProps)  => {
     return { configs }
 }
 
+
 export default getDefaultProps

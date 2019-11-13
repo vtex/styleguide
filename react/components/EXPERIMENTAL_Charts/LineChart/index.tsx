@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { zipWith } from 'lodash'
+import { zipWith, curry } from 'lodash'
 import {
   Line,
   LineChart as LineChartBase,
@@ -9,25 +9,28 @@ import {
   CartesianGrid,
   ResponsiveContainer,
   TooltipFormatter,
+  LineType,
 } from 'recharts'
 import PropTypes from 'prop-types'
-import { colors, defaultProps, tooltipProps } from './constants'
-import getDefaultProps from '../helpers'
+import { colors, tooltipProps } from './constants'
+import getChartDefaultProps from '../helpers'
+import getLineDefaultProps from './helpers';
 
 interface Props {
   data: any,
   dataKeys: string[],
   xAxisKey: string,
   schema: ChartProps,
-  formatter: TooltipFormatter
+  formatter: TooltipFormatter,
+  lineProps: LineProps,
 }
 
-const renderLine = (key, color) => (
+const renderLine = (lineConfigs, key, color) =>(
   <Line
     key={key}
     dataKey={key}
     stroke={color}
-    {...defaultProps}
+    {...lineConfigs}
   />
 )
 
@@ -36,21 +39,23 @@ const LineChart: FC<Props> = ({
   dataKeys,
   xAxisKey,
   schema,
-  formatter
+  formatter,
+  lineProps
 }) => {
-  const { configs } = getDefaultProps(schema); 
+  const { configs } = getChartDefaultProps(schema);  
+  const { lineConfigs } = getLineDefaultProps(lineProps)
 
   return (
     <ResponsiveContainer {...configs.container}>
       <LineChartBase data={data}>
-        <XAxis dataKey={xAxisKey} {...configs.axis} />
-        <YAxis {...configs.axis}/>
+        <XAxis dataKey={xAxisKey} {...configs.xAxis} />
+        <YAxis {...configs.yAxis}/>
         <CartesianGrid
           horizontal={configs.grid.horizontal}
           vertical={configs.grid.vertical}
         />
         <Tooltip formatter={formatter} {...tooltipProps}/>
-        {zipWith(dataKeys, colors, renderLine)}
+        {zipWith(dataKeys, colors, curry(renderLine)(lineConfigs))}
       </LineChartBase>
     </ResponsiveContainer>
   )
@@ -71,6 +76,9 @@ LineChart.propTypes = {
   
   /** The schema prop changes some styles of the chart. This prop should be given as an object.*/
   schema: PropTypes.object,
+
+  /** The interpolation defines how data points should be connected when creating a path.*/
+  lineProps: PropTypes.object,
 }
   
 export default LineChart
