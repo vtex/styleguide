@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.96.6] - 2019-11-13
+
+### Fixed
+
+- `Progress` when line type, renders with width 100%, regardless of your parent's display.
+
 ## [9.96.5] - 2019-11-13
 
 ### Fixed
