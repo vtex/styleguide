@@ -7,7 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.96.5] - 2019-11-13
+
+### Fixed
+
+- **Table** toolbar had a <form> wrapping it, but the wanted behaviour should not be of a form with submit.
+
 ## [9.96.4] - 2019-11-12
+
 ### Changed
 - `LineChart` to `EXPERIMENTAL_Charts`.
 
@@ -16,6 +23,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Names of `cellRender` and `headerRender` in favor of `cellRenderer` and `headerRenderer` on `EXPERIMENTAL_Table`.
 
 ### Removed
+
 - `hidden` prop from `Column`.
 
 ## [9.96.2] - 2019-11-11
