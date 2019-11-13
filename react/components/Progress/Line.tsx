@@ -12,7 +12,7 @@ export const ProgressLine: React.FC<
 > = props => {
   const barClasses = cn(
     styles.progressHeight,
-    'br4 overflow-hidden bg-light-silver'
+    'w-100 br4 overflow-hidden bg-light-silver'
   )
   const stepClasses = cn(styles.progressHeight, 'br4', {
     'bg-action-primary': props.percent !== 100,
