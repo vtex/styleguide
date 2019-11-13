@@ -3,7 +3,12 @@ export const commonDefaultProps = {
     height: 300,
     width: '100%'
   },
-  axis: {
+  xAxis: {
+    axisLine: false,
+    tickLine: false,
+    padding: { left: 10, right: 10 }
+  },
+  yAxis: {
     axisLine: false,
     tickLine: false,
     padding: { left: 10, right: 10 }
