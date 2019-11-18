@@ -1,15 +1,6 @@
 #### The line chart shows the data as a data points connected by a line. They are useful to analyze changes over the time, comparisons, and trends.
 
 ```js
-
-const CustomizedLabel = (props) => {
-  const {
-    x, y, fill, payload,
-  } = props
-  console.log('hello')
-  return (<text x={x} y={y} fill={fill} textAnchor="middle">{`h${payload.value}`}</text>)
-  
-}
   const sampleData = require('./sampleData').default;
   const keys = ['customers', 'orders', 'totalSpent'];
   const mapper = {
@@ -27,8 +18,7 @@ const CustomizedLabel = (props) => {
     data={sampleData}
     dataKeys={keys}
     xAxisKey='hour'
-    schema={{xAxis:{ tick: <CustomizedLabel />}}}
-    formatter={formatter}
+    tooltipFormatter={formatter}
   />
 ```
 
@@ -43,12 +33,12 @@ from the data to the axis.
 ```jsx noeditor
 const sampleData = require('./multilineSample').default;
 const keys = ['uv', 'pv', 'amt', 'gte', 'yaw'];
-const schema = {container: { height: 200, width: '40%'}};
+const customSchema = {container: { height: 200, width: '40%'}};
 <LineChart
   data={sampleData}
   dataKeys={keys}
-  schema={schema}
   xAxisKey='name'
+  schema={customSchema}
 />
 ```
 - Avoid to do grid competes visually with the data.
@@ -63,9 +53,15 @@ const schema = {
     height: 300,
     width: '100%'
   },
-  axis: {
+  xAxis: {
     axisLine: false,
-    tickLine: false
+    tickLine: false,
+    hide: false
+  },
+  yAxis: {
+    axisLine: false,
+    tickLine: false,
+    hide: false
   },
   grid: {
     horizontal: false,
@@ -75,11 +71,36 @@ const schema = {
 
 ```
 
-#### axis
-The axis property is responsible to change visual appearence of the axis in the chart.
+#### xAxis or yAxis
+This axis property are responsible to change visual appearence of the axis in the chart.
 
 - `tickLine`: If set true, axis tick lines will be drawn.
 - `axisLine`: If set true, axis line will be drawn.
+- `hide`: If set true, axis tick lines will be drawn.
+- `tick`: Takes a component instance which will be used to render the axis label. Your component instance will receive
+the props needed to render the label, like the `x` and `y` position of the tick in the line axis, the `payload` which represents the data
+and the `fill` the label color. As you can see below:
+
+```js
+const sampleData = require('./sampleData').default;
+const keys = ['customers', 'orders', 'totalSpent'];
+const CustomizedLabel = (props) => {
+  console.log(props)
+  const {
+    x, y, fill, payload,
+  } = props
+
+  return (<text x={x} y={y} fill={fill} textAnchor="middle">{`t-${payload.value}`}</text>)
+}
+
+<LineChart
+  data={sampleData}
+  dataKeys={keys}
+  xAxisKey='hour'
+  schema={{container: {height: 200, width: '40%'}, xAxis: {tick: <CustomizedLabel/>}}}
+/>
+```
+
 
 #### container
 The container property is responsible to define the size of box that will render the chart.
@@ -91,7 +112,8 @@ The container property is responsible to define the size of box that will render
 The grid property is responsible to show a grid inside the chart.
 
 - `horizontal`: If set true, horizontal grid lines will be drawn.
-- `vertical`: If set true, vertical grid lines will be drawn. 
+- `vertical`: If set true, vertical grid lines will be drawn.
+ 
 
 ### Formatting values on the tooltip
 

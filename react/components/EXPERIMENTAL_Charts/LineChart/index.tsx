@@ -1,4 +1,4 @@
-import React, { FC, PureComponent } from 'react'
+import React, { FC } from 'react'
 import { zipWith, curry } from 'lodash'
 import {
   Line,
@@ -20,7 +20,7 @@ interface Props {
   dataKeys: string[],
   xAxisKey: string,
   schema: ChartProps,
-  formatter: TooltipFormatter,
+  tooltipFormatter: TooltipFormatter,
   lineProps: LineProps,
 }
 
@@ -39,7 +39,7 @@ const LineChart: FC<Props> = ({
   dataKeys,
   xAxisKey,
   schema,
-  formatter,
+  tooltipFormatter,
   lineProps
 }) => {
   const { configs } = getChartDefaultProps(schema);  
@@ -54,7 +54,7 @@ const LineChart: FC<Props> = ({
           horizontal={configs.grid.horizontal}
           vertical={configs.grid.vertical}
         />
-        <Tooltip formatter={formatter} {...tooltipProps}/>
+        <Tooltip formatter={tooltipFormatter} {...tooltipProps}/>
         {zipWith(dataKeys, colors, curry(renderLine)(lineConfigs))}
       </LineChartBase>
     </ResponsiveContainer>
@@ -72,7 +72,7 @@ LineChart.propTypes = {
   xAxisKey: PropTypes.string.isRequired,
   
   /** The formatter function of value in tooltip. If you return an array, the first entry will be the formatted "value", and the second entry will be the formatted "key" */
-  formatter: PropTypes.func,
+  tooltipFormatter: PropTypes.func,
   
   /** The schema prop changes some styles of the chart. This prop should be given as an object.*/
   schema: PropTypes.object,
