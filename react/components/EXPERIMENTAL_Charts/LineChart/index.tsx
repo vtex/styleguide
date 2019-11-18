@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, PureComponent } from 'react'
 import { zipWith, curry } from 'lodash'
 import {
   Line,
@@ -9,7 +9,8 @@ import {
   CartesianGrid,
   ResponsiveContainer,
   TooltipFormatter,
-  LineType,
+  XAxisProps,
+  TickFormatterFunction,
 } from 'recharts'
 import PropTypes from 'prop-types'
 import { colors, tooltipProps } from './constants'
@@ -33,6 +34,7 @@ const renderLine = (lineConfigs, key, color) =>(
     {...lineConfigs}
   />
 )
+
 
 const LineChart: FC<Props> = ({
   data,

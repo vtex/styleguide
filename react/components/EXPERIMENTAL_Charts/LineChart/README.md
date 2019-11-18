@@ -1,6 +1,15 @@
 #### The line chart shows the data as a data points connected by a line. They are useful to analyze changes over the time, comparisons, and trends.
 
 ```js
+
+const CustomizedLabel = (props) => {
+  const {
+    x, y, fill, payload,
+  } = props
+  console.log('hello')
+  return (<text x={x} y={y} fill={fill} textAnchor="middle">{`h${payload.value}`}</text>)
+  
+}
   const sampleData = require('./sampleData').default;
   const keys = ['customers', 'orders', 'totalSpent'];
   const mapper = {
@@ -18,6 +27,7 @@
     data={sampleData}
     dataKeys={keys}
     xAxisKey='hour'
+    schema={{xAxis:{tick: <CustomizedLabel />}}}
     formatter={formatter}
   />
 ```
