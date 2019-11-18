@@ -1,10 +1,13 @@
+import { merge } from 'lodash'
 import { commonDefaultProps } from './commonProps'
 
 const getDefaultProps = (userProps: ChartProps)  => {
-    const alteredKeys = Object.keys(userProps);
-    const props = commonDefaultProps
-    alteredKeys.map(key => props[key] = {...commonDefaultProps[key], ...userProps[key]})
-    return { configs: props}
+  const props = commonDefaultProps
+  Object.keys(userProps).forEach(key => (
+    props[key] = merge(props[key], userProps[key])
+  ))
+  
+  return { configs: props}
 }
 
 
