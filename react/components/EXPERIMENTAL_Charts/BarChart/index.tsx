@@ -40,9 +40,8 @@ const BarChart:FC<Props> = ({schema}) => {
     }}
   >
     <CartesianGrid vertical={false} stroke='#e5e6eb' />
-    <XAxis dataKey="name" />
-    <YAxis />
-    <Tooltip />
+    <XAxis dataKey="name" {...schema.xAxis}/>
+    <YAxis {...schema.yAxis} />
     <Bar dataKey="pv" >
     {
       data.map((entry) => {
