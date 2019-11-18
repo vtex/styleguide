@@ -113,7 +113,11 @@ The grid property is responsible to show a grid inside the chart.
 
 - `horizontal`: If set true, horizontal grid lines will be drawn.
 - `vertical`: If set true, vertical grid lines will be drawn.
- 
+
+### Line props
+
+- `type`: The interpolation type of line.
+
 
 ### Formatting values on the tooltip
 
