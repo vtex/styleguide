@@ -90,14 +90,15 @@ const CustomizedLabel = (props) => {
     x, y, fill, payload,
   } = props
 
-  return (<text x={x} y={y} fill={fill} textAnchor="middle">{`t-${payload.value}`}</text>)
-}
+  return (<text x={x} y={y} fill={fill} textAnchor="middle">{`h-${payload.value}`}</text>)
+};
+const customSchema = {container: {height: 200, width: '40%'}, xAxis: {tick: <CustomizedLabel/>}};
 
 <LineChart
   data={sampleData}
   dataKeys={keys}
   xAxisKey='hour'
-  schema={{container: {height: 200, width: '40%'}, xAxis: {tick: <CustomizedLabel/>}}}
+  schema={customSchema}
 />
 ```
 
@@ -111,11 +112,12 @@ The container property is responsible to define the size of box that will render
 ```js
 const sampleData = require('./sampleData').default;
 const keys = ['customers', 'orders', 'totalSpent'];
+const containerSchema = {container: {height: 100, width: '40%'}};
 <LineChart
   data={sampleData}
   dataKeys={keys}
   xAxisKey='hour'
-  schema={{yAxis:{tickLine: false}}}
+  schema={containerSchema}
 />
 ```
 
@@ -128,12 +130,13 @@ The grid property is responsible to show a grid inside the chart.
 ```js
 const sampleData = require('./sampleData').default;
 const keys = ['customers', 'orders', 'totalSpent'];
+const gridSchema = {grid: {vertical: true}};
 
 <LineChart
   data={sampleData}
   dataKeys={keys}
   xAxisKey='hour'
-  schema={{grid: {vertical: true}}}
+  schema={gridSchema}
 />
 ```
 
