@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- **Table** height calculation now gets scrollbar hight compensation from `virtualized` callback.
+
 ### Changed
 
 - Default sized form elements text size to `t-body`.
