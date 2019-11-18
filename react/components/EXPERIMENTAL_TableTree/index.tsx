@@ -22,6 +22,7 @@ const TableTree: FC<Props> & TableComposites = ({
   loading,
   empty,
   emptyState,
+  onRowClick,
 }) => {
   if (!measures) {
     throw new Error('Provide measures to the TableTree')
@@ -51,6 +52,7 @@ const TableTree: FC<Props> & TableComposites = ({
               checkboxes={checkboxes}
               columns={columns}
               items={items}
+              onRowClick={onRowClick}
               comparator={comparator}
               nodesKey={nodesKey}
               rowHeight={rowHeight}

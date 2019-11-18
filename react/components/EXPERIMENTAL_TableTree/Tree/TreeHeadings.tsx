@@ -29,8 +29,8 @@ const TreeHeadings: FC<TreeHeadingsProps> = ({
             key={`heading-${uuid()}`}
             width={width}>
             {checkboxes && headerIndex === 0 && (
-              <CellPrefix hasCheckbox={!!checkboxes}>
-                <span className="ph2">
+              <CellPrefix>
+                <span className="ph3">
                   <CellPrefix.Checkbox
                     checked={checkboxes.isChecked(items)}
                     partial={checkboxes.isPartiallyChecked(items)}
