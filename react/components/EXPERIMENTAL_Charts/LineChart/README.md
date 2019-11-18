@@ -108,11 +108,34 @@ The container property is responsible to define the size of box that will render
 - `height`: The percentage value of the chart's width or a fixed width.
 - `width`: The percentage value of the chart's width or a fixed height.
 
+```js
+const sampleData = require('./sampleData').default;
+const keys = ['customers', 'orders', 'totalSpent'];
+<LineChart
+  data={sampleData}
+  dataKeys={keys}
+  xAxisKey='hour'
+  schema={{yAxis:{tickLine: false}}}
+/>
+```
+
 #### grid
 The grid property is responsible to show a grid inside the chart.
 
 - `horizontal`: If set true, horizontal grid lines will be drawn.
 - `vertical`: If set true, vertical grid lines will be drawn.
+
+```js
+const sampleData = require('./sampleData').default;
+const keys = ['customers', 'orders', 'totalSpent'];
+
+<LineChart
+  data={sampleData}
+  dataKeys={keys}
+  xAxisKey='hour'
+  schema={{grid: {vertical: true}}}
+/>
+```
 
 ### Line props
 
