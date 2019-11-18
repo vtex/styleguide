@@ -27,7 +27,7 @@ const CustomizedLabel = (props) => {
     data={sampleData}
     dataKeys={keys}
     xAxisKey='hour'
-    schema={{xAxis:{tick: <CustomizedLabel />}}}
+    schema={{xAxis:{ tick: <CustomizedLabel />}}}
     formatter={formatter}
   />
 ```

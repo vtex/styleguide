@@ -9,8 +9,6 @@ import {
   CartesianGrid,
   ResponsiveContainer,
   TooltipFormatter,
-  XAxisProps,
-  TickFormatterFunction,
 } from 'recharts'
 import PropTypes from 'prop-types'
 import { colors, tooltipProps } from './constants'
