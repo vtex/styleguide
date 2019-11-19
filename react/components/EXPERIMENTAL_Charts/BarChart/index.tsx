@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
-import { BarChart as BarChartBase, Bar, CartesianGrid, XAxis, YAxis, Tooltip, Cell } from 'recharts'
+import getChartDefaultProps from '../helpers'
+import { BarChart as BarChartBase, Bar, CartesianGrid, XAxis, YAxis, Cell, ResponsiveContainer } from 'recharts'
 
 const data = [
   {
@@ -30,7 +31,9 @@ interface Props {
 }
 
 const BarChart:FC<Props> = ({schema}) => {
+  const { configs } = getChartDefaultProps(schema)
   return (
+    <ResponsiveContainer {...configs.container} >
   <BarChartBase
     width={500}
     height={300}
@@ -40,8 +43,8 @@ const BarChart:FC<Props> = ({schema}) => {
     }}
   >
     <CartesianGrid vertical={false} stroke='#e5e6eb' />
-    <XAxis dataKey="name" {...schema.xAxis}/>
-    <YAxis {...schema.yAxis} />
+    <XAxis dataKey="name" {...configs.xAxis}/>
+    <YAxis {...configs.yAxis} />
     <Bar dataKey="pv" >
     {
       data.map((entry) => {
@@ -51,6 +54,7 @@ const BarChart:FC<Props> = ({schema}) => {
     }
     </Bar>
   </BarChartBase>
+  </ResponsiveContainer>
   )
 }
 

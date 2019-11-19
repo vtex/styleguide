@@ -46,7 +46,7 @@ const LineChart: FC<Props> = ({
   xAxisFormatter,
   yAxisFormatter
 }) => {
-  const { configs } = getChartDefaultProps(schema);  
+  const { configs } = getChartDefaultProps(schema)
   const { lineConfigs } = getLineDefaultProps(lineProps)
 
   return (
