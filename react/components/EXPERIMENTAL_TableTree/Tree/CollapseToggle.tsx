@@ -4,17 +4,21 @@ import CaretUp from '../../icon/CaretUp/index.js'
 import CaretDown from '../../icon/CaretDown/index.js'
 import ButtonWithIcon from '../../ButtonWithIcon/index.js'
 
+const ICON_SIZE = 14
+
 const CollapseToggle: FC<CollapseToggleProps> = ({ collapsed, onClick }) => {
-  const icon = collapsed ? <CaretUp /> : <CaretDown />
+  const icon = collapsed ? (
+    <CaretUp size={ICON_SIZE} />
+  ) : (
+    <CaretDown size={ICON_SIZE} />
+  )
   return (
-    <span className="ph2">
-      <ButtonWithIcon
-        size="small"
-        onClick={onClick}
-        icon={icon}
-        variation="tertiary"
-      />
-    </span>
+    <ButtonWithIcon
+      size="small"
+      onClick={onClick}
+      icon={icon}
+      variation="tertiary"
+    />
   )
 }
 

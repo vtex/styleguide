@@ -21,7 +21,7 @@ const TopBar = props => {
         ${styles.shadowTransition}
         ${showBottomShadow ? 'shadow-4' : ''}
       `}>
-      <span className="f3 c-on-base">
+      <span className="f3 c-on-base w-100">
         {title}
         {showBottomShadow}
       </span>

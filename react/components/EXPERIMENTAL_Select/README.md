@@ -1,5 +1,21 @@
 #### A Select lets the user pick one or more options from a list.
 
+### Options
+
+The options prop accepts the following types:
+
+```ts
+type Options = {
+  label: string
+  value: string | {}
+}[]
+
+type GroupedOptions = {
+  label: string
+  options: Options
+}
+```
+
 ### 👍 Dos
 
 - Mind the order of the options, like putting the more probable one to be selected at the top. In doubt, sort them alphanumerically (from A to Z and from 0 to 9).

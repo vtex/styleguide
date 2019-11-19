@@ -4,13 +4,15 @@ import uuid from 'uuid'
 import Checkbox from '../Checkbox'
 import { BulkActionsProps } from '../BulkActions'
 import { NAMESPACES } from '../constants'
+import { Column } from '../index'
 
-const useTableBulkActions = ({
+export default function useTableBulkActions({
   items,
   columns,
   bulkActions,
-  unicityKey = 'id',
-}: hookInput): hookReturn => {
+  comparator = item => candidate =>
+    item.id && candidate.id && item.id === candidate.id,
+}: BulkActionsInput) {
   const [bulkState, dispatch] = useReducer(reducer, {
     selectedRows: [],
     allLinesSelected: false,
@@ -29,10 +31,8 @@ const useTableBulkActions = ({
     [bulkActions]
   )
 
-  const hasBulkActions = hasPrimaryBulkAction || hasSecondaryBulkActions
-
   const bulkedColumns = useMemo<Array<Column>>(() => {
-    const headerRender = () => {
+    const headerRenderer = () => {
       const selectedRowsLength = bulkState.selectedRows.length
       const itemsLength = items.length
       const isChecked = selectedRowsLength === itemsLength
@@ -49,28 +49,24 @@ const useTableBulkActions = ({
       )
     }
 
-    const cellRender = ({ rowData }) => (
+    const cellRenderer = ({ rowData }) => (
       <Checkbox
-        checked={bulkState.selectedRows.some(
-          row => row[unicityKey] === rowData[unicityKey]
-        )}
+        checked={bulkState.selectedRows.some(comparator(rowData))}
         onClick={() => selectRow(rowData)}
         id={`${NAMESPACES.CHECKBOX}-${rowData}-${uuid()}`}
         disabled={bulkState.allLinesSelected}
       />
     )
 
-    return hasBulkActions
-      ? [
-          {
-            [unicityKey]: 'bulk',
-            width: 40,
-            headerRender,
-            cellRender,
-          },
-          ...columns,
-        ]
-      : columns
+    return [
+      {
+        vtexTableRoot: 'bulk',
+        width: 40,
+        headerRenderer,
+        cellRenderer,
+      },
+      ...columns,
+    ]
   }, [bulkState.selectedRows, bulkState.allLinesSelected])
 
   useEffect(() => {
@@ -100,7 +96,7 @@ const useTableBulkActions = ({
     (row: unknown) =>
       dispatch({
         type: ActionType.SelectRow,
-        rowToToggle: { row, unicityKey },
+        rowToToggle: { row, comparator },
       }),
     [bulkState.selectedRows]
   )
@@ -129,8 +125,15 @@ const useTableBulkActions = ({
     [bulkState.selectedRows, bulkState.allLinesSelected]
   )
 
+  const isRowSelected = useCallback(
+    (row: unknown) => {
+      return bulkState && bulkState.selectedRows.some(comparator(row))
+    },
+    [bulkState.selectedRows, bulkState.allLinesSelected]
+  )
+
   return {
-    hasBulkActions,
+    /** constraints */
     hasPrimaryBulkAction,
     hasSecondaryBulkActions,
 
@@ -141,6 +144,7 @@ const useTableBulkActions = ({
     bulkedColumns,
 
     /** handler fn */
+    isRowSelected,
     selectAllRows,
     deselectAllRows,
     selectAllVisibleRows,
@@ -148,6 +152,14 @@ const useTableBulkActions = ({
     setSelectedRows,
     setAllLinesSelected,
   }
+}
+
+export type BulkActionsInput = {
+  items: Array<unknown>
+  comparator: comparatorCurry
+  columns: Array<Column>
+  bulkActions: BulkActionsProps
+  unicityKey: string
 }
 
 function reducer(state: BulkState, action: Action) {
@@ -180,15 +192,13 @@ function reducer(state: BulkState, action: Action) {
     }
     case ActionType.SelectRow: {
       const {
-        rowToToggle: { row, unicityKey },
+        rowToToggle: { row, comparator },
       } = action
-      return state.selectedRows.some(
-        selectedRow => selectedRow[unicityKey] === row[unicityKey]
-      )
+      return state.selectedRows.some(comparator(row))
         ? {
             ...state,
             selectedRows: state.selectedRows.filter(
-              selectedRow => selectedRow[unicityKey] !== row[unicityKey]
+              selectedRow => !comparator(selectedRow)(row)
             ),
             allLinesSelected: false,
           }
@@ -218,48 +228,13 @@ type Action = {
   row?: unknown
   rowToToggle?: {
     row?: unknown
-    unicityKey: string
+    comparator: comparatorCurry
   }
 }
 
-type hookInput = {
-  items: Array<unknown>
-  columns: Array<Column>
-  bulkActions: BulkActionsProps
-  unicityKey: string
-}
-
-type hookReturn = {
-  bulkedColumns?: Array<Column>
-  bulkedItems?: Array<unknown>
-  bulkState?: BulkState
-  hasBulkActions?: boolean
-  hasPrimaryBulkAction?: boolean
-  hasSecondaryBulkActions?: boolean
-  selectAllRows?: () => void
-  deselectAllRows?: () => void
-  selectRow?: (row: unknown) => void
-  setSelectedRows?: (selectedRows: Array<unknown>) => void
-  setAllLinesSelected?: (allLinesSelected: boolean) => void
-  selectAllVisibleRows?: () => void
-}
+type comparatorCurry = (item: any) => (candidate: any) => boolean
 
 export type BulkState = {
   selectedRows?: Array<unknown>
   allLinesSelected?: boolean
 }
-
-export type Bulk = {
-  bulkState?: BulkState
-  hasBulkActions?: boolean
-  hasPrimaryBulkAction?: boolean
-  hasSecondaryBulkActions?: boolean
-  selectAllRows?: () => void
-  deselectAllRows?: () => void
-  selectRow?: (row: unknown) => void
-  setSelectedRows?: (selectedRows: Array<unknown>) => void
-  setAllLinesSelected?: (allLinesSelected: boolean) => void
-  selectAllVisibleRows?: () => void
-}
-
-export default useTableBulkActions

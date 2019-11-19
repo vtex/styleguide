@@ -1,31 +1,36 @@
-import React, { FC, useContext } from 'react'
+import React, { FC } from 'react'
 import uuid from 'uuid'
 
-import { TABLE_HEADER_HEIGHT } from '../../EXPERIMENTAL_Table/constants'
-import { useTableContext } from '../../EXPERIMENTAL_Table/contexts'
-import { useCheckboxesContext, useTreeContext } from '../contexts'
-import { Row, CellProps, RowProps } from '../../EXPERIMENTAL_Table/Styled'
+import { TABLE_HEADER_HEIGHT } from '../../EXPERIMENTAL_Table/hooks/useTableMeasures'
+import Row, {
+  CellProps,
+  RowProps,
+} from '../../EXPERIMENTAL_Table/DataTable/Row'
 import CellPrefix from './CellPrefix'
+import { Column } from '../../EXPERIMENTAL_Table'
+import useTableTreeCheckboxes from '../hooks/useTableTreeCheckboxes'
 
-const TreeHeadings: FC<TreeHeadingsProps> = ({ cellProps, rowProps }) => {
-  const { visibleColumns } = useTableContext()
-  const { items } = useTableContext()
-  const checkboxes = useCheckboxesContext()
-
+const TreeHeadings: FC<TreeHeadingsProps> = ({
+  checkboxes,
+  columns,
+  items,
+  cellProps,
+  rowProps,
+}) => {
   return (
     <Row {...rowProps} height={TABLE_HEADER_HEIGHT}>
-      {visibleColumns.map((headerData: Column, headerIndex: number) => {
-        const { headerRender, title, width } = headerData
-        const content = headerRender ? headerRender({ headerData }) : title
+      {columns.map((columnData: Column, headerIndex: number) => {
+        const { headerRenderer, title, width } = columnData
+        const content = headerRenderer ? headerRenderer({ columnData }) : title
         return (
           <Row.Cell
             {...cellProps}
-            className="bt"
+            className="bt normal"
             key={`heading-${uuid()}`}
             width={width}>
             {checkboxes && headerIndex === 0 && (
-              <CellPrefix hasCheckbox={!!checkboxes}>
-                <span className="ph2">
+              <CellPrefix>
+                <span className="ph3">
                   <CellPrefix.Checkbox
                     checked={checkboxes.isChecked(items)}
                     partial={checkboxes.isPartiallyChecked(items)}
@@ -49,8 +54,11 @@ TreeHeadings.defaultProps = {
 }
 
 type TreeHeadingsProps = {
+  columns: Array<Column>
+  items: any
   rowProps?: RowProps
   cellProps?: Pick<CellProps, 'as'>
+  checkboxes?: Partial<ReturnType<typeof useTableTreeCheckboxes>>
 }
 
-export default TreeHeadings
+export default React.memo(TreeHeadings)

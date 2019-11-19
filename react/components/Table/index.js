@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import { StickyContainer } from 'react-sticky'
 import PropTypes from 'prop-types'
 import reduce from 'lodash/reduce'
 import map from 'lodash/map'
@@ -139,6 +140,16 @@ class Table extends PureComponent {
     )
   }
 
+  handleInputSearchClearWithBulkAction = event => {
+    const {
+      toolbar: {
+        inputSearch: { onClear = () => {} },
+      },
+    } = this.props
+    this.handleDeselectAllLines()
+    onClear(event)
+  }
+
   render() {
     const {
       items,
@@ -148,6 +159,7 @@ class Table extends PureComponent {
       emptyStateChildren,
       fixFirstColumn,
       onRowClick,
+      onRowHover,
       sort,
       onSort,
       updateTableKey,
@@ -250,12 +262,29 @@ class Table extends PureComponent {
       }
     }
 
+    // extend toolbar's input search onClear when bulk action is turned on to
+    // deselect all lines when clearing to avoid weird unwanted behaviors
+    // until a permanent solution for https://github.com/vtex/styleguide/issues/873
+    // is found
+    const extendedToolbar = toolbar
+      ? {
+          ...toolbar,
+          inputSearch: toolbar.inputSearch
+            ? {
+                ...toolbar.inputSearch,
+                onClear: hasBulkActions
+                  ? this.handleInputSearchClearWithBulkAction
+                  : toolbar.inputSearch.onClear,
+              }
+            : null,
+        }
+      : null
+
     return (
       <div className="vtex-table__container">
-        {toolbar && (
+        {extendedToolbar && (
           <Toolbar
             loading={loading}
-            toolbar={toolbar}
             hiddenFields={hiddenFields}
             onToggleColumn={this.handleToggleColumn}
             onDeselectAllLines={this.handleDeselectAllLines}
@@ -264,7 +293,7 @@ class Table extends PureComponent {
             onToggleDensity={this.handleTableRowHeight}
             selectedDensity={selectedDensity}
             schema={schema}
-            actions={toolbar}
+            actions={extendedToolbar}
           />
         )}
 
@@ -277,46 +306,48 @@ class Table extends PureComponent {
         {totalizers && totalizers.length > 0 && (
           <Totalizers items={totalizers} />
         )}
-
-        <BulkActions
-          hasPrimaryBulkAction={hasPrimaryBulkAction}
-          hasSecondaryBulkActions={hasSecondaryBulkActions}
-          selectedRows={selectedRows}
-          bulkActions={bulkActions}
-          allLinesSelected={allLinesSelected}
-          onSelectAllLines={this.handleSelectAllLines}
-          onDeselectAllLines={this.handleDeselectAllLines}
-        />
-
-        {emptyState ? (
-          <Box>
-            <EmptyState title={emptyStateLabel}>
-              {emptyStateChildren}
-            </EmptyState>
-          </Box>
-        ) : (
-          <SimpleTable
-            fullWidth={fullWidth}
-            items={items}
-            schema={displaySchema}
-            fixFirstColumn={fixFirstColumn}
-            rowHeight={tableRowHeight}
-            disableHeader={disableHeader}
-            emptyStateLabel={emptyStateLabel}
-            emptyStateChildren={emptyStateChildren}
-            dynamicRowHeight={dynamicRowHeight}
-            onRowClick={onRowClick}
-            sort={sort}
-            onSort={onSort}
-            key={hiddenFields.toString()}
-            updateTableKey={updateTableKey}
-            lineActions={lineActions}
-            loading={loading}
-            containerHeight={containerHeight}
-            selectedRowsIndexes={map(selectedRows, 'id')}
-            density={selectedDensity}
+        <StickyContainer>
+          <BulkActions
+            hasPrimaryBulkAction={hasPrimaryBulkAction}
+            hasSecondaryBulkActions={hasSecondaryBulkActions}
+            selectedRows={selectedRows}
+            bulkActions={bulkActions}
+            allLinesSelected={allLinesSelected}
+            onSelectAllLines={this.handleSelectAllLines}
+            onDeselectAllLines={this.handleDeselectAllLines}
           />
-        )}
+
+          {emptyState ? (
+            <Box>
+              <EmptyState title={emptyStateLabel}>
+                {emptyStateChildren}
+              </EmptyState>
+            </Box>
+          ) : (
+            <SimpleTable
+              fullWidth={fullWidth}
+              items={items}
+              schema={displaySchema}
+              fixFirstColumn={fixFirstColumn}
+              rowHeight={tableRowHeight}
+              disableHeader={disableHeader}
+              emptyStateLabel={emptyStateLabel}
+              emptyStateChildren={emptyStateChildren}
+              dynamicRowHeight={dynamicRowHeight}
+              onRowClick={onRowClick}
+              onRowHover={onRowHover}
+              sort={sort}
+              onSort={onSort}
+              key={hiddenFields.toString()}
+              updateTableKey={updateTableKey}
+              lineActions={lineActions}
+              loading={loading}
+              containerHeight={containerHeight}
+              selectedRowsIndexes={map(selectedRows, 'id')}
+              density={selectedDensity}
+            />
+          )}
+        </StickyContainer>
 
         {!loading && paginationClone && <Pagination {...paginationClone} />}
       </div>
@@ -346,6 +377,8 @@ Table.propTypes = {
   fixFirstColumn: PropTypes.bool,
   /** Callback invoked when a user clicks on a table row. ({ event: Event, index: number, rowData: any }): void */
   onRowClick: PropTypes.func,
+  /** Callback invoked when a user hovers a table row. (rowIndex): void */
+  onRowHover: PropTypes.func,
   /** Sort order and which property (key in schema) is table data sorted by. */
   sort: PropTypes.shape({
     sortOrder: PropTypes.oneOf(['ASC', 'DESC']),
@@ -365,7 +398,7 @@ Table.propTypes = {
   emptyStateChildren: PropTypes.node,
   /** Full width property  */
   fullWidth: PropTypes.bool,
-  /** Dynamic row height property */
+  /** Allows rows to show the full height of their content */
   dynamicRowHeight: PropTypes.bool,
   /** Line actions column */
   lineActions: PropTypes.arrayOf(
@@ -384,6 +417,7 @@ Table.propTypes = {
   toolbar: PropTypes.shape({
     inputSearch: PropTypes.shape({
       onSubmit: PropTypes.func,
+      onClear: PropTypes.func,
     }),
     density: PropTypes.shape({
       buttonLabel: PropTypes.string,
@@ -437,8 +471,8 @@ Table.propTypes = {
     texts: PropTypes.shape({
       secondaryActionsLabel: PropTypes.string.isRequired,
       rowsSelected: PropTypes.func.isRequired,
-      selectAll: PropTypes.string.isRequired,
-      allRowsSelected: PropTypes.func.isRequired,
+      selectAll: PropTypes.string,
+      allRowsSelected: PropTypes.func,
     }),
     totalItems: PropTypes.number,
     onChange: PropTypes.func,

@@ -14,6 +14,13 @@ export type Size = 'mini' | 'small'
 const OFFSET = 8
 const hasComputedDimensions = rect => rect && rect.width && rect.height
 
+function getChildRefPropType() {
+  if (typeof HTMLElement !== 'undefined') {
+    return PropTypes.shape({ current: PropTypes.instanceOf(HTMLElement) })
+  }
+  return PropTypes.shape({ current: PropTypes.elementType })
+}
+
 const propTypes = {
   /** Tooltip content */
   label: PropTypes.node.isRequired,
@@ -37,9 +44,7 @@ const propTypes = {
   /** Tooltip timming function used to animate the tooltip */
   timmingFn: PropTypes.string,
   /** Child ref. Used to correctly position the tooltip */
-  childRef: PropTypes.shape({
-    current: PropTypes.instanceOf(HTMLElement),
-  }),
+  childRef: getChildRefPropType(),
 }
 
 const defaultProps = {

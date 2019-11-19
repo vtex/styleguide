@@ -1,72 +1,41 @@
-import React, { FC, Children } from 'react'
+import React, { FC } from 'react'
 import csx from 'classnames'
 
 import EmptyState from '../../EmptyState/index.js'
-
-import Headings from './Headings'
-import Rows from './Rows'
 import { NAMESPACES, ORDER_CLASSNAMES } from '../constants'
-import { useTableContext } from '../contexts'
+import { TABLE_HEADER_HEIGHT } from '../hooks/useTableMeasures'
 import Loading from './Loading'
 
-const DataTableContainer: FC = ({ children }) => {
-  const {
-    loading,
-    isEmpty,
-    tableHeight,
-    containerHeight,
-    emptyState,
-  } = useTableContext()
-
-  const height = isEmpty || loading ? containerHeight : tableHeight
-
+const DataTable: FC<DataTableProps> = ({
+  children,
+  height,
+  className,
+  as: Tag,
+  empty,
+  loading,
+  emptyState,
+}) => {
+  const showLoading = !empty && loading
+  const showEmptyState = empty && emptyState
   return (
     <div
       id={NAMESPACES.TABLE}
       style={{ minHeight: height }}
       className={csx('order-1 mw-100 overflow-x-auto', ORDER_CLASSNAMES.TABLE)}>
-      {children}
-      {!isEmpty && loading && (
-        <Loading>
+      <Tag className={`w-100 ${className}`} style={{ borderSpacing: 0 }}>
+        {children}
+      </Tag>
+      {showLoading && (
+        <Loading height={height - TABLE_HEADER_HEIGHT}>
           {typeof loading !== 'boolean' &&
             loading.renderAs &&
             loading.renderAs()}
         </Loading>
       )}
-      {isEmpty && emptyState && (
+      {showEmptyState && (
         <EmptyState title={emptyState.label}>{emptyState.children}</EmptyState>
       )}
     </div>
-  )
-}
-
-const DataTable: FC<DataTableProps> & DataTableComposites = ({
-  children,
-  className,
-  as: Tag,
-}) => {
-  const { loading, isEmpty } = useTableContext()
-
-  const hideRows = isEmpty || loading
-
-  const isRowsChild = (child: DataTableChild) =>
-    child.type.name && child.type.name.toLowerCase() === 'rows'
-
-  const isRowsContainer = (child: DataTableChild) =>
-    child.props.children &&
-    Children.toArray(child.props.children).some(isRowsChild)
-
-  const childRenderer = (child: DataTableChild) => {
-    const hasRowsChild = isRowsChild(child) || isRowsContainer(child)
-    return hasRowsChild && hideRows ? null : child
-  }
-
-  return (
-    <DataTableContainer>
-      <Tag className={`w-100 ${className}`} style={{ borderSpacing: 0 }}>
-        {Children.map(children, childRenderer)}
-      </Tag>
-    </DataTableContainer>
   )
 }
 
@@ -76,25 +45,19 @@ DataTable.defaultProps = {
 }
 
 export type DataTableProps = {
+  height: number
   as?: 'table' | 'div' | 'section'
   className?: string
-}
-
-export type DataTableChild = {
-  type: {
-    name?: 'headings' | 'rows'
+  empty: boolean
+  loading?:
+    | boolean
+    | {
+        renderAs?: () => React.ReactNode
+      }
+  emptyState?: {
+    label?: string
+    children?: Element
   }
-  props: {
-    children?: Array<DataTableChild>
-  }
 }
-
-export type DataTableComposites = {
-  Headings?: FC
-  Rows?: FC
-}
-
-DataTable.Headings = Headings
-DataTable.Rows = Rows
 
 export default DataTable

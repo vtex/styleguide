@@ -82,11 +82,11 @@ class Toolbar extends PureComponent {
     return estimate > MAX_FIELDS_BOX_HEIGHT ? MAX_FIELDS_BOX_HEIGHT : estimate
   }
 
-  handleInputSearchSubmit = value => {
+  handleInputSearchSubmit = e => {
     this.props.onDeselectAllLines && this.props.onDeselectAllLines()
 
     this.props.actions.inputSearch.onSubmit &&
-      this.props.actions.inputSearch.onSubmit(value)
+      this.props.actions.inputSearch.onSubmit(e)
   }
 
   render() {
@@ -140,9 +140,13 @@ class Toolbar extends PureComponent {
           isSearchBarVisible ? 'justify-between' : 'justify-end'
         }`}>
         {inputSearch && (
-          <form className="w-40" onSubmit={this.handleInputSearchSubmit}>
-            <InputSearch disabled={loading} {...inputSearch} />
-          </form>
+          <div className="w-40">
+            <InputSearch
+              disabled={loading}
+              {...inputSearch}
+              onSubmit={this.handleInputSearchSubmit}
+            />
+          </div>
         )}
         <div className="flex flex-row items-center">
           {isDensityVisible && (

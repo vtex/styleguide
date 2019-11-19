@@ -1,59 +1,96 @@
 import React from 'react'
 import Select from '../../EXPERIMENTAL_Select/index'
-import PropTypes from 'prop-types'
-import { withForwardedRef, refShape } from '../../../modules/withForwardedRef'
+
+import { VerbOption } from './VerbAtom'
+import { GroupedOptions, SelectOptionGroup, SelectedOption } from '../typings'
 
 const ATOM_COMPONENT_MIN_WIDTH = '20%'
 
-const propTypes = {
-  /** @ignore Forwarded Ref */
-  forwardedRef: refShape,
-  /** Current selected subject for this Statement */
-  subject: PropTypes.string,
-  /** onChange callback */
-  onChange: PropTypes.func.isRequired,
-  /** Possible options and respective data types, verb options */
-  options: PropTypes.object.isRequired,
-  /** Placeholder for dropdown */
-  placeholder: PropTypes.string.isRequired,
-  /** Stretch component to 100% of the width */
-  isFullWidth: PropTypes.bool,
+export type SubjectOptions = {
+  [key: string]: {
+    group?: string
+    label: string
+    unique?: boolean
+    verbs: VerbOption[]
+  }
 }
 
-type Props = PropTypes.InferProps<typeof propTypes>
+type Props = {
+  subject?: string
+  onChange: (string) => void
+  options: SubjectOptions
+  placeholder: string
+  isFullWidth: boolean
+}
+
+const groupOptions = options => {
+  const groupedOptions = Object.keys(options).reduce<GroupedOptions>(
+    (optionsGroup, subject) => {
+      const option = options[subject]
+      return {
+        ...optionsGroup,
+        [option.group]: [
+          ...(optionsGroup[option.group] || []),
+          {
+            value: subject,
+            label: option.label || subject,
+          },
+        ],
+      }
+    },
+    {}
+  )
+
+  return Object.keys(groupedOptions).map<SelectOptionGroup>(group => {
+    return {
+      label: group,
+      options: groupedOptions[group],
+    }
+  })
+}
 
 const SubjectAtom: React.FC<Props> = ({
-  forwardedRef,
   isFullWidth,
   onChange,
   options,
   placeholder,
   subject,
 }) => {
-  const subjectOptions = Object.keys(options).map(subject => {
-    return {
-      value: subject,
-      label: options[subject].label || subject,
-    }
-  })
+  const optionsGroup = groupOptions(options)
 
-  const value = subjectOptions.find(option => option.value === subject)
+  const subjectOptions =
+    optionsGroup.length === 1 && optionsGroup[0].label === 'undefined'
+      ? optionsGroup[0].options
+      : optionsGroup
+
+  const selected = optionsGroup.reduce<SelectedOption>((selected, group) => {
+    if (selected) {
+      return selected
+    }
+
+    const option = group.options.find(option => option.value === subject)
+    if (option) {
+      return {
+        group: group.label !== 'undefined' ? group.label : undefined,
+        option: option,
+      }
+    }
+  }, undefined)
 
   return (
     <div
       className={`mh3 ${isFullWidth ? 'pb3' : ''}`}
       style={{ minWidth: ATOM_COMPONENT_MIN_WIDTH }}>
       <Select
-        ref={forwardedRef}
         clearable={false}
         multi={false}
         onChange={option => onChange(option && option.value)}
         options={subjectOptions}
         placeholder={placeholder}
-        value={value}
+        value={selected && selected.option}
       />
     </div>
   )
 }
 
-export default withForwardedRef(SubjectAtom)
+export default SubjectAtom

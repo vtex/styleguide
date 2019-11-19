@@ -199,6 +199,22 @@ Select.defaultProps = {
   clearable: true,
 }
 
+const OptionShape = PropTypes.shape({
+  /** Text that gets rendered for the option. */
+  label: PropTypes.string.isRequired,
+  /** Underlying value, e.g., an id. */
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+})
+
+const OptionsShape = PropTypes.arrayOf(OptionShape)
+
+const GroupedOptionsShape = PropTypes.arrayOf(
+  PropTypes.shape({
+    label: PropTypes.string,
+    options: OptionsShape,
+  })
+)
+
 Select.propTypes = {
   /** @ignore Forwarded Ref */
   forwardedRef: refShape,
@@ -209,7 +225,11 @@ Select.propTypes = {
   /** Creatable options. */
   creatable: PropTypes.bool,
   /** Default value */
-  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  defaultValue: PropTypes.oneOfType([
+    PropTypes.string,
+    OptionShape,
+    OptionsShape,
+  ]),
   /** Disables Select */
   disabled: PropTypes.bool,
   /** Error message, e.g., validation error message. */
@@ -231,34 +251,13 @@ Select.propTypes = {
   /** Handle events on search input */
   onSearchInputChange: PropTypes.func,
   /** Array of options. Options have the shape { label, value }. */
-  options: PropTypes.arrayOf(
-    PropTypes.shape({
-      /** Text that gets rendered for the option. */
-      label: PropTypes.string.isRequired,
-      /** Underlying value, e.g., an id. */
-      value: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
-        .isRequired,
-    })
-  ),
+  options: PropTypes.oneOfType([OptionsShape, GroupedOptionsShape]),
   /** Text for the select value.  */
   placeholder: PropTypes.string,
   /** Select size */
   size: PropTypes.oneOf(['small', 'regular', 'large']),
   /** Value of the select. */
-  value: PropTypes.oneOfType([
-    PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      value: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
-        .isRequired,
-    }),
-    PropTypes.arrayOf(
-      PropTypes.shape({
-        label: PropTypes.string.isRequired,
-        value: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
-          .isRequired,
-      })
-    ),
-  ]),
+  value: PropTypes.oneOfType([OptionShape, OptionsShape]),
   /** Max height (in _px_) of the selected values container */
   valuesMaxHeight: PropTypes.number,
 }

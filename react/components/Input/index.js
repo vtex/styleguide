@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import Button from '../Button'
+
 import styles from './Input.css'
 import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
 
@@ -83,6 +85,8 @@ class Input extends Component {
       prefix,
       suffix: suffixProp,
       suffixIcon,
+      button,
+      isLoadingButton,
       groupBottom,
       disabled,
       readOnly,
@@ -122,8 +126,10 @@ class Input extends Component {
       classes += 'code '
     }
 
-    if (disabled || readOnly) {
-      classes += `bg-transparent b--disabled ${disabled ? 'c-disabled' : ''} `
+    if (disabled || readOnly || isLoadingButton) {
+      classes += `bg-transparent b--disabled ${
+        disabled || isLoadingButton ? 'c-disabled' : ''
+      } `
       prefixSuffixGroupClasses += `bg-disabled b--disabled ${
         disabled ? 'c-disabled' : ''
       } `
@@ -211,7 +217,7 @@ class Input extends Component {
             onMouseEnter={this.handleMouseEnter}
             onMouseLeave={this.handleMouseLeave}
             className={classes}
-            disabled={disabled}
+            disabled={disabled || isLoadingButton}
             accept={this.props.accept}
             autoComplete={this.props.autoComplete}
             autoCorrect={this.props.autoCorrect}
@@ -243,6 +249,18 @@ class Input extends Component {
               {suffix}
             </span>
           )}
+          {button && size !== 'small' && (
+            <span className="flex items-center mr1">
+              <Button
+                disabled={disabled || isLoadingButton}
+                isLoading={isLoadingButton}
+                size={size === 'large' ? 'regular' : 'small'}
+                type="submit"
+                variation="secondary">
+                {button}
+              </Button>
+            </span>
+          )}
         </div>
         {errorMessage && (
           <div className="c-danger t-small mt3 lh-title">{errorMessage}</div>
@@ -267,6 +285,7 @@ Input.defaultProps = {
   size: 'regular',
   prefix: '',
   type: 'text',
+  isLoadingButton: false,
 }
 
 Input.propTypes = {
@@ -298,6 +317,9 @@ Input.propTypes = {
   autoFocus: PropTypes.bool,
   /** Spec attribute */
   autoSave: PropTypes.string,
+  /** @ignore
+   * Spec attribute */
+  button: PropTypes.string,
   /** List of data attributes as a object like `{'locale': 'en-US'}` */
   dataAttributes: PropTypes.object,
   /** Spec attribute */
@@ -310,6 +332,9 @@ Input.propTypes = {
   testId: PropTypes.string,
   /** Spec attribute */
   inputMode: PropTypes.string,
+  /** @ignore
+   * Loading state */
+  isLoadingButton: PropTypes.bool,
   /** Spec attribute */
   list: PropTypes.string,
   /** Spec attribute */

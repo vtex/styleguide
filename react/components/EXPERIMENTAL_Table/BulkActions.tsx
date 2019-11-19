@@ -6,30 +6,28 @@ import ButtonWithIcon from '../../ButtonWithIcon'
 import ActionMenu from '../../ActionMenu'
 import Close from '../icon/Close'
 
-import { useBulkContext } from './contexts'
+import { ORDER_CLASSNAMES, NAMESPACES } from './constants'
+import useTableBulkActions from './hooks/useTableBulkActions'
+import { MenuAction } from './Toolbar/PopoverMenu'
 
-import {
-  ORDER_CLASSNAMES,
-  NAMESPACES,
-  BULK_ACTIONS_HEIGHT,
-  BULK_ACTIONS_TRANSITION,
-} from './constants'
+const BULK_ACTIONS_HEIGHT = 56
+const BULK_ACTIONS_TRANSITION =
+  'height 0.2s ease-in-out, padding 0.2s ease-in-out'
 
 const BulkActions: FC<BulkActionsProps> = ({
   texts,
   main,
   totalItems,
   others,
+  data,
 }) => {
   const {
     bulkState,
     selectAllRows,
     deselectAllRows,
-    hasBulkActions,
     hasPrimaryBulkAction,
     hasSecondaryBulkActions,
-  } = useBulkContext()
-
+  } = data
   const selectedRowsLength = bulkState.selectedRows.length
   const hasRowsSelected = selectedRowsLength > 0
 
@@ -52,30 +50,28 @@ const BulkActions: FC<BulkActionsProps> = ({
         overflow: hasRowsSelected ? 'auto' : 'hidden',
         transition: BULK_ACTIONS_TRANSITION,
       }}>
-      {hasBulkActions && (
-        <div className="flex flex-row">
-          {hasPrimaryBulkAction && (
-            <div className="mr4">
-              <Button
-                variation="secondary"
-                size="small"
-                onClick={() => main.onClick(bulkActionsReturnedParameters)}>
-                {main.label}
-              </Button>
-            </div>
-          )}
-          {hasSecondaryBulkActions && (
-            <ActionMenu
-              label={texts.secondaryActionsLabel}
-              buttonProps={{ variation: 'secondary', size: 'small' }}
-              options={others.map(el => ({
-                label: el.label,
-                onClick: () => el.onClick(bulkActionsReturnedParameters),
-              }))}
-            />
-          )}
-        </div>
-      )}
+      <div className="flex flex-row">
+        {hasPrimaryBulkAction && (
+          <div className="mr4">
+            <Button
+              variation="secondary"
+              size="small"
+              onClick={() => main.onClick(bulkActionsReturnedParameters)}>
+              {main.label}
+            </Button>
+          </div>
+        )}
+        {hasSecondaryBulkActions && (
+          <ActionMenu
+            label={texts.secondaryActionsLabel}
+            buttonProps={{ variation: 'secondary', size: 'small' }}
+            options={others.map(el => ({
+              label: el.label,
+              onClick: () => el.onClick(bulkActionsReturnedParameters),
+            }))}
+          />
+        )}
+      </div>
       <div className="tr flex flex-row items-center">
         {!bulkState.allLinesSelected && (
           <span className="mr4 c-muted-4">
@@ -111,6 +107,7 @@ export type BulkActionsProps = {
   onChange: Function
   main: MenuAction
   others: Array<MenuAction>
+  data: ReturnType<typeof useTableBulkActions>
 }
 
 export default BulkActions

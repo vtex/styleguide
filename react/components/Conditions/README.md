@@ -546,6 +546,90 @@ class ComplexConditionsCase extends React.Component {
 ;<ComplexConditionsCase />
 ```
 
+Grouped
+
+```js
+const Input = require('../Input').default
+
+function SimpleInputObject({ value, onChange }) {
+  return <Input value={value || ''} onChange={e => onChange(e.target.value)} />
+}
+
+class GroupedConditionsCase extends React.Component {
+  constructor() {
+    super()
+
+    this.state = {
+      simpleStatements: [],
+      operator: 'all',
+    }
+
+    this.handleToggleOperator = this.handleToggleOperator.bind(this)
+  }
+
+  handleToggleOperator(operator) {
+    this.setState({ operator: this.state.operator === 'all' ? 'any' : 'all' })
+  }
+
+  render() {
+    const options = {
+      name: {
+        label: 'User name',
+        group: 'Group 1',
+        unique: true,
+        verbs: [
+          {
+            label: 'is',
+            value: '=',
+            object: props => <SimpleInputObject {...props} />,
+          },
+        ],
+      },
+      lastname: {
+        label: 'Last name',
+        group: 'Group 1',
+        unique: true,
+        verbs: [
+          {
+            label: 'is',
+            value: '=',
+            object: props => <SimpleInputObject {...props} />,
+          },
+        ],
+      },
+      email: {
+        label: 'Email',
+        group: 'Group 2',
+        unique: true,
+        verbs: [
+          {
+            label: 'contains',
+            value: 'contains',
+            object: props => <SimpleInputObject {...props} />,
+          },
+        ],
+      },
+    }
+
+    return (
+      <Conditions
+        canDelete
+        onChangeOperator={this.handleToggleOperator}
+        onChangeStatements={statements => {
+          console.log('Changed statements to:', statements)
+          this.setState({ simpleStatements: statements })
+        }}
+        operator={this.state.operator}
+        options={options}
+        subjectPlaceholder="Select subject"
+        statements={this.state.simpleStatements}
+      />
+    )
+  }
+}
+;<GroupedConditionsCase />
+```
+
 RTL example
 
 ```js

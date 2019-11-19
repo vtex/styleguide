@@ -92,6 +92,7 @@ class Collapsible extends Component {
       muted,
       onClick: callback,
       isOpen,
+      arrowAlign,
     } = this.props
     let { caretColor } = this.props
     const { height } = this.state
@@ -120,7 +121,7 @@ class Collapsible extends Component {
           aria-expanded={isOpen}>
           {align === 'left' ? (
             <Fragment>
-              <div className={`${color} mr3 self-center`}>
+              <div className={`${color} mr3 self-${arrowAlign}`}>
                 {isOpen ? <CaretUp /> : <CaretDown />}
               </div>
               <div className="flex-grow-1">{header}</div>
@@ -128,7 +129,7 @@ class Collapsible extends Component {
           ) : (
             <Fragment>
               <div className="flex-grow-1">{header}</div>
-              <div className={`${color} ml3 self-center`}>
+              <div className={`${color} ml3  self-${arrowAlign}`}>
                 {isOpen ? <CaretUp /> : <CaretDown />}
               </div>
             </Fragment>
@@ -150,6 +151,7 @@ Collapsible.defaultProps = {
   align: 'left',
   isOpen: false,
   muted: false,
+  arrowAlign: 'center',
 }
 
 Collapsible.propTypes = {
@@ -170,6 +172,14 @@ Collapsible.propTypes = {
   onClick: PropTypes.func,
   /** Color or semantic to be applied to the Caret Icon in the Collapsible header.*/
   caretColor: PropTypes.oneOf(Object.keys(colorMap)),
+  /** Vertical position of arrow icon.*/
+  arrowAlign: PropTypes.oneOf([
+    'start',
+    'center',
+    'end',
+    'baseline',
+    'stretch',
+  ]),
 }
 
 export default Collapsible

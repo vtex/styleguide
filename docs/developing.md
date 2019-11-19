@@ -49,6 +49,16 @@ import Button from '@vtex/styleguide/lib/Button'
 
 And now, you can run your project like you always do.
 
+###### Styles
+
+When using the _Styleguide_ in project outside the _VTEX IO_ environment, you need to manually add the [vtex-tachyons](https://github.com/vtex/vtex-tachyons) to your project to get the components style as seen in the documentation. To do so, you can simply run the following install command:
+
+```shell noeditor static
+yarn add vtex-tachyons
+# or
+npm i vtex-tachyons --save
+```
+
 #### PRs and Code Review
 
 :loudspeaker: **Disclaimer:** In the course of this document we assume that you know how to use the basics of git as well like do a commit, rebase and merge. Before open a PR, read the [designing section](./designing.md) and take some minutes thinking if your change is appropriate to our styleguide.
@@ -127,11 +137,11 @@ import PropTypes from 'prop-types'
 
 const propTypes = {
   /** Optional message */
-  message: PropTypes.string
+  message: PropTypes.string,
 }
 
 const defaultProps = {
-  message: 'Hello world!'
+  message: 'Hello world!',
 }
 
 // This is the TypeScript "trick"
@@ -144,6 +154,7 @@ HelloWorld.defaultProps = defaultProps
 
 export default Hello
 ```
+
 After that, **for IO Apps**, you only need your component being imported and exported be at the `/react` folder in a `.ts` file (not `.tsx` yet, because we still have `.js` files) and the Builder Hub will generate the typings.
 
 With all this, you are ready to develop TypeScript components into our Styleguide :)

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import SubjectAtom from './Atoms/SubjectAtom'
+import SubjectAtom, { SubjectOptions } from './Atoms/SubjectAtom'
 import VerbAtom from './Atoms/VerbAtom'
 import ObjectAtom from './Atoms/ObjectAtom'
 
@@ -10,7 +10,7 @@ type Props = {
   omitSubject?: boolean
   omitVerbs?: boolean
   onChangeStatement: (statement: Props['statement']) => void
-  options: object
+  options: SubjectOptions
   statement?: {
     subject: string
     verb: string
@@ -30,7 +30,6 @@ const Statement: React.FC<Props> = ({
   statement = { subject: '', verb: '', object: null, error: null },
   subjectPlaceholder,
 }) => {
-
   const statementAtoms = [
     !omitSubject && (
       <SubjectAtom
@@ -66,9 +65,7 @@ const Statement: React.FC<Props> = ({
           onChangeStatement(newStatement)
         }}
         verb={statement.verb}
-        verbOptions={
-          statement.subject ? options[statement.subject].verbs : []
-        }
+        verbOptions={statement.subject ? options[statement.subject].verbs : []}
       />
     ),
     <ObjectAtom
@@ -85,28 +82,27 @@ const Statement: React.FC<Props> = ({
         onChangeStatement(newStatement)
       }}
       renderObject={
-        statement.subject && options[statement.subject].verbs.find(
+        statement.subject &&
+        options[statement.subject].verbs.find(
           verb => verb.value === statement.verb
         ).object
       }
     />,
   ]
 
-    return (
-      <div className="flex-column w-100 mv3">
-        <div
-          className={`flex w-100 items-start ${
-            isFullWidth ? 'flex-column items-stretch' : ''
-          }`}>
-          {isRtl ? statementAtoms.reverse() : statementAtoms}
-        </div>
-        {statement.error && (
-          <div className="red t-small mh3 mt2 lh-title">
-            {statement.error}
-          </div>
-        )}
+  return (
+    <div className="flex-column w-100 mv3">
+      <div
+        className={`flex w-100 items-start ${
+          isFullWidth ? 'flex-column items-stretch' : ''
+        }`}>
+        {isRtl ? statementAtoms.reverse() : statementAtoms}
       </div>
-    )
+      {statement.error && (
+        <div className="red t-small mh3 mt2 lh-title">{statement.error}</div>
+      )}
+    </div>
+  )
 }
 
 export default Statement

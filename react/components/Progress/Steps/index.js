@@ -2,7 +2,17 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import Step from './Step'
 
-class ProgressBar extends PureComponent {
+export const ProgressStepsTypes = {
+  /** Array of steps, it should be composed of instances of the following strings:'completed', 'inProgress' and 'toDo' */
+  steps: PropTypes.arrayOf(PropTypes.oneOf(['completed', 'inProgress', 'toDo']))
+    .isRequired,
+  /** Boolean representing a dangerous state of the progress (e.g. a late or critical progress), if true this changes the color of the steps */
+  danger: PropTypes.bool,
+  /** Boolean representing if the progress bar should be slim or not, if true this decreases the height of the bar */
+  slim: PropTypes.bool,
+}
+
+export class ProgressSteps extends PureComponent {
   isFirstElement(index) {
     return index === 0
   }
@@ -35,14 +45,4 @@ class ProgressBar extends PureComponent {
   }
 }
 
-ProgressBar.propTypes = {
-  /** Array of steps, it should be composed of instances of the following strings:'completed', 'inProgress' and 'toDo' */
-  steps: PropTypes.arrayOf(PropTypes.oneOf(['completed', 'inProgress', 'toDo']))
-    .isRequired,
-  /** Boolean representing a dangerous state of the progress (e.g. a late or critical progress), if true this changes the color of the steps */
-  danger: PropTypes.bool,
-  /** Boolean representing if the progress bar should be slim or not, if true this decreases the height of the bar */
-  slim: PropTypes.bool,
-}
-
-export default ProgressBar
+ProgressSteps.propTypes = ProgressStepsTypes

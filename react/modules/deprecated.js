@@ -26,7 +26,9 @@ const getComponentName = target => {
 const mapNewProps = (propsMap, props) => {
   const newProps = {}
   Object.keys(propsMap).map(deprecatedProp => {
-    newProps[propsMap[deprecatedProp]] = props[deprecatedProp]
+    if (props[deprecatedProp]) {
+      newProps[propsMap[deprecatedProp]] = props[deprecatedProp]
+    }
   })
   return {
     ...props,

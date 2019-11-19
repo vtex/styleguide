@@ -11,6 +11,224 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Title attribute to checkbox
 
+## [9.96.8] - 2019-11-19
+
+### Changed
+
+- Show `EXPERIMENTAL_BulkActions` even if no action is set.
+
+## [9.96.7] - 2019-11-18
+
+### Fixed
+
+- Alignment between checkboxes and carets on `EXPERIMENTAL_TableTree`.
+
+### Changed
+
+- Carets size to be smaller on `EXPERIMENTAL_TableTree`.
+- EXPERIMENTAL_TableTree collapses on click the first cell.
+
+### Added
+
+- `onRowClick` prop to `EXPERIMENTAL_TableTree`.
+
+## [9.96.6] - 2019-11-13
+
+### Fixed
+
+- `Progress` when line type, renders with width 100%, regardless of your parent's display.
+
+## [9.96.5] - 2019-11-13
+
+### Fixed
+
+- **Table** toolbar had a <form> wrapping it, but the wanted behaviour should not be of a form with submit.
+
+## [9.96.4] - 2019-11-12
+
+### Changed
+
+- `LineChart` to `EXPERIMENTAL_Charts`.
+
+## [9.96.3] - 2019-11-12
+
+- Names of `cellRender` and `headerRender` in favor of `cellRenderer` and `headerRenderer` on `EXPERIMENTAL_Table`.
+
+### Removed
+
+- `hidden` prop from `Column`.
+
+## [9.96.2] - 2019-11-11
+
+### Changed
+
+- Description for the **Table**'s `dynamicRowHeight` property.
+- `LineChart` component.
+
+## [9.96.1] - 2019-11-08
+
+### Added
+
+- **Tabs** possibility of importing `Tab` directly from the lib folder instead of from 'Tabs/Tab'.
+
+## [9.96.0] - 2019-11-07
+
+### Added
+
+- `updateCellMeasurements` function in **Table** to be used in `cellRenderer` in order to update cell size programatically
+
+## [9.95.0] - 2019-11-07
+
+### Added
+
+- `Progress` component
+
+## [9.94.2] - 2019-11-07
+
+### Fixed
+
+- Extra margin from last Radio in the RadioGroup list.
+
+## [9.94.0] - 2019-11-07
+
+### Fixed
+
+- **Table** stale height on first render when using `dynamicRowHeight`.
+
+## [9.93.0] - 2019-11-07
+
+### Changed
+
+- **Table** Deselect all lines when clearing the input search if there are bulk actions.
+
+## [9.92.0] - 2019-11-07
+
+### Added
+
+- `title` prop for `Box` component
+
+## [9.91.6] - 2019-11-06
+
+### Fixed
+
+- `EXPERIMENTAL_TableTree` shows arrow with empty `nodesKey`.
+
+## [9.91.5] - 2019-11-06
+
+### Added
+
+- `comparator` function to `EXPERIMENTAL_Table` and `EXPERIMENTAL_TableTree`.
+
+## [9.91.4] - 2019-11-05
+
+### Added
+
+- isLoading prop to InputButton component.
+
+## [9.91.3] - 2019-10-31
+
+### Fixed
+
+- `EXPERIMENTAL_Table` toolbar's alignment
+
+## [9.91.2] - 2019-10-31
+
+### Fixed
+
+- `Tooltip` not working with SSR
+
+## [9.91.1] - 2019-10-31
+
+### Fixed
+
+- **Table** warning whenever some line's checkbox was selected
+- `InputButton` component.
+
+## [9.90.8] - 2019-10-30
+
+### Added
+
+- `useTableMeasures` hook
+
+### Changed
+
+- Remove contexts from `EXPERIMENTAL_Table` and `EXPERIMENTAL_TableTree`
+- `useTableState` is now deprecated
+
+### Added
+
+- `ButtonPlain` component.
+
+## [9.90.7] - 2019-10-29
+
+### Added
+
+- **Table** `onRowHover` optional prop.
+
+### Fixed
+
+- **Table** selectAll and allRowsSelected required warnings. These props are actually optional.
+
+## [9.90.5] - 2019-10-28
+
+### Added
+
+- New component `Selectable Card`.
+
+## [9.90.4] - 2019-10-25
+
+### Added
+
+- **NumericStepper** `readOnly` prop.
+
+## [9.90.3] - 2019-10-25
+
+### Fixed
+
+- `Button` labels vertical align.
+
+## [9.90.2] - 2019-10-24
+
+### Fixed
+
+- **FilterBar** `submitFilterLable` and `newFilterLable` prop names typos.
+
+## [9.90.1] - 2019-10-24
+
+### Added
+
+- `w-100` style on `TopBar` title className from `Modal` component.
+- `arrowAlign` prop on `Collapsible` to allow icon position selection.
+
+## [9.90.0] - 2019-10-24
+
+- **Conditions** `group` property to contract. This allows conditions subject to be grouped by the given string value.
+- **Select** grouping options documentation.
+
+## [9.89.0] - 2019-10-24
+
+### Added
+
+- vtex-tachyons mention in non-io docs
+
+## [9.88.5] - 2019-10-18
+
+### Fixed
+
+- **Table** SSR errors
+
+## [9.88.4] - 2019-10-18
+
+### Fixed
+
+- **FilterBar** `VerbAtom` behavior when there is only one verb option to show a `span` tag instead of a `Select`.
+
+## [9.88.3] - 2019-10-17
+
+### Fixed
+
+- **Select** `defaultValue` warning when receiving an array of options.
+
 ## [9.88.2] - 2019-10-16
 
 ### Fixed
@@ -79,6 +297,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - example of modal with table
+- `Box`: added title prop
 - Workspace link reminder in pull request template
 
 ## [9.85.0] - 2019-10-03

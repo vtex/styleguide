@@ -21,7 +21,6 @@ const NO_TITLE_COLUMN = ' '
 const SELECTED_ROW_BACKGROUND = '#dbe9fd'
 const DEFAULT_SCROLLBAR_WIDTH = 17
 const EMPTY_STATE_SIZE_IN_ROWS = 5
-export const TABLE_CONTENT_CLASS = 'vtex-table__content'
 
 class SimpleTable extends Component {
   constructor(props) {
@@ -29,6 +28,7 @@ class SimpleTable extends Component {
 
     this.state = {
       hoverRowIndex: -1,
+      tableHeight: 0,
     }
 
     this._cache = new CellMeasurerCache({
@@ -36,6 +36,28 @@ class SimpleTable extends Component {
       minHeight: props.rowHeight,
       fixedWidth: true,
     })
+  }
+
+  componentDidMount() {
+    this.setState({
+      tableHeight:
+        this.props.containerHeight || this.calculateContainerHeight(),
+    })
+  }
+
+  componentDidUpdate() {
+    if (!this.props.containerHeight) {
+      this.updateTableHeight()
+    }
+  }
+
+  updateTableHeight() {
+    const calculatedContainerHeight = this.calculateContainerHeight()
+    if (this.state.tableHeight !== calculatedContainerHeight) {
+      this.setState({
+        tableHeight: calculatedContainerHeight,
+      })
+    }
   }
 
   toggleSortType = key => {
@@ -57,7 +79,7 @@ class SimpleTable extends Component {
   }
 
   handleRowHover = rowIndex => {
-    const { onRowClick } = this.props
+    const { onRowClick, onRowHover } = this.props
     const { isLineActionsHovered } = this.state
     if (onRowClick && !isLineActionsHovered) {
       this.setState({
@@ -68,6 +90,8 @@ class SimpleTable extends Component {
         hoverRowIndex: -1,
       })
     }
+
+    onRowHover(rowIndex)
   }
 
   calculateColWidth = (
@@ -130,8 +154,11 @@ class SimpleTable extends Component {
   }
 
   getScrollbarWidth = () => {
-    if (!window || !document || !document.documentElement)
+    const isSSR = typeof document === 'undefined'
+    if (isSSR) {
       return DEFAULT_SCROLLBAR_WIDTH
+    }
+
     const scrollbarWidth =
       window.innerWidth - document.documentElement.clientWidth
     return isNaN(scrollbarWidth) ? DEFAULT_SCROLLBAR_WIDTH : scrollbarWidth
@@ -168,7 +195,6 @@ class SimpleTable extends Component {
       emptyStateLabel,
       emptyStateChildren,
       onRowClick,
-      containerHeight,
       sort: { sortOrder, sortedBy },
       onSort,
       updateTableKey,
@@ -177,7 +203,7 @@ class SimpleTable extends Component {
       loading,
       selectedRowsIndexes,
     } = this.props
-    const { hoverRowIndex } = this.state
+    const { hoverRowIndex, tableHeight } = this.state
 
     if (lineActions)
       schema.properties = this.addLineActionsToSchema(schema, lineActions)
@@ -185,12 +211,8 @@ class SimpleTable extends Component {
 
     const tableKey = `vtex-table--${updateTableKey}--${density}`
 
-    const tableHeight = containerHeight || this.calculateContainerHeight()
-
     return (
-      <div
-        className={`vh-100 w-100 dt ${TABLE_CONTENT_CLASS}`}
-        style={{ height: tableHeight }}>
+      <div className="vh-100 w-100 dt" style={{ height: tableHeight }}>
         {loading ? (
           <div
             className="dtc v-mid tc"
@@ -330,6 +352,17 @@ class SimpleTable extends Component {
                         items[disableHeader ? rowIndex : rowIndex - 1]
                       const cellData = rowData[property]
 
+                      const cellClassNames = `flex items-center w-100 h-100 ph4 bb
+                                    b--muted-4 truncate ${
+                                      disableHeader && rowIndex === 0
+                                        ? 'bt'
+                                        : ''
+                                    } ${
+                        onRowClick && rowIndex === hoverRowIndex
+                          ? 'pointer bg-near-white c-link'
+                          : ''
+                      } ${columnIndex === 0 && fixFirstColumn ? 'br' : ''}`
+
                       return (
                         <CellMeasurer
                           cache={this._cache}
@@ -337,60 +370,56 @@ class SimpleTable extends Component {
                           key={key}
                           parent={parent}
                           rowIndex={rowIndex}>
-                          <div
-                            key={key}
-                            style={{
-                              ...style,
-                              height: this.calculateRowHeight(rowIndex),
-                              width: this.calculateColWidth(
-                                schema,
-                                properties,
-                                columnIndex,
-                                fullWidth,
-                                fullWidthColWidth
-                              ),
-                              backgroundColor: selectedRowsIndexes.includes(
-                                rowIndex - 1
-                              )
-                                ? SELECTED_ROW_BACKGROUND
-                                : '',
-                            }}
-                            className={`flex items-center w-100 h-100 ph4 bb
-                                b--muted-4 truncate ${
-                                  disableHeader && rowIndex === 0 ? 'bt' : ''
-                                } ${
-                              onRowClick && rowIndex === hoverRowIndex
-                                ? 'pointer bg-near-white c-link'
-                                : ''
-                            } ${
-                              columnIndex === 0 && fixFirstColumn ? 'br' : ''
-                            }`}
-                            onClick={
-                              onRowClick &&
-                              property !== '_VTEX_Table_Internal_lineActions'
-                                ? event =>
-                                    onRowClick({
-                                      event,
-                                      index: rowIndex,
-                                      rowData,
-                                    })
-                                : null
-                            }
-                            onMouseEnter={
-                              onRowClick
-                                ? () => this.handleRowHover(rowIndex)
-                                : null
-                            }
-                            onMouseLeave={
-                              onRowClick ? () => this.handleRowHover(-1) : null
-                            }>
-                            {cellRenderer
-                              ? cellRenderer({
-                                  cellData,
-                                  rowData,
-                                })
-                              : cellData}
-                          </div>
+                          {({ measure: updateCellMeasurements }) => (
+                            <div
+                              key={key}
+                              style={{
+                                ...style,
+                                height: this.calculateRowHeight(rowIndex),
+                                width: this.calculateColWidth(
+                                  schema,
+                                  properties,
+                                  columnIndex,
+                                  fullWidth,
+                                  fullWidthColWidth
+                                ),
+                                backgroundColor: selectedRowsIndexes.includes(
+                                  rowIndex - 1
+                                )
+                                  ? SELECTED_ROW_BACKGROUND
+                                  : '',
+                              }}
+                              className={cellClassNames}
+                              onClick={
+                                onRowClick &&
+                                property !== '_VTEX_Table_Internal_lineActions'
+                                  ? event =>
+                                      onRowClick({
+                                        event,
+                                        index: rowIndex,
+                                        rowData,
+                                      })
+                                  : null
+                              }
+                              onMouseEnter={
+                                onRowClick
+                                  ? () => this.handleRowHover(rowIndex)
+                                  : null
+                              }
+                              onMouseLeave={
+                                onRowClick
+                                  ? () => this.handleRowHover(-1)
+                                  : null
+                              }>
+                              {cellRenderer
+                                ? cellRenderer({
+                                    cellData,
+                                    rowData,
+                                    updateCellMeasurements,
+                                  })
+                                : cellData}
+                            </div>
+                          )}
                         </CellMeasurer>
                       )
                     }}
@@ -424,6 +453,7 @@ SimpleTable.defaultProps = {
   fullWidth: false,
   dynamicRowHeight: false,
   selectedRowsIndexes: [],
+  onRowHover: () => {},
 }
 
 SimpleTable.propTypes = {
@@ -434,6 +464,7 @@ SimpleTable.propTypes = {
   density: PropTypes.string,
   disableHeader: PropTypes.bool,
   onRowClick: PropTypes.func,
+  onRowHover: PropTypes.func,
   emptyStateLabel: PropTypes.string,
   emptyStateChildren: PropTypes.node,
   sort: PropTypes.shape({
