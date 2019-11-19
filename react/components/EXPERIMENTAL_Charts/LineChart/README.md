@@ -77,7 +77,7 @@ This axis property are responsible to change visual appearence of the axis in th
 
 - `tickLine`: If set true, axis tick lines will be drawn.
 - `axisLine`: If set true, axis line will be drawn.
-- `hide`: If set true, axis tick lines will be drawn.
+- `hide`: If set true, the axis do not display in the chart..
 - `tick`: Takes a component instance which will be used to render the axis label. Your component instance will receive
 the props needed to render the label, like the `x` and `y` position of the tick in the line axis, the `payload` which represents the data
 and the `fill` the label color. As you can see below:
@@ -88,7 +88,7 @@ const CustomizedLabel = (props) => {
     x, y, fill, payload,
   } = props
 
-  return (<text x={x} y={y} fill={fill} textAnchor="middle">{`${payload.value}🕐`}</text>)
+  return (<text x={x} y={y} fill={fill} textAnchor="middle">{`${payload.value.toUpperCase()}`}</text>)
 };
 
 const sampleData = require('./sampleData').default;
@@ -98,7 +98,10 @@ const keys = ['customers'];
   data={sampleData}
   dataKeys={keys}
   xAxisKey='hour'
-  schema={{container: {height: 300, width: '100%'}, xAxis:{tick: <CustomizedLabel />}}}
+  schema={{
+    container: {height: 300, width: '100%'}, 
+    xAxis:{tick: <CustomizedLabel />}
+  }}
 />
 ```
 
@@ -109,16 +112,20 @@ The grid property is responsible to show a grid inside the chart.
 - `vertical`: If set true, vertical grid lines will be drawn.
 
 ```js
-const sampleData = require('./multilineSample').default;
-const keys = ['uv', 'pv'];
+const sampleData = require('./sampleData').default;
+const keys = ['customers'];
 
 <LineChart
   data={sampleData}
   dataKeys={keys}
-  xAxisKey='name'
-  schema={{grid: {vertical: true, horizontal: true}}}
+  xAxisKey='hour'
+  schema={{ 
+    xAxis:{tick: true},
+    grid: {vertical: true, horizontal: true}
+  }}
 />
 ```
+
 
 #### container
 The container property is responsible to define the size of box that will render the chart.
@@ -134,7 +141,11 @@ const keys = ['customers'];
   data={sampleData}
   dataKeys={keys}
   xAxisKey='hour'
-  schema={{container: {height: 200, width: '100%'}}}
+  schema={{
+    container: {height: 150, width: '80%'}, 
+    xAxis: {tick: true}, 
+    grid: {vertical: false, horizontal: false}
+  }}
 />
 ```
 

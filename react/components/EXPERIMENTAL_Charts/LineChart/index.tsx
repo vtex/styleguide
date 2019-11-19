@@ -43,18 +43,14 @@ const LineChart: FC<Props> = ({
   lineProps
 }) => {
   const { configs } = getChartDefaultProps(schema); 
-  console.log(configs.xAxis.padding)
   const { lineConfigs } = getLineDefaultProps(lineProps)
 
   return (
     <ResponsiveContainer {...configs.container}>
       <LineChartBase data={data}>
-        <XAxis dataKey={xAxisKey} {...configs.xAxis} />
-        <YAxis {...configs.yAxis}/>
-        <CartesianGrid
-          horizontal={configs.grid.horizontal}
-          vertical={configs.grid.vertical}
-        />
+        <CartesianGrid {...configs.grid}/>
+        <XAxis dataKey={xAxisKey} {...configs.xAxis}/>
+        <YAxis  {...configs.yAxis} />
         <Tooltip formatter={tooltipFormatter} {...tooltipProps}/>
         {zipWith(dataKeys, colors, curry(renderLine)(lineConfigs))}
       </LineChartBase>

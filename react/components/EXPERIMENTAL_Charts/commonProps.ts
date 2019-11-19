@@ -6,15 +6,15 @@ export const commonDefaultProps = {
   xAxis: {
     axisLine: false,
     tickLine: false,
-    padding: { left: 20, right: 20 },
-    tick: undefined,
+    tick: true,
+    tickMargin: 15,
     hide: false
   },
   yAxis: {
     axisLine: false,
     tickLine: false,
-    padding: { top: 20, bottom: 10 },
-    tick: undefined,
+    tick: true,
+    tickMargin: 10,
     hide: false
   },
   grid: {
