@@ -4,7 +4,7 @@ import { commonDefaultProps } from './commonProps'
 const getDefaultProps = (userProps: ChartProps)  => {
   const props = commonDefaultProps
   userProps && Object.keys(userProps).forEach(key => (
-    props[key] = merge(props[key], userProps[key])
+    props[key] = {...props[key], ...userProps[key]}
   ))
   
   return { configs: props}

@@ -6,14 +6,14 @@ export const commonDefaultProps = {
   xAxis: {
     axisLine: false,
     tickLine: false,
-    padding: { left: 10, right: 10 },
+    padding: { left: 20, right: 20 },
     tick: undefined,
     hide: false
   },
   yAxis: {
     axisLine: false,
     tickLine: false,
-    padding: { top: 10, bottom: 10 },
+    padding: { top: 20, bottom: 10 },
     tick: undefined,
     hide: false
   },

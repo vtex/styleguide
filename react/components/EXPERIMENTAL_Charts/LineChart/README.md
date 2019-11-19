@@ -71,6 +71,7 @@ const schema = {
 
 ```
 
+
 #### xAxis or yAxis
 This axis property are responsible to change visual appearence of the axis in the chart.
 
@@ -82,42 +83,22 @@ the props needed to render the label, like the `x` and `y` position of the tick 
 and the `fill` the label color. As you can see below:
 
 ```js
-const sampleData = require('./sampleData').default;
-const keys = ['customers', 'orders', 'totalSpent'];
 const CustomizedLabel = (props) => {
-  console.log(props)
   const {
     x, y, fill, payload,
   } = props
 
-  return (<text x={x} y={y} fill={fill} textAnchor="middle">{`h-${payload.value}`}</text>)
+  return (<text x={x} y={y} fill={fill} textAnchor="middle">{`${payload.value}🕐`}</text>)
 };
-const customSchema = {container: {height: 200, width: '40%'}, xAxis: {tick: <CustomizedLabel/>}};
 
-<LineChart
-  data={sampleData}
-  dataKeys={keys}
-  xAxisKey='hour'
-  schema={customSchema}
-/>
-```
-
-
-#### container
-The container property is responsible to define the size of box that will render the chart.
-
-- `height`: The percentage value of the chart's width or a fixed width.
-- `width`: The percentage value of the chart's width or a fixed height.
-
-```js
 const sampleData = require('./sampleData').default;
-const keys = ['customers', 'orders', 'totalSpent'];
-const containerSchema = {container: {height: 100, width: '40%'}};
+const keys = ['customers'];
+
 <LineChart
   data={sampleData}
   dataKeys={keys}
   xAxisKey='hour'
-  schema={containerSchema}
+  schema={{container: {height: 300, width: '100%'}, xAxis:{tick: <CustomizedLabel />}}}
 />
 ```
 
@@ -128,21 +109,39 @@ The grid property is responsible to show a grid inside the chart.
 - `vertical`: If set true, vertical grid lines will be drawn.
 
 ```js
+const sampleData = require('./multilineSample').default;
+const keys = ['uv', 'pv'];
+
+<LineChart
+  data={sampleData}
+  dataKeys={keys}
+  xAxisKey='name'
+  schema={{grid: {vertical: true, horizontal: true}}}
+/>
+```
+
+#### container
+The container property is responsible to define the size of box that will render the chart.
+
+- `height`: The percentage value of the chart's width or a fixed width.
+- `width`: The percentage value of the chart's width or a fixed height.
+
+```js
 const sampleData = require('./sampleData').default;
-const keys = ['customers', 'orders', 'totalSpent'];
-const gridSchema = {grid: {vertical: true}};
+const keys = ['customers'];
 
 <LineChart
   data={sampleData}
   dataKeys={keys}
   xAxisKey='hour'
-  schema={gridSchema}
+  schema={{container: {height: 200, width: '100%'}}}
 />
 ```
 
+
 ### Line props
 
-- `type`: The interpolation type of line.
+- `type`: The interpolation type of line. For more details, check the [recharts types](http://recharts.org/en-US/api/Line#type)
 
 
 ### Formatting values on the tooltip

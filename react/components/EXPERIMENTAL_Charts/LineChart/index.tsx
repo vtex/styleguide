@@ -42,7 +42,8 @@ const LineChart: FC<Props> = ({
   tooltipFormatter,
   lineProps
 }) => {
-  const { configs } = getChartDefaultProps(schema);  
+  const { configs } = getChartDefaultProps(schema); 
+  console.log(configs.xAxis.padding)
   const { lineConfigs } = getLineDefaultProps(lineProps)
 
   return (
