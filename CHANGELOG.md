@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- `hide` prop for allow hide a LineChart axis
+- `type` prop for allow different interpolations of the LineChart
+- `tick` prop for allow a customized label on LineChart
+
+### Changed
+- `axis` prop to `xAxis` and `yAxis` props on LineChart schema
 
 ## [9.98.1] - 2019-12-12
 
