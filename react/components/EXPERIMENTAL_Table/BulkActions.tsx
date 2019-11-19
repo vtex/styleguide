@@ -25,7 +25,6 @@ const BulkActions: FC<BulkActionsProps> = ({
     bulkState,
     selectAllRows,
     deselectAllRows,
-    hasBulkActions,
     hasPrimaryBulkAction,
     hasSecondaryBulkActions,
   } = data
@@ -51,30 +50,28 @@ const BulkActions: FC<BulkActionsProps> = ({
         overflow: hasRowsSelected ? 'auto' : 'hidden',
         transition: BULK_ACTIONS_TRANSITION,
       }}>
-      {hasBulkActions && (
-        <div className="flex flex-row">
-          {hasPrimaryBulkAction && (
-            <div className="mr4">
-              <Button
-                variation="secondary"
-                size="small"
-                onClick={() => main.onClick(bulkActionsReturnedParameters)}>
-                {main.label}
-              </Button>
-            </div>
-          )}
-          {hasSecondaryBulkActions && (
-            <ActionMenu
-              label={texts.secondaryActionsLabel}
-              buttonProps={{ variation: 'secondary', size: 'small' }}
-              options={others.map(el => ({
-                label: el.label,
-                onClick: () => el.onClick(bulkActionsReturnedParameters),
-              }))}
-            />
-          )}
-        </div>
-      )}
+      <div className="flex flex-row">
+        {hasPrimaryBulkAction && (
+          <div className="mr4">
+            <Button
+              variation="secondary"
+              size="small"
+              onClick={() => main.onClick(bulkActionsReturnedParameters)}>
+              {main.label}
+            </Button>
+          </div>
+        )}
+        {hasSecondaryBulkActions && (
+          <ActionMenu
+            label={texts.secondaryActionsLabel}
+            buttonProps={{ variation: 'secondary', size: 'small' }}
+            options={others.map(el => ({
+              label: el.label,
+              onClick: () => el.onClick(bulkActionsReturnedParameters),
+            }))}
+          />
+        )}
+      </div>
       <div className="tr flex flex-row items-center">
         {!bulkState.allLinesSelected && (
           <span className="mr4 c-muted-4">

@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.96.8] - 2019-11-19
+
+### Changed
+
+- Show `EXPERIMENTAL_BulkActions` even if no action is set.
+
 ## [9.96.7] - 2019-11-18
 
 ### Fixed

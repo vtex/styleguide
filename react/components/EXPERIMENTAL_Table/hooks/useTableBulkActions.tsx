@@ -31,8 +31,6 @@ export default function useTableBulkActions({
     [bulkActions]
   )
 
-  const hasBulkActions = hasPrimaryBulkAction || hasSecondaryBulkActions
-
   const bulkedColumns = useMemo<Array<Column>>(() => {
     const headerRenderer = () => {
       const selectedRowsLength = bulkState.selectedRows.length
@@ -60,17 +58,15 @@ export default function useTableBulkActions({
       />
     )
 
-    return hasBulkActions
-      ? [
-          {
-            vtexTableRoot: 'bulk',
-            width: 40,
-            headerRenderer,
-            cellRenderer,
-          },
-          ...columns,
-        ]
-      : columns
+    return [
+      {
+        vtexTableRoot: 'bulk',
+        width: 40,
+        headerRenderer,
+        cellRenderer,
+      },
+      ...columns,
+    ]
   }, [bulkState.selectedRows, bulkState.allLinesSelected])
 
   useEffect(() => {
@@ -138,7 +134,6 @@ export default function useTableBulkActions({
 
   return {
     /** constraints */
-    hasBulkActions,
     hasPrimaryBulkAction,
     hasSecondaryBulkActions,
 
