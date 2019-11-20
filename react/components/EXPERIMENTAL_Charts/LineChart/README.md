@@ -128,7 +128,7 @@ const keys = ['customers'];
 
 
 #### container
-The container property is responsible to define the size of box that will render the chart.
+The container property is responsible to define the size of the box that will render the chart.
 
 - `height`: The percentage value of the chart's width or a fixed width.
 - `width`: The percentage value of the chart's width or a fixed height.
