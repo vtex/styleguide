@@ -1,3 +1,3 @@
 ```js
-  <BarChart />
+  <BarChart xAxisKey='name' dataKeys={['pv']}/>
 ```

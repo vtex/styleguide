@@ -27,32 +27,21 @@ const data = [
 ];
 
 interface Props {
-  schema: ChartProps,
+  data: any,
+  dataKeys: string[],
+  xAxisKey: string,
+  schema: ChartProps
 }
 
-const BarChart:FC<Props> = ({schema}) => {
+const BarChart:FC<Props> = ({ schema, xAxisKey, dataKeys }) => {
   const { configs } = getChartDefaultProps(schema)
   return (
-    <ResponsiveContainer {...configs.container} >
-  <BarChartBase
-    width={500}
-    height={300}
-    data={data}
-    margin={{
-      top: 5, right: 30, left: 20, bottom: 5,
-    }}
-  >
-    <CartesianGrid vertical={false} stroke='#e5e6eb' />
-    <XAxis dataKey="name" {...configs.xAxis}/>
-    <YAxis {...configs.yAxis} />
-    <Bar dataKey="pv" >
-    {
-      data.map((entry) => {
-        const color = entry.uv== 4000 ? "#26baee" : "#edf9fc"
-        return <Cell fill={color} />;
-      })
-    }
-    </Bar>
+  <ResponsiveContainer {...configs.container} >
+    <BarChartBase data={data}>
+      <CartesianGrid {...configs.grid} />
+      <XAxis dataKey={xAxisKey} {...configs.xAxis}/>
+      <YAxis {...configs.yAxis} />
+      <Bar dataKey={dataKeys[0]} fill='#4CAABF'/>
   </BarChartBase>
   </ResponsiveContainer>
   )
