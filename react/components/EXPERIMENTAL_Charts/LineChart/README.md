@@ -77,7 +77,7 @@ This axis property is responsible to change the visual appearance of the axis in
 
 - `tickLine`: If set true, axis tick lines will be drawn.
 - `axisLine`: If set true, axis line will be drawn.
-- `hide`: If set true, the axis do not display in the chart..
+- `hide`: If set true, the axis does not display in the chart.
 - `tick`: Renders a label of the axis. If you pass your component instance, it will receive
 the props needed to render the label, like the `x` and `y` position of the tick in the line axis, the `payload` which represents the data
 and the `fill` the label color. As you can see below:
