@@ -1,7 +1,8 @@
 export const commonDefaultProps = {
   container:{
-    height: 300,
-    width: '100%'
+    height: '99%',
+    width: '100%',
+    aspect: 4.0/3.0
   },
   xAxis: {
     axisLine: false,

@@ -33,7 +33,7 @@ from the data to the axis.
 ```jsx noeditor
 const sampleData = require('./multilineSample').default;
 const keys = ['uv', 'pv', 'amt', 'gte', 'yaw'];
-const customSchema = {container: { height: 200, width: '40%'}};
+const customSchema = {container: { height: '100%', width: '60%'}};
 <LineChart
   data={sampleData}
   dataKeys={keys}
@@ -99,7 +99,6 @@ const keys = ['customers'];
   dataKeys={keys}
   xAxisKey='hour'
   schema={{
-    container: {height: 300, width: '100%'}, 
     xAxis:{tick: <CustomizedLabel />}
   }}
 />
@@ -142,7 +141,6 @@ const keys = ['customers'];
   dataKeys={keys}
   xAxisKey='hour'
   schema={{
-    container: {height: 150, width: '80%'}, 
     xAxis: {tick: true}, 
     grid: {vertical: false, horizontal: false}
   }}
