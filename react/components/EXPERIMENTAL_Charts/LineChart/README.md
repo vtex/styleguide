@@ -108,7 +108,7 @@ const keys = ['customers'];
 #### grid
 The grid property is responsible to show a grid inside the chart.
 
-- `horizontal`: If set true, horizontal grid lines will be drawn.
+- `horizontal`: If set to `true`, horizontal grid lines will be drawn.
 - `vertical`: If set true, vertical grid lines will be drawn.
 
 ```js
