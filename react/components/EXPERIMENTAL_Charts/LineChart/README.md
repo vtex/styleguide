@@ -73,7 +73,7 @@ const schema = {
 
 
 #### xAxis or yAxis
-This axis property are responsible to change visual appearence of the axis in the chart.
+This axis property is responsible to change the visual appearance of the axis in the chart.
 
 - `tickLine`: If set true, axis tick lines will be drawn.
 - `axisLine`: If set true, axis line will be drawn.
