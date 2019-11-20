@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - `hide` prop to allow hiding a LineChart axis
-- `type` prop for allow different interpolations of the LineChart
+- `type` prop to allow different interpolations of the LineChart
 - `tick` prop for allow a customized label on LineChart
 
 ### Changed
