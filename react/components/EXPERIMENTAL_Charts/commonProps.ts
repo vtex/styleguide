@@ -7,11 +7,13 @@ export const commonDefaultProps = {
   xAxis: {
     axisLine: false,
     tickLine: false,
+    type: 'category',
     padding: { left: 10, right: 10 }
   },
   yAxis: {
     axisLine: false,
     tickLine: false,
+    type: 'number',
     padding: { top: 10, bottom: 10 }
   },
   grid: {

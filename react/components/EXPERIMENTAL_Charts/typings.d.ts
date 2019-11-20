@@ -2,6 +2,7 @@ type BaseGridProps = Pick<CartesianGridProps, 'vertical' | 'horizontal'>
 type BaseAxisProps = Pick<XAxisProps, 'axisLine' | 'tickLine', 'padding'>
 type BaseContainerProps = Pick<ResponsiveContainerProps, 'height' | 'width'>
 type DefaultLineProps = Pick<LineProps, 'type' | 'strokeWidth' | 'dot'>
+type DefaultBarProps = Pick<LineProps, 'layout'>
 
 type ChartSchema = {
   xAxis?: BaseAxisProps,
@@ -14,6 +15,7 @@ type BaseChartProps = {
   data: any,
   dataKeys: string[],
   xAxisKey: string,
+  yAxisKey: string,
   schema: ChartSchema
 }
 

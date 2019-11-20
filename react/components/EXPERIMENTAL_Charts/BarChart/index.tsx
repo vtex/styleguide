@@ -10,23 +10,31 @@ import {
   Tooltip
 } from 'recharts'
 import { colors } from '../commonProps'
+import getBarDefaultProps from './helpers'
 
-const BarChart:FC<BaseChartProps> = ({
+type Props = {
+  barProps: BarProps
+}
+
+const BarChart:FC<Props & BaseChartProps> = ({
   schema,
   xAxisKey,
   dataKeys,
-  data 
+  data,
+  barProps 
 }) => {
   const { configs } = getChartDefaultProps(schema)
+  const { barConfigs } = getBarDefaultProps(barProps)
+
   return (
   <ResponsiveContainer {...configs.container} >
-    <BarChartBase data={data} layout='vertical'>
+    <BarChartBase data={data} {...barConfigs}>
       <CartesianGrid {...configs.grid} />
-      <XAxis type='number' {...configs.xAxis} />
-      <YAxis type='category' {...configs.yAxis} hide/>
+      <XAxis dataKey={xAxisKey} {...configs.xAxis} />
+      <YAxis  {...configs.yAxis}/>
       <Tooltip/>
       <Bar dataKey={dataKeys[0]} fill={colors[1]} />
-  </BarChartBase>
+    </BarChartBase>
   </ResponsiveContainer>
   )
 }

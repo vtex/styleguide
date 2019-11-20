@@ -27,5 +27,6 @@ const data = [
     data={data}
     xAxisKey='name'
     dataKeys={['pv']}
+    schema={{xAxis: {type: 'category'}, yAxis: {type:'number'}}}
   />
 ```
