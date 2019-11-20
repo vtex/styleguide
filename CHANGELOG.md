@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.96.9] - 2019-11-20
+
+### Fixed
+
+- `checkbox` was not vertically centered when there is no `arrow` in the `EXPERIMENTAL_TableTree`.
+
 ## [9.96.8] - 2019-11-19
 
 ### Changed
