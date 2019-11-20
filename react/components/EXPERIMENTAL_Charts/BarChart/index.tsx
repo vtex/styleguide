@@ -6,7 +6,8 @@ import {
   CartesianGrid,
   XAxis,
   YAxis,
-  ResponsiveContainer
+  ResponsiveContainer,
+  Tooltip
 } from 'recharts'
 import { colors } from '../commonProps'
 
@@ -19,11 +20,12 @@ const BarChart:FC<BaseChartProps> = ({
   const { configs } = getChartDefaultProps(schema)
   return (
   <ResponsiveContainer {...configs.container} >
-    <BarChartBase data={data}>
+    <BarChartBase data={data} layout='vertical'>
       <CartesianGrid {...configs.grid} />
-      <XAxis dataKey={xAxisKey} {...configs.xAxis}/>
-      <YAxis {...configs.yAxis} />
-      <Bar dataKey={dataKeys[0]} fill={colors[1]}/>
+      <XAxis type='number' {...configs.xAxis} />
+      <YAxis type='category' {...configs.yAxis} hide/>
+      <Tooltip/>
+      <Bar dataKey={dataKeys[0]} fill={colors[1]} />
   </BarChartBase>
   </ResponsiveContainer>
   )

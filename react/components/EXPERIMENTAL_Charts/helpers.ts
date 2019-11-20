@@ -1,7 +1,7 @@
 import { commonDefaultProps } from './commonProps'
 
-const getDefaultProps = (userProps: ChartProps)  => {
-    const configs: ChartProps = {...commonDefaultProps, ...userProps}
+const getDefaultProps = (userProps: ChartSchema)  => {
+    const configs: ChartSchema = {...commonDefaultProps, ...userProps}
     return { configs }
 }
 
