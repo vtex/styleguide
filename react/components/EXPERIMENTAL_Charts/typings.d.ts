@@ -3,7 +3,7 @@ type BaseAxisProps = Pick<XAxisProps, 'axisLine' | 'tickLine', 'padding'>
 type BaseContainerProps = Pick<ResponsiveContainerProps, 'height' | 'width'>
 type DefaultLineProps = Pick<LineProps, 'type' | 'strokeWidth' | 'dot'>
 
-type ChartProps = {
+type ChartSchema = {
   xAxis?: BaseAxisProps,
   yAxis?: BaseAxisProps, 
   container?: BaseContainerProps,
@@ -12,4 +12,11 @@ type ChartProps = {
 
 type LineProps = {
   type?: LineType
+}
+
+type BaseChartProps = {
+  data: any,
+  dataKeys: string[],
+  xAxisKey: string,
+  schema: ChartSchema
 }

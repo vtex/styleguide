@@ -11,20 +11,15 @@ import {
   TooltipFormatter,
 } from 'recharts'
 import PropTypes from 'prop-types'
-import { colors, tooltipProps } from './constants'
+import { tooltipProps } from './constants'
 import getChartDefaultProps from '../helpers'
 import getLineDefaultProps from './helpers'
 import uuid from 'uuid'
+import { colors } from '../commonProps'
 
 interface Props {
-  data: any,
-  dataKeys: string[],
-  xAxisKey: string,
-  schema: ChartProps,
   formatter: TooltipFormatter,
-  lineProps: LineProps,
-  xAxisFormatter: Function | FC,
-  yAxisFormatter: Function | FC
+  lineProps: LineProps
 }
 
 const renderLine = (lineConfigs, key, color) =>(
@@ -36,15 +31,13 @@ const renderLine = (lineConfigs, key, color) =>(
   />
 )
 
-const LineChart: FC<Props> = ({
+const LineChart: FC<Props & BaseChartProps> = ({
   data,
   dataKeys,
   xAxisKey,
   schema,
   formatter,
-  lineProps,
-  xAxisFormatter,
-  yAxisFormatter
+  lineProps
 }) => {
   const { configs } = getChartDefaultProps(schema)
   const { lineConfigs } = getLineDefaultProps(lineProps)
@@ -52,15 +45,8 @@ const LineChart: FC<Props> = ({
   return (
     <ResponsiveContainer {...configs.container}>
       <LineChartBase data={data}>
-        <XAxis
-          dataKey={xAxisKey}
-          label={xAxisFormatter}
-          {...configs.xAxis}
-        />
-        <YAxis
-          label={yAxisFormatter}
-          {...configs.yAxis}
-        />
+        <XAxis dataKey={xAxisKey} {...configs.xAxis}/>
+        <YAxis {...configs.yAxis} />
         <CartesianGrid
           horizontal={configs.grid.horizontal}
           vertical={configs.grid.vertical}
@@ -90,12 +76,6 @@ LineChart.propTypes = {
 
   /** The interpolation defines how data points should be connected when creating a path.*/
   lineProps: PropTypes.object,
-
-  /** If ReactElement set, the option can be the custom label element. If set a function, the function will be called to render customized label. */
-  xAxisFormatter: PropTypes.func,
-
-  /**If ReactElement set, the option can be the custom label element. If set a function, the function will be called to render customized label. */
-  yAxisFormatter: PropTypes.func
 }
   
 export default LineChart
