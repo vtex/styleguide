@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.96.10] - 2019-11-21
+
+### Fixed
+
+- First column width of `EXPERIMENTAL_TableTree` docs.
+
 ## [9.96.9] - 2019-11-20
 
 ### Fixed

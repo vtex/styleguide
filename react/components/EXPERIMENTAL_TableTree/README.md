@@ -10,6 +10,7 @@ const columns = [
   {
     id: 'name',
     title: 'Name',
+    width: 300,
   },
   {
     id: 'email',
@@ -69,6 +70,7 @@ const columns = [
   {
     id: 'name',
     title: 'name',
+    width: 300,
   },
   {
     id: 'email',
@@ -168,6 +170,7 @@ const columns = [
   {
     id: 'name',
     title: 'Description',
+    width: 350,
     cellRenderer: ({ rowHeight, cellData }) => (
       <span>
         <Image size={rowHeight - 10} />
