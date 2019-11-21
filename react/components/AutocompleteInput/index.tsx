@@ -71,6 +71,8 @@ const propTypes = {
   }).isRequired,
 }
 
+export type AutocompleteInputProps = PropTypes.InferProps<typeof propTypes>
+
 const AutocompleteInput: React.FunctionComponent<
   PropTypes.InferProps<typeof propTypes>
 > = ({

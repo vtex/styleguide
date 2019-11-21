@@ -3,13 +3,16 @@ import csx from 'classnames'
 
 import ButtonGroup from './ButtonGroup'
 import InputSearch, { InputSearchProps } from './InputSearch'
-import UNSAFE_InputCustom, { InputCustomProps } from './InputCustom'
+import InputAutocomplete from './InputAutocomplete'
+import {
+  AutocompleteInputProps,
+} from '../../AutocompleteInput'
 import { ORDER_CLASSNAMES, NAMESPACES } from '../constants'
 
 interface Composites {
   InputSearch: FC<InputSearchProps>
   ButtonGroup: FC
-  UNSAFE_InputCustom: FC<InputCustomProps>
+  InputAutocomplete: FC<AutocompleteInputProps>
 }
 
 const Toolbar: FC & Composites = ({ children }) => {
@@ -32,6 +35,6 @@ const Toolbar: FC & Composites = ({ children }) => {
 
 Toolbar.InputSearch = InputSearch
 Toolbar.ButtonGroup = ButtonGroup
-Toolbar.UNSAFE_InputCustom = UNSAFE_InputCustom
+Toolbar.InputAutocomplete = InputAutocomplete
 
 export default Toolbar
