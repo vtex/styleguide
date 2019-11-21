@@ -78,7 +78,7 @@ const BulkActions: FC<BulkActionsProps> = ({
             {checkboxes.isChecked(checkboxes.itemTree) ? (
               texts.allRowsSelected(<span className="b">{totalItems}</span>)
             ) : (
-              <Button onClick={() => checkboxes.toggle(checkboxes.itemTree)}>
+              <Button onClick={() => checkboxes.check(checkboxes.itemTree)}>
                 <span className="ttu">{`${texts.selectAll} ${totalItems}`}</span>
               </Button>
             )}
@@ -87,7 +87,7 @@ const BulkActions: FC<BulkActionsProps> = ({
 
         <ButtonWithIcon
           icon={<Close />}
-          onClick={() => checkboxes.toggle(checkboxes.itemTree)}
+          onClick={() => checkboxes.uncheck(checkboxes.itemTree)}
         />
       </div>
     </div>

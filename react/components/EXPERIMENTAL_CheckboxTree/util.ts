@@ -1,6 +1,46 @@
 import { Item, comparatorCurry } from './'
 
 /**
+ * Checks nested items
+ * @param checked
+ * @param item
+ * @param nodesKey
+ * @param comparator
+ */
+export function getBulkChecked(
+  checked: Array<Item>,
+  item: Item,
+  nodesKey: string = 'children',
+  comparator: comparatorCurry
+): Array<Item> {
+  return [...checked, ...getFlat(item, [], nodesKey)].reduce(
+    (acc: Array<Item>, item: Item) =>
+      acc.some(comparator(item)) ? acc : [...acc, item],
+    []
+  ) as Array<Item>
+}
+
+/**
+ * Unchecks nested items
+ * @param checked
+ * @param item
+ * @param nodesKey
+ * @param comparator
+ */
+export function getBulkUnchecked(
+  checked: Array<Item>,
+  item: Item,
+  nodesKey: string = 'children',
+  comparator: comparatorCurry
+): Array<Item> {
+  const flatCurry = (item: Item, nodesKey: string) =>
+    getFlat(item, [], nodesKey)
+  const flat = flatCurry(item, nodesKey)
+  const bulkFilter = (row: Item) => !flat.some(comparator(row))
+  return checked.filter(bulkFilter)
+}
+
+/**
  * Return new state with items toggled
  * @param state
  * @param item
@@ -12,24 +52,16 @@ export function getToggledState(
   comparator: comparatorCurry
 ): Array<Item> {
   const stateIncludesItem = state.some(comparator(item))
-
-  const bulkFilter = (row: Item) =>
-    !getFlat(item, [], nodesKey).some(comparator(row))
-
   const filter = (row: Item) => !comparator(row)(item)
 
-  const bulkCheck = (state: Array<Item>, item: Item): Array<Item> => {
-    return [...state, ...getFlat(item, [], nodesKey)].reduce(
-      (acc: Array<Item>, item: Item) =>
-        acc.some(comparator(item)) ? acc : [...acc, item],
-      []
-    ) as Array<Item>
-  }
-
   if (stateIncludesItem) {
-    return item[nodesKey] ? state.filter(bulkFilter) : state.filter(filter)
+    return item[nodesKey]
+      ? getBulkUnchecked(state, item, nodesKey, comparator)
+      : state.filter(filter)
   }
-  return item[nodesKey] ? bulkCheck(state, item) : [...state, item]
+  return item[nodesKey]
+    ? getBulkChecked(state, item, nodesKey, comparator)
+    : [...state, item]
 }
 
 /**

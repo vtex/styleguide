@@ -2,7 +2,12 @@ import { useMemo, useCallback, useEffect, useReducer } from 'react'
 import PropTypes from 'prop-types'
 import isEmpty from 'lodash/isEmpty'
 
-import { getFlat, getToggledState } from './util'
+import {
+  getFlat,
+  getToggledState,
+  getBulkChecked,
+  getBulkUnchecked,
+} from './util'
 
 const ROOT_KEY = 'VTEX_CheckboxTreeRoot'
 const ROOT_VALUE = 'ROOT'
@@ -81,7 +86,35 @@ export default function useCheckboxTree({
     [checkedItems]
   )
 
-  return { checkedItems, isChecked, isPartiallyChecked, itemTree, toggle }
+  const check = useCallback(
+    (item: Item) => {
+      dispatch({
+        type: ActionType.BulkCheck,
+        itemToToggle: { item, comparator, nodesKey },
+      })
+    },
+    [checkedItems]
+  )
+
+  const uncheck = useCallback(
+    (item: Item) => {
+      dispatch({
+        type: ActionType.BulkUncheck,
+        itemToToggle: { item, comparator, nodesKey },
+      })
+    },
+    [checkedItems]
+  )
+
+  return {
+    checkedItems,
+    isChecked,
+    isPartiallyChecked,
+    itemTree,
+    toggle,
+    check,
+    uncheck,
+  }
 }
 
 function reducer(state: Array<Item>, action: Action) {
@@ -94,6 +127,28 @@ function reducer(state: Array<Item>, action: Action) {
         itemToToggle: { item, comparator },
       } = action
       return state.filter(row => !comparator(row)(item))
+    }
+    case ActionType.BulkCheck: {
+      const { itemToToggle } = action
+      if (!itemToToggle) return state
+
+      return getBulkChecked(
+        state,
+        itemToToggle.item,
+        itemToToggle.nodesKey,
+        itemToToggle.comparator
+      )
+    }
+    case ActionType.BulkUncheck: {
+      const { itemToToggle } = action
+      if (!itemToToggle) return state
+
+      return getBulkUnchecked(
+        state,
+        itemToToggle.item,
+        itemToToggle.nodesKey,
+        itemToToggle.comparator
+      )
     }
     case ActionType.Toggle: {
       const { itemToToggle } = action
@@ -115,6 +170,8 @@ enum ActionType {
   Check,
   Uncheck,
   Toggle,
+  BulkCheck,
+  BulkUncheck,
 }
 
 type Action = {
