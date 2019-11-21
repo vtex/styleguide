@@ -5,7 +5,7 @@ import { TABLE_HEADER_HEIGHT } from '../hooks/useTableMeasures'
 import Row, { CellProps, RowProps } from './Row'
 import { Column, Items } from '../index'
 import { Checkboxes } from '../../EXPERIMENTAL_useCheckboxTree/types'
-import CellPrefix from '../../EXPERIMENTAL_TableTree/Tree/CellPrefix'
+import CellPrefix from './CellPrefix'
 
 const Headings: FC<HeadingsProps> = ({
   columns,

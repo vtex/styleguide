@@ -1,4 +1,4 @@
-import { comparatorCurry, Tree } from './index'
+import { comparatorCurry, Tree } from './types'
 
 /**
  * Checks nested items

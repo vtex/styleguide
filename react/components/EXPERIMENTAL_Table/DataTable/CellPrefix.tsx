@@ -1,7 +1,6 @@
 import React, { FC } from 'react'
 
-import CollapseToggle, { CollapseToggleProps } from './CollapseToggle'
-import Checkbox, { CheckboxProps } from '../../EXPERIMENTAL_Table/Checkbox'
+import Checkbox, { CheckboxProps } from '../Checkbox'
 
 const GAP = 35
 
@@ -24,11 +23,9 @@ CellPrefix.defaultProps = {
   depth: 0,
 }
 
-CellPrefix.CollapseToggle = CollapseToggle
 CellPrefix.Checkbox = Checkbox
 
 export type CellPrefixComposites = {
-  CollapseToggle?: FC<CollapseToggleProps>
   Checkbox?: FC<CheckboxProps>
 }
 

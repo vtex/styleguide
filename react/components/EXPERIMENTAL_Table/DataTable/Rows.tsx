@@ -5,7 +5,7 @@ import { NAMESPACES } from '../constants'
 import Row, { RowProps, CellProps } from './Row'
 import { Column, Items } from '../index'
 import { Density } from '../hooks/useTableMeasures'
-import CellPrefix from '../../EXPERIMENTAL_TableTree/Tree/CellPrefix'
+import CellPrefix from './CellPrefix'
 import { Checkboxes } from '../../EXPERIMENTAL_useCheckboxTree/types'
 
 const Rows: FC<RowsProps> = ({
@@ -27,6 +27,7 @@ const Rows: FC<RowsProps> = ({
     const isRowChecked = checkboxes && checkboxes.isChecked(rowData)
     const isRowPartiallyChecked =
       checkboxes && checkboxes.isPartiallyChecked(rowData)
+    const isRowSelected = isRowChecked || isRowPartiallyChecked
 
     const clickable = onRowClick
       ? {
@@ -38,7 +39,7 @@ const Rows: FC<RowsProps> = ({
         {...rowProps}
         {...clickable}
         height={rowHeight}
-        active={isRowActive && isRowActive(rowData)}
+        active={(isRowActive && isRowActive(rowData)) || isRowSelected}
         key={`${NAMESPACES.ROW}-${uuid()}`}>
         {columns.map((column: Column, cellIndex: number) => {
           const { cellRenderer, width } = column
