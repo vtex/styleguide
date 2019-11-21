@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 - `axis` prop to `xAxis` and `yAxis` props on LineChart schema
-- default `container` prop to have a `width` and `length` dependent of the screen size
+- default `container` prop to have a `width` and `height` dependent of the screen size
 
 ## [9.97.1] - 2019-12-03
 
