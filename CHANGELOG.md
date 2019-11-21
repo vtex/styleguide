@@ -19,7 +19,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 - Unify the Headings of `EXPERIMENTAL_Table` and `EXPERIMENTAL_TableTree`
-- Fix the distance of checkboxes, so they are the same on `EXPERIMENTAL_TABLE`
+
+### Fixed
+
+- Distance of checkboxes on `EXPERIMENTAL_TABLE`
 
 ## [9.97.0] - 2019-12-02
 
