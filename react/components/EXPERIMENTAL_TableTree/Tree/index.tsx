@@ -5,9 +5,9 @@ import isEmpty from 'lodash/isEmpty'
 import CellPrefix from './CellPrefix'
 import Row from '../../EXPERIMENTAL_Table/DataTable/Row'
 import {
-  Item,
   comparatorCurry,
   Checkboxes,
+  Tree as TreeType,
 } from '../../EXPERIMENTAL_CheckboxTree'
 import { Column, Items } from '../../EXPERIMENTAL_Table'
 import { Density } from '../../EXPERIMENTAL_Table/hooks/useTableMeasures'
@@ -96,7 +96,7 @@ const Node: FC<NodeProps> = ({
     <>
       {renderCells(true)}
       {isCollapsed(data) &&
-        (data[nodesKey] as Array<Item>).map(data => (
+        (data[nodesKey] as Array<unknown>).map(data => (
           <Node
             onRowClick={onRowClick}
             selectedDensity={selectedDensity}
@@ -123,12 +123,12 @@ const Tree: FC<TreeProps> = ({
   comparator,
   ...nodeProps
 }) => {
-  const [collapsedItems, setCollapsedItems] = React.useState<Array<Item>>([])
+  const [collapsedItems, setCollapsedItems] = React.useState<Array<unknown>>([])
 
   const listToRender = checkboxes ? items[nodeProps.nodesKey] : items
 
   const toggleCollapsed = React.useCallback(
-    (item: Item) => {
+    (item: unknown) => {
       isCollapsed(item)
         ? setCollapsedItems(
             collapsedItems.filter(
@@ -140,7 +140,7 @@ const Tree: FC<TreeProps> = ({
     [collapsedItems]
   )
 
-  const isCollapsed = (item: Item) => collapsedItems.some(comparator(item))
+  const isCollapsed = (item: unknown) => collapsedItems.some(comparator(item))
 
   return (
     <>
@@ -163,9 +163,9 @@ type TreeProps = {
   selectedDensity: Density
   nodesKey: string
   columns: Array<Column>
-  comparator: comparatorCurry
+  comparator: comparatorCurry<TreeType<unknown>>
   rowHeight: number
-  checkboxes?: Checkboxes
+  checkboxes?: Checkboxes<unknown>
   onRowClick?: ({ rowData: unknown }) => void
 }
 
@@ -176,8 +176,8 @@ type NodeProps = {
   selectedDensity: Density
   rowHeight: number
   nodesKey: string
-  checkboxes?: Checkboxes
-  data: Item
+  checkboxes?: Checkboxes<unknown>
+  data: unknown
   depth?: number
   onRowClick?: ({ rowData: unknown }) => void
 }

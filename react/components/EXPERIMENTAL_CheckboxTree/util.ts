@@ -1,4 +1,4 @@
-import { Item, comparatorCurry } from './'
+import { comparatorCurry, Tree } from './'
 
 /**
  * Checks nested items
@@ -7,17 +7,17 @@ import { Item, comparatorCurry } from './'
  * @param nodesKey
  * @param comparator
  */
-export function getBulkChecked(
-  checked: Array<Item>,
-  item: Item,
+export function getBulkChecked<T>(
+  checked: Array<Tree<T>>,
+  item: T,
   nodesKey: string = 'children',
-  comparator: comparatorCurry
-): Array<Item> {
+  comparator: comparatorCurry<Tree<T>>
+): Array<Tree<T>> {
   return [...checked, ...getFlat(item, [], nodesKey)].reduce(
-    (acc: Array<Item>, item: Item) =>
+    (acc: Array<Tree<T>>, item: T) =>
       acc.some(comparator(item)) ? acc : [...acc, item],
     []
-  ) as Array<Item>
+  ) as Array<Tree<T>>
 }
 
 /**
@@ -27,16 +27,15 @@ export function getBulkChecked(
  * @param nodesKey
  * @param comparator
  */
-export function getBulkUnchecked(
-  checked: Array<Item>,
-  item: Item,
+export function getBulkUnchecked<T>(
+  checked: Array<Tree<T>>,
+  item: T,
   nodesKey: string = 'children',
-  comparator: comparatorCurry
-): Array<Item> {
-  const flatCurry = (item: Item, nodesKey: string) =>
-    getFlat(item, [], nodesKey)
+  comparator: comparatorCurry<Tree<T>>
+): Array<Tree<T>> {
+  const flatCurry = (item: T, nodesKey: string) => getFlat(item, [], nodesKey)
   const flat = flatCurry(item, nodesKey)
-  const bulkFilter = (row: Item) => !flat.some(comparator(row))
+  const bulkFilter = (row: T) => !flat.some(comparator(row))
   return checked.filter(bulkFilter)
 }
 
@@ -45,36 +44,36 @@ export function getBulkUnchecked(
  * @param state
  * @param item
  */
-export function getToggledState(
-  state: Array<Item>,
-  item: Item,
+export function getToggledState<T>(
+  state: Array<Tree<T>>,
+  item: T,
   nodesKey: string = 'children',
-  comparator: comparatorCurry
-): Array<Item> {
+  comparator: comparatorCurry<Tree<T>>
+): Array<Tree<T>> {
   const stateIncludesItem = state.some(comparator(item))
-  const filter = (row: Item) => !comparator(row)(item)
+  const filter = (row: T) => !comparator(row)(item)
 
   if (stateIncludesItem) {
     return item[nodesKey]
-      ? getBulkUnchecked(state, item, nodesKey, comparator)
+      ? getBulkUnchecked<T>(state, item, nodesKey, comparator)
       : state.filter(filter)
   }
   return item[nodesKey]
-    ? getBulkChecked(state, item, nodesKey, comparator)
-    : [...state, item]
+    ? getBulkChecked<T>(state, item, nodesKey, comparator)
+    : ([...state, item] as Array<Tree<T>>)
 }
 
 /**
  * Represents a tree section on a single array.
  */
-export function getFlat(
-  tree: Item,
-  arr: Array<Item> = [],
+export function getFlat<T>(
+  tree: Tree<T>,
+  arr: Array<Tree<T>> = [],
   nodesKey: string = 'children'
 ) {
   arr.push(tree)
   if (tree[nodesKey])
-    (tree[nodesKey] as Array<Item>).forEach(child =>
+    (tree[nodesKey] as Array<Tree<T>>).forEach(child =>
       getFlat(child, arr, nodesKey)
     )
   return arr

@@ -105,7 +105,7 @@ export type BulkActionsProps = {
   onChange: Function
   main: MenuAction
   others: Array<MenuAction>
-  checkboxes: Checkboxes
+  checkboxes: Checkboxes<unknown>
 }
 
 export default BulkActions

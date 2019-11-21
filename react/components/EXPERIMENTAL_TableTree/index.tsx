@@ -10,7 +10,7 @@ import Pagination from '../EXPERIMENTAL_Table/Pagination'
 import FilterBar from '../EXPERIMENTAL_Table/FilterBar'
 import {
   defaultComparatorCurry,
-  checkboxesPropTypes,
+  Checkboxes,
 } from '../EXPERIMENTAL_CheckboxTree'
 import Headings from '../EXPERIMENTAL_Table/DataTable/Headings'
 
@@ -76,10 +76,11 @@ const treePropTypes = {
 const propTypes = {
   ...treePropTypes,
   ...tablePropTypes,
-  ...checkboxesPropTypes,
 }
 
-type Props = InferProps<typeof propTypes>
+type Props = InferProps<typeof propTypes> & {
+  checkboxes?: Checkboxes<unknown>
+}
 
 TableTree.Toolbar = Toolbar
 TableTree.FilterBar = FilterBar

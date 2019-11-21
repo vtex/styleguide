@@ -10,7 +10,7 @@ import FilterBar from './FilterBar'
 import Headings from './DataTable/Headings'
 import Rows from './DataTable/Rows'
 import { DENSITY_OPTIONS, Density } from './hooks/useTableMeasures'
-import { checkboxesPropTypes } from '../EXPERIMENTAL_CheckboxTree'
+import { checkboxesPropTypes, Checkboxes } from '../EXPERIMENTAL_CheckboxTree'
 
 const Table: FC<TableProps> & TableComposites = ({
   children,
@@ -98,10 +98,11 @@ export const tablePropTypes = {
     label: PropTypes.string,
     children: PropTypes.element,
   }),
-  ...checkboxesPropTypes,
 }
 
-export type TableProps = InferProps<typeof tablePropTypes>
+export type TableProps = InferProps<typeof tablePropTypes> & {
+  checkboxes: Checkboxes<unknown>
+}
 
 export type TableComposites = {
   Toolbar: FC

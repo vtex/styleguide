@@ -81,7 +81,7 @@ export type RowsProps = {
   rowProps?: RowProps
   rowHeight: number
   cellProps?: Pick<CellProps, 'as' | 'className'>
-  checkboxes?: Checkboxes
+  checkboxes?: Checkboxes<unknown>
 }
 
 export default React.memo(Rows)

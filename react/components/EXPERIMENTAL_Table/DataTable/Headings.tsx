@@ -3,7 +3,7 @@ import uuid from 'uuid'
 
 import { TABLE_HEADER_HEIGHT } from '../hooks/useTableMeasures'
 import Row, { CellProps, RowProps } from './Row'
-import { Column } from '../index'
+import { Column, Items } from '../index'
 import { Checkboxes } from '../../EXPERIMENTAL_CheckboxTree'
 import CellPrefix from '../../EXPERIMENTAL_TableTree/Tree/CellPrefix'
 
@@ -53,7 +53,7 @@ type HeadingsProps = {
   columns: Array<Column>
   rowProps?: RowProps
   cellProps?: Pick<CellProps, 'as'>
-  checkboxes?: Checkboxes
+  checkboxes?: Checkboxes<unknown>
 }
 
 export default React.memo(Headings)

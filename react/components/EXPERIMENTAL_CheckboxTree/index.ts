@@ -12,13 +12,13 @@ import {
 const ROOT_KEY = 'VTEX_CheckboxTreeRoot'
 const ROOT_VALUE = 'ROOT'
 
-export default function useCheckboxTree({
+export default function useCheckboxTree<T>({
   items,
   onToggle,
   nodesKey = 'children',
   checked = [],
   comparator = defaultComparatorCurry,
-}: hookInput) {
+}: hookInput<T>) {
   const [checkedItems, dispatch] = useReducer(reducer, checked)
 
   const itemTree = useMemo(() => {
@@ -26,7 +26,7 @@ export default function useCheckboxTree({
   }, [items])
 
   const toggle = useCallback(
-    (item: Item): void => {
+    (item: T): void => {
       dispatch({
         type: ActionType.Toggle,
         itemToToggle: { item, nodesKey, comparator },
@@ -40,8 +40,8 @@ export default function useCheckboxTree({
   }, [toggle])
 
   useEffect(() => {
-    const shake = (tree: Item) => {
-      const childNodes = tree[nodesKey] as Array<Item>
+    const shake = (tree: Tree<T>) => {
+      const childNodes = tree[nodesKey] as Array<T>
 
       if (!childNodes || isEmpty(childNodes)) return
 
@@ -65,8 +65,8 @@ export default function useCheckboxTree({
   }, [checkedItems])
 
   const isChecked = useCallback(
-    (item: Item) => {
-      const childs = item[nodesKey] as Array<Item>
+    (item: T) => {
+      const childs = item[nodesKey] as Array<T>
       return childs && !isEmpty(childs)
         ? childs.every(child => checkedItems.some(comparator(child)))
         : checkedItems.some(comparator(item))
@@ -75,9 +75,9 @@ export default function useCheckboxTree({
   )
 
   const isPartiallyChecked = useCallback(
-    (item: Item) => {
+    (item: T) => {
       return (
-        (item[nodesKey] as Array<Item>) &&
+        (item[nodesKey] as Array<T>) &&
         getFlat(item, [], nodesKey)
           .slice(1)
           .some(child => checkedItems.some(comparator(child)))
@@ -87,7 +87,7 @@ export default function useCheckboxTree({
   )
 
   const check = useCallback(
-    (item: Item) => {
+    (item: T) => {
       dispatch({
         type: ActionType.BulkCheck,
         itemToToggle: { item, comparator, nodesKey },
@@ -97,7 +97,7 @@ export default function useCheckboxTree({
   )
 
   const uncheck = useCallback(
-    (item: Item) => {
+    (item: T) => {
       dispatch({
         type: ActionType.BulkUncheck,
         itemToToggle: { item, comparator, nodesKey },
@@ -117,7 +117,7 @@ export default function useCheckboxTree({
   }
 }
 
-function reducer(state: Array<Item>, action: Action) {
+function reducer<T>(state: Array<T>, action: Action<T>) {
   switch (action.type) {
     case ActionType.Check: {
       return [...state, action.item]
@@ -174,37 +174,46 @@ enum ActionType {
   BulkUncheck,
 }
 
-type Action = {
+type Action<T> = {
   type: ActionType
-  item?: Item
-  checked?: Array<Item>
+  item?: T
+  checked?: Array<T>
   itemToToggle?: {
-    item: Item
+    item: T
     nodesKey?: string
-    comparator?: comparatorCurry
+    comparator?: comparatorCurry<T>
   }
 }
 
-type hookInput = {
-  items: Array<Item>
+type hookInput<T> = {
+  items: Array<T>
   onToggle?: ({ checkedItems }) => void
   nodesKey?: string
   checked?: Array<unknown>
-  comparator?: comparatorCurry
+  comparator?: comparatorCurry<Tree<T>>
 }
 
-export const defaultComparatorCurry = (item: Item) => (candidate: Item) =>
+export const defaultComparatorCurry = (item: any) => (candidate: any) =>
   item.id && candidate.id && item.id === candidate.id
 
-export type ChildKey = { [key: string]: Array<Item> }
+export type ChildKey<T> = { [key: string]: Array<T> }
 
-export type comparatorCurry = (item: any) => (candidate: any) => boolean
+export type comparatorCurry<T> = (item: T) => (candidate: T) => boolean
 
-export type Item = Partial<{
-  [key: string]: any
-}>
+export type Checkboxes<T> = {
+  checkedItems: Tree<T>[]
+  isChecked: (item: T) => boolean
+  isPartiallyChecked: (item: T) => boolean
+  itemTree: {
+    [x: string]: string | T[]
+    [ROOT_KEY]: string
+  }
+  toggle: (item: T) => void
+  check: (item: T) => void
+  uncheck: (item: T) => void
+}
 
-export type Checkboxes = Partial<ReturnType<typeof useCheckboxTree>>
+export type Tree<T> = { [x: string]: string | T[]; [ROOT_KEY]: string } | T
 
 export const checkboxesPropTypes = {
   checkboxes: PropTypes.shape({
