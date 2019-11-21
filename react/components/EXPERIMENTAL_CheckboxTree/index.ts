@@ -1,7 +1,11 @@
 import { useMemo, useCallback, useEffect, useReducer } from 'react'
+import PropTypes from 'prop-types'
 import isEmpty from 'lodash/isEmpty'
 
 import { getFlat, getToggledState } from './util'
+
+const ROOT_KEY = 'VTEX_CheckboxTreeRoot'
+const ROOT_VALUE = 'ROOT'
 
 export default function useCheckboxTree({
   items,
@@ -13,7 +17,7 @@ export default function useCheckboxTree({
   const [checkedItems, dispatch] = useReducer(reducer, checked)
 
   const itemTree = useMemo(() => {
-    return { vtexTableTreeRoot: 'root', [nodesKey]: items }
+    return { [ROOT_KEY]: ROOT_VALUE, [nodesKey]: items }
   }, [items])
 
   const toggle = useCallback(
@@ -144,3 +148,19 @@ export type Item = Partial<{
 }>
 
 export type Checkboxes = Partial<ReturnType<typeof useCheckboxTree>>
+
+export const checkboxesPropTypes = {
+  checkboxes: PropTypes.shape({
+    checkedItems: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string,
+      })
+    ),
+    itemTree: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+    toggle: PropTypes.func,
+    isChecked: PropTypes.func,
+    isPartiallyChecked: PropTypes.func,
+  }),
+}
