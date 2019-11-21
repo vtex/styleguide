@@ -25,15 +25,21 @@ const BarChart:FC<Props & BaseChartProps> = ({
 }) => {
   const { configs } = getChartDefaultProps(schema)
   const { barConfigs } = getBarDefaultProps(barProps)
+  const GAP = 15;
 
   return (
   <ResponsiveContainer {...configs.container} >
-    <BarChartBase data={data} {...barConfigs}>
+    <BarChartBase
+      data={data}
+      barCategoryGap={GAP}
+      barSize={GAP*2}
+      {...barConfigs}
+    >
       <CartesianGrid {...configs.grid} />
       <XAxis dataKey={xAxisKey} {...configs.xAxis} />
       <YAxis  {...configs.yAxis}/>
       <Tooltip/>
-      <Bar dataKey={dataKeys[0]} fill={colors[1]} />
+      <Bar dataKey={dataKeys[0]} fill={colors[1]} radius={[4, 4, 0, 0]}/>
     </BarChartBase>
   </ResponsiveContainer>
   )
