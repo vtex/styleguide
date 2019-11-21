@@ -1,4 +1,4 @@
-import { Item, comparatorCurry } from './useTableTreeCheckboxes'
+import { Item, comparatorCurry } from './'
 
 /**
  * Return new state with items toggled
@@ -28,9 +28,8 @@ export function getToggledState(
 
   if (stateIncludesItem) {
     return item[nodesKey] ? state.filter(bulkFilter) : state.filter(filter)
-  } else {
-    return item[nodesKey] ? bulkCheck(state, item) : [...state, item]
   }
+  return item[nodesKey] ? bulkCheck(state, item) : [...state, item]
 }
 
 /**

@@ -9,7 +9,7 @@ import { InferProps } from 'prop-types'
 import TreeHeadings from './Tree/TreeHeadings'
 import Pagination from '../EXPERIMENTAL_Table/Pagination'
 import FilterBar from '../EXPERIMENTAL_Table/FilterBar'
-import { defaultComparatorCurry } from './hooks/useTableTreeCheckboxes'
+import { defaultComparatorCurry } from '../EXPERIMENTAL_CheckboxTree'
 
 const TableTree: FC<Props> & TableComposites = ({
   children,

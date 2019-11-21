@@ -8,7 +8,7 @@ import Row, {
 } from '../../EXPERIMENTAL_Table/DataTable/Row'
 import CellPrefix from './CellPrefix'
 import { Column } from '../../EXPERIMENTAL_Table'
-import useTableTreeCheckboxes from '../hooks/useTableTreeCheckboxes'
+import { Checkboxes } from '../../EXPERIMENTAL_CheckboxTree'
 
 const TreeHeadings: FC<TreeHeadingsProps> = ({
   checkboxes,
@@ -58,7 +58,7 @@ type TreeHeadingsProps = {
   items: any
   rowProps?: RowProps
   cellProps?: Pick<CellProps, 'as'>
-  checkboxes?: Partial<ReturnType<typeof useTableTreeCheckboxes>>
+  checkboxes?: Checkboxes
 }
 
 export default React.memo(TreeHeadings)

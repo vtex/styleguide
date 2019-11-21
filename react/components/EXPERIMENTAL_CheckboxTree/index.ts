@@ -1,8 +1,9 @@
 import { useMemo, useCallback, useEffect, useReducer } from 'react'
 import isEmpty from 'lodash/isEmpty'
-import { getFlat, getToggledState } from './checkboxesUtils'
 
-export default function useTableTreeCheckboxes({
+import { getFlat, getToggledState } from './util'
+
+export default function useCheckboxTree({
   items,
   onToggle,
   nodesKey = 'children',
@@ -141,3 +142,5 @@ export type comparatorCurry = (item: any) => (candidate: any) => boolean
 export type Item = Partial<{
   [key: string]: any
 }>
+
+export type Checkboxes = Partial<ReturnType<typeof useCheckboxTree>>

@@ -62,8 +62,7 @@ function ToolbarExample() {
 const useTableMeasures = require('../EXPERIMENTAL_Table/hooks/useTableMeasures.tsx')
   .default
 const sampleData = require('./sampleData.ts').default
-const useTableTreeCheckboxes = require('./hooks/useTableTreeCheckboxes.tsx')
-  .default
+const useCheckboxTree = require('../EXPERIMENTAL_CheckboxTree').default
 
 // Define the columns
 const columns = [
@@ -131,7 +130,7 @@ function Example() {
     console.log(checkedItems)
   }
 
-  const checkboxes = useTableTreeCheckboxes({
+  const checkboxes = useCheckboxTree({
     comparator,
     items,
     onToggle,
@@ -162,8 +161,7 @@ const useTableMeasures = require('../EXPERIMENTAL_Table/hooks/useTableMeasures.t
 const useTableVisibility = require('../EXPERIMENTAL_Table/hooks/useTableVisibility.ts')
   .default
 const sampleData = require('./sampleData.ts').default
-const useTableTreeCheckboxes = require('./hooks/useTableTreeCheckboxes.tsx')
-  .default
+const useCheckboxTree = require('../EXPERIMENTAL_CheckboxTree').default
 
 // Define the columns
 const columns = [
@@ -221,7 +219,7 @@ function ToolbarExample() {
     return item.email === candidate.email
   }
 
-  const checkboxes = useTableTreeCheckboxes({
+  const checkboxes = useCheckboxTree({
     items,
     onToggle,
     comparator,

@@ -4,10 +4,11 @@ import isEmpty from 'lodash/isEmpty'
 
 import CellPrefix from './CellPrefix'
 import Row from '../../EXPERIMENTAL_Table/DataTable/Row'
-import useTableTreeCheckboxes, {
+import {
   Item,
   comparatorCurry,
-} from '../hooks/useTableTreeCheckboxes'
+  Checkboxes,
+} from '../../EXPERIMENTAL_CheckboxTree'
 import { Column, Items } from '../../EXPERIMENTAL_Table'
 import { Density } from '../../EXPERIMENTAL_Table/hooks/useTableMeasures'
 
@@ -164,7 +165,7 @@ type TreeProps = {
   columns: Array<Column>
   comparator: comparatorCurry
   rowHeight: number
-  checkboxes?: Partial<ReturnType<typeof useTableTreeCheckboxes>>
+  checkboxes?: Checkboxes
   onRowClick?: ({ rowData: unknown }) => void
 }
 
@@ -175,7 +176,7 @@ type NodeProps = {
   selectedDensity: Density
   rowHeight: number
   nodesKey: string
-  checkboxes?: Partial<ReturnType<typeof useTableTreeCheckboxes>>
+  checkboxes?: Checkboxes
   data: Item
   depth?: number
   onRowClick?: ({ rowData: unknown }) => void
