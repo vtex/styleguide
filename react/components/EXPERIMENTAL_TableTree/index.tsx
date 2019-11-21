@@ -8,10 +8,8 @@ import { tablePropTypes, TableComposites } from '../EXPERIMENTAL_Table'
 import { InferProps } from 'prop-types'
 import Pagination from '../EXPERIMENTAL_Table/Pagination'
 import FilterBar from '../EXPERIMENTAL_Table/FilterBar'
-import {
-  defaultComparatorCurry,
-  Checkboxes,
-} from '../EXPERIMENTAL_useCheckboxTree'
+import { Checkboxes } from '../EXPERIMENTAL_useCheckboxTree/types'
+import { defaultComparatorCurry } from '../EXPERIMENTAL_useCheckboxTree/constants'
 import Headings from '../EXPERIMENTAL_Table/DataTable/Headings'
 
 const TableTree: FC<Props> & TableComposites = ({

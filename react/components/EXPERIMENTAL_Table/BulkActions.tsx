@@ -8,7 +8,7 @@ import Close from '../icon/Close'
 
 import { ORDER_CLASSNAMES, NAMESPACES } from './constants'
 import { MenuAction } from './Toolbar/PopoverMenu'
-import { Checkboxes } from '../EXPERIMENTAL_useCheckboxTree'
+import { Checkboxes } from '../EXPERIMENTAL_useCheckboxTree/types'
 
 const BULK_ACTIONS_HEIGHT = 56
 const BULK_ACTIONS_TRANSITION =

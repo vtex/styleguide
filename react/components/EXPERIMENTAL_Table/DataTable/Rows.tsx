@@ -6,7 +6,7 @@ import Row, { RowProps, CellProps } from './Row'
 import { Column, Items } from '../index'
 import { Density } from '../hooks/useTableMeasures'
 import CellPrefix from '../../EXPERIMENTAL_TableTree/Tree/CellPrefix'
-import { Checkboxes } from '../../EXPERIMENTAL_useCheckboxTree'
+import { Checkboxes } from '../../EXPERIMENTAL_useCheckboxTree/types'
 
 const Rows: FC<RowsProps> = ({
   columns,

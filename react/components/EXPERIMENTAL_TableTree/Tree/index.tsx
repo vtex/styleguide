@@ -8,7 +8,7 @@ import {
   comparatorCurry,
   Checkboxes,
   Tree as TreeType,
-} from '../../EXPERIMENTAL_useCheckboxTree'
+} from '../../EXPERIMENTAL_useCheckboxTree/types'
 import { Column, Items } from '../../EXPERIMENTAL_Table'
 import { Density } from '../../EXPERIMENTAL_Table/hooks/useTableMeasures'
 

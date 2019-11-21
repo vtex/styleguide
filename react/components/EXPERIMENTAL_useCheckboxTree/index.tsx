@@ -2,15 +2,10 @@ import { useMemo, useCallback, useEffect, useReducer } from 'react'
 import PropTypes from 'prop-types'
 import isEmpty from 'lodash/isEmpty'
 
-import {
-  getFlat,
-  getToggledState,
-  getBulkChecked,
-  getBulkUnchecked,
-} from './util'
-
-const ROOT_KEY = 'VTEX_CheckboxTreeRoot'
-const ROOT_VALUE = 'ROOT'
+import { getFlat } from './util'
+import { defaultComparatorCurry, ROOT_KEY, ROOT_VALUE } from './constants'
+import { useChecboxesInput, Tree } from './types'
+import reducer, { ActionType } from './reducer'
 
 export default function useCheckboxTree<T>({
   items,
@@ -18,7 +13,7 @@ export default function useCheckboxTree<T>({
   nodesKey = 'children',
   checked = [],
   comparator = defaultComparatorCurry,
-}: hookInput<T>) {
+}: useChecboxesInput<T>) {
   const [checkedItems, dispatch] = useReducer(reducer, checked)
 
   const itemTree = useMemo(() => {
@@ -116,104 +111,6 @@ export default function useCheckboxTree<T>({
     uncheck,
   }
 }
-
-function reducer<T>(state: Array<T>, action: Action<T>) {
-  switch (action.type) {
-    case ActionType.Check: {
-      return [...state, action.item]
-    }
-    case ActionType.Uncheck: {
-      const {
-        itemToToggle: { item, comparator },
-      } = action
-      return state.filter(row => !comparator(row)(item))
-    }
-    case ActionType.BulkCheck: {
-      const { itemToToggle } = action
-      if (!itemToToggle) return state
-
-      return getBulkChecked(
-        state,
-        itemToToggle.item,
-        itemToToggle.nodesKey,
-        itemToToggle.comparator
-      )
-    }
-    case ActionType.BulkUncheck: {
-      const { itemToToggle } = action
-      if (!itemToToggle) return state
-
-      return getBulkUnchecked(
-        state,
-        itemToToggle.item,
-        itemToToggle.nodesKey,
-        itemToToggle.comparator
-      )
-    }
-    case ActionType.Toggle: {
-      const { itemToToggle } = action
-      if (!itemToToggle) return state
-      return getToggledState(
-        state,
-        itemToToggle.item,
-        itemToToggle.nodesKey,
-        itemToToggle.comparator
-      )
-    }
-    default: {
-      return state
-    }
-  }
-}
-
-enum ActionType {
-  Check,
-  Uncheck,
-  Toggle,
-  BulkCheck,
-  BulkUncheck,
-}
-
-type Action<T> = {
-  type: ActionType
-  item?: T
-  checked?: Array<T>
-  itemToToggle?: {
-    item: T
-    nodesKey?: string
-    comparator?: comparatorCurry<T>
-  }
-}
-
-type hookInput<T> = {
-  items: Array<T>
-  onToggle?: ({ checkedItems }) => void
-  nodesKey?: string
-  checked?: Array<unknown>
-  comparator?: comparatorCurry<Tree<T>>
-}
-
-export const defaultComparatorCurry = (item: any) => (candidate: any) =>
-  item.id && candidate.id && item.id === candidate.id
-
-export type ChildKey<T> = { [key: string]: Array<T> }
-
-export type comparatorCurry<T> = (item: T) => (candidate: T) => boolean
-
-export type Checkboxes<T> = {
-  checkedItems: Tree<T>[]
-  isChecked: (item: T) => boolean
-  isPartiallyChecked: (item: T) => boolean
-  itemTree: {
-    [x: string]: string | T[]
-    [ROOT_KEY]: string
-  }
-  toggle: (item: T) => void
-  check: (item: T) => void
-  uncheck: (item: T) => void
-}
-
-export type Tree<T> = { [x: string]: string | T[]; [ROOT_KEY]: string } | T
 
 export const checkboxesPropTypes = {
   checkboxes: PropTypes.shape({

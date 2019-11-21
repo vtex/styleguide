@@ -10,7 +10,7 @@ import FilterBar from './FilterBar'
 import Headings from './DataTable/Headings'
 import Rows from './DataTable/Rows'
 import { DENSITY_OPTIONS, Density } from './hooks/useTableMeasures'
-import { Checkboxes } from '../EXPERIMENTAL_useCheckboxTree'
+import { Checkboxes } from '../EXPERIMENTAL_useCheckboxTree/types'
 
 const Table: FC<TableProps> & TableComposites = ({
   children,
