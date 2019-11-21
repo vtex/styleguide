@@ -62,7 +62,7 @@ function ToolbarExample() {
 const useTableMeasures = require('../EXPERIMENTAL_Table/hooks/useTableMeasures.tsx')
   .default
 const sampleData = require('./sampleData.ts').default
-const useCheckboxTree = require('../EXPERIMENTAL_CheckboxTree').default
+const useCheckboxTree = require('../EXPERIMENTAL_useCheckboxTree').default
 
 // Define the columns
 const columns = [
@@ -161,7 +161,7 @@ const useTableMeasures = require('../EXPERIMENTAL_Table/hooks/useTableMeasures.t
 const useTableVisibility = require('../EXPERIMENTAL_Table/hooks/useTableVisibility.ts')
   .default
 const sampleData = require('./sampleData.ts').default
-const useCheckboxTree = require('../EXPERIMENTAL_CheckboxTree').default
+const useCheckboxTree = require('../EXPERIMENTAL_useCheckboxTree').default
 
 // Define the columns
 const columns = [

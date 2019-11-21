@@ -784,7 +784,7 @@ Check the console when selecting/unselecting rows or clicking an action button i
 
 ```js
 const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
-const useCheckboxTree = require('../EXPERIMENTAL_CheckboxTree').default
+const useCheckboxTree = require('../EXPERIMENTAL_useCheckboxTree').default
 
 const columns = [
   {

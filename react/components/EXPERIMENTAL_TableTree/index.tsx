@@ -11,7 +11,7 @@ import FilterBar from '../EXPERIMENTAL_Table/FilterBar'
 import {
   defaultComparatorCurry,
   Checkboxes,
-} from '../EXPERIMENTAL_CheckboxTree'
+} from '../EXPERIMENTAL_useCheckboxTree'
 import Headings from '../EXPERIMENTAL_Table/DataTable/Headings'
 
 const TableTree: FC<Props> & TableComposites = ({
