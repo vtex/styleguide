@@ -41,7 +41,7 @@ const customConfig = {container: { height: '100%', width: '60%'}};
   config={customConfig}
 />
 ```
-- Avoid to do grid competes visually with the data.
+- Avoid makes grid competes visually with the data.
 
 
 # Line chart Config
