@@ -1,4 +1,4 @@
-export const commonDefaultProps = {
+export const commonDefaultProps: ChartSchema = {
   container:{
     height: '99%',
     width: '100%',
