@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import classnames from 'classnames'
+
 import CaretLeft from '../icon/CaretLeft'
 import CaretRight from '../icon/CaretRight'
 import ButtonWithIcon from '../ButtonWithIcon'
@@ -76,9 +78,13 @@ class Pagination extends PureComponent {
         )}
         {this.props.children}
         <div
-          className={`flex flex-row items-center ${
-            rowsOptions ? 'justify-between' : 'justify-end'
-          }`}>
+          className={classnames([
+            'flex flex-row items-center',
+            {
+              'justify-between': rowsOptions,
+              'justify-end': !rowsOptions,
+            },
+          ])}>
           {dropdownOptions && (
             <div className="flex flex-row pt5 items-baseline">
               <span className="mr4 c-muted-2 t-small self-center">
