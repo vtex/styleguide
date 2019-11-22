@@ -26,6 +26,7 @@ const data = [
   <BarChart
     data={data}
     xAxisKey='name'
+    yAxisKey='pv'
     dataKeys={['pv']}
     schema={{xAxis: {type: 'category'}, yAxis: {type:'number'}}}
   />

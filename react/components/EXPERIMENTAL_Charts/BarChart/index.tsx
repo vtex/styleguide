@@ -7,7 +7,7 @@ import {
   XAxis,
   YAxis,
   ResponsiveContainer,
-  Tooltip
+  Tooltip,
 } from 'recharts'
 import { colors } from '../commonProps'
 import getBarDefaultProps from './helpers'
@@ -21,25 +21,29 @@ const BarChart:FC<Props & BaseChartProps> = ({
   xAxisKey,
   dataKeys,
   data,
+  yAxisKey,
   barProps 
 }) => {
   const { configs } = getChartDefaultProps(schema)
   const { barConfigs } = getBarDefaultProps(barProps)
-  const GAP = 15;
-
+  console.log(data)
+  console.log(parseInt(configs.container.width, 10))
   return (
   <ResponsiveContainer {...configs.container} >
     <BarChartBase
       data={data}
-      barCategoryGap={GAP}
-      barSize={GAP*2}
+      barCategoryGap={30}
       {...barConfigs}
     >
       <CartesianGrid {...configs.grid} />
       <XAxis dataKey={xAxisKey} {...configs.xAxis} />
-      <YAxis  {...configs.yAxis}/>
+      <YAxis dataKey={yAxisKey} {...configs.yAxis}/>
       <Tooltip/>
-      <Bar dataKey={dataKeys[0]} fill={colors[1]} radius={[4, 4, 0, 0]}/>
+      <Bar dataKey={dataKeys[0]} fill={colors[1]} radius={[4, 4, 0, 0]}>
+      {
+        data.map((entry, index) => console.log(entry))
+      }
+      </Bar>
     </BarChartBase>
   </ResponsiveContainer>
   )
