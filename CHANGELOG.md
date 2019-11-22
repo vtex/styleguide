@@ -7,8 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Autofocus to inputSearch and Input
+
 ## [9.96.4] - 2019-11-12
+
 ### Changed
+
 - `LineChart` to `EXPERIMENTAL_Charts`.
 
 ## [9.96.3] - 2019-11-12
@@ -16,6 +22,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Names of `cellRender` and `headerRender` in favor of `cellRenderer` and `headerRenderer` on `EXPERIMENTAL_Table`.
 
 ### Removed
+
 - `hidden` prop from `Column`.
 
 ## [9.96.2] - 2019-11-11
