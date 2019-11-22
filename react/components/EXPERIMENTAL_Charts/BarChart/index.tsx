@@ -54,14 +54,15 @@ BarChart.propTypes = {
   dataKeys: PropTypes.arrayOf(PropTypes.string).isRequired,
 
   /** The key of x-axis which is corresponding to the data. */
-  xAxisKey: PropTypes.oneOf(['number', 'category']),
+  xAxisKey: PropTypes.string,
 
   /** The key of y-axis which is corresponding to the data. */
-  yAxisKey: PropTypes.oneOf(['number', 'category']),
+  yAxisKey: PropTypes.string,
   
   /** The schema prop changes some styles of the chart. This prop should be given as an object.*/
   schema: PropTypes.object,
 
+  /** An object that will change specific bar props, like the orientation */
   barProps: PropTypes.object
 }
 
