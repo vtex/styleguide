@@ -74,6 +74,7 @@ class InputSearch extends Component {
         onMouseLeave={() => this.handleHovering(false)}
         onKeyUp={e => e.key === 'Enter' && this.handleSubmit(e)}
         type="search"
+        autoFocus={this.props.autoFocus}
         suffix={
           <div className="flex flex-row items-center">
             {this.props.value && (
