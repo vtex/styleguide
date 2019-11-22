@@ -27,13 +27,12 @@ const BarChart:FC<Props & BaseChartProps> = ({
 }) => {
   const { configs } = getChartDefaultProps(schema)
   const { barConfigs } = getBarDefaultProps(barProps)
-  console.log(configs);
-  //console.log(parseInt(configs.container.width, 10))
+
   return (
   <ResponsiveContainer {...configs.container} >
     <BarChartBase
       data={data}
-      barCategoryGap={30}
+      barCategoryGap='20%'
       {...barConfigs}
     >
       <CartesianGrid {...configs.grid} />

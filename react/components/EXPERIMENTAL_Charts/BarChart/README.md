@@ -25,10 +25,20 @@ const data = [
 
   <BarChart
     data={data}
-    xAxiKey='pv'
-    yAxisKey='name'
-    barProps={{layout: 'vertical'}}
+    xAxisKey='name'
+    yAxisKey='pv'
     dataKeys={['pv']}
-    schema={{xAxis: {axisLine: true, tickLine: true, type: 'number'}, yAxis: {axisLine:true, tickLine: true, type:'category'}}}
+    schema={{
+      xAxis: {
+        axisLine: true,
+        tickLine: true,
+        type: 'category'
+      },
+      yAxis: {
+        axisLine:true,
+        tickLine: true,
+        type:'number'
+      }
+    }}
   />
 ```

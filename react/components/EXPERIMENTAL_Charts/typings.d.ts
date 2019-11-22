@@ -1,6 +1,6 @@
 type BaseGridProps = Pick<CartesianGridProps, 'vertical' | 'horizontal'>
 type BaseAxisProps = Pick<XAxisProps, 'axisLine' | 'tickLine', 'padding'>
-type BaseContainerProps = Pick<ResponsiveContainerProps, 'height' | 'width'>
+type BaseContainerProps = Pick<ResponsiveContainerProps, 'height' | 'width'| 'aspect'>
 type DefaultLineProps = Pick<LineProps, 'type' | 'strokeWidth' | 'dot'>
 type DefaultBarProps = Pick<LineProps, 'layout'>
 
@@ -11,7 +11,6 @@ type ChartSchema = {
   grid?: BaseGridProps
 }
 
-type AxisKey = 'number' | 'category'
 
 type BaseChartProps = {
   data: any,
