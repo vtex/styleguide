@@ -10,6 +10,10 @@ function SwitchablePagination({ children, enabled, ...paginationProps }) {
   return children
 }
 
+SwitchablePagination.defaultProps = {
+  enabled: false,
+}
+
 SwitchablePagination.propTypes = {
   ...Pagination.propTypes,
   enabled: PropTypes.bool,
