@@ -19,7 +19,7 @@ interface Props {
   data: any,
   dataKeys: string[],
   xAxisKey: string,
-  schema: ChartProps,
+  config: ChartProps,
   tooltipFormatter: TooltipFormatter,
   lineProps: LineProps,
 }
@@ -38,11 +38,11 @@ const LineChart: FC<Props> = ({
   data,
   dataKeys,
   xAxisKey,
-  schema,
+  config,
   tooltipFormatter,
   lineProps
 }) => {
-  const { configs } = getChartDefaultProps(schema); 
+  const { configs } = getChartDefaultProps(config); 
   const { lineConfigs } = getLineDefaultProps(lineProps)
 
   return (
@@ -72,7 +72,7 @@ LineChart.propTypes = {
   tooltipFormatter: PropTypes.func,
   
   /** The schema prop changes some styles of the chart. This prop should be given as an object.*/
-  schema: PropTypes.object,
+  config: PropTypes.object,
 
   /** The interpolation defines how data points should be connected when creating a path.*/
   lineProps: PropTypes.object,

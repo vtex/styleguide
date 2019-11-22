@@ -33,22 +33,22 @@ from the data to the axis.
 ```jsx noeditor
 const sampleData = require('./multilineSample').default;
 const keys = ['uv', 'pv', 'amt', 'gte', 'yaw'];
-const customSchema = {container: { height: '100%', width: '60%'}};
+const customConfig = {container: { height: '100%', width: '60%'}};
 <LineChart
   data={sampleData}
   dataKeys={keys}
   xAxisKey='name'
-  schema={customSchema}
+  config={customConfig}
 />
 ```
 - Avoid to do grid competes visually with the data.
 
 
-# Line chart schema
-The schema prop defines the style of the chart. This should be given as an object with styles defined for `axis`, `grid`, `container`, according to your needs.  
+# Line chart Config
+The config prop defines the style of the chart. This should be given as an object with styles defined for `axis`, `grid`, `container`, according to your needs.  
 
 ```js noeditor static
-const schema = {
+const config = {
   container:{
     height: 300,
     width: '100%'
@@ -98,7 +98,7 @@ const keys = ['customers'];
   data={sampleData}
   dataKeys={keys}
   xAxisKey='hour'
-  schema={{
+  config={{
     xAxis:{tick: <CustomizedLabel />}
   }}
 />
@@ -118,7 +118,7 @@ const keys = ['customers'];
   data={sampleData}
   dataKeys={keys}
   xAxisKey='hour'
-  schema={{ 
+  config={{ 
     xAxis:{tick: true},
     grid: {vertical: true, horizontal: true}
   }}
@@ -140,7 +140,7 @@ const keys = ['customers'];
   data={sampleData}
   dataKeys={keys}
   xAxisKey='hour'
-  schema={{
+  config={{
     xAxis: {tick: true}, 
     grid: {vertical: false, horizontal: false}
   }}
