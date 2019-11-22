@@ -243,6 +243,7 @@ class Input extends Component {
             type={this.props.type}
             value={this.props.value}
             id={this.props.id}
+            autofocus={this.props.autoFocus}
           />
           {suffix && (
             <span className={`${prefixAndSuffixClasses} ${suffixClasses}`}>
