@@ -68,9 +68,7 @@ const config = {
     vertical: false,
   }
 };
-
 ```
-
 
 #### xAxis or yAxis
 This axis property is responsible to change the visual appearance of the axis in the chart.
@@ -150,7 +148,64 @@ const keys = ['customers'];
 
 ### Line props
 
-- `type`: The interpolation type of line. For more details, check the [recharts types](http://recharts.org/en-US/api/Line#type)
+- `type`: The interpolation type of line.
+```js
+const sampleData = require('./sampleData').default;
+const keys = ['customers'];
+
+const Dropdown = require('../../Dropdown/index.js').default;
+const options = [
+  { value: 'basis', label: 'Basis' },
+  { value: 'basisClosed', label: 'Basis Closed' },
+  { value: 'basisOpen', label: 'Basis Open' },
+  { value: 'linear', label: 'Linear' },
+  { value: 'linearClosed', label: 'Linear Closed' },
+  { value: 'natural', label: 'Natural' },
+  { value: 'monotoneX', label: 'MonotoneX' },
+  { value: 'monotoneY', label: 'MonotoneY' },
+  { value: 'monotone', label: 'Monotone' },
+  { value: 'step', label: 'Step' },
+  { value: 'stepBefore', label: 'Step Before' },
+  { value: 'stepAfter', label: 'Step After' },
+]
+
+class InterpolationExample extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      interpolation: "monotone",
+    };
+  }
+  render() {
+    return (
+      <div>
+        <Dropdown
+          label="Interpolation"
+          size="small"
+          options={options}
+          value={this.state.interpolation}
+          onChange={(event) => {
+            this.setState({interpolation: event.target.value})
+          }}
+        />
+        <br/> <br/>
+        <LineChart
+          data={sampleData}
+          dataKeys={keys}
+          xAxisKey='hour'
+          config={{
+            xAxis: {tick: true}, 
+            grid: {vertical: false, horizontal: false}
+          }}
+          lineProps={{type: this.state.interpolation}}
+        />
+      </div>
+    )
+  }
+}
+
+<InterpolationExample/>
+```
 
 
 ### Formatting values on the tooltip
