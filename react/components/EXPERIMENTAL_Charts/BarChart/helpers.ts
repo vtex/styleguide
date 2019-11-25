@@ -1,8 +1,7 @@
 import { defaultProps } from './constants'
-import { merge } from '../helpers' 
 
 const getBarDefaultProps = (userProps: BarProps)  => {
-  const barConfigs = merge(defaultProps, userProps)
+  const barConfigs = {...defaultProps, ...userProps}
   return { barConfigs }
 }
 

@@ -40,7 +40,7 @@ const BarChart:FC<Props & BaseChartProps> = ({
       <XAxis dataKey={xAxisKey} {...configs.xAxis} />
       <YAxis dataKey={yAxisKey} {...configs.yAxis}/>
       <Tooltip cursor={{fill: 'transparent'}}/>
-      <Bar dataKey={dataKeys[0]} fill={colors[1]} radius={[4, 4, 0, 0]}/>
+      <Bar dataKey={dataKeys[0]} fill={colors[1]} radius={[3, 3, 0, 0]}/>
     </BarChartBase>
   </ResponsiveContainer>
   )
