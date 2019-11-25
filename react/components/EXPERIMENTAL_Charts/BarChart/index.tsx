@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import getChartDefaultProps from '../helpers'
+import { getChartDefaultProps } from '../helpers'
 import { 
   BarChart as BarChartBase,
   Bar,

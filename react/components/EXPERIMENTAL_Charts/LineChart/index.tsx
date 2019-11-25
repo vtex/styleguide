@@ -12,7 +12,7 @@ import {
 } from 'recharts'
 import PropTypes from 'prop-types'
 import { tooltipProps } from './constants'
-import getChartDefaultProps from '../helpers'
+import { getChartDefaultProps } from '../helpers'
 import getLineDefaultProps from './helpers'
 import uuid from 'uuid'
 import { colors, commonDefaultProps} from '../commonProps'

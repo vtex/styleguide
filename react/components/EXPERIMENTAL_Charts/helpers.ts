@@ -9,9 +9,12 @@ const merge = (defaultProps: any, customProps: any) => {
   return newProps
 }
 
-const getDefaultProps = (chartCommonProps: ChartSchema = {}, userProps: ChartSchema)  => {
+const getChartDefaultProps = (chartCommonProps: ChartSchema = {}, userProps: ChartSchema)  => {
   const configs = merge(merge(commonDefaultProps, chartCommonProps), userProps)
   return { configs }
 }
 
-export default getDefaultProps
+export {
+  getChartDefaultProps,
+  merge
+}

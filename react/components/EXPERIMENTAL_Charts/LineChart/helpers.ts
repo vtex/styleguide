@@ -1,7 +1,8 @@
 import { defaultProps } from './constants'
+import { merge } from '../helpers'
 
 const getLineDefaultProps = (userProps: LineProps)  => {
-    const lineConfigs = {...defaultProps, ...userProps}
+    const lineConfigs = merge(defaultProps, userProps)
     return { lineConfigs }
 }
 

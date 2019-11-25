@@ -27,7 +27,6 @@
 from the data to the axis.
 - Use axis labels clearly and concise, so, you might be want to abbreviate sometimes.
 
-
 ### 👎 Don'ts
 -  Avoid spaghetti chart(don't use more than 4 lines)
 ```jsx noeditor
@@ -41,10 +40,7 @@ const schema = {container: { height: 200, width: '30%'}};
   xAxisKey='name'
 />
 ```
-
 - Avoid to do grid competes visually with the data.
-
-
 
 # Line chart schema
 The schema prop defines the style of the chart. This should be given as an object with styles defined for `axis`, `grid`, `container`, according to your needs.  
