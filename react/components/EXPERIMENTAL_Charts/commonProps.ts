@@ -14,7 +14,6 @@ export const commonDefaultProps: ChartSchema = {
     axisLine: false,
     tickLine: false,
     type: 'number',
-    padding: { top: 10, bottom: 10 }
   },
   grid: {
     horizontal: false,

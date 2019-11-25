@@ -33,7 +33,7 @@ from the data to the axis.
 ```jsx noeditor
 const sampleData = require('./multilineSample').default;
 const keys = ['uv', 'pv', 'amt', 'gte', 'yaw'];
-const schema = {container: { height: 200, width: '40%'}};
+const schema = {container: { height: 200, width: '30%'}};
 <LineChart
   data={sampleData}
   dataKeys={keys}
@@ -41,7 +41,9 @@ const schema = {container: { height: 200, width: '40%'}};
   xAxisKey='name'
 />
 ```
+
 - Avoid to do grid competes visually with the data.
+
 
 
 # Line chart schema

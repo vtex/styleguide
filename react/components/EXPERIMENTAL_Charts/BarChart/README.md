@@ -28,17 +28,6 @@ const data = [
     xAxisKey='name'
     yAxisKey='pv'
     dataKeys={['pv']}
-    schema={{
-      xAxis: {
-        axisLine: true,
-        tickLine: true,
-        type: 'category'
-      },
-      yAxis: {
-        axisLine:true,
-        tickLine: true,
-        type:'number'
-      }
-    }}
+    schema={{container: { height: '100%', width: '99%'}}}
   />
 ```

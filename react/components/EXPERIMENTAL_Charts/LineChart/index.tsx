@@ -15,7 +15,7 @@ import { tooltipProps } from './constants'
 import getChartDefaultProps from '../helpers'
 import getLineDefaultProps from './helpers'
 import uuid from 'uuid'
-import { colors } from '../commonProps'
+import { colors, commonDefaultProps} from '../commonProps'
 
 interface Props {
   formatter: TooltipFormatter,
@@ -39,7 +39,8 @@ const LineChart: FC<Props & BaseChartProps> = ({
   formatter,
   lineProps
 }) => {
-  const { configs } = getChartDefaultProps(schema)
+  const { configs } = getChartDefaultProps(commonDefaultProps, schema)
+  console.log(configs)
   const { lineConfigs } = getLineDefaultProps(lineProps)
 
   return (

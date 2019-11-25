@@ -12,6 +12,7 @@ import {
 import { colors } from '../commonProps'
 import getBarDefaultProps from './helpers'
 import PropTypes from 'prop-types'
+import { chartDefaultConfig } from './constants'
 
 type Props = {
   barProps: BarProps
@@ -25,7 +26,7 @@ const BarChart:FC<Props & BaseChartProps> = ({
   yAxisKey,
   barProps 
 }) => {
-  const { configs } = getChartDefaultProps(schema)
+  const { configs } = getChartDefaultProps(chartDefaultConfig, schema)
   const { barConfigs } = getBarDefaultProps(barProps)
 
   return (
