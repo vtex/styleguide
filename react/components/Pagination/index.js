@@ -54,6 +54,7 @@ class Pagination extends PureComponent {
       textShowRows,
       selectedOption,
       hasPageTopIndicator,
+      itemLabel,
     } = this.props
     const { selectedRowsOptionIndex } = this.state
 
@@ -73,6 +74,7 @@ class Pagination extends PureComponent {
               itemTo={itemTo}
               textOf={textOf}
               totalItems={totalItems}
+              itemLabel={itemLabel}
             />
           </div>
         )}
@@ -148,6 +150,7 @@ Pagination.propTypes = {
   textOf: PropTypes.node.isRequired,
   textShowRows: PropTypes.node.isRequired,
   totalItems: PropTypes.number.isRequired,
+  itemLabel: PropTypes.string,
   /**
    * Use this prop if you want to control the number of rows selected, instead of leaving it to the Pagination component.
    */
