@@ -12,8 +12,7 @@ import {
 } from 'recharts'
 import PropTypes from 'prop-types'
 import { colors, tooltipProps } from './constants'
-import getChartDefaultProps from '../helpers'
-import getLineDefaultProps from './helpers';
+import { getChartDefaultProps, getLineDefaultProps }from '../helpers'
 
 interface Props {
   data: any,
