@@ -33,7 +33,7 @@ from the data to the axis.
 ```jsx noeditor
 const sampleData = require('./multilineSample').default;
 const keys = ['uv', 'pv', 'amt', 'gte', 'yaw'];
-const customConfig = {container: { height: '100%', width: '60%'}};
+const customConfig = {container: { height: '40%', width: '40%'}};
 <LineChart
   data={sampleData}
   dataKeys={keys}

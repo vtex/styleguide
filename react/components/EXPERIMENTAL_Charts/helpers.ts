@@ -7,7 +7,7 @@ const getDefaultProps = (userProps: ChartProps)  => {
     props[key] = merge(props[key], userProps[key])
   ))
   
-  return { configs: props}
+  return { configs: props }
 }
 
 

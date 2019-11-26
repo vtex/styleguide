@@ -1,6 +1,6 @@
 export const commonDefaultProps = {
   container:{
-    height: '99%',
+    height: '100%',
     width: '100%',
     aspect: 4.0/3.0
   },
