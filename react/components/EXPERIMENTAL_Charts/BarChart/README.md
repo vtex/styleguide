@@ -53,10 +53,10 @@ For default, xAxis is a `category` and yAxis is a `number`
 ```js static
 const schema = {
   xAxis: {
-    type: 'number'
+    type: 'category'
   },
   yAxis: {
-    type: 'category'
+    type: 'number'
   }
 };
 ```
