@@ -41,7 +41,7 @@ const customConfig = {container: { height: '40%', width: '40%'}};
   config={customConfig}
 />
 ```
-- Avoid makes grid competes visually with the data.
+- Avoid the grid from visually competing with the data.
 
 
 # Line chart Config
@@ -229,4 +229,3 @@ const formatter2 = (value, name) => {
   return mapper[name]
 }
 ```
-
