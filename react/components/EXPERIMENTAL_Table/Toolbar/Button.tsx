@@ -28,7 +28,6 @@ const Button = forwardRef<Ref, ButtonProps>(
     const isTertiary = variation === ButtonVariation.Tertiary
 
     const iconClass = csx({
-      mh2: isTertiary,
       'c-on-base mh2': isTertiary && !disabled,
       'c-muted-2': disabled,
     })
