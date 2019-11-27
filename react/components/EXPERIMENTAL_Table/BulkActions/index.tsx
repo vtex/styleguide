@@ -3,13 +3,13 @@ import csx from 'classnames'
 
 import Button from '../../Button'
 import ButtonWithIcon from '../../ButtonWithIcon'
-import ActionMenu from '../../ActionMenu'
 import Close from '../../icon/Close'
 
 import { ORDER_CLASSNAMES, NAMESPACES } from '../constants'
 import { MenuAction } from '../Toolbar/PopoverMenu'
 import { Checkboxes } from '../../EXPERIMENTAL_useCheckboxTree/types'
-import Primary from './Primary'
+import PrimaryAction from './PrimaryAction'
+import SecondaryActions from './SecondaryActions'
 
 const BULK_ACTIONS_HEIGHT = 56
 const BULK_ACTIONS_TRANSITION =
@@ -48,20 +48,16 @@ const BulkActions: FC<BulkActionsProps> = ({
       }}>
       <div className="flex flex-row">
         {hasPrimaryBulkAction && (
-          <Primary
+          <PrimaryAction
             label={main.label}
-            onClick={() =>
-              main.onClick(bulkActionsReturnedParameters)
-            }></Primary>
+            onClick={() => main.onClick(bulkActionsReturnedParameters)}
+          />
         )}
         {hasSecondaryBulkActions && (
-          <ActionMenu
+          <SecondaryActions
             label={texts.secondaryActionsLabel}
-            buttonProps={{ variation: 'secondary', size: 'small' }}
-            options={others.map(el => ({
-              label: el.label,
-              onClick: () => el.onClick(bulkActionsReturnedParameters),
-            }))}
+            actions={others}
+            onActionClick={el => el.onClick(bulkActionsReturnedParameters)}
           />
         )}
       </div>
