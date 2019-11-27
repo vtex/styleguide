@@ -9,6 +9,7 @@ import Close from '../../icon/Close'
 import { ORDER_CLASSNAMES, NAMESPACES } from '../constants'
 import { MenuAction } from '../Toolbar/PopoverMenu'
 import { Checkboxes } from '../../EXPERIMENTAL_useCheckboxTree/types'
+import Primary from './Primary'
 
 const BULK_ACTIONS_HEIGHT = 56
 const BULK_ACTIONS_TRANSITION =
@@ -47,14 +48,11 @@ const BulkActions: FC<BulkActionsProps> = ({
       }}>
       <div className="flex flex-row">
         {hasPrimaryBulkAction && (
-          <div className="mr4">
-            <Button
-              variation="secondary"
-              size="small"
-              onClick={() => main.onClick(bulkActionsReturnedParameters)}>
-              {main.label}
-            </Button>
-          </div>
+          <Primary
+            label={main.label}
+            onClick={() =>
+              main.onClick(bulkActionsReturnedParameters)
+            }></Primary>
         )}
         {hasSecondaryBulkActions && (
           <ActionMenu
