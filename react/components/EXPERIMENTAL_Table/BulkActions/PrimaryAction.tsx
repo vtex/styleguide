@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import Button from '../../Button'
 
-const PrimaryAction: FC<PrimaryProps> = ({ label, onClick }) => {
+const PrimaryAction: FC<PrimaryActionProps> = ({ label, onClick }) => {
   return (
     <div className="mr4">
       <Button variation="secondary" size="small" onClick={onClick}>
@@ -11,7 +11,7 @@ const PrimaryAction: FC<PrimaryProps> = ({ label, onClick }) => {
   )
 }
 
-type PrimaryProps = {
+export type PrimaryActionProps = {
   label: string
   onClick: () => /** bulkActionsReturnedParameters */ void
 }

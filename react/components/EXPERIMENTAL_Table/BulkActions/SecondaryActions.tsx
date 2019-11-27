@@ -3,7 +3,7 @@ import React, { FC } from 'react'
 import ActionMenu from '../../ActionMenu'
 import { MenuAction } from '../Toolbar/PopoverMenu'
 
-const SecondaryActions: FC<SecondaryProps> = ({
+const SecondaryActions: FC<SecondaryActionsProps> = ({
   label,
   actions,
   onActionClick,
@@ -22,7 +22,7 @@ const SecondaryActions: FC<SecondaryProps> = ({
   )
 }
 
-type SecondaryProps = {
+export type SecondaryActionsProps = {
   label: string
   actions: Array<MenuAction>
   onActionClick: (el: MenuAction) => void

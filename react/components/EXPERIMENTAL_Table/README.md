@@ -825,7 +825,6 @@ const items = [
 function BulkExample() {
   const bulkActions = {
     texts: {
-      secondaryActionsLabel: 'Actions',
       rowsSelected: qty => (
         <React.Fragment>Selected rows: {qty}</React.Fragment>
       ),
@@ -836,20 +835,26 @@ function BulkExample() {
     },
     totalItems: 4,
     onChange: params => console.log(params),
-    main: {
-      label: 'Main Action',
-      onClick: params => console.log(params),
-    },
-    others: [
+  }
+
+  const primaryAction = {
+    label: 'Main Action',
+    onClick: () => console.log('checked items', checkboxes.checkedItems),
+  }
+
+  const secondaryActions = {
+    label: 'Actions',
+    actions: [
       {
         label: 'Action 1',
-        onClick: params => console.log(params),
+        onClick: checked => console.log('checked items', checked),
       },
       {
         label: 'Action 2',
-        onClick: params => console.log(params),
+        onClick: checked => console.log('checked items', checked),
       },
     ],
+    onActionClick: action => action.onClick(checkboxes.checkedItems),
   }
 
   const measures = useTableMeasures({
@@ -876,7 +881,12 @@ function BulkExample() {
       checkboxes={checkboxes}
       columns={columns}
       items={items}>
-      <Table.BulkActions checkboxes={checkboxes} {...bulkActions} />
+      <Table.BulkActions checkboxes={checkboxes} {...bulkActions}>
+        <Table.BulkActions.Actions>
+          <Table.BulkActions.Actions.Primary {...primaryAction} />
+          <Table.BulkActions.Actions.Secondary {...secondaryActions} />
+        </Table.BulkActions.Actions>
+      </Table.BulkActions>
     </Table>
   )
 }

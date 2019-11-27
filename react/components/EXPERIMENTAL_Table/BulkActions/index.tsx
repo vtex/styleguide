@@ -8,28 +8,20 @@ import Close from '../../icon/Close'
 import { ORDER_CLASSNAMES, NAMESPACES } from '../constants'
 import { MenuAction } from '../Toolbar/PopoverMenu'
 import { Checkboxes } from '../../EXPERIMENTAL_useCheckboxTree/types'
-import PrimaryAction from './PrimaryAction'
-import SecondaryActions from './SecondaryActions'
+import Actions from './Actions'
 
 const BULK_ACTIONS_HEIGHT = 56
 const BULK_ACTIONS_TRANSITION =
   'height 0.2s ease-in-out, padding 0.2s ease-in-out'
 
-const BulkActions: FC<BulkActionsProps> = ({
+const BulkActions: FC<BulkActionsProps> & Composites = ({
   texts,
-  main,
   totalItems,
-  others,
   checkboxes,
+  children,
 }) => {
-  const hasPrimaryBulkAction = !!main && typeof main.onClick === 'function'
-  const hasSecondaryBulkActions = !!others && others.length > 0
   const selectedRowsLength = checkboxes.checkedItems.length
   const hasRowsSelected = selectedRowsLength > 0
-
-  const bulkActionsReturnedParameters = {
-    selectedRows: checkboxes.checkedItems,
-  }
 
   return (
     <div
@@ -46,21 +38,7 @@ const BulkActions: FC<BulkActionsProps> = ({
         overflow: hasRowsSelected ? 'auto' : 'hidden',
         transition: BULK_ACTIONS_TRANSITION,
       }}>
-      <div className="flex flex-row">
-        {hasPrimaryBulkAction && (
-          <PrimaryAction
-            label={main.label}
-            onClick={() => main.onClick(bulkActionsReturnedParameters)}
-          />
-        )}
-        {hasSecondaryBulkActions && (
-          <SecondaryActions
-            label={texts.secondaryActionsLabel}
-            actions={others}
-            onActionClick={el => el.onClick(bulkActionsReturnedParameters)}
-          />
-        )}
-      </div>
+      {children}
       <div className="tr flex flex-row items-center">
         {!checkboxes.isChecked(checkboxes.itemTree) && (
           <span className="mr4 c-muted-4">
@@ -97,9 +75,13 @@ export type BulkActionsProps = {
   }
   totalItems: number
   onChange: Function
-  main: MenuAction
-  others: Array<MenuAction>
   checkboxes: Checkboxes<unknown>
 }
+
+type Composites = {
+  Actions: FC
+}
+
+BulkActions.Actions = Actions
 
 export default BulkActions
