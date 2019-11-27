@@ -42,6 +42,109 @@ type Column = {
   - currentDensity: current table density.
 - The default is rendering the value as a string.
 
+##### Payment example:
+
+```js
+const Icon = require('react-icons/fa')
+const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
+const Tag = require('../Tag/index.js').default
+
+const columns = [
+  {
+    id: 'icon',
+    title: 'Icon',
+    cellRenderer: iconRenderer
+  },
+  {
+    id: 'id',
+    title: 'ID',
+  },
+  {
+    id: 'name',
+    title: 'Name',
+  },
+  {
+    id: 'status',
+    title: 'Status',
+    cellRenderer: statusRenderer,
+  }
+]
+
+function iconRenderer({ cellData, rowHeight }){
+  const SelectedIcon = Icon[cellData]
+  return <SelectedIcon className="c-muted-1" size={rowHeight - 5} />
+}
+
+function statusRenderer({ cellData }){
+  const type = cellData === 'ACTIVE' ? 'success' : 'neutral'
+  return (
+    <Tag type={type}>
+      {cellData}
+    </Tag>
+  )
+}
+
+const items = [
+  {
+    icon: 'FaCcPaypal',
+    id: '1',
+    name: 'Paypal',
+    status: 'ACTIVE',
+  },
+  {
+    icon: 'FaCcMastercard',
+    id: '2',
+    name: 'Mastercard',
+    status: 'ACTIVE',
+  },
+  {
+    icon: 'FaCcDinersClub',
+    id: '3',
+    name: 'Dinners Club',
+    status: 'ACTIVE',
+  },
+  {
+    icon: 'FaCcDiscover',
+    id: '4',
+    name: 'Discover',
+    status: 'INACTIVE',
+  },
+  {
+    icon: 'FaCcAmazonPay',
+    id: '5',
+    name: 'Amazon Pay',
+    status: 'INACTIVE',
+  },
+  {
+    icon: 'FaCcApplePay',
+    id: '6',
+    name: 'Apple Pay',
+    status: 'ACTIVE',
+  },
+  {
+    icon: 'FaCcVisa',
+    id: '7',
+    name: 'Visa',
+    status: 'ACTIVE',
+  },
+  {
+    icon: 'FaCcAmex',
+    id: '8',
+    name: 'American Express',
+    status: 'INACTIVE',
+  },
+]
+
+function PaymentExample() {
+  const measures = useTableMeasures({
+    size: items.length,
+  })
+
+  return <Table measures={measures} columns={columns} items={items} />
+}
+;<PaymentExample />
+```
+
 To illustrate this info, let's suppose we have a list of heroes, each one with properties `name`, `email`, `age` and `country`:
 
 ```ts
