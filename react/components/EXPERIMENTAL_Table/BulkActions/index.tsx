@@ -1,14 +1,14 @@
-import React, { FC, useMemo } from 'react'
+import React, { FC } from 'react'
 import csx from 'classnames'
 
 import Button from '../../Button'
 import ButtonWithIcon from '../../ButtonWithIcon'
 import ActionMenu from '../../ActionMenu'
-import Close from '../icon/Close'
+import Close from '../../icon/Close'
 
-import { ORDER_CLASSNAMES, NAMESPACES } from './constants'
-import { MenuAction } from './Toolbar/PopoverMenu'
-import { Checkboxes } from '../EXPERIMENTAL_useCheckboxTree/types'
+import { ORDER_CLASSNAMES, NAMESPACES } from '../constants'
+import { MenuAction } from '../Toolbar/PopoverMenu'
+import { Checkboxes } from '../../EXPERIMENTAL_useCheckboxTree/types'
 
 const BULK_ACTIONS_HEIGHT = 56
 const BULK_ACTIONS_TRANSITION =
