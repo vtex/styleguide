@@ -14,7 +14,16 @@ export const ORDER_CLASSNAMES = {
     },
   },
   FILTER_BAR: 'order-1',
-  BULK_ACTIONS: 'order-2',
+  BULK: 'order-2',
+  BULK_CHILD: {
+    ACTIONS: 'order-0',
+    ACTIONS_CHILD: {
+      PRIMARY: 'order-0',
+      SECONDARY: 'order-1',
+    },
+    POSITION_FIXER: 'order-1',
+    RIGHT: 'order-2',
+  },
   TABLE: 'order-3',
   PAGINATION: 'order-4',
 }

@@ -764,23 +764,151 @@ function PaginationExample() {
 
 # Bulk Actions
 
-Bulk actions allow the user to select some or all the rows to execute an action. Texts have to be given to the component via a `texts` object.
-Actions are passed via the `main` object and the `others` array props. Each object is composed of a `label` and the action event via `onClick` key.
+### Collections Example
 
-The returned value for all selected lines is an object `allLinesSelected: true` otherwise the data of the rows are returned in the key `selectedRows` as an array.
+```js
+const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
+const useCheckboxTree = require('../EXPERIMENTAL_useCheckboxTree').default
+const ModalDialog = require('../ModalDialog/index.js').default
 
-##### NOTE 1:
+const columns = [
+  {
+    id: 'name',
+    title: 'Name',
+  },
+  {
+    id: 'email',
+    title: 'Email',
+  },
+  {
+    id: 'country',
+    title: 'Country',
+  },
+]
 
-`onRowClick` actions are not happening when clicking the checkbox.
+const items = [
+  {
+    id: 1,
+    name: "T'Chala",
+    email: 'black.panther@gmail.com',
+    country: '🇰🇪Wakanda',
+  },
+  {
+    id: 2,
+    name: 'Peter Parker',
+    email: 'spider.man@gmail.com',
+    country: '🇺🇸USA',
+  },
+  {
+    id: 3,
+    name: 'Shang-Chi',
+    email: 'kungfu.master@gmail.com',
+    country: '🇨🇳China',
+  },
+]
 
-##### NOTE 2:
+function useToggle() {
+  const [active, setActive] = React.useState(false)
+  const toggle = React.useCallback(() => setActive(old => !old), [active])
+  const activate = React.useCallback(() => setActive(true), [active])
+  const desactivate = React.useCallback(() => setActive(false), [active])
+  return { active, activate, desactivate, toggle }
+}
 
-There are two "select all" items.
+function BulkCollectionsExample() {
+  const modal = useToggle()
+  const action = useToggle()
 
-- The **upper checkbox** on the left side selects the currently visible items, in the example below, 5.
-- Beeing **optional**, the **Select all** button on the right side, selects all items from the database (by concept, since you will probably only load the visible items). Since not all items might be loaded in the table, the callback will only return a flag telling your app to handle all items for the next database operation.
+  const measures = useTableMeasures({
+    size: items.length,
+  })
 
-Check the console when selecting/unselecting rows or clicking an action button in the example below to see the action parameters
+  const onToggle = ({ checkedItems }) => {
+    const checkedQtd = checkedItems.length
+    const fullQtd = items.length
+
+    if (checkedQtd < fullQtd) {
+      action.desactivate()
+    }
+
+    if (checkedQtd === fullQtd) {
+      action.activate()
+    }
+  }
+
+  const checkboxes = useCheckboxTree({
+    items,
+    onToggle,
+    comparator: item => candidate => item.id === candidate.id,
+  })
+
+  const onConfirm = () => {
+    modal.toggle()
+    action.toggle()
+    checkboxes.checkAll()
+  }
+
+  const onDismiss = () => {
+    checkboxes.uncheckAll()
+    action.toggle()
+  }
+
+  return (
+    <>
+      <Table
+        measures={measures}
+        checkboxes={checkboxes}
+        columns={columns}
+        items={items}>
+        <Table.Bulk active={checkboxes.someChecked}>
+          <Table.Bulk.Right>
+            {!checkboxes.allChecked && (
+              <Table.Bulk.Right.Info>
+                All rows selected: {checkboxes.checkedItems.length}
+              </Table.Bulk.Right.Info>
+            )}
+            <Table.Bulk.Right.Toggle
+              button={{
+                text: `Select all ${items.length}`,
+                onClick: modal.toggle,
+              }}
+              active={action.active}>
+              Selected rows: <span className="b">{items.length}</span>
+            </Table.Bulk.Right.Toggle>
+            {checkboxes.allChecked && (
+              <Table.Bulk.Right.Dismiss onClick={onDismiss} />
+            )}
+          </Table.Bulk.Right>
+        </Table.Bulk>
+      </Table>
+
+      <ModalDialog
+        centered
+        confirmation={{
+          onClick: onConfirm,
+          label: 'Ok',
+        }}
+        cancelation={{
+          onClick: modal.toggle,
+          label: 'Cancel',
+        }}
+        isOpen={modal.active}
+        onClose={modal.toggle}>
+        <h1>Are you sure !?</h1>
+        <p>
+          Some child content before the action buttons. Lorem ipsum dolor sit
+          amet, consectetur adipiscing elit. Praesent semper eget magna sit amet
+          maximus. In rutrum, justo sodales euismod dignissim, justo orci
+          venenatis lectus, vel semper turpis nunc a justo.
+        </p>
+      </ModalDialog>
+    </>
+  )
+}
+;<BulkCollectionsExample />
+```
+
+### Full Example
 
 ```js
 const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
@@ -823,20 +951,6 @@ const items = [
 ]
 
 function BulkExample() {
-  const bulkActions = {
-    texts: {
-      rowsSelected: qty => (
-        <React.Fragment>Selected rows: {qty}</React.Fragment>
-      ),
-      selectAll: 'Select all',
-      allRowsSelected: element => (
-        <React.Fragment>All rows selected: {element}</React.Fragment>
-      ),
-    },
-    totalItems: 4,
-    onChange: params => console.log(params),
-  }
-
   const primaryAction = {
     label: 'Main Action',
     onClick: () => console.log('checked items', checkboxes.checkedItems),
@@ -892,13 +1006,9 @@ function BulkExample() {
               All rows selected: {checkboxes.checkedItems.length}
             </Table.Bulk.Right.Info>
           )}
-          <Table.Bulk.Right.Toggle>
-            <Table.Bulk.Right.Toggle.Active>
-              Selected rows: <span className="b">{items.length}</span>
-            </Table.Bulk.Right.Toggle.Active>
-            <Table.Bulk.Right.Toggle.Inactive onClick={checkboxes.checkAll}>
-              Select all {items.length}
-            </Table.Bulk.Right.Toggle.Inactive>
+          <Table.Bulk.Right.Toggle
+            button={{ text: `Select all ${items.length}` }}>
+            Selected rows: <span className="b">{items.length}</span>
           </Table.Bulk.Right.Toggle>
           <Table.Bulk.Right.Dismiss onClick={checkboxes.uncheckAll} />
         </Table.Bulk.Right>

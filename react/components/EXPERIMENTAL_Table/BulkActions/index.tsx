@@ -13,6 +13,10 @@ const BulkActions: FC<BulkActionsProps> & Composites = ({
   active = false,
   children,
 }) => {
+  const positionFixer =
+    React.Children.count(children) > 1 ? null : (
+      <div className={ORDER_CLASSNAMES.BULK_CHILD.POSITION_FIXER} />
+    )
   return (
     <div
       id={NAMESPACES.BULK_ACTIONS}
@@ -21,7 +25,7 @@ const BulkActions: FC<BulkActionsProps> & Composites = ({
         {
           pv4: active,
         },
-        ORDER_CLASSNAMES.BULK_ACTIONS
+        ORDER_CLASSNAMES.BULK
       )}
       style={{
         height: active ? BULK_ACTIONS_HEIGHT : 0,
@@ -29,6 +33,7 @@ const BulkActions: FC<BulkActionsProps> & Composites = ({
         transition: BULK_ACTIONS_TRANSITION,
       }}>
       {children}
+      {positionFixer}
     </div>
   )
 }
