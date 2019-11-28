@@ -881,13 +881,13 @@ function BulkExample() {
       checkboxes={checkboxes}
       columns={columns}
       items={items}>
-      <Table.Bulk active={checkboxes.checkedItems.length > 0}>
+      <Table.Bulk active={checkboxes.someChecked}>
         <Table.Bulk.Actions>
           <Table.Bulk.Actions.Primary {...primaryAction} />
           <Table.Bulk.Actions.Secondary {...secondaryActions} />
         </Table.Bulk.Actions>
         <Table.Bulk.Right>
-          {!checkboxes.isChecked(checkboxes.itemTree) && (
+          {!checkboxes.allChecked && (
             <Table.Bulk.Right.Info>
               All rows selected: {checkboxes.checkedItems.length}
             </Table.Bulk.Right.Info>
@@ -896,14 +896,11 @@ function BulkExample() {
             <Table.Bulk.Right.Toggle.Active>
               Selected rows: <span className="b">{items.length}</span>
             </Table.Bulk.Right.Toggle.Active>
-            <Table.Bulk.Right.Toggle.Inactive
-              onClick={() => checkboxes.check(checkboxes.itemTree)}>
+            <Table.Bulk.Right.Toggle.Inactive onClick={checkboxes.checkAll}>
               Select all {items.length}
             </Table.Bulk.Right.Toggle.Inactive>
           </Table.Bulk.Right.Toggle>
-          <Table.Bulk.Right.Dismiss
-            onClick={() => checkboxes.uncheck(checkboxes.itemTree)}
-          />
+          <Table.Bulk.Right.Dismiss onClick={checkboxes.uncheckAll} />
         </Table.Bulk.Right>
       </Table.Bulk>
     </Table>

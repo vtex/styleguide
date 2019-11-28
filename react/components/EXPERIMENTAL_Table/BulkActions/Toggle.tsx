@@ -30,19 +30,6 @@ const Toggle: FC<ToggleProps> & ToggleComposites = ({ children, onToggle }) => {
   )
 }
 
-/**
- * 
- * <span className="mr2">
-        {checkboxes.isChecked(checkboxes.itemTree) ? (
-          texts.allRowsSelected(<span className="b">{totalItems}</span>)
-        ) : (
-          <Button onClick={() => checkboxes.check(checkboxes.itemTree)}>
-            <span className="ttu">{`${texts.selectAll} ${totalItems}`}</span>
-          </Button>
-        )}
-      </span>
- */
-
 function useEffectAfterMount(cb, deps) {
   const mounted = useRef(true)
   useEffect(() => {
