@@ -881,31 +881,31 @@ function BulkExample() {
       checkboxes={checkboxes}
       columns={columns}
       items={items}>
-      <Table.BulkActions active={checkboxes.checkedItems.length > 0}>
-        <Table.BulkActions.Actions>
-          <Table.BulkActions.Actions.Primary {...primaryAction} />
-          <Table.BulkActions.Actions.Secondary {...secondaryActions} />
-        </Table.BulkActions.Actions>
-        <Table.BulkActions.Right>
+      <Table.Bulk active={checkboxes.checkedItems.length > 0}>
+        <Table.Bulk.Actions>
+          <Table.Bulk.Actions.Primary {...primaryAction} />
+          <Table.Bulk.Actions.Secondary {...secondaryActions} />
+        </Table.Bulk.Actions>
+        <Table.Bulk.Right>
           {!checkboxes.isChecked(checkboxes.itemTree) && (
-            <Table.BulkActions.Right.Info>
+            <Table.Bulk.Right.Info>
               All rows selected: {checkboxes.checkedItems.length}
-            </Table.BulkActions.Right.Info>
+            </Table.Bulk.Right.Info>
           )}
-          <Table.BulkActions.Right.Toggle>
-            <Table.BulkActions.Right.Toggle.Active>
+          <Table.Bulk.Right.Toggle>
+            <Table.Bulk.Right.Toggle.Active>
               Selected rows: <span className="b">{items.length}</span>
-            </Table.BulkActions.Right.Toggle.Active>
-            <Table.BulkActions.Right.Toggle.Inactive
+            </Table.Bulk.Right.Toggle.Active>
+            <Table.Bulk.Right.Toggle.Inactive
               onClick={() => checkboxes.check(checkboxes.itemTree)}>
               Select all {items.length}
-            </Table.BulkActions.Right.Toggle.Inactive>
-          </Table.BulkActions.Right.Toggle>
-          <Table.BulkActions.Right.Dismiss
+            </Table.Bulk.Right.Toggle.Inactive>
+          </Table.Bulk.Right.Toggle>
+          <Table.Bulk.Right.Dismiss
             onClick={() => checkboxes.uncheck(checkboxes.itemTree)}
           />
-        </Table.BulkActions.Right>
-      </Table.BulkActions>
+        </Table.Bulk.Right>
+      </Table.Bulk>
     </Table>
   )
 }
