@@ -43,7 +43,6 @@ const customConfig = {container: { height: '40%', width: '40%'}};
 ```
 - Avoid the grid from visually competing with the data.
 
-
 # Line chart Config
 The config prop defines the style of the chart. This should be given as an object with styles defined for `axis`, `grid`, `container`, according to your needs.  
 
@@ -97,7 +96,7 @@ const keys = ['customers'];
   dataKeys={keys}
   xAxisKey='hour'
   config={{
-    xAxis:{tick: <CustomizedLabel />}
+    xAxis:{tick: true}
   }}
 />
 ```
@@ -144,7 +143,6 @@ const keys = ['customers'];
   }}
 />
 ```
-
 
 ### Line props
 
@@ -194,7 +192,6 @@ class InterpolationExample extends React.Component {
           dataKeys={keys}
           xAxisKey='hour'
           config={{
-            xAxis: {tick: true}, 
             grid: {vertical: false, horizontal: false}
           }}
           lineProps={{type: this.state.interpolation}}
@@ -206,7 +203,6 @@ class InterpolationExample extends React.Component {
 
 <InterpolationExample/>
 ```
-
 
 ### Formatting values on the tooltip
 

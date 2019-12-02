@@ -11,14 +11,15 @@ import {
   TooltipFormatter,
 } from 'recharts'
 import PropTypes from 'prop-types'
-import { colors, tooltipProps } from './constants'
+import { tooltipProps } from './constants'
+import { colors } from '../commonProps'
 import { getChartDefaultProps, getLineDefaultProps }from '../helpers'
 
 interface Props {
   data: any,
   dataKeys: string[],
   xAxisKey: string,
-  config: ChartProps,
+  config: ChartSchema,
   tooltipFormatter: TooltipFormatter,
   lineProps: LineProps,
 }

@@ -5,3 +5,4 @@ Our chart components enable you to create complete and cohesive graphics that fi
 ### Available charts
 
 - [LineChart](/#/Components/Charts/LineChart)
+- [BarChart](/#/Components/Charts/BarChart)
