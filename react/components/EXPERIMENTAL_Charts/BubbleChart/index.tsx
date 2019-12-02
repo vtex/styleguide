@@ -9,18 +9,19 @@ import {
   CartesianGrid,
   ResponsiveContainer
 } from 'recharts'
+import PropTypes from 'prop-types'
 import { getChartDefaultProps, getRangeOfZAxis } from '../helpers'
-import { commonDefaultProps, colors } from '../commonProps'
+import { colors } from '../commonProps'
 
 
 const BubbleChart:FC<BaseChartProps> = ({
   data,
-  schema,
+  config,
   xAxisKey,
   yAxisKey,
   zAxisKey
 }) => {
-  const { configs } = getChartDefaultProps(commonDefaultProps, schema)
+  const { configs } = getChartDefaultProps(config)
 
   return (
     <ResponsiveContainer {...configs.container} >
@@ -34,6 +35,48 @@ const BubbleChart:FC<BaseChartProps> = ({
       </ScatterChartBase>
     </ResponsiveContainer>
   )
+}
+
+BubbleChart.propTypes = {
+  /** The source data, in which each element is an object. */
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+
+  /** The config prop changes some styles of the chart. This prop should be given as an object.*/
+  config: PropTypes.shape({
+    xAxis: PropTypes.shape({
+      axisLine: PropTypes.bool,
+      tickLine: PropTypes.bool,
+      tick: PropTypes.bool,
+      hide: PropTypes.bool
+    }),
+    yAxis: PropTypes.shape({
+      axisLine: PropTypes.bool,
+      tickLine: PropTypes.bool,
+      tick: PropTypes.bool,
+      hide: PropTypes.bool
+    }), 
+    container: PropTypes.shape({
+      height: PropTypes.oneOfType(
+        [PropTypes.string, PropTypes.number]
+      ),
+      width: PropTypes.oneOfType(
+        [PropTypes.string, PropTypes.number]
+      ),
+    }),
+    grid: PropTypes.shape({
+      horizontal: PropTypes.bool,
+      vertical: PropTypes.bool,
+    })
+  }),
+
+  /** The key of x-axis which is corresponding to the data. */
+  xAxisKey: PropTypes.string.isRequired,
+
+  /** The key of y-axis which is corresponding to the data. */
+  yAxisKey: PropTypes.string.isRequired,
+  
+  /** The key of y-axis which is corresponding to the data, it measures size of dot. */
+  zAxisKey: PropTypes.string.isRequired,
 }
 
 export default BubbleChart
