@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.96.11] - 2019-12-02
+
+### Fixed
+
+- Set color of `EXPERIMENTAL_Table` toolbar buttons to `c-muted-2` when they are disabled.
+
 ## [9.96.10] - 2019-11-21
 
 ### Fixed

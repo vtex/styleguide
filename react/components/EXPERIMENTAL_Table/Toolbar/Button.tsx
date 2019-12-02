@@ -26,6 +26,17 @@ const Button = forwardRef<Ref, ButtonProps>(
     ref
   ) => {
     const isTertiary = variation === ButtonVariation.Tertiary
+
+    const iconClass = csx({
+      'c-on-base mh2': isTertiary && !disabled,
+      'c-muted-2': disabled,
+    })
+
+    const labelClass = csx({
+      'c-on-base': isTertiary && !disabled,
+      'c-muted-2': disabled,
+    })
+
     return (
       <div
         id={id}
@@ -34,9 +45,7 @@ const Button = forwardRef<Ref, ButtonProps>(
         className={csx('relative', { mh2: isTertiary })}>
         <ButtonWithIcon
           icon={
-            <span
-              className={`${isTertiary ? 'c-on-base mh2' : ''}`}
-              style={ICON_OPTICAL_COMPENSATION}>
+            <span className={iconClass} style={ICON_OPTICAL_COMPENSATION}>
               {icon}
             </span>
           }
@@ -48,9 +57,7 @@ const Button = forwardRef<Ref, ButtonProps>(
           variation={variation}
           size={size}
           onClick={onClick}>
-          {label && (
-            <span className={isTertiary ? 'c-on-base' : ''}>{label}</span>
-          )}
+          {label && <span className={labelClass}>{label}</span>}
         </ButtonWithIcon>
         {children}
       </div>
