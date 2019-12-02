@@ -19,3 +19,9 @@ const data = [
   zAxisKey='z'
 />
 ```
+
+### 👍 Dos
+- Use legends to s show how different bubble sizes correspond with values of your third variable. 
+
+### 👎 Don'ts
+- Don't use a bubble chart with large datasets, too many bubbles can make the chart hard to read.
