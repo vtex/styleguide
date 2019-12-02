@@ -5,7 +5,6 @@ import reduce from 'lodash/reduce'
 import map from 'lodash/map'
 
 import Box from '../Box'
-import Pagination from '../Pagination'
 import EmptyState from '../EmptyState'
 import FilterBar from '../FilterBar'
 
@@ -14,6 +13,7 @@ import Toolbar from './Toolbar'
 import CheckboxContainer from './CheckboxContainer'
 import Totalizers from '../Totalizer'
 import BulkActions from './BulkActions'
+import SwitchablePagination from './SwitchablePagination'
 
 class Table extends PureComponent {
   constructor(props) {
@@ -306,50 +306,52 @@ class Table extends PureComponent {
         {totalizers && totalizers.length > 0 && (
           <Totalizers items={totalizers} />
         )}
-        <StickyContainer>
-          <BulkActions
-            hasPrimaryBulkAction={hasPrimaryBulkAction}
-            hasSecondaryBulkActions={hasSecondaryBulkActions}
-            selectedRows={selectedRows}
-            bulkActions={bulkActions}
-            allLinesSelected={allLinesSelected}
-            onSelectAllLines={this.handleSelectAllLines}
-            onDeselectAllLines={this.handleDeselectAllLines}
-          />
-
-          {emptyState ? (
-            <Box>
-              <EmptyState title={emptyStateLabel}>
-                {emptyStateChildren}
-              </EmptyState>
-            </Box>
-          ) : (
-            <SimpleTable
-              fullWidth={fullWidth}
-              items={items}
-              schema={displaySchema}
-              fixFirstColumn={fixFirstColumn}
-              rowHeight={tableRowHeight}
-              disableHeader={disableHeader}
-              emptyStateLabel={emptyStateLabel}
-              emptyStateChildren={emptyStateChildren}
-              dynamicRowHeight={dynamicRowHeight}
-              onRowClick={onRowClick}
-              onRowHover={onRowHover}
-              sort={sort}
-              onSort={onSort}
-              key={hiddenFields.toString()}
-              updateTableKey={updateTableKey}
-              lineActions={lineActions}
-              loading={loading}
-              containerHeight={containerHeight}
-              selectedRowsIndexes={map(selectedRows, 'id')}
-              density={selectedDensity}
+        <SwitchablePagination
+          enabled={!loading && paginationClone}
+          {...paginationClone}>
+          <StickyContainer>
+            <BulkActions
+              hasPrimaryBulkAction={hasPrimaryBulkAction}
+              hasSecondaryBulkActions={hasSecondaryBulkActions}
+              selectedRows={selectedRows}
+              bulkActions={bulkActions}
+              allLinesSelected={allLinesSelected}
+              onSelectAllLines={this.handleSelectAllLines}
+              onDeselectAllLines={this.handleDeselectAllLines}
             />
-          )}
-        </StickyContainer>
 
-        {!loading && paginationClone && <Pagination {...paginationClone} />}
+            {emptyState ? (
+              <Box>
+                <EmptyState title={emptyStateLabel}>
+                  {emptyStateChildren}
+                </EmptyState>
+              </Box>
+            ) : (
+              <SimpleTable
+                fullWidth={fullWidth}
+                items={items}
+                schema={displaySchema}
+                fixFirstColumn={fixFirstColumn}
+                rowHeight={tableRowHeight}
+                disableHeader={disableHeader}
+                emptyStateLabel={emptyStateLabel}
+                emptyStateChildren={emptyStateChildren}
+                dynamicRowHeight={dynamicRowHeight}
+                onRowClick={onRowClick}
+                onRowHover={onRowHover}
+                sort={sort}
+                onSort={onSort}
+                key={hiddenFields.toString()}
+                updateTableKey={updateTableKey}
+                lineActions={lineActions}
+                loading={loading}
+                containerHeight={containerHeight}
+                selectedRowsIndexes={map(selectedRows, 'id')}
+                density={selectedDensity}
+              />
+            )}
+          </StickyContainer>
+        </SwitchablePagination>
       </div>
     )
   }

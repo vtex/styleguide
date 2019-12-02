@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.97.0] - 2019-12-02
+
+### Added
+
+- Page top indicator option to the `Pagination` component
+
 ## [9.96.11] - 2019-12-02
 
 ### Fixed
