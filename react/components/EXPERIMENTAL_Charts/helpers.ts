@@ -8,9 +8,15 @@ const merge = (defaultProps: any, userProps: any) => {
   userProps && Object.keys(userProps).forEach(key => (
     props[key] = mergeBase(props[key], userProps[key])
   ))
-
+  
   return props
 }
+const getRangeOfZAxis = (key, data) => {
+  const values = data.map(item => item[key])
+  const min = Math.min(...values)
+  const max = Math.max(...values)
+  return [min, max]
+} 
 
 const getRangeOfZAxis = (key, data) => {
   const values = data.map(item => item[key])
