@@ -6,3 +6,4 @@ Our chart components enable you to create complete and cohesive graphics that fi
 
 - [LineChart](/#/Components/Charts/LineChart)
 - [BarChart](/#/Components/Charts/BarChart)
+- [ScatterChart](/#/Components/Charts/ScatterChart)
