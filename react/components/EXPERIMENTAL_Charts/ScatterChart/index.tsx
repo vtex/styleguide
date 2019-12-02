@@ -19,6 +19,7 @@ const ScatterChart:FC<BaseChartProps> = ({
   yAxisKey
 }) => {
   const { configs } = getChartDefaultProps(config)
+  console.log(configs)
   
   return (
     <ResponsiveContainer {...configs.container} >
