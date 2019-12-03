@@ -8,27 +8,37 @@ import {
   CartesianGrid,
   ResponsiveContainer
 } from 'recharts'
+import { zipWith, curry } from 'lodash'
 import PropTypes from 'prop-types'
 import { getChartDefaultProps } from '../helpers'
-import { colors} from '../commonProps'
+import { colors, tooltipProps } from '../commonProps'
+import uuid from 'uuid'
+
+
+const renderScatter = (key, color) =>(
+  <Scatter
+    key={uuid()}
+    dataKey={key}
+    fill={color}
+  />
+)
 
 const ScatterChart:FC<BaseChartProps> = ({
   data,
   config,
   xAxisKey,
-  yAxisKey
+  dataKeys
 }) => {
   const { configs } = getChartDefaultProps(config)
-  console.log(configs)
-  
+
   return (
     <ResponsiveContainer {...configs.container} >
       <ScatterChartBase data={data}>
         <CartesianGrid {...configs.grid}/>
         <XAxis dataKey={xAxisKey} {...configs.xAxis} />
-        <YAxis dataKey={yAxisKey} {...configs.yAxis} />
-        <Tooltip cursor={false}/>
-        <Scatter fill={colors[0]} />
+        <YAxis {...configs.yAxis} />
+        <Tooltip {...tooltipProps}/>
+        {zipWith(dataKeys, colors, renderScatter)}
       </ScatterChartBase>
     </ResponsiveContainer>
   ) 
@@ -69,8 +79,8 @@ ScatterChart.propTypes = {
   /** The key of x-axis which is corresponding to the data. */
   xAxisKey: PropTypes.string.isRequired,
 
-  /** The key of y-axis which is corresponding to the data. */
-  yAxisKey: PropTypes.string.isRequired,
+   /** The keys or getter of a group of data which should be unique in a LineChart. */
+   dataKeys: PropTypes.arrayOf(PropTypes.string).isRequired,
 }
 
 export default ScatterChart

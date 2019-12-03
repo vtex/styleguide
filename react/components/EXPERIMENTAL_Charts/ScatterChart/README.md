@@ -14,7 +14,7 @@ const data = [
   config={{container: {width: '100%', height: '100%'}}}
   data={data}
   xAxisKey='x'
-  yAxisKey='y'
+  dataKeys={['y']}
 />
 ```
 
