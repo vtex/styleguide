@@ -10,6 +10,7 @@ import {
   ZAxis
 } from 'recharts'
 import PropTypes from 'prop-types'
+<<<<<<< HEAD
 import uuid from 'uuid'
 import { commonDefaultProps } from './constants'
 import { getChartDefaultProps, getRangeOfZAxis } from '../helpers'
@@ -20,6 +21,10 @@ const CustomTooltip = (props) => {
     <p key={uuid()}>{`${item.dataKey}: ${item.value}`}</p>
   )
 }
+=======
+import { getChartDefaultProps, getRangeOfZAxis } from '../helpers'
+import { colors} from '../commonProps'
+>>>>>>> Update bubble chart
 
 const ScatterChart:FC<BaseChartProps> = ({
   data,
@@ -81,8 +86,16 @@ ScatterChart.propTypes = {
   /** The key of x-axis which is corresponding to the data. */
   xAxisKey: PropTypes.string.isRequired,
 
+<<<<<<< HEAD
   /** The keys of y-axis which is corresponding to the data. */
   yAxisKey: PropTypes.string.isRequired,
+=======
+  /** The keys or getter of a group of data which should be unique in a ScatterChart. */
+  dataKeys: PropTypes.arrayOf(PropTypes.string).isRequired,
+  
+  /** The key of y-axis which is corresponding to the data, it measures size of dot. */
+  zAxisKey: PropTypes.string.isRequired,
+>>>>>>> Update bubble chart
 }
 
 export default ScatterChart

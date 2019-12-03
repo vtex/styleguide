@@ -1,39 +1,11 @@
-import React, {FC} from 'react'
-import {
-  ScatterChart as ScatterChartBase, 
-  XAxis, 
-  YAxis,
-  ZAxis, 
-  Tooltip,
-  Scatter,
-  CartesianGrid,
-  ResponsiveContainer
-} from 'recharts'
+import React, { FC } from 'react'
 import PropTypes from 'prop-types'
-import { getChartDefaultProps, getRangeOfZAxis } from '../helpers'
-import { colors } from '../commonProps'
+import ScatterChart from '../ScatterChart'
 
 
-const BubbleChart:FC<BaseChartProps> = ({
-  data,
-  config,
-  xAxisKey,
-  yAxisKey,
-  zAxisKey
-}) => {
-  const { configs } = getChartDefaultProps(config)
-
+const BubbleChart:FC<BaseChartProps> = (props) => {
   return (
-    <ResponsiveContainer {...configs.container} >
-      <ScatterChartBase data={data}>
-        <CartesianGrid {...configs.grid}/>
-        <XAxis dataKey={xAxisKey} {...configs.xAxis} />
-        <YAxis dataKey={yAxisKey} {...configs.yAxis} />
-        <ZAxis dataKey={zAxisKey} range={getRangeOfZAxis(zAxisKey, data)}/>
-        <Tooltip cursor={false}/>
-        <Scatter fill={colors[0]} />
-      </ScatterChartBase>
-    </ResponsiveContainer>
+    <ScatterChart {...props}/>  
   )
 }
 
@@ -72,8 +44,8 @@ BubbleChart.propTypes = {
   /** The key of x-axis which is corresponding to the data. */
   xAxisKey: PropTypes.string.isRequired,
 
-  /** The key of y-axis which is corresponding to the data. */
-  yAxisKey: PropTypes.string.isRequired,
+  /** The keys or getter of a group of data which should be unique in a ScatterChart. */
+  dataKeys: PropTypes.arrayOf(PropTypes.string).isRequired,
   
   /** The key of y-axis which is corresponding to the data, it measures size of dot. */
   zAxisKey: PropTypes.string.isRequired,
