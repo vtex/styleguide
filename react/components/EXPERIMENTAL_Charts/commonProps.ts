@@ -1,4 +1,4 @@
-export const commonDefaultProps: ChartSchema = {
+export const commonDefaultProps: ChartConfig = {
   container:{
     height: '100%',
     width: '100%',
@@ -33,3 +33,8 @@ export const colors = [
   '#479A5E',
   '#0000FF'
 ]
+
+export const tooltipProps = {
+  cursor: false,
+  labelStyle: {color: '#828282'}
+}

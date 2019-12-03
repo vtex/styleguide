@@ -5,7 +5,7 @@ type BaseContainerProps = Pick<ResponsiveContainerProps, 'height' | 'width' | 'a
 type DefaultLineProps = Pick<LineProps, 'type' | 'strokeWidth' | 'dot'>
 type DefaultBarProps = Pick<LineProps, 'layout'>
 
-type ChartSchema = {
+type ChartConfig = {
   xAxis?: BaseAxisProps,
   yAxis?: BaseAxisProps, 
   container?: BaseContainerProps,
@@ -17,7 +17,7 @@ type BaseChartProps = {
   dataKeys: string[],
   xAxisKey: string,
   yAxisKey: string,
-  config: ChartSchema
+  config: ChartConfig
 }
 
 type LineProps = {

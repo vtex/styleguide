@@ -9,8 +9,8 @@ import {
   ResponsiveContainer,
   Tooltip,
 } from 'recharts'
-import { colors } from '../commonProps'
-import {getBarDefaultProps} from '../helpers'
+import { colors, tooltipProps } from '../commonProps'
+import { getBarDefaultProps } from '../helpers'
 import PropTypes from 'prop-types'
 
 type Props = {
@@ -38,7 +38,7 @@ const BarChart:FC<Props & BaseChartProps> = ({
         <CartesianGrid {...configs.grid} />
         <XAxis dataKey={xAxisKey} {...configs.xAxis} />
         <YAxis dataKey={yAxisKey} {...configs.yAxis}/>
-        <Tooltip cursor={{fill: 'transparent'}}/>
+        <Tooltip {...tooltipProps}/>
         <Bar dataKey={dataKeys[0]} fill={colors[1]} radius={[3, 3, 0, 0]}/>
       </BarChartBase>
     </ResponsiveContainer>
@@ -58,7 +58,8 @@ BarChart.propTypes = {
   /** The key of y-axis which is corresponding to the data. */
   yAxisKey: PropTypes.string,
   
-  /** The schema prop changes some styles of the chart. This prop should be given as an object.*/
+  /** The schema prop changes some styles of the chart. 
+   * This prop should be given as an object. Check an example [here](/#/Components/Charts/LineChart?id=chart-config)*/
   config: PropTypes.object,
 
   /** An object that will change specific bar props, like the orientation */
