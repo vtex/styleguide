@@ -7,6 +7,25 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.97.1] - 2019-12-03
+
+### Added
+
+- `EXPERIMENTAL_useCheckboxTree` hook
+
+### Removed
+
+- `EXPERIMENTAL_useTableBulkActions` hook
+- `EXPERIMENTAL_useTableTreeCheckboxes` hook
+
+### Changed
+
+- Unify the Headings of `EXPERIMENTAL_Table` and `EXPERIMENTAL_TableTree`
+
+### Fixed
+
+- Distance of checkboxes on `EXPERIMENTAL_TABLE`
+
 ## [9.97.0] - 2019-12-02
 
 ### Added

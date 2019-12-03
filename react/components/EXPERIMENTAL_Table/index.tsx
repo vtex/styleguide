@@ -10,6 +10,7 @@ import FilterBar from './FilterBar'
 import Headings from './DataTable/Headings'
 import Rows from './DataTable/Rows'
 import { DENSITY_OPTIONS, Density } from './hooks/useTableMeasures'
+import { Checkboxes } from '../EXPERIMENTAL_useCheckboxTree/types'
 
 const Table: FC<TableProps> & TableComposites = ({
   children,
@@ -18,6 +19,7 @@ const Table: FC<TableProps> & TableComposites = ({
   loading,
   emptyState,
   empty,
+  checkboxes,
   ...props
 }) => {
   if (!measures) {
@@ -41,12 +43,13 @@ const Table: FC<TableProps> & TableComposites = ({
         <thead
           id={NAMESPACES.HEADER}
           className="w-100 ph4 truncate overflow-x-hidden c-muted-2 f6">
-          <Headings columns={columns} />
+          <Headings columns={columns} checkboxes={checkboxes} />
         </thead>
 
         {!empty && !loading && (
           <tbody>
             <Rows
+              checkboxes={checkboxes}
               selectedDensity={selectedDensity}
               columns={columns}
               items={items}
@@ -97,7 +100,9 @@ export const tablePropTypes = {
   }),
 }
 
-export type TableProps = InferProps<typeof tablePropTypes>
+export type TableProps = InferProps<typeof tablePropTypes> & {
+  checkboxes: Checkboxes<unknown>
+}
 
 export type TableComposites = {
   Toolbar: FC

@@ -1,28 +1,45 @@
-import { getFlat, getToggledState } from '../checkboxesUtils'
+import { getFlat, getToggledState } from '../util'
 
 const props = ['children', 'related', 'friends']
 const comparator = item => candidate => item.name === candidate.name
 
-props.forEach(prop => {
-  test(`Tree is flattened correctly for prop ${prop}`, () => {
-    expect(getFlat(treeForProp(prop), [], prop)).toEqual(
-      flattenedTreeForProp(prop)
-    )
+describe('CheckboxTree util tests', () => {
+  it('should flat the tree correctly', () => {
+    props.forEach(prop => {
+      expect(getFlat(treeForProp(prop), [], prop)).toEqual(
+        flattenedTreeForProp(prop)
+      )
+    })
   })
-
-  test(`The state is toggled correctly on a item without childs on ${prop} prop`, () => {
-    expect(getToggledState([], { name: 'Alok' }, prop, comparator)).toEqual([
-      { name: 'Alok' },
-    ])
-    expect(getToggledState([], { name: 'KVSH' }, prop, comparator)).toEqual([
-      { name: 'KVSH' },
-    ])
+  it('should toggle state correctly on a item without chidren', () => {
+    props.forEach(prop => {
+      expect(getToggledState([], { name: 'Alok' }, prop, comparator)).toEqual([
+        { name: 'Alok' },
+      ])
+      expect(getToggledState([], { name: 'KVSH' }, prop, comparator)).toEqual([
+        { name: 'KVSH' },
+      ])
+    })
   })
-
-  test(`The state is toggled correctly on a item with childs on ${prop} prop`, () => {
-    expect(
-      getToggledState(
-        [],
+  it('should toggle state correctly on a item with chidren', () => {
+    props.forEach(prop => {
+      expect(
+        getToggledState(
+          [],
+          {
+            name: 'Vintage Culture',
+            [prop]: [
+              { name: 'Alok' },
+              {
+                name: 'Cat Dealers',
+                [prop]: [{ name: 'KVSH' }],
+              },
+            ],
+          },
+          prop,
+          comparator
+        )
+      ).toEqual([
         {
           name: 'Vintage Culture',
           [prop]: [
@@ -33,27 +50,14 @@ props.forEach(prop => {
             },
           ],
         },
-        prop,
-        comparator
-      )
-    ).toEqual([
-      {
-        name: 'Vintage Culture',
-        [prop]: [
-          { name: 'Alok' },
-          {
-            name: 'Cat Dealers',
-            [prop]: [{ name: 'KVSH' }],
-          },
-        ],
-      },
-      { name: 'Alok' },
-      {
-        name: 'Cat Dealers',
-        [prop]: [{ name: 'KVSH' }],
-      },
-      { name: 'KVSH' },
-    ])
+        { name: 'Alok' },
+        {
+          name: 'Cat Dealers',
+          [prop]: [{ name: 'KVSH' }],
+        },
+        { name: 'KVSH' },
+      ])
+    })
   })
 })
 

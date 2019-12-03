@@ -1,10 +1,12 @@
-import React, { FC } from 'react'
+import React, { FC, useCallback } from 'react'
 import uuid from 'uuid'
 
 import { NAMESPACES } from '../constants'
 import Row, { RowProps, CellProps } from './Row'
 import { Column, Items } from '../index'
 import { Density } from '../hooks/useTableMeasures'
+import CellPrefix from './CellPrefix'
+import { Checkboxes } from '../../EXPERIMENTAL_useCheckboxTree/types'
 
 const Rows: FC<RowsProps> = ({
   columns,
@@ -15,8 +17,18 @@ const Rows: FC<RowsProps> = ({
   isRowActive,
   rowHeight,
   selectedDensity,
+  checkboxes,
 }) => {
   const renderRow = (rowData: unknown) => {
+    const toggleChecked = useCallback(() => checkboxes.toggle(rowData), [
+      rowData,
+    ])
+
+    const isRowChecked = checkboxes && checkboxes.isChecked(rowData)
+    const isRowPartiallyChecked =
+      checkboxes && checkboxes.isPartiallyChecked(rowData)
+    const isRowSelected = isRowChecked || isRowPartiallyChecked
+
     const clickable = onRowClick
       ? {
           onClick: () => onRowClick({ rowData }),
@@ -27,9 +39,9 @@ const Rows: FC<RowsProps> = ({
         {...rowProps}
         {...clickable}
         height={rowHeight}
-        active={isRowActive && isRowActive(rowData)}
+        active={(isRowActive && isRowActive(rowData)) || isRowSelected}
         key={`${NAMESPACES.ROW}-${uuid()}`}>
-        {columns.map((column: Column) => {
+        {columns.map((column: Column, cellIndex: number) => {
           const { cellRenderer, width } = column
           const cellData = rowData[column.id]
           const content = cellRenderer
@@ -37,6 +49,19 @@ const Rows: FC<RowsProps> = ({
             : cellData
           return (
             <Row.Cell {...cellProps} key={`cel-${uuid()}`} width={width}>
+              {cellIndex === 0 && (
+                <CellPrefix>
+                  {checkboxes && (
+                    <span className="ph3">
+                      <CellPrefix.Checkbox
+                        checked={isRowChecked}
+                        partial={isRowPartiallyChecked}
+                        onClick={toggleChecked}
+                      />
+                    </span>
+                  )}
+                </CellPrefix>
+              )}
               {content}
             </Row.Cell>
           )
@@ -57,6 +82,7 @@ export type RowsProps = {
   rowProps?: RowProps
   rowHeight: number
   cellProps?: Pick<CellProps, 'as' | 'className'>
+  checkboxes?: Checkboxes<unknown>
 }
 
 export default React.memo(Rows)

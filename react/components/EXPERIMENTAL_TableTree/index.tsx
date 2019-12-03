@@ -6,10 +6,11 @@ import DataTable from '../EXPERIMENTAL_Table/DataTable'
 import Tree from './Tree'
 import { tablePropTypes, TableComposites } from '../EXPERIMENTAL_Table'
 import { InferProps } from 'prop-types'
-import TreeHeadings from './Tree/TreeHeadings'
 import Pagination from '../EXPERIMENTAL_Table/Pagination'
 import FilterBar from '../EXPERIMENTAL_Table/FilterBar'
-import { defaultComparatorCurry } from './hooks/useTableTreeCheckboxes'
+import { Checkboxes } from '../EXPERIMENTAL_useCheckboxTree/types'
+import { defaultComparatorCurry } from '../EXPERIMENTAL_useCheckboxTree/constants'
+import Headings from '../EXPERIMENTAL_Table/DataTable/Headings'
 
 const TableTree: FC<Props> & TableComposites = ({
   children,
@@ -39,11 +40,7 @@ const TableTree: FC<Props> & TableComposites = ({
         empty={empty}
         height={tableHeight}>
         <thead className="w-100 ph4 truncate overflow-x-hidden c-muted-2 f6">
-          <TreeHeadings
-            checkboxes={checkboxes}
-            columns={columns}
-            items={items}
-          />
+          <Headings checkboxes={checkboxes} columns={columns} />
         </thead>
         {!empty && !loading && (
           <tbody>
@@ -74,29 +71,14 @@ const treePropTypes = {
   comparator: PropTypes.func,
 }
 
-const checkboxesPropTypes = {
-  checkboxes: PropTypes.shape({
-    checkedItems: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string,
-      })
-    ),
-    itemTree: PropTypes.shape({
-      id: PropTypes.string,
-    }),
-    toggle: PropTypes.func,
-    isChecked: PropTypes.func,
-    isPartiallyChecked: PropTypes.func,
-  }),
-}
-
 const propTypes = {
   ...treePropTypes,
   ...tablePropTypes,
-  ...checkboxesPropTypes,
 }
 
-type Props = InferProps<typeof propTypes>
+type Props = InferProps<typeof propTypes> & {
+  checkboxes?: Checkboxes<unknown>
+}
 
 TableTree.Toolbar = Toolbar
 TableTree.FilterBar = FilterBar

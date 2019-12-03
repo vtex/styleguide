@@ -783,11 +783,9 @@ There are two "select all" items.
 Check the console when selecting/unselecting rows or clicking an action button in the example below to see the action parameters
 
 ```js
-// Imports
 const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
-const useTableBulkActions = require('./hooks/useTableBulkActions.tsx').default
+const useCheckboxTree = require('../EXPERIMENTAL_useCheckboxTree').default
 
-// Define the columns
 const columns = [
   {
     id: 'name',
@@ -803,7 +801,6 @@ const columns = [
   },
 ]
 
-// Define the items with children
 const items = [
   {
     id: 1,
@@ -855,33 +852,31 @@ function BulkExample() {
     ],
   }
 
-  const comparator = item => candidate => item.id === candidate.id
-
-  const { bulkedColumns, isRowSelected, ...bulkData } = useTableBulkActions({
-    columns,
-    comparator,
-    items,
-    bulkActions,
-  })
-
   const measures = useTableMeasures({
     size: items.length,
   })
 
-  const density = {
-    label: 'Line density',
-    lowOptionLabel: 'Low',
-    mediumOptionLabel: 'Medium',
-    highOptionLabel: 'High',
+  const comparator = item => candidate => {
+    return item.email === candidate.email
   }
+
+  const onToggle = ({ checkedItems }) => {
+    console.log(checkedItems)
+  }
+
+  const checkboxes = useCheckboxTree({
+    comparator,
+    items,
+    onToggle,
+  })
 
   return (
     <Table
       measures={measures}
-      isRowActive={isRowSelected}
-      columns={bulkedColumns}
+      checkboxes={checkboxes}
+      columns={columns}
       items={items}>
-      <Table.BulkActions data={bulkData} {...bulkActions} />
+      <Table.BulkActions checkboxes={checkboxes} {...bulkActions} />
     </Table>
   )
 }

@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useMemo } from 'react'
 import csx from 'classnames'
 
 import Button from '../../Button'
@@ -7,8 +7,8 @@ import ActionMenu from '../../ActionMenu'
 import Close from '../icon/Close'
 
 import { ORDER_CLASSNAMES, NAMESPACES } from './constants'
-import useTableBulkActions from './hooks/useTableBulkActions'
 import { MenuAction } from './Toolbar/PopoverMenu'
+import { Checkboxes } from '../EXPERIMENTAL_useCheckboxTree/types'
 
 const BULK_ACTIONS_HEIGHT = 56
 const BULK_ACTIONS_TRANSITION =
@@ -19,21 +19,16 @@ const BulkActions: FC<BulkActionsProps> = ({
   main,
   totalItems,
   others,
-  data,
+  checkboxes,
 }) => {
-  const {
-    bulkState,
-    selectAllRows,
-    deselectAllRows,
-    hasPrimaryBulkAction,
-    hasSecondaryBulkActions,
-  } = data
-  const selectedRowsLength = bulkState.selectedRows.length
+  const hasPrimaryBulkAction = !!main && typeof main.onClick === 'function'
+  const hasSecondaryBulkActions = !!others && others.length > 0
+  const selectedRowsLength = checkboxes.checkedItems.length
   const hasRowsSelected = selectedRowsLength > 0
 
-  const bulkActionsReturnedParameters = bulkState.allLinesSelected
-    ? { allLinesSelected: true }
-    : { selectedRows: bulkState.selectedRows }
+  const bulkActionsReturnedParameters = {
+    selectedRows: checkboxes.checkedItems,
+  }
 
   return (
     <div
@@ -73,24 +68,27 @@ const BulkActions: FC<BulkActionsProps> = ({
         )}
       </div>
       <div className="tr flex flex-row items-center">
-        {!bulkState.allLinesSelected && (
+        {!checkboxes.isChecked(checkboxes.itemTree) && (
           <span className="mr4 c-muted-4">
             {texts.rowsSelected(selectedRowsLength)}
           </span>
         )}
         {texts.selectAll && texts.allRowsSelected && (
           <span className="mr2">
-            {bulkState.allLinesSelected ? (
+            {checkboxes.isChecked(checkboxes.itemTree) ? (
               texts.allRowsSelected(<span className="b">{totalItems}</span>)
             ) : (
-              <Button onClick={() => selectAllRows()}>
+              <Button onClick={() => checkboxes.check(checkboxes.itemTree)}>
                 <span className="ttu">{`${texts.selectAll} ${totalItems}`}</span>
               </Button>
             )}
           </span>
         )}
 
-        <ButtonWithIcon icon={<Close />} onClick={() => deselectAllRows()} />
+        <ButtonWithIcon
+          icon={<Close />}
+          onClick={() => checkboxes.uncheck(checkboxes.itemTree)}
+        />
       </div>
     </div>
   )
@@ -107,7 +105,7 @@ export type BulkActionsProps = {
   onChange: Function
   main: MenuAction
   others: Array<MenuAction>
-  data: ReturnType<typeof useTableBulkActions>
+  checkboxes: Checkboxes<unknown>
 }
 
 export default BulkActions
