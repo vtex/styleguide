@@ -1,12 +1,22 @@
 export const commonDefaultProps = {
   container:{
-    height: 300,
-    width: '100%'
+    height: '100%',
+    width: '100%',
+    aspect: 4.0/3.0
   },
-  axis: {
+  xAxis: {
     axisLine: false,
     tickLine: false,
-    padding: { left: 10, right: 10 }
+    tick: true,
+    tickMargin: 15,
+    hide: false
+  },
+  yAxis: {
+    axisLine: false,
+    tickLine: false,
+    tick: true,
+    tickMargin: 10,
+    hide: false
   },
   grid: {
     horizontal: false,

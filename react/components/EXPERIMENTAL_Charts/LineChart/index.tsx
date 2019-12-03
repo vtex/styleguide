@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { zipWith } from 'lodash'
+import { zipWith, curry } from 'lodash'
 import {
   Line,
   LineChart as LineChartBase,
@@ -11,46 +11,47 @@ import {
   TooltipFormatter,
 } from 'recharts'
 import PropTypes from 'prop-types'
-import { colors, defaultProps, tooltipProps } from './constants'
-import getDefaultProps from '../helpers'
+import { colors, tooltipProps } from './constants'
+import { getChartDefaultProps, getLineDefaultProps }from '../helpers'
 
 interface Props {
   data: any,
   dataKeys: string[],
   xAxisKey: string,
-  schema: ChartProps,
-  formatter: TooltipFormatter
+  config: ChartProps,
+  tooltipFormatter: TooltipFormatter,
+  lineProps: LineProps,
 }
 
-const renderLine = (key, color) => (
+const renderLine = (lineConfigs, key, color) =>(
   <Line
     key={key}
     dataKey={key}
     stroke={color}
-    {...defaultProps}
+    {...lineConfigs}
   />
 )
+
 
 const LineChart: FC<Props> = ({
   data,
   dataKeys,
   xAxisKey,
-  schema,
-  formatter
+  config,
+  tooltipFormatter,
+  lineProps
 }) => {
-  const { configs } = getDefaultProps(schema); 
+  const { configs } = getChartDefaultProps(config); 
+  const { lineConfigs } = getLineDefaultProps(lineProps)
 
   return (
     <ResponsiveContainer {...configs.container}>
       <LineChartBase data={data}>
-        <XAxis dataKey={xAxisKey} {...configs.axis} />
-        <YAxis {...configs.axis}/>
-        <CartesianGrid
-          horizontal={configs.grid.horizontal}
-          vertical={configs.grid.vertical}
-        />
-        <Tooltip formatter={formatter} {...tooltipProps}/>
-        {zipWith(dataKeys, colors, renderLine)}
+        <CartesianGrid {...configs.grid}/>
+        <XAxis dataKey={xAxisKey} {...configs.xAxis}/>
+        <YAxis  {...configs.yAxis} />
+        <Tooltip formatter={tooltipFormatter} {...tooltipProps}/>
+        {zipWith(dataKeys, colors, curry(renderLine)(lineConfigs))}
       </LineChartBase>
     </ResponsiveContainer>
   )
@@ -67,10 +68,38 @@ LineChart.propTypes = {
   xAxisKey: PropTypes.string.isRequired,
   
   /** The formatter function of value in tooltip. If you return an array, the first entry will be the formatted "value", and the second entry will be the formatted "key" */
-  formatter: PropTypes.func,
+  tooltipFormatter: PropTypes.func,
   
   /** The schema prop changes some styles of the chart. This prop should be given as an object.*/
-  schema: PropTypes.object,
+  config: PropTypes.shape({
+    xAxis: PropTypes.shape({
+      axisLine: PropTypes.bool,
+      tickLine: PropTypes.bool,
+      tick: PropTypes.bool,
+      hide: PropTypes.bool
+    }),
+    yAxis: PropTypes.shape({
+      axisLine: PropTypes.bool,
+      tickLine: PropTypes.bool,
+      tick: PropTypes.bool,
+      hide: PropTypes.bool
+    }), 
+    container: PropTypes.shape({
+      height: PropTypes.oneOfType(
+        [PropTypes.string, PropTypes.number]
+      ),
+      width: PropTypes.oneOfType(
+        [PropTypes.string, PropTypes.number]
+      ),
+    }),
+    grid: PropTypes.shape({
+      horizontal: PropTypes.bool,
+      vertical: PropTypes.bool,
+    })
+  }),
+
+  /** The interpolation defines how data points should be connected when creating a path.*/
+  lineProps: PropTypes.object,
 }
   
 export default LineChart

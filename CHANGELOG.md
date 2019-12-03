@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.97.2] - 2019-12-03
+### Added
+- `hide` prop to allow hiding a LineChart axis
+- `type` prop to allow different interpolations of the LineChart
+- `tick` prop to allow a customized label on LineChart
+
+### Changed
+- `axis` prop to `xAxis` and `yAxis` props on LineChart schema
+- default `container` prop to have a `width` and `height` dependent of the screen size
+- `schema` to `config` prop.
+
 ## [9.97.1] - 2019-12-03
 
 ### Added
