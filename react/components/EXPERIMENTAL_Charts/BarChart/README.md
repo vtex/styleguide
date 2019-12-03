@@ -7,7 +7,9 @@ const data = require('./sampleData').default;
     data={data}
     xAxisKey='name'
     yAxisKey='pv'
-    config={{container: { height: '100%', width: '100%'}}}
+    config={{
+      container: { height: '100%', width: '100%'}
+    }}
   />
 ```
 
@@ -58,13 +60,15 @@ const data = require('./sampleData').default;
 **OBS:** For you can change correctly the orientation, sets the type of the axis, otherwise, the chart doesn't work.
 For default, xAxis is a `category` and yAxis is a `number`
 ```js static
-const schema = {
-  xAxis: {
-    type: 'category'
-  },
-  yAxis: {
-    type: 'number'
-  }
-};
+  <BarChart
+    data={data}
+    xAxisKey='name'
+    yAxisKey='pv'
+    config={{
+      xAxis: {type: 'category'},
+      yAxis: {type: 'number'}
+    }}
+    barProps={{layout: 'horizontal'}}
+  />
 ```
 
