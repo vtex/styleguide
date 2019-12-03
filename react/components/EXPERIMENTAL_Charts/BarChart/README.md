@@ -8,7 +8,7 @@ const data = require('./sampleData').default;
     xAxisKey='name'
     yAxisKey='pv'
     dataKeys={['pv']}
-    config={{container: { height: '100%', width: '99%'}}}
+    config={{container: { height: '100%', width: '100%'}}}
   />
 ```
 
@@ -31,7 +31,11 @@ const data = require('./sampleData').default;
     xAxisKey='pv'
     yAxisKey='name'
     dataKeys={['pv']}
-    config={{container: { height: '30%', width: '30%'},xAxis: {type: 'number'}, yAxis: {type: 'category'}}}
+    config={{
+      container: { height: '30%', width: '30%'},
+      xAxis: {type: 'number'}, 
+      yAxis: {type: 'category'}
+    }}
     barProps={{layout: 'vertical'}}
   />
 ```
@@ -45,7 +49,11 @@ const data = require('./sampleData').default;
     xAxisKey='name'
     yAxisKey='pv'
     dataKeys={['pv']}
-    config={{container: { height: '30%', width: '30%'}, xAxis: {type: 'category'}, yAxis: {type: 'number'}}}
+    config={{
+      container: {height: '30%', width: '30%'},
+      xAxis: {type: 'category'},
+      yAxis: {type: 'number'}
+    }}
     barProps={{layout: 'horizontal'}}
   />
 

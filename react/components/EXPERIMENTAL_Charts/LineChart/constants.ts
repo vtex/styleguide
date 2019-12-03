@@ -3,8 +3,3 @@ export const defaultProps: DefaultLineProps = {
   strokeWidth: 3,
   dot: false,
 }
-
-export const tooltipProps = {
-  cursor: false,
-  labelStyle: {color: '#828282'}
-}

@@ -43,8 +43,8 @@ const customConfig = {container: { height: '40%', width: '40%'}};
 ```
 - Avoid the grid from visually competing with the data.
 
-# Line chart Config
-The config prop defines the style of the chart. This should be given as an object with styles defined for `axis`, `grid`, `container`, according to your needs.  
+# Chart config
+The config prop is common to all the charts, and defines the style of the chart. This should be given as an object with styles defined for `axis`, `grid`, `container`, according to your needs.  
 
 ```js noeditor static
 const config = {
