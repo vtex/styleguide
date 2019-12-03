@@ -2,7 +2,7 @@ import { merge } from 'lodash'
 import { commonDefaultProps } from './commonProps'
 import { defaultProps } from './LineChart/constants'
 
-const getChartDefaultProps = (userProps: ChartSchema)  => {
+const getChartDefaultProps = (userProps: ChartConfig)  => {
   const props = commonDefaultProps
   userProps && Object.keys(userProps).forEach(key => (
     props[key] = merge(props[key], userProps[key])
