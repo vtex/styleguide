@@ -44,8 +44,8 @@ BubbleChart.propTypes = {
   /** The key of x-axis which is corresponding to the data. */
   xAxisKey: PropTypes.string.isRequired,
 
-  /** The keys or getter of a group of data which should be unique in a ScatterChart. */
-  dataKeys: PropTypes.arrayOf(PropTypes.string).isRequired,
+  /** The keys of y-axis which is corresponding to the data. */
+  yAxisKey: PropTypes.string.isRequired,
   
   /** The key of y-axis which is corresponding to the data, it measures size of dot. */
   zAxisKey: PropTypes.string.isRequired,
