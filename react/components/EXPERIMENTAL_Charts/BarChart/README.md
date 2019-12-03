@@ -7,7 +7,6 @@ const data = require('./sampleData').default;
     data={data}
     xAxisKey='name'
     yAxisKey='pv'
-    dataKeys={['pv']}
     config={{container: { height: '100%', width: '100%'}}}
   />
 ```
@@ -30,7 +29,6 @@ const data = require('./sampleData').default;
     data={data}
     xAxisKey='pv'
     yAxisKey='name'
-    dataKeys={['pv']}
     config={{
       container: { height: '30%', width: '30%'},
       xAxis: {type: 'number'}, 
@@ -48,7 +46,6 @@ const data = require('./sampleData').default;
     data={data}
     xAxisKey='name'
     yAxisKey='pv'
-    dataKeys={['pv']}
     config={{
       container: {height: '30%', width: '30%'},
       xAxis: {type: 'category'},
