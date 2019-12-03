@@ -11,6 +11,7 @@ import {
   TooltipFormatter,
 } from 'recharts'
 import PropTypes from 'prop-types'
+import uuid from 'uuid'
 import { tooltipProps } from './constants'
 import { colors } from '../commonProps'
 import { getChartDefaultProps, getLineDefaultProps }from '../helpers'
@@ -26,7 +27,7 @@ interface Props {
 
 const renderLine = (lineConfigs, key, color) =>(
   <Line
-    key={key}
+    key={uuid()}
     dataKey={key}
     stroke={color}
     {...lineConfigs}

@@ -12,7 +12,6 @@ import {
 import { colors } from '../commonProps'
 import {getBarDefaultProps} from '../helpers'
 import PropTypes from 'prop-types'
-import { chartDefaultConfig } from './constants'
 
 type Props = {
   barProps: BarProps
@@ -28,21 +27,21 @@ const BarChart:FC<Props & BaseChartProps> = ({
 }) => {
   const { configs } = getChartDefaultProps(config)
   const { barConfigs } = getBarDefaultProps(barProps)
-  console.log(configs)
+
   return (
-  <ResponsiveContainer {...configs.container} >
-    <BarChartBase
-      data={data}
-      barCategoryGap='20%'
-      {...barConfigs}
-    >
-      <CartesianGrid {...configs.grid} />
-      <XAxis dataKey={xAxisKey} {...configs.xAxis} />
-      <YAxis dataKey={yAxisKey} {...configs.yAxis}/>
-      <Tooltip cursor={{fill: 'transparent'}}/>
-      <Bar dataKey={dataKeys[0]} fill={colors[1]} radius={[3, 3, 0, 0]}/>
-    </BarChartBase>
-  </ResponsiveContainer>
+    <ResponsiveContainer {...configs.container} >
+      <BarChartBase
+        data={data}
+        barCategoryGap='20%'
+        {...barConfigs}
+      >
+        <CartesianGrid {...configs.grid} />
+        <XAxis dataKey={xAxisKey} {...configs.xAxis} />
+        <YAxis dataKey={yAxisKey} {...configs.yAxis}/>
+        <Tooltip cursor={{fill: 'transparent'}}/>
+        <Bar dataKey={dataKeys[0]} fill={colors[1]} radius={[3, 3, 0, 0]}/>
+      </BarChartBase>
+    </ResponsiveContainer>
   )
 }
 
