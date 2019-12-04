@@ -3,7 +3,7 @@ import csx from 'classnames'
 
 import { ORDER_CLASSNAMES, NAMESPACES } from '../constants'
 import Actions from './Actions'
-import Right from './Right'
+import Tail from './Tail'
 
 const BULK_ACTIONS_HEIGHT = 56
 const BULK_ACTIONS_TRANSITION =
@@ -44,10 +44,10 @@ export type BulkActionsProps = {
 
 type Composites = {
   Actions: FC
-  Right: FC
+  Tail: FC
 }
 
 BulkActions.Actions = Actions
-BulkActions.Right = Right
+BulkActions.Tail = Tail
 
 export default BulkActions

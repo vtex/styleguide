@@ -6,7 +6,7 @@ import Close from '../../icon/Close'
 import Button from '../../Button'
 import { ORDER_CLASSNAMES } from '../constants'
 
-export default function Right({ children }) {
+export default function Tail({ children }) {
   const className = csx(
     'tr flex flex-row items-center',
     ORDER_CLASSNAMES.BULK_CHILD.RIGHT
@@ -14,9 +14,9 @@ export default function Right({ children }) {
   return <div className={className}>{children}</div>
 }
 
-Right.Info = Info
-Right.Toggle = Toggle
-Right.Dismiss = Dismiss
+Tail.Info = Info
+Tail.Toggle = Toggle
+Tail.Dismiss = Dismiss
 
 function Dismiss({ onClick }: { onClick: () => void }) {
   return <ButtonWithIcon icon={<Close />} onClick={onClick} />

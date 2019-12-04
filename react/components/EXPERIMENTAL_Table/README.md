@@ -764,6 +764,152 @@ function PaginationExample() {
 
 # Bulk Actions
 
+### Actions Example
+
+```js
+const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
+const useCheckboxTree = require('../EXPERIMENTAL_useCheckboxTree').default
+const data = require('./sampleData')
+
+const columns = [
+  {
+    id: 'name',
+    title: 'Name',
+  },
+  {
+    id: 'manufacturer',
+    title: 'Manufacturer',
+  },
+  {
+    id: 'qty',
+    title: 'Qty',
+  },
+  {
+    id: 'costPrice',
+    title: 'Cost',
+    cellRenderer: currencyRenderer,
+  },
+  {
+    id: 'wholesalePrice',
+    title: 'Wholesale',
+    cellRenderer: currencyRenderer,
+  },
+  {
+    id: 'retailPrice',
+    title: 'Retail',
+    cellRenderer: currencyRenderer,
+  },
+]
+
+function ActionsExample() {
+  const { items, applyDiscount, increaseQty } = useProducts()
+
+  const primaryAction = {
+    label: 'Apply 10% Discount',
+    onClick: () => applyDiscount(checkboxes.checkedItems, 0.1),
+  }
+
+  const secondaryActions = {
+    label: 'Quantity',
+    actions: [
+      {
+        label: 'Increase 10',
+        onClick: checked => increaseQty(checked, 10),
+      },
+      {
+        label: 'Decrease 10',
+        onClick: checked => increaseQty(checked, 10),
+      },
+    ],
+    onActionClick: action => action.onClick(checkboxes.checkedItems),
+  }
+
+  const measures = useTableMeasures({
+    size: items.length,
+  })
+
+  const checkboxes = useCheckboxTree({
+    items,
+  })
+
+  return (
+    <Table
+      measures={measures}
+      checkboxes={checkboxes}
+      columns={columns}
+      items={items}>
+      <Table.Bulk active={checkboxes.someChecked}>
+        <Table.Bulk.Actions>
+          <Table.Bulk.Actions.Primary {...primaryAction} />
+          <Table.Bulk.Actions.Secondary {...secondaryActions} />
+        </Table.Bulk.Actions>
+        <Table.Bulk.Tail>
+          <Table.Bulk.Tail.Dismiss onClick={checkboxes.uncheckAll} />
+        </Table.Bulk.Tail>
+      </Table.Bulk>
+    </Table>
+  )
+}
+
+function currencyRenderer({ cellData, rowData }) {
+  const { costPrice } = rowData
+  const className = cellData < costPrice ? 'red' : ''
+  return <span className={className}>$ {parseFloat(cellData).toFixed(2)}</span>
+}
+
+function useProducts() {
+  const [items, setItems] = React.useState(data.products)
+
+  const bulkUpdate = group => positive => {
+    const groupIds = group.map(item => item.id)
+    setItems(oldItems =>
+      oldItems.map(item => (groupIds.includes(item.id) ? positive(item) : item))
+    )
+  }
+
+  const discountCurry = amt => value => value - value * amt
+
+  const applyDiscount = React.useCallback(
+    (group, amt) => {
+      const calcDiscount = discountCurry(amt)
+      const update = bulkUpdate(group)
+      update(item => ({
+        ...item,
+        retailPrice: calcDiscount(item.retailPrice),
+        wholesalePrice: calcDiscount(item.wholesalePrice),
+      }))
+    },
+    [items]
+  )
+
+  const increaseQty = React.useCallback(
+    (group, amt) => {
+      const update = bulkUpdate(group)
+      update(item => ({
+        ...item,
+        qty: item.qty + amt,
+      }))
+    },
+    [items]
+  )
+
+  const decreaseQty = React.useCallback(
+    (group, amt) => {
+      const update = bulkUpdate(group)
+      update(item => ({
+        ...item,
+        qty: item.qty - amt,
+      }))
+    },
+    [items]
+  )
+
+  return { items, applyDiscount, increaseQty, decreaseQty }
+}
+
+;<ActionsExample />
+```
+
 ### Collections Example
 
 ```js
@@ -861,24 +1007,24 @@ function BulkCollectionsExample() {
         columns={columns}
         items={items}>
         <Table.Bulk active={checkboxes.someChecked}>
-          <Table.Bulk.Right>
+          <Table.Bulk.Tail>
             {!checkboxes.allChecked && (
-              <Table.Bulk.Right.Info>
+              <Table.Bulk.Tail.Info>
                 All rows selected: {checkboxes.checkedItems.length}
-              </Table.Bulk.Right.Info>
+              </Table.Bulk.Tail.Info>
             )}
-            <Table.Bulk.Right.Toggle
+            <Table.Bulk.Tail.Toggle
               button={{
                 text: `Select all ${items.length}`,
                 onClick: modal.toggle,
               }}
               active={action.active}>
               Selected rows: <span className="b">{items.length}</span>
-            </Table.Bulk.Right.Toggle>
+            </Table.Bulk.Tail.Toggle>
             {checkboxes.allChecked && (
-              <Table.Bulk.Right.Dismiss onClick={onDismiss} />
+              <Table.Bulk.Tail.Dismiss onClick={onDismiss} />
             )}
-          </Table.Bulk.Right>
+          </Table.Bulk.Tail>
         </Table.Bulk>
       </Table>
 
@@ -1000,18 +1146,18 @@ function BulkExample() {
           <Table.Bulk.Actions.Primary {...primaryAction} />
           <Table.Bulk.Actions.Secondary {...secondaryActions} />
         </Table.Bulk.Actions>
-        <Table.Bulk.Right>
+        <Table.Bulk.Tail>
           {!checkboxes.allChecked && (
-            <Table.Bulk.Right.Info>
+            <Table.Bulk.Tail.Info>
               All rows selected: {checkboxes.checkedItems.length}
-            </Table.Bulk.Right.Info>
+            </Table.Bulk.Tail.Info>
           )}
-          <Table.Bulk.Right.Toggle
+          <Table.Bulk.Tail.Toggle
             button={{ text: `Select all ${items.length}` }}>
             Selected rows: <span className="b">{items.length}</span>
-          </Table.Bulk.Right.Toggle>
-          <Table.Bulk.Right.Dismiss onClick={checkboxes.uncheckAll} />
-        </Table.Bulk.Right>
+          </Table.Bulk.Tail.Toggle>
+          <Table.Bulk.Tail.Dismiss onClick={checkboxes.uncheckAll} />
+        </Table.Bulk.Tail>
       </Table.Bulk>
     </Table>
   )
