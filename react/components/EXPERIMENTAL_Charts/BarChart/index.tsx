@@ -28,8 +28,7 @@ const BarChart:FC<Props & BaseChartProps> = ({
   const { configs } = getChartDefaultProps(config)
   const { barConfigs } = getBarDefaultProps(barProps)
   const dataKey = (barConfigs.layout == Layout.HORIZONTAL) ? yAxisKey: xAxisKey
-  console.log(dataKey)
-
+  
   return (
     <ResponsiveContainer {...configs.container} >
       <BarChartBase
