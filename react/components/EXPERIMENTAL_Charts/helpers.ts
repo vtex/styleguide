@@ -18,16 +18,9 @@ const getRangeOfZAxis = (key, data) => {
   return [min, max]
 } 
 
-const getRangeOfZAxis = (key, data) => {
-  const values = data.map(item => item[key])
-  const min = Math.min(...values)
-  const max = Math.max(...values)
-  return [min, max]
+const getChartDefaultProps = (userProps: ChartConfig, customConfig = commonDefaultProps) => {
+  return { configs: merge(merge(commonDefaultProps, customConfig), userProps) }
 }
-
-const getChartDefaultProps = (userProps: ChartConfig, customConfig = commonDefaultProps) => ({
-  configs: merge(merge(commonDefaultProps, customConfig), userProps) 
-})
 
 const getLineDefaultProps = (userProps: LineProps) => ({
   lineConfigs: {...defaultLineProps, ...userProps}
