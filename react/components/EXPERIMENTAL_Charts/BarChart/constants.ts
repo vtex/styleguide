@@ -1,12 +1,12 @@
 export const BAR_GAP = '20%'
 
 export enum Layout {
-  VERTICAL = 'vertical',
-  HORIZONTAL = 'horizontal'
+  VERTICAL = "vertical",
+  HORIZONTAL = "horizontal"
 }
 
 export const defaultProps: DefaultBarProps  = {
-  layout: 'horizontal',
+  layout: Layout.HORIZONTAL,
 }
 
 export const chartDefaultConfig: ChartConfig = {
