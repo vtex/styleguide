@@ -29,7 +29,6 @@ const renderLine = (lineConfigs, key, color) =>(
   />
 )
 
-
 const LineChart: FC<Props & BaseChartProps> = ({
   data,
   dataKeys,
@@ -38,15 +37,17 @@ const LineChart: FC<Props & BaseChartProps> = ({
   tooltipFormatter,
   lineProps
 }) => {
-  const { configs } = getChartDefaultProps(config); 
+  const { configs } = getChartDefaultProps(config)
   const { lineConfigs } = getLineDefaultProps(lineProps)
+
+  console.log(configs)
 
   return (
     <ResponsiveContainer {...configs.container}>
       <LineChartBase data={data}>
         <CartesianGrid {...configs.grid}/>
-        <XAxis dataKey={xAxisKey} {...configs.xAxis}/>
-        <YAxis  {...configs.yAxis} />
+        <XAxis dataKey={xAxisKey} {...configs.xAxis} />
+        <YAxis {...configs.yAxis} />
         <Tooltip formatter={tooltipFormatter} {...tooltipProps}/>
         {zipWith(dataKeys, colors, curry(renderLine)(lineConfigs))}
       </LineChartBase>
