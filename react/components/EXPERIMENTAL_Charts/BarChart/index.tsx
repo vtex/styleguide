@@ -62,7 +62,32 @@ BarChart.propTypes = {
   
   /** The schema prop changes some styles of the chart. 
    * This prop should be given as an object. Check an example [here](/#/Components/Charts/LineChart?id=chart-config)*/
-  config: PropTypes.object,
+  config: PropTypes.shape({
+    xAxis: PropTypes.shape({
+      axisLine: PropTypes.bool,
+      tickLine: PropTypes.bool,
+      tick: PropTypes.bool,
+      hide: PropTypes.bool
+    }),
+    yAxis: PropTypes.shape({
+      axisLine: PropTypes.bool,
+      tickLine: PropTypes.bool,
+      tick: PropTypes.bool,
+      hide: PropTypes.bool
+    }), 
+    container: PropTypes.shape({
+      height: PropTypes.oneOfType(
+        [PropTypes.string, PropTypes.number]
+      ),
+      width: PropTypes.oneOfType(
+        [PropTypes.string, PropTypes.number]
+      ),
+    }),
+    grid: PropTypes.shape({
+      horizontal: PropTypes.bool,
+      vertical: PropTypes.bool,
+    })
+  }),
 
   /** An object that will change specific bar props, like the orientation */
   barProps: PropTypes.object
