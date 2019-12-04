@@ -96,7 +96,7 @@ const keys = ['customers'];
   dataKeys={keys}
   xAxisKey='hour'
   config={{
-    xAxis:{tick: true}
+    xAxis:{tick: <CustomizedLabel/>}
   }}
 />
 ```
