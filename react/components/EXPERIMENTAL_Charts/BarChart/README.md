@@ -1,4 +1,4 @@
-#### The bar charts shows the data as a rectangular bars, they express quantities through a bar's length, using a common baseline. The bar charts are more effective to compare discrete categories, change over time and make a ranking. 
+#### The bar charts shows the data as rectangular bars. They express quantities through a bar's length, using a common baseline. The bar charts are more effective to compare discrete categories, change over time and make a ranking. 
 
 ```js
 const data = require('./sampleData').default;
@@ -71,4 +71,3 @@ For default, xAxis is a `category` and yAxis is a `number`
     barProps={{layout: 'horizontal'}}
   />
 ```
-
