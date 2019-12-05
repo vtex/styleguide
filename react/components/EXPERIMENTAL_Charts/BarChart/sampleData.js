@@ -12,7 +12,7 @@ const data = [
     amt: 2210,
   },
   {
-    name: 'Category Page',
+    name: 'Search Page',
     uv: 2000,
     pv: 9800,
     amt: 2290,

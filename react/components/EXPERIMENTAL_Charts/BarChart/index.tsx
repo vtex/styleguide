@@ -27,8 +27,8 @@ const BarChart:FC<Props & BaseChartProps> = ({
 }) => {
   const { configs } = getChartDefaultProps(config, chartDefaultConfig)
   const { barConfigs } = getBarDefaultProps(barProps)
-
-  const dataKey = (barConfigs.layout == Layout.HORIZONTAL) ? yAxisKey: xAxisKey
+  const dataKey = (barConfigs.layout == Layout.HORIZONTAL) ? 
+    yAxisKey: xAxisKey
   
   return (
     <ResponsiveContainer {...configs.container} >
@@ -38,8 +38,16 @@ const BarChart:FC<Props & BaseChartProps> = ({
         {...barConfigs}
       >
         <CartesianGrid {...configs.grid} />
-        <XAxis dataKey={xAxisKey} {...configs.xAxis} />
-        <YAxis dataKey={yAxisKey} {...configs.yAxis} />
+        <XAxis
+          dataKey={xAxisKey}
+          dy={-5}
+          {...configs.xAxis}
+        />
+        <YAxis
+          dataKey={yAxisKey}
+          dy={10}
+          {...configs.yAxis}
+        />
         <Tooltip {...tooltipProps} />
         <Bar
           dataKey={dataKey}
