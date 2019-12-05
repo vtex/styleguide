@@ -5,14 +5,13 @@ import { motion } from 'framer-motion'
 
 import { NAMESPACES } from '../constants'
 
-const TRANSITION_DURATION = 0.2
-
 const Row: FC<RowProps> & RowComposites = ({
   children,
   height,
   onClick,
   active,
-  animate,
+  transition,
+  as: As = 'tr',
 }) => {
   const genericProps = {
     onClick,
@@ -23,17 +22,12 @@ const Row: FC<RowProps> & RowComposites = ({
       'bg-action-secondary': active,
     }),
   }
+  const specProps = transition || { style: { height } }
+  const props = { ...genericProps, ...specProps }
 
-  return animate ? (
-    <motion.tr
-      {...genericProps}
-      transition={{ default: { duration: TRANSITION_DURATION } }}
-      initial={animate.from}
-      animate={animate.to}
-    />
-  ) : (
-    <tr {...genericProps} style={{ height }} />
-  )
+  const Tag = transition ? motion[As] : As
+
+  return <Tag {...props} />
 }
 
 export const Cell: FC<CellProps> = ({
@@ -54,16 +48,21 @@ export const Cell: FC<CellProps> = ({
   )
 }
 
-export function useDraftTransition(propName: string, value: any) {
-  const prevValue = React.useRef()
+export function useDeferredTransition(
+  propName: string,
+  value: number,
+  duration = 0.188
+) {
+  const deferredValue = React.useRef<number>()
 
   React.useEffect(() => {
-    prevValue.current = value
+    deferredValue.current = value
   }, [value])
 
   return {
-    from: { [propName]: prevValue.current || value },
-    to: { [propName]: value },
+    transition: { default: { duration } },
+    initial: { [propName]: deferredValue.current || value },
+    animate: { [propName]: value },
   }
 }
 
@@ -82,7 +81,8 @@ export type CellProps = {
 export type RowProps = {
   active?: boolean
   height?: number
-  animate?: ReturnType<typeof useDraftTransition>
+  transition?: ReturnType<typeof useDeferredTransition>
+  as?: 'tr' | 'div' | 'ul'
   onClick?: () => void
 }
 
