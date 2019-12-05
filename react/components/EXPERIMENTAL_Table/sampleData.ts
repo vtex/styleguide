@@ -41,6 +41,16 @@ export const products = [
   },
   {
     id: 5,
+    name: 'XPS 15',
+    categories: ['laptop'],
+    manufacturer: 'dell',
+    qty: 500,
+    costPrice: 500,
+    retailPrice: 1050,
+    wholesalePrice: 950,
+  },
+  {
+    id: 6,
     name: 'iPhone 11 Pro',
     categories: ['smartphone'],
     manufacturer: 'apple',
