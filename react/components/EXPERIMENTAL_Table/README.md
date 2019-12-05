@@ -802,7 +802,7 @@ const columns = [
 ]
 
 function ActionsExample() {
-  const { items, applyDiscount, increaseQty } = useProducts()
+  const { items, applyDiscount, increaseQty, decreaseQty } = useProducts()
 
   const primaryAction = {
     label: 'Apply 10% Discount',
@@ -818,7 +818,7 @@ function ActionsExample() {
       },
       {
         label: 'Decrease 10',
-        onClick: checked => increaseQty(checked, 10),
+        onClick: checked => decreaseQty(checked, 10),
       },
     ],
     onActionClick: action => action.onClick(checkboxes.checkedItems),
@@ -957,7 +957,7 @@ function ToggleActionExample() {
               onClick: checkboxes.checkAll,
             }}
             active={checkboxes.allChecked}>
-            Selected rows: <span className="b">{items.length}</span>
+            Selected rows: {items.length}
           </Table.Bulk.Tail.Toggle>
           <Table.Bulk.Tail.Dismiss onClick={checkboxes.uncheckAll} />
         </Table.Bulk.Tail>
@@ -1088,7 +1088,7 @@ function BulkModalExample() {
                 onClick: modal.toggle,
               }}
               active={checkboxes.allChecked}>
-              Selected rows: <span className="b">{items.length}</span>
+              Selected rows: {items.length}
             </Table.Bulk.Tail.Toggle>
             {checkboxes.allChecked && (
               <Table.Bulk.Tail.Dismiss onClick={checkboxes.uncheckAll} />
@@ -1162,7 +1162,7 @@ const columns = [
 ]
 
 function BulkFullExample() {
-  const { items, applyDiscount, increaseQty } = useProducts()
+  const { items, applyDiscount, increaseQty, decreaseQty } = useProducts()
   const modal = useModal()
 
   const primaryAction = {
@@ -1179,7 +1179,7 @@ function BulkFullExample() {
       },
       {
         label: 'Decrease 50',
-        onClick: checked => increaseQty(checked, 50),
+        onClick: checked => decreaseQty(checked, 50),
       },
     ],
     onActionClick: action => action.onClick(checkboxes.checkedItems),
@@ -1191,6 +1191,7 @@ function BulkFullExample() {
 
   const checkboxes = useCheckboxTree({
     items,
+    onToggle: ({ checkedItems }) => console.table(checkedItems),
   })
 
   const onConfirm = () => {
@@ -1222,11 +1223,9 @@ function BulkFullExample() {
                 onClick: modal.toggle,
               }}
               active={checkboxes.allChecked}>
-              Selected rows: <span className="b">{items.length}</span>
+              Selected rows: {items.length}
             </Table.Bulk.Tail.Toggle>
-            {checkboxes.allChecked && (
-              <Table.Bulk.Tail.Dismiss onClick={checkboxes.uncheckAll} />
-            )}
+            <Table.Bulk.Tail.Dismiss onClick={checkboxes.uncheckAll} />
           </Table.Bulk.Tail>
         </Table.Bulk>
       </Table>
