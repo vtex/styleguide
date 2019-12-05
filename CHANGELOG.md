@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Make `BulkActions` of `EXPERIMENTAL_Table` a compound component.
+
+### Fixed
+
+- Default comparator of `useCheckoxesTree`.
+- Error on not passing the onToggle function to useCheckboxesTree.
+
 ## [9.97.2] - 2019-12-03
 
 ### Added
