@@ -9,7 +9,7 @@ import {
   ResponsiveContainer,
   Tooltip,
 } from 'recharts'
-import { BAR_GAP, Layout } from './constants'
+import { BAR_GAP, Layout, chartDefaultConfig } from './constants'
 import { colors, tooltipProps } from '../commonProps'
 import { getBarDefaultProps } from '../helpers'
 import PropTypes from 'prop-types'
@@ -25,8 +25,9 @@ const BarChart:FC<Props & BaseChartProps> = ({
   yAxisKey,
   barProps 
 }) => {
-  const { configs } = getChartDefaultProps(config)
+  const { configs } = getChartDefaultProps(config, chartDefaultConfig)
   const { barConfigs } = getBarDefaultProps(barProps)
+
   const dataKey = (barConfigs.layout == Layout.HORIZONTAL) ? yAxisKey: xAxisKey
   
   return (

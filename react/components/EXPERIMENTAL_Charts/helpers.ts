@@ -12,9 +12,9 @@ const merge = (defaultProps: any, userProps: any) => {
   return props
 }
 
-const getChartDefaultProps = (userProps: ChartConfig)  => {
-  return { configs: merge(commonDefaultProps, userProps) }
-}
+const getChartDefaultProps = (userProps: ChartConfig, customConfig = commonDefaultProps) => ({
+  configs: merge(merge(commonDefaultProps, customConfig), userProps) 
+})
 
 const getLineDefaultProps = (userProps: LineProps) => ({
   lineConfigs: {...defaultLineProps, ...userProps}

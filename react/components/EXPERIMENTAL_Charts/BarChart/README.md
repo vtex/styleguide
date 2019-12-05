@@ -27,14 +27,24 @@ The bars can be plotted horizontally or vertically. To do this, use the prop `ba
 - Horizontal: `{layout: 'vertical'}`
 ```js
 const data = require('./sampleData').default;
+const CustomizedLabel = (props) => {
+  const {
+    x, y, fill, payload,
+  } = props
+  console.log(props)
+  const value = (typeof payload.value) == 'string' ? 
+  payload.value.split(' ')[0]: payload.value 
+ 
+  return (<text x={x/16} y={y} fill={fill} fontSize={14}>{`${value}`}</text>)
+};
   <BarChart
     data={data}
     xAxisKey='pv'
     yAxisKey='name'
     config={{
-      container: { height: '30%', width: '30%'},
+      container: { height: '60%', width: '60%'},
       xAxis: {type: 'number'}, 
-      yAxis: {type: 'category'}
+      yAxis: {type: 'category', tick: <CustomizedLabel/>}
     }}
     barProps={{layout: 'vertical'}}
   />
@@ -49,7 +59,7 @@ const data = require('./sampleData').default;
     xAxisKey='name'
     yAxisKey='pv'
     config={{
-      container: {height: '30%', width: '30%'},
+      container: {height: '60%', width: '60%'},
       xAxis: {type: 'category'},
       yAxis: {type: 'number'}
     }}
