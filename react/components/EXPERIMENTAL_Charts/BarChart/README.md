@@ -57,8 +57,9 @@ const data = require('./sampleData').default;
   />
 
 ```
-**OBS:** For you can change correctly the orientation, sets the type of the axis, otherwise, the chart doesn't work.
+**OBS:** To correctly change the orientation, set both axis types.
 For default, xAxis is a `category` and yAxis is a `number`
+
 ```js static
   <BarChart
     data={data}
