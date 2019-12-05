@@ -61,18 +61,18 @@ export default function useCheckboxTree<T>({
 
   const isChecked = useCallback(
     (item: T | Tree<T>) => {
-      const childs = item[nodesKey] as Array<T>
-      return childs && !isEmpty(childs)
-        ? childs.every(child => checkedItems.some(comparator(child)))
+      const children = item[nodesKey]
+      return children && !isEmpty(children)
+        ? children.every(child => checkedItems.some(comparator(child)))
         : checkedItems.some(comparator(item))
     },
     [checkedItems]
   )
 
   const isPartiallyChecked = useCallback(
-    (item: T) => {
+    (item: T | Tree<T>) => {
       return (
-        (item[nodesKey] as Array<T>) &&
+        item[nodesKey] &&
         getFlat(item, [], nodesKey)
           .slice(1)
           .some(child => checkedItems.some(comparator(child)))
