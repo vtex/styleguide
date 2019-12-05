@@ -8,7 +8,7 @@ export const commonDefaultProps: ChartConfig = {
     axisLine: false,
     tickLine: false,
     tick: true,
-    tickMargin: 15,
+    tickMargin: 5,
     hide: false,
     type: 'category'
   },
@@ -16,7 +16,7 @@ export const commonDefaultProps: ChartConfig = {
     axisLine: false,
     tickLine: false,
     tick: true,
-    tickMargin: 10,
+    tickMargin: 5,
     hide: false,
     type: 'number'
   },

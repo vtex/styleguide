@@ -13,11 +13,13 @@ export const chartDefaultConfig: ChartConfig = {
   xAxis: {
     axisLine: true,
     tickLine: true,
+    tickMargin: 10,
     type: 'category',
   },
   yAxis: {
     axisLine: true,
     tickLine: true,
+    tickMargin: 10,
     type: 'number',
   },
 }

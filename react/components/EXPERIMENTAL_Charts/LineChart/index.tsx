@@ -40,8 +40,6 @@ const LineChart: FC<Props & BaseChartProps> = ({
   const { configs } = getChartDefaultProps(config)
   const { lineConfigs } = getLineDefaultProps(lineProps)
 
-  console.log(configs)
-
   return (
     <ResponsiveContainer {...configs.container}>
       <LineChartBase data={data}>
