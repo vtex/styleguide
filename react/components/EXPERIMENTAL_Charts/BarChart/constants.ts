@@ -13,7 +13,6 @@ export const chartDefaultConfig: ChartConfig = {
   xAxis: {
     axisLine: true,
     tickLine: false,
-    padding: { left: 15, right: 20 },
     tickMargin: 5,
     type: 'category',
   },
