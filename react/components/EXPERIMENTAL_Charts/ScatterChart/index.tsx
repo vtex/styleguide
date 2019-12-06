@@ -6,42 +6,44 @@ import {
   Tooltip,
   Scatter,
   CartesianGrid,
-  ResponsiveContainer
+  ResponsiveContainer,
+  ZAxis
 } from 'recharts'
-import { zipWith, curry } from 'lodash'
 import PropTypes from 'prop-types'
-import { getChartDefaultProps } from '../helpers'
-import { colors, tooltipProps } from '../commonProps'
 import uuid from 'uuid'
+import { commonDefaultProps } from './constants'
+import { getChartDefaultProps, getRangeOfZAxis } from '../helpers'
+import { colors } from '../commonProps'
 
-
-const renderScatter = (key, color) =>(
-  <Scatter
-    key={uuid()}
-    dataKey={key}
-    fill={color}
-  />
-)
+const CustomTooltip = (props) => {
+  return props.payload.map(item => 
+    <p key={uuid()}>{`${item.dataKey}: ${item.value}`}</p>
+  )
+}
 
 const ScatterChart:FC<BaseChartProps> = ({
   data,
   config,
   xAxisKey,
-  dataKeys
+  yAxisKey,
+  zAxisKey
 }) => {
-  const { configs } = getChartDefaultProps(config)
-
+  const { configs } = getChartDefaultProps(config, commonDefaultProps)
+  
   return (
     <ResponsiveContainer {...configs.container} >
       <ScatterChartBase data={data}>
         <CartesianGrid {...configs.grid}/>
         <XAxis dataKey={xAxisKey} {...configs.xAxis} />
-        <YAxis {...configs.yAxis} />
-        <Tooltip {...tooltipProps}/>
-        {zipWith(dataKeys, colors, renderScatter)}
+        <YAxis dataKey={yAxisKey} {...configs.yAxis} />
+        {zAxisKey && 
+          <ZAxis dataKey={zAxisKey} range={getRangeOfZAxis(zAxisKey, data)}/>
+        }
+        <Tooltip cursor={false} content={<CustomTooltip />}/>
+        <Scatter fill={colors[0]}/>
       </ScatterChartBase>
     </ResponsiveContainer>
-  ) 
+  )
 }
 
 ScatterChart.propTypes = {
@@ -79,8 +81,8 @@ ScatterChart.propTypes = {
   /** The key of x-axis which is corresponding to the data. */
   xAxisKey: PropTypes.string.isRequired,
 
-   /** The keys or getter of a group of data which should be unique in a LineChart. */
-   dataKeys: PropTypes.arrayOf(PropTypes.string).isRequired,
+  /** The keys of y-axis which is corresponding to the data. */
+  yAxisKey: PropTypes.string.isRequired,
 }
 
 export default ScatterChart

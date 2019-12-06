@@ -1,13 +1,13 @@
 type BaseGridProps = Pick<CartesianGridProps, 'vertical' | 'horizontal'>
-type BaseXAxisProps = Pick<XAxisProps, 'axisLine' | 'tickLine' | 'padding' | 'tick' | 'hide' | 'type'>
-type BaseYAxisProps = Pick<YAxisProps, 'axisLine' | 'tickLine' | 'padding' | 'tick' | 'hide' | 'type'>
+type BaseAxisProps = Pick<YAxisProps, 'axisLine' | 'tickLine' | 'tick' | 'hide' | 'type' | 'tickMargin'>
 type BaseContainerProps = Pick<ResponsiveContainerProps, 'height' | 'width' | 'aspect'>
 type DefaultLineProps = Pick<LineProps, 'type' | 'strokeWidth' | 'dot'>
 type DefaultBarProps = Pick<LineProps, 'layout'>
 
 type ChartConfig = {
   xAxis?: BaseAxisProps,
-  yAxis?: BaseAxisProps, 
+  yAxis?: BaseAxisProps,
+  zAxis?: BaseYAxisProps,
   container?: BaseContainerProps,
   grid?: BaseGridProps
 }
@@ -17,6 +17,7 @@ type BaseChartProps = {
   dataKeys: string[],
   xAxisKey: string,
   yAxisKey: string,
+  zAxisKey: string,
   config: ChartConfig
 }
 
