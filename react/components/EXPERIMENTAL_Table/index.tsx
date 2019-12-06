@@ -111,7 +111,7 @@ export type TableComposites = {
   Bulk?: FC
 }
 
-export type Items = Array<unknown>
+export interface Items extends Array<Object> {}
 
 export type CellData = {
   cellData: unknown
