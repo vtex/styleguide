@@ -764,27 +764,12 @@ function PaginationExample() {
 
 # Bulk Actions
 
-Bulk actions allow the user to select some or all the rows to execute an action. Texts have to be given to the component via a `texts` object.
-Actions are passed via the `main` object and the `others` array props. Each object is composed of a `label` and the action event via `onClick` key.
-
-The returned value for all selected lines is an object `allLinesSelected: true` otherwise the data of the rows are returned in the key `selectedRows` as an array.
-
-##### NOTE 1:
-
-`onRowClick` actions are not happening when clicking the checkbox.
-
-##### NOTE 2:
-
-There are two "select all" items.
-
-- The **upper checkbox** on the left side selects the currently visible items, in the example below, 5.
-- Beeing **optional**, the **Select all** button on the right side, selects all items from the database (by concept, since you will probably only load the visible items). Since not all items might be loaded in the table, the callback will only return a flag telling your app to handle all items for the next database operation.
-
-Check the console when selecting/unselecting rows or clicking an action button in the example below to see the action parameters
+### Actions Example
 
 ```js
 const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
 const useCheckboxTree = require('../EXPERIMENTAL_useCheckboxTree').default
+const data = require('./sampleData')
 
 const columns = [
   {
@@ -792,82 +777,59 @@ const columns = [
     title: 'Name',
   },
   {
-    id: 'email',
-    title: 'Email',
+    id: 'manufacturer',
+    title: 'Manufacturer',
   },
   {
-    id: 'country',
-    title: 'Country',
+    id: 'qty',
+    title: 'Qty',
+  },
+  {
+    id: 'costPrice',
+    title: 'Cost',
+    cellRenderer: currencyRenderer,
+  },
+  {
+    id: 'wholesalePrice',
+    title: 'Wholesale',
+    cellRenderer: currencyRenderer,
+  },
+  {
+    id: 'retailPrice',
+    title: 'Retail',
+    cellRenderer: currencyRenderer,
   },
 ]
 
-const items = [
-  {
-    id: 1,
-    name: "T'Chala",
-    email: 'black.panther@gmail.com',
-    country: '🇰🇪Wakanda',
-  },
-  {
-    id: 2,
-    name: 'Peter Parker',
-    email: 'spider.man@gmail.com',
-    country: '🇺🇸USA',
-  },
-  {
-    id: 3,
-    name: 'Shang-Chi',
-    email: 'kungfu.master@gmail.com',
-    country: '🇨🇳China',
-  },
-]
+function ActionsExample() {
+  const { items, applyDiscount, increaseQty, decreaseQty } = useProducts()
 
-function BulkExample() {
-  const bulkActions = {
-    texts: {
-      secondaryActionsLabel: 'Actions',
-      rowsSelected: qty => (
-        <React.Fragment>Selected rows: {qty}</React.Fragment>
-      ),
-      selectAll: 'Select all',
-      allRowsSelected: element => (
-        <React.Fragment>All rows selected: {element}</React.Fragment>
-      ),
-    },
-    totalItems: 4,
-    onChange: params => console.log(params),
-    main: {
-      label: 'Main Action',
-      onClick: params => console.log(params),
-    },
-    others: [
+  const primaryAction = {
+    label: 'Apply 10% Discount',
+    onClick: () => applyDiscount(checkboxes.checkedItems, 0.1),
+  }
+
+  const secondaryActions = {
+    label: 'Quantity',
+    actions: [
       {
-        label: 'Action 1',
-        onClick: params => console.log(params),
+        label: 'Increase 10',
+        onClick: checked => increaseQty(checked, 10),
       },
       {
-        label: 'Action 2',
-        onClick: params => console.log(params),
+        label: 'Decrease 10',
+        onClick: checked => decreaseQty(checked, 10),
       },
     ],
+    onActionClick: action => action.onClick(checkboxes.checkedItems),
   }
 
   const measures = useTableMeasures({
     size: items.length,
   })
 
-  const comparator = item => candidate => {
-    return item.email === candidate.email
-  }
-
-  const onToggle = ({ checkedItems }) => {
-    console.log(checkedItems)
-  }
-
   const checkboxes = useCheckboxTree({
-    comparator,
     items,
-    onToggle,
   })
 
   return (
@@ -876,11 +838,485 @@ function BulkExample() {
       checkboxes={checkboxes}
       columns={columns}
       items={items}>
-      <Table.BulkActions checkboxes={checkboxes} {...bulkActions} />
+      <Table.Bulk active={checkboxes.someChecked}>
+        <Table.Bulk.Actions>
+          <Table.Bulk.Actions.Primary {...primaryAction} />
+          <Table.Bulk.Actions.Secondary {...secondaryActions} />
+        </Table.Bulk.Actions>
+        <Table.Bulk.Tail>
+          <Table.Bulk.Tail.Dismiss onClick={checkboxes.uncheckAll} />
+        </Table.Bulk.Tail>
+      </Table.Bulk>
     </Table>
   )
 }
-;<BulkExample />
+
+function currencyRenderer({ cellData, rowData }) {
+  const { costPrice } = rowData
+  const className = cellData < costPrice ? 'red' : ''
+  return <span className={className}>$ {parseFloat(cellData).toFixed(2)}</span>
+}
+
+function useProducts() {
+  const [items, setItems] = React.useState(data.products)
+
+  const bulkUpdate = group => positive => {
+    const groupIds = group.map(item => item.id)
+    setItems(oldItems =>
+      oldItems.map(item => (groupIds.includes(item.id) ? positive(item) : item))
+    )
+  }
+
+  const discountCurry = amt => value => value - value * amt
+
+  const applyDiscount = React.useCallback(
+    (group, amt) => {
+      const calcDiscount = discountCurry(amt)
+      const update = bulkUpdate(group)
+      update(item => ({
+        ...item,
+        retailPrice: calcDiscount(item.retailPrice),
+        wholesalePrice: calcDiscount(item.wholesalePrice),
+      }))
+    },
+    [items]
+  )
+
+  const increaseQty = React.useCallback(
+    (group, amt) => {
+      const update = bulkUpdate(group)
+      update(item => ({
+        ...item,
+        qty: item.qty + amt,
+      }))
+    },
+    [items]
+  )
+
+  const decreaseQty = React.useCallback(
+    (group, amt) => {
+      const update = bulkUpdate(group)
+      update(item => ({
+        ...item,
+        qty: item.qty - amt,
+      }))
+    },
+    [items]
+  )
+
+  return { items, applyDiscount, increaseQty, decreaseQty }
+}
+
+;<ActionsExample />
+```
+
+### With Toggle Action
+
+```js
+const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
+const useCheckboxTree = require('../EXPERIMENTAL_useCheckboxTree').default
+const data = require('./sampleData')
+
+const columns = [
+  {
+    id: 'name',
+    title: 'Name',
+  },
+  {
+    id: 'manufacturer',
+    title: 'Manufacturer',
+  },
+  {
+    id: 'qty',
+    title: 'Qty',
+  },
+]
+
+const items = data.products
+
+function ToggleActionExample() {
+  const measures = useTableMeasures({
+    size: items.length,
+  })
+
+  const checkboxes = useCheckboxTree({
+    items,
+  })
+
+  return (
+    <Table
+      measures={measures}
+      checkboxes={checkboxes}
+      columns={columns}
+      items={items}>
+      <Table.Bulk active={checkboxes.someChecked}>
+        <Table.Bulk.Tail>
+          <Table.Bulk.Tail.Toggle
+            button={{
+              text: `Select all ${items.length}`,
+              onClick: checkboxes.checkAll,
+            }}
+            active={checkboxes.allChecked}>
+            Selected rows: {items.length}
+          </Table.Bulk.Tail.Toggle>
+          <Table.Bulk.Tail.Dismiss onClick={checkboxes.uncheckAll} />
+        </Table.Bulk.Tail>
+      </Table.Bulk>
+    </Table>
+  )
+}
+;<ToggleActionExample />
+```
+
+### With Info
+
+```js
+const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
+const useCheckboxTree = require('../EXPERIMENTAL_useCheckboxTree').default
+const data = require('./sampleData')
+
+const columns = [
+  {
+    id: 'name',
+    title: 'Name',
+  },
+  {
+    id: 'manufacturer',
+    title: 'Manufacturer',
+  },
+  {
+    id: 'qty',
+    title: 'Qty',
+  },
+]
+
+const items = data.products
+
+function BulkInfoExample() {
+  const measures = useTableMeasures({
+    size: items.length,
+  })
+
+  const checkboxes = useCheckboxTree({
+    items,
+  })
+
+  return (
+    <Table
+      measures={measures}
+      checkboxes={checkboxes}
+      columns={columns}
+      items={items}>
+      <Table.Bulk active={checkboxes.someChecked}>
+        <Table.Bulk.Tail>
+          <Table.Bulk.Tail.Info>
+            Selected Rows Count: {checkboxes.checkedItems.length}
+          </Table.Bulk.Tail.Info>
+          <Table.Bulk.Tail.Dismiss onClick={checkboxes.uncheckAll} />
+        </Table.Bulk.Tail>
+      </Table.Bulk>
+    </Table>
+  )
+}
+;<BulkInfoExample />
+```
+
+### Usage with modal, to handle dangerous actions
+
+```js
+const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
+const useCheckboxTree = require('../EXPERIMENTAL_useCheckboxTree').default
+const ModalDialog = require('../ModalDialog/index.js').default
+const data = require('./sampleData')
+
+const columns = [
+  {
+    id: 'name',
+    title: 'Name',
+  },
+  {
+    id: 'manufacturer',
+    title: 'Manufacturer',
+  },
+  {
+    id: 'qty',
+    title: 'Qty',
+  },
+]
+
+const items = data.products
+
+function useModal() {
+  const [active, setActive] = React.useState(false)
+  const toggle = React.useCallback(() => setActive(old => !old), [active])
+  return { active, toggle }
+}
+
+function BulkModalExample() {
+  const modal = useModal()
+
+  const measures = useTableMeasures({
+    size: items.length,
+  })
+
+  const checkboxes = useCheckboxTree({
+    items,
+  })
+
+  const onConfirm = () => {
+    modal.toggle()
+    checkboxes.checkAll()
+  }
+
+  return (
+    <>
+      <Table
+        measures={measures}
+        checkboxes={checkboxes}
+        columns={columns}
+        items={items}>
+        <Table.Bulk active={checkboxes.someChecked}>
+          <Table.Bulk.Tail>
+            {!checkboxes.allChecked && (
+              <Table.Bulk.Tail.Info>
+                All rows selected: {checkboxes.checkedItems.length}
+              </Table.Bulk.Tail.Info>
+            )}
+            <Table.Bulk.Tail.Toggle
+              button={{
+                text: `Select all ${items.length}`,
+                onClick: modal.toggle,
+              }}
+              active={checkboxes.allChecked}>
+              Selected rows: {items.length}
+            </Table.Bulk.Tail.Toggle>
+            {checkboxes.allChecked && (
+              <Table.Bulk.Tail.Dismiss onClick={checkboxes.uncheckAll} />
+            )}
+          </Table.Bulk.Tail>
+        </Table.Bulk>
+      </Table>
+
+      <ModalDialog
+        centered
+        confirmation={{
+          onClick: onConfirm,
+          label: 'Ok',
+        }}
+        cancelation={{
+          onClick: modal.toggle,
+          label: 'Cancel',
+        }}
+        isOpen={modal.active}
+        onClose={modal.toggle}>
+        <h1>Are you sure !?</h1>
+        <p>
+          Since you do not designate any filters, the following action will
+          drain a lot of CPU power to be completed because the current items
+          collection is too large. Your app may be inactive for a little while.
+          Click OK to proceed!
+        </p>
+      </ModalDialog>
+    </>
+  )
+}
+;<BulkModalExample />
+```
+
+### Full Example
+
+```js
+const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
+const useCheckboxTree = require('../EXPERIMENTAL_useCheckboxTree').default
+const ModalDialog = require('../ModalDialog/index.js').default
+const data = require('./sampleData')
+
+const columns = [
+  {
+    id: 'name',
+    title: 'Name',
+  },
+  {
+    id: 'manufacturer',
+    title: 'Manufacturer',
+  },
+  {
+    id: 'qty',
+    title: 'Qty',
+  },
+  {
+    id: 'costPrice',
+    title: 'Cost',
+    cellRenderer: currencyRenderer,
+  },
+  {
+    id: 'wholesalePrice',
+    title: 'Wholesale',
+    cellRenderer: currencyRenderer,
+  },
+  {
+    id: 'retailPrice',
+    title: 'Retail',
+    cellRenderer: currencyRenderer,
+  },
+]
+
+function BulkFullExample() {
+  const { items, applyDiscount, increaseQty, decreaseQty } = useProducts()
+  const modal = useModal()
+
+  const primaryAction = {
+    label: 'Apply 50% Discount',
+    onClick: () => applyDiscount(checkboxes.checkedItems, 0.5),
+  }
+
+  const secondaryActions = {
+    label: 'Quantity',
+    actions: [
+      {
+        label: 'Increase 50',
+        onClick: checked => increaseQty(checked, 50),
+      },
+      {
+        label: 'Decrease 50',
+        onClick: checked => decreaseQty(checked, 50),
+      },
+    ],
+    onActionClick: action => action.onClick(checkboxes.checkedItems),
+  }
+
+  const measures = useTableMeasures({
+    size: items.length,
+  })
+
+  const checkboxes = useCheckboxTree({
+    items,
+    onToggle: ({ checkedItems }) => console.table(checkedItems),
+  })
+
+  const onConfirm = () => {
+    modal.toggle()
+    checkboxes.checkAll()
+  }
+
+  return (
+    <>
+      <Table
+        measures={measures}
+        checkboxes={checkboxes}
+        columns={columns}
+        items={items}>
+        <Table.Bulk active={checkboxes.someChecked}>
+          <Table.Bulk.Actions>
+            <Table.Bulk.Actions.Primary {...primaryAction} />
+            <Table.Bulk.Actions.Secondary {...secondaryActions} />
+          </Table.Bulk.Actions>
+          <Table.Bulk.Tail>
+            {!checkboxes.allChecked && (
+              <Table.Bulk.Tail.Info>
+                All rows selected: {checkboxes.checkedItems.length}
+              </Table.Bulk.Tail.Info>
+            )}
+            <Table.Bulk.Tail.Toggle
+              button={{
+                text: `Select all ${items.length}`,
+                onClick: modal.toggle,
+              }}
+              active={checkboxes.allChecked}>
+              Selected rows: {items.length}
+            </Table.Bulk.Tail.Toggle>
+            <Table.Bulk.Tail.Dismiss onClick={checkboxes.uncheckAll} />
+          </Table.Bulk.Tail>
+        </Table.Bulk>
+      </Table>
+
+      <ModalDialog
+        centered
+        confirmation={{
+          onClick: onConfirm,
+          label: 'Ok',
+        }}
+        cancelation={{
+          onClick: modal.toggle,
+          label: 'Cancel',
+        }}
+        isOpen={modal.active}
+        onClose={modal.toggle}>
+        <h1>Are you sure !?</h1>
+        <p>
+          Since you do not designate any filters, the following action will
+          drain a lot of CPU power to be completed because the current items
+          collection is too large. Your app may be inactive for a little while.
+          Click OK to proceed!
+        </p>
+      </ModalDialog>
+    </>
+  )
+}
+
+function currencyRenderer({ cellData, rowData }) {
+  const { costPrice } = rowData
+  const className = cellData < costPrice ? 'red' : ''
+  return <span className={className}>$ {parseFloat(cellData).toFixed(2)}</span>
+}
+
+function useModal() {
+  const [active, setActive] = React.useState(false)
+  const toggle = React.useCallback(() => setActive(old => !old), [active])
+  return { active, toggle }
+}
+
+function useProducts() {
+  const [items, setItems] = React.useState(data.products)
+
+  const bulkUpdate = group => positive => {
+    const groupIds = group.map(item => item.id)
+    setItems(oldItems =>
+      oldItems.map(item => (groupIds.includes(item.id) ? positive(item) : item))
+    )
+  }
+
+  const discountCurry = amt => value => value - value * amt
+
+  const applyDiscount = React.useCallback(
+    (group, amt) => {
+      const calcDiscount = discountCurry(amt)
+      const update = bulkUpdate(group)
+      update(item => ({
+        ...item,
+        retailPrice: calcDiscount(item.retailPrice),
+        wholesalePrice: calcDiscount(item.wholesalePrice),
+      }))
+    },
+    [items]
+  )
+
+  const increaseQty = React.useCallback(
+    (group, amt) => {
+      const update = bulkUpdate(group)
+      update(item => ({
+        ...item,
+        qty: item.qty + amt,
+      }))
+    },
+    [items]
+  )
+
+  const decreaseQty = React.useCallback(
+    (group, amt) => {
+      const update = bulkUpdate(group)
+      update(item => ({
+        ...item,
+        qty: item.qty - amt,
+      }))
+    },
+    [items]
+  )
+
+  return { items, applyDiscount, increaseQty, decreaseQty }
+}
+
+;<BulkFullExample />
 ```
 
 # Line actions

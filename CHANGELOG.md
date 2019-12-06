@@ -7,13 +7,27 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.97.3] - 2019-12-06
+
+### Changed
+
+- Make `BulkActions` of `EXPERIMENTAL_Table` a compound component.
+
+### Fixed
+
+- Default comparator of `useCheckoxesTree`.
+- Error on not passing the onToggle function to useCheckboxesTree.
+
 ## [9.97.2] - 2019-12-03
+
 ### Added
+
 - `hide` prop to allow hiding a LineChart axis
 - `type` prop to allow different interpolations of the LineChart
 - `tick` prop to allow a customized label on LineChart
 
 ### Changed
+
 - `axis` prop to `xAxis` and `yAxis` props on LineChart schema
 - default `container` prop to have a `width` and `height` dependent of the screen size
 - `schema` to `config` prop.
@@ -48,6 +62,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - Set color of `EXPERIMENTAL_Table` toolbar buttons to `c-muted-2` when they are disabled.
+- Fix the distance of checkboxes, so they are the same on `EXPERIMENTAL_TABLE`
 
 ## [9.96.10] - 2019-11-21
 

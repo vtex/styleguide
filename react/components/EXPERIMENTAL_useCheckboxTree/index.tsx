@@ -31,7 +31,7 @@ export default function useCheckboxTree<T>({
   )
 
   useEffect(() => {
-    onToggle({ checkedItems })
+    onToggle && onToggle({ checkedItems })
   }, [toggle])
 
   useEffect(() => {
@@ -60,19 +60,19 @@ export default function useCheckboxTree<T>({
   }, [checkedItems])
 
   const isChecked = useCallback(
-    (item: T) => {
-      const childs = item[nodesKey] as Array<T>
-      return childs && !isEmpty(childs)
-        ? childs.every(child => checkedItems.some(comparator(child)))
+    (item: T | Tree<T>) => {
+      const children = item[nodesKey]
+      return children && !isEmpty(children)
+        ? children.every(child => checkedItems.some(comparator(child)))
         : checkedItems.some(comparator(item))
     },
     [checkedItems]
   )
 
   const isPartiallyChecked = useCallback(
-    (item: T) => {
+    (item: T | Tree<T>) => {
       return (
-        (item[nodesKey] as Array<T>) &&
+        item[nodesKey] &&
         getFlat(item, [], nodesKey)
           .slice(1)
           .some(child => checkedItems.some(comparator(child)))
@@ -81,8 +81,16 @@ export default function useCheckboxTree<T>({
     [checkedItems]
   )
 
+  const allChecked = useMemo(() => {
+    return isChecked(itemTree)
+  }, [checkedItems])
+
+  const someChecked = useMemo(() => {
+    return checkedItems.length > 0
+  }, [checkedItems])
+
   const check = useCallback(
-    (item: T) => {
+    (item: T | Tree<T>) => {
       dispatch({
         type: ActionType.BulkCheck,
         itemToToggle: { item, comparator, nodesKey },
@@ -91,8 +99,12 @@ export default function useCheckboxTree<T>({
     [checkedItems]
   )
 
+  const checkAll = useCallback(() => {
+    check(itemTree)
+  }, [checkedItems])
+
   const uncheck = useCallback(
-    (item: T) => {
+    (item: T | Tree<T>) => {
       dispatch({
         type: ActionType.BulkUncheck,
         itemToToggle: { item, comparator, nodesKey },
@@ -101,14 +113,22 @@ export default function useCheckboxTree<T>({
     [checkedItems]
   )
 
+  const uncheckAll = useCallback(() => {
+    uncheck(itemTree)
+  }, [checkedItems])
+
   return {
     checkedItems,
     isChecked,
+    allChecked,
+    someChecked,
     isPartiallyChecked,
     itemTree,
     toggle,
     check,
+    checkAll,
     uncheck,
+    uncheckAll,
   }
 }
 

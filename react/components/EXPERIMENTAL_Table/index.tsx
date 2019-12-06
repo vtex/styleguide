@@ -108,10 +108,10 @@ export type TableComposites = {
   Toolbar: FC
   FilterBar?: FC
   Pagination?: FC<PaginationProps>
-  BulkActions?: FC
+  Bulk?: FC
 }
 
-export type Items = Array<unknown>
+export interface Items extends Array<Object> {}
 
 export type CellData = {
   cellData: unknown
@@ -132,6 +132,6 @@ Table.Toolbar = Toolbar
 Table.FilterBar = FilterBar
 Table.Pagination = Pagination
 Table.propTypes = tablePropTypes
-Table.BulkActions = BulkActions
+Table.Bulk = BulkActions
 
 export default Table

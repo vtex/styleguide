@@ -10,7 +10,7 @@ export default function useTableLineActions({
   columns,
   lineActions,
 }: LineActionsData) {
-  const itemsWithLineActions = useMemo<Array<Object>>(() => {
+  const itemsWithLineActions = useMemo<Items>(() => {
     return lineActions
       ? items.map(item => ({ lineAction: true, ...item }))
       : items
