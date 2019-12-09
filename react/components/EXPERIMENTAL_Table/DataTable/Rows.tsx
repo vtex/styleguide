@@ -20,9 +20,7 @@ const Rows: FC<RowsProps> = ({
   checkboxes,
 }) => {
   const renderRow = (rowData: unknown) => {
-    const toggleChecked = useCallback(() => checkboxes.toggle(rowData), [
-      rowData,
-    ])
+    const toggleChecked = () => checkboxes.toggle(rowData)
 
     const isRowChecked = checkboxes && checkboxes.isChecked(rowData)
     const isRowPartiallyChecked =
