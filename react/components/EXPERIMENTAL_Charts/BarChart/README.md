@@ -31,11 +31,14 @@ const CustomizedLabel = (props) => {
   const {
     x, y, fill, payload,
   } = props
-  console.log(props)
   const value = (typeof payload.value) == 'string' ? 
   payload.value.split(' ')[0]: payload.value 
  
-  return (<text x={x/16} y={y} fill={fill} fontSize={14}>{`${value}`}</text>)
+  return (
+    <text x={x/16} y={y} fill={fill} fontSize={14}>
+      {value}
+    </text>
+  )
 };
   <BarChart
     data={data}
