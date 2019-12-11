@@ -11,29 +11,25 @@ import {
   TooltipFormatter,
 } from 'recharts'
 import PropTypes from 'prop-types'
-import { colors, tooltipProps } from './constants'
+import uuid from 'uuid'
+import { colors, tooltipProps } from '../commonProps'
 import { getChartDefaultProps, getLineDefaultProps }from '../helpers'
 
 interface Props {
-  data: any,
-  dataKeys: string[],
-  xAxisKey: string,
-  config: ChartProps,
   tooltipFormatter: TooltipFormatter,
   lineProps: LineProps,
 }
 
 const renderLine = (lineConfigs, key, color) =>(
   <Line
-    key={key}
+    key={uuid()}
     dataKey={key}
     stroke={color}
     {...lineConfigs}
   />
 )
 
-
-const LineChart: FC<Props> = ({
+const LineChart: FC<Props & BaseChartProps> = ({
   data,
   dataKeys,
   xAxisKey,
@@ -41,15 +37,15 @@ const LineChart: FC<Props> = ({
   tooltipFormatter,
   lineProps
 }) => {
-  const { configs } = getChartDefaultProps(config); 
+  const { configs } = getChartDefaultProps(config)
   const { lineConfigs } = getLineDefaultProps(lineProps)
 
   return (
     <ResponsiveContainer {...configs.container}>
       <LineChartBase data={data}>
         <CartesianGrid {...configs.grid}/>
-        <XAxis dataKey={xAxisKey} {...configs.xAxis}/>
-        <YAxis  {...configs.yAxis} />
+        <XAxis dataKey={xAxisKey} {...configs.xAxis} />
+        <YAxis {...configs.yAxis} />
         <Tooltip formatter={tooltipFormatter} {...tooltipProps}/>
         {zipWith(dataKeys, colors, curry(renderLine)(lineConfigs))}
       </LineChartBase>

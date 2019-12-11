@@ -1,4 +1,4 @@
-export const commonDefaultProps = {
+export const commonDefaultProps: ChartConfig = {
   container:{
     height: '100%',
     width: '100%',
@@ -8,18 +8,33 @@ export const commonDefaultProps = {
     axisLine: false,
     tickLine: false,
     tick: true,
-    tickMargin: 15,
-    hide: false
+    tickMargin: 5,
+    hide: false,
+    type: 'category'
   },
   yAxis: {
     axisLine: false,
     tickLine: false,
     tick: true,
-    tickMargin: 10,
-    hide: false
+    tickMargin: 5,
+    hide: false,
+    type: 'number'
   },
   grid: {
     horizontal: false,
     vertical: false,
   }
+}
+
+export const colors = [
+  '#EE7850',
+  '#4CAABF',
+  '#9F50B6',
+  '#479A5E',
+  '#0000FF'
+]
+
+export const tooltipProps = {
+  cursor: false,
+  labelStyle: {color: '#828282'}
 }

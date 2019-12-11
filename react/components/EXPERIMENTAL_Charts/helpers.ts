@@ -1,22 +1,31 @@
-import { merge } from 'lodash'
+import { merge as mergeBase } from 'lodash'
 import { commonDefaultProps } from './commonProps'
-import { defaultProps } from './LineChart/constants'
+import { defaultProps as defaultLineProps } from './LineChart/constants'
+import { defaultProps as defaultBarProps } from './BarChart/constants'
 
-const getChartDefaultProps = (userProps: ChartProps)  => {
-  const props = commonDefaultProps
+const merge = (defaultProps: any, userProps: any) => {
+  const props = defaultProps
   userProps && Object.keys(userProps).forEach(key => (
-    props[key] = merge(props[key], userProps[key])
+    props[key] = mergeBase(props[key], userProps[key])
   ))
-  
-  return { configs: props }
+
+  return props
 }
 
-const getLineDefaultProps = (userProps: LineProps)  => {
-    const lineConfigs = {...defaultProps, ...userProps}
-    return { lineConfigs }
-}
+const getChartDefaultProps = (userProps: ChartConfig, customConfig = commonDefaultProps) => ({
+  configs: merge(merge(commonDefaultProps, customConfig), userProps) 
+})
+
+const getLineDefaultProps = (userProps: LineProps) => ({
+  lineConfigs: {...defaultLineProps, ...userProps}
+})
+
+const getBarDefaultProps = (userProps: BarProps) => ({ 
+  barConfigs: {...defaultBarProps,...userProps} 
+})
 
 export {
   getChartDefaultProps,
-  getLineDefaultProps
+  getLineDefaultProps,
+  getBarDefaultProps
 }
