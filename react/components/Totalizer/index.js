@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import classnames from 'classnames'
 
 import TotalizerLabel from './TotalizerLabel'
 import TotalizerValue from './TotalizerValue'
@@ -11,15 +12,25 @@ class Totalizer extends PureComponent {
   render() {
     const { items, mobileScroll } = this.props
 
-    const OUTER_CONTAINER_CLASSES = mobileScroll ? 'overflow-x-hidden' : ''
+    const OUTER_CONTAINER_CLASSES = classnames({
+      'overflow-x-hidden': mobileScroll,
+    })
 
-    let INNER_CONTAINER_CLASSES = `w-100 flex flex-row-ns ba br3 mb5 ${BORDER_COLOR} `
-    INNER_CONTAINER_CLASSES += mobileScroll
-      ? 'flex-row overflow-y-hidden overflow-x-scroll overflow-x-hidden-ns'
-      : 'flex-column'
+    const INNER_CONTAINER_CLASSES = classnames(
+      `w-100 flex flex-row-ns ba br3 ${BORDER_COLOR}`,
+      {
+        'flex-row overflow-y-hidden overflow-x-scroll overflow-x-hidden-ns': mobileScroll,
+        'flex-column': !mobileScroll,
+      }
+    )
 
-    let TOTALIZER_BASE_CLASSES = `flex flex-column pa4 ${BORDER_COLOR} `
-    TOTALIZER_BASE_CLASSES += mobileScroll ? 'flex-auto-ns' : 'flex-auto'
+    const TOTALIZER_BASE_CLASSES = classnames(
+      `flex flex-column pa4 ${BORDER_COLOR}`,
+      {
+        'flex-auto-ns': mobileScroll,
+        'flex-auto': !mobileScroll,
+      }
+    )
 
     if (items.length === 0) {
       return null
@@ -30,20 +41,19 @@ class Totalizer extends PureComponent {
         <div className={INNER_CONTAINER_CLASSES}>
           {items.map((item, i) => {
             const IS_NOT_LAST = items.length > 1 && i < items.length - 1
-            let EXTRA_BORDER = IS_NOT_LAST ? 'bb bb-0-ns br-ns ' : ''
 
-            if (mobileScroll) {
-              EXTRA_BORDER += 'bb-0 '
-            }
-            if (mobileScroll && IS_NOT_LAST) {
-              EXTRA_BORDER += 'br '
-            }
+            const EXTRA_BORDER = classnames({
+              'bb bb-0-ns br-ns ': IS_NOT_LAST,
+              'bb-0 ': mobileScroll,
+              br: mobileScroll && IS_NOT_LAST,
+            })
+
+            const ITEM_CLASSES = classnames(
+              `${TOTALIZER_BASE_CLASSES} ${EXTRA_BORDER}`
+            )
 
             return (
-              <div
-                className={`${TOTALIZER_BASE_CLASSES} ${EXTRA_BORDER}`}
-                key={item.label}
-              >
+              <div className={ITEM_CLASSES} key={item.label}>
                 {item.icon ? (
                   <div className="item_container flex flex-row">
                     <TotalizerIcon item={item} />
