@@ -195,15 +195,17 @@ const items = sampleData
 
 function Image({ size }) {
   const style = {
-    width: '100%',
-    height: '100%',
     maxWidth: size,
     maxHeight: size,
   }
   return (
     <div className="dib v-mid">
-      <svg style={style} fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect style={style} rx="4" fill="#cce8ff" />
+      <svg
+        className="w-100 h-100"
+        style={style}
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <rect className="w-100 h-100" style={style} rx="4" fill="#cce8ff" />
       </svg>
     </div>
   )
