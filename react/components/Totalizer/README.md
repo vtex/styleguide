@@ -20,27 +20,28 @@
 
 ```js
 const Totalizers = require('./index.js').default
-;<Totalizers 
+;<Totalizers
   items={[
-          {
-            label: 'Saldo em conta',
-            value: 23837,
-          },
-          {
-            label: 'Entradas',
-            value: 'R$ 36239,05',
-          },
+    {
+      label: 'Saldo em conta',
+      value: 23837,
+    },
+    {
+      label: 'Entradas',
+      value: 'R$ 36239,05',
+    },
 
-          {
-            label: 'Saídas',
-            value: '- R$ 13.485,26',
-          },
-          {
-            label: 'Vendas',
-            value: 23837,
-            isLoading: true,
-          },
-        ]}/>
+    {
+      label: 'Saídas',
+      value: '- R$ 13.485,26',
+    },
+    {
+      label: 'Vendas',
+      value: 23837,
+      isLoading: true,
+    },
+  ]}
+/>
 ```
 
 #### Totalizer Icon
@@ -49,30 +50,91 @@ const Totalizers = require('./index.js').default
 const ArrowDown = require('../icon/ArrowDown').default
 const ArrowUp = require('../icon/ArrowUp').default
 const ShoppingCart = require('../icon/ShoppingCart').default
-
 const Totalizers = require('./index.js').default
 
-;<Totalizers 
+;<Totalizers
   items={[
-          {
-            label: 'Pedidos',
-            value: 23837,
-            iconBackgroundColor: '#cce8ff',
-            icon: <ShoppingCart color="#368df7" size={14} />,
-          },
-          {
-            label: 'Entradas',
-            value: 'R$ 36239,05',
-            iconBackgroundColor: '#eafce3',
-            icon: <ArrowUp color="#79B03A" size={14} />,
-          },
+    {
+      label: 'Pedidos',
+      value: 23837,
+      iconBackgroundColor: '#cce8ff',
+      icon: <ShoppingCart color="#368df7" size={14} />,
+    },
+    {
+      label: 'Entradas',
+      value: 'R$ 36239,05',
+      iconBackgroundColor: '#eafce3',
+      icon: <ArrowUp color="#79B03A" size={14} />,
+    },
 
-          {
-            label: 'Saídas',
-            value: '- R$ 13.485,26',
-            iconBackgroundColor: '#fda4a4',
-            icon: <ArrowDown color="#dd1616" size={14} />,
-          },
+    {
+      label: 'Saídas',
+      value: '- R$ 13.485,26',
+      iconBackgroundColor: '#fda4a4',
+      icon: <ArrowDown color="#dd1616" size={14} />,
+    },
+  ]}
+/>
+```
 
-        ]}/>
+#### Default with mobile scroll
+
+```js
+const Totalizers = require('./index.js').default
+;<Totalizers
+  mobileScroll
+  items={[
+    {
+      label: 'Saldo em conta',
+      value: 23837,
+    },
+    {
+      label: 'Entradas',
+      value: 'R$ 36239,05',
+    },
+
+    {
+      label: 'Saídas',
+      value: '- R$ 13.485,26',
+    },
+    {
+      label: 'Vendas',
+      value: 23837,
+      isLoading: true,
+    },
+  ]}
+/>
+```
+
+#### Totalizer Icon with mobile scroll
+
+```js
+const ArrowDown = require('../icon/ArrowDown').default
+const ArrowUp = require('../icon/ArrowUp').default
+const ShoppingCart = require('../icon/ShoppingCart').default
+const Totalizers = require('./index.js').default
+;<Totalizers
+  mobileScroll
+  items={[
+    {
+      label: 'Pedidos',
+      value: 23837,
+      iconBackgroundColor: '#cce8ff',
+      icon: <ShoppingCart color="#368df7" size={14} />,
+    },
+    {
+      label: 'Entradas',
+      value: 'R$ 36239,05',
+      iconBackgroundColor: '#eafce3',
+      icon: <ArrowUp color="#79B03A" size={14} />,
+    },
+
+    {
+      label: 'Saídas',
+      value: '- R$ 13.485,26',
+      iconBackgroundColor: '#fda4a4',
+      icon: <ArrowDown color="#dd1616" size={14} />,
+    },
+  ]}
+/>
 ```
