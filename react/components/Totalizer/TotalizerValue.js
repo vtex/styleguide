@@ -7,6 +7,7 @@ class TotalizerValue extends PureComponent {
   render() {
     const {
       item: { value, isLoading },
+      mobileScroll,
     } = this.props
 
     if (isLoading) {
@@ -21,11 +22,16 @@ class TotalizerValue extends PureComponent {
       return null
     }
 
-    return <div className="f4 fw5 c-on-base">{value}</div>
+    return (
+      <div className={`f4 fw5 c-on-base ${mobileScroll ? 'nowrap' : ''}`}>
+        {value}
+      </div>
+    )
   }
 }
 
 TotalizerValue.propTypes = {
+  mobileScroll: PropTypes.bool,
   item: PropTypes.shape({
     label: PropTypes.string.isRequired,
     value: PropTypes.node,
