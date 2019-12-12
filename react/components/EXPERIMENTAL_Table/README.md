@@ -381,6 +381,87 @@ function ClickExample() {
 ;<ClickExample />
 ```
 
+# Proportion
+
+```js
+const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
+const useTableProportion = require('./hooks/useTableProportion.ts').default
+
+const columns = [
+  {
+    id: 'name',
+    title: 'Name',
+    cellRenderer,
+  },
+  {
+    id: 'country',
+    title: 'Country',
+  },
+]
+
+const items = [
+  {
+    name:
+      '⚠️ This is just a text that is very very very large and should be fully visible when it is confortable and truncated otherwise. If you are seeing this part, it means that you are ona  low density 🤓!',
+    country: '🇨🇺Cuba',
+  },
+  {
+    name: 'Abdul Qamar',
+    country: '🇸🇦Saudi Arabia',
+  },
+  {
+    name: 'Goose the Cat',
+    country: '🇺🇸USA',
+  },
+  {
+    name: 'Brian Braddock',
+    country: '🇬🇧Great Britain',
+  },
+]
+
+function cellRenderer({ cellData, selectedDensity }) {
+  const confortable = selectedDensity === 'low'
+
+  return confortable ? (
+    <div className="dib">
+      <div className="db ws-normal tj">{cellData}</div>
+    </div>
+  ) : (
+    <div className="dib mw6 truncate">{cellData}</div>
+  )
+}
+
+function ProportionExample() {
+  const measures = useTableMeasures({
+    size: items.length,
+  })
+
+  const { sizedColumns } = useTableProportion({
+    columns,
+    ratio: [3, 1],
+  })
+
+  const densityProps = {
+    label: 'Line density',
+    lowOptionLabel: 'Low',
+    mediumOptionLabel: 'Medium',
+    highOptionLabel: 'High',
+    density: measures,
+  }
+
+  return (
+    <Table measures={measures} columns={sizedColumns} items={items}>
+      <Table.Toolbar>
+        <Table.Toolbar.ButtonGroup>
+          <Table.Toolbar.ButtonGroup.Density {...densityProps} />
+        </Table.Toolbar.ButtonGroup>
+      </Table.Toolbar>
+    </Table>
+  )
+}
+;<ProportionExample />
+```
+
 # Loading
 
 ```js
