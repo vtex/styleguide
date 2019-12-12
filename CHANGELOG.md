@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- columns shape of `EXPERIMENTAL_Table`.
+
 ## [9.103.2] - 2019-12-20
 
 ### Removed
@@ -80,8 +84,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `EXPERIMENTAL_useTableProportion` hook.
 
 ## [9.98.0] - 2019-12-12
-
-### Added
 
 - `mobileScroll` prop to `Totalizer`
 
