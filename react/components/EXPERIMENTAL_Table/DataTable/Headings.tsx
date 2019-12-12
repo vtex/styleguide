@@ -16,8 +16,7 @@ const Headings: FC<HeadingsProps> = ({
   return (
     <Row {...rowProps} height={TABLE_HEADER_HEIGHT}>
       {columns.map((columnData: Column, headerIndex: number) => {
-        const { headerRenderer, title, width } = columnData
-        const content = headerRenderer ? headerRenderer({ columnData }) : title
+        const { title, width } = columnData
         return (
           <Row.Cell
             {...cellProps}
@@ -35,7 +34,7 @@ const Headings: FC<HeadingsProps> = ({
                 </span>
               </CellPrefix>
             )}
-            {content}
+            {title}
           </Row.Cell>
         )
       })}
