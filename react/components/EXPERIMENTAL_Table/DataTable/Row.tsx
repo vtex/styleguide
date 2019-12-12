@@ -23,14 +23,13 @@ const Row: FC<RowProps> & RowComposites = ({
 }
 
 export const Cell: FC<CellProps> = ({
-  id,
   children,
   width,
   onClick,
   as: Tag = 'td',
   className = '',
 }) => {
-  const classNames = csx('v-mid pv0 tl bb b--muted-4', className, {
+  const classNames = csx('v-mid ph3 pv0 tl bb b--muted-4', className, {
     'pointer hover-c-link hover-bg-muted-5': onClick,
   })
 

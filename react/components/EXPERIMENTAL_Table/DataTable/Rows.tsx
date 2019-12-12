@@ -47,17 +47,15 @@ const Rows: FC<RowsProps> = ({
             : cellData
           return (
             <Row.Cell {...cellProps} key={`cel-${uuid()}`} width={width}>
-              {cellIndex === 0 && (
+              {cellIndex === 0 && checkboxes && (
                 <CellPrefix>
-                  {checkboxes && (
-                    <span className="ph3">
-                      <CellPrefix.Checkbox
-                        checked={isRowChecked}
-                        partial={isRowPartiallyChecked}
-                        onClick={toggleChecked}
-                      />
-                    </span>
-                  )}
+                  <span className="ph3">
+                    <CellPrefix.Checkbox
+                      checked={isRowChecked}
+                      partial={isRowPartiallyChecked}
+                      onClick={toggleChecked}
+                    />
+                  </span>
                 </CellPrefix>
               )}
               {content}

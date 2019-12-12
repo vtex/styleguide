@@ -391,6 +391,7 @@ const columns = [
   {
     id: 'name',
     title: 'Name',
+    cellRenderer,
   },
   {
     id: 'country',
@@ -400,7 +401,8 @@ const columns = [
 
 const items = [
   {
-    name: 'En Sabah Nuh',
+    name:
+      '⚠️ This is just a text that is very very very large and should be fully visible when it is confortable and truncated otherwise. If you are seeing this part, it means that you are ona  low density 🤓!',
     country: '🇨🇺Cuba',
   },
   {
@@ -417,6 +419,18 @@ const items = [
   },
 ]
 
+function cellRenderer({ cellData, selectedDensity }) {
+  const confortable = selectedDensity === 'low'
+
+  return confortable ? (
+    <div className="dib">
+      <div className="db ws-normal tj">{cellData}</div>
+    </div>
+  ) : (
+    <div className="dib mw6 truncate">{cellData}</div>
+  )
+}
+
 function ProportionExample() {
   const measures = useTableMeasures({
     size: items.length,
@@ -427,7 +441,23 @@ function ProportionExample() {
     ratio: [3, 1],
   })
 
-  return <Table measures={measures} columns={sizedColumns} items={items} />
+  const densityProps = {
+    label: 'Line density',
+    lowOptionLabel: 'Low',
+    mediumOptionLabel: 'Medium',
+    highOptionLabel: 'High',
+    density: measures,
+  }
+
+  return (
+    <Table measures={measures} columns={sizedColumns} items={items}>
+      <Table.Toolbar>
+        <Table.Toolbar.ButtonGroup>
+          <Table.Toolbar.ButtonGroup.Density {...densityProps} />
+        </Table.Toolbar.ButtonGroup>
+      </Table.Toolbar>
+    </Table>
+  )
 }
 ;<ProportionExample />
 ```
