@@ -11,16 +11,12 @@ const Row: FC<RowProps> & RowComposites = ({
   onClick,
   active,
 }) => {
-  const className = csx('w-100 ph4 truncate overflow-x-hidden', {
+  const className = csx('w-100 truncate overflow-x-hidden', {
     'pointer hover-c-link hover-bg-muted-5': onClick,
     'bg-action-secondary': active,
   })
   return (
-    <Tag
-      key={`${NAMESPACES.ROW}-${uuid()}`}
-      style={{ height: height }}
-      onClick={onClick}
-      className={className}>
+    <Tag style={{ height }} onClick={onClick} className={className}>
       {children}
     </Tag>
   )
@@ -34,16 +30,12 @@ export const Cell: FC<CellProps> = ({
   as: Tag = 'td',
   className = '',
 }) => {
-  const classNames = csx('truncate v-mid ph2 pv0 tl bb b--muted-4', className, {
+  const classNames = csx('v-mid pv0 tl bb b--muted-4', className, {
     'pointer hover-c-link hover-bg-muted-5': onClick,
   })
 
   return (
-    <Tag
-      onClick={onClick}
-      id={`${NAMESPACES.CELL}-${id}`}
-      style={{ minWidth: width }}
-      className={classNames}>
+    <Tag onClick={onClick} style={{ width }} className={classNames}>
       {children}
     </Tag>
   )
@@ -55,7 +47,7 @@ export type RowComposites = {
 
 export type CellProps = {
   id?: string
-  width?: number
+  width?: number | string
   as?: 'td' | 'th' | 'div' | 'li'
   className?: string
   onClick?: () => void

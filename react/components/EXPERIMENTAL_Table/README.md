@@ -381,6 +381,57 @@ function ClickExample() {
 ;<ClickExample />
 ```
 
+# Proportion
+
+```js
+const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
+const useTableProportion = require('./hooks/useTableProportion.ts').default
+
+const columns = [
+  {
+    id: 'name',
+    title: 'Name',
+  },
+  {
+    id: 'country',
+    title: 'Country',
+  },
+]
+
+const items = [
+  {
+    name: 'En Sabah Nuh',
+    country: '🇨🇺Cuba',
+  },
+  {
+    name: 'Abdul Qamar',
+    country: '🇸🇦Saudi Arabia',
+  },
+  {
+    name: 'Goose the Cat',
+    country: '🇺🇸USA',
+  },
+  {
+    name: 'Brian Braddock',
+    country: '🇬🇧Great Britain',
+  },
+]
+
+function ProportionExample() {
+  const measures = useTableMeasures({
+    size: items.length,
+  })
+
+  const { sizedColumns } = useTableProportion({
+    columns,
+    ratio: [3, 1],
+  })
+
+  return <Table measures={measures} columns={sizedColumns} items={items} />
+}
+;<ProportionExample />
+```
+
 # Loading
 
 ```js
