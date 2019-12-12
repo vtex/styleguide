@@ -85,6 +85,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [9.98.0] - 2019-12-12
 
+### Added
+
 - `mobileScroll` prop to `Totalizer`
 
 ## [9.97.5] - 2019-12-11
