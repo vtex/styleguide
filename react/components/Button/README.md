@@ -1,13 +1,14 @@
 #### Buttons are independent interactive elements used to trigger actions or to perform navigation.
 
 ### Chosing a variation
+
 Our Styleguide defines 3 main variations based on the button visual proeminence. As with any UI element, the proeminence should be proportional to the importance of that element.
+
 - Do mix variations as needed.
 - Avoid having more than one Primary button, save this kind for the most important or most recommended action in a given screen.
 - Use the Danger variation for destructive actions that delete data or lead to a state that is hard to recover. Danger buttons should _always_ have a confirmation dialog.
 - In doubt, use Secondary buttons.
 - Since reading speed can be slowed down by up to 20% when reading all caps (Breland & Breland - 1944), beware of "phrase long" button texts. Keep it short, and make your point in 3 words or less.
-
 
 Types
 
@@ -37,23 +38,35 @@ Types
   </div>
   <div className="flex flex-column items-center w-100">
     <span className="mb4">
-      <Button variation="primary" disabled>Primary</Button>
+      <Button variation="primary" disabled>
+        Primary
+      </Button>
     </span>
     <span className="mb4">
-      <Button variation="secondary" disabled>Secondary</Button>
+      <Button variation="secondary" disabled>
+        Secondary
+      </Button>
     </span>
     <span className="mb4">
-      <Button variation="tertiary" disabled>Tertiary</Button>
+      <Button variation="tertiary" disabled>
+        Tertiary
+      </Button>
     </span>
     <span className="mb4">
-      <Button variation="danger" disabled>Danger</Button>
+      <Button variation="danger" disabled>
+        Danger
+      </Button>
     </span>
     <span className="mb4">
-      <Button variation="danger-tertiary" disabled>Danger Tertiary</Button>
+      <Button variation="danger-tertiary" disabled>
+        Danger Tertiary
+      </Button>
     </span>
     <span className="bg-base--inverted w-100 pa4 flex justify-center">
       <span className="mb4">
-        <Button variation="inverted-tertiary" disabled>Inverted Tertiary</Button>
+        <Button variation="inverted-tertiary" disabled>
+          Inverted Tertiary
+        </Button>
       </span>
     </span>
   </div>
@@ -71,9 +84,7 @@ Sizes
       </Button>
     </span>
     <span className="mr4">
-      <Button variation="primary">
-        Regular
-      </Button>
+      <Button variation="primary">Regular</Button>
     </span>
     <span className="mr4">
       <Button variation="primary" size="large">
@@ -171,7 +182,9 @@ Link mode
 
 ```js
 <div className="mb4">
-  <Button variation="primary" href="http://vtex.com" target="_blank">Sign in</Button>
+  <Button variation="primary" href="http://vtex.com" target="_blank">
+    Sign in
+  </Button>
 </div>
 ```
 
@@ -180,32 +193,75 @@ Cancelling out button paddings. Useful for visually aligning tertiary buttons
 ```js
 const Box = require('../Box').default
 
-;<div className="flex justify-center">
-  <div className="flex flex-column w-60">
-    <div className="t-heading-6 mb4">Using collapse props</div>
-    <div className="w-100 mb4">
-      <Box />
-    </div>
-    <div className="mb4 flex justify-between">
-      <Button variation="tertiary" collapseLeft>Collapse left</Button>
-      <Button variation="tertiary" collapseRight>Collapse right</Button>
-    </div>
-  </div>
-</div>
-
-;<div className="flex justify-center mt6">
-  <div className="flex flex-column w-60">
-    <div className="t-heading-6 mb4">No collapse props</div>
-    <div className="w-100 mb4">
-      <Box />
-    </div>
-    <div className="mb4 flex justify-between">
-      <Button variation="tertiary">Default</Button>
-      <Button variation="tertiary">Default</Button>
+;<>
+  <div className="flex justify-center">
+    <div className="flex flex-column w-60">
+      <div className="t-heading-6 mb4">
+        Use collapse props when tertiary button is alone, to align it with the
+        other elements
+      </div>
+      <div className="w-100 mb4">
+        <Box />
+      </div>
+      <div className="mb4 flex justify-between">
+        <Button variation="tertiary" collapseLeft>
+          Collapse left
+        </Button>
+        <Button variation="tertiary" collapseRight>
+          Collapse right
+        </Button>
+      </div>
     </div>
   </div>
-</div>
+  <div className="flex justify-center mt6">
+    <div className="flex flex-column w-60">
+      <div className="t-heading-6 mb4">
+        Don't collapse when the button is not alone
+      </div>
+      <div className="w-100 mb4">
+        <Box />
+      </div>
+      <div className="mb4 flex">
+        <Button variation="tertiary">Default</Button>
+        <div className="ml2">
+          <Button variation="secondary">Another Button</Button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div className="flex justify-center mt6">
+    <div className="flex flex-column w-60">
+      <div className="t-heading-6 mb4">
+        Collapse props don't work on primary and secondary variations (and it
+        shouldn't)
+      </div>
+      <div className="w-100 mb4">
+        <Box />
+      </div>
+      <div className="mb4 flex justify-between">
+        <Button variation="primary" collapseLeft>
+          Collapse left
+        </Button>
+        <Button variation="primary" collapseRight>
+          Collapse right
+        </Button>
+      </div>
+      <div className="w-100 mb4">
+        <Box />
+      </div>
+      <div className="mb4 flex justify-between">
+        <Button variation="secondary" collapseLeft>
+          Collapse left
+        </Button>
+        <Button variation="secondary" collapseRight>
+          Collapse right
+        </Button>
+      </div>
+    </div>
+  </div>
+</>
 ```
+
 Colored container background
 
 ```js
@@ -223,13 +279,19 @@ Colored container background
   </div>
   <div className="mt4">
     <span className="mr4">
-      <Button variation="primary" disabled>Primary</Button>
+      <Button variation="primary" disabled>
+        Primary
+      </Button>
     </span>
     <span className="mr4">
-      <Button variation="secondary" disabled>Secondary</Button>
+      <Button variation="secondary" disabled>
+        Secondary
+      </Button>
     </span>
     <span className="mr4">
-      <Button variation="tertiary" disabled>Neutral</Button>
+      <Button variation="tertiary" disabled>
+        Neutral
+      </Button>
     </span>
   </div>
 </div>
@@ -238,14 +300,13 @@ Colored container background
 Loading state
 
 ```js
-initialState = { isLoading1: true, isLoading2: true, isLoading3: true  };
-<div>
+initialState = { isLoading1: true, isLoading2: true, isLoading3: true }
+;<div>
   <div className="mt4">
     <Button
       variation="primary"
       onClick={() => setState({ isLoading2: !state.isLoading2 })}
-      isLoading={state.isLoading2}
-    >
+      isLoading={state.isLoading2}>
       Toggle loading state
     </Button>
   </div>
