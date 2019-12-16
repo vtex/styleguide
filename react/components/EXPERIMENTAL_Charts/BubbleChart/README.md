@@ -25,3 +25,7 @@ const data = [
 
 ### 👎 Don'ts
 - Don't use a bubble chart with large datasets, too many bubbles can make the chart hard to read.
+
+### Chart Config
+
+You also can change the axis, grid, and the size of the container like the `LineChart`. Follow the same instructions, described [here](/#/Components/Charts/LineChart?id=chart-config).
