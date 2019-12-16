@@ -87,4 +87,4 @@ For default, xAxis is a `category` and yAxis is a `number`
 ```
 ### Chart Config
 
-You also can change the axis, grid, and the size of the container like the `LineChart`. Follow the same instructions, described [here](/#/Components/Charts/LineChart?id=chart-config).
+You also can change the axis, grid and the size of the container like the `LineChart`. Follow the same instructions, described [here](/#/Components/Charts/LineChart?id=chart-config).
