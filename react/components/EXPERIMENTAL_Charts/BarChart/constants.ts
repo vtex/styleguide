@@ -5,7 +5,7 @@ export enum Layout {
   HORIZONTAL = "horizontal"
 }
 
-export const defaultProps: DefaultBarProps  = {
+export const defaultProps: DefaultBarProps = {
   layout: Layout.HORIZONTAL,
 }
 
