@@ -17,3 +17,7 @@ const data = [
   yAxisKey='y'
 />
 ```
+
+### Chart Config
+
+You also can change the axis, grid, and the size of the container like the `LineChart`. Follow the same instructions, described [here](/#/Components/Charts/LineChart?id=chart-config).
