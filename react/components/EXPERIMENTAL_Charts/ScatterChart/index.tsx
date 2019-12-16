@@ -31,16 +31,16 @@ const ScatterChart:FC<BaseChartProps> = ({
   const { configs } = getChartDefaultProps(config, commonDefaultProps)
   
   return (
-    <ResponsiveContainer {...configs.container} >
+    <ResponsiveContainer {...configs.container}>
       <ScatterChartBase data={data}>
-        <CartesianGrid {...configs.grid}/>
+        <CartesianGrid {...configs.grid} />
         <XAxis dataKey={xAxisKey} {...configs.xAxis} />
         <YAxis dataKey={yAxisKey} {...configs.yAxis} />
         {zAxisKey && 
-          <ZAxis dataKey={zAxisKey} range={getRangeOfZAxis(zAxisKey, data)}/>
+          <ZAxis dataKey={zAxisKey} range={getRangeOfZAxis(zAxisKey, data)} />
         }
-        <Tooltip cursor={false} content={<CustomTooltip />}/>
-        <Scatter fill={colors[0]}/>
+        <Tooltip cursor={false} content={<CustomTooltip />} />
+        <Scatter fill={colors[0]} />
       </ScatterChartBase>
     </ResponsiveContainer>
   )
