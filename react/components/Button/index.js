@@ -76,19 +76,17 @@ class Button extends Component {
         break
     }
 
+    if (isTertiary && (collapseLeft || collapseRight)) {
+      horizontalPadding = 2
+    }
+
     labelClasses += `ph${horizontalPadding} `
 
-    if (collapseLeft) {
-      classes += `nl${horizontalPadding} `
-      if (isTertiary) {
-        labelClasses += 'nl1 '
-      }
+    if (collapseLeft && isTertiary) {
+      labelClasses += `nl1 `
     }
-    if (collapseRight) {
-      classes += `nr${horizontalPadding} `
-      if (isTertiary) {
-        labelClasses += 'nr1 '
-      }
+    if (collapseRight && isTertiary) {
+      labelClasses += `nr1 `
     }
 
     if (iconOnly) {
@@ -130,8 +128,8 @@ class Button extends Component {
             classes +=
               'bg-transparent b--transparent c-action-primary hover-b--transparent '
           }
-          if (!disabled && !collapseLeft && !collapseRight) {
-            classes += 'hover-bg-muted-5 '
+          if (!disabled) {
+            classes += 'hover-bg-action-secondary hover-b--action-secondary '
           }
           break
         }
@@ -165,12 +163,12 @@ class Button extends Component {
     }
 
     if (!disabled) {
-      classes += 'hover-bg-action-secondary hover-b--action-secondary '
+      classes += 'pointer '
     }
 
     if (block) {
       classes += 'w-100 '
-      labelClasses += 'w-100 '
+      labelClasses += 'w-100 border-box '
     }
 
     if (href) {
