@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [8.73.11] - 2019-12-16
+
 ### Fixed
 
 - `Button` styles.
