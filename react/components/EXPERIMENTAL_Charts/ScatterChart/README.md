@@ -1,4 +1,4 @@
-#### The Scatter charts shows the data as a collection of points, they useful for detect if a relationship or correlation of multiple variables. 
+#### The Scatter charts shows the data as a collection of points, they are useful for detect if there's a relationship or correlation of multiple variables. 
 
 ```js
 const data = [
