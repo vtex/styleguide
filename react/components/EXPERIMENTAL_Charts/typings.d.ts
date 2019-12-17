@@ -7,7 +7,7 @@ type DefaultBarProps = Pick<LineProps, 'layout'>
 type ChartConfig = {
   xAxis?: BaseAxisProps,
   yAxis?: BaseAxisProps,
-  zAxis?: BaseYAxisProps,
+  zAxis?: BaseAxisProps,
   container?: BaseContainerProps,
   grid?: BaseGridProps
 }

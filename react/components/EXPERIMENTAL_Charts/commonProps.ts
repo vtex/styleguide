@@ -23,6 +23,7 @@ export const commonDefaultProps: ChartConfig = {
   zAxis: {
     axisLine: false,
     tickLine: false,
+    tickMargin: 5,
     tick: true,
     hide: false,
     type: 'number'
