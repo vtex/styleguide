@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- `inverted` prop to `Totalizer` component.
+
 ## [9.99.1] - 2019-12-17
 
 ## [9.99.0] - 2019-12-17
