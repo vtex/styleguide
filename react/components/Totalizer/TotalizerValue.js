@@ -12,7 +12,7 @@ class TotalizerValue extends PureComponent {
 
     if (isLoading) {
       return (
-        <div className="mt2 c-muted-1">
+        <div className="c-muted-1">
           <Spinner size={14} color="currentColor" />
         </div>
       )

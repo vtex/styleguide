@@ -44,6 +44,38 @@ const Totalizers = require('./index.js').default
 />
 ```
 
+#### With inverted first item
+
+```js
+const Totalizers = require('./index.js').default
+;<Totalizers
+  items={[
+    {
+      inverted: true,
+      value: 'Total Orders',
+      label: 'Until 10h10',
+    },
+    {
+      label: 'Today',
+      value: 12364,
+    },
+    {
+      label: 'Yesterday',
+      value: 11980,
+    },
+
+    {
+      label: 'Last Week',
+      value: 10776,
+    },
+    {
+      label: 'Last Year',
+      value: 9802,
+    },
+  ]}
+/>
+```
+
 #### Totalizer Icon
 
 ```js

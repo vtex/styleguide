@@ -32,6 +32,8 @@ class Totalizer extends PureComponent {
       }
     )
 
+    const invertedMargin = 2
+
     if (items.length === 0) {
       return null
     }
@@ -68,11 +70,26 @@ class Totalizer extends PureComponent {
                   </div>
                 ) : (
                   <>
+                    {item.inverted && (
+                      <div className={`mb${invertedMargin}`}>
+                        <TotalizerValue
+                          item={item}
+                          mobileScroll={mobileScroll}
+                        />
+                      </div>
+                    )}
                     <TotalizerLabel
                       label={item.label}
                       mobileScroll={mobileScroll}
                     />
-                    <TotalizerValue item={item} mobileScroll={mobileScroll} />
+                    {!item.inverted && (
+                      <div className={`mt${invertedMargin}`}>
+                        <TotalizerValue
+                          item={item}
+                          mobileScroll={mobileScroll}
+                        />
+                      </div>
+                    )}
                   </>
                 )}
               </div>
@@ -102,6 +119,7 @@ Totalizer.propTypes = {
       iconBackgroundColor: PropTypes.string,
       icon: PropTypes.node,
       isLoading: PropTypes.bool,
+      invertedWeight: PropTypes.bool,
     })
   ).isRequired,
 }
