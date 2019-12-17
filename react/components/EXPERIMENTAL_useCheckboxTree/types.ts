@@ -15,6 +15,7 @@ export type Checkboxes<T> = {
   toggle: (item: T) => void
   check: (item: T) => void
   uncheck: (item: T) => void
+  isDisabled?: (item: T) => boolean
 }
 
 export type Tree<T> = { [x: string]: string | T[]; [ROOT_KEY]: string } | T
@@ -25,4 +26,5 @@ export type useChecboxesInput<T> = {
   nodesKey?: string
   checked?: Array<unknown>
   comparator?: comparatorCurry<Tree<T>>
+  isDisabled?: (item: T) => boolean
 }

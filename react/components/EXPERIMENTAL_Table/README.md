@@ -1133,8 +1133,13 @@ function BulkModalExample() {
     size: items.length,
   })
 
+  const isDisabled = (item) => {
+    return item.qty <= 0
+  }   
+
   const checkboxes = useCheckboxTree({
     items,
+    isDisabled
   })
 
   const onConfirm = () => {

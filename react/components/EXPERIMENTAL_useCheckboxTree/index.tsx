@@ -13,6 +13,7 @@ export default function useCheckboxTree<T>({
   nodesKey = 'children',
   checked = [],
   comparator = defaultComparatorCurry,
+  isDisabled,
 }: useChecboxesInput<T>) {
   const [checkedItems, dispatch] = useReducer(reducer, checked)
 
@@ -129,6 +130,7 @@ export default function useCheckboxTree<T>({
     checkAll,
     uncheck,
     uncheckAll,
+    isDisabled
   }
 }
 
