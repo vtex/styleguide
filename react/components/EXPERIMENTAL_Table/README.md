@@ -2004,18 +2004,11 @@ function ToolbarExample() {
 ;<ToolbarExample />
 ```
 
-### UNSAFE Custom Input
-
-The `UNSAFE_InputCustom` provides a simple way of passing a custom input to the `Table`'s toolbar.
-
-⚠️ Be aware that this component is temporary and WILL change in the future!
+### Usage with Autocomplete
 
 ```js
-// Imports
 const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
-const Input = require('../Input/index.js').default
 
-/** Define the columns */
 const columns = [
   {
     id: 'name',
@@ -2035,7 +2028,6 @@ const columns = [
   },
 ]
 
-/** Define the items */
 const items = [
   {
     name: "T'Chala",
@@ -2063,54 +2055,57 @@ const items = [
   },
 ]
 
-/** Custom hook to filter items and keep track of input props */
-function useItemsFilter() {
-  const [displayItems, setDisplayItems] = React.useState(items)
-  const [inputValue, setInputValue] = React.useState('')
+const allNames = items.map(item => item.name)
 
-  return {
-    displayItems,
-    value: inputValue,
-    placeholder: 'Hey, This input is custom 🙂',
-    onChange: e => setInputValue(e.currentTarget.value),
-    onClear: () => {
-      setInputValue('')
-      setDisplayItems(items)
-    },
-    onSubmit: e => {
-      e.preventDefault()
-      const isInputClear = inputValue === ''
-      const filterFn = item =>
-        item.name.toLowerCase().includes(inputValue.toLowerCase())
-      setDisplayItems(isInputClear ? items : items.filter(filterFn))
-    },
-  }
-}
-
-/** Custom input example */
-function InputCustom({ onSubmit, ...inputProps }) {
-  return (
-    <form onSubmit={onSubmit}>
-      <Input {...inputProps} />
-    </form>
-  )
-}
-
-function UnsafeInputExample() {
-  const { displayItems, ...inputProps } = useItemsFilter()
+function InputAutocompleteExample() {
+  const [term, setTerm] = React.useState('')
+  const [loading, setLoading] = React.useState(false)
+  const timeoutRef = React.useRef(null)
   const measures = useTableMeasures({
     size: items.length,
   })
 
+  const options = {
+    onSelect: (...args) => console.log('onSelect: ', ...args),
+    loading,
+    value: !term.length
+      ? []
+      : allNames.filter(name =>
+          typeof name === 'string'
+            ? name.toLowerCase().includes(term.toLowerCase())
+            : name.label.toLowerCase().includes(term.toLowerCase())
+        ),
+  }
+
+  const input = {
+    onChange: term => {
+      if (term) {
+        setLoading(true)
+        if (timeoutRef.current) {
+          clearTimeout(timeoutRef.current)
+        }
+        timeoutRef.current = setTimeout(() => {
+          setLoading(false)
+          setTerm(term)
+          timeoutRef.current = null
+        }, 1000)
+      } else {
+        setTerm(term)
+      }
+    },
+    onSearch: (...args) => console.log('onSearch:', ...args),
+    onClear: () => setTerm(''),
+    placeholder: 'Search name... (e.g.: Peter)',
+    value: term,
+  }
+
   return (
-    <Table measures={measures} columns={columns} items={displayItems}>
+    <Table measures={measures} columns={columns} items={items}>
       <Table.Toolbar>
-        <Table.Toolbar.UNSAFE_InputCustom
-          input={<InputCustom {...inputProps} />}
-        />
+        <Table.Toolbar.InputAutocomplete input={input} options={options} />
       </Table.Toolbar>
     </Table>
   )
 }
-;<UnsafeInputExample />
+;<InputAutocompleteExample />
 ```
