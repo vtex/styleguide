@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.100.2] - 2019-12-17
+
 ### Changed
 
 - Deprecate `UNSAFE_CustomInput` in favor of using `AutoCompleteInput` on `EXPERIMENTAL_Table`.
