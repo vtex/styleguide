@@ -1,5 +1,5 @@
 import { getBulkChecked, getBulkUnchecked, getToggledState } from './util'
-import { comparatorCurry } from './types'
+import { comparatorCurry, Tree } from './types'
 
 export default function reducer<T>(state: Array<T>, action: Action<T>) {
   switch (action.type) {
@@ -13,14 +13,15 @@ export default function reducer<T>(state: Array<T>, action: Action<T>) {
       return state.filter(row => !comparator(row)(item))
     }
     case ActionType.BulkCheck: {
-      const { itemToToggle } = action
+      const { itemToToggle, isDisabled } = action
       if (!itemToToggle) return state
 
       return getBulkChecked(
         state,
         itemToToggle.item,
         itemToToggle.nodesKey,
-        itemToToggle.comparator
+        itemToToggle.comparator,
+        isDisabled
       )
     }
     case ActionType.BulkUncheck: {
@@ -35,13 +36,14 @@ export default function reducer<T>(state: Array<T>, action: Action<T>) {
       )
     }
     case ActionType.Toggle: {
-      const { itemToToggle } = action
+      const { itemToToggle, isDisabled } = action
       if (!itemToToggle) return state
       return getToggledState(
         state,
         itemToToggle.item,
         itemToToggle.nodesKey,
-        itemToToggle.comparator
+        itemToToggle.comparator,
+        isDisabled
       )
     }
     default: {
@@ -67,4 +69,5 @@ export type Action<T> = {
     nodesKey?: string
     comparator?: comparatorCurry<T>
   }
+  isDisabled?: (item: T | Tree<T>) => boolean
 }

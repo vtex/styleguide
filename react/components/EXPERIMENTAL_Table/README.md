@@ -1134,7 +1134,7 @@ function BulkModalExample() {
   })
 
   const isDisabled = (item) => {
-    return item.qty <= 0
+    return item.qty < 1
   }   
 
   const checkboxes = useCheckboxTree({
