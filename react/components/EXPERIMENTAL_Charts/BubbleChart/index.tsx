@@ -2,12 +2,9 @@ import React, { FC } from 'react'
 import PropTypes from 'prop-types'
 import ScatterChart from '../ScatterChart'
 
-
-const BubbleChart:FC<BaseChartProps> = (props) => {
-  return (
-    <ScatterChart {...props}/>  
-  )
-}
+const BubbleChart:FC<BaseChartProps> = (props) => (
+  <ScatterChart {...props}/>  
+)
 
 BubbleChart.propTypes = {
   /** The source data, in which each element is an object. */
