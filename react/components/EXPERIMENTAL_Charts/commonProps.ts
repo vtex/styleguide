@@ -20,6 +20,14 @@ export const commonDefaultProps: ChartConfig = {
     hide: false,
     type: 'number'
   },
+  zAxis: {
+    axisLine: false,
+    tickLine: false,
+    tickMargin: 5,
+    tick: true,
+    hide: false,
+    type: 'number'
+  },
   grid: {
     horizontal: false,
     vertical: false,

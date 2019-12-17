@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.99.1] - 2019-12-17
+
+## [9.99.0] - 2019-12-17
+### Added
+- `ScatterChart` to `EXPERIMENTAL_Charts`
+
 ## [9.98.1] - 2019-12-12
 
 ### Added

@@ -5,7 +5,7 @@ export enum Layout {
   HORIZONTAL = "horizontal"
 }
 
-export const defaultProps: DefaultBarProps  = {
+export const defaultProps: DefaultBarProps = {
   layout: Layout.HORIZONTAL,
 }
 
@@ -15,11 +15,15 @@ export const chartDefaultConfig: ChartConfig = {
     tickLine: false,
     tickMargin: 5,
     type: 'category',
+    tick: true,
+    hide: false,
   },
   yAxis: {
     axisLine: true,
     tickLine: false,
     tickMargin: 10,
     type: 'number',
+    tick: true,
+    hide: false,
   }
 }

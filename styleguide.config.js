@@ -174,6 +174,7 @@ module.exports = {
               components: [
                 'react/components/EXPERIMENTAL_Charts/LineChart/index.tsx',
                 'react/components/EXPERIMENTAL_Charts/BarChart/index.tsx',
+                'react/components/EXPERIMENTAL_Charts/ScatterChart/index.tsx',
               ],
             },
           ],
