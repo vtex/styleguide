@@ -14,7 +14,7 @@
 
 ### Related components
 
-- Consider using a <a href="#/Components/Display/Table">Table</a> if the information on totalizer is followed of a list of data.
+- Consider using a <a href="#/Components/Display/Table">Table</a> if the information on totalizer is followed by a list of data.
 
 #### Default
 
