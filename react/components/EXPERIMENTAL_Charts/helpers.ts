@@ -8,9 +8,9 @@ const merge = (defaultProps: any, userProps: any) => {
   userProps && Object.keys(userProps).forEach(key => (
     props[key] = mergeBase(props[key], userProps[key])
   ))
-  
   return props
 }
+
 const getRangeOfZAxis = (key, data) => {
   const values = data.map(item => item[key])
   const min = Math.min(...values)
@@ -27,7 +27,7 @@ const getLineDefaultProps = (userProps: LineProps) => ({
 })
 
 const getBarDefaultProps = (userProps: BarProps) => ({ 
-  barConfigs: {...defaultBarProps,...userProps} 
+  barConfigs: {...defaultBarProps,...userProps}
 })
 
 export {
