@@ -14,13 +14,12 @@
 
 ### Related components
 
-- Consider using a <a href="#/Components/Display/Table">Table</a> if the information on totalizers is followed of a list of data.
+- Consider using a <a href="#/Components/Display/Table">Table</a> if the information on totalizer is followed of a list of data.
 
 #### Default
 
 ```js
-const Totalizers = require('./index.js').default
-;<Totalizers
+<Totalizer
   items={[
     {
       label: 'Saldo em conta',
@@ -47,8 +46,7 @@ const Totalizers = require('./index.js').default
 #### With inverted first item
 
 ```js
-const Totalizers = require('./index.js').default
-;<Totalizers
+<Totalizer
   items={[
     {
       inverted: true,
@@ -82,9 +80,7 @@ const Totalizers = require('./index.js').default
 const ArrowDown = require('../icon/ArrowDown').default
 const ArrowUp = require('../icon/ArrowUp').default
 const ShoppingCart = require('../icon/ShoppingCart').default
-const Totalizers = require('./index.js').default
-
-;<Totalizers
+;<Totalizer
   items={[
     {
       label: 'Pedidos',
@@ -112,8 +108,7 @@ const Totalizers = require('./index.js').default
 #### Default with mobile scroll
 
 ```js
-const Totalizers = require('./index.js').default
-;<Totalizers
+<Totalizer
   mobileScroll
   items={[
     {
@@ -144,8 +139,7 @@ const Totalizers = require('./index.js').default
 const ArrowDown = require('../icon/ArrowDown').default
 const ArrowUp = require('../icon/ArrowUp').default
 const ShoppingCart = require('../icon/ShoppingCart').default
-const Totalizers = require('./index.js').default
-;<Totalizers
+;<Totalizer
   mobileScroll
   items={[
     {

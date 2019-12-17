@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Inconsistencies of the `Totalizer` documentation.
+
 ## [9.100.0] - 2019-12-17
 
 ### Added
@@ -15,7 +19,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [9.99.1] - 2019-12-17
 
-- Ts fixes of version `9.99.0`.
+### Fixed
+
+- Typescript problems of version `9.99.0`.
 
 ## [9.99.0] - 2019-12-17
 
