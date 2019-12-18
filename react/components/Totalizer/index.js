@@ -10,7 +10,7 @@ const BORDER_COLOR = 'b--muted-4'
 
 class Totalizer extends PureComponent {
   render() {
-    const { items, mobileScroll } = this.props
+    const { items, mobileScroll, horizontalLayout } = this.props
 
     const OUTER_CONTAINER_CLASSES = classnames({
       'overflow-x-hidden': mobileScroll,
@@ -54,24 +54,61 @@ class Totalizer extends PureComponent {
               `${TOTALIZER_BASE_CLASSES} ${EXTRA_BORDER}`
             )
 
+            const WITH_ICON_CONTAINER_CLASSES = classnames(
+              'item_container flex flex-row',
+              {
+                'items-center': horizontalLayout,
+              }
+            )
+
+            const WITH_ICON_ITEM_CONTAINER_CLASSES = classnames(
+              'item_container',
+              {
+                'flex flex-row items-baseline': horizontalLayout,
+              }
+            )
+
+            const WITHOUT_ICON_ITEM_CONTAINER_CLASSES = classnames(
+              'item_container',
+              {
+                'flex flex-row items-baseline': horizontalLayout,
+              }
+            )
+
             return (
               <div className={ITEM_CLASSES} key={item.label}>
                 {item.icon ? (
-                  <div className="item_container flex flex-row">
+                  <div className={WITH_ICON_CONTAINER_CLASSES}>
                     <TotalizerIcon item={item} />
 
-                    <div>
+                    <div className={WITH_ICON_ITEM_CONTAINER_CLASSES}>
+                      {item.inverted && (
+                        <div className={horizontalLayout ? 'mr3' : ''}>
+                          <TotalizerValue
+                            item={item}
+                            mobileScroll={mobileScroll}
+                          />
+                        </div>
+                      )}
                       <TotalizerLabel
                         label={item.label}
                         mobileScroll={mobileScroll}
                       />
-                      <TotalizerValue item={item} mobileScroll={mobileScroll} />
+                      {!item.inverted && (
+                        <TotalizerValue
+                          item={item}
+                          mobileScroll={mobileScroll}
+                        />
+                      )}
                     </div>
                   </div>
                 ) : (
-                  <>
+                  <div className={WITHOUT_ICON_ITEM_CONTAINER_CLASSES}>
                     {item.inverted && (
-                      <div className={`mb${invertedMargin}`}>
+                      <div
+                        className={`m${
+                          horizontalLayout ? 'r' : 'b'
+                        }${invertedMargin}`}>
                         <TotalizerValue
                           item={item}
                           mobileScroll={mobileScroll}
@@ -90,7 +127,7 @@ class Totalizer extends PureComponent {
                         />
                       </div>
                     )}
-                  </>
+                  </div>
                 )}
               </div>
             )
@@ -107,11 +144,13 @@ Totalizer.defaultProps = {
   icon: null,
   isLoading: false,
   mobileScroll: false,
+  horizontalLayout: false,
 }
 
 Totalizer.propTypes = {
   /** Sets the items horizontally instead of vertically on mobile. */
   mobileScroll: PropTypes.bool,
+  horizontalLayout: PropTypes.bool,
   items: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string.isRequired,
