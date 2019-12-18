@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.101.0] - 2019-12-18
+
 ### Added
 
 - `Totalizer` prop `horizontalLayout`.
