@@ -21,16 +21,12 @@ export default function useCheckboxTree<T>({
     return { [ROOT_KEY]: ROOT_VALUE, [nodesKey]: items }
   }, [items])
 
-  /**
-   * Atatch disabled items
-   * what should i do ?
-   */
   const disabledItems = useMemo(() => {
     return items.filter(isDisabled)
   }, [itemTree])
 
   const toggle = useCallback(
-    (item: T): void => {
+    (item: T | Tree<T>): void => {
       dispatch({
         type: ActionType.Toggle,
         itemToToggle: { item, nodesKey, comparator },
@@ -39,6 +35,10 @@ export default function useCheckboxTree<T>({
     },
     [checkedItems]
   )
+
+  const toggleAll = useCallback(() => {
+    toggle(itemTree)
+  }, [checkedItems])
 
   useEffect(() => {
     onToggle && onToggle({ checkedItems })
@@ -140,6 +140,7 @@ export default function useCheckboxTree<T>({
     isPartiallyChecked,
     itemTree,
     toggle,
+    toggleAll,
     check,
     checkAll,
     uncheck,

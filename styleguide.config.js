@@ -166,6 +166,7 @@ module.exports = {
             'react/components/EXPERIMENTAL_Select/index.js',
             'react/components/EXPERIMENTAL_Table/index.tsx',
             'react/components/EXPERIMENTAL_TableTree/index.tsx',
+            'react/components/EXPERIMENTAL_useCheckboxTree/index.tsx',
           ],
           sections: [
             {
