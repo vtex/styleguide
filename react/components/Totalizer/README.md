@@ -43,6 +43,66 @@
 />
 ```
 
+#### Horizontal layout
+
+```js
+const ShoppingCart = require('../icon/ShoppingCart').default
+;<Totalizer
+  horizontalLayout
+  items={[
+    {
+      label: 'Orders',
+      value: '566',
+      inverted: true,
+    },
+    {
+      label: 'Average Ticket',
+      value: 'R$55.47',
+      inverted: true,
+    },
+    {
+      label: 'Gross',
+      value: 'R$554.70',
+      inverted: true,
+    },
+  ]}
+/>
+```
+
+#### Horizontal layout with icons
+
+```js
+const ArrowDown = require('../icon/ArrowDown').default
+const ArrowUp = require('../icon/ArrowUp').default
+const ShoppingCart = require('../icon/ShoppingCart').default
+;<Totalizer
+  horizontalLayout
+  items={[
+    {
+      label: 'Orders',
+      value: '566',
+      inverted: true,
+      iconBackgroundColor: '#eafce3',
+      icon: <ArrowUp color="#79B03A" size={14} />,
+    },
+    {
+      label: 'Average Ticket',
+      value: 'R$55.47',
+      inverted: true,
+      iconBackgroundColor: '#cce8ff',
+      icon: <ShoppingCart color="#368df7" size={14} />,
+    },
+    {
+      label: 'Gross',
+      value: 'R$554.70',
+      inverted: true,
+      iconBackgroundColor: '#fda4a4',
+      icon: <ArrowDown color="#dd1616" size={14} />,
+    },
+  ]}
+/>
+```
+
 #### With inverted first item
 
 ```js
@@ -74,7 +134,7 @@
 />
 ```
 
-#### Totalizer Icon
+#### With Icons
 
 ```js
 const ArrowDown = require('../icon/ArrowDown').default
@@ -105,7 +165,7 @@ const ShoppingCart = require('../icon/ShoppingCart').default
 />
 ```
 
-#### Default with mobile scroll
+#### Mobile scroll
 
 ```js
 <Totalizer
@@ -133,7 +193,7 @@ const ShoppingCart = require('../icon/ShoppingCart').default
 />
 ```
 
-#### Totalizer Icon with mobile scroll
+#### Icons & mobile scroll
 
 ```js
 const ArrowDown = require('../icon/ArrowDown').default
