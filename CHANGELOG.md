@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.100.3] - 2019-12-18
+
+### Fixed
+
+- `Totalizer` margin with table within the `Table` component.
+
 ## [9.100.2] - 2019-12-17
 
 ### Changed

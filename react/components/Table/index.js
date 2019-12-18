@@ -304,8 +304,11 @@ class Table extends PureComponent {
         )}
 
         {totalizers && totalizers.length > 0 && (
-          <Totalizers items={totalizers} />
+          <div className="mb5">
+            <Totalizers items={totalizers} />
+          </div>
         )}
+
         <SwitchablePagination
           enabled={!loading && paginationClone}
           {...paginationClone}>
