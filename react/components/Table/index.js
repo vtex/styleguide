@@ -303,9 +303,13 @@ class Table extends PureComponent {
           </div>
         )}
 
-        {totalizers && totalizers.length > 0 && (
+        {totalizers && (
           <div className="mb5">
-            <Totalizers items={totalizers} />
+            {Array.isArray(totalizers) ? (
+              <Totalizers items={totalizers} />
+            ) : (
+              <Totalizers {...totalizers} />
+            )}
           </div>
         )}
 
@@ -495,7 +499,14 @@ Table.propTypes = {
     fixed: PropTypes.bool,
   }),
   /** Totalizers property  */
-  totalizers: PropTypes.array,
+  totalizers: PropTypes.oneOf([
+    PropTypes.array,
+    PropTypes.shape({
+      mobileScroll: PropTypes.bool,
+      horizontalLayout: PropTypes.bool,
+      items: PropTypes.array,
+    }),
+  ]),
   /** Filters property  */
   filters: PropTypes.shape({ ...FilterBar.propTypes }),
 }
