@@ -2,7 +2,6 @@ import {
   getBulkChecked,
   getBulkUnchecked,
   getToggledState,
-  getFlat,
 } from './util'
 import { comparatorCurry, Tree } from './types'
 

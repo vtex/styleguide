@@ -59,7 +59,7 @@ function SimpleExample() {
 
 ### Handling disabled items
 
-The disabled items are controlled by the `isDisabled` function, that receives an item as callBack. In the following example, an item should be disabled if the quantity is below 1.
+The disabled items are controlled by the `isDisabled` function, that receives an item as param. In the following example, an item should be disabled if the quantity is below 1.
 
 ```js
 const useCheckboxTree = require('./index.tsx').default
