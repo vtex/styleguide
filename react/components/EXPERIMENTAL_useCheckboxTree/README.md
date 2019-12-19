@@ -59,7 +59,7 @@ function SimpleExample() {
 
 ### Handling disabled items
 
-The disabled items are controlled by the `isDisabled` function, that receives an item as callBack. In the following example, we have a collection of clothes, which should be disabled if the quantity is below 1.
+The disabled items are controlled by the `isDisabled` function, that receives an item as callBack. In the following example, an item should be disabled if the quantity is below 1.
 
 ```js
 const useCheckboxTree = require('./index.tsx').default
@@ -180,6 +180,114 @@ function ComparatorExample() {
 ```
 
 ### Nested Items
+
+Your items can be trees of any depth as well. To control which prop contains the nested items ('related' in our example) use the `nodesKey` input. You can also define default checked items with the `checked` input.
+
+```js
+const useCheckboxTree = require('./index.tsx').default
+const Checkbox = require('../Checkbox/index.js').default
+
+const ID_PREFIX = 'tree-example'
+
+function TreeExample() {
+  const items = [
+    {
+      id: '1',
+      name: 'jacket',
+      color: 'red',
+      qtd: 12,
+      related: [
+        { id: '1.1', name: 'sweater', color: 'blue', qtd: 8 },
+        {
+          id: '1.2',
+          name: 'shirt',
+          color: 'pink',
+          qtd: 1,
+          related: [
+            { id: '1.2.1', name: 't-shirt', color: 'lime', qtd: 2 },
+            { id: '1.2.2', name: 'shirt', color: 'pink', qtd: 2 },
+          ],
+        },
+      ],
+    },
+    {
+      id: '2',
+      name: 'hat',
+      color: 'purple',
+      qtd: 10,
+      related: [
+        { id: '2.1', name: 'cap', color: 'black', qtd: 17 },
+        { id: '2.2', name: 'bandana', color: 'green', qtd: 6 },
+      ],
+    },
+  ]
+
+  const checkboxes = useCheckboxTree({
+    items,
+    nodesKey: 'related',
+    checked: [
+      { id: '1.2.2', name: 'shirt', color: 'pink', qtd: 2 },
+      { id: '2.2', name: 'bandana', color: 'green', qtd: 6 },
+    ],
+  })
+
+  function recursiveRender(item, depth = 0) {
+    const id = `${ID_PREFIX}-${item.id}`
+    const label = `${item.qtd} ${item.color} ${item.name}${
+      item.qtd > 1 ? 's' : ''
+    } left`
+
+    const containerProps = {
+      className: 'mt3',
+      style: { marginLeft: 18 * depth },
+    }
+
+    return item.related ? (
+      <div {...containerProps}>
+        <Checkbox
+          key={id}
+          id={id}
+          label={label}
+          checked={checkboxes.isChecked(item)}
+          partial={checkboxes.isPartiallyChecked(item)}
+          onChange={() => checkboxes.toggle(item)}
+        />
+        {item.related.map(related => recursiveRender(related, depth + 1))}
+      </div>
+    ) : (
+      <div {...containerProps}>
+        <Checkbox
+          key={id}
+          id={id}
+          label={label}
+          checked={checkboxes.isChecked(item)}
+          partial={checkboxes.isPartiallyChecked(item)}
+          onChange={() => checkboxes.toggle(item)}
+        />
+      </div>
+    )
+  }
+
+  return (
+    <>
+      <div className="mb3">
+        <Checkbox
+          id={`${ID_PREFIX}-${checkboxes.itemTree.id}`}
+          checked={checkboxes.allChecked}
+          partial={checkboxes.someChecked}
+          onChange={checkboxes.toggleAll}
+          label="Clothes - Select All"
+        />
+      </div>
+
+      <div className="ml5">
+        {checkboxes.itemTree.related.map(item => recursiveRender(item))}
+      </div>
+    </>
+  )
+}
+;<TreeExample />
+```
 
 ## Detailed props
 
