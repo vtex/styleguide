@@ -14,7 +14,7 @@ export type toggleCallback<T> = {
   disabledItems: Array<T>
 }
 
-export type useChecboxesInput<T> = {
+export type useCheckboxesInput<T> = {
   items: Array<T>
   onToggle?: (callback: toggleCallback<T>) => void
   nodesKey?: string

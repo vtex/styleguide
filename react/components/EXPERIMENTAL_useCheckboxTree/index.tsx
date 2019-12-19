@@ -4,7 +4,7 @@ import isEmpty from 'lodash/isEmpty'
 
 import { getFlat } from './util'
 import { defaultComparatorCurry, ROOT_KEY, ROOT_VALUE } from './constants'
-import { useChecboxesInput, Tree } from './types'
+import { useCheckboxesInput, Tree } from './types'
 import reducer, { ActionType } from './reducer'
 
 export default function useCheckboxTree<T>({
@@ -14,7 +14,7 @@ export default function useCheckboxTree<T>({
   checked = [],
   comparator = defaultComparatorCurry,
   isDisabled = (item: T | Tree<T>) => false,
-}: useChecboxesInput<T>) {
+}: useCheckboxesInput<T>) {
   const [checkedItems, dispatch] = useReducer(reducer, checked)
 
   const itemTree = useMemo(() => {
@@ -51,16 +51,16 @@ export default function useCheckboxTree<T>({
 
       if (!childNodes || isEmpty(childNodes)) return
 
-      const areChildsChecked = childNodes
+      const childrenChecked = childNodes
         .filter(childNode => !isDisabled(childNode))
         .every(childNode => checkedItems.some(comparator(childNode)))
 
-      const isRootChecked = checkedItems.some(comparator(tree))
+      const rootChecked = checkedItems.some(comparator(tree))
 
-      if (areChildsChecked && !isRootChecked && !isDisabled(tree))
+      if (childrenChecked && !rootChecked && !isDisabled(tree))
         dispatch({ type: ActionType.Check, item: tree })
 
-      if (!areChildsChecked && isRootChecked)
+      if (!childrenChecked && rootChecked)
         dispatch({
           type: ActionType.Uncheck,
           itemToToggle: { item: tree, comparator },
