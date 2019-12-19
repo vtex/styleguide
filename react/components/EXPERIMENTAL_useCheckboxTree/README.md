@@ -1,95 +1,130 @@
 The `EXPERIMENTAL_useChecbokTree` is a hook to helps holding state the state of checboxes lists or trees.
 
-```js
-const useCheckboxTree = require('./index.tsx').default
-const Checkbox = require('../Checkbox/index.js').default
-
-const items = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }]
-
-function Case() {
-  const checkboxes = useCheckboxTree({
-    items,
-  })
-
-  return (
-    <>
-      <Checkbox
-        key={checkboxes.itemTree}
-        checked={checkboxes.allChecked}
-        partial={checkboxes.someChecked}
-        onChange={checkboxes.toggleAll}
-        label="Root"
-      />
-
-      {checkboxes.itemTree.children.map(item => (
-        <Checkbox
-          key={item.id}
-          id={item.id}
-          checked={checkboxes.isChecked(item)}
-          partial={checkboxes.isPartiallyChecked(item)}
-          onChange={() => checkboxes.toggle(item)}
-          label={`item ${item.id}`}
-        />
-      ))}
-    </>
-  )
-}
-;<Case />
-```
-
 ### Handling disabled items
 
-The disabled items are controled by the `isDisabled`. In the following example we have a collection of --something--.
+The disabled items are controlled by the `isDisabled` function, that receives an item as callBack. In the following example, we have a collection of clothes, which should be disabled if the quantity is below 1.
 
 ```js
 const useCheckboxTree = require('./index.tsx').default
 const Checkbox = require('../Checkbox/index.js').default
 
-const items = [
-  { id: 1, name: 'White sneakers', qtd: 12 },
-  { id: 2, name: 'Red shirt', qtd: 0 },
-  { id: 3, name: 'Blue shorts', qtd: 8 },
-  { id: 4, name: 'Pink hat', qtd: 0 },
-]
+const ID_PREFIX = 'disabled-example'
 
 function DisabledExample() {
-  const isDisabled = item => item.qtd < 1
+  const items = [
+    { id: 'one', name: 'jacket', color: 'red', qtd: 12 },
+    { id: 'two', name: 'shirt', color: 'pink', qtd: 0 },
+    { id: 'three', name: 'sweater', color: 'blue', qtd: 8 },
+    { id: 'four', name: 'hat', color: 'purple', qtd: 0 },
+  ]
 
   const checkboxes = useCheckboxTree({
     items,
-    isDisabled,
+    isDisabled: item => item.qtd < 1,
   })
 
   return (
     <>
-      <Checkbox
-        key={checkboxes.itemTree}
-        checked={checkboxes.allChecked}
-        partial={checkboxes.someChecked}
-        onChange={checkboxes.toggleAll}
-        label="Root"
-      />
-
-      {checkboxes.itemTree.children.map(item => (
+      <div className="mb3">
         <Checkbox
-          key={item.id}
-          id={item.id}
-          checked={checkboxes.isChecked(item)}
-          partial={checkboxes.isPartiallyChecked(item)}
-          disabled={checkboxes.isDisabled(item)}
-          onChange={() => checkboxes.toggle(item)}
-          label={`${item.name}, ${item.qtd}`}
+          id={`${ID_PREFIX}-${checkboxes.itemTree.id}`}
+          checked={checkboxes.allChecked}
+          partial={checkboxes.someChecked}
+          onChange={checkboxes.toggleAll}
+          label="Clothes"
         />
-      ))}
+      </div>
+
+      <div className="ml5">
+        {checkboxes.itemTree.children.map(item => {
+          const id = `${ID_PREFIX}-${item.id}-${item.color}`
+          const label = `${item.qtd} ${item.color} ${item.name}${
+            item.qtd > 1 ? 's' : ''
+          } left`
+          return (
+            <Checkbox
+              key={id}
+              id={id}
+              label={label}
+              checked={checkboxes.isChecked(item)}
+              partial={checkboxes.isPartiallyChecked(item)}
+              disabled={checkboxes.isDisabled(item)}
+              onChange={() => checkboxes.toggle(item)}
+            />
+          )
+        })}
+      </div>
     </>
   )
 }
 ;<DisabledExample />
 ```
 
+### Granting unicity
+
+Unicity should be granted by the `comparator` curry, in which the curried parameters are two items and must return true if items are equal. In the example above there are some items with repeated `id`s, so we define a comparator that compares `id` and `color`.
+
+⚠️If you encounter a collection that contains deep equal items, a good solution is to map it into a new collection adding a prop to grants unicity, and then use the comparator function.
+
+```js
+const useCheckboxTree = require('./index.tsx').default
+const Checkbox = require('../Checkbox/index.js').default
+
+const ID_PREFIX = 'comparator-example'
+
+function ComparatorExample() {
+  const items = [
+    { id: 'one', name: 'jacket', color: 'red', qtd: 12 },
+    { id: 'one', name: 'shirt', color: 'pink', qtd: 0 },
+    { id: 'one', name: 'sweater', color: 'blue', qtd: 8 },
+    { id: 'four', name: 'hat', color: 'purple', qtd: 0 },
+  ]
+
+  const checkboxes = useCheckboxTree({
+    items,
+    comparator: item => candidate =>
+      item.id === candidate.id && item.color === candidate.color,
+  })
+
+  return (
+    <>
+      <div className="mb3">
+        <Checkbox
+          id={`${ID_PREFIX}-${checkboxes.itemTree.id}`}
+          checked={checkboxes.allChecked}
+          partial={checkboxes.someChecked}
+          onChange={checkboxes.toggleAll}
+          label="Clothes"
+        />
+      </div>
+
+      <div className="ml5">
+        {checkboxes.itemTree.children.map(item => {
+          const id = `${ID_PREFIX}-${item.id}-${item.color}`
+          const label = `${item.qtd} ${item.color} ${item.name}${
+            item.qtd > 1 ? 's' : ''
+          } left`
+          return (
+            <Checkbox
+              key={id}
+              id={id}
+              label={label}
+              checked={checkboxes.isChecked(item)}
+              partial={checkboxes.isPartiallyChecked(item)}
+              onChange={() => checkboxes.toggle(item)}
+            />
+          )
+        })}
+      </div>
+    </>
+  )
+}
+;<ComparatorExample />
+```
+
 ### Nested
 
-...
+TODO
 
 ## Detailed props
 
