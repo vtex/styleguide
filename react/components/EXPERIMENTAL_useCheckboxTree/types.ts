@@ -9,11 +9,16 @@ export type Checkboxes<T> = ReturnType<typeof useCheckboxTree>
 
 export type Tree<T> = { [x: string]: string | T[]; [ROOT_KEY]: string } | T
 
+export type toggleCallback<T> = {
+  checkedItems: Array<any>
+  disabledItems: Array<T>
+}
+
 export type useChecboxesInput<T> = {
   items: Array<T>
-  onToggle?: ({ checkedItems }) => void
+  onToggle?: (callback: toggleCallback<T>) => void
   nodesKey?: string
-  checked?: Array<unknown>
+  checked?: Array<T>
   comparator?: comparatorCurry<Tree<T>>
   isDisabled?: (item: T | Tree<T>) => boolean
 }

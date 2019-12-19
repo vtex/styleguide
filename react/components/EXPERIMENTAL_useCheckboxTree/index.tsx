@@ -42,7 +42,7 @@ export default function useCheckboxTree<T>({
   }, [checkedItems])
 
   useEffect(() => {
-    onToggle && onToggle({ checkedItems })
+    onToggle && onToggle({ checkedItems, disabledItems })
   }, [toggle])
 
   useEffect(() => {

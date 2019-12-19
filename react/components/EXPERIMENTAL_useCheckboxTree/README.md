@@ -1,4 +1,61 @@
-The `EXPERIMENTAL_useChecbokTree` is a hook to helps holding state the state of checboxes lists or trees.
+💡 If you want a detailed explanation of each input/output, proceed to the `Detailed Props` section.
+
+The `EXPERIMENTAL_useChecbokTree` is a hook to helps to hold state the state of checkboxes lists or trees. The following documentation exposes some examples of usage to give you an overview of how it works. To better structure our examples, let's imagine that we have a collection of clothes featuring the props `id`, `name`, `color` and `qtd` (for quantity). It is desired to select each one separately or all of them with a single checkbox (root):
+
+```js
+const useCheckboxTree = require('./index.tsx').default
+const Checkbox = require('../Checkbox/index.js').default
+
+const ID_PREFIX = 'simple-example'
+
+function SimpleExample() {
+  const items = [
+    { id: 'one', name: 'jacket', color: 'red', qtd: 12 },
+    { id: 'two', name: 'shirt', color: 'pink', qtd: 0 },
+    { id: 'three', name: 'sweater', color: 'blue', qtd: 8 },
+    { id: 'four', name: 'hat', color: 'purple', qtd: 0 },
+  ]
+
+  const checkboxes = useCheckboxTree({
+    items,
+  })
+
+  return (
+    <>
+      <div className="mb3">
+        <Checkbox
+          id={`${ID_PREFIX}-${checkboxes.itemTree.id}`}
+          checked={checkboxes.allChecked}
+          partial={checkboxes.someChecked}
+          onChange={checkboxes.toggleAll}
+          label="Clothes"
+        />
+      </div>
+
+      <div className="ml5">
+        {checkboxes.itemTree.children.map(item => {
+          const id = `${ID_PREFIX}-${item.id}`
+          const label = `${item.qtd} ${item.color} ${item.name}${
+            item.qtd > 1 ? 's' : ''
+          } left`
+          return (
+            <Checkbox
+              key={id}
+              id={id}
+              label={label}
+              checked={checkboxes.isChecked(item)}
+              partial={checkboxes.isPartiallyChecked(item)}
+              disabled={checkboxes.isDisabled(item)}
+              onChange={() => checkboxes.toggle(item)}
+            />
+          )
+        })}
+      </div>
+    </>
+  )
+}
+;<SimpleExample />
+```
 
 ### Handling disabled items
 
@@ -37,7 +94,7 @@ function DisabledExample() {
 
       <div className="ml5">
         {checkboxes.itemTree.children.map(item => {
-          const id = `${ID_PREFIX}-${item.id}-${item.color}`
+          const id = `${ID_PREFIX}-${item.id}`
           const label = `${item.qtd} ${item.color} ${item.name}${
             item.qtd > 1 ? 's' : ''
           } left`
@@ -122,9 +179,7 @@ function ComparatorExample() {
 ;<ComparatorExample />
 ```
 
-### Nested
-
-TODO
+### Nested Items
 
 ## Detailed props
 
@@ -159,7 +214,7 @@ The `useCheckboxTree` hook receives a single object as a parameter, which contai
 ##### onToggle
 
 - Funtion that is called on every item toggle.
-- **Type**: `({ checkedItems: T[] }) => void`
+- **Type**: `({ checkedItems: T[], disabledItems: T[] }) => void`
 - **Default**: `undefined`
 
 ##### isDisabled
@@ -174,17 +229,25 @@ Similarly to input, the output is also a single object. All the exported propert
 
 ##### itemTree
 
-- Lorem.
+- Parsed tree that has the shape:
+
+```ts
+type Tree<T>{
+  id: 'VTEX_CheckboxTreeRoot' //id of the root
+  [nodesKey]: T[] //Your items will be here
+}
+```
+
 - **Type**: `Tree<T>`.
 
 ##### checkedItems
 
-- Current list of items that are checked.
+- Current list of items that are checked (including the root).
 - **Type**: `Array<T>`.
 
 ##### disabledItems
 
-- Lorem
+- List of items that are disabled
 - **Type**: `Array<T>`
 
 ##### isChecked
@@ -194,50 +257,45 @@ Similarly to input, the output is also a single object. All the exported propert
 
 ##### isPartiallyChecked
 
-- Lorem
+- Return if an item or a tree is checked partially
 - **Type**: `(item: T | Tree<T>) => boolean`
 
 ##### allChecked
 
-- Lorem
+- Returns true if all the items are checked
 - **Type**: `boolean`
 
 ##### someChecked
 
-- Lorem
+- Returns true if one some item is checked
 - **Type**: `boolean`
 
 ##### toggle
 
-- Lorem
+- Bulk toggle one item or a tree
+- **Type**: `(item: T | Tree<T>) => void`
+
+##### check
+
+- Bulk checks one item or tree
+- **Type**: `(item: T | Tree<T>) => void`
+
+##### uncheck
+
+- Bulk unchecks one item or tree
 - **Type**: `(item: T | Tree<T>) => void`
 
 ##### toggleAll
 
-- Lorem
+- Toggle the root
 - **Type**: `() => void`
-
-##### check
-
-- Lorem
-- **Type**: `(item: T | Tree<T>) => void`
 
 ##### checkAll
 
-- Lorem
+- Check the root
 - **Type**: `() => void`
-
-##### uncheck
-
-- Lorem
-- **Type**: `(item: T | Tree<T>) => void`
 
 ##### uncheckAll
 
-- Lorem
+- Uncheck the root
 - **Type**: `() => void`
-
-##### isDisabled
-
-- Lorem
-- **Type**: `(item: T | Tree<T>) => boolean`
