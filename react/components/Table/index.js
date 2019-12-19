@@ -499,7 +499,7 @@ Table.propTypes = {
     fixed: PropTypes.bool,
   }),
   /** Totalizers property  */
-  totalizers: PropTypes.oneOf([
+  totalizers: PropTypes.oneOfType([
     PropTypes.array,
     PropTypes.shape({
       mobileScroll: PropTypes.bool,
