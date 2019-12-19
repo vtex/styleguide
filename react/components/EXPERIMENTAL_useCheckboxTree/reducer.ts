@@ -1,50 +1,41 @@
-import { getBulkChecked, getBulkUnchecked, getToggledState } from './util'
+import {
+  getBulkChecked,
+  getBulkUnchecked,
+  getToggledState,
+  getFlat,
+} from './util'
 import { comparatorCurry, Tree } from './types'
 
 export default function reducer<T>(state: Array<T>, action: Action<T>) {
   switch (action.type) {
     case ActionType.Check: {
-      return [...state, action.item]
+      const { item } = action
+      return [...state, item]
     }
     case ActionType.Uncheck: {
       const {
         itemToToggle: { item, comparator },
       } = action
-      return state.filter(row => !comparator(row)(item))
+      const rowFilter = (row: T) => !comparator(row)(item)
+      return state.filter(rowFilter)
     }
     case ActionType.BulkCheck: {
       const { itemToToggle, isDisabled } = action
       if (!itemToToggle) return state
-
-      return getBulkChecked(
-        state,
-        itemToToggle.item,
-        itemToToggle.nodesKey,
-        itemToToggle.comparator,
-        isDisabled
-      )
+      const { item, nodesKey, comparator } = itemToToggle
+      return getBulkChecked(state, item, nodesKey, comparator, isDisabled)
     }
     case ActionType.BulkUncheck: {
       const { itemToToggle } = action
       if (!itemToToggle) return state
-
-      return getBulkUnchecked(
-        state,
-        itemToToggle.item,
-        itemToToggle.nodesKey,
-        itemToToggle.comparator
-      )
+      const { item, nodesKey, comparator } = itemToToggle
+      return getBulkUnchecked(state, item, nodesKey, comparator)
     }
     case ActionType.Toggle: {
       const { itemToToggle, isDisabled } = action
       if (!itemToToggle) return state
-      return getToggledState(
-        state,
-        itemToToggle.item,
-        itemToToggle.nodesKey,
-        itemToToggle.comparator,
-        isDisabled
-      )
+      const { item, nodesKey, comparator } = itemToToggle
+      return getToggledState(state, item, nodesKey, comparator, isDisabled)
     }
     default: {
       return state

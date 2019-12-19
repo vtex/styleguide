@@ -14,11 +14,14 @@ export function getBulkChecked<T>(
   comparator: comparatorCurry<Tree<T>>,
   isDisabled: (item: T | Tree<T>) => boolean
 ): Array<Tree<T>> {
-  return [...checked, ...getFlat(item, [], nodesKey)].reduce(
-    (acc: Array<Tree<T>>, item: T) =>
-      acc.some(comparator(item)) || isDisabled(item) ? acc : [...acc, item],
-    []
-  ) as Array<Tree<T>>
+  const notDisabled = (item: T | Tree<T>) => !isDisabled(item)
+  return [...checked, ...getFlat(item, [], nodesKey)]
+    .filter(notDisabled)
+    .reduce(
+      (acc: Array<Tree<T>>, item: T) =>
+        acc.some(comparator(item)) ? acc : [...acc, item],
+      []
+    ) as Array<Tree<T>>
 }
 
 /**
@@ -72,7 +75,7 @@ export function getFlat<T>(
   tree: Tree<T>,
   arr: Array<Tree<T>> = [],
   nodesKey: string = 'children'
-) {
+): Array<T> {
   arr.push(tree)
   if (tree[nodesKey])
     (tree[nodesKey] as Array<Tree<T>>).forEach(child =>
