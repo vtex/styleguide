@@ -53,9 +53,7 @@ const Rows: FC<RowsProps> = ({
                     <CellPrefix.Checkbox
                       checked={isRowChecked}
                       partial={isRowPartiallyChecked}
-                      disabled={
-                        checkboxes.isDisabled && checkboxes.isDisabled(rowData)
-                      }
+                      disabled={checkboxes.isDisabled(rowData)}
                       onClick={toggleChecked}
                     />
                   </span>

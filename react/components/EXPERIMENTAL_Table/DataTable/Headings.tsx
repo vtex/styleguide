@@ -27,9 +27,9 @@ const Headings: FC<HeadingsProps> = ({
               <CellPrefix>
                 <span className="ph3">
                   <CellPrefix.Checkbox
-                    checked={checkboxes.isChecked(checkboxes.itemTree)}
-                    partial={checkboxes.isPartiallyChecked(checkboxes.itemTree)}
-                    onClick={() => checkboxes.toggle(checkboxes.itemTree)}
+                    checked={checkboxes.allChecked}
+                    partial={checkboxes.someChecked}
+                    onClick={checkboxes.toggleAll}
                   />
                 </span>
               </CellPrefix>
