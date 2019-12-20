@@ -7,8 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.103.1] - 2019-12-20
+
+### Fixed
+
+- PropTypes in `Progress` and `Radio` components.
+
 ## [9.103.0] - 2019-12-19
+
 ### Added
+
 - `BubbleChart` to `EXPERIMENTAL_Charts`
 
 ## [9.102.0] - 2019-12-19

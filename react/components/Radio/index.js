@@ -109,6 +109,7 @@ Radio.defaultProps = {
   checked: false,
   disabled: false,
   required: false,
+  isLast: false,
 }
 
 Radio.propTypes = {
@@ -119,7 +120,7 @@ Radio.propTypes = {
   /** (Radio spec attribute) */
   id: PropTypes.string.isRequired,
   /** (Radio spec attribute) */
-  isLast: PropTypes.string.bool,
+  isLast: PropTypes.bool,
   /** Radio label */
   label: PropTypes.node.isRequired,
   /** (Radio spec attribute) */
