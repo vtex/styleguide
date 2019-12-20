@@ -5,7 +5,7 @@ The `columns` property is an `Array` used to define the table columns and how th
 ```ts
 type Column = {
   id?: string
-  title?: string
+  title?: string | Element
   width?: number
   cellRenderer?: ({
     cellData: unknown
@@ -13,7 +13,6 @@ type Column = {
     rowHeight: number
     selectedDensity: 'low' | 'medium' | 'high'
   }) => React.ReactNode
-  headerRenderer?: ({ columnData: Column }) => React.ReactNode
 }
 ```
 
@@ -25,19 +24,12 @@ type Column = {
 ##### title
 
 - Controls the title which appears on the table Header.
-- If you want to customize it with a component, you can use the `headerRenderer` prop.
+- It can receive either a string or element.
 
 ##### width
 
 - Defines a fixed width for the specific column.
 - By default, the column's width is defined to fit the available space without breaking the content.
-
-##### headerRenderer
-
-- Customize the render method of a single header column cell.
-- It receives a function that returns a node (react component).
-- The function has the following params: ({ columnData })
-- The default is rendering the value as a string.
 
 ##### cellRenderer
 
@@ -101,12 +93,11 @@ const heroColumns: Array<Column> = [
   {
     /** Definitions for the email prop */
     id: 'email',
-    title: 'Email',
     /** Custom renderer for email prop */
-    headerRenderer: ({ columnData: { title } }) => {
+    title: () => {
       return (
         <React.Fragment>
-          <Emoji symbol="💌" label="mail" /> {title}
+          <Emoji symbol="💌" label="mail" /> Email
         </React.Fragment>
       )
     },
@@ -140,6 +131,14 @@ const heroColumns: Array<Column> = [
 const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
 const Tag = require('../Tag/index.js').default
 
+function Email() {
+  return (
+    <React.Fragment>
+      <Emoji symbol="💌" label="mail" /> Email
+    </React.Fragment>
+  )
+}
+
 const heroColumns = [
   {
     id: 'name',
@@ -147,14 +146,7 @@ const heroColumns = [
   },
   {
     id: 'email',
-    title: 'Email',
-    headerRenderer: ({ columnData: { title } }) => {
-      return (
-        <React.Fragment>
-          <Emoji symbol="💌" label="mail" /> {title}
-        </React.Fragment>
-      )
-    },
+    title: <Email />,
   },
   {
     id: 'age',
@@ -230,14 +222,7 @@ const heroColumns = [
   },
   {
     id: 'email',
-    title: 'Email',
-    headerRenderer: ({ columnData: { title } }) => {
-      return (
-        <span>
-          <Emoji symbol="💌" label="mail" /> {title}
-        </span>
-      )
-    },
+    title: <Email />,
   },
   {
     id: 'age',
@@ -277,6 +262,14 @@ const heroes = [
     country: '🇷🇺Russia',
   },
 ]
+
+function Email() {
+  return (
+    <span>
+      <Emoji symbol="💌" label="mail" /> Email
+    </span>
+  )
+}
 
 function Emoji({ symbol, label = '' }) {
   return (

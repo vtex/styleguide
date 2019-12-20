@@ -78,10 +78,9 @@ export const tablePropTypes = {
   columns: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
-      title: PropTypes.string,
-      width: PropTypes.number,
-      cellRender: PropTypes.func,
-      headerRender: PropTypes.func,
+      title: PropTypes.oneOfType([PropTypes.string, PropTypes.elementType, PropTypes.func]),
+      width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      cellRenderer: PropTypes.func,
     })
   ),
   items: PropTypes.arrayOf(PropTypes.object),
@@ -122,10 +121,9 @@ export type CellData = {
 
 export type Column = {
   id?: string
-  title?: string
-  width?: number
+  title?: string | Element | Function
+  width?: number | string
   cellRenderer?: (cellData: CellData) => React.ReactNode
-  headerRenderer?: ({ columnData: unknown }) => React.ReactNode
 }
 
 Table.Toolbar = Toolbar
