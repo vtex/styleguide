@@ -1,28 +1,24 @@
 import { ROOT_KEY } from './constants'
+import useCheckboxTree from '.'
 
 export type ChildKey<T> = { [key: string]: Array<T> }
 
 export type comparatorCurry<T> = (item: T) => (candidate: T) => boolean
 
-export type Checkboxes<T> = {
-  checkedItems: Tree<T>[]
-  isChecked: (item: T) => boolean
-  isPartiallyChecked: (item: T) => boolean
-  itemTree: {
-    [x: string]: string | T[]
-    [ROOT_KEY]: string
-  }
-  toggle: (item: T) => void
-  check: (item: T) => void
-  uncheck: (item: T) => void
-}
+export type Checkboxes<T> = ReturnType<typeof useCheckboxTree>
 
 export type Tree<T> = { [x: string]: string | T[]; [ROOT_KEY]: string } | T
 
-export type useChecboxesInput<T> = {
+export type toggleCallback<T> = {
+  checkedItems: Array<any>
+  disabledItems: Array<T>
+}
+
+export type useCheckboxesInput<T> = {
   items: Array<T>
-  onToggle?: ({ checkedItems }) => void
+  onToggle?: (callback: toggleCallback<T>) => void
   nodesKey?: string
-  checked?: Array<unknown>
+  checked?: Array<T>
   comparator?: comparatorCurry<Tree<T>>
+  isDisabled?: (item: T | Tree<T>) => boolean
 }

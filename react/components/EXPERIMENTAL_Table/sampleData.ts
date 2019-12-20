@@ -51,6 +51,16 @@ export const products = [
   },
   {
     id: 6,
+    name: 'Disabled Item',
+    categories: ['laptop'],
+    manufacturer: 'example',
+    qty: 0,
+    costPrice: 500,
+    retailPrice: 1050,
+    wholesalePrice: 950,
+  },
+  {
+    id: 7,
     name: 'iPhone 11 Pro',
     categories: ['smartphone'],
     manufacturer: 'apple',

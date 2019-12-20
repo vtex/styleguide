@@ -11,13 +11,17 @@ export function getBulkChecked<T>(
   checked: Array<Tree<T>>,
   item: T,
   nodesKey: string = 'children',
-  comparator: comparatorCurry<Tree<T>>
+  comparator: comparatorCurry<Tree<T>>,
+  isDisabled: (item: T | Tree<T>) => boolean
 ): Array<Tree<T>> {
-  return [...checked, ...getFlat(item, [], nodesKey)].reduce(
-    (acc: Array<Tree<T>>, item: T) =>
-      acc.some(comparator(item)) ? acc : [...acc, item],
-    []
-  ) as Array<Tree<T>>
+  const notDisabled = (item: T | Tree<T>) => !isDisabled(item)
+  return [...checked, ...getFlat(item, [], nodesKey)]
+    .filter(notDisabled)
+    .reduce(
+      (acc: Array<Tree<T>>, item: T) =>
+        acc.some(comparator(item)) ? acc : [...acc, item],
+      []
+    ) as Array<Tree<T>>
 }
 
 /**
@@ -48,7 +52,8 @@ export function getToggledState<T>(
   state: Array<Tree<T>>,
   item: T,
   nodesKey: string = 'children',
-  comparator: comparatorCurry<Tree<T>>
+  comparator: comparatorCurry<Tree<T>>,
+  isDisabled: (item: T | Tree<T>) => boolean
 ): Array<Tree<T>> {
   const stateIncludesItem = state.some(comparator(item))
   const filter = (row: T) => !comparator(row)(item)
@@ -59,7 +64,7 @@ export function getToggledState<T>(
       : state.filter(filter)
   }
   return item[nodesKey]
-    ? getBulkChecked<T>(state, item, nodesKey, comparator)
+    ? getBulkChecked<T>(state, item, nodesKey, comparator, isDisabled)
     : ([...state, item] as Array<Tree<T>>)
 }
 
@@ -70,11 +75,11 @@ export function getFlat<T>(
   tree: Tree<T>,
   arr: Array<Tree<T>> = [],
   nodesKey: string = 'children'
-) {
+): Array<T> {
   arr.push(tree)
   if (tree[nodesKey])
     (tree[nodesKey] as Array<Tree<T>>).forEach(child =>
       getFlat(child, arr, nodesKey)
     )
-  return arr
+  return arr as T[]
 }

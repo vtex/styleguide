@@ -13,12 +13,12 @@ describe('CheckboxTree util tests', () => {
   })
   it('should toggle state correctly on a item without chidren', () => {
     props.forEach(prop => {
-      expect(getToggledState([], { name: 'Alok' }, prop, comparator)).toEqual([
-        { name: 'Alok' },
-      ])
-      expect(getToggledState([], { name: 'KVSH' }, prop, comparator)).toEqual([
-        { name: 'KVSH' },
-      ])
+      expect(
+        getToggledState([], { name: 'Alok' }, prop, comparator, () => false)
+      ).toEqual([{ name: 'Alok' }])
+      expect(
+        getToggledState([], { name: 'KVSH' }, prop, comparator, () => false)
+      ).toEqual([{ name: 'KVSH' }])
     })
   })
   it('should toggle state correctly on a item with chidren', () => {
@@ -37,7 +37,8 @@ describe('CheckboxTree util tests', () => {
             ],
           },
           prop,
-          comparator
+          comparator,
+          () => false
         )
       ).toEqual([
         {
