@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- `isDisabled` function to `EXPERIMENTAL_useCheckboxTree`
+- `isDisabled` and `setChecked` functions to `EXPERIMENTAL_useCheckboxTree`
 
 ## [9.103.3] - 2019-12-20
 
