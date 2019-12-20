@@ -81,5 +81,5 @@ export function getFlat<T>(
     (tree[nodesKey] as Array<Tree<T>>).forEach(child =>
       getFlat(child, arr, nodesKey)
     )
-  return arr
+  return arr as T[]
 }

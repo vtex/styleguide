@@ -1,8 +1,4 @@
-import {
-  getBulkChecked,
-  getBulkUnchecked,
-  getToggledState,
-} from './util'
+import { getBulkChecked, getBulkUnchecked, getToggledState } from './util'
 import { comparatorCurry, Tree } from './types'
 
 export default function reducer<T>(state: Array<T>, action: Action<T>) {
@@ -36,6 +32,10 @@ export default function reducer<T>(state: Array<T>, action: Action<T>) {
       const { item, nodesKey, comparator } = itemToToggle
       return getToggledState(state, item, nodesKey, comparator, isDisabled)
     }
+    case ActionType.SetChecked: {
+      const { checked } = action
+      return checked || state
+    }
     default: {
       return state
     }
@@ -48,6 +48,7 @@ export enum ActionType {
   Toggle,
   BulkCheck,
   BulkUncheck,
+  SetChecked,
 }
 
 export type Action<T> = {

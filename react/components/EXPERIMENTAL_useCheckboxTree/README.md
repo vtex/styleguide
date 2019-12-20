@@ -407,3 +407,8 @@ type Tree<T>{
 
 - Uncheck the root
 - **Type**: `() => void`
+
+##### setChecked
+
+- Sets the current `checkedItems`
+- **Type**: `(checked: Array<T>) => void`

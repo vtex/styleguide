@@ -140,6 +140,13 @@ export default function useCheckboxTree<T>({
     uncheck(itemTree)
   }, [checkedItems])
 
+  const setChecked = useCallback(
+    (checked: Array<T>) => {
+      dispatch({ type: ActionType.SetChecked, checked })
+    },
+    [checkedItems]
+  )
+
   return {
     checkedItems,
     isChecked,
@@ -155,6 +162,7 @@ export default function useCheckboxTree<T>({
     uncheckAll,
     isDisabled,
     disabledItems,
+    setChecked,
   }
 }
 
