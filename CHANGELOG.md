@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.103.2] - 2019-12-20
+
+### Removed
+
+- `key` that was used as prop in **AutocompleteInput**.
+
 ## [9.103.1] - 2019-12-20
 
 ### Fixed

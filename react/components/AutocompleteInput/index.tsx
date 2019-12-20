@@ -1,10 +1,14 @@
 import uniq from 'lodash/uniq'
 import PropTypes from 'prop-types'
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useRef } from 'react'
 import Spinner from '../Spinner'
 
 import { useClickOutside, useArrowNavigation } from './hooks'
-import Option, { AutocompleteOption, autocompleteOptionShape, getTermFromOption } from './Option'
+import Option, {
+  AutocompleteOption,
+  autocompleteOptionShape,
+  getTermFromOption,
+} from './Option'
 import SearchInput from './SearchInput'
 
 const propTypes = {

@@ -19,7 +19,7 @@ export const autocompleteOptionShape = PropTypes.oneOfType([
   PropTypes.string,
   structuredAutocompleteOptionShape,
 ])
- 
+
 export const getTermFromOption = (option: AutocompleteOption): string =>
   typeof option === 'string' ? option : option.label
 
@@ -32,18 +32,16 @@ const propTypes = {
   searchTerm: PropTypes.string.isRequired,
   /** Option title */
   value: autocompleteOptionShape.isRequired,
-  /** Option key used in the list */
-  key: PropTypes.string.isRequired,
   /** Determine if an option is selected and should be highlighted */
   selected: PropTypes.bool.isRequired,
   /** Click handler */
   onClick: PropTypes.func.isRequired,
 }
 
-const Option: React.FunctionComponent<
-  PropTypes.InferProps<typeof propTypes>
-> = props => {
-  const { icon, selected, roundedBottom, searchTerm, key, onClick } = props
+const Option: React.FunctionComponent<PropTypes.InferProps<
+  typeof propTypes
+>> = props => {
+  const { icon, selected, roundedBottom, searchTerm, onClick } = props
   const [highlightOption, setHighlightOption] = useState(false)
   const value = getTermFromOption(props.value)
 
@@ -72,7 +70,6 @@ const Option: React.FunctionComponent<
 
   return (
     <button
-      key={key}
       className={buttonClasses}
       onFocus={() => setHighlightOption(true)}
       onMouseEnter={() => setHighlightOption(true)}
