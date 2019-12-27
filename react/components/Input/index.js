@@ -186,7 +186,7 @@ class Input extends Component {
         break
       default:
         prefixSuffixGroupClasses += 'h-regular '
-        classes += `${!token ? 't-small' : ''} `
+        classes += `${!token ? 't-body' : ''} `
         classes += `${
           prefix && suffix ? '' : prefix ? 'pr5 ' : suffix ? 'pl5 ' : 'ph5 '
         }`

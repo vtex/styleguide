@@ -189,7 +189,7 @@ class NumericStepper extends Component {
       default: {
         buttonClasses += `h-regular ${lean ? 'f4' : 'f6'} `
         const inputWidth = lean ? 'w2' : 'w3'
-        inputClasses += `h-regular t-small ${
+        inputClasses += `h-regular t-body ${
           block ? 'flex-grow-1' : inputWidth
         } `
         labelClasses += 't-small '
