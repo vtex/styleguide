@@ -88,6 +88,8 @@ initialState = {
   value2: 1,
   value3: 1,
   value4: 1,
+  value5: 1,
+  value6: 1,
 }
 
 ;<React.Fragment>
@@ -125,6 +127,25 @@ initialState = {
       readOnly
       value={state.value4}
       onChange={event => setState({ value4: event.value })}
+    />
+  </div>
+  <div className="mb5">
+    <NumericStepper
+      label="Disabled"
+      minValue={1}
+      disabled
+      value={state.value5}
+      onChange={event => setState({ value5: event.value })}
+    />
+  </div>
+  <div className="mb5">
+    <NumericStepper
+      label="lean Disabled"
+      minValue={1}
+      lean
+      disabled
+      value={state.value6}
+      onChange={event => setState({ value6: event.value })}
     />
   </div>
 </React.Fragment>

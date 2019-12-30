@@ -154,6 +154,7 @@ class NumericStepper extends Component {
       label,
       lean,
       readOnly,
+      disabled,
     } = this.props
 
     const isMin = value <= normalizeMin(minValue)
@@ -220,6 +221,7 @@ class NumericStepper extends Component {
           <input
             type="tel"
             readOnly={readOnly}
+            disabled={disabled}
             className={`z-1 order-1 tc bw1 ${borderClasses} br0 ${inputClasses} ${styles.hideDecorators}`}
             style={{
               ...(block && {
@@ -236,7 +238,9 @@ class NumericStepper extends Component {
             <button
               type="button"
               className={`br2 pa0 bl-0 flex items-center justify-center ${borderClasses} ${buttonClasses} ${
-                readOnly || isMax ? buttonDisabledClasses : buttonEnabledClasses
+                readOnly || disabled || isMax
+                  ? buttonDisabledClasses
+                  : buttonEnabledClasses
               }`}
               style={{
                 borderTopLeftRadius: 0,
@@ -244,7 +248,7 @@ class NumericStepper extends Component {
                 width: lean ? '2em' : '3em',
                 transition: 'opacity 150ms',
               }}
-              disabled={readOnly || isMax}
+              disabled={readOnly || disabled || isMax}
               aria-label="+"
               tabIndex={0}
               onClick={this.handleIncreaseValue}>
@@ -258,7 +262,9 @@ class NumericStepper extends Component {
             <button
               type="button"
               className={`br2 pa0 br-0 flex items-center justify-center ${borderClasses} ${buttonClasses} ${
-                readOnly || isMin ? buttonDisabledClasses : buttonEnabledClasses
+                readOnly || disabled || isMin
+                  ? buttonDisabledClasses
+                  : buttonEnabledClasses
               }`}
               style={{
                 borderTopRightRadius: 0,
@@ -266,7 +272,7 @@ class NumericStepper extends Component {
                 width: lean ? '2em' : '3em',
                 transition: 'opacity 150ms',
               }}
-              disabled={readOnly || isMin}
+              disabled={readOnly || disabled || isMin}
               aria-label="−"
               // This is a minus sign (U+2212), not a regular hyphen (-, U+002D),
               // which is the default keyboard character.
@@ -308,6 +314,8 @@ NumericStepper.propTypes = {
   defaultValue: PropTypes.number,
   /** Makes input readonly and disables buttons */
   readOnly: PropTypes.bool,
+  /** Makes input disabled and disables buttons */
+  disabled: PropTypes.bool,
   /** Input size */
   size: PropTypes.oneOf(['small', 'regular', 'large']),
   /** Block or default size. */
@@ -323,6 +331,7 @@ NumericStepper.defaultProps = {
   maxValue: Infinity,
   defaultValue: 0,
   readOnly: false,
+  disabled: false,
   size: 'regular',
   block: false,
 }
