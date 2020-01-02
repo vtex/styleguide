@@ -152,9 +152,9 @@ class Dropdown extends Component {
         break
       default:
         classes += isInline ? 'ph2 ' : 'pl5 pr4 '
-        selectClasses += 't-small '
+        selectClasses += 't-body '
         labelClasses += 't-small '
-        containerClasses += `${isInline ? 'h-auto' : 'h-regular'} t-small `
+        containerClasses += `${isInline ? 'h-auto' : 'h-regular'} t-body `
         iconSize = 18
         break
     }
