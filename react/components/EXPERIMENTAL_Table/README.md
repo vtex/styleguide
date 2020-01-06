@@ -3,13 +3,13 @@
 The `columns` property is an `Array` used to define the table columns and how they should behave visually. Each column describes each item field should be handled by the `Table`.
 
 ```ts
-type Column = {
+type Column<T> = {
   id?: string
   title?: string | Element
-  width?: number
+  width?: number | string
   cellRenderer?: ({
-    cellData: unknown
-    rowData: unknown
+    cellData: T
+    rowData: typeof keyof T
     rowHeight: number
     currentDensity: 'compact' | 'regular' | 'comfortable'
   }) => React.ReactNode
@@ -54,7 +54,7 @@ const columns = [
   {
     id: 'icon',
     title: 'Icon',
-    cellRenderer: iconRenderer
+    cellRenderer: iconRenderer,
   },
   {
     id: 'id',
@@ -68,21 +68,17 @@ const columns = [
     id: 'status',
     title: 'Status',
     cellRenderer: statusRenderer,
-  }
+  },
 ]
 
-function iconRenderer({ cellData, rowHeight }){
+function iconRenderer({ cellData, rowHeight }) {
   const SelectedIcon = Icon[cellData]
   return <SelectedIcon className="c-muted-1" size={rowHeight - 5} />
 }
 
-function statusRenderer({ cellData }){
+function statusRenderer({ cellData }) {
   const type = cellData === 'ACTIVE' ? 'success' : 'neutral'
-  return (
-    <Tag type={type}>
-      {cellData}
-    </Tag>
-  )
+  return <Tag type={type}>{cellData}</Tag>
 }
 
 const items = data.payments
