@@ -19,7 +19,6 @@ const DEFAULT_COLUMN_WIDTH = 200
 const LINE_ACTIONS_COLUMN_WIDTH = 70
 const NO_TITLE_COLUMN = ' '
 const SELECTED_ROW_BACKGROUND = '#dbe9fd'
-const DEFAULT_SCROLLBAR_WIDTH = 17
 const EMPTY_STATE_SIZE_IN_ROWS = 5
 
 class SimpleTable extends Component {
@@ -29,6 +28,7 @@ class SimpleTable extends Component {
     this.state = {
       hoverRowIndex: -1,
       tableHeight: 0,
+      scrollbarWidth: 0,
     }
 
     this._cache = new CellMeasurerCache({
@@ -153,25 +153,19 @@ class SimpleTable extends Component {
     }
   }
 
-  getScrollbarWidth = () => {
-    const isSSR = typeof document === 'undefined'
-    if (isSSR) {
-      return DEFAULT_SCROLLBAR_WIDTH
+  handleScrollbarPresenceChange = ({ horizontal, size }) => {
+    if (horizontal) {
+      this.setState({ scrollbarWidth: size || 0 })
     }
-
-    const scrollbarWidth =
-      window.innerWidth - document.documentElement.clientWidth
-    return isNaN(scrollbarWidth) ? DEFAULT_SCROLLBAR_WIDTH : scrollbarWidth
   }
 
   calculateContainerHeight = () => {
     const { rowHeight, items, disableHeader } = this.props
+    const { scrollbarWidth } = this.state
 
     if (items.length === 0) {
       return (
-        HEADER_HEIGHT +
-        rowHeight * EMPTY_STATE_SIZE_IN_ROWS +
-        this.getScrollbarWidth()
+        HEADER_HEIGHT + rowHeight * EMPTY_STATE_SIZE_IN_ROWS + scrollbarWidth
       )
     }
 
@@ -182,7 +176,7 @@ class SimpleTable extends Component {
       rawTableHeight += this.calculateRowHeight(rowIndex)
     }
 
-    return rawTableHeight + this.getScrollbarWidth()
+    return rawTableHeight + scrollbarWidth
   }
 
   render() {
@@ -243,6 +237,9 @@ class SimpleTable extends Component {
 
                 return (
                   <MultiGrid
+                    onScrollbarPresenceChange={
+                      this.handleScrollbarPresenceChange
+                    }
                     height={tableHeight}
                     width={width}
                     deferredMeasurementCache={this._cache}
