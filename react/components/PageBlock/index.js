@@ -6,7 +6,14 @@ import Box from '../Box/index'
 
 class PageBlock extends Component {
   render() {
-    const { title, subtitle, variation, titleAside, testId } = this.props
+    const {
+      title,
+      subtitle,
+      variation,
+      titleAside,
+      testId,
+      boxProps,
+    } = this.props
     const isAnnotated = variation === 'annotated'
 
     const headerClasses = classNames({
@@ -50,24 +57,32 @@ class PageBlock extends Component {
           {variation === 'half' ? (
             <Fragment>
               <div className="w-50-ns w-100 mr3-ns mb0-ns mb5">
-                <Box>{this.props.children && this.props.children[0]}</Box>
+                <Box {...boxProps}>
+                  {this.props.children && this.props.children[0]}
+                </Box>
               </div>
               <div className="w-50-ns w-100 ml3-ns mb5">
-                <Box>{this.props.children && this.props.children[1]}</Box>
+                <Box {...boxProps}>
+                  {this.props.children && this.props.children[1]}
+                </Box>
               </div>
             </Fragment>
           ) : variation === 'aside' ? (
             <Fragment>
               <div className="w-two-thirds-ns w-100 mr3-ns mb0-ns mb5">
-                <Box>{this.props.children && this.props.children[0]}</Box>
+                <Box {...boxProps}>
+                  {this.props.children && this.props.children[0]}
+                </Box>
               </div>
               <div className="w-third-ns w-100 ml3-ns mb5">
-                <Box>{this.props.children && this.props.children[1]}</Box>
+                <Box {...boxProps}>
+                  {this.props.children && this.props.children[1]}
+                </Box>
               </div>
             </Fragment>
           ) : (
             <div className="w-100 mb5">
-              <Box>{this.props.children}</Box>
+              <Box {...boxProps}>{this.props.children}</Box>
             </div>
           )}
         </div>
@@ -119,6 +134,10 @@ PageBlock.propTypes = {
       )
     }
   },
+  boxProps: PropTypes.shape({
+    noPadding: PropTypes.bool,
+    title: PropTypes.string,
+  }),
 }
 
 export default PageBlock
