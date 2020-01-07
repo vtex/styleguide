@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.103.6] - 2020-01-07
+
 ### Fixed
 
 - **Table** height calculation now gets scrollbar hight compensation from `virtualized` callback.
