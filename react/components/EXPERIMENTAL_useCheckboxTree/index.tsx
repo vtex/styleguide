@@ -37,7 +37,7 @@ export default function useCheckboxTree<T>({
         setLastToggled(item)
       }
     },
-    [checkedItems]
+    [checkedItems, itemTree]
   )
 
   useEffect(() => {
@@ -72,7 +72,7 @@ export default function useCheckboxTree<T>({
       childNodes.forEach(shake)
     }
     shake(itemTree)
-  }, [checkedItems])
+  }, [checkedItems, toggle, itemTree])
 
   const isChecked = useCallback(
     (item: T | Tree<T>) => {
@@ -88,7 +88,7 @@ export default function useCheckboxTree<T>({
         ? notDisabledChildren.every(onCheckedList)
         : checkedItems.some(comparator(item))
     },
-    [checkedItems]
+    [checkedItems, itemTree, toggle]
   )
 
   const isPartiallyChecked = useCallback(
@@ -101,16 +101,16 @@ export default function useCheckboxTree<T>({
             .some(child => checkedItems.some(comparator(child))))
       )
     },
-    [checkedItems]
+    [checkedItems, itemTree, toggle]
   )
 
   const allChecked = useMemo(() => {
     return isChecked(itemTree)
-  }, [checkedItems])
+  }, [checkedItems, itemTree, toggle])
 
   const someChecked = useMemo(() => {
     return checkedItems.length > 0
-  }, [checkedItems])
+  }, [checkedItems, itemTree, toggle])
 
   const check = useCallback(
     (item: T | Tree<T>) => {
@@ -121,12 +121,12 @@ export default function useCheckboxTree<T>({
           isDisabled,
         })
     },
-    [checkedItems]
+    [checkedItems, itemTree, toggle]
   )
 
   const checkAll = useCallback(() => {
     check(itemTree)
-  }, [checkedItems])
+  }, [checkedItems, itemTree, toggle])
 
   const uncheck = useCallback(
     (item: T | Tree<T>) => {
@@ -136,18 +136,18 @@ export default function useCheckboxTree<T>({
           itemToToggle: { item, comparator, nodesKey },
         })
     },
-    [checkedItems]
+    [checkedItems, itemTree, toggle]
   )
 
   const uncheckAll = useCallback(() => {
     uncheck(itemTree)
-  }, [checkedItems])
+  }, [checkedItems, itemTree, toggle])
 
   const setChecked = useCallback(
     (checked: Array<T>) => {
       dispatch({ type: ActionType.SetChecked, checked })
     },
-    [checkedItems]
+    [checkedItems, itemTree, toggle]
   )
 
   return {

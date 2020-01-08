@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- `EXPERIMENTAL_useCheckboxTree` hooks dependencies.
+
 ## [9.104.2] - 2020-01-08
 
 ### Added
