@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.104.1] - 2020-01-08
+
 ### Fixed
 
 - `EXPERIMENTAL_useCheckboxTree` using stale values in `toggleAll` function.
