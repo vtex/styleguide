@@ -1,4 +1,4 @@
-import { useMemo, useCallback, useEffect, useReducer } from 'react'
+import { useMemo, useCallback, useEffect, useReducer, useState } from 'react'
 import PropTypes from 'prop-types'
 import isEmpty from 'lodash/isEmpty'
 
@@ -16,6 +16,7 @@ export default function useCheckboxTree<T>({
   isDisabled = (item: T | Tree<T>) => false,
 }: useCheckboxesInput<T>) {
   const [checkedItems, dispatch] = useReducer(reducer, checked)
+  const [lastToggled, setLastToggled] = useState(null)
 
   const itemTree = useMemo(() => {
     return { [ROOT_KEY]: ROOT_VALUE, [nodesKey]: items }
@@ -27,23 +28,27 @@ export default function useCheckboxTree<T>({
 
   const toggle = useCallback(
     (item: T | Tree<T>): void => {
-      if (!isDisabled(item))
+      if (!isDisabled(item)) {
         dispatch({
           type: ActionType.Toggle,
           itemToToggle: { item, nodesKey, comparator },
           isDisabled,
         })
+        setLastToggled(item)
+      }
     },
     [checkedItems]
   )
 
+  useEffect(() => {
+    if (onToggle) {
+      onToggle({ checkedItems, disabledItems, item: lastToggled })
+    }
+  }, [toggle])
+
   const toggleAll = useCallback(() => {
     toggle(itemTree)
   }, [itemTree, toggle])
-
-  useEffect(() => {
-    onToggle && onToggle({ checkedItems, disabledItems })
-  }, [toggle])
 
   useEffect(() => {
     const shake = (tree: Tree<T>) => {
