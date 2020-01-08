@@ -88,7 +88,7 @@ export default function useCheckboxTree<T>({
         ? notDisabledChildren.every(onCheckedList)
         : checkedItems.some(comparator(item))
     },
-    [checkedItems, itemTree, toggle]
+    [checkedItems, toggle]
   )
 
   const isPartiallyChecked = useCallback(
@@ -112,43 +112,32 @@ export default function useCheckboxTree<T>({
     return checkedItems.length > 0
   }, [checkedItems, itemTree, toggle])
 
-  const check = useCallback(
-    (item: T | Tree<T>) => {
-      if (!isDisabled(item))
-        dispatch({
-          type: ActionType.BulkCheck,
-          itemToToggle: { item, comparator, nodesKey },
-          isDisabled,
-        })
-    },
-    [checkedItems, itemTree, toggle]
-  )
+  const check = (item: T | Tree<T>) => {
+    if (!isDisabled(item))
+      dispatch({
+        type: ActionType.BulkCheck,
+        itemToToggle: { item, comparator, nodesKey },
+        isDisabled,
+      })
+  }
 
-  const checkAll = useCallback(() => {
-    check(itemTree)
-  }, [checkedItems, itemTree, toggle])
+  const checkAll = () => check(itemTree)
 
-  const uncheck = useCallback(
-    (item: T | Tree<T>) => {
-      if (!isDisabled(item))
-        dispatch({
-          type: ActionType.BulkUncheck,
-          itemToToggle: { item, comparator, nodesKey },
-        })
-    },
-    [checkedItems, itemTree, toggle]
-  )
+  const uncheck = (item: T | Tree<T>) => {
+    if (!isDisabled(item))
+      dispatch({
+        type: ActionType.BulkUncheck,
+        itemToToggle: { item, comparator, nodesKey },
+      })
+  }
 
   const uncheckAll = useCallback(() => {
     uncheck(itemTree)
   }, [checkedItems, itemTree, toggle])
 
-  const setChecked = useCallback(
-    (checked: Array<T>) => {
-      dispatch({ type: ActionType.SetChecked, checked })
-    },
-    [checkedItems, itemTree, toggle]
-  )
+  const setChecked = (checked: Array<T>) => {
+    dispatch({ type: ActionType.SetChecked, checked })
+  }
 
   return {
     checkedItems,
