@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- Last toggled item into `EXPERIMENTAL_useCheckboxTree` to be returned by the `onToggle` function.
+- Last toggled item into `EXPERIMENTAL_useCheckboxTree` to be sent as param to `onToggle` function
 
 ## [9.104.1] - 2020-01-08
 

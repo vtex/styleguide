@@ -41,9 +41,7 @@ export default function useCheckboxTree<T>({
   )
 
   useEffect(() => {
-    if (onToggle) {
-      onToggle({ checkedItems, disabledItems, item: lastToggled })
-    }
+    onToggle && onToggle({ checkedItems, disabledItems, item: lastToggled })
   }, [toggle])
 
   const toggleAll = useCallback(() => {
