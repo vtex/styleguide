@@ -12,6 +12,7 @@ export type Tree<T> = { [x: string]: string | T[]; [ROOT_KEY]: string } | T
 export type toggleCallback<T> = {
   checkedItems: Array<any>
   disabledItems: Array<T>
+  item: T | Tree<T>
 }
 
 export type useCheckboxesInput<T> = {
