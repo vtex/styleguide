@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Update eslint dependencies versions and fix new issues.
+
 ## [9.104.3] - 2020-01-08
 
 ### Fixed
