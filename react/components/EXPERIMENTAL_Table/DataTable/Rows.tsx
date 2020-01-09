@@ -18,7 +18,6 @@ const Rows: FC<RowsProps> = ({
   selectedDensity,
   checkboxes,
   rowKey,
-  cellKey,
 }) => {
   return items ? (
     <>
@@ -54,10 +53,7 @@ const Rows: FC<RowsProps> = ({
                   })
                 : cellData
               return (
-                <Row.Cell
-                  {...cellProps}
-                  key={cellKey({ cellData })}
-                  width={width}>
+                <Row.Cell {...cellProps} key={column.id} width={width}>
                   {cellIndex === 0 && checkboxes && (
                     <CellPrefix>
                       <span className="ph3">
@@ -86,7 +82,6 @@ export type RowsProps = {
   items: Items
   selectedDensity: Density
   rowKey?: ({ rowData: unknown }) => string
-  cellKey?: ({ cellData: unknown }) => string
   onRowClick?: ({ rowData: unknown }) => void
   isRowActive?: (rowData: unknown) => boolean
   rowProps?: RowProps

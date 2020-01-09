@@ -21,7 +21,6 @@ const Table: FC<TableProps> & TableComposites = ({
   empty,
   checkboxes,
   rowKey,
-  cellKey,
   ...props
 }) => {
   if (!measures) {
@@ -52,7 +51,6 @@ const Table: FC<TableProps> & TableComposites = ({
           <tbody>
             <Rows
               rowKey={rowKey}
-              cellKey={cellKey}
               checkboxes={checkboxes}
               selectedDensity={selectedDensity}
               columns={columns}
@@ -80,7 +78,6 @@ export const tablePropTypes = {
   checkboxes: PropTypes.any,
   measures: PropTypes.shape(measuresPropTypes),
   rowKey: PropTypes.func,
-  cellKey: PropTypes.func,
   containerHeight: PropTypes.number,
   empty: PropTypes.bool,
   columns: PropTypes.arrayOf(
@@ -122,11 +119,7 @@ export type TableComposites = {
   Bulk?: FC
 }
 
-<<<<<<< HEAD
 export type Items = Array<Record<string, any>>
-=======
-export interface Items extends Array<Object> { }
->>>>>>> Rendering problems due to dynamic key generation on EXPERIMENTAL_Table.
 
 export type CellData = {
   cellData: unknown
@@ -150,7 +143,6 @@ Table.Bulk = BulkActions
 
 Table.defaultProps = {
   rowKey: ({ rowData }) => `row-${rowData.id}`,
-  cellKey: ({ cellData }) => `cell-${cellData}`,
 }
 
 export default Table
