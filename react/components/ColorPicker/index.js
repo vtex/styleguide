@@ -1,6 +1,7 @@
 import React from 'react'
 import OutsideClickHandler from 'react-outside-click-handler'
 import PropTypes from 'prop-types'
+
 import colorutil from './colorUtil'
 import HexInput from './HexInput'
 import ColorOptions from './ColorOptions'

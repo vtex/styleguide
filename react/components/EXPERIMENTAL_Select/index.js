@@ -1,17 +1,15 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import uuid from 'uuid/v4'
-
 import ReactSelect from 'react-select'
 import CreatableSelect from 'react-select/lib/Creatable'
-import COLORS from './colors'
 
+import COLORS from './colors'
 import ClearIndicator from './ClearIndicator'
 import DropdownIndicatorComponent from './DropdownIndicator'
 import MultiValueRemove from './MultiValueRemove'
 import Placeholder from './Placeholder'
 import ControlComponent from './Control'
-
 import { getFontClassNameFromSize, getTagPaddingFromSize } from './styles'
 import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
 

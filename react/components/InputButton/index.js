@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import Input from '../Input'
-
 import { withForwardedRef } from '../../modules/withForwardedRef'
 
 class InputButton extends Component {

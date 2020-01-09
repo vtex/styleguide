@@ -1,11 +1,5 @@
 {
-  "extends": [
-    "vtex",
-    "vtex-react",
-    "plugin:import/recommended",
-    "plugin:prettier/recommended"
-  ],
-  "plugins": ["import", "lodash"],
+  "extends": ["vtex-react"],
   "rules": {
     "import/no-unresolved": [
       "error",
@@ -15,16 +9,22 @@
         "ignore": ["^([a-zA-Z@]+[-\\.]?)+"]
       }
     ],
-    "lodash/import-scope": [2, "method"],
     // Rules that conflict with Prettier.
     // To verify conflicting rules, run:
     // $ npm run prettier-conflict-check
-    "react/jsx-curly-spacing": 0,
-    "react/jsx-equals-spacing": 0,
-    "react/jsx-indent": 0,
-    "react/jsx-indent-props": 0,
-    "react/jsx-tag-spacing": 0,
-    "react/jsx-wrap-multilines": 0
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/camelcase": "off",
+    "@typescript-eslint/no-use-before-define": "off",
+    "@typescript-eslint/class-name-casing": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/mouse-events-have-key-events": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
+    "jsx-a11y/no-noninteractive-tabindex": "off",
+    "jsx-a11y/label-has-for": "off",
+    "jsx-a11y/label-has-associated-control": "off",
+    "jsx-a11y/no-onchange": "off",
+    "jsx-a11y/no-autofocus": "off"
   },
   "overrides": [
     {
@@ -33,7 +33,6 @@
       // E.g.: EXPERIMENTAL_ needs camelcase bypass 
       "files": ["react/*.js"],
       "rules": {
-        "camelcase": "off",
         "import/default": "off"
       }
     }
@@ -42,16 +41,7 @@
     "browser": true,
     "node": true,
     "mocha": true,
-    "jest": true
-  },
-  "globals": {
-    "__DEV__": true
-  },
-  "settings": {
-    "import/resolver": {
-      "node": {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
-      }
-    }
+    "jest": true,
+    "es6": true
   }
 }

@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+
 import { scrollStep, roundedRight, roundedLeft } from './styles.css'
 
 const COMPLETED = 'completed'

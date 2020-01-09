@@ -72,13 +72,19 @@ export const measuresPropTypes = {
 }
 
 export const tablePropTypes = {
+  children: PropTypes.node,
+  checkboxes: PropTypes.any,
   measures: PropTypes.shape(measuresPropTypes),
   containerHeight: PropTypes.number,
   empty: PropTypes.bool,
   columns: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
-      title: PropTypes.oneOfType([PropTypes.string, PropTypes.elementType, PropTypes.func]),
+      title: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.elementType,
+        PropTypes.func,
+      ]),
       width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
       cellRenderer: PropTypes.func,
     })
@@ -110,7 +116,7 @@ export type TableComposites = {
   Bulk?: FC
 }
 
-export interface Items extends Array<Object> {}
+export type Items = Array<Record<string, any>>
 
 export type CellData = {
   cellData: unknown

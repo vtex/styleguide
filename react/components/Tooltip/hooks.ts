@@ -17,7 +17,7 @@ export function useRect(nodeRef, observe = true) {
       observerRef.current.observe()
     }
     return () => observerRef.current && observerRef.current.unobserve()
-  }, [observe, nodeRef.current])
+  }, [observe, nodeRef])
   return rect
 }
 

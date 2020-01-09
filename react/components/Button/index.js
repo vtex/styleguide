@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 
 import Spinner from '../Spinner'
-
 import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
 
 class Button extends Component {

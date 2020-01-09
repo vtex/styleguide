@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
 import colorutil from './colorUtil'
-import Input from './../../Input'
+import Input from '../../Input'
 
 /** HexInput Component */
 class HexInput extends React.Component {

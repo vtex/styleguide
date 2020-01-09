@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import ArrowDownIcon from './ArrowDownIcon'
 
+import ArrowDownIcon from './ArrowDownIcon'
 import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
 
 class Dropdown extends Component {

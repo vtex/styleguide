@@ -29,6 +29,7 @@ const Headings: FC<HeadingsProps> = ({
                   <CellPrefix.Checkbox
                     checked={checkboxes.allChecked}
                     partial={checkboxes.someChecked}
+                    // eslint-disable-next-line react/jsx-handler-names
                     onClick={checkboxes.toggleAll}
                   />
                 </span>

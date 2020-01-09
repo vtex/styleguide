@@ -101,7 +101,7 @@ export default class MultiSelect extends Component {
     return this.props.options
       .filter(opt => opt.label.toLowerCase().includes(term.toLowerCase()))
       .filter(opt => {
-        for (var i = 0; i < this.props.selected.length; i++) {
+        for (let i = 0; i < this.props.selected.length; i++) {
           if (this.props.selected[i].value === opt.value) {
             return false
           }

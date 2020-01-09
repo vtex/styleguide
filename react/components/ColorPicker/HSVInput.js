@@ -1,7 +1,8 @@
 import React from 'react'
-import colorutil from './colorUtil'
 import PropTypes from 'prop-types'
-import Input from './../../Input'
+
+import colorutil from './colorUtil'
+import Input from '../../Input'
 
 /** HSVInput component */
 class HSVInput extends React.Component {

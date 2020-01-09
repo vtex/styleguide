@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
 import IconCaretDown from '../icon/CaretDown'
 
 class StrategySelector extends React.Component {

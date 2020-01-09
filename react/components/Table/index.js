@@ -7,7 +7,6 @@ import map from 'lodash/map'
 import Box from '../Box'
 import EmptyState from '../EmptyState'
 import FilterBar from '../FilterBar'
-
 import SimpleTable from './SimpleTable'
 import Toolbar from './Toolbar'
 import CheckboxContainer from './CheckboxContainer'

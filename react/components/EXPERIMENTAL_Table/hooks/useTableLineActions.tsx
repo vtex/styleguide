@@ -1,5 +1,6 @@
-import LineAction, { LineActionObject } from '../LineActions'
 import React, { useMemo } from 'react'
+
+import LineAction, { LineActionObject } from '../LineActions'
 import { Items, Column } from '../index'
 
 const NO_TITLE_COLUMN = ' '
@@ -14,7 +15,7 @@ export default function useTableLineActions({
     return lineActions
       ? items.map(item => ({ lineAction: true, ...item }))
       : items
-  }, [items])
+  }, [items, lineActions])
 
   const columnsWithLineActions = useMemo<Array<Column>>(() => {
     const cellRender = ({ rowData }) => (
@@ -31,7 +32,7 @@ export default function useTableLineActions({
           },
         ]
       : columns
-  }, [columns])
+  }, [columns, lineActions])
 
   return {
     itemsWithLineActions,

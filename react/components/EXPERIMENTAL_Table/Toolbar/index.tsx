@@ -4,9 +4,7 @@ import csx from 'classnames'
 import ButtonGroup from './ButtonGroup'
 import InputSearch, { InputSearchProps } from './InputSearch'
 import InputAutocomplete from './InputAutocomplete'
-import {
-  AutocompleteInputProps,
-} from '../../AutocompleteInput'
+import { AutocompleteInputProps } from '../../AutocompleteInput'
 import { ORDER_CLASSNAMES, NAMESPACES } from '../constants'
 
 interface Composites {

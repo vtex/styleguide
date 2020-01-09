@@ -3,7 +3,6 @@ import PropTypes, { InferProps } from 'prop-types'
 import classNames from 'classnames'
 
 import Spinner from '../Spinner'
-
 import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
 
 const SIZE = {
@@ -102,7 +101,7 @@ const ButtonPlain: FunctionComponent<Props> = props => {
         'Button: The prop "icon" of the "Button" component has been deprecated, and will be removed in a future version. Please use the component "ButtonWithIcon" instead'
       )
     }
-  }, [])
+  }, [props.icon])
 
   const {
     size,

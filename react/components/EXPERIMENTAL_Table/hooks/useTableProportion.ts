@@ -1,4 +1,5 @@
 import { useMemo } from 'react'
+
 import { Column } from '../index'
 
 export default function useTableProportion({ columns, ratio }: ProportionData) {
@@ -9,7 +10,7 @@ export default function useTableProportion({ columns, ratio }: ProportionData) {
 
   const sizedColumns = useMemo(
     () => columns.map((col, i) => ({ ...col, width: calculatedWidths[i] })),
-    [columns, ratio]
+    [calculatedWidths, columns]
   )
 
   return {

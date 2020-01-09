@@ -21,8 +21,14 @@ const Node: FC<NodeProps> = ({
   selectedDensity,
   onRowClick,
 }) => {
-  const toggleChildren = useCallback(() => toggleCollapsed(data), [data])
-  const toggleChecked = useCallback(() => checkboxes.toggle(data), [data])
+  const toggleChildren = useCallback(() => toggleCollapsed(data), [
+    data,
+    toggleCollapsed,
+  ])
+  const toggleChecked = useCallback(() => checkboxes.toggle(data), [
+    checkboxes,
+    data,
+  ])
 
   const isRowChecked = checkboxes && checkboxes.isChecked(data)
   const isRowPartiallyChecked =
@@ -35,7 +41,7 @@ const Node: FC<NodeProps> = ({
     : undefined
 
   const clickableCell = hasChildren
-    ? !!clickableRow
+    ? clickableRow
       ? undefined
       : { onClick: toggleChildren }
     : undefined

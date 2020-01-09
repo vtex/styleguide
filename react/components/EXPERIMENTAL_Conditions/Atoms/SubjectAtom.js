@@ -1,6 +1,7 @@
 import React from 'react'
-import Select from '../../EXPERIMENTAL_Select'
 import PropTypes from 'prop-types'
+
+import Select from '../../EXPERIMENTAL_Select'
 import { withForwardedRef, refShape } from '../../../modules/withForwardedRef'
 
 class SubjectAtom extends React.Component {

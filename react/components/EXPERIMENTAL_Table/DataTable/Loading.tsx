@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+
 import Spinner from '../../Spinner/index.js'
 
 const Loading: FC<Props> = ({ height, children }) => {

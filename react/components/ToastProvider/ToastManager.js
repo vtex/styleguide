@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
-import Toast from './Toast'
 import isString from 'lodash/isString'
+
+import Toast from './Toast'
 
 export default class ToastManager extends Component {
   constructor(props) {

@@ -4,7 +4,6 @@ import React, { FC, useEffect, useRef, useState } from 'react'
 
 import Portal from './Portal'
 import { useRect } from './hooks'
-
 import zIndex from '../utils/zIndex'
 import style from './tooltip.css'
 

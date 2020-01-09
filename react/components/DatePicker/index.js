@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-
 import ReactDatePicker, { registerLocale } from 'react-datepicker'
 import * as locales from 'date-fns/locale/index.js'
 
 import Input from '../Input'
 import IconCalendar from '../icon/Calendar'
-
 import './react-datepicker.global.css'
 import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
 
@@ -102,6 +100,7 @@ class DatePicker extends Component {
     return (
       <ReactDatePicker
         ref={this.props.forwardedRef}
+        // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus={this.props.autoFocus}
         customInput={
           <Input

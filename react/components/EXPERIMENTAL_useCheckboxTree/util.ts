@@ -10,7 +10,7 @@ import { comparatorCurry, Tree } from './types'
 export function getBulkChecked<T>(
   checked: Array<Tree<T>>,
   item: T,
-  nodesKey: string = 'children',
+  nodesKey = 'children',
   comparator: comparatorCurry<Tree<T>>,
   isDisabled: (item: T | Tree<T>) => boolean
 ): Array<Tree<T>> {
@@ -34,7 +34,7 @@ export function getBulkChecked<T>(
 export function getBulkUnchecked<T>(
   checked: Array<Tree<T>>,
   item: T,
-  nodesKey: string = 'children',
+  nodesKey = 'children',
   comparator: comparatorCurry<Tree<T>>
 ): Array<Tree<T>> {
   const flatCurry = (item: T, nodesKey: string) => getFlat(item, [], nodesKey)
@@ -51,7 +51,7 @@ export function getBulkUnchecked<T>(
 export function getToggledState<T>(
   state: Array<Tree<T>>,
   item: T,
-  nodesKey: string = 'children',
+  nodesKey = 'children',
   comparator: comparatorCurry<Tree<T>>,
   isDisabled: (item: T | Tree<T>) => boolean
 ): Array<Tree<T>> {
@@ -74,7 +74,7 @@ export function getToggledState<T>(
 export function getFlat<T>(
   tree: Tree<T>,
   arr: Array<Tree<T>> = [],
-  nodesKey: string = 'children'
+  nodesKey = 'children'
 ): Array<T> {
   arr.push(tree)
   if (tree[nodesKey])

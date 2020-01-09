@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+
 import { calcIconSize, baseClassname } from '../utils'
 
 class Filter extends PureComponent {

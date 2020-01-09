@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+
 import SuccessIcon from '../icon/Success'
 import FailureIcon from '../icon/Failure'
 import WarningIcon from '../icon/Warning'

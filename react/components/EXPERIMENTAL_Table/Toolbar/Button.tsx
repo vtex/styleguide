@@ -2,6 +2,7 @@ import React, { forwardRef, ReactNode } from 'react'
 import csx from 'classnames'
 
 import ButtonWithIcon from '../../ButtonWithIcon/index.js'
+
 const ICON_OPTICAL_COMPENSATION = { marginTop: 1.5 }
 
 type Ref = HTMLDivElement

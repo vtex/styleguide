@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import ButtonWithIcon from '../ButtonWithIcon'
 import IconClose from '../icon/Close'
 import deprecated from '../../modules/deprecated'
-
 import FilterTag from './FilterTag'
 
 const HEAVY_ICON_OPTICAL_COMPENSATION = { marginTop: '1px' }

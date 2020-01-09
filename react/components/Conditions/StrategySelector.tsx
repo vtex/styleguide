@@ -1,12 +1,15 @@
 import React from 'react'
-import IconCaretDown from '../icon/CaretDown/index.js'
 
-import { Labels, Operator } from "./typings";
-import { DEFAULT_LABELS, SMALL_ICON_SIZE } from './constants';
+import IconCaretDown from '../icon/CaretDown/index.js'
+import { Labels, Operator } from './typings'
+import { DEFAULT_LABELS, SMALL_ICON_SIZE } from './constants'
 
 type Props = {
   isRtl?: boolean
-  labels: Pick<Labels, 'headerPrefix' | 'headerSufix' | 'operatorAll' | 'operatorAny'>
+  labels: Pick<
+    Labels,
+    'headerPrefix' | 'headerSufix' | 'operatorAll' | 'operatorAny'
+  >
   onChangeOperator: (operator: Props['operator']) => void
   operator: Operator
 }
@@ -39,16 +42,20 @@ const StrategySelector: React.FC<Props> = ({
         // safari select height fix
         WebkitAppearance: 'menulist-button',
       }}>
-      <option value="all">{labels.operatorAll || DEFAULT_LABELS.operatorAll}</option>
-      <option value="any">{labels.operatorAny || DEFAULT_LABELS.operatorAny}</option>
+      <option value="all">
+        {labels.operatorAll || DEFAULT_LABELS.operatorAll}
+      </option>
+      <option value="any">
+        {labels.operatorAny || DEFAULT_LABELS.operatorAny}
+      </option>
     </select>,
     <IconCaretDown key="seletorContent-icon" size={SMALL_ICON_SIZE} />,
   ]
 
   return (
     <div className="flex flex-row nowrap">
-      <span className={isRtl ? 'mr3' : ''}>{
-        labels.headerPrefix || DEFAULT_LABELS.headerPrefix}
+      <span className={isRtl ? 'mr3' : ''}>
+        {labels.headerPrefix || DEFAULT_LABELS.headerPrefix}
       </span>
       <div className="c-link relative">
         {isRtl ? seletorContent.reverse() : seletorContent}

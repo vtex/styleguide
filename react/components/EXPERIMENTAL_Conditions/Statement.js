@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
 import Button from '../Button'
 import IconClose from '../icon/Close'
-
 import SubjectAtom from './Atoms/SubjectAtom'
 import VerbAtom from './Atoms/VerbAtom'
 import ObjectAtom from './Atoms/ObjectAtom'
