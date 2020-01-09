@@ -20,6 +20,7 @@ const Table: FC<TableProps> & TableComposites = ({
   emptyState,
   empty,
   checkboxes,
+  rowKey,
   ...props
 }) => {
   if (!measures) {
@@ -49,6 +50,7 @@ const Table: FC<TableProps> & TableComposites = ({
         {!empty && !loading && (
           <tbody>
             <Rows
+              rowKey={rowKey}
               checkboxes={checkboxes}
               selectedDensity={selectedDensity}
               columns={columns}
@@ -75,6 +77,7 @@ export const tablePropTypes = {
   children: PropTypes.node,
   checkboxes: PropTypes.any,
   measures: PropTypes.shape(measuresPropTypes),
+  rowKey: PropTypes.func,
   containerHeight: PropTypes.number,
   empty: PropTypes.bool,
   columns: PropTypes.arrayOf(
@@ -137,5 +140,9 @@ Table.FilterBar = FilterBar
 Table.Pagination = Pagination
 Table.propTypes = tablePropTypes
 Table.Bulk = BulkActions
+
+Table.defaultProps = {
+  rowKey: ({ rowData }) => `row-${rowData.id}`,
+}
 
 export default Table
