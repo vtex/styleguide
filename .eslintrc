@@ -16,7 +16,6 @@
     "@typescript-eslint/camelcase": "off",
     "@typescript-eslint/no-use-before-define": "off",
     "@typescript-eslint/class-name-casing": "off",
-    // TODO: re-enable these rules
     "jsx-a11y/click-events-have-key-events": "off",
     "jsx-a11y/mouse-events-have-key-events": "off",
     "jsx-a11y/no-static-element-interactions": "off",
