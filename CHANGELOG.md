@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Rendering problems due to dynamic key generation on `EXPERIMENTAL_Table`.
+
 ## [9.104.4] - 2020-01-09
 
 ### Changed
