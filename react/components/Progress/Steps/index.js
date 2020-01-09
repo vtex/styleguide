@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+
 import Step from './Step'
 
 export const ProgressStepsTypes = {

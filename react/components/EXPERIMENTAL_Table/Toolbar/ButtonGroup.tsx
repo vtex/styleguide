@@ -3,7 +3,6 @@ import csx from 'classnames'
 
 import IconDownload from '../../icon/Download/index.js'
 import IconUpload from '../../icon/Upload/index.js'
-
 import Button, { ButtonProps, IconSize } from './Button'
 import ButtonColumns, { ButtonColumnsProps } from './ButtonColumns'
 import ButtonDensity, { ButtonDensityProps } from './ButtonDensity'
@@ -11,7 +10,6 @@ import ButtonExtraActions, {
   ButtonExtraActionsProps,
 } from './ButtonExtraActions'
 import ButtonNewLine, { ButtonNewLineProps } from './ButtonNewLine'
-
 import { NAMESPACES, ORDER_CLASSNAMES } from '../constants'
 
 const getButton = (type: ButtonType, props: Props) => {

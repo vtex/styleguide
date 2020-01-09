@@ -15,8 +15,8 @@ export default function useTableMeasures({
   ])
 
   const tableHeight = useMemo(() => calculateTableHeight(rowHeight, size), [
+    rowHeight,
     size,
-    selectedDensity,
   ])
 
   return {

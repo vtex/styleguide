@@ -1,11 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
 import Gradient from './Gradient'
 import Saturation from './Saturation'
 import Alpha from './Alpha'
 import RGBInput from './RGBInput'
 import HSVInput from './HSVInput'
-import Dropdown from './../../Dropdown'
+import Dropdown from '../../Dropdown'
 import ColorHistory from './ColorHistory'
 
 /** HSV Key to Dropdown */

@@ -6,6 +6,7 @@ import { setRef } from '../utils/react'
 
 function getContainer(container) {
   container = typeof container === 'function' ? container() : container
+  // eslint-disable-next-line react/no-find-dom-node
   return ReactDOM.findDOMNode(container)
 }
 

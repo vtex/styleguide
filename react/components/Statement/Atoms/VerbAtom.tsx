@@ -1,6 +1,6 @@
 import React from 'react'
-import Select from '../../EXPERIMENTAL_Select/index'
 
+import Select from '../../EXPERIMENTAL_Select/index'
 import { ObjectOption } from './ObjectAtom'
 
 export type VerbOption = {

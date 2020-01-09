@@ -1,4 +1,4 @@
-import { Labels } from './typings';
+import { Labels } from './typings'
 
 export const DEFAULT_LABELS: Labels = {
   addNewCondition: 'add new condition',

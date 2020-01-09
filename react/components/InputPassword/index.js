@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+
 import Input from '../Input'
 import VisibilityOn from '../icon/VisibilityOn'
 import VisibilityOff from '../icon/VisibilityOff'
-
 import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
 
 class InputPassword extends Component {

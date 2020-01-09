@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import React from 'react'
+
 import { ProgressSteps, ProgressStepsTypes } from './Steps'
 import { ProgressLine, ProgressLineTypes } from './Line'
 

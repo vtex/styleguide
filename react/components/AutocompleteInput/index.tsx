@@ -1,8 +1,7 @@
-import uniq from 'lodash/uniq'
 import PropTypes from 'prop-types'
 import React, { useState, useRef } from 'react'
-import Spinner from '../Spinner'
 
+import Spinner from '../Spinner'
 import { useClickOutside, useArrowNavigation } from './hooks'
 import Option, {
   AutocompleteOption,
@@ -77,9 +76,9 @@ const propTypes = {
 
 export type AutocompleteInputProps = PropTypes.InferProps<typeof propTypes>
 
-const AutocompleteInput: React.FunctionComponent<
-  PropTypes.InferProps<typeof propTypes>
-> = ({
+const AutocompleteInput: React.FunctionComponent<PropTypes.InferProps<
+  typeof propTypes
+>> = ({
   input: { value, onClear, onSearch, onChange, ...inputProps },
   options: {
     onSelect,
@@ -139,7 +138,7 @@ const AutocompleteInput: React.FunctionComponent<
     }
   }
 
-  const handleTermChange = (newTerm: string = '') => {
+  const handleTermChange = (newTerm = '') => {
     if (!showPopover) {
       setShowPopover(true)
     }
@@ -182,11 +181,12 @@ const AutocompleteInput: React.FunctionComponent<
           {lastSearched.label || 'Last searched terms'}
         </div>
       ) : null}
-      {showedOptions.map(
-        renderOption
-          ? (option, index) =>
-              renderOption(getOptionProps(option, index), index)
-          : (option, index) => <Option {...getOptionProps(option, index)} />
+      {showedOptions.map((option, index) =>
+        renderOption ? (
+          renderOption(getOptionProps(option, index), index)
+        ) : (
+          <Option {...getOptionProps(option, index)} />
+        )
       )}
     </div>
   )

@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
+
 import CheckIcon from '../icon/Check'
 import CheckPartial from '../icon/CheckPartial'
 

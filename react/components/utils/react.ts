@@ -5,4 +5,3 @@ export function setRef(ref, value) {
     ref.current = value
   }
 }
-

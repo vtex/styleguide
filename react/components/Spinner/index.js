@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
 import { baseClassname } from '../icon/utils'
 
 const radius = 40

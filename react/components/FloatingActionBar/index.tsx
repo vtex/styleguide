@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
 import PropTypes from 'prop-types'
+
 import Button from '../Button/index.js'
 
 import './action-bar.global.css'

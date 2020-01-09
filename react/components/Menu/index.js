@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { Overlay } from 'react-overlays'
 
 import Toggle from '../Toggle'
-
 import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
 
 const DEFAULT_WIDTH = 292

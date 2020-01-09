@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import Button from '../Button'
-
 import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
 
 class ButtonWithIcon extends Component {

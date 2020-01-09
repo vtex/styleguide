@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-
 import config from 'vtex-tachyons/config.json'
+
 import Close from '../icon/Close'
 
 class Tag extends PureComponent {

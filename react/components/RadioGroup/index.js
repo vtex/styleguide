@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Radio from '../Radio'
 import classNames from 'classnames'
+
+import Radio from '../Radio'
 
 class RadioGroup extends React.Component {
   handleChange = event => {

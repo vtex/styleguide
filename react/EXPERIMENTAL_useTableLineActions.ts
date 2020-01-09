@@ -1,3 +1,1 @@
-export {
-  default,
-} from './components/EXPERIMENTAL_Table/hooks/useTableLineActions'
+export { default } from './components/EXPERIMENTAL_Table/hooks/useTableLineActions'

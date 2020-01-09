@@ -1,10 +1,9 @@
 import React, { FC } from 'react'
 import PropTypes from 'prop-types'
+
 import ScatterChart from '../ScatterChart'
 
-const BubbleChart:FC<BaseChartProps> = (props) => (
-  <ScatterChart {...props}/>  
-)
+const BubbleChart: FC<BaseChartProps> = props => <ScatterChart {...props} />
 
 BubbleChart.propTypes = {
   /** The source data, in which each element is an object. */
@@ -16,26 +15,22 @@ BubbleChart.propTypes = {
       axisLine: PropTypes.bool,
       tickLine: PropTypes.bool,
       tick: PropTypes.bool,
-      hide: PropTypes.bool
+      hide: PropTypes.bool,
     }),
     yAxis: PropTypes.shape({
       axisLine: PropTypes.bool,
       tickLine: PropTypes.bool,
       tick: PropTypes.bool,
-      hide: PropTypes.bool
-    }), 
+      hide: PropTypes.bool,
+    }),
     container: PropTypes.shape({
-      height: PropTypes.oneOfType(
-        [PropTypes.string, PropTypes.number]
-      ),
-      width: PropTypes.oneOfType(
-        [PropTypes.string, PropTypes.number]
-      ),
+      height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     }),
     grid: PropTypes.shape({
       horizontal: PropTypes.bool,
       vertical: PropTypes.bool,
-    })
+    }),
   }),
 
   /** The key of x-axis which is corresponding to the data. */
@@ -43,7 +38,7 @@ BubbleChart.propTypes = {
 
   /** The keys of y-axis which is corresponding to the data. */
   yAxisKey: PropTypes.string.isRequired,
-  
+
   /** The key of y-axis which is corresponding to the data, it measures size of dot. */
   zAxisKey: PropTypes.string.isRequired,
 }

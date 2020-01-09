@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+
 import Input from '../Input'
 import SearchIcon from '../icon/Search'
 import ClearIcon from '../icon/Clear'
-
 import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
 
 class InputSearch extends Component {

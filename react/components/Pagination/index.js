@@ -6,7 +6,6 @@ import CaretLeft from '../icon/CaretLeft'
 import CaretRight from '../icon/CaretRight'
 import ButtonWithIcon from '../ButtonWithIcon'
 import Dropdown from '../Dropdown'
-
 import PageIndicator from './PageIndicator'
 
 const caretLeft = <CaretLeft />

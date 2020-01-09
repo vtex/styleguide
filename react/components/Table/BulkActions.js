@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react'
-
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { Sticky } from 'react-sticky'
@@ -8,7 +7,6 @@ import Button from '../Button'
 import ButtonWithIcon from '../ButtonWithIcon'
 import ActionMenu from '../ActionMenu'
 import Close from '../icon/Close'
-
 import BulkActionsSelectedRows from './BulkActionsSelectedRows'
 
 const DEFAULT_BAR_HEIGHT_PX = '56px'

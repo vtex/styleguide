@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+
 import CloseIcon from '../icon/Close'
 import Button from '../Button'
 

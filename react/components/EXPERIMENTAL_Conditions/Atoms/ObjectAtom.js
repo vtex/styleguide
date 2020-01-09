@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
 import Input from '../../Input'
 
 class ObjectAtom extends React.Component {

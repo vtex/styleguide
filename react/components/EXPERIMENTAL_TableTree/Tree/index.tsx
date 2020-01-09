@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useCallback } from 'react'
 import uuid from 'uuid'
 
 import {
@@ -20,6 +20,11 @@ const Tree: FC<TreeProps> = ({
 
   const listToRender = checkboxes ? items[nodeProps.nodesKey] : items
 
+  const isCollapsed = useCallback(
+    (item: unknown) => collapsedItems.some(comparator(item)),
+    [collapsedItems, comparator]
+  )
+
   const toggleCollapsed = React.useCallback(
     (item: unknown) => {
       isCollapsed(item)
@@ -30,10 +35,8 @@ const Tree: FC<TreeProps> = ({
           )
         : setCollapsedItems([...collapsedItems, item])
     },
-    [collapsedItems]
+    [collapsedItems, comparator, isCollapsed]
   )
-
-  const isCollapsed = (item: unknown) => collapsedItems.some(comparator(item))
 
   return (
     <>

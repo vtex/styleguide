@@ -28,7 +28,7 @@ export type LineActionObject = {
 
 export type LineActionProps = {
   lineActions: Array<LineActionObject>
-  rowData: Object
+  rowData: Record<string, any>
 }
 
 export default LineAction

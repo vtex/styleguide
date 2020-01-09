@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import React, { useState } from 'react'
 
 import IconSearch from '../../icon/Search'
-
 import ClearInputIcon from '../../icon/Clear'
 
 const propTypes = {
@@ -31,10 +30,8 @@ const defaultProps = {
   roundedBottom: true,
 }
 
-const SearchInput: React.FC<
-  PropTypes.InferProps<typeof propTypes> &
-    Omit<React.HTMLProps<HTMLInputElement>, 'onChange' | 'value'>
-> = props => {
+const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
+  Omit<React.HTMLProps<HTMLInputElement>, 'onChange' | 'value'>> = props => {
   const {
     onClear,
     onSearch,
@@ -78,7 +75,7 @@ const SearchInput: React.FC<
     'bg-base br2 br--right h-regular w3 bw1 ba pa0 bl-0',
     {
       'c-link pointer': !disabled,
-      'c-disabled': disabled
+      'c-disabled': disabled,
     }
   )
 

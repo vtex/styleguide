@@ -1,4 +1,5 @@
 import { useMemo, useState, useCallback } from 'react'
+
 import { Column } from '../index'
 
 export default function useTableVisibility({

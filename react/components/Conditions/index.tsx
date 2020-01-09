@@ -8,7 +8,6 @@ import IconClose from '../icon/Close/index'
 import Separator from './Separator'
 import StrategySelector from './StrategySelector'
 import Statement from '../Statement/index'
-
 import { Labels, Operator } from './typings'
 import { DEFAULT_LABELS, MEDIUM_ICON_SIZE } from './constants'
 import { SubjectOptions } from '../Statement/Atoms/SubjectAtom'
@@ -139,7 +138,7 @@ const Conditions: React.FC<Props> = ({
               )
 
               const statementContent = [
-                <div className="flex-grow-1">
+                <div key="1" className="flex-grow-1">
                   <Statement
                     isRtl={isRtl}
                     isFullWidth={isFullWidth}
@@ -154,12 +153,13 @@ const Conditions: React.FC<Props> = ({
                 canDelete &&
                   (!isFullWidth ? (
                     <div
+                      key="2"
                       className="ma3 c-muted-2 pointer hover-c-danger"
                       onClick={() => handleRemoveStatement(statementIndex)}>
                       <IconClose size={25} />
                     </div>
                   ) : (
-                    <div className="tr mh3">
+                    <div key="3" className="tr mh3">
                       <ButtonWithIcon
                         variation="tertiary"
                         collapseRight

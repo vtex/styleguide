@@ -6,6 +6,7 @@ import {
   CellMeasurer,
   CellMeasurerCache,
 } from 'react-virtualized'
+
 import ArrowDown from '../icon/ArrowDown'
 import ArrowUp from '../icon/ArrowUp'
 import OptionsDots from '../icon/OptionsDots'
