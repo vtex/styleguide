@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- `Table` toolbar's searchInput width on mobile.
+
 ## [9.104.5] - 2020-01-09
 
 ### Fixed
