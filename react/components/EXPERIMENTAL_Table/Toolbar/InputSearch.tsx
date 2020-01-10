@@ -1,5 +1,4 @@
 import React, { FC, FormEvent, InputHTMLAttributes } from 'react'
-import csx from 'classnames'
 
 import Input from '../../InputSearch/index'
 import { NAMESPACES, ORDER_CLASSNAMES } from '../constants'
@@ -12,7 +11,7 @@ const InputSearch: FC<InputSearchProps> = ({ onSubmit, ...inputProps }) => {
   return (
     <form
       id={NAMESPACES.TOOLBAR.INPUT_SEARCH}
-      className={csx(ORDER_CLASSNAMES.TOOLBAR_CHILD.INPUT, 'w-40')}
+      className={ORDER_CLASSNAMES.TOOLBAR_CHILD.INPUT}
       onSubmit={onSubmit}>
       <Input {...inputProps} />
     </form>
