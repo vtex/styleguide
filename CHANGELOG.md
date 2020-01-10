@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- `EXPERIMENTAL_Table` toolbar responsiveness on small screens.
+
 ## [9.104.6] - 2020-01-13
 
 ### Fixed
