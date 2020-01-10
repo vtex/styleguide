@@ -5,6 +5,7 @@ import { Column, Items } from '../index'
 import { Density } from '../hooks/useTableMeasures'
 import CellPrefix from './CellPrefix'
 import { Checkboxes } from '../../EXPERIMENTAL_useCheckboxTree/types'
+import useReducedMotion from '../hooks/useReducedMotion'
 
 const Rows: FC<RowsProps> = ({
   columns,
@@ -18,6 +19,7 @@ const Rows: FC<RowsProps> = ({
   checkboxes,
   rowKey,
 }) => {
+  const reducedMotion = useReducedMotion()
   return items ? (
     <>
       {items.map(rowData => {
@@ -39,7 +41,8 @@ const Rows: FC<RowsProps> = ({
             {...clickable}
             height={rowHeight}
             active={(isRowActive && isRowActive(rowData)) || isRowSelected}
-            key={rowKey({ rowData })}>
+            key={rowKey({ rowData })}
+            reducedMotion={reducedMotion}>
             {columns.map((column: Column, cellIndex: number) => {
               const { cellRenderer, width } = column
               const cellData = rowData[column.id]
