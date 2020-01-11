@@ -16,7 +16,7 @@ export default function useCheckboxTree<T>({
   isDisabled = (_: T | Tree<T>) => false,
 }: useCheckboxesInput<T>) {
   const [checkedItems, dispatch] = useReducer(reducer, checked)
-  const [lastToggled, setLastToggled] = useState(null)
+  const [lastToggledItem, setLastToggledItem] = useState(null)
 
   const itemTree = useMemo(() => {
     return { [ROOT_KEY]: ROOT_VALUE, [nodesKey]: items }
@@ -34,15 +34,15 @@ export default function useCheckboxTree<T>({
           itemToToggle: { item, nodesKey, comparator },
           isDisabled,
         })
-        setLastToggled(item)
+        setLastToggledItem(item)
       }
     },
     [comparator, isDisabled, nodesKey]
   )
 
   useEffect(() => {
-    onToggle && onToggle({ checkedItems, disabledItems, item: lastToggled })
-  }, [checkedItems, disabledItems, lastToggled, onToggle, toggle])
+    onToggle && onToggle({ checkedItems, disabledItems, item: lastToggledItem })
+  }, [checkedItems, disabledItems, lastToggledItem, onToggle, toggle])
 
   const toggleAll = useCallback(() => {
     toggle(itemTree)
@@ -163,6 +163,7 @@ export default function useCheckboxTree<T>({
     isDisabled,
     disabledItems,
     setChecked,
+    lastToggledItem,
   }
 }
 
