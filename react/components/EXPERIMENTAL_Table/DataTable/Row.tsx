@@ -1,8 +1,5 @@
 import React, { FC } from 'react'
 import csx from 'classnames'
-import uuid from 'uuid'
-
-import { NAMESPACES } from '../constants'
 
 const Row: FC<RowProps> & RowComposites = ({
   as: Tag = 'tr',

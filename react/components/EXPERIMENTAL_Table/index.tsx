@@ -119,7 +119,7 @@ export type TableComposites = {
   Bulk?: FC
 }
 
-export type Items = Array<Record<string, any>>
+export type Items = object[]
 
 export type CellData = {
   cellData: unknown

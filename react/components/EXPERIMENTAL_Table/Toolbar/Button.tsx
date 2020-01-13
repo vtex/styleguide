@@ -91,7 +91,7 @@ export type ButtonProps = {
   isLoading?: boolean
   disabled?: boolean
   size?: ButtonSize
-  icon?: any
+  icon?: unknown
   title?: string
   variation?: ButtonVariation
   isActiveOfGroup?: boolean

@@ -1,6 +1,5 @@
-import React, { FC, useCallback } from 'react'
+import React, { FC } from 'react'
 
-import { NAMESPACES } from '../constants'
 import Row, { RowProps, CellProps } from './Row'
 import { Column, Items } from '../index'
 import { Density } from '../hooks/useTableMeasures'
@@ -21,7 +20,7 @@ const Rows: FC<RowsProps> = ({
 }) => {
   return items ? (
     <>
-      {items.map((rowData, i) => {
+      {items.map(rowData => {
         const toggleChecked = () => checkboxes.toggle(rowData)
 
         const isRowChecked = checkboxes && checkboxes.isChecked(rowData)
