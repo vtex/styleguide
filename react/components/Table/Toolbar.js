@@ -133,6 +133,15 @@ class Toolbar extends PureComponent {
 
     const forcedColor = 'c-on-base'
 
+    const inputSearchAlone =
+      inputSearch &&
+      !isDensityVisible &&
+      !isFieldsVisible &&
+      !isDownloadVisible &&
+      !isUploadVisible &&
+      !isExtraActionsVisible &&
+      !isNewLineVisible
+
     return (
       <div
         id="toolbar"
@@ -140,7 +149,7 @@ class Toolbar extends PureComponent {
           isSearchBarVisible ? 'justify-between' : 'justify-end'
         }`}>
         {inputSearch && (
-          <div className="w-40">
+          <div className={inputSearchAlone ? 'w-100 w-40-ns' : 'w-40'}>
             <InputSearch
               disabled={loading}
               {...inputSearch}
