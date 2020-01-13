@@ -23,7 +23,7 @@ const Toolbar: FC & Composites = ({ children }) => {
       id={NAMESPACES.TOOLBAR.CONTAINER}
       className={csx(
         ORDER_CLASSNAMES.TOOLBAR,
-        `mb5 flex flex-row w-100 justify-between`
+        `mb5 flex flex-row flex-wrap w-100 justify-between`
       )}>
       {children}
       {positionFixer}

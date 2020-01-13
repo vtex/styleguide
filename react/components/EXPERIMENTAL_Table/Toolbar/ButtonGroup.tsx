@@ -89,7 +89,7 @@ const ButtonGroup: FC & Composites = ({ children }) => (
     id={NAMESPACES.TOOLBAR.BUTTON_GROUP}
     className={csx(
       ORDER_CLASSNAMES.TOOLBAR_CHILD.BUTTON_GROUP,
-      'flex flex-row items-center'
+      'flex flex-row flex-wrap items-center'
     )}>
     {children}
   </div>
