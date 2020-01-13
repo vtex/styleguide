@@ -19,7 +19,7 @@ type ChartConfig = {
 }
 
 type BaseChartProps = {
-  data: any
+  data: object[]
   dataKeys: string[]
   xAxisKey: string
   yAxisKey: string
