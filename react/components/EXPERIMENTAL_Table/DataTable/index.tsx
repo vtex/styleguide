@@ -5,6 +5,7 @@ import EmptyState from '../../EmptyState/index.js'
 import { NAMESPACES, ORDER_CLASSNAMES } from '../constants'
 import { TABLE_HEADER_HEIGHT } from '../hooks/useTableMeasures'
 import Loading from './Loading'
+import useTableMotion from '../hooks/useTableMotion'
 
 const DataTable: FC<DataTableProps> = ({
   children,
@@ -15,12 +16,13 @@ const DataTable: FC<DataTableProps> = ({
   loading,
   emptyState,
 }) => {
+  const motion = useTableMotion()
   const showLoading = !empty && loading
   const showEmptyState = empty && emptyState
   return (
     <div
       id={NAMESPACES.TABLE}
-      style={{ minHeight: height }}
+      style={{ minHeight: height, ...motion }}
       className={csx('order-1 mw-100 overflow-x-auto', ORDER_CLASSNAMES.TABLE)}>
       <Tag className={`w-100 ${className}`} style={{ borderSpacing: 0 }}>
         {children}
