@@ -7,19 +7,16 @@ const Row: FC<RowProps> & RowComposites = ({
   height,
   onClick,
   active,
-  reducedMotion = false,
+  motion,
 }) => {
   const className = csx('w-100 truncate overflow-x-hidden', {
     'pointer hover-c-link hover-bg-muted-5': onClick,
     'bg-action-secondary': active,
   })
-  const style = reducedMotion
-    ? { height }
-    : {
-        height,
-        willChange: 'height',
-        transition: `height ${TRANSITION_DURATION} ${TRANSITION_FUNCTION}`,
-      }
+  const style = {
+    height,
+    ...motion,
+  }
   return (
     <Tag style={style} onClick={onClick} className={className}>
       {children}
@@ -62,7 +59,7 @@ export type RowProps = {
   active?: boolean
   height?: number
   onClick?: () => void
-  reducedMotion?: boolean
+  motion?: ReturnType<typeof useTableMotion>
 }
 
 Row.Cell = Cell

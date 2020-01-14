@@ -4,15 +4,33 @@ import csx from 'classnames'
 import { ORDER_CLASSNAMES, NAMESPACES } from '../constants'
 import Actions from './Actions'
 import Tail from './Tail'
+import useTableMotion from '../hooks/useTableMotion'
 
 const BULK_ACTIONS_HEIGHT = 56
-const BULK_ACTIONS_TRANSITION =
-  'height 0.2s ease-in-out, padding 0.2s ease-in-out'
+
+const DEFAULT_TRANSITION = {
+  duration: 200,
+  func: 'ease-in-out',
+  delay: 0,
+  optimize: false,
+}
+
+const TRANSITIONS = [
+  {
+    prop: 'height',
+    ...DEFAULT_TRANSITION,
+  },
+  {
+    prop: 'padding',
+    ...DEFAULT_TRANSITION,
+  },
+]
 
 const BulkActions: FC<BulkActionsProps> & Composites = ({
   active = false,
   children,
 }) => {
+  const motion = useTableMotion(TRANSITIONS)
   const positionFixer =
     React.Children.count(children) > 1 ? null : (
       <div className={ORDER_CLASSNAMES.BULK_CHILD.POSITION_FIXER} />
@@ -30,7 +48,7 @@ const BulkActions: FC<BulkActionsProps> & Composites = ({
       style={{
         height: active ? BULK_ACTIONS_HEIGHT : 0,
         overflow: active ? 'auto' : 'hidden',
-        transition: BULK_ACTIONS_TRANSITION,
+        ...motion,
       }}>
       {children}
       {positionFixer}

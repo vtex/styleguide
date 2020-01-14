@@ -11,6 +11,7 @@ import Headings from './DataTable/Headings'
 import Rows from './DataTable/Rows'
 import { DENSITY_OPTIONS, Density } from './hooks/useTableMeasures'
 import { Checkboxes } from '../EXPERIMENTAL_useCheckboxTree/types'
+import useTableMotion from './hooks/useTableMotion'
 
 const Table: FC<TableProps> & TableComposites = ({
   children,
@@ -126,6 +127,7 @@ export type CellData = {
   rowData: unknown
   rowHeight: number
   selectedDensity: Density
+  motion: ReturnType<typeof useTableMotion>
 }
 
 export type Column = {
