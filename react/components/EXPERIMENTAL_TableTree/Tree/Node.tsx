@@ -8,6 +8,17 @@ import CollapseToggle from './CollapseToggle'
 import { Checkboxes } from '../../EXPERIMENTAL_useCheckboxTree/types'
 import { Column } from '../../EXPERIMENTAL_Table'
 import { Density } from '../../EXPERIMENTAL_Table/hooks/useTableMeasures'
+import useTableMotion from '../../EXPERIMENTAL_Table/hooks/useTableMotion'
+
+const TRANSITIONS = [
+  {
+    prop: 'height',
+    duration: 200,
+    func: 'ease-in-out',
+    delay: 0,
+    optimize: false,
+  },
+]
 
 const Node: FC<NodeProps> = ({
   columns,
@@ -21,6 +32,7 @@ const Node: FC<NodeProps> = ({
   selectedDensity,
   onRowClick,
 }) => {
+  const motion = useTableMotion(TRANSITIONS)
   const toggleChildren = useCallback(() => toggleCollapsed(data), [
     data,
     toggleCollapsed,
@@ -68,7 +80,11 @@ const Node: FC<NodeProps> = ({
 
   const renderCells = (hasChild?: boolean) => {
     return (
-      <Row {...clickableRow} height={rowHeight} active={isRowSelected}>
+      <Row
+        {...clickableRow}
+        motion={motion}
+        height={rowHeight}
+        active={isRowSelected}>
         {columns.map((column: Column, cellIndex: number) => {
           const { cellRenderer, width } = column
           const cellData = data[column.id]
@@ -78,6 +94,7 @@ const Node: FC<NodeProps> = ({
                 rowData: data,
                 rowHeight,
                 selectedDensity,
+                motion,
               })
             : cellData
           return cellIndex === 0 ? (
