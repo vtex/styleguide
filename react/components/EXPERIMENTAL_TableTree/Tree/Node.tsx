@@ -16,7 +16,7 @@ const TRANSITIONS = [
     duration: 200,
     func: 'ease-in-out',
     delay: 0,
-    optimize: false,
+    optimize: true,
   },
 ]
 
