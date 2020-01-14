@@ -7,13 +7,15 @@ import CellPrefix from './CellPrefix'
 import { Checkboxes } from '../../EXPERIMENTAL_useCheckboxTree/types'
 import useTableMotion from '../hooks/useTableMotion'
 
-const TRANSITIONS = [{
+const TRANSITIONS = [
+  {
     prop: 'height',
     duration: 200,
     func: 'ease-in-out',
     delay: 0,
     optimize: true,
-  }]
+  },
+]
 
 const Rows: FC<RowsProps> = ({
   columns,
