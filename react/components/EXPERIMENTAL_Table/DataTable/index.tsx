@@ -7,6 +7,14 @@ import { TABLE_HEADER_HEIGHT } from '../hooks/useTableMeasures'
 import Loading from './Loading'
 import useTableMotion from '../hooks/useTableMotion'
 
+const TRANSITIONS = [{
+  prop: 'minHeight',
+  duration: 200,
+  func: 'ease-in-out',
+  delay: 0,
+  optimize: true,
+}]
+
 const DataTable: FC<DataTableProps> = ({
   children,
   height,
@@ -16,7 +24,7 @@ const DataTable: FC<DataTableProps> = ({
   loading,
   emptyState,
 }) => {
-  const motion = useTableMotion()
+  const motion = useTableMotion(TRANSITIONS)
   const showLoading = !empty && loading
   const showEmptyState = empty && emptyState
   return (
