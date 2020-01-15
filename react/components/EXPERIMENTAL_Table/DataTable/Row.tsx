@@ -1,6 +1,9 @@
 import React, { FC } from 'react'
 import csx from 'classnames'
 
+import useTableMotion from '../hooks/useTableMotion'
+
+
 const Row: FC<RowProps> & RowComposites = ({
   as: Tag = 'tr',
   children,
