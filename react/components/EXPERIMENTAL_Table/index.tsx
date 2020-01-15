@@ -13,16 +13,6 @@ import { DENSITY_OPTIONS, Density } from './hooks/useTableMeasures'
 import { Checkboxes } from '../EXPERIMENTAL_useCheckboxTree/types'
 import useTableMotion from './hooks/useTableMotion'
 
-const CONTAINER_TRANSITIONS = [
-  {
-    prop: 'minHeight',
-    duration: 1000,
-    func: 'ease-in-out',
-    delay: 0,
-    optimize: true,
-  },
-]
-
 const Table: FC<TableProps> & TableComposites = ({
   children,
   measures,
@@ -40,7 +30,7 @@ const Table: FC<TableProps> & TableComposites = ({
 
   const { tableHeight, rowHeight, selectedDensity } = measures
   const { columns, onRowClick, items } = props
-  const motion = useTableMotion(CONTAINER_TRANSITIONS)
+  const motion = useTableMotion()
 
   return (
     <div
