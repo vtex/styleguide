@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.104.9] - 2020-01-15
+
+### Changed
+
+- Return `lastToggledItem` of `EXPERIMENTAL_useCheckboxTree`.
+
 ## [9.104.8] - 2020-01-15
 
 ### Added
