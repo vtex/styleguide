@@ -26,6 +26,16 @@ const Row: FC<RowProps> & RowComposites = ({
   )
 }
 
+export const ROW_TRANSITIONS = [
+  {
+    prop: 'height',
+    duration: 200,
+    func: 'ease-in-out',
+    delay: 0,
+    optimize: true,
+  },
+]
+
 export const Cell: FC<CellProps> = ({
   children,
   width,

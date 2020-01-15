@@ -3,22 +3,12 @@ import uuid from 'uuid'
 import isEmpty from 'lodash/isEmpty'
 
 import CellPrefix from '../../EXPERIMENTAL_Table/DataTable/CellPrefix'
-import Row from '../../EXPERIMENTAL_Table/DataTable/Row'
+import Row, { ROW_TRANSITIONS } from '../../EXPERIMENTAL_Table/DataTable/Row'
 import CollapseToggle from './CollapseToggle'
 import { Checkboxes } from '../../EXPERIMENTAL_useCheckboxTree/types'
 import { Column } from '../../EXPERIMENTAL_Table'
 import { Density } from '../../EXPERIMENTAL_Table/hooks/useTableMeasures'
 import useTableMotion from '../../EXPERIMENTAL_Table/hooks/useTableMotion'
-
-const TRANSITIONS = [
-  {
-    prop: 'height',
-    duration: 200,
-    func: 'ease-in-out',
-    delay: 0,
-    optimize: true,
-  },
-]
 
 const Node: FC<NodeProps> = ({
   columns,
@@ -32,7 +22,7 @@ const Node: FC<NodeProps> = ({
   selectedDensity,
   onRowClick,
 }) => {
-  const motion = useTableMotion(TRANSITIONS)
+  const motion = useTableMotion(ROW_TRANSITIONS)
   const toggleChildren = useCallback(() => toggleCollapsed(data), [
     data,
     toggleCollapsed,

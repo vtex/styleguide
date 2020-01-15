@@ -1,21 +1,11 @@
 import React, { FC } from 'react'
 
-import Row, { RowProps, CellProps } from './Row'
+import Row, { RowProps, ROW_TRANSITIONS, CellProps } from './Row'
 import { Column, Items } from '../index'
 import { Density } from '../hooks/useTableMeasures'
 import CellPrefix from './CellPrefix'
 import { Checkboxes } from '../../EXPERIMENTAL_useCheckboxTree/types'
 import useTableMotion from '../hooks/useTableMotion'
-
-const TRANSITIONS = [
-  {
-    prop: 'height',
-    duration: 200,
-    func: 'ease-in-out',
-    delay: 0,
-    optimize: true,
-  },
-]
 
 const Rows: FC<RowsProps> = ({
   columns,
@@ -29,7 +19,7 @@ const Rows: FC<RowsProps> = ({
   checkboxes,
   rowKey,
 }) => {
-  const motion = useTableMotion(TRANSITIONS)
+  const motion = useTableMotion(ROW_TRANSITIONS)
   return items ? (
     <>
       {items.map(rowData => {
