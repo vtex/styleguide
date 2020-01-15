@@ -3,7 +3,7 @@ import uuid from 'uuid'
 
 import { TABLE_HEADER_HEIGHT } from '../hooks/useTableMeasures'
 import Row, { CellProps, RowProps } from './Row'
-import { Column, Items } from '../index'
+import { Column } from '../index'
 import { Checkboxes } from '../../EXPERIMENTAL_useCheckboxTree/types'
 import CellPrefix from './CellPrefix'
 

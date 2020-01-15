@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.104.10] - 2020-01-15
+
+### Fixed
+
+- Lint warnings of `EXPERIMENTAL_Table`, `EXPERIMENTAL_useCheckboxTree`, `EXPERIMENTAL_Charts`, `Tooltip`, `AutocompleteInput` and `Conditions`.
+
 ## [9.104.9] - 2020-01-15
 
 ### Changed

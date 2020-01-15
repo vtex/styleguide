@@ -2,7 +2,7 @@
   "vendor": "vtex",
   "name": "styleguide",
   "title": "VTEX Styleguide",
-  "version": "9.104.9",
+  "version": "9.104.10",
   "description": "The VTEX Styleguide components for the Render framework",
   "builders": {
     "react": "3.x"

@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Button from '../Button/index'
 import ButtonWithIcon from '../ButtonWithIcon/index'
 import IconPlus from '../icon/Plus/index'
 import IconClose from '../icon/Close/index'
@@ -25,7 +24,7 @@ type Props = {
   statements: {
     subject: string
     verb: string
-    object?: any
+    object?: unknown
     error?: string
   }[]
   subjectPlaceholder: string

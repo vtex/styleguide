@@ -10,7 +10,7 @@ export type Checkboxes<T> = ReturnType<typeof useCheckboxTree>
 export type Tree<T> = { [x: string]: string | T[]; [ROOT_KEY]: string } | T
 
 export type toggleCallback<T> = {
-  checkedItems: Array<any>
+  checkedItems: Array<unknown>
   disabledItems: Array<T>
   item: T | Tree<T>
 }

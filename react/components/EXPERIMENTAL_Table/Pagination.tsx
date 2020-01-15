@@ -18,9 +18,9 @@ export type PaginationProps = {
   currentItemFrom: number
   currentItemTo: number
   totalItems: number
-  onNextClick: (e: any) => void
-  onPrevClick: (e: any) => void
-  onRowsChange: (e: any, value: any) => void
+  onNextClick: (e: Event) => void
+  onPrevClick: (e: Event) => void
+  onRowsChange: (e: Event, value: unknown) => void
 }
 
 export default Pagination
