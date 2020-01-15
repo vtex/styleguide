@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.104.8] - 2020-01-15
+
+### Added
+
+- Disable `EXPERIMENTAL_Table` check all heading when all checkboxes are disabled.
+
 ## [9.104.7] - 2020-01-13
 
 ### Fixed

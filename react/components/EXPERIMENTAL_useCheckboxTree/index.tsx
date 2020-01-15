@@ -112,6 +112,10 @@ export default function useCheckboxTree<T>({
     return checkedItems.length > 0
   }, [checkedItems])
 
+  const allDisabled = useMemo(() => {
+    return isDisabled(itemTree)
+  }, [isDisabled, itemTree])
+
   const check = (item: T | Tree<T>) => {
     if (!isDisabled(item))
       dispatch({
@@ -146,6 +150,7 @@ export default function useCheckboxTree<T>({
     checkedItems,
     isChecked,
     allChecked,
+    allDisabled,
     someChecked,
     isPartiallyChecked,
     itemTree,
