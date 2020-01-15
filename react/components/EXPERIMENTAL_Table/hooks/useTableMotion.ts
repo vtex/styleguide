@@ -23,7 +23,7 @@ export default function useTableMotion(transitions = defaultTransition) {
     }, '')
 
     const draftWillChange = transitions.reduce(
-      (acc, transition, index) => {
+      (acc, transition) => {
         const { prop, optimize } = transition
         const skip = !optimize || acc.props.includes(prop)
         const firstItem = acc.props.length === 0
