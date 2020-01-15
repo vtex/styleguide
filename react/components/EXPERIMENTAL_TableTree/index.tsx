@@ -10,6 +10,17 @@ import FilterBar from '../EXPERIMENTAL_Table/FilterBar'
 import { Checkboxes } from '../EXPERIMENTAL_useCheckboxTree/types'
 import { defaultComparatorCurry } from '../EXPERIMENTAL_useCheckboxTree/constants'
 import Headings from '../EXPERIMENTAL_Table/DataTable/Headings'
+import useTableMotion from '../EXPERIMENTAL_Table/hooks/useTableMotion'
+
+const CONTAINER_TRANSITIONS = [
+  {
+    prop: 'minHeight',
+    duration: 200,
+    func: 'ease-in-out',
+    delay: 0,
+    optimize: true,
+  },
+]
 
 const TableTree: FC<Props> & TableComposites = ({
   children,
@@ -29,6 +40,7 @@ const TableTree: FC<Props> & TableComposites = ({
   }
 
   const { tableHeight, rowHeight, selectedDensity } = measures
+  const motion = useTableMotion(CONTAINER_TRANSITIONS)
 
   return (
     <div style={{ minHeight: tableHeight }} className="flex flex-column">
@@ -37,6 +49,7 @@ const TableTree: FC<Props> & TableComposites = ({
         loading={loading}
         emptyState={emptyState}
         empty={empty}
+        motion={motion}
         height={tableHeight}>
         <thead className="w-100 ph4 truncate overflow-x-hidden c-muted-2 f6">
           <Headings checkboxes={checkboxes} columns={columns} />

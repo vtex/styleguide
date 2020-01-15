@@ -3,11 +3,12 @@ import uuid from 'uuid'
 import isEmpty from 'lodash/isEmpty'
 
 import CellPrefix from '../../EXPERIMENTAL_Table/DataTable/CellPrefix'
-import Row from '../../EXPERIMENTAL_Table/DataTable/Row'
+import Row, { ROW_TRANSITIONS } from '../../EXPERIMENTAL_Table/DataTable/Row'
 import CollapseToggle from './CollapseToggle'
 import { Checkboxes } from '../../EXPERIMENTAL_useCheckboxTree/types'
 import { Column } from '../../EXPERIMENTAL_Table'
 import { Density } from '../../EXPERIMENTAL_Table/hooks/useTableMeasures'
+import useTableMotion from '../../EXPERIMENTAL_Table/hooks/useTableMotion'
 
 const Node: FC<NodeProps> = ({
   columns,
@@ -21,6 +22,7 @@ const Node: FC<NodeProps> = ({
   selectedDensity,
   onRowClick,
 }) => {
+  const motion = useTableMotion(ROW_TRANSITIONS)
   const toggleChildren = useCallback(() => toggleCollapsed(data), [
     data,
     toggleCollapsed,
@@ -68,7 +70,11 @@ const Node: FC<NodeProps> = ({
 
   const renderCells = (hasChild?: boolean) => {
     return (
-      <Row {...clickableRow} height={rowHeight} active={isRowSelected}>
+      <Row
+        {...clickableRow}
+        motion={motion}
+        height={rowHeight}
+        active={isRowSelected}>
         {columns.map((column: Column, cellIndex: number) => {
           const { cellRenderer, width } = column
           const cellData = data[column.id]
@@ -78,6 +84,7 @@ const Node: FC<NodeProps> = ({
                 rowData: data,
                 rowHeight,
                 selectedDensity,
+                motion,
               })
             : cellData
           return cellIndex === 0 ? (

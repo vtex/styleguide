@@ -11,6 +11,7 @@ import Headings from './DataTable/Headings'
 import Rows from './DataTable/Rows'
 import { DENSITY_OPTIONS, Density } from './hooks/useTableMeasures'
 import { Checkboxes } from '../EXPERIMENTAL_useCheckboxTree/types'
+import useTableMotion from './hooks/useTableMotion'
 
 const Table: FC<TableProps> & TableComposites = ({
   children,
@@ -29,10 +30,11 @@ const Table: FC<TableProps> & TableComposites = ({
 
   const { tableHeight, rowHeight, selectedDensity } = measures
   const { columns, onRowClick, items } = props
+  const motion = useTableMotion()
 
   return (
     <div
-      style={{ minHeight: tableHeight }}
+      style={{ minHeight: tableHeight, ...motion }}
       id={NAMESPACES.CONTAINER}
       className="flex flex-column">
       {children}
@@ -40,6 +42,7 @@ const Table: FC<TableProps> & TableComposites = ({
         empty={empty}
         loading={loading}
         emptyState={emptyState}
+        motion={motion}
         height={tableHeight}>
         <thead
           id={NAMESPACES.HEADER}
@@ -126,6 +129,7 @@ export type CellData = {
   rowData: unknown
   rowHeight: number
   selectedDensity: Density
+  motion: ReturnType<typeof useTableMotion>
 }
 
 export type Column = {

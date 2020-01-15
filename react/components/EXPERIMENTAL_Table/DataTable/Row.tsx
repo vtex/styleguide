@@ -1,23 +1,40 @@
 import React, { FC } from 'react'
 import csx from 'classnames'
 
+import useTableMotion from '../hooks/useTableMotion'
+
 const Row: FC<RowProps> & RowComposites = ({
   as: Tag = 'tr',
   children,
   height,
   onClick,
   active,
+  motion,
 }) => {
   const className = csx('w-100 truncate overflow-x-hidden', {
     'pointer hover-c-link hover-bg-muted-5': onClick,
     'bg-action-secondary': active,
   })
+  const style = {
+    height,
+    ...motion,
+  }
   return (
-    <Tag style={{ height }} onClick={onClick} className={className}>
+    <Tag style={style} onClick={onClick} className={className}>
       {children}
     </Tag>
   )
 }
+
+export const ROW_TRANSITIONS = [
+  {
+    prop: 'height',
+    duration: 200,
+    func: 'ease-in-out',
+    delay: 0,
+    optimize: true,
+  },
+]
 
 export const Cell: FC<CellProps> = ({
   children,
@@ -54,6 +71,7 @@ export type RowProps = {
   active?: boolean
   height?: number
   onClick?: () => void
+  motion?: ReturnType<typeof useTableMotion>
 }
 
 Row.Cell = Cell
