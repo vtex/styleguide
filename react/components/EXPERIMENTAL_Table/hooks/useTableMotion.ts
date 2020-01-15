@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from 'react'
 import throttle from 'lodash/throttle'
 
-const defaultTransition: transition[] = [
+const defaultTransition: Transition[] = [
   {
     prop: 'all',
     duration: 200,
@@ -70,7 +70,7 @@ function useReducedMotion(init = false) {
   return reduced
 }
 
-type transition = {
+type Transition = {
   prop: string
   duration: number
   func: string
