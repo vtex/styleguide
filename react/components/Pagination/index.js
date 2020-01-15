@@ -54,6 +54,7 @@ class Pagination extends PureComponent {
       selectedOption,
       hasPageTopIndicator,
       itemLabel,
+      testIds,
     } = this.props
     const { selectedRowsOptionIndex } = this.state
 
@@ -94,6 +95,7 @@ class Pagination extends PureComponent {
               <Dropdown
                 size="small"
                 options={dropdownOptions}
+                selectTestId={testIds.rowsOptions}
                 value={
                   selectedOption ||
                   dropdownOptions[selectedRowsOptionIndex].label
@@ -109,6 +111,7 @@ class Pagination extends PureComponent {
               itemTo={itemTo}
               textOf={textOf}
               totalItems={totalItems}
+              testId={testIds.pageIndicator}
             />
             <div className="ml4">
               <ButtonWithIcon
@@ -117,6 +120,7 @@ class Pagination extends PureComponent {
                 size="small"
                 disabled={isPrevDisabled}
                 onClick={this.handlePrevPage}
+                testId={testIds.prevBtn}
               />
             </div>
             <div className="ml2">
@@ -126,6 +130,7 @@ class Pagination extends PureComponent {
                 size="small"
                 disabled={isNextDisabled}
                 onClick={this.handleNextPage}
+                testId={testIds.nextBtn}
               />
             </div>
           </div>
@@ -138,6 +143,7 @@ class Pagination extends PureComponent {
 Pagination.defaultProps = {
   rowsOptions: null,
   hasPageTopIndicator: false,
+  testIds: {},
 }
 
 Pagination.propTypes = {
@@ -160,6 +166,13 @@ Pagination.propTypes = {
   onPrevClick: PropTypes.func,
 
   hasPageTopIndicator: PropTypes.bool,
+
+  testIds: PropTypes.shape({
+    rowsOptions: PropTypes.string,
+    prevBtn: PropTypes.string,
+    nextBtn: PropTypes.string,
+    pageIndicator: PropTypes.string,
+  }),
 }
 
 export default Pagination

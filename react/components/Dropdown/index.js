@@ -98,6 +98,7 @@ class Dropdown extends Component {
       name,
       required,
       variation,
+      selectTestId,
     } = this.props
 
     const hasValidInitialValue =
@@ -201,6 +202,7 @@ class Dropdown extends Component {
             </div>
 
             <select
+              data-testid={selectTestId}
               disabled={disabled}
               className={selectClasses}
               onChange={this.handleChange}
@@ -281,6 +283,8 @@ Dropdown.propTypes = {
   id: PropTypes.string,
   /** Data attribute */
   testId: PropTypes.string,
+  /**  Data attribute for select*/
+  selectTestId: PropTypes.string,
   /** Spec attribute */
   autoFocus: PropTypes.bool,
   /** Spec attribute */

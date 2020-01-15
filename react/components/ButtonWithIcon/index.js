@@ -17,6 +17,8 @@ class ButtonWithIcon extends Component {
     /** @ignore Button size, used to calculate the margins of the icon.
      * It is then passed to the Button itself */
     size: PropTypes.oneOf(['small', 'regular', 'large']),
+    /** String used as id to serve test purposes*/
+    testId: PropTypes.string,
   }
 
   static defaultProps = {
