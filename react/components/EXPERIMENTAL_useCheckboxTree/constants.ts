@@ -1,9 +1,9 @@
-type itemWithID = {
+type ItemWithID = {
   id: string
 }
 
-export const defaultComparatorCurry = (item: itemWithID) => (
-  candidate: itemWithID
+export const defaultComparatorCurry = (item: ItemWithID) => (
+  candidate: ItemWithID
 ) => item.id === candidate.id
 
 export const ROOT_KEY = 'id'

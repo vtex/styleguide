@@ -13,7 +13,7 @@ const merge = (defaultProps: ChartConfig, userProps: ChartConfig) => {
   return props
 }
 
-const getRangeOfZAxis = (key: string | number, data: unknown[]) => {
+const getRangeOfZAxis = (key: string | number, data: object[]) => {
   const values = data.map(item => item[key])
   const min = Math.min(...values)
   const max = Math.max(...values)
