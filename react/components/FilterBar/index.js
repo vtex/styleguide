@@ -35,8 +35,8 @@ class FilterBar extends PureComponent {
       visibleExtraOptions: [],
     }
   }
-  
-  componentDidMount(){
+
+  componentDidMount = () => {
     this.props.statements.forEach(st => {
       this.handleSubmitFilter(st)
       this.toggleExtraFilterOption(st.subject)
