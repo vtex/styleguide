@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.105.0] - 2020-01-16
+
+### Added
+- Handle to the label of the `Button`.
+
 ## [9.104.11] - 2020-01-15
 
 ### Added

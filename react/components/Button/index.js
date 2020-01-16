@@ -57,7 +57,7 @@ class Button extends Component {
       variation === 'danger-tertiary'
 
     let classes = 'vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid '
-    let labelClasses = 'flex items-center justify-center h-100 '
+    let labelClasses = 'vtex-button__label flex items-center justify-center h-100 '
     let loaderSize = 15
     let horizontalPadding = 0
 
@@ -238,7 +238,7 @@ class Button extends Component {
         {...(href && linkModeProps)}>
         {isLoading ? (
           <Fragment>
-            <span className="top-0 left-0 w-100 h-100 absolute flex justify-center items-center">
+            <span className="vtex-button__spinner-container top-0 left-0 w-100 h-100 absolute flex justify-center items-center">
               <Spinner
                 secondary={variation === 'primary' || variation === 'danger'}
                 size={loaderSize}
