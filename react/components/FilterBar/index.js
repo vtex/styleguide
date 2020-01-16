@@ -31,10 +31,16 @@ const truncateFilterValue = filterValue =>
 class FilterBar extends PureComponent {
   constructor(props) {
     super(props)
-
     this.state = {
       visibleExtraOptions: [],
     }
+  }
+  
+  componentDidMount(){
+    this.props.statements.forEach(st => {
+      this.handleSubmitFilter(st)
+      this.toggleExtraFilterOption(st.subject)
+    })
   }
 
   toggleExtraFilterOption = key => {
