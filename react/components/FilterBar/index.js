@@ -37,9 +37,9 @@ class FilterBar extends PureComponent {
   }
 
   componentDidMount = () => {
-    this.props.statements.forEach(st => {
-      this.handleSubmitFilter(st)
-      this.toggleExtraFilterOption(st.subject)
+    this.props.statements.forEach(statement => {
+      this.handleSubmitFilter(statement)
+      this.toggleExtraFilterOption(statement.subject)
     })
   }
 
