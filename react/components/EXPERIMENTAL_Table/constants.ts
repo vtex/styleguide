@@ -14,7 +14,8 @@ export const ORDER_CLASSNAMES = {
     },
   },
   FILTER_BAR: 'order-1',
-  BULK: 'order-2',
+  TOTALIZER: 'order-2',
+  BULK: 'order-3',
   BULK_CHILD: {
     ACTIONS: 'order-0',
     ACTIONS_CHILD: {
@@ -24,8 +25,8 @@ export const ORDER_CLASSNAMES = {
     POSITION_FIXER: 'order-1',
     RIGHT: 'order-2',
   },
-  TABLE: 'order-3',
-  PAGINATION: 'order-4',
+  TABLE: 'order-4',
+  PAGINATION: 'order-5',
 }
 
 export const NAMESPACE_PREFIX = 'vtex-table-v2'
@@ -47,6 +48,7 @@ export const NAMESPACES = {
     BUTTON_EXTRA_ACTIONS: `${NAMESPACE_PREFIX}__toolbar__button-extra-actions`,
   },
   FILTER_BAR: `${NAMESPACE_PREFIX}__filter-bar`,
+  TOTALIZER: `${NAMESPACE_PREFIX}__totalizer`,
   BULK_ACTIONS: `${NAMESPACE_PREFIX}__bulk-actions`,
   CHECKBOX: `${NAMESPACE_PREFIX}__checkbox`,
   PAGINATION: `${NAMESPACE_PREFIX}__pagination`,

@@ -147,7 +147,7 @@ Totalizer.defaultProps = {
   horizontalLayout: false,
 }
 
-Totalizer.propTypes = {
+export const totalizerPropTypes = {
   /** Sets the items horizontally instead of vertically on mobile. */
   mobileScroll: PropTypes.bool,
   horizontalLayout: PropTypes.bool,
@@ -162,5 +162,7 @@ Totalizer.propTypes = {
     })
   ).isRequired,
 }
+
+Totalizer.propTypes = totalizerPropTypes
 
 export default Totalizer

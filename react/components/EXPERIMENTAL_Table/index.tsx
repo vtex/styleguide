@@ -12,6 +12,7 @@ import Rows from './DataTable/Rows'
 import { DENSITY_OPTIONS, Density } from './hooks/useTableMeasures'
 import { Checkboxes } from '../EXPERIMENTAL_useCheckboxTree/types'
 import useTableMotion from './hooks/useTableMotion'
+import Totalizer, { TotalizerProps } from './Totalizer'
 
 const Table: FC<TableProps> & TableComposites = ({
   children,
@@ -120,6 +121,7 @@ export type TableComposites = {
   FilterBar?: FC
   Pagination?: FC<PaginationProps>
   Bulk?: FC
+  Totalizer?: FC<TotalizerProps>
 }
 
 export type Items = object[]
@@ -141,6 +143,7 @@ export type Column = {
 
 Table.Toolbar = Toolbar
 Table.FilterBar = FilterBar
+Table.Totalizer = Totalizer
 Table.Pagination = Pagination
 Table.propTypes = tablePropTypes
 Table.Bulk = BulkActions
