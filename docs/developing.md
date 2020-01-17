@@ -159,4 +159,21 @@ After that, **for IO Apps**, you only need your component being imported and exp
 
 With all this, you are ready to develop TypeScript components into our Styleguide :)
 
+#### Using components in external tests
+
+We use the `data-testid` to identify/retrieve elements needed in tests. Not all components have this prop but feel free to open a PR adding it to the components you need. If you need to test elements inside a compound component you can create an object with the test ids that will be used in each of its internal elements. In [Pagination](https://github.com/vtex/styleguide/tree/master/react/components/Pagination), as example, we have a dropdown, a previous and next button and a page indicator. So the PropTypes of the testIds object would look like:
+
+```tsx
+    {
+      ...
+      testIds: PropTypes.shape({
+        rowsOptions: PropTypes.string,
+        prevBtn: PropTypes.string,
+        nextBtn: PropTypes.string,
+        pageIndicator: PropTypes.string,
+      }),
+      ...
+    }
+```
+
 **This is what you need to know to develop with us! Thank you for your contribution!**

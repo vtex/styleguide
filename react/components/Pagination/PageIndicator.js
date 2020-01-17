@@ -7,9 +7,10 @@ function PageIndicator({
   textOf,
   totalItems,
   itemLabel,
+  testId,
 }) {
   return (
-    <div className="c-muted-2 t-small">
+    <div className="c-muted-2 t-small" data-testid={testId}>
       {`${currentItemFrom} - ${itemTo} `}
       {textOf} {totalItems} {itemLabel}
     </div>
@@ -26,6 +27,7 @@ PageIndicator.propTypes = {
   textOf: PropTypes.string.isRequired,
   totalItems: PropTypes.node.isRequired,
   itemLabel: PropTypes.node,
+  testId: PropTypes.string,
 }
 
 export default PageIndicator
