@@ -168,18 +168,21 @@ const heroColumns = [
 
 const heroes = [
   {
+    id: 1,
     name: "T'Chala",
     email: 'black.panther@gmail.com',
     age: 31,
     country: '🇰🇪Wakanda',
   },
   {
+    id: 2,
     name: 'Peter Parker',
     email: 'spider.man@gmail.com',
     age: 17,
     country: '🇺🇸USA',
   },
   {
+    id: 3,
     name: 'Natasha Romanoff',
     email: 'black.widow@gmail.com',
     age: 29,
@@ -244,18 +247,21 @@ const heroColumns = [
 
 const heroes = [
   {
+    id: 1,
     name: "T'Chala",
     email: 'black.panther@gmail.com',
     age: 31,
     country: '🇰🇪Wakanda',
   },
   {
+    id: 2,
     name: 'Peter Parker',
     email: 'spider.man@gmail.com',
     age: 17,
     country: '🇺🇸USA',
   },
   {
+    id: 3,
     name: 'Natasha Romanoff',
     email: 'black.widow@gmail.com',
     age: 29,
@@ -335,18 +341,22 @@ const columns = [
 
 const items = [
   {
+    id: 1,
     name: 'En Sabah Nuh',
     country: '🇨🇺Cuba',
   },
   {
+    id: 2,
     name: 'Abdul Qamar',
     country: '🇸🇦Saudi Arabia',
   },
   {
+    id: 3,
     name: 'Goose the Cat',
     country: '🇺🇸USA',
   },
   {
+    id: 4,
     name: 'Brian Braddock',
     country: '🇬🇧Great Britain',
   },
@@ -394,19 +404,23 @@ const columns = [
 
 const items = [
   {
+    id: 1,
     name:
       '⚠️ This is just a text that is very very very large and should be fully visible when it is confortable and truncated otherwise. If you are seeing this part, it means that you are ona  low density 🤓!',
     country: '🇨🇺Cuba',
   },
   {
+    id: 2,
     name: 'Abdul Qamar',
     country: '🇸🇦Saudi Arabia',
   },
   {
+    id: 3,
     name: 'Goose the Cat',
     country: '🇺🇸USA',
   },
   {
+    id: 4,
     name: 'Brian Braddock',
     country: '🇬🇧Great Britain',
   },
@@ -475,18 +489,22 @@ const columns = [
 
 const items = [
   {
+    id: 1,
     name: 'En Sabah Nuh',
     country: '🇨🇺Cuba',
   },
   {
+    id: 2,
     name: 'Abdul Qamar',
     country: '🇸🇦Saudi Arabia',
   },
   {
+    id: 3,
     name: 'Goose the Cat',
     country: '🇺🇸USA',
   },
   {
+    id: 4,
     name: 'Brian Braddock',
     country: '🇬🇧Great Britain',
   },
@@ -536,18 +554,22 @@ const columns = [
 
 const items = [
   {
+    id: 1,
     name: 'En Sabah Nuh',
     country: '🇨🇺Cuba',
   },
   {
+    id: 2,
     name: 'Abdul Qamar',
     country: '🇸🇦Saudi Arabia',
   },
   {
+    id: 3,
     name: 'Goose the Cat',
     country: '🇺🇸USA',
   },
   {
+    id: 4,
     name: 'Brian Braddock',
     country: '🇬🇧Great Britain',
   },
@@ -691,66 +713,82 @@ const columns = [
 // Define the items
 const items = [
   {
+    id: 1,
     name: "T'Chala",
     country: '🇰🇪Wakanda',
   },
   {
+    id: 2,
     name: 'Peter Parker',
     country: '🇺🇸USA',
   },
   {
+    id: 3,
     name: 'Shang-Chi',
     country: '🇨🇳China',
   },
   {
+    id: 4,
     name: 'Natasha Romanoff',
     country: '🇷🇺Russia',
   },
   {
+    id: 5,
     name: 'Stephen Strange',
     country: '🇺🇸USA',
   },
   {
+    id: 6,
     name: 'Steve Rogers',
     country: '🇺🇸USA',
   },
   {
+    id: 7,
     name: 'Abdul Alhazred',
     country: '🇸🇦Saudi Arabia',
   },
   {
+    id: 8,
     name: 'Carol Danvers',
     country: '🇺🇸USA',
   },
   {
+    id: 9,
     name: 'Scott Lang',
     country: '🇺🇸USA',
   },
   {
+    id: 10,
     name: 'En Sabah Nuh',
     country: '🇨🇺Cuba',
   },
   {
+    id: 11,
     name: 'Abdul Qamar',
     country: '🇸🇦Saudi Arabia',
   },
   {
+    id: 12,
     name: 'Goose the Cat',
     country: '🇺🇸USA',
   },
   {
+    id: 13,
     name: 'Brian Braddock',
     country: '🇬🇧Great Britain',
   },
   {
+    id: 14,
     name: 'Marc Spector',
     country: '🇺🇸USA',
   },
   {
+    id: 15,
     name: 'John Walker',
     country: '🇺🇸USA',
   },
   {
+    id: 16,
     name: 'Dane Whitman',
     country: '🇺🇸USA',
   },
@@ -834,6 +872,107 @@ function PaginationExample() {
   )
 }
 ;<PaginationExample />
+```
+
+# Totalizer
+
+```js
+const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
+const ArrowUp = require('../icon/ArrowUp/index.js').default
+const ArrowDown = require('../icon/ArrowDown/index.js').default
+
+const data = require('./sampleData')
+
+const columns = [
+  {
+    id: 'name',
+    title: 'Name',
+  },
+  {
+    id: 'manufacturer',
+    title: 'Manufacturer',
+  },
+  {
+    id: 'qty',
+    title: 'Qty',
+  },
+  {
+    id: 'costPrice',
+    title: 'Cost',
+    cellRenderer: ({ cellData }) => <Currency value={cellData} />,
+  },
+  {
+    id: 'retailPrice',
+    title: 'Retail',
+    cellRenderer: ({ cellData }) => <Currency value={cellData} />,
+  },
+]
+
+const formatCurrency = value => parseFloat(value).toFixed(2)
+
+function Currency({ value }) {
+  return <span>$ {formatCurrency(value)}</span>
+}
+
+const items = data.products
+
+function TotalizerExample() {
+  const measures = useTableMeasures({
+    size: items.length,
+  })
+
+  const totalizer = React.useMemo(() => {
+    const sum = items.reduce(
+      (acc, item) => {
+        const { stock, cost, retail } = acc
+
+        return {
+          stock: stock + item.qty,
+          cost: cost + item.qty * item.costPrice,
+          retail: retail + item.qty * item.retailPrice,
+        }
+      },
+      {
+        stock: 0,
+        cost: 0,
+        retail: 0,
+      }
+    )
+    return {
+      items: [
+        {
+          label: 'Stock',
+          value: sum.stock,
+        },
+
+        {
+          label: 'Total cost',
+          value: `$ ${formatCurrency(sum.cost)}`,
+          iconBackgroundColor: '#fda4a4',
+          icon: <ArrowDown color="#dd1616" size={14} />,
+        },
+        {
+          label: 'Total retail',
+          value: `$ ${formatCurrency(sum.retail)}`,
+          iconBackgroundColor: '#eafce3',
+          icon: <ArrowUp color="#79B03A" size={14} />,
+        },
+        {
+          label: 'Expected Profit',
+          value: `$ ${formatCurrency(sum.retail - sum.cost)}`,
+        },
+      ],
+    }
+  }, [items])
+
+  return (
+    <Table measures={measures} columns={columns} items={items}>
+      <Table.Totalizer {...totalizer} />
+    </Table>
+  )
+}
+
+;<TotalizerExample />
 ```
 
 # Bulk Actions
@@ -1133,13 +1272,13 @@ function BulkModalExample() {
     size: items.length,
   })
 
-  const isDisabled = (item) => {
+  const isDisabled = item => {
     return item.qty < 1
-  }   
+  }
 
   const checkboxes = useCheckboxTree({
     items,
-    isDisabled
+    isDisabled,
   })
 
   const onConfirm = () => {
@@ -1430,24 +1569,28 @@ const columns = [
 // Define the items
 const items = [
   {
+    id: 1,
     name: "T'Chala",
     email: 'black.panther@gmail.com',
     number: 1.88191,
     country: '🇰🇪Wakanda',
   },
   {
+    id: 2,
     name: 'Peter Parker',
     email: 'spider.man@gmail.com',
     number: 3.09191,
     country: '🇺🇸USA',
   },
   {
+    id: 3,
     name: 'Shang-Chi',
     email: 'kungfu.master@gmail.com',
     number: 39.09222,
     country: '🇨🇳China',
   },
   {
+    id: 4,
     name: 'Natasha Romanoff',
     email: 'black.widow@gmail.com',
     number: 5.09291,
@@ -1515,24 +1658,28 @@ const columns = [
 
 const items = [
   {
+    id: 1,
     name: "T'Chala",
     email: 'black.panther@gmail.com',
     number: 1.88191,
     country: '🇰🇪Wakanda',
   },
   {
+    id: 2,
     name: 'Peter Parker',
     email: 'spider.man@gmail.com',
     number: 3.09191,
     country: '🇺🇸USA',
   },
   {
+    id: 3,
     name: 'Shang-Chi',
     email: 'kungfu.master@gmail.com',
     number: 39.09222,
     country: '🇨🇳China',
   },
   {
+    id: 4,
     name: 'Natasha Romanoff',
     email: 'black.widow@gmail.com',
     number: 5.09291,
@@ -1856,24 +2003,28 @@ const columns = [
 // Define the items
 const items = [
   {
+    id: 1,
     name: "T'Chala",
     email: 'black.panther@gmail.com',
     number: 1.88191,
     country: '🇰🇪Wakanda',
   },
   {
+    id: 2,
     name: 'Peter Parker',
     email: 'spider.man@gmail.com',
     number: 3.09191,
     country: '🇺🇸USA',
   },
   {
+    id: 3,
     name: 'Shang-Chi',
     email: 'kungfu.master@gmail.com',
     number: 39.09222,
     country: '🇨🇳China',
   },
   {
+    id: 4,
     name: 'Natasha Romanoff',
     email: 'black.widow@gmail.com',
     number: 5.09291,
@@ -2028,24 +2179,28 @@ const columns = [
 
 const items = [
   {
+    id: 1,
     name: "T'Chala",
     email: 'black.panther@gmail.com',
     number: 1.88191,
     country: '🇰🇪Wakanda',
   },
   {
+    id: 2,
     name: 'Peter Parker',
     email: 'spider.man@gmail.com',
     number: 3.09191,
     country: '🇺🇸USA',
   },
   {
+    id: 3,
     name: 'Shang-Chi',
     email: 'kungfu.master@gmail.com',
     number: 39.09222,
     country: '🇨🇳China',
   },
   {
+    id: 4,
     name: 'Natasha Romanoff',
     email: 'black.widow@gmail.com',
     number: 5.09291,
