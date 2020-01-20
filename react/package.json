@@ -14,6 +14,7 @@
     "react-sticky": "^6.0.3",
     "react-virtualized": "^9.19.1",
     "recharts": "^1.8.5",
+    "styled-components": "^5.0.0",
     "uuid": "^3.3.2",
     "vtex-tachyons": "^2.10.0"
   },

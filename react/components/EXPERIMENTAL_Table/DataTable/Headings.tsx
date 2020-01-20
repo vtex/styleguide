@@ -1,11 +1,10 @@
 import React, { FC } from 'react'
-import uuid from 'uuid'
 
 import { TABLE_HEADER_HEIGHT } from '../hooks/useTableMeasures'
-import Row, { CellProps, RowProps } from './Row'
+import Row, { RowProps } from './Row'
 import { Column } from '../index'
 import { Checkboxes } from '../../EXPERIMENTAL_useCheckboxTree/types'
-import CellPrefix from './CellPrefix'
+import Cell, { CellProps } from './Cell'
 
 const Headings: FC<HeadingsProps> = ({
   columns,
@@ -21,12 +20,12 @@ const Headings: FC<HeadingsProps> = ({
           <Row.Cell
             {...cellProps}
             className="bt normal"
-            key={`heading-${uuid()}`}
+            key={headerIndex}
             width={width}>
             {checkboxes && headerIndex === 0 && (
-              <CellPrefix>
+              <Cell.Prefix>
                 <span className="ph3">
-                  <CellPrefix.Checkbox
+                  <Cell.Prefix.Checkbox
                     checked={checkboxes.allChecked}
                     partial={checkboxes.someChecked}
                     disabled={checkboxes.allDisabled}
@@ -34,7 +33,7 @@ const Headings: FC<HeadingsProps> = ({
                     onClick={checkboxes.toggleAll}
                   />
                 </span>
-              </CellPrefix>
+              </Cell.Prefix>
             )}
             {title}
           </Row.Cell>

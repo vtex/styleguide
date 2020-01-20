@@ -1,11 +1,11 @@
 import React, { FC } from 'react'
 
-import Row, { RowProps, ROW_TRANSITIONS, CellProps } from './Row'
+import Row, { RowProps, ROW_TRANSITIONS } from './Row'
 import { Column, Items } from '../index'
 import { Density } from '../hooks/useTableMeasures'
-import CellPrefix from './CellPrefix'
 import { Checkboxes } from '../../EXPERIMENTAL_useCheckboxTree/types'
 import useTableMotion from '../hooks/useTableMotion'
+import { CellProps } from './Cell'
 
 const Rows: FC<RowsProps> = ({
   columns,
@@ -58,16 +58,16 @@ const Rows: FC<RowsProps> = ({
               return (
                 <Row.Cell {...cellProps} key={column.id} width={width}>
                   {cellIndex === 0 && checkboxes && (
-                    <CellPrefix>
+                    <Row.Cell.Prefix>
                       <span className="ph3">
-                        <CellPrefix.Checkbox
+                        <Row.Cell.Prefix.Checkbox
                           checked={isRowChecked}
                           partial={isRowPartiallyChecked}
                           disabled={checkboxes.isDisabled(rowData)}
                           onClick={toggleChecked}
                         />
                       </span>
-                    </CellPrefix>
+                    </Row.Cell.Prefix>
                   )}
                   {content}
                 </Row.Cell>
@@ -93,4 +93,4 @@ export type RowsProps = {
   checkboxes?: Checkboxes<unknown>
 }
 
-export default React.memo(Rows)
+export default Rows

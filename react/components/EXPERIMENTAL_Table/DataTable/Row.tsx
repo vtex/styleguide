@@ -2,6 +2,7 @@ import React, { FC } from 'react'
 import csx from 'classnames'
 
 import useTableMotion from '../hooks/useTableMotion'
+import Cell, { CellProps, CellComposites } from './Cell'
 
 const Row: FC<RowProps> & RowComposites = ({
   as: Tag = 'tr',
@@ -26,6 +27,8 @@ const Row: FC<RowProps> & RowComposites = ({
   )
 }
 
+Row.Cell = Cell
+
 export const ROW_TRANSITIONS = [
   {
     prop: 'height',
@@ -36,34 +39,8 @@ export const ROW_TRANSITIONS = [
   },
 ]
 
-export const Cell: FC<CellProps> = ({
-  children,
-  width,
-  onClick,
-  as: Tag = 'td',
-  className = '',
-}) => {
-  const classNames = csx('v-mid ph3 pv0 tl bb b--muted-4', className, {
-    'pointer hover-c-link hover-bg-muted-5': onClick,
-  })
-
-  return (
-    <Tag onClick={onClick} style={{ width }} className={classNames}>
-      {children}
-    </Tag>
-  )
-}
-
 export type RowComposites = {
-  Cell: FC<CellProps>
-}
-
-export type CellProps = {
-  id?: string
-  width?: number | string
-  as?: 'td' | 'th' | 'div' | 'li'
-  className?: string
-  onClick?: () => void
+  Cell: FC<CellProps> & CellComposites
 }
 
 export type RowProps = {
@@ -73,7 +50,5 @@ export type RowProps = {
   onClick?: () => void
   motion?: ReturnType<typeof useTableMotion>
 }
-
-Row.Cell = Cell
 
 export default Row
