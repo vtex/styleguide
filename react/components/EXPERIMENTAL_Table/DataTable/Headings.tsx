@@ -6,20 +6,27 @@ import Row, { RowProps } from './Row'
 import { Column } from '../index'
 import { Checkboxes } from '../../EXPERIMENTAL_useCheckboxTree/types'
 import Cell, { CellProps } from './Cell'
+import useTableSort from '../hooks/useTableSort'
 
 const Headings: FC<HeadingsProps> = ({
   columns,
   checkboxes,
   cellProps,
   rowProps,
+  sorting,
 }) => {
   return (
     <Row {...rowProps} height={TABLE_HEADER_HEIGHT}>
       {columns.map((columnData: Column, headerIndex: number) => {
-        const { title, width, sortable } = columnData
+        const { id, title, width, sortable } = columnData
         const cellClassName = csx('bt normal', { pointer: sortable })
+        const active = sorting && sorting.sorted && sorting.sorted.by === id
+        const ascending = sorting && sorting.sorted.order !== 'DSC'
+        const onclick =
+          sortable && sorting ? { onClick: () => sorting.sort(id) } : {}
         return (
           <Row.Cell
+            {...onclick}
             {...cellProps}
             className={cellClassName}
             key={headerIndex}
@@ -38,7 +45,7 @@ const Headings: FC<HeadingsProps> = ({
               </Cell.Prefix>
             )}
             {title}
-            {sortable && <Cell.Suffix />}
+            {sortable && <Cell.Suffix active={active} ascending={ascending} />}
           </Row.Cell>
         )
       })}
@@ -57,6 +64,7 @@ type HeadingsProps = {
   rowProps?: RowProps
   cellProps?: Pick<CellProps, 'as'>
   checkboxes?: Checkboxes<unknown>
+  sorting: Partial<ReturnType<typeof useTableSort>>
 }
 
 export default React.memo(Headings)

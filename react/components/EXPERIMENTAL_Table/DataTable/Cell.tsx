@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import csx from 'classnames'
 
 import CaretDown from '../../icon/CaretDown/index.js'
+import CaretUp from '../../icon/CaretUp/index.js'
 import Checkbox, { CheckboxProps } from '../Checkbox'
 
 const PREFIX_GAP = 35
@@ -12,6 +13,10 @@ const VisuallyHidden = styled.span`
   display: none;
   margin-left: ${SUFIX_GAP}rem;
   position: absolute;
+`
+
+const Visible = styled(VisuallyHidden)`
+  display: inline;
 `
 
 const Container = styled.td`
@@ -56,11 +61,13 @@ const Prefix: FC<PrefixProps> & PrefixComposites = ({
   )
 }
 
-const Suffix: FC = () => {
+const Suffix: FC<SuffixProps> = ({ active, ascending }) => {
+  const Caret = ascending ? CaretDown : CaretUp
+  const Wrapper = active ? Visible : VisuallyHidden
   return (
-    <VisuallyHidden>
-      <CaretDown size={10} />
-    </VisuallyHidden>
+    <Wrapper>
+      <Caret className="ml2" size={10} />
+    </Wrapper>
   )
 }
 
@@ -76,9 +83,14 @@ type PrefixProps = {
   depth?: number
 }
 
+type SuffixProps = {
+  active: boolean
+  ascending: boolean
+}
+
 export type CellComposites = {
   Prefix?: FC<PrefixProps> & PrefixComposites
-  Suffix?: FC
+  Suffix?: FC<SuffixProps>
 }
 
 export type CellProps = {
