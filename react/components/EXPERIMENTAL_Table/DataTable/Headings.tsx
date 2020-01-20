@@ -36,6 +36,7 @@ const Headings: FC<HeadingsProps> = ({
               </Cell.Prefix>
             )}
             {title}
+            <Cell.Suffix />
           </Row.Cell>
         )
       })}

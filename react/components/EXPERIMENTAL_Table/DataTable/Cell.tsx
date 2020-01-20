@@ -1,24 +1,43 @@
 import React, { FC } from 'react'
+import styled from 'styled-components'
 import csx from 'classnames'
 
+import CaretDown from '../../icon/CaretDown/index.js'
 import Checkbox, { CheckboxProps } from '../Checkbox'
 
 const PREFIX_GAP = 35
+const SUFIX_GAP = 0.5
+
+const VisuallyHidden = styled.span`
+  display: none;
+  margin-left: ${SUFIX_GAP}rem;
+  position: absolute;
+`
+
+const Container = styled.td`
+  &:hover ${VisuallyHidden} {
+    display: inline;
+  }
+`
 
 const Cell: FC<CellProps> & CellComposites = ({
   children,
   width,
   onClick,
-  as: Tag = 'td',
+  as = 'td',
   className = '',
 }) => {
   const classNames = csx('v-mid ph3 pv0 tl bb b--muted-4', className, {
     'pointer hover-c-link hover-bg-muted-5': onClick,
   })
   return (
-    <Tag onClick={onClick} style={{ width }} className={classNames}>
+    <Container
+      as={as}
+      onClick={onClick}
+      style={{ width }}
+      className={classNames}>
       {children}
-    </Tag>
+    </Container>
   )
 }
 
@@ -37,7 +56,16 @@ const Prefix: FC<PrefixProps> & PrefixComposites = ({
   )
 }
 
+const Suffix: FC = () => {
+  return (
+    <VisuallyHidden>
+      <CaretDown size={10} />
+    </VisuallyHidden>
+  )
+}
+
 Cell.Prefix = Prefix
+Cell.Suffix = Suffix
 Prefix.Checkbox = Checkbox
 
 type PrefixComposites = {
@@ -50,6 +78,7 @@ type PrefixProps = {
 
 export type CellComposites = {
   Prefix?: FC<PrefixProps> & PrefixComposites
+  Suffix?: FC
 }
 
 export type CellProps = {
