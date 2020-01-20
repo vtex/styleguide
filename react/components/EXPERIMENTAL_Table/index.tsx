@@ -93,6 +93,7 @@ export const tablePropTypes = {
         PropTypes.func,
       ]),
       width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      sortable: PropTypes.bool,
       cellRenderer: PropTypes.func,
     })
   ),
@@ -138,6 +139,7 @@ export type Column = {
   id?: string
   title?: string | Element | Function
   width?: number | string
+  sortable?: boolean
   cellRenderer?: (cellData: CellData) => React.ReactNode
 }
 

@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import csx from 'classnames'
 
 import { TABLE_HEADER_HEIGHT } from '../hooks/useTableMeasures'
 import Row, { RowProps } from './Row'
@@ -15,11 +16,12 @@ const Headings: FC<HeadingsProps> = ({
   return (
     <Row {...rowProps} height={TABLE_HEADER_HEIGHT}>
       {columns.map((columnData: Column, headerIndex: number) => {
-        const { title, width } = columnData
+        const { title, width, sortable } = columnData
+        const cellClassName = csx('bt normal', { pointer: sortable })
         return (
           <Row.Cell
             {...cellProps}
-            className="bt normal"
+            className={cellClassName}
             key={headerIndex}
             width={width}>
             {checkboxes && headerIndex === 0 && (
@@ -36,7 +38,7 @@ const Headings: FC<HeadingsProps> = ({
               </Cell.Prefix>
             )}
             {title}
-            <Cell.Suffix />
+            {sortable && <Cell.Suffix />}
           </Row.Cell>
         )
       })}

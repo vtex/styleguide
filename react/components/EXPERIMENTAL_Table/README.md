@@ -384,6 +384,53 @@ function ClickExample() {
 ;<ClickExample />
 ```
 
+# Sortable
+
+```js
+const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
+const data = require('./sampleData.ts')
+
+const columns = [
+  {
+    id: 'name',
+    title: 'Name',
+  },
+  {
+    id: 'qty',
+    title: 'Qty',
+    sortable: true
+  },
+  {
+    id: 'costPrice',
+    title: 'Cost',
+    sortable: true
+
+  },
+  {
+    id: 'retailPrice',
+    title: 'Retail',
+    sortable: true
+  },
+]
+
+function ClickExample() {
+  const [items, setItems] = React.useState(data.products)
+
+  const measures = useTableMeasures({
+    size: items.length,
+  })
+
+  return (
+    <Table
+      measures={measures}
+      columns={columns}
+      items={items}
+    />
+  )
+}
+;<ClickExample />
+```
+
 # Proportion
 
 ```js
