@@ -31,9 +31,13 @@ const Cell: FC<CellProps> & CellComposites = ({
   onClick,
   as = 'td',
   className = '',
+  active = false,
+  link = false,
 }) => {
   const classNames = csx('v-mid ph3 pv0 tl bb b--muted-4', className, {
-    'pointer hover-c-link hover-bg-muted-5': onClick,
+    pointer: onClick,
+    'hover-c-link hover-bg-muted-5': link,
+    'c-on-base': active,
   })
   return (
     <Container
@@ -100,6 +104,8 @@ export type CellProps = {
   className?: string
   onClick?: () => void
   showArrow?: boolean
+  active?: boolean
+  link?: boolean
 }
 
 export default Cell

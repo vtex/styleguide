@@ -28,6 +28,7 @@ const Headings: FC<HeadingsProps> = ({
           <Row.Cell
             {...onclick}
             {...cellProps}
+            active={active}
             className={cellClassName}
             key={headerIndex}
             width={width}>

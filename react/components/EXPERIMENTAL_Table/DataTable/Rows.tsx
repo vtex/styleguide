@@ -33,6 +33,7 @@ const Rows: FC<RowsProps> = ({
         const clickable = onRowClick
           ? {
               onClick: () => onRowClick({ rowData }),
+              link: true,
             }
           : {}
         return (
