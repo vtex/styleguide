@@ -60,9 +60,11 @@ class Select extends Component {
       value,
       valuesMaxHeight,
       clearable,
+      defaultMenuIsOpen
     } = this.props
 
     const reactSelectComponentProps = {
+      defaultMenuIsOpen,
       ref: forwardedRef,
       autoFocus,
       className: `pointer b--danger bw1 ${getFontClassNameFromSize(size)} ${
