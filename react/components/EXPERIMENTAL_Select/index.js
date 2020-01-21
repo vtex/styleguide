@@ -60,7 +60,7 @@ class Select extends Component {
       value,
       valuesMaxHeight,
       clearable,
-      defaultMenuIsOpen
+      defaultMenuIsOpen,
     } = this.props
 
     const reactSelectComponentProps = {
@@ -260,6 +260,8 @@ Select.propTypes = {
   value: PropTypes.oneOfType([OptionShape, OptionsShape]),
   /** Max height (in _px_) of the selected values container */
   valuesMaxHeight: PropTypes.number,
+  /** If its options are initially shown*/
+  defaultMenuIsOpen: PropTypes.bool,
 }
 
 export default withForwardedRef(Select)

@@ -50,7 +50,7 @@ class ObjectAtom extends React.Component {
           extraParams: currentVerb.object.extraParams,
           onChangeObjectCallback,
         })}
-      </div> 
+      </div>
     )
   }
 }
