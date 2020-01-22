@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.105.4] - 2020-01-22
+
 ### Added
 
 - `defaultMenuIsOpen` prop in `EXPERIMENTAL_Select`.
