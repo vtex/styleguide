@@ -285,8 +285,16 @@ class SimpleTable extends Component {
                           schema.properties[property].title || property
                         const headerRight =
                           schema.properties[property].headerRight || false
-                        const headerRenderer =
-                          schema.properties[property].headerRenderer
+                        const header =
+                          (schema.properties[property].headerRenderer &&
+                            schema.properties[property].headerRenderer({
+                              columnIndex,
+                              key,
+                              rowIndex,
+                              style,
+                              title,
+                            })) ||
+                          title
                         const arrowIsDown =
                           sortOrder === 'ASC' && sortedBy === property
                         const arrowIsUp =
@@ -311,11 +319,11 @@ class SimpleTable extends Component {
                               }`}>
                               {schema.properties[property].sortable ? (
                                 <div
-                                  className="w-100 pointer c-muted-1 b t-small"
+                                  className="w-100 pointer c-muted-1 b t-small flex items-center"
                                   onClick={() => {
                                     onSort(this.toggleSortType(property))
                                   }}>
-                                  {!headerRight && title}
+                                  {!headerRight && header}
                                   <div
                                     className={`inline-flex ${
                                       headerRight ? 'pr2' : 'pl3'
@@ -326,20 +334,12 @@ class SimpleTable extends Component {
                                       <ArrowUp size={ARROW_SIZE} />
                                     ) : null}
                                   </div>
-                                  {headerRight && title}
+                                  {headerRight && header}
                                 </div>
                               ) : columnIndex === 0 && fixFirstColumn ? (
-                                <div className="w-100">{title}</div>
-                              ) : headerRenderer ? (
-                                headerRenderer({
-                                  columnIndex,
-                                  key,
-                                  rowIndex,
-                                  style,
-                                  title,
-                                })
+                                <div className="w-100">{header}</div>
                               ) : (
-                                <span className="w-100">{title}</span>
+                                header
                               )}
                             </div>
                           </CellMeasurer>
