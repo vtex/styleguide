@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.105.3] - 2020-01-22
+
+### Fixed
+
+- `EXPERIMENTAL_Table` npm import.
+
 ## [9.105.2] - 2020-01-20
 
 ### Added
