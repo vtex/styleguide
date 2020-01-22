@@ -308,7 +308,7 @@ class CustomTableExample extends React.Component {
 - Customized the render method of a single header cell.
 - It receives a function that returns a node (react component).
 - The function has the following params: ({ columnIndex, key, title })
-- This prop will not work if the `sortable` prop for the same header is active.
+- This prop will also work if either the `sortable` or `fixedColumn` prop for the same header is active. For sortable headers, the sorting caret will be added to the side of your header renderer according to the specified alignment (`headerRight: true/false`).
 
 example customizing number column header to use intl FormattedMessage
 
