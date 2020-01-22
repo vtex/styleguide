@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 
-import Toggle from '../../../Toggle'
+import Toggle from '../../Toggle/index'
 import IconColumns from '../../icon/Columns/index'
 import usePopoverMenu, { Item, Box, Alignment } from './PopoverMenu'
 import Button, { IconSize } from './Button'
