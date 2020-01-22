@@ -197,6 +197,7 @@ Select.defaultProps = {
   placeholder: 'Select...',
   size: 'regular',
   clearable: true,
+  defaultMenuIsOpen: false,
 }
 
 const OptionShape = PropTypes.shape({
