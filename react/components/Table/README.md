@@ -319,20 +319,23 @@ const itemsCopy = sampleData.items
   .reverse()
   .splice(20)
 const Tag = require('../Tag').default
+
 class FormattedMessage extends React.Component {
   render() {
     const renderTextByIntlId = id => {
       switch (id) {
-        case 'some.intl.message.id':
-          return 'Number'
-          break
+        case 'value.intl.message.id':
+          return 'Value';
         default:
-          return 'Deafult Header title'
-          break
+          return 'Deafult Header title';
       }
     }
     return <span>{renderTextByIntlId(this.props.id)}</span>
   }
+}
+
+const translate = ({ title }) => {
+  return <FormattedMessage id={title} />
 }
 
 class CustomTableExample extends React.Component {
@@ -340,6 +343,38 @@ class CustomTableExample extends React.Component {
     super()
     this.state = {
       orderedItems: itemsCopy,
+      dataSort: {
+        sortedBy: null,
+        sortOrder: null,
+      },
+    }
+
+    this.sortNumberASC = this.sortNumberASC.bind(this)
+    this.sortNumberDESC = this.sortNumberDESC.bind(this)
+    this.handleSort = this.handleSort.bind(this)
+  }
+
+  sortNumberASC(a, b) {
+    return a.number < b.number ? -1 : a.number > b.number ? 1 : 0
+  }
+  sortNumberDESC(a, b) {
+    return a.number < b.number ? 1 : a.number > b.number ? -1 : 0
+  }
+
+  handleSort({ sortOrder, sortedBy }) {
+    if (sortedBy === 'number') {
+      const orderedItems =
+        sortOrder === 'ASC'
+          ? itemsCopy.slice().sort(this.sortNumberASC)
+          : itemsCopy.slice().sort(this.sortNumberDESC)
+
+      this.setState({
+        orderedItems,
+        dataSort: {
+          sortedBy,
+          sortOrder,
+        },
+      })
     }
   }
 
@@ -351,14 +386,18 @@ class CustomTableExample extends React.Component {
           width: 250,
         },
         email: {
-          title: 'Email',
-          width: 300,
+          title: 'email.intl.message.id',
+          width: 250,
+          headerRenderer: translate,
         },
         number: {
-          title: 'some.intl.message.id',
-          headerRenderer: ({ title }) => {
-            return <FormattedMessage id={title} />
-          },
+          title: 'value.intl.message.id',
+          headerRenderer: translate,
+          sortable: true,
+          headerRight: true,
+          cellRenderer: data => (
+            <div className="w-100 tr">$ {data.cellData}</div>
+          ),
         },
       },
     }
@@ -366,7 +405,11 @@ class CustomTableExample extends React.Component {
     return (
       <div>
         <div className="mb5">
-          <Table schema={customSchema} items={this.state.orderedItems} />
+          <Table schema={customSchema} items={this.state.orderedItems} sort={{
+              sortedBy: this.state.dataSort.sortedBy,
+              sortOrder: this.state.dataSort.sortOrder,
+            }}
+            onSort={this.handleSort}/>
         </div>
       </div>
     )
