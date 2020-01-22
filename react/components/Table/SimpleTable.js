@@ -319,7 +319,11 @@ class SimpleTable extends Component {
                               }`}>
                               {schema.properties[property].sortable ? (
                                 <div
-                                  className="w-100 pointer c-muted-1 b t-small flex items-center"
+                                  className={`w-100 pointer c-muted-1 b t-small flex items-center ${
+                                    headerRight
+                                      ? 'justify-end'
+                                      : 'justify-start'
+                                  }`}
                                   onClick={() => {
                                     onSort(this.toggleSortType(property))
                                   }}>
