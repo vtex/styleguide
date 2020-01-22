@@ -60,9 +60,11 @@ class Select extends Component {
       value,
       valuesMaxHeight,
       clearable,
+      defaultMenuIsOpen,
     } = this.props
 
     const reactSelectComponentProps = {
+      defaultMenuIsOpen,
       ref: forwardedRef,
       autoFocus,
       className: `pointer b--danger bw1 ${getFontClassNameFromSize(size)} ${
@@ -195,6 +197,7 @@ Select.defaultProps = {
   placeholder: 'Select...',
   size: 'regular',
   clearable: true,
+  defaultMenuIsOpen: false,
 }
 
 const OptionShape = PropTypes.shape({
@@ -258,6 +261,8 @@ Select.propTypes = {
   value: PropTypes.oneOfType([OptionShape, OptionsShape]),
   /** Max height (in _px_) of the selected values container */
   valuesMaxHeight: PropTypes.number,
+  /** If its options are initially shown */
+  defaultMenuIsOpen: PropTypes.bool,
 }
 
 export default withForwardedRef(Select)
