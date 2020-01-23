@@ -128,7 +128,7 @@ class Toolbar extends PureComponent {
       disabled: loading || (newLine && newLine.disabled),
       isLoading: newLine && newLine.isLoading,
       variation: 'primary',
-      size: 'small',
+      size: 'regular',
     }
 
     const forcedColor = 'c-on-base'
@@ -174,7 +174,7 @@ class Toolbar extends PureComponent {
                 }
                 disabled={loading}
                 variation="tertiary"
-                size="small"
+                size="regular"
                 onClick={() => this.handleToggleBox('isDensityBoxVisible')}
               />
               {isDensityBoxVisible && (
@@ -230,7 +230,7 @@ class Toolbar extends PureComponent {
                 }
                 disabled={loading}
                 variation="tertiary"
-                size="small"
+                size="regular"
                 onClick={() => this.handleToggleBox('isFieldsBoxVisible')}
               />
               {isFieldsBoxVisible && (
@@ -247,14 +247,14 @@ class Toolbar extends PureComponent {
                     <div className="flex inline-flex bb b--muted-4 w-100 pl6 pv4">
                       <Button
                         variation="secondary"
-                        size="small"
+                        size="regular"
                         onClick={onShowAllColumns}>
                         {fields.showAllLabel}
                       </Button>
                       <div className="mh4">
                         <Button
                           variation="secondary"
-                          size="small"
+                          size="regular"
                           onClick={onHideAllColumns}>
                           {fields.hideAllLabel}
                         </Button>
@@ -277,7 +277,7 @@ class Toolbar extends PureComponent {
                               {schema.properties[field].title || field}
                             </span>
                             <Toggle
-                              size="small"
+                              size="regular"
                               checked={!hiddenFields.includes(field)}
                             />
                           </div>
@@ -300,7 +300,7 @@ class Toolbar extends PureComponent {
                 variation="tertiary"
                 disabled={download.disabled}
                 isLoading={download.isLoading}
-                size="small"
+                size="regular"
                 onClick={download.handleCallback}>
                 {download.label && (
                   <span className={`${download.disabled ? '' : forcedColor}`}>
@@ -323,7 +323,7 @@ class Toolbar extends PureComponent {
                 variation="tertiary"
                 disabled={upload.disabled}
                 isLoading={upload.isLoading}
-                size="small"
+                size="regular"
                 onClick={upload.handleCallback}>
                 {upload.label && (
                   <span className={`${upload.disabled ? '' : forcedColor}`}>
@@ -344,7 +344,7 @@ class Toolbar extends PureComponent {
                       <IconOptionsDots />
                     </span>
                   ),
-                  size: 'small',
+                  size: 'regular',
                 }}
                 options={extraActions.actions.map(action => {
                   return {
