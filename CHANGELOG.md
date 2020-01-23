@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix an error that can be caused when deleting a filter tag applied in the FilterBar component
+
 ## [9.106.1] - 2020-01-27
 
 ### Fixed
