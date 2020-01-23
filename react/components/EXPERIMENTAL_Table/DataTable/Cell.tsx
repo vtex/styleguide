@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import styled from 'styled-components'
-import csx from 'classnames'
+import classNames from 'classnames'
 
 import CaretDown from '../../icon/CaretDown/index.js'
 import CaretUp from '../../icon/CaretUp/index.js'
@@ -30,21 +30,25 @@ const Cell: FC<CellProps> & CellComposites = ({
   width,
   onClick,
   tagName = 'td',
-  className = '',
+  className: classNameProp = '',
   active = false,
   link = false,
 }) => {
-  const classNames = csx('v-mid ph3 pv0 tl bb b--muted-4', className, {
-    pointer: onClick,
-    'hover-c-link hover-bg-muted-5': link,
-    'c-on-base': active,
-  })
+  const className = classNames(
+    'v-mid ph3 pv0 tl bb b--muted-4',
+    classNameProp,
+    {
+      pointer: onClick,
+      'hover-c-link hover-bg-muted-5': link,
+      'c-on-base': active,
+    }
+  )
   return (
     <Container
       as={tagName}
       onClick={onClick}
       style={{ width }}
-      className={classNames}>
+      className={className}>
       {children}
     </Container>
   )

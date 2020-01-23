@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import classnames from 'classnames'
+import classNames from 'classnames'
 
 import CaretLeft from '../icon/CaretLeft'
 import CaretRight from '../icon/CaretRight'
@@ -80,7 +80,7 @@ class Pagination extends PureComponent {
         )}
         {this.props.children}
         <div
-          className={classnames([
+          className={classNames([
             'flex flex-row items-center',
             {
               'justify-between': rowsOptions,

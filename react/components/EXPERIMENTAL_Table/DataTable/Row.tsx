@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import csx from 'classnames'
+import classNames from 'classnames'
 
 import useTableMotion from '../hooks/useTableMotion'
 import Cell, { CellProps, CellComposites } from './Cell'
@@ -12,7 +12,7 @@ const Row: FC<RowProps> & RowComposites = ({
   active,
   motion,
 }) => {
-  const className = csx('w-100 truncate overflow-x-hidden', {
+  const className = classNames('w-100 truncate overflow-x-hidden', {
     'pointer hover-c-link hover-bg-muted-5': onClick,
     'bg-action-secondary': active,
   })

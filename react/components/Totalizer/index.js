@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import classnames from 'classnames'
+import classNames from 'classnames'
 
 import TotalizerLabel from './TotalizerLabel'
 import TotalizerValue from './TotalizerValue'
@@ -12,11 +12,11 @@ class Totalizer extends PureComponent {
   render() {
     const { items, mobileScroll, horizontalLayout } = this.props
 
-    const OUTER_CONTAINER_CLASSES = classnames({
+    const OUTER_CONTAINER_CLASSES = classNames({
       'overflow-x-hidden': mobileScroll,
     })
 
-    const INNER_CONTAINER_CLASSES = classnames(
+    const INNER_CONTAINER_CLASSES = classNames(
       `w-100 flex flex-row-ns ba br3 ${BORDER_COLOR}`,
       {
         'flex-row overflow-y-hidden overflow-x-scroll overflow-x-hidden-ns': mobileScroll,
@@ -24,7 +24,7 @@ class Totalizer extends PureComponent {
       }
     )
 
-    const TOTALIZER_BASE_CLASSES = classnames(
+    const TOTALIZER_BASE_CLASSES = classNames(
       `flex flex-column pa4 ${BORDER_COLOR}`,
       {
         'flex-auto-ns': mobileScroll,
@@ -44,31 +44,31 @@ class Totalizer extends PureComponent {
           {items.map((item, i) => {
             const IS_NOT_LAST = items.length > 1 && i < items.length - 1
 
-            const EXTRA_BORDER = classnames({
+            const EXTRA_BORDER = classNames({
               'bb bb-0-ns br-ns ': IS_NOT_LAST,
               'bb-0 ': mobileScroll,
               br: mobileScroll && IS_NOT_LAST,
             })
 
-            const ITEM_CLASSES = classnames(
+            const ITEM_CLASSES = classNames(
               `${TOTALIZER_BASE_CLASSES} ${EXTRA_BORDER}`
             )
 
-            const WITH_ICON_CONTAINER_CLASSES = classnames(
+            const WITH_ICON_CONTAINER_CLASSES = classNames(
               'item_container flex flex-row',
               {
                 'items-center': horizontalLayout,
               }
             )
 
-            const WITH_ICON_ITEM_CONTAINER_CLASSES = classnames(
+            const WITH_ICON_ITEM_CONTAINER_CLASSES = classNames(
               'item_container',
               {
                 'flex flex-row items-baseline': horizontalLayout,
               }
             )
 
-            const WITHOUT_ICON_ITEM_CONTAINER_CLASSES = classnames(
+            const WITHOUT_ICON_ITEM_CONTAINER_CLASSES = classNames(
               'item_container',
               {
                 'flex flex-row items-baseline': horizontalLayout,

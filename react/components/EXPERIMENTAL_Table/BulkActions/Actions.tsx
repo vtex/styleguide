@@ -1,5 +1,5 @@
 import React from 'react'
-import csx from 'classnames'
+import classNames from 'classnames'
 
 import Button from '../../Button'
 import ActionMenu from '../../ActionMenu'
@@ -9,7 +9,10 @@ import { ORDER_CLASSNAMES } from '../constants'
 const ACTION_MARGIN = 'mr4'
 
 export default function Actions({ children }) {
-  const className = csx('flex flex-row', ORDER_CLASSNAMES.BULK_CHILD.ACTIONS)
+  const className = classNames(
+    'flex flex-row',
+    ORDER_CLASSNAMES.BULK_CHILD.ACTIONS
+  )
   return <div className={className}>{children}</div>
 }
 
@@ -17,7 +20,7 @@ Actions.Primary = Primary
 Actions.Secondary = Secondary
 
 function Primary({ label, onClick }: PrimaryProps) {
-  const className = csx(
+  const className = classNames(
     ACTION_MARGIN,
     ORDER_CLASSNAMES.BULK_CHILD.ACTIONS_CHILD.PRIMARY
   )
@@ -31,7 +34,7 @@ function Primary({ label, onClick }: PrimaryProps) {
 }
 
 function Secondary({ label, actions, onActionClick }: SecondaryProps) {
-  const className = csx(
+  const className = classNames(
     ACTION_MARGIN,
     ORDER_CLASSNAMES.BULK_CHILD.ACTIONS_CHILD.SECONDARY
   )

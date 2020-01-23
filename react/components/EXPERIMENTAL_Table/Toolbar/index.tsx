@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import csx from 'classnames'
+import classNames from 'classnames'
 
 import ButtonGroup from './ButtonGroup'
 import InputSearch, { InputSearchProps } from './InputSearch'
@@ -21,7 +21,7 @@ const Toolbar: FC & Composites = ({ children }) => {
   return (
     <div
       id={NAMESPACES.TOOLBAR.CONTAINER}
-      className={csx(
+      className={classNames(
         ORDER_CLASSNAMES.TOOLBAR,
         `mb5 flex flex-row flex-wrap w-100 justify-between`
       )}>

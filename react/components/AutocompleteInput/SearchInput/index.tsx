@@ -1,4 +1,4 @@
-import classnames from 'classnames'
+import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import React, { useState } from 'react'
 
@@ -64,13 +64,13 @@ const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
     onBlur && onBlur(e)
   }
 
-  const activeClass = classnames({
+  const activeClass = classNames({
     'b--muted-3': focused,
     'b--muted-4': !focused,
     'br--top': !roundedBottom,
   })
 
-  const buttonClasses = classnames(
+  const buttonClasses = classNames(
     activeClass,
     'bg-base br2 br--right h-regular w3 bw1 ba pa0 bl-0',
     {

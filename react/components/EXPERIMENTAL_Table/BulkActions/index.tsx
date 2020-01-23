@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import csx from 'classnames'
+import classNames from 'classnames'
 
 import { ORDER_CLASSNAMES, NAMESPACES } from '../constants'
 import Actions from './Actions'
@@ -38,7 +38,7 @@ const BulkActions: FC<BulkActionsProps> & Composites = ({
   return (
     <div
       id={NAMESPACES.BULK_ACTIONS}
-      className={csx(
+      className={classNames(
         'flex flex-row justify-between bg-action-primary c-on-action-primary br3 br--top ph4',
         {
           pv4: active,

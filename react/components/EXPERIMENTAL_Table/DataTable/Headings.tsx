@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import csx from 'classnames'
+import classNames from 'classnames'
 
 import { TABLE_HEADER_HEIGHT } from '../hooks/useTableMeasures'
 import Row, { RowProps } from './Row'
@@ -19,7 +19,7 @@ const Headings: FC<HeadingsProps> = ({
     <Row {...rowProps} height={TABLE_HEADER_HEIGHT}>
       {columns.map((columnData: Column, headerIndex: number) => {
         const { id, title, width, sortable } = columnData
-        const cellClassName = csx('bt normal', { pointer: sortable })
+        const cellClassName = classNames('bt normal', { pointer: sortable })
         const active = sorting && sorting.sorted && sorting.sorted.by === id
         const ascending = sorting && sorting.sorted.order !== 'DSC'
         const onclick =
