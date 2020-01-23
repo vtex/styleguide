@@ -42,7 +42,7 @@ export const NAMESPACES = {
     BUTTON_GROUP: `${NAMESPACE_PREFIX}__toolbar__button-group`,
     BUTTON_COLUMNS: `${NAMESPACE_PREFIX}__toolbar__button-columns`,
     BUTTON_DENSITY: `${NAMESPACE_PREFIX}__toolbar__button-density`,
-    BUTTON_DOWNLOAD: `${NAMESPACE_PREFIX}__toolbar__button-donwload`,
+    BUTTON_DOWNLOAD: `${NAMESPACE_PREFIX}__toolbar__button-download`,
     BUTTON_UPLOAD: `${NAMESPACE_PREFIX}__toolbar__button-upload`,
     BUTTON_NEWLINE: `${NAMESPACE_PREFIX}__toolbar__button-newline`,
     BUTTON_EXTRA_ACTIONS: `${NAMESPACE_PREFIX}__toolbar__button-extra-actions`,

@@ -30,7 +30,7 @@ const Button = forwardRef<Ref, ButtonProps>(
 
     const iconClass = classNames({
       'c-on-base mh2': isTertiary && !disabled,
-      'c-muted-2': disabled,
+      'c-muted-2 mh2': disabled,
     })
 
     const labelClass = classNames({
