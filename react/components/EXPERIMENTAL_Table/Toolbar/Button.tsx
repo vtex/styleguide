@@ -1,5 +1,5 @@
 import React, { forwardRef, ReactNode } from 'react'
-import csx from 'classnames'
+import classNames from 'classnames'
 
 import ButtonWithIcon from '../../ButtonWithIcon/index.js'
 
@@ -28,12 +28,12 @@ const Button = forwardRef<Ref, ButtonProps>(
   ) => {
     const isTertiary = variation === ButtonVariation.Tertiary
 
-    const iconClass = csx({
+    const iconClass = classNames({
       'c-on-base mh2': isTertiary && !disabled,
       'c-muted-2': disabled,
     })
 
-    const labelClass = csx({
+    const labelClass = classNames({
       'c-on-base': isTertiary && !disabled,
       'c-muted-2': disabled,
     })
@@ -43,7 +43,7 @@ const Button = forwardRef<Ref, ButtonProps>(
         id={id}
         title={title}
         ref={ref}
-        className={csx('relative', { mh2: isTertiary })}>
+        className={classNames('relative', { mh2: isTertiary })}>
         <ButtonWithIcon
           icon={
             <span className={iconClass} style={ICON_OPTICAL_COMPENSATION}>

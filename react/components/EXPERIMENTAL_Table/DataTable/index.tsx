@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import csx from 'classnames'
+import classNames from 'classnames'
 
 import EmptyState from '../../EmptyState/index.js'
 import { NAMESPACES, ORDER_CLASSNAMES } from '../constants'
@@ -23,7 +23,10 @@ const DataTable: FC<DataTableProps> = ({
     <div
       id={NAMESPACES.TABLE}
       style={{ minHeight: height, ...motion }}
-      className={csx('order-1 mw-100 overflow-x-auto', ORDER_CLASSNAMES.TABLE)}>
+      className={classNames(
+        'order-1 mw-100 overflow-x-auto',
+        ORDER_CLASSNAMES.TABLE
+      )}>
       <Tag className={`w-100 ${className}`} style={{ borderSpacing: 0 }}>
         {children}
       </Tag>

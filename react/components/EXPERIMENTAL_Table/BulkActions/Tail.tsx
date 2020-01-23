@@ -1,5 +1,5 @@
 import React from 'react'
-import csx from 'classnames'
+import classNames from 'classnames'
 
 import ButtonWithIcon from '../../ButtonWithIcon'
 import Close from '../../icon/Close'
@@ -7,7 +7,7 @@ import Button from '../../Button'
 import { ORDER_CLASSNAMES } from '../constants'
 
 export default function Tail({ children }) {
-  const className = csx(
+  const className = classNames(
     'tr flex flex-row items-center',
     ORDER_CLASSNAMES.BULK_CHILD.RIGHT
   )

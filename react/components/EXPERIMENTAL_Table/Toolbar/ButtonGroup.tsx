@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import csx from 'classnames'
+import classNames from 'classnames'
 
 import IconDownload from '../../icon/Download/index.js'
 import IconUpload from '../../icon/Upload/index.js'
@@ -87,7 +87,7 @@ const getComponent = (type: ButtonType) => {
 const ButtonGroup: FC & Composites = ({ children }) => (
   <div
     id={NAMESPACES.TOOLBAR.BUTTON_GROUP}
-    className={csx(
+    className={classNames(
       ORDER_CLASSNAMES.TOOLBAR_CHILD.BUTTON_GROUP,
       'flex flex-row flex-wrap items-center'
     )}>
