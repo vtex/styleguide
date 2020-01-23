@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- size prop to checkbox.
+- Size prop to checkbox.
 
 ### Changed
 
