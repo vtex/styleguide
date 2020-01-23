@@ -30,7 +30,7 @@ const Table: FC<TableProps> & TableComposites = ({
   }
 
   const { tableHeight, rowHeight, selectedDensity } = measures
-  const { columns, onRowClick, items } = props
+  const { columns, onRowClick, items, sorting } = props
   const motion = useTableMotion()
 
   return (
@@ -48,7 +48,11 @@ const Table: FC<TableProps> & TableComposites = ({
         <thead
           id={NAMESPACES.HEADER}
           className="w-100 ph4 truncate overflow-x-hidden c-muted-2 f6">
-          <Headings columns={columns} checkboxes={checkboxes} />
+          <Headings
+            sorting={sorting}
+            columns={columns}
+            checkboxes={checkboxes}
+          />
         </thead>
 
         {!empty && !loading && (
@@ -93,6 +97,7 @@ export const tablePropTypes = {
         PropTypes.func,
       ]),
       width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      sortable: PropTypes.bool,
       cellRenderer: PropTypes.func,
     })
   ),
@@ -109,6 +114,14 @@ export const tablePropTypes = {
   emptyState: PropTypes.shape({
     label: PropTypes.string,
     children: PropTypes.element,
+  }),
+  sorting: PropTypes.shape({
+    sorted: PropTypes.shape({
+      by: PropTypes.string,
+      order: PropTypes.string,
+    }),
+    clear: PropTypes.func,
+    sort: PropTypes.func,
   }),
 }
 
@@ -138,6 +151,7 @@ export type Column = {
   id?: string
   title?: string | Element | Function
   width?: number | string
+  sortable?: boolean
   cellRenderer?: (cellData: CellData) => React.ReactNode
 }
 

@@ -2,7 +2,6 @@ import React, { FC, useCallback } from 'react'
 import uuid from 'uuid'
 import isEmpty from 'lodash/isEmpty'
 
-import CellPrefix from '../../EXPERIMENTAL_Table/DataTable/CellPrefix'
 import Row, { ROW_TRANSITIONS } from '../../EXPERIMENTAL_Table/DataTable/Row'
 import CollapseToggle from './CollapseToggle'
 import { Checkboxes } from '../../EXPERIMENTAL_useCheckboxTree/types'
@@ -48,26 +47,6 @@ const Node: FC<NodeProps> = ({
       : { onClick: toggleChildren }
     : undefined
 
-  const renderPrefix = (hasChild?: boolean) => (
-    <CellPrefix depth={depth}>
-      {hasChild && (
-        <CollapseToggle
-          collapsed={isCollapsed(data)}
-          onClick={toggleChildren}
-        />
-      )}
-      {checkboxes && (
-        <span className="ph3">
-          <CellPrefix.Checkbox
-            checked={isRowChecked}
-            partial={isRowPartiallyChecked}
-            onClick={toggleChecked}
-          />
-        </span>
-      )}
-    </CellPrefix>
-  )
-
   const renderCells = (hasChild?: boolean) => {
     return (
       <Row
@@ -89,7 +68,23 @@ const Node: FC<NodeProps> = ({
             : cellData
           return cellIndex === 0 ? (
             <Row.Cell {...clickableCell} key={`cel-${uuid()}`} width={width}>
-              {renderPrefix(hasChild)}
+              <Row.Cell.Prefix depth={depth}>
+                {hasChild && (
+                  <CollapseToggle
+                    collapsed={isCollapsed(data)}
+                    onClick={toggleChildren}
+                  />
+                )}
+                {checkboxes && (
+                  <span className="ph3">
+                    <Row.Cell.Prefix.Checkbox
+                      checked={isRowChecked}
+                      partial={isRowPartiallyChecked}
+                      onClick={toggleChecked}
+                    />
+                  </span>
+                )}
+              </Row.Cell.Prefix>
               {content}
             </Row.Cell>
           ) : (

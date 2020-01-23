@@ -384,6 +384,71 @@ function ClickExample() {
 ;<ClickExample />
 ```
 
+# Sortable
+
+```js
+const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
+const useTableSort = require('./hooks/useTableSort.ts').default
+const data = require('./sampleData.ts')
+
+const columns = [
+  {
+    id: 'name',
+    title: 'Name',
+    sortable: true
+  },
+  {
+    id: 'qty',
+    title: 'Qty',
+    sortable: true
+  },
+  {
+    id: 'costPrice',
+    title: 'Cost',
+    sortable: true
+
+  },
+  {
+    id: 'retailPrice',
+    title: 'Retail',
+    sortable: true
+  },
+]
+
+const products = data.products
+
+function SortExample() {
+  const sorting = useTableSort()
+
+  const measures = useTableMeasures({
+    size: products.length,
+  })
+
+  const ascOrdering = prop => (a, b) => a[prop] > b[prop] ? 1 : a[prop] < b [prop] ? -1 : 0
+  const dscOrdering = prop => (a, b) => a[prop] > b[prop] ? -1 : a[prop] < b [prop] ? 1 : 0
+
+  const items = React.useMemo(() => {
+    const { sorted: { order, by } } = sorting
+    if(!order){
+      return products
+    }
+    const ascending = order === 'ASC'
+    const comparator = ascending ? ascOrdering(by) : dscOrdering(by)
+    return products.sort(comparator)
+  }, [sorting.sorted, data.products])
+
+  return (
+    <Table
+      measures={measures}
+      columns={columns}
+      items={items}
+      sorting={sorting}
+    />
+  )
+}
+;<SortExample />
+```
+
 # Proportion
 
 ```js

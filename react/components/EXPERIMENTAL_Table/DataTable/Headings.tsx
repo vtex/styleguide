@@ -1,32 +1,41 @@
 import React, { FC } from 'react'
-import uuid from 'uuid'
+import csx from 'classnames'
 
 import { TABLE_HEADER_HEIGHT } from '../hooks/useTableMeasures'
-import Row, { CellProps, RowProps } from './Row'
+import Row, { RowProps } from './Row'
 import { Column } from '../index'
 import { Checkboxes } from '../../EXPERIMENTAL_useCheckboxTree/types'
-import CellPrefix from './CellPrefix'
+import Cell, { CellProps } from './Cell'
+import useTableSort from '../hooks/useTableSort'
 
 const Headings: FC<HeadingsProps> = ({
   columns,
   checkboxes,
   cellProps,
   rowProps,
+  sorting,
 }) => {
   return (
     <Row {...rowProps} height={TABLE_HEADER_HEIGHT}>
       {columns.map((columnData: Column, headerIndex: number) => {
-        const { title, width } = columnData
+        const { id, title, width, sortable } = columnData
+        const cellClassName = csx('bt normal', { pointer: sortable })
+        const active = sorting && sorting.sorted && sorting.sorted.by === id
+        const ascending = sorting && sorting.sorted.order !== 'DSC'
+        const onclick =
+          sortable && sorting ? { onClick: () => sorting.sort(id) } : {}
         return (
           <Row.Cell
+            {...onclick}
             {...cellProps}
-            className="bt normal"
-            key={`heading-${uuid()}`}
+            active={active}
+            className={cellClassName}
+            key={headerIndex}
             width={width}>
             {checkboxes && headerIndex === 0 && (
-              <CellPrefix>
+              <Cell.Prefix>
                 <span className="ph3">
-                  <CellPrefix.Checkbox
+                  <Cell.Prefix.Checkbox
                     checked={checkboxes.allChecked}
                     partial={checkboxes.someChecked}
                     disabled={checkboxes.allDisabled}
@@ -34,9 +43,10 @@ const Headings: FC<HeadingsProps> = ({
                     onClick={checkboxes.toggleAll}
                   />
                 </span>
-              </CellPrefix>
+              </Cell.Prefix>
             )}
             {title}
+            {sortable && <Cell.Suffix active={active} ascending={ascending} />}
           </Row.Cell>
         )
       })}
@@ -46,15 +56,16 @@ const Headings: FC<HeadingsProps> = ({
 
 Headings.defaultProps = {
   cellProps: {
-    as: 'th',
+    tagName: 'th',
   },
 }
 
 type HeadingsProps = {
   columns: Array<Column>
   rowProps?: RowProps
-  cellProps?: Pick<CellProps, 'as'>
+  cellProps?: Pick<CellProps, 'tagName'>
   checkboxes?: Checkboxes<unknown>
+  sorting?: Partial<ReturnType<typeof useTableSort>>
 }
 
 export default React.memo(Headings)

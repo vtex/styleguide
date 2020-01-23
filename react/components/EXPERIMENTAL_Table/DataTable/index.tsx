@@ -11,7 +11,7 @@ const DataTable: FC<DataTableProps> = ({
   children,
   height,
   className,
-  as: Tag,
+  tagName: Tag,
   empty,
   loading,
   emptyState,
@@ -42,13 +42,13 @@ const DataTable: FC<DataTableProps> = ({
 }
 
 DataTable.defaultProps = {
-  as: 'table',
+  tagName: 'table',
   className: '',
 }
 
 export type DataTableProps = {
   height: number
-  as?: 'table' | 'div' | 'section'
+  tagName?: 'table' | 'div' | 'section'
   className?: string
   empty: boolean
   motion: ReturnType<typeof useTableMotion>

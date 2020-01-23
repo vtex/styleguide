@@ -18,7 +18,7 @@ export default function useTableLineActions({
   }, [items, lineActions])
 
   const columnsWithLineActions = useMemo<Array<Column>>(() => {
-    const cellRender = ({ rowData }) => (
+    const cellRenderer = ({ rowData }) => (
       <LineAction lineActions={lineActions} rowData={rowData} />
     )
 
@@ -28,7 +28,7 @@ export default function useTableLineActions({
           {
             id: LINE_ACTION_ID,
             title: NO_TITLE_COLUMN,
-            cellRender,
+            cellRenderer,
           },
         ]
       : columns

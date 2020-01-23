@@ -61,7 +61,7 @@ export const products = [
   },
   {
     id: 7,
-    name: 'iPhone 11 Pro',
+    name: 'IPhone 11 Pro',
     categories: ['smartphone'],
     manufacturer: 'apple',
     qty: 450,
