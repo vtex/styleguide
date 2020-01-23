@@ -2663,6 +2663,11 @@ urix@^0.1.0:
   resolved "https://registry.yarnpkg.com/urix/-/urix-0.1.0.tgz#da937f7a62e21fec1fd18d49b35c2935067a6c72"
   integrity sha1-2pN/emLiH+wf0Y1Js1wpNQZ6bHI=
 
+use-media@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/use-media/-/use-media-1.4.0.tgz#e777bf1f382a7aacabbd1f9ce3da2b62e58b2a98"
+  integrity sha512-XsgyUAf3nhzZmEfhc5MqLHwyaPjs78bgytpVJ/xDl0TF4Bptf3vEpBNBBT/EIKOmsOc8UbuECq3mrP3mt1QANA==
+
 use@^3.1.0:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/use/-/use-3.1.1.tgz#d50c8cac79a19fbc20f2911f56eb973f4e10070f"
@@ -2682,6 +2687,10 @@ vtex-tachyons@^2.10.0:
   version "2.10.0"
   resolved "https://registry.yarnpkg.com/vtex-tachyons/-/vtex-tachyons-2.10.0.tgz#d72363dcd77d0960cb23efc82e0e8d168714f153"
   integrity sha512-WWEOR4iyrMQ2fzp+EActa5ZLaYSMdPk2yxP8XQRhg+q+QnbFH2EKGayjkea4okXRDE7KTKQZdLF3GlB/HaXOow==
+
+"vtex.render-runtime@http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.render-runtime@8.88.0/public/@types/vtex.render-runtime":
+  version "8.88.0"
+  resolved "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.render-runtime@8.88.0/public/@types/vtex.render-runtime#0257088b54c76eec74477e5dd9014d5b38779ac7"
 
 warning@^3.0.0:
   version "3.0.0"

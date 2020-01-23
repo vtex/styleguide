@@ -1,5 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
+
+import Close from '../icon/Close'
+import { isMobileDevice } from '../utils'
+import useDeviceHook from '../utils/useDeviceHook'
 
 const DEFAULT_WIDTH = 292
 const CONTAINER_MARGIN = 6
@@ -97,7 +102,7 @@ class Menu extends Component {
   }
 
   render() {
-    const { width, align, open, children, button } = this.props
+    const { width, align, open, children, button, device, options } = this.props
     const {
       hasCalculatedSize,
       isUpwards,
@@ -106,43 +111,81 @@ class Menu extends Component {
       containerHeight,
     } = this.state
 
+    const isMobile = isMobileDevice(device)
     const isRight = align === 'right'
+
+    const optionsLabel = (options && options.label) || ''
+
+    let styles = {
+      boxShadow: '0px 1px 18px rgba(0, 0, 0, 0.14)',
+    }
+
+    if (isMobile) {
+      styles = {
+        ...styles,
+        top: 0,
+        height: '100%',
+      }
+    }
+
+    if (!isMobile) {
+      styles = {
+        ...styles,
+        transform:
+          !hasCalculatedSize || isVisible ? 'scale(1)' : 'scale(0.9, 0.6)',
+        transformOrigin: `${isRight ? '75%' : '25%'} ${
+          isUpwards ? '100%' : '0'
+        }`,
+        transition: isVisible
+          ? `transform 50ms ease-out, opacity 25ms`
+          : 'none',
+        [isUpwards ? 'bottom' : 'top']: containerHeight + CONTAINER_MARGIN,
+      }
+    }
+
+    const openContainerClasses = classNames(
+      'fixed absolute-ns w-100 w-auto-ns z-999 ba bw1 b--muted-4 bg-base',
+      {
+        'right-0': isRight,
+        'left-0': !isRight,
+        br0: isMobile,
+        br2: !isMobile,
+        'o-100': isVisible,
+        'o-0': !isVisible,
+      }
+    )
 
     return (
       <div className="relative">
         <div ref={this.containerElement}>{button}</div>
         {open && (
-          <div
-            ref={this.menuElement}
-            style={{
-              [isUpwards ? 'bottom' : 'top']:
-                containerHeight + CONTAINER_MARGIN,
-              transform:
-                !hasCalculatedSize || isVisible
-                  ? 'scale(1)'
-                  : 'scale(0.9, 0.6)',
-              transformOrigin: `${isRight ? '75%' : '25%'} ${
-                isUpwards ? '100%' : '0'
-              }`,
-              transition: isVisible
-                ? `transform 50ms ease-out, opacity 25ms`
-                : 'none',
-              boxShadow: '0px 1px 18px rgba(0, 0, 0, 0.14)',
-            }}
-            className={`absolute z-999 ba bw1 b--muted-4 br2 bg-base ${
-              isRight ? 'right-0' : 'left-0'
-            }
-            ${isVisible ? 'o-100' : 'o-0'}`}>
+          <>
             <div
-              className="b2 br2 bg-base"
-              style={{ width: width || DEFAULT_WIDTH }}>
+              ref={this.menuElement}
+              style={styles}
+              className={openContainerClasses}>
               <div
-                style={{ height: menuHeight || 'auto' }}
-                className={menuHeight ? 'overflow-auto' : ''}>
-                {children}
+                className="b2-ns br2-ns bg-base h-100 h-auto-ns"
+                style={{ width: isMobile ? '100%' : width || DEFAULT_WIDTH }}>
+                <div
+                  className={
+                    menuHeight
+                      ? 'overflow-auto h-100 h-auto-ns'
+                      : 'h-100 h-auto-ns'
+                  }>
+                  {isMobile && (
+                    <div className="flex justify-between flex-row items-baseline pa6 mh3">
+                      <div className="truncate f3 pr6">{optionsLabel}</div>
+                      <div onClick={this.props.onBackgroundClick}>
+                        <Close size={20} color="currentColor" />
+                      </div>
+                    </div>
+                  )}
+                  {children}
+                </div>
               </div>
             </div>
-          </div>
+          </>
         )}
       </div>
     )
@@ -169,6 +212,10 @@ Menu.propTypes = {
   onClose: PropTypes.func,
   /** Menu Box align (default is right) */
   align: PropTypes.oneOf(['right', 'left']),
+  /** Function to handle callback on overlay click */
+  onBackgroundClick: PropTypes.func,
+  /** Device in use returned byt the useDeviceHook  */
+  device: PropTypes.string,
 }
 
-export default Menu
+export default useDeviceHook(Menu)
