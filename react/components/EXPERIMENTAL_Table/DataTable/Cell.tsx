@@ -29,7 +29,7 @@ const Cell: FC<CellProps> & CellComposites = ({
   children,
   width,
   onClick,
-  as = 'td',
+  tagName = 'td',
   className = '',
   active = false,
   link = false,
@@ -41,7 +41,7 @@ const Cell: FC<CellProps> & CellComposites = ({
   })
   return (
     <Container
-      as={as}
+      as={tagName}
       onClick={onClick}
       style={{ width }}
       className={classNames}>
@@ -100,7 +100,7 @@ export type CellComposites = {
 export type CellProps = {
   id?: string
   width?: number | string | React.ReactText
-  as?: 'td' | 'th' | 'div' | 'li'
+  tagName?: 'td' | 'th' | 'div' | 'li'
   className?: string
   onClick?: () => void
   showArrow?: boolean

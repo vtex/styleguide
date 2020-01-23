@@ -90,7 +90,7 @@ export type RowsProps = {
   isRowActive?: (rowData: unknown) => boolean
   rowProps?: RowProps
   rowHeight: number
-  cellProps?: Pick<CellProps, 'as' | 'className'>
+  cellProps?: Pick<CellProps, 'tagName' | 'className'>
   checkboxes?: Checkboxes<unknown>
 }
 

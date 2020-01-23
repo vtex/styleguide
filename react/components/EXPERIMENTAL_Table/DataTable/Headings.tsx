@@ -56,16 +56,16 @@ const Headings: FC<HeadingsProps> = ({
 
 Headings.defaultProps = {
   cellProps: {
-    as: 'th',
+    tagName: 'th',
   },
 }
 
 type HeadingsProps = {
   columns: Array<Column>
   rowProps?: RowProps
-  cellProps?: Pick<CellProps, 'as'>
+  cellProps?: Pick<CellProps, 'tagName'>
   checkboxes?: Checkboxes<unknown>
-  sorting: Partial<ReturnType<typeof useTableSort>>
+  sorting?: Partial<ReturnType<typeof useTableSort>>
 }
 
 export default React.memo(Headings)
