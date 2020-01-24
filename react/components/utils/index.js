@@ -7,5 +7,3 @@ export const childrenOf = (...types) => {
 
   return PropTypes.oneOfType([fieldType, PropTypes.arrayOf(fieldType)])
 }
-
-export const isMobileDevice = device => device.toLowerCase() === 'phone'

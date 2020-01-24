@@ -19,7 +19,9 @@ const withDevice = Component => {
       ? Device.tablet
       : Device.phone
 
-    return <Component device={device} {...props} />
+    const isMobile = device.toLowerCase() === 'phone'
+
+    return <Component device={device} isMobile={isMobile} {...props} />
   }
 
   return WithDevice

@@ -3,8 +3,7 @@ import PropTypes from 'prop-types'
 import merge from 'lodash/merge'
 import classNames from 'classnames'
 
-import useDeviceHook from '../utils/useDeviceHook'
-import { isMobileDevice } from '../utils'
+import withDevice from '../utils/withDeviceHoc'
 import Button from '../Button'
 import IconClear from '../icon/Clear'
 import IconCaretDown from '../icon/CaretDown'
@@ -143,11 +142,9 @@ class FilterTag extends PureComponent {
       onSubmitFilterStatement,
       submitFilterLabel,
       newFilterLabel,
-      device,
+      isMobile,
     } = this.props
     const { isMenuOpen, virtualStatement } = this.state
-
-    const isMobile = isMobileDevice(device)
 
     const statement = filterStatementBySubject(statements, subject)[0]
     const isEmpty = !!(
@@ -333,6 +330,7 @@ FilterTag.propTypes = {
   submitFilterLabel: PropTypes.string.isRequired,
   newFilterLabel: PropTypes.string,
   device: PropTypes.string,
+  isMobile: PropTypes.bool,
 }
 
-export default useDeviceHook(FilterTag)
+export default withDevice(FilterTag)

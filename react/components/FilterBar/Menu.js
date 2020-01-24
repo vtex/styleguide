@@ -3,8 +3,7 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
 import Close from '../icon/Close'
-import { isMobileDevice } from '../utils'
-import useDeviceHook from '../utils/useDeviceHook'
+import withDevice from '../utils/withDeviceHoc'
 
 const DEFAULT_WIDTH = 292
 const CONTAINER_MARGIN = 6
@@ -102,7 +101,15 @@ class Menu extends Component {
   }
 
   render() {
-    const { width, align, open, children, button, device, options } = this.props
+    const {
+      width,
+      align,
+      open,
+      children,
+      button,
+      isMobile,
+      options,
+    } = this.props
     const {
       hasCalculatedSize,
       isUpwards,
@@ -111,7 +118,6 @@ class Menu extends Component {
       containerHeight,
     } = this.state
 
-    const isMobile = isMobileDevice(device)
     const isRight = align === 'right'
 
     const optionsLabel = (options && options.label) || ''
@@ -214,8 +220,8 @@ Menu.propTypes = {
   align: PropTypes.oneOf(['right', 'left']),
   /** Function to handle callback on overlay click */
   onBackgroundClick: PropTypes.func,
-  /** Device in use returned byt the useDeviceHook  */
-  device: PropTypes.string,
+  /** Boolean if the device is mobile  */
+  isMobile: PropTypes.bool,
 }
 
-export default useDeviceHook(Menu)
+export default withDevice(Menu)
