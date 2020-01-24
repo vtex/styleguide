@@ -3,6 +3,7 @@ import { StickyContainer } from 'react-sticky'
 import PropTypes from 'prop-types'
 import reduce from 'lodash/reduce'
 import map from 'lodash/map'
+import isEmpty from 'lodash/isEmpty'
 
 import Box from '../Box'
 import EmptyState from '../EmptyState'
@@ -313,7 +314,7 @@ class Table extends PureComponent {
         )}
 
         <SwitchablePagination
-          enabled={!loading && paginationClone}
+          enabled={!loading && !isEmpty(paginationClone)}
           {...paginationClone}>
           <StickyContainer>
             <BulkActions
