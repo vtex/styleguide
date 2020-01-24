@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- checks if the paginationClone object is not empty in `Table`.
+- remove propTypes required in `SwitchablePagination`.
+
 ## [9.105.5] - 2020-01-23
 
 ### Added
