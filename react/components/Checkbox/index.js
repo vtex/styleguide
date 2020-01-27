@@ -4,6 +4,7 @@ import classNames from 'classnames'
 
 import CheckIcon from '../icon/Check'
 import CheckPartial from '../icon/CheckPartial'
+import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
 
 class Checkbox extends PureComponent {
   handleChange = e =>
@@ -68,6 +69,7 @@ class Checkbox extends PureComponent {
           </div>
           <input
             checked={checked}
+            ref={this.props.forwardedRef}
             className={classNames('h1 w1 absolute o-0', {
               pointer: !disabled,
             })}
@@ -106,6 +108,8 @@ Checkbox.defaultProps = {
 Checkbox.propTypes = {
   /** (Input spec attribute) */
   checked: PropTypes.bool,
+  /** @ignore Forwarded Ref */
+  forwardedRef: refShape,
   /** (Input spec attribute) */
   disabled: PropTypes.bool,
   /** (Input spec attribute) */
@@ -124,4 +128,4 @@ Checkbox.propTypes = {
   partial: PropTypes.bool,
 }
 
-export default Checkbox
+export default withForwardedRef(Checkbox)
