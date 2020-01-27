@@ -28,9 +28,9 @@ const Button = forwardRef<Ref, ButtonProps>(
   ) => {
     const isTertiary = variation === ButtonVariation.Tertiary
 
-    const iconClass = classNames({
-      'c-on-base mh2': isTertiary && !disabled,
-      'c-muted-2 mh2': disabled,
+    const iconClass = classNames('mh2', {
+      'c-on-base': isTertiary && !disabled,
+      'c-muted-2': disabled,
     })
 
     const labelClass = classNames({
