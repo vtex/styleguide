@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.106.2] - 2020-01-27
+
 ### Fixed
 
 - Error caused by deleting a filter tag while the `Menu` is still active in the `FilterBar` component.
