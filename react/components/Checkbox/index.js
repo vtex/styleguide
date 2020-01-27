@@ -22,6 +22,7 @@ class Checkbox extends PureComponent {
       required,
       value,
       partial,
+      forwardedRef,
     } = this.props
 
     return (
@@ -69,7 +70,7 @@ class Checkbox extends PureComponent {
           </div>
           <input
             checked={checked}
-            ref={this.props.forwardedRef}
+            ref={forwardedRef}
             className={classNames('h1 w1 absolute o-0', {
               pointer: !disabled,
             })}
