@@ -9,11 +9,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- `forwardRef` to Checkbox
+- `forwardRef` to `Checkbox` component.
 
 ### Fixed
 
-- Avoid calling `onChange` callback when undefined
+- Avoid calling `onChange` callback when `undefined`.
 
 ## [9.106.2] - 2020-01-27
 
