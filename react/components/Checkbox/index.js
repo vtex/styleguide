@@ -6,7 +6,10 @@ import CheckIcon from '../icon/Check'
 import CheckPartial from '../icon/CheckPartial'
 
 class Checkbox extends PureComponent {
-  handleChange = e => !this.props.disabled && this.props.onChange(e)
+  handleChange = e =>
+    this.props.onChange
+      ? !this.props.disabled && this.props.onChange(e)
+      : undefined
 
   render() {
     const {
