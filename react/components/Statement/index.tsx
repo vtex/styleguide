@@ -30,6 +30,9 @@ const Statement: React.FC<Props> = ({
   statement = { subject: '', verb: '', object: null, error: null },
   subjectPlaceholder,
 }) => {
+  const verbOptions =
+    statement.subject &&
+    options[statement.subject].verbs.find(verb => verb.value === statement.verb)
   const statementAtoms = [
     !omitSubject && (
       <SubjectAtom
@@ -81,12 +84,7 @@ const Statement: React.FC<Props> = ({
         }
         onChangeStatement(newStatement)
       }}
-      renderObject={
-        statement.subject &&
-        options[statement.subject].verbs.find(
-          verb => verb.value === statement.verb
-        ).object
-      }
+      renderObject={verbOptions && verbOptions.object}
     />,
   ]
 
