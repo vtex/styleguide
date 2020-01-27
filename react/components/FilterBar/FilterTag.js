@@ -1,7 +1,9 @@
 import React, { PureComponent, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import merge from 'lodash/merge'
+import classNames from 'classnames'
 
+import withDevice from '../utils/withDeviceHoc'
 import Button from '../Button'
 import IconClear from '../icon/Clear'
 import IconCaretDown from '../icon/CaretDown'
@@ -80,7 +82,7 @@ class FilterTag extends PureComponent {
     })
   }
 
-  closeMenu = () => {
+  handleCloseMenu = () => {
     if (!this.state.isMenuOpen) return
 
     document.removeEventListener('mousedown', this.handleClickOutside)
@@ -101,13 +103,13 @@ class FilterTag extends PureComponent {
       !this.filterMenuContainer.current.contains(e.target) &&
       this.state.isMenuOpen
     ) {
-      this.closeMenu()
+      this.handleCloseMenu()
     }
   }
 
   componentWillUnmount() {
     if (this.state.isMenuOpen) {
-      this.closeMenu()
+      this.handleCloseMenu()
     }
   }
 
@@ -140,6 +142,7 @@ class FilterTag extends PureComponent {
       onSubmitFilterStatement,
       submitFilterLabel,
       newFilterLabel,
+      isMobile,
     } = this.props
     const { isMenuOpen, virtualStatement } = this.state
 
@@ -205,16 +208,22 @@ class FilterTag extends PureComponent {
         <div className="flex items-stretch">
           <Menu
             open={isMenuOpen}
+            onBackgroundClick={this.handleCloseMenu}
             align="left"
+            options={options[subject]}
             button={
               <button
                 type="button"
                 className="bw1 ba br2 v-mid relative bg-transparent b--transparent c-action-primary pointer w-100 outline-0"
-                onClick={isMenuOpen ? this.closeMenu : this.openMenu}>
+                onClick={isMenuOpen ? this.handleCloseMenu : this.openMenu}>
                 <div className="flex items-center justify-center h-100 ph3 ">
                   <span className="flex items-center nl1 nowrap">
                     {isMoreOptions ? (
                       <span className="fw5">{getFilterLabel()}</span>
+                    ) : isMobile ? (
+                      <span className="ttu f6 fw5">
+                        {options[subject].label}
+                      </span>
                     ) : (
                       <Fragment>
                         <span>{`${options[subject].label}:\xa0`}</span>
@@ -223,54 +232,62 @@ class FilterTag extends PureComponent {
                         )}`}</span>
                       </Fragment>
                     )}
-                    <div className="ml2 nr2">
-                      <IconCaretDown size={11} color="currentColor" />
-                    </div>
+                    {!isMobile && (
+                      <div className="ml2 nr2">
+                        <IconCaretDown size={11} color="currentColor" />
+                      </div>
+                    )}
                   </span>
                 </div>
               </button>
             }>
-            <div className="ma5">
+            <div className="ma6 ma5-ns h-75 h-auto-ns flex flex-column justify-between">
               <div
-                className={`flex flex-wrap ${isMoreOptions ? 'mb6' : 'mb3'}`}>
-                {isMoreOptions && (
-                  <span className="f4 mh3">{newFilterLabel}</span>
-                )}
-                <div className="flex flex-column">
-                  {shouldOmitVerb && (
-                    <span className="mh3">
-                      {options[subject].verbs[0].label}
-                    </span>
+                className={classNames({
+                  'overflow-scroll': isMobile && 'overflow-scroll',
+                })}>
+                <div
+                  className={`flex flex-wrap ${isMoreOptions ? 'mb6' : 'mb3'}`}>
+                  {isMoreOptions && (
+                    <span className="f4 mh3">{newFilterLabel}</span>
                   )}
+                  <div className="flex flex-column">
+                    {shouldOmitVerb && (
+                      <span className="mh3">
+                        {options[subject].verbs[0].label}
+                      </span>
+                    )}
+                  </div>
                 </div>
+                <Statement
+                  isFullWidth
+                  omitSubject={shouldOmitSubject}
+                  omitVerbs={shouldOmitVerb}
+                  options={compatibleOptions}
+                  subjectPlaceholder={subjectPlaceholder}
+                  statement={
+                    isMoreOptions
+                      ? virtualStatement
+                      : merge({}, statement, virtualStatement)
+                  }
+                  onChangeStatement={this.handleChangeStatement}
+                  onChangeObjectCallback={st =>
+                    this.handleChangeStatement({
+                      ...st,
+                      error: null,
+                    })
+                  }
+                />
               </div>
-              <Statement
-                isFullWidth
-                omitSubject={shouldOmitSubject}
-                omitVerbs={shouldOmitVerb}
-                options={compatibleOptions}
-                subjectPlaceholder={subjectPlaceholder}
-                statement={
-                  isMoreOptions
-                    ? virtualStatement
-                    : merge({}, statement, virtualStatement)
-                }
-                onChangeStatement={this.handleChangeStatement}
-                onChangeObjectCallback={st =>
-                  this.handleChangeStatement({
-                    ...st,
-                    error: null,
-                  })
-                }
-              />
-              <div className="flex justify-start mt4 mh3">
+              <div className="flex justify-end mt4 mh3">
                 <Button
+                  block={isMobile}
                   type="submit"
                   disabled={virtualStatement && !virtualStatement.object}
                   onClick={() => {
                     onSubmitFilterStatement(virtualStatement)
                     this.resetVirtualStatement()
-                    this.closeMenu()
+                    this.handleCloseMenu()
                   }}>
                   {submitFilterLabel}
                 </Button>
@@ -312,6 +329,8 @@ FilterTag.propTypes = {
   onSubmitFilterStatement: PropTypes.func.isRequired,
   submitFilterLabel: PropTypes.string.isRequired,
   newFilterLabel: PropTypes.string,
+  device: PropTypes.string,
+  isMobile: PropTypes.bool,
 }
 
-export default FilterTag
+export default withDevice(FilterTag)

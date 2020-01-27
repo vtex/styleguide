@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.106.0] - 2020-01-27
+
+### Added
+
+- `withDevice` HOC for responsiveness.
+- Mobile behavior for the `FilterBar` component.
+
 ## [9.105.6] - 2020-01-27
 
 ### Fixed
