@@ -15,8 +15,16 @@ SwitchablePagination.defaultProps = {
 }
 
 SwitchablePagination.propTypes = {
-  ...Pagination.propTypes,
+  currentItemFrom: PropTypes.number,
+  currentItemTo: PropTypes.number,
   enabled: PropTypes.bool,
+  onNextClick: PropTypes.func,
+  onPrevClick: PropTypes.func,
+  onRowsChange: PropTypes.func,
+  rowsOptions: PropTypes.array,
+  textOf: PropTypes.node,
+  textShowRows: PropTypes.node,
+  totalItems: PropTypes.number,
 }
 
 export default SwitchablePagination
