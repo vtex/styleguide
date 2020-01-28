@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.107.0] - 2020-01-28
+
 ### Added
 
 - `numeric-stepper__label`, `numeric-stepper-container`, `numeric-steper__input`, `numeric-stepper__plus-button-container`, `numeric-stepper__plus-button`, `numeric-stepper__plus-button__text`, `numeric-stepper__minus-button-container`, `numeric-stepper__minus-button`, `numeric-stepper__minus-button__text` and `numeric-stepper-wrapper` to the elements that didn't have any handle.
