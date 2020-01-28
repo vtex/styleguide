@@ -212,15 +212,17 @@ class NumericStepper extends Component {
     const content = (
       <React.Fragment>
         {label && (
-          <span className={`db mb3 w-100 c-on-base ${labelClasses}`}>
+          <span className={`numeric-stepper__label db mb3 w-100 c-on-base ${labelClasses}`}>
             {label}
           </span>
         )}
-        <div className="flex self-start">
+        <div className="numeric-stepper-container flex self-start">
           <input
             type="tel"
             readOnly={readOnly}
-            className={`z-1 order-1 tc bw1 ${borderClasses} br0 ${inputClasses} ${styles.hideDecorators}`}
+            className={
+              `numeric-stepper__input z-1 order-1 tc bw1 ${borderClasses} br0 ${inputClasses} ${styles.hideDecorators}`
+            }
             style={{
               ...(block && {
                 width: 0,
@@ -232,12 +234,14 @@ class NumericStepper extends Component {
             onFocus={this.handleFocusInput}
             onBlur={this.handleBlurInput}
           />
-          <div className="z-2 order-2 flex-none">
+          <div className="numeric-stepper__plus-button-container z-2 order-2 flex-none">
             <button
               type="button"
-              className={`br2 pa0 bl-0 flex items-center justify-center ${borderClasses} ${buttonClasses} ${
-                readOnly || isMax ? buttonDisabledClasses : buttonEnabledClasses
-              }`}
+              className={
+                `numeric-stepper__plus-button br2 pa0 bl-0 flex items-center justify-center ${borderClasses} ${buttonClasses} ${
+                  readOnly || isMax ? buttonDisabledClasses : buttonEnabledClasses
+                }`
+              }
               style={{
                 borderTopLeftRadius: 0,
                 borderBottomLeftRadius: 0,
@@ -248,16 +252,16 @@ class NumericStepper extends Component {
               aria-label="+"
               tabIndex={0}
               onClick={this.handleIncreaseValue}>
-              <div className="b">
+              <div className="numeric-stepper__plus-button__text b">
                 {/* fullwidth plus sign (U+FF0B) http://graphemica.com/%EF%BC%8B */}
                 ＋
               </div>
             </button>
           </div>
-          <div className="z-2 order-0 flex-none">
+          <div className="numeric-stepper__minus-button-container z-2 order-0 flex-none">
             <button
               type="button"
-              className={`br2 pa0 br-0 flex items-center justify-center ${borderClasses} ${buttonClasses} ${
+              className={`numeric-stepper__minus-button br2 pa0 br-0 flex items-center justify-center ${borderClasses} ${buttonClasses} ${
                 readOnly || isMin ? buttonDisabledClasses : buttonEnabledClasses
               }`}
               style={{
@@ -273,7 +277,7 @@ class NumericStepper extends Component {
               // Used for screen readers.
               tabIndex={0}
               onClick={this.handleDecreaseValue}>
-              <span className="b">
+              <span className="numeric-stepper__minus-button__text b">
                 {/* fullwidth hyphen-minus (U+FF0D) http://graphemica.com/%EF%BC%8D */}
                 －
               </span>
@@ -287,9 +291,9 @@ class NumericStepper extends Component {
     // iOS from focusing on the text field and popping up the
     // keyboard when increment/decrement is pressed
     if (label && !lean) {
-      return <label>{content}</label>
+      return <label className="numeric-stepper-wrapper">{content}</label>
     }
-    return <div>{content}</div>
+    return <div className="numeric-stepper-wrapper">{content}</div>
   }
 }
 
