@@ -73,50 +73,50 @@ export const products = [
 
 export const payments = [
   {
-    icon: 'FaCcPaypal',
     id: '1',
+    icon: 'FaCcPaypal',
     name: 'Paypal',
     status: 'ACTIVE',
   },
   {
-    icon: 'FaCcMastercard',
     id: '2',
+    icon: 'FaCcMastercard',
     name: 'Mastercard',
     status: 'ACTIVE',
   },
   {
-    icon: 'FaCcDinersClub',
     id: '3',
+    icon: 'FaCcDinersClub',
     name: 'Dinners Club',
     status: 'ACTIVE',
   },
   {
-    icon: 'FaCcDiscover',
     id: '4',
+    icon: 'FaCcDiscover',
     name: 'Discover',
     status: 'INACTIVE',
   },
   {
-    icon: 'FaCcAmazonPay',
     id: '5',
+    icon: 'FaCcAmazonPay',
     name: 'Amazon Pay',
     status: 'INACTIVE',
   },
   {
-    icon: 'FaCcApplePay',
     id: '6',
+    icon: 'FaCcApplePay',
     name: 'Apple Pay',
     status: 'ACTIVE',
   },
   {
-    icon: 'FaCcVisa',
     id: '7',
+    icon: 'FaCcVisa',
     name: 'Visa',
     status: 'ACTIVE',
   },
   {
-    icon: 'FaCcAmex',
     id: '8',
+    icon: 'FaCcAmex',
     name: 'American Express',
     status: 'INACTIVE',
   },

@@ -15,14 +15,11 @@ export default function useTableVisibility({
     return columns.reduce(reducer, [])
   }, [hiddenColumns, columns])
 
-  const toggleColumn = useCallback(
-    (id: string) => {
-      hiddenColumns.includes(id)
-        ? setHiddenColumns(hiddenColumns.filter(col => col !== id))
-        : setHiddenColumns([...hiddenColumns, id])
-    },
-    [hiddenColumns]
-  )
+  const toggleColumn = useCallback((id: string) => {
+    setHiddenColumns(col =>
+      col.includes(id) ? col.filter(col => col !== id) : [...col, id]
+    )
+  }, [])
 
   const showAllColumns = () => {
     setHiddenColumns([])
@@ -43,6 +40,6 @@ export default function useTableVisibility({
 }
 
 export type VisibilityData = {
-  columns: Array<Column>
-  hiddenColumns?: Array<string>
+  columns: Column[]
+  hiddenColumns?: string[]
 }
