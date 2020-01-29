@@ -212,7 +212,8 @@ class NumericStepper extends Component {
     const content = (
       <React.Fragment>
         {label && (
-          <span className={`numeric-stepper__label db mb3 w-100 c-on-base ${labelClasses}`}>
+          <span
+            className={`numeric-stepper__label db mb3 w-100 c-on-base ${labelClasses}`}>
             {label}
           </span>
         )}
@@ -220,9 +221,7 @@ class NumericStepper extends Component {
           <input
             type="tel"
             readOnly={readOnly}
-            className={
-              `numeric-stepper__input z-1 order-1 tc bw1 ${borderClasses} br0 ${inputClasses} ${styles.hideDecorators}`
-            }
+            className={`numeric-stepper__input z-1 order-1 tc bw1 ${borderClasses} br0 ${inputClasses} ${styles.hideDecorators}`}
             style={{
               ...(block && {
                 width: 0,
@@ -237,11 +236,9 @@ class NumericStepper extends Component {
           <div className="numeric-stepper__plus-button-container z-2 order-2 flex-none">
             <button
               type="button"
-              className={
-                `numeric-stepper__plus-button br2 pa0 bl-0 flex items-center justify-center ${borderClasses} ${buttonClasses} ${
-                  readOnly || isMax ? buttonDisabledClasses : buttonEnabledClasses
-                }`
-              }
+              className={`numeric-stepper__plus-button br2 pa0 bl-0 flex items-center justify-center ${borderClasses} ${buttonClasses} ${
+                readOnly || isMax ? buttonDisabledClasses : buttonEnabledClasses
+              }`}
               style={{
                 borderTopLeftRadius: 0,
                 borderBottomLeftRadius: 0,

@@ -27,9 +27,10 @@ export default class ToastManager extends Component {
       dismissable,
       duration,
       horizontalPosition = 'left',
+      keepAfterUpdate = false,
     } = args
 
-    if (this.state.currentToast) {
+    if (this.state.currentToast && !keepAfterUpdate) {
       // If there is a toast present already, queue up the next toast
       // It will be displayed when the current toast is closed, on handleToastClose
       this.setState({
@@ -50,6 +51,7 @@ export default class ToastManager extends Component {
           dismissable,
           duration,
           horizontalPosition,
+          keepAfterUpdate,
         },
         isToastVisible: true,
       })
@@ -136,9 +138,10 @@ export default class ToastManager extends Component {
               action={currentToast.action}
               duration={currentToast.duration}
               dismissable={currentToast.dismissable}
+              horizontalPosition={currentToast.horizontalPosition}
+              keepAfterUpdate={currentToast.keepAfterUpdate}
               visible={this.state.isToastVisible}
               onClose={this.handleToastClose}
-              horizontalPosition={currentToast.horizontalPosition}
             />
           )}
         </div>

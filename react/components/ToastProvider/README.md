@@ -10,6 +10,7 @@
 
 
 ```js
+import { useState } from 'react'
 const Button = require('../Button').default
 const ToastConsumer = require('./index').ToastConsumer
 
@@ -22,7 +23,9 @@ const App = () => (
   </ToastProvider>
 )
 
-const Content = () => (
+const Content = () => {
+  const [count, setCount] = useState(0)
+  return(
   // Wrap the components that are going to display toasts
   // on a ToastConsumer, with a function as a child, as
   // the example below:
@@ -215,9 +218,36 @@ const Content = () => (
         </div>
       )}
     </ToastConsumer>
-
+    <div className="mv5 mt8">
+      Link on toast action
+    </div>
+    <ToastConsumer>
+      {({showToast, hideToast}) => (
+        <div className="flex">
+          <div className="mr5">
+            <Button
+              size="small"
+              variation="secondary"
+              onClick={
+                () => {
+                  setCount(count => count + 1)
+                  showToast({
+                    message: `You clicked ${count} times`,
+                    keepAfterUpdate: true,
+                    duration: 5000,
+                  })
+                }
+              }
+            >
+              One more in same Toast
+            </Button>
+          </div>
+        </div>
+      )}
+    </ToastConsumer>
   </div>
 )
+}
 
 
 ;<App/>

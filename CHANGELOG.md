@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.108.0] - 2020-01-29
+
+### Added
+
+- `keepAfterUpdate` option to `Toast`.
+
 ## [9.107.0] - 2020-01-28
 
 ### Added
