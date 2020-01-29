@@ -15,7 +15,7 @@ const Rows: FC<RowsProps> = ({
   rowProps,
   isRowActive,
   rowHeight,
-  selectedDensity,
+  currentDensity,
   checkboxes,
   rowKey,
 }) => {
@@ -52,7 +52,7 @@ const Rows: FC<RowsProps> = ({
                     cellData,
                     rowData,
                     rowHeight,
-                    selectedDensity,
+                    currentDensity,
                     motion,
                   })
                 : cellData
@@ -84,7 +84,7 @@ const Rows: FC<RowsProps> = ({
 export type RowsProps = {
   columns: Array<Column>
   items: Items
-  selectedDensity: Density
+  currentDensity: Density
   rowKey?: ({ rowData: unknown }) => string
   onRowClick?: ({ rowData: unknown }) => void
   isRowActive?: (rowData: unknown) => boolean

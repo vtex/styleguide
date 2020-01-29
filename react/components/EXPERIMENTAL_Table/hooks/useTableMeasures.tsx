@@ -6,12 +6,12 @@ export const TABLE_HEADER_HEIGHT = 36
 
 export default function useTableMeasures({
   size = 0,
-  density = Density.MEDIUM,
+  density = Density.Regular,
 }: MeasuresInput) {
-  const [selectedDensity, setSelectedDensity] = useState<Density>(density)
+  const [currentDensity, setCurrentDensity] = useState<Density>(density)
 
-  const rowHeight = useMemo(() => getRowHeight(selectedDensity), [
-    selectedDensity,
+  const rowHeight = useMemo(() => getRowHeight(currentDensity), [
+    currentDensity,
   ])
 
   const tableHeight = useMemo(() => calculateTableHeight(rowHeight, size), [
@@ -20,10 +20,10 @@ export default function useTableMeasures({
   ])
 
   return {
-    selectedDensity,
+    currentDensity,
     rowHeight,
     tableHeight,
-    setSelectedDensity,
+    setCurrentDensity,
   }
 }
 
@@ -49,26 +49,30 @@ export function getScrollbarWidth(): number {
 }
 
 export enum Density {
-  LOW = 'low',
-  MEDIUM = 'medium',
-  HIGH = 'high',
+  Compact = 'compact',
+  Regular = 'regular',
+  Comfortable = 'comfortable',
 }
 
 export enum DesitySizes {
-  low = 76,
-  medium = 48,
-  high = 32,
+  Compact = 32,
+  Regular = 48,
+  Comfortable = 76,
 }
 
-export const DENSITY_OPTIONS = [Density.LOW, Density.MEDIUM, Density.HIGH]
+export const DENSITY_OPTIONS = [
+  Density.Compact,
+  Density.Regular,
+  Density.Comfortable,
+]
 
 export function getRowHeight(density: Density): number {
   switch (density) {
-    case Density.LOW:
-      return DesitySizes.low
-    case Density.MEDIUM:
-      return DesitySizes.medium
-    case Density.HIGH:
-      return DesitySizes.high
+    case Density.Compact:
+      return DesitySizes.Compact
+    case Density.Regular:
+      return DesitySizes.Regular
+    case Density.Comfortable:
+      return DesitySizes.Comfortable
   }
 }

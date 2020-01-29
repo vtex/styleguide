@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- `EXPERIMENTAL_Table` density names.
+
 ## [9.108.0] - 2020-01-29
 
 ### Added

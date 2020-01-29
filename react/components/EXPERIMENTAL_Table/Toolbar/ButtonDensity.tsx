@@ -20,7 +20,7 @@ const ButtonDensity: FC<ButtonDensityProps> = ({
   density,
   ...options
 }) => {
-  const { selectedDensity, setSelectedDensity } = density
+  const { currentDensity, setCurrentDensity } = density
   const { buttonRef, toggleBox, setBoxVisible, boxVisible } = usePopoverMenu()
   return (
     <Button
@@ -33,17 +33,17 @@ const ButtonDensity: FC<ButtonDensityProps> = ({
       {boxVisible && (
         <Box height={BOX_HEIGHT} alignMenu={alignMenu}>
           {DENSITY_OPTIONS.map((key: Density, index) => {
-            const isKeySelected = selectedDensity === key
+            const isKeySelected = currentDensity === key
             return (
               <Item
                 key={index}
                 isSelected={isKeySelected}
                 onClick={() => {
-                  setSelectedDensity(key)
+                  setCurrentDensity(key)
                   setBoxVisible(false)
                   handleCallback && handleCallback(key)
                 }}>
-                {options[`${key}OptionLabel`]}
+                {options[`${key}Label`]}
               </Item>
             )
           })}
@@ -56,9 +56,9 @@ const ButtonDensity: FC<ButtonDensityProps> = ({
 export type ButtonDensityProps = {
   density: ReturnType<typeof useTableMeasures>
   label: string
-  lowOptionLabel: string
-  mediumOptionLabel: string
-  highOptionLabel: string
+  compactLabel: string
+  regularLabel: string
+  comfortableLabel: string
   handleCallback: Function
   alignMenu: Alignment
   disabled: boolean
