@@ -51,6 +51,7 @@ export default class ToastManager extends Component {
           dismissable,
           duration,
           horizontalPosition,
+          keepAfterUpdate,
         },
         isToastVisible: true,
       })
@@ -137,9 +138,10 @@ export default class ToastManager extends Component {
               action={currentToast.action}
               duration={currentToast.duration}
               dismissable={currentToast.dismissable}
+              horizontalPosition={currentToast.horizontalPosition}
+              keepAfterUpdate={currentToast.keepAfterUpdate}
               visible={this.state.isToastVisible}
               onClose={this.handleToastClose}
-              horizontalPosition={currentToast.horizontalPosition}
             />
           )}
         </div>

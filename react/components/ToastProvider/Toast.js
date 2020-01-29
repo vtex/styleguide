@@ -127,6 +127,10 @@ export default class Toast extends Component {
     ) {
       this.updateButtonWrap()
     }
+
+    if (this.props.keepAfterUpdate) {
+      this.startAutoClose()
+    }
   }
 
   // Lets the toast to be single line on mobile
@@ -236,6 +240,7 @@ Toast.propTypes = {
     rel: PropTypes.string,
     download: PropTypes.string,
   }),
+  keepAfterUpdate: PropTypes.string,
   visible: PropTypes.bool,
   duration: PropTypes.number,
   dismissable: PropTypes.bool,
