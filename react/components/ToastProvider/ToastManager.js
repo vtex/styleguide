@@ -27,9 +27,10 @@ export default class ToastManager extends Component {
       dismissable,
       duration,
       horizontalPosition = 'left',
+      keepAfterUpdate = false,
     } = args
 
-    if (this.state.currentToast) {
+    if (this.state.currentToast && !keepAfterUpdate) {
       // If there is a toast present already, queue up the next toast
       // It will be displayed when the current toast is closed, on handleToastClose
       this.setState({
