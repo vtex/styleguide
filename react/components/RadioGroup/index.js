@@ -10,48 +10,77 @@ class RadioGroup extends React.Component {
   }
 
   render() {
-    const { options, value, name, disabled, hideBorder } = this.props
+    const {
+      options,
+      value,
+      name,
+      disabled,
+      hideBorder,
+      label,
+      testId,
+      size,
+    } = this.props
+    let labelClasses = 'vtex-input__label db mb3 w-100 c-on-base '
 
+    switch (size) {
+      case 'small':
+        labelClasses += 't-small '
+        break
+      case 'large':
+        labelClasses += 't-body '
+        break
+      default:
+        labelClasses += 't-small '
+        break
+    }
     return (
       <div>
-        {options.map((option, i) => {
-          const isFirst = i === 0
-          const isLast = i === options.length - 1
-          const isDisabled = disabled || option.disabled
-          const id = `${name}-${i}`
-          return (
-            <label
-              className={`db br3 ${classNames({
-                'b--muted-4 ba pv2 ph4': !hideBorder,
-                pointer: !isDisabled,
-              })}`}
-              key={id}
-              style={{
-                ...(!isFirst && {
-                  borderTopLeftRadius: 0,
-                  borderTopRightRadius: 0,
-                  borderTop: 'none',
-                }),
-                ...(!isLast && {
-                  borderBottomLeftRadius: 0,
-                  borderBottomRightRadius: 0,
-                }),
-              }}>
-              <div className={classNames({ mt3: !hideBorder })}>
-                <Radio
-                  id={id}
-                  isLast={isLast}
-                  name={name}
-                  disabled={isDisabled}
-                  onChange={this.handleChange}
-                  label={option.label}
-                  value={option.value}
-                  checked={value === option.value}
-                />
-              </div>
-            </label>
-          )
-        })}
+        <fieldset
+          className="vtex-input w-100"
+          data-testid={testId}
+          style={{ border: 'none', padding: 0 }}>
+          <legend>
+            {label && <span className={labelClasses}>{label}</span>}
+          </legend>
+          {options.map((option, i) => {
+            const isFirst = i === 0
+            const isLast = i === options.length - 1
+            const isDisabled = disabled || option.disabled
+            const id = `${name}-${i}`
+            return (
+              <label
+                className={`db br3 ${classNames({
+                  'b--muted-4 ba pv2 ph4': !hideBorder,
+                  pointer: !isDisabled,
+                })}`}
+                key={id}
+                style={{
+                  ...(!isFirst && {
+                    borderTopLeftRadius: 0,
+                    borderTopRightRadius: 0,
+                    borderTop: 'none',
+                  }),
+                  ...(!isLast && {
+                    borderBottomLeftRadius: 0,
+                    borderBottomRightRadius: 0,
+                  }),
+                }}>
+                <div className={classNames({ mt3: !hideBorder })}>
+                  <Radio
+                    id={id}
+                    isLast={isLast}
+                    name={name}
+                    disabled={isDisabled}
+                    onChange={this.handleChange}
+                    label={option.label}
+                    value={option.value}
+                    checked={value === option.value}
+                  />
+                </div>
+              </label>
+            )
+          })}
+        </fieldset>
       </div>
     )
   }
@@ -77,6 +106,12 @@ RadioGroup.propTypes = {
   disabled: PropTypes.bool,
   /** Hide group border */
   hideBorder: PropTypes.bool,
+  /** Label */
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  /** Data attribute */
+  testId: PropTypes.string,
+  /** Input size */
+  size: PropTypes.oneOf(['small', 'regular', 'large']),
 }
 
 RadioGroup.defaultProps = {
