@@ -11,7 +11,7 @@ type Column = {
     cellData: unknown
     rowData: unknown
     rowHeight: number
-    selectedDensity: 'low' | 'medium' | 'high'
+    currentDensity: 'compact' | 'regular' | 'comfortable'
   }) => React.ReactNode
 }
 ```
@@ -35,11 +35,11 @@ type Column = {
 
 - Customize the render method of a single column cell.
 - It receives a function that returns a node (react component).
-- The function has the following params: ({ cellData, rowData, rowHeight, selectedDensity })
+- The function has the following params: ({ cellData, rowData, rowHeight, currentDensity })
   - cellData: the value of the current cell.
   - rowData: the value of the current row.
   - rowHeight: current height of the row.
-  - selectedDensity: current table density.
+  - currentDensity: current table density.
 - The default is rendering the value as a string.
 
 To illustrate this info, let's suppose we have a list of heroes, each one with properties `name`, `email`, `age` and `country`:
@@ -395,23 +395,22 @@ const columns = [
   {
     id: 'name',
     title: 'Name',
-    sortable: true
+    sortable: true,
   },
   {
     id: 'qty',
     title: 'Qty',
-    sortable: true
+    sortable: true,
   },
   {
     id: 'costPrice',
     title: 'Cost',
-    sortable: true
-
+    sortable: true,
   },
   {
     id: 'retailPrice',
     title: 'Retail',
-    sortable: true
+    sortable: true,
   },
 ]
 
@@ -424,12 +423,16 @@ function SortExample() {
     size: products.length,
   })
 
-  const ascOrdering = prop => (a, b) => a[prop] > b[prop] ? 1 : a[prop] < b [prop] ? -1 : 0
-  const dscOrdering = prop => (a, b) => a[prop] > b[prop] ? -1 : a[prop] < b [prop] ? 1 : 0
+  const ascOrdering = prop => (a, b) =>
+    a[prop] > b[prop] ? 1 : a[prop] < b[prop] ? -1 : 0
+  const dscOrdering = prop => (a, b) =>
+    a[prop] > b[prop] ? -1 : a[prop] < b[prop] ? 1 : 0
 
   const items = React.useMemo(() => {
-    const { sorted: { order, by } } = sorting
-    if(!order){
+    const {
+      sorted: { order, by },
+    } = sorting
+    if (!order) {
       return products
     }
     const ascending = order === 'ASC'
@@ -471,7 +474,7 @@ const items = [
   {
     id: 1,
     name:
-      '⚠️ This is just a text that is very very very large and should be fully visible when it is confortable and truncated otherwise. If you are seeing this part, it means that you are ona  low density 🤓!',
+      '⚠️ This is just a text that is very very very large and should be fully visible when it is confortable and truncated otherwise. If you are seeing this part, it means that you are ona  comfortable density 🤓!',
     country: '🇨🇺Cuba',
   },
   {
@@ -491,8 +494,8 @@ const items = [
   },
 ]
 
-function cellRenderer({ cellData, selectedDensity }) {
-  const confortable = selectedDensity === 'low'
+function cellRenderer({ cellData, currentDensity }) {
+  const confortable = currentDensity === 'comfortable'
 
   return confortable ? (
     <div className="dib">
@@ -515,9 +518,9 @@ function ProportionExample() {
 
   const densityProps = {
     label: 'Line density',
-    lowOptionLabel: 'Low',
-    mediumOptionLabel: 'Medium',
-    highOptionLabel: 'High',
+    compactLabel: 'Compact',
+    regularLabel: 'Regular',
+    comfortableLabel: 'Comfortable',
     density: measures,
   }
 
@@ -2147,9 +2150,9 @@ function ToolbarExample() {
 
   const density = {
     label: 'Line density',
-    lowOptionLabel: 'Low',
-    mediumOptionLabel: 'Medium',
-    highOptionLabel: 'High',
+    compactLabel: 'Compact',
+    regularLabel: 'Regular',
+    comfortableLabel: 'Comfortable',
   }
 
   const download = {

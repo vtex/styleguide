@@ -290,9 +290,9 @@ function ToolbarExample() {
 
   const density = {
     label: 'Line density',
-    lowOptionLabel: 'Low',
-    mediumOptionLabel: 'Medium',
-    highOptionLabel: 'High',
+    compactLabel: 'Compact',
+    regularLabel: 'Regular',
+    comfortableLabel: 'Comfortable',
   }
 
   const download = {
@@ -361,10 +361,7 @@ function ToolbarExample() {
             {...buttonColumns}
           />
           <TableTree.Toolbar.ButtonGroup.Density
-            density={{
-              selectedDensity: measures.selectedDensity,
-              setSelectedDensity: measures.setSelectedDensity,
-            }}
+            density={measures}
             {...density}
           />
           <TableTree.Toolbar.ButtonGroup.Download {...download} />

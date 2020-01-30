@@ -29,7 +29,7 @@ const Table: FC<TableProps> & TableComposites = ({
     throw new Error('Provide measures to the Table')
   }
 
-  const { tableHeight, rowHeight, selectedDensity } = measures
+  const { tableHeight, rowHeight, currentDensity } = measures
   const { columns, onRowClick, items, sorting } = props
   const motion = useTableMotion()
 
@@ -60,7 +60,7 @@ const Table: FC<TableProps> & TableComposites = ({
             <Rows
               rowKey={rowKey}
               checkboxes={checkboxes}
-              selectedDensity={selectedDensity}
+              currentDensity={currentDensity}
               columns={columns}
               items={items}
               rowHeight={rowHeight}
@@ -77,8 +77,8 @@ const Table: FC<TableProps> & TableComposites = ({
 export const measuresPropTypes = {
   tableHeight: PropTypes.number,
   rowHeight: PropTypes.number,
-  selectedDensity: PropTypes.oneOf(DENSITY_OPTIONS),
-  setSelectedDensity: PropTypes.func,
+  currentDensity: PropTypes.oneOf(DENSITY_OPTIONS),
+  setCurrentDensity: PropTypes.func,
 }
 
 export const tablePropTypes = {
@@ -143,7 +143,7 @@ export type CellData = {
   cellData: unknown
   rowData: unknown
   rowHeight: number
-  selectedDensity: Density
+  currentDensity: Density
   motion: ReturnType<typeof useTableMotion>
 }
 
