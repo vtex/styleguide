@@ -25,10 +25,7 @@ class RadioGroup extends React.Component {
 
     return (
       <div>
-        <fieldset
-          className="vtex-input w-100"
-          data-testid={testId}
-          style={{ border: 'none', padding: 0 }}>
+        <fieldset className="vtex-input w-100 bn pa0" data-testid={testId}>
           <legend>
             {label && (
               <span
