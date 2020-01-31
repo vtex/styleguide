@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { FC } from 'react'
 import classnames from 'classnames'
 
 import { NAMESPACES, ORDER_CLASSNAMES } from './constants'
 
-const ActionBar: React.FC<ActionBarProps> = ({
+const ActionBar: FC<ActionBarProps> = ({
   id = NAMESPACES.GENERIC_ACTION_BAR,
   order = ORDER_CLASSNAMES.GENERIC_ACTION_BAR,
   className,
