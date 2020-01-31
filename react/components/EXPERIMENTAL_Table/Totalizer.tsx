@@ -3,14 +3,13 @@ import { InferProps } from 'prop-types'
 
 import TotalizerBase, { totalizerPropTypes } from '../Totalizer/index.js'
 import { NAMESPACES, ORDER_CLASSNAMES } from './constants'
+import ActionBar from './ActionBar'
 
 const Totalizer: FC<TotalizerProps> = props => {
   return (
-    <div
-      id={NAMESPACES.TOTALIZER}
-      className={`mb5 ${ORDER_CLASSNAMES.TOTALIZER}`}>
+    <ActionBar id={NAMESPACES.TOTALIZER} order={ORDER_CLASSNAMES.TOTALIZER}>
       <TotalizerBase {...props} />
-    </div>
+    </ActionBar>
   )
 }
 

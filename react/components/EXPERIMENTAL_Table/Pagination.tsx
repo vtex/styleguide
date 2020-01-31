@@ -2,12 +2,16 @@ import React, { FC } from 'react'
 
 import PaginationBase from '../Pagination/index'
 import { NAMESPACES, ORDER_CLASSNAMES } from './constants'
+import ActionBar from './ActionBar'
 
 const Pagination: FC<PaginationProps> = props => {
   return (
-    <span id={NAMESPACES.PAGINATION} className={ORDER_CLASSNAMES.PAGINATION}>
+    <ActionBar
+      id={NAMESPACES.PAGINATION}
+      order={ORDER_CLASSNAMES.PAGINATION}
+      noMargin>
       <PaginationBase {...props} />
-    </span>
+    </ActionBar>
   )
 }
 

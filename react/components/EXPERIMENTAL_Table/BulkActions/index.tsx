@@ -5,6 +5,7 @@ import { ORDER_CLASSNAMES, NAMESPACES } from '../constants'
 import Actions from './Actions'
 import Tail from './Tail'
 import useTableMotion from '../hooks/useTableMotion'
+import ActionBar from '../ActionBar'
 
 const BULK_ACTIONS_HEIGHT = 56
 
@@ -36,23 +37,24 @@ const BulkActions: FC<BulkActionsProps> & Composites = ({
       <div className={ORDER_CLASSNAMES.BULK_CHILD.POSITION_FIXER} />
     )
   return (
-    <div
+    <ActionBar
       id={NAMESPACES.BULK_ACTIONS}
+      order={ORDER_CLASSNAMES.BULK}
       className={classNames(
         'flex flex-row justify-between bg-action-primary c-on-action-primary br3 br--top ph4',
         {
           pv4: active,
-        },
-        ORDER_CLASSNAMES.BULK
+        }
       )}
       style={{
         height: active ? BULK_ACTIONS_HEIGHT : 0,
         overflow: active ? 'auto' : 'hidden',
         ...motion,
-      }}>
+      }}
+      noMargin>
       {children}
       {positionFixer}
-    </div>
+    </ActionBar>
   )
 }
 

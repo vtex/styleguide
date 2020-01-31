@@ -1,11 +1,11 @@
 import React, { FC } from 'react'
-import classNames from 'classnames'
 
 import ButtonGroup from './ButtonGroup'
 import InputSearch, { InputSearchProps } from './InputSearch'
 import InputAutocomplete from './InputAutocomplete'
 import { AutocompleteInputProps } from '../../AutocompleteInput'
 import { ORDER_CLASSNAMES, NAMESPACES } from '../constants'
+import ActionBar from '../ActionBar'
 
 interface Composites {
   InputSearch: FC<InputSearchProps>
@@ -19,15 +19,13 @@ const Toolbar: FC & Composites = ({ children }) => {
       <div className={ORDER_CLASSNAMES.TOOLBAR_CHILD.POSITION_FIXER} />
     )
   return (
-    <div
+    <ActionBar
       id={NAMESPACES.TOOLBAR.CONTAINER}
-      className={classNames(
-        ORDER_CLASSNAMES.TOOLBAR,
-        `mb5 flex flex-row flex-wrap w-100 justify-between`
-      )}>
+      order={ORDER_CLASSNAMES.TOOLBAR}
+      className="flex flex-row flex-wrap w-100 justify-between">
       {children}
       {positionFixer}
-    </div>
+    </ActionBar>
   )
 }
 

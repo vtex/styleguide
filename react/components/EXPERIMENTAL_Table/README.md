@@ -1698,6 +1698,61 @@ function LineActionsExample() {
 ;<LineActionsExample />
 ```
 
+# Action Bar
+
+This feature allows users to add custom action bars.
+
+```js
+const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
+const useCheckboxTree = require('../EXPERIMENTAL_useCheckboxTree/index.tsx')
+  .default
+const Toggle = require('../Toggle/index.js').default
+const data = require('./sampleData.ts')
+
+const columns = [
+  {
+    id: 'name',
+    title: 'Name',
+  },
+  {
+    id: 'manufacturer',
+    title: 'Manufacturer',
+  },
+  {
+    id: 'qty',
+    title: 'Qty',
+  },
+]
+
+const items = data.products
+
+const { ActionBar } = Table
+
+function ActionBarExample() {
+  const [active, setActive] = React.useState(false)
+  const isDisabled = () => !active
+  const measures = useTableMeasures({ size: items.length })
+  const checkboxes = useCheckboxTree({ columns, items, isDisabled })
+
+  return (
+    <Table
+      checkboxes={checkboxes}
+      measures={measures}
+      items={items}
+      columns={columns}>
+      <ActionBar>
+        <Toggle
+          checked={active}
+          label={active ? 'Disable checkboxes' : 'Enable checkboxes'}
+          onChange={() => setActive(active => !active)}
+        />
+      </ActionBar>
+    </Table>
+  )
+}
+;<ActionBarExample />
+```
+
 # Filter Bar
 
 ```js
