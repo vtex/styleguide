@@ -3,17 +3,15 @@ import classnames from 'classnames'
 
 import { NAMESPACES, ORDER_CLASSNAMES } from './constants'
 
-const MARGIN_BOTTOM = 'mb5'
-
 const ActionBar: React.FC<ActionBarProps> = ({
   id = NAMESPACES.GENERIC_ACTION_BAR,
   order = ORDER_CLASSNAMES.GENERIC_ACTION_BAR,
-  className = '',
+  className,
   noMargin = false,
   children,
   ...props
 }) => {
-  const classes = classnames(className, { [MARGIN_BOTTOM]: !noMargin }, order)
+  const classes = classnames(className, { mb5: !noMargin }, order)
   return (
     <div id={id} className={classes} {...props}>
       {children}
