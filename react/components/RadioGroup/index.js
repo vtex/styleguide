@@ -20,19 +20,9 @@ class RadioGroup extends React.Component {
       testId,
       size,
     } = this.props
-    let labelClasses = 'vtex-input__label db mb3 w-100 c-on-base '
 
-    switch (size) {
-      case 'small':
-        labelClasses += 't-small '
-        break
-      case 'large':
-        labelClasses += 't-body '
-        break
-      default:
-        labelClasses += 't-small '
-        break
-    }
+    const large = size === 'large'
+
     return (
       <div>
         <fieldset
@@ -40,7 +30,15 @@ class RadioGroup extends React.Component {
           data-testid={testId}
           style={{ border: 'none', padding: 0 }}>
           <legend>
-            {label && <span className={labelClasses}>{label}</span>}
+            {label && (
+              <span
+                className={classNames(
+                  'vtex-input__label db mb3 w-100 c-on-base',
+                  { 't-body': large, 't-small': !large }
+                )}>
+                {label}
+              </span>
+            )}
           </legend>
           {options.map((option, i) => {
             const isFirst = i === 0
