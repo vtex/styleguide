@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.108.2] - 2020-01-31
+
+### Changed
+
+- Toolbar buttons default size is now regular.
+
 ## [9.108.1] - 2020-01-30
 
 ### Changed
