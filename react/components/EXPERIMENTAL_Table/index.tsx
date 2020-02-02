@@ -141,9 +141,8 @@ export type TableComposites = {
 
 export type Items = object[]
 
-export type CellData = {
-  cellData: unknown
-  rowData: unknown
+export type ReturnedData = {
+  data: unknown | object
   rowHeight: number
   currentDensity: Density
   motion: ReturnType<typeof useTableMotion>
@@ -154,7 +153,9 @@ export type Column = {
   title?: string | Element | Function
   width?: number | string
   sortable?: boolean
-  cellRenderer?: (cellData: CellData) => React.ReactNode
+  cellRenderer?: (data: ReturnedData) => React.ReactNode
+  extended?: boolean
+  condensed?: string[]
 }
 
 Table.Toolbar = Toolbar

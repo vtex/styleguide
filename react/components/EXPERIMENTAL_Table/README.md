@@ -8,8 +8,7 @@ type Column = {
   title?: string | Element
   width?: number
   cellRenderer?: ({
-    cellData: unknown
-    rowData: unknown
+    data: unknown
     rowHeight: number
     currentDensity: 'compact' | 'regular' | 'comfortable'
   }) => React.ReactNode
@@ -35,9 +34,8 @@ type Column = {
 
 - Customize the render method of a single column cell.
 - It receives a function that returns a node (react component).
-- The function has the following params: ({ cellData, rowData, rowHeight, currentDensity })
-  - cellData: the value of the current cell.
-  - rowData: the value of the current row.
+- The function has the following params: ({ data, rowHeight, currentDensity })
+  - data: the value of the current cell.
   - rowHeight: current height of the row.
   - currentDensity: current table density.
 - The default is rendering the value as a string.
@@ -107,7 +105,7 @@ const heroColumns: Array<Column> = [
     id: 'age',
     title: 'Age',
     /** Custom renderer for age prop */
-    cellRenderer: ({ cellData: age }) => {
+    cellRenderer: ({ data: age }) => {
       const bgColor = age > 18 ? '#F71963' : '#134CD8'
       return (
         <Tag color="#FFFFFF" bgColor={bgColor}>
@@ -151,7 +149,7 @@ const heroColumns = [
   {
     id: 'age',
     title: 'Age',
-    cellRenderer: ({ cellData: age }) => {
+    cellRenderer: ({ data: age }) => {
       const bgColor = age > 18 ? '#F71963' : '#134CD8'
       return (
         <Tag color="#FFFFFF" bgColor={bgColor}>
@@ -230,7 +228,7 @@ const heroColumns = [
   {
     id: 'age',
     title: 'Age',
-    cellRenderer: ({ cellData: age }) => {
+    cellRenderer: ({ data: age }) => {
       const bgColor = age > 18 ? '#F71963' : '#134CD8'
       return (
         <Tag color="#FFFFFF" bgColor={bgColor}>
@@ -494,15 +492,15 @@ const items = [
   },
 ]
 
-function cellRenderer({ cellData, currentDensity }) {
+function cellRenderer({ data, currentDensity }) {
   const confortable = currentDensity === 'comfortable'
 
   return confortable ? (
     <div className="dib">
-      <div className="db ws-normal tj">{cellData}</div>
+      <div className="db ws-normal tj">{data}</div>
     </div>
   ) : (
-    <div className="dib mw6 truncate">{cellData}</div>
+    <div className="dib mw6 truncate">{data}</div>
   )
 }
 
@@ -967,12 +965,12 @@ const columns = [
   {
     id: 'costPrice',
     title: 'Cost',
-    cellRenderer: ({ cellData }) => <Currency value={cellData} />,
+    cellRenderer: ({ data }) => <Currency value={data} />,
   },
   {
     id: 'retailPrice',
     title: 'Retail',
-    cellRenderer: ({ cellData }) => <Currency value={cellData} />,
+    cellRenderer: ({ data }) => <Currency value={data} />,
   },
 ]
 
@@ -1132,10 +1130,8 @@ function ActionsExample() {
   )
 }
 
-function currencyRenderer({ cellData, rowData }) {
-  const { costPrice } = rowData
-  const className = cellData < costPrice ? 'red' : ''
-  return <span className={className}>$ {parseFloat(cellData).toFixed(2)}</span>
+function currencyRenderer({ data }) {
+  return <span>$ {parseFloat(data).toFixed(2)}</span>
 }
 
 function useProducts() {
@@ -1540,10 +1536,8 @@ function BulkFullExample() {
   )
 }
 
-function currencyRenderer({ cellData, rowData }) {
-  const { costPrice } = rowData
-  const className = cellData < costPrice ? 'red' : ''
-  return <span className={className}>$ {parseFloat(cellData).toFixed(2)}</span>
+function currencyRenderer({ data }) {
+  return <span>$ {parseFloat(data).toFixed(2)}</span>
 }
 
 function useModal() {
@@ -1611,10 +1605,10 @@ This feature creates a last extra column with an ActionMenu component per line.
 
 ```js
 // Imports
-const useTableLineActions = require('./hooks/useTableLineActions.tsx').default
 const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
+const ActionMenu = require('../ActionMenu/index.js').default
+const OptionsDots = require('../icon/OptionsDots/index.js').default
 
-// Define the columns
 const columns = [
   {
     id: 'name',
@@ -1625,16 +1619,41 @@ const columns = [
     title: 'Email',
   },
   {
-    id: 'number',
-    title: 'Number',
-  },
-  {
     id: 'country',
     title: 'Country',
   },
+  {
+    id: 'actions',
+    title: '',
+    cellRenderer: ({ data }) => {
+      return (
+        <ActionMenu
+          buttonProps={{
+            variation: 'tertiary',
+            icon: <OptionsDots />,
+          }}
+          options={[
+            {
+              label: 'Action 1',
+              onClick: () =>
+                alert(`Executed action for ${data.name} from ${data.country}`),
+            },
+            {
+              label: 'DANGEROUS Action',
+              isDangerous: true,
+              onClick: () =>
+                alert(
+                  `Executed a DANGEROUS action for ${data.name} from ${data.country}`
+                ),
+            },
+          ]}
+        />
+      )
+    },
+    extended: true,
+  },
 ]
 
-// Define the items
 const items = [
   {
     id: 1,
@@ -1667,33 +1686,9 @@ const items = [
 ]
 
 function LineActionsExample() {
-  const lineActions = [
-    {
-      label: 'Action 1',
-      onClick: ({ rowData }) => alert(`Executed action for ${rowData.name}`),
-    },
-    {
-      label: 'DANGEROUS Action',
-      isDangerous: true,
-      onClick: ({ rowData }) =>
-        alert(`Executed a DANGEROUS action for ${rowData.name}`),
-    },
-  ]
-
-  const { itemsWithLineActions, columnsWithLineActions } = useTableLineActions({
-    items,
-    columns,
-    lineActions,
-  })
   const measures = useTableMeasures({ size: items.length })
 
-  return (
-    <Table
-      measures={measures}
-      items={itemsWithLineActions}
-      columns={columnsWithLineActions}
-    />
-  )
+  return <Table measures={measures} items={items} columns={columns} />
 }
 ;<LineActionsExample />
 ```
