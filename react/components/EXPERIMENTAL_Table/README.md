@@ -40,6 +40,100 @@ type Column = {
   - currentDensity: current table density.
 - The default is rendering the value as a string.
 
+# Extended Columns
+
+[TODO] - Text
+
+```js
+// Imports
+const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
+const ActionMenu = require('../ActionMenu/index.js').default
+const OptionsDots = require('../icon/OptionsDots/index.js').default
+
+const columns = [
+  {
+    id: 'name',
+    title: 'Name',
+  },
+  {
+    id: 'email',
+    title: 'Email',
+  },
+  {
+    id: 'country',
+    title: 'Country',
+  },
+  {
+    id: 'actions',
+    title: '',
+    cellRenderer: ({ data }) => {
+      return (
+        <ActionMenu
+          buttonProps={{
+            variation: 'tertiary',
+            icon: <OptionsDots />,
+          }}
+          options={[
+            {
+              label: 'Action 1',
+              onClick: () =>
+                alert(`Executed action for ${data.name} from ${data.country}`),
+            },
+            {
+              label: 'DANGEROUS Action',
+              isDangerous: true,
+              onClick: () =>
+                alert(
+                  `Executed a DANGEROUS action for ${data.name} from ${data.country}`
+                ),
+            },
+          ]}
+        />
+      )
+    },
+    extended: true,
+  },
+]
+
+const items = [
+  {
+    id: 1,
+    name: "T'Chala",
+    email: 'black.panther@gmail.com',
+    number: 1.88191,
+    country: '🇰🇪Wakanda',
+  },
+  {
+    id: 2,
+    name: 'Peter Parker',
+    email: 'spider.man@gmail.com',
+    number: 3.09191,
+    country: '🇺🇸USA',
+  },
+  {
+    id: 3,
+    name: 'Shang-Chi',
+    email: 'kungfu.master@gmail.com',
+    number: 39.09222,
+    country: '🇨🇳China',
+  },
+  {
+    id: 4,
+    name: 'Natasha Romanoff',
+    email: 'black.widow@gmail.com',
+    number: 5.09291,
+    country: '🇷🇺Russia',
+  },
+]
+
+function LineActionsExample() {
+  const measures = useTableMeasures({ size: items.length })
+
+  return <Table measures={measures} items={items} columns={columns} />
+}
+;<LineActionsExample />
+```
+
 To illustrate this info, let's suppose we have a list of heroes, each one with properties `name`, `email`, `age` and `country`:
 
 ```ts
@@ -1597,100 +1691,6 @@ function useProducts() {
 }
 
 ;<BulkFullExample />
-```
-
-# Line actions
-
-This feature creates a last extra column with an ActionMenu component per line.
-
-```js
-// Imports
-const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
-const ActionMenu = require('../ActionMenu/index.js').default
-const OptionsDots = require('../icon/OptionsDots/index.js').default
-
-const columns = [
-  {
-    id: 'name',
-    title: 'Name',
-  },
-  {
-    id: 'email',
-    title: 'Email',
-  },
-  {
-    id: 'country',
-    title: 'Country',
-  },
-  {
-    id: 'actions',
-    title: '',
-    cellRenderer: ({ data }) => {
-      return (
-        <ActionMenu
-          buttonProps={{
-            variation: 'tertiary',
-            icon: <OptionsDots />,
-          }}
-          options={[
-            {
-              label: 'Action 1',
-              onClick: () =>
-                alert(`Executed action for ${data.name} from ${data.country}`),
-            },
-            {
-              label: 'DANGEROUS Action',
-              isDangerous: true,
-              onClick: () =>
-                alert(
-                  `Executed a DANGEROUS action for ${data.name} from ${data.country}`
-                ),
-            },
-          ]}
-        />
-      )
-    },
-    extended: true,
-  },
-]
-
-const items = [
-  {
-    id: 1,
-    name: "T'Chala",
-    email: 'black.panther@gmail.com',
-    number: 1.88191,
-    country: '🇰🇪Wakanda',
-  },
-  {
-    id: 2,
-    name: 'Peter Parker',
-    email: 'spider.man@gmail.com',
-    number: 3.09191,
-    country: '🇺🇸USA',
-  },
-  {
-    id: 3,
-    name: 'Shang-Chi',
-    email: 'kungfu.master@gmail.com',
-    number: 39.09222,
-    country: '🇨🇳China',
-  },
-  {
-    id: 4,
-    name: 'Natasha Romanoff',
-    email: 'black.widow@gmail.com',
-    number: 5.09291,
-    country: '🇷🇺Russia',
-  },
-]
-
-function LineActionsExample() {
-  const measures = useTableMeasures({ size: items.length })
-
-  return <Table measures={measures} items={items} columns={columns} />
-}
-;<LineActionsExample />
 ```
 
 # Action Bar
