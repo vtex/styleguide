@@ -87,7 +87,6 @@ export const tablePropTypes = {
   checkboxes: PropTypes.any,
   measures: PropTypes.shape(measuresPropTypes),
   rowKey: PropTypes.func,
-  containerHeight: PropTypes.number,
   empty: PropTypes.bool,
   columns: PropTypes.arrayOf(
     PropTypes.shape({
@@ -109,7 +108,6 @@ export const tablePropTypes = {
     }),
     PropTypes.bool,
   ]),
-  itemsSizeEstimate: PropTypes.number,
   onRowClick: PropTypes.func,
   isRowActive: PropTypes.func,
   emptyState: PropTypes.shape({
