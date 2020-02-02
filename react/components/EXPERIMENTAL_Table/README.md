@@ -134,6 +134,59 @@ function LineActionsExample() {
 ;<LineActionsExample />
 ```
 
+# Condensed Columns
+
+[TODO] - Text
+
+```js
+const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
+const data = require('./sampleData.ts')
+
+const columns = [
+  {
+    id: 'name',
+    title: 'Name',
+  },
+  {
+    id: 'qty',
+    title: 'Qty',
+  },
+  {
+    id: 'costPrice',
+    title: 'Cost',
+  },
+  {
+    id: 'retailPrice',
+    title: 'Retail',
+  },
+  {
+    id: 'profit',
+    title: 'Profit per item',
+    condensed: ['retailPrice', 'costPrice'],
+    cellRenderer: ({ data }) => {
+      const { costPrice, retailPrice } = data
+      const profit = parseFloat(retailPrice) - parseFloat(costPrice)
+      return <Currency value={profit} />
+    },
+  },
+]
+
+const formatCurrency = value => parseFloat(value).toFixed(2)
+
+function Currency({ value }) {
+  return <span>$ {formatCurrency(value)}</span>
+}
+
+const items = data.products
+
+function CondensedExample() {
+  const measures = useTableMeasures({ size: items.length })
+
+  return <Table measures={measures} items={items} columns={columns} />
+}
+;<CondensedExample />
+```
+
 To illustrate this info, let's suppose we have a list of heroes, each one with properties `name`, `email`, `age` and `country`:
 
 ```ts
