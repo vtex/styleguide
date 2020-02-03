@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+
 # Columns
 
 The `columns` property is an `Array` used to define the table columns and how they should behave visually. Each column describes each item field should be handled by the `Table`.
@@ -86,10 +88,13 @@ const columns = [
   },
   {
 # Simple
+=======
+#### A table displays any kind of structured data and offers controls to easily navigate, search and filter through it. Data may be from just numbers to complex entities that employ other components to represent itself, like images, tags, links, etc.
+>>>>>>> Added feature and state handler docs
 
-Empty states can also be customized, the passed children will be rendered inside an EmptyState component.
+# Table Props
 
-⚠️ Customize the empty state using just the `emptyState` prop, so the other table features will behave correctly (e.g. the topbar, pagination, and totalizers).
+This example, showcase the table using all of its simple props that are `loading`, `emptyState`, `onRowClick`, `columns`, `measures` and `items`
 
 ```js
 const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
@@ -235,9 +240,7 @@ function SipleExample() {
 
 # State handlers
 
-## Measures
-
-[TODO] This is the most basic handler. As the name suggests, it controlls the measures of the table.
+## useTableMeasures
 
 ```ts
 enum Density {
@@ -390,9 +393,7 @@ function MeasuresExample() {
 ;<MeasuresExample />
 ```
 
-## Proportion
-
-[TODO] - TEXT
+## useTableProportion
 
 ### Inputs
 
@@ -507,6 +508,8 @@ function ProportionExample() {
 ;<ClickExample />
 ```
 
+<<<<<<< HEAD
+
 # Sortable
 
 =======
@@ -517,6 +520,7 @@ ratio: currentRatio.value,
 
 return (
 <>
+
 <div className="mb5">
 <ButtonGroup
 buttons={ratios.map(ratio => (
@@ -540,6 +544,9 @@ Ratio: {ratio.title}
 ## Sort
 
 [TODO] - TEXT
+=======
+## useTableSort
+>>>>>>> Added feature and state handler docs
 
 ```ts
 enum SortOrder {
@@ -649,8 +656,15 @@ function SortExample() {
 ```
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 # Proportion
+
+=======
+
+## useTableVisibility
+
+> > > > > > > Added feature and state handler docs
 
 ```js
 const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
@@ -1311,6 +1325,7 @@ visibility,
 
 return (
 <>
+
 <Table
         measures={measures}
         columns={visibility.visibleColumns}
@@ -1701,7 +1716,159 @@ function BulkModalExample() {
 ;<BulkModalExample />
 ```
 
+<<<<<<< HEAD
+
 ### Full Example
+
+=======
+
+# Features
+
+<div className="center mw7 pv6">
+  ![](./table.png)
+</div>
+
+## Toolbar
+
+The toolbar is a bundle of features, including search input, autocomplete, columns visibility toggler, density controls, import and export buttons, extra actions menu using ActionMenu component and a newLine button to help with entry creation (you can see the illustrative diagram in the begining of the page for a better visualization of this structure)
+
+#### InputSearch
+
+- A wrapper around `InputSearch` component. The props are the same.
+
+#### InputAutocomplete
+
+- A wrapper around `AutocompleteInput` component. The props are the same.
+
+#### Buttom Group
+
+Represents the group of buttom located at the right. It has other composites that are described down bellow.
+
+##### Columns
+
+- Button that toggles columns visibility.
+- Is recommended to combine it with the `useTableVisiblitity` hook.
+
+```ts
+enum Alignment {
+  Left = 'left',
+  Right = 'right',
+}
+```
+
+| Property     | Type                         | Required | Default | Description                      |
+| ------------ | ---------------------------- | -------- | ------- | -------------------------------- |
+| label        | string                       | ✅       | 🚫      | General label                    |
+| showAllLabel | string                       | ✅       | 🚫      | Label for show all button        |
+| hideAllLabel | string                       | ✅       | 🚫      | Label for hide all button        |
+| visibility   | Return of useTableVisibility | ✅       | 🚫      | Visibility of the columns        |
+| alignMenu    | Alignment                    | 🚫       | 🚫      | Menu alignment                   |
+| disabeld     | boolean                      | 🚫       | false   | If the button is disabled or not |
+
+##### Density
+
+- Button that changes the rows density.
+- Is recommended to combine it with the `useTableMeasures` hook.
+
+```ts
+enum Alignment {
+  Left = 'left',
+  Right = 'right',
+}
+
+enum Density {
+  Compact = 'compact',
+  Regular = 'regular',
+  Comfortable = 'comfortable',
+}
+```
+
+| Property         | Type                       | Required | Default | Description                      |
+| ---------------- | -------------------------- | -------- | ------- | -------------------------------- |
+| density          | Return of useTableMeasures | ✅       | 🚫      | Density object                   |
+| compactLabel     | string                     | ✅       | 🚫      | Label of the compact option      |
+| regularLabel     | string                     | ✅       | 🚫      | Label of the regular option      |
+| comfortableLabel | string                     | ✅       | 🚫      | Label of the comfortable option  |
+| alignMenu        | Alignment                  | 🚫       | 🚫      | Menu alignment                   |
+| handleCallback   | (density: Density) => void | 🚫       | 🚫      | Triggered on change density      |
+| disabeld         | boolean                    | 🚫       | false   | If the button is disabled or not |
+
+##### Download
+
+- Button to handle download or export actions.
+
+| Property | Type       | Required | Default | Description                      |
+| -------- | ---------- | -------- | ------- | -------------------------------- |
+| onClick  | () => void | ✅       | 🚫      | Action on click button           |
+| label    | string     | 🚫       | 🚫      | Button text                      |
+| disabeld | boolean    | 🚫       | false   | If the button is disabled or not |
+
+##### Upload
+
+- Button to handle upload or import actions.
+
+| Property | Type       | Required | Default | Description                      |
+| -------- | ---------- | -------- | ------- | -------------------------------- |
+| onClick  | () => void | ✅       | 🚫      | Action on click button           |
+| label    | string     | 🚫       | 🚫      | Button text                      |
+| disabeld | boolean    | 🚫       | false   | If the button is disabled or not |
+
+##### ExtraActions
+
+- Button to perform extra actions.
+
+```ts
+enum Alignment {
+  Left = 'left',
+  Right = 'right',
+}
+
+type MenuAction = {
+  label: string
+  onClick: Function
+  toggle?: {
+    checked: boolean
+    semantic: boolean
+  }
+  id?: number | string
+}
+```
+
+| Property  | Type         | Required | Default | Description                      |
+| --------- | ------------ | -------- | ------- | -------------------------------- |
+| actions   | MenuAction[] | ✅       | 🚫      | Action on click button           |
+| label     | string       | 🚫       | 🚫      | Button label                     |
+| isLoading | boolean      | 🚫       | false   | If the button is loading or not  |
+| disabeld  | boolean      | 🚫       | false   | If the button is disabled or not |
+| alignMenu | Alignment    | 🚫       | 🚫      | Menu alignment                   |
+
+##### NewLine
+
+- A button that represents creational purposes.
+
+```ts
+type MenuAction = {
+  label: string
+  onClick: Function
+  toggle?: {
+    checked: boolean
+    semantic: boolean
+  }
+  id?: number | string
+}
+```
+
+| Property  | Type         | Required | Default | Description                      |
+| --------- | ------------ | -------- | ------- | -------------------------------- |
+| onClick   | () => void   | ✅       | 🚫      | Action on click button           |
+| label     | string       | 🚫       | 🚫      | Button text                      |
+| actions   | MenuAction[] | 🚫       | 🚫      | Action on click button           |
+| isLoading | boolean      | 🚫       | false   | If the button is loading or not  |
+| disabeld  | boolean      | 🚫       | false   | If the button is disabled or not |
+
+#### Working example
+
+> > > > > > > Added feature and state handler docs
 
 ```js
 const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
@@ -2132,7 +2299,7 @@ function ToolbarExample() {
 
 ## Totalizer
 
-[TODO] - Text
+This uses the Totalizer component between the toolbar and the table content. You can find the full specs on the Totalizer specific docs.
 
 ```js
 const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
@@ -2235,7 +2402,69 @@ function TotalizerExample() {
 
 ## Bulk Actions
 
-[TODO] - Text
+- Bulk actions allow the user to select some or all the rows to apply an action.
+- It is recommended the usage along with the `EXPERIMENTAL_useCheckboxTree` hook which has its docs.
+- Like the `Toolbar`, `BulkActions` is a compound component.
+
+#### Actions
+
+##### Primary
+
+- Button to handle primary.
+
+| Property | Type       | Required | Default | Description            |
+| -------- | ---------- | -------- | ------- | ---------------------- |
+| label    | string     | ✅       | 🚫      | Button text            |
+| onClick  | () => void | ✅       | 🚫      | Action on click button |
+
+##### Secondary
+
+- Button to handle secondary actions.
+
+| Property      | Type                    | Required | Default | Description             |
+| ------------- | ----------------------- | -------- | ------- | ----------------------- |
+| label         | string                  | ✅       | 🚫      | Button text             |
+| onClick       | () => void              | ✅       | 🚫      | Action on click button  |
+| onActionClick | (e: MenuAction) => void | 🚫       | 🚫      | Action on click actions |
+
+#### Tail
+
+##### Info
+
+- Displays information of any kind.
+- Often used to display selected rows count.
+
+| Property | Type           | Required | Default | Description     |
+| -------- | -------------- | -------- | ------- | --------------- |
+| children | React.ReacNode | 🚫       | 🚫      | Info to display |
+
+##### Toggle
+
+- Action that hiden when active, showing it's children.
+- If is inactive, shows a Button.
+
+```ts
+type Button = {
+  text: string
+  onClick: () => void
+}
+```
+
+| Property | Type           | Required | Default | Description                   |
+| -------- | -------------- | -------- | ------- | ----------------------------- |
+| button   | Button         | ✅       | 🚫      | Button props                  |
+| active   | boolean        | 🚫       | false   | Action on click button        |
+| children | React.ReacNode | 🚫       | 🚫      | Item to show when is inactive |
+
+##### Dismiss
+
+- Button to handle download or export actions.
+
+| Property | Type       | Required | Default | Description            |
+| -------- | ---------- | -------- | ------- | ---------------------- |
+| onClick  | () => void | ✅       | 🚫      | Action on click button |
+
+#### Working Example
 
 ```js
 const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
@@ -2397,7 +2626,7 @@ function BulkFullExample() {
 
 ## Autocomplete, Filters & Pagination
 
-[TODO] - TEXT
+These components are grouped on one single example because they are often seen together on a real app. Each one has it's own documentation, so it's important to you check it out to see the full capabilities.
 
 ```js
 const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
@@ -2423,6 +2652,7 @@ const columns = [
 
 const items = data.customers
 
+/** hook that handles pagination state */
 function usePagination(initialSize, items) {
   const [state, setState] = React.useState({
     tableSize: initialSize,
@@ -2432,6 +2662,7 @@ function usePagination(initialSize, items) {
     slicedItems: [...items].slice(0, initialSize),
   })
 
+  /** resets state on items change */
   React.useEffect(() => {
     setState({
       tableSize: initialSize,
@@ -2442,6 +2673,7 @@ function usePagination(initialSize, items) {
     })
   }, [items])
 
+  /** gets the next page */
   const onNextClick = React.useCallback(() => {
     const newPage = state.currentPage + 1
     const itemFrom = state.currentItemTo + 1
@@ -2456,6 +2688,7 @@ function usePagination(initialSize, items) {
     }))
   }, [state, items])
 
+  /** gets the previous page */
   const onPrevClick = React.useCallback(() => {
     if (state.currentPage === 0) return
     const newPage = state.currentPage - 1
@@ -2471,6 +2704,7 @@ function usePagination(initialSize, items) {
     }))
   }, [state, items])
 
+  /** deals rows change of Pagination component */
   const onRowsChange = React.useCallback(
     (e, value) => {
       const rowValue = parseInt(value)
@@ -2494,18 +2728,29 @@ function usePagination(initialSize, items) {
 
 function PaginationExample() {
   const ITEMS_PER_PAGE = 5
+
+  /** handles sizes */
   const measures = useTableMeasures({ size: ITEMS_PER_PAGE })
+
+  /** handles filtering */
   const [filteredItems, setFilteredItems] = React.useState(items)
   const [filterStatements, setFilterStatements] = React.useState([])
+
+  /* handles pagination */
   const { slicedItems, ...paginationProps } = usePagination(
     ITEMS_PER_PAGE,
     filteredItems
   )
+
+  /** handles proportion consistency on change pages */
   const { sizedColumns } = useTableProportion({ columns, ratio: [1, 1] })
+
+  /** handles autocomplete */
   const [term, setTerm] = React.useState('')
   const [loading, setLoading] = React.useState(false)
   const timeoutRef = React.useRef(null)
 
+  /** props of the PaginationComponent */
   const pagination = {
     ...paginationProps,
     textOf: 'of',
@@ -2514,6 +2759,7 @@ function PaginationExample() {
     totalItems: filteredItems.length,
   }
 
+  /** function to handle filter changes more info @ Styleguides FilterBar docs */
   function handleFiltersChange(statements = []) {
     let newData = items.slice()
     statements.forEach(st => {
@@ -2547,6 +2793,7 @@ function PaginationExample() {
     setFilterStatements(statements)
   }
 
+  /** FilterBar props */
   const filters = {
     alwaysVisibleFilters: ['name', 'location'],
     statements: filterStatements,
@@ -2596,6 +2843,7 @@ function PaginationExample() {
     },
   }
 
+  /** Autocomplete options prop */
   const options = {
     onSelect: (...args) => console.log('onSelect: ', ...args),
     loading,
@@ -2610,6 +2858,7 @@ function PaginationExample() {
           ),
   }
 
+  /** Autocomplete input prop */
   const input = {
     onChange: term => {
       if (term) {
@@ -2643,6 +2892,7 @@ function PaginationExample() {
   )
 }
 
+/** simple input renderer */
 function simpleInputObject({ values, onChangeObjectCallback }) {
   return (
     <Input
@@ -2652,6 +2902,7 @@ function simpleInputObject({ values, onChangeObjectCallback }) {
   )
 }
 
+/** simple input verbs renderer */
 function simpleInputVerbsAndLabel() {
   return {
     renderFilterLabel: st => {
@@ -2692,6 +2943,7 @@ function simpleInputVerbsAndLabel() {
   }
 }
 
+/** location input renderer */
 function locationSelectorObject({ values, onChangeObjectCallback }) {
   const initialValue = {
     '🇰🇪Wakanda': true,
