@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- `index.js` file to import components the same way as in VTEX IO.
+
+### Fixed
+
+- Fix imports that were breaking when using components outside VTEX IO.
+
 ## [9.108.6] - 2020-02-03
 
 ### Added
