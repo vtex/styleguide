@@ -1904,6 +1904,7 @@ const columns = [
     title: 'Retail',
     cellRenderer: currencyRenderer,
   },
+<<<<<<< HEAD
 ]
 
 function BulkFullExample() {
@@ -2124,6 +2125,8 @@ const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
 const Input = require('../Input').default
 const Checkbox = require('../Checkbox').default
 
+=======
+>>>>>>> Fixed rebase problems
   {
     id: 'name',
     title: 'Name',
@@ -2989,6 +2992,8 @@ function locationSelectorObject({ values, onChangeObjectCallback }) {
 ;<PaginationExample />
 ```
 
+<<<<<<< HEAD
+
 # 📚 Migration Guide
 
 This section is designed to `Table V1` users that desire to upgrade and enjoy the `V2` benefits. Will be discussed the key differences between the two. The reading of the V2 documentation is essential, though.
@@ -3050,4 +3055,61 @@ We can conclude that:
   - 🚫 `updateCellMeasurements` is deprecated
 - 🚫 The `minWidth` is deprecated.
 - 🚫 `headerRight` is deprecated
-- 🚫 `headerRenderer` is deprecated since its job is done by title.
+- # 🚫 `headerRenderer` is deprecated since its job is done by title.
+
+# Action Bar
+
+This feature allows users to add custom action bars.
+
+```js
+const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
+const useCheckboxTree = require('../EXPERIMENTAL_useCheckboxTree/index.tsx')
+  .default
+const Toggle = require('../Toggle/index.js').default
+const data = require('./sampleData.ts')
+
+const columns = [
+  {
+    id: 'name',
+    title: 'Name',
+  },
+  {
+    id: 'manufacturer',
+    title: 'Manufacturer',
+  },
+  {
+    id: 'qty',
+    title: 'Qty',
+  },
+]
+
+const items = data.products
+
+const { ActionBar } = Table
+
+function ActionBarExample() {
+  const [active, setActive] = React.useState(false)
+  const isDisabled = () => !active
+  const measures = useTableMeasures({ size: items.length })
+  const checkboxes = useCheckboxTree({ columns, items, isDisabled })
+
+  return (
+    <Table
+      checkboxes={checkboxes}
+      measures={measures}
+      items={items}
+      columns={columns}>
+      <ActionBar>
+        <Toggle
+          checked={active}
+          label={active ? 'Disable checkboxes' : 'Enable checkboxes'}
+          onChange={() => setActive(active => !active)}
+        />
+      </ActionBar>
+    </Table>
+  )
+}
+;<ActionBarExample />
+```
+
+> > > > > > > Fixed rebase problems
