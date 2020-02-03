@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import pick from 'lodash/pick'
 
 import Row, { RowProps, ROW_TRANSITIONS } from './Row'
 import { Column, Items } from '../index'
@@ -46,16 +47,19 @@ const Rows: FC<RowsProps> = ({
             motion={motion}>
             {columns.map((column: Column, cellIndex: number) => {
               const { cellRenderer, width } = column
-              const cellData = rowData[column.id]
+              const data = column.condensed
+                ? pick(rowData, column.condensed)
+                : column.extended
+                ? rowData
+                : rowData[column.id]
               const content = cellRenderer
                 ? cellRenderer({
-                    cellData,
-                    rowData,
+                    data,
                     rowHeight,
                     currentDensity,
                     motion,
                   })
-                : cellData
+                : data
               return (
                 <Row.Cell {...cellProps} key={column.id} width={width}>
                   {cellIndex === 0 && checkboxes && (

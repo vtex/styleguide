@@ -1,6 +1,6 @@
 {
   "name": "@vtex/styleguide",
-  "version": "9.108.4",
+  "version": "9.108.5",
   "scripts": {
     "lint": "eslint react --ext js,jsx,ts,tsx",
     "test": "node config/test.js",

@@ -1,320 +1,176 @@
-## Columns
+# Columns
 
 The `columns` property is an `Array` used to define the table columns and how they should behave visually. Each column describes each item field should be handled by the `Table`.
 
 ```ts
+type ReturnedData = {
+  data: unknown | object
+  rowHeight: number
+  currentDensity: Density
+  motion: ReturnType<typeof useTableMotion>
+}
+
 type Column = {
   id?: string
-  title?: string | Element
-  width?: number
-  cellRenderer?: ({
-    cellData: unknown
-    rowData: unknown
-    rowHeight: number
-    currentDensity: 'compact' | 'regular' | 'comfortable'
-  }) => React.ReactNode
+  title?: string | Element | Function
+  width?: number | string
+  cellRenderer?: (data: ReturnedData) => React.ReactNode
+  sortable?: boolean
+  extended?: boolean
+  condensed?: string[]
 }
 ```
 
 ##### id
 
-- Defines the property name.
-- This property is required.
+- Defines the property name that the column represents.
+- This property is required and must be a string.
 
 ##### title
 
 - Controls the title which appears on the table Header.
-- It can receive either a string or element.
+- It can receive either a string or an element.
 
 ##### width
 
 - Defines a fixed width for the specific column.
+- Receives either a string or number.
 - By default, the column's width is defined to fit the available space without breaking the content.
 
 ##### cellRenderer
 
 - Customize the render method of a single column cell.
 - It receives a function that returns a node (react component).
-- The function has the following params: ({ cellData, rowData, rowHeight, currentDensity })
-  - cellData: the value of the current cell.
-  - rowData: the value of the current row.
-  - rowHeight: current height of the row.
-  - currentDensity: current table density.
+- The function has the following params: ({ data, rowHeight, currentDensity, motion })
+- data: the value of the current cell.
+- rowHeight: current height of the row.
+- currentDensity: current table density.
+- motion: current row motion, that can be used by internal elements.
 - The default is rendering the value as a string.
 
-To illustrate this info, let's suppose we have a list of heroes, each one with properties `name`, `email`, `age` and `country`:
+##### Sortable
 
-```ts
-type Hero = {
-  name: string
-  email: string
-  age: number
-  country: string
-}
+- Indicates if the table can be sorted using this column as a reference.
 
-const heroes: Array<Hero> = [
-  {
-    name: "T'Chala",
-    email: 'black.panther@gmail.com',
-    age: 31,
-    country: '🇰🇪Wakanda',
-  },
-  {
-    name: 'Peter Parker',
-    email: 'spider.man@gmail.com',
-    age: 17,
-    country: '🇺🇸USA',
-  },
-  {
-    name: 'Natasha Romanoff',
-    email: 'black.widow@gmail.com',
-    age: 29,
-    country: '🇷🇺Russia',
-  },
-]
-```
+##### Extended
 
-To allow us to see the `Column` features, let's imagine some specifications:
+- Indicates if a column is extended or not.
+- It is generally used to express actions or general information about each row.
 
-- The `name` should be rendered as simple as possible
-- The `email` header should contain 💌 emoji
-- Age should be rendered inside of a `Tag` component with de `bgColor` blue for underage heroes and pink for the older age.
-- The header title for `country` prop should be 'Nationality'.
+##### Condensed
 
-Given these, the columns would be:
+- Indicates if a column is condensed or not.
+- Condensed columns are a combination of two or more columns.
+- It's important to notice that it must have it's ID to represent the join.
+- It receives an array of string, which are the props that will compose the `data` object.
 
-```ts
-const heroColumns: Array<Column> = [
-  {
-    /** Definitions for the name prop */
-    id: 'name',
-    title: 'Name',
-  },
-  {
-    /** Definitions for the email prop */
-    id: 'email',
-    /** Custom renderer for email prop */
-    title: () => {
-      return (
-        <React.Fragment>
-          <Emoji symbol="💌" label="mail" /> Email
-        </React.Fragment>
-      )
-    },
-  },
-  {
-    /** Definitions for the age prop */
-    id: 'age',
-    title: 'Age',
-    /** Custom renderer for age prop */
-    cellRenderer: ({ cellData: age }) => {
-      const bgColor = age > 18 ? '#F71963' : '#134CD8'
-      return (
-        <Tag color="#FFFFFF" bgColor={bgColor}>
-          {age} years
-        </Tag>
-      )
-    },
-  },
-  {
-    /** Definitions for the country prop */
-    id: 'country',
-    /** This means that the title shown for the country property will be Nationality */
-    title: 'Nationality',
-  },
-]
-```
+#### Live example
 
-##### Working example:
+This live example features all columns props (unless `sortable`, which will be discussed in the `Sort` section).
 
 ```js
 const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
-const Tag = require('../Tag/index.js').default
+const ActionMenu = require('../ActionMenu/index.js').default
+const OptionsDots = require('../icon/OptionsDots/index.js').default
+const data = require('./sampleData.ts')
 
-function Email() {
-  return (
-    <React.Fragment>
-      <Emoji symbol="💌" label="mail" /> Email
-    </React.Fragment>
-  )
-}
-
-const heroColumns = [
+/** Columns definition, must be an array */
+const columns = [
+  {
+    /** Prop that this column represents */
+    id: 'id',
+    /** Title that will appear on Header */
+    title: 'ID',
+    /** Fixed width */
+    width: '3rem',
+  },
   {
     id: 'name',
     title: 'Name',
   },
   {
-    id: 'email',
-    title: <Email />,
+    id: 'qty',
+    title: 'Qty',
   },
   {
-    id: 'age',
-    title: 'Age',
-    cellRenderer: ({ cellData: age }) => {
-      const bgColor = age > 18 ? '#F71963' : '#134CD8'
-      return (
-        <Tag color="#FFFFFF" bgColor={bgColor}>
-          {age} years
-        </Tag>
-      )
+    id: 'costPrice',
+    title: 'Cost',
+    /** Cellrenderer using the default data, which is costPrice in this case */
+    cellRenderer: ({ data }) => <Currency value={data} />,
+  },
+  {
+    id: 'retailPrice',
+    title: 'Retail',
+    cellRenderer: ({ data }) => <Currency value={data} />,
+  },
+  {
+    id: 'profit',
+    /** This is a custom title */
+    title: <ProfitTitle />,
+    /** Profit is a condensed column generated using retailPrice and costPrice props */
+    condensed: ['retailPrice', 'costPrice'],
+    cellRenderer: ({ data }) => {
+      /** As you can see the data is the object of the two props */
+      const { costPrice, retailPrice } = data
+      const profit = parseFloat(retailPrice) - parseFloat(costPrice)
+      return <Currency value={profit} />
     },
   },
   {
-    id: 'country',
-    title: 'Nationality',
+    id: 'actions',
+    width: '3rem',
+    cellRenderer: props => <Actions {...props} />,
+    /** This column is extended, its data is the entire row */
+    extended: true,
   },
 ]
 
-const heroes = [
-  {
-    id: 1,
-    name: "T'Chala",
-    email: 'black.panther@gmail.com',
-    age: 31,
-    country: '🇰🇪Wakanda',
-  },
-  {
-    id: 2,
-    name: 'Peter Parker',
-    email: 'spider.man@gmail.com',
-    age: 17,
-    country: '🇺🇸USA',
-  },
-  {
-    id: 3,
-    name: 'Natasha Romanoff',
-    email: 'black.widow@gmail.com',
-    age: 29,
-    country: '🇷🇺Russia',
-  },
-]
+function ProfitTitle() {
+  return <>💸 Profit</>
+}
 
-function Emoji({ symbol, label = '' }) {
+const formatCurrency = value => parseFloat(value).toFixed(2)
+
+function Currency({ value }) {
+  return <span>$ {formatCurrency(value)}</span>
+}
+
+function Actions({ data }) {
   return (
-    <span role="img" arial-label={label} aria-hidden={label ? 'false' : 'true'}>
-      {symbol}
-    </span>
+    <ActionMenu
+      buttonProps={{
+        variation: 'tertiary',
+        icon: <OptionsDots />,
+      }}
+      options={[
+        {
+          label: 'Action 1',
+          onClick: () =>
+            alert(
+              `Executed action for ${data.name} of price ${data.retailPrice}`
+            ),
+        },
+        {
+          label: 'DANGEROUS Action',
+          isDangerous: true,
+          onClick: () =>
+            alert(
+              `Executed a DANGEROUS action for ${data.name} of price ${data.retailPrice}`
+            ),
+        },
+      ]}
+    />
   )
 }
 
-function SimpleExample() {
-  const measures = useTableMeasures({
-    size: heroes.length,
-  })
+const items = data.products
 
-  return <Table measures={measures} columns={heroColumns} items={heroes} />
+function ColumnsExample() {
+  /** The useTableMeasures hook will be discussed on the Measures section */
+  const measures = useTableMeasures({ size: items.length })
+  return <Table measures={measures} items={items} columns={columns} />
 }
-;<SimpleExample />
-```
-
-##### Toggle visibility
-
-It is possible to show/hide columns. This can be done using the `EXPERIMENTAL_useTableVisibility` hook and the `Columns` button (part of the `Toolbar`). Check the working example below:
-
-```js
-const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
-const useTableVisibility = require('./hooks/useTableVisibility.ts').default
-
-const Tag = require('../Tag/index.js').default
-
-const heroColumns = [
-  {
-    id: 'name',
-    title: 'Name',
-  },
-  {
-    id: 'email',
-    title: <Email />,
-  },
-  {
-    id: 'age',
-    title: 'Age',
-    cellRenderer: ({ cellData: age }) => {
-      const bgColor = age > 18 ? '#F71963' : '#134CD8'
-      return (
-        <Tag color="#FFFFFF" bgColor={bgColor}>
-          {age} years
-        </Tag>
-      )
-    },
-  },
-  {
-    id: 'country',
-    title: 'Nationality',
-  },
-]
-
-const heroes = [
-  {
-    id: 1,
-    name: "T'Chala",
-    email: 'black.panther@gmail.com',
-    age: 31,
-    country: '🇰🇪Wakanda',
-  },
-  {
-    id: 2,
-    name: 'Peter Parker',
-    email: 'spider.man@gmail.com',
-    age: 17,
-    country: '🇺🇸USA',
-  },
-  {
-    id: 3,
-    name: 'Natasha Romanoff',
-    email: 'black.widow@gmail.com',
-    age: 29,
-    country: '🇷🇺Russia',
-  },
-]
-
-function Email() {
-  return (
-    <span>
-      <Emoji symbol="💌" label="mail" /> Email
-    </span>
-  )
-}
-
-function Emoji({ symbol, label = '' }) {
-  return (
-    <span role="img" arial-label={label} aria-hidden={label ? 'false' : 'true'}>
-      {symbol}
-    </span>
-  )
-}
-
-function ToggleColumnsExample() {
-  const visibility = useTableVisibility({
-    columns: heroColumns,
-  })
-
-  const measures = useTableMeasures({
-    size: heroes.length,
-  })
-
-  const buttonColumns = {
-    label: 'Toggle visible fields',
-    showAllLabel: 'Show All',
-    hideAllLabel: 'Hide All',
-    visibility,
-  }
-
-  return (
-    <Table
-      measures={measures}
-      items={heroes}
-      columns={visibility.visibleColumns}>
-      <Table.Toolbar>
-        <Table.Toolbar.ButtonGroup>
-          <Table.Toolbar.ButtonGroup.Columns {...buttonColumns} />
-        </Table.Toolbar.ButtonGroup>
-      </Table.Toolbar>
-    </Table>
-  )
-}
-;<ToggleColumnsExample />
+;<ColumnsExample />
 ```
 
 # Features
@@ -494,15 +350,15 @@ const items = [
   },
 ]
 
-function cellRenderer({ cellData, currentDensity }) {
+function cellRenderer({ data, currentDensity }) {
   const confortable = currentDensity === 'comfortable'
 
   return confortable ? (
     <div className="dib">
-      <div className="db ws-normal tj">{cellData}</div>
+      <div className="db ws-normal tj">{data}</div>
     </div>
   ) : (
-    <div className="dib mw6 truncate">{cellData}</div>
+    <div className="dib mw6 truncate">{data}</div>
   )
 }
 
@@ -967,12 +823,12 @@ const columns = [
   {
     id: 'costPrice',
     title: 'Cost',
-    cellRenderer: ({ cellData }) => <Currency value={cellData} />,
+    cellRenderer: ({ data }) => <Currency value={data} />,
   },
   {
     id: 'retailPrice',
     title: 'Retail',
-    cellRenderer: ({ cellData }) => <Currency value={cellData} />,
+    cellRenderer: ({ data }) => <Currency value={data} />,
   },
 ]
 
@@ -1132,10 +988,8 @@ function ActionsExample() {
   )
 }
 
-function currencyRenderer({ cellData, rowData }) {
-  const { costPrice } = rowData
-  const className = cellData < costPrice ? 'red' : ''
-  return <span className={className}>$ {parseFloat(cellData).toFixed(2)}</span>
+function currencyRenderer({ data }) {
+  return <span>$ {parseFloat(data).toFixed(2)}</span>
 }
 
 function useProducts() {
@@ -1540,10 +1394,8 @@ function BulkFullExample() {
   )
 }
 
-function currencyRenderer({ cellData, rowData }) {
-  const { costPrice } = rowData
-  const className = cellData < costPrice ? 'red' : ''
-  return <span className={className}>$ {parseFloat(cellData).toFixed(2)}</span>
+function currencyRenderer({ data }) {
+  return <span>$ {parseFloat(data).toFixed(2)}</span>
 }
 
 function useModal() {
@@ -1603,99 +1455,6 @@ function useProducts() {
 }
 
 ;<BulkFullExample />
-```
-
-# Line actions
-
-This feature creates a last extra column with an ActionMenu component per line.
-
-```js
-// Imports
-const useTableLineActions = require('./hooks/useTableLineActions.tsx').default
-const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
-
-// Define the columns
-const columns = [
-  {
-    id: 'name',
-    title: 'Name',
-  },
-  {
-    id: 'email',
-    title: 'Email',
-  },
-  {
-    id: 'number',
-    title: 'Number',
-  },
-  {
-    id: 'country',
-    title: 'Country',
-  },
-]
-
-// Define the items
-const items = [
-  {
-    id: 1,
-    name: "T'Chala",
-    email: 'black.panther@gmail.com',
-    number: 1.88191,
-    country: '🇰🇪Wakanda',
-  },
-  {
-    id: 2,
-    name: 'Peter Parker',
-    email: 'spider.man@gmail.com',
-    number: 3.09191,
-    country: '🇺🇸USA',
-  },
-  {
-    id: 3,
-    name: 'Shang-Chi',
-    email: 'kungfu.master@gmail.com',
-    number: 39.09222,
-    country: '🇨🇳China',
-  },
-  {
-    id: 4,
-    name: 'Natasha Romanoff',
-    email: 'black.widow@gmail.com',
-    number: 5.09291,
-    country: '🇷🇺Russia',
-  },
-]
-
-function LineActionsExample() {
-  const lineActions = [
-    {
-      label: 'Action 1',
-      onClick: ({ rowData }) => alert(`Executed action for ${rowData.name}`),
-    },
-    {
-      label: 'DANGEROUS Action',
-      isDangerous: true,
-      onClick: ({ rowData }) =>
-        alert(`Executed a DANGEROUS action for ${rowData.name}`),
-    },
-  ]
-
-  const { itemsWithLineActions, columnsWithLineActions } = useTableLineActions({
-    items,
-    columns,
-    lineActions,
-  })
-  const measures = useTableMeasures({ size: items.length })
-
-  return (
-    <Table
-      measures={measures}
-      items={itemsWithLineActions}
-      columns={columnsWithLineActions}
-    />
-  )
-}
-;<LineActionsExample />
 ```
 
 # Action Bar
@@ -2385,3 +2144,66 @@ function InputAutocompleteExample() {
 }
 ;<InputAutocompleteExample />
 ```
+
+# 📚 Migration Guide
+
+This section is designed to `Table V1` users that desire to upgrade and enjoy the `V2` benefits. Will be discussed the key differences between the two. The reading of the V2 documentation is essential, though.
+
+### Schema vs Columns
+
+The V1 introduced the concept of the table schema, which was a JSON object of type:
+
+```ts
+type Schema = {
+  properties: {
+    [key: string]: {
+      title: string
+      width: number
+      minWidth: number
+      cellRenderer: ({
+        cellData,
+        rowData,
+        updateCellMeasurements,
+      }) => React.ReactNode
+      headerRight: boolean
+      sortable: boolean
+      headerRenderer: ({ columnIndex, key, title }) => React.ReactNode
+    }
+  }
+}
+```
+
+The V2 take on the same problem is the `columns` property, which is an array of columns of type:
+
+```ts
+type Column = {
+  id?: string
+  title?: string | Element | Function
+  width?: number | string
+  cellRenderer?: ({
+    data: unknown | object
+    rowHeight: number
+    currentDensity: Density
+    motion: ReturnType<typeof useTableMotion>
+  }) => React.ReactNode
+  sortable?: boolean
+  extended?: boolean
+  condensed?: string[]
+}
+```
+
+We can conclude that:
+
+- ➕ The `title` now supports strings or objects.
+- ➕ The `width` that was a number, is now a string or a number.
+- ➕ We have two new props: `extended` and `condensed`, to handle what rowData was supposed to deal with.
+- ♻️ The `key` was converted to an `id` prop of the column object.
+- ♻️ `sortable` is kept and did not even change its purpose or type.
+- The `cellRenderer` props:
+  - ➕ The cell can react to `rowHeight`, `currentDensity` and `motion`.
+  - ♻️ `cellData` is now called `data`
+  - 🚫 `rowData` is deprecated
+  - 🚫 `updateCellMeasurements` is deprecated
+- 🚫 The `minWidth` is deprecated.
+- 🚫 `headerRight` is deprecated
+- 🚫 `headerRenderer` is deprecated since its job is done by title.
