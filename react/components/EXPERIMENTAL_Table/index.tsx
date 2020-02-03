@@ -13,6 +13,7 @@ import { DENSITY_OPTIONS, Density } from './hooks/useTableMeasures'
 import { Checkboxes } from '../EXPERIMENTAL_useCheckboxTree/types'
 import useTableMotion from './hooks/useTableMotion'
 import Totalizer, { TotalizerProps } from './Totalizer'
+import ActionBar, { ActionBarProps } from './ActionBar'
 
 const Table: FC<TableProps> & TableComposites = ({
   children,
@@ -135,6 +136,7 @@ export type TableComposites = {
   Pagination?: FC<PaginationProps>
   Bulk?: FC
   Totalizer?: FC<TotalizerProps>
+  ActionBar?: FC<ActionBarProps>
 }
 
 export type Items = object[]
@@ -161,6 +163,7 @@ Table.Totalizer = Totalizer
 Table.Pagination = Pagination
 Table.propTypes = tablePropTypes
 Table.Bulk = BulkActions
+Table.ActionBar = ActionBar
 
 Table.defaultProps = {
   rowKey: ({ rowData }) => `row-${rowData.id}`,

@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.108.4] - 2020-02-03
+
+### Added
+
+- `ActionBar` to `EXPERIMENTAL_Table`.
+
 ## [9.108.3] - 2020-02-03
 
 ### Added
@@ -16,7 +22,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 - `RadioGroup` is now surrounded with a `<fieldset>` tag
-
 
 ## [9.108.2] - 2020-01-31
 
