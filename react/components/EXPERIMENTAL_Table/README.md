@@ -1,148 +1,89 @@
-## Columns
+# Columns
 
 The `columns` property is an `Array` used to define the table columns and how they should behave visually. Each column describes each item field should be handled by the `Table`.
 
 ```ts
-type Column = {
+export type ReturnedData = {
+  data: unknown | object
+  rowHeight: number
+  currentDensity: Density
+  motion: ReturnType<typeof useTableMotion>
+}
+
+export type Column = {
   id?: string
-  title?: string | Element
-  width?: number
-  cellRenderer?: ({
-    data: unknown
-    rowHeight: number
-    currentDensity: 'compact' | 'regular' | 'comfortable'
-  }) => React.ReactNode
+  title?: string | Element | Function
+  width?: number | string
+  cellRenderer?: (data: ReturnedData) => React.ReactNode
+  sortable?: boolean
+  extended?: boolean
+  condensed?: string[]
 }
 ```
 
 ##### id
 
-- Defines the property name.
-- This property is required.
+- Defines the property name that the column represents.
+- This property is required and must be a string.
 
 ##### title
 
 - Controls the title which appears on the table Header.
-- It can receive either a string or element.
+- It can receive either a string or an element.
 
 ##### width
 
 - Defines a fixed width for the specific column.
+- Receives either a string or number.
 - By default, the column's width is defined to fit the available space without breaking the content.
 
 ##### cellRenderer
 
 - Customize the render method of a single column cell.
 - It receives a function that returns a node (react component).
-- The function has the following params: ({ data, rowHeight, currentDensity })
-  - data: the value of the current cell.
-  - rowHeight: current height of the row.
-  - currentDensity: current table density.
+- The function has the following params: ({ data, rowHeight, currentDensity, motion })
+- data: the value of the current cell.
+- rowHeight: current height of the row.
+- currentDensity: current table density.
+- motion: current row motion, that can be used by internal elements.
 - The default is rendering the value as a string.
 
-# Extended Columns
+##### Sortable
 
-[TODO] - Text
+- Indicates if the table can be sorted using this column as a reference.
+
+##### Extended
+
+- Indicates if a column is extended or not.
+- It is generally used to express actions or general information about each row.
+
+##### Condensed
+
+- Indicates if a column is condensed or not.
+- Condensed columns are a combination of two or more columns.
+- It's important to notice that it must have it's ID to represent the join.
+- It receives an array of string, which are the props that will compose the `data` object.
+
+#### Live example
+
+This live example features all columns props (unless `sortable`, which will be discussed in the `Sort` section).
 
 ```js
-// Imports
 const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
 const ActionMenu = require('../ActionMenu/index.js').default
 const OptionsDots = require('../icon/OptionsDots/index.js').default
-
-const columns = [
-  {
-    id: 'name',
-    title: 'Name',
-  },
-  {
-    id: 'email',
-    title: 'Email',
-  },
-  {
-    id: 'country',
-    title: 'Country',
-  },
-  {
-    id: 'actions',
-    title: '',
-    cellRenderer: ({ data }) => {
-      return (
-        <ActionMenu
-          buttonProps={{
-            variation: 'tertiary',
-            icon: <OptionsDots />,
-          }}
-          options={[
-            {
-              label: 'Action 1',
-              onClick: () =>
-                alert(`Executed action for ${data.name} from ${data.country}`),
-            },
-            {
-              label: 'DANGEROUS Action',
-              isDangerous: true,
-              onClick: () =>
-                alert(
-                  `Executed a DANGEROUS action for ${data.name} from ${data.country}`
-                ),
-            },
-          ]}
-        />
-      )
-    },
-    extended: true,
-  },
-]
-
-const items = [
-  {
-    id: 1,
-    name: "T'Chala",
-    email: 'black.panther@gmail.com',
-    number: 1.88191,
-    country: '🇰🇪Wakanda',
-  },
-  {
-    id: 2,
-    name: 'Peter Parker',
-    email: 'spider.man@gmail.com',
-    number: 3.09191,
-    country: '🇺🇸USA',
-  },
-  {
-    id: 3,
-    name: 'Shang-Chi',
-    email: 'kungfu.master@gmail.com',
-    number: 39.09222,
-    country: '🇨🇳China',
-  },
-  {
-    id: 4,
-    name: 'Natasha Romanoff',
-    email: 'black.widow@gmail.com',
-    number: 5.09291,
-    country: '🇷🇺Russia',
-  },
-]
-
-function LineActionsExample() {
-  const measures = useTableMeasures({ size: items.length })
-
-  return <Table measures={measures} items={items} columns={columns} />
-}
-;<LineActionsExample />
-```
-
-# Condensed Columns
-
-[TODO] - Text
-
-```js
-const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
 const data = require('./sampleData.ts')
 
+/** Columns definition, must be an array */
 const columns = [
+  {
+    /** Prop that this column represents */
+    id: 'id',
+    /** Title that will appear on Header */
+    title: 'ID',
+    /** Fixed width */
+    width: '3rem',
+  },
   {
     id: 'name',
     title: 'Name',
@@ -154,22 +95,39 @@ const columns = [
   {
     id: 'costPrice',
     title: 'Cost',
+    /** Cellrenderer using the default data, which is costPrice in this case */
+    cellRenderer: ({ data }) => <Currency value={data} />,
   },
   {
     id: 'retailPrice',
     title: 'Retail',
+    cellRenderer: ({ data }) => <Currency value={data} />,
   },
   {
     id: 'profit',
-    title: 'Profit per item',
+    /** This is a custom title */
+    title: <ProfitTitle />,
+    /** Profit is a condensed column generated using retailPrice and costPrice props */
     condensed: ['retailPrice', 'costPrice'],
     cellRenderer: ({ data }) => {
+      /** As you can see the data is the object of the two props */
       const { costPrice, retailPrice } = data
       const profit = parseFloat(retailPrice) - parseFloat(costPrice)
       return <Currency value={profit} />
     },
   },
+  {
+    id: 'actions',
+    width: '3rem',
+    cellRenderer: props => <Actions {...props} />,
+    /** This column is extended, its data is the entire row */
+    extended: true,
+  },
 ]
+
+function ProfitTitle() {
+  return <>💸 Profit</>
+}
 
 const formatCurrency = value => parseFloat(value).toFixed(2)
 
@@ -177,289 +135,42 @@ function Currency({ value }) {
   return <span>$ {formatCurrency(value)}</span>
 }
 
+function Actions({ data }) {
+  return (
+    <ActionMenu
+      buttonProps={{
+        variation: 'tertiary',
+        icon: <OptionsDots />,
+      }}
+      options={[
+        {
+          label: 'Action 1',
+          onClick: () =>
+            alert(
+              `Executed action for ${data.name} of price ${data.retailPrice}`
+            ),
+        },
+        {
+          label: 'DANGEROUS Action',
+          isDangerous: true,
+          onClick: () =>
+            alert(
+              `Executed a DANGEROUS action for ${data.name} of price ${data.retailPrice}`
+            ),
+        },
+      ]}
+    />
+  )
+}
+
 const items = data.products
 
-function CondensedExample() {
+function ColumnsExample() {
+  /** The useTableMeasures hook will be discussed on the Measures section */
   const measures = useTableMeasures({ size: items.length })
-
   return <Table measures={measures} items={items} columns={columns} />
 }
-;<CondensedExample />
-```
-
-To illustrate this info, let's suppose we have a list of heroes, each one with properties `name`, `email`, `age` and `country`:
-
-```ts
-type Hero = {
-  name: string
-  email: string
-  age: number
-  country: string
-}
-
-const heroes: Array<Hero> = [
-  {
-    name: "T'Chala",
-    email: 'black.panther@gmail.com',
-    age: 31,
-    country: '🇰🇪Wakanda',
-  },
-  {
-    name: 'Peter Parker',
-    email: 'spider.man@gmail.com',
-    age: 17,
-    country: '🇺🇸USA',
-  },
-  {
-    name: 'Natasha Romanoff',
-    email: 'black.widow@gmail.com',
-    age: 29,
-    country: '🇷🇺Russia',
-  },
-]
-```
-
-To allow us to see the `Column` features, let's imagine some specifications:
-
-- The `name` should be rendered as simple as possible
-- The `email` header should contain 💌 emoji
-- Age should be rendered inside of a `Tag` component with de `bgColor` blue for underage heroes and pink for the older age.
-- The header title for `country` prop should be 'Nationality'.
-
-Given these, the columns would be:
-
-```ts
-const heroColumns: Array<Column> = [
-  {
-    /** Definitions for the name prop */
-    id: 'name',
-    title: 'Name',
-  },
-  {
-    /** Definitions for the email prop */
-    id: 'email',
-    /** Custom renderer for email prop */
-    title: () => {
-      return (
-        <React.Fragment>
-          <Emoji symbol="💌" label="mail" /> Email
-        </React.Fragment>
-      )
-    },
-  },
-  {
-    /** Definitions for the age prop */
-    id: 'age',
-    title: 'Age',
-    /** Custom renderer for age prop */
-    cellRenderer: ({ data: age }) => {
-      const bgColor = age > 18 ? '#F71963' : '#134CD8'
-      return (
-        <Tag color="#FFFFFF" bgColor={bgColor}>
-          {age} years
-        </Tag>
-      )
-    },
-  },
-  {
-    /** Definitions for the country prop */
-    id: 'country',
-    /** This means that the title shown for the country property will be Nationality */
-    title: 'Nationality',
-  },
-]
-```
-
-##### Working example:
-
-```js
-const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
-const Tag = require('../Tag/index.js').default
-
-function Email() {
-  return (
-    <React.Fragment>
-      <Emoji symbol="💌" label="mail" /> Email
-    </React.Fragment>
-  )
-}
-
-const heroColumns = [
-  {
-    id: 'name',
-    title: 'Name',
-  },
-  {
-    id: 'email',
-    title: <Email />,
-  },
-  {
-    id: 'age',
-    title: 'Age',
-    cellRenderer: ({ data: age }) => {
-      const bgColor = age > 18 ? '#F71963' : '#134CD8'
-      return (
-        <Tag color="#FFFFFF" bgColor={bgColor}>
-          {age} years
-        </Tag>
-      )
-    },
-  },
-  {
-    id: 'country',
-    title: 'Nationality',
-  },
-]
-
-const heroes = [
-  {
-    id: 1,
-    name: "T'Chala",
-    email: 'black.panther@gmail.com',
-    age: 31,
-    country: '🇰🇪Wakanda',
-  },
-  {
-    id: 2,
-    name: 'Peter Parker',
-    email: 'spider.man@gmail.com',
-    age: 17,
-    country: '🇺🇸USA',
-  },
-  {
-    id: 3,
-    name: 'Natasha Romanoff',
-    email: 'black.widow@gmail.com',
-    age: 29,
-    country: '🇷🇺Russia',
-  },
-]
-
-function Emoji({ symbol, label = '' }) {
-  return (
-    <span role="img" arial-label={label} aria-hidden={label ? 'false' : 'true'}>
-      {symbol}
-    </span>
-  )
-}
-
-function SimpleExample() {
-  const measures = useTableMeasures({
-    size: heroes.length,
-  })
-
-  return <Table measures={measures} columns={heroColumns} items={heroes} />
-}
-;<SimpleExample />
-```
-
-##### Toggle visibility
-
-It is possible to show/hide columns. This can be done using the `EXPERIMENTAL_useTableVisibility` hook and the `Columns` button (part of the `Toolbar`). Check the working example below:
-
-```js
-const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
-const useTableVisibility = require('./hooks/useTableVisibility.ts').default
-
-const Tag = require('../Tag/index.js').default
-
-const heroColumns = [
-  {
-    id: 'name',
-    title: 'Name',
-  },
-  {
-    id: 'email',
-    title: <Email />,
-  },
-  {
-    id: 'age',
-    title: 'Age',
-    cellRenderer: ({ data: age }) => {
-      const bgColor = age > 18 ? '#F71963' : '#134CD8'
-      return (
-        <Tag color="#FFFFFF" bgColor={bgColor}>
-          {age} years
-        </Tag>
-      )
-    },
-  },
-  {
-    id: 'country',
-    title: 'Nationality',
-  },
-]
-
-const heroes = [
-  {
-    id: 1,
-    name: "T'Chala",
-    email: 'black.panther@gmail.com',
-    age: 31,
-    country: '🇰🇪Wakanda',
-  },
-  {
-    id: 2,
-    name: 'Peter Parker',
-    email: 'spider.man@gmail.com',
-    age: 17,
-    country: '🇺🇸USA',
-  },
-  {
-    id: 3,
-    name: 'Natasha Romanoff',
-    email: 'black.widow@gmail.com',
-    age: 29,
-    country: '🇷🇺Russia',
-  },
-]
-
-function Email() {
-  return (
-    <span>
-      <Emoji symbol="💌" label="mail" /> Email
-    </span>
-  )
-}
-
-function Emoji({ symbol, label = '' }) {
-  return (
-    <span role="img" arial-label={label} aria-hidden={label ? 'false' : 'true'}>
-      {symbol}
-    </span>
-  )
-}
-
-function ToggleColumnsExample() {
-  const visibility = useTableVisibility({
-    columns: heroColumns,
-  })
-
-  const measures = useTableMeasures({
-    size: heroes.length,
-  })
-
-  const buttonColumns = {
-    label: 'Toggle visible fields',
-    showAllLabel: 'Show All',
-    hideAllLabel: 'Hide All',
-    visibility,
-  }
-
-  return (
-    <Table
-      measures={measures}
-      items={heroes}
-      columns={visibility.visibleColumns}>
-      <Table.Toolbar>
-        <Table.Toolbar.ButtonGroup>
-          <Table.Toolbar.ButtonGroup.Columns {...buttonColumns} />
-        </Table.Toolbar.ButtonGroup>
-      </Table.Toolbar>
-    </Table>
-  )
-}
-;<ToggleColumnsExample />
+;<ColumnsExample />
 ```
 
 # Features

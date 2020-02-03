@@ -1,6 +1,7 @@
 import React, { FC, useCallback } from 'react'
 import uuid from 'uuid'
 import isEmpty from 'lodash/isEmpty'
+import pick from 'lodash/pick'
 
 import Row, { ROW_TRANSITIONS } from '../../EXPERIMENTAL_Table/DataTable/Row'
 import CollapseToggle from './CollapseToggle'
@@ -56,11 +57,14 @@ const Node: FC<NodeProps> = ({
         active={isRowSelected}>
         {columns.map((column: Column, cellIndex: number) => {
           const { cellRenderer, width } = column
-          const cellData = data[column.id]
+          const cellData = column.condensed
+            ? pick(data, column.condensed)
+            : column.extended
+            ? data
+            : data[column.id]
           const content = cellRenderer
             ? cellRenderer({
-                cellData,
-                rowData: data,
+                data: cellData,
                 rowHeight,
                 currentDensity,
                 motion,

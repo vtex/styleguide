@@ -100,6 +100,8 @@ export const tablePropTypes = {
       width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
       sortable: PropTypes.bool,
       cellRenderer: PropTypes.func,
+      extended: PropTypes.bool,
+      condensed: PropTypes.arrayOf(PropTypes.string),
     })
   ),
   items: PropTypes.arrayOf(PropTypes.object),
