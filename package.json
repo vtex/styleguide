@@ -23,6 +23,7 @@
     "prettier-conflict-check": "eslint --print-config .eslintrc | eslint-config-prettier-check",
     "postinstall": "yarn --cwd react --ignore-scripts"
   },
+  "main": "./lib/index.js",
   "files": [
     "lib/",
     "modules/",
