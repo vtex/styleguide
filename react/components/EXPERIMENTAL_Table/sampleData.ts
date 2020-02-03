@@ -70,3 +70,153 @@ export const products = [
     wholesalePrice: 950,
   },
 ]
+
+export const payments = [
+  {
+    id: 1,
+    icon: 'FaCcPaypal',
+    name: 'Paypal',
+    status: 'ACTIVE',
+  },
+  {
+    id: 2,
+    icon: 'FaCcMastercard',
+    name: 'Mastercard',
+    status: 'ACTIVE',
+  },
+  {
+    id: 3,
+    icon: 'FaCcDinersClub',
+    name: 'Dinners Club',
+    status: 'ACTIVE',
+  },
+  {
+    id: 4,
+    icon: 'FaCcDiscover',
+    name: 'Discover',
+    status: 'INACTIVE',
+  },
+  {
+    id: 5,
+    icon: 'FaCcAmazonPay',
+    name: 'Amazon Pay',
+    status: 'INACTIVE',
+  },
+  {
+    id: 6,
+    icon: 'FaCcApplePay',
+    name: 'Apple Pay',
+    status: 'ACTIVE',
+  },
+  {
+    id: 7,
+    icon: 'FaCcVisa',
+    name: 'Visa',
+    status: 'ACTIVE',
+  },
+  {
+    id: 8,
+    icon: 'FaCcAmex',
+    name: 'American Express',
+    status: 'INACTIVE',
+  },
+]
+
+export const customers = [
+  {
+    id: 1,
+    name: "T'Chala",
+    email: 'black.panther@gmail.com',
+    location: '🇰🇪Wakanda',
+  },
+  {
+    id: 2,
+    name: 'Peter Parker',
+    email: 'spider.man@gmail.com',
+    location: '🇺🇸USA',
+  },
+  {
+    id: 3,
+    name: 'Shang-Chi',
+    email: 'kung.fu@gmail.com',
+    location: '🇨🇳China',
+  },
+  {
+    id: 4,
+    name: 'Natasha Romanoff',
+    email: 'black.widown@gmail.com',
+    location: '🇷🇺Russia',
+  },
+  {
+    id: 5,
+    name: 'Stephen Strange',
+    email: 'dr.strange@gmail.com',
+    location: '🇺🇸USA',
+  },
+  {
+    id: 6,
+    name: 'Steve Rogers',
+    email: 'cap.america@gmail.com',
+    location: '🇺🇸USA',
+  },
+  {
+    id: 7,
+    name: 'Abdul Alhazred',
+    email: 'abdul@gmail.com',
+    location: '🇸🇦Saudi Arabia',
+  },
+  {
+    id: 8,
+    name: 'Carol Danvers',
+    email: 'cap.marvel@gmail.com',
+    location: '🇺🇸USA',
+  },
+  {
+    id: 9,
+    name: 'Scott Lang',
+    email: 'ant.man@gmail.com',
+    location: '🇺🇸USA',
+  },
+  {
+    id: 10,
+    name: 'En Sabah Nuh',
+    email: 'sabah@gmail.com',
+    location: '🇨🇺Cuba',
+  },
+  {
+    id: 11,
+    name: 'Abdul Qamar',
+    email: 'qamar@gmail.com',
+    location: '🇸🇦Saudi Arabia',
+  },
+  {
+    id: 12,
+    name: 'Goose the Cat',
+    email: 'meow@gmail.com',
+    location: '🇺🇸USA',
+  },
+  {
+    id: 13,
+    name: 'Brian Braddock',
+    email: 'cap.britain@gmail.com',
+    location: '🇬🇧Great Britain',
+  },
+  {
+    id: 14,
+    name: 'Marc Spector',
+    email: 'moon.knight@gmail.com',
+    location: '🇺🇸USA',
+  },
+  {
+    id: 15,
+    name: 'John Walker',
+    email: 'american.agent@gmail.com',
+    location: '🇺🇸USA',
+  },
+  {
+    id: 16,
+    name: 'Dane Whitman',
+    email: 'black.knight@gmail.com',
+    location: '🇺🇸USA',
+  },
+]

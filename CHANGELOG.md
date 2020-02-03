@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.108.6] - 2020-02-03
+
+### Added
+
+- `EXPERIMENTAL_Table` state handlers documentation.
+
 ## [9.108.5] - 2020-02-03
 
 ### Added
