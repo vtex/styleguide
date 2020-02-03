@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- `EXPERIMENTAL_Table` features documentation.
+- `EXPERIMENTAL_Table` state handlers documentation.
 
 ## [9.108.5] - 2020-02-03
 

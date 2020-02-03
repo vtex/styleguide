@@ -1718,6 +1718,8 @@ function BulkModalExample() {
 
 <<<<<<< HEAD
 
+<<<<<<< HEAD
+
 ### Full Example
 
 =======
@@ -3112,4 +3114,6 @@ function ActionBarExample() {
 ;<ActionBarExample />
 ```
 
-> > > > > > > Fixed rebase problems
+> > > > > > > # Fixed rebase problems
+> > > > > > >
+> > > > > > > State handlers docs
