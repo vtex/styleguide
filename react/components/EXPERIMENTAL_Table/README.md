@@ -1,4 +1,4 @@
-#### A table displays any kind of structured data and offers controls to easily navigate, search and filter through it. Data may be from just numbers to complex entities that employ other components to represent itself, like images, tags, links, etc.
+#### A table displays any kind of structured data and offers controls to easily navigate, search and filter through it. Data may be from just numbers to complex entities that employ other components to represent themselves, like images, tags, links, etc.
 
 # Columns
 
@@ -645,12 +645,12 @@ function VisibilityExample() {
 # Features
 
 <div className="center mw7 pv6">
-  ![](./table.png)
+ ![](./table.png)
 </div>
 
 ## Toolbar
 
-The toolbar is a bundle of features, including search input, autocomplete, columns visibility toggler, density controls, import and export buttons, extra actions menu using ActionMenu component and a newLine button to help with entry creation (you can see the illustrative diagram in the begining of the page for a better visualization of this structure)
+The toolbar is a bundle of features, including search input, autocomplete, columns visibility toggle, density controls, import and export buttons, extra actions menu using ActionMenu component and a newLine button to help with entry creation (you can see the illustrative diagram in the beginning of the page for a better visualization of this structure)
 
 #### InputSearch
 
@@ -660,14 +660,14 @@ The toolbar is a bundle of features, including search input, autocomplete, colum
 
 - A wrapper around `AutocompleteInput` component. The props are the same.
 
-#### Buttom Group
+#### Button Group
 
-Represents the group of buttom located at the right. It has other composites that are described down bellow.
+Represents the group of buttons located at the right. It has other composites that are described down below.
 
 ##### Columns
 
-- Button that toggles columns visibility.
-- Is recommended to combine it with the `useTableVisiblitity` hook.
+- A button that toggles columns visibility.
+- It is recommended to combine it with the `useTableVisiblitity` hook.
 
 ```ts
 enum Alignment {
@@ -679,16 +679,16 @@ enum Alignment {
 | Property     | Type                         | Required | Default | Description                      |
 | ------------ | ---------------------------- | -------- | ------- | -------------------------------- |
 | label        | string                       | ✅       | 🚫      | General label                    |
-| showAllLabel | string                       | ✅       | 🚫      | Label for show all button        |
-| hideAllLabel | string                       | ✅       | 🚫      | Label for hide all button        |
+| showAllLabel | string                       | ✅       | 🚫      | Label for the show all button    |
+| hideAllLabel | string                       | ✅       | 🚫      | Label for the hide all button    |
 | visibility   | Return of useTableVisibility | ✅       | 🚫      | Visibility of the columns        |
 | alignMenu    | Alignment                    | 🚫       | 🚫      | Menu alignment                   |
-| disabeld     | boolean                      | 🚫       | false   | If the button is disabled or not |
+| disabled     | boolean                      | 🚫       | false   | If the button is disabled or not |
 
 ##### Density
 
-- Button that changes the rows density.
-- Is recommended to combine it with the `useTableMeasures` hook.
+- A button that changes the row's density.
+- It is recommended to combine it with the `useTableMeasures` hook.
 
 ```ts
 enum Alignment {
@@ -982,7 +982,7 @@ function ToolbarExample() {
 
 ## Totalizer
 
-This uses the Totalizer component between the toolbar and the table content. You can find the full specs on the Totalizer specific docs.
+This uses the Totalizer component between the toolbar and the table content. You can find the full specs on the [Totalizer specific docs](https://styleguide.vtex.com/#/Components/Display/Totalizer).
 
 ```js
 const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
@@ -1086,7 +1086,7 @@ function TotalizerExample() {
 ## Bulk Actions
 
 - Bulk actions allow the user to select some or all the rows to apply an action.
-- It is recommended the usage along with the `EXPERIMENTAL_useCheckboxTree` hook which has its docs.
+- It is recommended the usage along with the `EXPERIMENTAL_useCheckboxTree` hook which [has its docs](https://styleguide.vtex.com/#/Components/%F0%9F%91%BB%20Experimental/EXPERIMENTALUseCheckboxTree).
 - Like the `Toolbar`, `BulkActions` is a compound component.
 
 #### Actions
@@ -1123,8 +1123,8 @@ function TotalizerExample() {
 
 ##### Toggle
 
-- Action that hiden when active, showing it's children.
-- If is inactive, shows a Button.
+- Action that hidden when active, showing it's children.
+- It is inactive, shows a Button.
 
 ```ts
 type Button = {
@@ -1309,7 +1309,7 @@ function BulkFullExample() {
 
 ## Autocomplete, Filters & Pagination
 
-These components are grouped on one single example because they are often seen together on a real app. Each one has it's own documentation, so it's important to you check it out to see the full capabilities.
+Each component has it's own documentation ([Autocomplete](https://styleguide.vtex.com/#/Components/Forms/AutocompleteInput), [Filters](https://styleguide.vtex.com/#/Components/Display/FilterBar), [Pagination](https://styleguide.vtex.com/#/Components/Navigation/Pagination)), so it's important to you check it out to see the full capabilities.
 
 ```js
 const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
@@ -1801,7 +1801,7 @@ type Column = {
   id?: string
   title?: string | Element | Function
   width?: number | string
-  cellRenderer?: ({
+  cellRenderer?: (cellData: {
     data: unknown | object
     rowHeight: number
     currentDensity: Density
@@ -1821,10 +1821,10 @@ We can conclude that:
 - ♻️ The `key` was converted to an `id` prop of the column object.
 - ♻️ `sortable` is kept and did not even change its purpose or type.
 - The `cellRenderer` props:
-  - ➕ The cell can react to `rowHeight`, `currentDensity` and `motion`.
-  - ♻️ `cellData` is now called `data`
-  - 🚫 `rowData` is deprecated
-  - 🚫 `updateCellMeasurements` is deprecated
+- ➕ The cell can react to `rowHeight`, `currentDensity` and `motion`.
+- ♻️ `cellData` is now called `data`
+- 🚫 `rowData` is deprecated
+- 🚫 `updateCellMeasurements` is deprecated
 - 🚫 The `minWidth` is deprecated.
 - 🚫 `headerRight` is deprecated
 - 🚫 `headerRenderer` is deprecated since its job is done by title.
