@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-
 # Columns
 
 The `columns` property is an `Array` used to define the table columns and how they should behave visually. Each column describes each item field should be handled by the `Table`.
@@ -88,9 +86,7 @@ const columns = [
   },
   {
 # Simple
-=======
 #### A table displays any kind of structured data and offers controls to easily navigate, search and filter through it. Data may be from just numbers to complex entities that employ other components to represent itself, like images, tags, links, etc.
->>>>>>> Added feature and state handler docs
 
 # Table Props
 
@@ -149,7 +145,7 @@ function reducer(state, action) {
   }
 }
 
-function SipleExample() {
+function SimpleExample() {
   const measures = useTableMeasures({ size: items.length })
   const [
     { loading, customLoading, empty, customEmpty },
@@ -167,11 +163,11 @@ function SipleExample() {
   }
 
   const emptyState = {
-    label: 'This is an default empty state title',
+    label: 'This is a default empty state for title',
   }
 
   const customEmptyState = {
-    label: 'This is an default empty state title',
+    label: 'This is a default empty state for title',
     children: (
       <React.Fragment>
         <p>
@@ -235,8 +231,8 @@ function SipleExample() {
     </>
   )
 }
-;<SipleExample />
-````
+;<SimpleExample />
+```
 
 # State handlers
 
@@ -427,37 +423,6 @@ const columns = [
     title: 'Name',
   },
   {
-<<<<<<< HEAD
-    id: 'country',
-    title: 'Country',
-  },
-]
-
-const items = [
-  {
-    id: 1,
-    name: 'En Sabah Nuh',
-    country: '🇨🇺Cuba',
-  },
-  {
-    id: 2,
-    name: 'Abdul Qamar',
-    country: '🇸🇦Saudi Arabia',
-  },
-  {
-    id: 3,
-    name: 'Goose the Cat',
-    country: '🇺🇸USA',
-  },
-  {
-    id: 4,
-    name: 'Brian Braddock',
-    country: '🇬🇧Great Britain',
-  },
-]
-
-function ClickExample() {
-=======
     id: 'email',
     title: 'Email',
   },
@@ -485,7 +450,6 @@ const ratios = [
 
 function ProportionExample() {
   const [currentRatio, setCurrentRatio] = React.useState(ratios[0])
->>>>>>> Added examples and removed unused proptypes
   const measures = useTableMeasures({
     size: items.length,
   })
@@ -543,10 +507,11 @@ Ratio: {ratio.title}
 
 ## Sort
 
-[TODO] - TEXT
-=======
+# [TODO] - TEXT
+
 ## useTableSort
->>>>>>> Added feature and state handler docs
+
+> > > > > > > Added feature and state handler docs
 
 ```ts
 enum SortOrder {
@@ -560,7 +525,7 @@ type Sorted = {
   /** reference prop */
   by?: string
 }
-````
+```
 
 ### Outputs
 
