@@ -13,9 +13,9 @@ export { default as Checkbox } from './Checkbox'
 export { default as CheckboxGroup } from './CheckboxGroup'
 export { default as Collapsible } from './Collapsible'
 export { default as ColorPicker } from './ColorPicker'
-export { default as Conditions} from './Conditions'
+export { default as Conditions } from './Conditions'
 export { default as DatePicker } from './DatePicker'
-export { default as Divider} from './Divider'
+export { default as Divider } from './Divider'
 export { default as Dropdown } from './Dropdown'
 export { default as Dropzone } from './Dropzone'
 export { default as EmptyState } from './EmptyState'
@@ -118,4 +118,9 @@ export { default as TimePicker } from './TimePicker'
 export { default as Toggle } from './Toggle'
 export { default as Tooltip } from './Tooltip'
 export { default as Totalizer } from './Totalizer'
-export { ToastContext, ToastProvider, ToastConsumer, withToast } from './ToastProvider'
+export {
+  ToastContext,
+  ToastConsumer,
+  ToastProvider,
+  withToast,
+} from './ToastProvider'
