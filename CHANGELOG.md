@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- `EXPERIMENTAL_Table` cell to have no dependencies.
+
+### Removed
+
+- `styled-components` dependency.
+
 ## [9.108.7] - 2020-02-04
 
 ### Added
