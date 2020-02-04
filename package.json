@@ -1,6 +1,6 @@
 {
   "name": "@vtex/styleguide",
-  "version": "9.108.6",
+  "version": "9.108.7",
   "scripts": {
     "lint": "eslint react --ext js,jsx,ts,tsx",
     "test": "node config/test.js",
@@ -23,6 +23,7 @@
     "prettier-conflict-check": "eslint --print-config .eslintrc | eslint-config-prettier-check",
     "postinstall": "yarn --cwd react --ignore-scripts"
   },
+  "main": "./lib/index.js",
   "files": [
     "lib/",
     "modules/",
@@ -98,6 +99,7 @@
     "react-sticky": "^6.0.3",
     "react-virtualized": "^9.19.1",
     "recharts": "^2.0.0-beta.1",
+    "styled-components": "^5.0.0",
     "use-media": "^1.4.0",
     "uuid": "^3.3.2",
     "vtex-tachyons": "^3.2.0",
