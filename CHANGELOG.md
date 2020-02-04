@@ -11,6 +11,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - `vtex-checkbox__line-container`, `vtex-checkbox__container`, `vtex-checkbox__inner-container` handles.
 
+## [9.108.8] - 2020-02-04
+
+### Changed
+
+- `EXPERIMENTAL_Table` cell to have no dependencies.
+
+### Removed
+
+- `styled-components` dependency.
+
 ## [9.108.7] - 2020-02-04
 
 ### Added

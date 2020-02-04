@@ -1,5 +1,4 @@
-import React, { FC } from 'react'
-import styled from 'styled-components'
+import React, { FC, createContext, useContext, useState } from 'react'
 import classNames from 'classnames'
 
 import CaretDown from '../../icon/CaretDown/index.js'
@@ -9,31 +8,35 @@ import Checkbox, { CheckboxProps } from '../Checkbox'
 const PREFIX_GAP = 35
 const SUFIX_GAP = 0.5
 
-const VisuallyHidden = styled.span`
-  display: none;
-  margin-left: ${SUFIX_GAP}rem;
-  position: absolute;
-`
+const HoverContext = createContext<boolean>(false)
 
-const Visible = styled(VisuallyHidden)`
-  display: inline;
-`
+function HoverProvider({ children, value }) {
+  return <HoverContext.Provider value={value}>{children}</HoverContext.Provider>
+}
 
-const Container = styled.td`
-  &:hover ${VisuallyHidden} {
-    display: inline;
+function useHover(init = false) {
+  const [hover, setHover] = useState(init)
+
+  const onMouseEnter = () => setHover(true)
+  const onMouseLeave = () => setHover(false)
+
+  return {
+    hover,
+    onMouseEnter,
+    onMouseLeave,
   }
-`
+}
 
 const Cell: FC<CellProps> & CellComposites = ({
   children,
   width,
   onClick,
-  tagName = 'td',
+  tagName: Tag = 'td',
   className: classNameProp = '',
   active = false,
   link = false,
 }) => {
+  const { hover, ...events } = useHover()
   const className = classNames(
     'v-mid ph3 pv0 tl bb b--muted-4',
     classNameProp,
@@ -44,13 +47,9 @@ const Cell: FC<CellProps> & CellComposites = ({
     }
   )
   return (
-    <Container
-      as={tagName}
-      onClick={onClick}
-      style={{ width }}
-      className={className}>
-      {children}
-    </Container>
+    <Tag {...events} onClick={onClick} style={{ width }} className={className}>
+      <HoverProvider value={hover}>{children}</HoverProvider>
+    </Tag>
   )
 }
 
@@ -69,13 +68,22 @@ const Prefix: FC<PrefixProps> & PrefixComposites = ({
   )
 }
 
+function Eyesight({ children, visible }) {
+  const className = classNames({ dn: !visible, inline: visible }, 'absolute')
+  return (
+    <span className={className} style={{ marginLeft: `${SUFIX_GAP}rem` }}>
+      {children}
+    </span>
+  )
+}
+
 const Suffix: FC<SuffixProps> = ({ active, ascending }) => {
   const Caret = ascending ? CaretDown : CaretUp
-  const Wrapper = active ? Visible : VisuallyHidden
+  const hover = useContext(HoverContext)
   return (
-    <Wrapper>
+    <Eyesight visible={active || hover}>
       <Caret className="ml2" size={10} />
-    </Wrapper>
+    </Eyesight>
   )
 }
 
