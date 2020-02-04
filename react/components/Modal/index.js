@@ -138,6 +138,7 @@ Modal.defaultProps = {
   showCloseIcon: true,
   showTopBar: true,
   showBottomBarBorder: true,
+  modalClassName: ''
 }
 
 Modal.propTypes = {
@@ -170,6 +171,8 @@ Modal.propTypes = {
   showTopBar: PropTypes.bool,
   /** Event fired when the closing transition is finished */
   onCloseTransitionFinish: PropTypes.func,
+  /** Classname to be used in modal main container, allows to change modal width, for example */
+  modalClassName: PropTypes.String
 }
 
 export default Modal
