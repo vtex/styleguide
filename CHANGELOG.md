@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- `modalClassName` prop to modal.
+
 ## [9.108.8] - 2020-02-04
 
 ### Changed
