@@ -143,6 +143,7 @@ class FilterTag extends PureComponent {
       submitFilterLabel,
       newFilterLabel,
       isMobile,
+      testIds,
     } = this.props
     const { isMenuOpen, virtualStatement } = this.state
 
@@ -219,7 +220,11 @@ class FilterTag extends PureComponent {
                 <div className="flex items-center justify-center h-100 ph3 ">
                   <span className="flex items-center nl1 nowrap">
                     {isMoreOptions ? (
-                      <span className="fw5">{getFilterLabel()}</span>
+                      <span
+                        className="fw5"
+                        data-testid={testIds.moreOptionsButton}>
+                        {getFilterLabel()}
+                      </span>
                     ) : isMobile ? (
                       <span className="ttu f6 fw5">
                         {options[subject].label}
@@ -281,6 +286,7 @@ class FilterTag extends PureComponent {
               </div>
               <div className="flex justify-end mt4 mh3">
                 <Button
+                  testId={testIds.submitFiltersButton}
                   block={isMobile}
                   type="submit"
                   disabled={virtualStatement && !virtualStatement.object}
@@ -315,6 +321,7 @@ FilterTag.defaultProps = {
   isMoreOptions: false,
   subjectPlaceholder: '…',
   newFilterLabel: 'New filter',
+  testIds: {},
 }
 
 FilterTag.propTypes = {
@@ -331,6 +338,10 @@ FilterTag.propTypes = {
   newFilterLabel: PropTypes.string,
   device: PropTypes.string,
   isMobile: PropTypes.bool,
+  testIds: PropTypes.shape({
+    moreOptionsButton: PropTypes.string,
+    submitFiltersButton: PropTypes.string,
+  }),
 }
 
 export default withDevice(FilterTag)
