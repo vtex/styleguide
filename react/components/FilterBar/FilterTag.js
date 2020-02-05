@@ -220,7 +220,7 @@ class FilterTag extends PureComponent {
                 <div className="flex items-center justify-center h-100 ph3 ">
                   <span className="flex items-center nl1 nowrap">
                     {isMoreOptions ? (
-                      <span data-testid={testIds.moreOptionsButton} className="fw5">
+                      <span className="fw5" data-testid={testIds.moreOptionsButton}>
                         {getFilterLabel()}
                       </span>
                     ) : isMobile ? (
