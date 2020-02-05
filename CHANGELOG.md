@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.109.0] - 2020-02-05
+
+### Added
+
+- `vtex-checkbox__line-container`, `vtex-checkbox__container`, `vtex-checkbox__inner-container` handles.
+
 ## [9.108.8] - 2020-02-04
 
 ### Changed
