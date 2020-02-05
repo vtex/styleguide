@@ -17,4 +17,6 @@ const manifest = JSON.parse(fs.readFileSync(manifestJsonPath).toString())
 
 // fs.writeFileSync(manifestJsonPath, JSON.stringify(manifest, null, 2))
 
-console.log(`Updating manifest version from ${pkg.version} to ${manifest.version}`)
+console.log(
+  `Updating manifest version from ${pkg.version} to ${manifest.version}`
+)

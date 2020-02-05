@@ -198,7 +198,7 @@ FilterBar.defaultProps = {
   submitFilterLabel: 'Apply',
   newFilterLabel: 'New Filter',
   statements: [],
-  testIds: {}
+  testIds: {},
 }
 
 export const filterBarPropTypes = {
@@ -220,10 +220,10 @@ export const filterBarPropTypes = {
   submitFilterLabel: PropTypes.string,
   /** New Filter title label for inside the 'More options' menu */
   newFilterLabel: PropTypes.string,
-  testIds:  PropTypes.shape({
+  testIds: PropTypes.shape({
     moreOptionsButton: PropTypes.string,
-    submitFiltersButton: PropTypes.string
-  })
+    submitFiltersButton: PropTypes.string,
+  }),
 }
 
 FilterBar.propTypes = filterBarPropTypes
