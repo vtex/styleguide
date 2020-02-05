@@ -27,19 +27,28 @@ class Checkbox extends PureComponent {
 
     return (
       <div
-        className={classNames('vtex-checkbox__line-container flex items-center relative', {
-          pointer: !disabled,
-        })}>
-        <div className={classNames('vtex-checkbox__container relative w1 h1', { mr3: label })}>
+        className={classNames(
+          'vtex-checkbox__line-container flex items-center relative',
+          {
+            pointer: !disabled,
+          }
+        )}>
+        <div
+          className={classNames('vtex-checkbox__container relative w1 h1', {
+            mr3: label,
+          })}>
           <div
-            className={classNames('vtex-checkbox__inner-container h1 w1 absolute ba bw1 br1 ', {
-              'b--muted-4 pointer': !checked && !disabled,
-              'b--disabled bg-muted-5 c-disabled': !checked && disabled,
-              'b--action-primary bg-action-primary': checked && !disabled,
-              'b--muted-5 bg-muted-5': partial && !checked && disabled,
-              'b--disabled bg-disabled': checked && disabled,
-              mr3: label,
-            })}
+            className={classNames(
+              'vtex-checkbox__inner-container h1 w1 absolute ba bw1 br1 ',
+              {
+                'b--muted-4 pointer': !checked && !disabled,
+                'b--disabled bg-muted-5 c-disabled': !checked && disabled,
+                'b--action-primary bg-action-primary': checked && !disabled,
+                'b--muted-5 bg-muted-5': partial && !checked && disabled,
+                'b--disabled bg-disabled': checked && disabled,
+                mr3: label,
+              }
+            )}
             style={{
               transition: 'background 20ms, border 100ms',
               backgroundColor: partial && !checked && !disabled && '#dbe9fd',
