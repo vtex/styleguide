@@ -101,7 +101,7 @@ class FilterBar extends PureComponent {
       subjectPlaceholder,
       submitFilterLabel,
       newFilterLabel,
-      testIdMoreOptions,
+      testIds,
     } = this.props
     const { visibleExtraOptions } = this.state
     const optionsKeys = Object.keys(options)
@@ -146,7 +146,7 @@ class FilterBar extends PureComponent {
             optionsKeys.length && (
             <div className="ma2">
               <FilterTag
-                testIdMoreOptions={testIdMoreOptions}
+                testIds={testIds}
                 isMoreOptions
                 subjectPlaceholder={subjectPlaceholder}
                 getFilterLabel={() => moreOptionsLabel}
@@ -198,6 +198,7 @@ FilterBar.defaultProps = {
   submitFilterLabel: 'Apply',
   newFilterLabel: 'New Filter',
   statements: [],
+  testIds: {}
 }
 
 export const filterBarPropTypes = {
@@ -219,7 +220,10 @@ export const filterBarPropTypes = {
   submitFilterLabel: PropTypes.string,
   /** New Filter title label for inside the 'More options' menu */
   newFilterLabel: PropTypes.string,
-  testIdMoreOptions: PropTypes.string,
+  testIds:  PropTypes.shape({
+    moreOptionsButton: PropTypes.string,
+    submitFiltersButton: PropTypes.string
+  })
 }
 
 FilterBar.propTypes = filterBarPropTypes
