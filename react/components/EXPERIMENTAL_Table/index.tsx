@@ -9,7 +9,7 @@ import BulkActions from './BulkActions'
 import FilterBar from './FilterBar'
 import Headings from './DataTable/Headings'
 import Rows from './DataTable/Rows'
-import { DENSITY_OPTIONS, Density } from './hooks/useTableMeasures'
+import { DENSITY_OPTIONS } from './hooks/useTableMeasures'
 import { Checkboxes } from '../EXPERIMENTAL_useCheckboxTree/types'
 import useTableMotion from './hooks/useTableMotion'
 import Totalizer, { TotalizerProps } from './Totalizer'
@@ -31,16 +31,18 @@ const Table: FC<TableProps> & TableComposites = ({
   }
 
   const { tableHeight, rowHeight, currentDensity } = measures
-  const { columns, onRowClick, items, sorting } = props
+  const { columns, onRowClick, items, sorting, testId } = props
   const motion = useTableMotion()
 
   return (
     <div
-      style={{ minHeight: tableHeight, ...motion }}
       id={NAMESPACES.CONTAINER}
+      data-testid={`${testId}__container`}
+      style={{ minHeight: tableHeight, ...motion }}
       className="flex flex-column">
       {children}
       <DataTable
+        testId={testId}
         empty={empty}
         loading={loading}
         emptyState={emptyState}
@@ -48,6 +50,7 @@ const Table: FC<TableProps> & TableComposites = ({
         height={tableHeight}>
         <thead
           id={NAMESPACES.HEADER}
+          data-testid={`${testId}__header`}
           className="w-100 ph4 truncate overflow-x-hidden c-muted-2 f6">
           <Headings
             sorting={sorting}
@@ -57,7 +60,7 @@ const Table: FC<TableProps> & TableComposites = ({
         </thead>
 
         {!empty && !loading && (
-          <tbody>
+          <tbody id={NAMESPACES.BODY} data-testid={`${testId}__body`}>
             <Rows
               rowKey={rowKey}
               checkboxes={checkboxes}
@@ -124,6 +127,7 @@ export const tablePropTypes = {
     clear: PropTypes.func,
     sort: PropTypes.func,
   }),
+  testId: PropTypes.string,
 }
 
 export type TableProps = InferProps<typeof tablePropTypes> & {
@@ -139,25 +143,6 @@ export type TableComposites = {
   ActionBar?: FC<ActionBarProps>
 }
 
-export type Items = object[]
-
-export type ReturnedData = {
-  data: unknown | object
-  rowHeight: number
-  currentDensity: Density
-  motion: ReturnType<typeof useTableMotion>
-}
-
-export type Column = {
-  id?: string
-  title?: string | Element | Function
-  width?: number | string
-  sortable?: boolean
-  cellRenderer?: (data: ReturnedData) => React.ReactNode
-  extended?: boolean
-  condensed?: string[]
-}
-
 Table.Toolbar = Toolbar
 Table.FilterBar = FilterBar
 Table.Totalizer = Totalizer
@@ -168,6 +153,7 @@ Table.ActionBar = ActionBar
 
 Table.defaultProps = {
   rowKey: ({ rowData }) => `row-${rowData.id}`,
+  testId: 'vtex-table-v2',
 }
 
 export default Table

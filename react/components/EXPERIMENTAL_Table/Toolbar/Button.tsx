@@ -2,6 +2,7 @@ import React, { forwardRef, ReactNode } from 'react'
 import classNames from 'classnames'
 
 import ButtonWithIcon from '../../ButtonWithIcon/index.js'
+import { E2ETestable } from '../types'
 
 const ICON_OPTICAL_COMPENSATION = { marginTop: 1.5 }
 
@@ -23,6 +24,7 @@ const Button = forwardRef<Ref, ButtonProps>(
       isGrouped,
       isFirstOfGroup,
       size,
+      testId,
     },
     ref
   ) => {
@@ -41,6 +43,7 @@ const Button = forwardRef<Ref, ButtonProps>(
     return (
       <div
         id={id}
+        data-testId={`${testId}__container`}
         title={title}
         ref={ref}
         className={classNames('relative', { mh2: isTertiary })}>
@@ -50,6 +53,7 @@ const Button = forwardRef<Ref, ButtonProps>(
               {icon}
             </span>
           }
+          testId={testId}
           isGrouped={isGrouped}
           isFirstOfGroup={isFirstOfGroup}
           isActiveOfGroup={isActiveOfGroup}
@@ -84,7 +88,7 @@ export enum IconSize {
   Light = 16,
 }
 
-export type ButtonProps = {
+export type ButtonProps = E2ETestable & {
   id?: string
   label?: string
   onClick?: Function

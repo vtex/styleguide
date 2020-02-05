@@ -6,6 +6,7 @@ import InputAutocomplete from './InputAutocomplete'
 import { AutocompleteInputProps } from '../../AutocompleteInput'
 import { ORDER_CLASSNAMES, NAMESPACES } from '../constants'
 import ActionBar from '../ActionBar'
+import { E2ETestable } from '../types'
 
 interface Composites {
   InputSearch: FC<InputSearchProps>
@@ -13,7 +14,7 @@ interface Composites {
   InputAutocomplete: FC<AutocompleteInputProps>
 }
 
-const Toolbar: FC & Composites = ({ children }) => {
+const Toolbar: FC<E2ETestable> & Composites = ({ testId = '', children }) => {
   const positionFixer =
     React.Children.count(children) > 1 ? null : (
       <div className={ORDER_CLASSNAMES.TOOLBAR_CHILD.POSITION_FIXER} />
@@ -21,6 +22,7 @@ const Toolbar: FC & Composites = ({ children }) => {
   return (
     <ActionBar
       id={NAMESPACES.TOOLBAR.CONTAINER}
+      testId={testId}
       order={ORDER_CLASSNAMES.TOOLBAR}
       className="flex flex-row flex-wrap w-100 justify-between">
       {children}
