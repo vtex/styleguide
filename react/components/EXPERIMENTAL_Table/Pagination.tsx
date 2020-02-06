@@ -3,13 +3,14 @@ import React, { FC } from 'react'
 import PaginationBase from '../Pagination/index'
 import { NAMESPACES, ORDER_CLASSNAMES } from './constants'
 import ActionBar from './ActionBar'
-import { E2ETestable } from './types'
+import { useTestingContext } from './context'
 
-const Pagination: FC<PaginationProps> = ({ testId = '', ...props }) => {
+const Pagination: FC<PaginationProps> = props => {
+  const { testId } = useTestingContext()
   return (
     <ActionBar
       id={NAMESPACES.PAGINATION}
-      testId={testId}
+      testId={`${testId}__pagination`}
       order={ORDER_CLASSNAMES.PAGINATION}
       noMargin>
       <PaginationBase {...props} />
@@ -17,7 +18,7 @@ const Pagination: FC<PaginationProps> = ({ testId = '', ...props }) => {
   )
 }
 
-export type PaginationProps = E2ETestable & {
+export type PaginationProps = {
   textShowRows: string
   textOf: string
   rowsOptions: Array<number>

@@ -14,6 +14,7 @@ import { Checkboxes } from '../EXPERIMENTAL_useCheckboxTree/types'
 import useTableMotion from './hooks/useTableMotion'
 import Totalizer, { TotalizerProps } from './Totalizer'
 import ActionBar, { ActionBarProps } from './ActionBar'
+import { TableProvider } from './context'
 
 const Table: FC<TableProps> & TableComposites = ({
   children,
@@ -40,7 +41,7 @@ const Table: FC<TableProps> & TableComposites = ({
       data-testid={`${testId}__container`}
       style={{ minHeight: tableHeight, ...motion }}
       className="flex flex-column">
-      {children}
+      <TableProvider testId={testId}>{children}</TableProvider>
       <DataTable
         testId={testId}
         empty={empty}
