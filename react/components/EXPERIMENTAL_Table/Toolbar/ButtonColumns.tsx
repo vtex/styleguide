@@ -24,7 +24,7 @@ const ButtonColumns: FC<ButtonColumnsProps> = ({
 }) => {
   const { buttonRef, boxVisible, toggleBox } = usePopoverMenu()
   const { testId } = useButtonGroupContext()
-  const columnsTestId = `${testId}__button-columns`
+  const columnsTestId = `${testId}__columns`
 
   const {
     hiddenColumns,

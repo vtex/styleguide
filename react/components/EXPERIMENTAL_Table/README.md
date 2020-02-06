@@ -583,8 +583,6 @@ function SortExample() {
 ### Usage
 
 ```js
-import { uniq } from 'lodash'
-import { useState, useRef } from 'react'
 const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
 const useTableVisibility = require('./hooks/useTableVisibility.ts').default
 const data = require('./sampleData.ts')
@@ -626,102 +624,6 @@ function VisibilityExample() {
     visibility,
   }
 
-  const density = {
-    label: 'Line density',
-    compactLabel: 'Compact',
-    regularLabel: 'Regular',
-    comfortableLabel: 'Comfortable',
-    density: measures,
-  }
-
-  const download = {
-    label: 'Export',
-    onClick: () => alert('Clicked EXPORT'),
-  }
-
-  const upload = {
-    label: 'Import',
-    onClick: () => alert('Clicked IMPORT'),
-  }
-
-  const extraActions = {
-    label: 'More options',
-    actions: [
-      {
-        label: 'An action',
-        onClick: () => alert('An action'),
-      },
-      {
-        label: 'Another action',
-        onClick: () => alert('Another action'),
-      },
-      {
-        label: 'A third action',
-        onClick: () => alert('A third action'),
-      },
-    ],
-  }
-
-  const newLine = {
-    label: 'New',
-    onClick: () => alert('handle new line callback'),
-    actions: [
-      'General',
-      'Desktop & Screen Saver',
-      'Dock',
-      'Language & Region',
-    ].map(label => ({
-      label,
-      onClick: () => alert(`Clicked ${label}`),
-    })),
-  }
-
-  const allUsers = [
-    'Ana Clara',
-    'Ana Luiza',
-    { value: 1, label: 'Bruno' },
-    'Carlos',
-    'Daniela',
-  ]
-
-  const [term, setTerm] = useState('')
-  const [loading, setLoading] = useState(false)
-  const timeoutRef = useRef(null)
-
-  const options = {
-    onSelect: (...args) => console.log('onSelect: ', ...args),
-    loading,
-    value: !term.length
-      ? []
-      : allUsers.filter(user =>
-          typeof user === 'string'
-            ? user.toLowerCase().includes(term.toLowerCase())
-            : user.label.toLowerCase().includes(term.toLowerCase())
-        ),
-  }
-
-  const input = {
-    onChange: term => {
-      if (term) {
-        setLoading(true)
-        if (timeoutRef.current) {
-          clearTimeout(timeoutRef.current)
-        }
-        timeoutRef.current = setTimeout(() => {
-          setLoading(false)
-          setTerm(term)
-          timeoutRef.current = null
-        }, 1000)
-      } else {
-        setTerm(term)
-      }
-    },
-    onSearch: (...args) => console.log('onSearch:', ...args),
-    onClear: () => setTerm(''),
-    placeholder: 'Search user... (e.g.: Ana)',
-    value: term,
-  }
-
   return (
     <>
       <Table
@@ -729,14 +631,8 @@ function VisibilityExample() {
         columns={visibility.visibleColumns}
         items={items}>
         <Table.Toolbar>
-          <Table.Toolbar.InputAutocomplete input={input} options={options} />
           <Table.Toolbar.ButtonGroup>
             <Table.Toolbar.ButtonGroup.Columns {...buttonColumns} />
-            <Table.Toolbar.ButtonGroup.Density {...density} />
-            <Table.Toolbar.ButtonGroup.Download {...download} />
-            <Table.Toolbar.ButtonGroup.Upload {...upload} />
-            <Table.Toolbar.ButtonGroup.ExtraActions {...extraActions} />
-            <Table.Toolbar.ButtonGroup.NewLine {...newLine} />
           </Table.Toolbar.ButtonGroup>
         </Table.Toolbar>
       </Table>
@@ -748,21 +644,42 @@ function VisibilityExample() {
 
 # 🧪 E2E Testing
 
-This section describe text practice within the table v2.
+The Table has a lot of internal components. To avoid receiving a huge object containing id's of each component, they are semantically created based on the `testId` property.
 
-data-testid property
+You can reference as `[data-testid]=id` on your e2e testing tool, such as cypress.
 
-Reference on your e2e testing tool, such as cypress:
-`[data-testid]=your_id`
+#### Table of semantic generated data-testid's:
 
-Semantic ids:
+💡[id] represents the value of `testId` property, which is `vtex-table-v2` by default.
 
-| data-testid           | Decription                   | Default                    |
-| --------------------- | ---------------------------- | -------------------------- |
-| `[testId]`            | Value of the testId property | `vtex-table-v2`            |
-| `[testId]__container` | Some description             | `vtex-table-v2__container` |
-| `[testId]__header`    | Some description             | `vtex-table-v2__header`    |
-| `[testId]__body`      | Some description             | `vtex-table-v2__body`      |
+| Targets                               | Decription                                                        |
+| ------------------------------------- | ----------------------------------------------------------------- |
+| `[id]`                                | Internal `table`                                                  |
+| `[id]__container`                     | `table`'s container                                               |
+| `[id]__header`                        | `table`'s `thead`                                                 |
+| `[id]__body`                          | `table`'s `tbody`                                                 |
+| `[id]__loading`                       | `Loading` container                                               |
+| `[id]__empty-state`                   | `EmptyState` component                                            |
+| `[id]__filter-bar`                    | `Table.FilterBar` wrapper                                         |
+| `[id]__totalizer`                     | `Table.Totalizer` wrapper                                         |
+| `[id]__pagination`                    | `Table.Pagination` wrapper                                        |
+| `[id]__toolbar`                       | `Table.Toolbar` root                                              |
+| `[toolbar]__search-form`              | `Table.Toolbar.InputSearch` `form` tag                            |
+| `[toolbar]__search-form__input`       | `Table.Toolbar.InputSearch` input                                 |
+| `[toolbar]__input-autocomplete`       | `Table.Toolbar.InputAutocomplete` wrapper                         |
+| `[toolbar]__button-group`             | `Table.Toolbar.ButtonGroup` root                                  |
+| `[button-group]__columns`             | `Table.Toolbar.ButtonGroup.Columns` button                        |
+| `[button-group]__columns__box`        | `Table.Toolbar.ButtonGroup.Columns` box                           |
+| `[columns-box]__group-actions`        | `Table.Toolbar.ButtonGroup.Columns` box actions                   |
+| `[columns-box]__group-actions--[key]` | `Table.Toolbar.ButtonGroup.Columns` box action of key (1, 2, ...) |
+| `[columns-box]__items`                | `Table.Toolbar.ButtonGroup.Columns` box items                     |
+| `[button-group]__density`             | `Table.Toolbar.ButtonGroup.Density` button                        |
+| `[button-group]__density__box`        | `Table.Toolbar.ButtonGroup.Density` box                           |
+| `[density-box]__items`                | `Table.Toolbar.ButtonGroup.Density` box items                     |
+| `[button-group]__download`            | `Table.Toolbar.ButtonGroup.Download` button                       |
+| `[button-group]__upload`              | `Table.Toolbar.ButtonGroup.Upload` button                         |
+| `[button-group]__extra-actions`       | `Table.Toolbar.ButtonGroup.ExtraActions` button                   |
+| `[button-group]__new-line`            | `Table.Toolbar.ButtonGroup.NewLine` button                        |
 
 # 📚 Migration Guide
 

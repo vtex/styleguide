@@ -10,7 +10,7 @@ const ButtonUpload: FC<ButtonProps> = props => {
   return (
     <Button
       id={NAMESPACES.TOOLBAR.BUTTON_UPLOAD}
-      testId={`${testId}__button-upload`}
+      testId={`${testId}__upload`}
       icon={<IconUpload size={IconSize.Heavy} />}
       {...props}
     />

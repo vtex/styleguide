@@ -24,7 +24,7 @@ const ButtonDensity: FC<ButtonDensityProps> = ({
   const { currentDensity, setCurrentDensity } = density
   const { buttonRef, toggleBox, setBoxVisible, boxVisible } = usePopoverMenu()
   const { testId } = useButtonGroupContext()
-  const densityTestId = `${testId}__button-density`
+  const densityTestId = `${testId}__density`
 
   return (
     <Button

@@ -10,7 +10,7 @@ const ButtonDownload: FC<ButtonProps> = props => {
   return (
     <Button
       id={NAMESPACES.TOOLBAR.BUTTON_DOWNLOAD}
-      testId={`${testId}__button-download`}
+      testId={`${testId}__download`}
       icon={<IconDownload size={IconSize.Heavy} />}
       {...props}
     />

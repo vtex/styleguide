@@ -16,7 +16,7 @@ import { useButtonGroupContext } from './context'
 const ButtonNewLine: FC<ButtonNewLineProps> = ({ actions, ...buttonProps }) => {
   const namespace = NAMESPACES.TOOLBAR.BUTTON_NEWLINE
   const { testId } = useButtonGroupContext()
-  const newlineTestId = `${testId}__button-new-line`
+  const newlineTestId = `${testId}__new-line`
   return actions ? (
     <ButtonGroup
       buttons={[
