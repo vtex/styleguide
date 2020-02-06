@@ -8,7 +8,7 @@ import useTableMeasures, {
   Density,
   DENSITY_OPTIONS,
 } from '../hooks/useTableMeasures'
-import { useToolbarContext } from './context'
+import { useButtonGroupContext } from './context'
 
 const FIELDS_ITEM_HEIGHT = 36
 const BOX_HEIGHT = DENSITY_OPTIONS.length * FIELDS_ITEM_HEIGHT
@@ -23,7 +23,7 @@ const ButtonDensity: FC<ButtonDensityProps> = ({
 }) => {
   const { currentDensity, setCurrentDensity } = density
   const { buttonRef, toggleBox, setBoxVisible, boxVisible } = usePopoverMenu()
-  const { testId } = useToolbarContext()
+  const { testId } = useButtonGroupContext()
   const densityTestId = `${testId}__button-density`
 
   return (

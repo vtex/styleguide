@@ -11,11 +11,11 @@ import Button, {
 } from './Button'
 import { NAMESPACES } from '../constants'
 import { MenuAction } from './PopoverMenu'
-import { useToolbarContext } from './context'
+import { useButtonGroupContext } from './context'
 
 const ButtonNewLine: FC<ButtonNewLineProps> = ({ actions, ...buttonProps }) => {
   const namespace = NAMESPACES.TOOLBAR.BUTTON_NEWLINE
-  const { testId } = useToolbarContext()
+  const { testId } = useButtonGroupContext()
   const newlineTestId = `${testId}__button-new-line`
   return actions ? (
     <ButtonGroup

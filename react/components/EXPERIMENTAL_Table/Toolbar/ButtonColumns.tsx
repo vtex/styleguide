@@ -6,7 +6,7 @@ import usePopoverMenu, { Item, Box, Alignment } from './PopoverMenu'
 import Button, { IconSize } from './Button'
 import { NAMESPACES } from '../constants'
 import useTableVisibility from '../hooks/useTableVisibility'
-import { useToolbarContext } from './context'
+import { useButtonGroupContext } from './context'
 
 const COLUMNS_BOX = {
   MAX_HEIGHT: 192,
@@ -23,7 +23,7 @@ const ButtonColumns: FC<ButtonColumnsProps> = ({
   visibility,
 }) => {
   const { buttonRef, boxVisible, toggleBox } = usePopoverMenu()
-  const { testId } = useToolbarContext()
+  const { testId } = useButtonGroupContext()
   const columnsTestId = `${testId}__button-columns`
 
   const {

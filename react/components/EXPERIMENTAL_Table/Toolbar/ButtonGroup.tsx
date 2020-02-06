@@ -11,6 +11,7 @@ import ButtonExtraActions, {
 } from './ButtonExtraActions'
 import ButtonNewLine, { ButtonNewLineProps } from './ButtonNewLine'
 import { NAMESPACES, ORDER_CLASSNAMES } from '../constants'
+import { useToolbarContext, ButtonGroupProvider } from './context'
 
 const getButton = (type: ButtonType, props: Props) => {
   switch (type) {
@@ -84,16 +85,23 @@ const getComponent = (type: ButtonType) => {
   return (props: Props) => getButton(type, props)
 }
 
-const ButtonGroup: FC & Composites = ({ children }) => (
-  <div
-    id={NAMESPACES.TOOLBAR.BUTTON_GROUP}
-    className={classNames(
-      ORDER_CLASSNAMES.TOOLBAR_CHILD.BUTTON_GROUP,
-      'flex flex-row flex-wrap items-center'
-    )}>
-    {children}
-  </div>
-)
+const ButtonGroup: FC & Composites = ({ children }) => {
+  const { testId } = useToolbarContext()
+  const buttonGroupTestId = `${testId}__button-group`
+  return (
+    <div
+      id={NAMESPACES.TOOLBAR.BUTTON_GROUP}
+      data-testid={buttonGroupTestId}
+      className={classNames(
+        ORDER_CLASSNAMES.TOOLBAR_CHILD.BUTTON_GROUP,
+        'flex flex-row flex-wrap items-center'
+      )}>
+      <ButtonGroupProvider testId={buttonGroupTestId}>
+        {children}
+      </ButtonGroupProvider>
+    </div>
+  )
+}
 
 enum ButtonType {
   Columns,
