@@ -39,7 +39,7 @@ export const NAMESPACES = {
   ROW: `${NAMESPACE_PREFIX}__row`,
   CELL: `${NAMESPACE_PREFIX}__cell`,
   TOOLBAR: {
-    CONTAINER: `${NAMESPACE_PREFIX}__toolbar__container`,
+    CONTAINER: `${NAMESPACE_PREFIX}__toolbar`,
     INPUT_SEARCH: `${NAMESPACE_PREFIX}__toolbar__input-search`,
     BUTTON_GROUP: `${NAMESPACE_PREFIX}__toolbar__button-group`,
     BUTTON_COLUMNS: `${NAMESPACE_PREFIX}__toolbar__button-columns`,

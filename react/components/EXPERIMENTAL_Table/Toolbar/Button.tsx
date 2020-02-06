@@ -42,8 +42,8 @@ const Button = forwardRef<Ref, ButtonProps>(
 
     return (
       <div
-        id={id}
-        data-testId={`${testId}__container`}
+        id={`${id}__container`}
+        data-testid={`${testId}__container`}
         title={title}
         ref={ref}
         className={classNames('relative', { mh2: isTertiary })}>

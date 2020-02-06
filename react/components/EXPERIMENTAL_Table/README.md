@@ -624,6 +624,56 @@ function VisibilityExample() {
     visibility,
   }
 
+  const density = {
+    label: 'Line density',
+    compactLabel: 'Compact',
+    regularLabel: 'Regular',
+    comfortableLabel: 'Comfortable',
+    density: measures,
+  }
+
+  const download = {
+    label: 'Export',
+    onClick: () => alert('Clicked EXPORT'),
+  }
+
+  const upload = {
+    label: 'Import',
+    onClick: () => alert('Clicked IMPORT'),
+  }
+
+  const extraActions = {
+    label: 'More options',
+    actions: [
+      {
+        label: 'An action',
+        onClick: () => alert('An action'),
+      },
+      {
+        label: 'Another action',
+        onClick: () => alert('Another action'),
+      },
+      {
+        label: 'A third action',
+        onClick: () => alert('A third action'),
+      },
+    ],
+  }
+
+  const newLine = {
+    label: 'New',
+    onClick: () => alert('handle new line callback'),
+    actions: [
+      'General',
+      'Desktop & Screen Saver',
+      'Dock',
+      'Language & Region',
+    ].map(label => ({
+      label,
+      onClick: () => alert(`Clicked ${label}`),
+    })),
+  }
+
   return (
     <>
       <Table
@@ -633,6 +683,11 @@ function VisibilityExample() {
         <Table.Toolbar>
           <Table.Toolbar.ButtonGroup>
             <Table.Toolbar.ButtonGroup.Columns {...buttonColumns} />
+            <Table.Toolbar.ButtonGroup.Density {...density} />
+            <Table.Toolbar.ButtonGroup.Download {...download} />
+            <Table.Toolbar.ButtonGroup.Upload {...upload} />
+            <Table.Toolbar.ButtonGroup.ExtraActions {...extraActions} />
+            <Table.Toolbar.ButtonGroup.NewLine {...newLine} />
           </Table.Toolbar.ButtonGroup>
         </Table.Toolbar>
       </Table>
@@ -641,6 +696,24 @@ function VisibilityExample() {
 }
 ;<VisibilityExample />
 ```
+
+# 🧪 E2E Testing
+
+This section describe text practice within the table v2.
+
+data-testid property
+
+Reference on your e2e testing tool, such as cypress:
+`[data-testid]=your_id`
+
+Semantic ids:
+
+| data-testid           | Decription                   | Default                    |
+| --------------------- | ---------------------------- | -------------------------- |
+| `[testId]`            | Value of the testId property | `vtex-table-v2`            |
+| `[testId]__container` | Some description             | `vtex-table-v2__container` |
+| `[testId]__header`    | Some description             | `vtex-table-v2__header`    |
+| `[testId]__body`      | Some description             | `vtex-table-v2__body`      |
 
 # 📚 Migration Guide
 

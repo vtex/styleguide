@@ -8,6 +8,7 @@ import useTableMeasures, {
   Density,
   DENSITY_OPTIONS,
 } from '../hooks/useTableMeasures'
+import { useToolbarContext } from './index'
 
 const FIELDS_ITEM_HEIGHT = 36
 const BOX_HEIGHT = DENSITY_OPTIONS.length * FIELDS_ITEM_HEIGHT
@@ -22,16 +23,20 @@ const ButtonDensity: FC<ButtonDensityProps> = ({
 }) => {
   const { currentDensity, setCurrentDensity } = density
   const { buttonRef, toggleBox, setBoxVisible, boxVisible } = usePopoverMenu()
+  const { testId } = useToolbarContext()
+  const densityTestId = `${testId}__button-density`
+
   return (
     <Button
       id={NAMESPACES.TOOLBAR.BUTTON_DENSITY}
+      testId={densityTestId}
       title={label}
       ref={buttonRef}
       onClick={toggleBox}
       icon={<IconDensity size={IconSize.Medium} />}
       disabled={disabled}>
       {boxVisible && (
-        <Box height={BOX_HEIGHT} alignMenu={alignMenu}>
+        <Box testId={densityTestId} height={BOX_HEIGHT} alignMenu={alignMenu}>
           {DENSITY_OPTIONS.map((key: Density, index) => {
             const isKeySelected = currentDensity === key
             return (

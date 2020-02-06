@@ -5,8 +5,10 @@ import React, {
   useLayoutEffect,
   useCallback,
 } from 'react'
+import classnames from 'classnames'
 
 import Button from '../../Button/index.js'
+import { E2ETestable } from '../types'
 
 export default function usePopoverMenu() {
   const [boxVisible, setBoxVisible] = useState(false)
@@ -40,23 +42,35 @@ export const Box: FC<BoxProps> = ({
   noMargin,
   borderClasses,
   groupActions,
+  testId,
   children,
 }) => {
   const isAlignRight = alignMenu === Alignment.Right
-
+  const className = classnames(
+    `absolute z-999 shadow-4 ${borderClasses || 'b--muted-4 br2 ba'}`,
+    {
+      'right-0': isAlignRight,
+      'left-0': !isAlignRight,
+      'mt2 mh2': !noMargin,
+    }
+  )
   return (
     <div
-      className={`absolute z-999 shadow-4 ${
-        isAlignRight ? 'right-0' : 'left-0'
-      } ${borderClasses || 'b--muted-4 br2 ba'} ${noMargin ? '' : 'mt2 mh2'}`}
+      data-testid={`${testId}__box`}
+      className={className}
       style={{
         width: width,
       }}>
       <div className="w-100 b2 br2 bg-base">
         {groupActions && (
-          <div className="flex inline-flex bb b--muted-4 w-100 justify-center pv4">
+          <div
+            data-testid={`${testId}__box__group-actions`}
+            className="flex inline-flex bb b--muted-4 w-100 justify-center pv4">
             {groupActions.map(action => (
-              <div className="mh2" key={action.id}>
+              <div
+                className="mh2"
+                key={action.id}
+                data-testid={`${testId}__group-actions--${action.id}`}>
                 <Button
                   variation="secondary"
                   size="small"
@@ -68,7 +82,10 @@ export const Box: FC<BoxProps> = ({
             ))}
           </div>
         )}
-        <div className="overflow-auto" style={{ height: height }}>
+        <div
+          data-testid={`${testId}__box__items`}
+          className="overflow-auto"
+          style={{ height: height }}>
           {children}
         </div>
       </div>
@@ -77,20 +94,24 @@ export const Box: FC<BoxProps> = ({
 }
 
 export const Item: FC<ItemProps> = ({ isSelected, onClick, children }) => {
+  const containerClassName = classnames(
+    'flex justify-between ph6 pv3 pointer hover-bg-muted-5 bl bw1',
+    {
+      'b--emphasis': isSelected,
+      'b--transparent': !isSelected,
+    }
+  )
+  const className = classnames('w-100 flex justify-between', {
+    fw5: isSelected,
+  })
   return (
-    <div
-      className={`flex justify-between ph6 pv3 ${
-        isSelected ? 'b--emphasis' : 'b--transparent'
-      } pointer hover-bg-muted-5 bl bw1`}
-      onClick={onClick}>
-      <span className={`w-100 flex justify-between ${isSelected ? 'fw5' : ''}`}>
-        {children}
-      </span>
+    <div className={containerClassName} onClick={onClick}>
+      <span className={className}>{children}</span>
     </div>
   )
 }
 
-type BoxProps = {
+type BoxProps = E2ETestable & {
   height?: string | number
   width?: string | number
   alignMenu?: Alignment

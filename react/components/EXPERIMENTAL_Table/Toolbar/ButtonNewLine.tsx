@@ -11,15 +11,19 @@ import Button, {
 } from './Button'
 import { NAMESPACES } from '../constants'
 import { MenuAction } from './PopoverMenu'
+import { useToolbarContext } from './index'
 
 const ButtonNewLine: FC<ButtonNewLineProps> = ({ actions, ...buttonProps }) => {
   const namespace = NAMESPACES.TOOLBAR.BUTTON_NEWLINE
+  const { testId } = useToolbarContext()
+  const newlineTestId = `${testId}__button-new-line`
   return actions ? (
     <ButtonGroup
       buttons={[
         <Button
           isActiveOfGroup
           id={namespace}
+          testId={newlineTestId}
           key={namespace}
           isGrouped
           isFirstOfGroup
@@ -30,6 +34,7 @@ const ButtonNewLine: FC<ButtonNewLineProps> = ({ actions, ...buttonProps }) => {
         <ActionMenu
           isActiveOfGroup
           id={`${namespace}__action-menu`}
+          testId={`${newlineTestId}__action-menu`}
           key="actions-button"
           buttonProps={buttonProps}
           options={actions}
@@ -39,6 +44,7 @@ const ButtonNewLine: FC<ButtonNewLineProps> = ({ actions, ...buttonProps }) => {
   ) : (
     <Button
       id={NAMESPACES.TOOLBAR.BUTTON_NEWLINE}
+      testId={newlineTestId}
       icon={<IconPlus solid size={IconSize.Light} />}
       variation={ButtonVariation.Primary}
       {...buttonProps}

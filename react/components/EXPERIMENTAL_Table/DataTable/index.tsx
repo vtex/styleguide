@@ -47,7 +47,7 @@ const DataTable: FC<DataTableProps> = ({
       )}
       {showEmptyState && (
         <EmptyState
-          data-testId={`${testId}__empty-state`}
+          data-testid={`${testId}__empty-state`}
           title={emptyState.label}>
           {emptyState.children}
         </EmptyState>

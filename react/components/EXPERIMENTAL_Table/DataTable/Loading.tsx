@@ -7,7 +7,7 @@ import { E2ETestable } from '../types'
 const Loading: FC<Props> = ({ height, motion, children, testId }) => {
   return (
     <div
-      data-testId={testId}
+      data-testid={testId}
       className="flex justify-center items-center"
       style={{ height, ...motion }}>
       {children || <Spinner />}

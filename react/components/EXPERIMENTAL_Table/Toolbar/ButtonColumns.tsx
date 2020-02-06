@@ -6,6 +6,7 @@ import usePopoverMenu, { Item, Box, Alignment } from './PopoverMenu'
 import Button, { IconSize } from './Button'
 import { NAMESPACES } from '../constants'
 import useTableVisibility from '../hooks/useTableVisibility'
+import { useToolbarContext } from '.'
 
 const COLUMNS_BOX = {
   MAX_HEIGHT: 192,
@@ -22,6 +23,8 @@ const ButtonColumns: FC<ButtonColumnsProps> = ({
   visibility,
 }) => {
   const { buttonRef, boxVisible, toggleBox } = usePopoverMenu()
+  const { testId } = useToolbarContext()
+  const columnsTestId = `${testId}__button-columns`
 
   const {
     hiddenColumns,
@@ -49,13 +52,14 @@ const ButtonColumns: FC<ButtonColumnsProps> = ({
   return (
     <Button
       id={NAMESPACES.TOOLBAR.BUTTON_COLUMNS}
+      testId={columnsTestId}
       title={label}
       ref={buttonRef}
       onClick={toggleBox}
       icon={<IconColumns size={IconSize.Medium} />}
       disabled={disabled}>
       {boxVisible && (
-        <Box {...boxProps}>
+        <Box {...boxProps} testId={columnsTestId}>
           {columns.map((column, index) => {
             const { id, title } = column
             const togglerFn = () => toggleColumn(id)
