@@ -6,7 +6,7 @@ import {
   Checkboxes,
   Tree as TreeType,
 } from '../../EXPERIMENTAL_useCheckboxTree/types'
-import { Column, Items } from '../../EXPERIMENTAL_Table'
+import { Column, Items } from '../../EXPERIMENTAL_Table/types'
 import { Density } from '../../EXPERIMENTAL_Table/hooks/useTableMeasures'
 import Node from './Node'
 
