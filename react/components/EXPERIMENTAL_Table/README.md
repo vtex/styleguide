@@ -583,6 +583,8 @@ function SortExample() {
 ### Usage
 
 ```js
+import { uniq } from 'lodash'
+import { useState, useRef } from 'react'
 const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
 const useTableVisibility = require('./hooks/useTableVisibility.ts').default
 const data = require('./sampleData.ts')
@@ -674,6 +676,52 @@ function VisibilityExample() {
     })),
   }
 
+  const allUsers = [
+    'Ana Clara',
+    'Ana Luiza',
+    { value: 1, label: 'Bruno' },
+    'Carlos',
+    'Daniela',
+  ]
+
+  const [term, setTerm] = useState('')
+  const [loading, setLoading] = useState(false)
+  const timeoutRef = useRef(null)
+
+  const options = {
+    onSelect: (...args) => console.log('onSelect: ', ...args),
+    loading,
+    value: !term.length
+      ? []
+      : allUsers.filter(user =>
+          typeof user === 'string'
+            ? user.toLowerCase().includes(term.toLowerCase())
+            : user.label.toLowerCase().includes(term.toLowerCase())
+        ),
+  }
+
+  const input = {
+    onChange: term => {
+      if (term) {
+        setLoading(true)
+        if (timeoutRef.current) {
+          clearTimeout(timeoutRef.current)
+        }
+        timeoutRef.current = setTimeout(() => {
+          setLoading(false)
+          setTerm(term)
+          timeoutRef.current = null
+        }, 1000)
+      } else {
+        setTerm(term)
+      }
+    },
+    onSearch: (...args) => console.log('onSearch:', ...args),
+    onClear: () => setTerm(''),
+    placeholder: 'Search user... (e.g.: Ana)',
+    value: term,
+  }
+
   return (
     <>
       <Table
@@ -681,6 +729,7 @@ function VisibilityExample() {
         columns={visibility.visibleColumns}
         items={items}>
         <Table.Toolbar>
+          <Table.Toolbar.InputAutocomplete input={input} options={options} />
           <Table.Toolbar.ButtonGroup>
             <Table.Toolbar.ButtonGroup.Columns {...buttonColumns} />
             <Table.Toolbar.ButtonGroup.Density {...density} />

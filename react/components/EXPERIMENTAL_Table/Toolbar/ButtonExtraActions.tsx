@@ -5,21 +5,22 @@ import IconOptionsDots from '../../icon/OptionsDots/index'
 import { NAMESPACES } from '../constants'
 import { MenuAction, Alignment } from './PopoverMenu'
 import { ButtonVariation, ButtonSize } from './Button'
+import { useButtonGroupContext } from './context'
 
 const ButtonExtraActions: FC<ButtonExtraActionsProps> = ({
   label,
   size,
   actions,
 }) => {
+  const { testId } = useButtonGroupContext()
   return (
-    <div
-      id={NAMESPACES.TOOLBAR.BUTTON_EXTRA_ACTIONS}
-      title={label}
-      className="mh2 order-4">
+    <div title={label} className="mh2 order-4">
       <ActionMenu
         hideCaretIcon
         buttonProps={{
           variation: ButtonVariation.Tertiary,
+          id: NAMESPACES.TOOLBAR.BUTTON_EXTRA_ACTIONS,
+          testId: `${testId}__extra-actions`,
           icon: (
             <span className="c-on-base">
               <IconOptionsDots />
