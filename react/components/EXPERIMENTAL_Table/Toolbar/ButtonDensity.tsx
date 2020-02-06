@@ -8,7 +8,7 @@ import useTableMeasures, {
   Density,
   DENSITY_OPTIONS,
 } from '../hooks/useTableMeasures'
-import { useToolbarContext } from './index'
+import { useToolbarContext } from './context'
 
 const FIELDS_ITEM_HEIGHT = 36
 const BOX_HEIGHT = DENSITY_OPTIONS.length * FIELDS_ITEM_HEIGHT

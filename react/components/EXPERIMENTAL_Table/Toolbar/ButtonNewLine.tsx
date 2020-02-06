@@ -11,7 +11,7 @@ import Button, {
 } from './Button'
 import { NAMESPACES } from '../constants'
 import { MenuAction } from './PopoverMenu'
-import { useToolbarContext } from './index'
+import { useToolbarContext } from './context'
 
 const ButtonNewLine: FC<ButtonNewLineProps> = ({ actions, ...buttonProps }) => {
   const namespace = NAMESPACES.TOOLBAR.BUTTON_NEWLINE

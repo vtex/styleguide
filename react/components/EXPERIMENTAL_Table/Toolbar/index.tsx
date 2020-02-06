@@ -1,4 +1,4 @@
-import React, { FC, createContext, useContext } from 'react'
+import React, { FC } from 'react'
 
 import ButtonGroup from './ButtonGroup'
 import InputSearch, { InputSearchProps } from './InputSearch'
@@ -6,30 +6,13 @@ import InputAutocomplete from './InputAutocomplete'
 import { AutocompleteInputProps } from '../../AutocompleteInput'
 import { ORDER_CLASSNAMES, NAMESPACES } from '../constants'
 import ActionBar from '../ActionBar'
+import { ToolbarProvider } from './context'
 import { E2ETestable } from '../types'
 
 interface Composites {
   InputSearch: FC<InputSearchProps>
   ButtonGroup: FC
   InputAutocomplete: FC<AutocompleteInputProps>
-}
-
-const ToolbarContext = createContext<E2ETestable>(null)
-
-const ToolbarProvider: FC<E2ETestable> = ({ children, testId }) => {
-  return (
-    <ToolbarContext.Provider value={{ testId }}>
-      {children}
-    </ToolbarContext.Provider>
-  )
-}
-
-export function useToolbarContext() {
-  const context = useContext(ToolbarContext)
-  if (!context) {
-    throw new Error('Do not use Toolbar composites outside of context')
-  }
-  return context
 }
 
 const Toolbar: FC<E2ETestable> & Composites = ({

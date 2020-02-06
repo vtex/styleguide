@@ -6,7 +6,7 @@ import usePopoverMenu, { Item, Box, Alignment } from './PopoverMenu'
 import Button, { IconSize } from './Button'
 import { NAMESPACES } from '../constants'
 import useTableVisibility from '../hooks/useTableVisibility'
-import { useToolbarContext } from '.'
+import { useToolbarContext } from './context'
 
 const COLUMNS_BOX = {
   MAX_HEIGHT: 192,
