@@ -1,11 +1,11 @@
 import React, { FC } from 'react'
 import classNames from 'classnames'
 
-import IconDownload from '../../icon/Download/index.js'
-import IconUpload from '../../icon/Upload/index.js'
-import Button, { ButtonProps, IconSize } from './Button'
+import { ButtonProps } from './Button'
 import ButtonColumns, { ButtonColumnsProps } from './ButtonColumns'
 import ButtonDensity, { ButtonDensityProps } from './ButtonDensity'
+import ButtonDownload from './ButtonDownload'
+import ButtonUpload from './ButtonUpload'
 import ButtonExtraActions, {
   ButtonExtraActionsProps,
 } from './ButtonExtraActions'
@@ -37,11 +37,7 @@ const getButton = (type: ButtonType, props: Props) => {
           className={
             ORDER_CLASSNAMES.TOOLBAR_CHILD.BUTTON_GROUP_CHILD.DOWNLOAD
           }>
-          <Button
-            id={NAMESPACES.TOOLBAR.BUTTON_DOWNLOAD}
-            icon={<IconDownload size={IconSize.Heavy} />}
-            {...(props as ButtonProps)}
-          />
+          <ButtonDownload {...(props as ButtonProps)} />
         </span>
       )
     }
@@ -49,11 +45,7 @@ const getButton = (type: ButtonType, props: Props) => {
       return (
         <span
           className={ORDER_CLASSNAMES.TOOLBAR_CHILD.BUTTON_GROUP_CHILD.UPLOAD}>
-          <Button
-            id={NAMESPACES.TOOLBAR.BUTTON_UPLOAD}
-            icon={<IconUpload size={IconSize.Heavy} />}
-            {...(props as ButtonProps)}
-          />
+          <ButtonUpload {...(props as ButtonProps)} />
         </span>
       )
     }
