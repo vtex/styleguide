@@ -6,7 +6,7 @@ import pick from 'lodash/pick'
 import Row, { ROW_TRANSITIONS } from '../../EXPERIMENTAL_Table/DataTable/Row'
 import CollapseToggle from './CollapseToggle'
 import { Checkboxes } from '../../EXPERIMENTAL_useCheckboxTree/types'
-import { Column } from '../../EXPERIMENTAL_Table'
+import { Column } from '../../EXPERIMENTAL_Table/types'
 import { Density } from '../../EXPERIMENTAL_Table/hooks/useTableMeasures'
 import useTableMotion from '../../EXPERIMENTAL_Table/hooks/useTableMotion'
 

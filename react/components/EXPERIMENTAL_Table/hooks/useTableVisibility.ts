@@ -1,6 +1,6 @@
 import { useMemo, useState, useCallback } from 'react'
 
-import { Column } from '../index'
+import { Column } from '../types'
 
 export default function useTableVisibility({
   columns,

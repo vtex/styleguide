@@ -6,6 +6,7 @@ import { NAMESPACES, ORDER_CLASSNAMES } from '../constants'
 import { TABLE_HEADER_HEIGHT } from '../hooks/useTableMeasures'
 import Loading from './Loading'
 import useTableMotion from '../hooks/useTableMotion'
+import { E2ETestable } from '../types'
 
 const DataTable: FC<DataTableProps> = ({
   children,
@@ -16,29 +17,38 @@ const DataTable: FC<DataTableProps> = ({
   loading,
   emptyState,
   motion,
+  testId,
 }) => {
   const showLoading = !empty && loading
   const showEmptyState = empty && emptyState
   return (
     <div
-      id={NAMESPACES.TABLE}
       style={{ minHeight: height, ...motion }}
       className={classNames(
         'order-1 mw-100 overflow-x-auto',
         ORDER_CLASSNAMES.TABLE
       )}>
-      <Tag className={`w-100 ${className}`} style={{ borderSpacing: 0 }}>
+      <Tag
+        id={NAMESPACES.TABLE}
+        data-testid={testId}
+        className={`w-100 ${className}`}
+        style={{ borderSpacing: 0 }}>
         {children}
       </Tag>
       {showLoading && (
-        <Loading motion={motion} height={height - TABLE_HEADER_HEIGHT}>
+        <Loading
+          testId={`${testId}__loading`}
+          motion={motion}
+          height={height - TABLE_HEADER_HEIGHT}>
           {typeof loading !== 'boolean' &&
             loading.renderAs &&
             loading.renderAs()}
         </Loading>
       )}
       {showEmptyState && (
-        <EmptyState title={emptyState.label}>{emptyState.children}</EmptyState>
+        <EmptyState testId={`${testId}__empty-state`} title={emptyState.label}>
+          {emptyState.children}
+        </EmptyState>
       )}
     </div>
   )
@@ -49,7 +59,7 @@ DataTable.defaultProps = {
   className: '',
 }
 
-export type DataTableProps = {
+export type DataTableProps = E2ETestable & {
   height: number
   tagName?: 'table' | 'div' | 'section'
   className?: string

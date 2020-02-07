@@ -1,16 +1,17 @@
 import React, { FC } from 'react'
 import classNames from 'classnames'
 
-import IconDownload from '../../icon/Download/index.js'
-import IconUpload from '../../icon/Upload/index.js'
-import Button, { ButtonProps, IconSize } from './Button'
+import { ButtonProps } from './Button'
 import ButtonColumns, { ButtonColumnsProps } from './ButtonColumns'
 import ButtonDensity, { ButtonDensityProps } from './ButtonDensity'
+import ButtonDownload from './ButtonDownload'
+import ButtonUpload from './ButtonUpload'
 import ButtonExtraActions, {
   ButtonExtraActionsProps,
 } from './ButtonExtraActions'
 import ButtonNewLine, { ButtonNewLineProps } from './ButtonNewLine'
 import { NAMESPACES, ORDER_CLASSNAMES } from '../constants'
+import { useToolbarContext, ButtonGroupProvider } from './context'
 
 const getButton = (type: ButtonType, props: Props) => {
   switch (type) {
@@ -36,11 +37,7 @@ const getButton = (type: ButtonType, props: Props) => {
           className={
             ORDER_CLASSNAMES.TOOLBAR_CHILD.BUTTON_GROUP_CHILD.DOWNLOAD
           }>
-          <Button
-            id={NAMESPACES.TOOLBAR.BUTTON_DOWNLOAD}
-            icon={<IconDownload size={IconSize.Heavy} />}
-            {...(props as ButtonProps)}
-          />
+          <ButtonDownload {...(props as ButtonProps)} />
         </span>
       )
     }
@@ -48,11 +45,7 @@ const getButton = (type: ButtonType, props: Props) => {
       return (
         <span
           className={ORDER_CLASSNAMES.TOOLBAR_CHILD.BUTTON_GROUP_CHILD.UPLOAD}>
-          <Button
-            id={NAMESPACES.TOOLBAR.BUTTON_UPLOAD}
-            icon={<IconUpload size={IconSize.Heavy} />}
-            {...(props as ButtonProps)}
-          />
+          <ButtonUpload {...(props as ButtonProps)} />
         </span>
       )
     }
@@ -84,16 +77,23 @@ const getComponent = (type: ButtonType) => {
   return (props: Props) => getButton(type, props)
 }
 
-const ButtonGroup: FC & Composites = ({ children }) => (
-  <div
-    id={NAMESPACES.TOOLBAR.BUTTON_GROUP}
-    className={classNames(
-      ORDER_CLASSNAMES.TOOLBAR_CHILD.BUTTON_GROUP,
-      'flex flex-row flex-wrap items-center'
-    )}>
-    {children}
-  </div>
-)
+const ButtonGroup: FC & Composites = ({ children }) => {
+  const { testId } = useToolbarContext()
+  const buttonGroupTestId = `${testId}__button-group`
+  return (
+    <div
+      id={NAMESPACES.TOOLBAR.BUTTON_GROUP}
+      data-testid={buttonGroupTestId}
+      className={classNames(
+        ORDER_CLASSNAMES.TOOLBAR_CHILD.BUTTON_GROUP,
+        'flex flex-row flex-wrap items-center'
+      )}>
+      <ButtonGroupProvider testId={buttonGroupTestId}>
+        {children}
+      </ButtonGroupProvider>
+    </div>
+  )
+}
 
 enum ButtonType {
   Columns,

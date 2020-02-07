@@ -3,7 +3,7 @@ import classNames from 'classnames'
 
 import { TABLE_HEADER_HEIGHT } from '../hooks/useTableMeasures'
 import Row, { RowProps } from './Row'
-import { Column } from '../index'
+import { Column } from '../types'
 import { Checkboxes } from '../../EXPERIMENTAL_useCheckboxTree/types'
 import Cell, { CellProps } from './Cell'
 import useTableSort from '../hooks/useTableSort'

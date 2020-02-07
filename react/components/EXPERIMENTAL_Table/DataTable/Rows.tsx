@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import pick from 'lodash/pick'
 
 import Row, { RowProps, ROW_TRANSITIONS } from './Row'
-import { Column, Items } from '../index'
+import { Column, Items } from '../types'
 import { Density } from '../hooks/useTableMeasures'
 import { Checkboxes } from '../../EXPERIMENTAL_useCheckboxTree/types'
 import useTableMotion from '../hooks/useTableMotion'

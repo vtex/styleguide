@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.109.2] - 2020-02-07
+
+### Added
+
+- `testId` to `EXPERIMENTAL_TABLE`.
+
 ## [9.109.1] - 2020-02-05
 ### Added
 

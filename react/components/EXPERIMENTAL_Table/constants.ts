@@ -35,10 +35,11 @@ export const NAMESPACES = {
   CONTAINER: `${NAMESPACE_PREFIX}__container`,
   TABLE: `${NAMESPACE_PREFIX}`,
   HEADER: `${NAMESPACE_PREFIX}__header`,
+  BODY: `${NAMESPACE_PREFIX}__body`,
   ROW: `${NAMESPACE_PREFIX}__row`,
   CELL: `${NAMESPACE_PREFIX}__cell`,
   TOOLBAR: {
-    CONTAINER: `${NAMESPACE_PREFIX}__toolbar__container`,
+    CONTAINER: `${NAMESPACE_PREFIX}__toolbar`,
     INPUT_SEARCH: `${NAMESPACE_PREFIX}__toolbar__input-search`,
     BUTTON_GROUP: `${NAMESPACE_PREFIX}__toolbar__button-group`,
     BUTTON_COLUMNS: `${NAMESPACE_PREFIX}__toolbar__button-columns`,
