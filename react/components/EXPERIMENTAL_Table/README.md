@@ -667,7 +667,7 @@ Represents the group of buttons located at the right. It has other composites th
 ##### Columns
 
 - A button that toggles columns visibility.
-- It is recommended to combine it with the `useTableVisiblitity` hook.
+- It is recommended to combine it with the `useTableVisibility` hook.
 
 ```ts
 enum Alignment {
