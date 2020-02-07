@@ -711,7 +711,7 @@ enum Density {
 | comfortableLabel | string                     | ✅       | 🚫      | Label of the comfortable option  |
 | alignMenu        | Alignment                  | 🚫       | 🚫      | Menu alignment                   |
 | handleCallback   | (density: Density) => void | 🚫       | 🚫      | Triggered on change density      |
-| disabeld         | boolean                    | 🚫       | false   | If the button is disabled or not |
+| disabled         | boolean                    | 🚫       | false   | If the button is disabled or not |
 
 ##### Download
 
@@ -720,8 +720,8 @@ enum Density {
 | Property | Type       | Required | Default | Description                      |
 | -------- | ---------- | -------- | ------- | -------------------------------- |
 | onClick  | () => void | ✅       | 🚫      | Action on click button           |
-| label    | string     | 🚫       | 🚫      | Button text                      |
-| disabeld | boolean    | 🚫       | false   | If the button is disabled or not |
+| label    | string     | 🚫       | ""      | Button text                      |
+| disabled | boolean    | 🚫       | false   | If the button is disabled or not |
 
 ##### Upload
 
@@ -731,7 +731,7 @@ enum Density {
 | -------- | ---------- | -------- | ------- | -------------------------------- |
 | onClick  | () => void | ✅       | 🚫      | Action on click button           |
 | label    | string     | 🚫       | 🚫      | Button text                      |
-| disabeld | boolean    | 🚫       | false   | If the button is disabled or not |
+| disabled | boolean    | 🚫       | false   | If the button is disabled or not |
 
 ##### ExtraActions
 
@@ -759,7 +759,7 @@ type MenuAction = {
 | actions   | MenuAction[] | ✅       | 🚫      | Action on click button           |
 | label     | string       | 🚫       | 🚫      | Button label                     |
 | isLoading | boolean      | 🚫       | false   | If the button is loading or not  |
-| disabeld  | boolean      | 🚫       | false   | If the button is disabled or not |
+| disabled  | boolean      | 🚫       | false   | If the button is disabled or not |
 | alignMenu | Alignment    | 🚫       | 🚫      | Menu alignment                   |
 
 ##### NewLine
@@ -784,7 +784,7 @@ type MenuAction = {
 | label     | string       | 🚫       | 🚫      | Button text                      |
 | actions   | MenuAction[] | 🚫       | 🚫      | Action on click button           |
 | isLoading | boolean      | 🚫       | false   | If the button is loading or not  |
-| disabeld  | boolean      | 🚫       | false   | If the button is disabled or not |
+| disabled  | boolean      | 🚫       | false   | If the button is disabled or not |
 
 #### Working example
 
