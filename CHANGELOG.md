@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Color of active row on `EXPERIMENTAL_Table`.
+
 ## [9.112.2] - 2020-02-27
 
 ### Fixed
