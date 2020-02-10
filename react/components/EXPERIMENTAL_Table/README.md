@@ -1007,12 +1007,12 @@ const columns = [
   {
     id: 'costPrice',
     title: 'Cost',
-    cellRenderer: ({ cellData }) => <Currency value={cellData} />,
+    cellRenderer: ({ data }) => <Currency value={data} />,
   },
   {
     id: 'retailPrice',
     title: 'Retail',
-    cellRenderer: ({ cellData }) => <Currency value={cellData} />,
+    cellRenderer: ({ data }) => <Currency value={data} />,
   },
 ]
 
@@ -1184,8 +1184,8 @@ const columns = [
   },
 ]
 
-function Currency({ cellData, rowData }) {
-  return <>$ {parseFloat(cellData).toFixed(2)}</>
+function Currency({ data }) {
+  return <>$ {parseFloat(data).toFixed(2)}</>
 }
 
 function useProducts() {
@@ -1670,61 +1670,6 @@ function locationSelectorObject({ values, onChangeObjectCallback }) {
 }
 
 ;<PaginationExample />
-```
-
-# Action Bar
-
-This feature allows users to add custom action bars.
-
-```js
-const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
-const useCheckboxTree = require('../EXPERIMENTAL_useCheckboxTree/index.tsx')
-  .default
-const Toggle = require('../Toggle/index.js').default
-const data = require('./sampleData.ts')
-
-const columns = [
-  {
-    id: 'name',
-    title: 'Name',
-  },
-  {
-    id: 'manufacturer',
-    title: 'Manufacturer',
-  },
-  {
-    id: 'qty',
-    title: 'Qty',
-  },
-]
-
-const items = data.products
-
-const { ActionBar } = Table
-
-function ActionBarExample() {
-  const [active, setActive] = React.useState(false)
-  const isDisabled = () => !active
-  const measures = useTableMeasures({ size: items.length })
-  const checkboxes = useCheckboxTree({ columns, items, isDisabled })
-
-  return (
-    <Table
-      checkboxes={checkboxes}
-      measures={measures}
-      items={items}
-      columns={columns}>
-      <ActionBar>
-        <Toggle
-          checked={active}
-          label={active ? 'Disable checkboxes' : 'Enable checkboxes'}
-          onChange={() => setActive(active => !active)}
-        />
-      </ActionBar>
-    </Table>
-  )
-}
-;<ActionBarExample />
 ```
 
 # 🧪 E2E Testing
