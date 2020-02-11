@@ -14,7 +14,7 @@ class Columns extends PureComponent {
     const newSize = calcIconSize(iconBaseDimensions, size)
 
     return (
-      <IconBase size={newSize} block={block} id="icon-columns">
+      <IconBase size={newSize} block={block} id="columns">
         <path d="M1 4H15V15H1V4Z" stroke={color} strokeWidth="2" />
         <path
           d="M0 1C0 0.447715 0.447715 0 1 0H15C15.5523 0 16 0.447715 16 1V5H0V1Z"

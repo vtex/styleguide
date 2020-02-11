@@ -21,17 +21,21 @@ const Use = ({ id }) => <use href={`#${id}`} xlinkHref={`#${id}`} />
 
 export const IconBase = props => {
   const { size, block, children, id } = props
-  const elem =
-    document && document.getElementById(id) ? <Use id={id} /> : children
+  const element =
+    document && document.getElementById(id) ? (
+      <Use id={`icon-${id}`} />
+    ) : (
+      children
+    )
   return (
     <svg
-      className={`${baseClassname('columns')} ${block ? 'db' : ''}`}
+      className={`${baseClassname(id)} ${block ? 'db' : ''}`}
       width={size.width}
       height={size.height}
       viewBox="0 0 16 16"
       fill="none"
       xmlns="http://www.w3.org/2000/svg">
-      {elem}
+      {element}
     </svg>
   )
 }
