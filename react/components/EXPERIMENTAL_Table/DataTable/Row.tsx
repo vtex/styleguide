@@ -13,6 +13,7 @@ const Row: FC<RowProps> & RowComposites = ({
   highlightOnHover,
 }) => {
   const LIGHT_BLUE = '#DBE9FD'
+  const rowColor = active ? { backgroundColor: LIGHT_BLUE } : {}
 
   const className = classNames('w-100 truncate overflow-x-hidden', {
     'hover-bg-muted-5': highlightOnHover,
@@ -23,10 +24,7 @@ const Row: FC<RowProps> & RowComposites = ({
   const style = {
     height,
     ...motion,
-  }
-
-  if (active) {
-    style['background-color'] = LIGHT_BLUE
+    ...rowColor,
   }
 
   return (
