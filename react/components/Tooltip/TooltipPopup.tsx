@@ -76,7 +76,7 @@ const TooltipPopup: FC<PropTypes.InferProps<typeof propTypes>> = ({
     'absolute pv3 ph4 bg-base--inverted c-on-base--inverted br2 shadow-4 mw5 overflow-hidden',
     style.popup,
     {
-      dn: (!visible && !showPopup) || !childRect || !popupRect,
+      dn: !visible || !showPopup || !childRect || !popupRect,
       'o-0': !visible || !hasComputedDimensions(popupRect),
       'o-100': visible && hasComputedDimensions(popupRect),
       't-mini': size === 'mini',
