@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- `Tooltip` display verification logic.
+
 ## [9.109.3] - 2020-02-10
 
 ### Added
