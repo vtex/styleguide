@@ -1,5 +1,6 @@
 import mergeBase from 'lodash/merge'
 
+import { ChartConfig, LineProps, BarProps } from './types'
 import { commonDefaultProps } from './commonProps'
 import { defaultProps as defaultLineProps } from './LineChart/constants'
 import { defaultProps as defaultBarProps } from './BarChart/constants'
@@ -27,7 +28,9 @@ const getChartDefaultProps = (
   configs: merge(merge(commonDefaultProps, customConfig), userProps),
 })
 
-const getLineDefaultProps = (userProps: LineProps) => ({
+const getLineDefaultProps = (
+  userProps: LineProps
+): { lineConfigs: LineProps } => ({
   lineConfigs: { ...defaultLineProps, ...userProps },
 })
 

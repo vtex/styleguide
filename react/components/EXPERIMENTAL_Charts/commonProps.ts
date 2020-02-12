@@ -1,3 +1,5 @@
+import { ChartConfig } from './types'
+
 export const commonDefaultProps: ChartConfig = {
   container: {
     height: '100%',
@@ -21,11 +23,6 @@ export const commonDefaultProps: ChartConfig = {
     type: 'number',
   },
   zAxis: {
-    axisLine: false,
-    tickLine: false,
-    tickMargin: 5,
-    tick: true,
-    hide: false,
     type: 'number',
   },
   grid: {
