@@ -240,7 +240,7 @@ Toast.propTypes = {
     rel: PropTypes.string,
     download: PropTypes.string,
   }),
-  keepAfterUpdate: PropTypes.string,
+  keepAfterUpdate: PropTypes.bool,
   visible: PropTypes.bool,
   duration: PropTypes.number,
   dismissable: PropTypes.bool,

@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.110.1] - 2020-02-12
+
+### Fixed
+
+- `showToast` warning when it is used at any context
+
 ## [9.110.0] - 2020-02-12
 
 ### Added
