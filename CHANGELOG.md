@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- `LineChart` custom configuration to all inner components to allow a better usage of our charts.
+
 ## [9.109.4] - 2020-02-11
 
 ### Fixed
