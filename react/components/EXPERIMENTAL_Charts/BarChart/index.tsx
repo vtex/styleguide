@@ -13,6 +13,7 @@ import PropTypes from 'prop-types'
 import { getChartDefaultProps, getBarDefaultProps } from '../helpers'
 import { BAR_GAP, Layout, chartDefaultConfig } from './constants'
 import { colors, tooltipProps } from '../commonProps'
+import { BarProps, BaseChartProps } from '../types'
 
 type Props = {
   barProps: BarProps

@@ -2,6 +2,7 @@ import React, { FC } from 'react'
 import PropTypes from 'prop-types'
 
 import ScatterChart from '../ScatterChart'
+import { BaseChartProps } from '../types'
 
 const BubbleChart: FC<BaseChartProps> = props => <ScatterChart {...props} />
 
