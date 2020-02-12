@@ -1,3 +1,5 @@
+import { DefaultBarProps, ChartConfig } from '../types'
+
 export const BAR_GAP = '20%'
 
 export enum Layout {

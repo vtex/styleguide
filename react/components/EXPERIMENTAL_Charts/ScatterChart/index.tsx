@@ -15,6 +15,7 @@ import uuid from 'uuid'
 import { commonDefaultProps } from './constants'
 import { getChartDefaultProps, getRangeOfZAxis } from '../helpers'
 import { colors } from '../commonProps'
+import { BaseChartProps } from '../types'
 
 const CustomTooltip = props => {
   return props.payload.map(item => (
