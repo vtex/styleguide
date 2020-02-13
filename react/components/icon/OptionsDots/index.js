@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
+import { Svg } from '../IconBase'
 import { calcIconSize } from '../utils'
 
 const iconBase = {
@@ -14,11 +15,7 @@ class OptionsDots extends PureComponent {
     const newSize = calcIconSize(iconBase, size)
 
     return (
-      <svg
-        viewBox="0 0 32 32"
-        className={`${block ? 'db' : ''}`}
-        width={newSize.width}
-        height={newSize.height}>
+      <Svg name="options-dots" size={newSize} block={block} viewBox="0 0 32 32">
         <g className="nc-icon-wrapper" fill={color}>
           <g
             className="nc-interact_dots-close-o-32"
@@ -147,7 +144,7 @@ class OptionsDots extends PureComponent {
             />{' '}
           </g>
         </g>
-      </svg>
+      </Svg>
     )
   }
 }

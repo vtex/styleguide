@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
-import { calcIconSize, baseClassname, IconBase } from '../utils'
+import { Svg } from '../IconBase'
+import { calcIconSize } from '../utils'
 
 const iconBaseDimensions = {
   width: 16,
@@ -12,9 +13,8 @@ class Columns extends PureComponent {
   render() {
     const { color, size, block } = this.props
     const newSize = calcIconSize(iconBaseDimensions, size)
-
     return (
-      <IconBase size={newSize} block={block} id="columns">
+      <Svg name="columns" size={newSize} block={block}>
         <path d="M1 4H15V15H1V4Z" stroke={color} strokeWidth="2" />
         <path
           d="M0 1C0 0.447715 0.447715 0 1 0H15C15.5523 0 16 0.447715 16 1V5H0V1Z"
@@ -28,7 +28,7 @@ class Columns extends PureComponent {
           stroke={color}
           strokeWidth="2"
         />
-      </IconBase>
+      </Svg>
     )
   }
 }

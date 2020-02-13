@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
-import { calcIconSize, baseClassname } from '../utils'
+import { Svg } from '../IconBase'
+import { calcIconSize } from '../utils'
 
 const iconBase = {
   width: 18,
@@ -14,13 +15,12 @@ class OrderedList extends PureComponent {
     const newSize = calcIconSize(iconBase, size)
 
     return (
-      <svg
-        className={`${baseClassname('orderedList')} ${block ? 'db' : ''}`}
-        width={newSize.width}
-        height={newSize.height}
+      <Svg
+        name="orderedList"
+        size={newSize}
+        block={block}
         viewBox="0 0 64 64"
-        fill={color}
-        xmlns="http://www.w3.org/2000/svg">
+        fill={color}>
         <path d="M3.985,18.909V17.014l2.063-.168c.336-.024.384-.12.384-.481V7.994c0-.288-.073-.432-.312-.5L4.033,7.058,4.3,5.091h5.757V16.365c0,.384.024.457.384.481l1.967.168v1.895Z" />{' '}
         <path
           data-color="color-2"
@@ -34,7 +34,7 @@ class OrderedList extends PureComponent {
         <path d="M61,13H21a1,1,0,0,1,0-2H61a1,1,0,0,1,0,2Z" fill={color} />
         <path d="M46,33H21a1,1,0,0,1,0-2H46a1,1,0,0,1,0,2Z" fill={color} />
         <path d="M61,53H21a1,1,0,0,1,0-2H61a1,1,0,0,1,0,2Z" fill={color} />
-      </svg>
+      </Svg>
     )
   }
 }
