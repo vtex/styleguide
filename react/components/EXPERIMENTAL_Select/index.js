@@ -34,7 +34,10 @@ class Select extends Component {
     const { loading } = this.props
     const { loading: prevLoading } = prevProps
 
-    if (searchTerm !== prevSearchTerm || loading !== prevLoading) {
+    if (
+      searchTerm !== prevSearchTerm ||
+      (searchTerm && loading !== prevLoading)
+    ) {
       document.getElementById(this.inputId).focus()
     }
   }
