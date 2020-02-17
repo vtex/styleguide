@@ -170,7 +170,14 @@ const items = data.products
 function ColumnsExample() {
   /** The useTableMeasures hook will be discussed on the Measures section */
   const measures = useTableMeasures({ size: items.length })
-  return <Table measures={measures} items={items} columns={columns} />
+  return (
+    <Table
+      measures={measures}
+      items={items}
+      columns={columns}
+      highlightOnHover
+    />
+  )
 }
 ;<ColumnsExample />
 ```

@@ -37,12 +37,11 @@ const Rows: FC<RowsProps> = ({
               onClick: () => onRowClick({ rowData }),
               highlightOnHover: true,
             }
-          : {}
+          : { highlightOnHover }
         return (
           <Row
             {...rowProps}
             {...clickable}
-            highlightOnHover={highlightOnHover}
             height={rowHeight}
             active={(isRowActive && isRowActive(rowData)) || isRowSelected}
             key={rowKey({ rowData })}
