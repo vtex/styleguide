@@ -13,7 +13,13 @@ export const Svg = props => {
   const { size, block, children, name, variation, ...svgProps } = props
   const id = variation ? `icon-${name}-${variation}` : `icon-${name}`
   const element =
-    document && document.getElementById(id) ? <Use id={id} /> : children
+    typeof document !== 'undefined' &&
+    document &&
+    document.getElementById(id) ? (
+      <Use id={id} />
+    ) : (
+      children
+    )
   return (
     <svg
       className={`${baseClassname(name, variation)} ${block ? 'db' : ''}`}

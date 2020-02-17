@@ -118,7 +118,8 @@ yarn deploy
 #### Custom icons
 
 The `icon` components supports customization through the `<use>` element available in SVG. [Read more](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/use)
-*How to use:* In the same page that has a icon, load in any place inside the `<html>` a SVG with the following structure:
+
+**How to use:** In the same page that has a icon, load in any place inside the `<html>` a SVG with the following structure:
 ```svg
 <svg class="dn" height="0" version="1.1" width="0" xmlns="http://www.w3.org/2000/svg">
   <defs>

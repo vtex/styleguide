@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Add more check to document for prevent undefined.
+
 ## [9.111.2] - 2020-02-17
 
 ### Added
