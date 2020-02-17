@@ -114,3 +114,23 @@ yarn deploy
 - We currently have two majors of the Styleguide, `8.x` and `9.x` (master branch).
   Each major supports a specific VTEX's Render version.
   This means that we develop new features only on the `master` branch (9.x major) and do bug fixes on both `master` and `8.x` branches.
+
+#### Custom icons
+
+The `icon` components supports customization through the `<use>` element available in SVG. [Read more](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/use)
+*How to use:* In the same page that has a icon, load in any place inside the `<html>` a SVG with the following structure:
+```svg
+<svg class="dn" height="0" version="1.1" width="0" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <g id="icon-columns">
+      <path d="M10.8 4.4L9.4 3L5.4 7L3.4 5L2 6.4L5.4 9.8L10.8 4.4Z" fill="currentColor" />
+    </g>
+    <g id="OTHER-ICON-ID">
+      <path d="M11.7 0.3C11.5 0.1 11.3 0 11 0H10V3C10 3.6 9.6 4 9 4H4C3.4 4 3 3.6 3 3V0H1C0.4 0 0 0.4 0 1V15C0 15.6 0.4 16 1 16H15C15.6 16 16 15.6 16 15V5C16 4.7 15.9 4.5 15.7 4.3L11.7 0.3ZM13 14H3V11C3 10.4 3.4 10 4 10H12C12.6 10 13 10.4 13 11V14Z" fill="currentColor"/>
+      <path d="M9 0H7V3H9V0Z" fill="currentColor"/>
+    </g>
+  </defs>
+</svg>
+```
+- The ID must match the ID of the icon you want to replace. To see all available options, [view icons folder](https://github.com/vtex/styleguide/tree/master/react/components/icon).
+- Inside one SVG you can have more than one `<g id="">`, one for each icon you want to update.
