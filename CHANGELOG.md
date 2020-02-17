@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.111.2] - 2020-02-17
+
+### Added
+
+- `highlightOnHover` prop to `EXPERIMENTAL_Table`
+
 ## [9.111.1] - 2020-02-17
 
 ### Fixed
