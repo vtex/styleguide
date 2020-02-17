@@ -14,6 +14,7 @@ const Headings: FC<HeadingsProps> = ({
   cellProps,
   rowProps,
   sorting,
+  sticky,
 }) => {
   return (
     <Row {...rowProps} height={TABLE_HEADER_HEIGHT}>
@@ -31,7 +32,9 @@ const Headings: FC<HeadingsProps> = ({
             active={active}
             className={cellClassName}
             key={headerIndex}
-            width={width}>
+            width={width}
+            sticky={sticky}
+            header>
             {checkboxes && headerIndex === 0 && (
               <Cell.Prefix>
                 <span className="ph3">
@@ -66,6 +69,7 @@ type HeadingsProps = {
   cellProps?: Pick<CellProps, 'tagName'>
   checkboxes?: Checkboxes<unknown>
   sorting?: Partial<ReturnType<typeof useTableSort>>
+  sticky?: boolean
 }
 
 export default React.memo(Headings)

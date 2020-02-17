@@ -35,19 +35,31 @@ const Cell: FC<CellProps> & CellComposites = ({
   className: classNameProp = '',
   active = false,
   link = false,
+  sticky = false,
+  header,
 }) => {
   const { hover, ...events } = useHover()
   const className = classNames(
-    'v-mid ph3 pv0 tl bb b--muted-4',
+    'v-mid ph3 pv0 tl bb b--muted-4 bg-base',
     classNameProp,
     {
       pointer: onClick,
       'hover-c-link hover-bg-muted-5': link,
       'c-on-base': active,
+      'top-0 z3': sticky && header,
+      z1: !sticky,
     }
   )
+
   return (
-    <Tag {...events} onClick={onClick} style={{ width }} className={className}>
+    <Tag
+      {...events}
+      onClick={onClick}
+      style={{
+        position: sticky ? 'sticky' : 'static',
+        width,
+      }}
+      className={className}>
       <HoverProvider value={hover}>{children}</HoverProvider>
     </Tag>
   )
@@ -118,6 +130,8 @@ export type CellProps = {
   showArrow?: boolean
   active?: boolean
   link?: boolean
+  sticky?: boolean
+  header?: boolean
 }
 
 export default Cell

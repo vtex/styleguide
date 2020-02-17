@@ -18,14 +18,18 @@ const DataTable: FC<DataTableProps> = ({
   emptyState,
   motion,
   testId,
+  stickyHeader,
 }) => {
   const showLoading = !empty && loading
   const showEmptyState = empty && emptyState
   return (
     <div
-      style={{ minHeight: height, ...motion }}
+      style={{ height, ...motion }}
       className={classNames(
-        'order-1 mw-100 overflow-x-auto',
+        'order-1 mw-100 overflow-x-auto relative',
+        {
+          'overflow-y-auto': stickyHeader,
+        },
         ORDER_CLASSNAMES.TABLE
       )}>
       <Tag
@@ -74,6 +78,7 @@ export type DataTableProps = E2ETestable & {
     label?: string
     children?: Element
   }
+  stickyHeader?: boolean
 }
 
 export default DataTable

@@ -26,14 +26,18 @@ const Table: FC<TableProps> & TableComposites = ({
   checkboxes,
   rowKey,
   highlightOnHover,
-  ...props
+  stickyHeader,
+  columns,
+  onRowClick,
+  items,
+  sorting,
+  testId,
 }) => {
   if (!measures) {
     throw new Error('Provide measures to the Table')
   }
 
   const { tableHeight, rowHeight, currentDensity } = measures
-  const { columns, onRowClick, items, sorting, testId } = props
   const motion = useTableMotion()
 
   return (
@@ -44,6 +48,7 @@ const Table: FC<TableProps> & TableComposites = ({
       className="flex flex-column">
       <TableProvider testId={testId}>{children}</TableProvider>
       <DataTable
+        stickyHeader={stickyHeader}
         testId={testId}
         empty={empty}
         loading={loading}
@@ -55,6 +60,7 @@ const Table: FC<TableProps> & TableComposites = ({
           data-testid={`${testId}__header`}
           className="w-100 ph4 truncate overflow-x-hidden c-muted-2 f6">
           <Headings
+            sticky={stickyHeader}
             sorting={sorting}
             columns={columns}
             checkboxes={checkboxes}
@@ -162,6 +168,8 @@ export const tablePropTypes = {
   testId: PropTypes.string,
   /** If the rows should be highlighted on :hover */
   highlightOnHover: PropTypes.bool,
+  /** If the header is sticky or not */
+  stickyHeader: PropTypes.bool,
 }
 
 export type TableProps = InferProps<typeof tablePropTypes> & {
@@ -188,6 +196,7 @@ Table.ActionBar = ActionBar
 Table.defaultProps = {
   rowKey: ({ rowData }) => `row-${rowData.id}`,
   testId: 'vtex-table-v2',
+  stickyHeader: false,
 }
 
 export default Table
