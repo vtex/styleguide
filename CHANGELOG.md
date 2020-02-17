@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Packages `react@^16.8.0` and `react-dom@^16.8.0` to `peerDependencies`.
+
 ## [9.111.3] - 2020-02-17
 
 ### Fixed
