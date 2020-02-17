@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
-import { calcIconSize, baseClassname } from '../utils'
+import { Svg } from '../IconBase'
+import { calcIconSize } from '../utils'
 
 const iconBase = {
   width: 20,
@@ -13,15 +14,14 @@ class Plus extends PureComponent {
     const { color, size, solid, block } = this.props
     const newSize = calcIconSize(iconBase, size)
 
-    if (solid) {
-      return (
-        <svg
-          className={`${baseClassname('plus', 'solid')} ${block ? 'db' : ''}`}
-          width={newSize.width}
-          height={newSize.height}
-          viewBox="0 0 20 20"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg">
+    return (
+      <Svg
+        name="plus"
+        variation={solid ? 'solid' : null}
+        size={newSize}
+        block={block}
+        viewBox="0 0 20 20">
+        {solid ? (
           <path
             fillRule="evenodd"
             clipRule="evenodd"
@@ -29,22 +29,16 @@ class Plus extends PureComponent {
             transform="translate(10.1006 -1.31372) rotate(45)"
             fill={color}
           />
-        </svg>
-      )
-    }
-    return (
-      <svg
-        width={newSize.width}
-        height={newSize.height}
-        viewBox="0 0 20 20"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg">
-        <circle cx="8" cy="8" r="7" stroke="#3F3F40" strokeWidth="2" />
-        <path
-          d="M4.5 7H7V4.5C7 4.22386 7.22386 4 7.5 4H8.5C8.77614 4 9 4.22386 9 4.5V7H11.5C11.7761 7 12 7.22386 12 7.5V8.5C12 8.77614 11.7761 9 11.5 9H9V11.5C9 11.7761 8.77614 12 8.5 12H7.5C7.22386 12 7 11.7761 7 11.5V9H4.5C4.22386 9 4 8.77614 4 8.5V7.5C4 7.22386 4.22386 7 4.5 7Z"
-          fill={color}
-        />
-      </svg>
+        ) : (
+          <>
+            <circle cx="8" cy="8" r="7" stroke="#3F3F40" strokeWidth="2" />
+            <path
+              d="M4.5 7H7V4.5C7 4.22386 7.22386 4 7.5 4H8.5C8.77614 4 9 4.22386 9 4.5V7H11.5C11.7761 7 12 7.22386 12 7.5V8.5C12 8.77614 11.7761 9 11.5 9H9V11.5C9 11.7761 8.77614 12 8.5 12H7.5C7.22386 12 7 11.7761 7 11.5V9H4.5C4.22386 9 4 8.77614 4 8.5V7.5C4 7.22386 4.22386 7 4.5 7Z"
+              fill={color}
+            />
+          </>
+        )}
+      </Svg>
     )
   }
 }

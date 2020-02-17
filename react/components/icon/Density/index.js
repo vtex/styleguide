@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
-import { calcIconSize, baseClassname } from '../utils'
+import { Svg } from '../IconBase'
+import { calcIconSize } from '../utils'
 
 const iconBase = {
   width: 14,
@@ -14,13 +15,12 @@ class Density extends PureComponent {
     const newSize = calcIconSize(iconBase, size)
 
     return (
-      <svg
-        className={`${baseClassname('density')} ${block ? 'db' : ''}`}
-        width={newSize.width}
-        height={newSize.height}
+      <Svg
+        name="density"
+        size={newSize}
+        block={block}
         viewBox="0 0 14 13"
-        fill={color}
-        xmlns="http://www.w3.org/2000/svg">
+        fill={color}>
         <rect
           y="11.1426"
           width={newSize.width}
@@ -36,7 +36,7 @@ class Density extends PureComponent {
           fill={color}
         />
         <rect width={newSize.width} height="5.57143" rx="1" fill={color} />
-      </svg>
+      </Svg>
     )
   }
 }

@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
-import { calcIconSize, baseClassname } from '../utils'
+import { Svg } from '../IconBase'
+import { calcIconSize } from '../utils'
 
 const iconBase = {
   width: 18,
@@ -14,13 +15,7 @@ class Copy extends PureComponent {
     const newSize = calcIconSize(iconBase, size)
 
     return (
-      <svg
-        className={`${baseClassname('copy')} ${block ? 'db' : ''}`}
-        width={newSize.width}
-        height={newSize.height}
-        viewBox="0 0 18 18"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg">
+      <Svg name="copy" size={newSize} block={block} viewBox="0 0 18 18">
         <path
           d="M6.4 0H9.2C10.3046 0 11.2 0.895431 11.2 2V9.2C11.2 10.3046 10.3046 11.2 9.2 11.2H2C0.89543 11.2 0 10.3046 0 9.2V6.4"
           transform="translate(5.80005 12.2) rotate(-90)"
@@ -37,7 +32,7 @@ class Copy extends PureComponent {
           strokeMiterlimit="10"
           strokeLinecap="square"
         />
-      </svg>
+      </Svg>
     )
   }
 }
