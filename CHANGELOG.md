@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Add missing IconBase file.
+
 ## [9.111.0] - 2020-02-17
 
 ### Changed
