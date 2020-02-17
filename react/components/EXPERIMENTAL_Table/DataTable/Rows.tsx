@@ -19,6 +19,7 @@ const Rows: FC<RowsProps> = ({
   currentDensity,
   checkboxes,
   rowKey,
+  highlightOnHover,
 }) => {
   const motion = useTableMotion(ROW_TRANSITIONS)
   return items ? (
@@ -34,13 +35,14 @@ const Rows: FC<RowsProps> = ({
         const clickable = onRowClick
           ? {
               onClick: () => onRowClick({ rowData }),
-              link: true,
+              highlightOnHover: true,
             }
           : {}
         return (
           <Row
             {...rowProps}
             {...clickable}
+            highlightOnHover={highlightOnHover}
             height={rowHeight}
             active={(isRowActive && isRowActive(rowData)) || isRowSelected}
             key={rowKey({ rowData })}
@@ -96,6 +98,7 @@ export type RowsProps = {
   rowHeight: number
   cellProps?: Pick<CellProps, 'tagName' | 'className'>
   checkboxes?: Checkboxes<unknown>
+  highlightOnHover?: boolean
 }
 
 export default Rows
