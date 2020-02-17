@@ -98,7 +98,6 @@
     "react-select": "^2.1.2",
     "react-sticky": "^6.0.3",
     "react-virtualized": "^9.19.1",
-    "recharts": "^2.0.0-beta.1",
     "use-media": "^1.4.0",
     "uuid": "^3.3.2",
     "vtex-tachyons": "^3.2.0",
@@ -106,7 +105,8 @@
   },
   "peerDependencies": {
     "react": "^16.8.0",
-    "react-dom": "^16.8.0"
+    "react-dom": "^16.8.0",
+    "recharts": "^2.0.0-beta.1"
   },
   "husky": {
     "hooks": {
