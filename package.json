@@ -18,10 +18,10 @@
     "clean:modules": "rm -rf modules",
     "compile": "run-s clean:lib clean:modules build:types babel:lib babel:modules",
     "prepublishOnly": "run-s compile deploy",
+    "prepare": "yarn --cwd react --ignore-scripts",
     "postreleasy": "vtex publish --public --verbose",
     "lint-fix": "eslint react --ext js,jsx,ts,tsx --fix --max-warnings 0",
-    "prettier-conflict-check": "eslint --print-config .eslintrc | eslint-config-prettier-check",
-    "postinstall": "yarn --cwd react --ignore-scripts --prod"
+    "prettier-conflict-check": "eslint --print-config .eslintrc | eslint-config-prettier-check"
   },
   "main": "./lib/index.js",
   "files": [

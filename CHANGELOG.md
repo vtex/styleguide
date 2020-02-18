@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
-- Added `--prod` flag to `postinstall` script.
+- Moved the  `postinstall` script to `prepare`, to avoid adding devDependencies on production.
 
 ## [9.111.5] - 2020-02-17
 
