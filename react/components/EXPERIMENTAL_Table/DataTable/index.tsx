@@ -12,7 +12,6 @@ const DataTable: FC<DataTableProps> = ({
   children,
   height,
   className,
-  tagName: Tag,
   empty,
   loading,
   emptyState,
@@ -32,13 +31,13 @@ const DataTable: FC<DataTableProps> = ({
         },
         ORDER_CLASSNAMES.TABLE
       )}>
-      <Tag
+      <table
         id={NAMESPACES.TABLE}
         data-testid={testId}
-        className={`w-100 ${className}`}
+        className={classNames('w-100', className)}
         style={{ borderSpacing: 0 }}>
         {children}
-      </Tag>
+      </table>
       {showLoading && (
         <Loading
           testId={`${testId}__loading`}
@@ -58,14 +57,8 @@ const DataTable: FC<DataTableProps> = ({
   )
 }
 
-DataTable.defaultProps = {
-  tagName: 'table',
-  className: '',
-}
-
 export type DataTableProps = E2ETestable & {
   height: number
-  tagName?: 'table' | 'div' | 'section'
   className?: string
   empty: boolean
   motion: ReturnType<typeof useTableMotion>

@@ -5,13 +5,12 @@ import { TABLE_HEADER_HEIGHT } from '../hooks/useTableMeasures'
 import Row, { RowProps } from './Row'
 import { Column } from '../types'
 import { Checkboxes } from '../../EXPERIMENTAL_useCheckboxTree/types'
-import Cell, { CellProps } from './Cell'
+import Cell from './Cell'
 import useTableSort from '../hooks/useTableSort'
 
 const Headings: FC<HeadingsProps> = ({
   columns,
   checkboxes,
-  cellProps,
   rowProps,
   sorting,
   sticky,
@@ -28,7 +27,6 @@ const Headings: FC<HeadingsProps> = ({
         return (
           <Row.Cell
             {...onclick}
-            {...cellProps}
             active={active}
             className={cellClassName}
             key={headerIndex}
@@ -57,16 +55,9 @@ const Headings: FC<HeadingsProps> = ({
   )
 }
 
-Headings.defaultProps = {
-  cellProps: {
-    tagName: 'th',
-  },
-}
-
 type HeadingsProps = {
   columns: Array<Column>
   rowProps?: RowProps
-  cellProps?: Pick<CellProps, 'tagName'>
   checkboxes?: Checkboxes<unknown>
   sorting?: Partial<ReturnType<typeof useTableSort>>
   sticky?: boolean

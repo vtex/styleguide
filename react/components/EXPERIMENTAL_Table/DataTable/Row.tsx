@@ -5,7 +5,6 @@ import useTableMotion from '../hooks/useTableMotion'
 import Cell, { CellProps, CellComposites } from './Cell'
 
 const Row: FC<RowProps> & RowComposites = ({
-  tagName: Tag = 'tr',
   children,
   height,
   onClick,
@@ -23,9 +22,9 @@ const Row: FC<RowProps> & RowComposites = ({
     ...motion,
   }
   return (
-    <Tag style={style} onClick={onClick} className={className}>
+    <tr style={style} onClick={onClick} className={className}>
       {children}
-    </Tag>
+    </tr>
   )
 }
 
@@ -46,7 +45,6 @@ export type RowComposites = {
 }
 
 export type RowProps = {
-  tagName?: 'tr' | 'div' | 'ul'
   active?: boolean
   height?: number
   onClick?: () => void
