@@ -1143,7 +1143,12 @@ const customers = require('./sampleData.ts').customers
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 // Can't touch this, tun dun dun dun 🎵
-import { DataTable, Tbody, Row } from './DataTable/RadioactiveTableParts.tsx'
+import {
+  DataTable,
+  Tbody,
+  Thead,
+  Row,
+} from './DataTable/RadioactiveTableParts.tsx'
 
 const columns = [
   {
@@ -1201,12 +1206,12 @@ function RenderAgnostic() {
       measures={measures}
       columns={columns}
       items={items}
-      __unsafe__giveMeMyRender>
+      unstableRender>
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="droppable">
           {(provided, snapshot) => (
             <DataTable ref={provided.innerRef}>
-              <Table.Head columns={columns} />
+              <Thead columns={columns} />
               <Tbody
                 columns={columns}
                 renderer={({ rowData, rowIndex, rowProps }) => (

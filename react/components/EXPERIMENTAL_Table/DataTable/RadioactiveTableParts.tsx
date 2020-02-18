@@ -1,4 +1,4 @@
 import Row from './Row'
 
-export { DataTable, Tbody } from './index'
+export { DataTable, Tbody, Thead } from './index'
 export { Row }

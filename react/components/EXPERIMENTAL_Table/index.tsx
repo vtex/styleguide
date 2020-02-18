@@ -1,23 +1,18 @@
-import React, { FC, Fragment, forwardRef } from 'react'
-import pick from 'lodash/pick'
+import React, { FC } from 'react'
 import PropTypes, { InferProps } from 'prop-types'
 
 import Toolbar from './Toolbar/index'
 import { NAMESPACES } from './constants'
 import Pagination, { PaginationProps } from './Pagination'
-import DataTable from './DataTable'
 import BulkActions from './BulkActions'
 import FilterBar from './FilterBar'
-import Headings from './DataTable/Headings'
 import { DENSITY_OPTIONS } from './hooks/useTableMeasures'
 import { Checkboxes } from '../EXPERIMENTAL_useCheckboxTree/types'
 import useTableMotion from './hooks/useTableMotion'
 import Totalizer, { TotalizerProps } from './Totalizer'
 import ActionBar, { ActionBarProps } from './ActionBar'
-import { TableProvider, useTestingContext, useMeasuresContext } from './context'
-import Row, { ROW_TRANSITIONS } from './DataTable/Row'
-import { Column } from './types'
-import Cell from './DataTable/Cell'
+import { TableProvider } from './context'
+import { DataTable, Thead, Tbody, Row } from './DataTable/RadioactiveTableParts'
 
 const Table: FC<TableProps> & TableComposites = ({
   children,
@@ -31,7 +26,9 @@ const Table: FC<TableProps> & TableComposites = ({
   checkboxes,
   rowKey,
   highlightOnHover,
-  __unsafe__giveMeMyRender,
+  unstableRender,
+  columns,
+  sorting,
   ...props
 }) => {
   if (!measures) {
@@ -55,6 +52,10 @@ const Table: FC<TableProps> & TableComposites = ({
           loading,
           emptyState,
         }}
+        head={{
+          columns,
+          sorting,
+        }}
         body={{
           onRowClick,
           isRowActive,
@@ -62,37 +63,18 @@ const Table: FC<TableProps> & TableComposites = ({
           rowKey,
           highlightOnHover,
         }}>
-        {__unsafe__giveMeMyRender ? (
-          children
-        ) : (
-          <DefaultRender>{children}</DefaultRender>
-        )}
+        {unstableRender ? children : <DefaultRender />}
       </TableProvider>
     </div>
   )
 }
 
-function DefaultRender(props: any) {
+function DefaultRender() {
   return (
-    <Fragment>
-      {props.children}
-      <DataTable>
-        <UnstableHead />
-      </DataTable>
-    </Fragment>
-  )
-}
-
-//TODO: foward ref
-function UnstableHead(props: any) {
-  const { sorting, columns, checkboxes } = props
-  const { testId } = useTestingContext()
-  return (
-    <thead
-      data-testid={`${testId}__header`}
-      className="w-100 ph4 truncate overflow-x-hidden c-muted-2 f6">
-      <Headings sorting={sorting} columns={columns} checkboxes={checkboxes} />
-    </thead>
+    <DataTable>
+      <Thead />
+      <Tbody renderer={({ rowProps }) => <Row {...rowProps} />} />
+    </DataTable>
   )
 }
 
@@ -180,7 +162,7 @@ export const tablePropTypes = {
   /** If the header is sticky or not */
   stickyHeader: PropTypes.bool,
   /** YOLO 🦇 */
-  __unsafe__giveMeMyRender: PropTypes.bool,
+  unstableRender: PropTypes.bool,
 }
 
 export type TableProps = InferProps<typeof tablePropTypes> & {
@@ -194,8 +176,6 @@ export type TableComposites = {
   Bulk?: FC
   Totalizer?: FC<TotalizerProps>
   ActionBar?: FC<ActionBarProps>
-  Head?: any
-  Body?: any
 }
 
 Table.Toolbar = Toolbar
@@ -205,7 +185,6 @@ Table.Pagination = Pagination
 Table.propTypes = tablePropTypes
 Table.Bulk = BulkActions
 Table.ActionBar = ActionBar
-Table.Head = UnstableHead
 
 Table.defaultProps = {
   rowKey: ({ rowData }) => `row-${rowData.id}`,

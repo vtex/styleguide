@@ -9,7 +9,6 @@ import Pagination from '../EXPERIMENTAL_Table/Pagination'
 import FilterBar from '../EXPERIMENTAL_Table/FilterBar'
 import { Checkboxes } from '../EXPERIMENTAL_useCheckboxTree/types'
 import { defaultComparatorCurry } from '../EXPERIMENTAL_useCheckboxTree/constants'
-import Headings from '../EXPERIMENTAL_Table/DataTable/Headings'
 import useTableMotion from '../EXPERIMENTAL_Table/hooks/useTableMotion'
 
 const CONTAINER_TRANSITIONS = [
@@ -51,9 +50,7 @@ const TableTree: FC<Props> & TableComposites = ({
         empty={empty}
         motion={motion}
         height={tableHeight}>
-        <thead className="w-100 ph4 truncate overflow-x-hidden c-muted-2 f6">
-          <Headings checkboxes={checkboxes} columns={columns} />
-        </thead>
+        <thead className="w-100 ph4 truncate overflow-x-hidden c-muted-2 f6"></thead>
         {!empty && !loading && (
           <tbody>
             <Tree

@@ -13,10 +13,12 @@ import {
   useMeasuresContext,
   useBodyContext,
   useLoadingContext,
+  useHeadContext,
 } from '../context'
-import { ROW_TRANSITIONS } from './Row'
+import Row, { ROW_TRANSITIONS } from './Row'
 import Cell from './Cell'
 import { withForwardedRef } from '../../../modules/withForwardedRef'
+import useTableSort from '../hooks/useTableSort'
 
 export interface DataTableProps extends E2ETestable {
   height: number
@@ -68,6 +70,48 @@ const DataTable: FC<DataTableProps> = ({
   )
 }
 
+interface HeadProps {
+  columns: Array<Column>
+  sorting?: Partial<ReturnType<typeof useTableSort>>
+  forwardedRef: RefObject<HTMLTableSectionElement>
+}
+
+const Head: FC<HeadProps> = ({ forwardedRef }) => {
+  const { testId } = useTestingContext()
+  const { sorting, columns } = useHeadContext()
+  return (
+    <thead
+      ref={forwardedRef}
+      data-testid={`${testId}__header`}
+      className="w-100 ph4 truncate overflow-x-hidden c-muted-2 f6">
+      <Row height={TABLE_HEADER_HEIGHT}>
+        {columns.map((columnData: Column, headerIndex: number) => {
+          const { id, title, width, sortable } = columnData
+          const cellClassName = classNames('bt normal', { pointer: sortable })
+          const active = sorting && sorting.sorted && sorting.sorted.by === id
+          const ascending = sorting && sorting.sorted.order !== 'DSC'
+          const onclick =
+            sortable && sorting ? { onClick: () => sorting.sort(id) } : {}
+          return (
+            <Cell
+              {...onclick}
+              active={active}
+              className={cellClassName}
+              key={headerIndex}
+              width={width}
+              header>
+              {title}
+              {sortable && (
+                <Cell.Suffix active={active} ascending={ascending} />
+              )}
+            </Cell>
+          )
+        })}
+      </Row>
+    </thead>
+  )
+}
+
 interface BodyProps
   extends DetailedHTMLProps<
     React.HTMLAttributes<HTMLTableSectionElement>,
@@ -79,12 +123,8 @@ interface BodyProps
   forwardedRef: RefObject<HTMLTableSectionElement>
 }
 
-export const Body: FC<BodyProps> = ({
-  columns,
-  renderer,
-  forwardedRef,
-  ...rest
-}) => {
+export const Body: FC<BodyProps> = ({ renderer, forwardedRef, ...rest }) => {
+  const { columns } = useHeadContext()
   const {
     onRowClick,
     isRowActive,
@@ -147,6 +187,8 @@ export const Body: FC<BodyProps> = ({
 
 const fowardedDataTable = withForwardedRef(DataTable)
 const fowardedBody = withForwardedRef(Body)
+const fowardedHead = withForwardedRef(Head)
 
 export { fowardedDataTable as DataTable }
 export { fowardedBody as Tbody }
+export { fowardedHead as Thead }
