@@ -21,7 +21,7 @@
     "postreleasy": "vtex publish --public --verbose",
     "lint-fix": "eslint react --ext js,jsx,ts,tsx --fix --max-warnings 0",
     "prettier-conflict-check": "eslint --print-config .eslintrc | eslint-config-prettier-check",
-    "postinstall": "yarn --cwd react --ignore-scripts"
+    "postinstall": "yarn --cwd react --ignore-scripts --prod"
   },
   "main": "./lib/index.js",
   "files": [

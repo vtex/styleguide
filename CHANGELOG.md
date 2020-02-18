@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Added `--prod` flag to `postinstall` script.
+
 ## [9.111.5] - 2020-02-17
 
 ## [9.111.5-beta] - 2020-02-17
