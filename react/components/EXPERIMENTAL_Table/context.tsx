@@ -1,26 +1,47 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { FC, useContext, createContext } from 'react'
 
 import { E2ETestable } from './types'
 import useTableMeasures from './hooks/useTableMeasures'
 
 type Measures = ReturnType<typeof useTableMeasures>
+interface LC {
+  empty?: boolean
+  loading?:
+    | boolean
+    | {
+        renderAs?: () => React.ReactNode
+      }
+  emptyState?: {
+    label?: string
+    children?: Element
+  }
+}
 
 const TestingContext = createContext<E2ETestable>(null)
 const MeasuresContext = createContext<Measures>(null)
+const LoadingContext = createContext<LC>(null)
+const BodyContext = createContext<any>(null)
 
 type TableType = E2ETestable & {
   measures: Measures
+  body: any
+  loading: LC
 }
 
 export const TableProvider: FC<TableType> = ({
   children,
   testId,
   measures,
+  loading,
+  body,
 }) => {
   return (
     <TestingContext.Provider value={{ testId }}>
       <MeasuresContext.Provider value={measures}>
-        {children}
+        <LoadingContext.Provider value={loading}>
+          <BodyContext.Provider value={body}>{children}</BodyContext.Provider>
+        </LoadingContext.Provider>
       </MeasuresContext.Provider>
     </TestingContext.Provider>
   )
@@ -38,6 +59,24 @@ export function useTestingContext() {
 
 export function useMeasuresContext() {
   const context = useContext(MeasuresContext)
+  if (!context) {
+    throw new Error(
+      'Do not use measurable components outside of the MeasuresContext'
+    )
+  }
+  return context
+}
+
+export function useBodyContext() {
+  const context = useContext(BodyContext)
+  if (!context) {
+    throw new Error('Do not use body outside of the Table')
+  }
+  return context
+}
+
+export function useLoadingContext() {
+  const context = useContext(LoadingContext)
   if (!context) {
     throw new Error(
       'Do not use measurable components outside of the MeasuresContext'

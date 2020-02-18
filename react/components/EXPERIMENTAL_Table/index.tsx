@@ -25,6 +25,8 @@ const Table: FC<TableProps> & TableComposites = ({
   isRowActive,
   loading,
   emptyState,
+  onRowClick,
+  items,
   empty,
   checkboxes,
   rowKey,
@@ -45,7 +47,21 @@ const Table: FC<TableProps> & TableComposites = ({
       data-testid={`${testId}__container`}
       style={{ minHeight: measures.tableHeight, ...motion }}
       className="flex flex-column">
-      <TableProvider testId={testId} measures={measures}>
+      <TableProvider
+        testId={testId}
+        measures={measures}
+        loading={{
+          empty,
+          loading,
+          emptyState,
+        }}
+        body={{
+          onRowClick,
+          isRowActive,
+          items,
+          rowKey,
+          highlightOnHover,
+        }}>
         {__unsafe__giveMeMyRender ? (
           children
         ) : (
@@ -62,7 +78,6 @@ function DefaultRender(props: any) {
       {props.children}
       <DataTable>
         <UnstableHead />
-        <UnstableBody />
       </DataTable>
     </Fragment>
   )
@@ -79,88 +94,6 @@ function UnstableHead(props: any) {
       <Headings sorting={sorting} columns={columns} checkboxes={checkboxes} />
     </thead>
   )
-}
-
-// TODO: consume empty and loading from context
-function UnstableBody(props: any) {
-  const {
-    onRowClick,
-    isRowActive,
-    columns,
-    items,
-    rowKey = ({ id }) => `${id}`,
-    highlightOnHover = false,
-    checkboxes,
-    renderer,
-    ...rest
-  } = props
-  const { testId } = useTestingContext()
-  const { rowHeight, currentDensity } = useMeasuresContext()
-  const motion = useTableMotion(ROW_TRANSITIONS)
-
-  return !props.empty && !props.loading ? (
-    <tbody {...rest} data-testid={`${testId}__body`}>
-      {items.map((rowData, idx) => {
-        const toggleChecked = () => checkboxes.toggle(rowData)
-
-        const isRowChecked = checkboxes && checkboxes.isChecked(rowData)
-        const isRowPartiallyChecked =
-          checkboxes && checkboxes.isPartiallyChecked(rowData)
-        const isRowSelected = isRowChecked || isRowPartiallyChecked
-
-        const clickable = onRowClick
-          ? {
-              onClick: () => onRowClick({ rowData }),
-              highlightOnHover: true,
-            }
-          : { highlightOnHover }
-
-        const rp = {
-          ...clickable,
-          height: rowHeight,
-          rowData,
-          idx,
-          active: (isRowActive && isRowActive(rowData)) || isRowSelected,
-          key: rowKey({ rowData }),
-          motion,
-          children: columns.map((column: Column, cellIndex: number) => {
-            const { cellRenderer, width } = column
-            const data = column.condensed
-              ? pick(rowData, column.condensed)
-              : column.extended
-              ? rowData
-              : rowData[column.id]
-            const content = cellRenderer
-              ? cellRenderer({
-                  data,
-                  rowHeight,
-                  currentDensity,
-                  motion,
-                })
-              : data
-            return (
-              <Cell key={column.id} width={width}>
-                {cellIndex === 0 && checkboxes && (
-                  <Cell.Prefix>
-                    <span className="ph3">
-                      <Cell.Prefix.Checkbox
-                        checked={isRowChecked}
-                        partial={isRowPartiallyChecked}
-                        disabled={checkboxes.isDisabled(rowData)}
-                        onClick={toggleChecked}
-                      />
-                    </span>
-                  </Cell.Prefix>
-                )}
-                {content}
-              </Cell>
-            )
-          }),
-        }
-        return renderer(rp)
-      })}
-    </tbody>
-  ) : null
 }
 
 export const measuresPropTypes = {
@@ -261,7 +194,6 @@ export type TableComposites = {
   Bulk?: FC
   Totalizer?: FC<TotalizerProps>
   ActionBar?: FC<ActionBarProps>
-  DataTable?: any
   Head?: any
   Body?: any
 }
@@ -273,9 +205,7 @@ Table.Pagination = Pagination
 Table.propTypes = tablePropTypes
 Table.Bulk = BulkActions
 Table.ActionBar = ActionBar
-Table.DataTable = DataTable
 Table.Head = UnstableHead
-Table.Body = UnstableBody
 
 Table.defaultProps = {
   rowKey: ({ rowData }) => `row-${rowData.id}`,
