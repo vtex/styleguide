@@ -1,40 +1,46 @@
-import React, { FC } from 'react'
+import React, { forwardRef } from 'react'
 import classNames from 'classnames'
 
 import useTableMotion from '../hooks/useTableMotion'
-import Cell, { CellProps, CellComposites } from './Cell'
 
-const Row: FC<RowProps> & RowComposites = ({
-  children,
-  height,
-  onClick,
-  active,
-  motion,
-  highlightOnHover,
-}) => {
-  const LIGHT_BLUE = '#DBE9FD'
-  const rowColor = active ? { backgroundColor: LIGHT_BLUE } : {}
+type Ref = any
 
-  const className = classNames('w-100 truncate overflow-x-hidden', {
-    'pointer hover-c-link': onClick,
-    'hover-bg-muted-5': highlightOnHover,
-    'bg-action-secondary': active,
-  })
-
-  const style = {
-    height,
-    ...motion,
-    ...rowColor,
+const Row = forwardRef<Ref, RowProps>(
+  (
+    {
+      tagName: Tag = 'tr',
+      children,
+      height,
+      onClick,
+      active,
+      motion,
+      highlightOnHover,
+      ...props
+    },
+    ref
+  ) => {
+    const className = classNames('w-100 truncate overflow-x-hidden', {
+      'pointer hover-c-link': onClick,
+      'hover-bg-muted-5': highlightOnHover,
+      'bg-action-secondary': active,
+    })
+    const style = {
+      height,
+      ...props.style,
+      ...motion,
+    }
+    return (
+      <Tag
+        {...props}
+        ref={ref}
+        style={style}
+        onClick={onClick}
+        className={className}>
+        {children}
+      </Tag>
+    )
   }
-
-  return (
-    <tr style={style} onClick={onClick} className={className}>
-      {children}
-    </tr>
-  )
-}
-
-Row.Cell = Cell
+)
 
 export const ROW_TRANSITIONS = [
   {
@@ -45,10 +51,6 @@ export const ROW_TRANSITIONS = [
     optimize: true,
   },
 ]
-
-export type RowComposites = {
-  Cell: FC<CellProps> & CellComposites
-}
 
 export type RowProps = {
   active?: boolean

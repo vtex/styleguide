@@ -26,7 +26,7 @@ const Headings: FC<HeadingsProps> = ({
         const onclick =
           sortable && sorting ? { onClick: () => sorting.sort(id) } : {}
         return (
-          <Row.Cell
+          <Cell
             {...onclick}
             sortable={sortable}
             sorting={cellSorting}
@@ -49,10 +49,8 @@ const Headings: FC<HeadingsProps> = ({
               </Cell.Prefix>
             )}
             {title}
-            {sortable && (
-              <Cell.Suffix sorting={cellSorting} ascending={ascending} />
-            )}
-          </Row.Cell>
+            {sortable && <Cell.Suffix active={active} ascending={ascending} />}
+          </Cell>
         )
       })}
     </Row>

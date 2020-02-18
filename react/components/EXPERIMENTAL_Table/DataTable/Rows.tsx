@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, ReactNode } from 'react'
 import pick from 'lodash/pick'
 
 import Row, { RowProps, ROW_TRANSITIONS } from './Row'
@@ -18,11 +18,12 @@ const Rows: FC<RowsProps> = ({
   checkboxes,
   rowKey,
   highlightOnHover,
+  renderer,
 }) => {
   const motion = useTableMotion(ROW_TRANSITIONS)
   return items ? (
     <>
-      {items.map(rowData => {
+      {items.map((rowData, idx) => {
         const toggleChecked = () => checkboxes.toggle(rowData)
 
         const isRowChecked = checkboxes && checkboxes.isChecked(rowData)
@@ -36,49 +37,51 @@ const Rows: FC<RowsProps> = ({
               highlightOnHover: true,
             }
           : { highlightOnHover }
-        return (
-          <Row
-            {...rowProps}
-            {...clickable}
-            height={rowHeight}
-            active={(isRowActive && isRowActive(rowData)) || isRowSelected}
-            key={rowKey({ rowData })}
-            motion={motion}>
-            {columns.map((column: Column, cellIndex: number) => {
-              const { cellRenderer, width } = column
-              const data = column.condensed
-                ? pick(rowData, column.condensed)
-                : column.extended
-                ? rowData
-                : rowData[column.id]
-              const content = cellRenderer
-                ? cellRenderer({
-                    data,
-                    rowHeight,
-                    currentDensity,
-                    motion,
-                  })
-                : data
-              return (
-                <Row.Cell key={column.id} width={width}>
-                  {cellIndex === 0 && checkboxes && (
-                    <Row.Cell.Prefix>
-                      <span className="ph3">
-                        <Row.Cell.Prefix.Checkbox
-                          checked={isRowChecked}
-                          partial={isRowPartiallyChecked}
-                          disabled={checkboxes.isDisabled(rowData)}
-                          onClick={toggleChecked}
-                        />
-                      </span>
-                    </Row.Cell.Prefix>
-                  )}
-                  {content}
-                </Row.Cell>
-              )
-            })}
-          </Row>
-        )
+
+        const rp = {
+          ...rowProps,
+          ...clickable,
+          height: rowHeight,
+          rowData,
+          idx,
+          active: (isRowActive && isRowActive(rowData)) || isRowSelected,
+          key: rowKey({ rowData }),
+          motion,
+          children: columns.map((column: Column, cellIndex: number) => {
+            const { cellRenderer, width } = column
+            const data = column.condensed
+              ? pick(rowData, column.condensed)
+              : column.extended
+              ? rowData
+              : rowData[column.id]
+            const content = cellRenderer
+              ? cellRenderer({
+                  data,
+                  rowHeight,
+                  currentDensity,
+                  motion,
+                })
+              : data
+            return (
+              <Row.Cell {...cellProps} key={column.id} width={width}>
+                {cellIndex === 0 && checkboxes && (
+                  <Row.Cell.Prefix>
+                    <span className="ph3">
+                      <Row.Cell.Prefix.Checkbox
+                        checked={isRowChecked}
+                        partial={isRowPartiallyChecked}
+                        disabled={checkboxes.isDisabled(rowData)}
+                        onClick={toggleChecked}
+                      />
+                    </span>
+                  </Row.Cell.Prefix>
+                )}
+                {content}
+              </Row.Cell>
+            )
+          }),
+        }
+        return renderer(rp)
       })}
     </>
   ) : null
@@ -95,6 +98,7 @@ export type RowsProps = {
   rowHeight: number
   checkboxes?: Checkboxes<unknown>
   highlightOnHover?: boolean
+  renderer?: (props: any) => ReactNode
 }
 
 export default Rows
