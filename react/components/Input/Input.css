@@ -1,3 +1,6 @@
+/* handle to select a styleguide input */
+.input {}
+
 /* removes edge clear button on input */
 .hideDecorators::-ms-clear {
   display: none;
