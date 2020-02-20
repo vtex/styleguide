@@ -328,6 +328,44 @@ function SimpleExample() {
 ;<SimpleExample />
 ```
 
+# Sticky Header
+
+To achieve a Table with a sticky header and a scrollable body, we can combine `useTableMeasures` hook with the `stickyHeader` prop.
+
+```js
+const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
+const items = require('./sampleData.ts').customers
+
+const columns = [
+  {
+    id: 'id',
+    title: 'ID',
+  },
+  {
+    id: 'name',
+    title: 'Name',
+  },
+  {
+    id: 'email',
+    title: 'Email',
+  },
+  {
+    id: 'location',
+    title: 'Location',
+  },
+]
+
+function StickyExample() {
+  // Define the max number of items that will be displayed
+  const measures = useTableMeasures({ size: 5 })
+
+  return (
+    <Table measures={measures} columns={columns} items={items} stickyHeader />
+  )
+}
+;<StickyExample />
+```
+
 # State handlers
 
 ## useTableMeasures

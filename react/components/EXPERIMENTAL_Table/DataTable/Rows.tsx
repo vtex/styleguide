@@ -6,13 +6,11 @@ import { Column, Items } from '../types'
 import { Density } from '../hooks/useTableMeasures'
 import { Checkboxes } from '../../EXPERIMENTAL_useCheckboxTree/types'
 import useTableMotion from '../hooks/useTableMotion'
-import { CellProps } from './Cell'
 
 const Rows: FC<RowsProps> = ({
   columns,
   items,
   onRowClick,
-  cellProps,
   rowProps,
   isRowActive,
   rowHeight,
@@ -62,7 +60,7 @@ const Rows: FC<RowsProps> = ({
                   })
                 : data
               return (
-                <Row.Cell {...cellProps} key={column.id} width={width}>
+                <Row.Cell key={column.id} width={width}>
                   {cellIndex === 0 && checkboxes && (
                     <Row.Cell.Prefix>
                       <span className="ph3">
@@ -95,7 +93,6 @@ export type RowsProps = {
   isRowActive?: (rowData: unknown) => boolean
   rowProps?: RowProps
   rowHeight: number
-  cellProps?: Pick<CellProps, 'tagName' | 'className'>
   checkboxes?: Checkboxes<unknown>
   highlightOnHover?: boolean
 }

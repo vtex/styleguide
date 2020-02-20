@@ -31,23 +31,35 @@ const Cell: FC<CellProps> & CellComposites = ({
   children,
   width,
   onClick,
-  tagName: Tag = 'td',
-  className: classNameProp = '',
+  className: classNameProp,
   active = false,
   link = false,
+  sticky = false,
+  header,
 }) => {
   const { hover, ...events } = useHover()
   const className = classNames(
-    'v-mid ph3 pv0 tl bb b--muted-4',
+    'v-mid ph3 pv0 tl bb b--muted-4 bg-base',
     classNameProp,
     {
       pointer: onClick,
       'hover-c-link hover-bg-muted-5': link,
       'c-on-base': active,
+      'top-0 z3': sticky && header,
+      z1: !sticky,
     }
   )
+  const Tag = header ? 'th' : 'td'
+
   return (
-    <Tag {...events} onClick={onClick} style={{ width }} className={className}>
+    <Tag
+      {...events}
+      onClick={onClick}
+      style={{
+        position: sticky ? 'sticky' : 'static',
+        width,
+      }}
+      className={className}>
       <HoverProvider value={hover}>{children}</HoverProvider>
     </Tag>
   )
@@ -112,12 +124,13 @@ export type CellComposites = {
 export type CellProps = {
   id?: string
   width?: number | string | React.ReactText
-  tagName?: 'td' | 'th' | 'div' | 'li'
   className?: string
   onClick?: () => void
   showArrow?: boolean
   active?: boolean
   link?: boolean
+  sticky?: boolean
+  header?: boolean
 }
 
 export default Cell

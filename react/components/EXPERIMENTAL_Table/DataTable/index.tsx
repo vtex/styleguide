@@ -12,29 +12,32 @@ const DataTable: FC<DataTableProps> = ({
   children,
   height,
   className,
-  tagName: Tag,
   empty,
   loading,
   emptyState,
   motion,
   testId,
+  stickyHeader,
 }) => {
   const showLoading = !empty && loading
   const showEmptyState = empty && emptyState
   return (
     <div
-      style={{ minHeight: height, ...motion }}
+      style={{ height, ...motion }}
       className={classNames(
-        'order-1 mw-100 overflow-x-auto',
+        'order-1 mw-100 overflow-x-auto relative',
+        {
+          'overflow-y-auto': stickyHeader,
+        },
         ORDER_CLASSNAMES.TABLE
       )}>
-      <Tag
+      <table
         id={NAMESPACES.TABLE}
         data-testid={testId}
-        className={`w-100 ${className}`}
+        className={classNames('w-100', className)}
         style={{ borderSpacing: 0 }}>
         {children}
-      </Tag>
+      </table>
       {showLoading && (
         <Loading
           testId={`${testId}__loading`}
@@ -54,14 +57,8 @@ const DataTable: FC<DataTableProps> = ({
   )
 }
 
-DataTable.defaultProps = {
-  tagName: 'table',
-  className: '',
-}
-
 export type DataTableProps = E2ETestable & {
   height: number
-  tagName?: 'table' | 'div' | 'section'
   className?: string
   empty: boolean
   motion: ReturnType<typeof useTableMotion>
@@ -74,6 +71,7 @@ export type DataTableProps = E2ETestable & {
     label?: string
     children?: Element
   }
+  stickyHeader?: boolean
 }
 
 export default DataTable

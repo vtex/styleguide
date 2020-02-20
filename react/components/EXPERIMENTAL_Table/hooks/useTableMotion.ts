@@ -59,12 +59,14 @@ function useReducedMotion(init = false) {
   useEffect(() => {
     const mql = window.matchMedia('(prefers-reduced-motion: reduce)')
     setReduced(mql.matches)
-    const handleChange = () => {
-      setReduced(mql.matches)
+    function listener(e: MediaQueryListEvent) {
+      if (e.type === 'change') {
+        throttle(() => setReduced(mql.matches), 200)
+      }
     }
-    mql.addEventListener('change', throttle(handleChange, 200))
+    mql.addListener(listener)
     return () => {
-      mql.removeEventListener('change', handleChange)
+      mql.removeListener(listener)
     }
   }, [])
   return reduced
