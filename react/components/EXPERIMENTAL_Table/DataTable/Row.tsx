@@ -1,19 +1,16 @@
-import React, { FC, RefObject, DetailedHTMLProps } from 'react'
+import React, {
+  DetailedHTMLProps,
+  RefForwardingComponent,
+  forwardRef,
+} from 'react'
 import classNames from 'classnames'
 
-import { withForwardedRef } from '../../../modules/withForwardedRef'
 import useTableMotion from '../hooks/useTableMotion'
 
-const Row: FC<RowProps> = ({
-  children,
-  height,
-  onClick,
-  active,
-  motion,
-  highlightOnHover,
-  forwardedRef,
-  ...props
-}) => {
+const Row: RefForwardingComponent<HTMLTableRowElement, RowProps> = (
+  { children, height, onClick, active, motion, highlightOnHover, ...props },
+  ref
+) => {
   const className = classNames('w-100 truncate overflow-x-hidden', {
     'pointer hover-c-link': onClick,
     'hover-bg-muted-5': highlightOnHover,
@@ -27,7 +24,7 @@ const Row: FC<RowProps> = ({
   return (
     <tr
       {...props}
-      ref={forwardedRef}
+      ref={ref}
       style={style}
       onClick={onClick}
       className={className}>
@@ -57,7 +54,6 @@ export interface RowProps extends NativeTr {
   onClick?: () => void
   motion?: ReturnType<typeof useTableMotion>
   highlightOnHover?: boolean
-  forwardedRef: RefObject<HTMLTableRowElement>
 }
 
-export default withForwardedRef(Row)
+export default forwardRef(Row)

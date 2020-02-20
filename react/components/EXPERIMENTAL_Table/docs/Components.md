@@ -1138,17 +1138,10 @@ We can conclude that:
 #### Render Agnostic
 
 ```js
+// Can't touch this, tun dun dun dun 🎵
 const useMeasures = require('./hooks/useTableMeasures.tsx').default
 const customers = require('./sampleData.ts').customers
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
-
-// Can't touch this, tun dun dun dun 🎵
-import {
-  DataTable,
-  Tbody,
-  Thead,
-  Row,
-} from './DataTable/RadioactiveTableParts.tsx'
 
 const columns = [
   {
@@ -1202,25 +1195,20 @@ function RenderAgnostic() {
   }
 
   return (
-    <Table
-      measures={measures}
-      columns={columns}
-      items={items}
-      unstableRender>
+    <Table measures={measures} columns={columns} items={items} unstableRender>
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="droppable">
           {(provided, snapshot) => (
-            <DataTable ref={provided.innerRef}>
-              <Thead columns={columns} />
-              <Tbody
-                columns={columns}
+            <Table.Data ref={provided.innerRef}>
+              <Table.Data.Head />
+              <Table.Data.Body
                 renderer={({ rowData, rowIndex, rowProps }) => (
                   <Draggable
                     key={rowData.id}
                     draggableId={rowData.id.toString()}
                     index={rowIndex}>
                     {(provided, snapshot) => (
-                      <Row
+                      <Table.Data.Body.Row
                         ref={provided.innerRef}
                         style={{
                           userSelect: 'none',
@@ -1235,7 +1223,7 @@ function RenderAgnostic() {
                 )}
               />
               {provided.placeholder}
-            </DataTable>
+            </Table.Data>
           )}
         </Droppable>
       </DragDropContext>

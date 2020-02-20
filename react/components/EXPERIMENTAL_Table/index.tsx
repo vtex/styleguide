@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, Fragment } from 'react'
 import PropTypes, { InferProps } from 'prop-types'
 
 import Toolbar from './Toolbar/index'
@@ -12,7 +12,7 @@ import useTableMotion from './hooks/useTableMotion'
 import Totalizer, { TotalizerProps } from './Totalizer'
 import ActionBar, { ActionBarProps } from './ActionBar'
 import { TableProvider } from './context'
-import { DataTable, Thead, Tbody, Row } from './DataTable/RadioactiveTableParts'
+import DataTable from './DataTable'
 
 const Table: FC<TableProps> & TableComposites = ({
   children,
@@ -23,19 +23,17 @@ const Table: FC<TableProps> & TableComposites = ({
   onRowClick,
   items,
   empty,
-  checkboxes,
   rowKey,
   highlightOnHover,
   unstableRender,
   columns,
   sorting,
-  ...props
+  testId,
 }) => {
   if (!measures) {
     throw new Error('Provide measures to the Table')
   }
 
-  const { tableHeight, rowHeight, currentDensity } = measures
   const motion = useTableMotion()
 
   return (
@@ -63,18 +61,23 @@ const Table: FC<TableProps> & TableComposites = ({
           rowKey,
           highlightOnHover,
         }}>
-        {unstableRender ? children : <DefaultRender />}
+        {unstableRender ? children : <DefaultRender>{children}</DefaultRender>}
       </TableProvider>
     </div>
   )
 }
 
-function DefaultRender() {
+function DefaultRender({ children }) {
   return (
-    <DataTable>
-      <Thead />
-      <Tbody renderer={({ rowProps }) => <Row {...rowProps} />} />
-    </DataTable>
+    <Fragment>
+      {children}
+      <DataTable>
+        <DataTable.Head />
+        <DataTable.Body
+          renderer={({ rowProps }) => <DataTable.Body.Row {...rowProps} />}
+        />
+      </DataTable>
+    </Fragment>
   )
 }
 
@@ -176,6 +179,8 @@ export type TableComposites = {
   Bulk?: FC
   Totalizer?: FC<TotalizerProps>
   ActionBar?: FC<ActionBarProps>
+  // TODO: type this
+  Data?: unknown
 }
 
 Table.Toolbar = Toolbar
@@ -185,6 +190,7 @@ Table.Pagination = Pagination
 Table.propTypes = tablePropTypes
 Table.Bulk = BulkActions
 Table.ActionBar = ActionBar
+Table.Data = DataTable
 
 Table.defaultProps = {
   rowKey: ({ rowData }) => `row-${rowData.id}`,
