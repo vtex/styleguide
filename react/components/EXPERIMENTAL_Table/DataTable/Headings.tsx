@@ -20,14 +20,15 @@ const Headings: FC<HeadingsProps> = ({
       {columns.map((columnData: Column, headerIndex: number) => {
         const { id, title, width, sortable } = columnData
         const cellClassName = classNames('bt normal', { pointer: sortable })
-        const active = sorting && sorting.sorted && sorting.sorted.by === id
+        const cellSorting =
+          sorting && sorting.sorted && sorting.sorted.by === id
         const ascending = sorting && sorting.sorted.order !== 'DSC'
         const onclick =
           sortable && sorting ? { onClick: () => sorting.sort(id) } : {}
         return (
           <Row.Cell
             {...onclick}
-            active={active}
+            sorting={cellSorting}
             className={cellClassName}
             key={headerIndex}
             width={width}
@@ -47,7 +48,9 @@ const Headings: FC<HeadingsProps> = ({
               </Cell.Prefix>
             )}
             {title}
-            {sortable && <Cell.Suffix active={active} ascending={ascending} />}
+            {sortable && (
+              <Cell.Suffix sorting={cellSorting} ascending={ascending} />
+            )}
           </Row.Cell>
         )
       })}

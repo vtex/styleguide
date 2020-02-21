@@ -32,19 +32,18 @@ const Cell: FC<CellProps> & CellComposites = ({
   width,
   onClick,
   className: classNameProp,
-  active = false,
-  link = false,
+  sorting,
   sticky = false,
   header,
 }) => {
   const { hover, ...events } = useHover()
   const className = classNames(
-    'v-mid ph3 pv0 tl bb b--muted-4 bg-base',
+    'v-mid ph3 pv0 tl bb b--muted-4',
     classNameProp,
     {
       pointer: onClick,
-      'hover-c-link hover-bg-muted-5': link,
-      'c-on-base': active,
+      'c-on-base': sorting,
+      'bg-base': header,
       'top-0 z3': sticky && header,
       z1: !sticky,
     }
@@ -89,11 +88,11 @@ function Eyesight({ children, visible }) {
   )
 }
 
-const Suffix: FC<SuffixProps> = ({ active, ascending }) => {
+const Suffix: FC<SuffixProps> = ({ sorting, ascending }) => {
   const Caret = ascending ? CaretDown : CaretUp
   const hover = useContext(HoverContext)
   return (
-    <Eyesight visible={active || hover}>
+    <Eyesight visible={sorting || hover}>
       <Caret className="ml2" size={10} />
     </Eyesight>
   )
@@ -112,7 +111,7 @@ type PrefixProps = {
 }
 
 type SuffixProps = {
-  active: boolean
+  sorting: boolean
   ascending: boolean
 }
 
@@ -127,8 +126,7 @@ export type CellProps = {
   className?: string
   onClick?: () => void
   showArrow?: boolean
-  active?: boolean
-  link?: boolean
+  sorting?: boolean
   sticky?: boolean
   header?: boolean
 }
