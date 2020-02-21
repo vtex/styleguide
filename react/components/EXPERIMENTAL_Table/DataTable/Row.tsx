@@ -16,7 +16,7 @@ const Row: FC<RowProps> & RowComposites = ({
   const rowColor = active ? { backgroundColor: LIGHT_BLUE } : {}
 
   const className = classNames('w-100 truncate overflow-x-hidden', {
-    'pointer hover-c-link': onClick,	
+    'pointer hover-c-link': onClick,
     'hover-bg-muted-5': highlightOnHover,
     'bg-action-secondary': active,
   })
