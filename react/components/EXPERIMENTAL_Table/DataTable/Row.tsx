@@ -12,15 +12,21 @@ const Row: FC<RowProps> & RowComposites = ({
   motion,
   highlightOnHover,
 }) => {
+  const LIGHT_BLUE = '#DBE9FD'
+  const rowColor = active ? { backgroundColor: LIGHT_BLUE } : {}
+
   const className = classNames('w-100 truncate overflow-x-hidden', {
-    'pointer hover-c-link hover-bg-muted-5': onClick,
+    'pointer hover-c-link': onClick,
     'hover-bg-muted-5': highlightOnHover,
-    'c-on-base bg-action-secondary': active,
+    'bg-action-secondary': active,
   })
+
   const style = {
     height,
     ...motion,
+    ...rowColor,
   }
+
   return (
     <tr style={style} onClick={onClick} className={className}>
       {children}
