@@ -85,6 +85,7 @@ class Input extends Component {
       suffix: suffixProp,
       suffixIcon,
       button,
+      buttonProps,
       isLoadingButton,
       groupBottom,
       disabled,
@@ -251,6 +252,7 @@ class Input extends Component {
           {button && size !== 'small' && (
             <span className="flex items-center mr1">
               <Button
+                {...buttonProps}
                 disabled={disabled || isLoadingButton}
                 isLoading={isLoadingButton}
                 size={size === 'large' ? 'regular' : 'small'}
@@ -276,6 +278,7 @@ Input.defaultProps = {
   autoFocus: false,
   token: false,
   dataAttributes: {},
+  buttonProps: {},
   disabled: false,
   label: '',
   multiple: false,
@@ -319,6 +322,9 @@ Input.propTypes = {
   /** @ignore
    * Spec attribute */
   button: PropTypes.string,
+  /** @ignore
+   * Spec attribute */
+  buttonProps: PropTypes.object,
   /** List of data attributes as a object like `{'locale': 'en-US'}` */
   dataAttributes: PropTypes.object,
   /** Spec attribute */
