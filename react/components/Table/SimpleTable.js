@@ -243,6 +243,7 @@ class SimpleTable extends Component {
                     }
                     height={tableHeight}
                     width={width}
+                    key={width}
                     deferredMeasurementCache={this._cache}
                     tabIndex={null}
                     fixedRowCount={disableHeader ? 0 : 1}
