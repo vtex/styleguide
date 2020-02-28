@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - New `Location` icon for place components
 
+## [9.112.4] - 2020-02-28
+
 ### Fixed
 
 - `EPERIMENTAL_Select` forcing focus after options are loaded
