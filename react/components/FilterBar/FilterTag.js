@@ -306,6 +306,7 @@ class FilterTag extends PureComponent {
               onClick={() => {
                 this.resetVirtualStatement()
                 onClickClear()
+                this.handleCloseMenu()
               }}>
               <IconClear solid size={16} />
             </div>
