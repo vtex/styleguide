@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.112.6] - 2020-03-02
+
 ### Fixed
 
 - FilterTag not closing when filter is cleaned.
