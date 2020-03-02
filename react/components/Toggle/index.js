@@ -22,6 +22,7 @@ class Toggle extends Component {
       label,
       size,
       helpText,
+      testId,
     } = this.props
 
     let labelClass = disabled ? 'c-disabled ' : 'c-on-base '
@@ -163,6 +164,7 @@ class Toggle extends Component {
             )}
           </div>
           <input
+            data-testid={testId}
             id={id}
             type="checkbox"
             className="h-100 w-100 absolute o-0 pointer"
@@ -202,6 +204,7 @@ Toggle.propTypes = {
   onClick: PropTypes.func,
   size: PropTypes.oneOf(['regular', 'large']),
   helpText: PropTypes.node,
+  testId: PropTypes.string,
 }
 
 export default Toggle
