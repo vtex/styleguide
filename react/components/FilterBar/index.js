@@ -118,9 +118,7 @@ class FilterBar extends PureComponent {
             .map(subject => {
               const statement = statements.find(st => st.subject === subject)
               return (
-                <div
-                  key={`VTEX__filter_option--${subject}`}
-                  className="ma2">
+                <div key={`VTEX__filter_option--${subject}`} className="ma2">
                   <FilterTag
                     testIds={testIds}
                     alwaysVisible={alwaysVisibleFilters.includes(subject)}

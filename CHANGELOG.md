@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- `testId` in `Filter` options.
+
 ## [9.112.11] - 2020-03-06
 
 ### Added
