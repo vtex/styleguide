@@ -1,11 +1,124 @@
-import React, { Component, Fragment } from 'react'
-import PropTypes from 'prop-types'
+import React, {
+  Component,
+  Fragment,
+  SyntheticEvent,
+  CSSProperties,
+} from 'react'
+import PropTypes, { InferProps } from 'prop-types'
 
 import Spinner from '../Spinner'
 import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
 
-class Button extends Component {
-  handleClick = event => {
+const propTypes = {
+  /** Button size  */
+  size: PropTypes.oneOf(['small', 'regular', 'large']),
+  /** Button prominence variation */
+  variation: PropTypes.oneOf([
+    'primary',
+    'secondary',
+    'tertiary',
+    'inverted-tertiary',
+    'danger',
+    'danger-tertiary',
+  ]),
+  /** Block style */
+  block: PropTypes.bool,
+  /** Loading state */
+  isLoading: PropTypes.bool,
+  /** [DEPRECATED] If you are using just an Icon component inside, use this as true */
+  icon: PropTypes.bool,
+  /** @ignore For internal use
+   * Sets reduced paddings in order to keep the button squareish if it
+   * only has an icon  */
+  iconOnly: PropTypes.bool,
+  /** (Button spec attribute) */
+  id: PropTypes.string,
+  /** Data attribute */
+  testId: PropTypes.string,
+  /** (Button spec attribute) */
+  autoFocus: PropTypes.bool,
+  /** (Button spec attribute) */
+  autoComplete: PropTypes.string,
+  /** (Button spec attribute) */
+  disabled: PropTypes.bool,
+  /** @ignore Forwarded Ref */
+  forwardedRef: refShape,
+  /** (Button spec attribute) */
+  name: PropTypes.string,
+  /** (Button spec attribute) */
+  type: PropTypes.string.isRequired,
+  /** (Button spec attribute) */
+  value: PropTypes.string,
+  /** Label of the Button */
+  children: PropTypes.node.isRequired,
+  /** onClick event. */
+  onClick: PropTypes.func,
+  /** URL for link mode. Converts the button internally to a link. */
+  href: PropTypes.string,
+  /** onMouseEnter event */
+  onMouseEnter: PropTypes.func,
+  /** onMouseLeave event */
+  onMouseLeave: PropTypes.func,
+  /** onMouseOver event */
+  onMouseOver: PropTypes.func,
+  /** onMouseOut event */
+  onMouseOut: PropTypes.func,
+  /** onMouseUp event */
+  onMouseUp: PropTypes.func,
+  /** onMouseDown event */
+  onMouseDown: PropTypes.func,
+  /** onFocus event */
+  onFocus: PropTypes.func,
+  /** onBlur event */
+  onBlur: PropTypes.func,
+  /** @ignore deprecated
+   * Cancels out left padding */
+  collapseLeft: PropTypes.bool,
+  /** @ignore deprecated
+   * Cancels out right padding */
+  collapseRight: PropTypes.bool,
+  /** */
+  isGrouped: PropTypes.bool,
+  /** */
+  isFirstOfGroup: PropTypes.bool,
+  /** */
+  isLastOfGroup: PropTypes.bool,
+  /** */
+  isActiveOfGroup: PropTypes.bool,
+  /** Link spec */
+  target: PropTypes.string,
+  /** Link spec */
+  rel: PropTypes.string,
+  /** Link spec */
+  referrerPolicy: PropTypes.string,
+  /** Link spec */
+  download: PropTypes.string,
+  /** When terciary, the upper case can be prevented */
+  noUpperCase: PropTypes.bool,
+  /** Disables label wrapping */
+  noWrap: PropTypes.bool,
+}
+
+const defaultProps = {
+  size: 'regular',
+  block: false,
+  variation: 'primary',
+  disabled: false,
+  autoFocus: false,
+  icon: false,
+  type: 'button',
+  isLoading: false,
+  isGrouped: false,
+  isFirstOfGroup: false,
+  isLastOfGroup: false,
+  isActiveOfGroup: false,
+}
+
+class Button extends Component<InferProps<typeof propTypes>> {
+  static propTypes = propTypes
+  static defaultProps = defaultProps
+
+  handleClick = (event: SyntheticEvent) => {
     !this.props.disabled &&
       !this.props.isLoading &&
       this.props.onClick &&
@@ -27,6 +140,7 @@ class Button extends Component {
 
   render() {
     const {
+      id,
       size,
       block,
       variation,
@@ -46,6 +160,20 @@ class Button extends Component {
       download,
       noUpperCase,
       noWrap,
+      testId,
+      autoFocus,
+      name,
+      onMouseEnter,
+      onMouseLeave,
+      onMouseOver,
+      onMouseOut,
+      onMouseUp,
+      onMouseDown,
+      onFocus,
+      onBlur,
+      forwardedRef,
+      type,
+      value,
     } = this.props
 
     const disabled = this.props.disabled || isLoading
@@ -189,7 +317,7 @@ class Button extends Component {
       classes += 'inline-flex items-center no-underline '
     }
 
-    const style = {}
+    const style: CSSProperties = {}
 
     if (iconOnly) {
       style.fontSize = 0
@@ -209,34 +337,46 @@ class Button extends Component {
       download,
     }
 
-    const Element = href ? 'a' : 'button'
+    const Element: React.ElementType = href ? 'a' : 'button'
+
+    const elementDefaultProps = {
+      id,
+      'data-testId': testId,
+      tabIndex: 0,
+      className: classes,
+      onClick: this.handleClick,
+      onMouseEnter,
+      onMouseLeave,
+      onMouseOver,
+      onMouseOut,
+      onMouseUp,
+      onMouseDown,
+      onFocus,
+      onBlur,
+      ref: forwardedRef,
+      style,
+    }
+
+    let elementEspecificProps
+    if (href) {
+      // Link-mode exclusive props
+      elementEspecificProps = {
+        ...linkModeProps,
+        href,
+      }
+    } else {
+      // Button-mode exclusive props
+      elementEspecificProps = {
+        autoFocus: !iconOnly || autoFocus,
+        disabled: !iconOnly || this.props.disabled,
+        name: iconOnly ? undefined : name,
+        value: iconOnly ? undefined : value,
+        type,
+      }
+    }
 
     return (
-      <Element
-        id={this.props.id}
-        data-testid={this.props.testId}
-        autoFocus={iconOnly ? undefined : this.props.autoFocus}
-        disabled={iconOnly ? undefined : this.props.disabled}
-        name={iconOnly ? undefined : this.props.name}
-        value={iconOnly ? undefined : this.props.value}
-        tabIndex={0}
-        className={classes}
-        href={href}
-        onClick={this.handleClick}
-        onMouseEnter={this.props.onMouseEnter}
-        onMouseLeave={this.props.onMouseLeave}
-        onMouseOver={this.props.onMouseOver}
-        onMouseOut={this.props.onMouseOut}
-        onMouseUp={this.props.onMouseUp}
-        onMouseDown={this.props.onMouseDown}
-        onFocus={this.props.onFocus}
-        onBlur={this.props.onBlur}
-        ref={this.props.forwardedRef}
-        style={style}
-        // Button-mode exclusive props
-        type={href ? undefined : this.props.type}
-        // Link-mode exclusive props
-        {...(href && linkModeProps)}>
+      <Element {...elementDefaultProps} {...elementEspecificProps}>
         {isLoading ? (
           <Fragment>
             <span className="vtex-button__spinner-container top-0 left-0 w-100 h-100 absolute flex justify-center items-center">
@@ -260,111 +400,6 @@ class Button extends Component {
       </Element>
     )
   }
-}
-
-Button.defaultProps = {
-  size: 'regular',
-  block: false,
-  variation: 'primary',
-  disabled: false,
-  autoFocus: false,
-  icon: false,
-  type: 'button',
-  isLoading: false,
-  isGrouped: false,
-  isFirstOfGroup: false,
-  isLastOfGroup: false,
-  isActiveOfGroup: false,
-}
-
-Button.propTypes = {
-  /** Button size  */
-  size: PropTypes.oneOf(['small', 'regular', 'large']),
-  /** Button prominence variation */
-  variation: PropTypes.oneOf([
-    'primary',
-    'secondary',
-    'tertiary',
-    'inverted-tertiary',
-    'danger',
-    'danger-tertiary',
-  ]),
-  /** Block style */
-  block: PropTypes.bool,
-  /** Loading state */
-  isLoading: PropTypes.bool,
-  /** [DEPRECATED] If you are using just an Icon component inside, use this as true */
-  icon: PropTypes.bool,
-  /** @ignore For internal use
-   * Sets reduced paddings in order to keep the button squareish if it
-   * only has an icon  */
-  iconOnly: PropTypes.bool,
-  /** (Button spec attribute) */
-  id: PropTypes.string,
-  /** Data attribute */
-  testId: PropTypes.string,
-  /** (Button spec attribute) */
-  autoFocus: PropTypes.bool,
-  /** (Button spec attribute) */
-  autoComplete: PropTypes.string,
-  /** (Button spec attribute) */
-  disabled: PropTypes.bool,
-  /** @ignore Forwarded Ref */
-  forwardedRef: refShape,
-  /** (Button spec attribute) */
-  name: PropTypes.string,
-  /** (Button spec attribute) */
-  type: PropTypes.string,
-  /** (Button spec attribute) */
-  value: PropTypes.string,
-  /** Label of the Button */
-  children: PropTypes.node.isRequired,
-  /** onClick event. */
-  onClick: PropTypes.func,
-  /** URL for link mode. Converts the button internally to a link. */
-  href: PropTypes.string,
-  /** onMouseEnter event */
-  onMouseEnter: PropTypes.func,
-  /** onMouseLeave event */
-  onMouseLeave: PropTypes.func,
-  /** onMouseOver event */
-  onMouseOver: PropTypes.func,
-  /** onMouseOut event */
-  onMouseOut: PropTypes.func,
-  /** onMouseUp event */
-  onMouseUp: PropTypes.func,
-  /** onMouseDown event */
-  onMouseDown: PropTypes.func,
-  /** onFocus event */
-  onFocus: PropTypes.func,
-  /** onBlur event */
-  onBlur: PropTypes.func,
-  /** @ignore deprecated
-   * Cancels out left padding */
-  collapseLeft: PropTypes.bool,
-  /** @ignore deprecated
-   * Cancels out right padding */
-  collapseRight: PropTypes.bool,
-  /** */
-  isGrouped: PropTypes.bool,
-  /** */
-  isFirstOfGroup: PropTypes.bool,
-  /** */
-  isLastOfGroup: PropTypes.bool,
-  /** */
-  isActiveOfGroup: PropTypes.bool,
-  /** Link spec */
-  target: PropTypes.string,
-  /** Link spec */
-  rel: PropTypes.string,
-  /** Link spec */
-  referrerPolicy: PropTypes.string,
-  /** Link spec */
-  download: PropTypes.string,
-  /** When terciary, the upper case can be prevented */
-  noUpperCase: PropTypes.bool,
-  /** Disables label wrapping */
-  noWrap: PropTypes.bool,
 }
 
 export default withForwardedRef(Button)

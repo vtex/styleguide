@@ -110,7 +110,7 @@ module.exports = {
           name: 'Forms',
           components: [
             'react/components/ActionMenu/index.js',
-            'react/components/Button/index.js',
+            'react/components/Button/index.tsx',
             'react/components/ButtonPlain/index.tsx',
             'react/components/ButtonGroup/index.js',
             'react/components/ButtonWithIcon/index.js',

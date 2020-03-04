@@ -7,7 +7,7 @@ import React, {
 } from 'react'
 import classnames from 'classnames'
 
-import Button from '../../Button/index.js'
+import Button from '../../Button'
 import { E2ETestable } from '../types'
 
 export default function usePopoverMenu() {
