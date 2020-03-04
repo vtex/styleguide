@@ -223,6 +223,7 @@ Menu.propTypes = {
   onBackgroundClick: PropTypes.func,
   /** Boolean if the device is mobile  */
   isMobile: PropTypes.bool,
+  /** String used as id to serve test purposes */
   testId: PropTypes.string,
 }
 

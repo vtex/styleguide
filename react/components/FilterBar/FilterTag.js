@@ -191,8 +191,6 @@ class FilterTag extends PureComponent {
       })
     })
 
-    console.log('testIDs', this.props.testIds)
-
     return (
       <div
         ref={this.filterMenuContainer}

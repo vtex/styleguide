@@ -106,8 +106,6 @@ class FilterBar extends PureComponent {
     const { visibleExtraOptions } = this.state
     const optionsKeys = Object.keys(options)
 
-    console.log('waza', testIds)
-
     return (
       optionsKeys.length > 0 && (
         <div className={`flex flex-wrap nl1`}>
@@ -229,7 +227,7 @@ export const filterBarPropTypes = {
   testIds: PropTypes.shape({
     moreOptionsButton: PropTypes.string,
     submitFiltersButton: PropTypes.string,
-    clearFiltersButton: PropsTypes.string,
+    clearFiltersButton: PropTypes.string,
   }),
 }
 
