@@ -106,6 +106,8 @@ class FilterBar extends PureComponent {
     const { visibleExtraOptions } = this.state
     const optionsKeys = Object.keys(options)
 
+    console.log('waza', testIds)
+
     return (
       optionsKeys.length > 0 && (
         <div className={`flex flex-wrap nl1`}>
@@ -118,8 +120,11 @@ class FilterBar extends PureComponent {
             .map(subject => {
               const statement = statements.find(st => st.subject === subject)
               return (
-                <div key={`VTEX__filter_option--${subject}`} className="ma2">
+                <div
+                  key={`VTEX__filter_option--${subject}`}
+                  className="ma2">
                   <FilterTag
+                    testIds={testIds}
                     alwaysVisible={alwaysVisibleFilters.includes(subject)}
                     getFilterLabel={() => {
                       const label =
@@ -168,6 +173,7 @@ class FilterBar extends PureComponent {
             statements.some(st => !!st && !!st.object) && (
               <div className="ml-auto mt1">
                 <ButtonWithIcon
+                  testId={testIds.clearFiltersButton}
                   icon={
                     <span
                       className="flex items-center c-muted-2"
@@ -223,6 +229,7 @@ export const filterBarPropTypes = {
   testIds: PropTypes.shape({
     moreOptionsButton: PropTypes.string,
     submitFiltersButton: PropTypes.string,
+    clearFiltersButton: PropsTypes.string,
   }),
 }
 
