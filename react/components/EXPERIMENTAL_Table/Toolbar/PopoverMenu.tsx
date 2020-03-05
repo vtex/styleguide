@@ -127,7 +127,7 @@ type ItemProps = {
 
 export type MenuAction = {
   label: string
-  onClick: Function
+  onClick: (event: React.MouseEvent) => void
   toggle?: {
     checked: boolean
     semantic: boolean

@@ -94,7 +94,9 @@ const propTypes = {
   noWrap: PropTypes.bool,
 }
 
-const Button: React.FC<InferProps<typeof propTypes>> = props => {
+type Props = InferProps<typeof propTypes>
+
+const Button: React.FC<Props> = props => {
   const {
     id,
     size,
@@ -388,4 +390,6 @@ Button.defaultProps = {
   isActiveOfGroup: false,
 }
 
-export default withForwardedRef(Button)
+export default withForwardedRef<HTMLButtonElement & HTMLAnchorElement, Props>(
+  Button
+)
