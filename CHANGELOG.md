@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- **Button** component now is TypeScript based.
+
 ## [9.112.10] - 2020-03-06
 
 ### Changed
