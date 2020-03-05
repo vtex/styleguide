@@ -1,12 +1,12 @@
-import React from 'react'
+import React, {
+  PropsWithoutRef,
+  RefAttributes,
+  ForwardRefExoticComponent,
+  ComponentType,
+} from 'react'
 import PropTypes from 'prop-types'
 
 // For more info see: https://stackoverflow.com/a/51127130/10725088
-const Element =
-  typeof window === 'undefined' || typeof window.Element === 'undefined'
-    ? function() {}
-    : window.Element
-
 export const refShape = PropTypes.oneOfType([
   PropTypes.func,
   PropTypes.shape({
@@ -14,8 +14,10 @@ export const refShape = PropTypes.oneOfType([
   }),
 ])
 
-export function withForwardedRef(Component) {
-  const ComponentWithRef = React.forwardRef((props, ref) => {
+export function withForwardedRef<P>(
+  Component: ComponentType<P>
+): ForwardRefExoticComponent<PropsWithoutRef<P> & RefAttributes<any>> {
+  const ComponentWithRef = React.forwardRef((props: P, ref) => {
     return <Component {...props} forwardedRef={ref} />
   })
 
