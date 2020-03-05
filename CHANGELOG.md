@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.112.9] - 2020-03-05
+
 ### Added
 
 - `COMPOSITION OVER OBJECT PROPS` section at `EXPERIMENTAL_Table` docs.
