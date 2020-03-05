@@ -1,5 +1,6 @@
 /* eslint-disable import/unambiguous */
 const path = require('path')
+
 const webpackConfig = require('./config/webpack.config.js')
 const { version } = require('./manifest.json')
 const { styles, theme } = require('./styleguide.styles.js')
@@ -164,7 +165,6 @@ module.exports = {
           components: [
             'react/components/EXPERIMENTAL_Conditions/index.js',
             'react/components/EXPERIMENTAL_Select/index.js',
-            'react/components/EXPERIMENTAL_Table/index.tsx',
             'react/components/EXPERIMENTAL_TableTree/index.tsx',
             'react/components/EXPERIMENTAL_useCheckboxTree/index.tsx',
           ],
@@ -177,6 +177,33 @@ module.exports = {
                 'react/components/EXPERIMENTAL_Charts/BarChart/index.tsx',
                 'react/components/EXPERIMENTAL_Charts/ScatterChart/index.tsx',
                 'react/components/EXPERIMENTAL_Charts/BubbleChart/index.tsx',
+              ],
+            },
+            {
+              name: 'Table V2',
+              content:
+                'react/components/EXPERIMENTAL_Table/docs/Introduction.md',
+              sections: [
+                {
+                  name: 'Features',
+                  content:
+                    'react/components/EXPERIMENTAL_Table/docs/Features.md',
+                },
+                {
+                  name: 'Components',
+                  content:
+                    'react/components/EXPERIMENTAL_Table/docs/Components.md',
+                },
+                {
+                  name: '🧪E2E Testing',
+                  content:
+                    'react/components/EXPERIMENTAL_Table/docs/Testing.md',
+                },
+                {
+                  name: '📚Migration Guide',
+                  content:
+                    'react/components/EXPERIMENTAL_Table/docs/MigrationGuide.md',
+                },
               ],
             },
           ],

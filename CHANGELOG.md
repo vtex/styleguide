@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Split `EXPERIMENTAL_Table` docs on multiple files.
+
 ## [9.112.9] - 2020-03-05
 
 ### Added
