@@ -341,7 +341,7 @@ class Button extends Component<InferProps<typeof propTypes>> {
 
     const elementDefaultProps = {
       id,
-      'data-testId': testId,
+      'data-testid': testId,
       tabIndex: 0,
       className: classes,
       onClick: this.handleClick,
