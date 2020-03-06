@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.112.11] - 2020-03-06
+
 ### Added
 
 - New `buttonProps` prop to `Input` and `InputButton` component
