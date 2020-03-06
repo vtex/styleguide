@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import PropTypes from 'prop-types'
 
-import Button from '../Button/index.js'
+import Button from '../Button'
 
 import './action-bar.global.css'
 

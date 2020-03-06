@@ -189,7 +189,7 @@ This example, showcase the table using all of its simple props that are `loading
 ```js
 const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
 const Toggle = require('../Toggle/index.js').default
-const Button = require('../Button/index.js').default
+const Button = require('../Button/index.tsx').default
 const Spinner = require('../Spinner/index.js').default
 const items = require('./sampleData.ts').customers.slice(0, 5)
 
@@ -445,7 +445,7 @@ function MeasuresExample() {
 const useTableMeasures = require('./hooks/useTableMeasures.tsx').default
 const useTableProportion = require('./hooks/useTableProportion.ts').default
 const ButtonGroup = require('../ButtonGroup/index.js').default
-const Button = require('../Button/index.js').default
+const Button = require('../Button/index.tsx').default
 const data = require('./sampleData.ts')
 
 const columns = [
