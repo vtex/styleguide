@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Unecessary `Cell` rerender on `EXPERIMENTAL_Table`.
+
 ## [9.112.12] - 2020-03-09
 
 ### Added

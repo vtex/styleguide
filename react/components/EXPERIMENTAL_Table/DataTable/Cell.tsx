@@ -1,4 +1,11 @@
-import React, { FC, createContext, useContext, useState } from 'react'
+import React, {
+  FC,
+  createContext,
+  useContext,
+  useState,
+  PropsWithChildren,
+  CSSProperties,
+} from 'react'
 import classNames from 'classnames'
 
 import CaretDown from '../../icon/CaretDown/index.js'
@@ -33,10 +40,10 @@ const Cell: FC<CellProps> & CellComposites = ({
   onClick,
   className: classNameProp,
   sorting,
+  sortable = false,
   sticky = false,
   header,
 }) => {
-  const { hover, ...events } = useHover()
   const className = classNames(
     'v-mid ph3 pv0 tl bb b--muted-4',
     classNameProp,
@@ -48,20 +55,47 @@ const Cell: FC<CellProps> & CellComposites = ({
       z1: !sticky,
     }
   )
-  const Tag = header ? 'th' : 'td'
+  const tag = header ? 'th' : 'td'
+  const style = {
+    position: sticky ? 'sticky' : 'static',
+    width,
+  } as CSSProperties
+  const Container = sortable ? HoverableCell : DefaultCell
 
   return (
-    <Tag
-      {...events}
-      onClick={onClick}
-      style={{
-        position: sticky ? 'sticky' : 'static',
-        width,
-      }}
-      className={className}>
+    <Container tag={tag} onClick={onClick} style={style} className={className}>
+      {children}
+    </Container>
+  )
+}
+
+interface CellContainer
+  extends React.DetailedHTMLProps<
+    React.ThHTMLAttributes<HTMLTableHeaderCellElement>,
+    HTMLTableHeaderCellElement
+  > {
+  tag: string
+}
+
+function HoverableCell({
+  children,
+  tag: Tag,
+  ...props
+}: PropsWithChildren<CellContainer>) {
+  const { hover, ...events } = useHover()
+  return (
+    <Tag {...events} {...props}>
       <HoverProvider value={hover}>{children}</HoverProvider>
     </Tag>
   )
+}
+
+function DefaultCell({
+  children,
+  tag: Tag,
+  ...props
+}: PropsWithChildren<CellContainer>) {
+  return <Tag {...props}>{children}</Tag>
 }
 
 const Prefix: FC<PrefixProps> & PrefixComposites = ({
@@ -126,6 +160,7 @@ export type CellProps = {
   className?: string
   onClick?: () => void
   showArrow?: boolean
+  sortable?: boolean
   sorting?: boolean
   sticky?: boolean
   header?: boolean

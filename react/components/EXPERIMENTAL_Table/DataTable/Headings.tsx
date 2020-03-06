@@ -28,6 +28,7 @@ const Headings: FC<HeadingsProps> = ({
         return (
           <Row.Cell
             {...onclick}
+            sortable={sortable}
             sorting={cellSorting}
             className={cellClassName}
             key={headerIndex}
