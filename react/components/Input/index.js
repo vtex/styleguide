@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import Button from '../Button'
 import styles from './Input.css'
 import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
+import WarningIcon from '../icon/Warning'
 
 class Input extends Component {
   constructor(props) {
@@ -262,7 +263,12 @@ class Input extends Component {
           )}
         </div>
         {errorMessage && (
-          <div className="c-danger t-small mt3 lh-title">{errorMessage}</div>
+          <div className="c-danger flex t-small mt3 lh-title">
+            <span className="mr2 flex items-center">
+              <WarningIcon size={14} />
+            </span>
+            <span>{errorMessage}</span>
+          </div>
         )}
         {helpText && (
           <div className="c-muted-1 t-small mt3 lh-title">{helpText}</div>
