@@ -181,7 +181,7 @@ class DatePickerExample extends React.Component {
 #### Using ref
 
 ```js
-const Button = require('../Button/index.js').default
+const Button = require('../Button/index.tsx').default
 
 class DatePickerExample extends React.Component {
   constructor() {

@@ -185,7 +185,7 @@ const ButtonPlain: FunctionComponent<Props> = props => {
       onMouseDown={props.onMouseDown}
       onFocus={props.onFocus}
       onBlur={props.onBlur}
-      ref={props.forwardedRef}
+      ref={props.forwardedRef as React.RefObject<HTMLAnchorElement & HTMLButtonElement>}
       style={style}
       // Button-mode exclusive props
       type={href ? undefined : (props.type as 'button' | 'submit' | 'reset')}
