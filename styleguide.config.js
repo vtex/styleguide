@@ -203,6 +203,11 @@ module.exports = {
                   content:
                     'react/components/EXPERIMENTAL_Table/docs/MigrationGuide.md',
                 },
+                {
+                  name: '☢️Unstable',
+                  content:
+                    'react/components/EXPERIMENTAL_Table/docs/Advanced.md',
+                },
               ],
             },
           ],

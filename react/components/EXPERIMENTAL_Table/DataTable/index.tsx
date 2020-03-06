@@ -11,6 +11,7 @@ import {
   useTestingContext,
   useMeasuresContext,
   useLoadingContext,
+  useHeadContext,
 } from '../context'
 import Tbody from './Tbody'
 import Thead from './Thead'
@@ -25,6 +26,7 @@ const DataTable: RefForwardingComponent<HTMLTableElement, DataTableProps> = (
   ref
 ) => {
   const { emptyState, empty, loading } = useLoadingContext()
+  const { sticky } = useHeadContext()
   const { testId } = useTestingContext()
   const { tableHeight } = useMeasuresContext()
 
@@ -33,7 +35,10 @@ const DataTable: RefForwardingComponent<HTMLTableElement, DataTableProps> = (
       style={{ height: tableHeight, ...motion }}
       className={classNames(
         'order-1 mw-100 overflow-x-auto',
-        ORDER_CLASSNAMES.TABLE
+        ORDER_CLASSNAMES.TABLE,
+        {
+          'overflow-y-auto': sticky,
+        }
       )}>
       <table
         ref={ref}

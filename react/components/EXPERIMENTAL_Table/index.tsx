@@ -29,6 +29,7 @@ const Table: FC<TableProps> & TableComposites = ({
   columns,
   sorting,
   testId,
+  stickyHeader,
 }) => {
   if (!measures) {
     throw new Error('Provide measures to the Table')
@@ -53,6 +54,7 @@ const Table: FC<TableProps> & TableComposites = ({
         head={{
           columns,
           sorting,
+          sticky: stickyHeader,
         }}
         body={{
           onRowClick,

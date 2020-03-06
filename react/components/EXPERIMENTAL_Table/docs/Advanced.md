@@ -1,10 +1,11 @@
 #### Render Agnostic
 
 ```js
-const useMeasures = require('./hooks/useTableMeasures.tsx').default
-const Row = require('./DataTable/Row.tsx').default
-const customers = require('./sampleData.ts').customers
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
+
+import Table from '../index'
+import useTableMeasures from '../hooks/useTableMeasures'
+import { customers } from './sampleData'
 
 const columns = [
   {
@@ -34,7 +35,7 @@ const getItemStyle = (isDragging, draggableStyle) => ({
 
 function RenderAgnostic() {
   const [items, setItems] = React.useState(customers)
-  const measures = useMeasures({ size: items.length })
+  const measures = useTableMeasures({ size: items.length })
   const density = {
     label: 'Line density',
     compactLabel: 'Compact',
@@ -58,45 +59,35 @@ function RenderAgnostic() {
   }
 
   return (
-    <Table
-      measures={measures}
-      columns={columns}
-      items={items}
-      __unsafe__giveMeMyRender>
+    <Table measures={measures} columns={columns} items={items} unstableRender>
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="droppable">
           {(provided, snapshot) => (
-            <Table.DataTable ref={provided.innerRef}>
-              <Table.Head columns={columns} />
-              <Table.Body
-                columns={columns}
-                items={items}
-                rowKey={({ id }) => `${id}`}
-                renderer={({ idx, rowData, height, ...rest }) => (
+            <Table.Data ref={provided.innerRef}>
+              <Table.Data.Head />
+              <Table.Data.Body
+                renderer={({ rowData, rowIndex, rowProps }) => (
                   <Draggable
                     key={rowData.id}
                     draggableId={rowData.id.toString()}
-                    index={idx}>
+                    index={rowIndex}>
                     {(provided, snapshot) => (
-                      <Row
+                      <Table.Data.Body.Row
                         ref={provided.innerRef}
-                        height={height}
                         style={{
-                          display: 'table',
-                          height: height,
                           userSelect: 'none',
                           ...provided.draggableProps.style,
                         }}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
-                        {...rest}
+                        {...rowProps}
                       />
                     )}
                   </Draggable>
                 )}
               />
               {provided.placeholder}
-            </Table.DataTable>
+            </Table.Data>
           )}
         </Droppable>
       </DragDropContext>

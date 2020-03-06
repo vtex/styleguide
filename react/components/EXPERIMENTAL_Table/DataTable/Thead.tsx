@@ -9,7 +9,7 @@ import { Column } from '../types'
 
 const Thead: RefForwardingComponent<HTMLTableSectionElement> = (_, ref) => {
   const { testId } = useTestingContext()
-  const { sorting, columns } = useHeadContext()
+  const { sorting, columns, sticky } = useHeadContext()
   return (
     <thead
       ref={ref}
@@ -19,21 +19,22 @@ const Thead: RefForwardingComponent<HTMLTableSectionElement> = (_, ref) => {
         {columns.map((columnData: Column, headerIndex: number) => {
           const { id, title, width, sortable } = columnData
           const cellClassName = classNames('bt normal', { pointer: sortable })
-          const active = sorting && sorting.sorted && sorting.sorted.by === id
+          const cellSorting =
+            sorting && sorting.sorted && sorting.sorted.by === id
           const ascending = sorting && sorting.sorted.order !== 'DSC'
           const onclick =
             sortable && sorting ? { onClick: () => sorting.sort(id) } : {}
           return (
             <Cell
               {...onclick}
-              active={active}
               className={cellClassName}
               key={headerIndex}
               width={width}
+              sticky={sticky}
               header>
               {title}
               {sortable && (
-                <Cell.Suffix active={active} ascending={ascending} />
+                <Cell.Suffix sorting={cellSorting} ascending={ascending} />
               )}
             </Cell>
           )
