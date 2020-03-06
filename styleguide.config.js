@@ -195,12 +195,12 @@ module.exports = {
                     'react/components/EXPERIMENTAL_Table/docs/Components.md',
                 },
                 {
-                  name: '🧪E2E Testing',
+                  name: 'E2E Testing',
                   content:
                     'react/components/EXPERIMENTAL_Table/docs/Testing.md',
                 },
                 {
-                  name: '📚Migration Guide',
+                  name: 'Migration Guide',
                   content:
                     'react/components/EXPERIMENTAL_Table/docs/MigrationGuide.md',
                 },
