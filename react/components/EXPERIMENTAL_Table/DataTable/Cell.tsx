@@ -5,6 +5,8 @@ import React, {
   useState,
   PropsWithChildren,
   CSSProperties,
+  DetailedHTMLProps,
+  HTMLAttributes,
 } from 'react'
 import classNames from 'classnames'
 
@@ -44,34 +46,29 @@ const Cell: FC<CellProps> & CellComposites = ({
   sticky = false,
   header,
 }) => {
-  const className = classNames(
-    'v-mid ph3 pv0 tl bb b--muted-4',
-    classNameProp,
-    {
+  const Container = sortable ? HoverableCell : DefaultCell
+  const containerProps = {
+    onClick,
+    tag: header ? 'th' : 'td',
+    className: classNames('v-mid ph3 pv0 tl bb b--muted-4', classNameProp, {
       pointer: onClick,
       'c-on-base': sorting,
       'bg-base': header,
       'top-0 z3': sticky && header,
       z1: !sticky,
-    }
-  )
-  const tag = header ? 'th' : 'td'
-  const style = {
-    position: sticky ? 'sticky' : 'static',
-    width,
-  } as CSSProperties
-  const Container = sortable ? HoverableCell : DefaultCell
+    }),
+    style: {
+      position: sticky ? 'sticky' : 'static',
+      width,
+    } as CSSProperties,
+  }
 
-  return (
-    <Container tag={tag} onClick={onClick} style={style} className={className}>
-      {children}
-    </Container>
-  )
+  return <Container {...containerProps}>{children}</Container>
 }
 
 interface CellContainer
-  extends React.DetailedHTMLProps<
-    React.ThHTMLAttributes<HTMLTableHeaderCellElement>,
+  extends DetailedHTMLProps<
+    HTMLAttributes<HTMLTableHeaderCellElement>,
     HTMLTableHeaderCellElement
   > {
   tag: string

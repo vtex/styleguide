@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- Unecessary `Cell` rerender on `EXPERIMENTAL_Table`.
+- Unecessary `Cell` rerender on `EXPERIMENTAL_Table` due not checking if the cell is sortable.
 
 ## [9.112.12] - 2020-03-09
 
