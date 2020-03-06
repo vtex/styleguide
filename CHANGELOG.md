@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- **Button** component now is TypeScript based.
+- **withForwardedRef** is now Typescript based.
+
 ### Added
 
 - Warning icon when input has errorMessage
