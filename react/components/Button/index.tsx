@@ -393,4 +393,3 @@ Button.defaultProps = {
 export default withForwardedRef<HTMLButtonElement & HTMLAnchorElement, Props>(
   Button
 )
-
