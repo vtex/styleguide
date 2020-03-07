@@ -1,13 +1,13 @@
-import React, { forwardRef, RefForwardingComponent } from 'react'
+import React, { forwardRef } from 'react'
 import classNames from 'classnames'
 
 import { useTestingContext, useHeadContext } from '../context'
 import { TABLE_HEADER_HEIGHT } from '../hooks/useTableMeasures'
 import Row from './Row'
 import Cell from './Cell'
-import { Column } from '../types'
+import { Column, RFC, ComposableWithRef } from '../types'
 
-const Thead: RefForwardingComponent<HTMLTableSectionElement> = (_, ref) => {
+const Thead: RFC<HTMLTableSectionElement> = (_, ref) => {
   const { testId } = useTestingContext()
   const { sorting, columns, sticky } = useHeadContext()
   return (
@@ -43,5 +43,7 @@ const Thead: RefForwardingComponent<HTMLTableSectionElement> = (_, ref) => {
     </thead>
   )
 }
+
+export type ComposableThead = ComposableWithRef<HTMLTableSectionElement>
 
 export default forwardRef(Thead)

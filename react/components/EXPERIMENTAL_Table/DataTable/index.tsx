@@ -1,4 +1,4 @@
-import React, { forwardRef, RefForwardingComponent } from 'react'
+import React, { forwardRef } from 'react'
 import classNames from 'classnames'
 
 import EmptyState from '../../EmptyState/index.js'
@@ -6,22 +6,22 @@ import { ORDER_CLASSNAMES } from '../constants'
 import { TABLE_HEADER_HEIGHT } from '../hooks/useTableMeasures'
 import Loading from './Loading'
 import useTableMotion from '../hooks/useTableMotion'
-import { E2ETestable } from '../types'
+import { E2ETestable, RFC, ComposableWithRef } from '../types'
 import {
   useTestingContext,
   useMeasuresContext,
   useLoadingContext,
   useHeadContext,
 } from '../context'
-import Tbody from './Tbody'
-import Thead from './Thead'
+import Tbody, { ComposableTbody } from './Tbody'
+import Thead, { ComposableThead } from './Thead'
 
 export interface DataTableProps extends E2ETestable {
   className?: string
   motion?: ReturnType<typeof useTableMotion>
 }
 
-const DataTable: RefForwardingComponent<HTMLTableElement, DataTableProps> = (
+const DataTable: RFC<HTMLTableElement, DataTableProps> = (
   { children, className, motion },
   ref
 ) => {
@@ -66,11 +66,18 @@ const DataTable: RefForwardingComponent<HTMLTableElement, DataTableProps> = (
   )
 }
 
-// TODO: find a type for this fella
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const fowardedDataTable: any = forwardRef(DataTable)
+interface Composites {
+  Head?: ComposableThead
+  Body?: ComposableTbody
+}
 
-fowardedDataTable.Body = Tbody
-fowardedDataTable.Head = Thead
+const FowardedDataTable: ComposableWithRef<
+  HTMLTableElement,
+  DataTableProps,
+  Composites
+> = forwardRef(DataTable)
 
-export default fowardedDataTable
+FowardedDataTable.Head = Thead
+FowardedDataTable.Body = Tbody
+
+export default FowardedDataTable

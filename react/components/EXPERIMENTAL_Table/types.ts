@@ -6,7 +6,7 @@ export type Items = object[]
 export type ReturnedData = {
   data: unknown | object
   rowHeight: number
-  currentDensity: Density
+  density: Density
   motion: ReturnType<typeof useTableMotion>
 }
 
@@ -23,3 +23,16 @@ export type Column = {
 export type E2ETestable<T = string> = {
   testId?: T
 }
+
+/** Shorthand for RefForwardingComponent */
+export type RFC<T, P = {}> = React.RefForwardingComponent<T, P>
+
+/** Defines a exported foward ref with composites */
+export type ComposableWithRef<
+  Ref,
+  Props = {},
+  Composites = {}
+> = React.ForwardRefExoticComponent<
+  React.PropsWithChildren<Props> & React.RefAttributes<Ref>
+> &
+  Partial<Composites>

@@ -1,9 +1,4 @@
-import React, {
-  RefForwardingComponent,
-  forwardRef,
-  DetailedHTMLProps,
-  HTMLAttributes,
-} from 'react'
+import React, { forwardRef, DetailedHTMLProps, HTMLAttributes } from 'react'
 import pick from 'lodash/pick'
 
 import {
@@ -14,9 +9,9 @@ import {
   useMeasuresContext,
 } from '../context'
 import useTableMotion from '../hooks/useTableMotion'
-import Row, { ROW_TRANSITIONS } from './Row'
+import Row, { ROW_TRANSITIONS, ComposableRow } from './Row'
 import Cell from './Cell'
-import { Column } from '../types'
+import { Column, RFC, ComposableWithRef } from '../types'
 
 interface Props
   extends DetailedHTMLProps<
@@ -27,7 +22,7 @@ interface Props
   renderer?: (props: any) => React.ReactNode
 }
 
-const Tbody: RefForwardingComponent<HTMLTableSectionElement, Props> = (
+const Tbody: RFC<HTMLTableSectionElement, Props> = (
   { renderer, ...rest },
   ref
 ) => {
@@ -41,7 +36,7 @@ const Tbody: RefForwardingComponent<HTMLTableSectionElement, Props> = (
   } = useBodyContext()
   const { empty, loading } = useLoadingContext()
   const { testId } = useTestingContext()
-  const { rowHeight, currentDensity } = useMeasuresContext()
+  const { rowHeight, density } = useMeasuresContext()
   const motion = useTableMotion(ROW_TRANSITIONS)
 
   return !empty && !loading ? (
@@ -74,7 +69,7 @@ const Tbody: RefForwardingComponent<HTMLTableSectionElement, Props> = (
                 ? cellRenderer({
                     data,
                     rowHeight,
-                    currentDensity,
+                    density,
                     motion,
                   })
                 : data
@@ -92,10 +87,18 @@ const Tbody: RefForwardingComponent<HTMLTableSectionElement, Props> = (
   ) : null
 }
 
-// TODO: type this
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const fowardedTbody: any = forwardRef(Tbody)
+interface Composites {
+  Row: ComposableRow
+}
 
-fowardedTbody.Row = Row
+export type ComposableTbody = ComposableWithRef<
+  HTMLTableSectionElement,
+  Props,
+  Composites
+>
 
-export default fowardedTbody
+const FowardedTbody: ComposableTbody = forwardRef(Tbody)
+
+FowardedTbody.Row = Row
+
+export default FowardedTbody

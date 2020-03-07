@@ -32,12 +32,7 @@ export const ORDER_CLASSNAMES = {
 
 export const NAMESPACE_PREFIX = 'vtex-table-v2'
 export const NAMESPACES = {
-  CONTAINER: `${NAMESPACE_PREFIX}__container`,
   TABLE: `${NAMESPACE_PREFIX}`,
-  HEADER: `${NAMESPACE_PREFIX}__header`,
-  BODY: `${NAMESPACE_PREFIX}__body`,
-  ROW: `${NAMESPACE_PREFIX}__row`,
-  CELL: `${NAMESPACE_PREFIX}__cell`,
   TOOLBAR: {
     CONTAINER: `${NAMESPACE_PREFIX}__toolbar`,
     INPUT_SEARCH: `${NAMESPACE_PREFIX}__toolbar__input-search`,

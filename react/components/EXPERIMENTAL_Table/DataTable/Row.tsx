@@ -1,13 +1,10 @@
-import React, {
-  DetailedHTMLProps,
-  RefForwardingComponent,
-  forwardRef,
-} from 'react'
+import React, { DetailedHTMLProps, forwardRef } from 'react'
 import classNames from 'classnames'
 
 import useTableMotion from '../hooks/useTableMotion'
+import { RFC, ComposableWithRef } from '../types'
 
-const Row: RefForwardingComponent<HTMLTableRowElement, RowProps> = (
+const Row: RFC<HTMLTableRowElement, RowProps> = (
   { children, height, onClick, active, motion, highlightOnHover, ...props },
   ref
 ) => {
@@ -55,5 +52,7 @@ export interface RowProps extends NativeTr {
   motion?: ReturnType<typeof useTableMotion>
   highlightOnHover?: boolean
 }
+
+export type ComposableRow = ComposableWithRef<HTMLTableRowElement, RowProps>
 
 export default forwardRef(Row)
