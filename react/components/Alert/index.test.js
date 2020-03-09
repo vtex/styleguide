@@ -3,7 +3,7 @@ import { render, fireEvent } from 'react-testing-library'
 
 import Alert from './index'
 
-describe('Alert', () => {
+describe.skip('Alert', () => {
   describe('action button', () => {
     it('should be displayed if props are passed', () => {
       const label = 'Action'
