@@ -9,6 +9,7 @@ import {
   useBodyContext,
   useLoadingContext,
   useTestingContext,
+  useMeasuresContext,
 } from '../context'
 import useTableMotion from '../hooks/useTableMotion'
 import Row, { ROW_TRANSITIONS, ComposableRow } from './Row'
@@ -27,6 +28,7 @@ const Tbody: RFC<HTMLTableSectionElement, Props> = (
   { renderer, children, ...rest },
   ref
 ) => {
+  const { rowHeight } = useMeasuresContext()
   const { items, rowKey } = useBodyContext()
   const { empty, loading } = useLoadingContext()
   const { testId } = useTestingContext()
@@ -39,6 +41,7 @@ const Tbody: RFC<HTMLTableSectionElement, Props> = (
           key: rowKey({ rowData }),
           data: rowData,
           motion,
+          height: rowHeight,
         }
 
         //TODO: Create types for renderProps

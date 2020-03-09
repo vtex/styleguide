@@ -5,19 +5,19 @@ import { useTestingContext, useHeadContext } from '../context'
 import { TABLE_HEADER_HEIGHT } from '../hooks/useTableMeasures'
 import Row from './Row'
 import Cell from './Cell'
-import { Column, RFC, ComposableWithRef } from '../types'
+import { RFC, ComposableWithRef } from '../types'
 
 const Thead: RFC<HTMLTableSectionElement> = (_, ref) => {
   const { testId } = useTestingContext()
-  const { sorting, columns, sticky } = useHeadContext()
+  const { sorting, sticky } = useHeadContext()
   return (
     <thead
       ref={ref}
       data-testid={`${testId}__header`}
       className="w-100 ph4 truncate overflow-x-hidden c-muted-2 f6">
-      <Row height={TABLE_HEADER_HEIGHT}>
-        {columns.map((columnData: Column, headerIndex: number) => {
-          const { id, title, width, sortable } = columnData
+      <Row height={TABLE_HEADER_HEIGHT} data="">
+        {({ column, props }) => {
+          const { id, title, sortable } = column
           const cellClassName = classNames('bt normal', { pointer: sortable })
           const cellSorting =
             sorting && sorting.sorted && sorting.sorted.by === id
@@ -25,20 +25,19 @@ const Thead: RFC<HTMLTableSectionElement> = (_, ref) => {
           const onclick =
             sortable && sorting ? { onClick: () => sorting.sort(id) } : {}
           return (
-            <Cell
+            <Row.Cell
               {...onclick}
+              {...props}
               className={cellClassName}
-              key={headerIndex}
-              width={width}
               sticky={sticky}
               header>
               {title}
               {sortable && (
                 <Cell.Suffix sorting={cellSorting} ascending={ascending} />
               )}
-            </Cell>
+            </Row.Cell>
           )
-        })}
+        }}
       </Row>
     </thead>
   )

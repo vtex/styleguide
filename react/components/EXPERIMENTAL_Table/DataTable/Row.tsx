@@ -1,18 +1,16 @@
 import React, { DetailedHTMLProps, forwardRef, FC } from 'react'
 import classNames from 'classnames'
-import pick from 'lodash/pick'
 
 import useTableMotion from '../hooks/useTableMotion'
 import { RFC, ComposableWithRef, Column } from '../types'
-import { useBodyContext, useMeasuresContext, useHeadContext } from '../context'
+import { useBodyContext, useHeadContext } from '../context'
 import Cell, { CellComposites, CellProps } from './Cell'
 
 const Row: RFC<HTMLTableRowElement, RowProps> = (
-  { children, motion, data, ...props },
+  { children, motion, data, height, ...props },
   ref
 ) => {
   const { columns } = useHeadContext()
-  const { rowHeight, density } = useMeasuresContext()
   const { highlightOnHover, isRowActive, onRowClick } = useBodyContext()
   const className = classNames('w-100 truncate overflow-x-hidden', {
     'pointer hover-c-link': onRowClick,
@@ -23,28 +21,14 @@ const Row: RFC<HTMLTableRowElement, RowProps> = (
     onClick: () => onRowClick({ rowData: data }),
   }
   const style = {
-    height: rowHeight,
+    height,
     ...props.style,
     ...motion,
   }
   return (
     <tr {...props} ref={ref} style={style} {...clickable} className={className}>
       {columns.map((column: Column) => {
-        const { id, cellRenderer, width, condensed, extended } = column
-        const cellData = condensed
-          ? pick(data, condensed)
-          : extended
-          ? data
-          : data[id]
-
-        const content = cellRenderer
-          ? cellRenderer({
-              data: cellData,
-              rowHeight,
-              density,
-              motion,
-            })
-          : cellData
+        const { id, width } = column
 
         const props = {
           key: id,
@@ -56,8 +40,9 @@ const Row: RFC<HTMLTableRowElement, RowProps> = (
         //@ts-ignore
         return children({
           props,
-          data: content,
+          data,
           column,
+          motion,
         })
       })}
     </tr>
@@ -80,8 +65,7 @@ type NativeTr = DetailedHTMLProps<
 >
 
 export interface RowProps extends NativeTr {
-  active?: boolean
-  onClick?: () => void
+  height: number
   motion?: ReturnType<typeof useTableMotion>
   data: unknown
 }

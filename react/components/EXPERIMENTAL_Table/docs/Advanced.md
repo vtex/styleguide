@@ -1,3 +1,83 @@
+#### Checkboxes
+
+```js
+import Table from '../index'
+import useTableMeasures from '../hooks/useTableMeasures'
+import useCheckboxTree from '../../EXPERIMENTAL_useCheckboxTree'
+import { customers } from './sampleData'
+import Checkbox from '../../Checkbox'
+
+const items = customers.slice(0, 5)
+
+function CheckboxesExample() {
+  const measures = useTableMeasures({ size: items.length })
+  const [withCheckboxes, isRowActive] = useColumnsWithCheckboxes({
+    columns: [
+      {
+        id: 'name',
+        title: 'Name',
+      },
+      {
+        id: 'location',
+        title: 'Location',
+      },
+    ],
+    items,
+  })
+  return (
+    <Table
+      isRowActive={isRowActive}
+      measures={measures}
+      columns={withCheckboxes}
+      items={items}
+    />
+  )
+}
+
+function useColumnsWithCheckboxes({ columns, items }) {
+  const checkboxes = useCheckboxTree({ items })
+  const mappedCheckboxes = checkboxes.itemTree.children.map(item => {
+    const id = `${item.id}`
+    return (
+      <Checkbox
+        key={id}
+        id={id}
+        checked={checkboxes.isChecked(item)}
+        partial={checkboxes.isPartiallyChecked(item)}
+        disabled={checkboxes.isDisabled(item)}
+        onChange={() => checkboxes.toggle(item)}
+      />
+    )
+  })
+
+  const withCheckboxes = [
+    {
+      id: 'checkbox',
+      title: (
+        <div className="bg-base">
+          <Checkbox
+            id={`${checkboxes.itemTree.id}`}
+            checked={checkboxes.allChecked}
+            partial={checkboxes.someChecked}
+            onChange={checkboxes.toggleAll}
+          />
+        </div>
+      ),
+      width: 30,
+      extended: true,
+      cellRenderer: ({ data }) => {
+        return <div>{mappedCheckboxes[data.id - 1]}</div>
+      },
+    },
+    ...columns,
+  ]
+
+  return [withCheckboxes, data => checkboxes.isChecked(data)]
+}
+
+;<CheckboxesExample />
+```
+
 #### Render Agnostic
 
 ```js
