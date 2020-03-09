@@ -265,11 +265,12 @@ class Input extends Component {
           )}
         </div>
         {errorMessage && (
-          <div className="c-danger flex t-small mt3 lh-title">
-            <span className="mr2 flex items-center">
+          <div className="c-danger flex items-center t-small mt3 lh-title">
+            {/* use flex to align svg vertically */}
+            <span className="mr2 flex">
               <WarningIcon size={14} />
             </span>
-            <span>{errorMessage}</span>
+            {errorMessage}
           </div>
         )}
         {helpText && (
