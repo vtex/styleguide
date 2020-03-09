@@ -214,6 +214,7 @@ class FilterTag extends PureComponent {
             options={options[subject]}
             button={
               <button
+                data-testid={options[subject] && options[subject].testId}
                 type="button"
                 className="bw1 ba br2 v-mid relative bg-transparent b--transparent c-action-primary pointer w-100 outline-0"
                 onClick={isMenuOpen ? this.handleCloseMenu : this.openMenu}>
@@ -322,7 +323,6 @@ FilterTag.defaultProps = {
   isMoreOptions: false,
   subjectPlaceholder: '…',
   newFilterLabel: 'New filter',
-  testIds: {},
 }
 
 FilterTag.propTypes = {

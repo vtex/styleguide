@@ -120,6 +120,7 @@ class FilterBar extends PureComponent {
               return (
                 <div key={`VTEX__filter_option--${subject}`} className="ma2">
                   <FilterTag
+                    testIds={testIds}
                     alwaysVisible={alwaysVisibleFilters.includes(subject)}
                     getFilterLabel={() => {
                       const label =
@@ -168,6 +169,7 @@ class FilterBar extends PureComponent {
             statements.some(st => !!st && !!st.object) && (
               <div className="ml-auto mt1">
                 <ButtonWithIcon
+                  testId={testIds.clearFiltersButton}
                   icon={
                     <span
                       className="flex items-center c-muted-2"
@@ -223,6 +225,7 @@ export const filterBarPropTypes = {
   testIds: PropTypes.shape({
     moreOptionsButton: PropTypes.string,
     submitFiltersButton: PropTypes.string,
+    clearFiltersButton: PropTypes.string,
   }),
 }
 

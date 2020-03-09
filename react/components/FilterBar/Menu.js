@@ -109,6 +109,7 @@ class Menu extends Component {
       button,
       isMobile,
       options,
+      testId,
     } = this.props
     const {
       hasCalculatedSize,
@@ -163,7 +164,9 @@ class Menu extends Component {
 
     return (
       <div className="relative">
-        <div ref={this.containerElement}>{button}</div>
+        <div data-testid={testId} ref={this.containerElement}>
+          {button}
+        </div>
         {open && (
           <>
             <div
@@ -222,6 +225,8 @@ Menu.propTypes = {
   onBackgroundClick: PropTypes.func,
   /** Boolean if the device is mobile  */
   isMobile: PropTypes.bool,
+  /** String used as id to serve test purposes */
+  testId: PropTypes.string,
 }
 
 export default withDevice(Menu)
