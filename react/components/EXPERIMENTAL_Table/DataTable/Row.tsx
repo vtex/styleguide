@@ -1,31 +1,65 @@
-import React, { DetailedHTMLProps, forwardRef } from 'react'
+import React, { DetailedHTMLProps, forwardRef, FC } from 'react'
 import classNames from 'classnames'
+import pick from 'lodash/pick'
 
 import useTableMotion from '../hooks/useTableMotion'
-import { RFC, ComposableWithRef } from '../types'
+import { RFC, ComposableWithRef, Column } from '../types'
+import { useBodyContext, useMeasuresContext, useHeadContext } from '../context'
+import Cell, { CellComposites, CellProps } from './Cell'
 
 const Row: RFC<HTMLTableRowElement, RowProps> = (
-  { children, height, onClick, active, motion, highlightOnHover, ...props },
+  { children, motion, data, ...props },
   ref
 ) => {
+  const { columns } = useHeadContext()
+  const { rowHeight, density } = useMeasuresContext()
+  const { highlightOnHover, isRowActive, onRowClick } = useBodyContext()
   const className = classNames('w-100 truncate overflow-x-hidden', {
-    'pointer hover-c-link': onClick,
-    'hover-bg-muted-5': highlightOnHover,
-    'bg-action-secondary': active,
+    'pointer hover-c-link': onRowClick,
+    'hover-bg-muted-5': highlightOnHover || !!onRowClick,
+    'bg-action-secondary': isRowActive && isRowActive(data),
   })
+  const clickable = onRowClick && {
+    onClick: () => onRowClick({ rowData: data }),
+  }
   const style = {
-    height,
+    height: rowHeight,
     ...props.style,
     ...motion,
   }
   return (
-    <tr
-      {...props}
-      ref={ref}
-      style={style}
-      onClick={onClick}
-      className={className}>
-      {children}
+    <tr {...props} ref={ref} style={style} {...clickable} className={className}>
+      {columns.map((column: Column) => {
+        const { id, cellRenderer, width, condensed, extended } = column
+        const cellData = condensed
+          ? pick(data, condensed)
+          : extended
+          ? data
+          : data[id]
+
+        const content = cellRenderer
+          ? cellRenderer({
+              data: cellData,
+              rowHeight,
+              density,
+              motion,
+            })
+          : cellData
+
+        const props = {
+          key: id,
+          width,
+        }
+
+        //TODO: Create types for renderProps
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        //@ts-ignore
+        return children({
+          props,
+          data: content,
+          column,
+        })
+      })}
     </tr>
   )
 }
@@ -47,12 +81,23 @@ type NativeTr = DetailedHTMLProps<
 
 export interface RowProps extends NativeTr {
   active?: boolean
-  height?: number
   onClick?: () => void
   motion?: ReturnType<typeof useTableMotion>
-  highlightOnHover?: boolean
+  data: unknown
 }
 
-export type ComposableRow = ComposableWithRef<HTMLTableRowElement, RowProps>
+interface Composites {
+  Cell?: FC<CellProps> & CellComposites
+}
 
-export default forwardRef(Row)
+export type ComposableRow = ComposableWithRef<
+  HTMLTableRowElement,
+  RowProps,
+  Composites
+>
+
+const FowardedRow: ComposableRow = forwardRef(Row)
+
+FowardedRow.Cell = Cell
+
+export default FowardedRow

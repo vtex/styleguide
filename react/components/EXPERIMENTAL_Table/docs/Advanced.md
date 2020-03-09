@@ -64,13 +64,12 @@ function RenderAgnostic() {
         <Droppable droppableId="droppable">
           {(provided, snapshot) => (
             <Table.Data ref={provided.innerRef}>
-              <Table.Data.Head />
-              <Table.Data.Body
-                renderer={({ rowData, rowIndex, rowProps }) => (
+              <Table.Data.Body>
+                {({ props, data, index }) => (
                   <Draggable
-                    key={rowData.id}
-                    draggableId={rowData.id.toString()}
-                    index={rowIndex}>
+                    key={data.id}
+                    draggableId={data.id.toString()}
+                    index={index}>
                     {(provided, snapshot) => (
                       <Table.Data.Body.Row
                         ref={provided.innerRef}
@@ -80,12 +79,17 @@ function RenderAgnostic() {
                         }}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
-                        {...rowProps}
-                      />
+                        {...props}>
+                        {({ props, data }) => (
+                          <Table.Data.Body.Row.Cell {...props}>
+                            {data}
+                          </Table.Data.Body.Row.Cell>
+                        )}
+                      </Table.Data.Body.Row>
                     )}
                   </Draggable>
                 )}
-              />
+              </Table.Data.Body>
               {provided.placeholder}
             </Table.Data>
           )}

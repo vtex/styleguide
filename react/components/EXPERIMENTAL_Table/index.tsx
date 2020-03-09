@@ -60,10 +60,17 @@ const Table: RFC<HTMLTableElement, Props> = (
         <Fragment>
           {children}
           <DataTable ref={ref}>
-            <DataTable.Head />
-            <DataTable.Body
-              renderer={({ rowProps }) => <DataTable.Body.Row {...rowProps} />}
-            />
+            <DataTable.Body>
+              {({ props }) => (
+                <DataTable.Body.Row {...props}>
+                  {({ props, data }) => (
+                    <DataTable.Body.Row.Cell {...props}>
+                      {data}
+                    </DataTable.Body.Row.Cell>
+                  )}
+                </DataTable.Body.Row>
+              )}
+            </DataTable.Body>
           </DataTable>
         </Fragment>
       )}
