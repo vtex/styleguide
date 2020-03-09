@@ -7,7 +7,7 @@ import { AutocompleteInputProps } from '../../AutocompleteInput'
 import { ORDER_CLASSNAMES, NAMESPACES } from '../constants'
 import ActionBar from '../ActionBar'
 import { ToolbarProvider } from './context'
-import { useTestingContext } from '../context'
+import { useTestingContext } from '../context/testing'
 
 interface Composites {
   InputSearch: FC<InputSearchProps>

@@ -6,7 +6,7 @@ import Button, { IconSize } from './Button'
 import usePopoverMenu, { Box, Item, Alignment } from './PopoverMenu'
 import { Density, DENSITY_OPTIONS } from '../hooks/useTableMeasures'
 import { useButtonGroupContext } from './context'
-import { useMeasuresContext } from '../context'
+import { useMeasuresContext } from '../context/measures'
 
 const FIELDS_ITEM_HEIGHT = 36
 const BOX_HEIGHT = DENSITY_OPTIONS.length * FIELDS_ITEM_HEIGHT

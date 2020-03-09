@@ -3,7 +3,7 @@ import React, { forwardRef } from 'react'
 import PaginationBase from '../Pagination/index'
 import { ORDER_CLASSNAMES } from './constants'
 import ActionBar from './ActionBar'
-import { useTestingContext } from './context'
+import { useTestingContext } from './context/testing'
 import { RFC } from './types'
 
 const Pagination: RFC<HTMLElement, PaginationProps> = (props, ref) => {

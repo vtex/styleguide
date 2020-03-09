@@ -4,7 +4,9 @@ import pick from 'lodash/pick'
 
 import useTableMotion from '../hooks/useTableMotion'
 import { RFC, ComposableWithRef, Column } from '../types'
-import { useBodyContext, useHeadContext, useMeasuresContext } from '../context'
+import { useDataContext } from '../context/data'
+import { useBodyContext } from '../context/body'
+import { useMeasuresContext } from '../context/measures'
 import Cell, { CellComposites, CellProps } from './Cell'
 
 const Row: RFC<HTMLTableRowElement, RowProps> = (
@@ -12,7 +14,7 @@ const Row: RFC<HTMLTableRowElement, RowProps> = (
   ref
 ) => {
   const { rowHeight, density } = useMeasuresContext()
-  const { columns } = useHeadContext()
+  const { columns } = useDataContext()
   const { highlightOnHover, isRowActive, onRowClick } = useBodyContext()
   const className = classNames('w-100 truncate overflow-x-hidden', {
     'pointer hover-c-link': onRowClick,
@@ -33,9 +35,6 @@ const Row: RFC<HTMLTableRowElement, RowProps> = (
         const { id, width } = column
 
         if (children) {
-          //TODO: Create types for renderProps
-          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-          //@ts-ignore
           return children({
             props: {
               key: id,

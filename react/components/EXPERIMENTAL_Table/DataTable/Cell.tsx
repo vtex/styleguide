@@ -12,7 +12,6 @@ import classNames from 'classnames'
 
 import CaretDown from '../../icon/CaretDown/index.js'
 import CaretUp from '../../icon/CaretUp/index.js'
-import Checkbox, { CheckboxProps } from '../Checkbox'
 
 const PREFIX_GAP = 35
 const SUFIX_GAP = 0.5
@@ -95,10 +94,7 @@ function DefaultCell({
   return <Tag {...props}>{children}</Tag>
 }
 
-const Prefix: FC<PrefixProps> & PrefixComposites = ({
-  children,
-  depth = 0,
-}) => {
+const Prefix: FC<PrefixProps> = ({ children, depth = 0 }) => {
   const width = PREFIX_GAP * depth
   return (
     <>
@@ -131,11 +127,6 @@ const Suffix: FC<SuffixProps> = ({ sorting, ascending }) => {
 
 Cell.Prefix = Prefix
 Cell.Suffix = Suffix
-Prefix.Checkbox = Checkbox
-
-type PrefixComposites = {
-  Checkbox?: FC<CheckboxProps>
-}
 
 type PrefixProps = {
   depth?: number
@@ -147,7 +138,7 @@ type SuffixProps = {
 }
 
 export type CellComposites = {
-  Prefix?: FC<PrefixProps> & PrefixComposites
+  Prefix?: FC<PrefixProps>
   Suffix?: FC<SuffixProps>
 }
 

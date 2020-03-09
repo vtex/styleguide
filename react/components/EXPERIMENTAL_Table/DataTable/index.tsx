@@ -7,12 +7,10 @@ import { TABLE_HEADER_HEIGHT } from '../hooks/useTableMeasures'
 import Loading from './Loading'
 import useTableMotion from '../hooks/useTableMotion'
 import { E2ETestable, RFC, ComposableWithRef } from '../types'
-import {
-  useTestingContext,
-  useMeasuresContext,
-  useLoadingContext,
-  useHeadContext,
-} from '../context'
+import { useHeadContext } from '../context/head'
+import { useMeasuresContext } from '../context/measures'
+import { useTestingContext } from '../context/testing'
+import { useLoadingContext } from '../context/loading'
 import Tbody, { ComposableTbody } from './Tbody'
 import Thead, { ComposableThead } from './Thead'
 

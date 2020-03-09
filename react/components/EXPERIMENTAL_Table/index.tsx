@@ -8,10 +8,15 @@ import useTableMeasures from './hooks/useTableMeasures'
 import useTableMotion from './hooks/useTableMotion'
 import Totalizer, { TotalizerProps } from './Totalizer'
 import ActionBar, { ActionBarProps } from './ActionBar'
-import { TableProvider, useTestingContext, useMeasuresContext } from './context'
 import DataTable from './DataTable'
 import { Column, Items, RFC } from './types'
 import useTableSort from './hooks/useTableSort'
+import { MeasuresProvider, useMeasuresContext } from './context/measures'
+import { TextingProvider, useTestingContext } from './context/testing'
+import { LoadingProvider } from './context/loading'
+import { DataProvider } from './context/data'
+import { HeadProvider } from './context/head'
+import { BodyProvider } from './context/body'
 
 const Table: RFC<HTMLTableElement, Props> = (
   {
@@ -33,40 +38,35 @@ const Table: RFC<HTMLTableElement, Props> = (
   },
   ref
 ) => (
-  <TableProvider
-    testId={testId}
-    measures={measures}
-    loading={{
-      empty,
-      loading,
-      emptyState,
-    }}
-    head={{
-      columns,
-      sorting,
-      sticky: stickyHeader,
-    }}
-    body={{
-      onRowClick,
-      isRowActive,
-      items,
-      rowKey,
-      highlightOnHover,
-    }}>
-    <MotionContainer>
-      {unstableRender ? (
-        children
-      ) : (
-        <Fragment>
-          {children}
-          <DataTable ref={ref}>
-            <DataTable.Head />
-            <DataTable.Body />
-          </DataTable>
-        </Fragment>
-      )}
-    </MotionContainer>
-  </TableProvider>
+  <TextingProvider testId={testId}>
+    <LoadingProvider empty={empty} loading={loading} emptyState={emptyState}>
+      <MeasuresProvider measures={measures}>
+        <DataProvider columns={columns} items={items}>
+          <HeadProvider sorting={sorting} sticky={stickyHeader}>
+            <BodyProvider
+              onRowClick={onRowClick}
+              isRowActive={isRowActive}
+              rowKey={rowKey}
+              highlightOnHover={highlightOnHover}>
+              <MotionContainer>
+                {unstableRender ? (
+                  children
+                ) : (
+                  <Fragment>
+                    {children}
+                    <DataTable ref={ref}>
+                      <DataTable.Head />
+                      <DataTable.Body />
+                    </DataTable>
+                  </Fragment>
+                )}
+              </MotionContainer>
+            </BodyProvider>
+          </HeadProvider>
+        </DataProvider>
+      </MeasuresProvider>
+    </LoadingProvider>
+  </TextingProvider>
 )
 
 function MotionContainer({ children }: PropsWithChildren<{}>) {
@@ -99,7 +99,7 @@ interface Props {
   /** Function trigged on a row click */
   onRowClick?: (data: { rowData: unknown }) => void
   /** Function that defines if a row is active or not */
-  isRowActive?: (data: { rowData: unknown }) => boolean
+  isRowActive?: (data: unknown) => boolean
   /** Table EmptyState component */
   emptyState?: PropsWithChildren<{
     label: string

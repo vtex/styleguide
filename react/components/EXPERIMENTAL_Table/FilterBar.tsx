@@ -5,7 +5,7 @@ import FilterBarBase, { filterBarPropTypes } from '../FilterBar/index.js'
 import { ORDER_CLASSNAMES } from './constants'
 import ActionBar from './ActionBar'
 import { E2ETestable, RFC } from './types'
-import { useTestingContext } from './context'
+import { useTestingContext } from './context/testing'
 
 const FilterBar: RFC<HTMLElement, FilterBarProps> = (props, ref) => {
   const { testId } = useTestingContext()
