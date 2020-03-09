@@ -1,0 +1,217 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button CSS API danger 1`] = `
+<DocumentFragment>
+  <button
+    class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-regular t-action bg-danger b--danger c-on-danger hover-bg-danger hover-b--danger hover-c-on-danger pointer "
+    disabled=""
+    tabindex="0"
+    type="button"
+  >
+    <div
+      class="vtex-button__label flex items-center justify-center h-100 ph6 "
+      style="padding-top: .25em; padding-bottom: .32em;"
+    >
+      Hello
+    </div>
+  </button>
+</DocumentFragment>
+`;
+
+exports[`Button CSS API danger disabled 1`] = `
+<DocumentFragment>
+  <button
+    class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-regular t-action bg-disabled b--muted-5 c-on-disabled "
+    disabled=""
+    tabindex="0"
+    type="button"
+  >
+    <div
+      class="vtex-button__label flex items-center justify-center h-100 ph6 "
+      style="padding-top: .25em; padding-bottom: .32em;"
+    >
+      Hello
+    </div>
+  </button>
+</DocumentFragment>
+`;
+
+exports[`Button CSS API danger-tertiary 1`] = `
+<DocumentFragment>
+  <button
+    class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-regular t-action bg-transparent b--transparent c-danger hover-bg-danger--faded hover-b--danger--faded pointer "
+    disabled=""
+    tabindex="0"
+    type="button"
+  >
+    <div
+      class="vtex-button__label flex items-center justify-center h-100 ph6 "
+      style="padding-top: .25em; padding-bottom: .32em;"
+    >
+      Hello
+    </div>
+  </button>
+</DocumentFragment>
+`;
+
+exports[`Button CSS API danger-tertiary 2`] = `
+<DocumentFragment>
+  <button
+    class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-regular t-action bg-transparent b--transparent c-on-base--inverted pointer "
+    disabled=""
+    tabindex="0"
+    type="button"
+  >
+    <div
+      class="vtex-button__label flex items-center justify-center h-100 ph6 "
+      style="padding-top: .25em; padding-bottom: .32em;"
+    >
+      Hello
+    </div>
+  </button>
+</DocumentFragment>
+`;
+
+exports[`Button CSS API danger-tertiary disabled 1`] = `
+<DocumentFragment>
+  <button
+    class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-regular t-action bg-transparent b--transparent c-disabled "
+    disabled=""
+    tabindex="0"
+    type="button"
+  >
+    <div
+      class="vtex-button__label flex items-center justify-center h-100 ph6 "
+      style="padding-top: .25em; padding-bottom: .32em;"
+    >
+      Hello
+    </div>
+  </button>
+</DocumentFragment>
+`;
+
+exports[`Button CSS API danger-tertiary disabled 2`] = `
+<DocumentFragment>
+  <button
+    class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-regular t-action bg-transparent b--transparent c-disabled "
+    disabled=""
+    tabindex="0"
+    type="button"
+  >
+    <div
+      class="vtex-button__label flex items-center justify-center h-100 ph6 "
+      style="padding-top: .25em; padding-bottom: .32em;"
+    >
+      Hello
+    </div>
+  </button>
+</DocumentFragment>
+`;
+
+exports[`Button CSS API primary 1`] = `
+<DocumentFragment>
+  <button
+    class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-regular t-action bg-action-primary b--action-primary c-on-action-primary hover-bg-action-primary hover-b--action-primary hover-c-on-action-primary pointer "
+    disabled=""
+    tabindex="0"
+    type="button"
+  >
+    <div
+      class="vtex-button__label flex items-center justify-center h-100 ph6 "
+      style="padding-top: .25em; padding-bottom: .32em;"
+    >
+      Hello
+    </div>
+  </button>
+</DocumentFragment>
+`;
+
+exports[`Button CSS API primary disabled 1`] = `
+<DocumentFragment>
+  <button
+    class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-regular t-action bg-disabled b--muted-5 c-on-disabled "
+    disabled=""
+    tabindex="0"
+    type="button"
+  >
+    <div
+      class="vtex-button__label flex items-center justify-center h-100 ph6 "
+      style="padding-top: .25em; padding-bottom: .32em;"
+    >
+      Hello
+    </div>
+  </button>
+</DocumentFragment>
+`;
+
+exports[`Button CSS API secondary 1`] = `
+<DocumentFragment>
+  <button
+    class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-regular t-action bg-action-secondary b--action-secondary c-on-action-secondary hover-bg-action-secondary hover-b--action-secondary hover-c-on-action-secondary pointer "
+    disabled=""
+    tabindex="0"
+    type="button"
+  >
+    <div
+      class="vtex-button__label flex items-center justify-center h-100 ph6 "
+      style="padding-top: .25em; padding-bottom: .32em;"
+    >
+      Hello
+    </div>
+  </button>
+</DocumentFragment>
+`;
+
+exports[`Button CSS API secondary disabled 1`] = `
+<DocumentFragment>
+  <button
+    class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-regular t-action bg-disabled b--muted-5 c-on-disabled "
+    disabled=""
+    tabindex="0"
+    type="button"
+  >
+    <div
+      class="vtex-button__label flex items-center justify-center h-100 ph6 "
+      style="padding-top: .25em; padding-bottom: .32em;"
+    >
+      Hello
+    </div>
+  </button>
+</DocumentFragment>
+`;
+
+exports[`Button CSS API tertiary 1`] = `
+<DocumentFragment>
+  <button
+    class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-regular t-action bg-transparent b--transparent c-action-primary hover-b--transparent hover-bg-action-secondary hover-b--action-secondary pointer "
+    disabled=""
+    tabindex="0"
+    type="button"
+  >
+    <div
+      class="vtex-button__label flex items-center justify-center h-100 ph6 "
+      style="padding-top: .25em; padding-bottom: .32em;"
+    >
+      Hello
+    </div>
+  </button>
+</DocumentFragment>
+`;
+
+exports[`Button CSS API tertiary disabled 1`] = `
+<DocumentFragment>
+  <button
+    class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-regular t-action bg-transparent b--transparent c-disabled "
+    disabled=""
+    tabindex="0"
+    type="button"
+  >
+    <div
+      class="vtex-button__label flex items-center justify-center h-100 ph6 "
+      style="padding-top: .25em; padding-bottom: .32em;"
+    >
+      Hello
+    </div>
+  </button>
+</DocumentFragment>
+`;
