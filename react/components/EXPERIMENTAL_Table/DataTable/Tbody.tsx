@@ -7,14 +7,14 @@ import { useTestingContext } from '../context/testing'
 import { useLoadingContext } from '../context/loading'
 import useTableMotion from '../hooks/useTableMotion'
 import Row, { ROW_TRANSITIONS, ComposableRow } from './Row'
-import { RFC, ComposableWithRef } from '../types'
+import { ComposableWithRef, RFCRP } from '../types'
 
 type Props = DetailedHTMLProps<
   HTMLAttributes<HTMLTableSectionElement>,
   HTMLTableSectionElement
 >
 
-const Tbody: RFC<HTMLTableSectionElement, Props> = (
+const Tbody: RFCRP<HTMLTableSectionElement, Props> = (
   { children, ...rest },
   ref
 ) => {

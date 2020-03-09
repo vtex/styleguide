@@ -3,13 +3,13 @@ import classNames from 'classnames'
 import pick from 'lodash/pick'
 
 import useTableMotion from '../hooks/useTableMotion'
-import { RFC, ComposableWithRef, Column } from '../types'
+import { ComposableWithRef, Column, RFCRP } from '../types'
 import { useDataContext } from '../context/data'
 import { useBodyContext } from '../context/body'
 import { useMeasuresContext } from '../context/measures'
 import Cell, { CellComposites, CellProps } from './Cell'
 
-const Row: RFC<HTMLTableRowElement, RowProps> = (
+const Row: RFCRP<HTMLTableRowElement, RowProps> = (
   { children, motion, data, height, ...props },
   ref
 ) => {
