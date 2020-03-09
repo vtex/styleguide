@@ -164,7 +164,9 @@ class Menu extends Component {
 
     return (
       <div className="relative">
-        <div data-testid={testId} ref={this.containerElement}>{button}</div>
+        <div data-testid={testId} ref={this.containerElement}>
+          {button}
+        </div>
         {open && (
           <>
             <div
