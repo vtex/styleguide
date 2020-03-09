@@ -3,6 +3,8 @@ import { render, fireEvent } from 'react-testing-library'
 
 import Alert from './index'
 
+// Skipping those tests because getByText is getting the div inside the button and not the button element itself
+// I've tried to fix it, but I couldn't manage to. So I let me fellows future developers in this endeavour
 describe.skip('Alert', () => {
   describe('action button', () => {
     it('should be displayed if props are passed', () => {
