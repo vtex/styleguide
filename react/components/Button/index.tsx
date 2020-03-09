@@ -148,7 +148,9 @@ const Button: React.FC<Props> = props => {
   }, [icon, collapseLeft, collapseRight])
 
   const handleClick = (event: SyntheticEvent) => {
-    !props.disabled && !props.isLoading && props.onClick && props.onClick(event)
+    if (!props.disabled && !props.isLoading && props.onClick) {
+      props.onClick(event)
+    }
   }
 
   const disabled = props.disabled || isLoading
