@@ -77,7 +77,14 @@ const getComponent = (type: ButtonType) => {
   return (props: Props) => getButton(type, props)
 }
 
-const ButtonGroup: FC & Composites = ({ children }) => {
+interface ButtonGroupProps {
+  standalone?: boolean
+}
+
+const ButtonGroup: FC<ButtonGroupProps> & Composites = ({
+  standalone = false,
+  children,
+}) => {
   const { testId } = useToolbarContext()
   const buttonGroupTestId = `${testId}__button-group`
   return (
@@ -86,7 +93,8 @@ const ButtonGroup: FC & Composites = ({ children }) => {
       data-testid={buttonGroupTestId}
       className={classNames(
         ORDER_CLASSNAMES.TOOLBAR_CHILD.BUTTON_GROUP,
-        'flex flex-row flex-wrap items-center'
+        'flex flex-row flex-wrap items-center justify-between',
+        { 'w-100': standalone, 'w-60': !standalone }
       )}>
       <ButtonGroupProvider testId={buttonGroupTestId}>
         {children}

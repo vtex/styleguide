@@ -1,5 +1,4 @@
 import React, { FC, Fragment, forwardRef, PropsWithChildren } from 'react'
-import pick from 'lodash/pick'
 
 import Toolbar from './Toolbar/index'
 import Pagination, { PaginationProps } from './Pagination'
@@ -62,35 +61,7 @@ const Table: RFC<HTMLTableElement, Props> = (
           {children}
           <DataTable ref={ref}>
             <DataTable.Head />
-            <DataTable.Body>
-              {({ props }) => (
-                <DataTable.Body.Row {...props}>
-                  {({ props, data, column, motion }) => {
-                    const { rowHeight, density } = measures
-                    const { id, cellRenderer, condensed, extended } = column
-                    const cellData = condensed
-                      ? pick(data, condensed)
-                      : extended
-                      ? data
-                      : data[id]
-
-                    const content = cellRenderer
-                      ? cellRenderer({
-                          data: cellData,
-                          rowHeight,
-                          density,
-                          motion,
-                        })
-                      : cellData
-                    return (
-                      <DataTable.Body.Row.Cell {...props}>
-                        {content}
-                      </DataTable.Body.Row.Cell>
-                    )
-                  }}
-                </DataTable.Body.Row>
-              )}
-            </DataTable.Body>
+            <DataTable.Body />
           </DataTable>
         </Fragment>
       )}
@@ -152,7 +123,7 @@ interface Composites {
   Bulk?: FC
   Totalizer?: RFC<HTMLElement, TotalizerProps>
   ActionBar?: RFC<HTMLElement, ActionBarProps>
-  Data?: RFC<HTMLTableElement, {}>
+  Sections?: RFC<HTMLTableElement, {}>
 }
 
 const FowardedTable: RFC<HTMLTableElement, Props> & Composites = forwardRef(
@@ -165,7 +136,7 @@ FowardedTable.Totalizer = Totalizer
 FowardedTable.Pagination = Pagination
 FowardedTable.Bulk = BulkActions
 FowardedTable.ActionBar = ActionBar
-FowardedTable.Data = DataTable
+FowardedTable.Sections = DataTable
 
 FowardedTable.defaultProps = {
   rowKey: ({ rowData }: { rowData: { id: string } }) => `row-${rowData.id}`,

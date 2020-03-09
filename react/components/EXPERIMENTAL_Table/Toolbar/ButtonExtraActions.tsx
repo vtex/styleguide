@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 
 import ActionMenu from '../../ActionMenu/index'
 import IconOptionsDots from '../../icon/OptionsDots/index'
-import { NAMESPACES } from '../constants'
+import { NAMESPACES, ORDER_CLASSNAMES } from '../constants'
 import { MenuAction, Alignment } from './PopoverMenu'
 import { ButtonVariation, ButtonSize } from './Button'
 import { useButtonGroupContext } from './context'
@@ -14,7 +14,11 @@ const ButtonExtraActions: FC<ButtonExtraActionsProps> = ({
 }) => {
   const { testId } = useButtonGroupContext()
   return (
-    <div title={label} className="mh2 order-4">
+    <div
+      title={label}
+      className={
+        ORDER_CLASSNAMES.TOOLBAR_CHILD.BUTTON_GROUP_CHILD.EXTRA_ACTIONS
+      }>
       <ActionMenu
         hideCaretIcon
         buttonProps={{

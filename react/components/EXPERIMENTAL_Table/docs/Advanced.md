@@ -1,3 +1,168 @@
+#### Unstable Render
+
+```js
+import Table from '../index'
+import useTableMeasures from '../hooks/useTableMeasures'
+import { customers } from './sampleData'
+
+const items = customers.slice(0, 8)
+
+function UnstableExample() {
+  const measures = useTableMeasures({ size: items.length })
+
+  return (
+    <Table
+      measures={measures}
+      columns={[
+        {
+          id: 'name',
+          title: 'Name',
+        },
+        {
+          id: 'location',
+          title: 'Location',
+        },
+      ]}
+      items={items}
+      unstableRender>
+      <Table.Sections>
+        <Table.Sections.Head />
+        <Table.Sections.Body />
+      </Table.Sections>
+    </Table>
+  )
+}
+
+;<UnstableExample />
+```
+
+#### Rendering Columns
+
+```js
+import Table from '../index'
+import useTableMeasures from '../hooks/useTableMeasures'
+import { customers } from './sampleData'
+
+const items = customers.slice(0, 8)
+
+function UnstableExample() {
+  const measures = useTableMeasures({ size: items.length })
+
+  return (
+    <Table measures={measures} columns={[{}]} items={items} unstableRender>
+      <Table.Sections>
+        <Table.Sections.Body>
+          {({ props }) => (
+            <Table.Sections.Body.Row {...props}>
+              {({ props, data }) => (
+                <>
+                  <Table.Sections.Body.Row.Cell {...props}>
+                    {data.name}
+                  </Table.Sections.Body.Row.Cell>
+                  <Table.Sections.Body.Row.Cell {...props}>
+                    {data.location}
+                  </Table.Sections.Body.Row.Cell>
+                </>
+              )}
+            </Table.Sections.Body.Row>
+          )}
+        </Table.Sections.Body>
+      </Table.Sections>
+    </Table>
+  )
+}
+
+;<UnstableExample />
+```
+
+#### List Example
+
+```js
+import Table from '../index'
+import Icons from 'react-icons/fa'
+import useTableMeasures from '../hooks/useTableMeasures'
+import { payments } from './sampleData'
+import ButtonWithIcon from '../../ButtonWithIcon'
+import IconDelete from '../../icon/Delete'
+
+function Icon({ name, height, style }) {
+  const SelectedIcon = Icons[name]
+  return <SelectedIcon style={style} className="c-muted-1" size={height - 5} />
+}
+
+function ListExample() {
+  const [items, setItems] = React.useState(payments)
+  const [displayItems, setDisplayItems] = React.useState(items)
+  const [inputValue, setInputValue] = React.useState('')
+  const measures = useTableMeasures({ size: 5 })
+
+  React.useEffect(() => {
+    setInputValue('')
+    setDisplayItems(items)
+  }, [items])
+
+  const inputSearch = {
+    value: inputValue,
+    placeholder: 'Search names...',
+    onChange: e => setInputValue(e.currentTarget.value),
+    onClear: () => {
+      setInputValue('')
+      setDisplayItems(items)
+    },
+    onSubmit: e => {
+      e.preventDefault()
+      const filterFn = item =>
+        item.name.toLowerCase().includes(inputValue.toLowerCase())
+      setDisplayItems(items => items.filter(filterFn))
+    },
+    standalone: true,
+  }
+  return (
+    <div className="w-70 center">
+      <Table
+        measures={measures}
+        columns={[
+          {
+            id: 'icon',
+            width: 64,
+            cellRenderer: ({ data, rowHeight, motion }) => (
+              <Icon name={data} style={motion} height={rowHeight} />
+            ),
+          },
+          {
+            id: 'name',
+          },
+          {
+            id: 'id',
+            width: 32,
+            cellRenderer: ({ data: id }) => (
+              <ButtonWithIcon
+                onClick={() =>
+                  setItems(items => items.filter(item => id !== item.id))
+                }
+                variation="tertiary"
+                icon={<IconDelete />}
+              />
+            ),
+          },
+        ]}
+        items={displayItems}
+        unstableRender>
+        <Table.Toolbar>
+          <Table.Toolbar.InputSearch {...inputSearch} />
+        </Table.Toolbar>
+        <div className="bb b--muted-4" />
+        <Table.Sections>
+          <Table.Sections.Body />
+        </Table.Sections>
+      </Table>
+    </div>
+  )
+}
+
+;<ListExample />
+```
+
 #### Checkboxes
 
 ```js
@@ -143,15 +308,15 @@ function RenderAgnostic() {
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="droppable">
           {(provided, snapshot) => (
-            <Table.Data ref={provided.innerRef}>
-              <Table.Data.Body>
+            <Table.Sections ref={provided.innerRef}>
+              <Table.Sections.Body>
                 {({ props, data, index }) => (
                   <Draggable
                     key={data.id}
                     draggableId={data.id.toString()}
                     index={index}>
                     {(provided, snapshot) => (
-                      <Table.Data.Body.Row
+                      <Table.Sections.Body.Row
                         ref={provided.innerRef}
                         style={{
                           userSelect: 'none',
@@ -159,19 +324,14 @@ function RenderAgnostic() {
                         }}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
-                        {...props}>
-                        {({ props, data }) => (
-                          <Table.Data.Body.Row.Cell {...props}>
-                            {data}
-                          </Table.Data.Body.Row.Cell>
-                        )}
-                      </Table.Data.Body.Row>
+                        {...props}
+                      />
                     )}
                   </Draggable>
                 )}
-              </Table.Data.Body>
+              </Table.Sections.Body>
               {provided.placeholder}
-            </Table.Data>
+            </Table.Sections>
           )}
         </Droppable>
       </DragDropContext>

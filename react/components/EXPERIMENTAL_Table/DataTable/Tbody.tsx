@@ -1,9 +1,4 @@
-import React, {
-  forwardRef,
-  DetailedHTMLProps,
-  HTMLAttributes,
-  ReactNode,
-} from 'react'
+import React, { forwardRef, DetailedHTMLProps, HTMLAttributes } from 'react'
 
 import {
   useBodyContext,
@@ -15,17 +10,13 @@ import useTableMotion from '../hooks/useTableMotion'
 import Row, { ROW_TRANSITIONS, ComposableRow } from './Row'
 import { RFC, ComposableWithRef } from '../types'
 
-interface Props
-  extends DetailedHTMLProps<
-    HTMLAttributes<HTMLTableSectionElement>,
-    HTMLTableSectionElement
-  > {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  renderer?: (props: any) => React.ReactNode
-}
+type Props = DetailedHTMLProps<
+  HTMLAttributes<HTMLTableSectionElement>,
+  HTMLTableSectionElement
+>
 
 const Tbody: RFC<HTMLTableSectionElement, Props> = (
-  { renderer, children, ...rest },
+  { children, ...rest },
   ref
 ) => {
   const { rowHeight } = useMeasuresContext()
@@ -36,22 +27,26 @@ const Tbody: RFC<HTMLTableSectionElement, Props> = (
 
   return !empty && !loading ? (
     <tbody ref={ref} {...rest} data-testid={`${testId}__body`}>
-      {items.map((rowData, rowIndex: number) => {
+      {(items as unknown[]).map((data, index) => {
         const props = {
-          key: rowKey({ rowData }),
-          data: rowData,
+          key: rowKey({ rowData: data }),
+          data: data,
           motion,
           height: rowHeight,
         }
 
-        //TODO: Create types for renderProps
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-        //@ts-ignore
-        return children({
-          props,
-          data: rowData,
-          index: rowIndex,
-        })
+        return children ? (
+          //TODO: Create types for renderProps
+          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+          //@ts-ignore
+          children({
+            props,
+            data,
+            index,
+          })
+        ) : (
+          <Row {...props} />
+        )
       })}
     </tbody>
   ) : null

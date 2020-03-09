@@ -1,15 +1,17 @@
 import React, { DetailedHTMLProps, forwardRef, FC } from 'react'
 import classNames from 'classnames'
+import pick from 'lodash/pick'
 
 import useTableMotion from '../hooks/useTableMotion'
 import { RFC, ComposableWithRef, Column } from '../types'
-import { useBodyContext, useHeadContext } from '../context'
+import { useBodyContext, useHeadContext, useMeasuresContext } from '../context'
 import Cell, { CellComposites, CellProps } from './Cell'
 
 const Row: RFC<HTMLTableRowElement, RowProps> = (
   { children, motion, data, height, ...props },
   ref
 ) => {
+  const { rowHeight, density } = useMeasuresContext()
   const { columns } = useHeadContext()
   const { highlightOnHover, isRowActive, onRowClick } = useBodyContext()
   const className = classNames('w-100 truncate overflow-x-hidden', {
@@ -30,20 +32,41 @@ const Row: RFC<HTMLTableRowElement, RowProps> = (
       {columns.map((column: Column) => {
         const { id, width } = column
 
-        const props = {
-          key: id,
-          width,
+        if (children) {
+          //TODO: Create types for renderProps
+          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+          //@ts-ignore
+          return children({
+            props: {
+              key: id,
+              width,
+            },
+            data,
+            column,
+            motion,
+          })
         }
 
-        //TODO: Create types for renderProps
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-        //@ts-ignore
-        return children({
-          props,
-          data,
-          column,
-          motion,
-        })
+        const { cellRenderer, condensed, extended } = column
+        const cellData = condensed
+          ? pick(data, condensed)
+          : extended
+          ? data
+          : data[id]
+
+        const content = cellRenderer
+          ? cellRenderer({
+              data: cellData,
+              rowHeight,
+              density,
+              motion,
+            })
+          : cellData
+        return (
+          <Cell key={id} width={width}>
+            {content}
+          </Cell>
+        )
       })}
     </tr>
   )
