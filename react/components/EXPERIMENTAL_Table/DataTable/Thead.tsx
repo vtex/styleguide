@@ -28,6 +28,8 @@ const Thead: RFC<HTMLTableSectionElement> = (_, ref) => {
             <Row.Cell
               {...onclick}
               {...props}
+              sortable={sortable}
+              sorting={cellSorting}
               className={cellClassName}
               sticky={sticky}
               header>
