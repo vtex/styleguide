@@ -71,6 +71,81 @@ export const products = [
   },
 ]
 
+export const productTree = [
+  {
+    id: 1,
+    name: 'Macbook Pro 13 inch',
+    categories: ['laptop'],
+    manufacturer: 'apple',
+    qty: 200,
+    costPrice: 800,
+    retailPrice: 1299,
+    wholesalePrice: 1000,
+    related: [
+      {
+        id: 2,
+        name: 'Macbook Pro 16 inch',
+        categories: ['laptop'],
+        manufacturer: 'apple',
+        qty: 10,
+        costPrice: 1800,
+        retailPrice: 2399,
+        wholesalePrice: 2000,
+      },
+      {
+        id: 3,
+        name: 'IPhone 11 Pro',
+        categories: ['smartphone'],
+        manufacturer: 'apple',
+        qty: 450,
+        costPrice: 700,
+        retailPrice: 1100,
+        wholesalePrice: 950,
+      },
+      {
+        id: 4,
+        name: 'Ipad Pro 12.9 inch',
+        categories: ['tablet'],
+        manufacturer: 'apple',
+        qty: 210,
+        costPrice: 600,
+        retailPrice: 999,
+        wholesalePrice: 750,
+      },
+    ],
+  },
+  {
+    id: 5,
+    name: 'Pixel 4',
+    categories: ['smartphone'],
+    manufacturer: 'google',
+    qty: 100,
+    costPrice: 600,
+    retailPrice: 799,
+    wholesalePrice: 700,
+  },
+  {
+    id: 6,
+    name: 'XPS 15',
+    categories: ['laptop'],
+    manufacturer: 'dell',
+    qty: 500,
+    costPrice: 500,
+    retailPrice: 1050,
+    wholesalePrice: 950,
+  },
+  {
+    id: 7,
+    name: 'Quiet Comfort',
+    categories: ['headphone'],
+    manufacturer: 'bose',
+    qty: 120,
+    costPrice: 100,
+    retailPrice: 300,
+    wholesalePrice: 250,
+  },
+]
+
 export const payments = [
   {
     id: 1,

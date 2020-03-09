@@ -36,6 +36,150 @@ function UnstableExample() {
 ;<UnstableExample />
 ```
 
+#### Rendering tree data
+
+```js
+import isEmpty from 'lodash/isEmpty'
+
+import Table from '../index'
+import useTableMeasures from '../hooks/useTableMeasures'
+import { productTree } from './sampleData'
+import CaretUp from '../../icon/CaretUp'
+import CaretDown from '../../icon/CaretDown'
+import ButtonPlain from '../../ButtonPlain'
+
+function TreeExample() {
+  const measures = useTableMeasures({ size: 7 })
+  const collapsed = useCollapsableTree(productTree)
+  return (
+    <Table
+      measures={measures}
+      columns={[
+        {
+          id: 'name',
+          title: 'Name',
+        },
+        {
+          id: 'manufacturer',
+          title: 'Manufacturer',
+        },
+      ]}
+      items={productTree}
+      unstableRender>
+      <Table.Sections>
+        <Table.Sections.Head />
+        <Table.Sections.Body>
+          {({ props }) => {
+            return (
+              <>
+                <Node rowProps={props} nodesKey="related" {...collapsed} />
+              </>
+            )
+          }}
+        </Table.Sections.Body>
+      </Table.Sections>
+    </Table>
+  )
+}
+
+function useCollapsableTree(
+  items,
+  comparator = item => candidate => item.id === candidate.id
+) {
+  const [collapsedItems, setCollapsedItems] = React.useState([])
+
+  const isCollapsed = React.useCallback(
+    item => collapsedItems.some(comparator(item)),
+    [collapsedItems, comparator]
+  )
+
+  const toggleCollapsed = React.useCallback(
+    item => {
+      isCollapsed(item)
+        ? setCollapsedItems(
+            collapsedItems.filter(
+              collapsedItem => !comparator(collapsedItem)(item)
+            )
+          )
+        : setCollapsedItems([...collapsedItems, item])
+    },
+    [collapsedItems, comparator, isCollapsed]
+  )
+
+  return { collapsedItems, isCollapsed, toggleCollapsed }
+}
+
+function Node({ rowProps, nodesKey, isCollapsed, toggleCollapsed, depth = 0 }) {
+  const Row = Table.Sections.Body.Row
+  const { data } = rowProps
+
+  const toggleChildren = React.useCallback(() => toggleCollapsed(data), [
+    data,
+    toggleCollapsed,
+  ])
+
+  console.log(data)
+
+  const hasChildren = !!data[nodesKey]
+  const collapsed = isCollapsed(data)
+
+  return hasChildren ? (
+    <>
+      <Row {...rowProps}>
+        {({ props, data, column, index }) => (
+          <>
+            <Row.Cell {...props}>
+              {index === 0 && (
+                <Row.Cell.Prefix depth={depth}>
+                  <CollapseToggle
+                    collapsed={collapsed}
+                    onClick={toggleChildren}
+                  />
+                </Row.Cell.Prefix>
+              )}
+              {data[column.id]}
+            </Row.Cell>
+          </>
+        )}
+      </Row>
+      {collapsed &&
+        data[nodesKey].map(data => (
+          <Node
+            rowProps={{ ...rowProps, data }}
+            key={data.id}
+            depth={depth + 1}
+            nodesKey={nodesKey}
+            isCollapsed={isCollapsed}
+            toggleCollapsed={toggleCollapsed}
+          />
+        ))}
+    </>
+  ) : (
+    <Row {...rowProps}>
+      {({ props, data, column, index }) => (
+        <>
+          <Row.Cell {...props}>
+            {index === 0 && <Row.Cell.Prefix depth={depth} />}
+            {data[column.id]}
+          </Row.Cell>
+        </>
+      )}
+    </Row>
+  )
+}
+
+function CollapseToggle({ collapsed, onClick }) {
+  const icon = collapsed ? <CaretUp /> : <CaretDown />
+  return (
+    <ButtonPlain size="regular" onClick={onClick}>
+      {icon}
+    </ButtonPlain>
+  )
+}
+
+;<TreeExample />
+```
+
 #### Rendering Columns
 
 ```js

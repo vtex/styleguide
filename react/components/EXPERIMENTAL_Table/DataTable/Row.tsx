@@ -29,7 +29,7 @@ const Row: RFC<HTMLTableRowElement, RowProps> = (
   }
   return (
     <tr {...props} ref={ref} style={style} {...clickable} className={className}>
-      {columns.map((column: Column) => {
+      {columns.map((column: Column, index: number) => {
         const { id, width } = column
 
         if (children) {
@@ -44,6 +44,7 @@ const Row: RFC<HTMLTableRowElement, RowProps> = (
             data,
             column,
             motion,
+            index,
           })
         }
 
