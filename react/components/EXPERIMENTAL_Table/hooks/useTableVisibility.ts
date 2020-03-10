@@ -21,13 +21,13 @@ export default function useTableVisibility({
     )
   }, [])
 
-  const showAllColumns = () => {
+  const showAllColumns = useCallback(() => {
     setHiddenColumns([])
-  }
+  }, [])
 
-  const hideAllColumns = () => {
+  const hideAllColumns = useCallback(() => {
     setHiddenColumns(columns.map(col => col.id))
-  }
+  }, [])
 
   return {
     columns,
