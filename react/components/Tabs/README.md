@@ -34,6 +34,10 @@ const Tab = require('./Tab').default
     <Tab label="label 1" active onClick={() => {}} />
     <Tab label="label 2" onClick={() => {}} />
     <Tab label="label 3" onClick={() => {}} />
+    <Tab label="label 3" onClick={() => {}} />
+    <Tab label="label 3" onClick={() => {}} />
+    <Tab label="label 3" onClick={() => {}} />
+    <Tab label="label 3" onClick={() => {}} />
   </Tabs>
 </div>
 ```
@@ -46,6 +50,7 @@ const Tab = require('./Tab').default
   <Tabs fullWidth>
     <Tab label="full width 1" active onClick={() => {}} />
     <Tab label="full width 2" onClick={() => {}} />
+    <Tab label="full width 3" onClick={() => {}} />
     <Tab label="full width 3" onClick={() => {}} />
   </Tabs>
 </div>

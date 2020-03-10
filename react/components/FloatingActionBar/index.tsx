@@ -31,7 +31,7 @@ const FloatingActionBar: FC<PropTypes.InferProps<typeof propTypes>> = ({
   save: { label: saveLabel, ...saveProps },
   cancel: { label: cancelLabel, ...cancelProps },
 }) => (
-  <div className="styleguide__floating-action-bar shadow-active w-100 bg-base tr pv5 pr7 absolute fixed bottom-0 left-0 z-999">
+  <div className="styleguide__floating-action-bar shadow-active w-100 bg-base tr pv5 pr7 absolute fixed bottom-0 left-0 z-999 TRZ">
     <span className="mr5">
       <Button variation="tertiary" {...cancelProps}>
         {cancelLabel}

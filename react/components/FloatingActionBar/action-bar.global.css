@@ -7,3 +7,105 @@
     padding-right: calc((100% - 60.2rem) / 2);
   }
 }
+
+/*  */
+/*  */
+/*  */
+
+/* .vtex-tabs {
+  position: relative;
+} */
+.vtex-tabs:not(.--jsfied) {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.vtex-tabs .--hidden {
+  display: none;
+}
+.vtex-tabs a,
+.vtex-tabs button {
+  /* width: 100%; */
+  /* height: 100%; */
+  display: block;
+}
+.vtex-tabs .vtex-tabs__nav {
+  display: flex;
+}
+/* .vtex-tabs .vtex-tabs__nav > div { */
+/* flex-grow: 1; */
+/* } */
+
+/* .vtex-tabs .vtex-tabs__nav div {
+  list-style: none;
+} */
+/* .vtex-tabs .vtex-tabs__nav > li + li {
+  border-left: 1px solid #b61a3e;
+} */
+/* .vtex-tabs .vtex-tabs__nav > li > a,
+.vtex-tabs .vtex-tabs__nav > li > button { */
+/* white-space: nowrap; */
+/* padding: 1em 0.6em; */
+/* box-shadow: inset 0 -0.2em 0 #b61a3e; */
+/* } */
+/* .vtex-tabs .vtex-tabs__nav > li > a:hover,
+.vtex-tabs .vtex-tabs__nav > li > button:hover {
+  background-color: #b61a3e;
+}
+.vtex-tabs .vtex-tabs__nav > li > a:active,
+.vtex-tabs .vtex-tabs__nav > li > button:active {
+  background-color: #961534;
+} */
+/* .vtex-tabs .vtex-tabs__nav .-more {
+  background-color: #b61a3e;
+} */
+.vtex-tabs .vtex-tabs__nav .-more > button span {
+  display: inline-block;
+  /* transition: transform 0.2s; */
+}
+/* .vtex-tabs.--show-secondary .vtex-tabs__nav .-more > button span {
+  transform: rotate(180deg);
+} */
+.vtex-tabs .-secondary {
+  max-width: 292px;
+  min-width: 64px;
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  padding: 0;
+  background-color: white;
+  border-radius: 4px;
+  border: 2px solid #e3e4e6;
+  box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  /* animation: nav-secondary 0.2s; */
+}
+/* .vtex-tabs .-secondary li { */
+/* border-top: 1px solid #d51e49; */
+/* background-color: #b61a3e; */
+/* } */
+/* .vtex-tabs .-secondary a,
+.vtex-tabs .-secondary button {
+  padding: 0.6em;
+} */
+/* .vtex-tabs .-secondary a:hover,
+.vtex-tabs .-secondary button:hover {
+  background-color: #961534;
+}
+.vtex-tabs .-secondary a:active,
+.vtex-tabs .-secondary button:active {
+  background-color: #d51e49;
+} */
+.vtex-tabs.--show-secondary .-secondary {
+  display: block;
+}
+@keyframes nav-secondary {
+  0% {
+    opacity: 0;
+    transform: translateY(-1em);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
