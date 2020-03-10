@@ -27,7 +27,7 @@ export default function useTableVisibility({
 
   const hideAllColumns = useCallback(() => {
     setHiddenColumns(columns.map(col => col.id))
-  }, [])
+  }, [columns])
 
   return {
     columns,
