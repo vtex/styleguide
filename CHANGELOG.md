@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.112.15] - 2020-03-10
+
 ### Fixed
 
 - Add `useCallback` in the `showAllColumns` and `hideAllColumns` in the `EXPERIMENTAL_useTableVisibility`.
