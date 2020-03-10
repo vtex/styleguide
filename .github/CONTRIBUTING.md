@@ -13,4 +13,4 @@ Major version releases are not included in this schedule.
 All work on VTEX Styleguide happens directly on GitHub. Both core team members and external contributors send pull requests which go through the same review process.
 
 ### Branch Organization
-According to our [release schedule](#release-schedule), we maintain two branches, `master` and `dev`. If you send a bugfix pull request, please do it against the `master` branch, if it's a feature pull request, please do it against the `dev` branch.
+According to our [release schedule](#release-schedule), we maintain two branches, `master` and `features`. If you send a bugfix pull request, please do it against the `master` branch, if it's a feature pull request, please do it against the `features` branch.
