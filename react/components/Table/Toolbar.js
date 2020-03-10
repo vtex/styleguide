@@ -125,7 +125,7 @@ class Toolbar extends PureComponent {
       density.highOptionLabel
 
     const newLineButtonProps = {
-      disabled: loading || (newLine && newLine.disabled),
+      disabled: newLine && newLine.disabled,
       isLoading: newLine && newLine.isLoading,
       variation: 'primary',
       size: 'regular',
@@ -151,7 +151,6 @@ class Toolbar extends PureComponent {
         {inputSearch && (
           <div className={inputSearchAlone ? 'w-100 w-40-ns' : 'w-40'}>
             <InputSearch
-              disabled={loading}
               {...inputSearch}
               onSubmit={this.handleInputSearchSubmit}
             />

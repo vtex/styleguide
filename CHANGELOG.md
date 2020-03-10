@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.112.14] - 2020-03-10
+
+## Changed
+
+- Keep newLine button and search enabled on Table's toolbar while loading
+
 ## [9.112.13] - 2020-03-09
 
 ### Fixed
