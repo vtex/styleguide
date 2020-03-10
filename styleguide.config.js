@@ -139,7 +139,7 @@ module.exports = {
           name: 'Navigation',
           components: [
             'react/components/Pagination/index.js',
-            'react/components/Tabs/index.js',
+            'react/components/Tabs/index.tsx',
             'react/components/Link/index.js',
           ],
         },

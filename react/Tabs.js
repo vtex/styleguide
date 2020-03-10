@@ -1,3 +1,3 @@
-import Tabs from './components/Tabs/index'
+import Tabs from './components/Tabs'
 
 export default Tabs
