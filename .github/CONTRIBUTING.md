@@ -3,7 +3,7 @@
 Want to contribute to VTEX Styleguide? There are a few things you need to know.
 
 ### Release Schedule
-Thursday release: patch version at the thursday of every week for routine bugfix (anytime for urgent bugfix).
+Thursday release: patch version at the Thursday of every week for routine bug fix (anytime for urgent bug fix).
 
 Tuesday release: minor version at the tuesday of every month for new features.
 
