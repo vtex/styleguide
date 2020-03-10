@@ -194,6 +194,11 @@ module.exports = {
                     'react/components/EXPERIMENTAL_Table/docs/Components.md',
                 },
                 {
+                  name: 'Composable Sections',
+                  content:
+                    'react/components/EXPERIMENTAL_Table/docs/Composable.md',
+                },
+                {
                   name: 'E2E Testing',
                   content:
                     'react/components/EXPERIMENTAL_Table/docs/Testing.md',
@@ -202,11 +207,6 @@ module.exports = {
                   name: 'Migration Guide',
                   content:
                     'react/components/EXPERIMENTAL_Table/docs/MigrationGuide.md',
-                },
-                {
-                  name: '☢️Unstable',
-                  content:
-                    'react/components/EXPERIMENTAL_Table/docs/Advanced.md',
                 },
               ],
             },

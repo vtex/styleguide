@@ -559,3 +559,115 @@ function StickyExample() {
 }
 ;<StickyExample />
 ```
+
+#### With Checkboxes
+
+A recurrent feature is to add checkboxes to rows. This is achievable with the table features and should be controlled by the user. Luckily for us, the [`EXPERIMENTAL_useCheckboxTree` hook](https://styleguide.vtex.com/#/Components/%F0%9F%91%BB%20Experimental/EXPERIMENTALUseCheckboxTree) helps to keep track of tree data checked states. The following example presents one way of doing it:
+
+```js
+import Table from '../index'
+import useTableMeasures from '../hooks/useTableMeasures'
+import useCheckboxTree from '../../EXPERIMENTAL_useCheckboxTree'
+import { customers } from './sampleData'
+import Checkbox from '../../Checkbox'
+
+const items = customers.slice(0, 5)
+
+function CheckboxesExample() {
+  const measures = useTableMeasures({ size: items.length })
+  // using the hook defined down bellow
+  const [
+    withCheckboxes,
+    isRowActive,
+    checkedItems,
+    allChecked,
+  ] = useColumnsWithCheckboxes({
+    columns: [
+      {
+        id: 'name',
+        title: 'Name',
+      },
+      {
+        id: 'location',
+        title: 'Location',
+      },
+    ],
+    items,
+  })
+  return (
+    <Table
+      isRowActive={isRowActive}
+      measures={measures}
+      columns={withCheckboxes}
+      items={items}>
+      <Table.ActionBar
+        className={`flex items-center justify-end pv4 ph3 f5 br2 ${
+          allChecked
+            ? 'bg-warning--faded c-warning'
+            : 'bg-action-secondary c-on-action-secondary'
+        }`}>
+        <div>
+          {allChecked ? (
+            <b>All items are checked!</b>
+          ) : (
+            <>
+              Checked items count: <b>{checkedItems.length}</b>
+            </>
+          )}
+        </div>
+      </Table.ActionBar>
+    </Table>
+  )
+}
+
+// custom hook that handle checkboxes state and rendering
+function useColumnsWithCheckboxes({ columns, items }) {
+  const checkboxes = useCheckboxTree({ items })
+
+  // maps the checkboxes from itemTree to actual elements
+  const mappedCheckboxes = checkboxes.itemTree.children.map(item => {
+    const id = `${item.id}`
+    return (
+      <Checkbox
+        key={id}
+        id={id}
+        checked={checkboxes.isChecked(item)}
+        partial={checkboxes.isPartiallyChecked(item)}
+        disabled={checkboxes.isDisabled(item)}
+        onChange={() => checkboxes.toggle(item)}
+      />
+    )
+  })
+
+  // adds the checkboxes column
+  const withCheckboxes = [
+    {
+      id: 'checkbox',
+      title: (
+        <Checkbox
+          id={`${checkboxes.itemTree.id}`}
+          checked={checkboxes.allChecked}
+          partial={checkboxes.someChecked}
+          onChange={checkboxes.toggleAll}
+        />
+      ),
+      width: 32,
+      extended: true,
+      cellRenderer: ({ data }) => {
+        return <div>{mappedCheckboxes[data.id - 1]}</div>
+      },
+    },
+    ...columns,
+  ]
+
+  // [parsed columns, isRowActive function, checked items, allChecked]
+  return [
+    withCheckboxes,
+    data => checkboxes.isChecked(data),
+    checkboxes.checkedItems,
+    checkboxes.allChecked,
+  ]
+}
+
+;<CheckboxesExample />
+```

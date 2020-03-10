@@ -30,11 +30,11 @@ const Table: RFC<HTMLTableElement, Props> = (
     empty,
     rowKey,
     highlightOnHover,
-    unstableRender,
     columns,
     sorting,
     testId,
     stickyHeader,
+    composableSections,
   },
   ref
 ) => (
@@ -49,7 +49,7 @@ const Table: RFC<HTMLTableElement, Props> = (
               rowKey={rowKey}
               highlightOnHover={highlightOnHover}>
               <MotionContainer>
-                {unstableRender ? (
+                {composableSections ? (
                   children
                 ) : (
                   <Fragment>
@@ -112,8 +112,8 @@ interface Props {
   highlightOnHover?: boolean
   /** If the header is sticky or not */
   stickyHeader?: boolean
-  /** YOLO 🦇 */
-  unstableRender?: boolean
+  /** Exposes table sections to be composable */
+  composableSections?: boolean
 }
 
 interface Composites {
