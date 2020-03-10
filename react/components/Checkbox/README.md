@@ -24,10 +24,11 @@ initialState = { check1: true, check2: false, check3: false }
     <Checkbox
       checked={state.check1}
       id="option-0"
-      label="Checked"
+      label="Checked and small"
       name="default-checkbox-group"
       onChange={e => setState({ check1: !state.check1 })}
       value="option-0"
+      size="small"
     />
   </div>
   <div className="mb3">
