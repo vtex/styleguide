@@ -403,14 +403,12 @@ class CustomTableExample extends React.Component {
     }
 
     return (
-      <div>
-        <div className="mb5">
-          <Table schema={customSchema} items={this.state.orderedItems} sort={{
-              sortedBy: this.state.dataSort.sortedBy,
-              sortOrder: this.state.dataSort.sortOrder,
-            }}
-            onSort={this.handleSort}/>
-        </div>
+      <div className="mb5">
+        <Table schema={customSchema} items={this.state.orderedItems} sort={{
+            sortedBy: this.state.dataSort.sortedBy,
+            sortOrder: this.state.dataSort.sortOrder,
+          }}
+          onSort={this.handleSort}/>
       </div>
     )
   }
