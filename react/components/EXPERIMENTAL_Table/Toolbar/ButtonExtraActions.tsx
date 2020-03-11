@@ -48,8 +48,8 @@ ButtonExtraActions.defaultProps = {
 }
 
 export type ButtonExtraActionsProps = {
-  label?: string
   actions: Array<MenuAction>
+  label?: string
   alignMenu?: Alignment
   isLoading?: boolean
   size?: ButtonSize

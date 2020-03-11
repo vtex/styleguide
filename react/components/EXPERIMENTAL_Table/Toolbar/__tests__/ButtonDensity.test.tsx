@@ -21,25 +21,23 @@ describe('Table V2 @ Toolbar/ButtonDensity spec', () => {
     })
   )
 
-  it('matches snapshot', () => {
-    const button = render(
+  function WrappedComponent() {
+    return (
       <MeasuresProvider measures={result.current}>
         <ButtonGroupProvider testId="button-group">
           <ButtonDensity {...basicProps} />
         </ButtonGroupProvider>
       </MeasuresProvider>
     )
+  }
+
+  it('matches snapshot', () => {
+    const button = render(<WrappedComponent />)
 
     expect(button.asFragment()).toMatchSnapshot()
   })
   it('matches snapshot after click', () => {
-    const button = render(
-      <MeasuresProvider measures={result.current}>
-        <ButtonGroupProvider testId="button-group">
-          <ButtonDensity {...basicProps} />
-        </ButtonGroupProvider>
-      </MeasuresProvider>
-    )
+    const button = render(<WrappedComponent />)
 
     fireEvent.click(screen.getByTestId('button-group__density'))
     expect(button.asFragment()).toMatchSnapshot()

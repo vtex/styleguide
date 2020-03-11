@@ -20,21 +20,21 @@ describe('Table V2 @ Toolbar/ButtonColumns spec', () => {
     })
   )
 
-  it('matches snapshot', () => {
-    const button = render(
-      <ButtonGroupProvider testId="testId">
+  function WrappedComponent() {
+    return (
+      <ButtonGroupProvider testId="button-group">
         <ButtonColumns visibility={result.current} {...basicProps} />
       </ButtonGroupProvider>
     )
+  }
+
+  it('matches snapshot', () => {
+    const button = render(<WrappedComponent />)
     expect(button.asFragment()).toMatchSnapshot()
   })
   it('matches snapshot after click', () => {
-    const button = render(
-      <ButtonGroupProvider testId="testId">
-        <ButtonColumns visibility={result.current} {...basicProps} />
-      </ButtonGroupProvider>
-    )
-    fireEvent.click(screen.getByTestId('testId__columns'))
+    const button = render(<WrappedComponent />)
+    fireEvent.click(screen.getByTestId('button-group__columns'))
     expect(button.asFragment()).toMatchSnapshot()
   })
 })

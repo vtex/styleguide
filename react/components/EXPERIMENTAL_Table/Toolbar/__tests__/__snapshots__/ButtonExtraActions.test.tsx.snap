@@ -1,0 +1,399 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Table V2 @ Toolbar/ButtonDensity spec matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="order-4"
+    title="More"
+  >
+    <div>
+      <div
+        class="relative"
+      >
+        <div>
+          <button
+            class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small icon-button dib bg-transparent b--transparent c-action-primary hover-b--transparent hover-bg-action-secondary hover-b--action-secondary pointer "
+            data-testid="button-group__extra-actions"
+            id="vtex-table-v2__toolbar__button-extra-actions"
+            style="font-size: 0px;"
+            tabindex="0"
+            type="button"
+          >
+            <div
+              class="vtex-button__label flex items-center justify-center h-100 ph3 "
+              style="padding-top: .25em; padding-bottom: .32em;"
+            >
+              <span
+                class="c-on-base"
+              >
+                <svg
+                  class="vtex__icon-options-dots  "
+                  fill="none"
+                  height="16"
+                  viewBox="0 0 32 32"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <g
+                    class="nc-icon-wrapper"
+                    fill="#444444"
+                  >
+                    <g
+                      class="nc-interact_dots-close-o-32"
+                      transform="rotate(90 16 16)"
+                    >
+                       
+                      <g
+                        class="nc-dot_left"
+                        transform="translate(0)"
+                      >
+                         
+                        <circle
+                          cx="6"
+                          cy="16"
+                          data-cap="butt"
+                          data-stroke="none"
+                          fill="#444444"
+                          r="2"
+                          stroke-linecap="butt"
+                          stroke-linejoin="miter"
+                        />
+                         
+                        <circle
+                          cx="6"
+                          cy="16"
+                          fill="none"
+                          r="2"
+                          stroke="#444444"
+                          stroke-linecap="square"
+                          stroke-linejoin="miter"
+                          stroke-width="2"
+                        />
+                         
+                      </g>
+                       
+                      <g
+                        class="nc-dot_right"
+                        transform="translate(-0)"
+                      >
+                         
+                        <circle
+                          cx="26"
+                          cy="16"
+                          data-cap="butt"
+                          data-stroke="none"
+                          fill="#444444"
+                          r="2"
+                          stroke-linecap="butt"
+                          stroke-linejoin="miter"
+                        />
+                         
+                        <circle
+                          cx="26"
+                          cy="16"
+                          fill="none"
+                          r="2"
+                          stroke="#444444"
+                          stroke-linecap="square"
+                          stroke-linejoin="miter"
+                          stroke-width="2"
+                        />
+                         
+                      </g>
+                       
+                      <g
+                        class="nc-dot_center"
+                      >
+                         
+                        <circle
+                          cx="16"
+                          cy="16"
+                          data-cap="butt"
+                          data-stroke="none"
+                          fill="#444444"
+                          r="2"
+                          stroke-linecap="butt"
+                          stroke-linejoin="miter"
+                        />
+                         
+                        <circle
+                          cx="16"
+                          cy="16"
+                          fill="none"
+                          r="2"
+                          stroke="#444444"
+                          stroke-linecap="square"
+                          stroke-linejoin="miter"
+                          stroke-width="2"
+                        />
+                         
+                      </g>
+                       
+                      <path
+                        class="nc-line_top-right"
+                        d="M16 16L27 5"
+                        data-cap="none"
+                        fill="none"
+                        opacity="0"
+                        stroke="#444444"
+                        stroke-dasharray="15.56 15.56"
+                        stroke-dashoffset="15.56"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                      />
+                       
+                      <path
+                        class="nc-line_bottom-left"
+                        d="M5 27l11-11"
+                        data-cap="none"
+                        fill="none"
+                        opacity="0"
+                        stroke="#444444"
+                        stroke-dasharray="15.56 15.56"
+                        stroke-dashoffset="-15.56"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                      />
+                       
+                      <path
+                        class="nc-line_bottom-right"
+                        d="M16 16l11 11"
+                        data-cap="none"
+                        fill="none"
+                        opacity="0"
+                        stroke="#444444"
+                        stroke-dasharray="15.56 15.56"
+                        stroke-dashoffset="15.56"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                      />
+                       
+                      <path
+                        class="nc-line_top-left"
+                        d="M5 5l11 11"
+                        data-cap="none"
+                        fill="none"
+                        opacity="0"
+                        stroke="#444444"
+                        stroke-dasharray="15.56 15.56"
+                        stroke-dashoffset="-15.56"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                      />
+                       
+                    </g>
+                  </g>
+                </svg>
+              </span>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Table V2 @ Toolbar/ButtonDensity spec matches snapshot after click 1`] = `
+<DocumentFragment>
+  <div
+    class="order-4"
+    title="More"
+  >
+    <div>
+      <div
+        class="relative"
+      >
+        <div>
+          <button
+            class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small icon-button dib bg-transparent b--transparent c-action-primary hover-b--transparent hover-bg-action-secondary hover-b--action-secondary pointer "
+            data-testid="button-group__extra-actions"
+            id="vtex-table-v2__toolbar__button-extra-actions"
+            style="font-size: 0px;"
+            tabindex="0"
+            type="button"
+          >
+            <div
+              class="vtex-button__label flex items-center justify-center h-100 ph3 "
+              style="padding-top: .25em; padding-bottom: .32em;"
+            >
+              <span
+                class="c-on-base"
+              >
+                <svg
+                  class="vtex__icon-options-dots  "
+                  fill="none"
+                  height="16"
+                  viewBox="0 0 32 32"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <g
+                    class="nc-icon-wrapper"
+                    fill="#444444"
+                  >
+                    <g
+                      class="nc-interact_dots-close-o-32"
+                      transform="rotate(90 16 16)"
+                    >
+                       
+                      <g
+                        class="nc-dot_left"
+                        transform="translate(0)"
+                      >
+                         
+                        <circle
+                          cx="6"
+                          cy="16"
+                          data-cap="butt"
+                          data-stroke="none"
+                          fill="#444444"
+                          r="2"
+                          stroke-linecap="butt"
+                          stroke-linejoin="miter"
+                        />
+                         
+                        <circle
+                          cx="6"
+                          cy="16"
+                          fill="none"
+                          r="2"
+                          stroke="#444444"
+                          stroke-linecap="square"
+                          stroke-linejoin="miter"
+                          stroke-width="2"
+                        />
+                         
+                      </g>
+                       
+                      <g
+                        class="nc-dot_right"
+                        transform="translate(-0)"
+                      >
+                         
+                        <circle
+                          cx="26"
+                          cy="16"
+                          data-cap="butt"
+                          data-stroke="none"
+                          fill="#444444"
+                          r="2"
+                          stroke-linecap="butt"
+                          stroke-linejoin="miter"
+                        />
+                         
+                        <circle
+                          cx="26"
+                          cy="16"
+                          fill="none"
+                          r="2"
+                          stroke="#444444"
+                          stroke-linecap="square"
+                          stroke-linejoin="miter"
+                          stroke-width="2"
+                        />
+                         
+                      </g>
+                       
+                      <g
+                        class="nc-dot_center"
+                      >
+                         
+                        <circle
+                          cx="16"
+                          cy="16"
+                          data-cap="butt"
+                          data-stroke="none"
+                          fill="#444444"
+                          r="2"
+                          stroke-linecap="butt"
+                          stroke-linejoin="miter"
+                        />
+                         
+                        <circle
+                          cx="16"
+                          cy="16"
+                          fill="none"
+                          r="2"
+                          stroke="#444444"
+                          stroke-linecap="square"
+                          stroke-linejoin="miter"
+                          stroke-width="2"
+                        />
+                         
+                      </g>
+                       
+                      <path
+                        class="nc-line_top-right"
+                        d="M16 16L27 5"
+                        data-cap="none"
+                        fill="none"
+                        opacity="0"
+                        stroke="#444444"
+                        stroke-dasharray="15.56 15.56"
+                        stroke-dashoffset="15.56"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                      />
+                       
+                      <path
+                        class="nc-line_bottom-left"
+                        d="M5 27l11-11"
+                        data-cap="none"
+                        fill="none"
+                        opacity="0"
+                        stroke="#444444"
+                        stroke-dasharray="15.56 15.56"
+                        stroke-dashoffset="-15.56"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                      />
+                       
+                      <path
+                        class="nc-line_bottom-right"
+                        d="M16 16l11 11"
+                        data-cap="none"
+                        fill="none"
+                        opacity="0"
+                        stroke="#444444"
+                        stroke-dasharray="15.56 15.56"
+                        stroke-dashoffset="15.56"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                      />
+                       
+                      <path
+                        class="nc-line_top-left"
+                        d="M5 5l11 11"
+                        data-cap="none"
+                        fill="none"
+                        opacity="0"
+                        stroke="#444444"
+                        stroke-dasharray="15.56 15.56"
+                        stroke-dashoffset="-15.56"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                      />
+                       
+                    </g>
+                  </g>
+                </svg>
+              </span>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

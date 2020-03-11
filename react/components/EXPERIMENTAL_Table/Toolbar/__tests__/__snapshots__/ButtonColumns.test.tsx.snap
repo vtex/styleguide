@@ -4,13 +4,13 @@ exports[`Table V2 @ Toolbar/ButtonColumns spec matches snapshot 1`] = `
 <DocumentFragment>
   <div
     class="relative mh2"
-    data-testid="testId__columns__container"
+    data-testid="button-group__columns__container"
     id="vtex-table-v2__toolbar__button-columns__container"
     title="Toggle visible fields"
   >
     <button
       class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small icon-button dib bg-transparent b--transparent c-action-primary hover-b--transparent hover-bg-action-secondary hover-b--action-secondary pointer "
-      data-testid="testId__columns"
+      data-testid="button-group__columns"
       style="font-size: 0px;"
       tabindex="0"
       type="button"
@@ -61,13 +61,13 @@ exports[`Table V2 @ Toolbar/ButtonColumns spec matches snapshot after click 1`] 
 <DocumentFragment>
   <div
     class="relative mh2"
-    data-testid="testId__columns__container"
+    data-testid="button-group__columns__container"
     id="vtex-table-v2__toolbar__button-columns__container"
     title="Toggle visible fields"
   >
     <button
       class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small icon-button dib bg-transparent b--transparent c-action-primary hover-b--transparent hover-bg-action-secondary hover-b--action-secondary pointer "
-      data-testid="testId__columns"
+      data-testid="button-group__columns"
       style="font-size: 0px;"
       tabindex="0"
       type="button"
@@ -112,7 +112,7 @@ exports[`Table V2 @ Toolbar/ButtonColumns spec matches snapshot after click 1`] 
     </button>
     <div
       class="absolute z-999 shadow-4 b--muted-4 br2 ba left-0 mt2 mh2"
-      data-testid="testId__columns__box"
+      data-testid="button-group__columns__box"
       style="width: 292px;"
     >
       <div
@@ -120,11 +120,11 @@ exports[`Table V2 @ Toolbar/ButtonColumns spec matches snapshot after click 1`] 
       >
         <div
           class="flex inline-flex bb b--muted-4 w-100 justify-center pv4"
-          data-testid="testId__columns__box__group-actions"
+          data-testid="button-group__columns__box__group-actions"
         >
           <div
             class="mh2"
-            data-testid="testId__columns__group-actions--1"
+            data-testid="button-group__columns__group-actions--1"
           >
             <button
               class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small bg-action-secondary b--action-secondary c-on-action-secondary hover-bg-action-secondary hover-b--action-secondary hover-c-on-action-secondary pointer "
@@ -141,7 +141,7 @@ exports[`Table V2 @ Toolbar/ButtonColumns spec matches snapshot after click 1`] 
           </div>
           <div
             class="mh2"
-            data-testid="testId__columns__group-actions--2"
+            data-testid="button-group__columns__group-actions--2"
           >
             <button
               class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small bg-action-secondary b--action-secondary c-on-action-secondary hover-bg-action-secondary hover-b--action-secondary hover-c-on-action-secondary pointer "
@@ -159,7 +159,7 @@ exports[`Table V2 @ Toolbar/ButtonColumns spec matches snapshot after click 1`] 
         </div>
         <div
           class="overflow-auto"
-          data-testid="testId__columns__box__items"
+          data-testid="button-group__columns__box__items"
           style="height: 36px;"
         >
           <div
