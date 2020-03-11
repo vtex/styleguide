@@ -7,7 +7,7 @@ class Tab extends Component {
   }
 
   render() {
-    const { active, fullWidth, label, disabled } = this.props
+    const { active, fullWidth, label, disabled, className } = this.props
 
     let tabStyle =
       'c-muted-1 b--transparent hover-c-action-primary pointer vtex-tab__button--inactive'
@@ -28,8 +28,8 @@ class Tab extends Component {
           fullWidth ? 'w-100' : ''
         } ${tabStyle}
         v-mid relative h-regular ph6 t-body bg-transparent outline-0
-        `}
-      >
+
+        ${className}`}>
         {label}
       </button>
     )
@@ -47,6 +47,7 @@ Tab.propTypes = {
   label: PropTypes.any.isRequired,
   onClick: PropTypes.func,
   disabled: PropTypes.bool,
+  className: PropTypes.string,
 }
 
 export default Tab

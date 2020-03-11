@@ -1,4 +1,13 @@
-import React, { cloneElement } from 'react'
+import React, {
+  cloneElement,
+  FC,
+  useState,
+  useRef,
+  useCallback,
+  useLayoutEffect,
+  useEffect,
+  Children,
+} from 'react'
 import PropTypes, { InferProps } from 'prop-types'
 
 import Tab from './Tab'
@@ -10,29 +19,32 @@ const propTypes = {
   sticky: PropTypes.bool,
 }
 
-const Tabs: React.FC<InferProps<typeof propTypes>> = ({
+const Tabs: FC<InferProps<typeof propTypes>> = ({
   children,
   fullWidth,
   sticky,
 }) => {
-  const tabsContainerRef = React.useRef(null)
-  const [showMoreTabsButton, setShowMoreTabsButton] = React.useState(false)
+  const childrenArray = Children.toArray(children)
 
-  const childrenArray = [].concat(children)
+  const [showMoreTabsButton, setShowMoreTabsButton] = useState(false)
+  const [lastShownTab, setLastShowTab] = useState(childrenArray.length)
+
+  const tabsContainerRef = useRef(null)
 
   const selectedTab: Tab = childrenArray.find(
     child => (child as Tab).props.active
   )
   const content = selectedTab && selectedTab.props.children
 
-  const handleResizeWindow = React.useCallback(() => {
+  const handleResizeWindow = useCallback(() => {
     if (tabsContainerRef.current) {
       const tabsContainerWidth = tabsContainerRef.current.clientWidth
       let hideTabs = false
 
       const childrens = tabsContainerRef.current.children
       let sumTabWidths = 0
-      for (let childIndex = 0; childIndex < childrens.length; childIndex++) {
+      let childIndex = 0
+      for (; childIndex < childrens.length; childIndex++) {
         const child = childrens[childIndex]
         sumTabWidths += child.clientWidth
         if (!hideTabs && sumTabWidths > tabsContainerWidth) {
@@ -41,21 +53,29 @@ const Tabs: React.FC<InferProps<typeof propTypes>> = ({
         }
       }
 
+      setLastShowTab(childIndex) // childIndex is indexed by 0
       setShowMoreTabsButton(hideTabs)
     }
   }, [tabsContainerRef])
 
-  React.useEffect(() => {
+  useLayoutEffect(() => {
     const hasWindow = !(
       typeof window === 'undefined' || typeof window.Element === 'undefined'
     )
-    hasWindow && handleResizeWindow() // this line will have effect if tabs has minimum width, need it
+
     hasWindow && window.addEventListener('resize', handleResizeWindow)
 
     return () => {
       hasWindow && window.removeEventListener('resize', handleResizeWindow)
     }
   }, [handleResizeWindow])
+
+  useEffect(() => {
+    const hasWindow = !(
+      typeof window === 'undefined' || typeof window.Element === 'undefined'
+    )
+    hasWindow && handleResizeWindow() // this line will have effect if tabs has minimum width, need it
+  }, [])
 
   return (
     <div
@@ -71,6 +91,7 @@ const Tabs: React.FC<InferProps<typeof propTypes>> = ({
             cloneElement(child, {
               fullWidth,
               key: child.props.key != null ? child.props.key : index,
+              className: `${index >= lastShownTab ? 'dn' : ''}`,
             })
           )}
         </div>
