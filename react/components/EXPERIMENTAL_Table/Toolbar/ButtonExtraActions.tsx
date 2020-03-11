@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 
 import ActionMenu from '../../ActionMenu/index'
 import IconOptionsDots from '../../icon/OptionsDots/index'
-import { NAMESPACES, ORDER_CLASSNAMES } from '../constants'
+import { ORDER_CLASSNAMES } from '../constants'
 import { MenuAction, Alignment } from './PopoverMenu'
 import { ButtonVariation, ButtonSize } from './Button'
 import { useButtonGroupContext } from './context'
@@ -23,7 +23,6 @@ const ButtonExtraActions: FC<ButtonExtraActionsProps> = ({
         hideCaretIcon
         buttonProps={{
           variation: ButtonVariation.Tertiary,
-          id: NAMESPACES.TOOLBAR.BUTTON_EXTRA_ACTIONS,
           testId: `${testId}__extra-actions`,
           icon: (
             <span className="c-on-base">

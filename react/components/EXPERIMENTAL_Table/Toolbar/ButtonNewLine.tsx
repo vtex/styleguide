@@ -33,10 +33,11 @@ const ButtonNewLine: FC<ButtonNewLineProps> = ({ actions, ...buttonProps }) => {
         />,
         <ActionMenu
           isActiveOfGroup
-          id={`${namespace}__action-menu`}
-          testId={`${newlineTestId}__action-menu`}
           key="actions-button"
-          buttonProps={buttonProps}
+          buttonProps={{
+            ...buttonProps,
+            testId: `${newlineTestId}__action-menu`,
+          }}
           options={actions}
         />,
       ]}
@@ -57,7 +58,7 @@ ButtonNewLine.defaultProps = {
 }
 
 export type ButtonNewLineProps = ButtonProps & {
-  actions: Array<MenuAction>
+  actions?: Array<MenuAction>
 }
 
 export default ButtonNewLine

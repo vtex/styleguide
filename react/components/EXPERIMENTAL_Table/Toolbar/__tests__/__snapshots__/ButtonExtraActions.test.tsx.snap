@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Table V2 @ Toolbar/ButtonDensity spec matches snapshot 1`] = `
+exports[`Table V2 @ Toolbar/ButtonExtraActions spec matches snapshot 1`] = `
 <DocumentFragment>
   <div
     class="order-4"
@@ -14,7 +14,6 @@ exports[`Table V2 @ Toolbar/ButtonDensity spec matches snapshot 1`] = `
           <button
             class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small icon-button dib bg-transparent b--transparent c-action-primary hover-b--transparent hover-bg-action-secondary hover-b--action-secondary pointer "
             data-testid="button-group__extra-actions"
-            id="vtex-table-v2__toolbar__button-extra-actions"
             style="font-size: 0px;"
             tabindex="0"
             type="button"
@@ -199,7 +198,7 @@ exports[`Table V2 @ Toolbar/ButtonDensity spec matches snapshot 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Table V2 @ Toolbar/ButtonDensity spec matches snapshot after click 1`] = `
+exports[`Table V2 @ Toolbar/ButtonExtraActions spec matches snapshot after click 1`] = `
 <DocumentFragment>
   <div
     class="order-4"
@@ -213,7 +212,6 @@ exports[`Table V2 @ Toolbar/ButtonDensity spec matches snapshot after click 1`] 
           <button
             class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small icon-button dib bg-transparent b--transparent c-action-primary hover-b--transparent hover-bg-action-secondary hover-b--action-secondary pointer "
             data-testid="button-group__extra-actions"
-            id="vtex-table-v2__toolbar__button-extra-actions"
             style="font-size: 0px;"
             tabindex="0"
             type="button"

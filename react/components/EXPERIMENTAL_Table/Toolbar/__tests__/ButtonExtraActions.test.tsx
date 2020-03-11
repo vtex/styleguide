@@ -4,7 +4,7 @@ import { render, fireEvent, screen } from '@testing-library/react'
 import { ButtonGroupProvider } from '../context'
 import ButtonExtraActions from '../ButtonExtraActions'
 
-describe('Table V2 @ Toolbar/ButtonDensity spec', () => {
+describe('Table V2 @ Toolbar/ButtonExtraActions spec', () => {
   const basicProps = {
     label: 'More',
     actions: [

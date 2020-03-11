@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Table V2 @ Toolbar/ButtonNewLine spec matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="relative"
+    data-testid="button-group__new-line__container"
+    id="vtex-table-v2__toolbar__button-newline__container"
+  >
+    <button
+      class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small bg-action-primary b--action-primary c-on-action-primary hover-bg-action-primary hover-b--action-primary hover-c-on-action-primary pointer "
+      data-testid="button-group__new-line"
+      tabindex="0"
+      type="button"
+    >
+      <div
+        class="vtex-button__label flex items-center justify-center h-100 ph5 "
+        style="padding-top: .25em; padding-bottom: .32em;"
+      >
+        <span
+          class="flex items-center nr1"
+        >
+          <div
+            class="mr2 nl2 flex items-center"
+          >
+            <span
+              class=""
+              style="margin-top: 1.5px;"
+            >
+              <svg
+                class="vtex__icon-plus vtex__icon-plus--solid "
+                fill="none"
+                height="16"
+                viewBox="0 0 20 20"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M13.6569 13.6569C16.7811 10.5326 16.7811 5.46735 13.6569 2.34316C10.5327 -0.781032 5.46739 -0.781075 2.34316 2.34316C-0.781075 5.46739 -0.781032 10.5327 2.34316 13.6569C5.46735 16.7811 10.5326 16.7811 13.6569 13.6569ZM8.00006 6.58567L10.8285 3.75724L12.2427 5.17159L9.41423 8.00001L12.2427 10.8284L10.8285 12.2425L8.00001 9.41423L5.15726 12.257L3.74309 10.8426L6.58576 7.99997L3.74313 5.15734L5.15747 3.74309L8.00006 6.58567Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                  transform="translate(10.1006 -1.31372) rotate(45)"
+                />
+              </svg>
+            </span>
+          </div>
+          <div>
+            <span
+              class=""
+            >
+              New
+            </span>
+          </div>
+        </span>
+      </div>
+    </button>
+  </div>
+</DocumentFragment>
+`;
