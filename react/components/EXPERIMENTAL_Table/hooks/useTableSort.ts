@@ -1,6 +1,6 @@
 import { useReducer } from 'react'
 
-enum SortOrder {
+export enum SortOrder {
   ASC = 'ASC',
   DSC = 'DSC',
 }
