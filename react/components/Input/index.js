@@ -267,7 +267,7 @@ class Input extends Component {
         {errorMessage && (
           <div className="c-danger flex items-center t-small mt3 lh-title">
             {/* use flex to align svg vertically */}
-            <span className="mr2 flex">
+            <span className="vtex-input__error-icon mr2 flex">
               <WarningIcon size={14} />
             </span>
             {errorMessage}
