@@ -60,9 +60,9 @@ export type ButtonDensityProps = {
   compactLabel: string
   regularLabel: string
   comfortableLabel: string
-  handleCallback: Function
-  alignMenu: Alignment
-  disabled: boolean
+  handleCallback?: Function
+  alignMenu?: Alignment
+  disabled?: boolean
 }
 
 export default ButtonDensity

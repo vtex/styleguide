@@ -1,0 +1,163 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Table V2 @ Toolbar/ButtonDensity spec matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="relative mh2"
+    data-testid="button-group__density__container"
+    id="vtex-table-v2__toolbar__button-density__container"
+    title="Line density"
+  >
+    <button
+      class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small icon-button dib bg-transparent b--transparent c-action-primary hover-b--transparent hover-bg-action-secondary hover-b--action-secondary pointer "
+      data-testid="button-group__density"
+      style="font-size: 0px;"
+      tabindex="0"
+      type="button"
+    >
+      <div
+        class="vtex-button__label flex items-center justify-center h-100 ph3 "
+        style="padding-top: .25em; padding-bottom: .32em;"
+      >
+        <span
+          class="c-on-base"
+          style="margin-top: 1.5px;"
+        >
+          <svg
+            class="vtex__icon-density  "
+            fill="currentColor"
+            height="13"
+            viewBox="0 0 14 13"
+            width="14"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <rect
+              fill="currentColor"
+              height="1.85714"
+              rx="0.928571"
+              width="14"
+              y="11.1426"
+            />
+            <rect
+              fill="currentColor"
+              height="1.85714"
+              rx="0.928571"
+              width="14"
+              y="7.42871"
+            />
+            <rect
+              fill="currentColor"
+              height="5.57143"
+              rx="1"
+              width="14"
+            />
+          </svg>
+        </span>
+      </div>
+    </button>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Table V2 @ Toolbar/ButtonDensity spec matches snapshot after click 1`] = `
+<DocumentFragment>
+  <div
+    class="relative mh2"
+    data-testid="button-group__density__container"
+    id="vtex-table-v2__toolbar__button-density__container"
+    title="Line density"
+  >
+    <button
+      class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small icon-button dib bg-transparent b--transparent c-action-primary hover-b--transparent hover-bg-action-secondary hover-b--action-secondary pointer "
+      data-testid="button-group__density"
+      style="font-size: 0px;"
+      tabindex="0"
+      type="button"
+    >
+      <div
+        class="vtex-button__label flex items-center justify-center h-100 ph3 "
+        style="padding-top: .25em; padding-bottom: .32em;"
+      >
+        <span
+          class="c-on-base"
+          style="margin-top: 1.5px;"
+        >
+          <svg
+            class="vtex__icon-density  "
+            fill="currentColor"
+            height="13"
+            viewBox="0 0 14 13"
+            width="14"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <rect
+              fill="currentColor"
+              height="1.85714"
+              rx="0.928571"
+              width="14"
+              y="11.1426"
+            />
+            <rect
+              fill="currentColor"
+              height="1.85714"
+              rx="0.928571"
+              width="14"
+              y="7.42871"
+            />
+            <rect
+              fill="currentColor"
+              height="5.57143"
+              rx="1"
+              width="14"
+            />
+          </svg>
+        </span>
+      </div>
+    </button>
+    <div
+      class="absolute z-999 shadow-4 b--muted-4 br2 ba left-0 mt2 mh2"
+      data-testid="button-group__density__box"
+    >
+      <div
+        class="w-100 b2 br2 bg-base"
+      >
+        <div
+          class="overflow-auto"
+          data-testid="button-group__density__box__items"
+          style="height: 108px;"
+        >
+          <div
+            class="flex justify-between ph6 pv3 pointer hover-bg-muted-5 bl bw1 b--transparent"
+          >
+            <span
+              class="w-100 flex justify-between"
+            >
+              Compact
+            </span>
+          </div>
+          <div
+            class="flex justify-between ph6 pv3 pointer hover-bg-muted-5 bl bw1 b--emphasis"
+          >
+            <span
+              class="w-100 flex justify-between fw5"
+            >
+              Regular
+            </span>
+          </div>
+          <div
+            class="flex justify-between ph6 pv3 pointer hover-bg-muted-5 bl bw1 b--transparent"
+          >
+            <span
+              class="w-100 flex justify-between"
+            >
+              Comfortable
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

@@ -3,7 +3,7 @@ import { render } from '@testing-library/react'
 
 import Button, { ButtonSize, ButtonVariation } from '../Button'
 
-describe('Table V2 Toolbar <Button /> spec', () => {
+describe('Table V2 @ Toolbar/Button spec', () => {
   const basicProps = {
     id: 'id',
     testId: 'testId',
@@ -11,7 +11,7 @@ describe('Table V2 Toolbar <Button /> spec', () => {
     title: 'title',
     onClick: () => {},
   }
-  it('renders with and without icon', () => {
+  it('matches snapshot with and without icon', () => {
     const icon = <div>Icon</div>
     const button = render(
       <>
@@ -23,7 +23,7 @@ describe('Table V2 Toolbar <Button /> spec', () => {
     )
     expect(button.asFragment()).toMatchSnapshot()
   })
-  it('renders with different states', () => {
+  it('matches snapshot with different states', () => {
     const button = render(
       <>
         <Button {...basicProps} isLoading>
@@ -36,7 +36,7 @@ describe('Table V2 Toolbar <Button /> spec', () => {
     )
     expect(button.asFragment()).toMatchSnapshot()
   })
-  it('renders all the sizes', () => {
+  it('matches snapshot on all the sizes', () => {
     const button = render(
       <>
         <Button {...basicProps} size={ButtonSize.Small}>
@@ -52,7 +52,7 @@ describe('Table V2 Toolbar <Button /> spec', () => {
     )
     expect(button.asFragment()).toMatchSnapshot()
   })
-  it('renders as group', () => {
+  it('matches snapshot as group', () => {
     const basicProps = {
       id: 'id',
       testId: 'testId',
@@ -66,7 +66,7 @@ describe('Table V2 Toolbar <Button /> spec', () => {
     )
     expect(button.asFragment()).toMatchSnapshot()
   })
-  it('renders all variations', () => {
+  it('matches snapshot on all variations', () => {
     const button = render(
       <>
         <Button {...basicProps} variation={ButtonVariation.Primary}>

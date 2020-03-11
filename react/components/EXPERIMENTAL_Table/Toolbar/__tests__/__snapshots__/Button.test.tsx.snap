@@ -1,6 +1,50 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Table V2 Toolbar <Button /> spec renders all the sizes 1`] = `
+exports[`Table V2 @ Toolbar/Button spec matches snapshot as group 1`] = `
+<DocumentFragment>
+  <div
+    class="relative mh2"
+    data-testid="testId__container"
+    id="id__container"
+  >
+    <button
+      class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 br--left min-h-small t-action--small bg-action-primary b--action-primary c-on-action-primary hover-bg-action-primary hover-b--action-primary hover-c-on-action-primary pointer "
+      data-testid="testId"
+      style="background-color: rgb(12, 56, 159); border-color: #0c389f;"
+      tabindex="0"
+      type="button"
+    >
+      <div
+        class="vtex-button__label flex items-center justify-center h-100 ph5 "
+        style="padding-top: .25em; padding-bottom: .32em;"
+      >
+        <span
+          class="flex items-center nr1"
+        >
+          <div
+            class="mr2 nl2 flex items-center"
+          >
+            <span
+              class="c-on-base"
+              style="margin-top: 1.5px;"
+            />
+          </div>
+          <div>
+            <span
+              class="c-on-base"
+            >
+              label
+            </span>
+          </div>
+        </span>
+      </div>
+    </button>
+    Testing
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Table V2 @ Toolbar/Button spec matches snapshot on all the sizes 1`] = `
 <DocumentFragment>
   <div
     class="relative mh2"
@@ -122,7 +166,7 @@ exports[`Table V2 Toolbar <Button /> spec renders all the sizes 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Table V2 Toolbar <Button /> spec renders all variations 1`] = `
+exports[`Table V2 @ Toolbar/Button spec matches snapshot on all variations 1`] = `
 <DocumentFragment>
   <div
     class="relative"
@@ -244,51 +288,7 @@ exports[`Table V2 Toolbar <Button /> spec renders all variations 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Table V2 Toolbar <Button /> spec renders as group 1`] = `
-<DocumentFragment>
-  <div
-    class="relative mh2"
-    data-testid="testId__container"
-    id="id__container"
-  >
-    <button
-      class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 br--left min-h-small t-action--small bg-action-primary b--action-primary c-on-action-primary hover-bg-action-primary hover-b--action-primary hover-c-on-action-primary pointer "
-      data-testid="testId"
-      style="background-color: rgb(12, 56, 159); border-color: #0c389f;"
-      tabindex="0"
-      type="button"
-    >
-      <div
-        class="vtex-button__label flex items-center justify-center h-100 ph5 "
-        style="padding-top: .25em; padding-bottom: .32em;"
-      >
-        <span
-          class="flex items-center nr1"
-        >
-          <div
-            class="mr2 nl2 flex items-center"
-          >
-            <span
-              class="c-on-base"
-              style="margin-top: 1.5px;"
-            />
-          </div>
-          <div>
-            <span
-              class="c-on-base"
-            >
-              label
-            </span>
-          </div>
-        </span>
-      </div>
-    </button>
-    Testing
-  </div>
-</DocumentFragment>
-`;
-
-exports[`Table V2 Toolbar <Button /> spec renders with and without icon 1`] = `
+exports[`Table V2 @ Toolbar/Button spec matches snapshot with and without icon 1`] = `
 <DocumentFragment>
   <div
     class="relative mh2"
@@ -375,7 +375,7 @@ exports[`Table V2 Toolbar <Button /> spec renders with and without icon 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Table V2 Toolbar <Button /> spec renders with different states 1`] = `
+exports[`Table V2 @ Toolbar/Button spec matches snapshot with different states 1`] = `
 <DocumentFragment>
   <div
     class="relative mh2"

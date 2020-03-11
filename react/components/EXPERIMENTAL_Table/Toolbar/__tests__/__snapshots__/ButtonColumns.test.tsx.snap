@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Table V2 Toolbar <ButtonColumns /> spec renders the component 1`] = `
+exports[`Table V2 @ Toolbar/ButtonColumns spec matches snapshot 1`] = `
 <DocumentFragment>
   <div
     class="relative mh2"
@@ -53,6 +53,148 @@ exports[`Table V2 Toolbar <ButtonColumns /> spec renders the component 1`] = `
         </span>
       </div>
     </button>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Table V2 @ Toolbar/ButtonColumns spec matches snapshot after click 1`] = `
+<DocumentFragment>
+  <div
+    class="relative mh2"
+    data-testid="testId__columns__container"
+    id="vtex-table-v2__toolbar__button-columns__container"
+    title="Toggle visible fields"
+  >
+    <button
+      class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small icon-button dib bg-transparent b--transparent c-action-primary hover-b--transparent hover-bg-action-secondary hover-b--action-secondary pointer "
+      data-testid="testId__columns"
+      style="font-size: 0px;"
+      tabindex="0"
+      type="button"
+    >
+      <div
+        class="vtex-button__label flex items-center justify-center h-100 ph3 "
+        style="padding-top: .25em; padding-bottom: .32em;"
+      >
+        <span
+          class="c-on-base"
+          style="margin-top: 1.5px;"
+        >
+          <svg
+            class="vtex__icon-columns  "
+            fill="none"
+            height="14"
+            viewBox="0 0 16 16"
+            width="12.444444444444445"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <path
+              d="M1 4H15V15H1V4Z"
+              stroke="currentColor"
+              stroke-width="2"
+            />
+            <path
+              d="M0 1C0 0.447715 0.447715 0 1 0H15C15.5523 0 16 0.447715 16 1V5H0V1Z"
+              fill="currentColor"
+            />
+            <line
+              stroke="currentColor"
+              stroke-width="2"
+              x1="8.11133"
+              x2="8.11133"
+              y1="4.70586"
+              y2="14.1176"
+            />
+          </svg>
+        </span>
+      </div>
+    </button>
+    <div
+      class="absolute z-999 shadow-4 b--muted-4 br2 ba left-0 mt2 mh2"
+      data-testid="testId__columns__box"
+      style="width: 292px;"
+    >
+      <div
+        class="w-100 b2 br2 bg-base"
+      >
+        <div
+          class="flex inline-flex bb b--muted-4 w-100 justify-center pv4"
+          data-testid="testId__columns__box__group-actions"
+        >
+          <div
+            class="mh2"
+            data-testid="testId__columns__group-actions--1"
+          >
+            <button
+              class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small bg-action-secondary b--action-secondary c-on-action-secondary hover-bg-action-secondary hover-b--action-secondary hover-c-on-action-secondary pointer "
+              tabindex="0"
+              type="button"
+            >
+              <div
+                class="vtex-button__label flex items-center justify-center h-100 ph5 "
+                style="padding-top: .25em; padding-bottom: .32em;"
+              >
+                Show All
+              </div>
+            </button>
+          </div>
+          <div
+            class="mh2"
+            data-testid="testId__columns__group-actions--2"
+          >
+            <button
+              class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small bg-action-secondary b--action-secondary c-on-action-secondary hover-bg-action-secondary hover-b--action-secondary hover-c-on-action-secondary pointer "
+              tabindex="0"
+              type="button"
+            >
+              <div
+                class="vtex-button__label flex items-center justify-center h-100 ph5 "
+                style="padding-top: .25em; padding-bottom: .32em;"
+              >
+                Hide All
+              </div>
+            </button>
+          </div>
+        </div>
+        <div
+          class="overflow-auto"
+          data-testid="testId__columns__box__items"
+          style="height: 36px;"
+        >
+          <div
+            class="flex justify-between ph6 pv3 pointer hover-bg-muted-5 bl bw1 b--transparent"
+          >
+            <span
+              class="w-100 flex justify-between"
+            >
+              Name
+              <label>
+                <div
+                  class="flex flex-row items-center relative pointer"
+                >
+                  <div
+                    class="vtex-toggle flex items-center relative br4 bg-action-primary "
+                    style="transition: background 100ms ease-out; height: 1.25rem; width: 2.25rem; min-width: 2.25rem;"
+                  >
+                    <div
+                      class="absolute br-100 bg-base "
+                      style="box-shadow: 0 0 10px rgba(0,0,0,0.2); transform: scale(0.8); transition: all .1s ease-out; height: 1.25rem; width: 1.25rem; min-width: 1.25rem; left: 1rem;"
+                    />
+                  </div>
+                  <input
+                    checked=""
+                    class="h-100 w-100 absolute o-0 pointer"
+                    tabindex="0"
+                    type="checkbox"
+                  />
+                </div>
+              </label>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </DocumentFragment>
 `;

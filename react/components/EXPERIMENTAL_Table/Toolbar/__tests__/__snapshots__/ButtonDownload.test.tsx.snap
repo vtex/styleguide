@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Table V2 @ Toolbar/ButtonDownload spec renders the component 1`] = `
+<DocumentFragment>
+  <div
+    class="relative mh2"
+    data-testid="testId__download__container"
+    id="vtex-table-v2__toolbar__button-download__container"
+  >
+    <button
+      class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small bg-transparent b--transparent c-action-primary hover-b--transparent hover-bg-action-secondary hover-b--action-secondary pointer "
+      data-testid="testId__download"
+      tabindex="0"
+      type="button"
+    >
+      <div
+        class="vtex-button__label flex items-center justify-center h-100 ph5 "
+        style="padding-top: .25em; padding-bottom: .32em;"
+      >
+        <span
+          class="flex items-center nr1"
+        >
+          <div
+            class="mr2 nl2 flex items-center"
+          >
+            <span
+              class="c-on-base"
+              style="margin-top: 1.5px;"
+            >
+              <svg
+                class="vtex__icon-download  "
+                fill="none"
+                height="13"
+                viewBox="0 0 14 16"
+                width="11.375"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <path
+                  d="M6.4 12C6.7 12 6.9 11.9 7.1 11.7L12.8 6L11.4 4.6L7.4 8.6V0H5.4V8.6L1.4 4.6L2.38419e-08 6L5.7 11.7C5.9 11.9 6.1 12 6.4 12Z"
+                  fill="currentColor"
+                  transform="translate(0.599976)"
+                />
+                <path
+                  d="M14 0H0V2H14V0Z"
+                  fill="currentColor"
+                  transform="translate(0 14)"
+                />
+              </svg>
+            </span>
+          </div>
+          <div>
+            <span
+              class="c-on-base"
+            >
+              Download
+            </span>
+          </div>
+        </span>
+      </div>
+    </button>
+  </div>
+</DocumentFragment>
+`;
