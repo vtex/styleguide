@@ -2,7 +2,7 @@ import { renderHook } from '@testing-library/react-hooks'
 
 import useTableProportion from '../useTableProportion'
 
-describe('Table V2 @ hooks/useTableMeasures spec', () => {
+describe('Table V2 @ hooks/useTableProportion spec', () => {
   const columns = [{ id: 'name' }, { id: 'location' }, { id: 'company' }]
 
   const ratio = [2, 1, 1]
