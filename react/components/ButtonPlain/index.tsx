@@ -1,4 +1,4 @@
-import React, { FunctionComponent, Fragment, useEffect } from 'react'
+import React, { FunctionComponent, Fragment, useEffect, RefObject } from 'react'
 import PropTypes, { InferProps } from 'prop-types'
 import classNames from 'classnames'
 
@@ -186,7 +186,7 @@ const ButtonPlain: FunctionComponent<Props> = props => {
       onFocus={props.onFocus}
       onBlur={props.onBlur}
       ref={
-        props.forwardedRef as React.RefObject<
+        props.forwardedRef as RefObject<
           HTMLAnchorElement & HTMLButtonElement
         >
       }
