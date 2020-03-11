@@ -27,7 +27,7 @@ export default function useTableMeasures({
 
 export type MeasuresInput = {
   size: number
-  density: Density
+  density?: Density
 }
 
 export function calculateTableHeight(
