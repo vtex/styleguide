@@ -14,7 +14,17 @@ type Props = DetailedHTMLProps<
   HTMLTableSectionElement
 >
 
-const Tbody: RFCRP<HTMLTableSectionElement, Props> = (
+interface RenderProps {
+  props: {
+    data: unknown
+    motion: ReturnType<typeof useTableMotion>
+    height: number
+  }
+  key: string
+  index: number
+}
+
+const Tbody: RFCRP<HTMLTableSectionElement, Props, RenderProps> = (
   { children, ...rest },
   ref
 ) => {
@@ -28,9 +38,9 @@ const Tbody: RFCRP<HTMLTableSectionElement, Props> = (
   return !empty && !loading ? (
     <tbody ref={ref} {...rest} data-testid={`${testId}__body`}>
       {items.map((data, index) => {
+        const key = rowKey({ rowData: data })
         const props = {
-          key: rowKey({ rowData: data }),
-          data: data,
+          data,
           motion,
           height: rowHeight,
         }
@@ -38,11 +48,11 @@ const Tbody: RFCRP<HTMLTableSectionElement, Props> = (
         return children ? (
           children({
             props,
-            data,
+            key,
             index,
           })
         ) : (
-          <Row {...props} />
+          <Row key={key} {...props} />
         )
       })}
     </tbody>

@@ -9,7 +9,18 @@ import { useBodyContext } from '../context/body'
 import { useMeasuresContext } from '../context/measures'
 import Cell, { CellComposites, CellProps } from './Cell'
 
-const Row: RFCRP<HTMLTableRowElement, RowProps> = (
+interface RenderProps {
+  props: {
+    width: number | string
+  }
+  key: string
+  data: unknown
+  column: Column
+  motion: ReturnType<typeof useTableMotion>
+  index: number
+}
+
+const Row: RFCRP<HTMLTableRowElement, RowProps, RenderProps> = (
   { children, motion, data, height, ...props },
   ref
 ) => {
@@ -37,9 +48,9 @@ const Row: RFCRP<HTMLTableRowElement, RowProps> = (
         if (children) {
           return children({
             props: {
-              key: id,
               width,
             },
+            key: id,
             data,
             column,
             motion,

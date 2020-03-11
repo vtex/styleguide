@@ -38,11 +38,11 @@ export type ComposableWithRef<
   Partial<Composites>
 
 /** Type with ref and renderProps */
-type RenderProps<P> = P & {
-  children?: (data: Record<string, unknown>) => React.ReactNode
+type RenderProps<P = {}, T = Record<string, unknown>> = P & {
+  children?: (data: T) => React.ReactNode
 }
 
 /** Ref foward component with render props */
-export interface RFCRP<T, P> {
-  (props: RenderProps<P>, ref: React.Ref<T>): React.ReactElement | null
+export interface RFCRP<T, P = {}, R = Record<string, unknown>> {
+  (props: RenderProps<P, R>, ref: React.Ref<T>): React.ReactElement | null
 }

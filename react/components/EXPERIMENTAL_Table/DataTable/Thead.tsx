@@ -1,14 +1,32 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, FC, ReactElement } from 'react'
 import classNames from 'classnames'
 
 import { useTestingContext } from '../context/testing'
 import { useHeadContext } from '../context/head'
 import { TABLE_HEADER_HEIGHT } from '../hooks/useTableMeasures'
 import Row from './Row'
-import Cell from './Cell'
-import { RFC, ComposableWithRef } from '../types'
+import Cell, { CellProps, CellComposites } from './Cell'
+import { ComposableWithRef, RFCRP, Column } from '../types'
 
-const Thead: RFC<HTMLTableSectionElement> = (_, ref) => {
+interface RenderProps {
+  props: {
+    width: number | string
+    className: string
+    sorting: boolean
+    onClick: () => void
+    sortable: boolean
+    sticky: boolean
+    header: boolean
+  }
+  column: Column
+  key: string
+  suffix: ReactElement
+}
+
+const Thead: RFCRP<HTMLTableSectionElement, {}, RenderProps> = (
+  { children },
+  ref
+) => {
   const { testId } = useTestingContext()
   const { sorting, sticky } = useHeadContext()
   return (
@@ -17,27 +35,31 @@ const Thead: RFC<HTMLTableSectionElement> = (_, ref) => {
       data-testid={`${testId}__header`}
       className="w-100 ph4 truncate overflow-x-hidden c-muted-2 f6">
       <Row height={TABLE_HEADER_HEIGHT} data="">
-        {({ column, props }) => {
+        {({ column, props: receivedProps }) => {
           const { id, title, sortable } = column
-          const cellClassName = classNames('bt normal', { pointer: sortable })
-          const cellSorting =
+          const currentlySorting =
             sorting && sorting.sorted && sorting.sorted.by === id
           const ascending = sorting && sorting.sorted.order !== 'DSC'
-          const onclick =
-            sortable && sorting ? { onClick: () => sorting.sort(id) } : {}
-          return (
-            <Row.Cell
-              {...onclick}
-              {...props}
-              sortable={sortable}
-              sorting={cellSorting}
-              className={cellClassName}
-              sticky={sticky}
-              header>
+
+          const suffix = sortable && (
+            <Cell.Suffix sorting={currentlySorting} ascending={ascending} />
+          )
+          const props = {
+            ...receivedProps,
+            className: classNames('bt normal', { pointer: sortable }),
+            sorting: currentlySorting,
+            onClick: () => sortable && sorting && sorting.sort(id),
+            sortable,
+            sticky,
+            header: true,
+          }
+
+          return children ? (
+            children({ props, key: id, column, suffix })
+          ) : (
+            <Row.Cell key={id} {...props}>
               {title}
-              {sortable && (
-                <Cell.Suffix sorting={cellSorting} ascending={ascending} />
-              )}
+              {suffix}
             </Row.Cell>
           )
         }}
@@ -46,6 +68,18 @@ const Thead: RFC<HTMLTableSectionElement> = (_, ref) => {
   )
 }
 
-export type ComposableThead = ComposableWithRef<HTMLTableSectionElement>
+interface Composites {
+  Cell?: FC<CellProps> & CellComposites
+}
 
-export default forwardRef(Thead)
+export type ComposableThead = ComposableWithRef<
+  HTMLTableSectionElement,
+  {},
+  Composites
+>
+
+const ForwardedThead: ComposableThead = forwardRef(Thead)
+
+ForwardedThead.Cell = Row.Cell
+
+export default ForwardedThead
