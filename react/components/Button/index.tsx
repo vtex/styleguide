@@ -1,4 +1,10 @@
-import React, { Fragment, SyntheticEvent, CSSProperties, useEffect, FC } from 'react'
+import React, {
+  Fragment,
+  SyntheticEvent,
+  CSSProperties,
+  useEffect,
+  FC,
+} from 'react'
 import PropTypes, { InferProps } from 'prop-types'
 
 import Spinner from '../Spinner'

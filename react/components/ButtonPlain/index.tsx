@@ -186,9 +186,7 @@ const ButtonPlain: FunctionComponent<Props> = props => {
       onFocus={props.onFocus}
       onBlur={props.onBlur}
       ref={
-        props.forwardedRef as RefObject<
-          HTMLAnchorElement & HTMLButtonElement
-        >
+        props.forwardedRef as RefObject<HTMLAnchorElement & HTMLButtonElement>
       }
       style={style}
       // Button-mode exclusive props
