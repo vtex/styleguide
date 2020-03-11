@@ -18,7 +18,7 @@ interface Props {
   testId: string
 }
 
-export function TextingProvider({
+export function TestingProvider({
   testId,
   children,
 }: PropsWithChildren<Props>) {

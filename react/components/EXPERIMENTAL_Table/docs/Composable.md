@@ -1,4 +1,4 @@
-⚠️The table combined with its hooks is already versatile enough to handle most tabular data display problems. But sometimes we are creating a new component that shares/extends API and/or styles of the Table. This advanced section explains how the table works internally so that you can compose your own components if needed.
+⚠️The table combined with its hooks is already versatile enough to handle most tabular data display problems. But sometimes we are creating a new component that shares/extends API and/or styles of the Table. This section explains how the table works internally so that you can compose your own components if needed.
 
 Table Sections (`Head`, `Body`, `Row`, and `Cell`) can be controlled by passing the `composableSections` property, which is false by default. This will expose disuse the default rendering and enable de composable one.
 

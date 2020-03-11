@@ -12,7 +12,7 @@ import DataTable from './DataTable'
 import { Column, Items, RFC } from './types'
 import useTableSort from './hooks/useTableSort'
 import { MeasuresProvider, useMeasuresContext } from './context/measures'
-import { TextingProvider, useTestingContext } from './context/testing'
+import { TestingProvider, useTestingContext } from './context/testing'
 import { LoadingProvider } from './context/loading'
 import { DataProvider } from './context/data'
 import { HeadProvider } from './context/head'
@@ -38,7 +38,7 @@ const Table: RFC<HTMLTableElement, Props> = (
   },
   ref
 ) => (
-  <TextingProvider testId={testId}>
+  <TestingProvider testId={testId}>
     <LoadingProvider empty={empty} loading={loading} emptyState={emptyState}>
       <MeasuresProvider measures={measures}>
         <DataProvider columns={columns} items={items}>
@@ -66,7 +66,7 @@ const Table: RFC<HTMLTableElement, Props> = (
         </DataProvider>
       </MeasuresProvider>
     </LoadingProvider>
-  </TextingProvider>
+  </TestingProvider>
 )
 
 function MotionContainer({ children }: PropsWithChildren<{}>) {

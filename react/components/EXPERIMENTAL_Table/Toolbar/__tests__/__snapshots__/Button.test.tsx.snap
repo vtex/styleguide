@@ -1,0 +1,514 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Table V2 Toolbar <Button /> spec renders all the sizes 1`] = `
+<DocumentFragment>
+  <div
+    class="relative mh2"
+    data-testid="testId__container"
+    id="id__container"
+    title="title"
+  >
+    <button
+      class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small bg-transparent b--transparent c-action-primary hover-b--transparent hover-bg-action-secondary hover-b--action-secondary pointer "
+      data-testid="testId"
+      tabindex="0"
+      type="button"
+    >
+      <div
+        class="vtex-button__label flex items-center justify-center h-100 ph5 "
+        style="padding-top: .25em; padding-bottom: .32em;"
+      >
+        <span
+          class="flex items-center nr1"
+        >
+          <div
+            class="mr2 nl2 flex items-center"
+          >
+            <span
+              class="c-on-base"
+              style="margin-top: 1.5px;"
+            />
+          </div>
+          <div>
+            <span
+              class="c-on-base"
+            >
+              label
+            </span>
+          </div>
+        </span>
+      </div>
+    </button>
+    Testing small
+  </div>
+  <div
+    class="relative mh2"
+    data-testid="testId__container"
+    id="id__container"
+    title="title"
+  >
+    <button
+      class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-regular t-action bg-transparent b--transparent c-action-primary hover-b--transparent hover-bg-action-secondary hover-b--action-secondary pointer "
+      data-testid="testId"
+      tabindex="0"
+      type="button"
+    >
+      <div
+        class="vtex-button__label flex items-center justify-center h-100 ph6 "
+        style="padding-top: .25em; padding-bottom: .32em;"
+      >
+        <span
+          class="flex items-center nr2"
+        >
+          <div
+            class="mr3 nl3 flex items-center"
+          >
+            <span
+              class="c-on-base"
+              style="margin-top: 1.5px;"
+            />
+          </div>
+          <div>
+            <span
+              class="c-on-base"
+            >
+              label
+            </span>
+          </div>
+        </span>
+      </div>
+    </button>
+    Testing regular
+  </div>
+  <div
+    class="relative mh2"
+    data-testid="testId__container"
+    id="id__container"
+    title="title"
+  >
+    <button
+      class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-large t-action--large bg-transparent b--transparent c-action-primary hover-b--transparent hover-bg-action-secondary hover-b--action-secondary pointer "
+      data-testid="testId"
+      tabindex="0"
+      type="button"
+    >
+      <div
+        class="vtex-button__label flex items-center justify-center h-100 ph7 "
+        style="padding-top: .25em; padding-bottom: .32em;"
+      >
+        <span
+          class="flex items-center nr3"
+        >
+          <div
+            class="mr4 nl4 flex items-center"
+          >
+            <span
+              class="c-on-base"
+              style="margin-top: 1.5px;"
+            />
+          </div>
+          <div>
+            <span
+              class="c-on-base"
+            >
+              label
+            </span>
+          </div>
+        </span>
+      </div>
+    </button>
+    Testing large
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Table V2 Toolbar <Button /> spec renders all variations 1`] = `
+<DocumentFragment>
+  <div
+    class="relative"
+    data-testid="testId__container"
+    id="id__container"
+    title="title"
+  >
+    <button
+      class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small bg-action-primary b--action-primary c-on-action-primary hover-bg-action-primary hover-b--action-primary hover-c-on-action-primary pointer "
+      data-testid="testId"
+      tabindex="0"
+      type="button"
+    >
+      <div
+        class="vtex-button__label flex items-center justify-center h-100 ph5 "
+        style="padding-top: .25em; padding-bottom: .32em;"
+      >
+        <span
+          class="flex items-center nr1"
+        >
+          <div
+            class="mr2 nl2 flex items-center"
+          >
+            <span
+              class=""
+              style="margin-top: 1.5px;"
+            />
+          </div>
+          <div>
+            <span
+              class=""
+            >
+              label
+            </span>
+          </div>
+        </span>
+      </div>
+    </button>
+    Testing Primary
+  </div>
+  <div
+    class="relative"
+    data-testid="testId__container"
+    id="id__container"
+    title="title"
+  >
+    <button
+      class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small bg-action-secondary b--action-secondary c-on-action-secondary hover-bg-action-secondary hover-b--action-secondary hover-c-on-action-secondary pointer "
+      data-testid="testId"
+      tabindex="0"
+      type="button"
+    >
+      <div
+        class="vtex-button__label flex items-center justify-center h-100 ph5 "
+        style="padding-top: .25em; padding-bottom: .32em;"
+      >
+        <span
+          class="flex items-center nr1"
+        >
+          <div
+            class="mr2 nl2 flex items-center"
+          >
+            <span
+              class=""
+              style="margin-top: 1.5px;"
+            />
+          </div>
+          <div>
+            <span
+              class=""
+            >
+              label
+            </span>
+          </div>
+        </span>
+      </div>
+    </button>
+    Testing Secondary
+  </div>
+  <div
+    class="relative mh2"
+    data-testid="testId__container"
+    id="id__container"
+    title="title"
+  >
+    <button
+      class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small bg-transparent b--transparent c-action-primary hover-b--transparent hover-bg-action-secondary hover-b--action-secondary pointer "
+      data-testid="testId"
+      tabindex="0"
+      type="button"
+    >
+      <div
+        class="vtex-button__label flex items-center justify-center h-100 ph5 "
+        style="padding-top: .25em; padding-bottom: .32em;"
+      >
+        <span
+          class="flex items-center nr1"
+        >
+          <div
+            class="mr2 nl2 flex items-center"
+          >
+            <span
+              class="c-on-base"
+              style="margin-top: 1.5px;"
+            />
+          </div>
+          <div>
+            <span
+              class="c-on-base"
+            >
+              label
+            </span>
+          </div>
+        </span>
+      </div>
+    </button>
+    Testing Tertiary
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Table V2 Toolbar <Button /> spec renders as group 1`] = `
+<DocumentFragment>
+  <div
+    class="relative mh2"
+    data-testid="testId__container"
+    id="id__container"
+  >
+    <button
+      class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 br--left min-h-small t-action--small bg-action-primary b--action-primary c-on-action-primary hover-bg-action-primary hover-b--action-primary hover-c-on-action-primary pointer "
+      data-testid="testId"
+      style="background-color: rgb(12, 56, 159); border-color: #0c389f;"
+      tabindex="0"
+      type="button"
+    >
+      <div
+        class="vtex-button__label flex items-center justify-center h-100 ph5 "
+        style="padding-top: .25em; padding-bottom: .32em;"
+      >
+        <span
+          class="flex items-center nr1"
+        >
+          <div
+            class="mr2 nl2 flex items-center"
+          >
+            <span
+              class="c-on-base"
+              style="margin-top: 1.5px;"
+            />
+          </div>
+          <div>
+            <span
+              class="c-on-base"
+            >
+              label
+            </span>
+          </div>
+        </span>
+      </div>
+    </button>
+    Testing
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Table V2 Toolbar <Button /> spec renders with and without icon 1`] = `
+<DocumentFragment>
+  <div
+    class="relative mh2"
+    data-testid="testId__container"
+    id="id__container"
+    title="title"
+  >
+    <button
+      class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small bg-transparent b--transparent c-action-primary hover-b--transparent hover-bg-action-secondary hover-b--action-secondary pointer "
+      data-testid="testId"
+      tabindex="0"
+      type="button"
+    >
+      <div
+        class="vtex-button__label flex items-center justify-center h-100 ph5 "
+        style="padding-top: .25em; padding-bottom: .32em;"
+      >
+        <span
+          class="flex items-center nr1"
+        >
+          <div
+            class="mr2 nl2 flex items-center"
+          >
+            <span
+              class="c-on-base"
+              style="margin-top: 1.5px;"
+            />
+          </div>
+          <div>
+            <span
+              class="c-on-base"
+            >
+              label
+            </span>
+          </div>
+        </span>
+      </div>
+    </button>
+    basic
+  </div>
+  <div
+    class="relative mh2"
+    data-testid="testId__container"
+    id="id__container"
+    title="title"
+  >
+    <button
+      class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small bg-transparent b--transparent c-action-primary hover-b--transparent hover-bg-action-secondary hover-b--action-secondary pointer "
+      data-testid="testId"
+      tabindex="0"
+      type="button"
+    >
+      <div
+        class="vtex-button__label flex items-center justify-center h-100 ph5 "
+        style="padding-top: .25em; padding-bottom: .32em;"
+      >
+        <span
+          class="flex items-center nr1"
+        >
+          <div
+            class="mr2 nl2 flex items-center"
+          >
+            <span
+              class="c-on-base"
+              style="margin-top: 1.5px;"
+            >
+              <div>
+                Icon
+              </div>
+            </span>
+          </div>
+          <div>
+            <span
+              class="c-on-base"
+            >
+              label
+            </span>
+          </div>
+        </span>
+      </div>
+    </button>
+    withIcon
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Table V2 Toolbar <Button /> spec renders with different states 1`] = `
+<DocumentFragment>
+  <div
+    class="relative mh2"
+    data-testid="testId__container"
+    id="id__container"
+    title="title"
+  >
+    <button
+      class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small bg-transparent b--transparent c-disabled "
+      data-testid="testId"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="vtex-button__spinner-container top-0 left-0 w-100 h-100 absolute flex justify-center items-center"
+      >
+        <svg
+          class="vtex__icon-spinner  c-action-primary "
+          height="15"
+          preserveAspectRatio="xMidYMid"
+          viewBox="0 0 100 100"
+          width="15"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <style>
+            
+            @keyframes vtex-spinner-rotate {
+              from {
+                transform-origin: 50% 50%;
+                transform: rotate(0deg);
+              }
+              to {
+                transform-origin: 50% 50%;
+                transform: rotate(360deg);
+              }
+            }
+
+            @keyframes vtex-spinner-fill {
+              0% {
+                stroke-dasharray: 0 0 2 251.32741228718345;
+              }
+              50% {
+                stroke-dasharray: 0 0 188.49555921538757 251.32741228718345;
+              }
+              100% {
+                stroke-dasharray: 0 249.32741228718345 188.49555921538757 251.32741228718345;
+              }
+            }
+
+            .vtex-spinner_circle {
+              animation: vtex-spinner-fill 1.25s infinite cubic-bezier(0.455, 0.030, 0.515, 0.955), vtex-spinner-rotate 0.625s infinite linear;
+            }
+          
+          </style>
+          <circle
+            class="vtex-spinner_circle"
+            cx="50"
+            cy="50"
+            fill="none"
+            r="40"
+            stroke="currentColor"
+            stroke-dasharray="0 0 188.49555921538757 251.32741228718345"
+            stroke-dashoffset="1"
+            stroke-linecap="round"
+            stroke-width="10"
+          />
+        </svg>
+      </span>
+      <span
+        class="vtex-button__label flex items-center justify-center h-100 ph5  o-0"
+      >
+        <span
+          class="flex items-center nr1"
+        >
+          <div
+            class="mr2 nl2 flex items-center"
+          >
+            <span
+              class="c-on-base"
+              style="margin-top: 1.5px;"
+            />
+          </div>
+          <div>
+            <span
+              class="c-on-base"
+            >
+              label
+            </span>
+          </div>
+        </span>
+      </span>
+    </button>
+    loading
+  </div>
+  <div
+    class="relative mh2"
+    data-testid="testId__container"
+    id="id__container"
+    title="title"
+  >
+    <button
+      class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small bg-transparent b--transparent c-disabled "
+      data-testid="testId"
+      disabled=""
+      tabindex="0"
+      type="button"
+    >
+      <div
+        class="vtex-button__label flex items-center justify-center h-100 ph5 "
+        style="padding-top: .25em; padding-bottom: .32em;"
+      >
+        <span
+          class="flex items-center nr1"
+        >
+          <div
+            class="mr2 nl2 flex items-center"
+          >
+            <span
+              class="c-muted-2"
+              style="margin-top: 1.5px;"
+            />
+          </div>
+          <div>
+            <span
+              class="c-muted-2"
+            >
+              label
+            </span>
+          </div>
+        </span>
+      </div>
+    </button>
+    disabled
+  </div>
+</DocumentFragment>
+`;
