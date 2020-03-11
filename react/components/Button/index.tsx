@@ -1,4 +1,4 @@
-import React, { Fragment, SyntheticEvent, CSSProperties } from 'react'
+import React, { Fragment, SyntheticEvent, CSSProperties, useEffect, FC } from 'react'
 import PropTypes, { InferProps } from 'prop-types'
 
 import Spinner from '../Spinner'
@@ -96,7 +96,7 @@ const propTypes = {
 
 type Props = InferProps<typeof propTypes>
 
-const Button: React.FC<Props> = props => {
+const Button: FC<Props> = props => {
   const {
     id,
     size,
@@ -134,7 +134,7 @@ const Button: React.FC<Props> = props => {
     value,
   } = props
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (icon) {
       console.warn(
         'Button: The prop "icon" of the "Button" component has been deprecated, and will be removed in a future version. Please use the component "ButtonWithIcon" instead'
