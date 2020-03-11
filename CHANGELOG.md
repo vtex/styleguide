@@ -7,10 +7,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-### Changed
-
-- Github CI test to `features` branch
-
 ### Added
 
 - Warning icon when input has errorMessage
