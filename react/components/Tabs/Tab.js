@@ -28,8 +28,9 @@ class Tab extends Component {
           fullWidth ? 'w-100' : ''
         } ${tabStyle}
         v-mid relative h-regular ph6 t-body bg-transparent outline-0
-
-        ${className}`}>
+        ${className}`}
+        style={{ minWidth: 128 }} // review here
+      >
         {label}
       </button>
     )

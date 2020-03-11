@@ -5,7 +5,6 @@ import React, {
   useRef,
   useCallback,
   useLayoutEffect,
-  useEffect,
   Children,
 } from 'react'
 import PropTypes, { InferProps } from 'prop-types'
@@ -30,6 +29,7 @@ const Tabs: FC<InferProps<typeof propTypes>> = ({
   const [lastShownTab, setLastShowTab] = useState(childrenArray.length)
 
   const tabsContainerRef = useRef(null)
+  const tabsFullContainerRef = useRef(null)
 
   const selectedTab: Tab = childrenArray.find(
     child => (child as Tab).props.active
@@ -38,44 +38,48 @@ const Tabs: FC<InferProps<typeof propTypes>> = ({
 
   const handleResizeWindow = useCallback(() => {
     if (tabsContainerRef.current) {
-      const tabsContainerWidth = tabsContainerRef.current.clientWidth
+      const { clientWidth: tabsContainerWidth } = tabsContainerRef.current
       let hideTabs = false
 
+      // verify if is necessary hide tabs
       const childrens = tabsContainerRef.current.children
       let sumTabWidths = 0
       let childIndex = 0
       for (; childIndex < childrens.length; childIndex++) {
-        const child = childrens[childIndex]
-        sumTabWidths += child.clientWidth
-        if (!hideTabs && sumTabWidths > tabsContainerWidth) {
+        const { clientWidth: childWidth } = childrens[childIndex]
+        sumTabWidths += childWidth
+        if (sumTabWidths > tabsContainerWidth) {
           hideTabs = true
           break
         }
       }
 
-      setLastShowTab(childIndex) // childIndex is indexed by 0
+      // verify if the last tab can fit without more tabs button
+      if (
+        childIndex + 1 === childrens.length &&
+        sumTabWidths <= tabsFullContainerRef.current.clientWidth
+      ) {
+        hideTabs = false
+      }
+
+      setLastShowTab(childIndex)
       setShowMoreTabsButton(hideTabs)
     }
-  }, [tabsContainerRef])
+  }, [tabsContainerRef, tabsFullContainerRef])
 
   useLayoutEffect(() => {
     const hasWindow = !(
       typeof window === 'undefined' || typeof window.Element === 'undefined'
     )
-
-    hasWindow && window.addEventListener('resize', handleResizeWindow)
+    if (hasWindow) {
+      handleResizeWindow()
+      window.addEventListener('resize', handleResizeWindow)
+    }
 
     return () => {
       hasWindow && window.removeEventListener('resize', handleResizeWindow)
     }
   }, [handleResizeWindow])
-
-  useEffect(() => {
-    const hasWindow = !(
-      typeof window === 'undefined' || typeof window.Element === 'undefined'
-    )
-    hasWindow && handleResizeWindow() // this line will have effect if tabs has minimum width, need it
-  }, [])
 
   return (
     <div
@@ -85,22 +89,23 @@ const Tabs: FC<InferProps<typeof propTypes>> = ({
       }`}>
       <div className="flex">
         <div
-          className="vtex-tabs__nav inline-flex flex-row bb b--muted-4 w-100"
+          className="vtex-tabs__nav inline-flex flex-row bb b--muted-4 w-100 overflow-hidden"
           ref={tabsContainerRef}>
-          {childrenArray.map((child, index) =>
+          {childrenArray.map((child: Tab, index) =>
             cloneElement(child, {
               fullWidth,
               key: child.props.key != null ? child.props.key : index,
-              className: `${index >= lastShownTab ? 'dn' : ''}`,
+              className: `${index >= lastShownTab ? 'o-0' : ''}`,
             })
           )}
         </div>
         {showMoreTabsButton && (
-          <button className="vtex-tab__button bt-0 bl-0 br-0 bb-0">
+          <button className="vtex-tab__nav bt-0 bl-0 br-0 bb-0">
             <OptionsDots />
           </button>
         )}
       </div>
+      <div ref={tabsFullContainerRef} className="w-100"></div>
       <div
         className={`vtex-tabs__content w-100 ${
           sticky ? 'overflow-y-auto' : ''
