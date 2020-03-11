@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Table V2 Toolbar <ButtonColumns /> spec renders the component 1`] = `
+<DocumentFragment>
+  <div
+    class="relative mh2"
+    data-testid="testId__columns__container"
+    id="vtex-table-v2__toolbar__button-columns__container"
+    title="Toggle visible fields"
+  >
+    <button
+      class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small icon-button dib bg-transparent b--transparent c-action-primary hover-b--transparent hover-bg-action-secondary hover-b--action-secondary pointer "
+      data-testid="testId__columns"
+      style="font-size: 0px;"
+      tabindex="0"
+      type="button"
+    >
+      <div
+        class="vtex-button__label flex items-center justify-center h-100 ph3 "
+        style="padding-top: .25em; padding-bottom: .32em;"
+      >
+        <span
+          class="c-on-base"
+          style="margin-top: 1.5px;"
+        >
+          <svg
+            class="vtex__icon-columns  "
+            fill="none"
+            height="14"
+            viewBox="0 0 16 16"
+            width="12.444444444444445"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <path
+              d="M1 4H15V15H1V4Z"
+              stroke="currentColor"
+              stroke-width="2"
+            />
+            <path
+              d="M0 1C0 0.447715 0.447715 0 1 0H15C15.5523 0 16 0.447715 16 1V5H0V1Z"
+              fill="currentColor"
+            />
+            <line
+              stroke="currentColor"
+              stroke-width="2"
+              x1="8.11133"
+              x2="8.11133"
+              y1="4.70586"
+              y2="14.1176"
+            />
+          </svg>
+        </span>
+      </div>
+    </button>
+  </div>
+</DocumentFragment>
+`;

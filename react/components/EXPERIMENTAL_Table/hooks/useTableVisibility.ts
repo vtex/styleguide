@@ -3,7 +3,7 @@ import { useMemo, useState, useCallback } from 'react'
 import { Column } from '../types'
 
 export default function useTableVisibility({
-  columns,
+  columns = [],
   hiddenColumns: initHiddenColumns = [],
 }: VisibilityData) {
   const [hiddenColumns, setHiddenColumns] = useState(initHiddenColumns)

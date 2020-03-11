@@ -81,9 +81,9 @@ export type ButtonColumnsProps = {
   label: string
   showAllLabel: string
   hideAllLabel: string
-  alignMenu: Alignment
-  disabled: boolean
   visibility: ReturnType<typeof useTableVisibility>
+  alignMenu?: Alignment
+  disabled?: boolean
 }
 
 export default ButtonColumns
