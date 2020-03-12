@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/unambiguous
 'use strict'
 
 // This is a custom Jest transformer turning style imports into empty objects.

@@ -46,7 +46,6 @@ class InputCurrency extends Component {
       forwardedRef,
       /** We exclude the onChange event because
        * NumberFormat uses onValueChange instead */
-      /* eslint-disable-next-line no-unused-vars */
       onChange,
       ...props
     } = this.props

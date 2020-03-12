@@ -1,4 +1,3 @@
-/* eslint-disable import/unambiguous */
 const config = require('vtex-tachyons/config.json')
 
 module.exports = {
