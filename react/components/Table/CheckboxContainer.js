@@ -28,7 +28,8 @@ class CheckboxContainer extends Component {
             e.stopPropagation()
             onClick(id)
             // prevents the onRowClick event from happening
-          }}>
+          }}
+        >
           <Checkbox
             checked={checked}
             partial={partial}

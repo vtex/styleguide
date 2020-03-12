@@ -52,7 +52,8 @@ export default function Selector({
         ...containerStyle,
         willChange: 'transform',
         top: 6.5,
-      }}>
+      }}
+    >
       {(active || displayPopup) && (
         <div className="absolute pb4" style={{ left: '50%', bottom: '100%' }}>
           <div className={popupClasses} style={{ left: '-50%' }}>
@@ -66,7 +67,8 @@ export default function Selector({
           height: '0.75rem',
           width: '0.75rem',
           boxShadow: '-1px 1px 3px rgba(0, 0, 0, 0.15)',
-        }}>
+        }}
+      >
         {icon}
       </div>
     </div>

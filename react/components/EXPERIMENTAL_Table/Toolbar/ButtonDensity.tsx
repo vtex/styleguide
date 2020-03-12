@@ -34,7 +34,8 @@ const ButtonDensity: FC<ButtonDensityProps> = ({
       ref={buttonRef}
       onClick={toggleBox}
       icon={<IconDensity size={IconSize.Medium} />}
-      disabled={disabled}>
+      disabled={disabled}
+    >
       {boxVisible && (
         <Box testId={densityTestId} height={BOX_HEIGHT} alignMenu={alignMenu}>
           {DENSITY_OPTIONS.map((key: Density, index) => {
@@ -46,8 +47,9 @@ const ButtonDensity: FC<ButtonDensityProps> = ({
                 onClick={() => {
                   setCurrentDensity(key)
                   setBoxVisible(false)
-                  handleCallback && handleCallback(key)
-                }}>
+                  handleCallback?.(key)
+                }}
+              >
                 {options[`${key}Label`]}
               </Item>
             )

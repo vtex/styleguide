@@ -131,7 +131,8 @@ export default class ToastManager extends Component {
           ref={this.container}
           style={{
             pointerEvents: 'none',
-          }}>
+          }}
+        >
           {currentToast && (
             <Toast
               message={currentToast.message}

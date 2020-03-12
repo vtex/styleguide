@@ -84,7 +84,7 @@ const Statement: React.FC<Props> = ({
         }
         onChangeStatement(newStatement)
       }}
-      renderObject={verbOptions && verbOptions.object}
+      renderObject={verbOptions?.object}
     />,
   ]
 
@@ -93,7 +93,8 @@ const Statement: React.FC<Props> = ({
       <div
         className={`flex w-100 items-start ${
           isFullWidth ? 'flex-column items-stretch' : ''
-        }`}>
+        }`}
+      >
         {isRtl ? statementAtoms.reverse() : statementAtoms}
       </div>
       {statement.error && (

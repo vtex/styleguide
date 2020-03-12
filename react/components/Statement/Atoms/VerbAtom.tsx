@@ -29,14 +29,15 @@ const VerbAtom: React.FC<Props> = ({
   return (
     <div
       className={`mh3 ${isFullWidth ? 'pb3' : ''} flex items-center`}
-      style={verbOptions.length !== 1 ? { minWidth: '20%' } : {}}>
+      style={verbOptions.length !== 1 ? { minWidth: '20%' } : {}}
+    >
       {verbOptions.length !== 1 ? (
         <div className="flex-auto">
           <Select
             clearable={false}
             disabled={disabled}
             multi={false}
-            onChange={option => onChange(option && option.value)}
+            onChange={option => onChange(option?.value)}
             options={verbOptions}
             placeholder=""
             value={value}

@@ -112,7 +112,7 @@ InputCurrency.propTypes = {
   size: PropTypes.string,
   defaultValue: PropTypes.number,
   value: PropTypes.number,
-  /** Locale ISO string ('en-US', 'pt-BR', etc.)*/
+  /** Locale ISO string ('en-US', 'pt-BR', etc.) */
   locale: PropTypes.string.isRequired,
   /** Currency code in ISO 4217 ('USD', 'BRL', etc.) */
   currencyCode: PropTypes.string.isRequired,

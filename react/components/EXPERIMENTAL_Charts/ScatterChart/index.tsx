@@ -52,7 +52,7 @@ ScatterChart.propTypes = {
   /** The source data, in which each element is an object. */
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
 
-  /** The config prop changes some styles of the chart. This prop should be given as an object.*/
+  /** The config prop changes some styles of the chart. This prop should be given as an object. */
   config: PropTypes.shape({
     xAxis: PropTypes.shape({
       axisLine: PropTypes.bool,

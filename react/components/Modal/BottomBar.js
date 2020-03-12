@@ -18,7 +18,8 @@ const BottomBar = props => {
         }
         ${styles.shadowTransition}
         ${showTopShadow ? 'shadow-4 ' : ''}
-      `}>
+      `}
+    >
       {children}
     </div>
   )

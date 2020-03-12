@@ -20,7 +20,8 @@ class Plus extends PureComponent {
         variation={solid ? 'solid' : null}
         size={newSize}
         block={block}
-        viewBox="0 0 20 20">
+        viewBox="0 0 20 20"
+      >
         {solid ? (
           <path
             fillRule="evenodd"

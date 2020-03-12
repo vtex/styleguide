@@ -41,7 +41,7 @@ export default function useCheckboxTree<T>({
   )
 
   useEffect(() => {
-    onToggle && onToggle({ checkedItems, disabledItems, item: lastToggledItem })
+    onToggle?.({ checkedItems, disabledItems, item: lastToggledItem })
   }, [checkedItems, disabledItems, lastToggledItem, onToggle, toggle])
 
   const toggleAll = useCallback(() => {
@@ -50,7 +50,7 @@ export default function useCheckboxTree<T>({
 
   useEffect(() => {
     const shake = (tree: Tree<T>) => {
-      const childNodes = tree[nodesKey] as Array<T>
+      const childNodes = tree[nodesKey] as T[]
 
       if (!childNodes || isEmpty(childNodes)) return
 
@@ -81,7 +81,7 @@ export default function useCheckboxTree<T>({
         checkedItems.some(comparator(item))
       const notDisabled = (item: T | Tree<T>) => !isDisabled(item)
 
-      const notDisabledChildren = children && children.filter(notDisabled)
+      const notDisabledChildren = children?.filter(notDisabled)
       const notEmpty = !!notDisabledChildren && !isEmpty(notDisabledChildren)
 
       return notEmpty
@@ -142,7 +142,7 @@ export default function useCheckboxTree<T>({
     uncheck(itemTree)
   }, [itemTree, uncheck])
 
-  const setChecked = (checked: Array<T>) => {
+  const setChecked = (checked: T[]) => {
     dispatch({ type: ActionType.SetChecked, checked })
   }
 

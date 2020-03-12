@@ -36,7 +36,8 @@ class FilterColapsible extends PureComponent {
               </span>
             </div>
           }
-          onClick={e => this.setState({ isCollapsibleOpen: e.target.isOpen })}>
+          onClick={e => this.setState({ isCollapsibleOpen: e.target.isOpen })}
+        >
           <div className="ma5">
             {isCollapsibleOpen && (
               <Statement

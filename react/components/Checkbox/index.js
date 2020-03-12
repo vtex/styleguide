@@ -33,11 +33,13 @@ class Checkbox extends PureComponent {
           {
             pointer: !disabled,
           }
-        )}>
+        )}
+      >
         <div
           className={classNames('vtex-checkbox__container relative w1 h1', {
             mr3: label,
-          })}>
+          })}
+        >
           <div
             className={classNames(
               'vtex-checkbox__inner-container h1 w1 absolute ba bw1 br1 ',
@@ -60,12 +62,14 @@ class Checkbox extends PureComponent {
             className="absolute w1 h1 flex o-100"
             style={{
               left: 0,
-            }}>
+            }}
+          >
             <div
               className={`absolute top-0 left-0 bottom-0 overflow-hidden w-100 flex items-center align-center justify-center ${
                 disabled ? 'c-on-disabled' : 'c-on-action-primary'
               }`}
-              style={{ transition: 'right 110ms ease-in-out 30ms' }}>
+              style={{ transition: 'right 110ms ease-in-out 30ms' }}
+            >
               {checked ? (
                 <CheckIcon size={12} color="currentColor" />
               ) : (
@@ -101,7 +105,8 @@ class Checkbox extends PureComponent {
               { 'c-on-base pointer': !disabled },
               { 't-small': size === 'small' }
             )}
-            htmlFor={id}>
+            htmlFor={id}
+          >
             {label}
           </label>
         )}

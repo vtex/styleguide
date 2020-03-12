@@ -18,7 +18,7 @@ export default function useTableProportion({ columns, ratio }: ProportionData) {
   }
 }
 
-function calculateWidths(columns: Array<Column>, ratio: Array<number>) {
+function calculateWidths(columns: Column[], ratio: number[]) {
   const slicedRatio = ratio.slice(0, columns.length)
   const sum = (acc: number, num: number) => acc + num
   const ratioSum = slicedRatio.reduce(sum, 0)
@@ -28,6 +28,6 @@ function calculateWidths(columns: Array<Column>, ratio: Array<number>) {
 }
 
 type ProportionData = {
-  columns: Array<Column>
-  ratio: Array<number>
+  columns: Column[]
+  ratio: number[]
 }

@@ -17,7 +17,8 @@ class TotalizerIcon extends PureComponent {
             height: CIRCLE_DIAMETER,
             width: CIRCLE_DIAMETER,
             backgroundColor: iconBackgroundColor,
-          }}>
+          }}
+        >
           {icon}
         </div>
       </div>

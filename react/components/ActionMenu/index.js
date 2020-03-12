@@ -88,7 +88,8 @@ class ActionMenu extends Component {
           align={align}
           width={menuWidth}
           options={options}
-          onClose={shouldCloseOnClick ? this.closeMenu : null}>
+          onClose={shouldCloseOnClick ? this.closeMenu : null}
+        >
           <ButtonWithIcon
             {...{
               icon:
@@ -100,7 +101,8 @@ class ActionMenu extends Component {
             isFirstOfGroup={isFirstOfGroup}
             isLastOfGroup={isLastOfGroup}
             isActiveOfGroup={isActiveOfGroup}
-            onClick={this.handleClick}>
+            onClick={this.handleClick}
+          >
             {label && (
               <span className="flex align-baseline items-center">
                 <span className={`${hideCaretIcon ? '' : 'mr3'}`}>{label}</span>
@@ -127,7 +129,7 @@ ActionMenu.defaultProps = {
 }
 
 ActionMenu.propTypes = {
-  /** Menu alignment in relation to the button*/
+  /** Menu alignment in relation to the button */
   align: PropTypes.oneOf(['right', 'left']),
   /** If should close the menu after clicking an option */
   shouldCloseOnClick: PropTypes.bool,
@@ -142,7 +144,7 @@ ActionMenu.propTypes = {
   label: PropTypes.node,
   /** Hide the automatic caret icon */
   hideCaretIcon: PropTypes.bool,
-  /** Menu width*/
+  /** Menu width */
   menuWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /** Menu options */
   options: PropTypes.arrayOf(

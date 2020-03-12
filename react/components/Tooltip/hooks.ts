@@ -6,9 +6,9 @@ import { setRef } from '../utils/react'
 
 export type Trigger = 'click' | 'hover' | 'focus'
 
-export function useRect(nodeRef, observe = true) {
+export function useRect(nodeRef: any, observe = true) {
   const [rect, setRect] = useState(null)
-  const observerRef = useRef(null)
+  const observerRef = useRef<any>(null)
   useLayoutEffect(() => {
     if (!observerRef.current && nodeRef.current) {
       observerRef.current = observeRect(nodeRef.current, setRect)
@@ -35,7 +35,7 @@ export function useTooltip({
     child: React.ReactElement & { ref?: RefObject<HTMLElement> }
   ) => {
     return {
-      ref: node => {
+      ref: (node: any) => {
         // Keep your own reference
         if (node) {
           setRef(childRef, node)
@@ -45,14 +45,14 @@ export function useTooltip({
       },
       ...(trigger === 'hover'
         ? {
-            onMouseEnter: (...args) => {
+            onMouseEnter: (...args: any) => {
               setVisible(true)
               const onMouseEnter = get(child, 'props.onMouseEnter')
               if (onMouseEnter) {
                 return onMouseEnter.call(child.props, ...args)
               }
             },
-            onMouseLeave: (...args) => {
+            onMouseLeave: (...args: any) => {
               setVisible(false)
               const onMouseLeave = get(child, 'props.onMouseLeave')
               if (onMouseLeave) {
@@ -63,7 +63,7 @@ export function useTooltip({
         : {}),
       ...(trigger === 'click' || trigger === 'focus'
         ? {
-            onClick: (...args) => {
+            onClick: (...args: any) => {
               // Firefox and Safari, both on Mac OS, doesn't focus on click, like
               // Google Chrome does, so...
               if (childRef.current) {
@@ -74,14 +74,14 @@ export function useTooltip({
                 return onClick.call(child.props, ...args)
               }
             },
-            onFocus: (...args) => {
+            onFocus: (...args: any) => {
               setVisible(true)
               const onFocus = get(child, 'props.onFocus')
               if (onFocus) {
                 return onFocus.call(child.props, ...args)
               }
             },
-            onBlur: (...args) => {
+            onBlur: (...args: any) => {
               setVisible(false)
               const onBlur = get(child, 'props.onBlur')
               if (onBlur) {

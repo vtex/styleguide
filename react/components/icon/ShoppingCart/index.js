@@ -19,7 +19,8 @@ class ShoppingCart extends PureComponent {
         name="shopping-cart"
         size={newSize}
         block={block}
-        viewBox="0 0 32 30">
+        viewBox="0 0 32 30"
+      >
         <path
           d="M8 30C9.65685 30 11 28.6569 11 27C11 25.3431 9.65685 24 8 24C6.34315 24 5 25.3431 5 27C5 28.6569 6.34315 30 8 30Z"
           fill={color}

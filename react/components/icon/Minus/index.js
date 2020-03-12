@@ -19,7 +19,8 @@ class Minus extends PureComponent {
         name="minus"
         variation={solid ? 'solid' : null}
         size={newSize}
-        block={block}>
+        block={block}
+      >
         {solid ? (
           <path
             xmlns="http://www.w3.org/2000/svg"

@@ -51,7 +51,8 @@ class BulkActions extends PureComponent {
               ...(canStickToTop && stickyStyle),
               height: hasRowsSelected ? DEFAULT_BAR_HEIGHT_PX : 0,
               transition: 'height 0.2s ease-in-out, padding 0.2s ease-in-out',
-            }}>
+            }}
+          >
             {hasBulkActions && (
               <div className="flex flex-row">
                 {hasPrimaryBulkAction && (
@@ -63,7 +64,8 @@ class BulkActions extends PureComponent {
                         bulkActions.main.handleCallback(
                           bulkActionsReturnedParameters
                         )
-                      }>
+                      }
+                    >
                       {bulkActions.main.label}
                     </Button>
                   </div>

@@ -18,6 +18,7 @@ class RGBInput extends React.Component {
 
     return value
   }
+
   handleChange = (event, key) => {
     const value = this.getValue(event)
 
@@ -31,6 +32,7 @@ class RGBInput extends React.Component {
       rgb,
     })
   }
+
   render() {
     return (
       <div className="relative flex mv3">

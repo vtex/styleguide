@@ -20,7 +20,8 @@ class Density extends PureComponent {
         size={newSize}
         block={block}
         viewBox="0 0 14 13"
-        fill={color}>
+        fill={color}
+      >
         <rect
           y="11.1426"
           width={newSize.width}

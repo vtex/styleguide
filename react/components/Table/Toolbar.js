@@ -147,7 +147,8 @@ class Toolbar extends PureComponent {
         id="toolbar"
         className={`mb5 flex flex-row w-100 ${
           isSearchBarVisible ? 'justify-between' : 'justify-end'
-        }`}>
+        }`}
+      >
         {inputSearch && (
           <div className={inputSearchAlone ? 'w-100 w-40-ns' : 'w-40'}>
             <InputSearch
@@ -162,12 +163,14 @@ class Toolbar extends PureComponent {
               id="toggleDensity"
               title={density.buttonLabel}
               ref={this.densityBtnRef}
-              className="relative mh1">
+              className="relative mh1"
+            >
               <ButtonWithIcon
                 icon={
                   <span
                     className="c-on-base mh2"
-                    style={ICON_OPTICAL_COMPENSATION}>
+                    style={ICON_OPTICAL_COMPENSATION}
+                  >
                     <IconDensity size={MEDIUM_ICON_SIZE} />
                   </span>
                 }
@@ -181,11 +184,13 @@ class Toolbar extends PureComponent {
                   className={`absolute ${
                     density.alignMenu === 'right' ? 'right-0' : 'left-0'
                   } z-999 ba b--muted-4 br2 mt2 mh2`}
-                  style={BOX_SHADOW_STYLE}>
+                  style={BOX_SHADOW_STYLE}
+                >
                   <div className="w-100 b2 br2 bg-base">
                     <div
                       style={{ height: 3 * FIELDS_BOX_ITEM_HEIGHT }}
-                      className="overflow-auto">
+                      className="overflow-auto"
+                    >
                       {DENSITY_OPTIONS.map((key, index) => {
                         const isKeySelected = selectedDensity === key
                         return (
@@ -199,9 +204,11 @@ class Toolbar extends PureComponent {
                               this.handleToggleBox('isDensityBoxVisible')
                               density.handleCallback &&
                                 density.handleCallback(key)
-                            }}>
+                            }}
+                          >
                             <span
-                              className={`w-100 ${isKeySelected ? 'fw5' : ''}`}>
+                              className={`w-100 ${isKeySelected ? 'fw5' : ''}`}
+                            >
                               {density[`${key}OptionLabel`]}
                             </span>
                           </div>
@@ -218,12 +225,14 @@ class Toolbar extends PureComponent {
               id="toggleFieldsBtn"
               title={fields.label}
               ref={this.fieldsBtnRef}
-              className="relative mh1">
+              className="relative mh1"
+            >
               <ButtonWithIcon
                 icon={
                   <span
                     className="c-on-base mh2"
-                    style={ICON_OPTICAL_COMPENSATION}>
+                    style={ICON_OPTICAL_COMPENSATION}
+                  >
                     <IconColumns size={MEDIUM_ICON_SIZE} />
                   </span>
                 }
@@ -236,32 +245,37 @@ class Toolbar extends PureComponent {
                 <div
                   className={`absolute ${
                     fields.alignMenu === 'right' ? 'right-0' : 'left-0'
-                  } z-999 ba b--muted-4 br2 mt2 mh2`}>
+                  } z-999 ba b--muted-4 br2 mt2 mh2`}
+                >
                   <div
                     className="w-100 b2 br2 bg-base"
                     style={{
                       ...BOX_SHADOW_STYLE,
                       width: FIELDS_BOX_WIDTH,
-                    }}>
+                    }}
+                  >
                     <div className="flex inline-flex bb b--muted-4 w-100 pl6 pv4">
                       <Button
                         variation="secondary"
                         size="regular"
-                        onClick={onShowAllColumns}>
+                        onClick={onShowAllColumns}
+                      >
                         {fields.showAllLabel}
                       </Button>
                       <div className="mh4">
                         <Button
                           variation="secondary"
                           size="regular"
-                          onClick={onHideAllColumns}>
+                          onClick={onHideAllColumns}
+                        >
                           {fields.hideAllLabel}
                         </Button>
                       </div>
                     </div>
                     <div
                       style={{ height: this.calculateFieldsBoxHeight() }}
-                      className="overflow-auto">
+                      className="overflow-auto"
+                    >
                       {Object.keys(schema.properties)
                         .filter(
                           field =>
@@ -271,7 +285,8 @@ class Toolbar extends PureComponent {
                           <div
                             key={index}
                             className="flex justify-between ph6 pv3 pointer hover-bg-muted-5"
-                            onClick={() => onToggleColumn(field)}>
+                            onClick={() => onToggleColumn(field)}
+                          >
                             <span className="w-70 truncate">
                               {schema.properties[field].title || field}
                             </span>
@@ -292,7 +307,8 @@ class Toolbar extends PureComponent {
               <ButtonWithIcon
                 icon={
                   <span
-                    className={`${download.disabled ? '' : forcedColor} mh2`}>
+                    className={`${download.disabled ? '' : forcedColor} mh2`}
+                  >
                     <IconDownload size={MEDIUM_ICON_SIZE} />
                   </span>
                 }
@@ -300,7 +316,8 @@ class Toolbar extends PureComponent {
                 disabled={download.disabled}
                 isLoading={download.isLoading}
                 size="regular"
-                onClick={download.handleCallback}>
+                onClick={download.handleCallback}
+              >
                 {download.label && (
                   <span className={`${download.disabled ? '' : forcedColor}`}>
                     {download.label}
@@ -315,7 +332,8 @@ class Toolbar extends PureComponent {
                 icon={
                   <span
                     className={`${upload.disabled ? '' : forcedColor} mh2`}
-                    style={ICON_OPTICAL_COMPENSATION}>
+                    style={ICON_OPTICAL_COMPENSATION}
+                  >
                     <IconUpload size={HEAVY_ICON_SIZE} />
                   </span>
                 }
@@ -323,7 +341,8 @@ class Toolbar extends PureComponent {
                 disabled={upload.disabled}
                 isLoading={upload.isLoading}
                 size="regular"
-                onClick={upload.handleCallback}>
+                onClick={upload.handleCallback}
+              >
                 {upload.label && (
                   <span className={`${upload.disabled ? '' : forcedColor}`}>
                     {upload.label}
@@ -363,7 +382,8 @@ class Toolbar extends PureComponent {
                     key="new-line-button"
                     icon={<IconPlus solid size={LIGHT_ICON_SIZE} />}
                     onClick={newLine.handleCallback}
-                    {...newLineButtonProps}>
+                    {...newLineButtonProps}
+                  >
                     {newLine.label}
                   </ButtonWithIcon>,
                   <ActionMenu
@@ -378,7 +398,8 @@ class Toolbar extends PureComponent {
               <ButtonWithIcon
                 icon={<IconPlus solid size={LIGHT_ICON_SIZE} />}
                 onClick={newLine.handleCallback}
-                {...newLineButtonProps}>
+                {...newLineButtonProps}
+              >
                 {newLine.label}
               </ButtonWithIcon>
             ))}

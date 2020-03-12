@@ -11,7 +11,7 @@ export type Position = 'top' | 'right' | 'bottom' | 'left'
 export type Size = 'mini' | 'small'
 
 const OFFSET = 8
-const hasComputedDimensions = rect => rect && rect.width && rect.height
+const hasComputedDimensions = rect => rect?.width && rect.height
 
 function getChildRefPropType() {
   if (typeof HTMLElement !== 'undefined') {
@@ -102,7 +102,8 @@ const TooltipPopup: FC<PropTypes.InferProps<typeof propTypes>> = ({
           transition: `opacity ${duration}ms ${timmingFn} ${delay}ms`,
         }}
         ref={popupRef}
-        onTransitionEnd={() => setShowPopup(visible)}>
+        onTransitionEnd={() => setShowPopup(visible)}
+      >
         {label}
       </div>
     </Portal>

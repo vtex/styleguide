@@ -1,17 +1,20 @@
 // From @reach-ui
 const props = ['width', 'height', 'top', 'right', 'bottom', 'left']
 
-const rectChanged = (a = {}, b = {}) => props.some(prop => a[prop] !== b[prop])
+const rectChanged = (a: any = {}, b: any = {}) =>
+  props.some(prop => a[prop] !== b[prop])
 
 const observedNodes = new Map()
-let rafId = null
+let rafId: any = null
 
 const run = () => {
   observedNodes.forEach(state => {
     if (state.hasRectChanged) {
-      state.callbacks.forEach(cb => cb(state.rect))
+      state.callbacks.forEach((cb: any) => cb(state.rect))
       state.hasRectChanged = false
     }
+
+    return null
   })
 
   setTimeout(() => {
@@ -23,13 +26,14 @@ const run = () => {
           state.rect = newRect
         }
       }
+      return null
     })
   }, 0)
 
   rafId = requestAnimationFrame(run)
 }
 
-export default (node, cb) => ({
+export default (node: any, cb: any) => ({
   observe() {
     const wasEmpty = observedNodes.size === 0
     if (observedNodes.has(node)) {
@@ -57,5 +61,7 @@ export default (node, cb) => ({
       // Stop the loop
       if (!observedNodes.size) cancelAnimationFrame(rafId)
     }
+
+    return null
   },
 })

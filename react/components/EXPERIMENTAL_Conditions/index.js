@@ -89,6 +89,7 @@ class EXPERIMENTAL_Conditions extends React.Component {
        It may even cease to exist without further notice 👻`
     )
   }
+
   render() {
     const {
       canDelete,
@@ -127,7 +128,8 @@ class EXPERIMENTAL_Conditions extends React.Component {
                 return (
                   <div
                     className="flex flex-column w-100 mv3"
-                    key={statementIndex}>
+                    key={statementIndex}
+                  >
                     <Statement
                       canDelete={canDelete}
                       isRtl={isRtl}
@@ -169,7 +171,8 @@ class EXPERIMENTAL_Conditions extends React.Component {
               marginLeft: -17,
               width: 'calc(100% + 34px)',
             }}
-            className="flex flex-row w-100 nowrap items-center mv3">
+            className="flex flex-row w-100 nowrap items-center mv3"
+          >
             <hr className="ma0 b--black-10 bb bb-0 w-100" />
           </div>
 
@@ -178,7 +181,8 @@ class EXPERIMENTAL_Conditions extends React.Component {
               variation="tertiary"
               size="small"
               disabled={!this.canAddNewCondition()}
-              onClick={this.handleAddNewCondition}>
+              onClick={this.handleAddNewCondition}
+            >
               <span className="flex align-baseline">
                 <span className="mr2">
                   <IconPlus solid size={16} color="currentColor" />

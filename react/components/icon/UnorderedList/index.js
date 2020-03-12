@@ -20,7 +20,8 @@ class UnorderedList extends PureComponent {
         size={newSize}
         block={block}
         viewBox="0 0 64 64"
-        fill={color}>
+        fill={color}
+      >
         <circle fill={color} cx="8" cy="12" r="6" />
         <circle fill={color} cx="8" cy="32" r="6" />
         <circle fill={color} cx="8" cy="52" r="6" />

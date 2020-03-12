@@ -14,7 +14,8 @@ const Totalizer: FC<TotalizerProps> = props => {
     <ActionBar
       id={NAMESPACES.TOTALIZER}
       testId={`${testId}__totalizer`}
-      order={ORDER_CLASSNAMES.TOTALIZER}>
+      order={ORDER_CLASSNAMES.TOTALIZER}
+    >
       <TotalizerBase {...props} />
     </ActionBar>
   )

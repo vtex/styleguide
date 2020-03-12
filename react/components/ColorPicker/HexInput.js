@@ -10,10 +10,11 @@ class HexInput extends React.Component {
     inputValue: '#000000',
     error: false,
   }
+
   handleChange = e => {
     e.preventDefault()
     const inputValue = e.target.value
-    this.setState({ inputValue: inputValue })
+    this.setState({ inputValue })
     if (this.validation(inputValue)) {
       const { onChange } = this.props
       const rgb = colorutil.hex.to.rgb(inputValue)
@@ -25,6 +26,7 @@ class HexInput extends React.Component {
       })
     }
   }
+
   validation = color => {
     const validColor = colorutil.validateHex(color)
     this.setState({

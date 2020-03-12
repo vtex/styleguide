@@ -19,7 +19,8 @@ class OptionsDots extends PureComponent {
         <g className="nc-icon-wrapper" fill={color}>
           <g
             className="nc-interact_dots-close-o-32"
-            transform="rotate(90 16 16)">
+            transform="rotate(90 16 16)"
+          >
             {' '}
             <g className="nc-dot_left" transform="translate(0)">
               {' '}

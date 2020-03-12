@@ -21,12 +21,12 @@ type Props = {
   operator: Operator
   options: SubjectOptions
   hideOperator?: boolean
-  statements: {
+  statements: Array<{
     subject: string
     verb: string
     object?: unknown
     error?: string
-  }[]
+  }>
   subjectPlaceholder: string
 }
 
@@ -154,7 +154,8 @@ const Conditions: React.FC<Props> = ({
                     <div
                       key="2"
                       className="ma3 c-muted-2 pointer hover-c-danger"
-                      onClick={() => handleRemoveStatement(statementIndex)}>
+                      onClick={() => handleRemoveStatement(statementIndex)}
+                    >
                       <IconClose size={25} />
                     </div>
                   ) : (
@@ -164,8 +165,9 @@ const Conditions: React.FC<Props> = ({
                         collapseRight
                         size="small"
                         icon={<IconClose className="c-on-action-primary" />}
-                        onClick={() => handleRemoveStatement(statementIndex)}>
-                        {labels.delete || DEFAULT_LABELS.delete}
+                        onClick={() => handleRemoveStatement(statementIndex)}
+                      >
+                        {labels.delete ?? DEFAULT_LABELS.delete}
                       </ButtonWithIcon>
                     </div>
                   )),
@@ -174,13 +176,15 @@ const Conditions: React.FC<Props> = ({
               return (
                 <div
                   className="flex flex-column w-100 mv3"
-                  key={statementIndex}>
+                  key={statementIndex}
+                >
                   <div
                     className={`flex ${
                       isFullWidth
                         ? 'flex-column items-strech'
                         : 'flex-row items-center'
-                    }`}>
+                    }`}
+                  >
                     {isRtl ? statementContent.reverse() : statementContent}
                   </div>
 
@@ -188,8 +192,8 @@ const Conditions: React.FC<Props> = ({
                     <Separator
                       label={
                         operator === 'all'
-                          ? labels.operatorAnd || DEFAULT_LABELS.operatorAnd
-                          : labels.operatorOr || DEFAULT_LABELS.operatorOr
+                          ? labels.operatorAnd ?? DEFAULT_LABELS.operatorAnd
+                          : labels.operatorOr ?? DEFAULT_LABELS.operatorOr
                       }
                     />
                   )}
@@ -207,8 +211,9 @@ const Conditions: React.FC<Props> = ({
             icon={<IconPlus solid size={MEDIUM_ICON_SIZE} />}
             iconPosition={isRtl ? 'right' : 'left'}
             disabled={!canAddNewCondition()}
-            onClick={handleAddNewCondition}>
-            {labels.addNewCondition || DEFAULT_LABELS.addNewCondition}
+            onClick={handleAddNewCondition}
+          >
+            {labels.addNewCondition ?? DEFAULT_LABELS.addNewCondition}
           </ButtonWithIcon>
         </div>
       </div>

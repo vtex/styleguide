@@ -38,7 +38,8 @@ class Dropdown extends Component {
     const { label, id, options } = this.props
     if (label) {
       return `Dropdown with the label "${label}"`
-    } else if (id) {
+    }
+    if (id) {
       return `Dropdown #${id}`
     }
     return `Dropdown with the options ${options
@@ -177,7 +178,8 @@ class Dropdown extends Component {
         className={`vtex-dropdown ${
           isInline ? 'vtex-dropdown--inline dib' : ''
         }`}
-        data-testid={testId}>
+        data-testid={testId}
+      >
         <label>
           {label && <span className={labelClasses}>{label}</span>}
           <div className={containerClasses} style={containerStyle}>
@@ -186,16 +188,19 @@ class Dropdown extends Component {
                 <div
                   className={`vtex-dropdown__caption flex-auto tl truncate ${
                     isInline ? '' : 'h-100'
-                  }`}>
+                  }`}
+                >
                   <div
-                    className={`${isInline ? '' : 'h-100'} flex items-center`}>
+                    className={`${isInline ? '' : 'h-100'} flex items-center`}
+                  >
                     {showCaption ? placeholder : valueLabel}
                   </div>
                 </div>
                 <div
                   className={`vtex-dropdown__arrow flex-none flex items-center pl2 ${
                     disabled ? 'c-on-disabled' : 'c-action-primary'
-                  }`}>
+                  }`}
+                >
                   <ArrowDownIcon size={iconSize} />
                 </div>
               </div>
@@ -216,7 +221,8 @@ class Dropdown extends Component {
               style={{
                 // safari select height fix
                 WebkitAppearance: 'menulist-button',
-              }}>
+              }}
+            >
               {/* iOS hack to optionally prevent truncating options */}
               {preventTruncate && <optgroup label={label || helpText || ''} />}
 
@@ -224,7 +230,8 @@ class Dropdown extends Component {
               {(!hasValidInitialValue || placeholder) && (
                 <option
                   disabled
-                  value={!hasValidInitialValue ? this.initialValue : null}>
+                  value={!hasValidInitialValue ? this.initialValue : null}
+                >
                   {this.getPlaceholder()}
                 </option>
               )}
@@ -283,7 +290,7 @@ Dropdown.propTypes = {
   id: PropTypes.string,
   /** Data attribute */
   testId: PropTypes.string,
-  /**  Data attribute for select*/
+  /**  Data attribute for select */
   selectTestId: PropTypes.string,
   /** Spec attribute */
   autoFocus: PropTypes.bool,

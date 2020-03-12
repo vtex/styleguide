@@ -187,7 +187,8 @@ export default class Toast extends Component {
           }`,
           transform: `translate3d(0, ${isOpen ? 0 : '170%'}, 0)`,
           minWidth: '18rem',
-        }}>
+        }}
+      >
         <div className="vtex-toast flex justify-between items-start items-center-ns t-body bg-base--inverted c-on-base--inverted pa5 br2-ns shadow-5">
           <div className={`${isSingleLine ? 'flex' : 'flex-ns'} flex-grow-1`}>
             <div className="flex items-center flex-grow-1">
@@ -206,7 +207,8 @@ export default class Toast extends Component {
                     target={action.target}
                     rel={action.rel}
                     download={action.download}
-                    onClick={this.handleActionClick}>
+                    onClick={this.handleActionClick}
+                  >
                     {action.label}
                   </Button>
                 </div>
@@ -217,7 +219,8 @@ export default class Toast extends Component {
             <div className="pt2 pt0-ns">
               <div
                 className="vtex-alert__close-icon pointer flex items-center pa3 white nr3 nv3"
-                onClick={this.handleCloseClick}>
+                onClick={this.handleCloseClick}
+              >
                 <CloseIcon color="currentColor" size={16} />
               </div>
             </div>

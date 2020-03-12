@@ -20,7 +20,8 @@ const TopBar = props => {
         ${responsiveFullScreen ? 'pl7 pr8 pl8-ns pl8-ns' : 'pl6 pr8 pl8-ns'}
         ${styles.shadowTransition}
         ${showBottomShadow ? 'shadow-4' : ''}
-      `}>
+      `}
+    >
       <span className="f3 c-on-base w-100">
         {title}
         {showBottomShadow}
@@ -30,7 +31,8 @@ const TopBar = props => {
           className={
             'vtex-modal__close-icon absolute top-0 right-0 pa5 pa6-ns pointer ml-auto items-center flex'
           }
-          onClick={onClose}>
+          onClick={onClose}
+        >
           <IconClose size={18} />
         </div>
       )}

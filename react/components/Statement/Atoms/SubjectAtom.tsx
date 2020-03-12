@@ -72,7 +72,7 @@ const SubjectAtom: React.FC<Props> = ({
     if (option) {
       return {
         group: group.label !== 'undefined' ? group.label : undefined,
-        option: option,
+        option,
       }
     }
   }, undefined)
@@ -80,14 +80,15 @@ const SubjectAtom: React.FC<Props> = ({
   return (
     <div
       className={`mh3 ${isFullWidth ? 'pb3' : ''}`}
-      style={{ minWidth: ATOM_COMPONENT_MIN_WIDTH }}>
+      style={{ minWidth: ATOM_COMPONENT_MIN_WIDTH }}
+    >
       <Select
         clearable={false}
         multi={false}
-        onChange={option => onChange(option && option.value)}
+        onChange={option => onChange(option?.value)}
         options={subjectOptions}
         placeholder={placeholder}
-        value={selected && selected.option}
+        value={selected?.option}
       />
     </div>
   )

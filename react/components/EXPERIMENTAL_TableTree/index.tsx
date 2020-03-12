@@ -50,7 +50,8 @@ const TableTree: FC<Props> & TableComposites = ({
         emptyState={emptyState}
         empty={empty}
         motion={motion}
-        height={tableHeight}>
+        height={tableHeight}
+      >
         <thead className="w-100 ph4 truncate overflow-x-hidden c-muted-2 f6">
           <Headings checkboxes={checkboxes} columns={columns} />
         </thead>
@@ -98,7 +99,7 @@ TableTree.Pagination = Pagination
 TableTree.propTypes = propTypes
 
 export type TreeState = {
-  collapsedItems: Array<string>
+  collapsedItems: string[]
   toggleCollapsed: (id: string) => void
   isCollapsed: (id: string) => boolean
 }
