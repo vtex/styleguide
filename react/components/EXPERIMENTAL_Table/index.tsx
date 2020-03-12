@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, PropsWithChildren, ReactElement } from 'react'
 import PropTypes, { InferProps } from 'prop-types'
 
 import Toolbar from './Toolbar/index'
@@ -14,7 +14,8 @@ import { Checkboxes } from '../EXPERIMENTAL_useCheckboxTree/types'
 import useTableMotion from './hooks/useTableMotion'
 import Totalizer, { TotalizerProps } from './Totalizer'
 import ActionBar, { ActionBarProps } from './ActionBar'
-import { TableProvider } from './context'
+import { TestingProvider, useTestingContext } from './context/testing'
+import { useMeasuresContext, MeasuresProvider } from './context/measures'
 
 const Table: FC<TableProps> & TableComposites = ({
   children,
@@ -37,53 +38,84 @@ const Table: FC<TableProps> & TableComposites = ({
     throw new Error('Provide measures to the Table')
   }
 
-  const { tableHeight, rowHeight, currentDensity } = measures
   const motion = useTableMotion()
 
   return (
+    <TestingProvider testId={testId}>
+      <MeasuresProvider measures={measures}>
+        <MotionContainer>
+          {children}
+          <DataTable
+            stickyHeader={stickyHeader}
+            empty={empty}
+            loading={loading}
+            emptyState={emptyState}
+            motion={motion}>
+            <Thead>
+              <Headings
+                sticky={stickyHeader}
+                sorting={sorting}
+                columns={columns}
+                checkboxes={checkboxes}
+              />
+            </Thead>
+            <Tbody empty={empty} loading={loading}>
+              <Rows
+                highlightOnHover={highlightOnHover}
+                rowKey={rowKey}
+                checkboxes={checkboxes}
+                columns={columns}
+                items={items}
+                onRowClick={onRowClick}
+                isRowActive={isRowActive}
+              />
+            </Tbody>
+          </DataTable>
+        </MotionContainer>
+      </MeasuresProvider>
+    </TestingProvider>
+  )
+}
+
+function MotionContainer({ children }: PropsWithChildren<{}>) {
+  const motion = useTableMotion()
+  const { testId } = useTestingContext()
+  const { tableHeight } = useMeasuresContext()
+  return (
     <div
-      id={NAMESPACES.CONTAINER}
       data-testid={`${testId}__container`}
       style={{ minHeight: tableHeight, ...motion }}
       className="flex flex-column">
-      <TableProvider testId={testId}>{children}</TableProvider>
-      <DataTable
-        stickyHeader={stickyHeader}
-        testId={testId}
-        empty={empty}
-        loading={loading}
-        emptyState={emptyState}
-        motion={motion}
-        height={tableHeight}>
-        <thead
-          id={NAMESPACES.HEADER}
-          data-testid={`${testId}__header`}
-          className="w-100 ph4 truncate overflow-x-hidden c-muted-2 f6">
-          <Headings
-            sticky={stickyHeader}
-            sorting={sorting}
-            columns={columns}
-            checkboxes={checkboxes}
-          />
-        </thead>
-
-        {!empty && !loading && (
-          <tbody id={NAMESPACES.BODY} data-testid={`${testId}__body`}>
-            <Rows
-              highlightOnHover={highlightOnHover}
-              rowKey={rowKey}
-              checkboxes={checkboxes}
-              currentDensity={currentDensity}
-              columns={columns}
-              items={items}
-              rowHeight={rowHeight}
-              onRowClick={onRowClick}
-              isRowActive={isRowActive}
-            />
-          </tbody>
-        )}
-      </DataTable>
+      {children}
     </div>
+  )
+}
+
+function Thead({ children }: PropsWithChildren<{}>) {
+  const { testId } = useTestingContext()
+  return (
+    <thead
+      data-testid={`${testId}__header`}
+      className="w-100 ph4 truncate overflow-x-hidden c-muted-2 f6">
+      {children}
+    </thead>
+  )
+}
+
+type BodyProps = PropsWithChildren<{
+  empty?: boolean
+  loading?: boolean | { renderAs?: ReactElement }
+}>
+
+function Tbody({ empty, loading, children }: BodyProps) {
+  const { testId } = useTestingContext()
+  return (
+    !empty &&
+    !loading && (
+      <tbody id={NAMESPACES.BODY} data-testid={`${testId}__body`}>
+        {children}
+      </tbody>
+    )
   )
 }
 

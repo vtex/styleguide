@@ -6,13 +6,11 @@ export const TABLE_HEADER_HEIGHT = 36
 
 export default function useTableMeasures({
   size = 0,
-  density = Density.Regular,
+  density: initialDensity = Density.Regular,
 }: MeasuresInput) {
-  const [currentDensity, setCurrentDensity] = useState<Density>(density)
+  const [density, setDensity] = useState<Density>(initialDensity)
 
-  const rowHeight = useMemo(() => getRowHeight(currentDensity), [
-    currentDensity,
-  ])
+  const rowHeight = useMemo(() => getRowHeight(density), [density])
 
   const tableHeight = useMemo(() => calculateTableHeight(rowHeight, size), [
     rowHeight,
@@ -20,10 +18,10 @@ export default function useTableMeasures({
   ])
 
   return {
-    currentDensity,
+    density,
     rowHeight,
     tableHeight,
-    setCurrentDensity,
+    setDensity,
   }
 }
 
