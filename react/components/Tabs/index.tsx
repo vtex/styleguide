@@ -11,6 +11,7 @@ import PropTypes, { InferProps } from 'prop-types'
 import debounce from 'lodash/debounce'
 
 import Tab from './Tab'
+import Menu from '../Menu'
 import OptionsDots from '../icon/OptionsDots'
 
 const propTypes = {
@@ -28,6 +29,7 @@ const Tabs: FC<InferProps<typeof propTypes>> = ({
 
   const [showMoreTabsButton, setShowMoreTabsButton] = useState(false)
   const [lastShownTab, setLastShowTab] = useState(childrenArray.length)
+  const [tabsMenuOpen, setTabsMenuOpen] = useState(false)
 
   const tabsContainerRef = useRef(null)
   const tabsFullContainerRef = useRef(null)
@@ -89,6 +91,14 @@ const Tabs: FC<InferProps<typeof propTypes>> = ({
     }
   }, [handleResizeWindow])
 
+  const getHiddenTabProps = (child: Tab) => {
+    const { label, onClick } = child.props
+    return { label, onClick }
+  }
+
+  const getAllHiddenTabs = () =>
+    childrenArray.slice(lastShownTab).map(getHiddenTabProps)
+
   return (
     <div
       data-testid={testId}
@@ -108,9 +118,20 @@ const Tabs: FC<InferProps<typeof propTypes>> = ({
           )}
         </div>
         {showMoreTabsButton && (
-          <button className="vtex-tab__nav bt-0 bl-0 br-0 bb-0">
-            <OptionsDots />
-          </button>
+          <Menu
+            options={getAllHiddenTabs()}
+            open={tabsMenuOpen}
+            onClose={() => {
+              setTabsMenuOpen(false)
+            }}>
+            <button
+              onClick={() => {
+                setTabsMenuOpen(true)
+              }}
+              className={`vtex-tab__button vtex-tab__button--inactive c-muted-1 b--transparent hover-c-action-primary pointer bt-0 bl-0 br-0 bb-0 v-mid relative h-regular t-body bg-transparent`}>
+              <OptionsDots />
+            </button>
+          </Menu>
         )}
       </div>
       <div ref={tabsFullContainerRef} className="w-100"></div>
