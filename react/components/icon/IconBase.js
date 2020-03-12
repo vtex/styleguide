@@ -25,7 +25,8 @@ export const Svg = props => {
       className={`${baseClassname(name, variation)} ${block ? 'db' : ''}`}
       width={size.width}
       height={size.height}
-      {...svgProps}>
+      {...svgProps}
+    >
       {element}
     </svg>
   )

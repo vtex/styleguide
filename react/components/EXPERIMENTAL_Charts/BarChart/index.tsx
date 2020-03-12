@@ -54,7 +54,7 @@ BarChart.propTypes = {
   yAxisKey: PropTypes.string,
 
   /** The schema prop changes some styles of the chart.
-   * This prop should be given as an object. Check an example [here](/#/Components/Charts/LineChart?id=chart-config)*/
+   * This prop should be given as an object. Check an example [here](/#/Components/Charts/LineChart?id=chart-config) */
   config: PropTypes.shape({
     xAxis: PropTypes.shape({
       axisLine: PropTypes.bool,

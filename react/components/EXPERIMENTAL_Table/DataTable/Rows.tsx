@@ -25,9 +25,8 @@ const Rows: FC<RowsProps> = ({
       {items.map(rowData => {
         const toggleChecked = () => checkboxes.toggle(rowData)
 
-        const isRowChecked = checkboxes && checkboxes.isChecked(rowData)
-        const isRowPartiallyChecked =
-          checkboxes && checkboxes.isPartiallyChecked(rowData)
+        const isRowChecked = checkboxes?.isChecked(rowData)
+        const isRowPartiallyChecked = checkboxes?.isPartiallyChecked(rowData)
         const isRowSelected = isRowChecked || isRowPartiallyChecked
 
         const clickable = onRowClick
@@ -41,9 +40,10 @@ const Rows: FC<RowsProps> = ({
             {...rowProps}
             {...clickable}
             height={rowHeight}
-            active={(isRowActive && isRowActive(rowData)) || isRowSelected}
+            active={isRowActive?.(rowData) ?? isRowSelected}
             key={rowKey({ rowData })}
-            motion={motion}>
+            motion={motion}
+          >
             {columns.map((column: Column, cellIndex: number) => {
               const { cellRenderer, width } = column
               const data = column.condensed
@@ -85,7 +85,7 @@ const Rows: FC<RowsProps> = ({
 }
 
 export type RowsProps = {
-  columns: Array<Column>
+  columns: Column[]
   items: Items
   currentDensity: Density
   rowKey?: ({ rowData: unknown }) => string

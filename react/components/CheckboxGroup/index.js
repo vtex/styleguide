@@ -100,7 +100,7 @@ CheckboxGroup.propTypes = {
   disabled: PropTypes.bool,
   /** (Input spec attribute) */
   id: PropTypes.string.isRequired,
-  /** Checkbox Group label (i.e. main checkbox label)*/
+  /** Checkbox Group label (i.e. main checkbox label) */
   label: PropTypes.string,
   /** (Input spec attribute) */
   name: PropTypes.string.isRequired,

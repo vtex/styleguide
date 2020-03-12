@@ -30,19 +30,22 @@ const DataTable: FC<DataTableProps> = ({
           'overflow-y-auto': stickyHeader,
         },
         ORDER_CLASSNAMES.TABLE
-      )}>
+      )}
+    >
       <table
         id={NAMESPACES.TABLE}
         data-testid={testId}
         className={classNames('w-100', className)}
-        style={{ borderSpacing: 0 }}>
+        style={{ borderSpacing: 0 }}
+      >
         {children}
       </table>
       {showLoading && (
         <Loading
           testId={`${testId}__loading`}
           motion={motion}
-          height={height - TABLE_HEADER_HEIGHT}>
+          height={height - TABLE_HEADER_HEIGHT}
+        >
           {typeof loading !== 'boolean' &&
             loading.renderAs &&
             loading.renderAs()}

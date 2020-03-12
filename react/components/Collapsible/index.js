@@ -118,7 +118,8 @@ class Collapsible extends Component {
           role="button"
           onClick={() => handleClick(callback, !isOpen)}
           onKeyDown={e => e.key === 'Enter' && handleClick(callback, !isOpen)}
-          aria-expanded={isOpen}>
+          aria-expanded={isOpen}
+        >
           {align === 'left' ? (
             <Fragment>
               <div className={`${color} mr3 self-${arrowAlign}`}>
@@ -139,7 +140,8 @@ class Collapsible extends Component {
           ref={this.childrenRef}
           style={childrenContainerStyle}
           role="region"
-          onTransitionEnd={this.handleTransitionEnd}>
+          onTransitionEnd={this.handleTransitionEnd}
+        >
           {children}
         </div>
       </div>
@@ -170,9 +172,9 @@ Collapsible.propTypes = {
   isOpen: PropTypes.bool,
   /** _onClick_ event. */
   onClick: PropTypes.func,
-  /** Color or semantic to be applied to the Caret Icon in the Collapsible header.*/
+  /** Color or semantic to be applied to the Caret Icon in the Collapsible header. */
   caretColor: PropTypes.oneOf(Object.keys(colorMap)),
-  /** Vertical position of arrow icon.*/
+  /** Vertical position of arrow icon. */
   arrowAlign: PropTypes.oneOf([
     'start',
     'center',

@@ -86,7 +86,8 @@ class Pagination extends PureComponent {
               'justify-between': rowsOptions,
               'justify-end': !rowsOptions,
             },
-          ])}>
+          ])}
+        >
           {dropdownOptions && (
             <div className="flex flex-row pt5 items-baseline">
               <span className="mr4 c-muted-2 t-small self-center">

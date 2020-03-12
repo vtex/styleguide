@@ -26,7 +26,8 @@ class ToastProvider extends Component {
               showToast,
               hideToast,
               toastState,
-            }}>
+            }}
+          >
             {children}
           </ToastContext.Provider>
         )}

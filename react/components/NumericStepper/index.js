@@ -16,9 +16,11 @@ const validateValue = (value, min, max, defaultValue) => {
     if (defaultValue < min) return min
     if (defaultValue > max) return max
     return defaultValue
-  } else if (value < min) {
+  }
+  if (value < min) {
     return min
-  } else if (value > max) {
+  }
+  if (value > max) {
     return max
   }
   return parseInt(value, 10)
@@ -213,7 +215,8 @@ class NumericStepper extends Component {
       <React.Fragment>
         {label && (
           <span
-            className={`numeric-stepper__label db mb3 w-100 c-on-base ${labelClasses}`}>
+            className={`numeric-stepper__label db mb3 w-100 c-on-base ${labelClasses}`}
+          >
             {label}
           </span>
         )}
@@ -248,7 +251,8 @@ class NumericStepper extends Component {
               disabled={readOnly || isMax}
               aria-label="+"
               tabIndex={0}
-              onClick={this.handleIncreaseValue}>
+              onClick={this.handleIncreaseValue}
+            >
               <div className="numeric-stepper__plus-button__text b">
                 {/* fullwidth plus sign (U+FF0B) http://graphemica.com/%EF%BC%8B */}
                 ＋
@@ -273,7 +277,8 @@ class NumericStepper extends Component {
               // which is the default keyboard character.
               // Used for screen readers.
               tabIndex={0}
-              onClick={this.handleDecreaseValue}>
+              onClick={this.handleDecreaseValue}
+            >
               <span className="numeric-stepper__minus-button__text b">
                 {/* fullwidth hyphen-minus (U+FF0D) http://graphemica.com/%EF%BC%8D */}
                 －

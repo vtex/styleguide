@@ -316,14 +316,16 @@ export default class Slider extends Component {
             userSelect: 'none',
           }}
           onMouseDown={this.handleSliderMouseDown}
-          onTouchStart={this.handleSliderMouseDown}>
+          onTouchStart={this.handleSliderMouseDown}
+        >
           <div
             ref={this.sliderRef}
             className="vtex-slider__base w-100 bg-muted-4 absolute br-pill overflow-hidden"
             style={{
               height: '0.25rem',
               top: '0.7rem',
-            }}>
+            }}
+          >
             <div
               className={classNames('absolute h-100', {
                 'bg-action-primary': !disabled,

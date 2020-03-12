@@ -31,7 +31,8 @@ class StrategySelector extends React.Component {
             style={{
               // safari select height fix
               WebkitAppearance: 'menulist-button',
-            }}>
+            }}
+          >
             <option value="all">{labels.operatorAll}</option>
             <option value="any">{labels.operatorAny}</option>
           </select>

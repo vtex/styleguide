@@ -19,7 +19,8 @@ class Spinner extends React.Component {
         viewBox="0 0 100 100"
         preserveAspectRatio="xMidYMid"
         height={size}
-        width={size}>
+        width={size}
+      >
         <style>
           {`
             @keyframes vtex-spinner-rotate {

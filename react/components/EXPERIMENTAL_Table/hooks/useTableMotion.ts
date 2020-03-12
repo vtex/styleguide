@@ -64,6 +64,7 @@ function useReducedMotion(init = false) {
         throttle(() => setReduced(mql.matches), 200)
       }
     }
+
     mql.addListener(listener)
     return () => {
       mql.removeListener(listener)

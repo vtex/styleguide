@@ -90,7 +90,8 @@ class Dropzone extends PureComponent {
         onDropAccepted={this.handleDropAccepted}
         onDropRejected={this.handleDropRejected}
         onDragEnter={this.handleDragEnter}
-        onDragLeave={this.handleDragLeave}>
+        onDragLeave={this.handleDragLeave}
+      >
         {({ getRootProps, getInputProps }) => (
           <div className={dropzoneContainerClasses} {...getRootProps()}>
             {isLoading ? (
@@ -106,7 +107,8 @@ class Dropzone extends PureComponent {
                       files.length > 1 && fileIndex !== files.length - 1
                         ? 'mb2'
                         : ''
-                    }`}>
+                    }`}
+                  >
                     <span>{file.name}</span>
                     <ButtonWithIcon
                       onClick={() => this.handleRemoveFile(fileIndex)}
@@ -144,7 +146,7 @@ Dropzone.defaultProps = {
 Dropzone.propTypes = {
   /** Callback when file(s) is(are) droppped and accepted */
   onDropAccepted: PropTypes.func.isRequired,
-  /** Callback when file(s) is(are) droppped and rejected (e.g: when props.multiple is false and multiple files are dragged and dropped.*/
+  /** Callback when file(s) is(are) droppped and rejected (e.g: when props.multiple is false and multiple files are dragged and dropped. */
   onDropRejected: PropTypes.func,
   /** Callback when a file is removed */
   onFileReset: PropTypes.func,

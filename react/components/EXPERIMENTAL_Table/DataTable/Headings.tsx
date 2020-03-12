@@ -20,8 +20,7 @@ const Headings: FC<HeadingsProps> = ({
       {columns.map((columnData: Column, headerIndex: number) => {
         const { id, title, width, sortable } = columnData
         const cellClassName = classNames('bt normal', { pointer: sortable })
-        const cellSorting =
-          sorting && sorting.sorted && sorting.sorted.by === id
+        const cellSorting = sorting?.sorted && sorting.sorted.by === id
         const ascending = sorting && sorting.sorted.order !== 'DSC'
         const onclick =
           sortable && sorting ? { onClick: () => sorting.sort(id) } : {}
@@ -34,7 +33,8 @@ const Headings: FC<HeadingsProps> = ({
             key={headerIndex}
             width={width}
             sticky={sticky}
-            header>
+            header
+          >
             {checkboxes && headerIndex === 0 && (
               <Cell.Prefix>
                 <span className="ph3">
@@ -60,7 +60,7 @@ const Headings: FC<HeadingsProps> = ({
 }
 
 type HeadingsProps = {
-  columns: Array<Column>
+  columns: Column[]
   rowProps?: RowProps
   checkboxes?: Checkboxes<unknown>
   sorting?: Partial<ReturnType<typeof useTableSort>>

@@ -258,7 +258,8 @@ class Input extends Component {
                 isLoading={isLoadingButton}
                 size={size === 'large' ? 'regular' : 'small'}
                 type="submit"
-                variation="secondary">
+                variation="secondary"
+              >
                 {button}
               </Button>
             </span>

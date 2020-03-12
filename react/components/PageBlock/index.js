@@ -30,7 +30,8 @@ class PageBlock extends Component {
         className={`styleguide__pageBlock flex ${
           isAnnotated ? 'flex-row' : 'flex-column'
         }`}
-        data-testid={testId}>
+        data-testid={testId}
+      >
         {/* Title, subtitle & aside */}
         {(title || subtitle) && (
           <div className={headerClasses}>
@@ -39,7 +40,8 @@ class PageBlock extends Component {
               {subtitle && (
                 <div
                   className={`t-body lh-copy c-muted-1 mb7 ml3 ${!isAnnotated &&
-                    'w-two-thirds-ns w-100'}`}>
+                    'w-two-thirds-ns w-100'}`}
+                >
                   {subtitle}
                 </div>
               )}
@@ -53,7 +55,8 @@ class PageBlock extends Component {
         {/* Boxes and the content itself */}
         <div
           className={`flex flex-column flex-row-ns ${isAnnotated &&
-            'w-two-thirds'}`}>
+            'w-two-thirds'}`}
+        >
           {variation === 'half' ? (
             <Fragment>
               <div className="w-50-ns w-100 mr3-ns mb0-ns mb5">
@@ -107,7 +110,7 @@ PageBlock.propTypes = {
   /** Content on the right side of the title. */
   titleAside: PropTypes.node,
   /** Contents of the boxes. Can be 1 or 2 nodes depending on the variation chosen. */
-  children: function(props, propName, componentName) {
+  children(props, propName, componentName) {
     PropTypes.checkPropTypes(
       {
         children: PropTypes.node.isRequired,

@@ -29,7 +29,8 @@ const Toolbar: FC & Composites = ({ children }) => {
       id={NAMESPACES.TOOLBAR.CONTAINER}
       testId={toolbarTestId}
       order={ORDER_CLASSNAMES.TOOLBAR}
-      className="flex flex-row flex-wrap w-100 justify-between">
+      className="flex flex-row flex-wrap w-100 justify-between"
+    >
       <ToolbarProvider testId={toolbarTestId}>
         {children}
         {positionFixer}

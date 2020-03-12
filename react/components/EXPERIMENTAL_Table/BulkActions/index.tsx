@@ -51,7 +51,8 @@ const BulkActions: FC<BulkActionsProps> & Composites = ({
         overflow: active ? 'auto' : 'hidden',
         ...motion,
       }}
-      noMargin>
+      noMargin
+    >
       {children}
       {positionFixer}
     </ActionBar>

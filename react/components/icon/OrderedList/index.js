@@ -20,7 +20,8 @@ class OrderedList extends PureComponent {
         size={newSize}
         block={block}
         viewBox="0 0 64 64"
-        fill={color}>
+        fill={color}
+      >
         <path d="M3.985,18.909V17.014l2.063-.168c.336-.024.384-.12.384-.481V7.994c0-.288-.073-.432-.312-.5L4.033,7.058,4.3,5.091h5.757V16.365c0,.384.024.457.384.481l1.967.168v1.895Z" />{' '}
         <path
           data-color="color-2"

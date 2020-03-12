@@ -19,7 +19,8 @@ class ExternalLinkMini extends PureComponent {
         name="external-link-mini"
         size={newSize}
         block={block}
-        viewBox="0 0 14 14">
+        viewBox="0 0 14 14"
+      >
         <path
           d="M12.5567 0H2.45361V2.8866H9.09278L0 11.9794L2.02062 14L11.1134 4.90722V11.5464H14V1.4433C14 0.57732 13.4227 0 12.5567 0Z"
           fill={color}

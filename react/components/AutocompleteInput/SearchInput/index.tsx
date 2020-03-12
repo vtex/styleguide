@@ -47,21 +47,21 @@ const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
   const [focused, setFocused] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onChange && onChange(e.target.value)
+    onChange?.(e.target.value)
   }
 
   const handleClear = () => {
-    onClear && onClear()
+    onClear?.()
   }
 
   const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
     setFocused(true)
-    onFocus && onFocus(e)
+    onFocus?.(e)
   }
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     setFocused(false)
-    onBlur && onBlur(e)
+    onBlur?.(e)
   }
 
   const activeClass = classNames({
@@ -94,7 +94,8 @@ const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
         {onClear && value && (
           <span
             className="absolute c-muted-3 fw5 flex items-center ph3 t-body top-0 right-0 h-100 pointer"
-            onClick={handleClear}>
+            onClick={handleClear}
+          >
             <ClearInputIcon />
           </span>
         )}
@@ -102,7 +103,8 @@ const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
       <button
         className={buttonClasses}
         disabled={disabled}
-        onClick={() => onSearch(value)}>
+        onClick={() => onSearch(value)}
+      >
         <IconSearch size={16} />
       </button>
     </div>

@@ -75,7 +75,7 @@ export function getFlat<T>(
   tree: Tree<T>,
   arr: Array<Tree<T>> = [],
   nodesKey = 'children'
-): Array<T> {
+): T[] {
   arr.push(tree)
   if (tree[nodesKey])
     (tree[nodesKey] as Array<Tree<T>>).forEach(child =>

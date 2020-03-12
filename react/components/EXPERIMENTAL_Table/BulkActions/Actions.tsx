@@ -59,6 +59,6 @@ type PrimaryProps = {
 
 type SecondaryProps = {
   label: string
-  actions: Array<MenuAction>
+  actions: MenuAction[]
   onActionClick: (el: MenuAction) => void
 }

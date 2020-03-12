@@ -1,7 +1,7 @@
 import { getBulkChecked, getBulkUnchecked, getToggledState } from './util'
 import { comparatorCurry, Tree } from './types'
 
-export default function reducer<T>(state: Array<T>, action: Action<T>) {
+export default function reducer<T>(state: T[], action: Action<T>) {
   switch (action.type) {
     case ActionType.Check: {
       const { item } = action
@@ -34,7 +34,7 @@ export default function reducer<T>(state: Array<T>, action: Action<T>) {
     }
     case ActionType.SetChecked: {
       const { checked } = action
-      return checked || state
+      return checked ?? state
     }
     default: {
       return state
@@ -54,7 +54,7 @@ export enum ActionType {
 export type Action<T> = {
   type: ActionType
   item?: T
-  checked?: Array<T>
+  checked?: T[]
   itemToToggle?: {
     item: T
     nodesKey?: string

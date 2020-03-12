@@ -28,7 +28,8 @@ class Tab extends Component {
           fullWidth ? 'w-100' : ''
         } ${tabStyle}
         v-mid relative h-regular ph6 t-body bg-transparent outline-0
-        `}>
+        `}
+      >
         {label}
       </button>
     )

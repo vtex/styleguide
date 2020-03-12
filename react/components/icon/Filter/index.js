@@ -19,7 +19,8 @@ class Filter extends PureComponent {
         variation={solid ? 'solid' : null}
         size={newSize}
         block={block}
-        viewBox={solid ? '0 0 16 18' : '0 0 18 21'}>
+        viewBox={solid ? '0 0 16 18' : '0 0 18 21'}
+      >
         {solid ? (
           <path
             d="M15 0H1C0.4 0 0 0.4 0 1V3C0 3.3 0.1 3.6 0.4 3.8L6 8.5V15C6 15.4 6.2 15.8 6.6 15.9C6.7 16 6.9 16 7 16C7.3 16 7.5 15.9 7.7 15.7L9.7 13.7C9.9 13.5 10 13.3 10 13V8.5L15.6 3.8C15.9 3.6 16 3.3 16 3V1C16 0.4 15.6 0 15 0Z"

@@ -30,7 +30,8 @@ class ModalDialog extends Component {
       <Modal
         {...this.props}
         onClose={loading ? NOOP : onClose}
-        onCloseTransitionFinish={this.handleCloseTransitionFinish}>
+        onCloseTransitionFinish={this.handleCloseTransitionFinish}
+      >
         {this.props.children}
         <div className="vtex-modal__confirmation flex justify-end mt8">
           <span className="mr4">
@@ -38,7 +39,8 @@ class ModalDialog extends Component {
               size="small"
               variation="tertiary"
               disabled={loading}
-              onClick={this.handleCancelation}>
+              onClick={this.handleCancelation}
+            >
               {cancelation.label}
             </Button>
           </span>
@@ -47,7 +49,8 @@ class ModalDialog extends Component {
             size="small"
             variation={confirmation.isDangerous ? 'danger' : 'primary'}
             isLoading={loading}
-            onClick={this.handleConfirmation}>
+            onClick={this.handleConfirmation}
+          >
             {confirmation.label}
           </Button>
         </div>

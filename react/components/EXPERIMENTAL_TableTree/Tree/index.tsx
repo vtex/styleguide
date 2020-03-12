@@ -16,7 +16,7 @@ const Tree: FC<TreeProps> = ({
   comparator,
   ...nodeProps
 }) => {
-  const [collapsedItems, setCollapsedItems] = React.useState<Array<unknown>>([])
+  const [collapsedItems, setCollapsedItems] = React.useState<unknown[]>([])
 
   const listToRender = checkboxes ? items[nodeProps.nodesKey] : items
 
@@ -58,7 +58,7 @@ type TreeProps = {
   items: Items
   currentDensity: Density
   nodesKey: string
-  columns: Array<Column>
+  columns: Column[]
   comparator: comparatorCurry<TreeType<unknown>>
   rowHeight: number
   checkboxes?: Checkboxes<unknown>

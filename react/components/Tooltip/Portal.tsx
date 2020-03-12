@@ -44,7 +44,7 @@ const Portal = (props: PropTypes.InferProps<typeof propTypes>, ref) => {
   const [mountNode, setMountNode] = React.useState(null)
 
   useEnhancedEffect(() => {
-    setMountNode(getContainer(container) || document.body)
+    setMountNode(getContainer(container) ?? document.body)
   }, [container])
 
   useEnhancedEffect(() => {

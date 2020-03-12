@@ -6,8 +6,7 @@ export const useClickOutside = (
 ) => {
   const handleClickOutside = (e: Event) => {
     if (
-      ref &&
-      ref.current &&
+      ref?.current &&
       e.target instanceof Node &&
       !ref.current.contains(e.target)
     ) {
@@ -36,8 +35,7 @@ export const useArrowNavigation = (
 
   const handleKeyDown = (e: KeyboardEvent) => {
     if (
-      ref &&
-      ref.current &&
+      ref?.current &&
       e.target instanceof Node &&
       ref.current.contains(e.target)
     ) {
@@ -52,9 +50,10 @@ export const useArrowNavigation = (
           index = Math.min(selectedOptionIndex + 1, optionsLength - 1)
           return setSelectedOptionIndex(index)
         default:
-          return
       }
     }
+
+    return null
   }
 
   useEffect(() => {

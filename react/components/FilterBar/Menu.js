@@ -172,16 +172,19 @@ class Menu extends Component {
             <div
               ref={this.menuElement}
               style={styles}
-              className={openContainerClasses}>
+              className={openContainerClasses}
+            >
               <div
                 className="b2-ns br2-ns bg-base h-100 h-auto-ns"
-                style={{ width: isMobile ? '100%' : width || DEFAULT_WIDTH }}>
+                style={{ width: isMobile ? '100%' : width || DEFAULT_WIDTH }}
+              >
                 <div
                   className={
                     menuHeight
                       ? 'overflow-auto h-100 h-auto-ns'
                       : 'h-100 h-auto-ns'
-                  }>
+                  }
+                >
                   {isMobile && (
                     <div className="flex justify-between flex-row items-baseline pa6 mh3">
                       <div className="truncate f3 pr6">{optionsLabel}</div>

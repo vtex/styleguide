@@ -30,7 +30,8 @@ class Step extends PureComponent {
       case IN_PROGRESS:
         return (
           <div
-            className={`relative ${paddingClass} ${backgroundColorClass} overflow-hidden ${roundingStyle}`}>
+            className={`relative ${paddingClass} ${backgroundColorClass} overflow-hidden ${roundingStyle}`}
+          >
             <div
               style={gradientBackgroundStyle}
               className={`${scrollStep} absolute top-0 bottom-0 right-0 left--2 pr2`}

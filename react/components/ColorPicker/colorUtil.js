@@ -18,15 +18,14 @@ const rgbTohsv = rgb => {
   const cMin = Math.min(rAux, gAux, bAux)
   const theta = cMax - cMin
 
-  let h, s
+  let h
+  let s
   // Calcule Hue
   if (theta === 0) {
     h = 0
-  } else {
-    if (cMax === rAux) h = ((gAux - bAux) / theta) % 6
-    else if (cMax === gAux) h = (bAux - rAux) / theta + 2
-    else h = (rAux - gAux) / theta + 4
-  }
+  } else if (cMax === rAux) h = ((gAux - bAux) / theta) % 6
+  else if (cMax === gAux) h = (bAux - rAux) / theta + 2
+  else h = (rAux - gAux) / theta + 4
 
   h = Math.round(h * 60)
 
@@ -48,7 +47,7 @@ const rgbTohsv = rgb => {
   }
 }
 
-/** Convert RGB to Hex*/
+/** Convert RGB to Hex */
 const rgbTohex = rgb => {
   const { r, g, b } = rgb
   let rString = r.toString(16).toUpperCase()
@@ -79,7 +78,9 @@ const hsvToRgb = hsv => {
   const x = c * (1 - Math.abs(((h / 60) % 2) - 1))
   const m = v - c
 
-  let rAux, gAux, bAux
+  let rAux
+  let gAux
+  let bAux
 
   if (h >= 0 && h < 60) {
     rAux = c
@@ -151,8 +152,8 @@ const validHex = hex => {
 /** Get color format */
 const colorFormat = color => {
   if (validHex(color)) return COLOR_FORMAT.HEX
-  else if ('h' in color && 's' in color && 'v' in color) return COLOR_FORMAT.HSV
-  else if ('r' in color && 'g' in color && 'b' in color) return COLOR_FORMAT.RGB
+  if ('h' in color && 's' in color && 'v' in color) return COLOR_FORMAT.HSV
+  if ('r' in color && 'g' in color && 'b' in color) return COLOR_FORMAT.RGB
 }
 
 /** Convert Any format suported(RGB, HSV and HEX) to RGB */
@@ -166,7 +167,6 @@ const anyTorgb = color => {
     case COLOR_FORMAT.RGB:
       return color
     default:
-      return
   }
 }
 
@@ -181,7 +181,6 @@ const anyTohsv = color => {
     case COLOR_FORMAT.RGB:
       return rgbTohsv(color)
     default:
-      return
   }
 }
 
@@ -196,7 +195,6 @@ const anyTohex = color => {
     case COLOR_FORMAT.RGB:
       return rgbTohex(color)
     default:
-      return
   }
 }
 

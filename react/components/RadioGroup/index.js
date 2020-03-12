@@ -32,7 +32,8 @@ class RadioGroup extends React.Component {
                 className={classNames(
                   'vtex-input__label db mb3 w-100 c-on-base',
                   { 't-body': large, 't-small': !large }
-                )}>
+                )}
+              >
                 {label}
               </span>
             </legend>
@@ -59,7 +60,8 @@ class RadioGroup extends React.Component {
                     borderBottomLeftRadius: 0,
                     borderBottomRightRadius: 0,
                   }),
-                }}>
+                }}
+              >
                 <div className={classNames({ mt3: !hideBorder })}>
                   <Radio
                     id={id}

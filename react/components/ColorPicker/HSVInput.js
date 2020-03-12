@@ -30,6 +30,7 @@ class HSVInput extends React.Component {
       hsv,
     })
   }
+
   render() {
     return (
       <div className="mv3">

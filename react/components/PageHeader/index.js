@@ -20,10 +20,12 @@ class PageHeader extends PureComponent {
               size="small"
               variation="tertiary"
               neutral
-              onClick={this.handleClick}>
+              onClick={this.handleClick}
+            >
               <span
                 className="flex align-baseline relative"
-                style={{ marginLeft: '-16px' }}>
+                style={{ marginLeft: '-16px' }}
+              >
                 <span className="mr3">
                   <ArrowBack color="currentColor" />
                 </span>
@@ -35,7 +37,8 @@ class PageHeader extends PureComponent {
 
         <div
           className={`c-on-base flex flex-wrap flex-row justify-between
-            ${linkLabel ? 'mt0' : 'mt7'}`}>
+            ${linkLabel ? 'mt0' : 'mt7'}`}
+        >
           <div className="vtex-pageHeader__title t-heading-2 order-0 flex-grow-1">
             {this.props.title}
           </div>
@@ -43,7 +46,8 @@ class PageHeader extends PureComponent {
             <div
               className={`vtex-pageHeader__children order-2 order-0-ns ${
                 subtitle ? 'mt5' : ''
-              } mt0-ns`}>
+              } mt0-ns`}
+            >
               {children}
             </div>
           )}

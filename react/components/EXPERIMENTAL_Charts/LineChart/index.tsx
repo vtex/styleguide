@@ -68,7 +68,7 @@ LineChart.propTypes = {
   /** The formatter function of value in tooltip. If you return an array, the first entry will be the formatted "value", and the second entry will be the formatted "key" */
   tooltipFormatter: PropTypes.func,
 
-  /** The config prop changes some styles of the chart. This prop should be given as an object.*/
+  /** The config prop changes some styles of the chart. This prop should be given as an object. */
   config: PropTypes.shape({
     /** Container custom configuration (according to the Recharts API) */
     container: PropTypes.object,
@@ -84,7 +84,7 @@ LineChart.propTypes = {
     tooltip: PropTypes.object,
   }),
 
-  /** The interpolation defines how data points should be connected when creating a path.*/
+  /** The interpolation defines how data points should be connected when creating a path. */
   lineProps: PropTypes.object,
 }
 

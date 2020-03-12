@@ -19,7 +19,8 @@ class Edit extends PureComponent {
         name="edit"
         variation={solid ? 'solid' : null}
         size={newSize}
-        block={block}>
+        block={block}
+      >
         {solid ? (
           <>
             <path

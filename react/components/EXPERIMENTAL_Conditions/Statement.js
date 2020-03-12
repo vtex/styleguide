@@ -72,10 +72,10 @@ class Statement extends React.Component {
     } = this.props
     const condition = statements[statementIndex]
     const atomProps = {
-      statements: statements,
-      options: options,
-      isFullWidth: isFullWidth,
-      statementIndex: statementIndex,
+      statements,
+      options,
+      isFullWidth,
+      statementIndex,
       onChangeObjectCallback,
     }
 
@@ -107,11 +107,13 @@ class Statement extends React.Component {
           <div
             className={`flex w-100 items-start ${
               isFullWidth ? 'flex-column items-stretch' : ''
-            }`}>
+            }`}
+          >
             {canDelete && !isFullWidth && isRtl && (
               <div
                 className="ma3 c-muted-2 pointer hover-c-danger"
-                onClick={this.handleRemoveStatement}>
+                onClick={this.handleRemoveStatement}
+              >
                 <IconClose size={25} />
               </div>
             )}
@@ -119,7 +121,8 @@ class Statement extends React.Component {
             {canDelete && !isFullWidth && !isRtl && (
               <div
                 className="ma3 c-muted-2 pointer hover-c-danger"
-                onClick={this.handleRemoveStatement}>
+                onClick={this.handleRemoveStatement}
+              >
                 <IconClose size={25} />
               </div>
             )}
@@ -128,7 +131,8 @@ class Statement extends React.Component {
                 <Button
                   variation="tertiary"
                   size="small"
-                  onClick={this.handleRemoveStatement}>
+                  onClick={this.handleRemoveStatement}
+                >
                   <div className="dib">
                     <IconClose className="c-on-action-primary" />
                   </div>

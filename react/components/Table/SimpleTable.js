@@ -211,7 +211,8 @@ class SimpleTable extends Component {
         {loading ? (
           <div
             className="dtc v-mid tc"
-            style={{ height: tableHeight - HEADER_HEIGHT }}>
+            style={{ height: tableHeight - HEADER_HEIGHT }}
+          >
             <Spinner />
           </div>
         ) : (
@@ -305,7 +306,8 @@ class SimpleTable extends Component {
                             columnIndex={columnIndex}
                             key={key}
                             parent={parent}
-                            rowIndex={rowIndex}>
+                            rowIndex={rowIndex}
+                          >
                             <div
                               key={key}
                               style={{
@@ -316,7 +318,8 @@ class SimpleTable extends Component {
                                 columnIndex === 0 && fixFirstColumn ? 'br' : ''
                               } bt bb b--muted-4 overflow-x-hidden ${
                                 headerRight ? 'tr' : 'tl'
-                              }`}>
+                              }`}
+                            >
                               {schema.properties[property].sortable ? (
                                 <div
                                   className={`w-100 pointer c-muted-1 b t-small flex items-center ${
@@ -326,12 +329,14 @@ class SimpleTable extends Component {
                                   }`}
                                   onClick={() => {
                                     onSort(this.toggleSortType(property))
-                                  }}>
+                                  }}
+                                >
                                   {!headerRight && header}
                                   <div
                                     className={`inline-flex ${
                                       headerRight ? 'pr2' : 'pl3'
-                                    }`}>
+                                    }`}
+                                  >
                                     {arrowIsDown ? (
                                       <ArrowDown size={ARROW_SIZE} />
                                     ) : arrowIsUp ? (
@@ -349,8 +354,7 @@ class SimpleTable extends Component {
                           </CellMeasurer>
                         )
                       }
-                      const cellRenderer =
-                        schema.properties[property].cellRenderer
+                      const { cellRenderer } = schema.properties[property]
                       const rowData =
                         items[disableHeader ? rowIndex : rowIndex - 1]
                       const cellData = rowData[property]
@@ -372,7 +376,8 @@ class SimpleTable extends Component {
                           columnIndex={columnIndex}
                           key={key}
                           parent={parent}
-                          rowIndex={rowIndex}>
+                          rowIndex={rowIndex}
+                        >
                           {({ measure: updateCellMeasurements }) => (
                             <div
                               key={key}
@@ -413,7 +418,8 @@ class SimpleTable extends Component {
                                 onRowClick
                                   ? () => this.handleRowHover(-1)
                                   : null
-                              }>
+                              }
+                            >
                               {cellRenderer
                                 ? cellRenderer({
                                     cellData,

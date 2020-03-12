@@ -32,9 +32,8 @@ const Node: FC<NodeProps> = ({
     data,
   ])
 
-  const isRowChecked = checkboxes && checkboxes.isChecked(data)
-  const isRowPartiallyChecked =
-    checkboxes && checkboxes.isPartiallyChecked(data)
+  const isRowChecked = checkboxes?.isChecked(data)
+  const isRowPartiallyChecked = checkboxes?.isPartiallyChecked(data)
   const isRowSelected = isRowChecked || isRowPartiallyChecked
   const hasChildren = data[nodesKey] && !isEmpty(data[nodesKey])
 
@@ -54,7 +53,8 @@ const Node: FC<NodeProps> = ({
         {...clickableRow}
         motion={motion}
         height={rowHeight}
-        active={isRowSelected}>
+        active={isRowSelected}
+      >
         {columns.map((column: Column, cellIndex: number) => {
           const { cellRenderer, width } = column
           const cellData = column.condensed
@@ -105,7 +105,7 @@ const Node: FC<NodeProps> = ({
     <>
       {renderCells(true)}
       {isCollapsed(data) &&
-        (data[nodesKey] as Array<unknown>).map(data => (
+        (data[nodesKey] as unknown[]).map(data => (
           <Node
             onRowClick={onRowClick}
             currentDensity={currentDensity}
@@ -129,7 +129,7 @@ const Node: FC<NodeProps> = ({
 type NodeProps = {
   toggleCollapsed: (uniqueKey: unknown) => void
   isCollapsed: (uniqueKey: unknown) => boolean
-  columns: Array<Column>
+  columns: Column[]
   currentDensity: Density
   rowHeight: number
   nodesKey: string
