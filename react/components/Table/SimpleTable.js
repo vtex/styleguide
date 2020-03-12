@@ -127,7 +127,6 @@ class SimpleTable extends Component {
   addLineActionsToSchema = (schema, lineActions) => {
     return {
       ...schema.properties,
-      // eslint-disable-next-line camelcase
       _VTEX_Table_Internal_lineActions: {
         title: NO_TITLE_COLUMN,
         width: LINE_ACTIONS_COLUMN_WIDTH,

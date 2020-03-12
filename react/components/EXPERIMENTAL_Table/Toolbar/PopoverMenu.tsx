@@ -76,7 +76,6 @@ export const Box: FC<BoxProps> = ({
                 <Button
                   variation="secondary"
                   size="small"
-                  // eslint-disable-next-line react/jsx-handler-names
                   onClick={action.onClick}
                 >
                   {action.label}

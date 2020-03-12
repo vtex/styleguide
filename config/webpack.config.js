@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/unambiguous
 'use strict'
 
 const path = require('path')
@@ -164,7 +163,6 @@ module.exports = {
     fs: 'empty',
     net: 'empty',
     tls: 'empty',
-    // eslint-disable-next-line camelcase
     child_process: 'empty',
   },
   // Turn off performance hints during development because we don't do any

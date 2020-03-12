@@ -100,7 +100,6 @@ class DatePicker extends Component {
     return (
       <ReactDatePicker
         ref={this.props.forwardedRef}
-        // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus={this.props.autoFocus}
         customInput={
           <Input

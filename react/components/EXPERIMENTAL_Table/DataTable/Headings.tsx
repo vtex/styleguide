@@ -42,7 +42,6 @@ const Headings: FC<HeadingsProps> = ({
                     checked={checkboxes.allChecked}
                     partial={checkboxes.someChecked}
                     disabled={checkboxes.allDisabled}
-                    // eslint-disable-next-line react/jsx-handler-names
                     onClick={checkboxes.toggleAll}
                   />
                 </span>
