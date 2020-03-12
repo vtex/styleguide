@@ -6,7 +6,7 @@ export type Items = object[]
 export type ReturnedData = {
   data: unknown | object
   rowHeight: number
-  currentDensity: Density
+  density: Density
   motion: ReturnType<typeof useTableMotion>
 }
 

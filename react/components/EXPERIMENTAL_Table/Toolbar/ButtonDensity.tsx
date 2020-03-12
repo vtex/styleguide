@@ -4,11 +4,9 @@ import IconDensity from '../../icon/Density/index.js'
 import { NAMESPACES } from '../constants'
 import Button, { IconSize } from './Button'
 import usePopoverMenu, { Box, Item, Alignment } from './PopoverMenu'
-import useTableMeasures, {
-  Density,
-  DENSITY_OPTIONS,
-} from '../hooks/useTableMeasures'
+import { Density, DENSITY_OPTIONS } from '../hooks/useTableMeasures'
 import { useButtonGroupContext } from './context'
+import { useMeasuresContext } from '../context/measures'
 
 const FIELDS_ITEM_HEIGHT = 36
 const BOX_HEIGHT = DENSITY_OPTIONS.length * FIELDS_ITEM_HEIGHT
@@ -18,10 +16,9 @@ const ButtonDensity: FC<ButtonDensityProps> = ({
   handleCallback,
   disabled,
   alignMenu,
-  density,
   ...options
 }) => {
-  const { currentDensity, setCurrentDensity } = density
+  const { density, setDensity } = useMeasuresContext()
   const { buttonRef, toggleBox, setBoxVisible, boxVisible } = usePopoverMenu()
   const { testId } = useButtonGroupContext()
   const densityTestId = `${testId}__density`
@@ -39,13 +36,13 @@ const ButtonDensity: FC<ButtonDensityProps> = ({
       {boxVisible && (
         <Box testId={densityTestId} height={BOX_HEIGHT} alignMenu={alignMenu}>
           {DENSITY_OPTIONS.map((key: Density, index) => {
-            const isKeySelected = currentDensity === key
+            const isKeySelected = density === key
             return (
               <Item
                 key={index}
                 isSelected={isKeySelected}
                 onClick={() => {
-                  setCurrentDensity(key)
+                  setDensity(key)
                   setBoxVisible(false)
                   handleCallback?.(key)
                 }}
@@ -61,14 +58,13 @@ const ButtonDensity: FC<ButtonDensityProps> = ({
 }
 
 export type ButtonDensityProps = {
-  density: ReturnType<typeof useTableMeasures>
   label: string
   compactLabel: string
   regularLabel: string
   comfortableLabel: string
-  handleCallback: Function
-  alignMenu: Alignment
-  disabled: boolean
+  handleCallback?: Function
+  alignMenu?: Alignment
+  disabled?: boolean
 }
 
 export default ButtonDensity

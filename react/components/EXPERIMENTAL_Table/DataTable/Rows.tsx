@@ -3,9 +3,9 @@ import pick from 'lodash/pick'
 
 import Row, { RowProps, ROW_TRANSITIONS } from './Row'
 import { Column, Items } from '../types'
-import { Density } from '../hooks/useTableMeasures'
 import { Checkboxes } from '../../EXPERIMENTAL_useCheckboxTree/types'
 import useTableMotion from '../hooks/useTableMotion'
+import { useMeasuresContext } from '../context/measures'
 
 const Rows: FC<RowsProps> = ({
   columns,
@@ -13,12 +13,11 @@ const Rows: FC<RowsProps> = ({
   onRowClick,
   rowProps,
   isRowActive,
-  rowHeight,
-  currentDensity,
   checkboxes,
   rowKey,
   highlightOnHover,
 }) => {
+  const { rowHeight, density } = useMeasuresContext()
   const motion = useTableMotion(ROW_TRANSITIONS)
   return items ? (
     <>
@@ -55,7 +54,7 @@ const Rows: FC<RowsProps> = ({
                 ? cellRenderer({
                     data,
                     rowHeight,
-                    currentDensity,
+                    density,
                     motion,
                   })
                 : data
@@ -87,12 +86,10 @@ const Rows: FC<RowsProps> = ({
 export type RowsProps = {
   columns: Column[]
   items: Items
-  currentDensity: Density
   rowKey?: ({ rowData: unknown }) => string
   onRowClick?: ({ rowData: unknown }) => void
   isRowActive?: (rowData: unknown) => boolean
   rowProps?: RowProps
-  rowHeight: number
   checkboxes?: Checkboxes<unknown>
   highlightOnHover?: boolean
 }
