@@ -8,6 +8,7 @@ import React, {
   Children,
 } from 'react'
 import PropTypes, { InferProps } from 'prop-types'
+import debounce from 'lodash/debounce'
 
 import Tab from './Tab'
 import OptionsDots from '../icon/OptionsDots'
@@ -36,36 +37,43 @@ const Tabs: FC<InferProps<typeof propTypes>> = ({
   )
   const content = selectedTab && selectedTab.props.children
 
-  const handleResizeWindow = useCallback(() => {
-    if (tabsContainerRef.current) {
-      const { clientWidth: tabsContainerWidth } = tabsContainerRef.current
-      let hideTabs = false
+  const handleResizeWindow = useCallback(
+    debounce(
+      () => {
+        if (tabsContainerRef.current) {
+          const { clientWidth: tabsContainerWidth } = tabsContainerRef.current
+          let hideTabs = false
 
-      // verify if is necessary hide tabs
-      const childrens = tabsContainerRef.current.children
-      let sumTabWidths = 0
-      let childIndex = 0
-      for (; childIndex < childrens.length; childIndex++) {
-        const { clientWidth: childWidth } = childrens[childIndex]
-        sumTabWidths += childWidth
-        if (sumTabWidths > tabsContainerWidth) {
-          hideTabs = true
-          break
+          // verify if is necessary hide tabs
+          const childrens = tabsContainerRef.current.children
+          let sumTabWidths = 0
+          let childIndex = 0
+          for (; childIndex < childrens.length; childIndex++) {
+            const { clientWidth: childWidth } = childrens[childIndex]
+            sumTabWidths += childWidth
+            if (sumTabWidths > tabsContainerWidth) {
+              hideTabs = true
+              break
+            }
+          }
+
+          // verify if the last tab can fit without more tabs button
+          if (
+            childIndex + 1 === childrens.length &&
+            sumTabWidths <= tabsFullContainerRef.current?.clientWidth
+          ) {
+            hideTabs = false
+          }
+
+          setLastShowTab(childIndex)
+          setShowMoreTabsButton(hideTabs)
         }
-      }
-
-      // verify if the last tab can fit without more tabs button
-      if (
-        childIndex + 1 === childrens.length &&
-        sumTabWidths <= tabsFullContainerRef.current.clientWidth
-      ) {
-        hideTabs = false
-      }
-
-      setLastShowTab(childIndex)
-      setShowMoreTabsButton(hideTabs)
-    }
-  }, [tabsContainerRef, tabsFullContainerRef])
+      },
+      125,
+      { trailing: true }
+    ),
+    [tabsContainerRef, tabsFullContainerRef]
+  )
 
   useLayoutEffect(() => {
     const hasWindow = !(
