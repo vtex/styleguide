@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- `EXPERIMENTAL_useTableMeasures` SSR errors.
+
 ## [9.112.18] - 2020-03-16
 
 ### Fixed
