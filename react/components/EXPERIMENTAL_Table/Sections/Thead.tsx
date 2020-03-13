@@ -1,11 +1,11 @@
-import React, { forwardRef, FC, ReactElement, Ref } from 'react'
+import React, { forwardRef, ReactElement, Ref } from 'react'
 import classNames from 'classnames'
 
 import { useTestingContext } from '../context/testing'
 import { useHeadContext } from '../context/head'
 import { TABLE_HEADER_HEIGHT } from '../hooks/useTableMeasures'
 import Row from './Row'
-import Cell, { CellProps } from './Cell'
+import Cell, { ComposableCell } from './Cell'
 import {
   ComposableWithRef,
   Column,
@@ -77,7 +77,7 @@ function Thead(
 }
 
 interface Composites {
-  Cell?: FC<CellProps>
+  Cell?: ComposableCell
 }
 
 export type ComposableThead = ComposableWithRef<
