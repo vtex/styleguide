@@ -13,7 +13,6 @@ const Rows: FC<RowsProps> = ({
   onRowClick,
   rowProps,
   isRowActive,
-  checkboxes,
   rowKey,
   highlightOnHover,
 }) => {
@@ -22,13 +21,6 @@ const Rows: FC<RowsProps> = ({
   return items ? (
     <>
       {items.map(rowData => {
-        const toggleChecked = () => checkboxes.toggle(rowData)
-
-        const isRowChecked = checkboxes && checkboxes.isChecked(rowData)
-        const isRowPartiallyChecked =
-          checkboxes && checkboxes.isPartiallyChecked(rowData)
-        const isRowSelected = isRowChecked || isRowPartiallyChecked
-
         const clickable = onRowClick
           ? {
               onClick: () => onRowClick({ rowData }),
@@ -40,10 +32,10 @@ const Rows: FC<RowsProps> = ({
             {...rowProps}
             {...clickable}
             height={rowHeight}
-            active={(isRowActive && isRowActive(rowData)) || isRowSelected}
+            active={isRowActive && isRowActive(rowData)}
             key={rowKey({ rowData })}
             motion={motion}>
-            {columns.map((column: Column, cellIndex: number) => {
+            {columns.map(column => {
               const { cellRenderer, width } = column
               const data = column.condensed
                 ? pick(rowData, column.condensed)
@@ -60,18 +52,6 @@ const Rows: FC<RowsProps> = ({
                 : data
               return (
                 <Row.Cell key={column.id} width={width}>
-                  {cellIndex === 0 && checkboxes && (
-                    <Row.Cell.Prefix>
-                      <span className="ph3">
-                        <Row.Cell.Prefix.Checkbox
-                          checked={isRowChecked}
-                          partial={isRowPartiallyChecked}
-                          disabled={checkboxes.isDisabled(rowData)}
-                          onClick={toggleChecked}
-                        />
-                      </span>
-                    </Row.Cell.Prefix>
-                  )}
                   {content}
                 </Row.Cell>
               )

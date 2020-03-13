@@ -508,6 +508,7 @@ import Table from '../index'
 import useTableMeasures from '../hooks/useTableMeasures'
 import data from './sampleData'
 import useCheckboxTree from '../../EXPERIMENTAL_useCheckboxTree'
+import Checkbox from '../../Checkbox'
 
 const columns = [
   {
@@ -543,6 +544,67 @@ function Currency({ data }) {
   return <>$ {parseFloat(data).toFixed(2)}</>
 }
 
+function BulkFullExample() {
+  const { items, applyDiscount, increaseQty, decreaseQty } = useProducts()
+
+  const primaryAction = {
+    label: 'Apply 50% Discount',
+    onClick: () => applyDiscount(checkboxes.checkedItems, 0.5),
+  }
+
+  const secondaryActions = {
+    label: 'Quantity',
+    actions: [
+      {
+        label: 'Increase 50',
+        onClick: checked => increaseQty(checked, 50),
+      },
+      {
+        label: 'Decrease 50',
+        onClick: checked => decreaseQty(checked, 50),
+      },
+    ],
+    onActionClick: action => action.onClick(checkboxes.checkedItems),
+  }
+
+  const measures = useTableMeasures({
+    size: items.length,
+  })
+
+  const [withCheckboxes, isRowActive, checkboxes] = useColumnsWithCheckboxes({
+    columns,
+    items,
+  })
+
+  return (
+    <Table measures={measures} columns={withCheckboxes} items={items}>
+      <Table.Bulk active={checkboxes.someChecked}>
+        <Table.Bulk.Actions>
+          <Table.Bulk.Actions.Primary {...primaryAction} />
+          <Table.Bulk.Actions.Secondary {...secondaryActions} />
+        </Table.Bulk.Actions>
+        <Table.Bulk.Tail>
+          {!checkboxes.allChecked && (
+            <Table.Bulk.Tail.Info>
+              All rows selected: {checkboxes.checkedItems.length}
+            </Table.Bulk.Tail.Info>
+          )}
+          <Table.Bulk.Tail.Toggle
+            button={{
+              text: `Select all ${items.length}`,
+              onClick: checkboxes.checkAll,
+            }}
+            active={checkboxes.allChecked}>
+            Selected rows: {items.length}
+          </Table.Bulk.Tail.Toggle>
+          <Table.Bulk.Tail.Dismiss onClick={checkboxes.uncheckAll} />
+        </Table.Bulk.Tail>
+      </Table.Bulk>
+    </Table>
+  )
+}
+
+//encapsule the behavior of item change
 function useProducts() {
   const [items, setItems] = React.useState(data.products)
 
@@ -593,70 +655,51 @@ function useProducts() {
   return { items, applyDiscount, increaseQty, decreaseQty }
 }
 
-function BulkFullExample() {
-  const { items, applyDiscount, increaseQty, decreaseQty } = useProducts()
-
-  const primaryAction = {
-    label: 'Apply 50% Discount',
-    onClick: () => applyDiscount(checkboxes.checkedItems, 0.5),
-  }
-
-  const secondaryActions = {
-    label: 'Quantity',
-    actions: [
-      {
-        label: 'Increase 50',
-        onClick: checked => increaseQty(checked, 50),
-      },
-      {
-        label: 'Decrease 50',
-        onClick: checked => decreaseQty(checked, 50),
-      },
-    ],
-    onActionClick: action => action.onClick(checkboxes.checkedItems),
-  }
-
-  const measures = useTableMeasures({
-    size: items.length,
-  })
-
+//hook to handle checkboxes
+function useColumnsWithCheckboxes({ columns, items }) {
   const checkboxes = useCheckboxTree({
     items,
     onToggle: ({ checkedItems }) => console.table(checkedItems),
   })
 
-  return (
-    <>
-      <Table
-        measures={measures}
-        checkboxes={checkboxes}
-        columns={columns}
-        items={items}>
-        <Table.Bulk active={checkboxes.someChecked}>
-          <Table.Bulk.Actions>
-            <Table.Bulk.Actions.Primary {...primaryAction} />
-            <Table.Bulk.Actions.Secondary {...secondaryActions} />
-          </Table.Bulk.Actions>
-          <Table.Bulk.Tail>
-            {!checkboxes.allChecked && (
-              <Table.Bulk.Tail.Info>
-                All rows selected: {checkboxes.checkedItems.length}
-              </Table.Bulk.Tail.Info>
-            )}
-            <Table.Bulk.Tail.Toggle
-              button={{
-                text: `Select all ${items.length}`,
-                onClick: checkboxes.checkAll,
-              }}
-              active={checkboxes.allChecked}>
-              Selected rows: {items.length}
-            </Table.Bulk.Tail.Toggle>
-            <Table.Bulk.Tail.Dismiss onClick={checkboxes.uncheckAll} />
-          </Table.Bulk.Tail>
-        </Table.Bulk>
-      </Table>
-    </>
-  )
+  // maps the checkboxes from itemTree to actual elements
+  const mappedCheckboxes = checkboxes.itemTree.children.map(item => {
+    const id = `${item.id}`
+    return (
+      <Checkbox
+        key={id}
+        id={id}
+        checked={checkboxes.isChecked(item)}
+        partial={checkboxes.isPartiallyChecked(item)}
+        disabled={checkboxes.isDisabled(item)}
+        onChange={() => checkboxes.toggle(item)}
+      />
+    )
+  })
+
+  // adds the checkboxes column
+  const withCheckboxes = [
+    {
+      id: 'checkbox',
+      title: (
+        <Checkbox
+          id={`${checkboxes.itemTree.id}`}
+          checked={checkboxes.allChecked}
+          partial={checkboxes.someChecked}
+          onChange={checkboxes.toggleAll}
+        />
+      ),
+      width: 32,
+      extended: true,
+      cellRenderer: ({ data }) => {
+        return <div>{mappedCheckboxes[data.id - 1]}</div>
+      },
+    },
+    ...columns,
+  ]
+
+  // [parsed columns, isRowActive function, checked items, allChecked]
+  return [withCheckboxes, data => checkboxes.isChecked(data), checkboxes]
 }
 
 ;<BulkFullExample />
