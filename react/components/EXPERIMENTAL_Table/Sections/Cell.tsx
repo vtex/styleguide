@@ -6,28 +6,77 @@ import React, {
   CSSProperties,
   DetailedHTMLProps,
   HTMLAttributes,
+  Ref,
+  forwardRef,
+  FC,
 } from 'react'
 import classNames from 'classnames'
 
 import CaretDown from '../../icon/CaretDown/index.js'
 import CaretUp from '../../icon/CaretUp/index.js'
+import { ComposableWithRef } from '../types'
 
 const HoverContext = createContext<boolean>(false)
 
-function Cell({
-  children,
-  width,
-  onClick,
-  className: classNameProp,
-  sorting,
-  sortable = false,
-  sticky = false,
-  header,
-}: PropsWithChildren<CellProps>) {
+export enum CellTag {
+  Td = 'td',
+  Th = 'th',
+}
+
+interface CellContainer
+  extends DetailedHTMLProps<
+    HTMLAttributes<HTMLTableCellElement>,
+    HTMLTableCellElement
+  > {
+  tag: CellTag
+}
+
+const HoverableCell = forwardRef<
+  HTMLTableCellElement,
+  PropsWithChildren<CellContainer>
+>(({ children, tag: Tag, ...props }, ref) => {
+  const { hover, ...events } = useHover()
+  return (
+    <Tag {...events} {...props} ref={ref}>
+      <HoverProvider value={hover}>{children}</HoverProvider>
+    </Tag>
+  )
+})
+
+HoverableCell.displayName = 'HoverableCell'
+
+const DefaultCell = forwardRef<
+  HTMLTableCellElement,
+  PropsWithChildren<CellContainer>
+>(({ children, tag: Tag, ...props }, ref) => {
+  return (
+    <Tag ref={ref} {...props}>
+      {children}
+    </Tag>
+  )
+})
+
+DefaultCell.displayName = 'DefaultCell'
+
+type Props = PropsWithChildren<SpecificProps>
+
+function Cell(
+  {
+    children,
+    width,
+    onClick,
+    className: classNameProp,
+    sorting,
+    sortable = false,
+    sticky = false,
+    header,
+  }: Props,
+  ref: Ref<HTMLTableCellElement>
+) {
   const Container = sortable ? HoverableCell : DefaultCell
   const containerProps = {
     onClick,
-    tag: header ? 'th' : 'td',
+    tag: header ? CellTag.Th : CellTag.Td,
     className: classNames('v-mid ph3 pv0 tl bb b--muted-4', classNameProp, {
       pointer: onClick,
       'c-on-base': sorting,
@@ -41,7 +90,11 @@ function Cell({
     } as CSSProperties,
   }
 
-  return <Container {...containerProps}>{children}</Container>
+  return (
+    <Container ref={ref} {...containerProps}>
+      {children}
+    </Container>
+  )
 }
 
 function HoverProvider({ children, value }) {
@@ -61,35 +114,6 @@ function useHover(init = false) {
   }
 }
 
-interface CellContainer
-  extends DetailedHTMLProps<
-    HTMLAttributes<HTMLTableHeaderCellElement>,
-    HTMLTableHeaderCellElement
-  > {
-  tag: string
-}
-
-function HoverableCell({
-  children,
-  tag: Tag,
-  ...props
-}: PropsWithChildren<CellContainer>) {
-  const { hover, ...events } = useHover()
-  return (
-    <Tag {...events} {...props}>
-      <HoverProvider value={hover}>{children}</HoverProvider>
-    </Tag>
-  )
-}
-
-function DefaultCell({
-  children,
-  tag: Tag,
-  ...props
-}: PropsWithChildren<CellContainer>) {
-  return <Tag {...props}>{children}</Tag>
-}
-
 function Eyesight({ children, visible }) {
   const SUFIX_GAP = 0.5
   const className = classNames({ dn: !visible, inline: visible }, 'absolute')
@@ -98,6 +122,11 @@ function Eyesight({ children, visible }) {
       {children}
     </span>
   )
+}
+
+interface SuffixProps {
+  sorting: boolean
+  ascending: boolean
 }
 
 function Suffix({ sorting, ascending }: SuffixProps) {
@@ -110,14 +139,11 @@ function Suffix({ sorting, ascending }: SuffixProps) {
   )
 }
 
-Cell.Suffix = Suffix
-
-type SuffixProps = {
-  sorting: boolean
-  ascending: boolean
+interface Composites {
+  Suffix: FC<SuffixProps>
 }
 
-export type CellProps = {
+interface SpecificProps {
   id?: string
   width?: number | string | React.ReactText
   className?: string
@@ -128,4 +154,14 @@ export type CellProps = {
   header?: boolean
 }
 
-export default Cell
+export type ComposableCell = ComposableWithRef<
+  HTMLTableCellElement,
+  Props,
+  Composites
+>
+
+const ForwardedCell: ComposableCell = forwardRef(Cell)
+
+ForwardedCell.Suffix = Suffix
+
+export default ForwardedCell

@@ -1,4 +1,4 @@
-import React, { forwardRef, FC, Ref } from 'react'
+import React, { forwardRef, Ref } from 'react'
 import classNames from 'classnames'
 import pick from 'lodash/pick'
 
@@ -7,7 +7,7 @@ import { ComposableWithRef, Column, RenderProps, NativeTr } from '../types'
 import { useDataContext } from '../context/data'
 import { useBodyContext } from '../context/body'
 import { useMeasuresContext } from '../context/measures'
-import Cell, { CellProps } from './Cell'
+import Cell, { ComposableCell } from './Cell'
 
 interface RowRenderProps {
   props: {
@@ -103,7 +103,7 @@ export const ROW_TRANSITIONS = [
 ]
 
 interface Composites {
-  Cell?: FC<CellProps>
+  Cell?: ComposableCell
 }
 
 export type ComposableRow = ComposableWithRef<
