@@ -14,6 +14,8 @@ import Tab from './Tab'
 import Menu from '../Menu'
 import OptionsDots from '../icon/OptionsDots'
 
+const RESIZE_DELAY_TIME = 125
+
 const propTypes = {
   children: PropTypes.node,
   fullWidth: PropTypes.bool,
@@ -65,13 +67,15 @@ const Tabs: FC<InferProps<typeof propTypes>> = ({
             sumTabWidths <= tabsFullContainerRef.current?.clientWidth
           ) {
             hideTabs = false
+            childIndex = childrens.length
           }
 
-          setLastShowTab(childIndex)
           setShowMoreTabsButton(hideTabs)
+          setLastShowTab(childIndex)
+          setTabsMenuOpen(false) // close every resize
         }
       },
-      125,
+      RESIZE_DELAY_TIME,
       { trailing: true }
     ),
     [tabsContainerRef, tabsFullContainerRef]
@@ -128,7 +132,13 @@ const Tabs: FC<InferProps<typeof propTypes>> = ({
               onClick={() => {
                 setTabsMenuOpen(true)
               }}
-              className={`vtex-tab__button vtex-tab__button--inactive c-muted-1 b--transparent hover-c-action-primary pointer bt-0 bl-0 br-0 bb-0 v-mid relative h-regular t-body bg-transparent`}>
+              className={`
+                vtex-tab__button bt-0 bl-0 br-0 bw1 w-100
+                c-muted-1 hover-c-action-primary pointer
+                'vtex-tab__button--inactive b--transparent'
+                v-mid relative h-regular t-body
+                bg-transparent outline-0   
+              `}>
               <OptionsDots />
             </button>
           </Menu>
