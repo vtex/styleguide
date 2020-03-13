@@ -128,7 +128,6 @@ export type CellProps = {
   width?: number | string | React.ReactText
   className?: string
   onClick?: () => void
-  showArrow?: boolean
   sortable?: boolean
   sorting?: boolean
   sticky?: boolean

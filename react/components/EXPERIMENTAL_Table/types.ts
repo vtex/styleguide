@@ -23,3 +23,26 @@ export type Column = {
 export type E2ETestable<T = string> = {
   testId?: T
 }
+
+/** Shorthand for RefForwardingComponent */
+export type RFC<T, P = {}> = React.RefForwardingComponent<T, P>
+
+/** Defines a exported foward ref with composites */
+export type ComposableWithRef<
+  Ref,
+  Props = {},
+  Composites = {}
+> = React.ForwardRefExoticComponent<
+  React.PropsWithChildren<Props> & React.RefAttributes<Ref>
+> &
+  Partial<Composites>
+
+/** Type with ref and renderProps */
+type RenderProps<P = {}, T = Record<string, unknown>> = P & {
+  children?: (data: T) => React.ReactNode
+}
+
+/** Ref foward component with render props */
+export interface RFCRP<T, P = {}, R = Record<string, unknown>> {
+  (props: RenderProps<P, R>, ref: React.Ref<T>): React.ReactElement | null
+}

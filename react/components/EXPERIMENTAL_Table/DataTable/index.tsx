@@ -1,47 +1,53 @@
-import React, { FC } from 'react'
+import React, { forwardRef } from 'react'
 import classNames from 'classnames'
 
 import EmptyState from '../../EmptyState/index.js'
-import { NAMESPACES, ORDER_CLASSNAMES } from '../constants'
+import { ORDER_CLASSNAMES } from '../constants'
 import { TABLE_HEADER_HEIGHT } from '../hooks/useTableMeasures'
 import Loading from './Loading'
 import useTableMotion from '../hooks/useTableMotion'
+import { E2ETestable, RFC, ComposableWithRef } from '../types'
+import { useHeadContext } from '../context/head'
 import { useMeasuresContext } from '../context/measures'
 import { useTestingContext } from '../context/testing'
+import { useLoadingContext } from '../context/loading'
+import Tbody, { ComposableTbody } from './Tbody'
+import Thead, { ComposableThead } from './Thead'
 
-const DataTable: FC<DataTableProps> = ({
-  children,
-  className,
-  empty,
-  loading,
-  emptyState,
-  motion,
-  stickyHeader,
-}) => {
+export interface DataTableProps extends E2ETestable {
+  className?: string
+  motion?: ReturnType<typeof useTableMotion>
+}
+
+const DataTable: RFC<HTMLTableElement, DataTableProps> = (
+  { children, className, motion },
+  ref
+) => {
+  const { emptyState, empty, loading } = useLoadingContext()
+  const { sticky } = useHeadContext()
   const { testId } = useTestingContext()
   const { tableHeight } = useMeasuresContext()
-  const showLoading = !empty && loading
-  const showEmptyState = empty && emptyState
+
   return (
     <div
       style={{ height: tableHeight, ...motion }}
       className={classNames(
-        'order-1 mw-100 overflow-x-auto relative',
+        'order-1 mw-100 overflow-x-auto',
+        ORDER_CLASSNAMES.TABLE,
         {
-          'overflow-y-auto': stickyHeader,
-        },
-        ORDER_CLASSNAMES.TABLE
+          'overflow-y-auto': sticky,
+        }
       )}
     >
       <table
-        id={NAMESPACES.TABLE}
+        ref={ref}
         data-testid={testId}
-        className={classNames('w-100', className)}
+        className={`w-100 ${className}`}
         style={{ borderSpacing: 0 }}
       >
         {children}
       </table>
-      {showLoading && (
+      {!empty && loading && (
         <Loading
           testId={`${testId}__loading`}
           motion={motion}
@@ -52,7 +58,7 @@ const DataTable: FC<DataTableProps> = ({
             loading.renderAs()}
         </Loading>
       )}
-      {showEmptyState && (
+      {empty && emptyState && (
         <EmptyState testId={`${testId}__empty-state`} title={emptyState.label}>
           {emptyState.children}
         </EmptyState>
@@ -61,20 +67,18 @@ const DataTable: FC<DataTableProps> = ({
   )
 }
 
-export type DataTableProps = {
-  className?: string
-  empty: boolean
-  motion: ReturnType<typeof useTableMotion>
-  loading?:
-    | boolean
-    | {
-        renderAs?: () => React.ReactNode
-      }
-  emptyState?: {
-    label?: string
-    children?: Element
-  }
-  stickyHeader?: boolean
+interface Composites {
+  Head?: ComposableThead
+  Body?: ComposableTbody
 }
 
-export default DataTable
+const FowardedDataTable: ComposableWithRef<
+  HTMLTableElement,
+  DataTableProps,
+  Composites
+> = forwardRef(DataTable)
+
+FowardedDataTable.Head = Thead
+FowardedDataTable.Body = Tbody
+
+export default FowardedDataTable

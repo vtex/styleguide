@@ -193,6 +193,11 @@ module.exports = {
                     'react/components/EXPERIMENTAL_Table/docs/Components.md',
                 },
                 {
+                  name: 'Advanced',
+                  content:
+                    'react/components/EXPERIMENTAL_Table/docs/Advanced.md',
+                },
+                {
                   name: 'E2E Testing',
                   content:
                     'react/components/EXPERIMENTAL_Table/docs/Testing.md',
