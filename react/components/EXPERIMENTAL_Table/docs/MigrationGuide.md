@@ -172,7 +172,6 @@ return (
           compactLabel="Compact"
           regularLabel="Regular"
           comfortableLabel="Comfortable"
-          density={measures}
         />
         <Table.Toolbar.ButtonGroup.Download label="Export" onClick={() => {}} />
         <Table.Toolbar.ButtonGroup.Upload label="Import" onClick={() => {}} />
