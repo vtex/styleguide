@@ -10,7 +10,6 @@ import FilterBar from './FilterBar'
 import Headings from './DataTable/Headings'
 import Rows from './DataTable/Rows'
 import { DENSITY_OPTIONS } from './hooks/useTableMeasures'
-import { Checkboxes } from '../EXPERIMENTAL_useCheckboxTree/types'
 import useTableMotion from './hooks/useTableMotion'
 import Totalizer, { TotalizerProps } from './Totalizer'
 import ActionBar, { ActionBarProps } from './ActionBar'
@@ -24,7 +23,6 @@ const Table: FC<TableProps> & TableComposites = ({
   loading,
   emptyState,
   empty,
-  checkboxes,
   rowKey,
   highlightOnHover,
   stickyHeader,
@@ -57,14 +55,12 @@ const Table: FC<TableProps> & TableComposites = ({
                 sticky={stickyHeader}
                 sorting={sorting}
                 columns={columns}
-                checkboxes={checkboxes}
               />
             </Thead>
             <Tbody empty={empty} loading={loading}>
               <Rows
                 highlightOnHover={highlightOnHover}
                 rowKey={rowKey}
-                checkboxes={checkboxes}
                 columns={columns}
                 items={items}
                 onRowClick={onRowClick}
@@ -245,9 +241,7 @@ export const tablePropTypes = {
   stickyHeader: PropTypes.bool,
 }
 
-export type TableProps = InferProps<typeof tablePropTypes> & {
-  checkboxes: Checkboxes<unknown>
-}
+export type TableProps = InferProps<typeof tablePropTypes>
 
 export type TableComposites = {
   Toolbar: FC
