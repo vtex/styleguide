@@ -92,6 +92,8 @@ class Alert extends Component {
             title="Close"
             className={`vtex-alert__close-icon pointer pv2 c-on-base ph3 ${innerVerticalPadding}`}
             onClick={onClose}
+            onKeyPress={onClose}
+            role="button"
             tabIndex={0}
           >
             <CloseIcon block color="currentColor" size={16} />
