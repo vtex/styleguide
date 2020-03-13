@@ -1,4 +1,4 @@
-import React, { FC, Fragment, forwardRef, PropsWithChildren } from 'react'
+import React, { FC, Fragment, forwardRef, PropsWithChildren, Ref } from 'react'
 
 import Toolbar from './Toolbar/index'
 import Pagination, { PaginationProps } from './Pagination'
@@ -8,8 +8,8 @@ import useTableMeasures from './hooks/useTableMeasures'
 import useTableMotion from './hooks/useTableMotion'
 import Totalizer, { TotalizerProps } from './Totalizer'
 import ActionBar, { ActionBarProps } from './ActionBar'
-import DataTable from './DataTable'
-import { Column, Items, RFC } from './types'
+import Sections, { ComposableSections } from './Sections'
+import { Column, Items, RFC, ComposableWithRef } from './types'
 import useTableSort from './hooks/useTableSort'
 import { MeasuresProvider, useMeasuresContext } from './context/measures'
 import { TestingProvider, useTestingContext } from './context/testing'
@@ -18,7 +18,9 @@ import { DataProvider } from './context/data'
 import { HeadProvider } from './context/head'
 import { BodyProvider } from './context/body'
 
-const Table: RFC<HTMLTableElement, Props> = (
+type Props = PropsWithChildren<SpecificProps>
+
+function Table(
   {
     children,
     measures,
@@ -35,39 +37,41 @@ const Table: RFC<HTMLTableElement, Props> = (
     testId,
     stickyHeader,
     composableSections,
-  },
-  ref
-) => (
-  <TestingProvider testId={testId}>
-    <LoadingProvider empty={empty} loading={loading} emptyState={emptyState}>
-      <MeasuresProvider measures={measures}>
-        <DataProvider columns={columns} items={items}>
-          <HeadProvider sorting={sorting} sticky={stickyHeader}>
-            <BodyProvider
-              onRowClick={onRowClick}
-              isRowActive={isRowActive}
-              rowKey={rowKey}
-              highlightOnHover={highlightOnHover}>
-              <MotionContainer>
-                {composableSections ? (
-                  children
-                ) : (
-                  <Fragment>
-                    {children}
-                    <DataTable ref={ref}>
-                      <DataTable.Head />
-                      <DataTable.Body />
-                    </DataTable>
-                  </Fragment>
-                )}
-              </MotionContainer>
-            </BodyProvider>
-          </HeadProvider>
-        </DataProvider>
-      </MeasuresProvider>
-    </LoadingProvider>
-  </TestingProvider>
-)
+  }: Props,
+  ref: Ref<HTMLTableElement>
+) {
+  return (
+    <TestingProvider testId={testId}>
+      <LoadingProvider empty={empty} loading={loading} emptyState={emptyState}>
+        <MeasuresProvider measures={measures}>
+          <DataProvider columns={columns} items={items}>
+            <HeadProvider sorting={sorting} sticky={stickyHeader}>
+              <BodyProvider
+                onRowClick={onRowClick}
+                isRowActive={isRowActive}
+                rowKey={rowKey}
+                highlightOnHover={highlightOnHover}>
+                <MotionContainer>
+                  {composableSections ? (
+                    children
+                  ) : (
+                    <Fragment>
+                      {children}
+                      <Sections ref={ref}>
+                        <Sections.Head />
+                        <Sections.Body />
+                      </Sections>
+                    </Fragment>
+                  )}
+                </MotionContainer>
+              </BodyProvider>
+            </HeadProvider>
+          </DataProvider>
+        </MeasuresProvider>
+      </LoadingProvider>
+    </TestingProvider>
+  )
+}
 
 function MotionContainer({ children }: PropsWithChildren<{}>) {
   const motion = useTableMotion()
@@ -83,7 +87,7 @@ function MotionContainer({ children }: PropsWithChildren<{}>) {
   )
 }
 
-interface Props {
+interface SpecificProps {
   /** Return of the useTableMeasures hook */
   measures: ReturnType<typeof useTableMeasures>
   /** Array of columns */
@@ -123,12 +127,16 @@ interface Composites {
   Bulk?: FC
   Totalizer?: RFC<HTMLElement, TotalizerProps>
   ActionBar?: RFC<HTMLElement, ActionBarProps>
-  Sections?: RFC<HTMLTableElement, {}>
+  Sections?: ComposableSections
 }
 
-const FowardedTable: RFC<HTMLTableElement, Props> & Composites = forwardRef(
-  Table
-)
+export type ComposableTable = ComposableWithRef<
+  HTMLTableElement,
+  Props,
+  Composites
+>
+
+const FowardedTable: ComposableTable = forwardRef(Table)
 
 FowardedTable.Toolbar = Toolbar
 FowardedTable.FilterBar = FilterBar
@@ -136,7 +144,7 @@ FowardedTable.Totalizer = Totalizer
 FowardedTable.Pagination = Pagination
 FowardedTable.Bulk = BulkActions
 FowardedTable.ActionBar = ActionBar
-FowardedTable.Sections = DataTable
+FowardedTable.Sections = Sections
 
 FowardedTable.defaultProps = {
   rowKey: ({ rowData }: { rowData: { id: string } }) => `row-${rowData.id}`,

@@ -1,14 +1,19 @@
-import React, { forwardRef, FC, ReactElement } from 'react'
+import React, { forwardRef, FC, ReactElement, Ref } from 'react'
 import classNames from 'classnames'
 
 import { useTestingContext } from '../context/testing'
 import { useHeadContext } from '../context/head'
 import { TABLE_HEADER_HEIGHT } from '../hooks/useTableMeasures'
 import Row from './Row'
-import Cell, { CellProps, CellComposites } from './Cell'
-import { ComposableWithRef, RFCRP, Column } from '../types'
+import Cell, { CellProps } from './Cell'
+import {
+  ComposableWithRef,
+  Column,
+  NativeTableSection,
+  RenderProps,
+} from '../types'
 
-interface RenderProps {
+interface HeadRenderProps {
   props: {
     width: number | string
     className: string
@@ -23,17 +28,20 @@ interface RenderProps {
   suffix: ReactElement
 }
 
-const Thead: RFCRP<HTMLTableSectionElement, {}, RenderProps> = (
-  { children },
-  ref
-) => {
+type Props = RenderProps<NativeTableSection, HeadRenderProps>
+
+function Thead(
+  { children, className, ...restProps }: Props,
+  ref: Ref<HTMLTableSectionElement>
+) {
   const { testId } = useTestingContext()
   const { sorting, sticky } = useHeadContext()
   return (
     <thead
       ref={ref}
       data-testid={`${testId}__header`}
-      className="w-100 ph4 truncate overflow-x-hidden c-muted-2 f6">
+      className={`w-100 ph4 truncate overflow-x-hidden c-muted-2 f6 ${className}`}
+      {...restProps}>
       <Row height={TABLE_HEADER_HEIGHT} data="">
         {({ column, props: receivedProps }) => {
           const { id, title, sortable } = column
@@ -69,12 +77,12 @@ const Thead: RFCRP<HTMLTableSectionElement, {}, RenderProps> = (
 }
 
 interface Composites {
-  Cell?: FC<CellProps> & CellComposites
+  Cell?: FC<CellProps>
 }
 
 export type ComposableThead = ComposableWithRef<
   HTMLTableSectionElement,
-  {},
+  Props,
   Composites
 >
 

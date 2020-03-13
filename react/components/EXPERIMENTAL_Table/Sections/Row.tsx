@@ -1,15 +1,15 @@
-import React, { DetailedHTMLProps, forwardRef, FC } from 'react'
+import React, { forwardRef, FC, Ref } from 'react'
 import classNames from 'classnames'
 import pick from 'lodash/pick'
 
 import useTableMotion from '../hooks/useTableMotion'
-import { ComposableWithRef, Column, RFCRP } from '../types'
+import { ComposableWithRef, Column, RenderProps, NativeTr } from '../types'
 import { useDataContext } from '../context/data'
 import { useBodyContext } from '../context/body'
 import { useMeasuresContext } from '../context/measures'
-import Cell, { CellComposites, CellProps } from './Cell'
+import Cell, { CellProps } from './Cell'
 
-interface RenderProps {
+interface RowRenderProps {
   props: {
     width: number | string
   }
@@ -20,10 +20,18 @@ interface RenderProps {
   index: number
 }
 
-const Row: RFCRP<HTMLTableRowElement, RowProps, RenderProps> = (
-  { children, motion, data, height, ...props },
-  ref
-) => {
+interface SpecificProps extends NativeTr {
+  height: number
+  motion?: ReturnType<typeof useTableMotion>
+  data: unknown
+}
+
+type Props = RenderProps<SpecificProps, RowRenderProps>
+
+function Row(
+  { children, motion, data, height, ...props }: Props,
+  ref: Ref<HTMLTableRowElement>
+) {
   const { rowHeight, density } = useMeasuresContext()
   const { columns } = useDataContext()
   const { highlightOnHover, isRowActive, onRowClick } = useBodyContext()
@@ -40,6 +48,7 @@ const Row: RFCRP<HTMLTableRowElement, RowProps, RenderProps> = (
     ...props.style,
     ...motion,
   }
+
   return (
     <tr {...props} ref={ref} style={style} {...clickable} className={className}>
       {columns.map((column: Column, index: number) => {
@@ -93,24 +102,13 @@ export const ROW_TRANSITIONS = [
   },
 ]
 
-type NativeTr = DetailedHTMLProps<
-  React.HTMLAttributes<HTMLTableRowElement>,
-  HTMLTableRowElement
->
-
-export interface RowProps extends NativeTr {
-  height: number
-  motion?: ReturnType<typeof useTableMotion>
-  data: unknown
-}
-
 interface Composites {
-  Cell?: FC<CellProps> & CellComposites
+  Cell?: FC<CellProps>
 }
 
 export type ComposableRow = ComposableWithRef<
   HTMLTableRowElement,
-  RowProps,
+  Props,
   Composites
 >
 

@@ -1,5 +1,4 @@
 import React, {
-  FC,
   createContext,
   useContext,
   useState,
@@ -13,28 +12,9 @@ import classNames from 'classnames'
 import CaretDown from '../../icon/CaretDown/index.js'
 import CaretUp from '../../icon/CaretUp/index.js'
 
-const SUFIX_GAP = 0.5
-
 const HoverContext = createContext<boolean>(false)
 
-function HoverProvider({ children, value }) {
-  return <HoverContext.Provider value={value}>{children}</HoverContext.Provider>
-}
-
-function useHover(init = false) {
-  const [hover, setHover] = useState(init)
-
-  const onMouseEnter = () => setHover(true)
-  const onMouseLeave = () => setHover(false)
-
-  return {
-    hover,
-    onMouseEnter,
-    onMouseLeave,
-  }
-}
-
-const Cell: FC<CellProps> & CellComposites = ({
+function Cell({
   children,
   width,
   onClick,
@@ -43,7 +23,7 @@ const Cell: FC<CellProps> & CellComposites = ({
   sortable = false,
   sticky = false,
   header,
-}) => {
+}: PropsWithChildren<CellProps>) {
   const Container = sortable ? HoverableCell : DefaultCell
   const containerProps = {
     onClick,
@@ -62,6 +42,23 @@ const Cell: FC<CellProps> & CellComposites = ({
   }
 
   return <Container {...containerProps}>{children}</Container>
+}
+
+function HoverProvider({ children, value }) {
+  return <HoverContext.Provider value={value}>{children}</HoverContext.Provider>
+}
+
+function useHover(init = false) {
+  const [hover, setHover] = useState(init)
+
+  const onMouseEnter = () => setHover(true)
+  const onMouseLeave = () => setHover(false)
+
+  return {
+    hover,
+    onMouseEnter,
+    onMouseLeave,
+  }
 }
 
 interface CellContainer
@@ -94,6 +91,7 @@ function DefaultCell({
 }
 
 function Eyesight({ children, visible }) {
+  const SUFIX_GAP = 0.5
   const className = classNames({ dn: !visible, inline: visible }, 'absolute')
   return (
     <span className={className} style={{ marginLeft: `${SUFIX_GAP}rem` }}>
@@ -102,7 +100,7 @@ function Eyesight({ children, visible }) {
   )
 }
 
-const Suffix: FC<SuffixProps> = ({ sorting, ascending }) => {
+function Suffix({ sorting, ascending }: SuffixProps) {
   const Caret = ascending ? CaretDown : CaretUp
   const hover = useContext(HoverContext)
   return (
@@ -117,10 +115,6 @@ Cell.Suffix = Suffix
 type SuffixProps = {
   sorting: boolean
   ascending: boolean
-}
-
-export type CellComposites = {
-  Suffix?: FC<SuffixProps>
 }
 
 export type CellProps = {
