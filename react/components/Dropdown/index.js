@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import ArrowDownIcon from './ArrowDownIcon'
 import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
+import styles from './Dropdown.css'
 
 class Dropdown extends Component {
   constructor(props) {
@@ -111,7 +112,9 @@ class Dropdown extends Component {
     let iconSize
 
     let classes = 'bg-transparent bn w-100 h-100 '
-    let containerClasses = `${isInline ? '' : 'bw1'} br2 relative `
+    let containerClasses = `${styles.container} ${
+      isInline ? '' : 'bw1'
+    } br2 relative `
     let selectClasses = 'o-0 absolute top-0 left-0 h-100 w-100 bottom-00 '
 
     let labelClasses = 'vtex-dropdown__label db mb3 w-100 c-on-base '
@@ -176,11 +179,10 @@ class Dropdown extends Component {
     return (
       <div
         className={`vtex-dropdown ${
-          isInline ? 'vtex-dropdown--inline dib' : ''
-        }`}
-        data-testid={testId}
-      >
-        <label>
+          isInline ? 'vtex-dropdown--inline dib ' : ''
+        }${styles.dropdown}`}
+        data-testid={testId}>
+        <label className="h-100">
           {label && <span className={labelClasses}>{label}</span>}
           <div className={containerClasses} style={containerStyle}>
             <div id={id} className={`vtex-dropdown__button ${classes}`}>
