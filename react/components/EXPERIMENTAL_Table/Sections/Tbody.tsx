@@ -1,4 +1,4 @@
-import React, { forwardRef, DetailedHTMLProps, HTMLAttributes } from 'react'
+import React, { forwardRef, Ref } from 'react'
 
 import { useBodyContext } from '../context/body'
 import { useDataContext } from '../context/data'
@@ -7,14 +7,9 @@ import { useTestingContext } from '../context/testing'
 import { useLoadingContext } from '../context/loading'
 import useTableMotion from '../hooks/useTableMotion'
 import Row, { ROW_TRANSITIONS, ComposableRow } from './Row'
-import { ComposableWithRef, RFCRP } from '../types'
+import { ComposableWithRef, RenderProps, NativeTableSection } from '../types'
 
-type Props = DetailedHTMLProps<
-  HTMLAttributes<HTMLTableSectionElement>,
-  HTMLTableSectionElement
->
-
-interface RenderProps {
+interface BodyRenderProps {
   props: {
     data: unknown
     motion: ReturnType<typeof useTableMotion>
@@ -24,10 +19,12 @@ interface RenderProps {
   index: number
 }
 
-const Tbody: RFCRP<HTMLTableSectionElement, Props, RenderProps> = (
-  { children, ...rest },
-  ref
-) => {
+type Props = RenderProps<NativeTableSection, BodyRenderProps>
+
+function Tbody(
+  { children, ...rest }: Props,
+  ref: Ref<HTMLTableSectionElement>
+) {
   const { items } = useDataContext()
   const { rowHeight } = useMeasuresContext()
   const { rowKey } = useBodyContext()

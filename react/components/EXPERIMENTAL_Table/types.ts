@@ -1,3 +1,12 @@
+import {
+  ReactNode,
+  PropsWithChildren,
+  ForwardRefExoticComponent,
+  RefAttributes,
+  DetailedHTMLProps,
+  HTMLAttributes,
+} from 'react'
+
 import { Density } from './hooks/useTableMeasures'
 import useTableMotion from './hooks/useTableMotion'
 
@@ -24,25 +33,42 @@ export type E2ETestable<T = string> = {
   testId?: T
 }
 
+export interface HasMotion {
+  motion?: ReturnType<typeof useTableMotion>
+}
+
 /** Shorthand for RefForwardingComponent */
 export type RFC<T, P = {}> = React.RefForwardingComponent<T, P>
 
 /** Defines a exported foward ref with composites */
 export type ComposableWithRef<
-  Ref,
-  Props = {},
+  Ref = HTMLElement,
+  Props = PropsWithChildren<{}>,
   Composites = {}
-> = React.ForwardRefExoticComponent<
-  React.PropsWithChildren<Props> & React.RefAttributes<Ref>
-> &
-  Partial<Composites>
+> = ForwardRefExoticComponent<Props & RefAttributes<Ref>> & Partial<Composites>
 
-/** Type with ref and renderProps */
-type RenderProps<P = {}, T = Record<string, unknown>> = P & {
-  children?: (data: T) => React.ReactNode
+/** Type with children that receives render-props */
+export type RenderProps<P = {}, T = Record<string, unknown>> = P & {
+  children?: (data: T) => ReactNode
 }
 
-/** Ref foward component with render props */
+/** Ref foward component with render props 
 export interface RFCRP<T, P = {}, R = Record<string, unknown>> {
   (props: RenderProps<P, R>, ref: React.Ref<T>): React.ReactElement | null
 }
+*/
+
+export type NativeTableSection = DetailedHTMLProps<
+  HTMLAttributes<HTMLTableSectionElement>,
+  HTMLTableSectionElement
+>
+
+export type NativeTr = DetailedHTMLProps<
+  HTMLAttributes<HTMLTableRowElement>,
+  HTMLTableRowElement
+>
+
+export type NativeTable = DetailedHTMLProps<
+  HTMLAttributes<HTMLTableElement>,
+  HTMLTableElement
+>

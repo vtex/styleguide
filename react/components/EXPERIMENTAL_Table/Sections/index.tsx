@@ -1,12 +1,16 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, Ref, PropsWithChildren } from 'react'
 import classNames from 'classnames'
 
 import EmptyState from '../../EmptyState/index.js'
 import { ORDER_CLASSNAMES } from '../constants'
 import { TABLE_HEADER_HEIGHT } from '../hooks/useTableMeasures'
 import Loading from './Loading'
-import useTableMotion from '../hooks/useTableMotion'
-import { E2ETestable, RFC, ComposableWithRef } from '../types'
+import {
+  E2ETestable,
+  ComposableWithRef,
+  HasMotion,
+  NativeTable,
+} from '../types'
 import { useHeadContext } from '../context/head'
 import { useMeasuresContext } from '../context/measures'
 import { useTestingContext } from '../context/testing'
@@ -14,15 +18,12 @@ import { useLoadingContext } from '../context/loading'
 import Tbody, { ComposableTbody } from './Tbody'
 import Thead, { ComposableThead } from './Thead'
 
-export interface DataTableProps extends E2ETestable {
-  className?: string
-  motion?: ReturnType<typeof useTableMotion>
-}
+type Props = PropsWithChildren<E2ETestable & HasMotion & NativeTable>
 
-const DataTable: RFC<HTMLTableElement, DataTableProps> = (
-  { children, className, motion },
-  ref
-) => {
+function Sections(
+  { children, className, motion }: Props,
+  ref: Ref<HTMLTableElement>
+) {
   const { emptyState, empty, loading } = useLoadingContext()
   const { sticky } = useHeadContext()
   const { testId } = useTestingContext()
@@ -72,13 +73,15 @@ interface Composites {
   Body?: ComposableTbody
 }
 
-const FowardedDataTable: ComposableWithRef<
+export type ComposableSections = ComposableWithRef<
   HTMLTableElement,
-  DataTableProps,
+  Props,
   Composites
-> = forwardRef(DataTable)
+>
 
-FowardedDataTable.Head = Thead
-FowardedDataTable.Body = Tbody
+const FowardedSections: ComposableSections = forwardRef(Sections)
 
-export default FowardedDataTable
+FowardedSections.Head = Thead
+FowardedSections.Body = Tbody
+
+export default FowardedSections
