@@ -1,12 +1,16 @@
+/* eslint-disable global-require */
+
 'use strict'
 
 const path = require('path')
+
 const autoprefixer = require('autoprefixer')
 const webpack = require('webpack')
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin')
 
 const babelConfig = require('../babel.config.js')
+
 const appSrc = path.join(__dirname, '..', 'react')
 const appNodeModules = path.join(__dirname, '..', 'react', 'node_modules')
 
