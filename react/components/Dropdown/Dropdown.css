@@ -1,0 +1,28 @@
+:global(.vtex-input__prefix) .dropdown,
+:global(.vtex-input__suffix) .dropdown {
+  height: 100%;
+}
+
+:global(.vtex-input__prefix) .dropdown {
+  margin-left: -1rem;
+}
+
+:global(.vtex-input__suffix) .dropdown {
+  margin-right: -1rem;
+}
+
+:global(.vtex-input__prefix) .container,
+:global(.vtex-input__suffix) .container {
+  height: 100%;
+  border-top: none;
+  border-bottom: none;
+  border-radius: 0;
+}
+
+:global(.vtex-input__prefix) .container {
+  border-left: none;
+}
+
+:global(.vtex-input__suffix) .container {
+  border-right: none;
+}

@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Broken styles of `Dropdown` inside an `Input` prefix or suffix.
+
 ## [9.112.15] - 2020-03-10
 
 ### Fixed
