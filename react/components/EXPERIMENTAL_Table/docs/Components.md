@@ -59,7 +59,6 @@ enum Density {
 
 | Property         | Type                       | Required | Default | Description                      |
 | ---------------- | -------------------------- | -------- | ------- | -------------------------------- |
-| density          | Return of useTableMeasures | ✅       | 🚫      | Density object                   |
 | compactLabel     | string                     | ✅       | 🚫      | Label of the compact option      |
 | regularLabel     | string                     | ✅       | 🚫      | Label of the regular option      |
 | comfortableLabel | string                     | ✅       | 🚫      | Label of the comfortable option  |
@@ -322,7 +321,7 @@ function ToolbarExample() {
         <Table.Toolbar.InputSearch {...inputSearch} />
         <Table.Toolbar.ButtonGroup>
           <Table.Toolbar.ButtonGroup.Columns {...buttonColumns} />
-          <Table.Toolbar.ButtonGroup.Density density={measures} {...density} />
+          <Table.Toolbar.ButtonGroup.Density {...density} />
           <Table.Toolbar.ButtonGroup.Download {...download} />
           <Table.Toolbar.ButtonGroup.Upload {...upload} />
           <Table.Toolbar.ButtonGroup.ExtraActions {...extraActions} />
