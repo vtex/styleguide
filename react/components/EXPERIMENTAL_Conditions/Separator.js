@@ -12,7 +12,8 @@ class Separator extends React.Component {
             marginLeft: -17,
             width: 'calc(100% + 34px)',
           }}
-          className="flex flex-row w-100 nowrap items-center mv3">
+          className="flex flex-row w-100 nowrap items-center mv3"
+        >
           <hr className="ma0 b--black-10 bb bb-0 w-100" />
         </div>
         <div className="w-100 tc" style={{ marginTop: -18 }}>

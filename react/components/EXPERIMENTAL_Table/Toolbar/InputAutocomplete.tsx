@@ -13,7 +13,8 @@ const InputAutocomplete: FC<AutocompleteInputProps> = props => {
     <span
       className={classNames(ORDER_CLASSNAMES.TOOLBAR_CHILD.INPUT, 'w-40')}
       id={NAMESPACES.TOOLBAR.INPUT_SEARCH}
-      data-testid={`${testId}__input-autocomplete`}>
+      data-testid={`${testId}__input-autocomplete`}
+    >
       <AutocompleteInput {...props} />
     </span>
   )

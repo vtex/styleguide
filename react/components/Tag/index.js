@@ -94,7 +94,8 @@ class Tag extends PureComponent {
         disabled={disabled}
         onClick={onClick}
         onMouseEnter={this.handleMouseEnter}
-        onMouseLeave={this.handleMouseLeave}>
+        onMouseLeave={this.handleMouseLeave}
+      >
         <div className="flex items-stretch">
           <span>{children}</span>
           <div className="ml2 flex items-center">
@@ -107,8 +108,9 @@ class Tag extends PureComponent {
         className={`${baseClasses} ${theme}`}
         style={{
           backgroundColor: bgColor,
-          color: color,
-        }}>
+          color,
+        }}
+      >
         {children}
       </div>
     )

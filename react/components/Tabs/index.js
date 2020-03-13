@@ -11,7 +11,8 @@ const Tabs = ({ children, fullWidth, sticky }) => {
     <div
       className={`vtex-tabs w-100 h-100 flex flex-column ${
         sticky ? 'overflow-y-hidden' : ''
-      }`}>
+      }`}
+    >
       <div className="vtex-tabs__nav flex flex-row bb b--muted-4">
         {childrenArray.map((child, index) =>
           cloneElement(child, {
@@ -23,7 +24,8 @@ const Tabs = ({ children, fullWidth, sticky }) => {
       <div
         className={`vtex-tabs__content w-100 ${
           sticky ? 'overflow-y-auto' : ''
-        }`}>
+        }`}
+      >
         {content}
       </div>
     </div>

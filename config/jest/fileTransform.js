@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/unambiguous
 'use strict'
 
 const path = require('path')

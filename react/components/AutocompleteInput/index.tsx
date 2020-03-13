@@ -89,7 +89,7 @@ const AutocompleteInput: React.FunctionComponent<PropTypes.InferProps<
     icon,
   },
 }) => {
-  const [term, setTerm] = useState(value || '')
+  const [term, setTerm] = useState(value ?? '')
   const [showPopover, setShowPopover] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
   const searching = term.length
@@ -117,7 +117,7 @@ const AutocompleteInput: React.FunctionComponent<PropTypes.InferProps<
   useClickOutside(containerRef, () => setShowPopover(false))
 
   const addToLastSearched = (option: AutocompleteOption) => {
-    if (lastSearched && lastSearched.onChange) {
+    if (lastSearched?.onChange) {
       lastSearched.onChange(option)
     }
   }

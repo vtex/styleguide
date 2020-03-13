@@ -45,7 +45,8 @@ const Table: FC<TableProps> & TableComposites = ({
       id={NAMESPACES.CONTAINER}
       data-testid={`${testId}__container`}
       style={{ minHeight: tableHeight, ...motion }}
-      className="flex flex-column">
+      className="flex flex-column"
+    >
       <TableProvider testId={testId}>{children}</TableProvider>
       <DataTable
         stickyHeader={stickyHeader}
@@ -54,11 +55,13 @@ const Table: FC<TableProps> & TableComposites = ({
         loading={loading}
         emptyState={emptyState}
         motion={motion}
-        height={tableHeight}>
+        height={tableHeight}
+      >
         <thead
           id={NAMESPACES.HEADER}
           data-testid={`${testId}__header`}
-          className="w-100 ph4 truncate overflow-x-hidden c-muted-2 f6">
+          className="w-100 ph4 truncate overflow-x-hidden c-muted-2 f6"
+        >
           <Headings
             sticky={stickyHeader}
             sorting={sorting}

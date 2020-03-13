@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { forwardRef, ComponentType } from 'react'
 import PropTypes from 'prop-types'
 
 export class Noop {}
@@ -21,7 +21,7 @@ export function withForwardedRef<T, P>(Component: React.ComponentType<P>) {
     return <Component {...props} forwardedRef={ref} />
   })
 
-  ComponentWithRef.displayName = Component.displayName || Component.name
+  ComponentWithRef.displayName = Component.displayName ?? Component.name
 
   return ComponentWithRef
 }

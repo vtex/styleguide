@@ -132,7 +132,7 @@ export default class MultiSelect extends Component {
   }
 
   unselectLast = () => {
-    const length = this.props.selected.length
+    const { length } = this.props.selected
     if (length > 0) {
       this.handleUnselect(length - 1)
     }
@@ -150,7 +150,8 @@ export default class MultiSelect extends Component {
           disabled={disabled}
           onClick={() => {
             this.handleUnselect(index)
-          }}>
+          }}
+        >
           {tag.label}
         </Tag>
       </div>
@@ -170,7 +171,8 @@ export default class MultiSelect extends Component {
             </span>
           )}
           <div
-            className={`flex flex-wrap mt3 br2 b--solid bw1 pv2 ph5 ${classes}`}>
+            className={`flex flex-wrap mt3 br2 b--solid bw1 pv2 ph5 ${classes}`}
+          >
             <input
               className={`t-small mv3 bn outline-0 flex-grow-1 order-last ${classes}`}
               disabled={disabled}

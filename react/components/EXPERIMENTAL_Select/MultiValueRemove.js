@@ -27,7 +27,8 @@ const MultiValueRemove = props => {
         className="flex items-center"
         onClick={handleClick}
         onTouchEnd={handleTouchEnd}
-        onMouseDown={handleMouseDown}>
+        onMouseDown={handleMouseDown}
+      >
         <components.MultiValueRemove {...multiValueProps}>
           <Close size={14} />
         </components.MultiValueRemove>

@@ -5,7 +5,7 @@ import TooltipPopup, { Position, Size } from './TooltipPopup'
 import { useTooltip, Trigger } from './hooks'
 
 const propTypes = {
-  /** Label to be shown. As element, can be a string, number...*/
+  /** Label to be shown. As element, can be a string, number... */
   label: PropTypes.node.isRequired,
   /** Tooltip position */
   position: PropTypes.oneOf<Position>(['top', 'right', 'bottom', 'left']),

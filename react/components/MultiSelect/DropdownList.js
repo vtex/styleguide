@@ -52,7 +52,8 @@ export default class DropdownList extends PureComponent {
         className="b--muted-4 br--bottom br2 b--solid bw1 absolute w-100 z-max"
         style={{ borderTop: 'none', boxShadow: '0 1px 18px rgba(0,0,0,0.15)' }}
         onMouseEnter={() => onMouseEnter && onMouseEnter()}
-        onMouseLeave={() => onMouseLeave && onMouseLeave()}>
+        onMouseLeave={() => onMouseLeave && onMouseLeave()}
+      >
         {loading && (
           <div className="pv4 ph5 t-small c-muted-2 bg-base">{loadingText}</div>
         )}

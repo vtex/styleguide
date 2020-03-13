@@ -72,6 +72,7 @@ class FilterBar extends PureComponent {
       this.handleSubmitFilter(st)
       this.toggleExtraFilterOption(st.subject)
     }
+    return null
   }
 
   handleFilterClear = subject => {
@@ -173,13 +174,15 @@ class FilterBar extends PureComponent {
                   icon={
                     <span
                       className="flex items-center c-muted-2"
-                      style={HEAVY_ICON_OPTICAL_COMPENSATION}>
+                      style={HEAVY_ICON_OPTICAL_COMPENSATION}
+                    >
                       <IconClose size={13} />
                     </span>
                   }
                   size="small"
                   variation="tertiary"
-                  onClick={this.handleClearAllfilters}>
+                  onClick={this.handleClearAllfilters}
+                >
                   <span className="c-muted-2">
                     {clearAllFiltersButtonLabel}
                   </span>

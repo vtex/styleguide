@@ -157,11 +157,13 @@ class Menu extends Component {
                 className={`absolute z-999 ba b--muted-4 br2 shadow-5 ${
                   isRight ? 'right-0' : 'left-0'
                 }
-              ${isVisible ? 'o-100' : 'o-0'}`}>
+              ${isVisible ? 'o-100' : 'o-0'}`}
+              >
                 <div className="b2 br2 bg-base">
                   <div
                     style={{ height: menuHeight || 'auto' }}
-                    className={menuHeight ? 'overflow-auto' : ''}>
+                    className={menuHeight ? 'overflow-auto' : ''}
+                  >
                     {options.map((option, index) => (
                       <button
                         key={index}
@@ -171,11 +173,13 @@ class Menu extends Component {
                           if (onClose) {
                             onClose()
                           }
-                        }}>
+                        }}
+                      >
                         <span
                           className={`${
                             option.toggle ? 'w-70 truncate' : 'w-100 truncate'
-                          } ${option.isDangerous ? 'c-danger' : ''}`}>
+                          } ${option.isDangerous ? 'c-danger' : ''}`}
+                        >
                           {option.label}
                         </span>
                         {option.toggle && (

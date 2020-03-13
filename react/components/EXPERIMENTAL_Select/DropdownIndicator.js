@@ -21,7 +21,8 @@ const DropdownIndicator = ({ innerProps, selectProps, size }) => {
       className={`flex items-center h-100 ${paddingRightClassFromSize(
         size
       )} pointer ${arrowColorClassName}`}
-      {...innerProps}>
+      {...innerProps}
+    >
       <ArrowDownIcon size={18} />
     </div>
   )

@@ -1,6 +1,1 @@
-{
-  "semi": false,
-  "singleQuote": true,
-  "trailingComma": "es5",
-  "jsxBracketSameLine": true
-}
+"@vtex/prettier-config"

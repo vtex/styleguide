@@ -26,7 +26,8 @@ class Location extends PureComponent {
         name="location"
         variation={solid ? 'solid' : null}
         size={newSize}
-        block={block}>
+        block={block}
+      >
         <path d={solid ? VARIATIONS.SOLID : VARIATIONS.OUTLINE} fill={color} />
       </Svg>
     )

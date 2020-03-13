@@ -37,7 +37,8 @@ export default class Tag extends Component {
           onClick && onClick()
         }}
         onMouseEnter={this.handleMouseEnter}
-        onMouseLeave={this.handleMouseLeave}>
+        onMouseLeave={this.handleMouseLeave}
+      >
         <div className="flex items-center justify-center">
           <span className="self-center">{children}</span>{' '}
           <div className={`${hoverClass} ml2 pt2 self-center`}>

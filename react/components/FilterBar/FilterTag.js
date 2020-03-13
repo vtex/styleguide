@@ -18,14 +18,14 @@ const emptyVirtualStatement = {
   error: null,
 }
 
-const filterStatementBySubject = (statements = [], subject, options = {}) => {
+const filterStatementBySubject = (subject, statements = [], options = {}) => {
   const hasStatement = statements.some(st => st.subject === subject)
   return hasStatement
     ? statements.filter(st => st.subject === subject)
     : [
         {
           ...emptyVirtualStatement,
-          subject: subject,
+          subject,
           verb:
             options[subject] && options[subject].verbs.length > 0
               ? options[subject].verbs[0].value
@@ -147,7 +147,7 @@ class FilterTag extends PureComponent {
     } = this.props
     const { isMenuOpen, virtualStatement } = this.state
 
-    const statement = filterStatementBySubject(statements, subject)[0]
+    const [statement] = filterStatementBySubject(statements, subject)
     const isEmpty = !!(
       statements &&
       (!statement || (statement && !statement.object))
@@ -205,7 +205,8 @@ class FilterTag extends PureComponent {
             : isMoreOptions
             ? 'hover-bg-muted-5 b--muted-4'
             : 'bg-action-secondary hover-bg-action-secondary b--action-secondary'
-        } c-on-base`}>
+        } c-on-base`}
+      >
         <div className="flex items-stretch">
           <Menu
             open={isMenuOpen}
@@ -217,13 +218,15 @@ class FilterTag extends PureComponent {
                 data-testid={options[subject] && options[subject].testId}
                 type="button"
                 className="bw1 ba br2 v-mid relative bg-transparent b--transparent c-action-primary pointer w-100 outline-0"
-                onClick={isMenuOpen ? this.handleCloseMenu : this.openMenu}>
+                onClick={isMenuOpen ? this.handleCloseMenu : this.openMenu}
+              >
                 <div className="flex items-center justify-center h-100 ph3 ">
                   <span className="flex items-center nl1 nowrap">
                     {isMoreOptions ? (
                       <span
                         className="fw5"
-                        data-testid={testIds.moreOptionsButton}>
+                        data-testid={testIds.moreOptionsButton}
+                      >
                         {getFilterLabel()}
                       </span>
                     ) : isMobile ? (
@@ -246,14 +249,17 @@ class FilterTag extends PureComponent {
                   </span>
                 </div>
               </button>
-            }>
+            }
+          >
             <div className="ma6 ma5-ns h-75 h-auto-ns flex flex-column justify-between">
               <div
                 className={classNames({
                   'overflow-scroll': isMobile && 'overflow-scroll',
-                })}>
+                })}
+              >
                 <div
-                  className={`flex flex-wrap ${isMoreOptions ? 'mb6' : 'mb3'}`}>
+                  className={`flex flex-wrap ${isMoreOptions ? 'mb6' : 'mb3'}`}
+                >
                   {isMoreOptions && (
                     <span className="f4 mh3">{newFilterLabel}</span>
                   )}
@@ -295,7 +301,8 @@ class FilterTag extends PureComponent {
                     onSubmitFilterStatement(virtualStatement)
                     this.resetVirtualStatement()
                     this.handleCloseMenu()
-                  }}>
+                  }}
+                >
                   {submitFilterLabel}
                 </Button>
               </div>
@@ -303,12 +310,20 @@ class FilterTag extends PureComponent {
           </Menu>
           {!isEmpty && !isMoreOptions && (
             <div
+              role="button"
+              tabIndex="0"
               className="flex items-center c-link hover-c-link pointer"
+              onKeyDown={() => {
+                this.resetVirtualStatement()
+                onClickClear()
+                this.handleCloseMenu()
+              }}
               onClick={() => {
                 this.resetVirtualStatement()
                 onClickClear()
                 this.handleCloseMenu()
-              }}>
+              }}
+            >
               <IconClear solid size={16} />
             </div>
           )}

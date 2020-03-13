@@ -32,7 +32,8 @@ export function PathlineRenderer({ classes, children }) {
         small
         className={classes.copyButton}
         onClick={() => copy(vtexIOString)}
-        title="Copy to clipboard">
+        title="Copy to clipboard"
+      >
         <MdContentCopy />
       </ToolbarButton>
 
@@ -47,7 +48,8 @@ export function PathlineRenderer({ classes, children }) {
         small
         className={classes.copyButton}
         onClick={() => copy(npmString)}
-        title="Copy to clipboard">
+        title="Copy to clipboard"
+      >
         <MdContentCopy />
       </ToolbarButton>
     </div>

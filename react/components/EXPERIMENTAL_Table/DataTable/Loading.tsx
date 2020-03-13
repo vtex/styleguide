@@ -9,8 +9,9 @@ const Loading: FC<Props> = ({ height, motion, children, testId }) => {
     <div
       data-testid={testId}
       className="flex justify-center items-center"
-      style={{ height, ...motion }}>
-      {children || <Spinner />}
+      style={{ height, ...motion }}
+    >
+      {children ?? <Spinner />}
     </div>
   )
 }

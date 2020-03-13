@@ -117,8 +117,8 @@ const ButtonPlain: FunctionComponent<Props> = props => {
     noWrap,
   } = props
 
-  const disabled = props.disabled || isLoading
-  const iconOnly = icon || props.iconOnly
+  const disabled = props.disabled ?? isLoading
+  const iconOnly = icon ?? props.iconOnly
   const horizontalPadding = iconOnly ? 1 : 2
   const horizontalCompensation = `nr${horizontalPadding} nl${horizontalPadding} `
 
@@ -192,7 +192,8 @@ const ButtonPlain: FunctionComponent<Props> = props => {
       // Button-mode exclusive props
       type={href ? undefined : (props.type as 'button' | 'submit' | 'reset')}
       // Link-mode exclusive props
-      {...(href && linkModeProps)}>
+      {...(href && linkModeProps)}
+    >
       {isLoading ? (
         <Fragment>
           <span className="top-0 left-0 w-100 h-100 absolute flex justify-center items-center">

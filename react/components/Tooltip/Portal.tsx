@@ -6,7 +6,6 @@ import { setRef } from '../utils/react'
 
 function getContainer(container) {
   container = typeof container === 'function' ? container() : container
-  // eslint-disable-next-line react/no-find-dom-node
   return ReactDOM.findDOMNode(container)
 }
 
@@ -44,7 +43,7 @@ const Portal = (props: PropTypes.InferProps<typeof propTypes>, ref) => {
   const [mountNode, setMountNode] = React.useState(null)
 
   useEnhancedEffect(() => {
-    setMountNode(getContainer(container) || document.body)
+    setMountNode(getContainer(container) ?? document.body)
   }, [container])
 
   useEnhancedEffect(() => {

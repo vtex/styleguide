@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/unambiguous
 'use strict'
 
 if (typeof Promise === 'undefined') {

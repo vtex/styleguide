@@ -36,7 +36,8 @@ class Radio extends PureComponent {
           mb3: !isLast,
         })}
         ref={this.container}
-        onClick={this.handleContainerClick}>
+        onClick={this.handleContainerClick}
+      >
         {/* This empty div is used so that the radio circle is not a direct child of
          * a flex element, and thus can set a fixed width. Otherwise, the width would
          * be used as flex-basis, and would not be set directly */}
@@ -55,7 +56,8 @@ class Radio extends PureComponent {
               height: '1.25rem',
               width: '1.25rem',
               transition: 'border 100ms ease-in-out',
-            }}>
+            }}
+          >
             <div
               className={classNames('br-100', {
                 'bg-action-primary': !disabled,
@@ -97,7 +99,8 @@ class Radio extends PureComponent {
             { 'c-on-base pointer': !disabled },
             'flex flex-auto'
           )}
-          htmlFor={id}>
+          htmlFor={id}
+        >
           {label}
         </label>
       </div>

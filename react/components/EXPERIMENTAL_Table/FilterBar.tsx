@@ -13,7 +13,8 @@ const FilterBar: FC<FilterBarProps> = props => {
     <ActionBar
       id={NAMESPACES.FILTER_BAR}
       testId={`${testId}__filter-bar`}
-      order={ORDER_CLASSNAMES.FILTER_BAR}>
+      order={ORDER_CLASSNAMES.FILTER_BAR}
+    >
       <FilterBarBase {...props} />
     </ActionBar>
   )

@@ -11,11 +11,26 @@
  *    OtherOldPropName: OtherNewPropName,
  *  },
  * })(Component)
- **/
-import React, { Component } from 'react'
+ * */
+import React, { Component, ComponentType } from 'react'
+
+interface UseNewProps {
+  submitFilterLable: string
+  newFilterLable: string
+}
+
+interface UseNewComponent {
+  old: string
+  new: string
+}
+
+interface DeprecatedProps {
+  useNewProps?: UseNewProps
+  useNewComponent?: UseNewComponent
+}
 
 // Attempt to get the wrapped component's name
-const getComponentName = target => {
+function getComponentName<T>(target: ComponentType<T>) {
   if (target.displayName && typeof target.displayName === 'string') {
     return target.displayName
   }
@@ -30,41 +45,42 @@ const mapNewProps = (propsMap, props) => {
       newProps[propsMap[deprecatedProp]] = props[deprecatedProp]
     }
   })
-  return {
-    ...props,
-    ...newProps,
-  }
+  return { ...props, ...newProps }
 }
 
-export default function deprecated({ useNewComponent, useNewProps }) {
-  return WrappedComponent =>
-    class Deprecated extends Component {
-      componentDidMount() {
+export default function deprecated<
+  T extends DeprecatedProps = DeprecatedProps
+>({ useNewComponent, useNewProps }: T) {
+  return (WrappedComponent: React.ComponentType<T>) => {
+    return class Deprecated extends Component {
+      public componentDidMount() {
         if (useNewComponent) {
           console.warn(
-            `"${useNewComponent.old}" component is deprecated, you should use "${useNewComponent.new}" instead`
+            '"%s" component is deprecated, you should use "%s" instead',
+            useNewComponent.old,
+            useNewComponent.new
           )
         }
         if (useNewProps) {
           Object.keys(useNewProps).map(deprecatedProp => {
             if (this.props[deprecatedProp]) {
               console.warn(
-                `"${getComponentName(
-                  WrappedComponent
-                )}" prop "${deprecatedProp}" is deprecated, you should use "${
-                  useNewProps[deprecatedProp]
-                }" instead`
+                '"%s" prop "%s" is deprecated, you should use "%s" instead',
+                getComponentName(WrappedComponent),
+                deprecatedProp,
+                useNewProps[deprecatedProp]
               )
             }
           })
         }
       }
 
-      render() {
+      public render() {
         const newProps = useNewProps
           ? mapNewProps(useNewProps, this.props)
           : this.props
         return <WrappedComponent {...newProps} />
       }
     }
+  }
 }

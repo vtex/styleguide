@@ -30,8 +30,8 @@ const StrategySelector: React.FC<Props> = ({
   const seletorContent = [
     <span key="seletorContent-operator" className="mh3 b">
       {operator === 'all'
-        ? labels.operatorAll || DEFAULT_LABELS.operatorAll
-        : labels.operatorAny || DEFAULT_LABELS.operatorAny}
+        ? labels.operatorAll ?? DEFAULT_LABELS.operatorAll
+        : labels.operatorAny ?? DEFAULT_LABELS.operatorAny}
     </span>,
     <select
       key="seletorContent-select"
@@ -41,12 +41,13 @@ const StrategySelector: React.FC<Props> = ({
       style={{
         // safari select height fix
         WebkitAppearance: 'menulist-button',
-      }}>
+      }}
+    >
       <option value="all">
-        {labels.operatorAll || DEFAULT_LABELS.operatorAll}
+        {labels.operatorAll ?? DEFAULT_LABELS.operatorAll}
       </option>
       <option value="any">
-        {labels.operatorAny || DEFAULT_LABELS.operatorAny}
+        {labels.operatorAny ?? DEFAULT_LABELS.operatorAny}
       </option>
     </select>,
     <IconCaretDown key="seletorContent-icon" size={SMALL_ICON_SIZE} />,
@@ -55,13 +56,13 @@ const StrategySelector: React.FC<Props> = ({
   return (
     <div className="flex flex-row nowrap">
       <span className={isRtl ? 'mr3' : ''}>
-        {labels.headerPrefix || DEFAULT_LABELS.headerPrefix}
+        {labels.headerPrefix ?? DEFAULT_LABELS.headerPrefix}
       </span>
       <div className="c-link relative">
         {isRtl ? seletorContent.reverse() : seletorContent}
       </div>
       <span className={isRtl ? '' : 'ml3'}>
-        {labels.headerSufix || DEFAULT_LABELS.headerSufix}
+        {labels.headerSufix ?? DEFAULT_LABELS.headerSufix}
       </span>
     </div>
   )

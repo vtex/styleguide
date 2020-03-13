@@ -1,4 +1,3 @@
-/* eslint-disable import/unambiguous */
 const path = require('path')
 
 const webpackConfig = require('./config/webpack.config.js')

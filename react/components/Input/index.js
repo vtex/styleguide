@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import Button from '../Button'
 import styles from './Input.css'
 import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
+import WarningIcon from '../icon/Warning'
 
 class Input extends Component {
   constructor(props) {
@@ -257,14 +258,21 @@ class Input extends Component {
                 isLoading={isLoadingButton}
                 size={size === 'large' ? 'regular' : 'small'}
                 type="submit"
-                variation="secondary">
+                variation="secondary"
+              >
                 {button}
               </Button>
             </span>
           )}
         </div>
         {errorMessage && (
-          <div className="c-danger t-small mt3 lh-title">{errorMessage}</div>
+          <div className="c-danger flex items-center t-small mt3 lh-title">
+            {/* use flex to align svg vertically */}
+            <span className="vtex-input__error-icon mr2 flex">
+              <WarningIcon size={14} />
+            </span>
+            {errorMessage}
+          </div>
         )}
         {helpText && (
           <div className="c-muted-1 t-small mt3 lh-title">{helpText}</div>

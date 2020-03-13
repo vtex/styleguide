@@ -13,6 +13,7 @@ class InputPassword extends Component {
     large: 18,
     'x-large': 22,
   }
+
   state = {
     showPassword: false,
   }

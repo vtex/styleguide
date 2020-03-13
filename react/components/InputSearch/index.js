@@ -20,6 +20,7 @@ class InputSearch extends Component {
     regular: 16,
     large: 18,
   }
+
   static separatorHeight = {
     small: 28,
     regular: 36,
@@ -80,7 +81,8 @@ class InputSearch extends Component {
               <span
                 tabIndex={0}
                 onClick={this.handleClickClear}
-                className="pointer mr4 c-muted-3">
+                className="pointer mr4 c-muted-3"
+              >
                 <ClearIcon size={iconSize} />
               </span>
             )}

@@ -95,7 +95,8 @@ class Modal extends PureComponent {
             padding: '10px',
           },
         }}
-        closeIconSize={18}>
+        closeIconSize={18}
+      >
         {showTopBar && (
           <TopBar
             title={title}
@@ -112,14 +113,16 @@ class Modal extends PureComponent {
             title ? '' : 'pt5 pt6-ns'
           } ${styles.scrollBar}`}
           ref={this.contentContainerReference}
-          onScroll={this.handleScroll}>
+          onScroll={this.handleScroll}
+        >
           {children}
         </div>
         {bottomBar ? (
           <BottomBar
             showTopShadow={shadowBottom}
             showBorder={showBottomBarBorder}
-            responsiveFullScreen={responsiveFullScreen}>
+            responsiveFullScreen={responsiveFullScreen}
+          >
             {bottomBar}
           </BottomBar>
         ) : (
@@ -151,7 +154,7 @@ Modal.propTypes = {
 
   onClose: PropTypes.func.isRequired,
 
-  /** Show BottomBar border **/
+  /** Show BottomBar border * */
   showBottomBarBorder: PropTypes.bool,
   /** Close the modal on ESC key press (default true) */
   closeOnEsc: PropTypes.bool,

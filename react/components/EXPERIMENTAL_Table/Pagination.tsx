@@ -12,7 +12,8 @@ const Pagination: FC<PaginationProps> = props => {
       id={NAMESPACES.PAGINATION}
       testId={`${testId}__pagination`}
       order={ORDER_CLASSNAMES.PAGINATION}
-      noMargin>
+      noMargin
+    >
       <PaginationBase {...props} />
     </ActionBar>
   )
@@ -21,7 +22,7 @@ const Pagination: FC<PaginationProps> = props => {
 export type PaginationProps = {
   textShowRows: string
   textOf: string
-  rowsOptions: Array<number>
+  rowsOptions: number[]
   currentItemFrom: number
   currentItemTo: number
   totalItems: number

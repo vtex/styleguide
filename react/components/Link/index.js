@@ -10,7 +10,8 @@ const Link = ({ children, href, target, mediumWeigth }) => (
   <a
     href={href}
     target={target}
-    className={`${classes} ${mediumWeigth ? 'fw5' : ''}`}>
+    className={`${classes} ${mediumWeigth ? 'fw5' : ''}`}
+  >
     {children}
     {target === '_blank' && (
       <span className="ml2">

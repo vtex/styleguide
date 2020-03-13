@@ -18,7 +18,8 @@ class VisibilityOff extends PureComponent {
       <Svg
         name="visibility-off"
         variation={solid ? 'solid' : null}
-        size={newSize}>
+        size={newSize}
+      >
         {solid ? (
           <>
             <path

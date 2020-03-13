@@ -30,7 +30,8 @@ const SelectableCard: FC<PropTypes.InferProps<typeof propTypes>> = ({
     <div
       className={`ba br2 bw2 relative ${
         selected ? 'b--action-primary z-999' : 'b--transparent'
-      } nh2`}>
+      } nh2`}
+    >
       {selected ? (
         <div className="absolute right--1 top--1 br-100 h2 w2 bg-action-primary z-999 pa3">
           <CheckIcon color="white" />
@@ -44,7 +45,8 @@ const SelectableCard: FC<PropTypes.InferProps<typeof propTypes>> = ({
           })`,
         }}
         className={`vtex-card card w-100 b2 br2 bg-base c-on-base ${padding} pointer`}
-        onClick={onClick}>
+        onClick={onClick}
+      >
         {children}
       </div>
     </div>

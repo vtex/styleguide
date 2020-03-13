@@ -20,7 +20,8 @@ class Underline extends PureComponent {
         size={newSize}
         block={block}
         viewBox="0 0 64 64"
-        fill={color}>
+        fill={color}
+      >
         <path
           d="M55,4H37V8h4a2,2,0,0,1,2,2V34.51c0,5.742-4.187,10.879-9.9,11.436A11.012,11.012,0,0,1,21,35V10a2,2,0,0,1,2-2h4V4H9V8h4a2,2,0,0,1,2,2V34.4c0,9.046,6.811,16.957,15.836,17.561A17.018,17.018,0,0,0,49,35V10a2,2,0,0,1,2-2h4Z"
           fill={color}

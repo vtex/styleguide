@@ -15,8 +15,7 @@ export default function usePopoverMenu() {
   const buttonRef = useRef(null)
 
   const handleOutsideClick = (e: Event) =>
-    buttonRef &&
-    buttonRef.current &&
+    buttonRef?.current &&
     e.target instanceof Node &&
     !buttonRef.current.contains(e.target) &&
     setBoxVisible(false)
@@ -47,7 +46,7 @@ export const Box: FC<BoxProps> = ({
 }) => {
   const isAlignRight = alignMenu === Alignment.Right
   const className = classnames(
-    `absolute z-999 shadow-4 ${borderClasses || 'b--muted-4 br2 ba'}`,
+    `absolute z-999 shadow-4 ${borderClasses ?? 'b--muted-4 br2 ba'}`,
     {
       'right-0': isAlignRight,
       'left-0': !isAlignRight,
@@ -59,23 +58,26 @@ export const Box: FC<BoxProps> = ({
       data-testid={`${testId}__box`}
       className={className}
       style={{
-        width: width,
-      }}>
+        width,
+      }}
+    >
       <div className="w-100 b2 br2 bg-base">
         {groupActions && (
           <div
             data-testid={`${testId}__box__group-actions`}
-            className="flex inline-flex bb b--muted-4 w-100 justify-center pv4">
+            className="flex inline-flex bb b--muted-4 w-100 justify-center pv4"
+          >
             {groupActions.map(action => (
               <div
                 className="mh2"
                 key={action.id}
-                data-testid={`${testId}__group-actions--${action.id}`}>
+                data-testid={`${testId}__group-actions--${action.id}`}
+              >
                 <Button
                   variation="secondary"
                   size="small"
-                  // eslint-disable-next-line react/jsx-handler-names
-                  onClick={action.onClick}>
+                  onClick={action.onClick}
+                >
                   {action.label}
                 </Button>
               </div>
@@ -85,7 +87,8 @@ export const Box: FC<BoxProps> = ({
         <div
           data-testid={`${testId}__box__items`}
           className="overflow-auto"
-          style={{ height: height }}>
+          style={{ height }}
+        >
           {children}
         </div>
       </div>
@@ -117,7 +120,7 @@ type BoxProps = E2ETestable & {
   alignMenu?: Alignment
   noMargin?: boolean
   borderClasses?: string
-  groupActions?: Array<MenuAction>
+  groupActions?: MenuAction[]
 }
 
 type ItemProps = {

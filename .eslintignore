@@ -1,2 +1,5 @@
-/react/node_modules
-CHANGELOG.md
+node_modules/
+coverage/
+lib/
+styleguide/
+*.snap.ts
