@@ -21,6 +21,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - `Table`'s `headerRenderer` can be used in columns that are either fixed or sortable
 
+### Fixed
+
+- Add missing class to `Checkbox` to make it easier to customize it.
+
 ## [9.112.17] - 2020-03-16
 
 - From `currentDensity` to `density` on `EXPERIMENTAL_Table`
