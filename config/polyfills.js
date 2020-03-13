@@ -1,3 +1,5 @@
+/* eslint-disable global-require */
+
 'use strict'
 
 if (typeof Promise === 'undefined') {

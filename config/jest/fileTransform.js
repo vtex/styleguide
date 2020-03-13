@@ -1,6 +1,7 @@
 'use strict'
 
 const path = require('path')
+
 const camelcase = require('camelcase')
 
 // This is a custom Jest transformer turning file imports into filenames.
