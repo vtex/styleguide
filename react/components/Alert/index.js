@@ -92,7 +92,14 @@ class Alert extends Component {
             title="Close"
             className={`vtex-alert__close-icon pointer pv2 c-on-base ph3 ${innerVerticalPadding}`}
             onClick={onClose}
-            onKeyPress={onClose}
+            onKeyPress={({ key }) => {
+              const SPACE = ' '
+              const ENTER = 'Enter'
+
+              if (key === SPACE || key === ENTER) {
+                onClose()
+              }
+            }}
             role="button"
             tabIndex={0}
           >
