@@ -121,7 +121,6 @@ class Input extends Component {
       dataAttrs[`data-${key}`] = dataAttributes[key]
     }
 
-    const widthClass = 'w-100'
     const box = 'ma0 border-box'
     const borderRadiusBase = 'br2'
     const borderBase = `bw1 b--solid`
@@ -132,7 +131,7 @@ class Input extends Component {
     let prefixClasses = `vtex-input__prefix ${borderRadiusBase} br-0 br--left `
     let suffixClasses = `vtex-input__suffix ${borderRadiusBase} bl-0 br--right `
 
-    let classes = `${styles.input} ${widthClass} ${box} ${styles.hideDecorators} ${styles.noAppearance} ${borderRadius} bn outline-0 `
+    let classes = `${styles.input} ${box} ${styles.hideDecorators} ${styles.noAppearance} ${borderRadius} bn outline-0 `
     let labelClasses = 'vtex-input__label db mb3 w-100 c-on-base '
     let prefixAndSuffixClasses =
       'c-muted-2 fw5 flex items-center c-muted-2 t-body '
