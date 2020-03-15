@@ -1,6 +1,6 @@
 ⚠️The table combined with its hooks is already versatile enough to handle most tabular data display problems. But sometimes we are creating a new component that shares/extends API and/or styles of the Table. This section explains how the table works internally so that you can compose your own components if needed.
 
-Table Sections (`Head`, `Body`, `Row`, and `Cell`) can be controlled by passing the `composableSections` property, which is false by default. This will expose disuse the default rendering and enable de composable one.
+Table Sections (`Head`, `Body`, `Row`, and `Cell`) can be controlled by passing the `composableSections` property, which is false by default. This will disuse the default rendering and enable de composable one.
 
 ##### Default Render
 
@@ -40,6 +40,33 @@ function ComposableExample() {
 
 ;<ComposableExample />
 ```
+
+#### Sections Anatomy
+
+You may know that a table consists of two loops. The first (**row-loop**) is mapping the list of objects into `Row`'s, and it happens on the `Body` component. The second (**cell-loop**) is mapping the object props into `Cell`s, which occurs on each `Row`.
+
+```html
+<table>
+  <thead>
+    <tr>
+      <!-- cell-loop: renders <th>'s foreach column -->
+      <th><!-- column[title] --></th>
+      <!-- cell-loop-end -->
+    </tr>
+  </thead>
+  <tbody>
+    <!-- row-loop: renders <tr>'s foreach item -->
+    <tr>
+      <!-- cell-loop: renders <td>'s foreach column -->
+      <td><!-- item[column.id] --></td>
+      <!-- cell-loop-end -->
+    </tr>
+    <!-- row-loop-end -->
+  </tbody>
+</table>
+```
+
+##### Head
 
 ```js
 import Table from '../index'
