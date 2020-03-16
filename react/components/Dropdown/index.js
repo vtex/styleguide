@@ -122,7 +122,7 @@ class Dropdown extends Component {
         [color]: !disabled && valueLabel && !isPlaceholder,
         'c-muted-2': !disabled && valueLabel && isPlaceholder,
         ph2: isInline && size !== 'x-large',
-        'pl5 pr3': !isInline && size !== 'x-large' && size !== 'large',
+        'pl5 pr3': !isInline && size !== 'x-large',
         't-body pv5 ph5': size === 'x-large',
       }
     )
