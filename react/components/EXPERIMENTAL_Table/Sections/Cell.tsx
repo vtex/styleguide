@@ -66,10 +66,10 @@ function Cell(
     width,
     onClick,
     className: classNameProp,
-    sorting,
+    sorting = false,
     sortable = false,
     sticky = false,
-    header,
+    header = false,
   }: Props,
   ref: Ref<HTMLTableCellElement>
 ) {
@@ -144,7 +144,6 @@ interface Composites {
 }
 
 interface SpecificProps {
-  id?: string
   width?: number | string | React.ReactText
   className?: string
   onClick?: () => void

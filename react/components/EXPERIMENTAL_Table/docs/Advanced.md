@@ -66,7 +66,27 @@ You may know that a table consists of two loops. The first (**row-loop**) is map
 </table>
 ```
 
+##### Cell
+
+| Property  | Type             | Required | Default | Description                                    |
+| --------- | ---------------- | -------- | ------- | ---------------------------------------------- |
+| width     | number or string | 🚫       | 🚫      | Cell width (variable by default)               |
+| className | string           | 🚫       | 🚫      | Custom classes                                 |
+| onClick   | `() => void`     | 🚫       | 🚫      | Action to dispatch on click                    |
+| sortable  | boolean          | 🚫       | false   | If is sortable or not                          |
+| sorting   | boolean          | 🚫       | false   | If is currently sorting by or not              |
+| sticky    | boolean          | 🚫       | false   | If is sticky or not                            |
+| header    | boolean          | 🚫       | false   | If it is a `<th />` (true) or `<td />` (false) |
+
+##### Row
+
+| Property | Type   | Required | Default | Description |
+| -------- | ------ | -------- | ------- | ----------- |
+| width    | number | 🚫       | 🚫      | meassage    |
+
 ##### Head
+
+The head contains a single row, so you do not need to worry about the **row-loop**.
 
 ```js
 import Table from '../index'
