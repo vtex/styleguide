@@ -39,8 +39,11 @@ export function calculateTableHeight(
 }
 
 export function getScrollbarWidth(): number {
-  if (!window || !document || !document.documentElement)
+  const isSSR = typeof document === 'undefined' || typeof window === 'undefined'
+
+  if (isSSR) {
     return DEFAULT_SCROLLBAR_WIDTH
+  }
   const scrollbarWidth =
     window.innerWidth - document.documentElement.clientWidth
   return isNaN(scrollbarWidth) ? DEFAULT_SCROLLBAR_WIDTH : scrollbarWidth
