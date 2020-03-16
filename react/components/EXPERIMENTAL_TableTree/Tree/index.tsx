@@ -56,7 +56,7 @@ const Tree: FC<TreeProps> = ({
 
 type TreeProps = {
   items: Items
-  currentDensity: Density
+  density: Density
   nodesKey: string
   columns: Array<Column>
   comparator: comparatorCurry<TreeType<unknown>>

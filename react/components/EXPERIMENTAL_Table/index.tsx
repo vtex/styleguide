@@ -125,9 +125,9 @@ export const measuresPropTypes = {
   /** Height of each row */
   rowHeight: PropTypes.number,
   /** Current density of the table: compact, regular of comfortable */
-  currentDensity: PropTypes.oneOf(DENSITY_OPTIONS),
+  density: PropTypes.oneOf(DENSITY_OPTIONS),
   /** Sets the current density */
-  setCurrentDensity: PropTypes.func,
+  setDensity: PropTypes.func,
 }
 
 export const tablePropTypes = {
