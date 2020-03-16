@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Add missing prop `value` to `Toggle` to allow self controlled forms
+
 ## [9.112.15] - 2020-03-10
 
 ### Fixed

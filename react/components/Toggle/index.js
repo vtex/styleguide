@@ -23,6 +23,7 @@ class Toggle extends Component {
       size,
       helpText,
       testId,
+      value,
     } = this.props
 
     let labelClass = disabled ? 'c-disabled ' : 'c-on-base '
@@ -170,6 +171,7 @@ class Toggle extends Component {
             className="h-100 w-100 absolute o-0 pointer"
             disabled={disabled}
             checked={checked}
+            value={value}
             name={this.props.name}
             onClick={this.props.onClick}
             onChange={this.props.onChange}
@@ -205,6 +207,7 @@ Toggle.propTypes = {
   size: PropTypes.oneOf(['regular', 'large']),
   helpText: PropTypes.node,
   testId: PropTypes.string,
+  value: PropTypes.string,
 }
 
 export default Toggle
