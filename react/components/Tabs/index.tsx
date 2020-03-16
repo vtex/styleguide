@@ -6,6 +6,7 @@ import React, {
   useCallback,
   useLayoutEffect,
   Children,
+  useEffect,
 } from 'react'
 import PropTypes, { InferProps } from 'prop-types'
 import debounce from 'lodash/debounce'
@@ -33,8 +34,9 @@ const Tabs: FC<InferProps<typeof propTypes>> = ({
   const [lastShownTab, setLastShowTab] = useState(childrenArray.length)
   const [tabsMenuOpen, setTabsMenuOpen] = useState(false)
 
-  const tabsContainerRef = useRef(null)
-  const tabsFullContainerRef = useRef(null)
+  const tabsContainerRef = useRef<HTMLDivElement>(null)
+  const tabsFullContainerRef = useRef<HTMLDivElement>(null)
+  const moreTabsButtonRef = useRef<HTMLButtonElement>(null)
 
   const selectedTab: Tab = childrenArray.find(
     child => (child as Tab).props.active
@@ -63,6 +65,7 @@ const Tabs: FC<InferProps<typeof propTypes>> = ({
 
           // verify if the last tab can fit without more tabs button
           if (
+            hideTabs &&
             childIndex + 1 === childrens.length &&
             sumTabWidths <= tabsFullContainerRef.current?.clientWidth
           ) {
@@ -95,6 +98,21 @@ const Tabs: FC<InferProps<typeof propTypes>> = ({
     }
   }, [handleResizeWindow])
 
+  useEffect(() => {
+    const handleClickOutsideMenu = event => {
+      if (moreTabsButtonRef.current?.contains(event.target)) {
+        return
+      }
+      setTabsMenuOpen(false)
+    }
+
+    document.addEventListener('mousedown', handleClickOutsideMenu, false)
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutsideMenu, false)
+    }
+  }, [])
+
   const getHiddenTabProps = (child: Tab) => {
     const { label, onClick } = child.props
     return { label, onClick }
@@ -123,6 +141,7 @@ const Tabs: FC<InferProps<typeof propTypes>> = ({
         </div>
         {showMoreTabsButton && (
           <Menu
+            ref={moreTabsButtonRef}
             options={getAllHiddenTabs()}
             open={tabsMenuOpen}
             onClose={() => {
