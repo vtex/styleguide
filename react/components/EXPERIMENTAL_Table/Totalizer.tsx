@@ -5,7 +5,7 @@ import TotalizerBase, { totalizerPropTypes } from '../Totalizer/index.js'
 import { NAMESPACES, ORDER_CLASSNAMES } from './constants'
 import ActionBar from './ActionBar'
 import { E2ETestable } from './types'
-import { useTestingContext } from './context'
+import { useTestingContext } from './context/testing'
 
 const Totalizer: FC<TotalizerProps> = props => {
   const { testId } = useTestingContext()

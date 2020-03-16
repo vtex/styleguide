@@ -5,7 +5,7 @@ import FilterBarBase, { filterBarPropTypes } from '../FilterBar/index.js'
 import { NAMESPACES, ORDER_CLASSNAMES } from './constants'
 import ActionBar from './ActionBar'
 import { E2ETestable } from './types'
-import { useTestingContext } from './context'
+import { useTestingContext } from './context/testing'
 
 const FilterBar: FC<FilterBarProps> = props => {
   const { testId } = useTestingContext()

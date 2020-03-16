@@ -6,24 +6,25 @@ import { NAMESPACES, ORDER_CLASSNAMES } from '../constants'
 import { TABLE_HEADER_HEIGHT } from '../hooks/useTableMeasures'
 import Loading from './Loading'
 import useTableMotion from '../hooks/useTableMotion'
-import { E2ETestable } from '../types'
+import { useMeasuresContext } from '../context/measures'
+import { useTestingContext } from '../context/testing'
 
 const DataTable: FC<DataTableProps> = ({
   children,
-  height,
   className,
   empty,
   loading,
   emptyState,
   motion,
-  testId,
   stickyHeader,
 }) => {
+  const { testId } = useTestingContext()
+  const { tableHeight } = useMeasuresContext()
   const showLoading = !empty && loading
   const showEmptyState = empty && emptyState
   return (
     <div
-      style={{ height, ...motion }}
+      style={{ height: tableHeight, ...motion }}
       className={classNames(
         'order-1 mw-100 overflow-x-auto relative',
         {
@@ -42,7 +43,7 @@ const DataTable: FC<DataTableProps> = ({
         <Loading
           testId={`${testId}__loading`}
           motion={motion}
-          height={height - TABLE_HEADER_HEIGHT}>
+          height={tableHeight - TABLE_HEADER_HEIGHT}>
           {typeof loading !== 'boolean' &&
             loading.renderAs &&
             loading.renderAs()}
@@ -57,8 +58,7 @@ const DataTable: FC<DataTableProps> = ({
   )
 }
 
-export type DataTableProps = E2ETestable & {
-  height: number
+export type DataTableProps = {
   className?: string
   empty: boolean
   motion: ReturnType<typeof useTableMotion>

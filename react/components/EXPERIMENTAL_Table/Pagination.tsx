@@ -3,7 +3,7 @@ import React, { FC } from 'react'
 import PaginationBase from '../Pagination/index'
 import { NAMESPACES, ORDER_CLASSNAMES } from './constants'
 import ActionBar from './ActionBar'
-import { useTestingContext } from './context'
+import { useTestingContext } from './context/testing'
 
 const Pagination: FC<PaginationProps> = props => {
   const { testId } = useTestingContext()
