@@ -14,12 +14,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- Warning icon when input has errorMessage
+- Warning icon when input has errorMessaxge
 - Size prop to checkbox.
 
 ### Changed
 
 - `Table`'s `headerRenderer` can be used in columns that are either fixed or sortable
+
+## [9.112.16] - 2020-03-16
+
 ### Fixed
 
 - Broken styles of `Dropdown` inside an `Input` prefix or suffix.
