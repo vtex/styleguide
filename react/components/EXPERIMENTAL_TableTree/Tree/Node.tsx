@@ -19,7 +19,7 @@ const Node: FC<NodeProps> = ({
   isCollapsed,
   data,
   depth,
-  currentDensity,
+  density,
   onRowClick,
 }) => {
   const motion = useTableMotion(ROW_TRANSITIONS)
@@ -66,7 +66,7 @@ const Node: FC<NodeProps> = ({
             ? cellRenderer({
                 data: cellData,
                 rowHeight,
-                currentDensity,
+                density,
                 motion,
               })
             : cellData
@@ -108,7 +108,7 @@ const Node: FC<NodeProps> = ({
         (data[nodesKey] as unknown[]).map(data => (
           <Node
             onRowClick={onRowClick}
-            currentDensity={currentDensity}
+            density={density}
             isCollapsed={isCollapsed}
             toggleCollapsed={toggleCollapsed}
             checkboxes={checkboxes}

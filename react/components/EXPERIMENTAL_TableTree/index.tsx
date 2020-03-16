@@ -39,7 +39,7 @@ const TableTree: FC<Props> & TableComposites = ({
     throw new Error('Provide measures to the TableTree')
   }
 
-  const { tableHeight, rowHeight, currentDensity } = measures
+  const { tableHeight, rowHeight, density } = measures
   const motion = useTableMotion(CONTAINER_TRANSITIONS)
 
   return (
@@ -50,7 +50,6 @@ const TableTree: FC<Props> & TableComposites = ({
         emptyState={emptyState}
         empty={empty}
         motion={motion}
-        height={tableHeight}
       >
         <thead className="w-100 ph4 truncate overflow-x-hidden c-muted-2 f6">
           <Headings checkboxes={checkboxes} columns={columns} />
@@ -58,7 +57,7 @@ const TableTree: FC<Props> & TableComposites = ({
         {!empty && !loading && (
           <tbody>
             <Tree
-              currentDensity={currentDensity}
+              density={density}
               checkboxes={checkboxes}
               columns={columns}
               items={items}
