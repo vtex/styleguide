@@ -101,7 +101,6 @@ class Input extends Component {
       dataAttrs[`data-${key}`] = dataAttributes[key]
     }
 
-    const widthClass = 'w-100'
     const box = 'ma0 border-box'
     const borderRadiusBase = 'br2'
     const borderBase = `bw1 b--solid`
@@ -109,15 +108,14 @@ class Input extends Component {
     const borderRadius = `${borderRadiusBase} ${
       prefix ? 'bl-0 br--right ' : ''
     } ${suffix ? 'br-0 br--left ' : ''}`
-    let prefixClasses = `${borderRadiusBase} br-0 br--left `
-    let suffixClasses = `${borderRadiusBase} bl-0 br--right `
+    let prefixClasses = `vtex-input__prefix ${borderRadiusBase} br-0 br--left `
+    let suffixClasses = `vtex-input__suffix ${borderRadiusBase} bl-0 br--right `
 
-    let classes = `${styles.input} ${widthClass} ${box} ${styles.hideDecorators} ${styles.noAppearance} ${borderRadius} bn outline-0 `
+    let classes = `${styles.input} ${box} ${styles.hideDecorators} ${styles.noAppearance} ${borderRadius} w-100 bn outline-0 `
     let labelClasses = 'vtex-input__label db mb3 w-100 c-on-base '
-    let prefixAndSuffixClasses =
-      'vtex-input__prefix c-muted-2 fw5 flex items-center c-muted-2 t-body '
+    let prefixAndSuffixClasses = 'c-muted-2 fw5 flex items-center t-body '
     let prefixSuffixGroupClasses =
-      'vtex-input-prefix__group flex flex-row items-stretch '
+      'vtex-input-prefix__group flex flex-row items-stretch overflow-hidden '
     prefixSuffixGroupClasses += `${borderRadiusBase} ${borderBase} ${
       groupBottom ? 'br--top ' : ''
     }`
