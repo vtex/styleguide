@@ -133,13 +133,22 @@ const Tabs: FC<InferProps<typeof propTypes>> = ({
                 setTabsMenuOpen(true)
               }}
               className={`
-                vtex-tab__button bt-0 bl-0 br-0 bw1 w-100
-                c-muted-1 hover-c-action-primary pointer
-                'vtex-tab__button--inactive b--transparent'
-                v-mid relative h-regular t-body
-                bg-transparent outline-0   
+                vtex-tab__button
+                vtex-tab__button--inactive
+                over-c-action-primary
+                hover-c-action-primary
+                c-muted-1
+                b--transparent 
+                bt-0 bl-0 br-0 bb-0
+                v-mid
+                pointer
+                relative
+                h-regular
+                t-body
+                bg-transparent
+                outline-0 
               `}>
-              <OptionsDots />
+              <OptionsDots color="currentColor" />
             </button>
           </Menu>
         )}
