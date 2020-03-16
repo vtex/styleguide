@@ -111,11 +111,11 @@ class Input extends Component {
     let prefixClasses = `vtex-input__prefix ${borderRadiusBase} br-0 br--left `
     let suffixClasses = `vtex-input__suffix ${borderRadiusBase} bl-0 br--right `
 
-    let classes = `${styles.input} ${box} ${styles.hideDecorators} ${styles.noAppearance} ${borderRadius} bn outline-0 `
+    let classes = `${styles.input} ${box} ${styles.hideDecorators} ${styles.noAppearance} ${borderRadius} w-100 bn outline-0 `
     let labelClasses = 'vtex-input__label db mb3 w-100 c-on-base '
     let prefixAndSuffixClasses = 'c-muted-2 fw5 flex items-center t-body '
     let prefixSuffixGroupClasses =
-      'vtex-input-prefix__group flex flex-row items-stretch '
+      'vtex-input-prefix__group flex flex-row items-stretch overflow-hidden '
     prefixSuffixGroupClasses += `${borderRadiusBase} ${borderBase} ${
       groupBottom ? 'br--top ' : ''
     }`
