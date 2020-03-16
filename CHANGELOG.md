@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- ReferenceError by accessing 'valueLabel' const on `Dropdown`.
+
 ## [9.112.19] - 2020-03-16
 
 ### Fixed
