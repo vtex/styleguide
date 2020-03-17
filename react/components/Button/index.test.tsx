@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from 'react-testing-library'
 
-import Button from './index'
+import Button from '.'
 
 describe('Button', () => {
   describe('CSS API', () => {

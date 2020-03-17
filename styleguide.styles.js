@@ -35,7 +35,7 @@ module.exports = {
           color: `${config.colors['near-black']} !important`,
         },
         '& li > a:hover': {
-          color: `${config.colors['gray']} !important`,
+          color: `${config.colors.gray} !important`,
           cursor: 'pointer',
         },
       },

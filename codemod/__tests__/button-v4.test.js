@@ -1,4 +1,5 @@
-const defineInlineTest = require('jscodeshift/dist/testUtils').defineInlineTest
+const { defineInlineTest } = require('jscodeshift/dist/testUtils')
+
 const Buttonv4Transform = require('../button-v4')
 
 describe('Button sizes', () => {

@@ -159,8 +159,8 @@ const Button: FC<Props> = props => {
     }
   }
 
-  const disabled = props.disabled || isLoading
-  const iconOnly = icon || props.iconOnly
+  const disabled = props.disabled ?? isLoading
+  const iconOnly = icon ?? props.iconOnly
 
   const isTertiary =
     variation === 'tertiary' ||
@@ -374,7 +374,8 @@ const Button: FC<Props> = props => {
           style={{
             paddingTop: '.25em',
             paddingBottom: '.32em',
-          }}>
+          }}
+        >
           {children}
         </div>
       )}
