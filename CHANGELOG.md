@@ -21,6 +21,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - `Table`'s `headerRenderer` can be used in columns that are either fixed or sortable
 
+## [9.112.20] - 2020-03-17
+
 ### Fixed
 
 - ReferenceError by accessing 'valueLabel' const on `Dropdown`.
