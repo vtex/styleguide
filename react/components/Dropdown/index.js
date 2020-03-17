@@ -104,6 +104,9 @@ class Dropdown extends Component {
       selectTestId,
     } = this.props
 
+    const valueLabel = this.getValueLabel()
+    const showCaption = !valueLabel
+
     const hasValidInitialValue =
       this.getOptionFromValue(this.initialValue) !== null
 
