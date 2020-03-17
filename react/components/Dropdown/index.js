@@ -106,6 +106,8 @@ class Dropdown extends Component {
     const hasValidInitialValue =
       this.getOptionFromValue(this.initialValue) !== null
 
+    const valueLabel = this.getValueLabel()
+    const showCaption = !valueLabel
     const isPlaceholder = this.getSelectedOption() === null
     const isInline = variation.toLowerCase() === 'inline'
     const iconSize = size === 'x-large' ? 22 : 18
@@ -161,9 +163,6 @@ class Dropdown extends Component {
         't-body': size === 'large' || size === 'x-large',
       }
     )
-
-    const valueLabel = this.getValueLabel()
-    const showCaption = !valueLabel
 
     return (
       <div className={rootClasses} data-testid={testId}>
