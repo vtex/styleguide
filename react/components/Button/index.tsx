@@ -159,8 +159,8 @@ const Button: FC<Props> = props => {
     }
   }
 
-  const disabled = props.disabled ?? isLoading
-  const iconOnly = icon ?? props.iconOnly
+  const disabled = props.disabled || isLoading
+  const iconOnly = icon || props.iconOnly
 
   const isTertiary =
     variation === 'tertiary' ||
