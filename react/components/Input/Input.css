@@ -27,3 +27,9 @@
   /* Firefox 18- */
   color: #979899;
 }
+
+.inputPrefix, .inputSuffix {
+  min-width: -moz-min-content;
+  min-width: -webkit-min-content;
+  min-width: min-content;
+}

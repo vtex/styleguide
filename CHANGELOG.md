@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Input prefix and suffix min width shrinking the contained element.
+
 ## [9.112.20] - 2020-03-17
 
 ### Fixed

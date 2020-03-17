@@ -108,8 +108,8 @@ class Input extends Component {
     const borderRadius = `${borderRadiusBase} ${
       prefix ? 'bl-0 br--right ' : ''
     } ${suffix ? 'br-0 br--left ' : ''}`
-    let prefixClasses = `vtex-input__prefix ${borderRadiusBase} br-0 br--left `
-    let suffixClasses = `vtex-input__suffix ${borderRadiusBase} bl-0 br--right `
+    let prefixClasses = `${styles.inputPrefix} vtex-input__prefix ${borderRadiusBase} br-0 br--left `
+    let suffixClasses = `${styles.inputSuffix} vtex-input__suffix ${borderRadiusBase} bl-0 br--right `
 
     let classes = `${styles.input} ${box} ${styles.hideDecorators} ${styles.noAppearance} ${borderRadius} w-100 bn outline-0 `
     let labelClasses = 'vtex-input__label db mb3 w-100 c-on-base '
