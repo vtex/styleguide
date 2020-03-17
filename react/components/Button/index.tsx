@@ -348,8 +348,8 @@ const Button: FC<Props> = props => {
   } else {
     // Button-mode exclusive props
     elementEspecificProps = {
-      autoFocus: !iconOnly || autoFocus,
-      disabled: !iconOnly || props.disabled,
+      autoFocus: iconOnly ? undefined : autoFocus,
+      disabled: iconOnly ? undefined : props.disabled,
       name: iconOnly ? undefined : name,
       value: iconOnly ? undefined : value,
       type,
