@@ -21,6 +21,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - `Table`'s `headerRenderer` can be used in columns that are either fixed or sortable
 
+- Expose `EXPERIMENTAL_Table` sections.
+
 ## [9.112.25] - 2020-03-20
 
 ### Added
@@ -38,8 +40,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - The `Tooltip` component overflows when there are long words.
 
 ## [9.112.23] - 2020-03-18
-
-### Fixed
 
 - Apply proper spacing to large dropdowns
 
