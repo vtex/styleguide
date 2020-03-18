@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.112.22] - 2020-03-18
+
 ### Fixed
 
 - Totalizer's container width when inverted.
