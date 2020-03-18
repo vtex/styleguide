@@ -34,26 +34,26 @@ class PageHeader extends PureComponent {
         )}
 
         <div
-          className={`c-on-base flex flex-wrap flex-row justify-between
-            ${linkLabel ? 'mt0' : 'mt7'}`}>
-          <div className="vtex-pageHeader__title t-heading-2 order-0 flex-grow-1">
+          className={`c-on-base flex justify-between items-end ${
+            linkLabel ? 'mt0' : 'mt7'
+          }`}>
+          <div
+            className="vtex-pageHeader__title t-heading-2 order-0"
+            style={{ flex: 1 }}>
             {this.props.title}
           </div>
           {children && (
             <div
-              className={`vtex-pageHeader__children order-2 order-0-ns ${
-                subtitle ? 'mt5' : ''
-              } mt0-ns`}>
-              {children}
-            </div>
-          )}
-          <div className="w-100" style={{ height: 0 }} />
-          {subtitle && (
-            <div className="vtex-pageHeader__subtitle t-body lh-copy c-muted-1 mv5 order-1 order-0-ns">
-              {subtitle}
+              className={`vtex-pageHeader__children order-2 order-0-ns flex mt0-ns`}>
+              <div>{children}</div>
             </div>
           )}
         </div>
+        {subtitle && (
+          <div className="vtex-pageHeader__subtitle t-body lh-copy c-muted-1 mv5 order-1 order-0-ns">
+            {subtitle}
+          </div>
+        )}
       </div>
     )
   }
@@ -63,9 +63,9 @@ PageHeader.propTypes = {
   /** Title for the header */
   title: PropTypes.node.isRequired,
   /** Subtitle for the header */
-  subtitle: PropTypes.node,
+  subtitle: PropTypes.oneOf([PropTypes.node, PropTypes.string]),
   /** Label for the back button */
-  linkLabel: PropTypes.node,
+  linkLabel: PropTypes.string,
   onLinkClick: PropTypes.func,
   children: PropTypes.node,
 }
