@@ -135,11 +135,11 @@ class Dropzone extends PureComponent {
 }
 
 Dropzone.defaultProps = {
-  onDropRejected: () => {},
+  onDropRejected: () => null,
   children: null,
   icon: null,
   isLoading: false,
-  onFileReset: () => {},
+  onFileReset: () => null,
   multiple: false,
 }
 
