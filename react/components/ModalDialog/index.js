@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import Modal from '../Modal'
 import Button from '../Button'
 
+// eslint-disable-next-line @typescript-eslint/no-empty-function
 const NOOP = () => {}
 
 class ModalDialog extends Component {

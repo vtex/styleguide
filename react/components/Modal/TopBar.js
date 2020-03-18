@@ -13,6 +13,12 @@ const TopBar = props => {
     showCloseIcon,
   } = props
 
+  const handleKeyDown = event => {
+    if (event.key === 'Escape' || event.key === 'Esc') {
+      onClose()
+    }
+  }
+
   return (
     <div
       className={`
@@ -31,6 +37,9 @@ const TopBar = props => {
           className={
             'vtex-modal__close-icon absolute top-0 right-0 pa5 pa6-ns pointer ml-auto items-center flex'
           }
+          role="button"
+          tabIndex={0}
+          onKeyDown={handleKeyDown}
           onClick={onClose}
         >
           <IconClose size={18} />
