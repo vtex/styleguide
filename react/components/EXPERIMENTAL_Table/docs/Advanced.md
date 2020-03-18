@@ -66,27 +66,9 @@ You may know that a table consists of two loops. The first (**row-loop**) is map
 </table>
 ```
 
-##### Cell
-
-| Property  | Type             | Required | Default | Description                                    |
-| --------- | ---------------- | -------- | ------- | ---------------------------------------------- |
-| width     | number or string | 🚫       | 🚫      | Cell width (variable by default)               |
-| className | string           | 🚫       | 🚫      | Custom classes                                 |
-| onClick   | `() => void`     | 🚫       | 🚫      | Action to dispatch on click                    |
-| sortable  | boolean          | 🚫       | false   | If is sortable or not                          |
-| sorting   | boolean          | 🚫       | false   | If is currently sorting by or not              |
-| sticky    | boolean          | 🚫       | false   | If is sticky or not                            |
-| header    | boolean          | 🚫       | false   | If it is a `<th />` (true) or `<td />` (false) |
-
-##### Row
-
-| Property | Type   | Required | Default | Description |
-| -------- | ------ | -------- | ------- | ----------- |
-| width    | number | 🚫       | 🚫      | meassage    |
-
 ##### Head
 
-The head contains a single row, so you do not need to worry about the **row-loop**.
+The head contains a single row, so you do not need to worry about the **row-loop**. The following example shows a full head renderer (with sorting).
 
 ```js
 import Table from '../index'
@@ -101,7 +83,7 @@ const ascOrdering = prop => (a, b) =>
 const dscOrdering = prop => (a, b) =>
   a[prop] > b[prop] ? -1 : a[prop] < b[prop] ? 1 : 0
 
-function CreateExample() {
+function HeadExample() {
   const measures = useTableMeasures({ size: initItems.length })
   const sorting = useTableSort()
 
@@ -150,5 +132,86 @@ function CreateExample() {
   )
 }
 
-;<CreateExample />
+;<HeadExample />
 ```
+
+##### Body
+
+The head contains a single row, so you do not need to worry about the **row-loop**. The following example shows a full head renderer (with sorting).
+
+```js
+import Table from '../index'
+import useTableMeasures from '../hooks/useTableMeasures'
+import { customers } from './sampleData'
+
+const items = customers.slice(0, 5)
+
+function BodyExample() {
+  const measures = useTableMeasures({ size: items })
+
+  return (
+    <Table
+      measures={measures}
+      columns={[
+        {
+          id: 'name',
+          title: 'Name',
+        },
+        {
+          id: 'location',
+          title: 'Location',
+        },
+      ]}
+      items={items}
+      composableSections>
+      <Table.Sections>
+        <Table.Sections.Head />
+        <Table.Sections.Body>
+          {({ key, props }) => (
+            <Table.Sections.Body.Row key={key} {...props}>
+              {({ key, props, data, column }) => (
+                <Table.Sections.Body.Row.Cell key={key} {...props}>
+                  {data[column.id]}
+                </Table.Sections.Body.Row.Cell>
+              )}
+            </Table.Sections.Body.Row>
+          )}
+        </Table.Sections.Body>
+      </Table.Sections>
+    </Table>
+  )
+}
+
+;<BodyExample />
+```
+
+##### Cell Props
+
+| Property  | Type             | Required | Default | Description                                    |
+| --------- | ---------------- | -------- | ------- | ---------------------------------------------- |
+| width     | number or string | 🚫       | 🚫      | Cell width (variable by default)               |
+| className | string           | 🚫       | 🚫      | Custom classes                                 |
+| onClick   | `() => void`     | 🚫       | 🚫      | Action to dispatch on click                    |
+| sortable  | boolean          | 🚫       | false   | If is sortable or not                          |
+| sorting   | boolean          | 🚫       | false   | If is currently sorting by or not              |
+| sticky    | boolean          | 🚫       | false   | If is sticky or not                            |
+| header    | boolean          | 🚫       | false   | If it is a `<th />` (true) or `<td />` (false) |
+
+##### Row Props
+
+| Property | Type                       | Required | Default | Description                |
+| -------- | -------------------------- | -------- | ------- | -------------------------- |
+| height   | number                     | ✅       | 🚫      | Row's height               |
+| data     | unknown                    | ✅       | 🚫      | Item that will be rendered |
+| motion   | return of `useTableMotion` | 🚫       | 🚫      | Current motion             |
+
+##### Row Render Props (with composable render)
+
+| Property | Type                        | Required | Default | Description           |
+| -------- | --------------------------- | -------- | ------- | --------------------- |
+| props    | { width: number or string } | ✅       | 🚫      | Width of current cell |
+| key      | string                      | ✅       | 🚫      | Key of current cell   |
+| index    | number                      | ✅       | 🚫      | Index of current cell |
+| data     | unknown                     | ✅       | 🚫      | Data current cell     |
+| column   | Column                      | ✅       | 🚫      | current column        |
+| motion   | return of `useTableMotion`  | 🚫       | 🚫      | Current motion        |
