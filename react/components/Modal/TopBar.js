@@ -13,8 +13,11 @@ const TopBar = props => {
     showCloseIcon,
   } = props
 
-  const handleKeyDown = event => {
-    if (event.key === 'Escape' || event.key === 'Esc') {
+  const handleKeyDown = ({ key }) => {
+    const SPACE = ' '
+    const ENTER = 'Enter'
+
+    if (key === SPACE || key === ENTER) {
       onClose()
     }
   }
