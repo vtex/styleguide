@@ -32,7 +32,7 @@ function Sections(
       style={{ height: tableHeight, ...motion }}
       className={classNames(
         'order-1 mw-100 overflow-x-auto overflow-y-auto overflow-hidden',
-        ORDER_CLASSNAMES.TABLE,
+        ORDER_CLASSNAMES.TABLE
       )}>
       <table
         ref={ref}
