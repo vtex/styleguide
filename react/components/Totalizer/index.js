@@ -120,7 +120,7 @@ class Totalizer extends PureComponent {
                       mobileScroll={mobileScroll}
                     />
                     {!item.inverted && (
-                      <div className={`mt${invertedMargin}`}>
+                      <div className={`w-100 mt${invertedMargin}`}>
                         <TotalizerValue
                           item={item}
                           mobileScroll={mobileScroll}
