@@ -4,8 +4,8 @@ import PropTypes from 'prop-types'
 import ToastManager from './ToastManager'
 
 const ToastContext = React.createContext({
-  showToast: () => {},
-  hideToast: () => {},
+  showToast: () => null,
+  hideToast: () => null,
   toastState: null,
 })
 

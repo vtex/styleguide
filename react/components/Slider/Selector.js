@@ -48,6 +48,8 @@ export default function Selector({
       className={containerClasses}
       onMouseDown={onDragStart(position)}
       onTouchStart={onDragStart(position)}
+      role="button"
+      tabIndex={0}
       style={{
         ...containerStyle,
         willChange: 'transform',

@@ -26,6 +26,15 @@ const SelectableCard: FC<PropTypes.InferProps<typeof propTypes>> = ({
 }) => {
   const padding = noPadding ? '' : 'pa6'
 
+  const handleKeyDown = ({ key }: React.KeyboardEvent<HTMLDivElement>) => {
+    const SPACE = ' '
+    const ENTER = 'Enter'
+
+    if (key === SPACE || key === ENTER) {
+      onClick()
+    }
+  }
+
   return (
     <div
       className={`ba br2 bw2 relative ${
@@ -38,6 +47,8 @@ const SelectableCard: FC<PropTypes.InferProps<typeof propTypes>> = ({
         </div>
       ) : null}
       <div
+        role="button"
+        tabIndex={0}
         style={{
           boxShadow: '0 3px 9px 0 rgba(61, 62, 64, 0.25)',
           clipPath: `inset(-10px ${hasGroupRight ? '0px' : '-10px'} -10px ${
@@ -46,6 +57,7 @@ const SelectableCard: FC<PropTypes.InferProps<typeof propTypes>> = ({
         }}
         className={`vtex-card card w-100 b2 br2 bg-base c-on-base ${padding} pointer`}
         onClick={onClick}
+        onKeyDown={handleKeyDown}
       >
         {children}
       </div>
