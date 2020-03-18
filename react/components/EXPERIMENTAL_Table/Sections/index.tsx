@@ -11,7 +11,6 @@ import {
   HasMotion,
   NativeTable,
 } from '../types'
-import { useHeadContext } from '../context/head'
 import { useMeasuresContext } from '../context/measures'
 import { useTestingContext } from '../context/testing'
 import { useLoadingContext } from '../context/loading'
@@ -25,7 +24,6 @@ function Sections(
   ref: Ref<HTMLTableElement>
 ) {
   const { emptyState, empty, loading } = useLoadingContext()
-  const { sticky } = useHeadContext()
   const { testId } = useTestingContext()
   const { tableHeight } = useMeasuresContext()
 
@@ -33,11 +31,8 @@ function Sections(
     <div
       style={{ height: tableHeight, ...motion }}
       className={classNames(
-        'order-1 mw-100 overflow-x-auto',
-        ORDER_CLASSNAMES.TABLE,
-        {
-          'overflow-y-auto': sticky,
-        }
+        'order-1 mw-100 overflow-x-auto overflow-y-auto overflow-hidden',
+        ORDER_CLASSNAMES.TABLE
       )}
     >
       <table
