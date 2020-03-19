@@ -56,11 +56,11 @@ class FilterTag extends PureComponent {
       nextProps.subject &&
       nextProps.statements.some(st => st.subject === nextProps.subject)
     ) {
-      const statement = filterStatementBySubject(
+      const [statement] = filterStatementBySubject(
         nextProps.statements,
         nextProps.subject,
         nextProps.options
-      )[0]
+      )
       return {
         virtualStatement: merge({}, statement, prevState.virtualStatement),
       }
