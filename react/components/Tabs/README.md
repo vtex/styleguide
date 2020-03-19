@@ -104,6 +104,12 @@ class TabsExample extends React.Component {
             onClick={() => this.handleTabChange(3)}>
             <p>Content for tab 3</p>
           </Tab>
+          <Tab
+            label="Tab 4"
+            active={this.state.currentTab === 4}
+            onClick={() => this.handleTabChange(4)}>
+            <p>Content for tab 4</p>
+          </Tab>
         </Tabs>
       </div>
     )
