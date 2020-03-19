@@ -48,7 +48,7 @@ class InputSearch extends Component {
           ...event.target,
           value,
         },
-        preventDefault: event.preventDefault || (() => {}),
+        preventDefault: event.preventDefault || (() => null),
       })
   }
 
@@ -59,6 +59,8 @@ class InputSearch extends Component {
   handleFocus = focus => {
     this.setState({ focus })
   }
+
+  pressedEnter = event => event.key === 'Enter'
 
   render() {
     const { hover, focus } = this.state
@@ -73,15 +75,19 @@ class InputSearch extends Component {
         onBlur={() => this.handleFocus(false)}
         onMouseEnter={() => this.handleHovering(true)}
         onMouseLeave={() => this.handleHovering(false)}
-        onKeyUp={e => e.key === 'Enter' && this.handleSubmit(e)}
+        onKeyUp={e => this.pressedEnter(e) && this.handleSubmit(e)}
         type="search"
         suffix={
           <div className="flex flex-row items-center">
             {this.props.value && (
               <span
-                tabIndex={0}
-                onClick={this.handleClickClear}
                 className="pointer mr4 c-muted-3"
+                onClick={this.handleClickClear}
+                onKeyPress={e =>
+                  this.pressedEnter(e) && this.handleClickClear(e)
+                }
+                role="button"
+                tabIndex={0}
               >
                 <ClearIcon size={iconSize} />
               </span>
@@ -96,7 +102,13 @@ class InputSearch extends Component {
                   InputSearch.separatorHeight.regular,
               }}
             />
-            <span className="pointer pl4 c-link" onClick={this.handleSubmit}>
+            <span
+              className="pointer pl4 c-link"
+              onClick={this.handleSubmit}
+              onKeyPress={e => this.pressedEnter(e) && this.handleSubmit(e)}
+              role="button"
+              tabIndex={0}
+            >
               <SearchIcon size={iconSize} />
             </span>
           </div>
