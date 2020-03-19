@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 import PropTypes from 'prop-types'
 
 import Button from '../Button'
@@ -13,6 +13,8 @@ class Input extends Component {
     this.state = {
       active: false,
     }
+
+    this.ref = createRef(null)
   }
 
   handleChange = event => {
@@ -32,17 +34,17 @@ class Input extends Component {
   }
 
   handleFocus = event => {
-    if (!this.props.readOnly) {
-      this.setState({ active: true })
-      this.props.onFocus && this.props.onFocus(event)
-    }
+    if (this.props.readOnly) return
+
+    this.setState({ active: true })
+    this.props.onFocus && this.props.onFocus(event)
   }
 
   handleBlur = event => {
-    if (!this.props.readOnly) {
-      this.setState({ active: false })
-      this.props.onBlur && this.props.onBlur(event)
-    }
+    if (this.props.readOnly) return
+
+    this.setState({ active: false })
+    this.props.onBlur && this.props.onBlur(event)
   }
 
   handleMouseEnter = event => {
@@ -51,6 +53,17 @@ class Input extends Component {
 
   handleMouseLeave = event => {
     this.props.onMouseLeave && this.props.onMouseLeave(event)
+  }
+
+  handleAutoFocus = () => {
+    const { forwardedRef, autoFocus } = this.props
+    if (!autoFocus) return
+
+    if (forwardedRef && forwardedRef.current) {
+      forwardedRef.current.focus()
+    } else if (this.ref.current) {
+      this.ref.focus()
+    }
   }
 
   componentDidMount() {
@@ -71,6 +84,8 @@ class Input extends Component {
         'You should not use both prefix and suffix props in the same input. '
       )
     }
+
+    this.handleAutoFocus()
   }
 
   render() {
@@ -208,7 +223,7 @@ class Input extends Component {
           )}
           <input
             {...dataAttrs}
-            ref={this.props.forwardedRef}
+            ref={this.props.forwardedRef || this.ref}
             onBlur={this.handleBlur}
             onFocus={this.handleFocus}
             onChange={this.handleChange}
@@ -222,7 +237,6 @@ class Input extends Component {
             accept={this.props.accept}
             autoComplete={this.props.autoComplete}
             autoCorrect={this.props.autoCorrect}
-            autoFocus={this.props.autoFocus}
             autoSave={this.props.autoSave}
             defaultValue={this.props.defaultValue}
             inputMode={this.props.inputMode}
