@@ -25,10 +25,14 @@ BaseInput.propTypes = {
 }
 
 const baseNumber = 9999999999.9999999999
+const defaultEvent = { target: null }
 
 class InputCurrency extends Component {
   handleChange = ({ floatValue }) => {
     const { onChange } = this.props
+    const ssr = typeof document === 'undefined' || typeof window === 'undefined'
+    const event = ssr ? defaultEvent : window.event
+
     onChange &&
       onChange({
         ...event,
