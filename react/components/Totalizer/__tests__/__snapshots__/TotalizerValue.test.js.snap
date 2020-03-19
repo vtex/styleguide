@@ -1,0 +1,145 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Totalizer/Value spec should match snapshot on desktop 1`] = `
+<DocumentFragment>
+  <div
+    class="f4 fw5 c-on-base "
+    data-testid="testing_id"
+  >
+    value
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Totalizer/Value spec should match snapshot on mobile 1`] = `
+<DocumentFragment>
+  <div
+    class="f4 fw5 c-on-base nowrap"
+    data-testid="testing_id"
+  >
+    value
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Totalizer/Value spec should match snapshot while loading 1`] = `
+<DocumentFragment>
+  <div
+    class="c-muted-1"
+    data-testid="testing_id__loading"
+  >
+    <svg
+      class="vtex__icon-spinner   "
+      height="14"
+      preserveAspectRatio="xMidYMid"
+      viewBox="0 0 100 100"
+      width="14"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <style>
+        
+            @keyframes vtex-spinner-rotate {
+              from {
+                transform-origin: 50% 50%;
+                transform: rotate(0deg);
+              }
+              to {
+                transform-origin: 50% 50%;
+                transform: rotate(360deg);
+              }
+            }
+
+            @keyframes vtex-spinner-fill {
+              0% {
+                stroke-dasharray: 0 0 2 251.32741228718345;
+              }
+              50% {
+                stroke-dasharray: 0 0 188.49555921538757 251.32741228718345;
+              }
+              100% {
+                stroke-dasharray: 0 249.32741228718345 188.49555921538757 251.32741228718345;
+              }
+            }
+
+            .vtex-spinner_circle {
+              animation: vtex-spinner-fill 1.25s infinite cubic-bezier(0.455, 0.030, 0.515, 0.955), vtex-spinner-rotate 0.625s infinite linear;
+            }
+          
+      </style>
+      <circle
+        class="vtex-spinner_circle"
+        cx="50"
+        cy="50"
+        fill="none"
+        r="40"
+        stroke="currentColor"
+        stroke-dasharray="0 0 188.49555921538757 251.32741228718345"
+        stroke-dashoffset="1"
+        stroke-linecap="round"
+        stroke-width="10"
+      />
+    </svg>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Totalizer/Value spec should match snapshot while loading on mobile 1`] = `
+<DocumentFragment>
+  <div
+    class="c-muted-1"
+    data-testid="testing_id__loading"
+  >
+    <svg
+      class="vtex__icon-spinner   "
+      height="14"
+      preserveAspectRatio="xMidYMid"
+      viewBox="0 0 100 100"
+      width="14"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <style>
+        
+            @keyframes vtex-spinner-rotate {
+              from {
+                transform-origin: 50% 50%;
+                transform: rotate(0deg);
+              }
+              to {
+                transform-origin: 50% 50%;
+                transform: rotate(360deg);
+              }
+            }
+
+            @keyframes vtex-spinner-fill {
+              0% {
+                stroke-dasharray: 0 0 2 251.32741228718345;
+              }
+              50% {
+                stroke-dasharray: 0 0 188.49555921538757 251.32741228718345;
+              }
+              100% {
+                stroke-dasharray: 0 249.32741228718345 188.49555921538757 251.32741228718345;
+              }
+            }
+
+            .vtex-spinner_circle {
+              animation: vtex-spinner-fill 1.25s infinite cubic-bezier(0.455, 0.030, 0.515, 0.955), vtex-spinner-rotate 0.625s infinite linear;
+            }
+          
+      </style>
+      <circle
+        class="vtex-spinner_circle"
+        cx="50"
+        cy="50"
+        fill="none"
+        r="40"
+        stroke="currentColor"
+        stroke-dasharray="0 0 188.49555921538757 251.32741228718345"
+        stroke-dashoffset="1"
+        stroke-linecap="round"
+        stroke-width="10"
+      />
+    </svg>
+  </div>
+</DocumentFragment>
+`;

@@ -98,18 +98,20 @@ class Totalizer extends PureComponent {
                       {item.inverted && (
                         <div className={horizontalLayout ? 'mr3' : ''}>
                           <TotalizerValue
+                            testId={`${testId}__value`}
                             item={item}
                             mobileScroll={mobileScroll}
                           />
                         </div>
                       )}
                       <TotalizerLabel
-                        testId={`${testId}__icon`}
+                        testId={`${testId}__label`}
                         label={item.label}
                         mobileScroll={mobileScroll}
                       />
                       {!item.inverted && (
                         <TotalizerValue
+                          testId={`${testId}__value`}
                           item={item}
                           mobileScroll={mobileScroll}
                         />
@@ -128,19 +130,21 @@ class Totalizer extends PureComponent {
                         }${invertedMargin}`}
                       >
                         <TotalizerValue
+                          testId={`${testId}__value`}
                           item={item}
                           mobileScroll={mobileScroll}
                         />
                       </div>
                     )}
                     <TotalizerLabel
-                      testId={`${testId}__icon`}
+                      testId={`${testId}__label`}
                       label={item.label}
                       mobileScroll={mobileScroll}
                     />
                     {!item.inverted && (
                       <div className={`mt${invertedMargin}`}>
                         <TotalizerValue
+                          testId={`${testId}__value`}
                           item={item}
                           mobileScroll={mobileScroll}
                         />

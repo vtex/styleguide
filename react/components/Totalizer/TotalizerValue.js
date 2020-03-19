@@ -8,11 +8,12 @@ class TotalizerValue extends PureComponent {
     const {
       item: { value, isLoading },
       mobileScroll,
+      testId,
     } = this.props
 
     if (isLoading) {
       return (
-        <div className="c-muted-1">
+        <div data-testid={`${testId}__loading`} className="c-muted-1">
           <Spinner size={14} color="currentColor" />
         </div>
       )
@@ -23,7 +24,10 @@ class TotalizerValue extends PureComponent {
     }
 
     return (
-      <div className={`f4 fw5 c-on-base ${mobileScroll ? 'nowrap' : ''}`}>
+      <div
+        data-testid={testId}
+        className={`f4 fw5 c-on-base ${mobileScroll ? 'nowrap' : ''}`}
+      >
         {value}
       </div>
     )
@@ -33,12 +37,10 @@ class TotalizerValue extends PureComponent {
 TotalizerValue.propTypes = {
   mobileScroll: PropTypes.bool,
   item: PropTypes.shape({
-    label: PropTypes.string.isRequired,
     value: PropTypes.node,
-    iconBackgroundColor: PropTypes.string,
-    icon: PropTypes.node,
     isLoading: PropTypes.bool,
   }),
+  testId: PropTypes.string,
 }
 
 export default TotalizerValue
