@@ -104,6 +104,7 @@ class Totalizer extends PureComponent {
                         </div>
                       )}
                       <TotalizerLabel
+                        testId={`${testId}__icon`}
                         label={item.label}
                         mobileScroll={mobileScroll}
                       />
@@ -116,7 +117,10 @@ class Totalizer extends PureComponent {
                     </div>
                   </div>
                 ) : (
-                  <div className={WITHOUT_ICON_ITEM_CONTAINER_CLASSES}>
+                  <div
+                    data-testid={`${testId}__without-icon-container`}
+                    className={WITHOUT_ICON_ITEM_CONTAINER_CLASSES}
+                  >
                     {item.inverted && (
                       <div
                         className={`m${
@@ -130,6 +134,7 @@ class Totalizer extends PureComponent {
                       </div>
                     )}
                     <TotalizerLabel
+                      testId={`${testId}__icon`}
                       label={item.label}
                       mobileScroll={mobileScroll}
                     />

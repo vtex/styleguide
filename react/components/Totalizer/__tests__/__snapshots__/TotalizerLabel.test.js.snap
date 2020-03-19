@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Totalizer/Label spec should match snapshot on desktop 1`] = `
+<DocumentFragment>
+  <div
+    class="c-muted-2 f6 "
+    data-testid="testing_id"
+  >
+    testing_label
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Totalizer/Label spec should match snapshot on mobile 1`] = `
+<DocumentFragment>
+  <div
+    class="c-muted-2 f6 nowrap"
+    data-testid="testing_id"
+  >
+    testing_label
+  </div>
+</DocumentFragment>
+`;
