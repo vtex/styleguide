@@ -99,16 +99,16 @@ export default class ToastManager extends Component {
       (this.props.positioning === 'parent' && this.getParentBounds()) ||
       windowBounds
 
-    if (this.container.current) {
-      this.container.current.style.left = `${bounds.left}px`
-      this.container.current.style.right = `${window.innerWidth -
-        bounds.right}px`
-      this.container.current.style.top = `${bounds.top}px`
-      this.container.current.style.bottom = `${Math.max(
-        0,
-        window.innerHeight - bounds.bottom
-      )}px`
+    if (!this.container.current) {
+      return
     }
+    this.container.current.style.left = `${bounds.left}px`
+    this.container.current.style.right = `${window.innerWidth - bounds.right}px`
+    this.container.current.style.top = `${bounds.top}px`
+    this.container.current.style.bottom = `${Math.max(
+      0,
+      window.innerHeight - bounds.bottom
+    )}px`
   }
 
   componentDidUpdate() {

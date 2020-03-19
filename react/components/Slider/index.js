@@ -92,10 +92,11 @@ export default class Slider extends Component {
   componentWillUnmount() {
     window.removeEventListener('resize', this.updateLayout)
 
-    if (this.cancelDragEvent_) {
-      this.cancelDragEvent_()
-      this.cancelDragEvent_ = undefined
+    if (!this.cancelDragEvent_) {
+      return
     }
+    this.cancelDragEvent_()
+    this.cancelDragEvent_ = undefined
   }
 
   updateLayout = () => {
@@ -193,6 +194,11 @@ export default class Slider extends Component {
     // The events bellow are attached to the body because we need
     // to support the dragging event *outside* of the slider bounds
 
+    const handleUpEvent = () => {
+      this.cancelDragEvent_()
+      this.handleDragEnd()
+    }
+
     this.cancelDragEvent_ = () => {
       this.valuesBeforeDrag_ = undefined
       UP_EVENTS.forEach(evtName =>
@@ -200,11 +206,6 @@ export default class Slider extends Component {
       )
       document.body.removeEventListener(MOVE_EVENT_MAP[e.type], moveHandler)
       document.body.removeEventListener('keydown', this.handleKeyDown)
-    }
-
-    const handleUpEvent = () => {
-      this.cancelDragEvent_()
-      this.handleDragEnd()
     }
 
     UP_EVENTS.forEach(evtName =>
@@ -306,6 +307,8 @@ export default class Slider extends Component {
       <div className="vtex-slider-container">
         <div
           className="vtex-slider w-100 relative pointer"
+          role="button"
+          tabIndex={0}
           style={{
             height: 24,
             // since we can't include css with the components, the
@@ -378,7 +381,7 @@ Slider.defaultProps = {
   min: 0,
   max: 10,
   step: 1,
-  onChange: () => {},
+  onChange: () => null,
   alwaysShowCurrentValue: false,
   formatValue: a => a,
   range: false,

@@ -79,6 +79,15 @@ export default class Toast extends Component {
     this.close()
   }
 
+  handleKeyDown = ({ key }) => {
+    const SPACE = ' '
+    const ENTER = 'Enter'
+
+    if (key === SPACE || key === ENTER) {
+      this.close()
+    }
+  }
+
   open = () => {
     this.setState({
       isOpen: true,
@@ -179,7 +188,9 @@ export default class Toast extends Component {
       <div
         className={`vtex-toast-container absolute bottom-0 ${horizontalPosition}-0 z-5 ma7-ns mb0-s w-100 w-auto-ns mw6-m mw-40-l`}
         onMouseOver={this.handleMouseOver}
+        onFocus={this.handleMouseOver}
         onMouseOut={this.handleMouseOut}
+        onBlur={this.handleMouseOut}
         style={{
           pointerEvents: 'all',
           transition: `transform ${TRANSITION_DURATION}ms ${
@@ -219,6 +230,9 @@ export default class Toast extends Component {
             <div className="pt2 pt0-ns">
               <div
                 className="vtex-alert__close-icon pointer flex items-center pa3 white nr3 nv3"
+                role="button"
+                tabIndex={0}
+                onKeyDown={this.handleKeyDown}
                 onClick={this.handleCloseClick}
               >
                 <CloseIcon color="currentColor" size={16} />
