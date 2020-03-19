@@ -62,7 +62,7 @@ const handleHideTabs = ({
     // handle fullwidth
     const numberOfTabs = tabsContainerFullWidth / DEFAULT_TAB_WIDTH
     tabIndex = numberOfTabs - (numberOfTabs % 1)
-    hideTabs = tabIndex !== tabs.length
+    hideTabs = tabIndex < tabs.length
   } else {
     const normalizedIndex = tabsOrderList.indexOf(selectedTabIndex)
     let sumTabsWidth = tabs[normalizedIndex].clientWidth
@@ -122,6 +122,7 @@ const Tabs: FC<InferProps<typeof propTypes>> = ({
 }) => {
   const childrenArray: Tab[] = Children.toArray(children)
 
+  // enable or desable menu with tabs that's hidden
   const [showMoreTabsButton, setShowMoreTabsButton] = useState(false)
   const [tabsMenuOpen, setTabsMenuOpen] = useState(false)
   const [lastShownTab, setLastShowTab] = useState(childrenArray.length)
@@ -129,9 +130,12 @@ const Tabs: FC<InferProps<typeof propTypes>> = ({
     mapArrayToIndex(childrenArray)
   )
 
+  // Handle tabs width to calculate if should hide them
   const tabsContainerRef = useRef<HTMLDivElement>(null)
   const tabsFullContainerRef = useRef<HTMLDivElement>(null)
+  // Handle tabs menu actions
   const moreTabsButtonRef = useRef<HTMLButtonElement>(null)
+  const tabsMenuRef = useRef<Menu>(null)
 
   const selectedTabIndex: number = childrenArray.reduce(
     (resultTabIndex: number, tab: Tab, index: number) =>
@@ -140,6 +144,10 @@ const Tabs: FC<InferProps<typeof propTypes>> = ({
   )
   const selectedTab: Tab = childrenArray[selectedTabIndex]
   const content = selectedTab && selectedTab.props.children
+
+  const handleOpenTabMenu = () => {
+    !tabsMenuOpen && setTabsMenuOpen(true)
+  }
 
   const calculateTabsVisibility = (): void => {
     const { clientWidth: tabsContainerWidth } = tabsContainerRef.current
@@ -211,7 +219,10 @@ const Tabs: FC<InferProps<typeof propTypes>> = ({
 
   useEffect(() => {
     const handleClickOutsideMenu = event => {
-      if (moreTabsButtonRef.current?.contains(event.target)) {
+      if (
+        moreTabsButtonRef.current?.contains(event.target) ||
+        tabsMenuRef.current?.contains(event.target)
+      ) {
         return
       }
       setTabsMenuOpen(false)
@@ -262,16 +273,15 @@ const Tabs: FC<InferProps<typeof propTypes>> = ({
         </div>
         {showMoreTabsButton && (
           <Menu
-            ref={moreTabsButtonRef}
+            ref={tabsMenuRef}
             options={getAllHiddenTabs()}
             open={tabsMenuOpen}
             onClose={() => {
               setTabsMenuOpen(false)
             }}>
             <button
-              onClick={() => {
-                setTabsMenuOpen(true)
-              }}
+              ref={moreTabsButtonRef}
+              onClick={handleOpenTabMenu}
               className={`
                 vtex-tab__button
                 vtex-tab__button--inactive
