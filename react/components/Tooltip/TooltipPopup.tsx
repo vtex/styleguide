@@ -100,6 +100,7 @@ const TooltipPopup: FC<PropTypes.InferProps<typeof propTypes>> = ({
           ...positionStyle,
           zIndex: zIndex.tooltip,
           transition: `opacity ${duration}ms ${timmingFn} ${delay}ms`,
+          wordBreak: 'break-all',
         }}
         ref={popupRef}
         onTransitionEnd={() => setShowPopup(visible)}
