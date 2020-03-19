@@ -7,11 +7,16 @@ class TotalizerIcon extends PureComponent {
   render() {
     const {
       item: { icon, iconBackgroundColor },
+      testId,
     } = this.props
 
     return (
-      <div className="flex items-center mr3">
+      <div
+        data-testid={`${testId}__container`}
+        className="flex items-center mr3"
+      >
         <div
+          data-testid={testId}
           className="flex items-center justify-center br-100 pa3 bg-light-silver c-muted-1"
           style={{
             height: CIRCLE_DIAMETER,
@@ -31,6 +36,7 @@ TotalizerIcon.propTypes = {
     icon: PropTypes.node.isRequired,
     iconBackgroundColor: PropTypes.string,
   }).isRequired,
+  testId: PropTypes.string,
 }
 
 export default TotalizerIcon

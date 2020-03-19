@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Totalizer/Icon spec should match snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="flex items-center mr3"
+    data-testid="testing__container"
+  >
+    <div
+      class="flex items-center justify-center br-100 pa3 bg-light-silver c-muted-1"
+      data-testid="testing"
+      style="height: 2.4rem; width: 2.4rem; background-color: rgb(0, 0, 0);"
+    >
+      <svg />
+    </div>
+  </div>
+</DocumentFragment>
+`;

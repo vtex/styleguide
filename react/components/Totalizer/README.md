@@ -224,3 +224,5 @@ const ShoppingCart = require('../icon/ShoppingCart').default
   ]}
 />
 ```
+
+### E2E Testing

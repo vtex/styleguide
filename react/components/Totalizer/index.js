@@ -10,7 +10,7 @@ const BORDER_COLOR = 'b--muted-4'
 
 class Totalizer extends PureComponent {
   render() {
-    const { items, mobileScroll, horizontalLayout } = this.props
+    const { items, mobileScroll, horizontalLayout, testId } = this.props
 
     const OUTER_CONTAINER_CLASSES = classNames({
       'overflow-x-hidden': mobileScroll,
@@ -39,8 +39,14 @@ class Totalizer extends PureComponent {
     }
 
     return (
-      <div className={OUTER_CONTAINER_CLASSES}>
-        <div className={INNER_CONTAINER_CLASSES}>
+      <div
+        data-testid={`${testId}__outer-container`}
+        className={OUTER_CONTAINER_CLASSES}
+      >
+        <div
+          data-testid={`${testId}__inner-container`}
+          className={INNER_CONTAINER_CLASSES}
+        >
           {items.map((item, i) => {
             const IS_NOT_LAST = items.length > 1 && i < items.length - 1
 
@@ -76,10 +82,17 @@ class Totalizer extends PureComponent {
             )
 
             return (
-              <div className={ITEM_CLASSES} key={item.label}>
+              <div
+                data-testid={`${testId}__item`}
+                className={ITEM_CLASSES}
+                key={item.label}
+              >
                 {item.icon ? (
-                  <div className={WITH_ICON_CONTAINER_CLASSES}>
-                    <TotalizerIcon item={item} />
+                  <div
+                    data-testid={`${testId}__with-icon-container`}
+                    className={WITH_ICON_CONTAINER_CLASSES}
+                  >
+                    <TotalizerIcon testId={`${testId}__icon`} item={item} />
 
                     <div className={WITH_ICON_ITEM_CONTAINER_CLASSES}>
                       {item.inverted && (
@@ -162,6 +175,7 @@ export const totalizerPropTypes = {
       invertedWeight: PropTypes.bool,
     })
   ).isRequired,
+  testId: PropTypes.string,
 }
 
 Totalizer.propTypes = totalizerPropTypes
