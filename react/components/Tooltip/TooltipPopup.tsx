@@ -44,6 +44,13 @@ const propTypes = {
   timmingFn: PropTypes.string,
   /** Child ref. Used to correctly position the tooltip */
   childRef: getChildRefPropType(),
+  /** Element that inserts line break style in the word. Used to prevent width overflow */
+  wordBreak: PropTypes.oneOf<string>([
+    'normal',
+    'break-all',
+    'keep-all',
+    'break-word',
+  ]),
 }
 
 const defaultProps = {
@@ -60,6 +67,7 @@ const TooltipPopup: FC<PropTypes.InferProps<typeof propTypes>> = ({
   duration,
   timmingFn,
   childRef,
+  wordBreak,
 }) => {
   const [showPopup, setShowPopup] = useState(visible)
   const popupRef = useRef<HTMLDivElement>()
@@ -100,7 +108,7 @@ const TooltipPopup: FC<PropTypes.InferProps<typeof propTypes>> = ({
           ...positionStyle,
           zIndex: zIndex.tooltip,
           transition: `opacity ${duration}ms ${timmingFn} ${delay}ms`,
-          wordBreak: 'break-all',
+          wordBreak,
         }}
         ref={popupRef}
         onTransitionEnd={() => setShowPopup(visible)}
