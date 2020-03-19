@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- The `Tooltip` component overflows when there are long words.
+
 ## [9.112.23] - 2020-03-18
 
 ### Fixed
