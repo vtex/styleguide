@@ -20,6 +20,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 - `Table`'s `headerRenderer` can be used in columns that are either fixed or sortable
+
+### Fixed
+
+- The `Tooltip` component overflows when there are long words.
+
 ## [9.112.23] - 2020-03-18
 
 ### Fixed
