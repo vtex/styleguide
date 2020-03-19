@@ -10,6 +10,7 @@ import React, {
 } from 'react'
 import PropTypes, { InferProps } from 'prop-types'
 import debounce from 'lodash/debounce'
+import classNames from 'classnames'
 
 import Tab from './Tab'
 import Menu from '../Menu'
@@ -24,6 +25,7 @@ interface HandleHideTabsInput {
   tabsContainerFullWidth?: number
   selectedTabIndex: number
   tabsOrderList: number[]
+  fullWidth?: boolean
 }
 
 interface HandleHideTabsOutput {
@@ -52,36 +54,44 @@ const handleHideTabs = ({
   tabs,
   selectedTabIndex,
   tabsOrderList,
+  fullWidth,
 }: HandleHideTabsInput): HandleHideTabsOutput => {
-  const normalizedIndex = tabsOrderList.indexOf(selectedTabIndex)
   let hideTabs = false
-  let sumTabsWidth = tabs[normalizedIndex].clientWidth
   let tabIndex = 0
+  if (fullWidth) {
+    // handle fullwidth
+    const numberOfTabs = tabsContainerFullWidth / DEFAULT_TAB_WIDTH
+    tabIndex = numberOfTabs - (numberOfTabs % 1)
+    hideTabs = tabIndex !== tabs.length
+  } else {
+    const normalizedIndex = tabsOrderList.indexOf(selectedTabIndex)
+    let sumTabsWidth = tabs[normalizedIndex].clientWidth
 
-  // verify if is necessary hide tabs
-  for (; tabIndex < tabs.length; tabIndex++) {
-    const { clientWidth: childWidth } = tabs[tabIndex]
-    if (tabIndex !== normalizedIndex) {
-      sumTabsWidth += childWidth || DEFAULT_TAB_WIDTH
-    }
-
-    if (sumTabsWidth > tabsContainerWidth) {
-      hideTabs = true
-      if (tabIndex <= normalizedIndex) {
-        tabIndex++
+    // verify if is necessary hide tabs
+    for (; tabIndex < tabs.length; tabIndex++) {
+      const { clientWidth: childWidth } = tabs[tabIndex]
+      if (tabIndex !== normalizedIndex) {
+        sumTabsWidth += childWidth || DEFAULT_TAB_WIDTH
       }
-      break
-    }
-  }
 
-  // verify if the last tab can fit without more tabs button
-  if (
-    hideTabs &&
-    tabIndex + 1 === tabs.length &&
-    sumTabsWidth <= tabsContainerFullWidth
-  ) {
-    hideTabs = false
-    tabIndex = tabs.length
+      if (sumTabsWidth > tabsContainerWidth) {
+        hideTabs = true
+        if (tabIndex <= normalizedIndex) {
+          tabIndex++
+        }
+        break
+      }
+    }
+
+    // verify if the last tab can fit without more tabs button
+    if (
+      hideTabs &&
+      tabIndex + 1 === tabs.length &&
+      sumTabsWidth <= tabsContainerFullWidth
+    ) {
+      hideTabs = false
+      tabIndex = tabs.length
+    }
   }
 
   return { hideTabs, tabIndex }
@@ -131,7 +141,7 @@ const Tabs: FC<InferProps<typeof propTypes>> = ({
   const selectedTab: Tab = childrenArray[selectedTabIndex]
   const content = selectedTab && selectedTab.props.children
 
-  const calculateTabsVisibility = () => {
+  const calculateTabsVisibility = (): void => {
     const { clientWidth: tabsContainerWidth } = tabsContainerRef.current
     const tabs = tabsContainerRef.current.children
 
@@ -142,6 +152,7 @@ const Tabs: FC<InferProps<typeof propTypes>> = ({
       tabs,
       selectedTabIndex,
       tabsOrderList,
+      fullWidth,
     })
 
     // change display tabs order - every hidden selected tab should be displayed
@@ -225,10 +236,15 @@ const Tabs: FC<InferProps<typeof propTypes>> = ({
 
   const renderTabs = tabsOrderList.map((tabIndex, index) => {
     const child: Tab = childrenArray[tabIndex]
+    const className = classNames({
+      dn: index >= lastShownTab && fullWidth,
+      ['o-0']: index >= lastShownTab && !fullWidth,
+    })
+
     return cloneElement(child, {
       fullWidth,
       key: child.props.key != null ? child.props.key : index,
-      className: `${index >= lastShownTab ? 'o-0' : ''}`,
+      className,
     })
   })
 
