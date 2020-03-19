@@ -16,6 +16,26 @@ import Menu from '../Menu'
 import OptionsDots from '../icon/OptionsDots'
 
 const RESIZE_DELAY_TIME = 125
+const DEFAULT_TAB_WIDTH = 128
+
+interface HandleHideTabsInput {
+  tabs: HTMLCollection
+  tabsContainerWidth: number
+  tabsContainerFullWidth?: number
+  selectedTabIndex: number
+  tabsOrderList: number[]
+}
+
+interface HandleHideTabsOutput {
+  hideTabs: boolean
+  tabIndex: number
+}
+
+interface HandleShowSelectedHiddenTabInput extends HandleHideTabsOutput {
+  tabsOrderList: number[]
+  selectedTabIndex: number
+  setTabsOrderList: (input: number[]) => void
+}
 
 const propTypes = {
   children: PropTypes.node,
@@ -25,6 +45,65 @@ const propTypes = {
 
 const mapArrayToIndex: <T>(array: T[]) => number[] = array =>
   array.map((_, index) => index)
+
+const handleHideTabs = ({
+  tabsContainerWidth,
+  tabsContainerFullWidth = 0,
+  tabs,
+  selectedTabIndex,
+  tabsOrderList,
+}: HandleHideTabsInput): HandleHideTabsOutput => {
+  const normalizedIndex = tabsOrderList.indexOf(selectedTabIndex)
+  let hideTabs = false
+  let sumTabsWidth = tabs[normalizedIndex].clientWidth
+  let tabIndex = 0
+
+  // verify if is necessary hide tabs
+  for (; tabIndex < tabs.length; tabIndex++) {
+    const { clientWidth: childWidth } = tabs[tabIndex]
+    if (tabIndex !== normalizedIndex) {
+      sumTabsWidth += childWidth || DEFAULT_TAB_WIDTH
+    }
+
+    if (sumTabsWidth > tabsContainerWidth) {
+      hideTabs = true
+      if (tabIndex <= normalizedIndex) {
+        tabIndex++
+      }
+      break
+    }
+  }
+
+  // verify if the last tab can fit without more tabs button
+  if (
+    hideTabs &&
+    tabIndex + 1 === tabs.length &&
+    sumTabsWidth <= tabsContainerFullWidth
+  ) {
+    hideTabs = false
+    tabIndex = tabs.length
+  }
+
+  return { hideTabs, tabIndex }
+}
+
+const HandleShowSelectedHiddenTab = ({
+  tabsOrderList,
+  hideTabs,
+  selectedTabIndex,
+  tabIndex,
+  setTabsOrderList,
+}: HandleShowSelectedHiddenTabInput): void => {
+  if (hideTabs && selectedTabIndex >= tabIndex) {
+    const leftList = tabsOrderList.slice(0, tabIndex - 1)
+    const rightList = tabsOrderList
+      .slice(tabIndex - 1)
+      .filter(i => i !== selectedTabIndex)
+    setTabsOrderList(leftList.concat([selectedTabIndex]).concat(rightList))
+  } else {
+    setTabsOrderList(tabsOrderList)
+  }
+}
 
 const Tabs: FC<InferProps<typeof propTypes>> = ({
   children,
@@ -52,60 +131,39 @@ const Tabs: FC<InferProps<typeof propTypes>> = ({
   const selectedTab: Tab = childrenArray[selectedTabIndex]
   const content = selectedTab && selectedTab.props.children
 
+  const calculateTabsVisibility = () => {
+    const { clientWidth: tabsContainerWidth } = tabsContainerRef.current
+    const tabs = tabsContainerRef.current.children
+
+    // verify if is necessary hide tabs
+    const { hideTabs, tabIndex } = handleHideTabs({
+      tabsContainerWidth,
+      tabsContainerFullWidth: tabsFullContainerRef.current?.clientWidth,
+      tabs,
+      selectedTabIndex,
+      tabsOrderList,
+    })
+
+    // change display tabs order - every hidden selected tab should be displayed
+    const newTabsOrderList = mapArrayToIndex(childrenArray)
+    HandleShowSelectedHiddenTab({
+      tabsOrderList: newTabsOrderList,
+      hideTabs,
+      tabIndex,
+      selectedTabIndex,
+      setTabsOrderList,
+    })
+
+    setShowMoreTabsButton(hideTabs)
+    setLastShowTab(tabIndex)
+  }
+
   const handleResizeWindow = useCallback(
     debounce(
       () => {
         if (tabsContainerRef.current) {
-          const { clientWidth: tabsContainerWidth } = tabsContainerRef.current
-          let hideTabs = false
+          calculateTabsVisibility()
 
-          // verify if is necessary hide tabs
-          const childrens = tabsContainerRef.current.children
-          const normalizedIndex = tabsOrderList.indexOf(selectedTabIndex)
-          let sumTabWidths = childrens[normalizedIndex].clientWidth
-          let tabIndex = 0
-          // debugger
-          for (; tabIndex < childrens.length; tabIndex++) {
-            const { clientWidth: childWidth } = childrens[tabIndex]
-            if (tabIndex !== normalizedIndex) {
-              sumTabWidths += childWidth
-            }
-
-            if (sumTabWidths > tabsContainerWidth) {
-              hideTabs = true
-              if (tabIndex <= normalizedIndex) {
-                tabIndex++
-              }
-              break
-            }
-          }
-
-          // verify if the last tab can fit without more tabs button
-          if (
-            hideTabs &&
-            tabIndex + 1 === childrens.length &&
-            sumTabWidths <= tabsFullContainerRef.current?.clientWidth
-          ) {
-            hideTabs = false
-            tabIndex = childrens.length
-          }
-
-          // change display tabs order - every hidden selected tab should be displayed
-          const newTabsOrderList = mapArrayToIndex(childrenArray)
-          if (hideTabs && selectedTabIndex >= tabIndex) {
-            const leftList = newTabsOrderList.slice(0, tabIndex - 1)
-            const rightList = newTabsOrderList
-              .slice(tabIndex - 1)
-              .filter(i => i !== selectedTabIndex)
-            setTabsOrderList(
-              leftList.concat([selectedTabIndex]).concat(rightList)
-            )
-          } else {
-            setTabsOrderList(newTabsOrderList)
-          }
-
-          setShowMoreTabsButton(hideTabs)
-          setLastShowTab(tabIndex)
           setTabsMenuOpen(false) // close every resize
         }
       },
@@ -119,56 +177,7 @@ const Tabs: FC<InferProps<typeof propTypes>> = ({
   useLayoutEffect(() => {
     const handleChangeSelectedTab = () => {
       if (tabsContainerRef.current) {
-        const { clientWidth: tabsContainerWidth } = tabsContainerRef.current
-        let hideTabs = false
-
-        // verify if is necessary hide tabs
-        const childrens = tabsContainerRef.current.children
-        const normalizedIndex = tabsOrderList.indexOf(selectedTabIndex)
-        let sumTabWidths = childrens[normalizedIndex].clientWidth
-        let tabIndex = 0
-        // debugger
-        for (; tabIndex < childrens.length; tabIndex++) {
-          const { clientWidth: childWidth } = childrens[tabIndex]
-          if (tabIndex !== normalizedIndex) {
-            sumTabWidths += childWidth
-          }
-
-          if (sumTabWidths > tabsContainerWidth) {
-            hideTabs = true
-            if (tabIndex <= normalizedIndex) {
-              tabIndex++
-            }
-            break
-          }
-        }
-
-        // verify if the last tab can fit without more tabs button
-        if (
-          hideTabs &&
-          tabIndex + 1 === childrens.length &&
-          sumTabWidths <= tabsFullContainerRef.current?.clientWidth
-        ) {
-          hideTabs = false
-          tabIndex = childrens.length
-        }
-
-        // change display tabs order - every hidden selected tab should be displayed
-        const newTabsOrderList = mapArrayToIndex(childrenArray)
-        if (hideTabs && selectedTabIndex >= tabIndex) {
-          const leftList = newTabsOrderList.slice(0, tabIndex - 1)
-          const rightList = newTabsOrderList
-            .slice(tabIndex - 1)
-            .filter(i => i !== selectedTabIndex)
-          setTabsOrderList(
-            leftList.concat([selectedTabIndex]).concat(rightList)
-          )
-        } else {
-          setTabsOrderList(newTabsOrderList)
-        }
-
-        setShowMoreTabsButton(hideTabs)
-        setLastShowTab(tabIndex)
+        calculateTabsVisibility()
       }
     }
 
