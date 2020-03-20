@@ -32,14 +32,18 @@ function Row(
   { children, motion, data, height, ...props }: Props,
   ref: Ref<HTMLTableRowElement>
 ) {
+  const LIGHT_BLUE = '#DBE9FD'
   const { rowHeight, density } = useMeasuresContext()
   const { columns } = useDataContext()
   const { highlightOnHover, isRowActive, onRowClick } = useBodyContext()
   const className = classNames('w-100 truncate overflow-x-hidden', {
     'pointer hover-c-link': onRowClick,
     'hover-bg-muted-5': highlightOnHover || !!onRowClick,
-    'bg-action-secondary': data && isRowActive && isRowActive(data),
   })
+  const rowColor =
+    data && isRowActive && isRowActive(data)
+      ? { backgroundColor: LIGHT_BLUE }
+      : {}
   const clickable = onRowClick && {
     onClick: () => onRowClick({ rowData: data }),
   }
@@ -47,6 +51,7 @@ function Row(
     height,
     ...props.style,
     ...motion,
+    ...rowColor,
   }
 
   return (
