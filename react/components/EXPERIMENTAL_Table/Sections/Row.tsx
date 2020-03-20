@@ -23,7 +23,7 @@ interface RowRenderProps {
 interface SpecificProps extends NativeTr {
   height: number
   motion?: ReturnType<typeof useTableMotion>
-  data: unknown
+  data?: unknown
 }
 
 type Props = RenderProps<SpecificProps, RowRenderProps>

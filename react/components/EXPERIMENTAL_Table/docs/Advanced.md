@@ -202,7 +202,7 @@ function BodyExample() {
 | Property | Type                       | Required | Default | Description                |
 | -------- | -------------------------- | -------- | ------- | -------------------------- |
 | height   | number                     | ✅       | 🚫      | Row's height               |
-| data     | unknown                    | ✅       | 🚫      | Item that will be rendered |
+| data     | unknown                    | 🚫       | 🚫      | Item that will be rendered |
 | motion   | return of `useTableMotion` | 🚫       | 🚫      | Current motion             |
 
 ##### Row Render Props (with composable render)
