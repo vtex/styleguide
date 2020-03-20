@@ -38,7 +38,7 @@ function Row(
   const className = classNames('w-100 truncate overflow-x-hidden', {
     'pointer hover-c-link': onRowClick,
     'hover-bg-muted-5': highlightOnHover || !!onRowClick,
-    'bg-action-secondary': isRowActive && isRowActive(data),
+    'bg-action-secondary': data && isRowActive && isRowActive(data),
   })
   const clickable = onRowClick && {
     onClick: () => onRowClick({ rowData: data }),
