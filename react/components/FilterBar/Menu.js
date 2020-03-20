@@ -100,6 +100,16 @@ class Menu extends Component {
     }
   }
 
+  handleKeyPress = event => {
+    const SPACE = ' '
+    const ENTER = 'Enter'
+    const { key } = event
+
+    if (key === SPACE || key === ENTER) {
+      this.props.onBackgroundClick(event)
+    }
+  }
+
   render() {
     const {
       width,
@@ -188,7 +198,12 @@ class Menu extends Component {
                   {isMobile && (
                     <div className="flex justify-between flex-row items-baseline pa6 mh3">
                       <div className="truncate f3 pr6">{optionsLabel}</div>
-                      <div onClick={this.props.onBackgroundClick}>
+                      <div
+                        onClick={this.props.onBackgroundClick}
+                        onKeyPress={this.handleKeyPress}
+                        role="button"
+                        tabIndex={0}
+                      >
                         <Close size={20} color="currentColor" />
                       </div>
                     </div>
