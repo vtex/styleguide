@@ -33,7 +33,7 @@ describe('Table V2 @ hooks/useTableSort spec', () => {
     expect(result.current.sorted).toEqual({ by: 'name', order: SortOrder.DSC })
   })
 
-  it('chages base correctly', () => {
+  it('changes base correctly', () => {
     const { result } = renderHook(() => useTableSort())
 
     expect(result.current.sorted).toEqual({ by: null, order: null })
