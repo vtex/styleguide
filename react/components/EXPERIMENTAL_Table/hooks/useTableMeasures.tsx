@@ -34,7 +34,7 @@ export function calculateTableHeight(
   tableSize: number
 ): number {
   const multiplicator = tableSize !== 0 ? tableSize : EMPTY_STATE_SIZE_IN_ROWS
-  return TABLE_HEADER_HEIGHT + (rowHeight * multiplicator)
+  return TABLE_HEADER_HEIGHT + rowHeight * multiplicator
 }
 
 export enum Density {
