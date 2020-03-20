@@ -88,6 +88,10 @@ class Input extends Component {
     this.handleAutoFocus()
   }
 
+  componentDidUpdate() {
+    this.handleAutoFocus()
+  }
+
   render() {
     const {
       errorMessage,

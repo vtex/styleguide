@@ -52,6 +52,15 @@ class InputSearch extends Component {
       })
   }
 
+  handleKeyPress = event => {
+    const SPACE = ' '
+    const ENTER = 'Enter'
+    const { key } = event
+    if (key === SPACE || key === ENTER) {
+      this.handleSubmit(event)
+    }
+  }
+
   handleHovering = hover => {
     this.setState({ hover })
   }
@@ -105,7 +114,7 @@ class InputSearch extends Component {
             <span
               className="pointer pl4 c-link"
               onClick={this.handleSubmit}
-              onKeyPress={e => this.pressedEnter(e) && this.handleSubmit(e)}
+              onKeyPress={this.handleKeyPress}
               role="button"
               tabIndex={0}
             >

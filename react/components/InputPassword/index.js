@@ -21,8 +21,10 @@ class InputPassword extends Component {
   handleToggle = () =>
     this.setState(state => ({ showPassword: !state.showPassword }))
 
-  handleKeyDown = event => {
-    if (event.key === 'Enter') {
+  handleKeyPress = ({ key }) => {
+    const SPACE = ' '
+    const ENTER = 'Enter'
+    if (key === SPACE || key === ENTER) {
       this.handleToggle()
     }
   }
@@ -44,7 +46,7 @@ class InputPassword extends Component {
             onClick={this.handleToggle}
             role="button"
             tabIndex={0}
-            onKeyPress={this.handleKeyDown}
+            onKeyPress={this.handleKeyPress}
           >
             {this.state.showPassword ? (
               <VisibilityOff solid size={iconSize} />
