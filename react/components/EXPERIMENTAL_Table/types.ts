@@ -52,12 +52,6 @@ export type RenderProps<P = {}, T = Record<string, unknown>> = P & {
   children?: (data: T) => ReactNode
 }
 
-/** Ref foward component with render props 
-export interface RFCRP<T, P = {}, R = Record<string, unknown>> {
-  (props: RenderProps<P, R>, ref: React.Ref<T>): React.ReactElement | null
-}
-*/
-
 export type NativeTableSection = DetailedHTMLProps<
   HTMLAttributes<HTMLTableSectionElement>,
   HTMLTableSectionElement

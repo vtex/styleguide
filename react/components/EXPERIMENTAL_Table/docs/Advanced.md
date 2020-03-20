@@ -137,7 +137,7 @@ function HeadExample() {
 
 ##### Body
 
-The head contains a single row, so you do not need to worry about the **row-loop**. The following example shows a full head renderer (with sorting).
+In the body you need to deal with both loops, as the sample below:
 
 ```js
 import Table from '../index'

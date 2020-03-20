@@ -12,7 +12,7 @@ const DataContext = createContext<Data>(null)
 export function useDataContext() {
   const context = useContext(DataContext)
   if (!context) {
-    throw new Error('Do not use Data outside of the Table')
+    throw new Error('Do not use columns or items outside of data Context')
   }
   return context
 }
