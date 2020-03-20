@@ -1,6 +1,5 @@
 import { useMemo, useState } from 'react'
 
-const DEFAULT_SCROLLBAR_WIDTH = 17
 const EMPTY_STATE_SIZE_IN_ROWS = 5
 export const TABLE_HEADER_HEIGHT = 36
 
@@ -35,18 +34,7 @@ export function calculateTableHeight(
   tableSize: number
 ): number {
   const multiplicator = tableSize !== 0 ? tableSize : EMPTY_STATE_SIZE_IN_ROWS
-  return TABLE_HEADER_HEIGHT + rowHeight * multiplicator + getScrollbarWidth()
-}
-
-export function getScrollbarWidth(): number {
-  const isSSR = typeof document === 'undefined' || typeof window === 'undefined'
-
-  if (isSSR) {
-    return DEFAULT_SCROLLBAR_WIDTH
-  }
-  const scrollbarWidth =
-    window.innerWidth - document.documentElement.clientWidth
-  return isNaN(scrollbarWidth) ? DEFAULT_SCROLLBAR_WIDTH : scrollbarWidth
+  return TABLE_HEADER_HEIGHT + (rowHeight * multiplicator)
 }
 
 export enum Density {

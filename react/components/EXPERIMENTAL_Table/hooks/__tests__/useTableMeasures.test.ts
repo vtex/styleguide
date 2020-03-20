@@ -7,52 +7,52 @@ describe('Table V2 @ hooks/useTableMeasures spec', () => {
   it('changes density correctly', () => {
     const { result } = renderHook(() => useTableMeasures({ size: TABLE_SIZE }))
 
-    expect(result.current.currentDensity).toBe(Density.Regular)
+    expect(result.current.density).toBe(Density.Regular)
     expect(result.current.rowHeight).toBe(DesitySizes.Regular)
 
     act(() => {
-      result.current.setCurrentDensity(Density.Comfortable)
+      result.current.setDensity(Density.Comfortable)
     })
 
-    expect(result.current.currentDensity).toBe(Density.Comfortable)
+    expect(result.current.density).toBe(Density.Comfortable)
     expect(result.current.rowHeight).toBe(DesitySizes.Comfortable)
 
     act(() => {
-      result.current.setCurrentDensity(Density.Compact)
+      result.current.setDensity(Density.Compact)
     })
 
-    expect(result.current.currentDensity).toBe(Density.Compact)
+    expect(result.current.density).toBe(Density.Compact)
     expect(result.current.rowHeight).toBe(DesitySizes.Compact)
 
     act(() => {
-      result.current.setCurrentDensity(Density.Regular)
+      result.current.setDensity(Density.Regular)
     })
 
-    expect(result.current.currentDensity).toBe(Density.Regular)
+    expect(result.current.density).toBe(Density.Regular)
     expect(result.current.rowHeight).toBe(DesitySizes.Regular)
   })
 
   it('calculates tableHeight correctly', () => {
     const { result } = renderHook(() => useTableMeasures({ size: TABLE_SIZE }))
 
-    expect(result.current.tableHeight).toBe(1300)
+    expect(result.current.tableHeight).toBe(276)
 
     act(() => {
-      result.current.setCurrentDensity(Density.Comfortable)
+      result.current.setDensity(Density.Comfortable)
     })
 
-    expect(result.current.tableHeight).toBe(1440)
+    expect(result.current.tableHeight).toBe(416)
 
     act(() => {
-      result.current.setCurrentDensity(Density.Compact)
+      result.current.setDensity(Density.Compact)
     })
 
-    expect(result.current.tableHeight).toBe(1220)
+    expect(result.current.tableHeight).toBe(196)
 
     act(() => {
-      result.current.setCurrentDensity(Density.Regular)
+      result.current.setDensity(Density.Regular)
     })
 
-    expect(result.current.tableHeight).toBe(1300)
+    expect(result.current.tableHeight).toBe(276)
   })
 })
