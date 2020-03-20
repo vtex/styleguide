@@ -52,12 +52,12 @@ class InputSearch extends Component {
       })
   }
 
-  handleKeyPress = event => {
+  handleKeyPress = (event, handler) => {
     const SPACE = ' '
     const ENTER = 'Enter'
     const { key } = event
     if (key === SPACE || key === ENTER) {
-      this.handleSubmit(event)
+      handler(event)
     }
   }
 
@@ -92,9 +92,7 @@ class InputSearch extends Component {
               <span
                 className="pointer mr4 c-muted-3"
                 onClick={this.handleClickClear}
-                onKeyPress={e =>
-                  this.pressedEnter(e) && this.handleClickClear(e)
-                }
+                onKeyPress={e => this.handleKeyPress(e, this.handleClickClear)}
                 role="button"
                 tabIndex={0}
               >
@@ -114,7 +112,7 @@ class InputSearch extends Component {
             <span
               className="pointer pl4 c-link"
               onClick={this.handleSubmit}
-              onKeyPress={this.handleKeyPress}
+              onKeyPress={e => this.handleKeyPress(e, this.handleSubmit)}
               role="button"
               tabIndex={0}
             >
