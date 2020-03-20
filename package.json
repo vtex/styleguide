@@ -1,6 +1,6 @@
 {
   "name": "@vtex/styleguide",
-  "version": "9.112.24",
+  "version": "9.112.25",
   "main": "./lib/index.js",
   "files": [
     "lib/",
