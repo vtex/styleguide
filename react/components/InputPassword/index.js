@@ -18,7 +18,16 @@ class InputPassword extends Component {
     showPassword: false,
   }
 
-  toggle = () => this.setState(state => ({ showPassword: !state.showPassword }))
+  handleToggle = () =>
+    this.setState(state => ({ showPassword: !state.showPassword }))
+
+  handleKeyPress = ({ key }) => {
+    const SPACE = ' '
+    const ENTER = 'Enter'
+    if (key === SPACE || key === ENTER) {
+      this.handleToggle()
+    }
+  }
 
   render() {
     const iconSize =
@@ -32,7 +41,13 @@ class InputPassword extends Component {
         token
         spellCheck="false"
         suffix={
-          <span className="pointer pt2" onClick={() => this.toggle()}>
+          <span
+            className="pointer pt2"
+            onClick={this.handleToggle}
+            role="button"
+            tabIndex={0}
+            onKeyPress={this.handleKeyPress}
+          >
             {this.state.showPassword ? (
               <VisibilityOff solid size={iconSize} />
             ) : (
