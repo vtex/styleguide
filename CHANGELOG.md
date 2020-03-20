@@ -21,6 +21,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - `Table`'s `headerRenderer` can be used in columns that are either fixed or sortable
 
+### Added
+
 - Expose `EXPERIMENTAL_Table` sections.
 
 ## [9.112.25] - 2020-03-20
@@ -40,6 +42,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - The `Tooltip` component overflows when there are long words.
 
 ## [9.112.23] - 2020-03-18
+
+### Fixed
 
 - Apply proper spacing to large dropdowns
 
@@ -76,6 +80,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [9.112.17] - 2020-03-16
 
+### Changed
+
 - From `currentDensity` to `density` on `EXPERIMENTAL_Table`
 
 ## [9.112.16] - 2020-03-16
@@ -90,7 +96,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [9.112.14] - 2020-03-10
 
-## Changed
+### Changed
 
 - Keep newLine button and search enabled on Table's toolbar while loading
 
