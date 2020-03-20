@@ -100,6 +100,16 @@ class Menu extends Component {
     }
   }
 
+  handleKeyPress = event => {
+    const SPACE = ' '
+    const ENTER = 'Enter'
+    const { key } = event
+
+    if (key === SPACE || key === ENTER) {
+      this.props.onBackgroundClick(event)
+    }
+  }
+
   render() {
     const {
       width,
@@ -190,9 +200,7 @@ class Menu extends Component {
                       <div className="truncate f3 pr6">{optionsLabel}</div>
                       <div
                         onClick={this.props.onBackgroundClick}
-                        onKeyPress={e =>
-                          e.key === 'Enter' && this.props.onBackgroundClick(e)
-                        }
+                        onKeyPress={this.handleKeyPress}
                         role="button"
                         tabIndex={0}
                       >
