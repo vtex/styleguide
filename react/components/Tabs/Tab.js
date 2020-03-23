@@ -7,7 +7,7 @@ class Tab extends Component {
   }
 
   render() {
-    const { active, fullWidth, label, disabled, testId } = this.props
+    const { active, fullWidth, label, disabled } = this.props
 
     let tabStyle =
       'c-muted-1 b--transparent hover-c-action-primary pointer vtex-tab__button--inactive'
@@ -22,7 +22,6 @@ class Tab extends Component {
 
     return (
       <button
-        data-testid={testId}
         type="button"
         onClick={this.handleClick}
         className={`vtex-tab__button bt-0 bl-0 br-0 bw1 ${
@@ -42,8 +41,6 @@ Tab.defaultProps = {
 }
 
 Tab.propTypes = {
-  /** Data attribute */
-  testId: PropTypes.string,
   active: PropTypes.bool,
   fullWidth: PropTypes.bool,
   children: PropTypes.node,
