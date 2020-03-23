@@ -68,11 +68,9 @@ class FilterBar extends PureComponent {
   }
 
   handleMoreOptionsSelected = st => {
-    if (isStatementComplete(st)) {
-      this.handleSubmitFilter(st)
-      this.toggleExtraFilterOption(st.subject)
-    }
-    return null
+    if (!isStatementComplete(st)) return
+    this.handleSubmitFilter(st)
+    this.toggleExtraFilterOption(st.subject)
   }
 
   handleFilterClear = subject => {

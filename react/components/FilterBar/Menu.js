@@ -199,8 +199,8 @@ class Menu extends Component {
                     <div className="flex justify-between flex-row items-baseline pa6 mh3">
                       <div className="truncate f3 pr6">{optionsLabel}</div>
                       <div
-                        onClick={this.props.onBackgroundClick}
                         onKeyPress={this.handleKeyPress}
+                        onClick={this.props.onBackgroundClick}
                         role="button"
                         tabIndex={0}
                       >
