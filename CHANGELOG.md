@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.112.26] - 2020-03-23
+
+### Added
+
+- Expose `EXPERIMENTAL_Table` sections.
+
 ## [9.112.25] - 2020-03-20
 
 ### Added
@@ -62,6 +68,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [9.112.17] - 2020-03-16
 
+### Changed
+
 - From `currentDensity` to `density` on `EXPERIMENTAL_Table`
 
 ## [9.112.16] - 2020-03-16
@@ -76,7 +84,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [9.112.14] - 2020-03-10
 
-## Changed
+### Changed
 
 - Keep newLine button and search enabled on Table's toolbar while loading
 
