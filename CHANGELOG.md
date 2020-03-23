@@ -14,8 +14,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- Warning icon when input has errorMessaxge
+- Warning icon when input has errorMessage
 - Size prop to checkbox.
+- Tests for `Tabs` component
 
 ### Changed
 
