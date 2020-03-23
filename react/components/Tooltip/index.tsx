@@ -28,6 +28,13 @@ const propTypes = {
   duration: PropTypes.number,
   /** Tooltip timming function used to animate the tooltip */
   timmingFn: PropTypes.string,
+  /** Element that inserts line break style in the word. Used to prevent width overflow */
+  wordBreak: PropTypes.oneOf<string>([
+    'normal',
+    'break-all',
+    'keep-all',
+    'break-word',
+  ]),
 }
 
 type Props = PropTypes.InferProps<typeof propTypes>
@@ -39,6 +46,7 @@ const defaultProps: Props = {
   delay: 0,
   duration: 200,
   timmingFn: 'ease-in-out',
+  wordBreak: 'normal',
 }
 
 const Tooltip: FC<Props> = ({ trigger, children, ...popupProps }) => {

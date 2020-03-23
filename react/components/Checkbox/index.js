@@ -101,6 +101,7 @@ class Checkbox extends PureComponent {
         {label && (
           <label
             className={classNames(
+              'vtex-checkbox__label',
               { 'c-disabled': disabled },
               { 'c-on-base pointer': !disabled },
               { 't-small': size === 'small' }

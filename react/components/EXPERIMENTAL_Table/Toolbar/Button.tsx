@@ -46,8 +46,7 @@ const Button = forwardRef<Ref, ButtonProps>(
         data-testid={`${testId}__container`}
         title={title}
         ref={ref}
-        className={classNames('relative', { mh2: isTertiary })}
-      >
+        className={classNames('relative', { mh2: isTertiary })}>
         <ButtonWithIcon
           icon={
             <span className={iconClass} style={ICON_OPTICAL_COMPENSATION}>
@@ -62,8 +61,7 @@ const Button = forwardRef<Ref, ButtonProps>(
           isLoading={isLoading}
           variation={variation}
           size={size}
-          onClick={onClick}
-        >
+          onClick={onClick}>
           {label && <span className={labelClass}>{label}</span>}
         </ButtonWithIcon>
         {children}

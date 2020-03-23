@@ -14,22 +14,91 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- Warning icon when input has errorMessage
+- Warning icon when input has errorMessaxge
 - Size prop to checkbox.
 
 ### Changed
 
 - `Table`'s `headerRenderer` can be used in columns that are either fixed or sortable
 
+## [9.112.26] - 2020-03-23
+
+### Added
+
+- Expose `EXPERIMENTAL_Table` sections.
+
+## [9.112.25] - 2020-03-20
+
+### Added
+
+- Tests for `EXPERIMENTAL_Table` hooks.
+
+### Changed
+
+- Upgraded testing-library versions.
+
+## [9.112.24] - 2020-03-19
+
+### Fixed
+
+- The `Tooltip` component overflows when there are long words.
+
+## [9.112.23] - 2020-03-18
+
+### Fixed
+
+- Apply proper spacing to large dropdowns
+
+## [9.112.22] - 2020-03-18
+
+### Fixed
+
+- Totalizer's container width when inverted.
+
+## [9.112.21] - 2020-03-18
+
+### Removed
+
+- `checkboxes` prop from `EXPERIMENTAL_Table`.
+- `EXPERIMENTAL_TableTree` component.
+
+## [9.112.20] - 2020-03-17
+
+### Fixed
+
+- ReferenceError by accessing 'valueLabel' const on `Dropdown`.
+
+## [9.112.19] - 2020-03-16
+
+### Fixed
+
+- `EXPERIMENTAL_useTableMeasures` SSR errors.
+
+## [9.112.18] - 2020-03-16
+
+### Fixed
+
+- Add missing class to `Checkbox` to make it easier to customize it.
+
+## [9.112.17] - 2020-03-16
+
+### Changed
+
+- From `currentDensity` to `density` on `EXPERIMENTAL_Table`
+
+## [9.112.16] - 2020-03-16
+
+- Broken styles of `Dropdown` inside an `Input` prefix or suffix.
+
 ## [9.112.15] - 2020-03-10
 
 ### Fixed
 
-- Add `useCallback` in the `showAllColumns` and `hideAllColumns` in the `EXPERIMENTAL_useTableVisibility`.
+- Add `useCallback` in the `showAllColumns` and `hideAllColumns` in the `EXPERIMENTAL_useTableVisibility` hook.
 
 ## [9.112.14] - 2020-03-10
 
-## Changed
+### Changed
 
 - Keep newLine button and search enabled on Table's toolbar while loading
 

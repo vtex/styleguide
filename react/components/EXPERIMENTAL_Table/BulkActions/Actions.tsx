@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropsWithChildren } from 'react'
 import classNames from 'classnames'
 
 import Button from '../../Button'
@@ -8,7 +8,7 @@ import { ORDER_CLASSNAMES } from '../constants'
 
 const ACTION_MARGIN = 'mr4'
 
-export default function Actions({ children }) {
+export default function Actions({ children }: PropsWithChildren<{}>) {
   const className = classNames(
     'flex flex-row',
     ORDER_CLASSNAMES.BULK_CHILD.ACTIONS

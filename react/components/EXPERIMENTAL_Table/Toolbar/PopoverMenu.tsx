@@ -76,6 +76,7 @@ export const Box: FC<BoxProps> = ({
                 <Button
                   variation="secondary"
                   size="small"
+                  // eslint-disable-next-line react/jsx-handler-names
                   onClick={action.onClick}
                 >
                   {action.label}
@@ -130,7 +131,7 @@ type ItemProps = {
 
 export type MenuAction = {
   label: string
-  onClick: (event: React.MouseEvent) => void
+  onClick: Function
   toggle?: {
     checked: boolean
     semantic: boolean

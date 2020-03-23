@@ -10,14 +10,14 @@ export default function useTableVisibility({
 
   const visibleColumns = useMemo(() => {
     const reducer = (acc: Column[], col: Column) =>
-      hiddenColumns.includes(col.id as string) ? acc : [...acc, col]
+      hiddenColumns.includes(col.id) ? acc : [...acc, col]
 
     return columns.reduce(reducer, [])
   }, [hiddenColumns, columns])
 
   const toggleColumn = useCallback((id: string) => {
     setHiddenColumns(col =>
-      col.includes(id) ? col.filter(column => column !== id) : [...col, id]
+      col.includes(id) ? col.filter(col => col !== id) : [...col, id]
     )
   }, [])
 
@@ -26,7 +26,7 @@ export default function useTableVisibility({
   }, [])
 
   const hideAllColumns = useCallback(() => {
-    setHiddenColumns(columns.map((col: any) => col.id))
+    setHiddenColumns(columns.map(col => col.id))
   }, [columns])
 
   return {

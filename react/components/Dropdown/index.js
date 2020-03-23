@@ -1,8 +1,10 @@
+import classNames from 'classnames'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import ArrowDownIcon from './ArrowDownIcon'
 import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
+import styles from './Dropdown.css'
 
 class Dropdown extends Component {
   constructor(props) {
@@ -105,85 +107,70 @@ class Dropdown extends Component {
     const hasValidInitialValue =
       this.getOptionFromValue(this.initialValue) !== null
 
-    const isPlaceholder = this.getSelectedOption() === null
-    const isInline = variation.toLowerCase() === 'inline'
-    let width
-    let iconSize
-
-    let classes = 'bg-transparent bn w-100 h-100 '
-    let containerClasses = `${isInline ? '' : 'bw1'} br2 relative `
-    let selectClasses = 'o-0 absolute top-0 left-0 h-100 w-100 bottom-00 '
-
-    let labelClasses = 'vtex-dropdown__label db mb3 w-100 c-on-base '
-
     const valueLabel = this.getValueLabel()
     const showCaption = !valueLabel
+    const isPlaceholder = this.getSelectedOption() === null
+    const isInline = variation.toLowerCase() === 'inline'
+    const iconSize = size === 'x-large' ? 22 : 18
 
-    const color = isInline ? 'c-link ' : 'c-on-base '
+    const color = isInline ? 'c-link' : 'c-on-base'
 
-    classes += disabled ? '' : 'pointer '
-    selectClasses += disabled ? '' : 'pointer '
-    classes +=
-      !disabled && valueLabel
-        ? !isPlaceholder
-          ? color
-          : 'c-muted-2 '
-        : 'c-disabled '
+    const buttonClasses = classNames(
+      'vtex-dropdown__button bg-transparent bn w-100 h-100',
+      {
+        pointer: !disabled,
+        'c-disabled': disabled || !valueLabel,
+        [color]: !disabled && valueLabel && !isPlaceholder,
+        'c-muted-2': !disabled && valueLabel && isPlaceholder,
+        ph2: isInline && size !== 'x-large',
+        'pl5 pr3': !isInline && size !== 'x-large',
+        't-body pv5 ph5': size === 'x-large',
+      }
+    )
 
-    switch (size) {
-      case 'small':
-        classes += isInline ? 'ph2 ' : 'pl5 pr3 '
-        selectClasses += 't-small '
-        labelClasses += 't-small '
-        containerClasses += `${isInline ? 'h-auto' : 'h-small'} t-small `
-        iconSize = 18
-        break
-      case 'large':
-        classes += isInline ? 'ph2 ' : 'ph5 '
-        selectClasses += 't-body '
-        labelClasses += 't-body '
-        containerClasses += `${isInline ? 'h-auto' : 'h-large'} t-body `
-        iconSize = 18
-        break
-      case 'x-large':
-        // DEPRECATED
-        classes += 't-body pv5 ph5 '
-        selectClasses += 't-body '
-        labelClasses += 't-body '
-        iconSize = 22
-        break
-      default:
-        classes += isInline ? 'ph2 ' : 'pl5 pr4 '
-        selectClasses += 't-body '
-        labelClasses += 't-small '
-        containerClasses += `${isInline ? 'h-auto' : 'h-regular'} t-body `
-        iconSize = 18
-        break
-    }
+    const rootClasses = classNames(styles.dropdown, 'vtex-dropdown', {
+      'vtex-dropdown--inline dib': isInline,
+    })
 
-    const containerStyle = { width }
+    const containerClasses = classNames(styles.container, 'br2 relative', {
+      bw1: !isInline || disabled,
+      ba: disabled || error || errorMessage,
+      'b--disabled bg-disabled': disabled,
+      'b--danger hover-b--danger': (error || errorMessage) && !disabled,
+      fw5: isInline && !error && !errorMessage && !disabled,
+      'bg-base hover-b--muted-3 ba b--muted-4':
+        !isInline && !error && !errorMessage && !disabled,
+      't-body': size !== 'small' && size !== 'x-large',
+      'h-auto': isInline && size !== 'x-large',
+      'h-small': !isInline && size === 'small',
+      'h-large': !isInline && size === 'large',
+      'h-regular':
+        !isInline && size !== 'small' && size !== 'large' && size !== 'x-large',
+    })
 
-    if (disabled) {
-      containerClasses += 'ba b--disabled bw1 bg-disabled '
-    } else if (error || errorMessage) {
-      containerClasses += 'ba b--danger hover-b--danger '
-    } else if (isInline) {
-      containerClasses += 'fw5 '
-    } else {
-      containerClasses += 'bg-base hover-b--muted-3 ba b--muted-4 '
-    }
+    const selectClasses = classNames(
+      'o-0 absolute top-0 left-0 h-100 w-100 bottom-0',
+      {
+        pointer: !disabled,
+        't-body': size !== 'small',
+        't-small': size === 'small',
+      }
+    )
+
+    const labelClasses = classNames(
+      'vtex-dropdown__label db mb3 w-100 c-on-base',
+      {
+        't-small': size !== 'large' && size !== 'x-large',
+        't-body': size === 'large' || size === 'x-large',
+      }
+    )
 
     return (
-      <div
-        className={`vtex-dropdown ${
-          isInline ? 'vtex-dropdown--inline dib' : ''
-        }`}
-        data-testid={testId}
-      >
-        <label>
+      <div className={rootClasses} data-testid={testId}>
+        <label className="h-100">
           {label && <span className={labelClasses}>{label}</span>}
-          <div className={containerClasses} style={containerStyle}>
-            <div id={id} className={`vtex-dropdown__button ${classes}`}>
+          <div className={containerClasses}>
+            <div id={id} className={buttonClasses}>
               <div className={`flex ${isInline ? '' : 'h-100'}`}>
                 <div
                   className={`vtex-dropdown__caption flex-auto tl truncate ${

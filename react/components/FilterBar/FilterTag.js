@@ -18,7 +18,11 @@ const emptyVirtualStatement = {
   error: null,
 }
 
-const filterStatementBySubject = (subject, statements = [], options = {}) => {
+const filterStatementBySubject = (
+  statements = [],
+  subject = '',
+  options = {}
+) => {
   const hasStatement = statements.some(st => st.subject === subject)
   return hasStatement
     ? statements.filter(st => st.subject === subject)
@@ -123,6 +127,16 @@ class FilterTag extends PureComponent {
     })
   }
 
+  handleKeyPress = (event, handler) => {
+    const SPACE = ' '
+    const ENTER = 'Enter'
+    const { key } = event
+
+    if (key === SPACE || key === ENTER) {
+      handler(event)
+    }
+  }
+
   resetVirtualStatement = () => {
     const { subject, options } = this.props
     const statement = filterStatementBySubject([], subject, options)
@@ -190,6 +204,12 @@ class FilterTag extends PureComponent {
         }
       })
     })
+
+    const handleClickClear = () => {
+      this.resetVirtualStatement()
+      onClickClear()
+      this.handleCloseMenu()
+    }
 
     return (
       <div
@@ -311,18 +331,10 @@ class FilterTag extends PureComponent {
           {!isEmpty && !isMoreOptions && (
             <div
               role="button"
-              tabIndex="0"
+              tabIndex={0}
               className="flex items-center c-link hover-c-link pointer"
-              onKeyDown={() => {
-                this.resetVirtualStatement()
-                onClickClear()
-                this.handleCloseMenu()
-              }}
-              onClick={() => {
-                this.resetVirtualStatement()
-                onClickClear()
-                this.handleCloseMenu()
-              }}
+              onKeyPress={e => this.handleKeyPress(e, handleClickClear)}
+              onClick={handleClickClear}
             >
               <IconClear solid size={16} />
             </div>

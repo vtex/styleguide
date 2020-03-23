@@ -1,0 +1,35 @@
+import React, { useContext, createContext, PropsWithChildren } from 'react'
+
+interface Loading {
+  empty?: boolean
+  loading?:
+    | boolean
+    | {
+        renderAs?: () => React.ReactNode
+      }
+  emptyState?: {
+    label?: string
+    children?: Element
+  }
+}
+
+const LoadingContext = createContext<Loading | null>(null)
+
+export function LoadingProvider({
+  children,
+  ...value
+}: PropsWithChildren<Loading>) {
+  return (
+    <LoadingContext.Provider value={value}>{children}</LoadingContext.Provider>
+  )
+}
+
+export function useLoadingContext() {
+  const context = useContext(LoadingContext)
+  if (!context) {
+    throw new Error(
+      'Do not use loading/emptyState components outside of the LoadingContext'
+    )
+  }
+  return context
+}
