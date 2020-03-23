@@ -18,10 +18,10 @@ interface HeadRenderProps {
     width: number | string
     className: string
     sorting: boolean
-    onClick: () => void
     sortable: boolean
     sticky: boolean
     header: boolean
+    onClick?: () => void
   }
   column: Column
   key: string
@@ -52,11 +52,12 @@ function Thead(
           const suffix = sortable && (
             <Cell.Suffix sorting={currentlySorting} ascending={ascending} />
           )
+          const clickable = sortable ? { onClick: () => sorting?.sort(id) } : {}
           const props = {
             ...receivedProps,
+            ...clickable,
             className: classNames('bt normal', { pointer: sortable }),
             sorting: currentlySorting,
-            onClick: () => sortable && sorting && sorting.sort(id),
             sortable,
             sticky,
             header: true,
