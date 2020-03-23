@@ -21,6 +21,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - `Table`'s `headerRenderer` can be used in columns that are either fixed or sortable
 
+## [9.112.26] - 2020-03-23
+
 ### Added
 
 - Expose `EXPERIMENTAL_Table` sections.
