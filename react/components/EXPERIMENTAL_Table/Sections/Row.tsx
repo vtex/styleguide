@@ -44,9 +44,11 @@ function Row(
     data && isRowActive && isRowActive(data)
       ? { backgroundColor: LIGHT_BLUE }
       : {}
-  const clickable = onRowClick && {
-    onClick: () => onRowClick({ rowData: data }),
-  }
+  const clickable = onRowClick
+    ? {
+        onClick: () => onRowClick({ rowData: data }),
+      }
+    : {}
   const style = {
     height,
     ...props.style,
