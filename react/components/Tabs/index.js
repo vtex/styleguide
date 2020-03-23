@@ -1,7 +1,7 @@
 import React, { cloneElement } from 'react'
 import PropTypes from 'prop-types'
 
-const Tabs = ({ children, fullWidth, sticky }) => {
+const Tabs = ({ children, fullWidth, sticky, testId }) => {
   const childrenArray = [].concat(children)
 
   const selectedTab = childrenArray.find(child => child.props.active)
@@ -9,6 +9,7 @@ const Tabs = ({ children, fullWidth, sticky }) => {
   const content = selectedTab && selectedTab.props.children
   return (
     <div
+      data-testid={testId}
       className={`vtex-tabs w-100 h-100 flex flex-column ${
         sticky ? 'overflow-y-hidden' : ''
       }`}
@@ -38,6 +39,8 @@ Tabs.defaultProps = {
 }
 
 Tabs.propTypes = {
+  /** Data attribute */
+  testId: PropTypes.string,
   children: PropTypes.arrayOf(PropTypes.node),
   fullWidth: PropTypes.bool,
   sticky: PropTypes.bool,
