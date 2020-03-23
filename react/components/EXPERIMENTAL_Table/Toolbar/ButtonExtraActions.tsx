@@ -26,7 +26,7 @@ const ButtonExtraActions: FC<ButtonExtraActionsProps> = ({
               <IconOptionsDots />
             </span>
           ),
-          size,
+          size: size,
         }}
         options={actions.map(action => {
           return {
@@ -45,7 +45,7 @@ ButtonExtraActions.defaultProps = {
 
 export type ButtonExtraActionsProps = {
   label?: string
-  actions: MenuAction[]
+  actions: Array<MenuAction>
   alignMenu?: Alignment
   isLoading?: boolean
   size?: ButtonSize

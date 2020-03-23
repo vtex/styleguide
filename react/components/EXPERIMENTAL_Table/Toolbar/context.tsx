@@ -2,8 +2,8 @@ import React, { FC, useContext, createContext } from 'react'
 
 import { E2ETestable } from '../types'
 
-const ToolbarContext = createContext<E2ETestable>(null)
-const ButtonGroupContext = createContext<E2ETestable>(null)
+const ToolbarContext = createContext<E2ETestable | null>(null)
+const ButtonGroupContext = createContext<E2ETestable | null>(null)
 
 export const ToolbarProvider: FC<E2ETestable> = ({ children, testId }) => {
   return (

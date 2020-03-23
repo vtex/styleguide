@@ -2,7 +2,7 @@ import React, { useContext, createContext, PropsWithChildren } from 'react'
 
 import { E2ETestable } from '../types'
 
-const TestingContext = createContext<E2ETestable>(null)
+const TestingContext = createContext<E2ETestable | null>(null)
 
 export function useTestingContext() {
   const context = useContext(TestingContext)

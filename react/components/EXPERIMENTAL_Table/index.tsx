@@ -84,45 +84,7 @@ function MotionContainer({ children }: PropsWithChildren<{}>) {
       style={{ minHeight: tableHeight, ...motion }}
       className="flex flex-column"
     >
-      <TableProvider testId={testId}>{children}</TableProvider>
-      <DataTable
-        stickyHeader={stickyHeader}
-        testId={testId}
-        empty={empty}
-        loading={loading}
-        emptyState={emptyState}
-        motion={motion}
-        height={tableHeight}
-      >
-        <thead
-          id={NAMESPACES.HEADER}
-          data-testid={`${testId}__header`}
-          className="w-100 ph4 truncate overflow-x-hidden c-muted-2 f6"
-        >
-          <Headings
-            sticky={stickyHeader}
-            sorting={sorting}
-            columns={columns}
-            checkboxes={checkboxes}
-          />
-        </thead>
-
-        {!empty && !loading && (
-          <tbody id={NAMESPACES.BODY} data-testid={`${testId}__body`}>
-            <Rows
-              highlightOnHover={highlightOnHover}
-              rowKey={rowKey}
-              checkboxes={checkboxes}
-              currentDensity={currentDensity}
-              columns={columns}
-              items={items}
-              rowHeight={rowHeight}
-              onRowClick={onRowClick}
-              isRowActive={isRowActive}
-            />
-          </tbody>
-        )}
-      </DataTable>
+      {children}
     </div>
   )
 }

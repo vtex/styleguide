@@ -7,7 +7,7 @@ interface Data {
   items: Items
 }
 
-const DataContext = createContext<Data>(null)
+const DataContext = createContext<Data | null>(null)
 
 export function useDataContext() {
   const context = useContext(DataContext)

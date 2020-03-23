@@ -38,7 +38,7 @@ function Row(
   const { highlightOnHover, isRowActive, onRowClick } = useBodyContext()
   const className = classNames('w-100 truncate overflow-x-hidden', {
     'pointer hover-c-link': onRowClick,
-    'hover-bg-muted-5': highlightOnHover || !!onRowClick,
+    'hover-bg-muted-5': highlightOnHover ?? !!onRowClick,
   })
   const rowColor =
     data && isRowActive && isRowActive(data)

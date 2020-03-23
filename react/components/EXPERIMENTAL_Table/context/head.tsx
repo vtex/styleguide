@@ -7,7 +7,7 @@ interface HeadProps {
   sorting?: ReturnType<typeof useTableSort>
 }
 
-const HeadContext = createContext<HeadProps>(null)
+const HeadContext = createContext<HeadProps | null>(null)
 
 export function useHeadContext() {
   const context = useContext(HeadContext)

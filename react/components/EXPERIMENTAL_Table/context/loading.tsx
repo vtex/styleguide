@@ -13,7 +13,7 @@ interface Loading {
   }
 }
 
-const LoadingContext = createContext<Loading>(null)
+const LoadingContext = createContext<Loading | null>(null)
 
 export function LoadingProvider({
   children,

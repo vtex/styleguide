@@ -7,7 +7,7 @@ interface BodyProps {
   highlightOnHover?: boolean
 }
 
-const BodyContext = createContext<BodyProps>(null)
+const BodyContext = createContext<BodyProps | null>(null)
 
 export function useBodyContext() {
   const context = useContext(BodyContext)

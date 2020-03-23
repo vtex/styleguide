@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropsWithChildren } from 'react'
 import classNames from 'classnames'
 
 import ButtonWithIcon from '../../ButtonWithIcon'
@@ -6,7 +6,7 @@ import Close from '../../icon/Close'
 import Button from '../../Button'
 import { ORDER_CLASSNAMES } from '../constants'
 
-export default function Tail({ children }) {
+export default function Tail({ children }: PropsWithChildren<{}>) {
   const className = classNames(
     'tr flex flex-row items-center',
     ORDER_CLASSNAMES.BULK_CHILD.RIGHT
@@ -22,7 +22,7 @@ function Dismiss({ onClick }: { onClick: () => void }) {
   return <ButtonWithIcon icon={<Close />} onClick={onClick} />
 }
 
-function Info({ children }) {
+function Info({ children }: PropsWithChildren<{}>) {
   return <span className="mr4 c-muted-4">{children}</span>
 }
 

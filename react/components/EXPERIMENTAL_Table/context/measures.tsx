@@ -4,7 +4,7 @@ import useTableMeasures from '../hooks/useTableMeasures'
 
 type Measures = Partial<ReturnType<typeof useTableMeasures>>
 
-const MeasuresContext = createContext<Measures>(null)
+const MeasuresContext = createContext<Measures | null>(null)
 
 interface Props {
   measures: Measures
