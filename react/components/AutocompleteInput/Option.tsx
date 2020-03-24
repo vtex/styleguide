@@ -54,11 +54,11 @@ const Option: React.FunctionComponent<PropTypes.InferProps<
     const match = value.substr(index, searchTerm.length)
     const suffix = value.substring(index + match.length)
     return (
-      <span className="truncate">
-        <span className="fw7">{prefix}</span>
-        {match}
-        <span className="fw7">{suffix}</span>
-      </span>
+      <>
+        {prefix}
+        <span className="fw7">{match}</span>
+        {suffix}
+      </>
     )
   }
 
@@ -75,9 +75,9 @@ const Option: React.FunctionComponent<PropTypes.InferProps<
       onMouseEnter={() => setHighlightOption(true)}
       onMouseLeave={() => setHighlightOption(false)}
       onClick={onClick}>
-      <span className="h1 flex items-center">
+      <span className="h1 flex items-center truncate">
         <span className="mr3 c-muted-2 flex pt1">{icon}</span>
-        {renderOptionValue()}
+        <span className="truncate">{renderOptionValue()}</span>
       </span>
     </button>
   )
