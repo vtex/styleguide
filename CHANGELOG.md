@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- truncates and bold styles in `AutoCompleteInput` options.
+- truncate in `AutoCompleteInput` options.
 
 ## [9.112.26] - 2020-03-23
 

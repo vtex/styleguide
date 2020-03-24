@@ -55,9 +55,9 @@ const Option: React.FunctionComponent<PropTypes.InferProps<
     const suffix = value.substring(index + match.length)
     return (
       <>
-        {prefix}
-        <span className="fw7">{match}</span>
-        {suffix}
+        <span className="fw7">{prefix}</span>
+        {match}
+        <span className="fw7">{suffix}</span>
       </>
     )
   }
