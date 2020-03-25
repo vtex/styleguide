@@ -27,7 +27,7 @@ const propTypes = {
   /** Loading state */
   isLoading: PropTypes.bool,
   /** [DEPRECATED] If you are using just an Icon component inside, use this as true */
-  icon: PropTypes.bool,
+  icon: PropTypes.bool.isRequired,
   /** @ignore For internal use
    * Sets reduced paddings in order to keep the button squareish if it
    * only has an icon  */
@@ -41,7 +41,7 @@ const propTypes = {
   /** (Button spec attribute) */
   autoComplete: PropTypes.string,
   /** (Button spec attribute) */
-  disabled: PropTypes.bool,
+  disabled: PropTypes.bool.isRequired,
   /** @ignore Forwarded Ref */
   forwardedRef: refShape,
   /** (Button spec attribute) */
