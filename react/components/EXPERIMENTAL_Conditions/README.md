@@ -122,7 +122,7 @@ class SimpleConditionsCase extends React.Component {
     }
 
     return (
-      <EXPERIMENTAL_Conditions
+      <Conditions
         options={options}
         subjectPlaceholder="Select subject"
         statements={this.state.simpleStatements}
@@ -435,7 +435,7 @@ class ComplexConditionsCase extends React.Component {
     }
 
     return (
-      <EXPERIMENTAL_Conditions
+      <Conditions
         options={options}
         subjectPlaceholder="Select subject"
         statements={this.state.statements}
@@ -516,7 +516,7 @@ class SimpleConditionsCase extends React.Component {
 
     return (
       <div>
-        <EXPERIMENTAL_Conditions
+        <Conditions
           options={options}
           subjectPlaceholder="Select subject"
           statements={this.state.simpleStatements}
@@ -531,7 +531,8 @@ class SimpleConditionsCase extends React.Component {
             <Button
               onClick={() =>
                 this.state.simpleStatements[0].refs.subject.current.focus()
-              }>
+              }
+            >
               Focus on first subject
             </Button>
           </span>
@@ -539,7 +540,8 @@ class SimpleConditionsCase extends React.Component {
             <Button
               onClick={() =>
                 this.state.simpleStatements[0].refs.verb.current.focus()
-              }>
+              }
+            >
               Focus on first verb
             </Button>
           </span>
@@ -547,7 +549,8 @@ class SimpleConditionsCase extends React.Component {
             <Button
               onClick={() =>
                 this.state.simpleStatements[0].refs.object.current.focus()
-              }>
+              }
+            >
               Focus on first object
             </Button>
           </span>
