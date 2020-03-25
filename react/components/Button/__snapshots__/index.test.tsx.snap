@@ -52,23 +52,6 @@ exports[`Button CSS API danger-tertiary 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Button CSS API danger-tertiary 2`] = `
-<DocumentFragment>
-  <button
-    class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-regular t-action bg-transparent b--transparent c-on-base--inverted pointer "
-    tabindex="0"
-    type="button"
-  >
-    <div
-      class="vtex-button__label flex items-center justify-center h-100 ph6 "
-      style="padding-top: .25em; padding-bottom: .32em;"
-    >
-      Hello
-    </div>
-  </button>
-</DocumentFragment>
-`;
-
 exports[`Button CSS API danger-tertiary disabled 1`] = `
 <DocumentFragment>
   <button
@@ -87,7 +70,24 @@ exports[`Button CSS API danger-tertiary disabled 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Button CSS API danger-tertiary disabled 2`] = `
+exports[`Button CSS API inverted-tertiary 1`] = `
+<DocumentFragment>
+  <button
+    class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-regular t-action bg-transparent b--transparent c-on-base--inverted pointer "
+    tabindex="0"
+    type="button"
+  >
+    <div
+      class="vtex-button__label flex items-center justify-center h-100 ph6 "
+      style="padding-top: .25em; padding-bottom: .32em;"
+    >
+      Hello
+    </div>
+  </button>
+</DocumentFragment>
+`;
+
+exports[`Button CSS API inverted-tertiary disabled 1`] = `
 <DocumentFragment>
   <button
     class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-regular t-action bg-transparent b--transparent c-disabled "

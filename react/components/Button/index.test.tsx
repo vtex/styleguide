@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 
-import Button from './'
+import Button from '.'
 
 describe('Button', () => {
   describe('CSS API', () => {
@@ -49,7 +49,7 @@ describe('Button', () => {
       expect(result).toMatchSnapshot()
     })
 
-    it('danger-tertiary', () => {
+    it('inverted-tertiary', () => {
       const { asFragment } = render(
         <Button variation="inverted-tertiary">Hello</Button>
       )
@@ -119,7 +119,7 @@ describe('Button', () => {
       expect(result).toMatchSnapshot()
     })
 
-    it('danger-tertiary disabled', () => {
+    it('inverted-tertiary disabled', () => {
       const { asFragment } = render(
         <Button variation="inverted-tertiary" disabled>
           Hello
