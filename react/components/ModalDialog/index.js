@@ -24,7 +24,7 @@ class ModalDialog extends Component {
   }
 
   render() {
-    const { confirmation, cancelation, loading, onClose } = this.props
+    const { confirmation, cancelation, loading, onClose = NOOP } = this.props
 
     return (
       <Modal

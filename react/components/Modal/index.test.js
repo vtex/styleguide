@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, fireEvent } from 'react-testing-library'
+import { render, fireEvent, screen } from 'react-testing-library'
 
 import Modal from '.'
 
@@ -82,13 +82,20 @@ describe('Modal', () => {
 
   describe('title', () => {
     it('should render title prop', () => {
+      const containerModal = document.createElement('div')
       const onClose = jest.fn()
       const title = 'modal title'
 
       const { getByText, asFragment } = render(
-        <Modal isOpen onClose={onClose} title={title}>
+        <Modal
+          isOpen
+          onClose={onClose}
+          title={title}
+          container={containerModal}
+        >
           Foo
-        </Modal>
+        </Modal>,
+        { container: containerModal }
       )
       expect(getByText(title)).not.toBeNull()
       expect(asFragment()).toMatchSnapshot()
@@ -98,20 +105,21 @@ describe('Modal', () => {
   describe('isOpen', () => {
     it('Should show modal when isOpen is true and hide when is false', () => {
       const onClose = jest.fn()
+      const containerModal = document.createElement('div')
 
       const { rerender, container } = render(
-        <Modal isOpen onClose={onClose}>
+        <Modal isOpen onClose={onClose} container={containerModal}>
           Foo
         </Modal>,
-        { container: document.body }
+        { container: containerModal }
       )
       expect(container).toMatchSnapshot()
 
       rerender(
-        <Modal isOpen={false} onClose={onClose}>
+        <Modal isOpen={false} onClose={onClose} container={containerModal}>
           Foo
         </Modal>,
-        { container: document.body }
+        { container: containerModal }
       )
       expect(container).toMatchSnapshot()
     })
@@ -120,11 +128,18 @@ describe('Modal', () => {
   describe('bottomBar', () => {
     it('should render bottomBar', () => {
       const onClose = jest.fn()
+      const containerModal = document.createElement('div')
 
       const { getByText, container } = render(
-        <Modal isOpen onClose={onClose} bottomBar={<div>Bar</div>}>
+        <Modal
+          isOpen
+          onClose={onClose}
+          bottomBar={<div>Bar</div>}
+          container={containerModal}
+        >
           Foo
-        </Modal>
+        </Modal>,
+        { container: containerModal }
       )
 
       expect(getByText('Bar')).not.toBeNull()
@@ -163,76 +178,95 @@ describe('Modal', () => {
   //     )
 
   //     fireEvent.keyDown(container, { key: 'Escape', keyCode: 27 })
-  //     jest.runAllTimers()
-
+  //     // jest.runAllTimers()
   //     expect(onCloseTransitionFinish).toHaveBeenCalled()
   //   })
   // })
 
   describe('CSS API', () => {
     it('default', () => {
+      const containerModal = document.createElement('div')
       const onClose = jest.fn()
 
-      const { asFragment } = render(
-        <Modal isOpen onClose={onClose}>
+      const { container } = render(
+        <Modal isOpen onClose={onClose} container={containerModal}>
           Foo
         </Modal>,
-        { container: document.body }
+        { container: containerModal }
       )
-      const result = asFragment()
-      expect(result).toMatchSnapshot()
+
+      expect(container).toMatchSnapshot()
     })
 
     it('responsiveFullScreen true', () => {
+      const containerModal = document.createElement('div')
       const onClose = jest.fn()
 
-      const { asFragment } = render(
-        <Modal isOpen onClose={onClose} responsiveFullScreen>
+      const { container } = render(
+        <Modal
+          isOpen
+          onClose={onClose}
+          responsiveFullScreen
+          container={containerModal}
+        >
           Foo
         </Modal>,
-        { container: document.body }
+        { container: containerModal }
       )
-      const result = asFragment()
-      expect(result).toMatchSnapshot()
+
+      expect(container).toMatchSnapshot()
     })
 
     it('showTopBar false', () => {
+      const containerModal = document.createElement('div')
       const onClose = jest.fn()
 
-      const { asFragment } = render(
-        <Modal isOpen onClose={onClose} showTopBar={false}>
+      const { container } = render(
+        <Modal
+          isOpen
+          onClose={onClose}
+          showTopBar={false}
+          container={containerModal}
+        >
           Foo
         </Modal>,
-        { container: document.body }
+        { container: containerModal }
       )
-      const result = asFragment()
-      expect(result).toMatchSnapshot()
+
+      expect(container).toMatchSnapshot()
     })
 
     it('showBottomBarBorder false', () => {
+      const containerModal = document.createElement('div')
       const onClose = jest.fn()
 
-      const { asFragment } = render(
-        <Modal isOpen onClose={onClose} showBottomBarBorder={false}>
+      const { container } = render(
+        <Modal
+          isOpen
+          onClose={onClose}
+          showBottomBarBorder={false}
+          contanier={containerModal}
+        >
           Foo
         </Modal>,
-        { container: document.body }
+        { container: containerModal }
       )
-      const result = asFragment()
-      expect(result).toMatchSnapshot()
+
+      expect(container).toMatchSnapshot()
     })
 
     it('centered', () => {
+      const containerModal = document.createElement('div')
       const onClose = jest.fn()
 
-      const { asFragment } = render(
-        <Modal isOpen onClose={onClose} centered>
+      const { container } = render(
+        <Modal isOpen onClose={onClose} centered contanier={containerModal}>
           Foo
         </Modal>,
-        { container: document.body }
+        { container: containerModal }
       )
-      const result = asFragment()
-      expect(result).toMatchSnapshot()
+
+      expect(container).toMatchSnapshot()
     })
   })
 })
