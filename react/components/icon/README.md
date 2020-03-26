@@ -41,6 +41,7 @@ const ICONS = {
   ExternalLink: require('./ExternalLink').default,
   ExternalLinkMini: require('./ExternalLinkMini').default,
   Failure: require('./Failure').default,
+  File: require('./File').default,
   Filter: require('./Filter').default,
   Grid: require('./Grid').default,
   Help: require('./Help').default,
