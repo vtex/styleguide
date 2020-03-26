@@ -10,7 +10,7 @@
 - Don't put more than one "in progress" step.
 - Don't put steps of a different type in between steps of the same type (e.g. ["Completed", "In Progress", "Completed"]). Remember that the component represents a linear progression.
 
-#### Simple ProgressBar example
+#### Simple Progress example
 
 Second Action in Progress
 
@@ -18,7 +18,7 @@ Second Action in Progress
 <Progress type="steps" steps={['completed', 'inProgress', 'toDo']} />
 ```
 
-#### ProgressBar with all steps to do
+#### Progress with all steps to do
 
 First Action Ready to Begin
 
@@ -26,7 +26,7 @@ First Action Ready to Begin
 <Progress type="steps" steps={['toDo', 'toDo', 'toDo', 'toDo']} />
 ```
 
-#### Completed ProgressBar example
+#### Completed Progress example
 
 All completed
 
@@ -34,7 +34,7 @@ All completed
 <Progress type="steps" steps={['completed', 'completed']} />
 ```
 
-#### Slim ProgressBar example
+#### Slim Progress example
 
 Second Action in Progress
 
@@ -42,7 +42,7 @@ Second Action in Progress
 <Progress type="steps" slim steps={['completed', 'inProgress', 'toDo']} />
 ```
 
-#### ProgressBar with a single step in progress example
+#### Progress with a single step in progress example
 
 In Progress
 
@@ -50,7 +50,7 @@ In Progress
 <Progress type="steps" steps={['inProgress']} />
 ```
 
-Simple danger ProgressBar example
+Simple danger Progress example
 
 ```jsx
 <div>
