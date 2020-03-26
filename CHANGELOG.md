@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Outdated link to `Progress` in `Spinner` docs.
+- References to deprecated `ProgressBar` in `Progress` docs.
+
 ## [9.112.27] - 2020-03-26
 
 ### Fixed
