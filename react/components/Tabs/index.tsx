@@ -15,6 +15,7 @@ import classNames from 'classnames'
 import Tab from './Tab'
 import Menu from '../Menu'
 import OptionsDots from '../icon/OptionsDots'
+import withDevice from '../utils/withDeviceHoc'
 
 const RESIZE_DELAY_TIME = 125
 const DEFAULT_TAB_WIDTH = 128
@@ -26,6 +27,7 @@ interface HandleHideTabsInput {
   selectedTabIndex: number
   tabsOrderList: number[]
   fullWidth?: boolean
+  isMobile?: boolean
 }
 
 interface HandleHideTabsOutput {
@@ -42,6 +44,7 @@ interface HandleShowSelectedHiddenTabInput extends HandleHideTabsOutput {
 const propTypes = {
   children: PropTypes.node,
   fullWidth: PropTypes.bool,
+  isMobile: PropTypes.bool,
   sticky: PropTypes.bool,
 }
 
@@ -55,10 +58,11 @@ const handleHideTabs = ({
   selectedTabIndex,
   tabsOrderList,
   fullWidth,
+  isMobile,
 }: HandleHideTabsInput): HandleHideTabsOutput => {
   let hideTabs = false
   let tabIndex = 0
-  if (fullWidth) {
+  if (isMobile || fullWidth) {
     // handle fullwidth
     const numberOfTabs = tabsContainerFullWidth / DEFAULT_TAB_WIDTH
     tabIndex = numberOfTabs - (numberOfTabs % 1)
@@ -118,6 +122,7 @@ const HandleShowSelectedHiddenTab = ({
 const Tabs: FC<InferProps<typeof propTypes>> = ({
   children,
   fullWidth,
+  isMobile,
   sticky,
 }) => {
   const childrenArray: Tab[] = Children.toArray(children)
@@ -161,6 +166,7 @@ const Tabs: FC<InferProps<typeof propTypes>> = ({
       selectedTabIndex,
       tabsOrderList,
       fullWidth,
+      isMobile,
     })
 
     // change display tabs order - every hidden selected tab should be displayed
@@ -248,8 +254,8 @@ const Tabs: FC<InferProps<typeof propTypes>> = ({
   const renderTabs = tabsOrderList.map((tabIndex, index) => {
     const child: Tab = childrenArray[tabIndex]
     const className = classNames({
-      dn: index >= lastShownTab && fullWidth,
-      ['o-0']: index >= lastShownTab && !fullWidth,
+      dn: index >= lastShownTab && (isMobile || fullWidth),
+      ['o-0']: index >= lastShownTab && !fullWidth && !isMobile,
     })
 
     return cloneElement(child, {
@@ -288,7 +294,7 @@ const Tabs: FC<InferProps<typeof propTypes>> = ({
                 over-c-action-primary
                 hover-c-action-primary
                 c-muted-1
-                b--transparent 
+                b--transparent
                 bt-0 bl-0 br-0 bb-0
                 v-mid
                 pointer
@@ -296,7 +302,7 @@ const Tabs: FC<InferProps<typeof propTypes>> = ({
                 h-regular
                 t-body
                 bg-transparent
-                outline-0 
+                outline-0
               `}>
               <OptionsDots color="currentColor" />
             </button>
@@ -322,4 +328,4 @@ Tabs.defaultProps = {
 
 Tabs.propTypes = propTypes
 
-export default Tabs
+export default withDevice(Tabs)
