@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, fireEvent } from 'react-testing-library'
+import { render, fireEvent } from '@testing-library/react'
 
 import ModalDialog from '.'
 
@@ -12,7 +12,7 @@ describe('ModalDialog', () => {
     it('should render label', () => {
       const onCancel = jest.fn()
       const cancelLabel = 'cancel'
-      const { getByText, container } = render(
+      const { getAllByText, container } = render(
         <ModalDialog
           isOpen
           cancelation={{
@@ -28,7 +28,7 @@ describe('ModalDialog', () => {
         </ModalDialog>,
         { container: document.body }
       )
-      expect(getByText(cancelLabel)).not.toBeNull()
+      expect(getAllByText(cancelLabel)).not.toBeNull()
       expect(container).toMatchSnapshot()
     })
 
@@ -61,7 +61,7 @@ describe('ModalDialog', () => {
     it('should render label', () => {
       const onConfirm = jest.fn()
       const confirmLabel = 'cancel'
-      const { getByText, container } = render(
+      const { getAllByText, container } = render(
         <ModalDialog
           isOpen
           cancelation={{
@@ -77,7 +77,7 @@ describe('ModalDialog', () => {
         </ModalDialog>,
         { container: document.body }
       )
-      expect(getByText(confirmLabel)).not.toBeNull()
+      expect(getAllByText(confirmLabel)).not.toBeNull()
       expect(container).toMatchSnapshot()
     })
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, fireEvent, screen } from 'react-testing-library'
+import { render, fireEvent } from '@testing-library/react'
 
 import Modal from '.'
 
@@ -59,8 +59,7 @@ describe('Modal', () => {
       render(
         <Modal isOpen onClose={onClose}>
           Foo
-        </Modal>,
-        { container: document.body }
+        </Modal>
       )
       fireEvent.click(document.querySelector('.vtex-modal__overlay'))
       expect(onClose).toHaveBeenCalled()
@@ -72,8 +71,7 @@ describe('Modal', () => {
       render(
         <Modal isOpen onClose={onClose} closeOnOverlayClick={false}>
           Foo
-        </Modal>,
-        { container: document.body }
+        </Modal>
       )
       fireEvent.click(document.querySelector('.vtex-modal__overlay'))
       expect(onClose).not.toHaveBeenCalled()
@@ -164,6 +162,7 @@ describe('Modal', () => {
   // help it's not working
   // describe('onCloseTransitionFinish', () => {
   //   it('should be called after 500ms', () => {
+  //     jest.useFakeTimers()
   //     const onClose = jest.fn()
   //     const onCloseTransitionFinish = jest.fn()
 
@@ -178,7 +177,7 @@ describe('Modal', () => {
   //     )
 
   //     fireEvent.keyDown(container, { key: 'Escape', keyCode: 27 })
-  //     // jest.runAllTimers()
+  //     jest.runAllTimers()
   //     expect(onCloseTransitionFinish).toHaveBeenCalled()
   //   })
   // })
