@@ -160,28 +160,38 @@ describe('Modal', () => {
       expect(container).toMatchSnapshot()
     })
   })
-  // help it's not working
-  // describe('onCloseTransitionFinish', () => {
-  //   it('should be called after 500ms', () => {
-  //     jest.useFakeTimers()
-  //     const onClose = jest.fn()
-  //     const onCloseTransitionFinish = jest.fn()
 
-  //     const { container } = render(
-  //       <Modal
-  //         isOpen
-  //         onClose={onClose}
-  //         onCloseTransitionFinish={onCloseTransitionFinish}
-  //       >
-  //         Foo
-  //       </Modal>
-  //     )
+  describe('onCloseTransitionFinish', () => {
+    it('should be called after 500ms', () => {
+      jest.useFakeTimers()
+      const onClose = jest.fn()
+      const onCloseTransitionFinish = jest.fn()
 
-  //     fireEvent.keyDown(container, { key: 'Escape', keyCode: 27 })
-  //     jest.runAllTimers()
-  //     expect(onCloseTransitionFinish).toHaveBeenCalled()
-  //   })
-  // })
+      const { container, rerender } = render(
+        <Modal
+          isOpen
+          onClose={onClose}
+          onCloseTransitionFinish={onCloseTransitionFinish}
+        >
+          Foo
+        </Modal>
+      )
+
+      fireEvent.keyDown(container, { key: 'Escape', keyCode: 27 })
+
+      rerender(
+        <Modal
+          isOpen={false}
+          onClose={onClose}
+          onCloseTransitionFinish={onCloseTransitionFinish}
+        >
+          Foo
+        </Modal>
+      )
+      jest.runAllTimers()
+      expect(onCloseTransitionFinish).toHaveBeenCalled()
+    })
+  })
 
   describe('CSS API', () => {
     it('default', () => {
