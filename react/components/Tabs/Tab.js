@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
 
 import withDevice from '../utils/withDeviceHoc'
 
@@ -9,14 +10,8 @@ class Tab extends Component {
   }
 
   render() {
-    const {
-      active,
-      fullWidth,
-      label,
-      disabled,
-      className,
-      isMobile,
-    } = this.props
+    const { active, fullWidth, label, disabled, isMobile, hidden } = this.props
+    const isFullWidth = fullWidth || isMobile
 
     let tabStyle =
       'c-muted-1 b--transparent hover-c-action-primary pointer vtex-tab__button--inactive'
@@ -33,12 +28,14 @@ class Tab extends Component {
       <button
         type="button"
         onClick={this.handleClick}
-        className={`vtex-tab__button bt-0 bl-0 br-0 bw1 ${
-          isMobile || fullWidth ? 'w-100' : ''
-        } ${tabStyle}
-        v-mid relative h-regular ph6 t-body bg-transparent outline-0
-        ${className}`}
-        style={{ minWidth: isMobile ? 'auto' : 128 }}>
+        className={classNames(
+          `vtex-tab__button bt-0 bl-0 br-0 bw1 v-mid relative h-regular ph6 t-body bg-transparent outline-0 ${tabStyle}`,
+          {
+            ['w-100']: isFullWidth,
+            ['dn']: hidden && isFullWidth,
+            ['o-0']: hidden && !isFullWidth,
+          }
+        )}>
         {label}
       </button>
     )
@@ -56,7 +53,7 @@ Tab.propTypes = {
   label: PropTypes.any.isRequired,
   onClick: PropTypes.func,
   disabled: PropTypes.bool,
-  className: PropTypes.string,
+  hidden: PropTypes.bool,
   isMobile: PropTypes.bool,
 }
 

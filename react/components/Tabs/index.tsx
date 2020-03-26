@@ -10,7 +10,6 @@ import React, {
 } from 'react'
 import PropTypes, { InferProps } from 'prop-types'
 import debounce from 'lodash/debounce'
-import classNames from 'classnames'
 
 import Tab from './Tab'
 import Menu from '../Menu'
@@ -41,20 +40,13 @@ interface HandleShowSelectedHiddenTabInput extends HandleHideTabsOutput {
   setTabsOrderList: (input: number[]) => void
 }
 
-const propTypes = {
-  children: PropTypes.node,
-  fullWidth: PropTypes.bool,
-  isMobile: PropTypes.bool,
-  sticky: PropTypes.bool,
-}
-
 const mapArrayToIndex: <T>(array: T[]) => number[] = array =>
   array.map((_, index) => index)
 
 const handleHideTabs = ({
   tabsContainerWidth,
   tabsContainerFullWidth = 0,
-  tabs,
+  tabs, // list with rendered tabs
   selectedTabIndex,
   tabsOrderList,
   fullWidth,
@@ -66,7 +58,7 @@ const handleHideTabs = ({
     // handle fullwidth
     const numberOfTabs = tabsContainerFullWidth / DEFAULT_TAB_WIDTH
     tabIndex = numberOfTabs - (numberOfTabs % 1)
-    hideTabs = tabIndex < tabs.length
+    hideTabs = tabIndex < tabsOrderList.length
   } else {
     const normalizedIndex = tabsOrderList.indexOf(selectedTabIndex)
     let sumTabsWidth = tabs[normalizedIndex].clientWidth
@@ -101,7 +93,7 @@ const handleHideTabs = ({
   return { hideTabs, tabIndex }
 }
 
-const HandleShowSelectedHiddenTab = ({
+const handleShowSelectedHiddenTab = ({
   tabsOrderList,
   hideTabs,
   selectedTabIndex,
@@ -117,6 +109,13 @@ const HandleShowSelectedHiddenTab = ({
   } else {
     setTabsOrderList(tabsOrderList)
   }
+}
+
+const propTypes = {
+  children: PropTypes.node,
+  fullWidth: PropTypes.bool,
+  isMobile: PropTypes.bool,
+  sticky: PropTypes.bool,
 }
 
 const Tabs: FC<InferProps<typeof propTypes>> = ({
@@ -171,7 +170,7 @@ const Tabs: FC<InferProps<typeof propTypes>> = ({
 
     // change display tabs order - every hidden selected tab should be displayed
     const newTabsOrderList = mapArrayToIndex(childrenArray)
-    HandleShowSelectedHiddenTab({
+    handleShowSelectedHiddenTab({
       tabsOrderList: newTabsOrderList,
       hideTabs,
       tabIndex,
@@ -234,7 +233,6 @@ const Tabs: FC<InferProps<typeof propTypes>> = ({
       setTabsMenuOpen(false)
     }
 
-    handleResizeWindow()
     document.addEventListener('mousedown', handleClickOutsideMenu, false)
 
     return () => {
@@ -253,16 +251,16 @@ const Tabs: FC<InferProps<typeof propTypes>> = ({
 
   const renderTabs = tabsOrderList.map((tabIndex, index) => {
     const child: Tab = childrenArray[tabIndex]
-    const className = classNames({
-      dn: index >= lastShownTab && (isMobile || fullWidth),
-      ['o-0']: index >= lastShownTab && !fullWidth && !isMobile,
-    })
+    const hidden = index >= lastShownTab
 
-    return cloneElement(child, {
-      fullWidth,
-      key: child.props.key != null ? child.props.key : index,
-      className,
-    })
+    return (
+      !(hidden && (fullWidth || isMobile)) &&
+      cloneElement(child, {
+        fullWidth,
+        key: child.props.key ?? index,
+        hidden,
+      })
+    )
   })
 
   return (
