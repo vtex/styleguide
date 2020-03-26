@@ -39,6 +39,7 @@ class ModalDialog extends Component {
               size="small"
               variation="tertiary"
               disabled={loading}
+              data-testid="modal-cancel-button"
               onClick={this.handleCancelation}
             >
               {cancelation.label}
@@ -49,6 +50,7 @@ class ModalDialog extends Component {
             size="small"
             variation={confirmation.isDangerous ? 'danger' : 'primary'}
             isLoading={loading}
+            data-testid="modal-confirm-button"
             onClick={this.handleConfirmation}
           >
             {confirmation.label}

@@ -4,6 +4,8 @@ import { render, fireEvent } from '@testing-library/react'
 import Modal from '.'
 
 describe('Modal', () => {
+  jest.spyOn(window, 'scroll').mockImplementation()
+
   it('should have a default export', () => {
     expect(typeof Modal).toBe('function')
   })

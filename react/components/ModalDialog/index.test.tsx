@@ -4,17 +4,20 @@ import { render, fireEvent } from '@testing-library/react'
 import ModalDialog from '.'
 
 describe('ModalDialog', () => {
+  jest.spyOn(window, 'scroll').mockImplementation()
   it('should have a default export', () => {
     expect(typeof ModalDialog).toBe('function')
   })
 
   describe('cancelation', () => {
     it('should render label', () => {
+      const containerModal = document.createElement('div')
       const onCancel = jest.fn()
       const cancelLabel = 'cancel'
-      const { getAllByText, container } = render(
+      const { getByText, container } = render(
         <ModalDialog
           isOpen
+          container={containerModal}
           cancelation={{
             label: cancelLabel,
             onClick: onCancel,
@@ -26,20 +29,20 @@ describe('ModalDialog', () => {
         >
           Foo
         </ModalDialog>,
-        { container: document.body }
+        { container: containerModal }
       )
-      expect(getAllByText(cancelLabel)).not.toBeNull()
+      expect(getByText(cancelLabel)).not.toBeNull()
       expect(container).toMatchSnapshot()
     })
 
     it('onClick should be called on cancelation button click', () => {
       const onCancel = jest.fn()
-      const cancelLabel = 'cancel'
+
       const { getByText } = render(
         <ModalDialog
           isOpen
           cancelation={{
-            label: cancelLabel,
+            label: 'cancel',
             onClick: onCancel,
           }}
           confirmation={{
@@ -52,18 +55,20 @@ describe('ModalDialog', () => {
         { container: document.body }
       )
 
-      fireEvent.click(getByText(cancelLabel))
+      fireEvent.click(getByText('cancel'))
       expect(onCancel).toHaveBeenCalled()
     })
   })
 
   describe('confirmation', () => {
     it('should render label', () => {
+      const containerModal = document.createElement('div')
       const onConfirm = jest.fn()
-      const confirmLabel = 'cancel'
+      const confirmLabel = 'confirm'
       const { getAllByText, container } = render(
         <ModalDialog
           isOpen
+          container={containerModal}
           cancelation={{
             label: 'cancel',
             onClick: () => null,
@@ -75,7 +80,7 @@ describe('ModalDialog', () => {
         >
           Foo
         </ModalDialog>,
-        { container: document.body }
+        { container: containerModal }
       )
       expect(getAllByText(confirmLabel)).not.toBeNull()
       expect(container).toMatchSnapshot()
@@ -106,11 +111,13 @@ describe('ModalDialog', () => {
     })
 
     it('isDangerous CSS', () => {
+      const containerModal = document.createElement('div')
       const onConfirm = jest.fn()
       const confirmLabel = 'cancel'
       const { container } = render(
         <ModalDialog
           isOpen
+          container={containerModal}
           cancelation={{
             label: 'cancel',
             onClick: () => null,
@@ -123,7 +130,7 @@ describe('ModalDialog', () => {
         >
           Foo
         </ModalDialog>,
-        { container: document.body }
+        { container: containerModal }
       )
 
       expect(container).toMatchSnapshot()
@@ -132,10 +139,12 @@ describe('ModalDialog', () => {
 
   describe('loading', () => {
     it('CSS', () => {
+      const containerModal = document.createElement('div')
       const { container } = render(
         <ModalDialog
           isOpen
           loading
+          container={containerModal}
           cancelation={{
             label: 'cancel',
             onClick: () => null,
@@ -148,7 +157,7 @@ describe('ModalDialog', () => {
         >
           Foo
         </ModalDialog>,
-        { container: document.body }
+        { container: containerModal }
       )
 
       expect(container).toMatchSnapshot()
