@@ -61,7 +61,8 @@ describe('Modal', () => {
           Foo
         </Modal>
       )
-      fireEvent.click(document.querySelector('.vtex-modal__overlay'))
+
+      fireEvent.click(document?.querySelector('.vtex-modal__overlay'))
       expect(onClose).toHaveBeenCalled()
     })
 
@@ -73,7 +74,8 @@ describe('Modal', () => {
           Foo
         </Modal>
       )
-      fireEvent.click(document.querySelector('.vtex-modal__overlay'))
+
+      fireEvent.click(document?.querySelector('.vtex-modal__overlay'))
       expect(onClose).not.toHaveBeenCalled()
     })
   })
@@ -116,8 +118,7 @@ describe('Modal', () => {
       rerender(
         <Modal isOpen={false} onClose={onClose} container={containerModal}>
           Foo
-        </Modal>,
-        { container: containerModal }
+        </Modal>
       )
       expect(container).toMatchSnapshot()
     })
