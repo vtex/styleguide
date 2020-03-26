@@ -14,7 +14,7 @@
 
 ### Related components
 
-- If you can assess the progression of the task prefer a <a href="#/Components/Display/ProgressBar">Progress Bar</a>.
+- If you can assess the progression of the task prefer a <a href="#/Components/Display/Progress">Progress</a>.
 - For whole screen loading try using Skeleton Pages (work in progress).
 
 #### Default
