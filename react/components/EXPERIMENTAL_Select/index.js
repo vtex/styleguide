@@ -64,6 +64,7 @@ class Select extends Component {
       valuesMaxHeight,
       clearable,
       defaultMenuIsOpen,
+      components,
     } = this.props
 
     const reactSelectComponentProps = {
@@ -90,6 +91,7 @@ class Select extends Component {
         IndicatorSeparator: () => null,
         MultiValueRemove,
         Placeholder,
+        ...components,
       },
       defaultValue,
       formatCreateLabel,
@@ -266,6 +268,8 @@ Select.propTypes = {
   valuesMaxHeight: PropTypes.number,
   /** If its options are initially shown */
   defaultMenuIsOpen: PropTypes.bool,
+  /** Compositional components that are used in react-select. */
+  components: PropTypes.object,
 }
 
 export default withForwardedRef(Select)
