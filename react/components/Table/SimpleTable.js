@@ -1,3 +1,7 @@
+/* eslint-disable max-params */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable @typescript-eslint/camelcase */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {
@@ -461,7 +465,7 @@ SimpleTable.defaultProps = {
   fullWidth: false,
   dynamicRowHeight: false,
   selectedRowsIndexes: [],
-  onRowHover: () => {},
+  onRowHover: () => null,
 }
 
 SimpleTable.propTypes = {

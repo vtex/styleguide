@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
@@ -36,7 +38,7 @@ class CheckboxContainer extends Component {
             value={`${id}`}
             id={`${id}`}
             name={`row_${id}`}
-            onChange={() => {}}
+            onChange={() => null}
             disabled={disabled}
           />
         </div>
