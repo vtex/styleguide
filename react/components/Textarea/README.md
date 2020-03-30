@@ -4,7 +4,7 @@ initialState = {
 }
 ;<div>
   <div className="mb6">
-    <Textarea label="With a label">I haz content</Textarea>
+    <Textarea label="Default state">Please enter your feedbacks here…</Textarea>
   </div>
   <div className="mb6">
     <Textarea disabled label="Disabled">
