@@ -58,6 +58,15 @@ class Statement extends React.Component {
     this.handleChangeStatement(null, 'error')
   }
 
+  handleKeyPress = (event, handler) => {
+    const SPACE = ' '
+    const ENTER = 'Enter'
+    const { key } = event
+    if (key === SPACE || key === ENTER) {
+      handler(event)
+    }
+  }
+
   render() {
     const {
       canDelete,
@@ -101,6 +110,18 @@ class Statement extends React.Component {
       <ObjectAtom key="object" {...atomProps} />,
     ]
 
+    const removeButton = (
+      <div
+        className="ma3 c-muted-2 pointer hover-c-danger"
+        onClick={this.handleRemoveStatement}
+        tabIndex={0}
+        role="button"
+        onKeyPress={e => this.handleKeyPress(e, this.handleRemoveStatement)}
+      >
+        <IconClose size={25} />
+      </div>
+    )
+
     return (
       <div>
         <div className="flex-column w-100 mv3">
@@ -109,23 +130,9 @@ class Statement extends React.Component {
               isFullWidth ? 'flex-column items-stretch' : ''
             }`}
           >
-            {canDelete && !isFullWidth && isRtl && (
-              <div
-                className="ma3 c-muted-2 pointer hover-c-danger"
-                onClick={this.handleRemoveStatement}
-              >
-                <IconClose size={25} />
-              </div>
-            )}
+            {canDelete && !isFullWidth && isRtl && removeButton}
             {isRtl ? [...statementAtoms].reverse() : statementAtoms}
-            {canDelete && !isFullWidth && !isRtl && (
-              <div
-                className="ma3 c-muted-2 pointer hover-c-danger"
-                onClick={this.handleRemoveStatement}
-              >
-                <IconClose size={25} />
-              </div>
-            )}
+            {canDelete && !isFullWidth && !isRtl && removeButton}
             {canDelete && isFullWidth && (
               <div className="tr">
                 <Button
@@ -156,9 +163,9 @@ class Statement extends React.Component {
 }
 
 Statement.defaultProps = {
-  onRemoveStatement: () => {},
-  onChangeStatement: () => {},
-  onChangeObjectCallback: () => {},
+  onRemoveStatement: () => null,
+  onChangeStatement: () => null,
+  onChangeObjectCallback: () => null,
   canDelete: true,
   statements: [{ subject: '', verb: '', object: null }],
   isRtl: false,

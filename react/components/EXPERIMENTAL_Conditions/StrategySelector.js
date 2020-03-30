@@ -27,7 +27,8 @@ class StrategySelector extends React.Component {
           <select
             className="o-0 absolute top-0 left-0 w-100 bottom-0 pointer t-small"
             onChange={this.handleOperatorChange}
-            value={this.props.operator}
+            onBlur={this.props.onBlurOperator}
+            defaultValue={this.props.operator}
             style={{
               // safari select height fix
               WebkitAppearance: 'menulist-button',
@@ -49,6 +50,8 @@ StrategySelector.propTypes = {
   operator: PropTypes.oneOf(['all', 'any']),
   /** Operator change callback: one of 'any', 'all' */
   onChangeOperator: PropTypes.func,
+  /** Operator blur callback */
+  onBlurOperator: PropTypes.func,
   /** Labels for the controls and texts, default is english */
   labels: PropTypes.shape({
     operatorAll: PropTypes.string,

@@ -10,13 +10,13 @@ import Statement from './Statement'
 /**
  * @visibleName Conditions
  */
-class EXPERIMENTAL_Conditions extends React.Component {
+class Conditions extends React.Component {
   static defaultProps = {
     operator: 'any',
     showOperator: true,
     statements: [],
-    onChangeOperator: () => {},
-    onChangeStatements: () => {},
+    onChangeOperator: () => null,
+    onChangeStatements: () => null,
     labels: {
       operatorAll: 'all',
       operatorAnd: 'and',
@@ -109,9 +109,10 @@ class EXPERIMENTAL_Conditions extends React.Component {
             <StrategySelector
               operator={operator}
               labels={labels}
-              onChangeOperator={operator =>
-                this.props.onChangeOperator({ operator })
+              onChangeOperator={value =>
+                this.props.onChangeOperator({ operator: value })
               }
+              onBlurOperator={this.props.onBlurOperator}
             />
           </div>
         )}
@@ -196,7 +197,7 @@ class EXPERIMENTAL_Conditions extends React.Component {
   }
 }
 
-EXPERIMENTAL_Conditions.propTypes = {
+Conditions.propTypes = {
   /** Shows or hides the delete button */
   canDelete: PropTypes.bool,
   /** Operator indicates whether all the statements should be met or any of them */
@@ -220,6 +221,8 @@ EXPERIMENTAL_Conditions.propTypes = {
   onChangeStatements: PropTypes.func,
   /** Operator (any, all) change callback  */
   onChangeOperator: PropTypes.func,
+  /** Operator blur callback */
+  onBlurOperator: PropTypes.func,
   /** Whether the order of elements and text if right to left */
   isRtl: PropTypes.bool,
   /** Show or hide the header that selects the operator (any vs all) */
@@ -239,4 +242,4 @@ EXPERIMENTAL_Conditions.propTypes = {
   }),
 }
 
-export default EXPERIMENTAL_Conditions
+export default Conditions

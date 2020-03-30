@@ -44,7 +44,7 @@ class VerbAtom extends React.Component {
 }
 
 VerbAtom.defaultProps = {
-  onChangeStatement: () => {},
+  onChangeStatement: () => null,
 }
 
 VerbAtom.propTypes = {

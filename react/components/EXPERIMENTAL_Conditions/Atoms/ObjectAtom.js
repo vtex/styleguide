@@ -56,8 +56,8 @@ class ObjectAtom extends React.Component {
 }
 
 ObjectAtom.defaultProps = {
-  onChangeStatement: () => {},
-  onChangeObjectCallback: () => {},
+  onChangeStatement: () => null,
+  onChangeObjectCallback: () => null,
 }
 
 ObjectAtom.propTypes = {

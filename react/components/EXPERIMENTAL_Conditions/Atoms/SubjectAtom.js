@@ -78,7 +78,7 @@ class SubjectAtom extends React.Component {
 }
 
 SubjectAtom.defaultProps = {
-  onChangeStatement: () => {},
+  onChangeStatement: () => null,
 }
 
 SubjectAtom.propTypes = {
