@@ -17,16 +17,24 @@ Within a paragraph:
 
 ```js
 <div>
-  <p>
-    It is simply dummy text of the printing and typesetting industry. Lorem
-    Ipsum has been the{' '}
-    <Link href="https://www.vtex.com/">industry's standard</Link> dummy text
-    ever since the 1500s, when an unknown printer took a galley of type and
-    scrambled it to make a type specimen book.
+  <p className="lh-copy gray">
+    At the moment the customer completes the purchase, the purchased items go to
+    the status Reservation Authorized in inventory. Here it's indicated that
+    these items will not be sold more than once, but they are not yet taken out
+    of stock: this reservation will fall if payment is not approved within the
+    reservation's expiration date. Understand how this deadline is defined in
+    the article{' '}
+    <Link href="https://help.vtex.com/tutorial/como-a-reserva-funciona">
+      How Reservation Works
+    </Link>
+    .
   </p>
   <p>
-    <Link href="https://www.vtex.com/" target="_blank" mediumWeigth>
-      External link
+    <Link
+      href="https://help.vtex.com/tracks/orders--2xkTisx4SXOWXQel8Jg8sa/6axzVCJECyHPGHzYjWDR52"
+      target="_blank"
+      mediumWeigth>
+      The reservation | Orders
     </Link>
   </p>
 </div>
@@ -35,17 +43,23 @@ Within a paragraph:
 Within an unordered list:
 
 ```js
-<ul>
-  <li>
-    <Link href="#">Item 1</Link>
-  </li>
-  <li>
-    <Link href="#" mediumWeigth>
-      Item 2
-    </Link>
-  </li>
-  <li>
-    <Link href="#">Item 3</Link>
-  </li>
-</ul>
+<div>
+  <p className="t-heading-2 c-on-base pb3 fw3">Order flow</p>
+  <ul className="t-body c-on-base mb7 lh-copy">
+    <li>
+      <Link href="#">Marketplaces and Sellers</Link>
+    </li>
+    <li>
+      <Link href="#">Marketplace Order Flow</Link>
+    </li>
+    <li>
+      <Link href="#">Seller Order Flow</Link>
+    </li>
+    <li>
+      <Link href="#" mediumWeigth>
+        Complete Order Flow
+      </Link>
+    </li>
+  </ul>
+</div>
 ```
