@@ -22,20 +22,20 @@
 <Totalizer
   items={[
     {
-      label: 'Saldo em conta',
+      label: 'Account balance',
       value: 23837,
     },
     {
-      label: 'Entradas',
+      label: 'Entries',
       value: 'R$ 36239,05',
     },
 
     {
-      label: 'Saídas',
+      label: 'Outputs',
       value: '- R$ 13.485,26',
     },
     {
-      label: 'Vendas',
+      label: 'Sales',
       value: 23837,
       isLoading: true,
     },
@@ -143,20 +143,20 @@ const ShoppingCart = require('../icon/ShoppingCart').default
 ;<Totalizer
   items={[
     {
-      label: 'Pedidos',
+      label: 'Requests',
       value: 23837,
       iconBackgroundColor: '#cce8ff',
       icon: <ShoppingCart color="#368df7" size={14} />,
     },
     {
-      label: 'Entradas',
+      label: 'Tickets',
       value: 'R$ 36239,05',
       iconBackgroundColor: '#eafce3',
       icon: <ArrowUp color="#79B03A" size={14} />,
     },
 
     {
-      label: 'Saídas',
+      label: 'Outputs',
       value: '- R$ 13.485,26',
       iconBackgroundColor: '#fda4a4',
       icon: <ArrowDown color="#dd1616" size={14} />,
@@ -172,20 +172,20 @@ const ShoppingCart = require('../icon/ShoppingCart').default
   mobileScroll
   items={[
     {
-      label: 'Saldo em conta',
+      label: 'Account balance',
       value: 23837,
     },
     {
-      label: 'Entradas',
+      label: 'Tickets',
       value: 'R$ 36239,05',
     },
 
     {
-      label: 'Saídas',
+      label: 'Outputs',
       value: '- R$ 13.485,26',
     },
     {
-      label: 'Vendas',
+      label: 'Sales',
       value: 23837,
       isLoading: true,
     },
@@ -203,20 +203,20 @@ const ShoppingCart = require('../icon/ShoppingCart').default
   mobileScroll
   items={[
     {
-      label: 'Pedidos',
+      label: 'Requests',
       value: 23837,
       iconBackgroundColor: '#cce8ff',
       icon: <ShoppingCart color="#368df7" size={14} />,
     },
     {
-      label: 'Entradas',
+      label: 'Tickets',
       value: 'R$ 36239,05',
       iconBackgroundColor: '#eafce3',
       icon: <ArrowUp color="#79B03A" size={14} />,
     },
 
     {
-      label: 'Saídas',
+      label: 'Outputs',
       value: '- R$ 13.485,26',
       iconBackgroundColor: '#fda4a4',
       icon: <ArrowDown color="#dd1616" size={14} />,
