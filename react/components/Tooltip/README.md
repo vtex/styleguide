@@ -41,14 +41,14 @@ const Info = require('../icon/Info').default
 
 ;<div className="flex w-100 justify-center items-center">
   <div className="ph9">
-    <Tooltip label="Edit">
+    <Tooltip label="Edit this order">
       <span className="c-on-base pointer">
         <Edit />
       </span>
     </Tooltip>
   </div>
   <div className="ph9">
-    <Tooltip label="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
+    <Tooltip label="This order was invoiced">
       <span className="c-on-base pointer">
         <Info />
       </span>
