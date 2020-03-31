@@ -71,7 +71,6 @@
     "react-dom": "^16.12.0",
     "react-styleguidist": "^9.1.12",
     "react-test-renderer": "^16.13.0",
-    "snapshot-diff": "^0.7.0",
     "style-loader": "^0.23.1",
     "typescript": "^3.7.5",
     "url-loader": "^2.1.0",

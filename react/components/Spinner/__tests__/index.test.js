@@ -1,28 +1,34 @@
 import React from 'react'
 import { render } from '@testing-library/react'
-import snapshotDiff from 'snapshot-diff'
 
 import Spinner from '../index'
 
-describe('Spinner spec', () => {
+describe('Spinner', () => {
   it('matches snapshot', () => {
     const component = render(<Spinner />)
     expect(component.asFragment()).toMatchSnapshot()
   })
-  it('diffs snapshots with different colors', () => {
-    const black = render(<Spinner color="#000" />)
-    const white = render(<Spinner color="#fff" />)
-
+  it('renders with the correct color', () => {
+    const component = render(<Spinner color="#000" />)
+    expect(component.asFragment()).toMatchSnapshot()
     expect(
-      snapshotDiff(black.asFragment(), white.asFragment())
-    ).toMatchSnapshot()
+      component.container
+        .querySelector('.vtex-spinner_circle')
+        .getAttribute('stroke')
+    ).toBe('#000')
   })
-  it('diffs snapshots with different sizes', () => {
-    const small = render(<Spinner size={50} />)
-    const large = render(<Spinner size={100} />)
-
+  it('renders with the correct size', () => {
+    const component = render(<Spinner size={100} />)
+    expect(component.asFragment()).toMatchSnapshot()
     expect(
-      snapshotDiff(small.asFragment(), large.asFragment())
-    ).toMatchSnapshot()
+      component.container
+        .querySelector('.vtex__icon-spinner')
+        .getAttribute('height')
+    ).toBe('100')
+    expect(
+      component.container
+        .querySelector('.vtex__icon-spinner')
+        .getAttribute('width')
+    ).toBe('100')
   })
 })
