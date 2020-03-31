@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Spinner spec matches snapshot 1`] = `
+exports[`Spinner matches snapshot 1`] = `
 <DocumentFragment>
   <svg
     class="vtex__icon-spinner  c-action-primary "
@@ -56,7 +56,7 @@ exports[`Spinner spec matches snapshot 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Spinner spec renders with the correct color 1`] = `
+exports[`Spinner renders with the correct color 1`] = `
 <DocumentFragment>
   <svg
     class="vtex__icon-spinner   "
@@ -112,7 +112,7 @@ exports[`Spinner spec renders with the correct color 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Spinner spec renders with the correct size 1`] = `
+exports[`Spinner renders with the correct size 1`] = `
 <DocumentFragment>
   <svg
     class="vtex__icon-spinner  c-action-primary "
