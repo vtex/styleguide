@@ -200,6 +200,7 @@ class Button extends Component {
     if (isActiveOfGroup && !disabled) {
       style.backgroundColor = '#0c389f'
       style.borderColor = '#0c389f'
+      style.zIndex = 2
     }
 
     const linkModeProps = {
