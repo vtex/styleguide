@@ -17,7 +17,7 @@ class Dropdown extends Component {
     // value would automatically be chosen.
     // However, you can't select a null/undefined option, so nil values
     // are transformed to empty string.
-    this.initialValue = props.value == null ? '' : props.value
+    this.initialValue = ''
   }
 
   handleChange = e => {
@@ -217,10 +217,7 @@ class Dropdown extends Component {
                 </option>
               )}
               {options.map(option => (
-                <option
-                  key={option.value}
-                  value={option.value}
-                  selected={value === option.value}>
+                <option key={option.value} value={option.value}>
                   {option.label}
                 </option>
               ))}
