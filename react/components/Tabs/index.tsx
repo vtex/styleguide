@@ -238,7 +238,6 @@ const Tabs: FC<InferProps<typeof propTypes>> = ({
     return () => {
       document.removeEventListener('mousedown', handleClickOutsideMenu, false)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const getHiddenTabProps = (tabIndex: number) => {
