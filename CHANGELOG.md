@@ -17,6 +17,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Totalizer` testids.
 - Support for `react-select` custom components
 
+### Added
+
+- Initial state of `useTableSorting` hook can now be set by its client.
+
 ## [9.112.27] - 2020-03-26
 
 ### Fixed
