@@ -23,13 +23,13 @@ type Action = {
   }
 }
 
-const initialState: State = {
+const clearState: State = {
   by: null,
   order: null,
 }
 
-export default function useTableSort() {
-  const [sorted, dispatch] = useReducer(reducer, initialState)
+export default function useTableSort(initialState?: Partial<State>) {
+  const [sorted, dispatch] = useReducer(reducer, {...clearState, ...initialState})
 
   const sortASC = (id: string) =>
     dispatch({ type: ActionType.SortASC, payload: { id } })
@@ -73,7 +73,7 @@ function reducer(state: State, action: Action) {
       }
     }
     case ActionType.Clear: {
-      return initialState
+      return clearState
     }
     default:
       return state
