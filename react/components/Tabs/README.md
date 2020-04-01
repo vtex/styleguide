@@ -29,41 +29,58 @@ Default
 
 ```js
 const Tab = require('./Tab').default
-;<div>
-  <Tabs>
-    <Tab label="label 1" active onClick={() => {}} />
-    <Tab label="label 2" onClick={() => {}} />
-    <Tab label="label 3" onClick={() => {}} />
-  </Tabs>
-</div>
+class TabsExample extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      currentTab: 1,
+    }
+    this.handleTabChange = this.handleTabChange.bind(this)
+  }
+
+  handleTabChange(tabIndex) {
+    this.setState({
+      currentTab: tabIndex,
+    })
+  }
+
+  render() {
+    return (
+      <div>
+        <Tabs>
+          <Tab
+            label="Today"
+            active={this.state.currentTab === 1}
+            onClick={() => this.handleTabChange(1)}>
+            <p>Content for tab 1</p>
+          </Tab>
+          <Tab
+            label="Last week"
+            active={this.state.currentTab === 2}
+            onClick={() => this.handleTabChange(2)}>
+            <p>Content for tab 2</p>
+          </Tab>
+          <Tab
+            label="Last month"
+            active={this.state.currentTab === 3}
+            onClick={() => this.handleTabChange(3)}>
+            <p>Content for tab 3</p>
+          </Tab>
+          <Tab
+            label="Last 3 months"
+            active={this.state.currentTab === 4}
+            onClick={() => this.handleTabChange(4)}>
+            <p>Content for tab 4</p>
+          </Tab>
+        </Tabs>
+      </div>
+    )
+  }
+}
+;<TabsExample />
 ```
 
 Full width tabs
-
-```js
-const Tab = require('./Tab').default
-;<div>
-  <Tabs fullWidth>
-    <Tab label="full width 1" active onClick={() => {}} />
-    <Tab label="full width 2" onClick={() => {}} />
-    <Tab label="full width 3" onClick={() => {}} />
-  </Tabs>
-</div>
-```
-
-Disabled tabs
-
-```js
-const Tab = require('./Tab').default
-;<div>
-  <Tabs>
-    <Tab label="Active and disabled tab" active disabled onClick={() => {}} />
-    <Tab label="Disabled tab" disabled onClick={() => {}} />
-  </Tabs>
-</div>
-```
-
-Working example
 
 ```js
 const Tab = require('./Tab').default
@@ -85,27 +102,97 @@ class TabsExample extends React.Component {
   render() {
     return (
       <div>
-        <Tabs>
+        <Tabs fullWidth>
           <Tab
-            label="Tab 1"
+            label="Last week"
             active={this.state.currentTab === 1}
             onClick={() => this.handleTabChange(1)}>
             <p>Content for tab 1</p>
           </Tab>
           <Tab
-            label="Tab 2"
+            label="Last month"
             active={this.state.currentTab === 2}
             onClick={() => this.handleTabChange(2)}>
             <p>Content for tab 2</p>
           </Tab>
           <Tab
-            label="Tab 3"
+            label="Last 3 months"
+            active={this.state.currentTab === 3}
+            onClick={() => this.handleTabChange(3)}>
+            <p>Content for tab 3</p>
+          </Tab>
+        </Tabs>
+      </div>
+    )
+  }
+}
+;<TabsExample />
+```
+
+Disabled tabs
+
+```js
+const Tab = require('./Tab').default
+;<div>
+  <Tabs>
+    <Tab label="Today" active disabled onClick={() => {}}>
+      <p>Content for tab 1</p>
+    </Tab>
+    <Tab label="Last week" disabled onClick={() => {}} />
+    <Tab label="Last month" disabled onClick={() => {}} />
+    <Tab label="Last 3 month" disabled onClick={() => {}} />
+  </Tabs>
+</div>
+```
+
+Sticky Example
+
+```jsx
+const Tab = require('./Tab').default
+class TabsExample extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      currentTab: 1,
+    }
+    this.handleTabChange = this.handleTabChange.bind(this)
+  }
+
+  handleTabChange(tabIndex) {
+    this.setState({
+      currentTab: tabIndex,
+    })
+  }
+
+  render() {
+    return (
+      <div className="h4">
+        <Tabs sticky>
+          <Tab
+            label="Today"
+            active={this.state.currentTab === 1}
+            onClick={() => this.handleTabChange(1)}>
+            <div className="h5 flex flex-column">
+              <p>Scroll to see full content</p>
+              <div className="flex items-end h-100">
+                <p>The end!</p>
+              </div>
+            </div>
+          </Tab>
+          <Tab
+            label="Last week"
+            active={this.state.currentTab === 2}
+            onClick={() => this.handleTabChange(2)}>
+            <p>Content for tab 2</p>
+          </Tab>
+          <Tab
+            label="Last month"
             active={this.state.currentTab === 3}
             onClick={() => this.handleTabChange(3)}>
             <p>Content for tab 3</p>
           </Tab>
           <Tab
-            label="Tab 4"
+            label="Last 3 months"
             active={this.state.currentTab === 4}
             onClick={() => this.handleTabChange(4)}>
             <p>Content for tab 4</p>
@@ -116,22 +203,4 @@ class TabsExample extends React.Component {
   }
 }
 ;<TabsExample />
-```
-
-Sticky Example
-
-```jsx
-const Tab = require('./Tab').default
-;<div className="h4">
-  <Tabs sticky>
-    <Tab label="Tab 1" active>
-      <div className="h5 flex flex-column">
-        <p>Scroll to see full content</p>
-        <div className="flex items-end h-100">
-          <p>The end!</p>
-        </div>
-      </div>
-    </Tab>
-  </Tabs>
-</div>
 ```
