@@ -22,7 +22,6 @@ initialState = {
   value2: 0,
   value3: 0,
 }
-
 ;<React.Fragment>
   <div className="mb5 flex">
     <NumericStepper
@@ -58,7 +57,6 @@ initialState = {
   value2: 2,
   value3: 0,
 }
-
 ;<React.Fragment>
   <div className="mb5">
     <NumericStepper
@@ -89,7 +87,6 @@ initialState = {
   value3: 1,
   value4: 1,
 }
-
 ;<React.Fragment>
   <div className="mb5">
     <NumericStepper
@@ -135,29 +132,44 @@ Box types
 Used to make the component fit the parent container's width, either larger or smaller than the default size.
 
 ```js
-<React.Fragment>
+initialState = {
+  value1: 0,
+  value2: 0,
+  value3: 0,
+  value4: 0,
+}
+;<React.Fragment>
   <div className="mb5">
     <NumericStepper
       label="Default"
       size="small"
-      value={1}
-      onChange={() => {}}
+      value={state.value1}
+      onChange={event => setState({ value1: event.value })}
     />
   </div>
   <div className="mb5">
-    <NumericStepper size="large" value={1} onChange={() => {}} />
+    <NumericStepper
+      size="large"
+      value={state.value2}
+      onChange={event => setState({ value2: event.value })}
+    />
   </div>
   <div className="mb5 w4 ba b--gray" style={{ borderStyle: 'dotted' }}>
     <NumericStepper
       label="Block"
       size="small"
-      value={1}
+      value={state.value3}
       block
-      onChange={() => {}}
+      onChange={event => setState({ value3: event.value })}
     />
   </div>
   <div className="mb5 ba b--gray" style={{ borderStyle: 'dotted' }}>
-    <NumericStepper size="large" value={1} block onChange={() => {}} />
+    <NumericStepper
+      size="large"
+      value={state.value4}
+      block
+      onChange={event => setState({ value4: event.value })}
+    />
   </div>
 </React.Fragment>
 ```
