@@ -217,7 +217,10 @@ class Dropdown extends Component {
                 </option>
               )}
               {options.map(option => (
-                <option key={option.value} value={option.value}>
+                <option
+                  key={option.value}
+                  value={option.value}
+                  selected={value === option.value}>
                   {option.label}
                 </option>
               ))}
