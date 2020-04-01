@@ -1,4 +1,7 @@
-export const calcIconSize = (iconBase, newSize) => {
+export const calcIconSize = (
+  iconBase: { width: number; height: number },
+  newSize: number
+) => {
   const isHorizontal = iconBase.width >= iconBase.height
 
   const width = isHorizontal
@@ -12,5 +15,5 @@ export const calcIconSize = (iconBase, newSize) => {
   return { width, height }
 }
 
-export const baseClassname = (name, variation) =>
+export const baseClassname = (name: string, variation?: string) =>
   `vtex__icon-${name} ${variation ? `vtex__icon-${name}--${variation}` : ''}`

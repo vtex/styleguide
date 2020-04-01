@@ -13,8 +13,8 @@ describe('Spinner', () => {
     expect(component.asFragment()).toMatchSnapshot()
     expect(
       component.container
-        .querySelector('.vtex-spinner_circle')
-        .getAttribute('stroke')
+        ?.querySelector('.vtex-spinner_circle')
+        ?.getAttribute('stroke')
     ).toBe('#000')
   })
   it('renders with the correct size', () => {
@@ -22,13 +22,13 @@ describe('Spinner', () => {
     expect(component.asFragment()).toMatchSnapshot()
     expect(
       component.container
-        .querySelector('.vtex__icon-spinner')
-        .getAttribute('height')
+        ?.querySelector('.vtex__icon-spinner')
+        ?.getAttribute('height')
     ).toBe('100')
     expect(
       component.container
-        .querySelector('.vtex__icon-spinner')
-        .getAttribute('width')
+        ?.querySelector('.vtex__icon-spinner')
+        ?.getAttribute('width')
     ).toBe('100')
   })
 })
