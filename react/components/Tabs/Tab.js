@@ -31,11 +31,12 @@ class Tab extends Component {
         className={classNames(
           `vtex-tab__button bt-0 bl-0 br-0 bw1 v-mid relative h-regular ph6 t-body bg-transparent outline-0 ${tabStyle}`,
           {
-            ['w-100']: isFullWidth,
-            ['dn']: hidden && isFullWidth,
-            ['o-0']: hidden && !isFullWidth,
+            'w-100': isFullWidth,
+            dn: hidden && isFullWidth,
+            'o-0': hidden && !isFullWidth,
           }
-        )}>
+        )}
+      >
         {label}
       </button>
     )

@@ -147,7 +147,7 @@ const Tabs: FC<InferProps<typeof propTypes>> = ({
     0
   )
   const selectedTab: Tab = childrenArray[selectedTabIndex]
-  const content = selectedTab && selectedTab.props.children
+  const content = selectedTab?.props.children
 
   const handleOpenTabMenu = () => {
     !tabsMenuOpen && setTabsMenuOpen(true)
@@ -264,14 +264,15 @@ const Tabs: FC<InferProps<typeof propTypes>> = ({
 
   return (
     <div
-      data-testid={testId}
       className={`vtex-tabs w-100 h-100 flex flex-column ${
         sticky ? 'overflow-y-hidden' : ''
-      }`}>
+      }`}
+    >
       <div className="flex">
         <div
           className="vtex-tabs__nav inline-flex flex-row bb b--muted-4 w-100 overflow-hidden"
-          ref={tabsContainerRef}>
+          ref={tabsContainerRef}
+        >
           {renderTabs}
         </div>
         {showMoreTabsButton && (
@@ -281,7 +282,8 @@ const Tabs: FC<InferProps<typeof propTypes>> = ({
             open={tabsMenuOpen}
             onClose={() => {
               setTabsMenuOpen(false)
-            }}>
+            }}
+          >
             <button
               ref={moreTabsButtonRef}
               onClick={handleOpenTabMenu}
@@ -300,7 +302,8 @@ const Tabs: FC<InferProps<typeof propTypes>> = ({
                 t-body
                 bg-transparent
                 outline-0
-              `}>
+              `}
+            >
               <OptionsDots color="currentColor" />
             </button>
           </Menu>
