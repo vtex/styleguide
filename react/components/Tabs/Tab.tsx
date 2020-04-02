@@ -51,7 +51,7 @@ function Tab({
         tabStyle,
         'vtex-tab__button bt-0 bl-0 br-0 bw1 v-mid relative h-regular ph6 t-body bg-transparent outline-0',
         {
-          'w-100': isFullWidth,
+          'w-100': isFullWidth || isMobile,
           dn: hidden && isFullWidth,
           'o-0': hidden && !isFullWidth,
         }
