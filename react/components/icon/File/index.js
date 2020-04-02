@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { calcIconSize, baseClassname } from '../utils'
+import { Svg } from '../IconBase'
+import { calcIconSize } from '../utils'
 
 const iconBase = {
   width: 16,
@@ -12,13 +13,13 @@ const File = ({ color, size, block }) => {
   const newSize = calcIconSize(iconBase, size)
 
   return (
-    <svg
-      className={`${baseClassname('info')} ${block ? 'db' : ''}`}
-      width={newSize.width}
-      height={newSize.height}
-      viewBox="0 0 16 16"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg">
+    <Svg
+      name="bold"
+      size={newSize}
+      block={block}
+      viewBox="0 0 64 64"
+      fill={color}
+    >
       <path
         d="M4.50146 11.2872H10.9989"
         stroke={color}
@@ -59,7 +60,7 @@ const File = ({ color, size, block }) => {
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-    </svg>
+    </Svg>
   )
 }
 
