@@ -46,11 +46,12 @@ function Row(
     data && isRowActive && isRowActive(data)
       ? { backgroundColor: LIGHT_BLUE }
       : {}
-  const clickable = !isHead && onRowClick
-    ? {
-        onClick: () => onRowClick({ rowData: data }),
-      }
-    : {}
+  const clickable =
+    !isHead && onRowClick
+      ? {
+          onClick: () => onRowClick({ rowData: data }),
+        }
+      : {}
   const style = {
     height,
     ...props.style,
@@ -73,7 +74,7 @@ function Row(
             column,
             motion,
             index,
-            isHead
+            isHead,
           })
         }
 
