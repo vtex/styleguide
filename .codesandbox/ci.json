@@ -1,0 +1,7 @@
+{
+  "buildCommand": "compile",
+  "publishDirectory": {
+    "@vtex/styleguide": "lib"
+  },
+  "sandboxes": ["new"]
+}
