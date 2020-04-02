@@ -1,130 +1,40 @@
 import React, {
   cloneElement,
-  FC,
   useState,
   useRef,
   useCallback,
   useLayoutEffect,
   Children,
   useEffect,
+  PropsWithChildren,
+  useMemo,
 } from 'react'
-import PropTypes, { InferProps } from 'prop-types'
+import PropTypes from 'prop-types'
 import debounce from 'lodash/debounce'
 
-import Tab from './Tab'
+import { TabProps } from './Tab'
 import Menu from '../Menu'
 import OptionsDots from '../icon/OptionsDots'
-import withDevice from '../utils/withDeviceHoc'
+import useDevice from '../utils/useDevice'
+import {
+  mapArrayToIndex,
+  handleHideTabs,
+  handleShowSelectedHiddenTab,
+} from './util'
 
 const RESIZE_DELAY_TIME = 125
-const DEFAULT_TAB_WIDTH = 128
 
-interface HandleHideTabsInput {
-  tabs: HTMLCollection
-  tabsContainerWidth: number
-  tabsContainerFullWidth?: number
-  selectedTabIndex: number
-  tabsOrderList: number[]
+type Props = PropsWithChildren<{
   fullWidth?: boolean
-  isMobile?: boolean
-}
+  sticky?: boolean
+}>
 
-interface HandleHideTabsOutput {
-  hideTabs: boolean
-  tabIndex: number
-}
-
-interface HandleShowSelectedHiddenTabInput extends HandleHideTabsOutput {
-  tabsOrderList: number[]
-  selectedTabIndex: number
-  setTabsOrderList: (input: number[]) => void
-}
-
-const mapArrayToIndex: <T>(array: T[]) => number[] = array =>
-  array.map((_, index) => index)
-
-const handleHideTabs = ({
-  tabsContainerWidth,
-  tabsContainerFullWidth = 0,
-  tabs, // list with rendered tabs
-  selectedTabIndex,
-  tabsOrderList,
-  fullWidth,
-  isMobile,
-}: HandleHideTabsInput): HandleHideTabsOutput => {
-  let hideTabs = false
-  let tabIndex = 0
-  if (isMobile || fullWidth) {
-    // handle fullwidth
-    const numberOfTabs = tabsContainerFullWidth / DEFAULT_TAB_WIDTH
-    tabIndex = numberOfTabs - (numberOfTabs % 1)
-    hideTabs = tabIndex < tabsOrderList.length
-  } else {
-    const normalizedIndex = tabsOrderList.indexOf(selectedTabIndex)
-    let sumTabsWidth = tabs[normalizedIndex].clientWidth
-
-    // verify if is necessary hide tabs
-    for (; tabIndex < tabs.length; tabIndex++) {
-      const { clientWidth: childWidth } = tabs[tabIndex]
-      if (tabIndex !== normalizedIndex) {
-        sumTabsWidth += childWidth || DEFAULT_TAB_WIDTH
-      }
-
-      if (sumTabsWidth > tabsContainerWidth) {
-        hideTabs = true
-        if (tabIndex <= normalizedIndex) {
-          tabIndex++
-        }
-        break
-      }
-    }
-
-    // verify if the last tab can fit without more tabs button
-    if (
-      hideTabs &&
-      tabIndex + 1 === tabs.length &&
-      sumTabsWidth <= tabsContainerFullWidth
-    ) {
-      hideTabs = false
-      tabIndex = tabs.length
-    }
-  }
-
-  return { hideTabs, tabIndex }
-}
-
-const handleShowSelectedHiddenTab = ({
-  tabsOrderList,
-  hideTabs,
-  selectedTabIndex,
-  tabIndex,
-  setTabsOrderList,
-}: HandleShowSelectedHiddenTabInput): void => {
-  if (hideTabs && selectedTabIndex >= tabIndex) {
-    const leftList = tabsOrderList.slice(0, tabIndex - 1)
-    const rightList = tabsOrderList
-      .slice(tabIndex - 1)
-      .filter(i => i !== selectedTabIndex)
-    setTabsOrderList(leftList.concat([selectedTabIndex]).concat(rightList))
-  } else {
-    setTabsOrderList(tabsOrderList)
-  }
-}
-
-const propTypes = {
-  children: PropTypes.node,
-  fullWidth: PropTypes.bool,
-  isMobile: PropTypes.bool,
-  sticky: PropTypes.bool,
-}
-
-const Tabs: FC<InferProps<typeof propTypes>> = ({
-  children,
-  fullWidth,
-  isMobile,
-  sticky,
-}) => {
-  const childrenArray: Tab[] = Children.toArray(children)
+function Tabs({ children, fullWidth = false, sticky = false }: Props) {
+  const childrenArray = React.useMemo(
+    () => Children.toArray(children) as Array<React.ReactElement<TabProps>>,
+    [children]
+  )
+  const { isMobile } = useDevice()
 
   // enable or desable menu with tabs that's hidden
   const [showMoreTabsButton, setShowMoreTabsButton] = useState(false)
@@ -139,23 +49,27 @@ const Tabs: FC<InferProps<typeof propTypes>> = ({
   const tabsFullContainerRef = useRef<HTMLDivElement>(null)
   // Handle tabs menu actions
   const moreTabsButtonRef = useRef<HTMLButtonElement>(null)
-  const tabsMenuRef = useRef<Menu>(null)
+  const tabsMenuRef = useRef<HTMLElement>(null)
 
-  const selectedTabIndex: number = childrenArray.reduce(
-    (resultTabIndex: number, tab: Tab, index: number) =>
-      tab.props.active ? index : resultTabIndex,
-    0
+  const selectedTabIndex: number = useMemo(
+    () =>
+      childrenArray.reduce(
+        (resultTabIndex, tab, index) =>
+          tab?.props.active ? index : resultTabIndex,
+        0
+      ),
+    [childrenArray]
   )
-  const selectedTab: Tab = childrenArray[selectedTabIndex]
+  const selectedTab = childrenArray[selectedTabIndex]
   const content = selectedTab?.props.children
 
   const handleOpenTabMenu = () => {
     !tabsMenuOpen && setTabsMenuOpen(true)
   }
 
-  const calculateTabsVisibility = (): void => {
-    const { clientWidth: tabsContainerWidth } = tabsContainerRef.current
-    const tabs = tabsContainerRef.current.children
+  const calculateTabsVisibility = useCallback(() => {
+    const tabsContainerWidth = tabsContainerRef.current?.clientWidth ?? 0
+    const tabs = tabsContainerRef?.current?.children
 
     // verify if is necessary hide tabs
     const { hideTabs, tabIndex } = handleHideTabs({
@@ -163,38 +77,34 @@ const Tabs: FC<InferProps<typeof propTypes>> = ({
       tabsContainerFullWidth: tabsFullContainerRef.current?.clientWidth,
       tabs,
       selectedTabIndex,
-      tabsOrderList,
+      tabsOrderList: mapArrayToIndex(childrenArray),
       fullWidth,
       isMobile,
     })
 
-    // change display tabs order - every hidden selected tab should be displayed
-    const newTabsOrderList = mapArrayToIndex(childrenArray)
-    handleShowSelectedHiddenTab({
-      tabsOrderList: newTabsOrderList,
+    const newOrderList = handleShowSelectedHiddenTab({
+      tabsOrderList: mapArrayToIndex(childrenArray),
       hideTabs,
       tabIndex,
       selectedTabIndex,
-      setTabsOrderList,
     })
 
+    setTabsOrderList(newOrderList)
     setShowMoreTabsButton(hideTabs)
     setLastShowTab(tabIndex)
-  }
+  }, [fullWidth, isMobile, selectedTabIndex, childrenArray])
 
   const handleResizeWindow = useCallback(
     debounce(
       () => {
-        if (tabsContainerRef.current) {
-          calculateTabsVisibility()
+        if (!tabsContainerRef.current) return
 
-          setTabsMenuOpen(false) // close every resize
-        }
+        calculateTabsVisibility()
+        setTabsMenuOpen(false) // close every resize
       },
       RESIZE_DELAY_TIME,
       { trailing: true }
     ),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [tabsContainerRef, tabsFullContainerRef, selectedTabIndex]
   )
 
@@ -206,8 +116,7 @@ const Tabs: FC<InferProps<typeof propTypes>> = ({
     }
 
     handleChangeSelectedTab()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedTabIndex])
+  }, [calculateTabsVisibility, selectedTabIndex])
 
   useLayoutEffect(() => {
     const hasWindow = !(
@@ -223,7 +132,7 @@ const Tabs: FC<InferProps<typeof propTypes>> = ({
   }, [handleResizeWindow])
 
   useEffect(() => {
-    const handleClickOutsideMenu = event => {
+    function handleClickOutsideMenu(event: MouseEvent) {
       if (
         moreTabsButtonRef.current?.contains(event.target) ||
         tabsMenuRef.current?.contains(event.target)
@@ -249,14 +158,14 @@ const Tabs: FC<InferProps<typeof propTypes>> = ({
     tabsOrderList.slice(lastShownTab).map(getHiddenTabProps)
 
   const renderTabs = tabsOrderList.map((tabIndex, index) => {
-    const child: Tab = childrenArray[tabIndex]
+    const child = childrenArray[tabIndex]
     const hidden = index >= lastShownTab
 
     return (
       !(hidden && (fullWidth || isMobile)) &&
       cloneElement(child, {
         fullWidth,
-        key: child.props.key ?? index,
+        key: index,
         hidden,
       })
     )
@@ -321,11 +230,10 @@ const Tabs: FC<InferProps<typeof propTypes>> = ({
   )
 }
 
-Tabs.defaultProps = {
-  fullWidth: false,
-  sticky: false,
+Tabs.propTypes = {
+  children: PropTypes.node,
+  fullWidth: PropTypes.bool,
+  sticky: PropTypes.bool,
 }
 
-Tabs.propTypes = propTypes
-
-export default withDevice(Tabs)
+export default Tabs
