@@ -29,7 +29,10 @@ const clearState: State = {
 }
 
 export default function useTableSort(initialState?: Partial<State>) {
-  const [sorted, dispatch] = useReducer(reducer, {...clearState, ...initialState})
+  const [sorted, dispatch] = useReducer(reducer, {
+    ...clearState,
+    ...initialState,
+  })
 
   const sortASC = (id: string) =>
     dispatch({ type: ActionType.SortASC, payload: { id } })
