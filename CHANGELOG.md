@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - `Totalizer` testids.
 - Support for `react-select` custom components
+- Support for `react-select` custom components.
 
 ## [9.112.27] - 2020-03-26
 
