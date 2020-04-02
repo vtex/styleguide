@@ -7,6 +7,7 @@ import React, {
   Children,
   useEffect,
   PropsWithChildren,
+  useMemo,
 } from 'react'
 import PropTypes from 'prop-types'
 import debounce from 'lodash/debounce'
@@ -50,10 +51,14 @@ function Tabs({ children, fullWidth = false, sticky = false }: Props) {
   const moreTabsButtonRef = useRef<HTMLButtonElement>(null)
   const tabsMenuRef = useRef<HTMLElement>(null)
 
-  const selectedTabIndex: number = childrenArray.reduce(
-    (resultTabIndex, tab, index) =>
-      tab?.props.active ? index : resultTabIndex,
-    0
+  const selectedTabIndex: number = useMemo(
+    () =>
+      childrenArray.reduce(
+        (resultTabIndex, tab, index) =>
+          tab?.props.active ? index : resultTabIndex,
+        0
+      ),
+    [childrenArray]
   )
   const selectedTab = childrenArray[selectedTabIndex]
   const content = selectedTab?.props.children
@@ -72,13 +77,13 @@ function Tabs({ children, fullWidth = false, sticky = false }: Props) {
       tabsContainerFullWidth: tabsFullContainerRef.current?.clientWidth,
       tabs,
       selectedTabIndex,
-      tabsOrderList: childrenArray.map((_, index) => index),
+      tabsOrderList: mapArrayToIndex(childrenArray),
       fullWidth,
       isMobile,
     })
 
     const newOrderList = handleShowSelectedHiddenTab({
-      tabsOrderList: childrenArray.map((_, index) => index),
+      tabsOrderList: mapArrayToIndex(childrenArray),
       hideTabs,
       tabIndex,
       selectedTabIndex,
