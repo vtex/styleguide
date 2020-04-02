@@ -6,12 +6,12 @@ Working example
 class MyDropZone extends React.Component {
   constructor() {
     super()
-    this.state = { files: null }
+    this.state = { files: null, result: null }
     this.handleFile = this.handleFile.bind(this)
   }
 
   handleFile(files) {
-    console.log(files)
+    this.setState({ result: files })
   }
 
   handleReset(files) {
@@ -22,16 +22,28 @@ class MyDropZone extends React.Component {
 
   render() {
     return (
-      <Dropzone onDropAccepted={this.handleFile} onFileReset={this.handleReset}>
-        <div className="pt7">
-          <div>
-            <span className="f4">Drop here your XLS or </span>
-            <span className="f4 c-link" style={{ cursor: 'pointer' }}>
-              choose a file
-            </span>
+      <div>
+        <Dropzone
+          onDropAccepted={this.handleFile}
+          onFileReset={this.handleReset}>
+          <div className="pt7">
+            <div>
+              <span className="f4">Drop here your XLS or </span>
+              <span className="f4 c-link" style={{ cursor: 'pointer' }}>
+                choose a file
+              </span>
+            </div>
           </div>
-        </div>
-      </Dropzone>
+        </Dropzone>
+        {this.state.result && (
+          <div className="mt4">
+            <p className="ttu f6">Result:</p>
+            <pre className="bg-black-025 pa4 f7">
+              {JSON.stringify(this.state.result, null, 2)}
+            </pre>
+          </div>
+        )}
+      </div>
     )
   }
 }
@@ -81,9 +93,52 @@ const TableIcon = (
     <rect x="36" y="17" width="4" height="2" rx="1" fill="#727273" />
   </svg>
 )
-;<div>
-  <Dropzone icon={TableIcon} />
-</div>
+class MyDropZone extends React.Component {
+  constructor() {
+    super()
+    this.state = { files: null, result: null }
+    this.handleFile = this.handleFile.bind(this)
+  }
+
+  handleFile(files) {
+    this.setState({ result: files })
+  }
+
+  handleReset(files) {
+    if (files) {
+      console.log(files)
+    }
+  }
+
+  render() {
+    return (
+      <div>
+        <Dropzone
+          icon={TableIcon}
+          onDropAccepted={this.handleFile}
+          onFileReset={this.handleReset}>
+          <div className="pt7">
+            <div>
+              <span className="f4">Drop here your XLS or </span>
+              <span className="f4 c-link" style={{ cursor: 'pointer' }}>
+                choose a file
+              </span>
+            </div>
+          </div>
+        </Dropzone>
+        {this.state.result && (
+          <div className="mt4">
+            <p className="ttu f6">Result:</p>
+            <pre className="bg-black-025 pa4 f7">
+              {JSON.stringify(this.state.result, null, 2)}
+            </pre>
+          </div>
+        )}
+      </div>
+    )
+  }
+}
+;<MyDropZone />
 ```
 
 Loading state
