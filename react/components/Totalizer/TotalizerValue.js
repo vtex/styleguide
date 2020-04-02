@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
 
 import Spinner from '../Spinner'
 
@@ -25,7 +26,9 @@ class TotalizerValue extends PureComponent {
     return (
       <div
         data-testid="totalizer-value"
-        className={`f4 fw5 c-on-base ${mobileScroll ? 'nowrap' : ''}`}>
+        className={classNames('f4 fw5 c-on-base', {
+          nowrap: mobileScroll,
+        })}>
         {value}
       </div>
     )

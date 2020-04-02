@@ -1,10 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
 
 const TotalizerLabel = ({ label, mobileScroll }) => (
   <div
     data-testid="totalizer-label"
-    className={`c-muted-2 f6 ${mobileScroll ? 'nowrap' : ''}`}>
+    className={classNames('c-muted-2 f6', {
+      nowrap: mobileScroll,
+    })}>
     {label}
   </div>
 )
