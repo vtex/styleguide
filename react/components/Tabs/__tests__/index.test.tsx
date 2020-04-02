@@ -2,8 +2,8 @@ import React from 'react'
 import { render } from '@testing-library/react'
 import { toHaveClass } from '@testing-library/jest-dom/matchers'
 
-import Tabs from '.'
-import Tab from './Tab.js'
+import Tabs from '../index'
+import Tab from '../Tab'
 
 describe('Tabs', () => {
   expect.extend({ toHaveClass })
