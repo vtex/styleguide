@@ -3,7 +3,7 @@
 Sizes
 
 ```js
-initialState = { value: undefined }
+initialState = { value1: '', value2: '', value3: '' }
 ;<div>
   <div className="mb5">
     <InputCurrency
@@ -12,8 +12,8 @@ initialState = { value: undefined }
       placeholder="Type a monetary value"
       locale="pt-BR"
       currencyCode="BRL"
-      value={state.value}
-      onChange={e => setState({ value: e.target.value })}
+      value={state.value1}
+      onChange={e => setState({ value1: e.target.value })}
     />
   </div>
   <div className="mb5">
@@ -22,8 +22,8 @@ initialState = { value: undefined }
       placeholder="Type a monetary value"
       locale="pt-BR"
       currencyCode="BRL"
-      value={state.value}
-      onChange={e => setState({ value: e.target.value })}
+      value={state.value2}
+      onChange={e => setState({ value2: e.target.value })}
     />
   </div>
   <div className="mb5">
@@ -33,8 +33,8 @@ initialState = { value: undefined }
       placeholder="Type a monetary value"
       locale="pt-BR"
       currencyCode="BRL"
-      value={state.value}
-      onChange={e => setState({ value: e.target.value })}
+      value={state.value3}
+      onChange={e => setState({ value3: e.target.value })}
     />
   </div>
 </div>
@@ -48,7 +48,7 @@ class InputExamples extends React.Component {
   constructor() {
     super()
     this.state = {
-      value: undefined,
+      value: '',
       selectedCurrency: 'USD',
       currencyOptions: [
         {
