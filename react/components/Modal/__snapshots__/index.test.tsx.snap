@@ -1,0 +1,447 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Modal CSS API centered 1`] = `<div />`;
+
+exports[`Modal CSS API default 1`] = `
+<div>
+  <div
+    class="styles_overlay__CLSq- vtex-modal__overlay styles_transitionEnter__3j_-a styles_transitionEnterActive___eQs7"
+    style="background-color: rgba(0, 0, 0, 0.8); z-index: 10000;"
+  >
+    <div
+      class="styles_modal__gNwvD vtex-modal__modal br2 w-100 undefined flex flex-column"
+      style="padding: 0px;"
+    >
+      <div
+        class="
+        flex justify-content relative 
+        pl6 pr8 pl8-ns
+        undefined
+        
+      "
+      >
+        <span
+          class="f3 c-on-base w-100"
+        />
+        <div
+          class="vtex-modal__close-icon absolute top-0 right-0 pa5 pa6-ns pointer ml-auto items-center flex"
+          role="button"
+          tabindex="0"
+        >
+          <svg
+            class="vtex__icon-close  "
+            fill="none"
+            height="18"
+            viewBox="0 0 18 18"
+            width="18"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <g
+              fill="currentColor"
+            >
+              <path
+                d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+              />
+            </g>
+          </svg>
+        </div>
+      </div>
+      <div
+        class="ph6 ph8-ns overflow-auto flex-shrink-1 flex-grow-1 pb8 pt5 pt6-ns undefined"
+      >
+        Foo
+      </div>
+      
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Modal CSS API responsiveFullScreen true 1`] = `
+<div>
+  <div
+    class="styles_overlay__CLSq- vtex-modal__overlay pa5-ns pa0 styles_transitionEnter__3j_-a styles_transitionEnterActive___eQs7"
+    style="background-color: rgba(0, 0, 0, 0.8); z-index: 10000;"
+  >
+    <div
+      class="styles_modal__gNwvD vtex-modal__modal br2-ns w-100 h-100 h-auto-ns undefined flex flex-column"
+      style="padding: 0px;"
+    >
+      <div
+        class="
+        flex justify-content relative 
+        pl7 pr8 pl8-ns pl8-ns
+        undefined
+        
+      "
+      >
+        <span
+          class="f3 c-on-base w-100"
+        />
+        <div
+          class="vtex-modal__close-icon absolute top-0 right-0 pa5 pa6-ns pointer ml-auto items-center flex"
+          role="button"
+          tabindex="0"
+        >
+          <svg
+            class="vtex__icon-close  "
+            fill="none"
+            height="18"
+            viewBox="0 0 18 18"
+            width="18"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <g
+              fill="currentColor"
+            >
+              <path
+                d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+              />
+            </g>
+          </svg>
+        </div>
+      </div>
+      <div
+        class="ph7 ph8-ns overflow-auto flex-shrink-1 flex-grow-1 pb8 pt5 pt6-ns undefined"
+      >
+        Foo
+      </div>
+      
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Modal CSS API showBottomBarBorder false 1`] = `<div />`;
+
+exports[`Modal CSS API showTopBar false 1`] = `
+<div>
+  <div
+    class="styles_overlay__CLSq- vtex-modal__overlay styles_transitionEnter__3j_-a styles_transitionEnterActive___eQs7"
+    style="background-color: rgba(0, 0, 0, 0.8); z-index: 10000;"
+  >
+    <div
+      class="styles_modal__gNwvD vtex-modal__modal br2 w-100 undefined flex flex-column"
+      style="padding: 0px;"
+    >
+      <div
+        class="ph6 ph8-ns overflow-auto flex-shrink-1 flex-grow-1 pb8 pt5 pt6-ns undefined"
+      >
+        Foo
+      </div>
+      
+      <button
+        class="styles_closeButton__20ID4"
+      >
+        <svg
+          class="styles_closeIcon__1QwbI vtex-modal__close-icon"
+          height="18"
+          style="top: 8px; right: 8px; padding: 10px;"
+          viewBox="0 0 36 36"
+          width="18"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M28.5 9.62L26.38 7.5 18 15.88 9.62 7.5 7.5 9.62 15.88 18 7.5 26.38l2.12 2.12L18 20.12l8.38 8.38 2.12-2.12L20.12 18z"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Modal bottomBar should render bottomBar 1`] = `
+<div>
+  <div
+    class="styles_overlay__CLSq- vtex-modal__overlay styles_transitionEnter__3j_-a styles_transitionEnterActive___eQs7"
+    style="background-color: rgba(0, 0, 0, 0.8); z-index: 10000;"
+  >
+    <div
+      class="styles_modal__gNwvD vtex-modal__modal br2 w-100 undefined flex flex-column"
+      style="padding: 0px;"
+    >
+      <div
+        class="
+        flex justify-content relative 
+        pl6 pr8 pl8-ns
+        undefined
+        
+      "
+      >
+        <span
+          class="f3 c-on-base w-100"
+        />
+        <div
+          class="vtex-modal__close-icon absolute top-0 right-0 pa5 pa6-ns pointer ml-auto items-center flex"
+          role="button"
+          tabindex="0"
+        >
+          <svg
+            class="vtex__icon-close  "
+            fill="none"
+            height="18"
+            viewBox="0 0 18 18"
+            width="18"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <g
+              fill="currentColor"
+            >
+              <path
+                d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+              />
+            </g>
+          </svg>
+        </div>
+      </div>
+      <div
+        class="ph6 ph8-ns overflow-auto flex-shrink-1 flex-grow-1  pt5 pt6-ns undefined"
+      >
+        Foo
+      </div>
+      <div
+        class="
+        flex justify-content flex-row-reverse 
+        bt b--muted-4 
+        ph6 ph8-ns pv5 pv6-ns 
+        undefined
+        
+      "
+      >
+        <div>
+          Bar
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Modal container should render modal inside it 1`] = `
+<div>
+  <div
+    class="styles_overlay__CLSq- vtex-modal__overlay styles_transitionEnter__3j_-a styles_transitionEnterActive___eQs7"
+    style="background-color: rgba(0, 0, 0, 0.8); z-index: 10000;"
+  >
+    <div
+      class="styles_modal__gNwvD vtex-modal__modal br2 w-100 undefined flex flex-column"
+      style="padding: 0px;"
+    >
+      <div
+        class="
+        flex justify-content relative 
+        pl6 pr8 pl8-ns
+        undefined
+        
+      "
+      >
+        <span
+          class="f3 c-on-base w-100"
+        />
+        <div
+          class="vtex-modal__close-icon absolute top-0 right-0 pa5 pa6-ns pointer ml-auto items-center flex"
+          role="button"
+          tabindex="0"
+        >
+          <svg
+            class="vtex__icon-close  "
+            fill="none"
+            height="18"
+            viewBox="0 0 18 18"
+            width="18"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <g
+              fill="currentColor"
+            >
+              <path
+                d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+              />
+            </g>
+          </svg>
+        </div>
+      </div>
+      <div
+        class="ph6 ph8-ns overflow-auto flex-shrink-1 flex-grow-1 pb8 pt5 pt6-ns undefined"
+      >
+        Foo
+      </div>
+      
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Modal isOpen Should show modal when isOpen is true and hide when is false 1`] = `
+<div>
+  <div
+    class="styles_overlay__CLSq- vtex-modal__overlay styles_transitionEnter__3j_-a styles_transitionEnterActive___eQs7"
+    style="background-color: rgba(0, 0, 0, 0.8); z-index: 10000;"
+  >
+    <div
+      class="styles_modal__gNwvD vtex-modal__modal br2 w-100 undefined flex flex-column"
+      style="padding: 0px;"
+    >
+      <div
+        class="
+        flex justify-content relative 
+        pl6 pr8 pl8-ns
+        undefined
+        
+      "
+      >
+        <span
+          class="f3 c-on-base w-100"
+        />
+        <div
+          class="vtex-modal__close-icon absolute top-0 right-0 pa5 pa6-ns pointer ml-auto items-center flex"
+          role="button"
+          tabindex="0"
+        >
+          <svg
+            class="vtex__icon-close  "
+            fill="none"
+            height="18"
+            viewBox="0 0 18 18"
+            width="18"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <g
+              fill="currentColor"
+            >
+              <path
+                d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+              />
+            </g>
+          </svg>
+        </div>
+      </div>
+      <div
+        class="ph6 ph8-ns overflow-auto flex-shrink-1 flex-grow-1 pb8 pt5 pt6-ns undefined"
+      >
+        Foo
+      </div>
+      
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Modal isOpen Should show modal when isOpen is true and hide when is false 2`] = `
+<div>
+  <div
+    class="styles_overlay__CLSq- vtex-modal__overlay styles_transitionExit__1KmEf styles_transitionExitActive__1nQXw"
+    style="background-color: rgba(0, 0, 0, 0.8); z-index: 10000;"
+  >
+    <div
+      class="styles_modal__gNwvD vtex-modal__modal br2 w-100 undefined flex flex-column"
+      style="padding: 0px;"
+    >
+      <div
+        class="
+        flex justify-content relative 
+        pl6 pr8 pl8-ns
+        undefined
+        
+      "
+      >
+        <span
+          class="f3 c-on-base w-100"
+        />
+        <div
+          class="vtex-modal__close-icon absolute top-0 right-0 pa5 pa6-ns pointer ml-auto items-center flex"
+          role="button"
+          tabindex="0"
+        >
+          <svg
+            class="vtex__icon-close  "
+            fill="none"
+            height="18"
+            viewBox="0 0 18 18"
+            width="18"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <g
+              fill="currentColor"
+            >
+              <path
+                d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+              />
+            </g>
+          </svg>
+        </div>
+      </div>
+      <div
+        class="ph6 ph8-ns overflow-auto flex-shrink-1 flex-grow-1 pb8 pt5 pt6-ns undefined"
+      >
+        Foo
+      </div>
+      
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Modal title should render title prop 1`] = `
+<DocumentFragment>
+  <div
+    class="styles_overlay__CLSq- vtex-modal__overlay styles_transitionEnter__3j_-a styles_transitionEnterActive___eQs7"
+    style="background-color: rgba(0, 0, 0, 0.8); z-index: 10000;"
+  >
+    <div
+      class="styles_modal__gNwvD vtex-modal__modal br2 w-100 undefined flex flex-column"
+      style="padding: 0px;"
+    >
+      <div
+        class="
+        flex justify-content relative pv5 pv6-ns
+        pl6 pr8 pl8-ns
+        undefined
+        
+      "
+      >
+        <span
+          class="f3 c-on-base w-100"
+        >
+          modal title
+        </span>
+        <div
+          class="vtex-modal__close-icon absolute top-0 right-0 pa5 pa6-ns pointer ml-auto items-center flex"
+          role="button"
+          tabindex="0"
+        >
+          <svg
+            class="vtex__icon-close  "
+            fill="none"
+            height="18"
+            viewBox="0 0 18 18"
+            width="18"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <g
+              fill="currentColor"
+            >
+              <path
+                d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+              />
+            </g>
+          </svg>
+        </div>
+      </div>
+      <div
+        class="ph6 ph8-ns overflow-auto flex-shrink-1 flex-grow-1 pb8  undefined"
+      >
+        Foo
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
