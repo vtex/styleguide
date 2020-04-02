@@ -40,8 +40,11 @@ class Totalizer extends PureComponent {
 
     return (
       <div className={OUTER_CONTAINER_CLASSES}>
-        <div className={INNER_CONTAINER_CLASSES}>
+        <div
+          data-testid="totalizer-container"
+          className={INNER_CONTAINER_CLASSES}>
           {items.map((item, i) => {
+            const { label } = item
             const IS_NOT_LAST = items.length > 1 && i < items.length - 1
 
             const EXTRA_BORDER = classNames({
@@ -75,8 +78,15 @@ class Totalizer extends PureComponent {
               }
             )
 
+            const labelSpacesToHyphen = label.replace(/\s/g, '-')
+            const labelLowercase = labelSpacesToHyphen.toLowerCase()
+            const testidLabel = `totalizer-item-${labelLowercase}`
+
             return (
-              <div className={ITEM_CLASSES} key={item.label}>
+              <div
+                data-testid={testidLabel}
+                className={ITEM_CLASSES}
+                key={label}>
                 {item.icon ? (
                   <div className={WITH_ICON_CONTAINER_CLASSES}>
                     <TotalizerIcon item={item} />
@@ -91,7 +101,7 @@ class Totalizer extends PureComponent {
                         </div>
                       )}
                       <TotalizerLabel
-                        label={item.label}
+                        label={label}
                         mobileScroll={mobileScroll}
                       />
                       {!item.inverted && (
@@ -115,10 +125,7 @@ class Totalizer extends PureComponent {
                         />
                       </div>
                     )}
-                    <TotalizerLabel
-                      label={item.label}
-                      mobileScroll={mobileScroll}
-                    />
+                    <TotalizerLabel label={label} mobileScroll={mobileScroll} />
                     {!item.inverted && (
                       <div className={`w-100 mt${invertedMargin}`}>
                         <TotalizerValue
