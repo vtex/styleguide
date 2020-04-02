@@ -18,20 +18,20 @@ interface RowRenderProps {
   column: Column
   motion: ReturnType<typeof useTableMotion>
   index: number
-  isHead: boolean
+  header: boolean
 }
 
 interface SpecificProps extends NativeTr {
   height: number
   motion?: ReturnType<typeof useTableMotion>
   data?: unknown
-  isHead?: boolean
+  header?: boolean
 }
 
 type Props = RenderProps<SpecificProps, RowRenderProps>
 
 function Row(
-  { children, motion, data, height, isHead = false, ...props }: Props,
+  { children, motion, data, height, header = false, ...props }: Props,
   ref: Ref<HTMLTableRowElement>
 ) {
   const LIGHT_BLUE = '#DBE9FD'
@@ -39,15 +39,15 @@ function Row(
   const { columns } = useDataContext()
   const { highlightOnHover, isRowActive, onRowClick } = useBodyContext()
   const className = classNames('w-100 truncate overflow-x-hidden', {
-    'pointer hover-c-link': !isHead && onRowClick,
-    'hover-bg-muted-5': !isHead && (highlightOnHover || !!onRowClick),
+    'pointer hover-c-link': !header && onRowClick,
+    'hover-bg-muted-5': !header && (highlightOnHover || !!onRowClick),
   })
   const rowColor =
     data && isRowActive && isRowActive(data)
       ? { backgroundColor: LIGHT_BLUE }
       : {}
   const clickable =
-    !isHead && onRowClick
+    !header && onRowClick
       ? {
           onClick: () => onRowClick({ rowData: data }),
         }
@@ -74,7 +74,7 @@ function Row(
             column,
             motion,
             index,
-            isHead,
+            header,
           })
         }
 
