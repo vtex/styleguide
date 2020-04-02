@@ -10,7 +10,7 @@ class TotalizerIcon extends PureComponent {
     } = this.props
 
     return (
-      <div className="flex items-center mr3">
+      <div data-testid="totalizer-icon" className="flex items-center mr3">
         <div
           className="flex items-center justify-center br-100 pa3 bg-light-silver c-muted-1"
           style={{

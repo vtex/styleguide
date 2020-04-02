@@ -23,7 +23,9 @@ class TotalizerValue extends PureComponent {
     }
 
     return (
-      <div className={`f4 fw5 c-on-base ${mobileScroll ? 'nowrap' : ''}`}>
+      <div
+        data-testid="totalizer-value"
+        className={`f4 fw5 c-on-base ${mobileScroll ? 'nowrap' : ''}`}>
         {value}
       </div>
     )
