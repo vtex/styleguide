@@ -10,8 +10,8 @@ initialState = { value1: '', value2: '', value3: '' }
       label="Small"
       size="small"
       placeholder="Type a monetary value"
-      locale="pt-BR"
-      currencyCode="BRL"
+      locale="en-US"
+      currencyCode="USD"
       value={state.value1}
       onChange={e => setState({ value1: e.target.value })}
     />
@@ -20,8 +20,8 @@ initialState = { value1: '', value2: '', value3: '' }
     <InputCurrency
       label="Regular"
       placeholder="Type a monetary value"
-      locale="pt-BR"
-      currencyCode="BRL"
+      locale="en-US"
+      currencyCode="USD"
       value={state.value2}
       onChange={e => setState({ value2: e.target.value })}
     />
@@ -31,8 +31,8 @@ initialState = { value1: '', value2: '', value3: '' }
       label="Large"
       size="large"
       placeholder="Type a monetary value"
-      locale="pt-BR"
-      currencyCode="BRL"
+      locale="en-US"
+      currencyCode="USD"
       value={state.value3}
       onChange={e => setState({ value3: e.target.value })}
     />
