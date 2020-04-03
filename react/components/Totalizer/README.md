@@ -27,12 +27,12 @@
     },
     {
       label: 'Entries',
-      value: 'R$ 36239,05',
+      value: 'US$ 36239,05',
     },
 
     {
       label: 'Outputs',
-      value: '- R$ 13.485,26',
+      value: 'US$ 13.485,26',
     },
     {
       label: 'Sales',
@@ -57,12 +57,12 @@ const ShoppingCart = require('../icon/ShoppingCart').default
     },
     {
       label: 'Average Ticket',
-      value: 'R$55.47',
+      value: 'US$ 55.47',
       inverted: true,
     },
     {
       label: 'Gross',
-      value: 'R$554.70',
+      value: 'US$ 554.70',
       inverted: true,
     },
   ]}
@@ -87,14 +87,14 @@ const ShoppingCart = require('../icon/ShoppingCart').default
     },
     {
       label: 'Average Ticket',
-      value: 'R$55.47',
+      value: 'US$ 55.47',
       inverted: true,
       iconBackgroundColor: '#cce8ff',
       icon: <ShoppingCart color="#368df7" size={14} />,
     },
     {
       label: 'Gross',
-      value: 'R$554.70',
+      value: 'US$ 554.70',
       inverted: true,
       iconBackgroundColor: '#fda4a4',
       icon: <ArrowDown color="#dd1616" size={14} />,
@@ -150,14 +150,14 @@ const ShoppingCart = require('../icon/ShoppingCart').default
     },
     {
       label: 'Tickets',
-      value: 'R$ 36239,05',
+      value: 'US$ 36239,05',
       iconBackgroundColor: '#eafce3',
       icon: <ArrowUp color="#79B03A" size={14} />,
     },
 
     {
       label: 'Outputs',
-      value: '- R$ 13.485,26',
+      value: '- US$ 13.485,26',
       iconBackgroundColor: '#fda4a4',
       icon: <ArrowDown color="#dd1616" size={14} />,
     },
@@ -177,12 +177,12 @@ const ShoppingCart = require('../icon/ShoppingCart').default
     },
     {
       label: 'Tickets',
-      value: 'R$ 36239,05',
+      value: 'US$ 36239,05',
     },
 
     {
       label: 'Outputs',
-      value: '- R$ 13.485,26',
+      value: '- US$ 13.485,26',
     },
     {
       label: 'Sales',
@@ -210,14 +210,14 @@ const ShoppingCart = require('../icon/ShoppingCart').default
     },
     {
       label: 'Tickets',
-      value: 'R$ 36239,05',
+      value: 'US$ 36239,05',
       iconBackgroundColor: '#eafce3',
       icon: <ArrowUp color="#79B03A" size={14} />,
     },
 
     {
       label: 'Outputs',
-      value: '- R$ 13.485,26',
+      value: '- US$ 13.485,26',
       iconBackgroundColor: '#fda4a4',
       icon: <ArrowDown color="#dd1616" size={14} />,
     },
