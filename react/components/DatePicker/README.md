@@ -17,59 +17,41 @@ You can check out the list of supported locales [here](https://github.com/date-f
 #### Simple DatePicker
 
 ```js
-class DatePickerExample extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      startDate: new Date(),
-    }
-
-    this.handleChange = this.handleChange.bind(this)
-  }
-
-  render() {
-    return (
-      <div>
-        <div className="mb5">
-          <DatePicker
-            label="Small"
-            size="small"
-            value={this.state.startDate}
-            onChange={this.handleChange}
-            locale="en-US"
-          />
-        </div>
-
-        <div className="mb5">
-          <DatePicker
-            label="Regular"
-            value={this.state.startDate}
-            onChange={this.handleChange}
-            locale="en-US"
-          />
-        </div>
-
-        <div className="mb5">
-          <DatePicker
-            label="Large"
-            size="large"
-            value={this.state.startDate}
-            onChange={this.handleChange}
-            locale="en-US"
-          />
-        </div>
-      </div>
-    )
-  }
-
-  handleChange(date) {
-    this.setState({
-      startDate: date,
-    })
-  }
+initialState = {
+  startDate1: new Date(),
+  startDate2: new Date(),
+  startDate3: new Date(),
 }
+;<div>
+  <div className="mb5">
+    <DatePicker
+      label="Small"
+      size="small"
+      value={state.startDate1}
+      onChange={date => setState({ startDate1: date })}
+      locale="en-US"
+    />
+  </div>
 
-;<DatePickerExample />
+  <div className="mb5">
+    <DatePicker
+      label="Regular"
+      value={state.startDate2}
+      onChange={date => setState({ startDate2: date })}
+      locale="en-US"
+    />
+  </div>
+
+  <div className="mb5">
+    <DatePicker
+      label="Large"
+      size="large"
+      value={state.startDate3}
+      onChange={date => setState({ startDate3: date })}
+      locale="en-US"
+    />
+  </div>
+</div>
 ```
 
 #### Variations
