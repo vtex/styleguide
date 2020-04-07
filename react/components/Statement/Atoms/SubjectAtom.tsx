@@ -20,7 +20,6 @@ type Props = {
   onChange: (string) => void
   options: SubjectOptions
   placeholder: string
-  isFullWidth: boolean
 }
 
 const groupOptions = options => {
@@ -50,7 +49,6 @@ const groupOptions = options => {
 }
 
 const SubjectAtom: React.FC<Props> = ({
-  isFullWidth,
   onChange,
   options,
   placeholder,
