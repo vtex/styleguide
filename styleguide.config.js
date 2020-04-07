@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 const path = require('path')
 
 const webpackConfig = require('./config/webpack.config.js')
