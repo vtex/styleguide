@@ -24,7 +24,7 @@ type Props = {
 }
 
 const EmptyObjectAtom = () => (
-  <div className="flex-auto mh3">
+  <div className="flex-auto mh3 pb3">
     <Input disabled />
   </div>
 )
@@ -41,7 +41,7 @@ const ObjectAtom: React.FC<Props> = ({
   }
 
   return (
-    <div className="mh3 flex-auto">
+    <div className="flex-auto mh3 pb3">
       {renderObject({
         error,
         onChange,
