@@ -41,7 +41,7 @@ const VerbAtom: React.FC<Props> = ({
           />
         </div>
       ) : (
-        <span>{value.label}</span>
+        <span className="pt3">{value.label}</span>
       )}
     </div>
   )
