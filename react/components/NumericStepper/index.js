@@ -213,15 +213,15 @@ class NumericStepper extends Component {
       <React.Fragment>
         {label && (
           <span
-            className={`numeric-stepper__label db mb3 w-100 c-on-base ${labelClasses}`}>
+            className={`vtex-numeric-stepper__label numeric-stepper__label db mb3 w-100 c-on-base ${labelClasses}`}>
             {label}
           </span>
         )}
-        <div className="numeric-stepper-container flex self-start">
+        <div className="vtex-numeric-stepper-container numeric-stepper-container flex self-start">
           <input
             type="tel"
             readOnly={readOnly}
-            className={`numeric-stepper__input z-1 order-1 tc bw1 ${borderClasses} br0 ${inputClasses} ${styles.hideDecorators}`}
+            className={`vtex-numeric-stepper__input numeric-stepper__input z-1 order-1 tc bw1 ${borderClasses} br0 ${inputClasses} ${styles.hideDecorators}`}
             style={{
               ...(block && {
                 width: 0,
@@ -233,10 +233,10 @@ class NumericStepper extends Component {
             onFocus={this.handleFocusInput}
             onBlur={this.handleBlurInput}
           />
-          <div className="numeric-stepper__plus-button-container z-2 order-2 flex-none">
+          <div className="vtex-numeric-stepper__plus-button-container numeric-stepper__plus-button-container z-2 order-2 flex-none">
             <button
               type="button"
-              className={`numeric-stepper__plus-button br2 pa0 bl-0 flex items-center justify-center ${borderClasses} ${buttonClasses} ${
+              className={`vtex-numeric-stepper__plus-button numeric-stepper__plus-button br2 pa0 bl-0 flex items-center justify-center ${borderClasses} ${buttonClasses} ${
                 readOnly || isMax ? buttonDisabledClasses : buttonEnabledClasses
               }`}
               style={{
@@ -249,16 +249,16 @@ class NumericStepper extends Component {
               aria-label="+"
               tabIndex={0}
               onClick={this.handleIncreaseValue}>
-              <div className="numeric-stepper__plus-button__text b">
+              <div className="vtex-numeric-stepper__plus-button__text numeric-stepper__plus-button__text b">
                 {/* fullwidth plus sign (U+FF0B) http://graphemica.com/%EF%BC%8B */}
                 ＋
               </div>
             </button>
           </div>
-          <div className="numeric-stepper__minus-button-container z-2 order-0 flex-none">
+          <div className="vtex-numeric-stepper__minus-button-container numeric-stepper__minus-button-container z-2 order-0 flex-none">
             <button
               type="button"
-              className={`numeric-stepper__minus-button br2 pa0 br-0 flex items-center justify-center ${borderClasses} ${buttonClasses} ${
+              className={`vtex-numeric-stepper__minus-button numeric-stepper__minus-button br2 pa0 br-0 flex items-center justify-center ${borderClasses} ${buttonClasses} ${
                 readOnly || isMin ? buttonDisabledClasses : buttonEnabledClasses
               }`}
               style={{
@@ -274,7 +274,7 @@ class NumericStepper extends Component {
               // Used for screen readers.
               tabIndex={0}
               onClick={this.handleDecreaseValue}>
-              <span className="numeric-stepper__minus-button__text b">
+              <span className="vtex-numeric-stepper__minus-button__text numeric-stepper__minus-button__text b">
                 {/* fullwidth hyphen-minus (U+FF0D) http://graphemica.com/%EF%BC%8D */}
                 －
               </span>
@@ -288,9 +288,17 @@ class NumericStepper extends Component {
     // iOS from focusing on the text field and popping up the
     // keyboard when increment/decrement is pressed
     if (label && !lean) {
-      return <label className="numeric-stepper-wrapper">{content}</label>
+      return (
+        <label className="vtex-numeric-stepper-wrapper numeric-stepper-wrapper">
+          {content}
+        </label>
+      )
     }
-    return <div className="numeric-stepper-wrapper">{content}</div>
+    return (
+      <div className="vtex-numeric-stepper-wrapper numeric-stepper-wrapper">
+        {content}
+      </div>
+    )
   }
 }
 
