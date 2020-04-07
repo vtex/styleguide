@@ -1,4 +1,4 @@
 {
-  "buildCommand": "compile",
-  "sandboxes": ["vtex-styleguide-react-sandbox-xkj2i"]
+  "buildCommand": "yarn compile && yarn build",
+  "sandboxes": ["vtex-styleguide-react-sandbox-xkj2i", "/styleguide"]
 }
