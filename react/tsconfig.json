@@ -6,6 +6,6 @@
     "typeRoots": ["node_modules/@types"],
     "types": ["node", "jest"]
   },
-  "include": ["./typings/*.d.ts", "./**/*.tsx", "./**/*.ts"],
+  "include": ["./typings/*.d.ts", "./**/*.tsx", "./**/*.ts", "./**/*.stories.tsx"],
   "exclude": ["node_modules", "*.md"]
 }
