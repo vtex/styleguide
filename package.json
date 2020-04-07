@@ -21,7 +21,8 @@
     "prepare": "yarn --cwd react --ignore-scripts",
     "postreleasy": "vtex publish --public --verbose",
     "lint-fix": "eslint react --ext js,jsx,ts,tsx --fix --max-warnings 0",
-    "prettier-conflict-check": "eslint --print-config .eslintrc | eslint-config-prettier-check"
+    "prettier-conflict-check": "eslint --print-config .eslintrc | eslint-config-prettier-check",
+    "build": "run-s compile styleguide:build"
   },
   "main": "./lib/index.js",
   "files": [
