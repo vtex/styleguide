@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 
-import Spinner from '../../Spinner/index.js'
+import Spinner from '../../Spinner'
 import useTableMotion from '../hooks/useTableMotion'
 import { E2ETestable } from '../types'
 
