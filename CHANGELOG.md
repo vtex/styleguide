@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Condition's statement layout for long inputs
 
+### Fixed
+
+- Add missing namespaced CSS classes to NumericStepper.
+
 ## [9.113.0] - 2020-04-07
 
 ### Added
