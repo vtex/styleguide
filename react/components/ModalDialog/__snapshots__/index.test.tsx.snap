@@ -342,7 +342,7 @@ exports[`ModalDialog loading CSS 1`] = `
               class="vtex-button__spinner-container top-0 left-0 w-100 h-100 absolute flex justify-center items-center"
             >
               <svg
-                class="vtex__icon-spinner  c-action-primary "
+                class="vtex__icon-spinner  c-action-primary"
                 height="15"
                 preserveAspectRatio="xMidYMid"
                 viewBox="0 0 100 100"
