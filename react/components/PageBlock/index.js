@@ -12,7 +12,8 @@ class PageBlock extends Component {
       variation,
       titleAside,
       testId,
-      boxProps,
+      boxProps: receivedBoxProps,
+      fit,
     } = this.props
     const isAnnotated = variation === 'annotated'
 
@@ -22,15 +23,36 @@ class PageBlock extends Component {
       'flex flex-column': isAnnotated && titleAside,
     })
 
-    let titleClasses = 'styleguide__pageBlock_title t-heading-3 mb3 ml5 ml3-ns '
-    titleClasses += titleAside ? 'mt0' : 'mt4'
+    const titleClasses = classNames(
+      'styleguide__pageBlock_title t-heading-3 mb3 ml5 ml3-ns',
+      {
+        mt0: titleAside,
+        mt4: !titleAside,
+      }
+    )
+
+    const containerClasses = classNames('styleguide__pageBlock flex', {
+      'flex-row': isAnnotated,
+      'flex-column': !isAnnotated,
+      'h-100': ['fill', 'fill-vertical'].includes(fit),
+      'w-100': ['fill', 'fill-horizontal'].includes(fit),
+    })
+
+    const boxesContainerClasses = classNames(
+      'flex flex-column flex-row-ns mb5-ns',
+      {
+        'w-two-thirds': isAnnotated,
+        'h-100': ['fill', 'fill-vertical'].includes(fit),
+      }
+    )
+
+    const boxProps = {
+      fit,
+      ...receivedBoxProps,
+    }
 
     return (
-      <div
-        className={`styleguide__pageBlock flex ${
-          isAnnotated ? 'flex-row' : 'flex-column'
-        }`}
-        data-testid={testId}>
+      <div className={containerClasses} data-testid={testId}>
         {/* Title, subtitle & aside */}
         {(title || subtitle) && (
           <div className={headerClasses}>
@@ -51,9 +73,7 @@ class PageBlock extends Component {
         )}
 
         {/* Boxes and the content itself */}
-        <div
-          className={`flex flex-column flex-row-ns ${isAnnotated &&
-            'w-two-thirds'}`}>
+        <div className={boxesContainerClasses}>
           {variation === 'half' ? (
             <Fragment>
               <div className="w-50-ns w-100 mr3-ns mb0-ns mb5">
@@ -61,7 +81,7 @@ class PageBlock extends Component {
                   {this.props.children && this.props.children[0]}
                 </Box>
               </div>
-              <div className="w-50-ns w-100 ml3-ns mb5">
+              <div className="w-50-ns w-100 ml3-ns mb0-ns mb5">
                 <Box {...boxProps}>
                   {this.props.children && this.props.children[1]}
                 </Box>
@@ -74,14 +94,14 @@ class PageBlock extends Component {
                   {this.props.children && this.props.children[0]}
                 </Box>
               </div>
-              <div className="w-third-ns w-100 ml3-ns mb5">
+              <div className="w-third-ns w-100 ml3-ns mb0-ns mb5">
                 <Box {...boxProps}>
                   {this.props.children && this.props.children[1]}
                 </Box>
               </div>
             </Fragment>
           ) : (
-            <div className="w-100 mb5">
+            <div className="w-100 mb0-ns mb5">
               <Box {...boxProps}>{this.props.children}</Box>
             </div>
           )}
@@ -93,6 +113,7 @@ class PageBlock extends Component {
 
 PageBlock.defaultProps = {
   variation: 'full',
+  fit: 'none',
 }
 
 PageBlock.propTypes = {
@@ -134,10 +155,13 @@ PageBlock.propTypes = {
       )
     }
   },
+  /** Box component props */
   boxProps: PropTypes.shape({
     noPadding: PropTypes.bool,
     title: PropTypes.string,
   }),
+  /** Determines if and how the PageBlock should fit the parent's element dimensions */
+  fit: PropTypes.oneOf(['fill', 'fill-horizontal', 'fill-vertical', 'none']),
 }
 
 export default PageBlock
