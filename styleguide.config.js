@@ -97,7 +97,7 @@ module.exports = {
             'react/components/EmptyState/index.js',
             'react/components/FilterBar/index.js',
             'react/components/FilterOptions/index.js',
-            'react/components/Spinner/index.js',
+            'react/components/Spinner/index.tsx',
             'react/components/Table/index.js',
             'react/components/Tag/index.js',
             'react/components/Progress/index.tsx',
@@ -147,7 +147,7 @@ module.exports = {
           name: 'Notification',
           components: [
             'react/components/Alert/index.js',
-            'react/components/Spinner/index.js',
+            'react/components/Spinner/index.tsx',
             'react/components/ToastProvider/index.js',
           ],
         },
