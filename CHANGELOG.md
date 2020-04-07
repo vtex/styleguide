@@ -27,6 +27,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Support for `react-select` custom components
 - Initial state of `useTableSorting` hook can now be set by its client.
 
+### Changed
+
+- Condition's statement layout for long inputs
+
 ## [9.112.27] - 2020-03-26
 
 ### Fixed

@@ -101,7 +101,7 @@ const Conditions: React.FC<Props> = ({
         </div>
       )}
 
-      <div className="t-body c-on-base ph5 mt4 br3 b--muted-4 ba">
+      <div className="t-body c-on-base ph5 pt3 mt4 br3 b--muted-4 ba">
         {statements.length === 0 ? (
           <div className="flex-grow-1 mv6">
             <Statement
@@ -153,7 +153,7 @@ const Conditions: React.FC<Props> = ({
                   (!isFullWidth ? (
                     <div
                       key="2"
-                      className="ma3 c-muted-2 pointer hover-c-danger"
+                      className="mh3 pb3 c-muted-2 pointer hover-c-danger"
                       onClick={() => handleRemoveStatement(statementIndex)}>
                       <IconClose size={25} />
                     </div>

@@ -78,9 +78,7 @@ const SubjectAtom: React.FC<Props> = ({
   }, undefined)
 
   return (
-    <div
-      className={`mh3 ${isFullWidth ? 'pb3' : ''}`}
-      style={{ minWidth: ATOM_COMPONENT_MIN_WIDTH }}>
+    <div className="mh3 pb3" style={{ minWidth: ATOM_COMPONENT_MIN_WIDTH }}>
       <Select
         clearable={false}
         multi={false}
