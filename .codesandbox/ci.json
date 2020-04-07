@@ -1,7 +1,4 @@
 {
   "buildCommand": "compile",
-  "publishDirectory": {
-    "@vtex/styleguide": "lib"
-  },
-  "sandboxes": ["new"]
+  "sandboxes": ["vtex-styleguide-react-sandbox-xkj2i"]
 }
