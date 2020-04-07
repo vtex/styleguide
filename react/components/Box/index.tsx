@@ -9,18 +9,19 @@ const propTypes = {
   noPadding: PropTypes.bool,
   /** Title to the box */
   title: PropTypes.string,
-  /** Defines if the Box should fill the parent element's height and width */
-  fill: PropTypes.bool,
+  /** Defines if and how the Box should fit the parent element */
+  fit: PropTypes.oneOf(['fill', 'fill-horizontal', 'fill-vertical', 'none']),
 }
 
 type Props = InferProps<typeof propTypes>
 
-const Box: FC<Props> = ({ children, noPadding, title, fill }) => {
+const Box: FC<Props> = ({ children, noPadding, title, fit }) => {
   const boxClasses = classNames(
     'styleguide__box bg-base t-body c-on-base br3 b--muted-4 ba',
     {
       pa7: !noPadding,
-      'h-100 w-100': fill,
+      'h-100': ['fill', 'fill-vertical'].includes(fit),
+      'w-100': ['fill', 'fill-horizontal'].includes(fit),
     }
   )
   return (
@@ -33,7 +34,7 @@ const Box: FC<Props> = ({ children, noPadding, title, fill }) => {
 
 Box.propTypes = propTypes
 Box.defaultProps = {
-  fill: false,
+  fit: 'none',
 }
 
 export default Box

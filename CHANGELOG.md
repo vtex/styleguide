@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- `fill` prop to `PageBlock` and `Box` components.
+- `fit` prop to `PageBlock` and `Box` components.
 
 ## [9.112.28] - 2020-04-02
 

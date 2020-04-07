@@ -13,7 +13,7 @@ class PageBlock extends Component {
       titleAside,
       testId,
       boxProps: receivedBoxProps,
-      fill,
+      fit,
     } = this.props
     const isAnnotated = variation === 'annotated'
 
@@ -34,19 +34,20 @@ class PageBlock extends Component {
     const containerClasses = classNames('styleguide__pageBlock flex', {
       'flex-row': isAnnotated,
       'flex-column': !isAnnotated,
-      'h-100 w-100': fill,
+      'h-100': ['fill', 'fill-vertical'].includes(fit),
+      'w-100': ['fill', 'fill-horizontal'].includes(fit),
     })
 
     const boxesContainerClasses = classNames(
       'flex flex-column flex-row-ns mb5-ns',
       {
         'w-two-thirds': isAnnotated,
-        'w-100 h-100': !isAnnotated && fill,
+        'h-100': ['fill', 'fill-vertical'].includes(fit),
       }
     )
 
     const boxProps = {
-      fill,
+      fit,
       ...receivedBoxProps,
     }
 
@@ -112,7 +113,7 @@ class PageBlock extends Component {
 
 PageBlock.defaultProps = {
   variation: 'full',
-  fill: false,
+  fit: 'none',
 }
 
 PageBlock.propTypes = {
@@ -159,8 +160,8 @@ PageBlock.propTypes = {
     noPadding: PropTypes.bool,
     title: PropTypes.string,
   }),
-  /** Determines if the PageBlock should fill the parent's element dimensions */
-  fill: PropTypes.bool,
+  /** Determines if and how the PageBlock should fit the parent's element dimensions */
+  fit: PropTypes.oneOf(['fill', 'fill-horizontal', 'fill-vertical', 'none']),
 }
 
 export default PageBlock
