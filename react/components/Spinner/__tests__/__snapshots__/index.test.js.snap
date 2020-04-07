@@ -3,7 +3,7 @@
 exports[`Spinner matches snapshot 1`] = `
 <DocumentFragment>
   <svg
-    class="vtex__icon-spinner  c-action-primary "
+    class="vtex__icon-spinner  c-action-primary"
     height="40"
     preserveAspectRatio="xMidYMid"
     viewBox="0 0 100 100"
@@ -59,7 +59,7 @@ exports[`Spinner matches snapshot 1`] = `
 exports[`Spinner renders with the correct color 1`] = `
 <DocumentFragment>
   <svg
-    class="vtex__icon-spinner   "
+    class="vtex__icon-spinner "
     height="40"
     preserveAspectRatio="xMidYMid"
     viewBox="0 0 100 100"
@@ -115,7 +115,7 @@ exports[`Spinner renders with the correct color 1`] = `
 exports[`Spinner renders with the correct size 1`] = `
 <DocumentFragment>
   <svg
-    class="vtex__icon-spinner  c-action-primary "
+    class="vtex__icon-spinner  c-action-primary"
     height="100"
     preserveAspectRatio="xMidYMid"
     viewBox="0 0 100 100"
