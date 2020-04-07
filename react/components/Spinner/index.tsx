@@ -20,7 +20,7 @@ type Props = PropTypes.InferProps<typeof propTypes>
 
 const Spinner: FC<Props> = ({ color, size, block }) => (
   <svg
-    className={classNames(`${baseClassname('spinner')}`, {
+    className={classNames(baseClassname('spinner'), {
       'c-action-primary': !color,
       db: block,
     })}
