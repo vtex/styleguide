@@ -7,4 +7,8 @@ export default {
   component: Button,
 }
 
-export const Text = () => <Button type="primary">Oie</Button>
+export const withText = () => (
+  <Button type="primary">
+    With a text
+  </Button>
+)
