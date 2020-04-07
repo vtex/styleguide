@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Condition's statement layout for long inputs
+
 ## [9.113.0] - 2020-04-07
 
 ### Added
@@ -26,10 +30,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Totalizer` testids.
 - Support for `react-select` custom components
 - Initial state of `useTableSorting` hook can now be set by its client.
-
-### Changed
-
-- Condition's statement layout for long inputs
 
 ## [9.112.27] - 2020-03-26
 
