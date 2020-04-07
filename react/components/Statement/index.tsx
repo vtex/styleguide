@@ -37,7 +37,6 @@ const Statement: React.FC<Props> = ({
     !omitSubject && (
       <SubjectAtom
         key="subject"
-        isFullWidth={isFullWidth}
         onChange={subject => {
           const newStatement = {
             ...statement,
@@ -57,7 +56,6 @@ const Statement: React.FC<Props> = ({
       <VerbAtom
         key="verb"
         disabled={!statement.subject}
-        isFullWidth={isFullWidth}
         onChange={verb => {
           const newStatement = {
             ...statement,

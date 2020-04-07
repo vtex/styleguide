@@ -11,7 +11,6 @@ export type VerbOption = {
 
 type Props = {
   disabled?: boolean
-  isFullWidth?: boolean
   verb?: string
   verbOptions: VerbOption[]
   onChange: (string) => void
@@ -19,7 +18,6 @@ type Props = {
 
 const VerbAtom: React.FC<Props> = ({
   disabled,
-  isFullWidth,
   onChange,
   verb,
   verbOptions,
