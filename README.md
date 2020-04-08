@@ -28,6 +28,16 @@ yarn install
 yarn styleguide
 ```
 
+### Storybook
+
+We use [Storybook](https://storybook.js.org/) environment to help us build and test our components in real time. You can edit the Playground file and add the components you are working on, after this run the command below to see your changes in http://localhost:6006/ :
+
+```shell
+yarn storybook
+```
+
+If you want to change or add stories, take a look at this [guide](https://github.com/vtex/styleguide/blob/master/.github/CONTRIBUTING.md#storybook-organization) before.
+
 ## Developing using `npm link`
 
 Run this in this repo:
