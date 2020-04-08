@@ -12,6 +12,7 @@ export default {
 }
 
 const variations = ['primary', 'secondary', 'tertiary', 'danger', 'danger-tertiary', 'inverted-tertiary']
+const sizes = ['small', 'regular', 'large']
 
 export const Default = () => (
   <Button
@@ -19,7 +20,7 @@ export const Default = () => (
     isLoading={boolean('Is loading', false)}
     disabled={boolean('Disabled', false)}
     block={boolean('Block', false)}
-    size={select('Size', ['small', 'regular', 'large'], 'regular')}
+    size={select('Size', sizes, 'regular')}
     onClick={action('button-click')}
     onFocus={action('button-focus')}
   >
@@ -58,4 +59,16 @@ export const withOnMouseEvents = () => (
   >
     Button
   </Button>
+)
+
+export const withDifferentSizes = () => (
+  <>
+    {sizes.map(size => (
+      <>
+        <Button size={size}>{size}</Button>
+        <br/>
+        <br/>
+      </>
+    ))}
+  </>
 )
