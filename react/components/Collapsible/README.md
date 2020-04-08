@@ -303,7 +303,7 @@ function toggleAccordion(questionNbr) {
         <Collapsible
           header={
             <div className="pv6 hover-c-on-action-secondary">
-              What is the PCI SSC
+              What is the PCI SSC?
             </div>
           }
           onClick={toggleAccordion(3)}
