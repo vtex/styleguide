@@ -29,7 +29,7 @@
     "prepare": "yarn --cwd react --ignore-scripts",
     "postreleasy": "vtex publish --public --verbose",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build:storybook": "build-storybook"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",

@@ -1,5 +1,5 @@
-import {addons} from '@storybook/addons';
-import {create} from '@storybook/theming';
+import { addons } from '@storybook/addons'
+import { create } from '@storybook/theming'
 
 addons.setConfig({
   panelPosition: 'bottom',
@@ -16,10 +16,9 @@ addons.setConfig({
     // Typography
     fontBase: '"Fabriga", sans-serif',
     fontCode: 'monospace',
-
     
     brandTitle: 'VTEX Styleguide',
     brandUrl: '/',
     brandImage: null,
   }),
-});
+})

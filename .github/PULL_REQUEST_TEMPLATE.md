@@ -12,7 +12,6 @@
 
 <!-- Add the code that is necessary to test your change in the Playground-->
 
-
 <details>
 <summary>Add this code in <code>react/playground/Playground.tsx</code>:</summary>
 

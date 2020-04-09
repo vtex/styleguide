@@ -29,6 +29,7 @@ Example:
     └── components
         └── Button
             ├── index.tsx
+            ├── index.test.tsx
             └── button.stories.tsx
 
 ```
