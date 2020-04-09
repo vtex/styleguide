@@ -150,7 +150,8 @@ initialState = { isOpen1: false, isOpen2: false, isOpen3: false }
                 height="16"
                 viewBox="0 0 16 16"
                 fill="none"
-                xmlns="http://www.w3.org/2000/svg">
+                xmlns="http://www.w3.org/2000/svg"
+              >
                 <path
                   d="M16 5V3C16 2.4 15.6 2 15 2H1C0.4 2 0 2.4 0 3V5H16Z"
                   fill="currentColor"
