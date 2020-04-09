@@ -31,7 +31,8 @@ initialState = { isOpen: false }
         </span>
       }
       onClick={e => setState({ isOpen: e.target.isOpen })}
-      isOpen={state.isOpen}>
+      isOpen={state.isOpen}
+    >
       <div className="mt4">
         <div className="mb3">
           <Input label="Surname" />
