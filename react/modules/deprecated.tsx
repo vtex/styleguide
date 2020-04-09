@@ -14,19 +14,12 @@
  * */
 import React, { Component, ComponentType } from 'react'
 
-interface UseNewProps {
-  submitFilterLable: string
-  newFilterLable: string
-}
-
-interface UseNewComponent {
-  old: string
-  new: string
-}
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type genericObj = Record<string, any>
 
 interface DeprecatedProps {
-  useNewProps?: UseNewProps
-  useNewComponent?: UseNewComponent
+  useNewProps?: genericObj
+  useNewComponent?: genericObj
 }
 
 // Attempt to get the wrapped component's name
@@ -38,21 +31,23 @@ function getComponentName<T>(target: ComponentType<T>) {
   return target.name || 'Unamed component'
 }
 
-const mapNewProps = (propsMap, props) => {
-  const newProps = {}
+const mapNewProps = (propsMap: genericObj, props: genericObj) => {
+  const newProps: genericObj = {}
   Object.keys(propsMap).map(deprecatedProp => {
     if (props[deprecatedProp]) {
       newProps[propsMap[deprecatedProp]] = props[deprecatedProp]
     }
+    return null
   })
   return { ...props, ...newProps }
 }
 
-export default function deprecated<
-  T extends DeprecatedProps = DeprecatedProps
->({ useNewComponent, useNewProps }: T) {
-  return (WrappedComponent: React.ComponentType<T>) => {
-    return class Deprecated extends Component {
+export default function deprecated<T extends DeprecatedProps>({
+  useNewComponent,
+  useNewProps,
+}: T) {
+  return (WrappedComponent: ComponentType<T>) => {
+    return class Deprecated extends Component<T> {
       public componentDidMount() {
         if (useNewComponent) {
           console.warn(
@@ -63,7 +58,7 @@ export default function deprecated<
         }
         if (useNewProps) {
           Object.keys(useNewProps).map(deprecatedProp => {
-            if (this.props[deprecatedProp]) {
+            if (deprecatedProp in this.props) {
               console.warn(
                 '"%s" prop "%s" is deprecated, you should use "%s" instead',
                 getComponentName(WrappedComponent),
@@ -71,14 +66,15 @@ export default function deprecated<
                 useNewProps[deprecatedProp]
               )
             }
+            return null
           })
         }
       }
 
       public render() {
-        const newProps = useNewProps
+        const newProps = (useNewProps
           ? mapNewProps(useNewProps, this.props)
-          : this.props
+          : this.props) as T
         return <WrappedComponent {...newProps} />
       }
     }
