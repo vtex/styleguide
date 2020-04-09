@@ -18,7 +18,8 @@ const getButton = (type: ButtonType, props: Props) => {
     case ButtonType.Columns: {
       return (
         <span
-          className={ORDER_CLASSNAMES.TOOLBAR_CHILD.BUTTON_GROUP_CHILD.COLUMNS}>
+          className={ORDER_CLASSNAMES.TOOLBAR_CHILD.BUTTON_GROUP_CHILD.COLUMNS}
+        >
           <ButtonColumns {...(props as ButtonColumnsProps)} />
         </span>
       )
@@ -26,7 +27,8 @@ const getButton = (type: ButtonType, props: Props) => {
     case ButtonType.Density: {
       return (
         <span
-          className={ORDER_CLASSNAMES.TOOLBAR_CHILD.BUTTON_GROUP_CHILD.DENSITY}>
+          className={ORDER_CLASSNAMES.TOOLBAR_CHILD.BUTTON_GROUP_CHILD.DENSITY}
+        >
           <ButtonDensity {...(props as ButtonDensityProps)} />
         </span>
       )
@@ -34,9 +36,8 @@ const getButton = (type: ButtonType, props: Props) => {
     case ButtonType.Download: {
       return (
         <span
-          className={
-            ORDER_CLASSNAMES.TOOLBAR_CHILD.BUTTON_GROUP_CHILD.DOWNLOAD
-          }>
+          className={ORDER_CLASSNAMES.TOOLBAR_CHILD.BUTTON_GROUP_CHILD.DOWNLOAD}
+        >
           <ButtonDownload {...(props as ButtonProps)} />
         </span>
       )
@@ -44,7 +45,8 @@ const getButton = (type: ButtonType, props: Props) => {
     case ButtonType.Upload: {
       return (
         <span
-          className={ORDER_CLASSNAMES.TOOLBAR_CHILD.BUTTON_GROUP_CHILD.UPLOAD}>
+          className={ORDER_CLASSNAMES.TOOLBAR_CHILD.BUTTON_GROUP_CHILD.UPLOAD}
+        >
           <ButtonUpload {...(props as ButtonProps)} />
         </span>
       )
@@ -54,7 +56,8 @@ const getButton = (type: ButtonType, props: Props) => {
         <span
           className={
             ORDER_CLASSNAMES.TOOLBAR_CHILD.BUTTON_GROUP_CHILD.EXTRA_ACTIONS
-          }>
+          }
+        >
           <ButtonExtraActions {...(props as ButtonExtraActionsProps)} />
         </span>
       )
@@ -62,7 +65,8 @@ const getButton = (type: ButtonType, props: Props) => {
     case ButtonType.NewLine: {
       return (
         <span
-          className={ORDER_CLASSNAMES.TOOLBAR_CHILD.BUTTON_GROUP_CHILD.NEWLINE}>
+          className={ORDER_CLASSNAMES.TOOLBAR_CHILD.BUTTON_GROUP_CHILD.NEWLINE}
+        >
           <ButtonNewLine {...(props as ButtonNewLineProps)} />
         </span>
       )
@@ -87,7 +91,8 @@ const ButtonGroup: FC & Composites = ({ children }) => {
       className={classNames(
         ORDER_CLASSNAMES.TOOLBAR_CHILD.BUTTON_GROUP,
         'flex flex-row flex-wrap items-center'
-      )}>
+      )}
+    >
       <ButtonGroupProvider testId={buttonGroupTestId}>
         {children}
       </ButtonGroupProvider>
