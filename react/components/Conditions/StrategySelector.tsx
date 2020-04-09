@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ChangeEvent } from 'react'
 
 import IconCaretDown from '../icon/CaretDown/index.js'
 import { Labels, Operator } from './typings'
@@ -20,10 +20,10 @@ const StrategySelector: React.FC<Props> = ({
   onChangeOperator,
   labels,
 }) => {
-  const handleOperatorChange = event => {
+  const handleOperatorChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const newOperator = event.target.value
     if (operator !== newOperator) {
-      onChangeOperator(newOperator)
+      onChangeOperator(newOperator as Operator)
     }
   }
 
@@ -37,6 +37,7 @@ const StrategySelector: React.FC<Props> = ({
       key="seletorContent-select"
       className="o-0 absolute top-0 left-0 w-100 bottom-0 pointer t-small"
       onChange={handleOperatorChange}
+      onBlur={undefined}
       value={operator}
       style={{
         // safari select height fix
