@@ -288,7 +288,8 @@ function toggleAccordion(questionNbr) {
             </div>
           }
           onClick={toggleAccordion(2)}
-          isOpen={state.openQuestion === 2}>
+          isOpen={state.openQuestion === 2}
+        >
           <div className="bg-muted-5 pa6">
             <p className="ma0">
               Connectors are communication protocols that your store needs to
