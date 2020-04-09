@@ -97,7 +97,8 @@ initialState = { isOpen1: false, isOpen2: false, isOpen3: false }
                 height="16"
                 viewBox="0 0 16 16"
                 fill="none"
-                xmlns="http://www.w3.org/2000/svg">
+                xmlns="http://www.w3.org/2000/svg"
+              >
                 <path
                   d="M7 8H1C0.4 8 0 8.4 0 9V15C0 15.6 0.4 16 1 16H7C7.6 16 8 15.6 8 15V9C8 8.4 7.6 8 7 8Z"
                   fill="currentColor"
