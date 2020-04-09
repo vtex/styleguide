@@ -313,7 +313,8 @@ function toggleAccordion(questionNbr) {
             </div>
           }
           onClick={toggleAccordion(3)}
-          isOpen={state.openQuestion === 3}>
+          isOpen={state.openQuestion === 3}
+        >
           <div className="bg-muted-5 pa6">
             <p>
               PCI Security Standards Council is a global forum open to
