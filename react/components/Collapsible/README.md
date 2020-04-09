@@ -336,7 +336,8 @@ function toggleAccordion(questionNbr) {
             </div>
           }
           onClick={toggleAccordion(4)}
-          isOpen={state.openQuestion === 4}>
+          isOpen={state.openQuestion === 4}
+        >
           <div className="bg-muted-5 pa6">
             <p>
               The movement that money makes when exchanged for a product or
