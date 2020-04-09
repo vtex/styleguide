@@ -100,15 +100,13 @@ class Select extends Component {
       isMulti: multi,
       noOptionsMessage,
       inputId: this.inputId,
-      onInputChange: (value, { action }) => {
-        this.setState({
-          searchTerm: value,
-        })
+      onInputChange: (searchTerm, { action }) => {
+        this.setState({ searchTerm })
         if (
           action === 'input-change' &&
           typeof onSearchInputChange === 'function'
         ) {
-          onSearchInputChange(value)
+          onSearchInputChange(searchTerm)
         }
       },
       onChange,
