@@ -3,7 +3,7 @@ import ExamplePage from './ExamplePage'
 import All from './All'
 
 export default {
-  title: 'Playground|Playground'
+  title: 'Playground|Playground',
 }
 
 export { Playground, ExamplePage, All }
