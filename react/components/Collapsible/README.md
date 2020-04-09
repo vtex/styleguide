@@ -265,7 +265,8 @@ function toggleAccordion(questionNbr) {
             </div>
           }
           onClick={toggleAccordion(1)}
-          isOpen={state.openQuestion === 1}>
+          isOpen={state.openQuestion === 1}
+        >
           <div className="bg-muted-5 pa6">
             <p className="ma0">
               A <strong>sub-acquirer</strong> is a company that processes
