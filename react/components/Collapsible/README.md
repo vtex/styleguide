@@ -56,7 +56,8 @@ initialState = { isOpen1: false, isOpen2: false, isOpen3: false }
       header={<span>Here goes your base header</span>}
       onClick={e => setState({ isOpen1: e.target.isOpen })}
       isOpen={state.isOpen1}
-      caretColor="base">
+      caretColor="base"
+    >
       <div className="mt4">Here goes your content</div>
     </Collapsible>
   </div>
