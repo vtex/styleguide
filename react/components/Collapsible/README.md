@@ -118,7 +118,8 @@ initialState = { isOpen1: false, isOpen2: false, isOpen3: false }
         align="right"
         onClick={e => setState({ isOpen1: e.target.isOpen })}
         isOpen={state.isOpen1}
-        caretColor="muted">
+        caretColor="muted"
+      >
         <div className="ml6 mt4">
           <a href="#" className="mt3 c-muted-1 link db hover-c-link">
             Products and SKUs
