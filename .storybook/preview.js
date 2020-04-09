@@ -10,4 +10,4 @@ addParameters({
   },
 })
 
-addDecorator(story => (<div style={{padding: '10px'}}>{story()}</div>)) // Add padding in the canvas
+addDecorator(story => (<div style={{padding: '10px'}}>{story()}</div>))
