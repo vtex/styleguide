@@ -60,7 +60,7 @@ class RadioGroup extends React.Component {
                     borderBottomRightRadius: 0,
                   }),
                 }}>
-                <div className={classNames({ mt3: !hideBorder })}>
+                <div className={classNames({ mv3: !hideBorder })}>
                   <Radio
                     id={id}
                     isLast={isLast}
