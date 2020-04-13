@@ -16,3 +16,10 @@ export type SelectedOption = {
   group: SelectOptionGroup['label']
   option: SelectOption
 }
+
+export interface StatementProp {
+  subject: string
+  verb: string
+  object?: unknown
+  error?: string
+}

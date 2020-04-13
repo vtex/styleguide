@@ -10,6 +10,7 @@ import Statement from '../Statement/index'
 import { Labels, Operator } from './typings'
 import { DEFAULT_LABELS, MEDIUM_ICON_SIZE } from './constants'
 import { SubjectOptions } from '../Statement/Atoms/SubjectAtom'
+import { StatementProp } from '../Statement/typings'
 
 type Props = {
   canDelete?: boolean
@@ -21,16 +22,11 @@ type Props = {
   operator: Operator
   options: SubjectOptions
   hideOperator?: boolean
-  statements: Array<{
-    subject: string
-    verb: string
-    object?: unknown
-    error?: string
-  }>
+  statements: StatementProp[]
   subjectPlaceholder: string
 }
 
-const Conditions: React.FC<Props> = ({
+const Conditions = ({
   canDelete,
   statements,
   options,
@@ -42,8 +38,8 @@ const Conditions: React.FC<Props> = ({
   operator,
   onChangeOperator,
   onChangeStatements,
-}) => {
-  const objectIsEmpty = object => {
+}: Props) => {
+  const objectIsEmpty = (object: unknown) => {
     if (object === undefined) return true
     if (object === null) return true
     if (object === '') return true
@@ -73,7 +69,7 @@ const Conditions: React.FC<Props> = ({
     onChangeStatements([...statements, emptyStatement])
   }
 
-  const handleRemoveStatement = index => {
+  const handleRemoveStatement = (index: number) => {
     const updatedStatements = statements
       .slice(0, index)
       .concat(statements.slice(index + 1))
@@ -81,7 +77,10 @@ const Conditions: React.FC<Props> = ({
     onChangeStatements(updatedStatements)
   }
 
-  const handleUpdatestatement = (newStatement, statementIndex) => {
+  const handleUpdatestatement = (
+    newStatement: StatementProp,
+    statementIndex: number
+  ) => {
     const newStatements = statements.map((statement, idx) =>
       idx === statementIndex ? newStatement : statement
     )
@@ -95,8 +94,10 @@ const Conditions: React.FC<Props> = ({
           <StrategySelector
             isRtl={isRtl}
             operator={operator}
-            labels={labels}
-            onChangeOperator={operator => onChangeOperator(operator)}
+            labels={labels as Labels}
+            onChangeOperator={(newOperator: Operator) =>
+              onChangeOperator(newOperator)
+            }
           />
         </div>
       )}
@@ -136,6 +137,17 @@ const Conditions: React.FC<Props> = ({
                 {}
               )
 
+              const handleKeyDown = ({
+                key,
+              }: React.KeyboardEvent<HTMLDivElement>) => {
+                const SPACE = ' '
+                const ENTER = 'Enter'
+
+                if (key === SPACE || key === ENTER) {
+                  handleRemoveStatement(statementIndex)
+                }
+              }
+
               const statementContent = [
                 <div key="1" className="flex-grow-1">
                   <Statement
@@ -152,6 +164,9 @@ const Conditions: React.FC<Props> = ({
                 canDelete &&
                   (!isFullWidth ? (
                     <div
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={handleKeyDown}
                       key="2"
                       className="ma3 c-muted-2 pointer hover-c-danger"
                       onClick={() => handleRemoveStatement(statementIndex)}
@@ -167,7 +182,7 @@ const Conditions: React.FC<Props> = ({
                         icon={<IconClose className="c-on-action-primary" />}
                         onClick={() => handleRemoveStatement(statementIndex)}
                       >
-                        {labels.delete ?? DEFAULT_LABELS.delete}
+                        {labels?.delete ?? DEFAULT_LABELS.delete}
                       </ButtonWithIcon>
                     </div>
                   )),
@@ -192,8 +207,8 @@ const Conditions: React.FC<Props> = ({
                     <Separator
                       label={
                         operator === 'all'
-                          ? labels.operatorAnd ?? DEFAULT_LABELS.operatorAnd
-                          : labels.operatorOr ?? DEFAULT_LABELS.operatorOr
+                          ? labels?.operatorAnd ?? DEFAULT_LABELS.operatorAnd
+                          : labels?.operatorOr ?? DEFAULT_LABELS.operatorOr
                       }
                     />
                   )}
@@ -213,7 +228,7 @@ const Conditions: React.FC<Props> = ({
             disabled={!canAddNewCondition()}
             onClick={handleAddNewCondition}
           >
-            {labels.addNewCondition ?? DEFAULT_LABELS.addNewCondition}
+            {labels?.addNewCondition ?? DEFAULT_LABELS.addNewCondition}
           </ButtonWithIcon>
         </div>
       </div>

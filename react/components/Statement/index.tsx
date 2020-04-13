@@ -1,38 +1,49 @@
 import React from 'react'
 
 import SubjectAtom, { SubjectOptions } from './Atoms/SubjectAtom'
-import VerbAtom from './Atoms/VerbAtom'
+import VerbAtom, { VerbOption } from './Atoms/VerbAtom'
 import ObjectAtom from './Atoms/ObjectAtom'
+import { StatementProp } from './typings'
 
-type Props = {
+type StatementProps = {
   isFullWidth?: boolean
   isRtl?: boolean
   omitSubject?: boolean
   omitVerbs?: boolean
-  onChangeStatement: (statement: Props['statement']) => void
+  onChangeStatement: (statement: StatementProp) => void
   options: SubjectOptions
-  statement?: {
-    subject: string
-    verb: string
-    object?: unknown
-    error?: string
-  }
+  statement?: StatementProp
   subjectPlaceholder: string
 }
 
-const Statement: React.FC<Props> = ({
+const NoopComponent = () => <></>
+
+const Statement: React.FC<StatementProps> = ({
   isFullWidth = false,
   isRtl,
   omitSubject,
   omitVerbs,
   onChangeStatement,
   options,
-  statement = { subject: '', verb: '', object: null, error: null },
+  statement = { subject: '', verb: '', object: null },
   subjectPlaceholder,
 }) => {
-  const verbOptions =
-    statement.subject &&
-    options[statement.subject].verbs.find(verb => verb.value === statement.verb)
+  let verbOptions: VerbOption = {
+    label: '',
+    value: '',
+    object: NoopComponent,
+  }
+
+  if (statement.subject) {
+    const foundOption = options[statement.subject].verbs.find(
+      verb => verb.value === statement.verb
+    )
+
+    if (foundOption) {
+      verbOptions = foundOption
+    }
+  }
+
   const statementAtoms = [
     !omitSubject && (
       <SubjectAtom
@@ -43,8 +54,6 @@ const Statement: React.FC<Props> = ({
             ...statement,
             subject,
             verb: options[subject].verbs[0].value,
-            object: null,
-            error: null,
           }
           onChangeStatement(newStatement)
         }}
@@ -62,8 +71,8 @@ const Statement: React.FC<Props> = ({
           const newStatement = {
             ...statement,
             verb,
-            object: null,
-            error: null,
+            object: undefined,
+            error: undefined,
           }
           onChangeStatement(newStatement)
         }}
@@ -76,7 +85,7 @@ const Statement: React.FC<Props> = ({
       disabled={!statement.verb}
       error={statement.error}
       object={statement.object}
-      onChange={(object, error = null) => {
+      onChange={(object, error) => {
         const newStatement = {
           ...statement,
           object,
