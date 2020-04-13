@@ -79,7 +79,10 @@ class Checkbox extends PureComponent {
           </div>
           <input
             checked={checked}
-            ref={forwardedRef}
+            ref={elem => {
+              elem && (elem.indeterminate = !checked && partial)
+              forwardedRef && (forwardedRef.current = elem)
+            }}
             className={classNames('h1 w1 absolute o-0', {
               pointer: !disabled,
             })}
