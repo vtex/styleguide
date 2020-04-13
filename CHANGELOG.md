@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Spacing of last item in RadioGroup.
+
 ## [9.113.1] - 2020-04-09
 
 ### Changed
