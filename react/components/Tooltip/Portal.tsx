@@ -4,8 +4,9 @@ import ReactDOM from 'react-dom'
 
 import { setRef } from '../utils/react'
 
-function getContainer(container) {
+function getContainer(container: any) {
   container = typeof container === 'function' ? container() : container
+  // eslint-disable-next-line react/no-find-dom-node
   return ReactDOM.findDOMNode(container)
 }
 
@@ -34,13 +35,15 @@ const propTypes = {
   onRendered: PropTypes.func,
 }
 
+type Props = PropTypes.InferProps<typeof propTypes>
+
 /**
  * Portals provide a first-class way to render children into a DOM node
  * that exists outside the DOM hierarchy of the parent component.
  */
-const Portal = (props: PropTypes.InferProps<typeof propTypes>, ref) => {
+const Portal: React.FC<Props> = (props, ref) => {
   const { children, container, onRendered } = props
-  const [mountNode, setMountNode] = React.useState(null)
+  const [mountNode, setMountNode] = React.useState<any>(null)
 
   useEnhancedEffect(() => {
     setMountNode(getContainer(container) ?? document.body)

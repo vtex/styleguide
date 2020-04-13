@@ -29,7 +29,7 @@ export function useTooltip({
   (c: React.ReactElement) => object,
   { childRef: RefObject<HTMLElement>; visible: boolean }
 ] {
-  const childRef = useRef<HTMLElement>()
+  const childRef = useRef<HTMLElement>(null)
   const [visible, setVisible] = useState(false)
   const handleTooltip = (
     child: React.ReactElement & { ref?: RefObject<HTMLElement> }
