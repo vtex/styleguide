@@ -16,37 +16,36 @@
 Sizes
 
 ```js
-<div>
+initialState = {
+  selected1: 'visa',
+  selected2: 'mastercard',
+  selected3: 'diners',
+}
+options = [
+  { value: 'visa', label: 'Visa' },
+  { value: 'mastercard', label: 'Mastercard' },
+  { value: 'elo', label: 'Elo' },
+  { value: 'diners', label: 'Diners' },
+  { value: 'giftcard', label: 'Gift Card' },
+  { value: 'amex', label: 'American Express' },
+]
+;<div className="w-100 w-50-ns">
   <div className="mb5">
     <Dropdown
       label="Small"
       size="small"
-      options={[
-        { value: 'chagall', label: 'Chagall' },
-        { value: 'dali', label: 'Dali' },
-        { value: 'goya', label: 'Goya' },
-        { value: 'monet', label: 'Monet' },
-        { value: 'picasso', label: 'Picasso' },
-        { value: 'tolouseLautrec', label: 'Toulouse-Lautrec' },
-      ]}
-      value="tolouseLautrec"
-      onChange={() => {}}
+      options={options}
+      value={state.selected1}
+      onChange={(_, v) => setState({ selected1: v })}
     />
   </div>
 
   <div className="mb5">
     <Dropdown
       label="Regular"
-      options={[
-        { value: 'chagall', label: 'Chagall' },
-        { value: 'dali', label: 'Dali' },
-        { value: 'goya', label: 'Goya' },
-        { value: 'monet', label: 'Monet' },
-        { value: 'picasso', label: 'Picasso' },
-        { value: 'tolouseLautrec', label: 'Toulouse-Lautrec' },
-      ]}
-      value="tolouseLautrec"
-      onChange={() => {}}
+      options={options}
+      value={state.selected2}
+      onChange={(_, v) => setState({ selected2: v })}
     />
   </div>
 
@@ -54,16 +53,9 @@ Sizes
     <Dropdown
       label="Large"
       size="large"
-      options={[
-        { value: 'chagall', label: 'Chagall' },
-        { value: 'dali', label: 'Dali' },
-        { value: 'goya', label: 'Goya' },
-        { value: 'monet', label: 'Monet' },
-        { value: 'picasso', label: 'Picasso' },
-        { value: 'tolouseLautrec', label: 'Toulouse-Lautrec' },
-      ]}
-      value="tolouseLautrec"
-      onChange={() => {}}
+      options={options}
+      value={state.selected3}
+      onChange={(_, v) => setState({ selected3: v })}
     />
   </div>
 </div>
@@ -72,69 +64,57 @@ Sizes
 Variations
 
 ```js
-;<div className="w-40">
+initialState = {
+  selected1: 'visa',
+  selected2: 'mastercard',
+  selected3: 'diners',
+  selected4: 'elo',
+  selected5: 'question1',
+  selected6: 'amex',
+}
+options = [
+  { value: 'visa', label: 'Visa' },
+  { value: 'mastercard', label: 'Mastercard' },
+  { value: 'elo', label: 'Elo' },
+  { value: 'diners', label: 'Diners' },
+  { value: 'giftcard', label: 'Gift Card' },
+  { value: 'amex', label: 'American Express' },
+]
+;<div className="w-100 w-50-ns">
   <div className="mb5">
     <Dropdown
       label="Placeholder"
       placeholder="Select an artist"
-      options={[
-        { value: 'chagall', label: 'Chagall' },
-        { value: 'dali', label: 'Dali' },
-        { value: 'goya', label: 'Goya' },
-        { value: 'monet', label: 'Monet' },
-        { value: 'picasso', label: 'Picasso' },
-        { value: 'tolouseLautrec', label: 'Toulouse-Lautrec' },
-      ]}
-      value=""
-      onChange={() => {}}
+      options={options}
+      value={state.selected1}
+      onChange={(_, v) => setState({ selected1: v })}
     />
   </div>
   <div className="mb5">
     <Dropdown
       label="Disabled"
       disabled
-      options={[
-        { value: 'chagall', label: 'Chagall' },
-        { value: 'dali', label: 'Dali' },
-        { value: 'goya', label: 'Goya' },
-        { value: 'monet', label: 'Monet' },
-        { value: 'picasso', label: 'Picasso' },
-        { value: 'tolouseLautrec', label: 'Toulouse-Lautrec' },
-      ]}
-      value="tolouseLautrec"
-      onChange={() => {}}
+      options={options}
+      value={state.selected2}
+      onChange={(_, v) => setState({ selected2: v })}
     />
   </div>
   <div className="mb5">
     <Dropdown
       label="Error"
       errorMessage="Required field"
-      options={[
-        { value: 'chagall', label: 'Chagall' },
-        { value: 'dali', label: 'Dali' },
-        { value: 'goya', label: 'Goya' },
-        { value: 'monet', label: 'Monet' },
-        { value: 'picasso', label: 'Picasso' },
-        { value: 'tolouseLautrec', label: 'Toulouse-Lautrec' },
-      ]}
-      value="tolouseLautrec"
-      onChange={() => {}}
+      options={options}
+      value={state.selected3}
+      onChange={(_, v) => setState({ selected3: v })}
     />
   </div>
   <div className="mb5">
     <Dropdown
-      label="Help text"
-      helpText={<span>Your help text goes here!</span>}
-      options={[
-        { value: 'chagall', label: 'Chagall' },
-        { value: 'dali', label: 'Dali' },
-        { value: 'goya', label: 'Goya' },
-        { value: 'monet', label: 'Monet' },
-        { value: 'picasso', label: 'Picasso' },
-        { value: 'tolouseLautrec', label: 'Toulouse-Lautrec' },
-      ]}
-      value="tolouseLautrec"
-      onChange={() => {}}
+      label="With help text"
+      helpText={<span>Method payment required</span>}
+      options={options}
+      value={state.selected4}
+      onChange={(_, v) => setState({ selected4: v })}
     />
   </div>
   <div>
@@ -143,25 +123,22 @@ Variations
       preventTruncate
       options={[
         {
-          value: 'chagall',
-          label: 'Marc Zakharovich Chagall, born Moishe Zakharovich Shagal',
+          value: 'question1',
+          label:
+            'Why does payment with registered bank slip require authentication?',
         },
         {
-          value: 'dali',
-          label:
-            'Salvador Domingo Felipe Jacinto Dalí i Domènech, Marquis of Dalí de Púbol, known professionally as Salvador Dalí',
+          value: 'question2',
+          label: 'How do you calculate payments in installments with interest?',
         },
-        { value: 'goya', label: 'Francisco José de Goya y Lucientes' },
-        { value: 'monet', label: 'Oscar-Claude Monet' },
-        { value: 'picasso', label: 'Pablo Picasso' },
         {
-          value: 'tolouseLautrec',
+          value: 'question3',
           label:
-            'Henri Marie Raymond de Toulouse-Lautrec-Monfa, also known as Henri de Toulouse-Lautrec',
+            'What offline payment conditions are available in Latin America?',
         },
       ]}
-      value="tolouseLautrec"
-      onChange={() => {}}
+      value={state.selected5}
+      onChange={(_, v) => setState({ selected5: v })}
     />
   </div>
   <div className="mt5">
@@ -169,69 +146,10 @@ Variations
     <Dropdown
       variation="inline"
       size="large"
-      options={[
-        { value: 'chagall', label: 'Chagall' },
-        { value: 'dali', label: 'Dali' },
-      ]}
-      value="dali"
-      onChange={() => {}}
+      options={options}
+      value={state.selected6}
+      onChange={(_, v) => setState({ selected6: v })}
     />
   </div>
 </div>
-```
-
-Example: Working React Component
-
-```js
-class Example extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      options: [
-        { value: 'painterChagall', label: 'Chagall' },
-        { value: 'painterDali', label: 'Dali' },
-        { value: 'painterGoya', label: 'Goya' },
-        { value: 'painterMonet', label: 'Monet' },
-        { value: 'painterPicasso', label: 'Picasso' },
-        { value: 'painterTolouseLautrec', label: 'Toulouse-Lautrec' },
-      ],
-      selectedPainter: '',
-    }
-    this.handleChange = this.handleChange.bind(this)
-  }
-
-  handleChange(e, value) {
-    this.setState({ selectedPainter: value })
-  }
-
-  render() {
-    const selectedPainter = this.state.options.find(
-      painter => painter.value === this.state.selectedPainter
-    )
-
-    const { label, value } = selectedPainter || {}
-
-    return (
-      <div className="w-40">
-        <div>
-          <Dropdown
-            label="Painter"
-            options={this.state.options}
-            onChange={this.handleChange}
-            value={this.state.selectedPainter}
-            placeholder="Select a painter"
-            {...this.props}
-          />
-        </div>
-        <div className="mt6">
-          <div className="fw5 mb3">Selected Painter</div>
-          <p>Label: {label || <span className="c-muted-1">undefined</span>}</p>
-          <p>Value: {value || <span className="c-muted-1">undefined</span>}</p>
-        </div>
-      </div>
-    )
-  }
-}
-;<Example />
 ```
