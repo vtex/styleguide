@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - Spacing of last item in RadioGroup.
+- `Dropdown` duplicate optgroup with `preventTruncate` option.
 
 ## [9.113.1] - 2020-04-09
 

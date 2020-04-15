@@ -2,6 +2,7 @@ import classNames from 'classnames'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import withDevice from '../utils/withDeviceHoc'
 import ArrowDownIcon from './ArrowDownIcon'
 import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
 import styles from './Dropdown.css'
@@ -101,6 +102,7 @@ class Dropdown extends Component {
       required,
       variation,
       selectTestId,
+      isMobile,
     } = this.props
 
     const hasValidInitialValue =
@@ -206,7 +208,9 @@ class Dropdown extends Component {
                 WebkitAppearance: 'menulist-button',
               }}>
               {/* iOS hack to optionally prevent truncating options */}
-              {preventTruncate && <optgroup label={label || helpText || ''} />}
+              {preventTruncate && isMobile && (
+                <optgroup label={label || helpText || ''} />
+              )}
 
               {/* Creates a disabled first option in case the first value is invalid or empty */}
               {(!hasValidInitialValue || placeholder) && (
@@ -293,6 +297,8 @@ Dropdown.propTypes = {
   onClose: PropTypes.func,
   /** onOpen event */
   onOpen: PropTypes.func,
+  /** @ignore */
+  isMobile: PropTypes.bool,
 }
 
-export default withForwardedRef(Dropdown)
+export default withForwardedRef(withDevice(Dropdown))
