@@ -7,6 +7,24 @@ import CheckPartial from '../icon/CheckPartial'
 import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
 
 class Checkbox extends PureComponent {
+  constructor(props) {
+    super(props)
+    this.myCheckbox = React.createRef()
+  }
+
+  componentDidMount() {
+    this.myCheckbox.indeterminate = !this.props.checked && this.props.partial
+  }
+
+  componentDidUpdate(prevProps) {
+    if (
+      prevProps.partial !== this.props.partial ||
+      prevProps.checked !== this.props.checked
+    ) {
+      this.myCheckbox.indeterminate = !this.props.checked && this.props.partial
+    }
+  }
+
   handleChange = e =>
     this.props.onChange
       ? !this.props.disabled && this.props.onChange(e)
@@ -80,7 +98,7 @@ class Checkbox extends PureComponent {
           <input
             checked={checked}
             ref={elem => {
-              elem && (elem.indeterminate = !checked && partial)
+              elem && (this.myCheckbox = elem)
               forwardedRef && (forwardedRef.current = elem)
             }}
             className={classNames('h1 w1 absolute o-0', {
