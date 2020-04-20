@@ -1,28 +1,47 @@
-.shadowTransition {
-  transition: box-shadow 0.3s ease-in-out;
+.vtex-modal__overlay {
+  background: rgba(0, 0, 0, 0.75);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 1000;
+  display: flex;
+  align-items: flex-start;
 }
 
-.mh100 {
-  max-height: 100%;
+.vtex-modal__modal {
+  position: relative;
+  margin: 10vh auto;
+  width: 50vw;
+  padding: 2rem;
+  background: white;
+  background-clip: padding-box;
+  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.25);
 }
 
-.scrollBar::-webkit-scrollbar {
-  background-color: transparent;
-  width: 8px;
+.vtex-modal__close-button {
+  position: absolute;
+  right: 10px;
+  top: 0px;
 }
 
-/* background of the scrollbar except button or resizer */
-.scrollBar::-webkit-scrollbar-track {
-  background-color: transparent;
+@keyframes vtex-modal-openAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
-/* scrollbar itself */
-.scrollBar::-webkit-scrollbar-thumb {
-  background-color: #e3e4e6;
-  border-radius: 16px;
-}
-
-/* set button(top and bottom of the scrollbar) */
-.scrollBar::-webkit-scrollbar-button {
-  display: none;
+@keyframes vtex-modal-closeAnimation {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }

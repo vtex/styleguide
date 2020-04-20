@@ -3,7 +3,7 @@ import React, { forwardRef } from 'react'
 import IconClose from '../icon/Close'
 
 export interface TopBarProps {
-  showCloseIcon: boolean
+  showCloseIcon?: boolean
   title?: string
   showTopBar?: boolean
   onClose: () => unknown
@@ -31,6 +31,8 @@ const TopBar = forwardRef<HTMLDivElement, TopBarProps>(function TopBar(
           role="button"
           onKeyDown={handleKeyDown}
           onClick={onClose}
+          ref={forwardedRef}
+          tabIndex={0}
         >
           <IconClose color="black" />
         </div>
