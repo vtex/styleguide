@@ -26,7 +26,7 @@ const validateValue = (value, min, max, defaultValue) => {
 }
 
 const formattedDisplayValue = (value, unitMultiplier, showMeasurementUnit, measurementUnit) => {
-  return `${(Math.round(((value * unitMultiplier) + Number.EPSILON) * 100) / 100)} ${showMeasurementUnit ? measurementUnit : ''}`
+  return `${Math.round((value * unitMultiplier + Number.EPSILON) * 100) / 100} ${showMeasurementUnit ? measurementUnit : ''}`
 }
 
 const validateDisplayValue = (value, min, max, showMeasurementUnit, measurementUnit, unitMultiplier) => {
