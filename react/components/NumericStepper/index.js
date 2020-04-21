@@ -21,25 +21,30 @@ const validateValue = (value, min, max, defaultValue) => {
   } else if (value > max) {
     return max
   }
+  // return parseFloat(value)
   return parseInt(value, 10)
 }
 
-const validateDisplayValue = (value, min, max) => {
+const formattedDisplayValue = (value, unitMultiplier, showMeasurementUnit, measurementUnit) => {
+  return `${(Math.round(((value * unitMultiplier) + Number.EPSILON) * 100) / 100)} ${showMeasurementUnit ? measurementUnit : ''}`
+}
+
+const validateDisplayValue = (value, min, max, showMeasurementUnit, measurementUnit, unitMultiplier) => {
   // This function validates the input as the user types
   // It allows for temporarily invalid values (namely, empty string and minus sign without a number following it)
   // However, it prevents values out of boundaries, and invalid characters, e.g. letters
 
   min = normalizeMin(min)
   max = normalizeMax(max)
-
-  const parsedValue = parseInt(value, 10)
+  // const parsedValue = parseInt(value, 10)
+  const parsedValue = parseFloat(value)
 
   if (value === '') {
-    return value
+    return formattedDisplayValue(value, unitMultiplier, showMeasurementUnit, measurementUnit)
   }
   // Only allows typing the negative sign if negative values are allowed
   if (value === '-' && min < 0) {
-    return value
+    return formattedDisplayValue(value, unitMultiplier, showMeasurementUnit, measurementUnit)
   }
   if (isNaN(parsedValue)) {
     return ''
@@ -47,12 +52,12 @@ const validateDisplayValue = (value, min, max) => {
   // Only limit by lower bounds if the min value is 1
   // Otherwise, it could prevent typing, for example, 10 if the min value is 2
   if (parsedValue < min && min === 1) {
-    return min
+    return formattedDisplayValue(min, unitMultiplier, showMeasurementUnit, measurementUnit)
   }
   if (parsedValue > max) {
-    return max
+    return formattedDisplayValue(max, unitMultiplier, showMeasurementUnit, measurementUnit)
   }
-  return parsedValue
+  return formattedDisplayValue(parsedValue, unitMultiplier, showMeasurementUnit, measurementUnit)
 }
 
 class NumericStepper extends Component {
@@ -73,7 +78,7 @@ class NumericStepper extends Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    const { value, minValue, maxValue, defaultValue } = props
+    const { value, minValue, maxValue, defaultValue, showMeasurementUnit, measurementUnit, unitMultiplier } = props
 
     const validatedValue = validateValue(
       value,
@@ -85,15 +90,16 @@ class NumericStepper extends Component {
     return {
       value: validatedValue,
       ...(!state.inputFocused && {
-        displayValue: validateDisplayValue(value, minValue, maxValue),
+        displayValue: validateDisplayValue(value, minValue, maxValue, showMeasurementUnit, measurementUnit, unitMultiplier),
       }),
     }
   }
 
   changeValue = (value, event) => {
     const parsedValue = parseInt(value, 10)
+    // const parsedValue = parseFloat(value)
 
-    const { minValue, maxValue, defaultValue, onChange } = this.props
+    const { minValue, maxValue, defaultValue, onChange, showMeasurementUnit, measurementUnit, unitMultiplier } = this.props
 
     const validatedValue = validateValue(
       parsedValue,
@@ -102,7 +108,7 @@ class NumericStepper extends Component {
       defaultValue
     )
 
-    const displayValue = validateDisplayValue(value, minValue, maxValue)
+    const displayValue = validateDisplayValue(value, minValue, maxValue, showMeasurementUnit, measurementUnit, unitMultiplier)
 
     this.setState({
       value: validatedValue,
@@ -149,6 +155,7 @@ class NumericStepper extends Component {
     const {
       maxValue,
       minValue,
+      unitMultiplier,
       size,
       block,
       label,
@@ -229,6 +236,7 @@ class NumericStepper extends Component {
               WebkitAppearance: 'none',
             }}
             value={displayValue}
+            step={unitMultiplier}
             onChange={this.handleTypeQuantity}
             onFocus={this.handleFocusInput}
             onBlur={this.handleBlurInput}
@@ -315,6 +323,12 @@ NumericStepper.propTypes = {
   maxValue: PropTypes.number,
   /** Default value in case of invalid input (e.g. letters) and there is no minimum value */
   defaultValue: PropTypes.number,
+  /** Multiplier value (e.g 1, 0.3) */
+  unitMultiplier: PropTypes.number,
+  /** measurementUnit (e.g Kg, un) */
+  measurementUnit: PropTypes.string,
+  /** Show unit unitMultiplier label. Default is false */
+  showMeasurementUnit: PropTypes.bool,
   /** Makes input readonly and disables buttons */
   readOnly: PropTypes.bool,
   /** Input size */
@@ -331,6 +345,9 @@ NumericStepper.defaultProps = {
   minValue: 0,
   maxValue: Infinity,
   defaultValue: 0,
+  unitMultiplier: 1,
+  measurementUnit: '',
+  showMeasurementUnit: false,
   readOnly: false,
   size: 'regular',
   block: false,
