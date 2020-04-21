@@ -9,7 +9,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- `AutoCompleteInput` custom render example 
+- `AutoCompleteInput` custom render example.
+
+### Added
+
+- `unitMultiplier`, `measurementUnit`, and `showMeasurementUnit` props.
+- Format display value with multiplier.
 
 ## [9.113.2] - 2020-04-16
 
