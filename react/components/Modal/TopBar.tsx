@@ -1,4 +1,5 @@
 import React, { forwardRef } from 'react'
+import classNames from 'classnames'
 
 import IconClose from '../icon/Close'
 
@@ -7,10 +8,11 @@ export interface TopBarProps {
   title?: string
   showTopBar?: boolean
   onClose: () => unknown
+  responsiveFullScreen: boolean
 }
 
 const TopBar = forwardRef<HTMLDivElement, TopBarProps>(function TopBar(
-  { showCloseIcon, title, showTopBar, onClose },
+  { showCloseIcon, title, showTopBar, onClose, responsiveFullScreen },
   forwardedRef
 ) {
   const handleKeyDown = ({ key }: React.KeyboardEvent) => {
@@ -23,20 +25,25 @@ const TopBar = forwardRef<HTMLDivElement, TopBarProps>(function TopBar(
   }
 
   return (
-    <div className="min-h-large">
-      {showTopBar && title && <div className="">{title}</div>}
-      {showCloseIcon && (
-        <div
-          className="fr mr6 mt6 pointer"
-          role="button"
-          onKeyDown={handleKeyDown}
-          onClick={onClose}
-          ref={forwardedRef}
-          tabIndex={0}
-        >
-          <IconClose color="black" />
-        </div>
-      )}
+    <div className="mb5">
+      <div className="min-h-large pl8">
+        {showCloseIcon && (
+          <div
+            className={classNames('fr pointer', {
+              'pr6 pt6': responsiveFullScreen,
+              'pr6-ns pt6-ns pr5 pt5': !responsiveFullScreen,
+            })}
+            role="button"
+            onKeyDown={handleKeyDown}
+            onClick={onClose}
+            ref={forwardedRef}
+            tabIndex={0}
+          >
+            <IconClose color="black" />
+          </div>
+        )}
+      </div>
+      {showTopBar && title && <span className="t-heading-4 ml8">{title}</span>}
     </div>
   )
 })
