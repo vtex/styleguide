@@ -149,7 +149,6 @@ class NumericStepper extends Component {
 
   changeValue = (value, event) => {
     const parsedValue = parseInt(value, 10)
-    // const parsedValue = parseFloat(value)
 
     const {
       minValue,
