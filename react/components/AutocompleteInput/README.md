@@ -152,7 +152,7 @@ const allUsers = [
 ]
 
 const CustomOption = props => {
-  const { roundedBottom, searchTerm, value, key, selected, onClick } = props
+  const { roundedBottom, searchTerm, value, selected, onClick } = props
   const [highlightOption, setHighlightOption] = useState(false)
 
   const renderOptionHighlightedText = () => {
@@ -184,7 +184,6 @@ const CustomOption = props => {
   // --- This is a good practice. Use <button />.
   return (
     <button
-      key={key}
       className={buttonClasses}
       onFocus={() => setHighlightOption(true)}
       onMouseEnter={() => setHighlightOption(true)}
