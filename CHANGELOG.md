@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- `AutoCompleteInput` custom render example 
+
 ## [9.113.2] - 2020-04-16
 
 ### Fixed
