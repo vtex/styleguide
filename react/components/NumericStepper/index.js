@@ -48,7 +48,7 @@ const validateDisplayValue = (
 
   min = normalizeMin(min)
   max = normalizeMax(max)
-  // const parsedValue = parseInt(value, 10)
+  
   const parsedValue = parseFloat(value)
 
   if (value === '') {
