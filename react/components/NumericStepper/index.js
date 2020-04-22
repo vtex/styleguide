@@ -21,7 +21,6 @@ const validateValue = (value, min, max, defaultValue) => {
   } else if (value > max) {
     return max
   }
-  // return parseFloat(value)
   return parseInt(value, 10)
 }
 
