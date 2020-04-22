@@ -1,9 +1,10 @@
 import React, { FC, forwardRef } from 'react'
 import { createPortal } from 'react-dom'
+import classNames from 'classnames'
 
 import TopBar, { TopBarProps } from './TopBar'
 import BottomBar from './BottomBar'
-import './modal.css'
+import styles from './modal.css'
 
 interface Props {
   isOpen: boolean
@@ -18,11 +19,14 @@ interface Props {
   showBottomBarBorder?: boolean
   onCloseTransitionFinish?: () => unknown
   centered?: boolean
+  size?: 'small' | 'medium' | 'large'
+  responsiveFullScreen?: boolean
 }
 
 interface OverlayProps {
   isOpen: boolean
   container: Element
+  centered: boolean
   closeOnEsc?: boolean
   onClose: () => unknown
   closeOnOverlayClick?: boolean
@@ -37,13 +41,14 @@ interface ContentProps {
   bottomBar?: React.ReactNode
   children: React.ReactNode
   showBottomBarBorder?: boolean
-  responsiveFullScreen?: boolean
-  centered: boolean
+  responsiveFullScreen: boolean
+  size: 'small' | 'medium' | 'large'
 }
 
 const ModalOverlay: FC<OverlayProps> = ({
   isOpen,
   onClose,
+  centered,
   container,
   closeOnOverlayClick,
   closeOnEsc,
@@ -63,18 +68,19 @@ const ModalOverlay: FC<OverlayProps> = ({
     onClose()
   }
 
-  const handleAnimationEnd = () => {
-    onCloseTransitionFinish && onCloseTransitionFinish()
-  }
-
   return isOpen
     ? createPortal(
         // eslint-disable-next-line jsx-a11y/no-static-element-interactions
         <div
-          className="flex items-start fixed z-max overflow-y-hidden overflow-x-auto bg-black-70 absolute--fill"
+          className={classNames(
+            'flex fixed z-max overflow-hidden overflow-hidden bg-black-70 absolute--fill',
+            {
+              'items-start': !centered,
+              'items-center': centered,
+            }
+          )}
           onClick={handleClick}
           onKeyDown={handleKeyDown}
-          onAnimationEnd={handleAnimationEnd}
         >
           {children}
         </div>,
@@ -91,9 +97,9 @@ const ModalContent = forwardRef<HTMLDivElement, ContentProps>(
       title,
       showTopBar,
       bottomBar,
-      showBottomBarBorder = true,
-      responsiveFullScreen = true,
-      centered,
+      showBottomBarBorder,
+      responsiveFullScreen,
+      size,
       children,
     },
     forwardedRef
@@ -101,7 +107,17 @@ const ModalContent = forwardRef<HTMLDivElement, ContentProps>(
     return (
       // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
       <div
-        className="relative bg-white vw-50 shadow-5 center mv9"
+        className={classNames(
+          'flex flex-column relative bg-white shadow-5 center mv9 glow',
+          {
+            'vw-50-ns': size === 'small',
+            'vw-60-ns': size === 'medium',
+            'vw-80-ns': size === 'large',
+            'h-100 h-auto-ns vw-100': responsiveFullScreen,
+            'vw-50': !responsiveFullScreen,
+          }
+        )}
+        // style={{ animation: `${styles.openAnimation} 500ms` }}
         onClick={e => e.stopPropagation()}
         role="dialog"
         onKeyDown={() => null}
@@ -112,11 +128,18 @@ const ModalContent = forwardRef<HTMLDivElement, ContentProps>(
           showTopBar={showTopBar}
           title={title}
           onClose={onClose}
+          responsiveFullScreen={responsiveFullScreen}
         />
-        <div className="ph8">{children}</div>
+        <div
+          className={`ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 ${styles.scrollBar}`}
+          style={{ maxHeight: '60vh' }}
+        >
+          {children}
+        </div>
         <BottomBar
           showBorder={showBottomBarBorder}
           responsiveFullScreen={responsiveFullScreen}
+          size={size}
         >
           {bottomBar}
         </BottomBar>
@@ -136,7 +159,9 @@ const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
     showCloseIcon,
     closeOnEsc,
     onCloseTransitionFinish,
-    centered = false,
+    centered = true,
+    responsiveFullScreen = false,
+    size = 'medium',
     ...props
   },
   forwardedRef
@@ -147,6 +172,7 @@ const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
       onClose={onClose}
       container={container}
       closeOnEsc={closeOnEsc}
+      centered={centered}
       closeOnOverlayClick={closeOnOverlayClick}
       onCloseTransitionFinish={onCloseTransitionFinish}
     >
@@ -155,7 +181,8 @@ const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
         onClose={onClose}
         ref={forwardedRef}
         showCloseIcon={showCloseIcon}
-        centered={centered}
+        size={size}
+        responsiveFullScreen={responsiveFullScreen}
         {...props}
       >
         {children}
@@ -192,7 +219,9 @@ FowardedModal.defaultProps = {
   showCloseIcon: true,
   showTopBar: true,
   showBottomBarBorder: true,
-  centered: false,
+  centered: true,
+  size: 'medium',
+  responsiveFullScreen: false,
 }
 
 export default FowardedModal
