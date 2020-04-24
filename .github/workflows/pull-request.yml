@@ -19,8 +19,8 @@ jobs:
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
           REQUIRE_CHANGELOG_VERSION: false
-  io-app-test:
-    name: IO app test
+  test:
+    name: Test CI
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
@@ -36,11 +36,11 @@ jobs:
         id: yarn-cache
         with:
           path: '${{ steps.yarn-cache-dir-path.outputs.dir }}'
-          key: '${{ runner.os }}-yarn-${{ hashFiles(''**/yarn.lock'') }}'
+          key: "${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}"
           restore-keys: |
             ${{ runner.os }}-yarn-
-      - name: Run test on every builder directory
-        uses: vtex/action-io-app-test@master
+      - run: yarn install --frozen-lockfile
+      - run: yarn test --passWithNoTests
   lint:
     name: Lint
     runs-on: ubuntu-latest
@@ -58,7 +58,7 @@ jobs:
         id: yarn-cache
         with:
           path: '${{ steps.yarn-cache-dir-path.outputs.dir }}'
-          key: '${{ runner.os }}-yarn-${{ hashFiles(''**/yarn.lock'') }}'
+          key: "${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}"
           restore-keys: |
             ${{ runner.os }}-yarn-
       - name: Lint project
