@@ -37,10 +37,10 @@
   }
 }
 
-.animation-open {
+.openAnimation {
   animation: fade-in 500ms;
 }
 
-.animation-close {
+.closeAnimation {
   animation: fade-out 500ms;
 }

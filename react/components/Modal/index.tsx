@@ -1,4 +1,4 @@
-import React, { FC, forwardRef } from 'react'
+import React, { FC, forwardRef, useState, useLayoutEffect } from 'react'
 import { createPortal } from 'react-dom'
 import classNames from 'classnames'
 
@@ -55,6 +55,12 @@ const ModalOverlay: FC<OverlayProps> = ({
   onCloseTransitionFinish,
   children,
 }) => {
+  const [showPortal, setShowPortal] = useState(isOpen)
+
+  useLayoutEffect(() => {
+    if (isOpen) setShowPortal(isOpen)
+  }, [isOpen])
+
   const handleClick = () => {
     if (!closeOnOverlayClick) return
     onClose()
@@ -68,12 +74,19 @@ const ModalOverlay: FC<OverlayProps> = ({
     onClose()
   }
 
-  return isOpen
+  const handleAnimationEnd = () => {
+    if (isOpen) return
+    onCloseTransitionFinish?.()
+    setShowPortal(false)
+  }
+
+  return showPortal
     ? createPortal(
         // eslint-disable-next-line jsx-a11y/no-static-element-interactions
         <div
           className={classNames(
             'flex fixed z-max overflow-hidden overflow-hidden bg-black-70 absolute--fill',
+            isOpen ? styles.openAnimation : styles.closeAnimation,
             {
               'items-start': !centered,
               'items-center': centered,
@@ -81,6 +94,7 @@ const ModalOverlay: FC<OverlayProps> = ({
           )}
           onClick={handleClick}
           onKeyDown={handleKeyDown}
+          onAnimationEnd={handleAnimationEnd}
         >
           {children}
         </div>,
@@ -117,7 +131,6 @@ const ModalContent = forwardRef<HTMLDivElement, ContentProps>(
             'vw-50': !responsiveFullScreen,
           }
         )}
-        // style={{ animation: `${styles.openAnimation} 500ms` }}
         onClick={e => e.stopPropagation()}
         role="dialog"
         onKeyDown={() => null}
