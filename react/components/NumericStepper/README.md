@@ -78,6 +78,34 @@ initialState = {
 </React.Fragment>
 ```
 
+Suffix and unit multiplier
+
+```js
+initialState = {
+  value1: 1,
+  value2: 2,
+}
+;<React.Fragment>
+  <div className="mb5">
+    <NumericStepper
+      label="Suffix"
+      value={state.value1}
+      suffix="kg"
+      onChange={event => setState({ value1: event.value })}
+    />
+  </div>
+  <div className="mb5">
+    <NumericStepper
+      label="Suffix and unit multiplier of 2.2"
+      unitMultiplier={2.2}
+      suffix="m²"
+      value={state.value2}
+      onChange={event => setState({ value2: event.value })}
+    />
+  </div>
+</React.Fragment>
+```
+
 Styling
 
 ```js
