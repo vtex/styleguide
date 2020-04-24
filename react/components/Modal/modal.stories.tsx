@@ -32,6 +32,9 @@ export const Default = () => {
         onClose={handleClose}
         title="Modal Title"
         responsiveFullScreen={boolean('Responsive Full Screen', false)}
+        onCloseTransitionFinish={() => {
+          action('transition-finished')
+        }}
         size={select('Size', sizes, 'medium')}
         bottomBar={
           <Button
