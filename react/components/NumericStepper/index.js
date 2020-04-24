@@ -24,49 +24,27 @@ const validateValue = (value, min, max, defaultValue) => {
   return parseInt(value, 10)
 }
 
-const formattedDisplayValue = (
-  value,
-  unitMultiplier,
-  showMeasurementUnit,
-  measurementUnit
-) => {
+const formattedDisplayValue = (value, unitMultiplier, suffix) => {
   return `${Math.round((value * unitMultiplier + Number.EPSILON) * 100) /
-    100} ${showMeasurementUnit ? measurementUnit : ''}`
+    100} ${suffix ? suffix : ''}`
 }
 
-const validateDisplayValue = (
-  value,
-  min,
-  max,
-  showMeasurementUnit,
-  measurementUnit,
-  unitMultiplier
-) => {
+const validateDisplayValue = (value, min, max, suffix, unitMultiplier) => {
   // This function validates the input as the user types
   // It allows for temporarily invalid values (namely, empty string and minus sign without a number following it)
   // However, it prevents values out of boundaries, and invalid characters, e.g. letters
 
   min = normalizeMin(min)
   max = normalizeMax(max)
-  
+
   const parsedValue = parseFloat(value)
 
   if (value === '') {
-    return formattedDisplayValue(
-      value,
-      unitMultiplier,
-      showMeasurementUnit,
-      measurementUnit
-    )
+    return formattedDisplayValue(value, unitMultiplier, suffix)
   }
   // Only allows typing the negative sign if negative values are allowed
   if (value === '-' && min < 0) {
-    return formattedDisplayValue(
-      value,
-      unitMultiplier,
-      showMeasurementUnit,
-      measurementUnit
-    )
+    return formattedDisplayValue(value, unitMultiplier, suffix)
   }
   if (isNaN(parsedValue)) {
     return ''
@@ -74,27 +52,12 @@ const validateDisplayValue = (
   // Only limit by lower bounds if the min value is 1
   // Otherwise, it could prevent typing, for example, 10 if the min value is 2
   if (parsedValue < min && min === 1) {
-    return formattedDisplayValue(
-      min,
-      unitMultiplier,
-      showMeasurementUnit,
-      measurementUnit
-    )
+    return formattedDisplayValue(min, unitMultiplier, suffix)
   }
   if (parsedValue > max) {
-    return formattedDisplayValue(
-      max,
-      unitMultiplier,
-      showMeasurementUnit,
-      measurementUnit
-    )
+    return formattedDisplayValue(max, unitMultiplier, suffix)
   }
-  return formattedDisplayValue(
-    parsedValue,
-    unitMultiplier,
-    showMeasurementUnit,
-    measurementUnit
-  )
+  return formattedDisplayValue(parsedValue, unitMultiplier, suffix)
 }
 
 class NumericStepper extends Component {
@@ -120,8 +83,7 @@ class NumericStepper extends Component {
       minValue,
       maxValue,
       defaultValue,
-      showMeasurementUnit,
-      measurementUnit,
+      suffix,
       unitMultiplier,
     } = props
 
@@ -139,8 +101,7 @@ class NumericStepper extends Component {
           value,
           minValue,
           maxValue,
-          showMeasurementUnit,
-          measurementUnit,
+          suffix,
           unitMultiplier
         ),
       }),
@@ -155,8 +116,7 @@ class NumericStepper extends Component {
       maxValue,
       defaultValue,
       onChange,
-      showMeasurementUnit,
-      measurementUnit,
+      suffix,
       unitMultiplier,
     } = this.props
 
@@ -171,8 +131,7 @@ class NumericStepper extends Component {
       value,
       minValue,
       maxValue,
-      showMeasurementUnit,
-      measurementUnit,
+      suffix,
       unitMultiplier
     )
 
@@ -391,10 +350,8 @@ NumericStepper.propTypes = {
   defaultValue: PropTypes.number,
   /** Multiplier value (e.g 1, 0.3) */
   unitMultiplier: PropTypes.number,
-  /** measurementUnit (e.g Kg, un) */
-  measurementUnit: PropTypes.string,
-  /** Show unit unitMultiplier label. Default is false */
-  showMeasurementUnit: PropTypes.bool,
+  /** Suffix (e.g Kg, un) */
+  suffix: PropTypes.string,
   /** Makes input readonly and disables buttons */
   readOnly: PropTypes.bool,
   /** Input size */
@@ -412,8 +369,7 @@ NumericStepper.defaultProps = {
   maxValue: Infinity,
   defaultValue: 0,
   unitMultiplier: 1,
-  measurementUnit: '',
-  showMeasurementUnit: false,
+  suffix: '',
   readOnly: false,
   size: 'regular',
   block: false,
