@@ -9,9 +9,6 @@
         "ignore": ["^([a-zA-Z@]+[-\\.]?)+"]
       }
     ],
-    "prettier/prettier": ["error", {
-      "endOfLine":"auto"
-    }],
     // Rules that conflict with Prettier.
     // To verify conflicting rules, run:
     // $ npm run prettier-conflict-check
