@@ -49,7 +49,7 @@ type ContentProps = Required<
 > &
   Pick<Props, 'title' | 'bottomBar'>
 
-const ModalOverlay: FC<OverlayProps> = ({
+export const ModalOverlay: FC<OverlayProps> = ({
   isOpen,
   onClose,
   centered,
@@ -128,11 +128,11 @@ const ModalContent = forwardRef<HTMLDivElement, ContentProps>(
       // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
       <div
         className={classNames(
-          'flex flex-column relative bg-white shadow-5 center mv9 glow',
+          'flex flex-column relative bg-white shadow-5 center mv9',
           {
-            'vw-50-ns': size === 'small',
-            'vw-60-ns': size === 'medium',
-            'vw-80-ns': size === 'large',
+            'vw-40-ns': size === 'small',
+            'vw-50-ns': size === 'medium',
+            'vw-60-ns': size === 'large',
             'h-100 h-auto-ns vw-100': responsiveFullScreen,
             'vw-50': !responsiveFullScreen,
           }
