@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { withA11y } from '@storybook/addon-a11y'
 import { withKnobs, boolean, select } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
@@ -6,6 +6,7 @@ import { action } from '@storybook/addon-actions'
 import Modal from '.'
 import Button from '../Button'
 import ModalDialog from '../ModalDialog'
+import useModal from './useModal'
 
 export default {
   title: 'Components|Modal',
@@ -17,20 +18,16 @@ type Size = 'small' | 'medium' | 'large'
 const sizes: Size[] = ['small', 'medium', 'large']
 
 export const Default = () => {
-  const [isOpen, setIsOpen] = useState(false)
-
-  const handleClose = () => {
-    setIsOpen(false)
-  }
+  const { isOpen, open, close } = useModal()
 
   return (
     <>
-      <Button onClick={() => setIsOpen(true)} type="button">
+      <Button onClick={open} type="button">
         Open
       </Button>
       <Modal
         isOpen={isOpen}
-        onClose={handleClose}
+        onClose={close}
         title="Modal Title"
         responsiveFullScreen={boolean('Responsive Full Screen', false)}
         onCloseTransitionFinish={() => {
@@ -42,7 +39,7 @@ export const Default = () => {
             size="small"
             type="button"
             variation={'primary'}
-            onClick={() => setIsOpen(false)}
+            onClick={close}
           >
             Confirm
           </Button>
@@ -55,19 +52,16 @@ export const Default = () => {
 }
 
 export const WithLongContent = () => {
-  const [isOpen, setIsOpen] = useState(true)
+  const { isOpen, open, close } = useModal()
 
-  const handleClose = () => {
-    setIsOpen(false)
-  }
   return (
     <>
-      <Button onClick={() => setIsOpen(true)} type="button">
+      <Button onClick={open} type="button">
         Open
       </Button>
       <Modal
         isOpen={isOpen}
-        onClose={handleClose}
+        onClose={close}
         size={select('Size', sizes, 'medium')}
         responsiveFullScreen
       >
@@ -155,27 +149,24 @@ export const WithLongContent = () => {
 }
 
 export const WithDialog = () => {
-  const [isOpen, setIsOpen] = useState(true)
+  const { isOpen, open, close } = useModal()
 
-  const handleClose = () => {
-    setIsOpen(false)
-  }
   return (
     <>
-      <Button onClick={() => setIsOpen(true)} type="button">
+      <Button onClick={open} type="button">
         Open
       </Button>
       <ModalDialog
         isOpen={isOpen}
-        onClose={handleClose}
+        onClose={close}
         confirmation={{
           label: 'Confirm',
-          onClick: handleClose,
+          onClick: close,
           isDangerous: true,
         }}
         cancelation={{
           label: 'Cancel',
-          onClick: handleClose,
+          onClick: close,
         }}
       >
         Content
