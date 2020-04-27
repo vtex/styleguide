@@ -78,7 +78,7 @@ const ModalOverlay: FC<OverlayProps> = ({
   return showPortal
     ? createPortal(
         /** This rule can be disabled because we are not using the onClick property to click
-         * the element itself but to check outside Modal click */
+         * the element itself but to capture outside clicks */
         // eslint-disable-next-line jsx-a11y/no-static-element-interactions
         <div
           className={classNames(
