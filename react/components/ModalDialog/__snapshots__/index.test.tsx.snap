@@ -3,87 +3,103 @@
 exports[`ModalDialog cancelation should render label 1`] = `
 <div>
   <div
-    class="styles_overlay__CLSq- vtex-modal__overlay styles_transitionEnter__3j_-a styles_transitionEnterActive___eQs7"
-    style="background-color: rgba(0, 0, 0, 0.8); z-index: 10000;"
+    class="flex fixed z-max overflow-hidden overflow-hidden bg-black-70 absolute--fill items-center"
+    tabindex="-1"
   >
     <div
-      class="styles_modal__gNwvD vtex-modal__modal br2 w-100 undefined flex flex-column"
-      style="padding: 0px;"
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="1"
+    />
+    <div
+      class="undefined"
+      data-focus-lock-disabled="false"
     >
       <div
-        class="
-        flex justify-content relative 
-        pl6 pr8 pl8-ns
-        undefined
-        
-      "
+        class="flex flex-column relative bg-white shadow-5 center mv9 glow vw-60-ns vw-50"
+        role="dialog"
       >
-        <span
-          class="f3 c-on-base w-100"
-        />
         <div
-          class="vtex-modal__close-icon absolute top-0 right-0 pa5 pa6-ns pointer ml-auto items-center flex"
-          role="button"
-          tabindex="0"
+          class="mb5"
         >
-          <svg
-            class="vtex__icon-close  "
-            fill="none"
-            height="18"
-            viewBox="0 0 18 18"
-            width="18"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-          >
-            <g
-              fill="currentColor"
-            >
-              <path
-                d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
-              />
-            </g>
-          </svg>
-        </div>
-      </div>
-      <div
-        class="ph6 ph8-ns overflow-auto flex-shrink-1 flex-grow-1 pb8 pt5 pt6-ns undefined"
-      >
-        Foo
-        <div
-          class="vtex-modal__confirmation flex justify-end mt8"
-        >
-          <span
-            class="mr4"
-          >
-            <button
-              class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small bg-transparent b--transparent c-action-primary hover-b--transparent hover-bg-action-secondary hover-b--action-secondary pointer "
-              tabindex="0"
-              type="button"
-            >
-              <div
-                class="vtex-button__label flex items-center justify-center h-100 ph5 "
-                style="padding-top: .25em; padding-bottom: .32em;"
-              >
-                cancel
-              </div>
-            </button>
-          </span>
-          <button
-            class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small bg-action-primary b--action-primary c-on-action-primary hover-bg-action-primary hover-b--action-primary hover-c-on-action-primary pointer "
-            tabindex="0"
-            type="button"
+          <div
+            class="min-h-large pl8"
           >
             <div
-              class="vtex-button__label flex items-center justify-center h-100 ph5 "
-              style="padding-top: .25em; padding-bottom: .32em;"
+              class="fr pointer pr6-ns pt6-ns pr5 pt5"
+              role="button"
+              tabindex="0"
             >
-              confirm
+              <svg
+                class="vtex__icon-close  "
+                fill="none"
+                height="16"
+                viewBox="0 0 18 18"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <g
+                  fill="black"
+                >
+                  <path
+                    d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+                  />
+                </g>
+              </svg>
             </div>
-          </button>
+          </div>
+        </div>
+        <div
+          class="ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 undefined"
+          style="max-height: 60vh;"
+        >
+          Foo
+        </div>
+        <div
+          class="flex justify-content flex-row-reverse min-h-regular-ns min-h-small pv6-ns ph8-ns pv7 ph6 mt3 bt b--muted-4"
+        >
+          <div>
+            <div>
+              <button
+                class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small bg-transparent b--transparent c-action-primary hover-b--transparent hover-bg-action-secondary hover-b--action-secondary pointer "
+                tabindex="0"
+                type="button"
+              >
+                <div
+                  class="vtex-button__label flex items-center justify-center h-100 ph5 "
+                  style="padding-top: .25em; padding-bottom: .32em;"
+                >
+                  cancel
+                </div>
+              </button>
+              <button
+                class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small bg-action-primary b--action-primary c-on-action-primary hover-bg-action-primary hover-b--action-primary hover-c-on-action-primary pointer "
+                tabindex="0"
+                type="button"
+              >
+                <div
+                  class="vtex-button__label flex items-center justify-center h-100 ph5 "
+                  style="padding-top: .25em; padding-bottom: .32em;"
+                >
+                  confirm
+                </div>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
-      
     </div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
   </div>
 </div>
 `;
@@ -91,87 +107,103 @@ exports[`ModalDialog cancelation should render label 1`] = `
 exports[`ModalDialog confirmation isDangerous CSS 1`] = `
 <div>
   <div
-    class="styles_overlay__CLSq- vtex-modal__overlay styles_transitionEnter__3j_-a styles_transitionEnterActive___eQs7"
-    style="background-color: rgba(0, 0, 0, 0.8); z-index: 10000;"
+    class="flex fixed z-max overflow-hidden overflow-hidden bg-black-70 absolute--fill items-center"
+    tabindex="-1"
   >
     <div
-      class="styles_modal__gNwvD vtex-modal__modal br2 w-100 undefined flex flex-column"
-      style="padding: 0px;"
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="1"
+    />
+    <div
+      class="undefined"
+      data-focus-lock-disabled="false"
     >
       <div
-        class="
-        flex justify-content relative 
-        pl6 pr8 pl8-ns
-        undefined
-        
-      "
+        class="flex flex-column relative bg-white shadow-5 center mv9 glow vw-60-ns vw-50"
+        role="dialog"
       >
-        <span
-          class="f3 c-on-base w-100"
-        />
         <div
-          class="vtex-modal__close-icon absolute top-0 right-0 pa5 pa6-ns pointer ml-auto items-center flex"
-          role="button"
-          tabindex="0"
+          class="mb5"
         >
-          <svg
-            class="vtex__icon-close  "
-            fill="none"
-            height="18"
-            viewBox="0 0 18 18"
-            width="18"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-          >
-            <g
-              fill="currentColor"
-            >
-              <path
-                d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
-              />
-            </g>
-          </svg>
-        </div>
-      </div>
-      <div
-        class="ph6 ph8-ns overflow-auto flex-shrink-1 flex-grow-1 pb8 pt5 pt6-ns undefined"
-      >
-        Foo
-        <div
-          class="vtex-modal__confirmation flex justify-end mt8"
-        >
-          <span
-            class="mr4"
-          >
-            <button
-              class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small bg-transparent b--transparent c-action-primary hover-b--transparent hover-bg-action-secondary hover-b--action-secondary pointer "
-              tabindex="0"
-              type="button"
-            >
-              <div
-                class="vtex-button__label flex items-center justify-center h-100 ph5 "
-                style="padding-top: .25em; padding-bottom: .32em;"
-              >
-                cancel
-              </div>
-            </button>
-          </span>
-          <button
-            class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small bg-action-primary b--action-primary c-on-action-primary hover-bg-action-primary hover-b--action-primary hover-c-on-action-primary pointer "
-            tabindex="0"
-            type="button"
+          <div
+            class="min-h-large pl8"
           >
             <div
-              class="vtex-button__label flex items-center justify-center h-100 ph5 "
-              style="padding-top: .25em; padding-bottom: .32em;"
+              class="fr pointer pr6-ns pt6-ns pr5 pt5"
+              role="button"
+              tabindex="0"
             >
-              cancel
+              <svg
+                class="vtex__icon-close  "
+                fill="none"
+                height="16"
+                viewBox="0 0 18 18"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <g
+                  fill="black"
+                >
+                  <path
+                    d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+                  />
+                </g>
+              </svg>
             </div>
-          </button>
+          </div>
+        </div>
+        <div
+          class="ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 undefined"
+          style="max-height: 60vh;"
+        >
+          Foo
+        </div>
+        <div
+          class="flex justify-content flex-row-reverse min-h-regular-ns min-h-small pv6-ns ph8-ns pv7 ph6 mt3 bt b--muted-4"
+        >
+          <div>
+            <div>
+              <button
+                class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small bg-transparent b--transparent c-action-primary hover-b--transparent hover-bg-action-secondary hover-b--action-secondary pointer "
+                tabindex="0"
+                type="button"
+              >
+                <div
+                  class="vtex-button__label flex items-center justify-center h-100 ph5 "
+                  style="padding-top: .25em; padding-bottom: .32em;"
+                >
+                  cancel
+                </div>
+              </button>
+              <button
+                class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small bg-action-primary b--action-primary c-on-action-primary hover-bg-action-primary hover-b--action-primary hover-c-on-action-primary pointer "
+                tabindex="0"
+                type="button"
+              >
+                <div
+                  class="vtex-button__label flex items-center justify-center h-100 ph5 "
+                  style="padding-top: .25em; padding-bottom: .32em;"
+                >
+                  cancel
+                </div>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
-      
     </div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
   </div>
 </div>
 `;
@@ -179,87 +211,103 @@ exports[`ModalDialog confirmation isDangerous CSS 1`] = `
 exports[`ModalDialog confirmation should render label 1`] = `
 <div>
   <div
-    class="styles_overlay__CLSq- vtex-modal__overlay styles_transitionEnter__3j_-a styles_transitionEnterActive___eQs7"
-    style="background-color: rgba(0, 0, 0, 0.8); z-index: 10000;"
+    class="flex fixed z-max overflow-hidden overflow-hidden bg-black-70 absolute--fill items-center"
+    tabindex="-1"
   >
     <div
-      class="styles_modal__gNwvD vtex-modal__modal br2 w-100 undefined flex flex-column"
-      style="padding: 0px;"
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="1"
+    />
+    <div
+      class="undefined"
+      data-focus-lock-disabled="false"
     >
       <div
-        class="
-        flex justify-content relative 
-        pl6 pr8 pl8-ns
-        undefined
-        
-      "
+        class="flex flex-column relative bg-white shadow-5 center mv9 glow vw-60-ns vw-50"
+        role="dialog"
       >
-        <span
-          class="f3 c-on-base w-100"
-        />
         <div
-          class="vtex-modal__close-icon absolute top-0 right-0 pa5 pa6-ns pointer ml-auto items-center flex"
-          role="button"
-          tabindex="0"
+          class="mb5"
         >
-          <svg
-            class="vtex__icon-close  "
-            fill="none"
-            height="18"
-            viewBox="0 0 18 18"
-            width="18"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-          >
-            <g
-              fill="currentColor"
-            >
-              <path
-                d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
-              />
-            </g>
-          </svg>
-        </div>
-      </div>
-      <div
-        class="ph6 ph8-ns overflow-auto flex-shrink-1 flex-grow-1 pb8 pt5 pt6-ns undefined"
-      >
-        Foo
-        <div
-          class="vtex-modal__confirmation flex justify-end mt8"
-        >
-          <span
-            class="mr4"
-          >
-            <button
-              class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small bg-transparent b--transparent c-action-primary hover-b--transparent hover-bg-action-secondary hover-b--action-secondary pointer "
-              tabindex="0"
-              type="button"
-            >
-              <div
-                class="vtex-button__label flex items-center justify-center h-100 ph5 "
-                style="padding-top: .25em; padding-bottom: .32em;"
-              >
-                cancel
-              </div>
-            </button>
-          </span>
-          <button
-            class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small bg-action-primary b--action-primary c-on-action-primary hover-bg-action-primary hover-b--action-primary hover-c-on-action-primary pointer "
-            tabindex="0"
-            type="button"
+          <div
+            class="min-h-large pl8"
           >
             <div
-              class="vtex-button__label flex items-center justify-center h-100 ph5 "
-              style="padding-top: .25em; padding-bottom: .32em;"
+              class="fr pointer pr6-ns pt6-ns pr5 pt5"
+              role="button"
+              tabindex="0"
             >
-              confirm
+              <svg
+                class="vtex__icon-close  "
+                fill="none"
+                height="16"
+                viewBox="0 0 18 18"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <g
+                  fill="black"
+                >
+                  <path
+                    d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+                  />
+                </g>
+              </svg>
             </div>
-          </button>
+          </div>
+        </div>
+        <div
+          class="ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 undefined"
+          style="max-height: 60vh;"
+        >
+          Foo
+        </div>
+        <div
+          class="flex justify-content flex-row-reverse min-h-regular-ns min-h-small pv6-ns ph8-ns pv7 ph6 mt3 bt b--muted-4"
+        >
+          <div>
+            <div>
+              <button
+                class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small bg-transparent b--transparent c-action-primary hover-b--transparent hover-bg-action-secondary hover-b--action-secondary pointer "
+                tabindex="0"
+                type="button"
+              >
+                <div
+                  class="vtex-button__label flex items-center justify-center h-100 ph5 "
+                  style="padding-top: .25em; padding-bottom: .32em;"
+                >
+                  cancel
+                </div>
+              </button>
+              <button
+                class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small bg-action-primary b--action-primary c-on-action-primary hover-bg-action-primary hover-b--action-primary hover-c-on-action-primary pointer "
+                tabindex="0"
+                type="button"
+              >
+                <div
+                  class="vtex-button__label flex items-center justify-center h-100 ph5 "
+                  style="padding-top: .25em; padding-bottom: .32em;"
+                >
+                  confirm
+                </div>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
-      
     </div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
   </div>
 </div>
 `;
@@ -267,90 +315,100 @@ exports[`ModalDialog confirmation should render label 1`] = `
 exports[`ModalDialog loading CSS 1`] = `
 <div>
   <div
-    class="styles_overlay__CLSq- vtex-modal__overlay styles_transitionEnter__3j_-a styles_transitionEnterActive___eQs7"
-    style="background-color: rgba(0, 0, 0, 0.8); z-index: 10000;"
+    class="flex fixed z-max overflow-hidden overflow-hidden bg-black-70 absolute--fill items-center"
+    tabindex="-1"
   >
     <div
-      class="styles_modal__gNwvD vtex-modal__modal br2 w-100 undefined flex flex-column"
-      style="padding: 0px;"
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="1"
+    />
+    <div
+      class="undefined"
+      data-focus-lock-disabled="false"
     >
       <div
-        class="
-        flex justify-content relative 
-        pl6 pr8 pl8-ns
-        undefined
-        
-      "
+        class="flex flex-column relative bg-white shadow-5 center mv9 glow vw-60-ns vw-50"
+        role="dialog"
       >
-        <span
-          class="f3 c-on-base w-100"
-        />
         <div
-          class="vtex-modal__close-icon absolute top-0 right-0 pa5 pa6-ns pointer ml-auto items-center flex"
-          role="button"
-          tabindex="0"
+          class="mb5"
         >
-          <svg
-            class="vtex__icon-close  "
-            fill="none"
-            height="18"
-            viewBox="0 0 18 18"
-            width="18"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
+          <div
+            class="min-h-large pl8"
           >
-            <g
-              fill="currentColor"
-            >
-              <path
-                d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
-              />
-            </g>
-          </svg>
-        </div>
-      </div>
-      <div
-        class="ph6 ph8-ns overflow-auto flex-shrink-1 flex-grow-1 pb8 pt5 pt6-ns undefined"
-      >
-        Foo
-        <div
-          class="vtex-modal__confirmation flex justify-end mt8"
-        >
-          <span
-            class="mr4"
-          >
-            <button
-              class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small bg-transparent b--transparent c-disabled "
-              disabled=""
+            <div
+              class="fr pointer pr6-ns pt6-ns pr5 pt5"
+              role="button"
               tabindex="0"
-              type="button"
-            >
-              <div
-                class="vtex-button__label flex items-center justify-center h-100 ph5 "
-                style="padding-top: .25em; padding-bottom: .32em;"
-              >
-                cancel
-              </div>
-            </button>
-          </span>
-          <button
-            class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small bg-disabled b--muted-5 c-on-disabled "
-            tabindex="0"
-            type="button"
-          >
-            <span
-              class="vtex-button__spinner-container top-0 left-0 w-100 h-100 absolute flex justify-center items-center"
             >
               <svg
-                class="vtex__icon-spinner  c-action-primary"
-                height="15"
-                preserveAspectRatio="xMidYMid"
-                viewBox="0 0 100 100"
-                width="15"
+                class="vtex__icon-close  "
+                fill="none"
+                height="16"
+                viewBox="0 0 18 18"
+                width="16"
                 xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
               >
-                <style>
-                  
+                <g
+                  fill="black"
+                >
+                  <path
+                    d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+                  />
+                </g>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div
+          class="ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 undefined"
+          style="max-height: 60vh;"
+        >
+          Foo
+        </div>
+        <div
+          class="flex justify-content flex-row-reverse min-h-regular-ns min-h-small pv6-ns ph8-ns pv7 ph6 mt3 bt b--muted-4"
+        >
+          <div>
+            <div>
+              <button
+                class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small bg-transparent b--transparent c-disabled "
+                disabled=""
+                tabindex="0"
+                type="button"
+              >
+                <div
+                  class="vtex-button__label flex items-center justify-center h-100 ph5 "
+                  style="padding-top: .25em; padding-bottom: .32em;"
+                >
+                  cancel
+                </div>
+              </button>
+              <button
+                class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small bg-disabled b--muted-5 c-on-disabled "
+                tabindex="0"
+                type="button"
+              >
+                <span
+                  class="vtex-button__spinner-container top-0 left-0 w-100 h-100 absolute flex justify-center items-center"
+                >
+                  <svg
+                    class="vtex__icon-spinner  c-action-primary"
+                    height="15"
+                    preserveAspectRatio="xMidYMid"
+                    viewBox="0 0 100 100"
+                    width="15"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <style>
+                      
             @keyframes vtex-spinner-rotate {
               from {
                 transform-origin: 50% 50%;
@@ -378,31 +436,37 @@ exports[`ModalDialog loading CSS 1`] = `
               animation: vtex-spinner-fill 1.25s infinite cubic-bezier(0.455, 0.030, 0.515, 0.955), vtex-spinner-rotate 0.625s infinite linear;
             }
           
-                </style>
-                <circle
-                  class="vtex-spinner_circle"
-                  cx="50"
-                  cy="50"
-                  fill="none"
-                  r="40"
-                  stroke="currentColor"
-                  stroke-dasharray="0 0 188.49555921538757 251.32741228718345"
-                  stroke-dashoffset="1"
-                  stroke-linecap="round"
-                  stroke-width="10"
-                />
-              </svg>
-            </span>
-            <span
-              class="vtex-button__label flex items-center justify-center h-100 ph5  o-0"
-            >
-              confirm
-            </span>
-          </button>
+                    </style>
+                    <circle
+                      class="vtex-spinner_circle"
+                      cx="50"
+                      cy="50"
+                      fill="none"
+                      r="40"
+                      stroke="currentColor"
+                      stroke-dasharray="0 0 188.49555921538757 251.32741228718345"
+                      stroke-dashoffset="1"
+                      stroke-linecap="round"
+                      stroke-width="10"
+                    />
+                  </svg>
+                </span>
+                <span
+                  class="vtex-button__label flex items-center justify-center h-100 ph5  o-0"
+                >
+                  confirm
+                </span>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
-      
     </div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
   </div>
 </div>
 `;
