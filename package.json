@@ -97,6 +97,7 @@
     "react-datepicker": "^2.3.0",
     "react-docgen-displayname-handler": "^2.1.1",
     "react-dropzone": "^10.2.1",
+    "react-focus-lock": "^2.3.1",
     "react-icons": "^3.7.0",
     "react-number-format": "^4.0.6",
     "react-outside-click-handler": "^1.2.2",

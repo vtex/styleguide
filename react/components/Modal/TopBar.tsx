@@ -1,18 +1,18 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, ReactNode } from 'react'
 import classNames from 'classnames'
 
 import IconClose from '../icon/Close'
 
-export interface TopBarProps {
+export interface Props {
   showCloseIcon?: boolean
-  title?: string
-  showTopBar?: boolean
+  showTopBar: boolean
+  children: ReactNode
   onClose: () => unknown
-  responsiveFullScreen: boolean
+  responsiveFullScreen?: boolean
 }
 
-const TopBar = forwardRef<HTMLDivElement, TopBarProps>(function TopBar(
-  { showCloseIcon, title, showTopBar, onClose, responsiveFullScreen },
+const TopBar = forwardRef<HTMLDivElement, Props>(function TopBar(
+  { showCloseIcon, children, onClose, responsiveFullScreen, showTopBar },
   forwardedRef
 ) {
   const handleKeyDown = ({ key }: React.KeyboardEvent) => {
@@ -43,7 +43,9 @@ const TopBar = forwardRef<HTMLDivElement, TopBarProps>(function TopBar(
           </div>
         )}
       </div>
-      {showTopBar && title && <span className="t-heading-4 ml8">{title}</span>}
+      {showTopBar && children && (
+        <span className="t-heading-4 ml8">{children}</span>
+      )}
     </div>
   )
 })

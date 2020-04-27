@@ -5,6 +5,7 @@ import { action } from '@storybook/addon-actions'
 
 import Modal from '.'
 import Button from '../Button'
+import ModalDialog from '../ModalDialog'
 
 export default {
   title: 'Components|Modal',
@@ -149,6 +150,36 @@ export const WithLongContent = () => {
           </ul>
         </div>
       </Modal>
+    </>
+  )
+}
+
+export const WithDialog = () => {
+  const [isOpen, setIsOpen] = useState(true)
+
+  const handleClose = () => {
+    setIsOpen(false)
+  }
+  return (
+    <>
+      <Button onClick={() => setIsOpen(true)} type="button">
+        Open
+      </Button>
+      <ModalDialog
+        isOpen={isOpen}
+        onClose={handleClose}
+        confirmation={{
+          label: 'Confirm',
+          onClick: handleClose,
+          isDangerous: true,
+        }}
+        cancelation={{
+          label: 'Cancel',
+          onClick: handleClose,
+        }}
+      >
+        Content
+      </ModalDialog>
     </>
   )
 }
