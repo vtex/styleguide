@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 import classNames from 'classnames'
 
-export interface Props {
+export interface BottomBarProps {
   showBorder?: boolean
   responsiveFullScreen?: boolean
   children?: React.ReactNode
