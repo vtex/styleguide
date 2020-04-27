@@ -1,12 +1,14 @@
 import React, { FC, forwardRef, useState, useLayoutEffect } from 'react'
+import PropTypes from 'prop-types'
 import { createPortal } from 'react-dom'
 import classNames from 'classnames'
+import FocusLock from 'react-focus-lock'
 
-import TopBar, { TopBarProps } from './TopBar'
-import BottomBar from './BottomBar'
+import TopBar, { Props as TopBarProps } from './TopBar'
+import BottomBar, { Props as BottomBarProps } from './BottomBar'
 import styles from './modal.css'
 
-interface Props {
+export interface Props {
   isOpen: boolean
   onClose: () => unknown
   container?: Element
@@ -14,36 +16,38 @@ interface Props {
   showTopBar?: boolean
   showCloseIcon?: boolean
   bottomBar?: React.ReactNode
-  title?: string
+  title?: React.ReactNode
   closeOnEsc?: boolean
   showBottomBarBorder?: boolean
   onCloseTransitionFinish?: () => unknown
   centered?: boolean
   size?: 'small' | 'medium' | 'large'
   responsiveFullScreen?: boolean
-}
-
-interface OverlayProps {
-  isOpen: boolean
-  container: Element
-  centered: boolean
-  closeOnEsc?: boolean
-  onClose: () => unknown
-  closeOnOverlayClick?: boolean
-  onCloseTransitionFinish?: () => unknown
-}
-
-interface ContentProps {
-  onClose: () => unknown
-  showCloseIcon?: boolean
-  title?: string
-  showTopBar?: boolean
-  bottomBar?: React.ReactNode
   children: React.ReactNode
-  showBottomBarBorder?: boolean
-  responsiveFullScreen: boolean
-  size: 'small' | 'medium' | 'large'
 }
+
+type OverlayProps = Required<
+  Pick<
+    Props,
+    'isOpen' | 'container' | 'centered' | 'closeOnOverlayClick' | 'onClose'
+  >
+> &
+  Pick<Props, 'onCloseTransitionFinish'>
+
+type ContentProps = Required<
+  Pick<
+    Props,
+    | 'onClose'
+    | 'showCloseIcon'
+    | 'showTopBar'
+    | 'children'
+    | 'showBottomBarBorder'
+    | 'responsiveFullScreen'
+    | 'size'
+    | 'closeOnEsc'
+  >
+> &
+  Pick<Props, 'title' | 'bottomBar'>
 
 const ModalOverlay: FC<OverlayProps> = ({
   isOpen,
@@ -51,7 +55,6 @@ const ModalOverlay: FC<OverlayProps> = ({
   centered,
   container,
   closeOnOverlayClick,
-  closeOnEsc,
   onCloseTransitionFinish,
   children,
 }) => {
@@ -66,14 +69,6 @@ const ModalOverlay: FC<OverlayProps> = ({
     onClose()
   }
 
-  const handleKeyDown = (event: React.KeyboardEvent) => {
-    if (!closeOnEsc && event.key !== 'Escape') {
-      return
-    }
-    event.stopPropagation()
-    onClose()
-  }
-
   const handleAnimationEnd = () => {
     if (isOpen) return
     onCloseTransitionFinish?.()
@@ -82,6 +77,8 @@ const ModalOverlay: FC<OverlayProps> = ({
 
   return showPortal
     ? createPortal(
+        /** This rule can be disabled because we are not using the onClick property to click
+         * the element itself but to check outside Modal click */
         // eslint-disable-next-line jsx-a11y/no-static-element-interactions
         <div
           className={classNames(
@@ -92,11 +89,12 @@ const ModalOverlay: FC<OverlayProps> = ({
               'items-center': centered,
             }
           )}
+          tabIndex={-1}
           onClick={handleClick}
-          onKeyDown={handleKeyDown}
+          onKeyDown={() => {}}
           onAnimationEnd={handleAnimationEnd}
         >
-          {children}
+          <FocusLock className={`${styles.contents}`}>{children}</FocusLock>
         </div>,
         container
       )
@@ -114,10 +112,18 @@ const ModalContent = forwardRef<HTMLDivElement, ContentProps>(
       showBottomBarBorder,
       responsiveFullScreen,
       size,
+      closeOnEsc,
       children,
     },
     forwardedRef
   ) {
+    const handleKeyDown = (event: React.KeyboardEvent) => {
+      if (!closeOnEsc || event.key !== 'Escape') {
+        return
+      }
+      event.stopPropagation()
+      onClose()
+    }
     return (
       // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
       <div
@@ -133,16 +139,17 @@ const ModalContent = forwardRef<HTMLDivElement, ContentProps>(
         )}
         onClick={e => e.stopPropagation()}
         role="dialog"
-        onKeyDown={() => null}
+        onKeyDown={handleKeyDown}
         ref={forwardedRef}
       >
         <TopBar
           showCloseIcon={showCloseIcon}
-          showTopBar={showTopBar}
-          title={title}
           onClose={onClose}
+          showTopBar={showTopBar}
           responsiveFullScreen={responsiveFullScreen}
-        />
+        >
+          {title}
+        </TopBar>
         <div
           className={`ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 ${styles.scrollBar}`}
           style={{ maxHeight: '60vh' }}
@@ -152,7 +159,6 @@ const ModalContent = forwardRef<HTMLDivElement, ContentProps>(
         <BottomBar
           showBorder={showBottomBarBorder}
           responsiveFullScreen={responsiveFullScreen}
-          size={size}
         >
           {bottomBar}
         </BottomBar>
@@ -161,30 +167,31 @@ const ModalContent = forwardRef<HTMLDivElement, ContentProps>(
   }
 )
 
-const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
+function Modal(
   {
     isOpen,
     children,
-    container = document.body,
     onClose,
-    closeOnOverlayClick,
     title,
-    showCloseIcon,
-    closeOnEsc,
+    bottomBar,
+    closeOnOverlayClick = true,
+    container = document.body,
+    showCloseIcon = true,
+    closeOnEsc = true,
     onCloseTransitionFinish,
     centered = true,
     responsiveFullScreen = false,
     size = 'medium',
-    ...props
-  },
-  forwardedRef
+    showTopBar = true,
+    showBottomBarBorder = true,
+  }: Props,
+  forwardedRef: React.Ref<HTMLDivElement>
 ) {
   return (
     <ModalOverlay
       isOpen={isOpen}
       onClose={onClose}
       container={container}
-      closeOnEsc={closeOnEsc}
       centered={centered}
       closeOnOverlayClick={closeOnOverlayClick}
       onCloseTransitionFinish={onCloseTransitionFinish}
@@ -196,22 +203,23 @@ const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
         showCloseIcon={showCloseIcon}
         size={size}
         responsiveFullScreen={responsiveFullScreen}
-        {...props}
+        showTopBar={showTopBar}
+        bottomBar={bottomBar}
+        showBottomBarBorder={showBottomBarBorder}
+        closeOnEsc={closeOnEsc}
       >
         {children}
       </ModalContent>
     </ModalOverlay>
   )
-})
+}
 
 interface Composites {
   TopBar: React.ForwardRefExoticComponent<
     TopBarProps & React.RefAttributes<HTMLDivElement>
   >
   BottomBar: React.ForwardRefExoticComponent<
-    {
-      children: React.ReactNode
-    } & React.RefAttributes<HTMLDivElement>
+    BottomBarProps & React.RefAttributes<HTMLDivElement>
   >
 }
 
@@ -220,10 +228,43 @@ export type ComposableModal = React.ForwardRefExoticComponent<
 > &
   Partial<Composites>
 
-const FowardedModal: ComposableModal = Modal
+const FowardedModal: ComposableModal = forwardRef(Modal)
 
 FowardedModal.TopBar = TopBar
 FowardedModal.BottomBar = BottomBar
+
+FowardedModal.propTypes = {
+  /** Content of the modal */
+  children: PropTypes.node.isRequired,
+  /** Center the modal (for small content) */
+  centered: PropTypes.bool,
+  /** Container in which the modal is rendered */
+  container: PropTypes.any,
+  /** Show or hide the modal */
+  isOpen: PropTypes.bool.isRequired,
+  /** Function called when Modal is closed */
+  onClose: PropTypes.func.isRequired,
+  /** Show BottomBar border * */
+  showBottomBarBorder: PropTypes.bool,
+  /** Close the modal on ESC key press (default true) */
+  closeOnEsc: PropTypes.bool,
+  /** Close the modal on overlay click (default true) */
+  closeOnOverlayClick: PropTypes.bool,
+  /** Show the close icon on upper right corner (default true) */
+  showCloseIcon: PropTypes.bool,
+  /** Node to be displayed as the bottom bar of the modal. */
+  bottomBar: PropTypes.node,
+  /** Modal title to be displayed in top of the modal. */
+  title: PropTypes.node,
+  /** If true, the modal will expand to fullscreen in small view ports (e.g. mobile) */
+  responsiveFullScreen: PropTypes.bool,
+  /** If true, show top bar with title */
+  showTopBar: PropTypes.bool,
+  /** Event fired when the closing transition is finished */
+  onCloseTransitionFinish: PropTypes.func,
+  /** Modal size */
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+}
 
 FowardedModal.defaultProps = {
   isOpen: false,
