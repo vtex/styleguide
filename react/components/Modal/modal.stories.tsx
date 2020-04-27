@@ -53,7 +53,20 @@ export const Default = () => {
 
 export const WithLongContent = () => {
   const { isOpen, open, close } = useModal()
-
+  const lorem = (
+    <p>
+      Mauris ac arcu sit amet dui interdum bibendum a sed diam. Praesent rhoncus
+      congue ipsum elementum lobortis. Ut ligula purus, ultrices id condimentum
+      quis, tincidunt quis purus. Proin quis enim metus. Nunc feugiat odio at
+      eros porta, ut rhoncus lorem tristique. Nunc et ipsum eu ex vulputate
+      consectetur vel eu nisi. Donec ultricies rutrum lectus, sit ame feugiat
+      est semper vitae. Proin varius imperdiet consequat. Proin eu metus nisi.
+      In hac habitasse platea dictumst. Vestibulum ac ultrices risus.
+      Pellentesque arcu sapien, aliquet sed orci sit amet, pulvinar interdum
+      velit. Nunc a rhoncus ipsum, maximus fermentum dolor. Praesent aliquet
+      justo vitae rutrum volutpat. Ut quis pulvinar est.
+    </p>
+  )
   return (
     <>
       <Button onClick={open} type="button">
@@ -65,84 +78,14 @@ export const WithLongContent = () => {
         size={select('Size', sizes, 'medium')}
         responsiveFullScreen
       >
-        <div className="dark-gray">
-          <p className="f1 fw3">What is the shared cart</p>
-          <p>
-            The shared cart is a tool that allows more than one customer to add,
-            remove or update items and informations from the same cart.
-          </p>
-          <p>
-            For your customer, the shared cart means practicality when making a
-            purchase. For your store, it means:
-          </p>
-          <ul>
-            <li>Opportunity for a larger sale.</li>
-            <li>Lower logistics effort.</li>
-            <li>Single order flow.</li>
-          </ul>
-          <p className="mt8 f3 fw5">How this is technically possible</p>
-          <p>
-            We started using a parameter in the URL to identify the cart. As a
-            result, the URL can be shared with other users, who can view the
-            items, add and remove products, and even pay for the order.
-          </p>
-          <p>
-            However, for users already registered in the plataform (whose data
-            is filled automatically in the checkout), all personal informations
-            are secure: only the informations' owner has access to them, after
-            he is authenticated in the store.
-          </p>
-          <p className="mt8 f3 fw5">Information security</p>
-          <p>
-            The payment is still done by one person whose informations remain
-            secure, since the profile and delivery data are visible only to the
-            user who creates the cart. For others, these same data are masked
-            because, with the shared cart, the cart does not have a single owner
-            anymore, only the data has.
-          </p>
-          <p className="mt8 f3 fw5">Changes to the checkout URL</p>
-          <p>
-            As informed, we have a new parameter in the checkout URLs to
-            identify the cart. However, the feature is optional, not impacting
-            stores that do not use it.
-          </p>
-          <p>
-            In order to use this feature, simply insert the parameter (also
-            called querystring) orderFormId, with the ID of the cart you want to
-            access. The cart ID can be obtained from the checkout APIs -
-            facilitated with VTEX.js.
-          </p>
-          <p>
-            Please note that, as new parameters are inserted, the page crawling
-            that is based on the URL can be affected. Therefore, it is necessary
-            to adapt it to continue viewing those same pages as eing from the
-            checkout.
-          </p>
-          <p>
-            One change we can make is in the URLs of the Google Analytics
-            conversion funnel, because it relies solely on the addresses that
-            customers browsed. In order to have a funnel compatible with the
-            additional parameters, see the rules updated in our article on how
-            to set up the sales funnel on Google Analytics.
-          </p>
-          <p>
-            Other scenarios should be checked with your marketing team and
-            service providers.
-          </p>
-          <p className="mt8 f3 fw5">Practical use of the shared cart</p>
-          <p>Summarizing all the previous informations, it is necessary to:</p>
-          <ul>
-            <li>
-              adapt the page crawling services so they become compatible with
-              the new URL parameter (Google Analytics, for example);
-            </li>
-            <li>use VTEX APIs to obtain the cart ID;</li>
-            <li>
-              customize the cart's page to provide its link to the user based on
-              the cart ID.
-            </li>
-          </ul>
-        </div>
+        {lorem}
+        {lorem}
+        {lorem}
+        {lorem}
+        {lorem}
+        {lorem}
+        {lorem}
+        {lorem}
       </Modal>
     </>
   )
@@ -174,3 +117,50 @@ export const WithDialog = () => {
     </>
   )
 }
+
+// export const WithDifferentSizes = () => {
+//   const smallModal = useModal()
+//   const mediumModal = useModal()
+//   const largeModal = useModal()
+
+//   return (
+//     <div className="flex flex-column">
+//       <span className="mr4">
+//         <Button size="small" onClick={() => smallModal.open} type="button">
+//           Open Small Modal
+//         </Button>
+//       </span>
+//       <Modal
+//         size="small"
+//         isOpen={smallModal.isOpen}
+//         onClose={() => smallModal.close}
+//       >
+//         Small Modal
+//       </Modal>
+//       <span className="mr4">
+//         <Button size="regular" onClick={() => mediumModal.open} type="button">
+//           Open Medium Modal
+//         </Button>
+//       </span>
+//       <Modal
+//         size="medium"
+//         isOpen={mediumModal.isOpen}
+//         onClose={() => mediumModal.close}
+//       >
+//         Medium Modal
+//       </Modal>
+//       <span className="mr4">
+//         <Button size="large" onClick={() => largeModal.open} type="button">
+//           Open Large Modal
+//         </Button>
+//       </span>
+//       <Modal
+//         size="large"
+//         isOpen={largeModal.isOpen}
+//         onClose={() => largeModal.close}
+//       >
+//         Large Modal
+//       </Modal>
+//     </div>
+//   )
+// }
