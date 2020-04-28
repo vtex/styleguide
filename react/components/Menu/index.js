@@ -213,7 +213,7 @@ Menu.propTypes = {
   forwardedRef: refShape,
   /** Menu visibility (default is false) */
   open: PropTypes.bool,
-  /** Menu Box width (default is 292px) */
+  /** Menu Box width */
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /** Menu options */
   options: PropTypes.arrayOf(
