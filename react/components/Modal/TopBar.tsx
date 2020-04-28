@@ -11,9 +11,9 @@ export interface Props {
   responsiveFullScreen?: boolean
 }
 
-const TopBar = forwardRef<HTMLDivElement, Props>(function TopBar(
-  { showCloseIcon, children, onClose, responsiveFullScreen, showTopBar },
-  forwardedRef
+function TopBar(
+  { showCloseIcon, children, onClose, responsiveFullScreen, showTopBar }: Props,
+  forwardedRef: React.Ref<HTMLDivElement>
 ) {
   const handleKeyDown = ({ key }: React.KeyboardEvent) => {
     const SPACE = ' '
@@ -48,6 +48,6 @@ const TopBar = forwardRef<HTMLDivElement, Props>(function TopBar(
       )}
     </div>
   )
-})
+}
 
-export default TopBar
+export default forwardRef<HTMLDivElement, Props>(TopBar)

@@ -7,9 +7,9 @@ export interface Props {
   children?: React.ReactNode
 }
 
-const BottomBar = forwardRef<HTMLDivElement, Props>(function BottomBar(
-  { showBorder = true, responsiveFullScreen = false, children },
-  forwardedRef
+function BottomBar(
+  { showBorder = true, responsiveFullScreen = false, children }: Props,
+  forwardedRef: React.Ref<HTMLDivElement>
 ) {
   if (!children) return <></>
   return (
@@ -27,6 +27,6 @@ const BottomBar = forwardRef<HTMLDivElement, Props>(function BottomBar(
       <div>{children}</div>
     </div>
   )
-})
+}
 
-export default BottomBar
+export default forwardRef<HTMLDivElement, Props>(BottomBar)
