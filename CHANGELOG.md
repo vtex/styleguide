@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Removed
+
+- `ActionMenu` and `Menu` default fixed width.
+
 ## [9.114.0] - 2020-04-28
 
 ### Fixed
