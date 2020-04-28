@@ -168,38 +168,6 @@ describe('Modal', () => {
     })
   })
 
-  describe('onCloseTransitionFinish', () => {
-    it('should be called after 500ms', () => {
-      jest.useFakeTimers()
-      const onClose = jest.fn()
-      const onCloseTransitionFinish = jest.fn()
-
-      const { getByRole, rerender } = render(
-        <Modal
-          isOpen
-          onClose={onClose}
-          onCloseTransitionFinish={onCloseTransitionFinish}
-        >
-          Foo
-        </Modal>
-      )
-
-      fireEvent.keyDown(getByRole('dialog'), { key: 'Escape', keyCode: 27 })
-      rerender(
-        <Modal
-          isOpen={false}
-          onClose={onClose}
-          onCloseTransitionFinish={onCloseTransitionFinish}
-        >
-          Foo
-        </Modal>
-      )
-
-      jest.runAllTimers()
-      expect(onCloseTransitionFinish).toHaveBeenCalled()
-    })
-  })
-
   describe('CSS API', () => {
     it('default', () => {
       const containerModal = document.createElement('div')

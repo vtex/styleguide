@@ -245,37 +245,37 @@ FowardedModal.TopBar = TopBar
 FowardedModal.BottomBar = BottomBar
 
 FowardedModal.propTypes = {
-  /** Content of the modal */
+  /** Content of the modal. */
   children: PropTypes.node.isRequired,
-  /** Center the modal (for small content) */
+  /** Center the modal (for small content). */
   centered: PropTypes.bool,
-  /** Container in which the modal is rendered */
+  /** Container in which the modal is rendered. */
   container: PropTypes.any,
-  /** Show or hide the modal */
+  /** Show or hide the modal. */
   isOpen: PropTypes.bool.isRequired,
-  /** Function called when Modal is closed */
+  /** Function called when Modal is closed. */
   onClose: PropTypes.func.isRequired,
-  /** Show BottomBar border * */
+  /** Show BottomBar border. */
   showBottomBarBorder: PropTypes.bool,
-  /** Close the modal on ESC key press */
+  /** Close the modal on ESC key press. */
   closeOnEsc: PropTypes.bool,
-  /** Close the modal on overlay click */
+  /** Close the modal on overlay click. */
   closeOnOverlayClick: PropTypes.bool,
-  /** Show the close icon on upper right corner */
+  /** Show the close icon on upper right corner. */
   showCloseIcon: PropTypes.bool,
   /** Node to be displayed as the bottom bar of the modal. */
   bottomBar: PropTypes.node,
   /** Modal title to be displayed in top of the modal. */
   title: PropTypes.node,
-  /** If true, the modal will expand to fullscreen in small view ports (e.g. mobile) */
+  /** If true, the modal will expand to fullscreen in small view ports (e.g. mobile). */
   responsiveFullScreen: PropTypes.bool,
   /** If true, show top bar with title. */
   showTopBar: PropTypes.bool,
   /** Event fired when the closing transition is finished. */
   onCloseTransitionFinish: PropTypes.func,
-  /** Modal size */
+  /** Modal size. */
   size: PropTypes.oneOf(['small', 'medium', 'large']),
-  /** Acessible Modal name. If this name is visible on the screen, prefer to use aria-labelledby */
+  /** Acessible Modal name. If this name is visible on the screen, prefer to use aria-labelledby. */
   'aria-label': PropTypes.string,
   /** ID of the element that provides the Modal an accessible name. If aria-label and aria-albelledby is not defined, the default here will be the title element. */
   'aria-labelledby': PropTypes.string,
