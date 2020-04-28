@@ -8,7 +8,8 @@ import TopBar, { Props as TopBarProps } from './TopBar'
 import BottomBar, { Props as BottomBarProps } from './BottomBar'
 import styles from './modal.css'
 
-export interface Props {
+export interface Props
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
   isOpen: boolean
   onClose: () => unknown
   container?: Element
@@ -47,7 +48,8 @@ type ContentProps = Required<
     | 'closeOnEsc'
   >
 > &
-  Pick<Props, 'title' | 'bottomBar'>
+  Pick<Props, 'title' | 'bottomBar'> &
+  Omit<React.HTMLAttributes<HTMLDivElement>, 'title'>
 
 export const ModalOverlay: FC<OverlayProps> = ({
   isOpen,
@@ -114,6 +116,7 @@ const ModalContent = forwardRef<HTMLDivElement, ContentProps>(
       size,
       closeOnEsc,
       children,
+      ...props
     },
     forwardedRef
   ) {
@@ -138,9 +141,12 @@ const ModalContent = forwardRef<HTMLDivElement, ContentProps>(
           }
         )}
         onClick={e => e.stopPropagation()}
-        role="dialog"
         onKeyDown={handleKeyDown}
         ref={forwardedRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={props['aria-label'] ? '' : 'vtex-modal__title'}
+        {...props}
       >
         <TopBar
           showCloseIcon={showCloseIcon}
@@ -148,11 +154,12 @@ const ModalContent = forwardRef<HTMLDivElement, ContentProps>(
           showTopBar={showTopBar}
           responsiveFullScreen={responsiveFullScreen}
         >
-          {title}
+          <div id="vtex-modal__title" className={`${styles.contents}`}>
+            {title}
+          </div>
         </TopBar>
         <div
-          className={`ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 ${styles.scrollBar}`}
-          style={{ maxHeight: '60vh' }}
+          className={`ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 ${styles.mh60} ${styles.scrollBar}`}
         >
           {children}
         </div>
@@ -184,6 +191,7 @@ function Modal(
     size = 'medium',
     showTopBar = true,
     showBottomBarBorder = true,
+    ...props
   }: Props,
   forwardedRef: React.Ref<HTMLDivElement>
 ) {
@@ -207,6 +215,7 @@ function Modal(
         bottomBar={bottomBar}
         showBottomBarBorder={showBottomBarBorder}
         closeOnEsc={closeOnEsc}
+        {...props}
       >
         {children}
       </ModalContent>
@@ -246,11 +255,11 @@ FowardedModal.propTypes = {
   onClose: PropTypes.func.isRequired,
   /** Show BottomBar border * */
   showBottomBarBorder: PropTypes.bool,
-  /** Close the modal on ESC key press (default true) */
+  /** Close the modal on ESC key press */
   closeOnEsc: PropTypes.bool,
-  /** Close the modal on overlay click (default true) */
+  /** Close the modal on overlay click */
   closeOnOverlayClick: PropTypes.bool,
-  /** Show the close icon on upper right corner (default true) */
+  /** Show the close icon on upper right corner */
   showCloseIcon: PropTypes.bool,
   /** Node to be displayed as the bottom bar of the modal. */
   bottomBar: PropTypes.node,
@@ -258,12 +267,18 @@ FowardedModal.propTypes = {
   title: PropTypes.node,
   /** If true, the modal will expand to fullscreen in small view ports (e.g. mobile) */
   responsiveFullScreen: PropTypes.bool,
-  /** If true, show top bar with title */
+  /** If true, show top bar with title. */
   showTopBar: PropTypes.bool,
-  /** Event fired when the closing transition is finished */
+  /** Event fired when the closing transition is finished. */
   onCloseTransitionFinish: PropTypes.func,
   /** Modal size */
   size: PropTypes.oneOf(['small', 'medium', 'large']),
+  /** Acessible Modal name. If this name is visible on the screen, prefer to use aria-labelledby */
+  'aria-label': PropTypes.string,
+  /** ID of the element that provides the Modal an accessible name. Usually the title element. */
+  'aria-labelledby': PropTypes.string,
+  /** ID of the element that provides the Modal an accessible description. */
+  'aria-describedby': PropTypes.string,
 }
 
 FowardedModal.defaultProps = {
