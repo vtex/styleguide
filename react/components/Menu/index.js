@@ -5,7 +5,6 @@ import { Overlay } from 'react-overlays'
 import Toggle from '../Toggle'
 import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
 
-const DEFAULT_WIDTH = 292
 const CONTAINER_MARGIN = 6
 const WINDOW_MARGIN = 10
 const DEFAULT_DOCUMENT_ELEMENT = {
@@ -152,7 +151,7 @@ class Menu extends Component {
                   [isRight ? 'right' : 'left']: isRight
                     ? clientWidth - right
                     : left + scrollLeft,
-                  width: width || DEFAULT_WIDTH,
+                  width,
                 }}
                 className={`absolute z-999 ba b--muted-4 br2 shadow-5 ${
                   isRight ? 'right-0' : 'left-0'
