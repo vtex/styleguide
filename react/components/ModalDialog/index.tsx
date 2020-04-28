@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import PropTypes from 'prop-types'
 
 import Modal, { Props as ModalProps } from '../Modal'
 import Button from '../Button'
@@ -13,7 +14,7 @@ type Props = Pick<
   'children' | 'isOpen' | 'onClose' | 'onCloseTransitionFinish'
 > & {
   loading?: boolean
-  confirmation: DialogOption & { isDangerous?: boolean }
+  confirmation: DialogOption & { isDangerous?: boolean | null }
   cancelation: DialogOption
 }
 
@@ -61,6 +62,35 @@ const ModalDialog: FC<Props> = ({
       {children}
     </Modal>
   )
+}
+
+ModalDialog.propTypes = {
+  /** Content of the Modal. */
+  children: PropTypes.node,
+  /** Function called when Modal is closed. */
+  onClose: PropTypes.func.isRequired,
+  /** Show or hide the modal. */
+  isOpen: PropTypes.bool.isRequired,
+  /** Loading state. */
+  loading: PropTypes.bool,
+  /** Event fired when the closing transition is finished. */
+  onCloseTransitionFinish: PropTypes.func,
+  /** Confirmation option. */
+  confirmation: PropTypes.shape({
+    label: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired,
+    isDangerous: PropTypes.bool,
+  }).isRequired,
+  /** Cancelation option. */
+  cancelation: PropTypes.shape({
+    label: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired,
+  }).isRequired,
+}
+
+ModalDialog.defaultProps = {
+  isOpen: false,
+  loading: false,
 }
 
 export default ModalDialog
