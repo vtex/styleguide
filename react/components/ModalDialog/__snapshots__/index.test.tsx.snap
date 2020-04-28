@@ -4,6 +4,7 @@ exports[`ModalDialog cancelation should render label 1`] = `
 <div>
   <div
     class="flex fixed z-max overflow-hidden overflow-hidden bg-black-70 absolute--fill items-center"
+    data-testid="modal__overlay"
     tabindex="-1"
   >
     <div
@@ -21,7 +22,10 @@ exports[`ModalDialog cancelation should render label 1`] = `
       data-focus-lock-disabled="false"
     >
       <div
-        class="flex flex-column relative bg-white shadow-5 center mv9 glow vw-60-ns vw-50"
+        aria-labelledby="vtex-modal__title"
+        aria-modal="true"
+        class="flex flex-column relative bg-white shadow-5 center mv9 vw-50-ns vw-50"
+        data-testid="modal__modal"
         role="dialog"
       >
         <div
@@ -54,10 +58,17 @@ exports[`ModalDialog cancelation should render label 1`] = `
               </svg>
             </div>
           </div>
+          <span
+            class="t-heading-4 ml8"
+          >
+            <div
+              class="undefined"
+              id="vtex-modal__title"
+            />
+          </span>
         </div>
         <div
-          class="ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 undefined"
-          style="max-height: 60vh;"
+          class="ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 undefined undefined"
         >
           Foo
         </div>
@@ -108,6 +119,7 @@ exports[`ModalDialog confirmation isDangerous CSS 1`] = `
 <div>
   <div
     class="flex fixed z-max overflow-hidden overflow-hidden bg-black-70 absolute--fill items-center"
+    data-testid="modal__overlay"
     tabindex="-1"
   >
     <div
@@ -125,7 +137,10 @@ exports[`ModalDialog confirmation isDangerous CSS 1`] = `
       data-focus-lock-disabled="false"
     >
       <div
-        class="flex flex-column relative bg-white shadow-5 center mv9 glow vw-60-ns vw-50"
+        aria-labelledby="vtex-modal__title"
+        aria-modal="true"
+        class="flex flex-column relative bg-white shadow-5 center mv9 vw-50-ns vw-50"
+        data-testid="modal__modal"
         role="dialog"
       >
         <div
@@ -158,10 +173,17 @@ exports[`ModalDialog confirmation isDangerous CSS 1`] = `
               </svg>
             </div>
           </div>
+          <span
+            class="t-heading-4 ml8"
+          >
+            <div
+              class="undefined"
+              id="vtex-modal__title"
+            />
+          </span>
         </div>
         <div
-          class="ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 undefined"
-          style="max-height: 60vh;"
+          class="ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 undefined undefined"
         >
           Foo
         </div>
@@ -183,7 +205,7 @@ exports[`ModalDialog confirmation isDangerous CSS 1`] = `
                 </div>
               </button>
               <button
-                class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small bg-action-primary b--action-primary c-on-action-primary hover-bg-action-primary hover-b--action-primary hover-c-on-action-primary pointer "
+                class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small bg-danger b--danger c-on-danger hover-bg-danger hover-b--danger hover-c-on-danger pointer "
                 tabindex="0"
                 type="button"
               >
@@ -212,6 +234,7 @@ exports[`ModalDialog confirmation should render label 1`] = `
 <div>
   <div
     class="flex fixed z-max overflow-hidden overflow-hidden bg-black-70 absolute--fill items-center"
+    data-testid="modal__overlay"
     tabindex="-1"
   >
     <div
@@ -229,7 +252,10 @@ exports[`ModalDialog confirmation should render label 1`] = `
       data-focus-lock-disabled="false"
     >
       <div
-        class="flex flex-column relative bg-white shadow-5 center mv9 glow vw-60-ns vw-50"
+        aria-labelledby="vtex-modal__title"
+        aria-modal="true"
+        class="flex flex-column relative bg-white shadow-5 center mv9 vw-50-ns vw-50"
+        data-testid="modal__modal"
         role="dialog"
       >
         <div
@@ -262,10 +288,17 @@ exports[`ModalDialog confirmation should render label 1`] = `
               </svg>
             </div>
           </div>
+          <span
+            class="t-heading-4 ml8"
+          >
+            <div
+              class="undefined"
+              id="vtex-modal__title"
+            />
+          </span>
         </div>
         <div
-          class="ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 undefined"
-          style="max-height: 60vh;"
+          class="ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 undefined undefined"
         >
           Foo
         </div>
@@ -316,6 +349,7 @@ exports[`ModalDialog loading CSS 1`] = `
 <div>
   <div
     class="flex fixed z-max overflow-hidden overflow-hidden bg-black-70 absolute--fill items-center"
+    data-testid="modal__overlay"
     tabindex="-1"
   >
     <div
@@ -333,7 +367,10 @@ exports[`ModalDialog loading CSS 1`] = `
       data-focus-lock-disabled="false"
     >
       <div
-        class="flex flex-column relative bg-white shadow-5 center mv9 glow vw-60-ns vw-50"
+        aria-labelledby="vtex-modal__title"
+        aria-modal="true"
+        class="flex flex-column relative bg-white shadow-5 center mv9 vw-50-ns vw-50"
+        data-testid="modal__modal"
         role="dialog"
       >
         <div
@@ -366,10 +403,17 @@ exports[`ModalDialog loading CSS 1`] = `
               </svg>
             </div>
           </div>
+          <span
+            class="t-heading-4 ml8"
+          >
+            <div
+              class="undefined"
+              id="vtex-modal__title"
+            />
+          </span>
         </div>
         <div
-          class="ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 undefined"
-          style="max-height: 60vh;"
+          class="ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 undefined undefined"
         >
           Foo
         </div>

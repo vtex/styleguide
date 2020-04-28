@@ -125,7 +125,7 @@ describe('ModalDialog', () => {
           confirmation={{
             label: confirmLabel,
             onClick: onConfirm,
-            isDangereous: true,
+            isDangerous: true,
           }}
         >
           Foo
@@ -152,7 +152,7 @@ describe('ModalDialog', () => {
           confirmation={{
             label: 'confirm',
             onClick: () => null,
-            isDangereous: true,
+            isDangerous: true,
           }}
         >
           Foo

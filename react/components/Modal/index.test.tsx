@@ -7,7 +7,7 @@ describe('Modal', () => {
   jest.spyOn(window, 'scroll').mockImplementation()
 
   it('should have a default export', () => {
-    expect(typeof Modal).toBe('function')
+    expect(typeof Modal).toBe('object')
   })
 
   describe('onClose', () => {
@@ -30,13 +30,13 @@ describe('Modal', () => {
     it('should be called on esc by default', () => {
       const onClose = jest.fn()
 
-      const { container } = render(
+      const { getByRole } = render(
         <Modal isOpen onClose={onClose}>
           Foo
         </Modal>
       )
 
-      fireEvent.keyDown(container, { key: 'Escape', keyCode: 27 })
+      fireEvent.keyDown(getByRole('dialog'), { key: 'Escape', keyCode: 27 })
 
       expect(onClose).toHaveBeenCalled()
     })
@@ -44,13 +44,13 @@ describe('Modal', () => {
     it('should not be called when closeOnEsc prop is false', () => {
       const onClose = jest.fn()
 
-      const { container } = render(
+      const { getByRole } = render(
         <Modal isOpen onClose={onClose} closeOnEsc={false}>
           Foo
         </Modal>
       )
 
-      fireEvent.keyDown(container, { key: 'Escape', keyCode: 27 })
+      fireEvent.keyDown(getByRole('dialog'), { key: 'Escape', keyCode: 27 })
 
       expect(onClose).not.toHaveBeenCalled()
     })
@@ -58,26 +58,29 @@ describe('Modal', () => {
     it('should be called when click on the overlay by default', () => {
       const onClose = jest.fn()
 
-      render(
+      const { container } = render(
         <Modal isOpen onClose={onClose}>
           Foo
         </Modal>
       )
-
-      fireEvent.click(document?.querySelector('.vtex-modal__overlay'))
+      fireEvent.click(
+        document.querySelector('[data-testid="modal__overlay"]') ?? container
+      )
       expect(onClose).toHaveBeenCalled()
     })
 
     it('should not be called when closeOnOverlayClick prop is false', () => {
       const onClose = jest.fn()
 
-      render(
+      const { container } = render(
         <Modal isOpen onClose={onClose} closeOnOverlayClick={false}>
           Foo
         </Modal>
       )
 
-      fireEvent.click(document?.querySelector('.vtex-modal__overlay'))
+      fireEvent.click(
+        document.querySelector('[data-testid="modal__overlay"]') ?? container
+      )
       expect(onClose).not.toHaveBeenCalled()
     })
   })
@@ -158,7 +161,9 @@ describe('Modal', () => {
         </Modal>,
         { container: document.body.appendChild(containerModal) }
       )
-      expect(container.querySelector('.vtex-modal__modal')).not.toBeNull()
+      expect(
+        container.querySelector('[data-testid="modal__modal"]')
+      ).not.toBeNull()
       expect(container).toMatchSnapshot()
     })
   })
@@ -169,7 +174,7 @@ describe('Modal', () => {
       const onClose = jest.fn()
       const onCloseTransitionFinish = jest.fn()
 
-      const { container, rerender } = render(
+      const { getByRole, rerender } = render(
         <Modal
           isOpen
           onClose={onClose}
@@ -179,8 +184,7 @@ describe('Modal', () => {
         </Modal>
       )
 
-      fireEvent.keyDown(container, { key: 'Escape', keyCode: 27 })
-
+      fireEvent.keyDown(getByRole('dialog'), { key: 'Escape', keyCode: 27 })
       rerender(
         <Modal
           isOpen={false}
@@ -190,6 +194,7 @@ describe('Modal', () => {
           Foo
         </Modal>
       )
+
       jest.runAllTimers()
       expect(onCloseTransitionFinish).toHaveBeenCalled()
     })
@@ -257,7 +262,7 @@ describe('Modal', () => {
           isOpen
           onClose={onClose}
           showBottomBarBorder={false}
-          contanier={containerModal}
+          container={containerModal}
         >
           Foo
         </Modal>,
@@ -272,7 +277,7 @@ describe('Modal', () => {
       const onClose = jest.fn()
 
       const { container } = render(
-        <Modal isOpen onClose={onClose} centered contanier={containerModal}>
+        <Modal isOpen onClose={onClose} centered container={containerModal}>
           Foo
         </Modal>,
         { container: containerModal }
