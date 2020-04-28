@@ -12,6 +12,7 @@ export interface Props
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
   isOpen: boolean
   onClose: () => unknown
+  children: React.ReactNode
   container?: Element
   closeOnOverlayClick?: boolean
   showTopBar?: boolean
@@ -24,7 +25,6 @@ export interface Props
   centered?: boolean
   size?: 'small' | 'medium' | 'large'
   responsiveFullScreen?: boolean
-  children: React.ReactNode
 }
 
 type OverlayProps = Required<
@@ -95,6 +95,7 @@ export const ModalOverlay: FC<OverlayProps> = ({
           onClick={handleClick}
           onKeyDown={() => {}}
           onAnimationEnd={handleAnimationEnd}
+          data-testid="modal__overlay"
         >
           <FocusLock className={`${styles.contents}`}>{children}</FocusLock>
         </div>,
@@ -143,6 +144,7 @@ const ModalContent = forwardRef<HTMLDivElement, ContentProps>(
         onClick={e => e.stopPropagation()}
         onKeyDown={handleKeyDown}
         ref={forwardedRef}
+        data-testid="modal__modal"
         role="dialog"
         aria-modal="true"
         aria-labelledby={props['aria-label'] ? '' : 'vtex-modal__title'}
@@ -181,11 +183,11 @@ function Modal(
     onClose,
     title,
     bottomBar,
+    onCloseTransitionFinish,
     closeOnOverlayClick = true,
     container = document.body,
     showCloseIcon = true,
     closeOnEsc = true,
-    onCloseTransitionFinish,
     centered = true,
     responsiveFullScreen = false,
     size = 'medium',
@@ -275,7 +277,7 @@ FowardedModal.propTypes = {
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   /** Acessible Modal name. If this name is visible on the screen, prefer to use aria-labelledby */
   'aria-label': PropTypes.string,
-  /** ID of the element that provides the Modal an accessible name. Usually the title element. */
+  /** ID of the element that provides the Modal an accessible name. If aria-label and aria-albelledby is not defined, the default here will be the title element. */
   'aria-labelledby': PropTypes.string,
   /** ID of the element that provides the Modal an accessible description. */
   'aria-describedby': PropTypes.string,
@@ -291,6 +293,7 @@ FowardedModal.defaultProps = {
   centered: true,
   size: 'medium',
   responsiveFullScreen: false,
+  'aria-labelledby': 'vtex-modal__title',
 }
 
 export default FowardedModal

@@ -1,11 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Modal CSS API centered 1`] = `<div />`;
-
-exports[`Modal CSS API default 1`] = `
+exports[`Modal CSS API centered 1`] = `
 <div>
   <div
     class="flex fixed z-max overflow-hidden overflow-hidden bg-black-70 absolute--fill items-center"
+    data-testid="modal__overlay"
     tabindex="-1"
   >
     <div
@@ -23,506 +22,10 @@ exports[`Modal CSS API default 1`] = `
       data-focus-lock-disabled="false"
     >
       <div
-        class="flex flex-column relative bg-white shadow-5 center mv9 glow vw-60-ns vw-50"
-        role="dialog"
-      >
-        <div
-          class="mb5"
-        >
-          <div
-            class="min-h-large pl8"
-          >
-            <div
-              class="fr pointer pr6-ns pt6-ns pr5 pt5"
-              role="button"
-              tabindex="0"
-            >
-              <svg
-                class="vtex__icon-close  "
-                fill="none"
-                height="16"
-                viewBox="0 0 18 18"
-                width="16"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <g
-                  fill="black"
-                >
-                  <path
-                    d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
-                  />
-                </g>
-              </svg>
-            </div>
-          </div>
-        </div>
-        <div
-          class="ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 undefined"
-          style="max-height: 60vh;"
-        >
-          Foo
-        </div>
-      </div>
-    </div>
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="0"
-    />
-  </div>
-</div>
-`;
-
-exports[`Modal CSS API responsiveFullScreen true 1`] = `
-<div>
-  <div
-    class="flex fixed z-max overflow-hidden overflow-hidden bg-black-70 absolute--fill items-center"
-    tabindex="-1"
-  >
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="0"
-    />
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="1"
-    />
-    <div
-      class="undefined"
-      data-focus-lock-disabled="false"
-    >
-      <div
-        class="flex flex-column relative bg-white shadow-5 center mv9 glow vw-60-ns h-100 h-auto-ns vw-100"
-        role="dialog"
-      >
-        <div
-          class="mb5"
-        >
-          <div
-            class="min-h-large pl8"
-          >
-            <div
-              class="fr pointer pr6 pt6"
-              role="button"
-              tabindex="0"
-            >
-              <svg
-                class="vtex__icon-close  "
-                fill="none"
-                height="16"
-                viewBox="0 0 18 18"
-                width="16"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <g
-                  fill="black"
-                >
-                  <path
-                    d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
-                  />
-                </g>
-              </svg>
-            </div>
-          </div>
-        </div>
-        <div
-          class="ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 undefined"
-          style="max-height: 60vh;"
-        >
-          Foo
-        </div>
-      </div>
-    </div>
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="0"
-    />
-  </div>
-</div>
-`;
-
-exports[`Modal CSS API showBottomBarBorder false 1`] = `<div />`;
-
-exports[`Modal CSS API showTopBar false 1`] = `
-<div>
-  <div
-    class="flex fixed z-max overflow-hidden overflow-hidden bg-black-70 absolute--fill items-center"
-    tabindex="-1"
-  >
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="0"
-    />
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="1"
-    />
-    <div
-      class="undefined"
-      data-focus-lock-disabled="false"
-    >
-      <div
-        class="flex flex-column relative bg-white shadow-5 center mv9 glow vw-60-ns vw-50"
-        role="dialog"
-      >
-        <div
-          class="mb5"
-        >
-          <div
-            class="min-h-large pl8"
-          >
-            <div
-              class="fr pointer pr6-ns pt6-ns pr5 pt5"
-              role="button"
-              tabindex="0"
-            >
-              <svg
-                class="vtex__icon-close  "
-                fill="none"
-                height="16"
-                viewBox="0 0 18 18"
-                width="16"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <g
-                  fill="black"
-                >
-                  <path
-                    d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
-                  />
-                </g>
-              </svg>
-            </div>
-          </div>
-        </div>
-        <div
-          class="ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 undefined"
-          style="max-height: 60vh;"
-        >
-          Foo
-        </div>
-      </div>
-    </div>
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="0"
-    />
-  </div>
-</div>
-`;
-
-exports[`Modal bottomBar should render bottomBar 1`] = `
-<div>
-  <div
-    class="flex fixed z-max overflow-hidden overflow-hidden bg-black-70 absolute--fill items-center"
-    tabindex="-1"
-  >
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="0"
-    />
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="1"
-    />
-    <div
-      class="undefined"
-      data-focus-lock-disabled="false"
-    >
-      <div
-        class="flex flex-column relative bg-white shadow-5 center mv9 glow vw-60-ns vw-50"
-        role="dialog"
-      >
-        <div
-          class="mb5"
-        >
-          <div
-            class="min-h-large pl8"
-          >
-            <div
-              class="fr pointer pr6-ns pt6-ns pr5 pt5"
-              role="button"
-              tabindex="0"
-            >
-              <svg
-                class="vtex__icon-close  "
-                fill="none"
-                height="16"
-                viewBox="0 0 18 18"
-                width="16"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <g
-                  fill="black"
-                >
-                  <path
-                    d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
-                  />
-                </g>
-              </svg>
-            </div>
-          </div>
-        </div>
-        <div
-          class="ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 undefined"
-          style="max-height: 60vh;"
-        >
-          Foo
-        </div>
-        <div
-          class="flex justify-content flex-row-reverse min-h-regular-ns min-h-small pv6-ns ph8-ns pv7 ph6 mt3 bt b--muted-4"
-        >
-          <div>
-            <div>
-              Bar
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="0"
-    />
-  </div>
-</div>
-`;
-
-exports[`Modal container should render modal inside it 1`] = `
-<div>
-  <div
-    class="styles_overlay__CLSq- vtex-modal__overlay styles_transitionEnter__3j_-a styles_transitionEnterActive___eQs7"
-    style="background-color: rgba(0, 0, 0, 0.8); z-index: 10000;"
-  >
-    <div
-      class="styles_modal__gNwvD vtex-modal__modal br2 w-100 undefined flex flex-column"
-      style="padding: 0px;"
-    >
-      <div
-        class="
-        flex justify-content relative 
-        pl6 pr8 pl8-ns
-        undefined
-        
-      "
-      >
-        <span
-          class="f3 c-on-base w-100"
-        />
-        <div
-          class="vtex-modal__close-icon absolute top-0 right-0 pa5 pa6-ns pointer ml-auto items-center flex"
-          role="button"
-          tabindex="0"
-        >
-          <svg
-            class="vtex__icon-close  "
-            fill="none"
-            height="18"
-            viewBox="0 0 18 18"
-            width="18"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-          >
-            <g
-              fill="currentColor"
-            >
-              <path
-                d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
-              />
-            </g>
-          </svg>
-        </div>
-      </div>
-      <div
-        class="ph6 ph8-ns overflow-auto flex-shrink-1 flex-grow-1 pb8 pt5 pt6-ns undefined"
-      >
-        Foo
-      </div>
-      
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Modal isOpen Should show modal when isOpen is true and hide when is false 1`] = `
-<div>
-  <div
-    class="flex fixed z-max overflow-hidden overflow-hidden bg-black-70 absolute--fill items-center"
-    tabindex="-1"
-  >
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="0"
-    />
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="1"
-    />
-    <div
-      class="undefined"
-      data-focus-lock-disabled="false"
-    >
-      <div
-        class="flex flex-column relative bg-white shadow-5 center mv9 glow vw-60-ns vw-50"
-        role="dialog"
-      >
-        <div
-          class="mb5"
-        >
-          <div
-            class="min-h-large pl8"
-          >
-            <div
-              class="fr pointer pr6-ns pt6-ns pr5 pt5"
-              role="button"
-              tabindex="0"
-            >
-              <svg
-                class="vtex__icon-close  "
-                fill="none"
-                height="16"
-                viewBox="0 0 18 18"
-                width="16"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <g
-                  fill="black"
-                >
-                  <path
-                    d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
-                  />
-                </g>
-              </svg>
-            </div>
-          </div>
-        </div>
-        <div
-          class="ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 undefined"
-          style="max-height: 60vh;"
-        >
-          Foo
-        </div>
-      </div>
-    </div>
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="0"
-    />
-  </div>
-</div>
-`;
-
-exports[`Modal isOpen Should show modal when isOpen is true and hide when is false 2`] = `
-<div>
-  <div
-    class="flex fixed z-max overflow-hidden overflow-hidden bg-black-70 absolute--fill items-center"
-    tabindex="-1"
-  >
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="0"
-    />
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="1"
-    />
-    <div
-      class="undefined"
-      data-focus-lock-disabled="false"
-    >
-      <div
-        class="flex flex-column relative bg-white shadow-5 center mv9 glow vw-60-ns vw-50"
-        role="dialog"
-      >
-        <div
-          class="mb5"
-        >
-          <div
-            class="min-h-large pl8"
-          >
-            <div
-              class="fr pointer pr6-ns pt6-ns pr5 pt5"
-              role="button"
-              tabindex="0"
-            >
-              <svg
-                class="vtex__icon-close  "
-                fill="none"
-                height="16"
-                viewBox="0 0 18 18"
-                width="16"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <g
-                  fill="black"
-                >
-                  <path
-                    d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
-                  />
-                </g>
-              </svg>
-            </div>
-          </div>
-        </div>
-        <div
-          class="ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 undefined"
-          style="max-height: 60vh;"
-        >
-          Foo
-        </div>
-      </div>
-    </div>
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="0"
-    />
-  </div>
-</div>
-`;
-
-exports[`Modal title should render title prop 1`] = `
-<DocumentFragment>
-  <div
-    class="flex fixed z-max overflow-hidden overflow-hidden bg-black-70 absolute--fill items-center"
-    tabindex="-1"
-  >
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="0"
-    />
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="1"
-    />
-    <div
-      class="undefined"
-      data-focus-lock-disabled="false"
-    >
-      <div
-        class="flex flex-column relative bg-white shadow-5 center mv9 glow vw-60-ns vw-50"
+        aria-labelledby="vtex-modal__title"
+        aria-modal="true"
+        class="flex flex-column relative bg-white shadow-5 center mv9 vw-50-ns vw-50"
+        data-testid="modal__modal"
         role="dialog"
       >
         <div
@@ -558,12 +61,764 @@ exports[`Modal title should render title prop 1`] = `
           <span
             class="t-heading-4 ml8"
           >
-            modal title
+            <div
+              class="undefined"
+              id="vtex-modal__title"
+            />
           </span>
         </div>
         <div
-          class="ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 undefined"
-          style="max-height: 60vh;"
+          class="ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 undefined undefined"
+        >
+          Foo
+        </div>
+      </div>
+    </div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+  </div>
+</div>
+`;
+
+exports[`Modal CSS API default 1`] = `
+<div>
+  <div
+    class="flex fixed z-max overflow-hidden overflow-hidden bg-black-70 absolute--fill items-center"
+    data-testid="modal__overlay"
+    tabindex="-1"
+  >
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="1"
+    />
+    <div
+      class="undefined"
+      data-focus-lock-disabled="false"
+    >
+      <div
+        aria-labelledby="vtex-modal__title"
+        aria-modal="true"
+        class="flex flex-column relative bg-white shadow-5 center mv9 vw-50-ns vw-50"
+        data-testid="modal__modal"
+        role="dialog"
+      >
+        <div
+          class="mb5"
+        >
+          <div
+            class="min-h-large pl8"
+          >
+            <div
+              class="fr pointer pr6-ns pt6-ns pr5 pt5"
+              role="button"
+              tabindex="0"
+            >
+              <svg
+                class="vtex__icon-close  "
+                fill="none"
+                height="16"
+                viewBox="0 0 18 18"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <g
+                  fill="black"
+                >
+                  <path
+                    d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+                  />
+                </g>
+              </svg>
+            </div>
+          </div>
+          <span
+            class="t-heading-4 ml8"
+          >
+            <div
+              class="undefined"
+              id="vtex-modal__title"
+            />
+          </span>
+        </div>
+        <div
+          class="ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 undefined undefined"
+        >
+          Foo
+        </div>
+      </div>
+    </div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+  </div>
+</div>
+`;
+
+exports[`Modal CSS API responsiveFullScreen true 1`] = `
+<div>
+  <div
+    class="flex fixed z-max overflow-hidden overflow-hidden bg-black-70 absolute--fill items-center"
+    data-testid="modal__overlay"
+    tabindex="-1"
+  >
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="1"
+    />
+    <div
+      class="undefined"
+      data-focus-lock-disabled="false"
+    >
+      <div
+        aria-labelledby="vtex-modal__title"
+        aria-modal="true"
+        class="flex flex-column relative bg-white shadow-5 center mv9 vw-50-ns h-100 h-auto-ns vw-100"
+        data-testid="modal__modal"
+        role="dialog"
+      >
+        <div
+          class="mb5"
+        >
+          <div
+            class="min-h-large pl8"
+          >
+            <div
+              class="fr pointer pr6 pt6"
+              role="button"
+              tabindex="0"
+            >
+              <svg
+                class="vtex__icon-close  "
+                fill="none"
+                height="16"
+                viewBox="0 0 18 18"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <g
+                  fill="black"
+                >
+                  <path
+                    d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+                  />
+                </g>
+              </svg>
+            </div>
+          </div>
+          <span
+            class="t-heading-4 ml8"
+          >
+            <div
+              class="undefined"
+              id="vtex-modal__title"
+            />
+          </span>
+        </div>
+        <div
+          class="ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 undefined undefined"
+        >
+          Foo
+        </div>
+      </div>
+    </div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+  </div>
+</div>
+`;
+
+exports[`Modal CSS API showBottomBarBorder false 1`] = `
+<div>
+  <div
+    class="flex fixed z-max overflow-hidden overflow-hidden bg-black-70 absolute--fill items-center"
+    data-testid="modal__overlay"
+    tabindex="-1"
+  >
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="1"
+    />
+    <div
+      class="undefined"
+      data-focus-lock-disabled="false"
+    >
+      <div
+        aria-labelledby="vtex-modal__title"
+        aria-modal="true"
+        class="flex flex-column relative bg-white shadow-5 center mv9 vw-50-ns vw-50"
+        data-testid="modal__modal"
+        role="dialog"
+      >
+        <div
+          class="mb5"
+        >
+          <div
+            class="min-h-large pl8"
+          >
+            <div
+              class="fr pointer pr6-ns pt6-ns pr5 pt5"
+              role="button"
+              tabindex="0"
+            >
+              <svg
+                class="vtex__icon-close  "
+                fill="none"
+                height="16"
+                viewBox="0 0 18 18"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <g
+                  fill="black"
+                >
+                  <path
+                    d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+                  />
+                </g>
+              </svg>
+            </div>
+          </div>
+          <span
+            class="t-heading-4 ml8"
+          >
+            <div
+              class="undefined"
+              id="vtex-modal__title"
+            />
+          </span>
+        </div>
+        <div
+          class="ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 undefined undefined"
+        >
+          Foo
+        </div>
+      </div>
+    </div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+  </div>
+</div>
+`;
+
+exports[`Modal CSS API showTopBar false 1`] = `
+<div>
+  <div
+    class="flex fixed z-max overflow-hidden overflow-hidden bg-black-70 absolute--fill items-center"
+    data-testid="modal__overlay"
+    tabindex="-1"
+  >
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="1"
+    />
+    <div
+      class="undefined"
+      data-focus-lock-disabled="false"
+    >
+      <div
+        aria-labelledby="vtex-modal__title"
+        aria-modal="true"
+        class="flex flex-column relative bg-white shadow-5 center mv9 vw-50-ns vw-50"
+        data-testid="modal__modal"
+        role="dialog"
+      >
+        <div
+          class="mb5"
+        >
+          <div
+            class="min-h-large pl8"
+          >
+            <div
+              class="fr pointer pr6-ns pt6-ns pr5 pt5"
+              role="button"
+              tabindex="0"
+            >
+              <svg
+                class="vtex__icon-close  "
+                fill="none"
+                height="16"
+                viewBox="0 0 18 18"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <g
+                  fill="black"
+                >
+                  <path
+                    d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+                  />
+                </g>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div
+          class="ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 undefined undefined"
+        >
+          Foo
+        </div>
+      </div>
+    </div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+  </div>
+</div>
+`;
+
+exports[`Modal bottomBar should render bottomBar 1`] = `
+<div>
+  <div
+    class="flex fixed z-max overflow-hidden overflow-hidden bg-black-70 absolute--fill items-center"
+    data-testid="modal__overlay"
+    tabindex="-1"
+  >
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="1"
+    />
+    <div
+      class="undefined"
+      data-focus-lock-disabled="false"
+    >
+      <div
+        aria-labelledby="vtex-modal__title"
+        aria-modal="true"
+        class="flex flex-column relative bg-white shadow-5 center mv9 vw-50-ns vw-50"
+        data-testid="modal__modal"
+        role="dialog"
+      >
+        <div
+          class="mb5"
+        >
+          <div
+            class="min-h-large pl8"
+          >
+            <div
+              class="fr pointer pr6-ns pt6-ns pr5 pt5"
+              role="button"
+              tabindex="0"
+            >
+              <svg
+                class="vtex__icon-close  "
+                fill="none"
+                height="16"
+                viewBox="0 0 18 18"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <g
+                  fill="black"
+                >
+                  <path
+                    d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+                  />
+                </g>
+              </svg>
+            </div>
+          </div>
+          <span
+            class="t-heading-4 ml8"
+          >
+            <div
+              class="undefined"
+              id="vtex-modal__title"
+            />
+          </span>
+        </div>
+        <div
+          class="ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 undefined undefined"
+        >
+          Foo
+        </div>
+        <div
+          class="flex justify-content flex-row-reverse min-h-regular-ns min-h-small pv6-ns ph8-ns pv7 ph6 mt3 bt b--muted-4"
+        >
+          <div>
+            <div>
+              Bar
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+  </div>
+</div>
+`;
+
+exports[`Modal container should render modal inside it 1`] = `
+<div>
+  <div
+    class="flex fixed z-max overflow-hidden overflow-hidden bg-black-70 absolute--fill items-center"
+    data-testid="modal__overlay"
+    tabindex="-1"
+  >
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="1"
+    />
+    <div
+      class="undefined"
+      data-focus-lock-disabled="false"
+    >
+      <div
+        aria-labelledby="vtex-modal__title"
+        aria-modal="true"
+        class="flex flex-column relative bg-white shadow-5 center mv9 vw-50-ns vw-50"
+        data-testid="modal__modal"
+        role="dialog"
+      >
+        <div
+          class="mb5"
+        >
+          <div
+            class="min-h-large pl8"
+          >
+            <div
+              class="fr pointer pr6-ns pt6-ns pr5 pt5"
+              role="button"
+              tabindex="0"
+            >
+              <svg
+                class="vtex__icon-close  "
+                fill="none"
+                height="16"
+                viewBox="0 0 18 18"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <g
+                  fill="black"
+                >
+                  <path
+                    d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+                  />
+                </g>
+              </svg>
+            </div>
+          </div>
+          <span
+            class="t-heading-4 ml8"
+          >
+            <div
+              class="undefined"
+              id="vtex-modal__title"
+            />
+          </span>
+        </div>
+        <div
+          class="ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 undefined undefined"
+        >
+          Foo
+        </div>
+      </div>
+    </div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+  </div>
+</div>
+`;
+
+exports[`Modal isOpen Should show modal when isOpen is true and hide when is false 1`] = `
+<div>
+  <div
+    class="flex fixed z-max overflow-hidden overflow-hidden bg-black-70 absolute--fill items-center"
+    data-testid="modal__overlay"
+    tabindex="-1"
+  >
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="1"
+    />
+    <div
+      class="undefined"
+      data-focus-lock-disabled="false"
+    >
+      <div
+        aria-labelledby="vtex-modal__title"
+        aria-modal="true"
+        class="flex flex-column relative bg-white shadow-5 center mv9 vw-50-ns vw-50"
+        data-testid="modal__modal"
+        role="dialog"
+      >
+        <div
+          class="mb5"
+        >
+          <div
+            class="min-h-large pl8"
+          >
+            <div
+              class="fr pointer pr6-ns pt6-ns pr5 pt5"
+              role="button"
+              tabindex="0"
+            >
+              <svg
+                class="vtex__icon-close  "
+                fill="none"
+                height="16"
+                viewBox="0 0 18 18"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <g
+                  fill="black"
+                >
+                  <path
+                    d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+                  />
+                </g>
+              </svg>
+            </div>
+          </div>
+          <span
+            class="t-heading-4 ml8"
+          >
+            <div
+              class="undefined"
+              id="vtex-modal__title"
+            />
+          </span>
+        </div>
+        <div
+          class="ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 undefined undefined"
+        >
+          Foo
+        </div>
+      </div>
+    </div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+  </div>
+</div>
+`;
+
+exports[`Modal isOpen Should show modal when isOpen is true and hide when is false 2`] = `
+<div>
+  <div
+    class="flex fixed z-max overflow-hidden overflow-hidden bg-black-70 absolute--fill items-center"
+    data-testid="modal__overlay"
+    tabindex="-1"
+  >
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="1"
+    />
+    <div
+      class="undefined"
+      data-focus-lock-disabled="false"
+    >
+      <div
+        aria-labelledby="vtex-modal__title"
+        aria-modal="true"
+        class="flex flex-column relative bg-white shadow-5 center mv9 vw-50-ns vw-50"
+        data-testid="modal__modal"
+        role="dialog"
+      >
+        <div
+          class="mb5"
+        >
+          <div
+            class="min-h-large pl8"
+          >
+            <div
+              class="fr pointer pr6-ns pt6-ns pr5 pt5"
+              role="button"
+              tabindex="0"
+            >
+              <svg
+                class="vtex__icon-close  "
+                fill="none"
+                height="16"
+                viewBox="0 0 18 18"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <g
+                  fill="black"
+                >
+                  <path
+                    d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+                  />
+                </g>
+              </svg>
+            </div>
+          </div>
+          <span
+            class="t-heading-4 ml8"
+          >
+            <div
+              class="undefined"
+              id="vtex-modal__title"
+            />
+          </span>
+        </div>
+        <div
+          class="ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 undefined undefined"
+        >
+          Foo
+        </div>
+      </div>
+    </div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+  </div>
+</div>
+`;
+
+exports[`Modal title should render title prop 1`] = `
+<DocumentFragment>
+  <div
+    class="flex fixed z-max overflow-hidden overflow-hidden bg-black-70 absolute--fill items-center"
+    data-testid="modal__overlay"
+    tabindex="-1"
+  >
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="1"
+    />
+    <div
+      class="undefined"
+      data-focus-lock-disabled="false"
+    >
+      <div
+        aria-labelledby="vtex-modal__title"
+        aria-modal="true"
+        class="flex flex-column relative bg-white shadow-5 center mv9 vw-50-ns vw-50"
+        data-testid="modal__modal"
+        role="dialog"
+      >
+        <div
+          class="mb5"
+        >
+          <div
+            class="min-h-large pl8"
+          >
+            <div
+              class="fr pointer pr6-ns pt6-ns pr5 pt5"
+              role="button"
+              tabindex="0"
+            >
+              <svg
+                class="vtex__icon-close  "
+                fill="none"
+                height="16"
+                viewBox="0 0 18 18"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <g
+                  fill="black"
+                >
+                  <path
+                    d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+                  />
+                </g>
+              </svg>
+            </div>
+          </div>
+          <span
+            class="t-heading-4 ml8"
+          >
+            <div
+              class="undefined"
+              id="vtex-modal__title"
+            >
+              modal title
+            </div>
+          </span>
+        </div>
+        <div
+          class="ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 undefined undefined"
         >
           Foo
         </div>
