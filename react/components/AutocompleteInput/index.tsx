@@ -146,11 +146,11 @@ const AutocompleteInput: React.FunctionComponent<PropTypes.InferProps<
     if (onChange) {
       onChange(newTerm)
     }
-    setSelectedOptionIndex(-1)
+    setSelectedOptionIndex(noSelectedOptionIndex)
   }
 
   const handleClear = () => {
-    setSelectedOptionIndex(-1)
+    setSelectedOptionIndex(noSelectedOptionIndex)
     setShowPopover(false)
 
     setTerm('')
