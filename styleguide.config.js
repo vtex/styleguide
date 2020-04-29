@@ -155,8 +155,8 @@ module.exports = {
         {
           name: 'Overlays',
           components: [
-            'react/components/Modal/index.js',
-            'react/components/ModalDialog/index.js',
+            'react/components/Modal/index.tsx',
+            'react/components/ModalDialog/index.tsx',
           ],
         },
         {
