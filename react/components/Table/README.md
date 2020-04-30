@@ -56,17 +56,17 @@ const defaultSchema = {
 The Schema property is a JSON used to define the table columns and how they should behave visually. The Schema has properties and each one of them defines a column in the table.
 Example with simple structure:
 
-```md
+```js static
 {
-properties: {
-column1: {
-title: "First Column"
-},
-column2: {
-title: "Second Column",
-width: 350
-}
-}
+  properties: {
+    column1: {
+      title: "First Column"
+    },
+    column2: {
+      title: "Second Column",
+      width: 350
+    }
+  }
 }
 ```
 
@@ -874,23 +874,23 @@ class ResourceListExample extends React.Component {
         emptyStateLabel={this.state.emptyStateLabel}
         totalizers={[
           {
-            label: 'Saldo em conta',
+            label: 'Account balance',
             value: 23837,
           },
           {
-            label: 'Entradas',
-            value: 'R$ 36239,05',
+            label: 'Tickets',
+            value: '$ 36239,05',
             iconBackgroundColor: '#eafce3',
             icon: <ArrowUp color="#79B03A" size={14} />,
           },
 
           {
-            label: 'Saídas',
-            value: '- R$ 13.485,26',
+            label: 'Outputs',
+            value: '-$ 13.485,26',
             icon: <ArrowDown size={14} />,
           },
           {
-            label: 'Vendas',
+            label: 'Sales',
             value: 23837,
             isLoading: true,
           },
@@ -1759,23 +1759,23 @@ class ResourceListExample extends React.Component {
         }}
         totalizers={[
           {
-            label: 'Saldo em conta',
+            label: 'Account balance',
             value: 23837,
           },
           {
-            label: 'Entradas',
-            value: 'R$ 36239,05',
+            label: 'Tickets',
+            value: '$ 36239,05',
             iconBackgroundColor: '#eafce3',
             icon: <ArrowUp color="#79B03A" size={14} />,
           },
 
           {
-            label: 'Saídas',
-            value: '- R$ 13.485,26',
+            label: 'Outputs',
+            value: '-$ 13.485,26',
             icon: <ArrowDown size={14} />,
           },
           {
-            label: 'Vendas',
+            label: 'Sales',
             value: 23837,
             isLoading: true,
           },
