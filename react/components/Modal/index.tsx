@@ -8,6 +8,10 @@ import TopBar from './TopBar'
 import BottomBar from './BottomBar'
 import styles from './modal.css'
 
+export function canUseDOM() {
+  return typeof window !== 'undefined' && typeof window.document !== 'undefined'
+}
+
 export interface Props
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
   isOpen: boolean
@@ -28,12 +32,9 @@ export interface Props
 }
 
 type OverlayProps = Required<
-  Pick<
-    Props,
-    'isOpen' | 'container' | 'centered' | 'closeOnOverlayClick' | 'onClose'
-  >
+  Pick<Props, 'isOpen' | 'centered' | 'closeOnOverlayClick' | 'onClose'>
 > &
-  Pick<Props, 'onCloseTransitionFinish'>
+  Pick<Props, 'onCloseTransitionFinish' | 'container'>
 
 type ContentProps = Required<
   Pick<
@@ -99,7 +100,7 @@ export const ModalOverlay: FC<OverlayProps> = ({
         >
           <FocusLock className={`${styles.contents}`}>{children}</FocusLock>
         </div>,
-        container
+        container ?? document.body
       )
     : null
 }
@@ -138,12 +139,12 @@ const ModalContent = forwardRef<HTMLDivElement, ContentProps>(
             'vw-50-ns': size === 'medium',
             'vw-60-ns': size === 'large',
             'h-100 h-auto-ns vw-100': responsiveFullScreen,
-            'vw-50': !responsiveFullScreen,
+            'vw-70': !responsiveFullScreen,
           }
         )}
+        ref={forwardedRef}
         onClick={e => e.stopPropagation()}
         onKeyDown={handleKeyDown}
-        ref={forwardedRef}
         data-testid="modal__modal"
         role="dialog"
         aria-modal="true"
@@ -187,7 +188,7 @@ function Modal(
     bottomBar,
     onCloseTransitionFinish,
     closeOnOverlayClick = true,
-    container = document.body,
+    container,
     showCloseIcon = true,
     closeOnEsc = true,
     centered = true,
