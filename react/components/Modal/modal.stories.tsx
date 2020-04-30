@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-handler-names */
 import React from 'react'
 import { withA11y } from '@storybook/addon-a11y'
 import { withKnobs, boolean, select } from '@storybook/addon-knobs'
@@ -34,6 +35,10 @@ export const Default = () => {
           action('transition-finished')
         }}
         size={select('Size', sizes, 'medium')}
+        showTopBar={boolean('Show Top Bar', true)}
+        centered={boolean('Centered', true)}
+        showBottomBarBorder={boolean('Show Bottom Bar Border', true)}
+        closeOnOverlayClick={boolean('Close On Overlay Click', true)}
         bottomBar={
           <Button
             size="small"
@@ -118,49 +123,49 @@ export const WithDialog = () => {
   )
 }
 
-// export const WithDifferentSizes = () => {
-//   const smallModal = useModal()
-//   const mediumModal = useModal()
-//   const largeModal = useModal()
+export const WithDifferentSizes = () => {
+  const smallModal = useModal()
+  const mediumModal = useModal()
+  const largeModal = useModal()
 
-//   return (
-//     <div className="flex flex-column">
-//       <span className="mr4">
-//         <Button size="small" onClick={() => smallModal.open} type="button">
-//           Open Small Modal
-//         </Button>
-//       </span>
-//       <Modal
-//         size="small"
-//         isOpen={smallModal.isOpen}
-//         onClose={() => smallModal.close}
-//       >
-//         Small Modal
-//       </Modal>
-//       <span className="mr4">
-//         <Button size="regular" onClick={() => mediumModal.open} type="button">
-//           Open Medium Modal
-//         </Button>
-//       </span>
-//       <Modal
-//         size="medium"
-//         isOpen={mediumModal.isOpen}
-//         onClose={() => mediumModal.close}
-//       >
-//         Medium Modal
-//       </Modal>
-//       <span className="mr4">
-//         <Button size="large" onClick={() => largeModal.open} type="button">
-//           Open Large Modal
-//         </Button>
-//       </span>
-//       <Modal
-//         size="large"
-//         isOpen={largeModal.isOpen}
-//         onClose={() => largeModal.close}
-//       >
-//         Large Modal
-//       </Modal>
-//     </div>
-//   )
-// }
+  return (
+    <div className="flex flex-column">
+      <span className="mr4">
+        <Button size="small" onClick={smallModal.open} type="button">
+          Open Small Modal
+        </Button>
+      </span>
+      <Modal
+        size="small"
+        isOpen={smallModal.isOpen}
+        onClose={smallModal.close}
+        title="Small Modal"
+      >
+        Small Modal Content
+      </Modal>
+      <br />
+      <span className="mr4">
+        <Button size="regular" onClick={mediumModal.open} type="button">
+          Open Medium Modal
+        </Button>
+      </span>
+      <Modal
+        size="medium"
+        isOpen={mediumModal.isOpen}
+        onClose={mediumModal.close}
+      >
+        Medium Modal
+      </Modal>
+      <br />
+
+      <span className="mr4">
+        <Button size="large" onClick={largeModal.open} type="button">
+          Open Large Modal
+        </Button>
+      </span>
+      <Modal size="large" isOpen={largeModal.isOpen} onClose={largeModal.close}>
+        Large Modal
+      </Modal>
+    </div>
+  )
+}

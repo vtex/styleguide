@@ -26,7 +26,7 @@ function TopBar(
 
   return (
     <div className="mb5">
-      <div className="min-h-large pl8">
+      <div className="min-h-small min-h-large-ns pl6 pl8-ns">
         {showCloseIcon && (
           <div
             className={classNames('fr pointer', {
