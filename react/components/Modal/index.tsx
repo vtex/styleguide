@@ -4,8 +4,8 @@ import { createPortal } from 'react-dom'
 import classNames from 'classnames'
 import FocusLock from 'react-focus-lock'
 
-import TopBar, { Props as TopBarProps } from './TopBar'
-import BottomBar, { Props as BottomBarProps } from './BottomBar'
+import TopBar from './TopBar'
+import BottomBar from './BottomBar'
 import styles from './modal.css'
 
 export interface Props
@@ -225,24 +225,7 @@ function Modal(
   )
 }
 
-interface Composites {
-  TopBar: React.ForwardRefExoticComponent<
-    TopBarProps & React.RefAttributes<HTMLDivElement>
-  >
-  BottomBar: React.ForwardRefExoticComponent<
-    BottomBarProps & React.RefAttributes<HTMLDivElement>
-  >
-}
-
-export type ComposableModal = React.ForwardRefExoticComponent<
-  Props & React.RefAttributes<HTMLDivElement>
-> &
-  Partial<Composites>
-
-const FowardedModal: ComposableModal = forwardRef(Modal)
-
-FowardedModal.TopBar = TopBar
-FowardedModal.BottomBar = BottomBar
+const FowardedModal = forwardRef<HTMLDivElement, Props>(Modal)
 
 FowardedModal.propTypes = {
   /** Content of the modal. */
