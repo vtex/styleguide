@@ -24,7 +24,7 @@ exports[`ModalDialog cancelation should render label 1`] = `
       <div
         aria-labelledby="vtex-modal__title"
         aria-modal="true"
-        class="flex flex-column relative bg-white shadow-5 center mv9 vw-50-ns vw-50"
+        class="flex flex-column relative bg-white shadow-5 center mv9 vw-50-ns vw-70"
         data-testid="modal__modal"
         role="dialog"
       >
@@ -32,7 +32,7 @@ exports[`ModalDialog cancelation should render label 1`] = `
           class="mb5"
         >
           <div
-            class="min-h-large pl8"
+            class="min-h-small min-h-large-ns pl6 pl8-ns"
           >
             <div
               class="fr pointer pr6-ns pt6-ns pr5 pt5"
@@ -58,14 +58,6 @@ exports[`ModalDialog cancelation should render label 1`] = `
               </svg>
             </div>
           </div>
-          <span
-            class="t-heading-4 ml8"
-          >
-            <div
-              class="undefined"
-              id="vtex-modal__title"
-            />
-          </span>
         </div>
         <div
           class="ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 undefined undefined"
@@ -139,7 +131,7 @@ exports[`ModalDialog confirmation isDangerous CSS 1`] = `
       <div
         aria-labelledby="vtex-modal__title"
         aria-modal="true"
-        class="flex flex-column relative bg-white shadow-5 center mv9 vw-50-ns vw-50"
+        class="flex flex-column relative bg-white shadow-5 center mv9 vw-50-ns vw-70"
         data-testid="modal__modal"
         role="dialog"
       >
@@ -147,7 +139,7 @@ exports[`ModalDialog confirmation isDangerous CSS 1`] = `
           class="mb5"
         >
           <div
-            class="min-h-large pl8"
+            class="min-h-small min-h-large-ns pl6 pl8-ns"
           >
             <div
               class="fr pointer pr6-ns pt6-ns pr5 pt5"
@@ -173,14 +165,6 @@ exports[`ModalDialog confirmation isDangerous CSS 1`] = `
               </svg>
             </div>
           </div>
-          <span
-            class="t-heading-4 ml8"
-          >
-            <div
-              class="undefined"
-              id="vtex-modal__title"
-            />
-          </span>
         </div>
         <div
           class="ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 undefined undefined"
@@ -254,7 +238,7 @@ exports[`ModalDialog confirmation should render label 1`] = `
       <div
         aria-labelledby="vtex-modal__title"
         aria-modal="true"
-        class="flex flex-column relative bg-white shadow-5 center mv9 vw-50-ns vw-50"
+        class="flex flex-column relative bg-white shadow-5 center mv9 vw-50-ns vw-70"
         data-testid="modal__modal"
         role="dialog"
       >
@@ -262,7 +246,7 @@ exports[`ModalDialog confirmation should render label 1`] = `
           class="mb5"
         >
           <div
-            class="min-h-large pl8"
+            class="min-h-small min-h-large-ns pl6 pl8-ns"
           >
             <div
               class="fr pointer pr6-ns pt6-ns pr5 pt5"
@@ -288,14 +272,6 @@ exports[`ModalDialog confirmation should render label 1`] = `
               </svg>
             </div>
           </div>
-          <span
-            class="t-heading-4 ml8"
-          >
-            <div
-              class="undefined"
-              id="vtex-modal__title"
-            />
-          </span>
         </div>
         <div
           class="ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 undefined undefined"
@@ -369,7 +345,7 @@ exports[`ModalDialog loading CSS 1`] = `
       <div
         aria-labelledby="vtex-modal__title"
         aria-modal="true"
-        class="flex flex-column relative bg-white shadow-5 center mv9 vw-50-ns vw-50"
+        class="flex flex-column relative bg-white shadow-5 center mv9 vw-50-ns vw-70"
         data-testid="modal__modal"
         role="dialog"
       >
@@ -377,7 +353,7 @@ exports[`ModalDialog loading CSS 1`] = `
           class="mb5"
         >
           <div
-            class="min-h-large pl8"
+            class="min-h-small min-h-large-ns pl6 pl8-ns"
           >
             <div
               class="fr pointer pr6-ns pt6-ns pr5 pt5"
@@ -403,14 +379,6 @@ exports[`ModalDialog loading CSS 1`] = `
               </svg>
             </div>
           </div>
-          <span
-            class="t-heading-4 ml8"
-          >
-            <div
-              class="undefined"
-              id="vtex-modal__title"
-            />
-          </span>
         </div>
         <div
           class="ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 undefined undefined"
