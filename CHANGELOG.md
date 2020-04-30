@@ -16,7 +16,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - Value when user tries to update with an option selected in the `AutocompleteInput` component
-
 - `AutoCompleteInput` custom render example.
 
 ### Added
