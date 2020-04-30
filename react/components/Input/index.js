@@ -62,7 +62,7 @@ class Input extends Component {
     if (forwardedRef && forwardedRef.current) {
       forwardedRef.current.focus()
     } else if (this.ref.current) {
-      this.ref.focus()
+      this.ref.current.focus()
     }
   }
 
