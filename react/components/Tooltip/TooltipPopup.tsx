@@ -21,6 +21,8 @@ function getChildRefPropType() {
 }
 
 const propTypes = {
+  /** Container element for Portal */
+  container: PropTypes.node,
   /** Tooltip content */
   label: PropTypes.node.isRequired,
   /** Tooltip position */
@@ -58,6 +60,7 @@ const defaultProps = {
 }
 
 const TooltipPopup: FC<PropTypes.InferProps<typeof propTypes>> = ({
+  container,
   position,
   size,
   fallbackPosition,
@@ -100,7 +103,7 @@ const TooltipPopup: FC<PropTypes.InferProps<typeof propTypes>> = ({
   )
 
   return (
-    <Portal>
+    <Portal container={container}>
       <div
         role="tooltip"
         className={popupClasses}

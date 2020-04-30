@@ -5,6 +5,8 @@ import TooltipPopup, { Position, Size } from './TooltipPopup'
 import { useTooltip, Trigger } from './hooks'
 
 const propTypes = {
+  /** Container element for the popup's portal to be rendered (default: document.body) */
+  container: PropTypes.node,
   /** Label to be shown. As element, can be a string, number...*/
   label: PropTypes.node.isRequired,
   /** Tooltip position */

@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- `container` prop to `Tooltip`.
+
 ### Removed
 
 - `ActionMenu` and `Menu` default fixed width.
