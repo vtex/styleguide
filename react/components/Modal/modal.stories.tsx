@@ -8,7 +8,6 @@ import Modal from '.'
 import Button from '../Button'
 import ModalDialog from '../ModalDialog'
 import useModal from './useModal'
-import Input from '../Input'
 
 export default {
   title: 'Components|Modal',
