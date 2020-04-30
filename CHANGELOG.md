@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - **Button** component now is TypeScript based.
 - **withForwardedRef** is now Typescript based.
+- **Modal** component now is TypeScript based.
+- **ModalDialog** component now is TypeScript based.
+- **Modal** `centered` prop default to `true`.
+- `Table`'s `headerRenderer` can be used in columns that are either fixed or sortable
 
 ### Added
 
@@ -19,10 +23,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Tests for `Tabs` component.
 - `useDisclosure` hook.
 - Utilities section in docs.
+- Size prop to Modal.
+- `aria-label`, `aria-labelledby`, and `aria-describedby` prop to Modal.
+- `useModal` hook.
 
-### Changed
+### Fixed
 
-- `Table`'s `headerRenderer` can be used in columns that are either fixed or sortable
+- `centered` Modal prop when `false` did not changed.
+- ModalDialog documentation didn't informed the required props.
 
 ## [9.112.27] - 2020-03-26
 
