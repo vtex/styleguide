@@ -156,9 +156,11 @@ const ModalContent = forwardRef<HTMLDivElement, ContentProps>(
           showTopBar={showTopBar}
           responsiveFullScreen={responsiveFullScreen}
         >
-          <div id="vtex-modal__title" className={`${styles.contents}`}>
-            {title}
-          </div>
+          {title && (
+            <div id="vtex-modal__title" className={`${styles.contents}`}>
+              {title}
+            </div>
+          )}
         </TopBar>
         <div
           className={`ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 ${styles.mh60} ${styles.scrollBar}`}
