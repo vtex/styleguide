@@ -21,15 +21,15 @@
 Default
 
 ```js
-initialState = { value: 'cyan' }
+initialState = { value: 'mastercard' }
 ;<RadioGroup
   hideBorder
-  name="colors"
+  name="paymentMethods"
   options={[
-    { value: 'cyan', label: 'Cyan' },
-    { value: 'magenta', label: 'Magenta' },
-    { value: 'yellow', label: 'Yellow' },
-    { value: 'key', label: 'Black' },
+    { value: 'mastercard', label: 'Mastercard' },
+    { value: 'visa', label: 'Visa' },
+    { value: 'ela', label: 'Elo' },
+    { value: 'diners', label: 'Diners' },
   ]}
   value={state.value}
   onChange={e => setState({ value: e.currentTarget.value })}
@@ -39,41 +39,42 @@ initialState = { value: 'cyan' }
 One option disabled
 
 ```js
-<RadioGroup
+initialState = { value: 'large' }
+;<RadioGroup
   hideBorder
-  name="radioGroupExample2"
+  name="sizes"
   options={[
     {
-      value: 'value1',
+      value: 'large',
       label: (
         <div>
-          <div className="b">L</div>
-          <div className="c-muted-1">Lightness</div>
+          <div className="b">Large</div>
+          <div className="c-muted-1 f6">50x50x60</div>
         </div>
       ),
     },
     {
-      value: 'value2',
+      value: 'medium',
       label: (
         <div>
-          <div className="b">a*</div>
-          <div className="c-muted-1">Green–Red</div>
+          <div className="b">Medium</div>
+          <div className="c-muted-1 f6">40x40x40</div>
         </div>
       ),
       disabled: true,
     },
     {
-      value: 'value3',
+      value: 'small',
       label: (
         <div>
-          <div className="b">b*</div>
-          <div className="c-muted-1">Blue–Yellow</div>
+          <div className="b">Small</div>
+          <div className="c-muted-1 f6">20x20x30</div>
         </div>
       ),
     },
   ]}
-  value="value1"
-  onChange={() => {}}
+  value={state.value}
+  onChange={e => setState({ value: e.currentTarget.value })}
 />
 ```
 
@@ -82,14 +83,14 @@ Entire group disabled
 ```js
 <RadioGroup
   hideBorder
-  name="radioGroupExample3"
+  name="connectors"
   disabled
   options={[
-    { value: 'value1', label: 'Hue' },
-    { value: 'value2', label: 'Saturation' },
-    { value: 'value3', label: 'Value' },
+    { value: 'paypal', label: 'Paypal' },
+    { value: 'cielo', label: 'Cielo' },
+    { value: 'adyen', label: 'Adyen' },
   ]}
-  value="value1"
+  value="paypal"
   onChange={() => {}}
 />
 ```
@@ -97,15 +98,16 @@ Entire group disabled
 With optional border
 
 ```js
-<RadioGroup
-  name="radioGroupExample3"
+initialState = { value: 'active' }
+;<RadioGroup
+  name="status"
   options={[
-    { value: 'value1', label: 'Hue' },
-    { value: 'value2', label: 'Saturation' },
-    { value: 'value3', label: 'Value' },
+    { value: 'active', label: 'Active' },
+    { value: 'inactive', label: 'Inactive' },
+    { value: 'scheduled', label: 'Scheduled' },
   ]}
-  value="value1"
-  onChange={() => {}}
+  value={state.value}
+  onChange={e => setState({ value: e.currentTarget.value })}
 />
 ```
 
