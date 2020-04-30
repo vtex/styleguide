@@ -29,11 +29,39 @@ Default
 
 ```js
 const Tab = require('./Tab').default
+initialState = { currentTab: 1 }
 ;<div>
   <Tabs>
-    <Tab label="label 1" active onClick={() => {}} />
-    <Tab label="label 2" onClick={() => {}} />
-    <Tab label="label 3" onClick={() => {}} />
+    <Tab
+      label="Today"
+      active={state.currentTab === 1}
+      onClick={() => setState({ currentTab: 1 })}>
+      <p>Content for today.</p>
+    </Tab>
+    <Tab
+      label="Yesterday"
+      active={state.currentTab === 2}
+      onClick={() => setState({ currentTab: 2 })}>
+      <p>Content for yesterday.</p>
+    </Tab>
+    <Tab
+      label="Last week"
+      active={state.currentTab === 3}
+      onClick={() => setState({ currentTab: 3 })}>
+      <p>Content for last week.</p>
+    </Tab>
+    <Tab
+      label="Last month"
+      active={state.currentTab === 4}
+      onClick={() => setState({ currentTab: 4 })}>
+      <p>Content for last month.</p>
+    </Tab>
+    <Tab
+      label="Last year"
+      active={state.currentTab === 5}
+      onClick={() => setState({ currentTab: 5 })}>
+      <p>Content for last year.</p>
+    </Tab>
   </Tabs>
 </div>
 ```
@@ -42,11 +70,27 @@ Full width tabs
 
 ```js
 const Tab = require('./Tab').default
+initialState = { currentTab: 1 }
 ;<div>
   <Tabs fullWidth>
-    <Tab label="full width 1" active onClick={() => {}} />
-    <Tab label="full width 2" onClick={() => {}} />
-    <Tab label="full width 3" onClick={() => {}} />
+    <Tab
+      label="Accounts"
+      active={state.currentTab === 1}
+      onClick={() => setState({ currentTab: 1 })}>
+      <p>Content for the accounts.</p>
+    </Tab>
+    <Tab
+      label="Invoices"
+      active={state.currentTab === 2}
+      onClick={() => setState({ currentTab: 2 })}>
+      <p>Content for the invoices.</p>
+    </Tab>
+    <Tab
+      label="Settings"
+      active={state.currentTab === 3}
+      onClick={() => setState({ currentTab: 3 })}>
+      <p>Content for settings.</p>
+    </Tab>
   </Tabs>
 </div>
 ```
@@ -63,55 +107,6 @@ const Tab = require('./Tab').default
 </div>
 ```
 
-Working example
-
-```js
-const Tab = require('./Tab').default
-class TabsExample extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      currentTab: 1,
-    }
-    this.handleTabChange = this.handleTabChange.bind(this)
-  }
-
-  handleTabChange(tabIndex) {
-    this.setState({
-      currentTab: tabIndex,
-    })
-  }
-
-  render() {
-    return (
-      <div>
-        <Tabs>
-          <Tab
-            label="Tab 1"
-            active={this.state.currentTab === 1}
-            onClick={() => this.handleTabChange(1)}>
-            <p>Content for tab 1</p>
-          </Tab>
-          <Tab
-            label="Tab 2"
-            active={this.state.currentTab === 2}
-            onClick={() => this.handleTabChange(2)}>
-            <p>Content for tab 2</p>
-          </Tab>
-          <Tab
-            label="Tab 3"
-            active={this.state.currentTab === 3}
-            onClick={() => this.handleTabChange(3)}>
-            <p>Content for tab 3</p>
-          </Tab>
-        </Tabs>
-      </div>
-    )
-  }
-}
-;<TabsExample />
-```
-
 Sticky Example
 
 ```jsx
@@ -122,7 +117,7 @@ const Tab = require('./Tab').default
       <div className="h5 flex flex-column">
         <p>Scroll to see full content</p>
         <div className="flex items-end h-100">
-          <p>The end!</p>
+          <p>The end.</p>
         </div>
       </div>
     </Tab>
