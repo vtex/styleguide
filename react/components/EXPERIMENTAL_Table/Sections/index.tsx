@@ -17,10 +17,14 @@ import { useLoadingContext } from '../context/loading'
 import Tbody, { ComposableTbody } from './Tbody'
 import Thead, { ComposableThead } from './Thead'
 
-type Props = PropsWithChildren<E2ETestable & HasMotion & NativeTable>
+type Props = PropsWithChildren<
+  E2ETestable &
+    HasMotion &
+    NativeTable & { disableScroll?: boolean; noContainer?: boolean }
+>
 
 function Sections(
-  { children, className, motion }: Props,
+  { children, className, motion, disableScroll = false }: Props,
   ref: Ref<HTMLTableElement>
 ) {
   const { emptyState, empty, loading } = useLoadingContext()
@@ -30,15 +34,14 @@ function Sections(
   return (
     <div
       style={{ height: tableHeight, ...motion }}
-      className={classNames(
-        'order-1 mw-100 overflow-x-auto overflow-y-auto overflow-hidden',
-        ORDER_CLASSNAMES.TABLE
-      )}>
+      className={classNames('mw-100', ORDER_CLASSNAMES.TABLE, {
+        'overflow-x-auto overflow-y-auto overflow-hidden': !disableScroll,
+      })}>
       <table
         ref={ref}
         data-testid={testId}
-        className={`w-100 ${className}`}
-        style={{ borderSpacing: 0 }}>
+        className={classNames('w-100', className)}
+        style={{ borderCollapse: 'collapse' }}>
         {children}
       </table>
       {!empty && loading && (

@@ -42,7 +42,7 @@ function Thead(
       data-testid={`${testId}__header`}
       className={`w-100 ph4 truncate overflow-x-hidden c-muted-2 f6 ${className}`}
       {...restProps}>
-      <Row height={TABLE_HEADER_HEIGHT} header>
+      <Row height={TABLE_HEADER_HEIGHT} header className="bt">
         {({ column, props: receivedProps }) => {
           const { id, title, sortable } = column
           const currentlySorting =
@@ -56,7 +56,7 @@ function Thead(
           const props = {
             ...receivedProps,
             ...clickable,
-            className: classNames('bt normal', { pointer: sortable }),
+            className: classNames('normal', { pointer: sortable }),
             sorting: currentlySorting,
             sortable,
             sticky,

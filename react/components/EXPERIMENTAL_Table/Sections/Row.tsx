@@ -38,10 +38,14 @@ function Row(
   const { rowHeight, density } = useMeasuresContext()
   const { columns } = useDataContext()
   const { highlightOnHover, isRowActive, onRowClick } = useBodyContext()
-  const className = classNames('w-100 truncate overflow-x-hidden', {
-    'pointer hover-c-link': !header && onRowClick,
-    'hover-bg-muted-5': !header && (highlightOnHover || !!onRowClick),
-  })
+  const className = classNames(
+    'w-100 truncate overflow-x-hidden bb b--muted-4',
+    {
+      'pointer hover-c-link': !header && onRowClick,
+      'hover-bg-muted-5': !header && (highlightOnHover || !!onRowClick),
+    },
+    props.className
+  )
   const rowColor =
     data && isRowActive && isRowActive(data)
       ? { backgroundColor: LIGHT_BLUE }
