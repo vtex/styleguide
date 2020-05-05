@@ -78,7 +78,7 @@ function Cell(
   const containerProps = {
     onClick,
     tag: header ? CellTag.Th : CellTag.Td,
-    className: classNames('v-mid ph3 pv0 tl bb b--muted-4', classNameProp, {
+    className: classNames('v-mid ph3 pv0 tl', classNameProp, {
       pointer: onClick,
       'c-on-base': sorting,
       'bg-base bt': header,

@@ -18,7 +18,13 @@ import Tbody, { ComposableTbody } from './Tbody'
 import Thead, { ComposableThead } from './Thead'
 
 type Props = PropsWithChildren<
+<<<<<<< HEAD
   E2ETestable & HasMotion & NativeTable & { disableScroll?: boolean }
+=======
+  E2ETestable &
+    HasMotion &
+    NativeTable & { disableScroll?: boolean; noContainer?: boolean }
+>>>>>>> Fix table overflow
 >
 
 function Sections(
