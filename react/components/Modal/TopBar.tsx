@@ -34,6 +34,7 @@ function TopBar(
               'pr6-ns pt6-ns pr5 pt5': !responsiveFullScreen,
             })}
             role="button"
+            aria-label="Modal Close Button"
             onKeyDown={handleKeyDown}
             onClick={onClose}
             ref={forwardedRef}

@@ -134,10 +134,10 @@ const ModalContent = forwardRef<HTMLDivElement, ContentProps>(
       <div
         className={classNames(
           'flex flex-column relative bg-white shadow-5 center mv9',
+          `${size === 'small' ? styles.mw30 : ''}`,
+          `${size === 'medium' ? styles.mw40 : ''}`,
+          `${size === 'large' ? styles.mw50 : ''}`,
           {
-            'vw-30-ns': size === 'small',
-            'vw-50-ns': size === 'medium',
-            'vw-60-ns': size === 'large',
             'h-100 h-auto-ns vw-100': responsiveFullScreen,
             'vw-70': !responsiveFullScreen,
           }

@@ -27,6 +27,24 @@
   max-height: 80vh;
 }
 
+@media screen and (min-width: 40em) {
+  .mw30 {
+    max-width: 30rem;
+  }
+}
+
+@media screen and (min-width: 40em) {
+  .mw40 {
+    max-width: 40rem;
+  }
+}
+
+@media screen and (min-width: 40em) {
+  .mw50 {
+    max-width: 50rem;
+  }
+}
+
 @keyframes fade-in {
   0% {
     opacity: 0;
