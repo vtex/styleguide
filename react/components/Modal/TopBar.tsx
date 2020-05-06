@@ -44,7 +44,7 @@ function TopBar(
         )}
       </div>
       {showTopBar && children && (
-        <span className="t-heading-4 ml8">{children}</span>
+        <span className="t-heading-4 ml8-ns ml6">{children}</span>
       )}
     </div>
   )
