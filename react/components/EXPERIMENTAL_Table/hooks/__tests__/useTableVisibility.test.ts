@@ -42,6 +42,42 @@ describe('Table V2 @ hooks/useTableVisibility spec', () => {
     expect(result.current.visibleColumns).toEqual([{ id: 'name' }])
   })
 
+  it('shows a column correctly', () => {
+    const { result } = renderHook(() =>
+      useTableVisibility({ columns, hiddenColumns: ['name'] })
+    )
+
+    expect(result.current.visibleColumns).toEqual([
+      { id: 'location' },
+      { id: 'company' },
+    ])
+
+    act(() => {
+      result.current.showColumn('name')
+    })
+
+    expect(result.current.hiddenColumns).toEqual([])
+    expect(result.current.visibleColumns).toEqual(columns)
+  })
+
+  it('hides a column correctly', () => {
+    const { result } = renderHook(() =>
+      useTableVisibility({ columns, hiddenColumns: ['name'] })
+    )
+
+    expect(result.current.visibleColumns).toEqual([
+      { id: 'location' },
+      { id: 'company' },
+    ])
+
+    act(() => {
+      result.current.hideColumn('location')
+    })
+
+    expect(result.current.hiddenColumns).toEqual(['name', 'location'])
+    expect(result.current.visibleColumns).toEqual([{ id: 'company' }])
+  })
+
   it('hiddes all columns', () => {
     const { result } = renderHook(() => useTableVisibility({ columns }))
 
