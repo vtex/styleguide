@@ -81,7 +81,7 @@ export const WithLongContent = () => {
         isOpen={isOpen}
         onClose={close}
         size={select('Size', sizes, 'medium')}
-        responsiveFullScreen
+        responsiveFullScreen={boolean('Responsive Full Screen', true)}
       >
         {lorem}
         {lorem}
