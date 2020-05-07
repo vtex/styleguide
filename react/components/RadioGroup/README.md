@@ -108,3 +108,24 @@ With optional border
   onChange={() => {}}
 />
 ```
+
+With error highlight
+
+```js
+initialState = { value: '', error: true, errorMessage: 'This field is mandatory' }
+
+<RadioGroup
+  error={state.error},
+  errorMessage={state.error &&},
+  name="radioGroupExample4"
+  options={[
+    { value: 'value1', label: 'Hue' },
+    { value: 'value2', label: 'Saturation' },
+    { value: 'value3', label: 'Value' },
+  ]}
+  value={state.value}
+  onChange={({ target: { value } }) => 
+    setState({ value, error: false, errorMessage: '' })
+  }
+/>
+```
