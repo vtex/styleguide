@@ -30,6 +30,14 @@
     "modules/",
     "codemod/"
   ],
+  "keywords": [
+    "vtex",
+    "styleguide"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vtex/styleguide.git"
+  },
   "homepage": "https://vtex.github.io/styleguide",
   "devDependencies": {
     "@babel/cli": "^7.5.5",
@@ -171,5 +179,8 @@
       "jest-watch-typeahead/filename",
       "jest-watch-typeahead/testname"
     ]
+  },
+  "bugs": {
+    "url": "https://github.com/vtex/styleguide/issues"
   }
 }
