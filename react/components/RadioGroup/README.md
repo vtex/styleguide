@@ -112,11 +112,11 @@ With optional border
 With error highlight
 
 ```js
-initialState = { value: '', error: true, errorMessage: 'This field is mandatory' }
+initialState = { value: '', error: true, errorMessage: 'This field is mandatory' };
 
 <RadioGroup
-  error={state.error},
-  errorMessage={state.error &&},
+  error={state.error}
+  errorMessage={state.error && state.errorMessage}
   name="radioGroupExample4"
   options={[
     { value: 'value1', label: 'Hue' },
