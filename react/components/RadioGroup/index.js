@@ -47,12 +47,12 @@ class RadioGroup extends React.Component {
             const id = `${name}-${i}`
             return (
               <label
-                className={`${classNames('db br3', {
+                className={classNames('db br3', {
                   'ba pv2 ph4': !hideBorder,
                   'b--danger hover-b--danger': errorHighlight,
                   'b--muted-4': !error && !errorMessage,
                   pointer: !isDisabled,
-                })}`}
+                })}
                 key={id}
                 style={{
                   ...(!isFirst && {
