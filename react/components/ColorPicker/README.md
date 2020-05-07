@@ -1,19 +1,21 @@
 Color Picker lets users select a color value using three differenets way: RGBA (Red, green, blue and alpha properties), [HSVA](https://en.wikipedia.org/wiki/HSL_and_HSV) (Hue, saturation, value and alpha properties) or hexadecimal (color code abstraction to rgb values).
 
 ### 👍 Dos
+
 - Use color picker in cenarios that user needs to choose an specific color value.
 - You can use multiples color picker components, if you need more than one color to be setted.
 
 ### 👎 Don'ts
+
 - Don’t use color picker in cenarios that users must only reference a color name.
 
-#### Simple ColorPicker
+#### Default ColorPicker with title
 
 ```js
 class ColorPickerExample extends React.Component {
   constructor() {
     super()
-    this.state = { color:{ hex: '#141E7A' }, history: [] }
+    this.state = { color: { hex: '#141E7A' }, history: [] }
 
     this.handleChange = this.handleChange.bind(this)
   }
@@ -32,9 +34,10 @@ class ColorPickerExample extends React.Component {
       <div>
         <div className="w-50">
           <ColorPicker
+            title="Pick a color"
             color={this.state.color}
             colorHistory={this.state.history}
-            onChange={ this.handleChange }
+            onChange={this.handleChange}
           />
         </div>
       </div>
@@ -45,43 +48,6 @@ class ColorPickerExample extends React.Component {
 ;<ColorPickerExample />
 ```
 
-#### ColorPicker with Title
-
-```js
-class ColorPickerExample extends React.Component {
-  constructor() {
-    super()
-    this.state = { color:{ hex: '#141E7A' }, history: [] }
-
-    this.handleChange = this.handleChange.bind(this)
-  }
-
-  handleChange(color) {
-    const { history } = this.state
-    history.push(color)
-    this.setState({
-      history
-    })
-  }
-
-  render() {
-    return (
-      <div>
-        <div className="w-50">
-          <ColorPicker
-            color={this.state.color}
-            title="Color Title"
-            colorHistory={this.state.history}
-            onChange={ this.handleChange }
-          />
-        </div>
-      </div>
-    )
-  }
-}
-
-;<ColorPickerExample />
-```
 #### Multiples ColorPickers
 
 ```js
@@ -92,11 +58,11 @@ class ColorPickerExample extends React.Component {
     super()
     this.handleChange = this.handleChange.bind(this)
     this.state = {
-        colorDefault: { hex: '#141E7A' },
-        colorActive: { hex: '#141E7A' },
-        colorHover:{ hex: '#141E7A' },
-        history: [],
-      }
+      colorDefault: { hex: '#141E7A' },
+      colorActive: { hex: '#141E7A' },
+      colorHover: { hex: '#141E7A' },
+      history: [],
+    }
   }
 
   render() {
@@ -106,7 +72,7 @@ class ColorPickerExample extends React.Component {
           <ColorPicker
             color={this.state.colorDefault}
             colorHistory={this.state.history}
-            onChange={ (color) => this.handleChange(color, 'colorDefault') }
+            onChange={color => this.handleChange(color, 'colorDefault')}
           />
         </div>
         <div className="w-50">
@@ -114,7 +80,7 @@ class ColorPickerExample extends React.Component {
             color={this.state.colorActive}
             colorLabel="Active"
             colorHistory={this.state.history}
-            onChange={ (color) => this.handleChange(color, 'colorActive') }
+            onChange={color => this.handleChange(color, 'colorActive')}
           />
         </div>
         <div className="w-50">
@@ -122,7 +88,7 @@ class ColorPickerExample extends React.Component {
             color={this.state.colorHover}
             colorLabel="Hover"
             colorHistory={this.state.history}
-            onChange={ (color) => this.handleChange(color, 'colorHover') }
+            onChange={color => this.handleChange(color, 'colorHover')}
           />
         </div>
       </div>
@@ -148,7 +114,7 @@ class ColorPickerExample extends React.Component {
 class ColorPickerExample extends React.Component {
   constructor() {
     super()
-    this.state = { color:{ hex: '#141E7A' }, history: [] }
+    this.state = { color: { hex: '#141E7A' }, history: [] }
 
     this.handleChange = this.handleChange.bind(this)
   }
@@ -157,7 +123,7 @@ class ColorPickerExample extends React.Component {
     const { history } = this.state
     history.push(color)
     this.setState({
-      history
+      history,
     })
   }
 
@@ -169,7 +135,7 @@ class ColorPickerExample extends React.Component {
             color={this.state.color}
             disabled
             colorHistory={this.state.history}
-            onChange={ this.handleChange }
+            onChange={this.handleChange}
           />
         </div>
       </div>
