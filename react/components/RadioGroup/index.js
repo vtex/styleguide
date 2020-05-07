@@ -19,9 +19,12 @@ class RadioGroup extends React.Component {
       label,
       testId,
       size,
+      error,
+      errorMessage,
     } = this.props
 
     const large = size === 'large'
+    const errorHighlight = error || errorMessage
 
     return (
       <div>
@@ -44,10 +47,12 @@ class RadioGroup extends React.Component {
             const id = `${name}-${i}`
             return (
               <label
-                className={`db br3 ${classNames({
-                  'b--muted-4 ba pv2 ph4': !hideBorder,
+                className={classNames('db br3', {
+                  'ba pv2 ph4': !hideBorder,
+                  'b--danger hover-b--danger': errorHighlight,
+                  'b--muted-4': !error && !errorMessage,
                   pointer: !isDisabled,
-                })}`}
+                })}
                 key={id}
                 style={{
                   ...(!isFirst && {
@@ -75,6 +80,9 @@ class RadioGroup extends React.Component {
               </label>
             )
           })}
+          {errorMessage && (
+            <div className="c-danger t-small mt3 lh-title">{errorMessage}</div>
+          )}
         </fieldset>
       </div>
     )
@@ -91,6 +99,10 @@ RadioGroup.propTypes = {
       disabled: PropTypes.bool,
     })
   ).isRequired,
+  /** Error highlight */
+  error: PropTypes.bool,
+  /** Error message */
+  errorMessage: PropTypes.string,
   /** Name attribute for the radio inputs, which will also be used to generate ids */
   name: PropTypes.string.isRequired,
   /** Current selected value */
