@@ -1,4 +1,4 @@
-#### Alerts are notifications of mild to high priority. They may inform the user about things they should know or explain a problem and the user a solution. It may be triggered by a user action or not.
+Alerts are notifications of **mild to high priority**. They may inform the user about things they should know or explain a problem and the user a solution. It may be triggered by a user action or not.
 
 ### Do
 
@@ -14,7 +14,10 @@
 
 For low-priority notification prefer a <a href="#/Components/Notification/ToastProvider">Toast</a>.
 
-## Examples
+<br />
+<hr>
+<br />
+ 
 
 The **Alert** component can be used in **Success**, **Warning** and **Error** scenarios. 
 
