@@ -14,47 +14,59 @@
 
 For low-priority notification prefer a <a href="#/Components/Notification/ToastProvider">Toast</a>.
 
-```js
-<div>
-  <div className="mb5">
-    <Alert type="success" onClose={() => console.log('Closed!')}>
-      Your action was complete.
-    </Alert>
-  </div>
+## Examples
 
-  <div className="mb5">
-    <Alert type="warning" onClose={() => console.log('Closed!')}>
-      This action is irreversible.
-    </Alert>
-  </div>
-  <div className="mb5">
-    <Alert type="warning" onClose={() => console.log('Closed!')}>
-      This is a large Alert. Lorem ipsum dolor sit amet, consectetur adipiscing
-      elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-      aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-      voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-      sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-      mollit anim id est laborum.
-    </Alert>
-  </div>
-  <div className="mb5">
-    <Alert type="error" onClose={() => console.log('Closed!')}>
-      You can't delete this item.
-    </Alert>
-  </div>
-  <div>
-    <Alert
-      type="error"
-      action={{ label: 'Go back', onClick: () => console.log('Went back!') }}
-      onClose={() => console.log('Closed!')}>
-      You can't delete this item.
-    </Alert>
-  </div>
-</div>
+The **Alert** component can be used in **Success**, **Warning** and **Error** scenarios. 
+
+### Success
+Use this when the user's action had a successful outcome.
+
+```js
+  <Alert type="success" onClose={() => console.log('Closed!')}>
+    Your new product was created with success.
+  </Alert>
 ```
 
-Using ref
+### Warning
+Use this when user needs to know about some important info before taking any decision.
+
+```js
+  <Alert type="warning" onClose={() => console.log('Closed!')}>
+    Proceed with caution. Deleting this promotion is irreversible.
+  </Alert>
+```
+
+### Error
+Use this when something went wrong after performing an action. 
+
+```js
+  <Alert type="error" onClose={() => console.log('Closed!')}>
+    You can't delete this product.
+  </Alert>
+```
+
+### Large texts
+You can insert large amounts of text in an Alert. However, try to be as concise and clear as possible, as you are helping your user to understand what happened.
+
+```js
+  <Alert type="warning" onClose={() => console.log('Closed!')}>
+    Changes you make in your product info can take at least two hours to be updated in all of your channels. Please take this into consideration before making any changes.
+  </Alert>
+```
+
+### Actions
+You can associate an action to an Alert.
+
+```js
+  <Alert
+    type="error"
+    action={{ label: 'Go back', onClick: () => console.log('Went back!') }}
+    onClose={() => console.log('Closed!')}>
+    You don't have permission to change this Payment Method.
+  </Alert>
+```
+
+### Using ref
 
 ```js
 const Button = require('../Button').default
@@ -64,7 +76,7 @@ const alertRef = React.createRef()
   <Alert ref={alertRef} type="warning" onClose={() => console.log('Closed!')}>
     Click on the button below to focus on (scroll to) the alert
   </Alert>
-  <div className="pt2">
+  <div className="pt4">
     <Button
       onClick={() =>
         alertRef.current.scrollIntoView({
