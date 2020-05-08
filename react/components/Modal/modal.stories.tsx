@@ -6,7 +6,7 @@ import { action } from '@storybook/addon-actions'
 
 import Modal from '.'
 import Button from '../Button'
-import ModalDialog from '../ModalDialog'
+import Input from '../Input'
 import useModal from './useModal'
 
 export default {
@@ -29,7 +29,7 @@ export const Default = () => {
       <Modal
         isOpen={isOpen}
         onClose={close}
-        title="Modal Title"
+        title="What's your name?"
         responsiveFullScreen={boolean('Responsive Full Screen', false)}
         onCloseTransitionFinish={() => {
           action('transition-finished')
@@ -40,17 +40,32 @@ export const Default = () => {
         showBottomBarBorder={boolean('Show Bottom Bar Border', true)}
         closeOnOverlayClick={boolean('Close On Overlay Click', true)}
         bottomBar={
-          <Button
-            size="small"
-            type="button"
-            variation={'primary'}
-            onClick={close}
-          >
-            Confirm
-          </Button>
+          <>
+            <Button
+              size="small"
+              type="button"
+              variation="tertiary"
+              onClick={close}
+            >
+              Cancel
+            </Button>
+            <span className="mr2"></span>
+            <Button
+              size="small"
+              type="button"
+              variation={'primary'}
+              onClick={close}
+            >
+              Confirm
+            </Button>
+          </>
         }
       >
-        Modal Content
+        This is a simple customizable Modal to ask your name! Please try change
+        my props below in the Knobs and see how I react!
+        <div className="mt6 mb5">
+          <Input placeholder="Type your name..." size="small" />
+        </div>
       </Modal>
     </>
   )
@@ -96,33 +111,6 @@ export const WithLongContent = () => {
   )
 }
 
-export const WithDialog = () => {
-  const { isOpen, open, close } = useModal()
-
-  return (
-    <>
-      <Button onClick={open} type="button">
-        Open
-      </Button>
-      <ModalDialog
-        isOpen={isOpen}
-        onClose={close}
-        confirmation={{
-          label: 'Confirm',
-          onClick: close,
-          isDangerous: true,
-        }}
-        cancelation={{
-          label: 'Cancel',
-          onClick: close,
-        }}
-      >
-        Content
-      </ModalDialog>
-    </>
-  )
-}
-
 export const WithDifferentSizes = () => {
   const smallModal = useModal()
   const mediumModal = useModal()
@@ -139,9 +127,9 @@ export const WithDifferentSizes = () => {
         size="small"
         isOpen={smallModal.isOpen}
         onClose={smallModal.close}
-        title="Small Modal"
+        title="Small Size"
       >
-        Small Modal Content
+        Small Modal content here...
       </Modal>
       <br />
       <span className="mr4">
@@ -153,8 +141,9 @@ export const WithDifferentSizes = () => {
         size="medium"
         isOpen={mediumModal.isOpen}
         onClose={mediumModal.close}
+        title="Medium Size"
       >
-        Medium Modal
+        Medium Modal content here...
       </Modal>
       <br />
 
@@ -163,8 +152,13 @@ export const WithDifferentSizes = () => {
           Open Large Modal
         </Button>
       </span>
-      <Modal size="large" isOpen={largeModal.isOpen} onClose={largeModal.close}>
-        Large Modal
+      <Modal
+        size="large"
+        isOpen={largeModal.isOpen}
+        onClose={largeModal.close}
+        title="Large Size"
+      >
+        Large Modal content here...
       </Modal>
     </div>
   )
