@@ -215,6 +215,15 @@ module.exports = {
       ],
     },
     {
+      name: 'Utilities',
+      sections: [
+        {
+          name: 'useDisclosure',
+          content: 'react/utilities/docs/useDisclosure.md',
+        },
+      ],
+    },
+    {
       name: 'External links',
       sections: [
         {
