@@ -24,7 +24,7 @@ const VerbAtom: React.FC<Props> = ({
 }) => {
   const value = verbOptions.find(option => option.value === verb)
 
-  return (
+  return value?.label ? (
     <div
       className="mh3 pb3 flex items-center"
       style={verbOptions.length !== 1 ? { minWidth: '20%' } : {}}>
@@ -44,6 +44,8 @@ const VerbAtom: React.FC<Props> = ({
         <span className="pt3">{value.label}</span>
       )}
     </div>
+  ) : (
+    <span className="pt3" />
   )
 }
 
