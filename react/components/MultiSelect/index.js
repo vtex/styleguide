@@ -139,11 +139,12 @@ export default class MultiSelect extends Component {
   }
 
   render() {
-    const { disabled, label, loadingText, placeholder, selected } = this.props
+    const { disabled, error, errorMessage, label, loadingText, placeholder, selected } = this.props
     const emptyState = this.props.emptyState(
       `<span className="fw5">${this.state.searchTerm}</span>`
     )
     const isDropdownVisible = this.state.active && this.state.searchTerm !== ''
+    const hasError = (error || errorMessage) 
     const tags = selected.map((tag, index) => (
       <div className="mr2 mv1 flex" key={index}>
         <Tag
@@ -158,8 +159,9 @@ export default class MultiSelect extends Component {
 
     let classes = disabled ? ' bg-muted-5 c-muted-2 ' : ' bg-base c-on-base '
     classes += isDropdownVisible ? ' br--top ' : ''
-    classes += this.state.active ? ' b--muted-2 ' : ' b--muted-4 '
-    classes += !this.state.active && !disabled ? ' hover-b--muted-3 ' : ''
+    classes += hasError ? 'b--danger hover-b--danger ' : ''
+    classes += this.state.active ? ' b--muted-2 ' : (!hasError ? ' b--muted-4 ' : '')
+    classes += !(this.state.active || disabled || hasError) ? ' hover-b--muted-3 ' : ''
 
     return (
       <div className="relative">
@@ -206,6 +208,9 @@ export default class MultiSelect extends Component {
           options={this.state.filteredOptions}
           isVisible={isDropdownVisible}
         />
+        {errorMessage && (
+          <div className="pt3 t-small c-danger">{errorMessage}</div>
+        )}
       </div>
     )
   }
@@ -213,6 +218,8 @@ export default class MultiSelect extends Component {
 
 MultiSelect.defaultProps = {
   disabled: false,
+  error: false,
+  errorMessage: '',
   emptyState: term => {
     return `No results found for "${term}".`
   },
@@ -222,6 +229,10 @@ MultiSelect.defaultProps = {
 }
 
 MultiSelect.propTypes = {
+  /** Error highlight */
+  error: PropTypes.bool,
+  /** Error message */
+  errorMessage: PropTypes.string,
   /** True if the component should be disabled */
   disabled: PropTypes.bool,
   /** Returns a string that will be shown if no results are found. Usage: emptyState(search term) */
