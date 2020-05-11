@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - `vtex-slider__values-container`, `vtex-slider__left-value`, `vtex-slider__right-value`, `vtex-slider__dash` handles.
 - `tabIndex` prop to `Button`.
+- `error` and `errorMessage` props to `MultiSelect` 
 
 ## [9.117.0] - 2020-05-13
 
