@@ -18,9 +18,7 @@ import Tbody, { ComposableTbody } from './Tbody'
 import Thead, { ComposableThead } from './Thead'
 
 type Props = PropsWithChildren<
-  E2ETestable &
-    HasMotion &
-    NativeTable & { disableScroll?: boolean; noContainer?: boolean }
+  E2ETestable & HasMotion & NativeTable & { disableScroll?: boolean }
 >
 
 function Sections(
@@ -41,7 +39,7 @@ function Sections(
         ref={ref}
         data-testid={testId}
         className={classNames('w-100', className)}
-        style={{ borderCollapse: 'collapse' }}>
+        style={{ borderCollapse: 'separate', borderSpacing: 0 }}>
         {children}
       </table>
       {!empty && loading && (

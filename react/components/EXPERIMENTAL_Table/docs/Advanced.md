@@ -185,11 +185,18 @@ function BodyExample() {
 ;<BodyExample />
 ```
 
+##### Sections Props
+
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| disableScroll | boolean | 🚫 | false | Disable scroll overflow of the container |
+
 ##### Cell Props
 
 | Property  | Type             | Required | Default | Description                                    |
 | --------- | ---------------- | -------- | ------- | ---------------------------------------------- |
 | width     | number or string | 🚫       | 🚫      | Cell width (variable by default)               |
+| heigth    | number or string | 🚫       | 🚫     | Cell height (variable by default)               |
 | className | string           | 🚫       | 🚫      | Custom classes                                 |
 | onClick   | `() => void`     | 🚫       | 🚫      | Action to dispatch on click                    |
 | sortable  | boolean          | 🚫       | false   | If is sortable or not                          |

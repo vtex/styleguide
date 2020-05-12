@@ -35,11 +35,11 @@ function Row(
   ref: Ref<HTMLTableRowElement>
 ) {
   const LIGHT_BLUE = '#DBE9FD'
-  const { rowHeight, density } = useMeasuresContext()
+  const { density } = useMeasuresContext()
   const { columns } = useDataContext()
   const { highlightOnHover, isRowActive, onRowClick } = useBodyContext()
   const className = classNames(
-    'w-100 truncate overflow-x-hidden bb b--muted-4',
+    'w-100 truncate overflow-x-hidden',
     {
       'pointer hover-c-link': !header && onRowClick,
       'hover-bg-muted-5': !header && (highlightOnHover || !!onRowClick),
@@ -92,13 +92,13 @@ function Row(
         const content = cellRenderer
           ? cellRenderer({
               data: cellData,
-              rowHeight,
+              rowHeight: height,
               density,
               motion,
             })
           : cellData
         return (
-          <Cell key={id} width={width}>
+          <Cell key={id} width={width} height={height}>
             {content}
           </Cell>
         )
