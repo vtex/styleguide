@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - `vtex-slider__values-container`, `vtex-slider__left-value`, `vtex-slider__right-value`, `vtex-slider__dash` handles.
+- `tabIndex` prop to `Button`.
 
 ## [9.117.0] - 2020-05-13
 
@@ -27,7 +28,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- `error` and `errorMessage` props to `RadioGroup` 
+- `error` and `errorMessage` props to `RadioGroup`.
 
 ## [9.115.0] - 2020-04-30
 

@@ -46,6 +46,7 @@ class Button extends Component {
       download,
       noUpperCase,
       noWrap,
+      tabIndex,
     } = this.props
 
     const disabled = this.props.disabled || isLoading
@@ -220,7 +221,7 @@ class Button extends Component {
         disabled={iconOnly ? undefined : this.props.disabled}
         name={iconOnly ? undefined : this.props.name}
         value={iconOnly ? undefined : this.props.value}
-        tabIndex={0}
+        tabIndex={tabIndex}
         className={classes}
         href={href}
         onClick={this.handleClick}
@@ -276,6 +277,7 @@ Button.defaultProps = {
   isFirstOfGroup: false,
   isLastOfGroup: false,
   isActiveOfGroup: false,
+  tabIndex: 0,
 }
 
 Button.propTypes = {
@@ -340,6 +342,8 @@ Button.propTypes = {
   onFocus: PropTypes.func,
   /** onBlur event */
   onBlur: PropTypes.func,
+  /** tabIndex attribute of HTML */
+  tabIndex: PropTypes.number,
   /** @ignore deprecated
    * Cancels out left padding */
   collapseLeft: PropTypes.bool,
