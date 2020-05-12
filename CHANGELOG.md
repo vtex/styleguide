@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- `hideColumns` & `showColumns` functions to `useTableVisibility`
+- `bodyHeight` memo to `useTableMeasures`
+- `disableScroll` to `Table.Sections`
+
+### Fixed
+
+- `Table.Body.Cell` unstable heights
+
 ## [9.116.0] - 2020-05-07
 
 ### Added
