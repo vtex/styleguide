@@ -10,6 +10,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - `vtex-slider__values-container`, `vtex-slider__left-value`, `vtex-slider__right-value`, `vtex-slider__dash` handles.
+- `hideColumns` & `showColumns` functions to `useTableVisibility`
+- `bodyHeight` memo to `useTableMeasures`
+- `disableScroll` to `Table.Sections`
+
+### Fixed
+
+- `Table.Body.Cell` unstable heights
 
 ## [9.117.0] - 2020-05-13
 
