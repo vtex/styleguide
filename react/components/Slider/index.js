@@ -356,13 +356,13 @@ export default class Slider extends Component {
           )}
         </div>
 
-        <div className="flex justify-end">
-          <label className="t-small c-muted-1">
+        <div className="vtex-slider__values-container flex justify-end">
+          <label className="vtex-slider__left-value t-small c-muted-1">
             {formatValue(lastLeftValue)}
           </label>
           {range && (
-            <label className="t-small c-muted-1">
-              <span className="mh2">&ndash;</span>
+            <label className="vtex-slider__right-value t-small c-muted-1">
+              <span className="vtex-slider__dash mh2">&ndash;</span>
               {formatValue(lastRightValue)}
             </label>
           )}
