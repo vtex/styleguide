@@ -56,7 +56,7 @@ function Thead(
           const props = {
             ...receivedProps,
             ...clickable,
-            className: classNames('bt normal', { pointer: sortable }),
+            className: classNames('normal', { pointer: sortable }),
             sorting: currentlySorting,
             sortable,
             sticky,

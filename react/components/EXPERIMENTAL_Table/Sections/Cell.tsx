@@ -63,9 +63,10 @@ type Props = PropsWithChildren<SpecificProps>
 function Cell(
   {
     children,
-    width,
     onClick,
     className: classNameProp,
+    width = 0,
+    height = 0,
     sorting = false,
     sortable = false,
     sticky = false,
@@ -80,13 +81,14 @@ function Cell(
     className: classNames('v-mid ph3 pv0 tl bb b--muted-4', classNameProp, {
       pointer: onClick,
       'c-on-base': sorting,
-      'bg-base': header,
+      'bg-base bt': header,
       'top-0 z3': sticky && header,
       z1: !sticky,
     }),
     style: {
       position: sticky ? 'sticky' : 'static',
       width,
+      height,
     } as CSSProperties,
   }
 
@@ -145,6 +147,7 @@ interface Composites {
 
 interface SpecificProps {
   width?: number | string | React.ReactText
+  height?: number
   className?: string
   onClick?: () => void
   sortable?: boolean
