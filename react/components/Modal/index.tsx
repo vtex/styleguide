@@ -1,4 +1,4 @@
-import React, { FC, forwardRef, useState, useLayoutEffect } from 'react'
+import React, { FC, forwardRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import { createPortal } from 'react-dom'
 import classNames from 'classnames'
@@ -7,10 +7,7 @@ import FocusLock from 'react-focus-lock'
 import TopBar from './TopBar'
 import BottomBar from './BottomBar'
 import styles from './modal.css'
-
-export function canUseDOM() {
-  return typeof window !== 'undefined' && typeof window.document !== 'undefined'
-}
+import { useEnhancedEffect } from './utils'
 
 export interface Props
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
@@ -63,7 +60,7 @@ export const ModalOverlay: FC<OverlayProps> = ({
 }) => {
   const [showPortal, setShowPortal] = useState(isOpen)
 
-  useLayoutEffect(() => {
+  useEnhancedEffect(() => {
     if (isOpen) setShowPortal(isOpen)
   }, [isOpen])
 
@@ -229,45 +226,6 @@ function Modal(
       </ModalContent>
     </ModalOverlay>
   )
-}
-
-Modal.propTypes = {
-  /** Content of the modal. */
-  children: PropTypes.node.isRequired,
-  /** Center the modal (for small content). */
-  centered: PropTypes.bool,
-  /** Container in which the modal is rendered. */
-  container: PropTypes.any,
-  /** Show or hide the modal. */
-  isOpen: PropTypes.bool.isRequired,
-  /** Function called when Modal is closed. */
-  onClose: PropTypes.func.isRequired,
-  /** Show BottomBar border. */
-  showBottomBarBorder: PropTypes.bool,
-  /** Close the modal on ESC key press. */
-  closeOnEsc: PropTypes.bool,
-  /** Close the modal on overlay click. */
-  closeOnOverlayClick: PropTypes.bool,
-  /** Show the close icon on upper right corner. */
-  showCloseIcon: PropTypes.bool,
-  /** Node to be displayed as the bottom bar of the modal. */
-  bottomBar: PropTypes.node,
-  /** Modal title to be displayed in top of the modal. */
-  title: PropTypes.node,
-  /** If true, the modal will expand to fullscreen in small view ports (e.g. mobile). */
-  responsiveFullScreen: PropTypes.bool,
-  /** If true, show top bar with title. */
-  showTopBar: PropTypes.bool,
-  /** Event fired when the closing transition is finished. */
-  onCloseTransitionFinish: PropTypes.func,
-  /** Modal size. */
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
-  /** Acessible Modal name. If this name is visible on the screen, prefer to use aria-labelledby. */
-  'aria-label': PropTypes.string,
-  /** ID of the element that provides the Modal an accessible name. If aria-label and aria-albelledby is not defined, the default here will be the title element. */
-  'aria-labelledby': PropTypes.string,
-  /** ID of the element that provides the Modal an accessible description. */
-  'aria-describedby': PropTypes.string,
 }
 
 const FowardedModal = forwardRef<HTMLDivElement, Props>(Modal)
