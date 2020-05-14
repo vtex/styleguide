@@ -23,6 +23,11 @@
   display: contents;
 }
 
+.hiddenScroll {
+  overflow: hidden;
+  padding-right: 15px;
+}
+
 .mh60 {
   max-height: 80vh;
 }

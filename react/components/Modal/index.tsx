@@ -61,7 +61,11 @@ export const ModalOverlay: FC<OverlayProps> = ({
   const [showPortal, setShowPortal] = useState(isOpen)
 
   useEnhancedEffect(() => {
-    if (isOpen) setShowPortal(isOpen)
+    if (!isOpen) {
+      return
+    }
+    setShowPortal(isOpen)
+    document.body.classList.add(styles.hiddenScroll)
   }, [isOpen])
 
   const handleClick = () => {
@@ -73,13 +77,14 @@ export const ModalOverlay: FC<OverlayProps> = ({
     if (isOpen) return
     onCloseTransitionFinish?.()
     setShowPortal(false)
+    document.body.classList.remove(styles.hiddenScroll)
   }
 
   return showPortal
     ? createPortal(
         /** This rule can be disabled because we are not using the onClick property to click
          * the element itself but to capture outside clicks */
-        // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+        // eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
         <div
           className={classNames(
             'flex fixed z-max overflow-hidden bg-black-70 absolute--fill',
@@ -91,11 +96,11 @@ export const ModalOverlay: FC<OverlayProps> = ({
           )}
           tabIndex={-1}
           onClick={handleClick}
-          onKeyDown={() => {}}
           onAnimationEnd={handleAnimationEnd}
           data-testid="modal__overlay"
+          role="presentation"
         >
-          <FocusLock className={`${styles.contents}`}>{children}</FocusLock>
+          <FocusLock className={styles.contents}>{children}</FocusLock>
         </div>,
         container ?? document.body
       )
