@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.118.0] - 2020-05-14
+
 ### Added
 
 - `vtex-slider__values-container`, `vtex-slider__left-value`, `vtex-slider__right-value`, `vtex-slider__dash` handles.
