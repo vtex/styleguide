@@ -7,7 +7,7 @@ import { action } from '@storybook/addon-actions'
 import Modal from '.'
 import Button from '../Button'
 import Input from '../Input'
-import useModal from './useModal'
+import { useDisclosure } from '../../utilities'
 
 export default {
   title: 'Components|Modal',
@@ -19,16 +19,16 @@ type Size = 'small' | 'medium' | 'large'
 const sizes: Size[] = ['small', 'medium', 'large']
 
 export const Default = () => {
-  const { isOpen, open, close } = useModal()
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
     <>
-      <Button onClick={open} type="button">
+      <Button onClick={onOpen} type="button">
         Open
       </Button>
       <Modal
         isOpen={isOpen}
-        onClose={close}
+        onClose={onClose}
         title="What's your name?"
         responsiveFullScreen={boolean('Responsive Full Screen', false)}
         onCloseTransitionFinish={() => {
@@ -45,7 +45,7 @@ export const Default = () => {
               size="small"
               type="button"
               variation="tertiary"
-              onClick={close}
+              onClick={onClose}
             >
               Cancel
             </Button>
@@ -54,7 +54,7 @@ export const Default = () => {
               size="small"
               type="button"
               variation={'primary'}
-              onClick={close}
+              onClick={onClose}
             >
               Confirm
             </Button>
@@ -72,7 +72,7 @@ export const Default = () => {
 }
 
 export const WithLongContent = () => {
-  const { isOpen, open, close } = useModal()
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const lorem = (
     <p>
       Mauris ac arcu sit amet dui interdum bibendum a sed diam. Praesent rhoncus
@@ -89,12 +89,12 @@ export const WithLongContent = () => {
   )
   return (
     <>
-      <Button onClick={open} type="button">
+      <Button onClick={onOpen} type="button">
         Open
       </Button>
       <Modal
         isOpen={isOpen}
-        onClose={close}
+        onClose={onClose}
         size={select('Size', sizes, 'medium')}
         responsiveFullScreen={boolean('Responsive Full Screen', true)}
       >
@@ -112,35 +112,35 @@ export const WithLongContent = () => {
 }
 
 export const WithDifferentSizes = () => {
-  const smallModal = useModal()
-  const mediumModal = useModal()
-  const largeModal = useModal()
+  const smallModal = useDisclosure()
+  const mediumModal = useDisclosure()
+  const largeModal = useDisclosure()
 
   return (
     <div className="flex flex-column">
       <span className="mr4">
-        <Button size="small" onClick={smallModal.open} type="button">
+        <Button size="small" onClick={smallModal.onOpen} type="button">
           Open Small Modal
         </Button>
       </span>
       <Modal
         size="small"
         isOpen={smallModal.isOpen}
-        onClose={smallModal.close}
+        onClose={smallModal.onClose}
         title="Small Size"
       >
         Small Modal content here...
       </Modal>
       <br />
       <span className="mr4">
-        <Button size="regular" onClick={mediumModal.open} type="button">
+        <Button size="regular" onClick={mediumModal.onOpen} type="button">
           Open Medium Modal
         </Button>
       </span>
       <Modal
         size="medium"
         isOpen={mediumModal.isOpen}
-        onClose={mediumModal.close}
+        onClose={mediumModal.onClose}
         title="Medium Size"
       >
         Medium Modal content here...
@@ -148,14 +148,14 @@ export const WithDifferentSizes = () => {
       <br />
 
       <span className="mr4">
-        <Button size="large" onClick={largeModal.open} type="button">
+        <Button size="large" onClick={largeModal.onOpen} type="button">
           Open Large Modal
         </Button>
       </span>
       <Modal
         size="large"
         isOpen={largeModal.isOpen}
-        onClose={largeModal.close}
+        onClose={largeModal.onClose}
         title="Large Size"
       >
         Large Modal content here...

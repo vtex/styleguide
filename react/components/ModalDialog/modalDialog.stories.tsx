@@ -3,7 +3,7 @@ import { withA11y } from '@storybook/addon-a11y'
 
 import Button from '../Button'
 import ModalDialog from '.'
-import useModal from '../Modal/useModal'
+import { useDisclosure } from '../../utilities'
 
 export default {
   title: 'Components|ModalDialog',
@@ -11,24 +11,24 @@ export default {
 }
 
 export const Default = () => {
-  const { isOpen, open, close } = useModal()
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
     <>
-      <Button onClick={open} type="button">
+      <Button onClick={onOpen} type="button">
         Open
       </Button>
       <ModalDialog
         isOpen={isOpen}
-        onClose={close}
+        onClose={onClose}
         confirmation={{
           label: 'Confirm',
-          onClick: close,
+          onClick: onClose,
           isDangerous: true,
         }}
         cancelation={{
           label: 'Cancel',
-          onClick: close,
+          onClick: onClose,
         }}
       >
         Content

@@ -37,16 +37,16 @@ Default
 
 ```js
 const Button = require('../Button').default
-const useModal = require('../../useModal').default
+import { useDisclosure } from '../../utilities'
 
 const ModalExample = () => {
-  const { isOpen, open, close } = useModal()
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
     <>
-      <Button onClick={open}>Open modal</Button>
+      <Button onClick={onOpen}>Open modal</Button>
 
-      <Modal isOpen={isOpen} onClose={close}>
+      <Modal isOpen={isOpen} onClose={onClose}>
         <div className="dark-gray">
           <p>
             The Payments module is the system responsible for managing all
@@ -88,16 +88,16 @@ Long content
 
 ```js
 const Button = require('../Button').default
-const useModal = require('../../useModal').default
+import { useDisclosure } from '../../utilities'
 
 const ModalExample = () => {
-  const { isOpen, open, close } = useModal()
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
     <>
-      <Button onClick={open}>Open modal</Button>
+      <Button onClick={onOpen}>Open modal</Button>
 
-      <Modal isOpen={isOpen} onClose={close} title="What is the shared cart">
+      <Modal isOpen={isOpen} onClose={onClose} title="What is the shared cart">
         <div className="dark-gray">
           <p>
             The shared cart is a tool that allows more than one customer to add,
@@ -187,15 +187,15 @@ With title, BottomBar and the responsive full screen option
 
 ```js
 const Button = require('../Button').default
-const useModal = require('../../useModal').default
+import { useDisclosure } from '../../utilities'
 const Input = require('../Input').default
 
 const ModalExample = () => {
-  const { isOpen, open, close } = useModal()
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
     <>
-      <Button onClick={open}>Open modal</Button>
+      <Button onClick={onOpen}>Open modal</Button>
 
       <Modal
         isOpen={isOpen}
@@ -204,18 +204,18 @@ const ModalExample = () => {
         bottomBar={
           <div className="nowrap">
             <span className="mr4">
-              <Button variation="tertiary" onClick={close}>
+              <Button variation="tertiary" onClick={onClose}>
                 Cancel
               </Button>
             </span>
             <span>
-              <Button variation="primary" onClick={close}>
+              <Button variation="primary" onClick={onClose}>
                 Send
               </Button>
             </span>
           </div>
         }
-        onClose={close}
+        onClose={onClose}
       >
         <div className="flex flex-column flex-row-ns">
           <div className="w-100 w-50-ns">
@@ -256,28 +256,28 @@ const ModalExample = () => {
 Sizes
 
 ```js
+import { useDisclosure } from '../../utilities'
 const ModalExample = () => {
   const Button = require('../Button').default
-  const useModal = require('../../useModal').default
-  const smallModal = useModal()
-  const mediumModal = useModal()
-  const largeModal = useModal()
+  const smallModal = useDisclosure()
+  const mediumModal = useDisclosure()
+  const largeModal = useDisclosure()
 
   return (
     <div>
       <div>
         <span className="mr4">
-          <Button variation="primary" size="small" onClick={smallModal.open}>
+          <Button variation="primary" size="small" onClick={smallModal.onOpen}>
             Small
           </Button>
         </span>
         <span className="mr4">
-          <Button variation="primary" onClick={mediumModal.open}>
+          <Button variation="primary" onClick={mediumModal.onOpen}>
             Regular
           </Button>
         </span>
         <span className="mr4">
-          <Button variation="primary" size="large" onClick={largeModal.open}>
+          <Button variation="primary" size="large" onClick={largeModal.onOpen}>
             Large
           </Button>
         </span>
@@ -285,7 +285,7 @@ const ModalExample = () => {
       <Modal
         size="small"
         isOpen={smallModal.isOpen}
-        onClose={smallModal.close}
+        onClose={smallModal.onClose}
         title="Small Modal"
       >
         Small Modal Content
@@ -293,7 +293,7 @@ const ModalExample = () => {
       <Modal
         size="medium"
         isOpen={mediumModal.isOpen}
-        onClose={mediumModal.close}
+        onClose={mediumModal.onClose}
         title="Medium Modal"
       >
         Medium Modal Content
@@ -301,7 +301,7 @@ const ModalExample = () => {
       <Modal
         size="large"
         isOpen={largeModal.isOpen}
-        onClose={largeModal.close}
+        onClose={largeModal.onClose}
         title="Large Modal"
       >
         Large Modal Content
