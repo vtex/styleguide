@@ -3,8 +3,9 @@
 exports[`Modal CSS API centered 1`] = `
 <div>
   <div
-    class="flex fixed z-max overflow-hidden overflow-hidden bg-black-70 absolute--fill items-center"
+    class="flex fixed z-max overflow-hidden bg-black-70 absolute--fill items-center"
     data-testid="modal__overlay"
+    role="presentation"
     tabindex="-1"
   >
     <div
@@ -18,13 +19,12 @@ exports[`Modal CSS API centered 1`] = `
       tabindex="1"
     />
     <div
-      class="undefined"
       data-focus-lock-disabled="false"
     >
       <div
         aria-labelledby="vtex-modal__title"
         aria-modal="true"
-        class="flex flex-column relative bg-white shadow-5 center mv9 vw-50-ns vw-70"
+        class="flex flex-column relative bg-white shadow-5 center mv9 undefined vw-90"
         data-testid="modal__modal"
         role="dialog"
       >
@@ -35,6 +35,7 @@ exports[`Modal CSS API centered 1`] = `
             class="min-h-small min-h-large-ns pl6 pl8-ns"
           >
             <div
+              aria-label="Modal Close Button"
               class="fr pointer pr6-ns pt6-ns pr5 pt5"
               role="button"
               tabindex="0"
@@ -60,7 +61,7 @@ exports[`Modal CSS API centered 1`] = `
           </div>
         </div>
         <div
-          class="ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 undefined undefined"
+          class="ph6 ph8-ns t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 undefined undefined pb8-ns"
         >
           Foo
         </div>
@@ -78,8 +79,9 @@ exports[`Modal CSS API centered 1`] = `
 exports[`Modal CSS API default 1`] = `
 <div>
   <div
-    class="flex fixed z-max overflow-hidden overflow-hidden bg-black-70 absolute--fill items-center"
+    class="flex fixed z-max overflow-hidden bg-black-70 absolute--fill items-center"
     data-testid="modal__overlay"
+    role="presentation"
     tabindex="-1"
   >
     <div
@@ -93,13 +95,12 @@ exports[`Modal CSS API default 1`] = `
       tabindex="1"
     />
     <div
-      class="undefined"
       data-focus-lock-disabled="false"
     >
       <div
         aria-labelledby="vtex-modal__title"
         aria-modal="true"
-        class="flex flex-column relative bg-white shadow-5 center mv9 vw-50-ns vw-70"
+        class="flex flex-column relative bg-white shadow-5 center mv9 undefined vw-90"
         data-testid="modal__modal"
         role="dialog"
       >
@@ -110,6 +111,7 @@ exports[`Modal CSS API default 1`] = `
             class="min-h-small min-h-large-ns pl6 pl8-ns"
           >
             <div
+              aria-label="Modal Close Button"
               class="fr pointer pr6-ns pt6-ns pr5 pt5"
               role="button"
               tabindex="0"
@@ -135,7 +137,7 @@ exports[`Modal CSS API default 1`] = `
           </div>
         </div>
         <div
-          class="ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 undefined undefined"
+          class="ph6 ph8-ns t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 undefined undefined pb8-ns"
         >
           Foo
         </div>
@@ -153,8 +155,9 @@ exports[`Modal CSS API default 1`] = `
 exports[`Modal CSS API responsiveFullScreen true 1`] = `
 <div>
   <div
-    class="flex fixed z-max overflow-hidden overflow-hidden bg-black-70 absolute--fill items-center"
+    class="flex fixed z-max overflow-hidden bg-black-70 absolute--fill items-center"
     data-testid="modal__overlay"
+    role="presentation"
     tabindex="-1"
   >
     <div
@@ -168,13 +171,12 @@ exports[`Modal CSS API responsiveFullScreen true 1`] = `
       tabindex="1"
     />
     <div
-      class="undefined"
       data-focus-lock-disabled="false"
     >
       <div
         aria-labelledby="vtex-modal__title"
         aria-modal="true"
-        class="flex flex-column relative bg-white shadow-5 center mv9 vw-50-ns h-100 h-auto-ns vw-100"
+        class="flex flex-column relative bg-white shadow-5 center mv9 undefined h-100 h-auto-ns vw-100"
         data-testid="modal__modal"
         role="dialog"
       >
@@ -185,6 +187,7 @@ exports[`Modal CSS API responsiveFullScreen true 1`] = `
             class="min-h-small min-h-large-ns pl6 pl8-ns"
           >
             <div
+              aria-label="Modal Close Button"
               class="fr pointer pr6 pt6"
               role="button"
               tabindex="0"
@@ -210,7 +213,7 @@ exports[`Modal CSS API responsiveFullScreen true 1`] = `
           </div>
         </div>
         <div
-          class="ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 undefined undefined"
+          class="ph6 ph8-ns t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 undefined undefined pb8-ns"
         >
           Foo
         </div>
@@ -228,8 +231,9 @@ exports[`Modal CSS API responsiveFullScreen true 1`] = `
 exports[`Modal CSS API showBottomBarBorder false 1`] = `
 <div>
   <div
-    class="flex fixed z-max overflow-hidden overflow-hidden bg-black-70 absolute--fill items-center"
+    class="flex fixed z-max overflow-hidden bg-black-70 absolute--fill items-center"
     data-testid="modal__overlay"
+    role="presentation"
     tabindex="-1"
   >
     <div
@@ -243,13 +247,12 @@ exports[`Modal CSS API showBottomBarBorder false 1`] = `
       tabindex="1"
     />
     <div
-      class="undefined"
       data-focus-lock-disabled="false"
     >
       <div
         aria-labelledby="vtex-modal__title"
         aria-modal="true"
-        class="flex flex-column relative bg-white shadow-5 center mv9 vw-50-ns vw-70"
+        class="flex flex-column relative bg-white shadow-5 center mv9 undefined vw-90"
         data-testid="modal__modal"
         role="dialog"
       >
@@ -260,6 +263,7 @@ exports[`Modal CSS API showBottomBarBorder false 1`] = `
             class="min-h-small min-h-large-ns pl6 pl8-ns"
           >
             <div
+              aria-label="Modal Close Button"
               class="fr pointer pr6-ns pt6-ns pr5 pt5"
               role="button"
               tabindex="0"
@@ -285,7 +289,7 @@ exports[`Modal CSS API showBottomBarBorder false 1`] = `
           </div>
         </div>
         <div
-          class="ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 undefined undefined"
+          class="ph6 ph8-ns t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 undefined undefined pb8-ns"
         >
           Foo
         </div>
@@ -303,8 +307,9 @@ exports[`Modal CSS API showBottomBarBorder false 1`] = `
 exports[`Modal CSS API showTopBar false 1`] = `
 <div>
   <div
-    class="flex fixed z-max overflow-hidden overflow-hidden bg-black-70 absolute--fill items-center"
+    class="flex fixed z-max overflow-hidden bg-black-70 absolute--fill items-center"
     data-testid="modal__overlay"
+    role="presentation"
     tabindex="-1"
   >
     <div
@@ -318,13 +323,12 @@ exports[`Modal CSS API showTopBar false 1`] = `
       tabindex="1"
     />
     <div
-      class="undefined"
       data-focus-lock-disabled="false"
     >
       <div
         aria-labelledby="vtex-modal__title"
         aria-modal="true"
-        class="flex flex-column relative bg-white shadow-5 center mv9 vw-50-ns vw-70"
+        class="flex flex-column relative bg-white shadow-5 center mv9 undefined vw-90"
         data-testid="modal__modal"
         role="dialog"
       >
@@ -335,6 +339,7 @@ exports[`Modal CSS API showTopBar false 1`] = `
             class="min-h-small min-h-large-ns pl6 pl8-ns"
           >
             <div
+              aria-label="Modal Close Button"
               class="fr pointer pr6-ns pt6-ns pr5 pt5"
               role="button"
               tabindex="0"
@@ -360,7 +365,7 @@ exports[`Modal CSS API showTopBar false 1`] = `
           </div>
         </div>
         <div
-          class="ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 undefined undefined"
+          class="ph6 ph8-ns t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 undefined undefined pb8-ns"
         >
           Foo
         </div>
@@ -378,8 +383,9 @@ exports[`Modal CSS API showTopBar false 1`] = `
 exports[`Modal bottomBar should render bottomBar 1`] = `
 <div>
   <div
-    class="flex fixed z-max overflow-hidden overflow-hidden bg-black-70 absolute--fill items-center"
+    class="flex fixed z-max overflow-hidden bg-black-70 absolute--fill items-center"
     data-testid="modal__overlay"
+    role="presentation"
     tabindex="-1"
   >
     <div
@@ -393,13 +399,12 @@ exports[`Modal bottomBar should render bottomBar 1`] = `
       tabindex="1"
     />
     <div
-      class="undefined"
       data-focus-lock-disabled="false"
     >
       <div
         aria-labelledby="vtex-modal__title"
         aria-modal="true"
-        class="flex flex-column relative bg-white shadow-5 center mv9 vw-50-ns vw-70"
+        class="flex flex-column relative bg-white shadow-5 center mv9 undefined vw-90"
         data-testid="modal__modal"
         role="dialog"
       >
@@ -410,6 +415,7 @@ exports[`Modal bottomBar should render bottomBar 1`] = `
             class="min-h-small min-h-large-ns pl6 pl8-ns"
           >
             <div
+              aria-label="Modal Close Button"
               class="fr pointer pr6-ns pt6-ns pr5 pt5"
               role="button"
               tabindex="0"
@@ -435,7 +441,7 @@ exports[`Modal bottomBar should render bottomBar 1`] = `
           </div>
         </div>
         <div
-          class="ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 undefined undefined"
+          class="ph6 ph8-ns t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 undefined undefined mb3"
         >
           Foo
         </div>
@@ -462,8 +468,9 @@ exports[`Modal bottomBar should render bottomBar 1`] = `
 exports[`Modal container should render modal inside it 1`] = `
 <div>
   <div
-    class="flex fixed z-max overflow-hidden overflow-hidden bg-black-70 absolute--fill items-center"
+    class="flex fixed z-max overflow-hidden bg-black-70 absolute--fill items-center"
     data-testid="modal__overlay"
+    role="presentation"
     tabindex="-1"
   >
     <div
@@ -477,13 +484,12 @@ exports[`Modal container should render modal inside it 1`] = `
       tabindex="1"
     />
     <div
-      class="undefined"
       data-focus-lock-disabled="false"
     >
       <div
         aria-labelledby="vtex-modal__title"
         aria-modal="true"
-        class="flex flex-column relative bg-white shadow-5 center mv9 vw-50-ns vw-70"
+        class="flex flex-column relative bg-white shadow-5 center mv9 undefined vw-90"
         data-testid="modal__modal"
         role="dialog"
       >
@@ -494,6 +500,7 @@ exports[`Modal container should render modal inside it 1`] = `
             class="min-h-small min-h-large-ns pl6 pl8-ns"
           >
             <div
+              aria-label="Modal Close Button"
               class="fr pointer pr6-ns pt6-ns pr5 pt5"
               role="button"
               tabindex="0"
@@ -519,7 +526,7 @@ exports[`Modal container should render modal inside it 1`] = `
           </div>
         </div>
         <div
-          class="ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 undefined undefined"
+          class="ph6 ph8-ns t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 undefined undefined pb8-ns"
         >
           Foo
         </div>
@@ -537,8 +544,9 @@ exports[`Modal container should render modal inside it 1`] = `
 exports[`Modal isOpen Should show modal when isOpen is true and hide when is false 1`] = `
 <div>
   <div
-    class="flex fixed z-max overflow-hidden overflow-hidden bg-black-70 absolute--fill items-center"
+    class="flex fixed z-max overflow-hidden bg-black-70 absolute--fill items-center"
     data-testid="modal__overlay"
+    role="presentation"
     tabindex="-1"
   >
     <div
@@ -552,13 +560,12 @@ exports[`Modal isOpen Should show modal when isOpen is true and hide when is fal
       tabindex="1"
     />
     <div
-      class="undefined"
       data-focus-lock-disabled="false"
     >
       <div
         aria-labelledby="vtex-modal__title"
         aria-modal="true"
-        class="flex flex-column relative bg-white shadow-5 center mv9 vw-50-ns vw-70"
+        class="flex flex-column relative bg-white shadow-5 center mv9 undefined vw-90"
         data-testid="modal__modal"
         role="dialog"
       >
@@ -569,6 +576,7 @@ exports[`Modal isOpen Should show modal when isOpen is true and hide when is fal
             class="min-h-small min-h-large-ns pl6 pl8-ns"
           >
             <div
+              aria-label="Modal Close Button"
               class="fr pointer pr6-ns pt6-ns pr5 pt5"
               role="button"
               tabindex="0"
@@ -594,7 +602,7 @@ exports[`Modal isOpen Should show modal when isOpen is true and hide when is fal
           </div>
         </div>
         <div
-          class="ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 undefined undefined"
+          class="ph6 ph8-ns t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 undefined undefined pb8-ns"
         >
           Foo
         </div>
@@ -612,8 +620,9 @@ exports[`Modal isOpen Should show modal when isOpen is true and hide when is fal
 exports[`Modal isOpen Should show modal when isOpen is true and hide when is false 2`] = `
 <div>
   <div
-    class="flex fixed z-max overflow-hidden overflow-hidden bg-black-70 absolute--fill items-center"
+    class="flex fixed z-max overflow-hidden bg-black-70 absolute--fill items-center"
     data-testid="modal__overlay"
+    role="presentation"
     tabindex="-1"
   >
     <div
@@ -627,13 +636,12 @@ exports[`Modal isOpen Should show modal when isOpen is true and hide when is fal
       tabindex="1"
     />
     <div
-      class="undefined"
       data-focus-lock-disabled="false"
     >
       <div
         aria-labelledby="vtex-modal__title"
         aria-modal="true"
-        class="flex flex-column relative bg-white shadow-5 center mv9 vw-50-ns vw-70"
+        class="flex flex-column relative bg-white shadow-5 center mv9 undefined vw-90"
         data-testid="modal__modal"
         role="dialog"
       >
@@ -644,6 +652,7 @@ exports[`Modal isOpen Should show modal when isOpen is true and hide when is fal
             class="min-h-small min-h-large-ns pl6 pl8-ns"
           >
             <div
+              aria-label="Modal Close Button"
               class="fr pointer pr6-ns pt6-ns pr5 pt5"
               role="button"
               tabindex="0"
@@ -669,7 +678,7 @@ exports[`Modal isOpen Should show modal when isOpen is true and hide when is fal
           </div>
         </div>
         <div
-          class="ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 undefined undefined"
+          class="ph6 ph8-ns t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 undefined undefined pb8-ns"
         >
           Foo
         </div>
@@ -687,8 +696,9 @@ exports[`Modal isOpen Should show modal when isOpen is true and hide when is fal
 exports[`Modal title should render title prop 1`] = `
 <DocumentFragment>
   <div
-    class="flex fixed z-max overflow-hidden overflow-hidden bg-black-70 absolute--fill items-center"
+    class="flex fixed z-max overflow-hidden bg-black-70 absolute--fill items-center"
     data-testid="modal__overlay"
+    role="presentation"
     tabindex="-1"
   >
     <div
@@ -702,13 +712,12 @@ exports[`Modal title should render title prop 1`] = `
       tabindex="1"
     />
     <div
-      class="undefined"
       data-focus-lock-disabled="false"
     >
       <div
         aria-labelledby="vtex-modal__title"
         aria-modal="true"
-        class="flex flex-column relative bg-white shadow-5 center mv9 vw-50-ns vw-70"
+        class="flex flex-column relative bg-white shadow-5 center mv9 undefined vw-90"
         data-testid="modal__modal"
         role="dialog"
       >
@@ -719,6 +728,7 @@ exports[`Modal title should render title prop 1`] = `
             class="min-h-small min-h-large-ns pl6 pl8-ns"
           >
             <div
+              aria-label="Modal Close Button"
               class="fr pointer pr6-ns pt6-ns pr5 pt5"
               role="button"
               tabindex="0"
@@ -743,7 +753,7 @@ exports[`Modal title should render title prop 1`] = `
             </div>
           </div>
           <span
-            class="t-heading-4 ml8"
+            class="t-heading-4 ml8-ns ml6"
           >
             <div
               class="undefined"
@@ -754,7 +764,7 @@ exports[`Modal title should render title prop 1`] = `
           </span>
         </div>
         <div
-          class="ph8 t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 mb3 undefined undefined"
+          class="ph6 ph8-ns t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 undefined undefined pb8-ns"
         >
           Foo
         </div>
