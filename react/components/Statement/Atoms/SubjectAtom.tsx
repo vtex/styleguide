@@ -20,6 +20,7 @@ type Props = {
   onChange: (string) => void
   options: SubjectOptions
   placeholder: string
+  noOptionsMessage?: (value: string) => string | null
 }
 
 const groupOptions = options => {
@@ -53,6 +54,7 @@ const SubjectAtom: React.FC<Props> = ({
   options,
   placeholder,
   subject,
+  noOptionsMessage,
 }) => {
   const optionsGroup = groupOptions(options)
 
@@ -79,6 +81,7 @@ const SubjectAtom: React.FC<Props> = ({
     <div className="mh3 pb3" style={{ minWidth: ATOM_COMPONENT_MIN_WIDTH }}>
       <Select
         clearable={false}
+        noOptionsMessage={noOptionsMessage}
         multi={false}
         onChange={option => onChange(option && option.value)}
         options={subjectOptions}

@@ -102,6 +102,7 @@ class FilterBar extends PureComponent {
       submitFilterLabel,
       newFilterLabel,
       testIds,
+      noOptionsMessage,
     } = this.props
     const { visibleExtraOptions } = this.state
     const optionsKeys = Object.keys(options)
@@ -153,6 +154,7 @@ class FilterBar extends PureComponent {
                 getFilterLabel={() => moreOptionsLabel}
                 submitFilterLabel={submitFilterLabel}
                 newFilterLabel={newFilterLabel}
+                noOptionsMessage={noOptionsMessage}
                 options={{
                   ...filterExtraOptions(
                     options,
@@ -222,6 +224,8 @@ export const filterBarPropTypes = {
   submitFilterLabel: PropTypes.string,
   /** New Filter title label for inside the 'More options' menu */
   newFilterLabel: PropTypes.string,
+  /** Function to render the 'No options' when user input match no options in 'More options select'*/
+  noOptionsMessage: PropTypes.func,
   testIds: PropTypes.shape({
     moreOptionsButton: PropTypes.string,
     submitFiltersButton: PropTypes.string,

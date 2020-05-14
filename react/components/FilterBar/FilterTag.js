@@ -144,6 +144,7 @@ class FilterTag extends PureComponent {
       newFilterLabel,
       isMobile,
       testIds,
+      noOptionsMessage,
     } = this.props
     const { isMenuOpen, virtualStatement } = this.state
 
@@ -271,6 +272,7 @@ class FilterTag extends PureComponent {
                   omitVerbs={shouldOmitVerb}
                   options={compatibleOptions}
                   subjectPlaceholder={subjectPlaceholder}
+                  noOptionsMessage={noOptionsMessage}
                   statement={
                     isMoreOptions
                       ? virtualStatement
@@ -339,6 +341,7 @@ FilterTag.propTypes = {
   newFilterLabel: PropTypes.string,
   device: PropTypes.string,
   isMobile: PropTypes.bool,
+  noOptionsMessage: PropTypes.func,
   testIds: PropTypes.shape({
     moreOptionsButton: PropTypes.string,
     submitFiltersButton: PropTypes.string,
