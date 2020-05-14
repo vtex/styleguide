@@ -10,6 +10,29 @@
 
 - Avoid stacking modals on top of other modals.
 
+### Props
+
+| Property                | Type      | Required | Default             | Description                                                                                                                                                 |
+| ----------------------- | --------- | -------- | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| children                | `node`    | ✅       |                     | Content of the modal                                                                                                                                        |
+| isOpen                  | `boolean` | ✅       |                     | Show or hide the modal                                                                                                                                      |
+| onClose                 | `boolean` | ✅       |                     | Function called when Modal is closed                                                                                                                        |
+| centered                | `boolean` | 🚫       | true                | Center the modal                                                                                                                                            |
+| container               | `any`     | 🚫       | document.body       | Container in which the modal is rendered                                                                                                                    |
+| showBottomBarBorder     | `boolean` | 🚫       | true                | Show BottomBar border                                                                                                                                       |
+| closeOnEsc              | `boolean` | 🚫       | true                | Close the modal on ESC key press                                                                                                                            |
+| closeOnOverlayClick     | `boolean` | 🚫       | true                | Close the modal on overlay click                                                                                                                            |
+| showCloseIcon           | `boolean` | 🚫       | true                | Show the close icon on upper right corner                                                                                                                   |
+| bottomBar               | `node`    | 🚫       |                     | Node to be displayed as the bottom bar of the modal                                                                                                         |
+| title                   | `node`    | 🚫       |                     | Modal title to be displayed in top of the modal                                                                                                             |
+| responsiveFullScreen    | `boolean` | 🚫       | false               | If true the modal will expand to fullscreen in small view ports                                                                                             |
+| showTopBar              | `boolean` | 🚫       | true                | If true, show top bar with title                                                                                                                            |
+| onCloseTransitionFinish | `func`    | 🚫       |                     | Event fired when the closing transition is finished                                                                                                         |
+| size                    | `enum`    | 🚫       | medium              | Modal Size. One of: Small, Medium and Large                                                                                                                 |
+| aria-label              | `string`  | 🚫       |                     | Acessible Modal name. If this name is visible on the screen, prefer to use aria-labelledby                                                                  |
+| aria-labelledby         | `string`  | 🚫       | `vtex-modal__title` | ID of the element that provides the Modal an accessible name. If aria-label and aria-albelledby is not defined, the default here will be the title element. |
+| aria-describedby        | `string`  | 🚫       |                     | ID of the element that provides the Modal an accessible description                                                                                         |
+
 Default
 
 ```js
