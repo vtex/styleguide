@@ -1,5 +1,4 @@
 import React, { FC, forwardRef, useState } from 'react'
-import PropTypes from 'prop-types'
 import { createPortal } from 'react-dom'
 import classNames from 'classnames'
 import FocusLock from 'react-focus-lock'
@@ -234,57 +233,5 @@ function Modal(
 }
 
 const FowardedModal = forwardRef<HTMLDivElement, Props>(Modal)
-
-FowardedModal.propTypes = {
-  /** Content of the modal. */
-  children: PropTypes.node.isRequired,
-  /** Center the modal (for small content). */
-  centered: PropTypes.bool,
-  /** Container in which the modal is rendered. */
-  container: PropTypes.any,
-  /** Show or hide the modal. */
-  isOpen: PropTypes.bool.isRequired,
-  /** Function called when Modal is closed. */
-  onClose: PropTypes.func.isRequired,
-  /** Show BottomBar border. */
-  showBottomBarBorder: PropTypes.bool,
-  /** Close the modal on ESC key press. */
-  closeOnEsc: PropTypes.bool,
-  /** Close the modal on overlay click. */
-  closeOnOverlayClick: PropTypes.bool,
-  /** Show the close icon on upper right corner. */
-  showCloseIcon: PropTypes.bool,
-  /** Node to be displayed as the bottom bar of the modal. */
-  bottomBar: PropTypes.node,
-  /** Modal title to be displayed in top of the modal. */
-  title: PropTypes.node,
-  /** If true, the modal will expand to fullscreen in small view ports (e.g. mobile). */
-  responsiveFullScreen: PropTypes.bool,
-  /** If true, show top bar with title. */
-  showTopBar: PropTypes.bool,
-  /** Event fired when the closing transition is finished. */
-  onCloseTransitionFinish: PropTypes.func,
-  /** Modal size. */
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
-  /** Acessible Modal name. If this name is visible on the screen, prefer to use aria-labelledby. */
-  'aria-label': PropTypes.string,
-  /** ID of the element that provides the Modal an accessible name. If aria-label and aria-albelledby is not defined, the default here will be the title element. */
-  'aria-labelledby': PropTypes.string,
-  /** ID of the element that provides the Modal an accessible description. */
-  'aria-describedby': PropTypes.string,
-}
-
-FowardedModal.defaultProps = {
-  isOpen: false,
-  closeOnEsc: true,
-  closeOnOverlayClick: true,
-  showCloseIcon: true,
-  showTopBar: true,
-  showBottomBarBorder: true,
-  centered: true,
-  size: 'medium',
-  responsiveFullScreen: false,
-  'aria-labelledby': 'vtex-modal__title',
-}
 
 export default FowardedModal
