@@ -18,6 +18,7 @@ type Props = {
     error?: string
   }
   subjectPlaceholder: string
+  noOptionsMessage?: (value: string) => string | null
 }
 
 const Statement: React.FC<Props> = ({
@@ -29,6 +30,7 @@ const Statement: React.FC<Props> = ({
   options,
   statement = { subject: '', verb: '', object: null, error: null },
   subjectPlaceholder,
+  noOptionsMessage,
 }) => {
   const verbOptions =
     statement.subject &&
@@ -37,6 +39,7 @@ const Statement: React.FC<Props> = ({
     !omitSubject && (
       <SubjectAtom
         key="subject"
+        noOptionsMessage={noOptionsMessage}
         onChange={subject => {
           const newStatement = {
             ...statement,
