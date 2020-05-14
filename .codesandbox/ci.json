@@ -1,0 +1,4 @@
+{
+  "buildCommand": "build",
+  "sandboxes": ["vtex-styleguide-pr-h3sys", "/styleguide"]
+}
