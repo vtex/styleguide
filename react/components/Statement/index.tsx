@@ -55,7 +55,7 @@ const Statement: React.FC<Props> = ({
         subject={statement.subject}
       />
     ),
-    !omitVerbs && (
+    !omitVerbs && verbOptions?.label && (
       <VerbAtom
         key="verb"
         disabled={!statement.subject}
