@@ -7,27 +7,28 @@ Default
 ```js
 const Button = require('../Button').default
 const Input = require('../Input').default
-const useModal = require('../../useModal').default
+const useDisclosure = require('../../useDisclosure').default
+import { useDisclosure } from '../../utilities'
 
 const ModalDialogExample = () => {
-  const { isOpen, open, close } = useModal()
+  const { isOpen, onOpen, onClose } = useDisclousure()
 
   return (
     <div>
-      <Button onClick={open}>Open modal</Button>
+      <Button onClick={onOpen}>Open modal</Button>
 
       <ModalDialog
         centered
         confirmation={{
-          onClick: close,
+          onClick: onClose,
           label: 'Send',
         }}
         cancelation={{
-          onClick: close,
+          onClick: onClose,
           label: 'Cancel',
         }}
         isOpen={isOpen}
-        onClose={close}
+        onClose={onClose}
       >
         <div className="flex flex-column flex-row-ns">
           <div className="w-100 w-50-ns">
@@ -72,36 +73,36 @@ import { useState } from 'react'
 
 const Button = require('../Button').default
 const Input = require('../Input').default
-const useModal = require('../../useModal').default
+import { useDisclosure } from '../../utilities'
 
 const ModalDialogExample = () => {
-  const { isOpen, open, close } = useModal()
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const [loading, setLoading] = useState()
 
   const handleConfirmation = () => {
     setLoading(true)
     setTimeout(() => {
-      close
+      onClose
       setLoading(false)
     }, 1500)
   }
   return (
     <div>
-      <Button onClick={open}>Open modal</Button>
+      <Button onClick={onOpen}>Open modal</Button>
 
       <ModalDialog
         centered
         loading={true}
         confirmation={{
-          onClick: close,
+          onClick: onClose,
           label: 'Send',
         }}
         cancelation={{
-          onClick: close,
+          onClick: onClose,
           label: 'Cancel',
         }}
         isOpen={isOpen}
-        onClose={close}
+        onClose={onClose}
       >
         <div className="flex flex-column flex-row-ns">
           <div className="w-100 w-50-ns">
@@ -146,23 +147,23 @@ import { useState } from 'react'
 
 const Button = require('../Button').default
 const Input = require('../Input').default
-const useModal = require('../../useModal').default
+import { useDisclosure } from '../../utilities'
 
 const ModalDialogExample = () => {
-  const { isOpen, open, close } = useModal()
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const [loading, setLoading] = useState()
 
   const handleConfirmation = () => {
     setLoading(true)
     setTimeout(() => {
-      close
+      onClose
       setLoading(false)
     }, 1500)
   }
 
   return (
     <div>
-      <Button onClick={open}>Open modal</Button>
+      <Button onClick={onOpen}>Open modal</Button>
 
       <ModalDialog
         centered
@@ -174,11 +175,11 @@ const ModalDialogExample = () => {
           isDangerous: true,
         }}
         cancelation={{
-          onClick: close,
+          onClick: onClose,
           label: 'Cancel',
         }}
         isOpen={isOpen}
-        onClose={close}
+        onClose={onClose}
       >
         <div className="">
           <p className="f3 f3-ns fw3 gray">
