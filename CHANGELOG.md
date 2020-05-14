@@ -25,6 +25,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Render empty span when `VerbAtom` has no value to show.
 
+### Added
+
+- `noOptionsMessage` prop to `FilterBar`.
+
 ## [9.117.0] - 2020-05-13
 
 ### Added
