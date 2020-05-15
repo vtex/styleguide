@@ -9,18 +9,37 @@ import Button from '../Button'
 import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
 
 class Alert extends Component {
+  constructor(props) {
+    super(props)
+    this.firstElementRef = React.createRef()
+  }
+
   componentDidMount() {
     if (this.props.autoClose && this.props.onClose) {
       this.timeout = setTimeout(this.props.onClose, this.props.autoClose)
+    }
+
+    if (this.props.focusOnOpen) {
+      this.firstElementRef.current && this.firstElementRef.current.focus()
     }
   }
 
   componentWillUnmount() {
     clearTimeout(this.timeout)
+
+    if (this.props.focusAfterClosed && this.props.focusAfterClosed.current) {
+      this.props.focusAfterClosed.current.focus()
+    }
   }
 
   render() {
-    const { type, onClose, action, forwardedRef } = this.props
+    const {
+      type,
+      onClose,
+      action,
+      forwardedRef,
+      closeIconLabel = 'Close',
+    } = this.props
     const innerVerticalPadding = 'pv3'
     let classes = 'ph5 pv4 br2 '
     let showIcon = false
@@ -57,6 +76,7 @@ class Alert extends Component {
     return (
       <div
         ref={forwardedRef}
+        role="alert"
         className={`vtex-alert flex justify-between t-body c-on-base ${classes}`}>
         <div className="flex-ns flex-wrap flex-grow-1 items-start">
           <div
@@ -76,7 +96,10 @@ class Alert extends Component {
             <div
               className={`flex flex-grow-1 justify-end ${innerVerticalPadding}`}>
               <div className="nt4-ns nb4">
-                <Button variation="tertiary" onClick={handleActionClick}>
+                <Button
+                  ref={this.firstElementRef}
+                  variation="tertiary"
+                  onClick={handleActionClick}>
                   {action.label}
                 </Button>
               </div>
@@ -85,13 +108,18 @@ class Alert extends Component {
         </div>
 
         {onClose && (
-          <div
-            title="Close"
-            className={`vtex-alert__close-icon pointer pv2 c-on-base ph3 ${innerVerticalPadding}`}
+          <button
+            className={`vtex-alert__close-icon pointer c-on-base ph3 bg-transparent bn ${innerVerticalPadding}`}
+            ref={displayAction ? undefined : this.firstElementRef}
             onClick={onClose}
             tabIndex={0}>
-            <CloseIcon block color="currentColor" size={16} />
-          </div>
+            <CloseIcon
+              title={closeIconLabel}
+              block
+              color="currentColor"
+              size={16}
+            />
+          </button>
         )}
       </div>
     )
@@ -109,11 +137,17 @@ Alert.propTypes = {
   onClose: PropTypes.func,
   /** Time in ms to auto close the alert */
   autoClose: PropTypes.number,
+  /** Set focus to the first focusable element inside alert, which should be the "action" when available or the "close" button */
+  focusOnOpen: PropTypes.bool,
+  /** Define element to be focused when the alert is dimissed */
+  focusAfterClosed: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
   /** If this object is defined, an action button will appear on the right side of the alert. */
   action: PropTypes.shape({
     onClick: PropTypes.func.isRequired,
     label: PropTypes.node.isRequired,
   }),
+  /** Defines the title used for hover and accessibility feedback **/
+  closeIconLabel: PropTypes.string,
 }
 
 export default withForwardedRef(Alert)
