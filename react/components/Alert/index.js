@@ -26,10 +26,6 @@ class Alert extends Component {
 
   componentWillUnmount() {
     clearTimeout(this.timeout)
-
-    if (this.props.focusAfterClosed && this.props.focusAfterClosed.current) {
-      this.props.focusAfterClosed.current.focus()
-    }
   }
 
   render() {
@@ -139,8 +135,6 @@ Alert.propTypes = {
   autoClose: PropTypes.number,
   /** Set focus to the first focusable element inside alert, which should be the "action" when available or the "close" button */
   focusOnOpen: PropTypes.bool,
-  /** Define element to be focused when the alert is dimissed */
-  focusAfterClosed: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
   /** If this object is defined, an action button will appear on the right side of the alert. */
   action: PropTypes.shape({
     onClick: PropTypes.func.isRequired,
