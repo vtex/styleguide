@@ -1,12 +1,12 @@
 import React, { FC, forwardRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import classNames from 'classnames'
-import FocusLock from 'react-focus-lock'
 
 import TopBar from './TopBar'
 import BottomBar from './BottomBar'
 import styles from './modal.css'
 import { useEnhancedEffect } from './utils'
+import FocusTrap from './FocusTrap'
 
 export interface Props
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
@@ -99,7 +99,7 @@ export const ModalOverlay: FC<OverlayProps> = ({
           data-testid="modal__overlay"
           role="presentation"
         >
-          <FocusLock className={styles.contents}>{children}</FocusLock>
+          <FocusTrap className={styles.contents}>{children}</FocusTrap>
         </div>,
         container ?? document.body
       )
