@@ -57,8 +57,8 @@ const Statement: React.FC<Props> = ({
         subject={statement.subject}
       />
     ),
-    <span className="mt3">
-      {!omitVerbs && verbOptions?.label && (
+    !omitVerbs &&
+      (verbOptions?.label ? (
         <VerbAtom
           key="verb"
           disabled={!statement.subject}
@@ -76,8 +76,9 @@ const Statement: React.FC<Props> = ({
             statement.subject ? options[statement.subject].verbs : []
           }
         />
-      )}
-    </span>,
+      ) : (
+        <span className="mt3" />
+      )),
     <ObjectAtom
       key="object"
       disabled={!statement.verb}
