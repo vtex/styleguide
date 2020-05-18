@@ -34,13 +34,15 @@ const Statement: React.FC<Props> = ({
 }) => {
   const verbOptions =
     statement.subject &&
-    options[statement.subject].verbs.find(verb => verb.value === statement.verb)
+    options[statement.subject].verbs.find(
+      (verb) => verb.value === statement.verb
+    )
   const statementAtoms = [
     !omitSubject && (
       <SubjectAtom
         key="subject"
         noOptionsMessage={noOptionsMessage}
-        onChange={subject => {
+        onChange={(subject) => {
           const newStatement = {
             ...statement,
             subject,
@@ -55,23 +57,27 @@ const Statement: React.FC<Props> = ({
         subject={statement.subject}
       />
     ),
-    !omitVerbs && verbOptions?.label && (
-      <VerbAtom
-        key="verb"
-        disabled={!statement.subject}
-        onChange={verb => {
-          const newStatement = {
-            ...statement,
-            verb,
-            object: null,
-            error: null,
+    <span className="mt3">
+      {!omitVerbs && verbOptions?.label && (
+        <VerbAtom
+          key="verb"
+          disabled={!statement.subject}
+          onChange={(verb) => {
+            const newStatement = {
+              ...statement,
+              verb,
+              object: null,
+              error: null,
+            }
+            onChangeStatement(newStatement)
+          }}
+          verb={statement.verb}
+          verbOptions={
+            statement.subject ? options[statement.subject].verbs : []
           }
-          onChangeStatement(newStatement)
-        }}
-        verb={statement.verb}
-        verbOptions={statement.subject ? options[statement.subject].verbs : []}
-      />
-    ),
+        />
+      )}
+    </span>,
     <ObjectAtom
       key="object"
       disabled={!statement.verb}
