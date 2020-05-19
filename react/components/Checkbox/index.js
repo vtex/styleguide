@@ -74,12 +74,12 @@ class Checkbox extends PureComponent {
             }}
           />
           <div
-            className="absolute w1 h1 flex o-100"
+            className="vtex-checkbox__box-wrapper absolute w1 h1 flex o-100"
             style={{
               left: 0,
             }}>
             <div
-              className={`absolute top-0 left-0 bottom-0 overflow-hidden w-100 flex items-center align-center justify-center ${
+              className={`vtex-checkbox__box absolute top-0 left-0 bottom-0 overflow-hidden w-100 flex items-center align-center justify-center ${
                 disabled ? 'c-on-disabled' : 'c-on-action-primary'
               }`}
               style={{ transition: 'right 110ms ease-in-out 30ms' }}>
@@ -101,7 +101,7 @@ class Checkbox extends PureComponent {
               elem && (this.myCheckbox = elem)
               forwardedRef && (forwardedRef.current = elem)
             }}
-            className={classNames('h1 w1 absolute o-0', {
+            className={classNames('vtex-checkbox__input h1 w1 absolute o-0', {
               pointer: !disabled,
             })}
             disabled={disabled}
