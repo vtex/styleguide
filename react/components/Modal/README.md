@@ -35,6 +35,7 @@
 | aria-label              | `string`  | 🚫       |                     | Acessible Modal name. If this name is visible on the screen, prefer to use aria-labelledby                                                                  |
 | aria-labelledby         | `string`  | 🚫       | `vtex-modal__title` | ID of the element that provides the Modal an accessible name. If aria-label and aria-albelledby is not defined, the default here will be the title element. |
 | aria-describedby        | `string`  | 🚫       |                     | ID of the element that provides the Modal an accessible description                                                                                         |
+| initialFocusRef         | `ref`     | 🚫       |                     | Element to be focused first when Modal is open. The default is the first Modal element.                                                                     |
 
 ## Examples
 

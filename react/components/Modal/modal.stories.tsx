@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-handler-names */
-import React from 'react'
+import React, { useRef } from 'react'
 import { withA11y } from '@storybook/addon-a11y'
 import { withKnobs, boolean, select } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
@@ -20,6 +20,9 @@ const sizes: Size[] = ['small', 'medium', 'large']
 
 export const Default = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const initialFocusRef = useRef<HTMLDivElement>(null)
+
+  const withInitialInputFocus = boolean('Initial Focus in Input', true)
 
   return (
     <>
@@ -39,6 +42,7 @@ export const Default = () => {
         centered={boolean('Centered', true)}
         showBottomBarBorder={boolean('Show Bottom Bar Border', true)}
         closeOnOverlayClick={boolean('Close On Overlay Click', true)}
+        initialFocusRef={withInitialInputFocus ? initialFocusRef : null}
         bottomBar={
           <>
             <Button
@@ -64,7 +68,11 @@ export const Default = () => {
         This is a simple customizable Modal to ask your name! Please try change
         my props below in the Knobs and see how I react!
         <div className="mt6 mb5">
-          <Input placeholder="Type your name..." size="small" />
+          <Input
+            placeholder="Type your name..."
+            size="small"
+            ref={initialFocusRef}
+          />
         </div>
       </Modal>
     </>
