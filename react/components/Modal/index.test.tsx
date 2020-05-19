@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { render, fireEvent } from '@testing-library/react'
 
 import Modal from '.'
+import Input from '../Input'
 
 describe('Modal', () => {
   jest.spyOn(window, 'scroll').mockImplementation()
@@ -252,6 +253,37 @@ describe('Modal', () => {
       )
 
       expect(container).toMatchSnapshot()
+    })
+  })
+
+  describe('initialFocusRef', () => {
+    it('to focus correctly', () => {
+      const containerModal = document.createElement('div')
+      const onClose = jest.fn()
+
+      const Component = () => {
+        const initialFocusRef = useRef<HTMLDivElement>(null)
+
+        return (
+          <Modal
+            isOpen
+            onClose={onClose}
+            container={containerModal}
+            initialFocusRef={initialFocusRef}
+          >
+            <Input
+              placeholder="Type your name..."
+              size="small"
+              ref={initialFocusRef}
+            />
+          </Modal>
+        )
+      }
+      render(<Component />, { container: containerModal })
+
+      const currentFocused = document.activeElement
+
+      expect(currentFocused).toBe(document.querySelector('input'))
     })
   })
 })

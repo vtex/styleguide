@@ -8,19 +8,7 @@ exports[`Modal CSS API centered 1`] = `
     role="presentation"
     tabindex="-1"
   >
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="0"
-    />
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="1"
-    />
-    <div
-      data-focus-lock-disabled="false"
-    >
+    <div>
       <div
         aria-labelledby="vtex-modal__title"
         aria-modal="true"
@@ -67,11 +55,6 @@ exports[`Modal CSS API centered 1`] = `
         </div>
       </div>
     </div>
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="0"
-    />
   </div>
 </div>
 `;
@@ -84,19 +67,7 @@ exports[`Modal CSS API default 1`] = `
     role="presentation"
     tabindex="-1"
   >
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="0"
-    />
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="1"
-    />
-    <div
-      data-focus-lock-disabled="false"
-    >
+    <div>
       <div
         aria-labelledby="vtex-modal__title"
         aria-modal="true"
@@ -143,11 +114,6 @@ exports[`Modal CSS API default 1`] = `
         </div>
       </div>
     </div>
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="0"
-    />
   </div>
 </div>
 `;
@@ -160,19 +126,7 @@ exports[`Modal CSS API responsiveFullScreen true 1`] = `
     role="presentation"
     tabindex="-1"
   >
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="0"
-    />
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="1"
-    />
-    <div
-      data-focus-lock-disabled="false"
-    >
+    <div>
       <div
         aria-labelledby="vtex-modal__title"
         aria-modal="true"
@@ -219,11 +173,6 @@ exports[`Modal CSS API responsiveFullScreen true 1`] = `
         </div>
       </div>
     </div>
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="0"
-    />
   </div>
 </div>
 `;
@@ -236,19 +185,7 @@ exports[`Modal CSS API showBottomBarBorder false 1`] = `
     role="presentation"
     tabindex="-1"
   >
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="0"
-    />
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="1"
-    />
-    <div
-      data-focus-lock-disabled="false"
-    >
+    <div>
       <div
         aria-labelledby="vtex-modal__title"
         aria-modal="true"
@@ -295,11 +232,6 @@ exports[`Modal CSS API showBottomBarBorder false 1`] = `
         </div>
       </div>
     </div>
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="0"
-    />
   </div>
 </div>
 `;
@@ -312,19 +244,7 @@ exports[`Modal CSS API showTopBar false 1`] = `
     role="presentation"
     tabindex="-1"
   >
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="0"
-    />
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="1"
-    />
-    <div
-      data-focus-lock-disabled="false"
-    >
+    <div>
       <div
         aria-labelledby="vtex-modal__title"
         aria-modal="true"
@@ -371,11 +291,6 @@ exports[`Modal CSS API showTopBar false 1`] = `
         </div>
       </div>
     </div>
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="0"
-    />
   </div>
 </div>
 `;
@@ -388,19 +303,7 @@ exports[`Modal bottomBar should render bottomBar 1`] = `
     role="presentation"
     tabindex="-1"
   >
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="0"
-    />
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="1"
-    />
-    <div
-      data-focus-lock-disabled="false"
-    >
+    <div>
       <div
         aria-labelledby="vtex-modal__title"
         aria-modal="true"
@@ -456,11 +359,6 @@ exports[`Modal bottomBar should render bottomBar 1`] = `
         </div>
       </div>
     </div>
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="0"
-    />
   </div>
 </div>
 `;
@@ -473,19 +371,7 @@ exports[`Modal container should render modal inside it 1`] = `
     role="presentation"
     tabindex="-1"
   >
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="0"
-    />
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="1"
-    />
-    <div
-      data-focus-lock-disabled="false"
-    >
+    <div>
       <div
         aria-labelledby="vtex-modal__title"
         aria-modal="true"
@@ -532,11 +418,6 @@ exports[`Modal container should render modal inside it 1`] = `
         </div>
       </div>
     </div>
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="0"
-    />
   </div>
 </div>
 `;
@@ -549,19 +430,7 @@ exports[`Modal isOpen Should show modal when isOpen is true and hide when is fal
     role="presentation"
     tabindex="-1"
   >
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="0"
-    />
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="1"
-    />
-    <div
-      data-focus-lock-disabled="false"
-    >
+    <div>
       <div
         aria-labelledby="vtex-modal__title"
         aria-modal="true"
@@ -608,11 +477,6 @@ exports[`Modal isOpen Should show modal when isOpen is true and hide when is fal
         </div>
       </div>
     </div>
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="0"
-    />
   </div>
 </div>
 `;
@@ -625,19 +489,7 @@ exports[`Modal isOpen Should show modal when isOpen is true and hide when is fal
     role="presentation"
     tabindex="-1"
   >
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="0"
-    />
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="1"
-    />
-    <div
-      data-focus-lock-disabled="false"
-    >
+    <div>
       <div
         aria-labelledby="vtex-modal__title"
         aria-modal="true"
@@ -684,11 +536,6 @@ exports[`Modal isOpen Should show modal when isOpen is true and hide when is fal
         </div>
       </div>
     </div>
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="0"
-    />
   </div>
 </div>
 `;
@@ -701,19 +548,7 @@ exports[`Modal title should render title prop 1`] = `
     role="presentation"
     tabindex="-1"
   >
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="0"
-    />
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="1"
-    />
-    <div
-      data-focus-lock-disabled="false"
-    >
+    <div>
       <div
         aria-labelledby="vtex-modal__title"
         aria-modal="true"
@@ -770,11 +605,6 @@ exports[`Modal title should render title prop 1`] = `
         </div>
       </div>
     </div>
-    <div
-      data-focus-guard="true"
-      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-      tabindex="0"
-    />
   </div>
 </DocumentFragment>
 `;

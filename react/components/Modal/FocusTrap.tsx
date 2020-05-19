@@ -24,11 +24,17 @@ const findLastFocusable = (element: HTMLElement): HTMLElement | null => {
   return focusableElements[focusableElements.length - 1] as HTMLElement | null
 }
 
-interface Props extends React.HTMLAttributes<HTMLDivElement> {
-  children?: React.ReactNode
+const focusFirstElement = (element: HTMLElement) => {
+  const firstElement = findFirstFocusable(element)
+  firstElement?.focus()
 }
 
-const FocusTrap: FC<Props> = ({ children, ...props }) => {
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
+  children?: React.ReactNode
+  initialFocusRef?: React.RefObject<HTMLElement> | null
+}
+
+const FocusTrap: FC<Props> = ({ children, initialFocusRef, ...props }) => {
   const focusContainer = useRef<HTMLDivElement>(null)
 
   const handleFocusIn = (event: FocusEvent) => {
@@ -46,8 +52,8 @@ const FocusTrap: FC<Props> = ({ children, ...props }) => {
     ) {
       return
     }
-    const firstFocusableElement = findFirstFocusable(focusContainer.current)
-    firstFocusableElement?.focus()
+
+    focusFirstElement(focusContainer.current)
   }
 
   const handleTab = (event: KeyboardEvent) => {
@@ -86,9 +92,12 @@ const FocusTrap: FC<Props> = ({ children, ...props }) => {
     if (!focusContainer.current) {
       return
     }
-    const firstFocusableElement = findFirstFocusable(focusContainer.current)
-    firstFocusableElement?.focus()
-  }, [focusContainer])
+    if (initialFocusRef) {
+      initialFocusRef?.current?.focus()
+      return
+    }
+    focusFirstElement(focusContainer.current)
+  }, [focusContainer, initialFocusRef])
 
   return (
     <div ref={focusContainer} {...props}>
