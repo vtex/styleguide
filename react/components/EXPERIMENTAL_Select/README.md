@@ -106,6 +106,50 @@ const options = [
 </div>
 ```
 
+Grouped
+
+```js
+const options = [
+  {
+    label: 'First Group',
+    options: [
+      {
+        value: { id: 0, name: 'first-option' },
+        label: 'First Option',
+      },
+      {
+        value: { id: 0, name: 'second-option' },
+        label: 'Second Option',
+      },
+    ],
+  },
+  {
+    label: 'Second Group',
+    options: [
+      {
+        value: { id: 0, name: 'third-option' },
+        label: 'Third Option',
+      },
+      {
+        value: { id: 0, name: 'fourth-option' },
+        label: 'Fourth Option',
+      },
+    ],
+  },
+]
+
+;<div>
+  <Select
+    label="Label"
+    options={options}
+    multi={false}
+    onChange={values => {
+      console.log(`[Select] Selected: ${JSON.stringify(values, null, 2)}`)
+    }}
+  />
+</div>
+```
+
 No label
 
 ```js
