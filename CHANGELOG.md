@@ -25,6 +25,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Utilities section in docs.
 - Size prop to Modal.
 - `aria-label`, `aria-labelledby`, and `aria-describedby` prop to Modal.
+- `FocusTrap` in modal.
+- `initialFocusRef` prop to Modal.
 
 ### Fixed
 
