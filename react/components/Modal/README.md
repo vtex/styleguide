@@ -37,6 +37,8 @@ Default
 
 ```js
 const Button = require('../Button').default
+const Modal = require('.').default
+
 import { useDisclosure } from '../../utilities'
 
 const ModalExample = () => {
@@ -87,6 +89,7 @@ const ModalExample = () => {
 Long content
 
 ```js
+const Modal = require('.').default
 const Button = require('../Button').default
 import { useDisclosure } from '../../utilities'
 
@@ -186,6 +189,7 @@ const ModalExample = () => {
 With title, BottomBar and the responsive full screen option
 
 ```js
+const Modal = require('.').default
 const Button = require('../Button').default
 import { useDisclosure } from '../../utilities'
 const Input = require('../Input').default
@@ -256,6 +260,7 @@ const ModalExample = () => {
 Sizes
 
 ```js
+const Modal = require('.').default
 import { useDisclosure } from '../../utilities'
 const ModalExample = () => {
   const Button = require('../Button').default
