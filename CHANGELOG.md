@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Make screen readers anounce `Alert` content when it pops up in the screen
+- Allow developers to choose to direct focus to the `Alert` when it pops up in the screen by using the `focusOnOpen` property
+
 ## [9.118.0] - 2020-05-14
 
 ### Added
