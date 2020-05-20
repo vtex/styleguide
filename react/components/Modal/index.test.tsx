@@ -1,4 +1,5 @@
-import React, { useRef } from 'react'
+/* eslint-disable jsx-a11y/no-autofocus */
+import React from 'react'
 import { render, fireEvent } from '@testing-library/react'
 
 import Modal from '.'
@@ -256,30 +257,17 @@ describe('Modal', () => {
     })
   })
 
-  describe('initialFocusRef', () => {
-    it('to focus correctly', () => {
+  describe('Focus', () => {
+    it('Should respect focus controlled outside Modal', () => {
       const containerModal = document.createElement('div')
       const onClose = jest.fn()
 
-      const Component = () => {
-        const initialFocusRef = useRef<HTMLDivElement>(null)
-
-        return (
-          <Modal
-            isOpen
-            onClose={onClose}
-            container={containerModal}
-            initialFocusRef={initialFocusRef}
-          >
-            <Input
-              placeholder="Type your name..."
-              size="small"
-              ref={initialFocusRef}
-            />
-          </Modal>
-        )
-      }
-      render(<Component />, { container: containerModal })
+      render(
+        <Modal isOpen onClose={onClose} container={containerModal}>
+          <Input autoFocus placeholder="Type your name..." size="small" />
+        </Modal>,
+        { container: containerModal }
+      )
 
       const currentFocused = document.activeElement
 
