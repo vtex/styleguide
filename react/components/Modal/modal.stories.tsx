@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-handler-names */
-import React, { useRef, useEffect } from 'react'
+import React from 'react'
 import { withA11y } from '@storybook/addon-a11y'
 import { withKnobs, boolean, select } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
