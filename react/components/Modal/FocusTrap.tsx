@@ -36,25 +36,6 @@ interface Props {
 const FocusTrap: FC<Props> = ({ children }) => {
   const focusContainer = useRef<HTMLDivElement>(null)
 
-  const handleFocusIn = (event: FocusEvent) => {
-    const alreadyHasFocus =
-      focusContainer.current &&
-      focusContainer.current.contains(document.activeElement)
-    if (
-      !focusContainer.current ||
-      alreadyHasFocus ||
-      !(
-        event.target instanceof HTMLElement &&
-        focusContainer.current !== event.target &&
-        !focusContainer.current.contains(event.target)
-      )
-    ) {
-      return
-    }
-
-    focusFirstElement(focusContainer.current)
-  }
-
   const handleTab = (event: KeyboardEvent) => {
     if (!focusContainer.current) {
       return
@@ -80,10 +61,8 @@ const FocusTrap: FC<Props> = ({ children }) => {
 
   useEffect(() => {
     document.addEventListener('keydown', handleKeyEvent)
-    document.addEventListener('focusin', handleFocusIn)
     return () => {
       document.removeEventListener('keydown', handleKeyEvent)
-      document.removeEventListener('focusin', handleFocusIn)
     }
   })
 
