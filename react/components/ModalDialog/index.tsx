@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 import Modal, { Props as ModalProps } from '../Modal'
@@ -25,6 +25,12 @@ const ModalDialog: FC<Props> = ({
   loading,
   ...props
 }) => {
+  useEffect(() => {
+    console.warn(
+      'ModalDialog will be deprecated soon, please prefer to use Modal component. https://styleguide.vtex.com/#/Components/Overlays/Modal'
+    )
+  }, [])
+
   const handleCancelation = () => {
     cancelation.onClick?.()
   }
