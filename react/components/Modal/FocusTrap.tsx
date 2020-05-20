@@ -29,12 +29,12 @@ const focusFirstElement = (element: HTMLElement) => {
   firstElement?.focus()
 }
 
-interface Props extends React.HTMLAttributes<HTMLDivElement> {
+interface Props {
   children?: React.ReactNode
   initialFocusRef?: React.RefObject<HTMLElement> | null
 }
 
-const FocusTrap: FC<Props> = ({ children, initialFocusRef, ...props }) => {
+const FocusTrap: FC<Props> = ({ children, initialFocusRef }) => {
   const focusContainer = useRef<HTMLDivElement>(null)
 
   const handleFocusIn = (event: FocusEvent) => {
@@ -100,9 +100,13 @@ const FocusTrap: FC<Props> = ({ children, initialFocusRef, ...props }) => {
   }, [focusContainer, initialFocusRef])
 
   return (
-    <div ref={focusContainer} {...props}>
-      {children}
-    </div>
+    <>
+      {children
+        ? React.cloneElement(children as React.ReactElement, {
+            ref: focusContainer,
+          })
+        : children}
+    </>
   )
 }
 

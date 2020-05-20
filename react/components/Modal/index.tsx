@@ -101,12 +101,7 @@ export const ModalOverlay: FC<OverlayProps> = ({
           data-testid="modal__overlay"
           role="presentation"
         >
-          <FocusTrap
-            className={styles.contents}
-            initialFocusRef={initialFocusRef}
-          >
-            {children}
-          </FocusTrap>
+          <FocusTrap initialFocusRef={initialFocusRef}>{children}</FocusTrap>
         </div>,
         container ?? document.body
       )
