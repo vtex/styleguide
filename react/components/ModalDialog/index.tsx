@@ -44,15 +44,17 @@ const ModalDialog: FC<Props> = ({
       {...props}
       bottomBar={
         <div>
-          <Button
-            size="small"
-            type="button"
-            variation="tertiary"
-            disabled={loading}
-            onClick={handleCancelation}
-          >
-            {cancelation.label}
-          </Button>
+          <span className="mr4">
+            <Button
+              size="small"
+              type="button"
+              variation="tertiary"
+              disabled={loading}
+              onClick={handleCancelation}
+            >
+              {cancelation.label}
+            </Button>
+          </span>
           <Button
             size="small"
             type="button"

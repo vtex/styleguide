@@ -134,7 +134,7 @@ const ModalContent = forwardRef<HTMLDivElement, ContentProps>(
       // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
       <div
         className={classNames(
-          'flex flex-column relative bg-white shadow-5 center mv9',
+          'flex flex-column relative bg-white shadow-5 center mv9 br2',
           `${size === 'small' ? styles.mw30 : ''}`,
           `${size === 'medium' ? styles.mw40 : ''}`,
           `${size === 'large' ? styles.mw50 : ''}`,
