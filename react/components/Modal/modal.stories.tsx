@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-handler-names */
-import React, { useRef } from 'react'
+import React, { useRef, useEffect } from 'react'
 import { withA11y } from '@storybook/addon-a11y'
 import { withKnobs, boolean, select } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
@@ -20,7 +20,6 @@ const sizes: Size[] = ['small', 'medium', 'large']
 
 export const Default = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const initialFocusRef = useRef<HTMLDivElement>(null)
 
   const withInitialInputFocus = boolean('Initial Focus in Input', true)
 
@@ -42,7 +41,6 @@ export const Default = () => {
         centered={boolean('Centered', true)}
         showBottomBarBorder={boolean('Show Bottom Bar Border', true)}
         closeOnOverlayClick={boolean('Close On Overlay Click', true)}
-        initialFocusRef={withInitialInputFocus ? initialFocusRef : null}
         bottomBar={
           <>
             <Button
@@ -69,9 +67,10 @@ export const Default = () => {
         my props below in the Knobs and see how I react!
         <div className="mt6 mb5">
           <Input
+            // eslint-disable-next-line jsx-a11y/no-autofocus
+            autoFocus={withInitialInputFocus}
             placeholder="Type your name..."
             size="small"
-            ref={initialFocusRef}
           />
         </div>
       </Modal>

@@ -25,13 +25,12 @@ export interface Props
   centered?: boolean
   size?: 'small' | 'medium' | 'large'
   responsiveFullScreen?: boolean
-  initialFocusRef?: React.RefObject<HTMLElement> | null
 }
 
 type OverlayProps = Required<
   Pick<Props, 'isOpen' | 'centered' | 'closeOnOverlayClick' | 'onClose'>
 > &
-  Pick<Props, 'onCloseTransitionFinish' | 'container' | 'initialFocusRef'>
+  Pick<Props, 'onCloseTransitionFinish' | 'container'>
 
 type ContentProps = Required<
   Pick<
@@ -56,7 +55,6 @@ export const ModalOverlay: FC<OverlayProps> = ({
   container,
   closeOnOverlayClick,
   onCloseTransitionFinish,
-  initialFocusRef,
   children,
 }) => {
   const [showPortal, setShowPortal] = useState(isOpen)
@@ -101,7 +99,7 @@ export const ModalOverlay: FC<OverlayProps> = ({
           data-testid="modal__overlay"
           role="presentation"
         >
-          <FocusTrap initialFocusRef={initialFocusRef}>{children}</FocusTrap>
+          <FocusTrap>{children}</FocusTrap>
         </div>,
         container ?? document.body
       )
@@ -202,7 +200,6 @@ function Modal(
     size = 'medium',
     showTopBar = true,
     showBottomBarBorder = true,
-    initialFocusRef,
     ...props
   }: Props,
   forwardedRef: React.Ref<HTMLDivElement>
@@ -215,7 +212,6 @@ function Modal(
       centered={centered}
       closeOnOverlayClick={closeOnOverlayClick}
       onCloseTransitionFinish={onCloseTransitionFinish}
-      initialFocusRef={initialFocusRef}
     >
       <ModalContent
         title={title}

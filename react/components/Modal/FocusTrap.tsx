@@ -31,10 +31,9 @@ const focusFirstElement = (element: HTMLElement) => {
 
 interface Props {
   children?: React.ReactNode
-  initialFocusRef?: React.RefObject<HTMLElement> | null
 }
 
-const FocusTrap: FC<Props> = ({ children, initialFocusRef }) => {
+const FocusTrap: FC<Props> = ({ children }) => {
   const focusContainer = useRef<HTMLDivElement>(null)
 
   const handleFocusIn = (event: FocusEvent) => {
@@ -92,12 +91,11 @@ const FocusTrap: FC<Props> = ({ children, initialFocusRef }) => {
     if (!focusContainer.current) {
       return
     }
-    if (initialFocusRef) {
-      initialFocusRef?.current?.focus()
-      return
-    }
-    focusFirstElement(focusContainer.current)
-  }, [focusContainer, initialFocusRef])
+    const alreadyHasFocus =
+      focusContainer.current &&
+      focusContainer.current.contains(document.activeElement)
+    if (!alreadyHasFocus) focusFirstElement(focusContainer.current)
+  }, [focusContainer])
 
   return (
     <>

@@ -35,7 +35,6 @@
 | aria-label              | `string`  | 🚫       |                     | Acessible Modal name. If this name is visible on the screen, prefer to use aria-labelledby                                                                  |
 | aria-labelledby         | `string`  | 🚫       | `vtex-modal__title` | ID of the element that provides the Modal an accessible name. If aria-label and aria-albelledby is not defined, the default here will be the title element. |
 | aria-describedby        | `string`  | 🚫       |                     | ID of the element that provides the Modal an accessible description                                                                                         |
-| initialFocusRef         | `ref`     | 🚫       |                     | Element to be focused first when Modal is open. The default is the first Modal element.                                                                     |
 
 ## Examples
 
@@ -342,17 +341,26 @@ const ModalExample = () => {
 
 #### Custom Initial Focus
 
-By default the first focusable element will be focused but you can customize by providing a `ref`.
+By default the first focusable element will be focused but you can customize.
 
 ```js
 const Modal = require('.').default
+const Input = require('../Input').default
+const Button = require('../Button').default
 
 import { useDisclosure } from '../../utilities'
 
 const ModalExample = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
-  return null
+  return (
+    <>
+      <Button onClick={onOpen}>Open modal</Button>
+      <Modal isOpen={isOpen} onClose={onClose} title="Custom Initial Focus">
+        <Input autoFocus placeholder="Focus on me!" />
+      </Modal>
+    </>
+  )
 }
 ;<ModalExample />
 ```
@@ -362,4 +370,4 @@ const ModalExample = () => {
 > WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#dialog_modal
 
 - If you don't provide a string title to the Modal, be sure to provide `aria-labelledby="id..."` if the label is visible or a string to `aria-label="..."` if it's not visible. Additionaly you can give a description for the Modal with `aria-describedby="id..`.
-- Use `initialFocusRef` to the first element you want the user to intereact with it, examples: Form, Confirm Button, Link etc.
+- If necessary, change the initial focus to the component you want the user intereact with first. Examples: Form, Confirm Button, Link etc.
