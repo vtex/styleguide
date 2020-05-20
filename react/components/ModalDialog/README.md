@@ -1,3 +1,5 @@
+### WARNING: ModalDialog will be deprecated, please prefer to use Modal by customizing the bottomBar
+
 ### Related Components
 
 - <a href="#/Components/Overlays/Modal">Modal</a>
@@ -5,13 +7,13 @@
 Default
 
 ```js
+const ModalDialog = require('.').default
 const Button = require('../Button').default
 const Input = require('../Input').default
-const useDisclosure = require('../../useDisclosure').default
 import { useDisclosure } from '../../utilities'
 
 const ModalDialogExample = () => {
-  const { isOpen, onOpen, onClose } = useDisclousure()
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
     <div>
@@ -71,6 +73,7 @@ Loading
 ```js
 import { useState } from 'react'
 
+const ModalDialog = require('.').default
 const Button = require('../Button').default
 const Input = require('../Input').default
 import { useDisclosure } from '../../utilities'
@@ -145,6 +148,7 @@ Dangerous
 ```js
 import { useState } from 'react'
 
+const ModalDialog = require('.').default
 const Button = require('../Button').default
 const Input = require('../Input').default
 import { useDisclosure } from '../../utilities'

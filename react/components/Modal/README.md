@@ -1,3 +1,6 @@
+<div className="center mw7 pv6">
+ ![](./modal.png)
+</div>
 #### A modal is an overlay that demands the attention and action from the user, preventing her from interacting with the rest of the page. It might be used from displaying messages to providing a simple form to edit a record.
 
 ### 👍 Dos
@@ -33,7 +36,9 @@
 | aria-labelledby         | `string`  | 🚫       | `vtex-modal__title` | ID of the element that provides the Modal an accessible name. If aria-label and aria-albelledby is not defined, the default here will be the title element. |
 | aria-describedby        | `string`  | 🚫       |                     | ID of the element that provides the Modal an accessible description                                                                                         |
 
-Default
+## Examples
+
+#### Simple
 
 ```js
 const Button = require('../Button').default
@@ -47,9 +52,13 @@ const ModalExample = () => {
   return (
     <>
       <Button onClick={onOpen}>Open modal</Button>
-
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <div className="dark-gray">
+      <Modal
+        isOpen={isOpen}
+        onClose={onClose}
+        aria-label="Payments Module"
+        aria-describedby="modal-description"
+      >
+        <div className="dark-gray" id="modal-description">
           <p>
             The Payments module is the system responsible for managing all
             actions regarding your store's cash flow.
@@ -86,7 +95,9 @@ const ModalExample = () => {
 ;<ModalExample />
 ```
 
-Long content
+#### Long content
+
+When the Modal can't grow any longer, a scroll bar will show inside of the content.
 
 ```js
 const Modal = require('.').default
@@ -100,8 +111,13 @@ const ModalExample = () => {
     <>
       <Button onClick={onOpen}>Open modal</Button>
 
-      <Modal isOpen={isOpen} onClose={onClose} title="What is the shared cart">
-        <div className="dark-gray">
+      <Modal
+        isOpen={isOpen}
+        onClose={onClose}
+        title="What is the shared cart"
+        aria-describedby="modal-description"
+      >
+        <div className="dark-gray" id="modal-description">
           <p>
             The shared cart is a tool that allows more than one customer to add,
             remove or update items and informations from the same cart.
@@ -186,7 +202,9 @@ const ModalExample = () => {
 ;<ModalExample />
 ```
 
-With title, BottomBar and the responsive full screen option
+#### Dialog
+
+Using `bottomBar` prop you can insert any type of dialog, see the example below.
 
 ```js
 const Modal = require('.').default
@@ -204,6 +222,7 @@ const ModalExample = () => {
       <Modal
         isOpen={isOpen}
         title="Ready to start?"
+        aria-describedby="modal-description"
         responsiveFullScreen
         bottomBar={
           <div className="nowrap">
@@ -223,7 +242,7 @@ const ModalExample = () => {
       >
         <div className="flex flex-column flex-row-ns">
           <div className="w-100 w-50-ns">
-            <p className="f3 f1-ns fw3 gray">
+            <p className="f3 f1-ns fw3 gray" id="modal-description">
               Discover our unified commerce platform and see your business
               thrive.
             </p>
@@ -257,7 +276,9 @@ const ModalExample = () => {
 ;<ModalExample />
 ```
 
-Sizes
+#### Sizes
+
+Adjust the of the Modal according with your content.
 
 ```js
 const Modal = require('.').default
@@ -317,3 +338,27 @@ const ModalExample = () => {
 
 ;<ModalExample />
 ```
+
+#### Custom Initial Focus
+
+By default the first focusable element will be focused but you can customize by providing a `ref`.
+
+```js
+const Modal = require('.').default
+
+import { useDisclosure } from '../../utilities'
+
+const ModalExample = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
+  return null
+}
+;<ModalExample />
+```
+
+## Acessibility
+
+> WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#dialog_modal
+
+- If you don't provide a string title to the Modal, be sure to provide `aria-labelledby="id..."` if the label is visible or a string to `aria-label="..."` if it's not visible. Additionaly you can give a description for the Modal with `aria-describedby="id..`.
+- Use `initialFocusRef` to the first element you want the user to intereact with it, examples: Form, Confirm Button, Link etc.
