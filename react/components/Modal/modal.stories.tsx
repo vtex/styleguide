@@ -49,7 +49,7 @@ export const Default = () => {
             >
               Cancel
             </Button>
-            <span className="mr2"></span>
+            <span className="mr4"></span>
             <Button
               size="small"
               type="button"
