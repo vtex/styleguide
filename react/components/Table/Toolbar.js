@@ -205,6 +205,9 @@ class Toolbar extends PureComponent {
                               density.handleCallback &&
                                 density.handleCallback(key)
                             }}
+                            role="button"
+                            tabIndex="0"
+                            onKeyPress={() => null}
                           >
                             <span
                               className={`w-100 ${isKeySelected ? 'fw5' : ''}`}
@@ -286,6 +289,9 @@ class Toolbar extends PureComponent {
                             key={index}
                             className="flex justify-between ph6 pv3 pointer hover-bg-muted-5"
                             onClick={() => onToggleColumn(field)}
+                            role="button"
+                            tabIndex="0"
+                            onKeyPress={() => null}
                           >
                             <span className="w-70 truncate">
                               {schema.properties[field].title || field}

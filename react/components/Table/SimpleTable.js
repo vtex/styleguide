@@ -1,3 +1,5 @@
+/* eslint-disable max-params */
+/* eslint-disable @typescript-eslint/camelcase */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {
@@ -329,6 +331,9 @@ class SimpleTable extends Component {
                                   onClick={() => {
                                     onSort(this.toggleSortType(property))
                                   }}
+                                  role="button"
+                                  tabIndex="0"
+                                  onKeyPress={() => null}
                                 >
                                   {!headerRight && header}
                                   <div
@@ -397,6 +402,9 @@ class SimpleTable extends Component {
                                   : '',
                               }}
                               className={cellClassNames}
+                              role="button"
+                              tabIndex="0"
+                              onKeyPress={() => null}
                               onClick={
                                 onRowClick &&
                                 property !== '_VTEX_Table_Internal_lineActions'
@@ -461,7 +469,7 @@ SimpleTable.defaultProps = {
   fullWidth: false,
   dynamicRowHeight: false,
   selectedRowsIndexes: [],
-  onRowHover: () => {},
+  onRowHover: () => null,
 }
 
 SimpleTable.propTypes = {

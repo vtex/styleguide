@@ -1,3 +1,5 @@
+/* eslint-disable no-shadow */
+/* eslint-disable vtex/prefer-early-return */
 import React, { PureComponent } from 'react'
 import { StickyContainer } from 'react-sticky'
 import PropTypes from 'prop-types'
@@ -143,7 +145,7 @@ class Table extends PureComponent {
   handleInputSearchClearWithBulkAction = event => {
     const {
       toolbar: {
-        inputSearch: { onClear = () => {} },
+        inputSearch: { onClear = () => null },
       },
     } = this.props
     this.handleDeselectAllLines()

@@ -29,6 +29,9 @@ class CheckboxContainer extends Component {
             onClick(id)
             // prevents the onRowClick event from happening
           }}
+          role="button"
+          tabIndex="0"
+          onKeyPress={() => null}
         >
           <Checkbox
             checked={checked}
@@ -36,7 +39,7 @@ class CheckboxContainer extends Component {
             value={`${id}`}
             id={`${id}`}
             name={`row_${id}`}
-            onChange={() => {}}
+            onChange={() => null}
             disabled={disabled}
           />
         </div>
