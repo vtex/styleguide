@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
@@ -6,7 +7,7 @@ import styles from '../Input/Input.css'
 const normalizeMin = min => (min == null ? -Infinity : min)
 const normalizeMax = max => (max == null ? Infinity : max)
 
-const validateValue = (value, min, max, defaultValue) => {
+const validateValue = ({ value, min, max, defaultValue }) => {
   // This function always return a valid numeric value from the current input.
   // Compare with the function validateDisplayValue
   min = normalizeMin(min)
@@ -77,12 +78,12 @@ class NumericStepper extends Component {
   static getDerivedStateFromProps(props, state) {
     const { value, minValue, maxValue, defaultValue } = props
 
-    const validatedValue = validateValue(
+    const validatedValue = validateValue({
       value,
-      minValue,
-      maxValue,
-      defaultValue
-    )
+      min: minValue,
+      max: maxValue,
+      defaultValue,
+    })
 
     return {
       value: validatedValue,
@@ -111,15 +112,15 @@ class NumericStepper extends Component {
       displayValue,
     })
 
-    if (this.state.value !== validatedValue && onChange) {
-      // React synthetic events are reused for performance reasons.
-      // New properties added to it are never released.
-      // Calling event.persist() releases the event from the pool
-      // https://reactjs.org/docs/events.html#event-pooling
-      event.persist()
-      event.value = validatedValue
-      onChange(event)
-    }
+    if (this.state.value === validatedValue || !onChange) return
+
+    // React synthetic events are reused for performance reasons.
+    // New properties added to it are never released.
+    // Calling event.persist() releases the event from the pool
+    // https://reactjs.org/docs/events.html#event-pooling
+    event.persist()
+    event.value = validatedValue
+    onChange(event)
   }
 
   handleTypeQuantity = event => {
