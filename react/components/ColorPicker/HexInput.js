@@ -15,16 +15,16 @@ class HexInput extends React.Component {
     e.preventDefault()
     const inputValue = e.target.value
     this.setState({ inputValue })
-    if (this.validation(inputValue)) {
-      const { onChange } = this.props
-      const rgb = colorutil.hex.to.rgb(inputValue)
-      const hsv = colorutil.rgb.to.hsv(rgb)
-      onChange({
-        rgb,
-        hsv,
-        hex: inputValue,
-      })
-    }
+    if (!this.validation(inputValue)) return
+
+    const { onChange } = this.props
+    const rgb = colorutil.hex.to.rgb(inputValue)
+    const hsv = colorutil.rgb.to.hsv(rgb)
+    onChange({
+      rgb,
+      hsv,
+      hex: inputValue,
+    })
   }
 
   validation = color => {

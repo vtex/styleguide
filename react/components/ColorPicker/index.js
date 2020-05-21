@@ -73,6 +73,9 @@ class ColorPicker extends React.Component {
                   disabled ? '' : 'hover-b--action-primary pointer'
                 }`}
                 onClick={this.handleShowOptions}
+                onKeyPress={() => null}
+                role="button"
+                tabIndex="0"
               >
                 <div className="br1" style={styleColorBox} />
               </div>
