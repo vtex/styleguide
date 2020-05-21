@@ -26,6 +26,9 @@ class ColorHistory extends React.Component {
 
     return (
       <div
+        onKeyPress={() => null}
+        role="button"
+        tabIndex="0"
         onClick={() => this.props.onColorChange(output)}
         className="br2 ba b--muted-4 w-100 ma1 hover-b--action-primary pointer"
         style={styleColorBox}
