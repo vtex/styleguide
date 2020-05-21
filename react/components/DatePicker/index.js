@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 import PropTypes from 'prop-types'
 import ReactDatePicker, { registerLocale } from 'react-datepicker'
 import * as locales from 'date-fns/locale/index.js'
@@ -7,6 +7,7 @@ import Input from '../Input'
 import IconCalendar from '../icon/Calendar'
 import './react-datepicker.global.css'
 import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
+import mergeRef from '../../utilities/mergeRef'
 
 class DatePicker extends Component {
   constructor(props) {
@@ -17,6 +18,7 @@ class DatePicker extends Component {
     }
 
     this.handleLocaleChange(props.locale)
+    this.innerRef = createRef()
   }
 
   get popperModifiers() {
@@ -68,6 +70,9 @@ class DatePicker extends Component {
         'DatePicker: The prop "useTime" of the "DatePicker" component has been deprecated, and will be removed in a future version. Please use the "TimePicker" component instead'
       )
     }
+    if (this.props.autoFocus && this.innerRef.current) {
+      this.innerRef.current.setFocus()
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -99,8 +104,7 @@ class DatePicker extends Component {
 
     return (
       <ReactDatePicker
-        ref={this.props.forwardedRef}
-        autoFocus={this.props.autoFocus}
+        ref={mergeRef(this.innerRef, this.props.forwardedRef)}
         customInput={
           <Input
             error={this.props.error}

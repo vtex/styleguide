@@ -1,10 +1,12 @@
+/* eslint-disable jsx-a11y/no-onchange */
 import classNames from 'classnames'
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 import PropTypes from 'prop-types'
 
 import ArrowDownIcon from './ArrowDownIcon'
 import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
 import styles from './Dropdown.css'
+import mergeRef from '../../utilities/mergeRef'
 
 class Dropdown extends Component {
   constructor(props) {
@@ -18,6 +20,7 @@ class Dropdown extends Component {
     // However, you can't select a null/undefined option, so nil values
     // are transformed to empty string.
     this.initialValue = props.value == null ? '' : props.value
+    this.innerRef = createRef()
   }
 
   handleChange = e => {
@@ -31,7 +34,7 @@ class Dropdown extends Component {
 
   getOptionFromValue = value => {
     const { options } = this.props
-    const option = options.filter(option => option.value === value)[0]
+    const [option] = options.filter(opt => opt.value === value)
     if (!option) return null
     return option
   }
@@ -80,6 +83,9 @@ class Dropdown extends Component {
         'Dropdown: The value "x-large" for the prop "size" is deprecated. In the next major version, it will be equivalent to "large", and removed altogether in future versions'
       )
     }
+    if (this.props.autoFocus && this.innerRef.current) {
+      this.innerRef.current.focus()
+    }
   }
 
   render() {
@@ -96,7 +102,6 @@ class Dropdown extends Component {
       helpText,
       placeholder,
       preventTruncate,
-      autoFocus,
       form,
       name,
       required,
@@ -198,10 +203,9 @@ class Dropdown extends Component {
               disabled={disabled}
               className={selectClasses}
               onChange={this.handleChange}
-              ref={this.props.forwardedRef}
+              ref={mergeRef(this.innerRef, this.props.forwardedRef)}
               // Check the comment on the constructor regarding nil values
               value={value == null ? '' : value}
-              autoFocus={autoFocus}
               form={form}
               name={name}
               required={required}
