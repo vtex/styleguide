@@ -1,4 +1,4 @@
-import React, { FC, forwardRef, useState, useEffect } from 'react'
+import React, { FC, forwardRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import classNames from 'classnames'
 
@@ -184,8 +184,8 @@ const ModalContent = forwardRef<HTMLDivElement, ContentProps>(
         </TopBar>
         <div
           className={classNames(
-            `ph6 ph8-ns t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 ${styles.mh60} ${styles.scrollBar}`,
-            { 'pb8-ns': !bottomBar, mb3: bottomBar }
+            `ph7 ph8-ns t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 ${styles.mh60} ${styles.scrollBar}`,
+            { 'pb7-ns mb5': !bottomBar, mb3: bottomBar }
           )}
         >
           {children}
