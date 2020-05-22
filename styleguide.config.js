@@ -219,7 +219,7 @@ module.exports = {
       sections: [
         {
           name: 'useDisclosure',
-          content: 'react/utilities/docs/useDisclosure.md',
+          content: 'react/utilities/useDisclosure/docs.md',
         },
       ],
     },

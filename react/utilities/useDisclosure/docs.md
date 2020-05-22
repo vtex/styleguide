@@ -18,7 +18,7 @@
 ### Modal Example
 
 ```js
-import { useDisclosure } from '../index'
+import { useDisclosure } from './index'
 import Button from '../../components/Button'
 import Modal from '../../components/Modal'
 
@@ -39,7 +39,7 @@ const ModalWithUseDisclosure = () => {
 ### Toggle Example
 
 ```js
-import { useDisclosure } from '../index'
+import { useDisclosure } from './index'
 import Toggle from '../../components/Toggle'
 
 const ToggleWithUseDisclosure = () => {
