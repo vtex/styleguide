@@ -16,11 +16,11 @@ export type ReturnedData = {
   data: unknown | object
   rowHeight: number
   density: Density
-  motion: ReturnType<typeof useTableMotion>
+  motion?: ReturnType<typeof useTableMotion>
 }
 
 export type Column = {
-  id?: string
+  id: string
   title?: string | Element | Function
   width?: number | string
   sortable?: boolean

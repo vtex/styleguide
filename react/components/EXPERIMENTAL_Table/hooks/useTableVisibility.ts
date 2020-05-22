@@ -16,8 +16,10 @@ export default function useTableVisibility({
   }, [hiddenColumns, columns])
 
   const toggleColumn = useCallback((id: string) => {
-    setHiddenColumns(col =>
-      col.includes(id) ? col.filter(col => col !== id) : [...col, id]
+    setHiddenColumns(hiddenColumn =>
+      hiddenColumn.includes(id)
+        ? hiddenColumn.filter(col => col !== id)
+        : [...hiddenColumn, id]
     )
   }, [])
 

@@ -97,7 +97,10 @@ function Cell(
   )
 }
 
-function HoverProvider({ children, value }) {
+function HoverProvider({
+  children,
+  value,
+}: PropsWithChildren<{ value: boolean }>) {
   return <HoverContext.Provider value={value}>{children}</HoverContext.Provider>
 }
 
@@ -114,7 +117,10 @@ function useHover(init = false) {
   }
 }
 
-function Eyesight({ children, visible }) {
+function Eyesight({
+  children,
+  visible,
+}: PropsWithChildren<{ visible: boolean }>) {
   const SUFIX_GAP = 0.5
   const className = classNames({ dn: !visible, inline: visible }, 'absolute')
   return (

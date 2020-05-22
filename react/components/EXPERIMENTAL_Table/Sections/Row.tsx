@@ -1,6 +1,7 @@
 import React, { forwardRef, Ref } from 'react'
 import classNames from 'classnames'
 import pick from 'lodash/pick'
+import get from 'lodash/get'
 
 import useTableMotion from '../hooks/useTableMotion'
 import { ComposableWithRef, Column, RenderProps, NativeTr } from '../types'
@@ -11,19 +12,19 @@ import Cell, { ComposableCell } from './Cell'
 
 interface RowRenderProps {
   props: {
-    width: number | string
+    width?: number | string
   }
   key: string
-  data: unknown
+  data?: object
   column: Column
-  motion: ReturnType<typeof useTableMotion>
+  motion?: ReturnType<typeof useTableMotion>
   index: number
 }
 
 interface SpecificProps extends NativeTr {
   height: number
   motion?: ReturnType<typeof useTableMotion>
-  data?: unknown
+  data?: object
 }
 
 type Props = RenderProps<SpecificProps, RowRenderProps>
@@ -79,12 +80,12 @@ function Row(
           ? pick(data, condensed)
           : extended
           ? data
-          : data[id]
+          : get(data, id)
 
         const content = cellRenderer
           ? cellRenderer({
               data: cellData,
-              rowHeight,
+              rowHeight: rowHeight ?? 0,
               density,
               motion,
             })

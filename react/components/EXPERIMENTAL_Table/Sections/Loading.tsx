@@ -18,7 +18,7 @@ const Loading: FC<Props> = ({ height, motion, children, testId }) => {
 
 type Props = E2ETestable & {
   height: number
-  motion: ReturnType<typeof useTableMotion>
+  motion?: ReturnType<typeof useTableMotion>
 }
 
 export default Loading

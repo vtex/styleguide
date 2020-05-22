@@ -22,7 +22,7 @@ export default function useTableMotion(transitions = defaultTransition) {
       return index === 0 ? draftTransition : `${acc}, ${draftTransition}`
     }, '')
 
-    const draftWillChange = transitions.reduce(
+    const draftWillChange = transitions.reduce<OptimizationDraft>(
       (acc, transition) => {
         const { prop, optimize } = transition
         const skip = !optimize || acc.props.includes(prop)
@@ -73,7 +73,12 @@ function useReducedMotion(init = false) {
   return reduced
 }
 
-type Transition = {
+interface OptimizationDraft {
+  willChange: string
+  props: string[]
+}
+
+interface Transition {
   prop: string
   duration: number
   func: string

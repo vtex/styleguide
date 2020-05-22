@@ -11,7 +11,7 @@ import { ComposableWithRef, RenderProps, NativeTableSection } from '../types'
 
 interface BodyRenderProps {
   props: {
-    data: unknown
+    data: object
     motion: ReturnType<typeof useTableMotion>
     height: number
   }

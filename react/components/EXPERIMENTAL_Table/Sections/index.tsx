@@ -47,7 +47,7 @@ function Sections(
         <Loading
           testId={`${testId}__loading`}
           motion={motion}
-          height={tableHeight - TABLE_HEADER_HEIGHT}
+          height={(tableHeight ?? 0) - TABLE_HEADER_HEIGHT}
         >
           {typeof loading !== 'boolean' &&
             loading.renderAs &&
