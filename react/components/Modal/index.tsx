@@ -1,4 +1,4 @@
-import React, { FC, forwardRef, useState } from 'react'
+import React, { FC, forwardRef, useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import classNames from 'classnames'
 
@@ -57,7 +57,25 @@ export const ModalOverlay: FC<OverlayProps> = ({
   onCloseTransitionFinish,
   children,
 }) => {
-  const [showPortal, setShowPortal] = useState(isOpen)
+  const [showPortal, setShowPortal] = useState<boolean>(isOpen)
+  const [focusReturnNode, setFocusReturnNode] = useState<
+    HTMLElement | Element | null
+  >()
+
+  useEnhancedEffect(() => {
+    if (isOpen) {
+      setFocusReturnNode(document.activeElement)
+    }
+
+    return () => {
+      if (
+        focusReturnNode instanceof HTMLElement &&
+        document.contains(focusReturnNode)
+      ) {
+        focusReturnNode?.focus()
+      }
+    }
+  })
 
   useEnhancedEffect(() => {
     if (!isOpen) {
