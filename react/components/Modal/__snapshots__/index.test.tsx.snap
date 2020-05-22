@@ -11,7 +11,7 @@ exports[`Modal CSS API centered 1`] = `
     <div
       aria-labelledby="vtex-modal__title"
       aria-modal="true"
-      class="flex flex-column relative bg-white shadow-5 center mv9 undefined vw-90"
+      class="flex flex-column relative bg-white shadow-5 center mv9 br2 undefined vw-90"
       data-testid="modal__modal"
       role="dialog"
     >
@@ -23,7 +23,7 @@ exports[`Modal CSS API centered 1`] = `
         >
           <div
             aria-label="Modal Close Button"
-            class="fr pointer pr6-ns pt6-ns pr5 pt5"
+            class="fr pointer pr7-ns pt7-ns pr5 pt5"
             role="button"
             tabindex="0"
           >
@@ -68,7 +68,7 @@ exports[`Modal CSS API default 1`] = `
     <div
       aria-labelledby="vtex-modal__title"
       aria-modal="true"
-      class="flex flex-column relative bg-white shadow-5 center mv9 undefined vw-90"
+      class="flex flex-column relative bg-white shadow-5 center mv9 br2 undefined vw-90"
       data-testid="modal__modal"
       role="dialog"
     >
@@ -80,7 +80,7 @@ exports[`Modal CSS API default 1`] = `
         >
           <div
             aria-label="Modal Close Button"
-            class="fr pointer pr6-ns pt6-ns pr5 pt5"
+            class="fr pointer pr7-ns pt7-ns pr5 pt5"
             role="button"
             tabindex="0"
           >
@@ -125,7 +125,7 @@ exports[`Modal CSS API responsiveFullScreen true 1`] = `
     <div
       aria-labelledby="vtex-modal__title"
       aria-modal="true"
-      class="flex flex-column relative bg-white shadow-5 center mv9 undefined h-100 h-auto-ns vw-100"
+      class="flex flex-column relative bg-white shadow-5 center mv9 br2 undefined h-100 h-auto-ns vw-100"
       data-testid="modal__modal"
       role="dialog"
     >
@@ -137,7 +137,7 @@ exports[`Modal CSS API responsiveFullScreen true 1`] = `
         >
           <div
             aria-label="Modal Close Button"
-            class="fr pointer pr6 pt6"
+            class="fr pointer pr7 pt7"
             role="button"
             tabindex="0"
           >
@@ -182,7 +182,7 @@ exports[`Modal CSS API showBottomBarBorder false 1`] = `
     <div
       aria-labelledby="vtex-modal__title"
       aria-modal="true"
-      class="flex flex-column relative bg-white shadow-5 center mv9 undefined vw-90"
+      class="flex flex-column relative bg-white shadow-5 center mv9 br2 undefined vw-90"
       data-testid="modal__modal"
       role="dialog"
     >
@@ -194,7 +194,7 @@ exports[`Modal CSS API showBottomBarBorder false 1`] = `
         >
           <div
             aria-label="Modal Close Button"
-            class="fr pointer pr6-ns pt6-ns pr5 pt5"
+            class="fr pointer pr7-ns pt7-ns pr5 pt5"
             role="button"
             tabindex="0"
           >
@@ -239,7 +239,7 @@ exports[`Modal CSS API showTopBar false 1`] = `
     <div
       aria-labelledby="vtex-modal__title"
       aria-modal="true"
-      class="flex flex-column relative bg-white shadow-5 center mv9 undefined vw-90"
+      class="flex flex-column relative bg-white shadow-5 center mv9 br2 undefined vw-90"
       data-testid="modal__modal"
       role="dialog"
     >
@@ -251,7 +251,7 @@ exports[`Modal CSS API showTopBar false 1`] = `
         >
           <div
             aria-label="Modal Close Button"
-            class="fr pointer pr6-ns pt6-ns pr5 pt5"
+            class="fr pointer pr7-ns pt7-ns pr5 pt5"
             role="button"
             tabindex="0"
           >
@@ -296,7 +296,7 @@ exports[`Modal bottomBar should render bottomBar 1`] = `
     <div
       aria-labelledby="vtex-modal__title"
       aria-modal="true"
-      class="flex flex-column relative bg-white shadow-5 center mv9 undefined vw-90"
+      class="flex flex-column relative bg-white shadow-5 center mv9 br2 undefined vw-90"
       data-testid="modal__modal"
       role="dialog"
     >
@@ -308,7 +308,7 @@ exports[`Modal bottomBar should render bottomBar 1`] = `
         >
           <div
             aria-label="Modal Close Button"
-            class="fr pointer pr6-ns pt6-ns pr5 pt5"
+            class="fr pointer pr7-ns pt7-ns pr5 pt5"
             role="button"
             tabindex="0"
           >
@@ -362,7 +362,7 @@ exports[`Modal container should render modal inside it 1`] = `
     <div
       aria-labelledby="vtex-modal__title"
       aria-modal="true"
-      class="flex flex-column relative bg-white shadow-5 center mv9 undefined vw-90"
+      class="flex flex-column relative bg-white shadow-5 center mv9 br2 undefined vw-90"
       data-testid="modal__modal"
       role="dialog"
     >
@@ -374,7 +374,7 @@ exports[`Modal container should render modal inside it 1`] = `
         >
           <div
             aria-label="Modal Close Button"
-            class="fr pointer pr6-ns pt6-ns pr5 pt5"
+            class="fr pointer pr7-ns pt7-ns pr5 pt5"
             role="button"
             tabindex="0"
           >
@@ -419,7 +419,7 @@ exports[`Modal isOpen Should show modal when isOpen is true and hide when is fal
     <div
       aria-labelledby="vtex-modal__title"
       aria-modal="true"
-      class="flex flex-column relative bg-white shadow-5 center mv9 undefined vw-90"
+      class="flex flex-column relative bg-white shadow-5 center mv9 br2 undefined vw-90"
       data-testid="modal__modal"
       role="dialog"
     >
@@ -431,7 +431,7 @@ exports[`Modal isOpen Should show modal when isOpen is true and hide when is fal
         >
           <div
             aria-label="Modal Close Button"
-            class="fr pointer pr6-ns pt6-ns pr5 pt5"
+            class="fr pointer pr7-ns pt7-ns pr5 pt5"
             role="button"
             tabindex="0"
           >
@@ -476,7 +476,7 @@ exports[`Modal isOpen Should show modal when isOpen is true and hide when is fal
     <div
       aria-labelledby="vtex-modal__title"
       aria-modal="true"
-      class="flex flex-column relative bg-white shadow-5 center mv9 undefined vw-90"
+      class="flex flex-column relative bg-white shadow-5 center mv9 br2 undefined vw-90"
       data-testid="modal__modal"
       role="dialog"
     >
@@ -488,7 +488,7 @@ exports[`Modal isOpen Should show modal when isOpen is true and hide when is fal
         >
           <div
             aria-label="Modal Close Button"
-            class="fr pointer pr6-ns pt6-ns pr5 pt5"
+            class="fr pointer pr7-ns pt7-ns pr5 pt5"
             role="button"
             tabindex="0"
           >
@@ -533,7 +533,7 @@ exports[`Modal title should render title prop 1`] = `
     <div
       aria-labelledby="vtex-modal__title"
       aria-modal="true"
-      class="flex flex-column relative bg-white shadow-5 center mv9 undefined vw-90"
+      class="flex flex-column relative bg-white shadow-5 center mv9 br2 undefined vw-90"
       data-testid="modal__modal"
       role="dialog"
     >
@@ -545,7 +545,7 @@ exports[`Modal title should render title prop 1`] = `
         >
           <div
             aria-label="Modal Close Button"
-            class="fr pointer pr6-ns pt6-ns pr5 pt5"
+            class="fr pointer pr7-ns pt7-ns pr5 pt5"
             role="button"
             tabindex="0"
           >

@@ -1,4 +1,4 @@
-### WARNING: ModalDialog will be deprecated, please prefer to use Modal by customizing the bottomBar
+### WARNING: ModalDialog will be deprecated, please prefer to use [Modal](#/Components/Overlays/Modal) by customizing the bottomBar
 
 ### Related Components
 

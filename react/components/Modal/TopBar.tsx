@@ -30,8 +30,8 @@ function TopBar(
         {showCloseIcon && (
           <div
             className={classNames('fr pointer', {
-              'pr6 pt6': responsiveFullScreen,
-              'pr6-ns pt6-ns pr5 pt5': !responsiveFullScreen,
+              'pr7 pt7': responsiveFullScreen,
+              'pr7-ns pt7-ns pr5 pt5': !responsiveFullScreen,
             })}
             role="button"
             aria-label="Modal Close Button"

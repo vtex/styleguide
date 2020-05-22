@@ -11,7 +11,7 @@ exports[`ModalDialog cancelation should render label 1`] = `
     <div
       aria-labelledby="vtex-modal__title"
       aria-modal="true"
-      class="flex flex-column relative bg-white shadow-5 center mv9 undefined vw-90"
+      class="flex flex-column relative bg-white shadow-5 center mv9 br2 undefined vw-90"
       data-testid="modal__modal"
       role="dialog"
     >
@@ -23,7 +23,7 @@ exports[`ModalDialog cancelation should render label 1`] = `
         >
           <div
             aria-label="Modal Close Button"
-            class="fr pointer pr6-ns pt6-ns pr5 pt5"
+            class="fr pointer pr7-ns pt7-ns pr5 pt5"
             role="button"
             tabindex="0"
           >
@@ -57,18 +57,22 @@ exports[`ModalDialog cancelation should render label 1`] = `
       >
         <div>
           <div>
-            <button
-              class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small bg-transparent b--transparent c-action-primary hover-b--transparent hover-bg-action-secondary hover-b--action-secondary pointer "
-              tabindex="0"
-              type="button"
+            <span
+              class="mr4"
             >
-              <div
-                class="vtex-button__label flex items-center justify-center h-100 ph5 "
-                style="padding-top: .25em; padding-bottom: .32em;"
+              <button
+                class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small bg-transparent b--transparent c-action-primary hover-b--transparent hover-bg-action-secondary hover-b--action-secondary pointer "
+                tabindex="0"
+                type="button"
               >
-                cancel
-              </div>
-            </button>
+                <div
+                  class="vtex-button__label flex items-center justify-center h-100 ph5 "
+                  style="padding-top: .25em; padding-bottom: .32em;"
+                >
+                  cancel
+                </div>
+              </button>
+            </span>
             <button
               class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small bg-action-primary b--action-primary c-on-action-primary hover-bg-action-primary hover-b--action-primary hover-c-on-action-primary pointer "
               tabindex="0"
@@ -100,7 +104,7 @@ exports[`ModalDialog confirmation isDangerous CSS 1`] = `
     <div
       aria-labelledby="vtex-modal__title"
       aria-modal="true"
-      class="flex flex-column relative bg-white shadow-5 center mv9 undefined vw-90"
+      class="flex flex-column relative bg-white shadow-5 center mv9 br2 undefined vw-90"
       data-testid="modal__modal"
       role="dialog"
     >
@@ -112,7 +116,7 @@ exports[`ModalDialog confirmation isDangerous CSS 1`] = `
         >
           <div
             aria-label="Modal Close Button"
-            class="fr pointer pr6-ns pt6-ns pr5 pt5"
+            class="fr pointer pr7-ns pt7-ns pr5 pt5"
             role="button"
             tabindex="0"
           >
@@ -146,18 +150,22 @@ exports[`ModalDialog confirmation isDangerous CSS 1`] = `
       >
         <div>
           <div>
-            <button
-              class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small bg-transparent b--transparent c-action-primary hover-b--transparent hover-bg-action-secondary hover-b--action-secondary pointer "
-              tabindex="0"
-              type="button"
+            <span
+              class="mr4"
             >
-              <div
-                class="vtex-button__label flex items-center justify-center h-100 ph5 "
-                style="padding-top: .25em; padding-bottom: .32em;"
+              <button
+                class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small bg-transparent b--transparent c-action-primary hover-b--transparent hover-bg-action-secondary hover-b--action-secondary pointer "
+                tabindex="0"
+                type="button"
               >
-                cancel
-              </div>
-            </button>
+                <div
+                  class="vtex-button__label flex items-center justify-center h-100 ph5 "
+                  style="padding-top: .25em; padding-bottom: .32em;"
+                >
+                  cancel
+                </div>
+              </button>
+            </span>
             <button
               class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small bg-danger b--danger c-on-danger hover-bg-danger hover-b--danger hover-c-on-danger pointer "
               tabindex="0"
@@ -189,7 +197,7 @@ exports[`ModalDialog confirmation should render label 1`] = `
     <div
       aria-labelledby="vtex-modal__title"
       aria-modal="true"
-      class="flex flex-column relative bg-white shadow-5 center mv9 undefined vw-90"
+      class="flex flex-column relative bg-white shadow-5 center mv9 br2 undefined vw-90"
       data-testid="modal__modal"
       role="dialog"
     >
@@ -201,7 +209,7 @@ exports[`ModalDialog confirmation should render label 1`] = `
         >
           <div
             aria-label="Modal Close Button"
-            class="fr pointer pr6-ns pt6-ns pr5 pt5"
+            class="fr pointer pr7-ns pt7-ns pr5 pt5"
             role="button"
             tabindex="0"
           >
@@ -235,18 +243,22 @@ exports[`ModalDialog confirmation should render label 1`] = `
       >
         <div>
           <div>
-            <button
-              class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small bg-transparent b--transparent c-action-primary hover-b--transparent hover-bg-action-secondary hover-b--action-secondary pointer "
-              tabindex="0"
-              type="button"
+            <span
+              class="mr4"
             >
-              <div
-                class="vtex-button__label flex items-center justify-center h-100 ph5 "
-                style="padding-top: .25em; padding-bottom: .32em;"
+              <button
+                class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small bg-transparent b--transparent c-action-primary hover-b--transparent hover-bg-action-secondary hover-b--action-secondary pointer "
+                tabindex="0"
+                type="button"
               >
-                cancel
-              </div>
-            </button>
+                <div
+                  class="vtex-button__label flex items-center justify-center h-100 ph5 "
+                  style="padding-top: .25em; padding-bottom: .32em;"
+                >
+                  cancel
+                </div>
+              </button>
+            </span>
             <button
               class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small bg-action-primary b--action-primary c-on-action-primary hover-bg-action-primary hover-b--action-primary hover-c-on-action-primary pointer "
               tabindex="0"
@@ -278,7 +290,7 @@ exports[`ModalDialog loading CSS 1`] = `
     <div
       aria-labelledby="vtex-modal__title"
       aria-modal="true"
-      class="flex flex-column relative bg-white shadow-5 center mv9 undefined vw-90"
+      class="flex flex-column relative bg-white shadow-5 center mv9 br2 undefined vw-90"
       data-testid="modal__modal"
       role="dialog"
     >
@@ -290,7 +302,7 @@ exports[`ModalDialog loading CSS 1`] = `
         >
           <div
             aria-label="Modal Close Button"
-            class="fr pointer pr6-ns pt6-ns pr5 pt5"
+            class="fr pointer pr7-ns pt7-ns pr5 pt5"
             role="button"
             tabindex="0"
           >
@@ -324,19 +336,23 @@ exports[`ModalDialog loading CSS 1`] = `
       >
         <div>
           <div>
-            <button
-              class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small bg-transparent b--transparent c-disabled "
-              disabled=""
-              tabindex="0"
-              type="button"
+            <span
+              class="mr4"
             >
-              <div
-                class="vtex-button__label flex items-center justify-center h-100 ph5 "
-                style="padding-top: .25em; padding-bottom: .32em;"
+              <button
+                class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small bg-transparent b--transparent c-disabled "
+                disabled=""
+                tabindex="0"
+                type="button"
               >
-                cancel
-              </div>
-            </button>
+                <div
+                  class="vtex-button__label flex items-center justify-center h-100 ph5 "
+                  style="padding-top: .25em; padding-bottom: .32em;"
+                >
+                  cancel
+                </div>
+              </button>
+            </span>
             <button
               class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-small t-action--small bg-disabled b--muted-5 c-on-disabled "
               tabindex="0"
