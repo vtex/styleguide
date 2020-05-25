@@ -153,9 +153,9 @@ const ModalContent = forwardRef<HTMLDivElement, ContentProps>(
       <div
         className={classNames(
           'flex flex-column relative bg-white shadow-5 center mv9 br2',
-          `${size === 'small' ? styles.mw30 : ''}`,
-          `${size === 'medium' ? styles.mw40 : ''}`,
-          `${size === 'large' ? styles.mw50 : ''}`,
+          `${size === 'small' ? styles.smallContent : ''}`,
+          `${size === 'medium' ? styles.mediumContent : ''}`,
+          `${size === 'large' ? styles.largeContent : ''}`,
           {
             'h-100 h-auto-ns vw-100': responsiveFullScreen,
             'vw-90': !responsiveFullScreen,
@@ -184,7 +184,7 @@ const ModalContent = forwardRef<HTMLDivElement, ContentProps>(
         </TopBar>
         <div
           className={classNames(
-            `ph7 ph8-ns t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 ${styles.mh60} ${styles.scrollBar}`,
+            `ph7 ph8-ns t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 ${styles.modalContent} ${styles.scrollBar}`,
             { 'pb7-ns mb5': !bottomBar, mb3: bottomBar }
           )}
         >
