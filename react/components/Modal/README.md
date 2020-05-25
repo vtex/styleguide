@@ -12,7 +12,7 @@
 
 ### Anatomy
 
-<div className="center mw7 pv6">
+<div>
  ![](./modal_anatomy.png)
 </div>
 
