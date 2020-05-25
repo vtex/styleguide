@@ -7,7 +7,7 @@ import { action } from '@storybook/addon-actions'
 import Modal from '.'
 import Button from '../Button'
 import Input from '../Input'
-import { useDisclosure } from '../../utilities'
+import useDisclosure from '../../utilities/useDisclosure'
 
 export default {
   title: 'Components|Modal',

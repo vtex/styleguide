@@ -154,14 +154,11 @@ module.exports = {
         },
         {
           name: 'Overlays',
+          components: ['react/components/ModalDialog/index.tsx'],
           sections: [
             {
               name: 'Modal',
               content: 'react/components/Modal/README.md',
-            },
-            {
-              name: 'ModalDialog',
-              content: 'react/components/ModalDialog/README.md',
             },
           ],
         },

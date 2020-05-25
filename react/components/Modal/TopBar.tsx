@@ -40,7 +40,7 @@ function TopBar(
               ref={forwardedRef}
               tabIndex={0}
             >
-              <IconClose size="20" color="black" />
+              <IconClose size={20} color="black" />
             </div>
           </div>
         )}

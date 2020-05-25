@@ -3,7 +3,7 @@ import { withA11y } from '@storybook/addon-a11y'
 
 import Button from '../Button'
 import ModalDialog from '.'
-import { useDisclosure } from '../../utilities'
+import useDisclosure from '../../utilities/useDisclosure'
 
 export default {
   title: 'Components|ModalDialog',

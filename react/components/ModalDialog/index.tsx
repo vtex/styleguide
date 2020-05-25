@@ -11,7 +11,7 @@ type DialogOption = {
 
 type Props = Pick<
   ModalProps,
-  'children' | 'isOpen' | 'onClose' | 'onCloseTransitionFinish'
+  'children' | 'isOpen' | 'onClose' | 'onCloseTransitionFinish' | 'container'
 > & {
   loading?: boolean
   confirmation: DialogOption & { isDangerous?: boolean | null }

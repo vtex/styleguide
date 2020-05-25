@@ -44,7 +44,7 @@
 const Button = require('../Button').default
 const Modal = require('.').default
 
-import { useDisclosure } from '../../utilities'
+const useDisclosure = require('../../utilities/useDisclosure').default
 
 const ModalExample = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -102,7 +102,7 @@ When the Modal can't grow any longer, a scroll bar will show inside of the conte
 ```js
 const Modal = require('.').default
 const Button = require('../Button').default
-import { useDisclosure } from '../../utilities'
+const useDisclosure = require('../../utilities/useDisclosure').default
 
 const ModalExample = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -209,7 +209,7 @@ Using `bottomBar` prop you can insert any type of dialog, see the example below.
 ```js
 const Modal = require('.').default
 const Button = require('../Button').default
-import { useDisclosure } from '../../utilities'
+const useDisclosure = require('../../utilities/useDisclosure').default
 const Input = require('../Input').default
 
 const ModalExample = () => {
@@ -282,7 +282,8 @@ Adjust the of the Modal according with your content.
 
 ```js
 const Modal = require('.').default
-import { useDisclosure } from '../../utilities'
+const useDisclosure = require('../../utilities/useDisclosure').default
+
 const ModalExample = () => {
   const Button = require('../Button').default
   const smallModal = useDisclosure()
@@ -348,7 +349,7 @@ const Modal = require('.').default
 const Input = require('../Input').default
 const Button = require('../Button').default
 
-import { useDisclosure } from '../../utilities'
+const useDisclosure = require('../../utilities/useDisclosure').default
 
 const ModalExample = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()

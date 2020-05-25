@@ -11,12 +11,14 @@ describe('ModalDialog', () => {
 
   describe('cancelation', () => {
     it('should render label', () => {
+      const onClose = jest.fn()
       const containerModal = document.createElement('div')
       const onCancel = jest.fn()
       const cancelLabel = 'cancel'
       const { getByText, container } = render(
         <ModalDialog
           isOpen
+          onClose={onClose}
           container={containerModal}
           cancelation={{
             label: cancelLabel,
@@ -36,11 +38,13 @@ describe('ModalDialog', () => {
     })
 
     it('onClick should be called on cancelation button click', () => {
+      const onClose = jest.fn()
       const onCancel = jest.fn()
 
       const { getByText } = render(
         <ModalDialog
           isOpen
+          onClose={onClose}
           cancelation={{
             label: 'cancel',
             onClick: onCancel,
@@ -62,12 +66,14 @@ describe('ModalDialog', () => {
 
   describe('confirmation', () => {
     it('should render label', () => {
+      const onClose = jest.fn()
       const containerModal = document.createElement('div')
       const onConfirm = jest.fn()
       const confirmLabel = 'confirm'
       const { getAllByText, container } = render(
         <ModalDialog
           isOpen
+          onClose={onClose}
           container={containerModal}
           cancelation={{
             label: 'cancel',
@@ -87,11 +93,13 @@ describe('ModalDialog', () => {
     })
 
     it('onClick should be called on confirmation button click', () => {
+      const onClose = jest.fn()
       const onConfirm = jest.fn()
       const confirmLabel = 'confirm'
       const { getByText } = render(
         <ModalDialog
           isOpen
+          onClose={onClose}
           cancelation={{
             label: 'cancel',
             onClick: () => null,
@@ -111,12 +119,15 @@ describe('ModalDialog', () => {
     })
 
     it('isDangerous CSS', () => {
+      const onClose = jest.fn()
       const containerModal = document.createElement('div')
       const onConfirm = jest.fn()
       const confirmLabel = 'cancel'
+
       const { container } = render(
         <ModalDialog
           isOpen
+          onClose={onClose}
           container={containerModal}
           cancelation={{
             label: 'cancel',
@@ -139,10 +150,12 @@ describe('ModalDialog', () => {
 
   describe('loading', () => {
     it('CSS', () => {
+      const onClose = jest.fn()
       const containerModal = document.createElement('div')
       const { container } = render(
         <ModalDialog
           isOpen
+          onClose={onClose}
           loading
           container={containerModal}
           cancelation={{

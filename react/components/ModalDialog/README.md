@@ -7,10 +7,9 @@
 Default
 
 ```js
-const ModalDialog = require('.').default
 const Button = require('../Button').default
 const Input = require('../Input').default
-import { useDisclosure } from '../../utilities'
+const useDisclosure = require('../../utilities/useDisclosure').default
 
 const ModalDialogExample = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -73,10 +72,9 @@ Loading
 ```js
 import { useState } from 'react'
 
-const ModalDialog = require('.').default
 const Button = require('../Button').default
 const Input = require('../Input').default
-import { useDisclosure } from '../../utilities'
+const useDisclosure = require('../../utilities/useDisclosure').default
 
 const ModalDialogExample = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -148,10 +146,9 @@ Dangerous
 ```js
 import { useState } from 'react'
 
-const ModalDialog = require('.').default
 const Button = require('../Button').default
 const Input = require('../Input').default
-import { useDisclosure } from '../../utilities'
+const useDisclosure = require('../../utilities/useDisclosure').default
 
 const ModalDialogExample = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()

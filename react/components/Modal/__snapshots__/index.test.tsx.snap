@@ -15,40 +15,42 @@ exports[`Modal CSS API centered 1`] = `
       data-testid="modal__modal"
       role="dialog"
     >
-      <div
-        class="mb5"
-      >
+      <div>
         <div
-          class="min-h-small min-h-large-ns pl6 pl8-ns"
+          class="min-h-regular min-h-large-ns pl6 pl8-ns"
         >
           <div
-            aria-label="Modal Close Button"
-            class="fr pointer pr7-ns pt7-ns pr5 pt5"
-            role="button"
-            tabindex="0"
+            class="fr pointer pr6-ns pt6-ns pr4 pt4"
           >
-            <svg
-              class="vtex__icon-close  "
-              fill="none"
-              height="16"
-              viewBox="0 0 18 18"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
+            <div
+              aria-label="Modal Close Button"
+              class="ph3-ns pt3-ns pb2-ns ph2 pt2 pb1 br2 hover-b--transparent hover-bg-action-secondary hover-b--action-secondary"
+              role="button"
+              tabindex="0"
             >
-              <g
-                fill="black"
+              <svg
+                class="vtex__icon-close  "
+                fill="none"
+                height="20"
+                viewBox="0 0 18 18"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
               >
-                <path
-                  d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
-                />
-              </g>
-            </svg>
+                <g
+                  fill="black"
+                >
+                  <path
+                    d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+                  />
+                </g>
+              </svg>
+            </div>
           </div>
         </div>
       </div>
       <div
-        class="ph6 ph8-ns t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 undefined undefined pb8-ns"
+        class="ph7 ph8-ns t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 undefined undefined pb7-ns mb5"
       >
         Foo
       </div>
@@ -72,40 +74,42 @@ exports[`Modal CSS API default 1`] = `
       data-testid="modal__modal"
       role="dialog"
     >
-      <div
-        class="mb5"
-      >
+      <div>
         <div
-          class="min-h-small min-h-large-ns pl6 pl8-ns"
+          class="min-h-regular min-h-large-ns pl6 pl8-ns"
         >
           <div
-            aria-label="Modal Close Button"
-            class="fr pointer pr7-ns pt7-ns pr5 pt5"
-            role="button"
-            tabindex="0"
+            class="fr pointer pr6-ns pt6-ns pr4 pt4"
           >
-            <svg
-              class="vtex__icon-close  "
-              fill="none"
-              height="16"
-              viewBox="0 0 18 18"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
+            <div
+              aria-label="Modal Close Button"
+              class="ph3-ns pt3-ns pb2-ns ph2 pt2 pb1 br2 hover-b--transparent hover-bg-action-secondary hover-b--action-secondary"
+              role="button"
+              tabindex="0"
             >
-              <g
-                fill="black"
+              <svg
+                class="vtex__icon-close  "
+                fill="none"
+                height="20"
+                viewBox="0 0 18 18"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
               >
-                <path
-                  d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
-                />
-              </g>
-            </svg>
+                <g
+                  fill="black"
+                >
+                  <path
+                    d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+                  />
+                </g>
+              </svg>
+            </div>
           </div>
         </div>
       </div>
       <div
-        class="ph6 ph8-ns t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 undefined undefined pb8-ns"
+        class="ph7 ph8-ns t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 undefined undefined pb7-ns mb5"
       >
         Foo
       </div>
@@ -129,40 +133,42 @@ exports[`Modal CSS API responsiveFullScreen true 1`] = `
       data-testid="modal__modal"
       role="dialog"
     >
-      <div
-        class="mb5"
-      >
+      <div>
         <div
-          class="min-h-small min-h-large-ns pl6 pl8-ns"
+          class="min-h-regular min-h-large-ns pl6 pl8-ns"
         >
           <div
-            aria-label="Modal Close Button"
-            class="fr pointer pr7 pt7"
-            role="button"
-            tabindex="0"
+            class="fr pointer pr6-ns pt6-ns pr4 pt4"
           >
-            <svg
-              class="vtex__icon-close  "
-              fill="none"
-              height="16"
-              viewBox="0 0 18 18"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
+            <div
+              aria-label="Modal Close Button"
+              class="ph3-ns pt3-ns pb2-ns ph2 pt2 pb1 br2 hover-b--transparent hover-bg-action-secondary hover-b--action-secondary"
+              role="button"
+              tabindex="0"
             >
-              <g
-                fill="black"
+              <svg
+                class="vtex__icon-close  "
+                fill="none"
+                height="20"
+                viewBox="0 0 18 18"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
               >
-                <path
-                  d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
-                />
-              </g>
-            </svg>
+                <g
+                  fill="black"
+                >
+                  <path
+                    d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+                  />
+                </g>
+              </svg>
+            </div>
           </div>
         </div>
       </div>
       <div
-        class="ph6 ph8-ns t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 undefined undefined pb8-ns"
+        class="ph7 ph8-ns t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 undefined undefined pb7-ns mb5"
       >
         Foo
       </div>
@@ -186,40 +192,42 @@ exports[`Modal CSS API showBottomBarBorder false 1`] = `
       data-testid="modal__modal"
       role="dialog"
     >
-      <div
-        class="mb5"
-      >
+      <div>
         <div
-          class="min-h-small min-h-large-ns pl6 pl8-ns"
+          class="min-h-regular min-h-large-ns pl6 pl8-ns"
         >
           <div
-            aria-label="Modal Close Button"
-            class="fr pointer pr7-ns pt7-ns pr5 pt5"
-            role="button"
-            tabindex="0"
+            class="fr pointer pr6-ns pt6-ns pr4 pt4"
           >
-            <svg
-              class="vtex__icon-close  "
-              fill="none"
-              height="16"
-              viewBox="0 0 18 18"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
+            <div
+              aria-label="Modal Close Button"
+              class="ph3-ns pt3-ns pb2-ns ph2 pt2 pb1 br2 hover-b--transparent hover-bg-action-secondary hover-b--action-secondary"
+              role="button"
+              tabindex="0"
             >
-              <g
-                fill="black"
+              <svg
+                class="vtex__icon-close  "
+                fill="none"
+                height="20"
+                viewBox="0 0 18 18"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
               >
-                <path
-                  d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
-                />
-              </g>
-            </svg>
+                <g
+                  fill="black"
+                >
+                  <path
+                    d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+                  />
+                </g>
+              </svg>
+            </div>
           </div>
         </div>
       </div>
       <div
-        class="ph6 ph8-ns t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 undefined undefined pb8-ns"
+        class="ph7 ph8-ns t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 undefined undefined pb7-ns mb5"
       >
         Foo
       </div>
@@ -243,40 +251,42 @@ exports[`Modal CSS API showTopBar false 1`] = `
       data-testid="modal__modal"
       role="dialog"
     >
-      <div
-        class="mb5"
-      >
+      <div>
         <div
-          class="min-h-small min-h-large-ns pl6 pl8-ns"
+          class="min-h-regular min-h-large-ns pl6 pl8-ns"
         >
           <div
-            aria-label="Modal Close Button"
-            class="fr pointer pr7-ns pt7-ns pr5 pt5"
-            role="button"
-            tabindex="0"
+            class="fr pointer pr6-ns pt6-ns pr4 pt4"
           >
-            <svg
-              class="vtex__icon-close  "
-              fill="none"
-              height="16"
-              viewBox="0 0 18 18"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
+            <div
+              aria-label="Modal Close Button"
+              class="ph3-ns pt3-ns pb2-ns ph2 pt2 pb1 br2 hover-b--transparent hover-bg-action-secondary hover-b--action-secondary"
+              role="button"
+              tabindex="0"
             >
-              <g
-                fill="black"
+              <svg
+                class="vtex__icon-close  "
+                fill="none"
+                height="20"
+                viewBox="0 0 18 18"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
               >
-                <path
-                  d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
-                />
-              </g>
-            </svg>
+                <g
+                  fill="black"
+                >
+                  <path
+                    d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+                  />
+                </g>
+              </svg>
+            </div>
           </div>
         </div>
       </div>
       <div
-        class="ph6 ph8-ns t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 undefined undefined pb8-ns"
+        class="ph7 ph8-ns t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 undefined undefined pb7-ns mb5"
       >
         Foo
       </div>
@@ -300,40 +310,42 @@ exports[`Modal bottomBar should render bottomBar 1`] = `
       data-testid="modal__modal"
       role="dialog"
     >
-      <div
-        class="mb5"
-      >
+      <div>
         <div
-          class="min-h-small min-h-large-ns pl6 pl8-ns"
+          class="min-h-regular min-h-large-ns pl6 pl8-ns"
         >
           <div
-            aria-label="Modal Close Button"
-            class="fr pointer pr7-ns pt7-ns pr5 pt5"
-            role="button"
-            tabindex="0"
+            class="fr pointer pr6-ns pt6-ns pr4 pt4"
           >
-            <svg
-              class="vtex__icon-close  "
-              fill="none"
-              height="16"
-              viewBox="0 0 18 18"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
+            <div
+              aria-label="Modal Close Button"
+              class="ph3-ns pt3-ns pb2-ns ph2 pt2 pb1 br2 hover-b--transparent hover-bg-action-secondary hover-b--action-secondary"
+              role="button"
+              tabindex="0"
             >
-              <g
-                fill="black"
+              <svg
+                class="vtex__icon-close  "
+                fill="none"
+                height="20"
+                viewBox="0 0 18 18"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
               >
-                <path
-                  d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
-                />
-              </g>
-            </svg>
+                <g
+                  fill="black"
+                >
+                  <path
+                    d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+                  />
+                </g>
+              </svg>
+            </div>
           </div>
         </div>
       </div>
       <div
-        class="ph6 ph8-ns t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 undefined undefined mb3"
+        class="ph7 ph8-ns t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 undefined undefined mb3"
       >
         Foo
       </div>
@@ -366,40 +378,42 @@ exports[`Modal container should render modal inside it 1`] = `
       data-testid="modal__modal"
       role="dialog"
     >
-      <div
-        class="mb5"
-      >
+      <div>
         <div
-          class="min-h-small min-h-large-ns pl6 pl8-ns"
+          class="min-h-regular min-h-large-ns pl6 pl8-ns"
         >
           <div
-            aria-label="Modal Close Button"
-            class="fr pointer pr7-ns pt7-ns pr5 pt5"
-            role="button"
-            tabindex="0"
+            class="fr pointer pr6-ns pt6-ns pr4 pt4"
           >
-            <svg
-              class="vtex__icon-close  "
-              fill="none"
-              height="16"
-              viewBox="0 0 18 18"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
+            <div
+              aria-label="Modal Close Button"
+              class="ph3-ns pt3-ns pb2-ns ph2 pt2 pb1 br2 hover-b--transparent hover-bg-action-secondary hover-b--action-secondary"
+              role="button"
+              tabindex="0"
             >
-              <g
-                fill="black"
+              <svg
+                class="vtex__icon-close  "
+                fill="none"
+                height="20"
+                viewBox="0 0 18 18"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
               >
-                <path
-                  d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
-                />
-              </g>
-            </svg>
+                <g
+                  fill="black"
+                >
+                  <path
+                    d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+                  />
+                </g>
+              </svg>
+            </div>
           </div>
         </div>
       </div>
       <div
-        class="ph6 ph8-ns t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 undefined undefined pb8-ns"
+        class="ph7 ph8-ns t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 undefined undefined pb7-ns mb5"
       >
         Foo
       </div>
@@ -423,40 +437,42 @@ exports[`Modal isOpen Should show modal when isOpen is true and hide when is fal
       data-testid="modal__modal"
       role="dialog"
     >
-      <div
-        class="mb5"
-      >
+      <div>
         <div
-          class="min-h-small min-h-large-ns pl6 pl8-ns"
+          class="min-h-regular min-h-large-ns pl6 pl8-ns"
         >
           <div
-            aria-label="Modal Close Button"
-            class="fr pointer pr7-ns pt7-ns pr5 pt5"
-            role="button"
-            tabindex="0"
+            class="fr pointer pr6-ns pt6-ns pr4 pt4"
           >
-            <svg
-              class="vtex__icon-close  "
-              fill="none"
-              height="16"
-              viewBox="0 0 18 18"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
+            <div
+              aria-label="Modal Close Button"
+              class="ph3-ns pt3-ns pb2-ns ph2 pt2 pb1 br2 hover-b--transparent hover-bg-action-secondary hover-b--action-secondary"
+              role="button"
+              tabindex="0"
             >
-              <g
-                fill="black"
+              <svg
+                class="vtex__icon-close  "
+                fill="none"
+                height="20"
+                viewBox="0 0 18 18"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
               >
-                <path
-                  d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
-                />
-              </g>
-            </svg>
+                <g
+                  fill="black"
+                >
+                  <path
+                    d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+                  />
+                </g>
+              </svg>
+            </div>
           </div>
         </div>
       </div>
       <div
-        class="ph6 ph8-ns t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 undefined undefined pb8-ns"
+        class="ph7 ph8-ns t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 undefined undefined pb7-ns mb5"
       >
         Foo
       </div>
@@ -480,40 +496,42 @@ exports[`Modal isOpen Should show modal when isOpen is true and hide when is fal
       data-testid="modal__modal"
       role="dialog"
     >
-      <div
-        class="mb5"
-      >
+      <div>
         <div
-          class="min-h-small min-h-large-ns pl6 pl8-ns"
+          class="min-h-regular min-h-large-ns pl6 pl8-ns"
         >
           <div
-            aria-label="Modal Close Button"
-            class="fr pointer pr7-ns pt7-ns pr5 pt5"
-            role="button"
-            tabindex="0"
+            class="fr pointer pr6-ns pt6-ns pr4 pt4"
           >
-            <svg
-              class="vtex__icon-close  "
-              fill="none"
-              height="16"
-              viewBox="0 0 18 18"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
+            <div
+              aria-label="Modal Close Button"
+              class="ph3-ns pt3-ns pb2-ns ph2 pt2 pb1 br2 hover-b--transparent hover-bg-action-secondary hover-b--action-secondary"
+              role="button"
+              tabindex="0"
             >
-              <g
-                fill="black"
+              <svg
+                class="vtex__icon-close  "
+                fill="none"
+                height="20"
+                viewBox="0 0 18 18"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
               >
-                <path
-                  d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
-                />
-              </g>
-            </svg>
+                <g
+                  fill="black"
+                >
+                  <path
+                    d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+                  />
+                </g>
+              </svg>
+            </div>
           </div>
         </div>
       </div>
       <div
-        class="ph6 ph8-ns t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 undefined undefined pb8-ns"
+        class="ph7 ph8-ns t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 undefined undefined pb7-ns mb5"
       >
         Foo
       </div>
@@ -537,39 +555,41 @@ exports[`Modal title should render title prop 1`] = `
       data-testid="modal__modal"
       role="dialog"
     >
-      <div
-        class="mb5"
-      >
+      <div>
         <div
-          class="min-h-small min-h-large-ns pl6 pl8-ns"
+          class="min-h-regular min-h-large-ns pl6 pl8-ns"
         >
           <div
-            aria-label="Modal Close Button"
-            class="fr pointer pr7-ns pt7-ns pr5 pt5"
-            role="button"
-            tabindex="0"
+            class="fr pointer pr6-ns pt6-ns pr4 pt4"
           >
-            <svg
-              class="vtex__icon-close  "
-              fill="none"
-              height="16"
-              viewBox="0 0 18 18"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
+            <div
+              aria-label="Modal Close Button"
+              class="ph3-ns pt3-ns pb2-ns ph2 pt2 pb1 br2 hover-b--transparent hover-bg-action-secondary hover-b--action-secondary"
+              role="button"
+              tabindex="0"
             >
-              <g
-                fill="black"
+              <svg
+                class="vtex__icon-close  "
+                fill="none"
+                height="20"
+                viewBox="0 0 18 18"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
               >
-                <path
-                  d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
-                />
-              </g>
-            </svg>
+                <g
+                  fill="black"
+                >
+                  <path
+                    d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+                  />
+                </g>
+              </svg>
+            </div>
           </div>
         </div>
-        <span
-          class="t-heading-4 ml8-ns ml6"
+        <div
+          class="t-heading-4 ml8-ns ml6 mb5"
         >
           <div
             class="undefined"
@@ -577,10 +597,10 @@ exports[`Modal title should render title prop 1`] = `
           >
             modal title
           </div>
-        </span>
+        </div>
       </div>
       <div
-        class="ph6 ph8-ns t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 undefined undefined pb8-ns"
+        class="ph7 ph8-ns t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 undefined undefined pb7-ns mb5"
       >
         Foo
       </div>
