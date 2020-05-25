@@ -31,14 +31,6 @@ const ModalDialog: FC<Props> = ({
     )
   }, [])
 
-  const handleCancelation = () => {
-    cancelation.onClick?.()
-  }
-
-  const handleConfirmation = () => {
-    confirmation.onClick?.()
-  }
-
   return (
     <Modal
       {...props}
@@ -50,7 +42,9 @@ const ModalDialog: FC<Props> = ({
               type="button"
               variation="tertiary"
               disabled={loading}
-              onClick={handleCancelation}
+              onClick={() => {
+                cancelation.onClick?.()
+              }}
             >
               {cancelation.label}
             </Button>
@@ -60,7 +54,9 @@ const ModalDialog: FC<Props> = ({
             type="button"
             variation={confirmation.isDangerous ? 'danger' : 'primary'}
             isLoading={loading}
-            onClick={handleConfirmation}
+            onClick={() => {
+              confirmation.onClick?.()
+            }}
           >
             {confirmation.label}
           </Button>
