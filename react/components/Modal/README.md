@@ -13,7 +13,7 @@
 ### Anatomy
 
 <div className="center mw7 pv6">
- ![](./modal.png)
+ ![](./modal_anatomy.png)
 </div>
 
 ### Props
