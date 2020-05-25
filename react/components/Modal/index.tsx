@@ -5,7 +5,7 @@ import classNames from 'classnames'
 import TopBar from './TopBar'
 import BottomBar from './BottomBar'
 import styles from './modal.css'
-import { useEnhancedEffect } from './utils'
+import { useEnhancedEffect, canUseDOM } from './utils'
 import FocusTrap from './FocusTrap'
 
 export interface Props
@@ -82,7 +82,7 @@ export const ModalOverlay: FC<OverlayProps> = ({
       return
     }
     setShowPortal(isOpen)
-    document.body.classList.add(styles.hiddenScroll)
+    if (canUseDOM) document.body.classList.add(styles.hiddenScroll)
   }, [isOpen])
 
   const handleClick = () => {
@@ -94,7 +94,7 @@ export const ModalOverlay: FC<OverlayProps> = ({
     if (isOpen) return
     onCloseTransitionFinish?.()
     setShowPortal(false)
-    document.body.classList.remove(styles.hiddenScroll)
+    if (canUseDOM) document.body.classList.remove(styles.hiddenScroll)
   }
 
   return showPortal

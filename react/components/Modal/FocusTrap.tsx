@@ -1,5 +1,7 @@
 import React, { FC, useEffect, useRef } from 'react'
 
+import { canUseDOM } from './utils'
+
 enum Key {
   TAB = 9,
   SHIFT = 16,
@@ -60,9 +62,9 @@ const FocusTrap: FC<Props> = ({ children }) => {
   }
 
   useEffect(() => {
-    document.addEventListener('keydown', handleKeyEvent)
+    if (canUseDOM) document.addEventListener('keydown', handleKeyEvent)
     return () => {
-      document.removeEventListener('keydown', handleKeyEvent)
+      if (canUseDOM) document.removeEventListener('keydown', handleKeyEvent)
     }
   })
 
@@ -71,6 +73,7 @@ const FocusTrap: FC<Props> = ({ children }) => {
       return
     }
     const alreadyHasFocus =
+      canUseDOM &&
       focusContainer.current &&
       focusContainer.current.contains(document.activeElement)
     if (!alreadyHasFocus) focusFirstElement(focusContainer.current)
