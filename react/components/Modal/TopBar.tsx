@@ -28,7 +28,7 @@ function TopBar(
     <div>
       <div className="min-h-regular min-h-large-ns pl6 pl8-ns">
         {showCloseIcon && (
-          <div className={'fr pointer pr6-ns pt6-ns pr4 pt4'}>
+          <div className={'fr pointer pr5-ns pt5-ns pr4 pt4'}>
             <div
               role="button"
               aria-label="Modal Close Button"
@@ -46,7 +46,7 @@ function TopBar(
         )}
       </div>
       {showTopBar && children && (
-        <div className="t-heading-4 ml8-ns ml6 mb5">{children}</div>
+        <div className="t-heading-4 ml8-ns ml7 mb5">{children}</div>
       )}
     </div>
   )

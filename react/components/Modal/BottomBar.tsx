@@ -15,7 +15,7 @@ function BottomBar(
   return (
     <div
       className={classNames(
-        'flex justify-content flex-row-reverse min-h-regular-ns min-h-small pv6-ns ph8-ns pv7 ph6 mt3',
+        'flex justify-content flex-row-reverse min-h-regular-ns min-h-small pv6-ns ph8-ns pv7 ph7 mt3',
         {
           'bt b--muted-4': showBorder,
           pb7: responsiveFullScreen,

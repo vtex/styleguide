@@ -28,7 +28,13 @@
   padding-right: 15px;
 }
 
-.modalContent {
+@media screen and (min-width: 40em) {
+  .maxHeight80Desktop {
+    max-height: 80vh;
+  }
+}
+
+.maxHeight80 {
   max-height: 80vh;
 }
 
