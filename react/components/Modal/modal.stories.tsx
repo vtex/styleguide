@@ -134,8 +134,30 @@ export const WithDifferentSizes = () => {
         isOpen={smallModal.isOpen}
         onClose={smallModal.onClose}
         title="Small Size"
+        bottomBar={
+          <>
+            <Button
+              size="small"
+              type="button"
+              variation="tertiary"
+              onClick={smallModal.onClose}
+            >
+              Cancel
+            </Button>
+            <span className="mr4"></span>
+            <Button
+              size="small"
+              type="button"
+              variation={'primary'}
+              onClick={smallModal.onClose}
+            >
+              Confirm
+            </Button>
+          </>
+        }
       >
-        Small Modal content here...
+        Small Modal Example, adjust viewport to see how I react to different
+        screen sizes!
       </Modal>
       <br />
       <span className="mr4">
@@ -147,9 +169,31 @@ export const WithDifferentSizes = () => {
         size="medium"
         isOpen={mediumModal.isOpen}
         onClose={mediumModal.onClose}
-        title="Medium Size"
+        title="A medium Modal"
+        bottomBar={
+          <>
+            <Button
+              size="small"
+              type="button"
+              variation="tertiary"
+              onClick={mediumModal.onClose}
+            >
+              Cancel
+            </Button>
+            <span className="mr4"></span>
+            <Button
+              size="small"
+              type="button"
+              variation={'primary'}
+              onClick={mediumModal.onClose}
+            >
+              Confirm
+            </Button>
+          </>
+        }
       >
-        Medium Modal content here...
+        Medium Modal Example, adjust viewport to see how I react to different
+        screen sizes!
       </Modal>
       <br />
 
@@ -163,8 +207,30 @@ export const WithDifferentSizes = () => {
         isOpen={largeModal.isOpen}
         onClose={largeModal.onClose}
         title="Large Size"
+        bottomBar={
+          <>
+            <Button
+              size="small"
+              type="button"
+              variation="tertiary"
+              onClick={largeModal.onClose}
+            >
+              Cancel
+            </Button>
+            <span className="mr4"></span>
+            <Button
+              size="small"
+              type="button"
+              variation={'primary'}
+              onClick={largeModal.onClose}
+            >
+              Confirm
+            </Button>
+          </>
+        }
       >
-        Large Modal content here...
+        Large Modal Example, adjust viewport to see how I react to different
+        screen sizes!
       </Modal>
     </div>
   )
