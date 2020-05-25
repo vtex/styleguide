@@ -444,8 +444,27 @@ const ModalExample = () => {
   return (
     <>
       <Button onClick={onOpen}>Open modal</Button>
-      <Modal isOpen={isOpen} onClose={onClose} title="Custom Initial Focus">
-        <Input autoFocus placeholder="Focus on me!" />
+      <Modal
+        isOpen={isOpen}
+        onClose={onClose}
+        title="Confirm your name to continue"
+        bottomBar={
+          <div className="nowrap">
+            <span className="mr4">
+              <Button variation="tertiary" onClick={onClose}>
+                Cancel
+              </Button>
+            </span>
+            <span>
+              <Button variation="primary" onClick={onClose}>
+                Confirm
+              </Button>
+            </span>
+          </div>
+        }
+      >
+        <Input autoFocus placeholder="Type your name...." label="Name" />
+        <div className="mb3" />
       </Modal>
     </>
   )
