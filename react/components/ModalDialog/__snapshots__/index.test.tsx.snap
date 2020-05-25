@@ -20,7 +20,7 @@ exports[`ModalDialog cancelation should render label 1`] = `
           class="min-h-regular min-h-large-ns pl6 pl8-ns"
         >
           <div
-            class="fr pointer pr6-ns pt6-ns pr4 pt4"
+            class="fr pointer pr5-ns pt5-ns pr4 pt4"
           >
             <div
               aria-label="Modal Close Button"
@@ -50,12 +50,12 @@ exports[`ModalDialog cancelation should render label 1`] = `
         </div>
       </div>
       <div
-        class="ph7 ph8-ns t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 undefined undefined mb3"
+        class="ph7 ph8-ns t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 undefined undefined undefined mb3"
       >
         Foo
       </div>
       <div
-        class="flex justify-content flex-row-reverse min-h-regular-ns min-h-small pv6-ns ph8-ns pv7 ph6 mt3 bt b--muted-4"
+        class="flex justify-content flex-row-reverse min-h-regular-ns min-h-small pv6-ns ph8-ns pv7 ph7 mt3 bt b--muted-4"
       >
         <div>
           <div>
@@ -115,7 +115,7 @@ exports[`ModalDialog confirmation isDangerous CSS 1`] = `
           class="min-h-regular min-h-large-ns pl6 pl8-ns"
         >
           <div
-            class="fr pointer pr6-ns pt6-ns pr4 pt4"
+            class="fr pointer pr5-ns pt5-ns pr4 pt4"
           >
             <div
               aria-label="Modal Close Button"
@@ -145,12 +145,12 @@ exports[`ModalDialog confirmation isDangerous CSS 1`] = `
         </div>
       </div>
       <div
-        class="ph7 ph8-ns t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 undefined undefined mb3"
+        class="ph7 ph8-ns t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 undefined undefined undefined mb3"
       >
         Foo
       </div>
       <div
-        class="flex justify-content flex-row-reverse min-h-regular-ns min-h-small pv6-ns ph8-ns pv7 ph6 mt3 bt b--muted-4"
+        class="flex justify-content flex-row-reverse min-h-regular-ns min-h-small pv6-ns ph8-ns pv7 ph7 mt3 bt b--muted-4"
       >
         <div>
           <div>
@@ -210,7 +210,7 @@ exports[`ModalDialog confirmation should render label 1`] = `
           class="min-h-regular min-h-large-ns pl6 pl8-ns"
         >
           <div
-            class="fr pointer pr6-ns pt6-ns pr4 pt4"
+            class="fr pointer pr5-ns pt5-ns pr4 pt4"
           >
             <div
               aria-label="Modal Close Button"
@@ -240,12 +240,12 @@ exports[`ModalDialog confirmation should render label 1`] = `
         </div>
       </div>
       <div
-        class="ph7 ph8-ns t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 undefined undefined mb3"
+        class="ph7 ph8-ns t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 undefined undefined undefined mb3"
       >
         Foo
       </div>
       <div
-        class="flex justify-content flex-row-reverse min-h-regular-ns min-h-small pv6-ns ph8-ns pv7 ph6 mt3 bt b--muted-4"
+        class="flex justify-content flex-row-reverse min-h-regular-ns min-h-small pv6-ns ph8-ns pv7 ph7 mt3 bt b--muted-4"
       >
         <div>
           <div>
@@ -305,7 +305,7 @@ exports[`ModalDialog loading CSS 1`] = `
           class="min-h-regular min-h-large-ns pl6 pl8-ns"
         >
           <div
-            class="fr pointer pr6-ns pt6-ns pr4 pt4"
+            class="fr pointer pr5-ns pt5-ns pr4 pt4"
           >
             <div
               aria-label="Modal Close Button"
@@ -335,12 +335,12 @@ exports[`ModalDialog loading CSS 1`] = `
         </div>
       </div>
       <div
-        class="ph7 ph8-ns t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 undefined undefined mb3"
+        class="ph7 ph8-ns t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 undefined undefined undefined mb3"
       >
         Foo
       </div>
       <div
-        class="flex justify-content flex-row-reverse min-h-regular-ns min-h-small pv6-ns ph8-ns pv7 ph6 mt3 bt b--muted-4"
+        class="flex justify-content flex-row-reverse min-h-regular-ns min-h-small pv6-ns ph8-ns pv7 ph7 mt3 bt b--muted-4"
       >
         <div>
           <div>
