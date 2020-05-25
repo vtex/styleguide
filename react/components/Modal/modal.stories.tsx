@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-handler-names */
 import React from 'react'
 import { withA11y } from '@storybook/addon-a11y'
-import { withKnobs, boolean, select } from '@storybook/addon-knobs'
+import { withKnobs, boolean, select, text } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 
 import Modal from '.'
@@ -29,7 +29,7 @@ export const Default = () => {
       <Modal
         isOpen={isOpen}
         onClose={onClose}
-        title="What's your name?"
+        title={text('Title', 'Tell me your name')}
         responsiveFullScreen={boolean('Responsive Full Screen', false)}
         onCloseTransitionFinish={() => {
           action('transition-finished')
@@ -37,8 +37,10 @@ export const Default = () => {
         size={select('Size', sizes, 'medium')}
         showTopBar={boolean('Show Top Bar', true)}
         centered={boolean('Centered', true)}
+        showCloseIcon={boolean('Show Close Icon', true)}
         showBottomBarBorder={boolean('Show Bottom Bar Border', true)}
         closeOnOverlayClick={boolean('Close On Overlay Click', true)}
+        closeOnEsc={boolean('Close on Esc', true)}
         bottomBar={
           <>
             <Button
@@ -156,8 +158,10 @@ export const WithDifferentSizes = () => {
           </>
         }
       >
-        Small Modal Example, adjust viewport to see how I react to different
-        screen sizes!
+        <div className="mb3">
+          Small Modal Example, adjust viewport to see how I react to different
+          screen sizes!
+        </div>
       </Modal>
       <br />
       <span className="mr4">
@@ -192,8 +196,10 @@ export const WithDifferentSizes = () => {
           </>
         }
       >
-        Medium Modal Example, adjust viewport to see how I react to different
-        screen sizes!
+        <div className="mb3">
+          Medium Modal Example, adjust viewport to see how I react to different
+          screen sizes!
+        </div>
       </Modal>
       <br />
 
@@ -229,8 +235,10 @@ export const WithDifferentSizes = () => {
           </>
         }
       >
-        Large Modal Example, adjust viewport to see how I react to different
-        screen sizes!
+        <div className="mb3">
+          Large Modal Example, adjust viewport to see how I react to different
+          screen sizes!
+        </div>
       </Modal>
     </div>
   )
