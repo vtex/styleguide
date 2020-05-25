@@ -21,8 +21,6 @@ const sizes: Size[] = ['small', 'medium', 'large']
 export const Default = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
-  const withInitialInputFocus = boolean('Initial Focus in Input', true)
-
   return (
     <>
       <Button onClick={onOpen} type="button">
@@ -68,9 +66,10 @@ export const Default = () => {
         <div className="mt6 mb5">
           <Input
             // eslint-disable-next-line jsx-a11y/no-autofocus
-            autoFocus={withInitialInputFocus}
+            autoFocus
             placeholder="Type your name..."
             size="small"
+            label="Name"
           />
         </div>
       </Modal>
