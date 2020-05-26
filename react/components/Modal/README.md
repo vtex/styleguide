@@ -281,78 +281,72 @@ const ModalExample = () => {
 
 #### Sizes
 
-Adjust the of the Modal according with your content.
+Adjust the size of the Modal according with your content.
+
+##### Small
 
 ```js
+const Button = require('../Button').default
 const Modal = require('.').default
 const useDisclosure = require('../../utilities/useDisclosure').default
 
 const ModalExample = () => {
-  const Button = require('../Button').default
-  const smallModal = useDisclosure()
-  const mediumModal = useDisclosure()
-  const largeModal = useDisclosure()
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
-    <div>
-      <div>
-        <span className="mr4">
-          <Button variation="primary" size="small" onClick={smallModal.onOpen}>
-            Small
-          </Button>
-        </span>
-        <span className="mr4">
-          <Button variation="primary" onClick={mediumModal.onOpen}>
-            Medium
-          </Button>
-        </span>
-        <span className="mr4">
-          <Button variation="primary" size="large" onClick={largeModal.onOpen}>
-            Large
-          </Button>
-        </span>
-      </div>
+    <>
+      <Button onClick={onOpen}>Open modal</Button>
       <Modal
+        isOpen={isOpen}
+        onClose={onClose}
         size="small"
-        isOpen={smallModal.isOpen}
-        onClose={smallModal.onClose}
-        title="Small Modal"
-      >
-        <div className="dark-gray" id="modal-description">
-          <p>
-            The Payments module is the system responsible for managing all
-            actions regarding your store's cash flow.
-          </p>
-
-          <p>
-            Before we explore the features within VTEX Admin Payments, let's
-            clarify some important concepts regarding the payment flow of an
-            order. This process is performed by some actors within the Brazilian
-            financial system, which make up the Payments module architecture.
-          </p>
-          <div
-            style={{
-              backgroundColor: '#edf4fa',
-              borderRadius: '4px',
-              border: 'solid #368df7',
-              borderWidth: '0 0 0 4px',
-              boxSizing: 'border-box',
-              padding: '12px 16px',
-            }}
-          >
-            It is important to remember that each store has its own
-            particularities and its own operation, which influence how to build
-            your business' Payment module. To set up your cash flow, it is
-            therefore crucial to keep in mind the real needs and purposes of the
-            retailer and of the desired project.
+        title="Upload document?"
+        aria-label="Connect Device"
+        aria-describedby="modal-description"
+        bottomBar={
+          <div className="nowrap">
+            <span className="mr4">
+              <Button variation="tertiary" onClick={onClose}>
+                Cancel
+              </Button>
+            </span>
+            <span>
+              <Button variation="primary" onClick={onClose}>
+                Upload
+              </Button>
+            </span>
           </div>
-        </div>
+        }
+      >
+        <p id="modal-description" className="dark-gray">
+          Big documents may take a little longer to be uploaded.
+        </p>
       </Modal>
+    </>
+  )
+}
+;<ModalExample />
+```
+
+##### Medium
+
+```js
+const Button = require('../Button').default
+const Modal = require('.').default
+const useDisclosure = require('../../utilities/useDisclosure').default
+
+const ModalExample = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
+  return (
+    <>
+      <Button onClick={onOpen}>Open modal</Button>
       <Modal
+        isOpen={isOpen}
+        onClose={onClose}
         size="medium"
-        isOpen={mediumModal.isOpen}
-        onClose={mediumModal.onClose}
-        title="Medium Modal"
+        aria-label="Payments Module"
+        aria-describedby="modal-description"
       >
         <div className="dark-gray" id="modal-description">
           <p>
@@ -384,43 +378,60 @@ const ModalExample = () => {
           </div>
         </div>
       </Modal>
+    </>
+  )
+}
+
+;<ModalExample />
+```
+
+##### Large
+
+```js
+const Button = require('../Button').default
+const Dropzone = require('../Dropzone').default
+const Modal = require('.').default
+const useDisclosure = require('../../utilities/useDisclosure').default
+
+const ModalExample = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
+  return (
+    <>
+      <Button onClick={onOpen}>Open modal</Button>
       <Modal
+        isOpen={isOpen}
+        onClose={onClose}
         size="large"
-        isOpen={largeModal.isOpen}
-        onClose={largeModal.onClose}
-        title="Large Modal"
-      >
-        <div className="dark-gray" id="modal-description">
-          <p>
-            The Payments module is the system responsible for managing all
-            actions regarding your store's cash flow.
-          </p>
-
-          <p>
-            Before we explore the features within VTEX Admin Payments, let's
-            clarify some important concepts regarding the payment flow of an
-            order. This process is performed by some actors within the Brazilian
-            financial system, which make up the Payments module architecture.
-          </p>
-          <div
-            style={{
-              backgroundColor: '#edf4fa',
-              borderRadius: '4px',
-              border: 'solid #368df7',
-              borderWidth: '0 0 0 4px',
-              boxSizing: 'border-box',
-              padding: '12px 16px',
-            }}
-          >
-            It is important to remember that each store has its own
-            particularities and its own operation, which influence how to build
-            your business' Payment module. To set up your cash flow, it is
-            therefore crucial to keep in mind the real needs and purposes of the
-            retailer and of the desired project.
+        title="Import products by CSV"
+        aria-describedby="modal-description"
+        bottomBar={
+          <div className="nowrap">
+            <span className="mr4">
+              <Button variation="tertiary" onClick={onClose}>
+                Cancel
+              </Button>
+            </span>
+            <span>
+              <Button variation="primary" onClick={onClose}>
+                Upload
+              </Button>
+            </span>
           </div>
-        </div>
+        }
+      >
+        <Dropzone>
+          <div className="pt7">
+            <div id="modal-description">
+              <span className="f4">Drop here your CSV or </span>
+              <span className="f4 c-link" style={{ cursor: 'pointer' }}>
+                choose a file
+              </span>
+            </div>
+          </div>
+        </Dropzone>
       </Modal>
-    </div>
+    </>
   )
 }
 
@@ -472,9 +483,9 @@ const ModalExample = () => {
 ;<ModalExample />
 ```
 
-## Acessibility
+## Accessibility
 
 > WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#dialog_modal
 
 - If you don't provide a string title to the Modal, be sure to provide `aria-labelledby="id..."` if the label is visible or a string to `aria-label="..."` if it's not visible. Additionaly you can give a description for the Modal with `aria-describedby="id..`.
-- If necessary, change the initial focus to the component you want the user intereact with first. Examples: Form, Confirm Button, Link etc.
+- If necessary, change the initial focus to the component you want the user first interact with. Examples: Form, Confirm Button, Link etc.

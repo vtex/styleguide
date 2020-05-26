@@ -1,4 +1,4 @@
-import React, { FC, forwardRef, useState } from 'react'
+import React, { FC, forwardRef, useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import classNames from 'classnames'
 
@@ -96,6 +96,12 @@ export const ModalOverlay: FC<OverlayProps> = ({
     setShowPortal(false)
     if (canUseDOM) document.body.classList.remove(styles.hiddenScroll)
   }
+
+  useEffect(() => {
+    return () => {
+      if (canUseDOM) document.body.classList.remove(styles.hiddenScroll)
+    }
+  }, [])
 
   return showPortal
     ? createPortal(
