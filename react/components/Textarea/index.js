@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
+
 class Textarea extends Component {
   constructor(props) {
     super(props)
@@ -117,6 +119,7 @@ class Textarea extends Component {
           maxLength={this.props.maxLength}
           minLength={this.props.minLength}
           name={this.props.name}
+          ref={this.props.forwardedRef}
           placeholder={this.props.placeholder}
           readOnly={this.props.readOnly}
           required={this.props.required}
@@ -188,6 +191,8 @@ Textarea.propTypes = {
   autoFocus: PropTypes.bool,
   /** Spec attribute */
   disabled: PropTypes.bool,
+  /** @ignore Forwarded Ref */
+  forwardedRef: refShape,
   /** Spec attribute */
   id: PropTypes.string,
   /** If defined, the textarea will have a character countdown at the bottom right */
@@ -222,4 +227,4 @@ Textarea.propTypes = {
   characterCountdownText: PropTypes.string,
 }
 
-export default Textarea
+export default withForwardedRef(Textarea)
