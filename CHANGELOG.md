@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - Remove trailing space from `numericStepper` when there isn't a suffix
 
+### Added
+
+- `forwardedRef` prop to `Textarea`.
+
 ## [9.119.0] - 2020-05-21
 
 ### Added
