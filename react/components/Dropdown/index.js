@@ -19,6 +19,10 @@ class Dropdown extends Component {
     // However, you can't select a null/undefined option, so nil values
     // are transformed to empty string.
     this.initialValue = ''
+
+    this.state = {
+      active: false,
+    }
   }
 
   handleChange = e => {
@@ -69,6 +73,14 @@ class Dropdown extends Component {
     return this.getOptionFromValue(this.props.value)
   }
 
+  handleFocus = () => {
+    this.setState({ active: true })
+  }
+
+  handleBlur = () => {
+    this.setState({ active: false })
+  }
+
   getValueLabel() {
     const selectedOption = this.getSelectedOption()
     return selectedOption ? selectedOption.label : this.getPlaceholder()
@@ -83,6 +95,7 @@ class Dropdown extends Component {
   }
 
   render() {
+    const { active } = this.state
     const {
       label,
       id,
@@ -133,21 +146,30 @@ class Dropdown extends Component {
       'vtex-dropdown--inline dib': isInline,
     })
 
-    const containerClasses = classNames(styles.container, 'br2 relative', {
-      bw1: !isInline || disabled,
-      ba: disabled || error || errorMessage,
-      'b--disabled bg-disabled': disabled,
-      'b--danger hover-b--danger': (error || errorMessage) && !disabled,
-      fw5: isInline && !error && !errorMessage && !disabled,
-      'bg-base hover-b--muted-3 ba b--muted-4':
-        !isInline && !error && !errorMessage && !disabled,
-      't-body': size !== 'small' && size !== 'x-large',
-      'h-auto': isInline && size !== 'x-large',
-      'h-small': !isInline && size === 'small',
-      'h-large': !isInline && size === 'large',
-      'h-regular':
-        !isInline && size !== 'small' && size !== 'large' && size !== 'x-large',
-    })
+    const containerClasses = classNames(
+      styles.container,
+      'bg-base br2 relative',
+      {
+        ba: !isInline,
+        bw1: !isInline || disabled,
+        'b--disabled bg-disabled': disabled,
+        'b--danger hover-b--danger': (error || errorMessage) && !disabled,
+        fw5: isInline && !error && !errorMessage && !disabled,
+        'b--muted-2':
+          active && !isInline && !error && !errorMessage && !disabled,
+        'hover-b--muted-3 b--muted-4':
+          !active && !isInline && !error && !errorMessage && !disabled,
+        't-body': size !== 'small' && size !== 'x-large',
+        'h-auto': isInline && size !== 'x-large',
+        'h-small': !isInline && size === 'small',
+        'h-large': !isInline && size === 'large',
+        'h-regular':
+          !isInline &&
+          size !== 'small' &&
+          size !== 'large' &&
+          size !== 'x-large',
+      }
+    )
 
     const selectClasses = classNames(
       'o-0 absolute top-0 left-0 h-100 w-100 bottom-0',
@@ -196,6 +218,8 @@ class Dropdown extends Component {
               disabled={disabled}
               className={selectClasses}
               onChange={this.handleChange}
+              onFocus={this.handleFocus}
+              onBlur={this.handleBlur}
               ref={this.props.forwardedRef}
               // Check the comment on the constructor regarding nil values
               value={value == null ? '' : value}

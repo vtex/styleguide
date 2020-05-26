@@ -7,14 +7,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- `forwardedRef` prop to `Textarea`.
+
+### Fixed
+
+- Transparent background on Dropdown component when `error={true}`.
+- Border color of the Dropdown component not changing on focus.
+
 ## [9.119.1] - 2020-06-02
 
 ### Fixed
 - Remove trailing space from `numericStepper` when there isn't a suffix
-
-### Added
-
-- `forwardedRef` prop to `Textarea`.
 
 ## [9.119.0] - 2020-05-21
 
