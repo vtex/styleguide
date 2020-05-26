@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Transparent background on Dropdown component when `error={true}`.
 - Border color of the Dropdown component not changing on focus.
+- `AutocompleteInput` disabled style.
 
 ## [9.119.1] - 2020-06-02
 
@@ -24,6 +25,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [9.119.0] - 2020-05-21
 
 ### Added
+
 - Make screen readers anounce `Alert` content when it pops up in the screen
 - Allow developers to choose to direct focus to the `Alert` when it pops up in the screen by using the `focusOnOpen` property
 - `vtex-checkbox__box-wrapper`, `vtex-checkbox__box`, and `vtex-checkbox__input` handles.
