@@ -130,7 +130,7 @@ BulkActions.defaultProps = {
   allLinesSelected: false,
   selectedRows: [],
   bulkActions: {},
-  onSelectAllLines: () => {},
+  onSelectAllLines: () => null,
 }
 
 BulkActions.propTypes = {
