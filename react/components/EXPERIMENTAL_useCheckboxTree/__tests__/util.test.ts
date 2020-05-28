@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/ban-ts-ignore */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { getFlat, getToggledState } from '../util'
 
 const props = ['children', 'related', 'friends']
-const comparator = item => candidate => item.name === candidate.name
+const comparator = (item: { name: any }) => (candidate: { name: any }) =>
+  item.name === candidate.name
 
 describe('CheckboxTree util tests', () => {
   it('should flat the tree correctly', () => {
@@ -14,9 +17,11 @@ describe('CheckboxTree util tests', () => {
   it('should toggle state correctly on a item without chidren', () => {
     props.forEach(prop => {
       expect(
+        // @ts-ignore
         getToggledState([], { name: 'Alok' }, prop, comparator, () => false)
       ).toEqual([{ name: 'Alok' }])
       expect(
+        // @ts-ignore
         getToggledState([], { name: 'KVSH' }, prop, comparator, () => false)
       ).toEqual([{ name: 'KVSH' }])
     })
@@ -37,6 +42,7 @@ describe('CheckboxTree util tests', () => {
             ],
           },
           prop,
+          // @ts-ignore
           comparator,
           () => false
         )

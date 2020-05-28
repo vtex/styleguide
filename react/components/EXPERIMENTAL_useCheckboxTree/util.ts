@@ -1,3 +1,8 @@
+/* eslint-disable no-shadow */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/default-param-last */
+/* eslint-disable @typescript-eslint/ban-ts-ignore */
+/* eslint-disable max-params */
 import { comparatorCurry, Tree } from './types'
 
 /**
@@ -18,6 +23,7 @@ export function getBulkChecked<T>(
   return [...checked, ...getFlat(item, [], nodesKey)]
     .filter(notDisabled)
     .reduce(
+      // @ts-ignore
       (acc: Array<Tree<T>>, item: T) =>
         acc.some(comparator(item)) ? acc : [...acc, item],
       []
@@ -40,7 +46,7 @@ export function getBulkUnchecked<T>(
   const flatCurry = (item: T, nodesKey: string) => getFlat(item, [], nodesKey)
   const flat = flatCurry(item, nodesKey)
   const bulkFilter = (row: T) => !flat.some(comparator(row))
-  return checked.filter(bulkFilter)
+  return checked.filter(bulkFilter as any)
 }
 
 /**
@@ -59,10 +65,12 @@ export function getToggledState<T>(
   const filter = (row: T) => !comparator(row)(item)
 
   if (stateIncludesItem) {
+    // @ts-ignore
     return item[nodesKey]
       ? getBulkUnchecked<T>(state, item, nodesKey, comparator)
-      : state.filter(filter)
+      : state.filter(filter as any)
   }
+  // @ts-ignore
   return item[nodesKey]
     ? getBulkChecked<T>(state, item, nodesKey, comparator, isDisabled)
     : ([...state, item] as Array<Tree<T>>)
@@ -77,7 +85,9 @@ export function getFlat<T>(
   nodesKey = 'children'
 ): T[] {
   arr.push(tree)
+  // @ts-ignore
   if (tree[nodesKey])
+    // @ts-ignore
     (tree[nodesKey] as Array<Tree<T>>).forEach(child =>
       getFlat(child, arr, nodesKey)
     )
