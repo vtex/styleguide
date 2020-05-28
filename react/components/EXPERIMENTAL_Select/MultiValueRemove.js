@@ -28,6 +28,9 @@ const MultiValueRemove = props => {
         onClick={handleClick}
         onTouchEnd={handleTouchEnd}
         onMouseDown={handleMouseDown}
+        role="button"
+        tabIndex="0"
+        onKeyPress={() => null}
       >
         <components.MultiValueRemove {...multiValueProps}>
           <Close size={14} />
