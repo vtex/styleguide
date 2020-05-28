@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/camelcase */
 export { default as ActionMenu } from './ActionMenu'
 export { default as Alert } from './Alert'
 export { default as AutocompleteInput } from './AutocompleteInput'
