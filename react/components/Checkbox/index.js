@@ -99,7 +99,11 @@ class Checkbox extends PureComponent {
             checked={checked}
             ref={elem => {
               elem && (this.myCheckbox = elem)
-              forwardedRef && (forwardedRef.current = elem)
+              if (typeof forwardedRef === 'function') {
+                forwardedRef(elem)
+              } else if (typeof forwardedRef === 'object') {
+                forwardedRef.current = elem
+              }
             }}
             className={classNames('vtex-checkbox__input h1 w1 absolute o-0', {
               pointer: !disabled,

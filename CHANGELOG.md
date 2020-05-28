@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Transparent background on Dropdown component when `error={true}`.
 - Border color of the Dropdown component not changing on focus.
 - `AutocompleteInput` disabled style.
+- `forwardedRef` of `Checkbox` not accepting functcion refs.
 
 ## [9.119.1] - 2020-06-02
 
