@@ -3,13 +3,13 @@ import PropTypes from 'prop-types'
 
 import ToastManager from './ToastManager'
 
-const ToastContext = React.createContext({
+export const ToastContext = React.createContext({
   showToast: () => {},
   hideToast: () => {},
   toastState: null,
 })
 
-class ToastProvider extends Component {
+export class ToastProvider extends Component {
   constructor(props) {
     super(props)
 
@@ -45,7 +45,7 @@ ToastProvider.defaultProps = {
   positioning: 'parent',
 }
 
-class ToastConsumer extends Component {
+export class ToastConsumer extends Component {
   render() {
     const { children } = this.props
     return (
@@ -59,7 +59,7 @@ ToastConsumer.propTypes = {
 }
 
 // eslint-disable-next-line react/display-name
-const withToast = WrappedComponent => props => (
+export const withToast = WrappedComponent => props => (
   <ToastConsumer>
     {({ showToast, hideToast, toastState }) => (
       <WrappedComponent
@@ -71,5 +71,3 @@ const withToast = WrappedComponent => props => (
     )}
   </ToastConsumer>
 )
-
-export { ToastContext, ToastProvider, ToastConsumer, withToast }

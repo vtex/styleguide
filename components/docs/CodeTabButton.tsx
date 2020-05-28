@@ -1,12 +1,16 @@
-import React from 'react'
 import PropTypes from 'prop-types'
-import TabButton from 'rsg-components/TabButton'
+import React from 'react'
 import { MdCode } from 'react-icons/md'
+// import { TabButton } from 'rsg-components'
+
+// const CodeTabButton = props => (
+//   <TabButton {...props}>
+//     <MdCode /> {props.active ? 'Hide code' : 'Show code'}
+//   </TabButton>
+// )
 
 const CodeTabButton = props => (
-  <TabButton {...props}>
-    <MdCode /> {props.active ? 'Hide code' : 'Show code'}
-  </TabButton>
+  <div>{props.active ? 'Hide code' : 'Show code'}</div>
 )
 
 CodeTabButton.propTypes = {

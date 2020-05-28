@@ -1,9 +1,8 @@
-import React from 'react'
-import PropTypes from 'prop-types'
 import copy from 'clipboard-copy'
+import PropTypes from 'prop-types'
+import React from 'react'
 import { MdContentCopy } from 'react-icons/md'
-import ToolbarButton from 'rsg-components/ToolbarButton'
-import Styled from 'rsg-components/Styled'
+// import { Styled, ToolbarButton } from 'rsg-components'
 
 export const styles = ({ space, fontFamily, fontSize, color }) => ({
   pathline: {
@@ -28,13 +27,13 @@ export function PathlineRenderer({ classes, children }) {
       </small>
       <br />
       {vtexIOString}
-      <ToolbarButton
+      {/* <ToolbarButton */}
         small
         className={classes.copyButton}
         onClick={() => copy(vtexIOString)}
         title="Copy to clipboard">
         <MdContentCopy />
-      </ToolbarButton>
+      {/* </ToolbarButton> */}
 
       <br />
       <br />
@@ -43,13 +42,13 @@ export function PathlineRenderer({ classes, children }) {
       </small>
       <br />
       {npmString}
-      <ToolbarButton
+      {/* <ToolbarButton */}
         small
         className={classes.copyButton}
         onClick={() => copy(npmString)}
         title="Copy to clipboard">
         <MdContentCopy />
-      </ToolbarButton>
+      {/* </ToolbarButton> */}
     </div>
   )
 }
@@ -59,4 +58,4 @@ PathlineRenderer.propTypes = {
   children: PropTypes.object,
 }
 
-export default Styled(styles)(PathlineRenderer)
+export default PathlineRenderer
