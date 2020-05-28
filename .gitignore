@@ -5,6 +5,8 @@
 
 # dependencies
 node_modules
+.yarn
+.pnp.*
 
 # testing
 /coverage
@@ -16,6 +18,7 @@ styleguide-visual/*.diff.png
 /lib
 /modules
 /styleguide
+.micro
 
 # misc
 .DS_Store

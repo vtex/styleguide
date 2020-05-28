@@ -1,6 +1,33 @@
 {
   "extends": "./react/tsconfig",
   "compilerOptions": {
-    "declarationDir": "./lib"
-  }
+    "declarationDir": "./lib",
+    "typeRoots": [
+      "lib/typings",
+      "router/typings",
+      "plugins/typings",
+      "components/typings"
+    ],
+    "target": "es2019",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "outDir": ".micro/onBuild/cjs",
+    "jsx": "preserve",
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": false,
+    "skipLibCheck": true,
+    "declaration": true
+  },
+  "include": [
+    "index.ts",
+    "lib",
+    "router",
+    "plugins",
+    "components"
+  ],
+  "exclude": [
+    ".micro",
+    "pages"
+  ]
 }
