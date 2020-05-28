@@ -34,6 +34,9 @@ export default class DropdownList extends PureComponent {
           key={index}
           onClick={() => this.handleSelect(index)}
           onMouseEnter={() => this.handleFocus(index)}
+          role="menuitem"
+          tabIndex="0"
+          onKeyPress={() => null}
         />
       )
     })
@@ -44,7 +47,9 @@ export default class DropdownList extends PureComponent {
           dangerouslySetInnerHTML={{ __html: emptyState }}
         />
       ) : (
-        <ul className="ph0 mv0 list">{optionList}</ul>
+        <ul role="menu" className="ph0 mv0 list">
+          {optionList}
+        </ul>
       )
 
     return (

@@ -61,6 +61,7 @@ class RadioGroup extends React.Component {
                     borderBottomRightRadius: 0,
                   }),
                 }}
+                htmlFor={id}
               >
                 <div className={classNames({ mt3: !hideBorder })}>
                   <Radio

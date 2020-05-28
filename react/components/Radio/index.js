@@ -37,6 +37,9 @@ class Radio extends PureComponent {
         })}
         ref={this.container}
         onClick={this.handleContainerClick}
+        role="button"
+        tabIndex="0"
+        onKeyPress={() => null}
       >
         {/* This empty div is used so that the radio circle is not a direct child of
          * a flex element, and thus can set a fixed width. Otherwise, the width would
