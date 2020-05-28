@@ -78,7 +78,7 @@ function getNewSize(value) {
   }
 }
 
-module.exports = function(file, { jscodeshift: j }) {
+module.exports = function ButtonV4(file, { jscodeshift: j }) {
   let { source } = file
   source = replace(source, j, 'Button')
 
