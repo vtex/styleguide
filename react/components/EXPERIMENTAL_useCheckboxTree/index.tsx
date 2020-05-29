@@ -1,3 +1,6 @@
+/* eslint-disable no-shadow */
+/* eslint-disable @typescript-eslint/ban-ts-ignore */
+/* eslint-disable vtex/prefer-early-return */
 import { useMemo, useCallback, useEffect, useReducer, useState } from 'react'
 import PropTypes from 'prop-types'
 import isEmpty from 'lodash/isEmpty'
@@ -12,6 +15,7 @@ export default function useCheckboxTree<T>({
   onToggle,
   nodesKey = 'children',
   checked = [],
+  // @ts-ignore
   comparator = defaultComparatorCurry,
   isDisabled = (_: T | Tree<T>) => false,
 }: useCheckboxesInput<T>) {
@@ -31,9 +35,12 @@ export default function useCheckboxTree<T>({
       if (!isDisabled(item)) {
         dispatch({
           type: ActionType.Toggle,
+          // @ts-ignore
           itemToToggle: { item, nodesKey, comparator },
+          // @ts-ignore
           isDisabled,
         })
+        // @ts-ignore
         setLastToggledItem(item)
       }
     },
@@ -41,6 +48,7 @@ export default function useCheckboxTree<T>({
   )
 
   useEffect(() => {
+    // @ts-ignore
     onToggle?.({ checkedItems, disabledItems, item: lastToggledItem })
   }, [checkedItems, disabledItems, lastToggledItem, onToggle, toggle])
 
@@ -50,6 +58,7 @@ export default function useCheckboxTree<T>({
 
   useEffect(() => {
     const shake = (tree: Tree<T>) => {
+      // @ts-ignore
       const childNodes = tree[nodesKey] as T[]
 
       if (!childNodes || isEmpty(childNodes)) return
@@ -66,6 +75,7 @@ export default function useCheckboxTree<T>({
       if (!childrenChecked && rootChecked)
         dispatch({
           type: ActionType.Uncheck,
+          // @ts-ignore
           itemToToggle: { item: tree, comparator },
         })
 
@@ -76,6 +86,7 @@ export default function useCheckboxTree<T>({
 
   const isChecked = useCallback(
     (item: T | Tree<T>) => {
+      // @ts-ignore
       const children = item[nodesKey]
       const onCheckedList = (item: T | Tree<T>) =>
         checkedItems.some(comparator(item))
@@ -95,6 +106,7 @@ export default function useCheckboxTree<T>({
     (item: T | Tree<T>) => {
       return (
         !isDisabled(item) &&
+        // @ts-ignore
         item[nodesKey] &&
         getFlat(item, [], nodesKey)
           .slice(1)
@@ -120,7 +132,9 @@ export default function useCheckboxTree<T>({
     if (!isDisabled(item))
       dispatch({
         type: ActionType.BulkCheck,
+        // @ts-ignore
         itemToToggle: { item, comparator, nodesKey },
+        // @ts-ignore
         isDisabled,
       })
   }
@@ -132,6 +146,7 @@ export default function useCheckboxTree<T>({
       if (!isDisabled(item))
         dispatch({
           type: ActionType.BulkUncheck,
+          // @ts-ignore
           itemToToggle: { item, comparator, nodesKey },
         })
     },
@@ -142,6 +157,7 @@ export default function useCheckboxTree<T>({
     uncheck(itemTree)
   }, [itemTree, uncheck])
 
+  // @ts-ignore
   const setChecked = (checked: T[]) => {
     dispatch({ type: ActionType.SetChecked, checked })
   }

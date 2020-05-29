@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-ignore */
 import { getBulkChecked, getBulkUnchecked, getToggledState } from './util'
 import { comparatorCurry, Tree } from './types'
 
@@ -9,6 +10,7 @@ export default function reducer<T>(state: T[], action: Action<T>) {
     }
     case ActionType.Uncheck: {
       const {
+        // @ts-ignore
         itemToToggle: { item, comparator },
       } = action
       const rowFilter = (row: T) => !comparator(row)(item)
@@ -18,18 +20,21 @@ export default function reducer<T>(state: T[], action: Action<T>) {
       const { itemToToggle, isDisabled } = action
       if (!itemToToggle) return state
       const { item, nodesKey, comparator } = itemToToggle
+      // @ts-ignore
       return getBulkChecked(state, item, nodesKey, comparator, isDisabled)
     }
     case ActionType.BulkUncheck: {
       const { itemToToggle } = action
       if (!itemToToggle) return state
       const { item, nodesKey, comparator } = itemToToggle
+      // @ts-ignore
       return getBulkUnchecked(state, item, nodesKey, comparator)
     }
     case ActionType.Toggle: {
       const { itemToToggle, isDisabled } = action
       if (!itemToToggle) return state
       const { item, nodesKey, comparator } = itemToToggle
+      // @ts-ignore
       return getToggledState(state, item, nodesKey, comparator, isDisabled)
     }
     case ActionType.SetChecked: {
