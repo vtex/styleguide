@@ -100,6 +100,7 @@ class FilterBar extends PureComponent {
       subjectPlaceholder,
       submitFilterLabel,
       newFilterLabel,
+      disabled,
       testIds,
     } = this.props
     const { visibleExtraOptions } = this.state
@@ -138,6 +139,7 @@ class FilterBar extends PureComponent {
                     statements={statements}
                     onClickClear={() => this.handleFilterClear(subject)}
                     onSubmitFilterStatement={this.handleSubmitFilter}
+                    disabled={disabled}
                   />
                 </div>
               )
@@ -161,6 +163,7 @@ class FilterBar extends PureComponent {
                 }}
                 statements={[]}
                 onSubmitFilterStatement={this.handleMoreOptionsSelected}
+                disabled={disabled}
               />
             </div>
           )}
@@ -201,6 +204,7 @@ FilterBar.defaultProps = {
   submitFilterLabel: 'Apply',
   newFilterLabel: 'New Filter',
   statements: [],
+  disabled: false,
   testIds: {},
 }
 
@@ -223,6 +227,8 @@ export const filterBarPropTypes = {
   submitFilterLabel: PropTypes.string,
   /** New Filter title label for inside the 'More options' menu */
   newFilterLabel: PropTypes.string,
+  /** Disable all filters */
+  disabled: PropTypes.boolean,
   testIds: PropTypes.shape({
     moreOptionsButton: PropTypes.string,
     submitFiltersButton: PropTypes.string,

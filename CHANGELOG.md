@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Tests for `Tabs` component.
 - `useDisclosure` hook.
 - Utilities section in docs.
+- `disabled` prop to FilterBar component.
 
 ### Changed
 
