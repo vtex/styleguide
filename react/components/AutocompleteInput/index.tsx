@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import PropTypes from 'prop-types'
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, FC, ReactNode } from 'react'
 
 import Spinner from '../Spinner'
 import { useClickOutside, useArrowNavigation } from './hooks'
@@ -8,9 +9,168 @@ import Option, {
   autocompleteOptionShape,
   getTermFromOption,
 } from './Option'
-import SearchInput from './SearchInput'
+import SearchInput, { SearchInputProps } from './SearchInput'
 
-const propTypes = {
+export type AutocompleteInputProps = {
+  input: SearchInputProps
+  options: {
+    onSelect: (option: AutocompleteOption) => void
+    value: any
+    renderOption?: (renderer: any, index: number) => any
+    loading?: boolean
+    lastSearched?: any
+    icon?: ReactNode
+  }
+}
+
+const AutocompleteInput: FC<AutocompleteInputProps> = ({
+  input: { value, onClear, onSearch, onChange, ...inputProps },
+  options: {
+    onSelect,
+    value: options,
+    renderOption,
+    loading,
+    lastSearched = {},
+    icon,
+  },
+}) => {
+  const [term, setTerm] = useState(value ?? '')
+  const [showPopover, setShowPopover] = useState(false)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const searching = term.length
+  const showLastSearched =
+    !searching && lastSearched.value && lastSearched.value.length > 0
+
+  const getShowedOptions = (): AutocompleteOption[] => {
+    if (showLastSearched) {
+      return lastSearched.value
+    }
+    if (searching) {
+      return options
+    }
+    return []
+  }
+
+  const showedOptions = getShowedOptions()
+
+  const noSelectedOptionIndex = -1
+  const [selectedOptionIndex, setSelectedOptionIndex] = useArrowNavigation(
+    containerRef,
+    showedOptions.length,
+    noSelectedOptionIndex
+  )
+  useClickOutside(containerRef, () => setShowPopover(false))
+
+  const addToLastSearched = (option: AutocompleteOption) => {
+    if (lastSearched?.onChange) {
+      lastSearched.onChange(option)
+    }
+  }
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key !== 'Enter') return
+
+    const selectedOption =
+      selectedOptionIndex !== -1 ? showedOptions[selectedOptionIndex] : term
+    addToLastSearched(selectedOption)
+    setTerm(getTermFromOption(selectedOption))
+    if (selectedOptionIndex !== -1) {
+      onSelect(selectedOption)
+    } else {
+      onSearch?.(getTermFromOption(selectedOption))
+    }
+    setSelectedOptionIndex(-1)
+    setShowPopover(false)
+  }
+
+  const handleTermChange = (newTerm = '') => {
+    if (!showPopover) {
+      setShowPopover(true)
+    }
+    setTerm(newTerm)
+    if (onChange) {
+      onChange(newTerm)
+    }
+  }
+
+  const handleClear = () => {
+    setShowPopover(false)
+
+    setTerm('')
+    onClear?.()
+  }
+
+  const handleOptionClick = (option: AutocompleteOption) => {
+    setTerm(getTermFromOption(option))
+    onSelect(option)
+    setShowPopover(false)
+  }
+
+  const getOptionProps = (option: any, index: number) => ({
+    key: `${getTermFromOption(option)}-${index}`,
+    selected: index === selectedOptionIndex,
+    value: option,
+    searchTerm: term,
+    roundedBottom: index === showedOptions.length - 1,
+    icon: typeof option !== 'string' && icon ? icon : null,
+    onClick: () => {
+      addToLastSearched(option)
+      handleOptionClick(option)
+    },
+  })
+
+  const renderOptions = (): React.ReactElement | React.ReactElement[] => (
+    <div className="flex flex-column">
+      {showLastSearched ? (
+        <div className="pa4 b f6">
+          {lastSearched.label || 'Last searched terms'}
+        </div>
+      ) : null}
+      {showedOptions.map((option, index) =>
+        renderOption ? (
+          renderOption(getOptionProps(option, index), index)
+        ) : (
+          <Option {...getOptionProps(option, index)} />
+        )
+      )}
+    </div>
+  )
+
+  const popoverOpened = showPopover && (!!showedOptions.length || loading)
+
+  return (
+    <div ref={containerRef} className="flex flex-column w-100">
+      <SearchInput
+        {...inputProps}
+        value={
+          selectedOptionIndex === -1
+            ? term
+            : getTermFromOption(showedOptions[selectedOptionIndex])
+        }
+        roundedBottom={!popoverOpened}
+        onKeyDown={handleKeyDown}
+        onFocus={() => setShowPopover(true)}
+        onSearch={() => onSearch?.(term)}
+        onClear={handleClear}
+        onChange={handleTermChange}
+      />
+      {popoverOpened ? (
+        <div className="relative">
+          <div className="absolute br--bottom br2 bb bl br bw1 b--muted-3 bg-base w-100 z-1 shadow-5">
+            {renderOptions()}
+            {loading && (
+              <div className="flex flex-row justify-center items-center pa4">
+                <Spinner size={20} />
+              </div>
+            )}
+          </div>
+        </div>
+      ) : null}
+    </div>
+  )
+}
+
+AutocompleteInput.propTypes = {
   /** Input props. All HTMLInput props can be added too */
   input: PropTypes.shape({
     /** Clear input handler */
@@ -73,158 +233,5 @@ const propTypes = {
     }),
   }).isRequired,
 }
-
-export type AutocompleteInputProps = PropTypes.InferProps<typeof propTypes>
-
-const AutocompleteInput: React.FunctionComponent<PropTypes.InferProps<
-  typeof propTypes
->> = ({
-  input: { value, onClear, onSearch, onChange, ...inputProps },
-  options: {
-    onSelect,
-    value: options,
-    renderOption,
-    loading,
-    lastSearched = {},
-    icon,
-  },
-}) => {
-  const [term, setTerm] = useState(value ?? '')
-  const [showPopover, setShowPopover] = useState(false)
-  const containerRef = useRef<HTMLDivElement>(null)
-  const searching = term.length
-  const showLastSearched =
-    !searching && lastSearched.value && lastSearched.value.length > 0
-
-  const getShowedOptions = (): AutocompleteOption[] => {
-    if (showLastSearched) {
-      return lastSearched.value
-    }
-    if (searching) {
-      return options
-    }
-    return []
-  }
-
-  const showedOptions = getShowedOptions()
-
-  const noSelectedOptionIndex = -1
-  const [selectedOptionIndex, setSelectedOptionIndex] = useArrowNavigation(
-    containerRef,
-    showedOptions.length,
-    noSelectedOptionIndex
-  )
-  useClickOutside(containerRef, () => setShowPopover(false))
-
-  const addToLastSearched = (option: AutocompleteOption) => {
-    if (lastSearched?.onChange) {
-      lastSearched.onChange(option)
-    }
-  }
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      const selectedOption =
-        selectedOptionIndex !== -1 ? showedOptions[selectedOptionIndex] : term
-      addToLastSearched(selectedOption)
-      setTerm(getTermFromOption(selectedOption))
-      if (selectedOptionIndex !== -1) {
-        onSelect(selectedOption)
-      } else {
-        onSearch(getTermFromOption(selectedOption))
-      }
-      setSelectedOptionIndex(-1)
-      setShowPopover(false)
-    }
-  }
-
-  const handleTermChange = (newTerm = '') => {
-    if (!showPopover) {
-      setShowPopover(true)
-    }
-    setTerm(newTerm)
-    if (onChange) {
-      onChange(newTerm)
-    }
-  }
-
-  const handleClear = () => {
-    setShowPopover(false)
-
-    setTerm('')
-    onClear()
-  }
-
-  const handleOptionClick = (option: AutocompleteOption) => {
-    setTerm(getTermFromOption(option))
-    onSelect(option)
-    setShowPopover(false)
-  }
-
-  const getOptionProps = (option, index) => ({
-    key: `${getTermFromOption(option)}-${index}`,
-    selected: index === selectedOptionIndex,
-    value: option,
-    searchTerm: term,
-    roundedBottom: index === showedOptions.length - 1,
-    icon: typeof option !== 'string' && icon ? icon : null,
-    onClick: () => {
-      addToLastSearched(option)
-      handleOptionClick(option)
-    },
-  })
-
-  const renderOptions = (): React.ReactElement | React.ReactElement[] => (
-    <div className="flex flex-column">
-      {showLastSearched ? (
-        <div className="pa4 b f6">
-          {lastSearched.label || 'Last searched terms'}
-        </div>
-      ) : null}
-      {showedOptions.map((option, index) =>
-        renderOption ? (
-          renderOption(getOptionProps(option, index), index)
-        ) : (
-          <Option {...getOptionProps(option, index)} />
-        )
-      )}
-    </div>
-  )
-
-  const popoverOpened = showPopover && (!!showedOptions.length || loading)
-
-  return (
-    <div ref={containerRef} className="flex flex-column w-100">
-      <SearchInput
-        {...inputProps}
-        value={
-          selectedOptionIndex === -1
-            ? term
-            : getTermFromOption(showedOptions[selectedOptionIndex])
-        }
-        roundedBottom={!popoverOpened}
-        onKeyDown={handleKeyDown}
-        onFocus={() => setShowPopover(true)}
-        onSearch={() => onSearch(term)}
-        onClear={handleClear}
-        onChange={handleTermChange}
-      />
-      {popoverOpened ? (
-        <div className="relative">
-          <div className="absolute br--bottom br2 bb bl br bw1 b--muted-3 bg-base w-100 z-1 shadow-5">
-            {renderOptions()}
-            {loading && (
-              <div className="flex flex-row justify-center items-center pa4">
-                <Spinner size={20} />
-              </div>
-            )}
-          </div>
-        </div>
-      ) : null}
-    </div>
-  )
-}
-
-AutocompleteInput.propTypes = propTypes
 
 export default AutocompleteInput
