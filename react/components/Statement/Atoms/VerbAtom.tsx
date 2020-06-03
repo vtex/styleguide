@@ -2,6 +2,7 @@ import React from 'react'
 
 import Select from '../../EXPERIMENTAL_Select/index'
 import { ObjectOption } from './ObjectAtom'
+import { SelectOption } from '../typings'
 
 export type VerbOption = {
   label: string
@@ -14,7 +15,7 @@ type Props = {
   isFullWidth?: boolean
   verb?: string
   verbOptions: VerbOption[]
-  onChange: (string) => void
+  onChange: (e: string) => void
 }
 
 const VerbAtom: React.FC<Props> = ({
@@ -37,14 +38,14 @@ const VerbAtom: React.FC<Props> = ({
             clearable={false}
             disabled={disabled}
             multi={false}
-            onChange={option => onChange(option?.value)}
+            onChange={(option: SelectOption<string>) => onChange(option.value)}
             options={verbOptions}
             placeholder=""
             value={value}
           />
         </div>
       ) : (
-        <span>{value.label}</span>
+        <span>{value?.label ?? ''}</span>
       )}
     </div>
   )

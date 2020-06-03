@@ -1,8 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react'
 
 import Select from '../../EXPERIMENTAL_Select/index'
 import { VerbOption } from './VerbAtom'
-import { GroupedOptions, SelectOptionGroup, SelectedOption } from '../typings'
+import {
+  GroupedOptions,
+  SelectOptionGroup,
+  SelectedOption,
+  SelectOption,
+} from '../typings'
 
 const ATOM_COMPONENT_MIN_WIDTH = '20%'
 
@@ -17,13 +23,13 @@ export type SubjectOptions = {
 
 type Props = {
   subject?: string
-  onChange: (string) => void
+  onChange: (e: string) => void
   options: SubjectOptions
   placeholder: string
   isFullWidth: boolean
 }
 
-const groupOptions = options => {
+const groupOptions = (options: Record<string, any>) => {
   const groupedOptions = Object.keys(options).reduce<GroupedOptions>(
     (optionsGroup, subject) => {
       const option = options[subject]
@@ -63,19 +69,27 @@ const SubjectAtom: React.FC<Props> = ({
       ? optionsGroup[0].options
       : optionsGroup
 
-  const selected = optionsGroup.reduce<SelectedOption>((selected, group) => {
-    if (selected) {
-      return selected
-    }
-
-    const option = group.options.find(option => option.value === subject)
-    if (option) {
-      return {
-        group: group.label !== 'undefined' ? group.label : undefined,
-        option,
+  const selected = optionsGroup.reduce<SelectedOption | undefined>(
+    (selectedOption: any, group: any) => {
+      if (selectedOption) {
+        return selectedOption
       }
-    }
-  }, undefined)
+
+      const option = group.options.find(
+        (groupOption: SelectOption<string>) => groupOption.value === subject
+      )
+
+      if (option) {
+        return {
+          group: group.label !== 'undefined' ? group.label : undefined,
+          option,
+        }
+      }
+
+      return undefined
+    },
+    undefined
+  )
 
   return (
     <div
@@ -85,7 +99,7 @@ const SubjectAtom: React.FC<Props> = ({
       <Select
         clearable={false}
         multi={false}
-        onChange={option => onChange(option?.value)}
+        onChange={(option: SelectOption<string>) => onChange(option.value)}
         options={subjectOptions}
         placeholder={placeholder}
         value={selected?.option}
