@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-ignore */
 import React, { FC } from 'react'
 import {
   BarChart as BarChartBase,
@@ -28,7 +29,7 @@ const BarChart: FC<Props & BaseChartProps> = ({
 }) => {
   const { configs } = getChartDefaultProps(config, chartDefaultConfig)
   const { barConfigs } = getBarDefaultProps(barProps)
-  const dataKey = barConfigs.layout == Layout.HORIZONTAL ? yAxisKey : xAxisKey
+  const dataKey = barConfigs.layout === Layout.HORIZONTAL ? yAxisKey : xAxisKey
 
   return (
     <ResponsiveContainer {...configs.container}>
@@ -45,16 +46,20 @@ const BarChart: FC<Props & BaseChartProps> = ({
 
 BarChart.propTypes = {
   /** The source data, in which each element is an object. */
+  // @ts-ignore
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
 
   /** The key of x-axis which is corresponding to the data. */
+  // @ts-ignore
   xAxisKey: PropTypes.string,
 
   /** The key of y-axis which is corresponding to the data. */
+  // @ts-ignore
   yAxisKey: PropTypes.string,
 
   /** The schema prop changes some styles of the chart.
    * This prop should be given as an object. Check an example [here](/#/Components/Charts/LineChart?id=chart-config) */
+  // @ts-ignore
   config: PropTypes.shape({
     xAxis: PropTypes.shape({
       axisLine: PropTypes.bool,
@@ -79,6 +84,7 @@ BarChart.propTypes = {
   }),
 
   /** An object that will change specific bar props, like the orientation */
+  // @ts-ignore
   barProps: PropTypes.object,
 }
 
