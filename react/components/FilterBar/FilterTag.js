@@ -145,6 +145,7 @@ class FilterTag extends PureComponent {
       isMobile,
       testIds,
       noOptionsMessage,
+      disabled,
     } = this.props
     const { isMenuOpen, virtualStatement } = this.state
 
@@ -198,15 +199,17 @@ class FilterTag extends PureComponent {
         style={{
           ...(isMenuOpen && OPEN_MENU_STYLE),
         }}
-        className={`br2 ba b--solid ${
-          isEmpty || isMoreOptions ? '' : 'pr4'
-        } pv1 dib ${
-          alwaysVisible && isEmpty
-            ? 'bg-transparent hover-bg-muted-5 b--muted-4'
-            : isMoreOptions
-            ? 'hover-bg-muted-5 b--muted-4'
-            : 'bg-action-secondary hover-bg-action-secondary b--action-secondary'
-        } c-on-base`}>
+        className={classNames('br2 ba b--solid pv1 dib c-on-base', {
+          pr4: !isEmpty && !isMoreOptions,
+          'hover-bg-muted-5 b--muted-4':
+            (alwaysVisible && isEmpty) || isMoreOptions,
+          'bg-action-secondary hover-bg-action-secondary b--action-secondary': !(
+            (alwaysVisible && isEmpty) ||
+            isMoreOptions
+          ),
+          'bg-transparent': !disabled && alwaysVisible && isEmpty,
+          'bg-disabled': disabled,
+        })}>
         <div className="flex items-stretch">
           <Menu
             open={isMenuOpen}
@@ -217,8 +220,15 @@ class FilterTag extends PureComponent {
               <button
                 data-testid={options[subject] && options[subject].testId}
                 type="button"
-                className="bw1 ba br2 v-mid relative bg-transparent b--transparent c-action-primary pointer w-100 outline-0"
-                onClick={isMenuOpen ? this.handleCloseMenu : this.openMenu}>
+                className={classNames(
+                  'bw1 ba br2 v-mid relative b--transparent w-100 outline-0',
+                  {
+                    'bg-transparent c-action-primary pointer': !disabled,
+                    'bg-disabled': disabled,
+                  }
+                )}
+                onClick={isMenuOpen ? this.handleCloseMenu : this.openMenu}
+                disabled={disabled}>
                 <div className="flex items-center justify-center h-100 ph3 ">
                   <span className="flex items-center nl1 nowrap">
                     {isMoreOptions ? (
@@ -325,6 +335,7 @@ FilterTag.defaultProps = {
   isMoreOptions: false,
   subjectPlaceholder: '…',
   newFilterLabel: 'New filter',
+  disabled: false,
 }
 
 FilterTag.propTypes = {
@@ -342,6 +353,7 @@ FilterTag.propTypes = {
   device: PropTypes.string,
   isMobile: PropTypes.bool,
   noOptionsMessage: PropTypes.func,
+  disabled: PropTypes.bool,
   testIds: PropTypes.shape({
     moreOptionsButton: PropTypes.string,
     submitFiltersButton: PropTypes.string,
