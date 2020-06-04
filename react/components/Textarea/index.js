@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 import PropTypes from 'prop-types'
 
 class Textarea extends Component {
@@ -7,6 +7,14 @@ class Textarea extends Component {
 
     this.state = {
       active: false,
+    }
+
+    this.innerRef = createRef()
+  }
+
+  componentDidMount() {
+    if (this.props.autoFocus && this.innerRef.current) {
+      this.innerRef.current.setFocus()
     }
   }
 
@@ -112,7 +120,7 @@ class Textarea extends Component {
           onChange={this.handleChange}
           className={classes}
           autoComplete={this.props.autoComplete}
-          autoFocus={this.props.autoFocus}
+          ref={this.innerRef}
           disabled={this.props.disabled}
           maxLength={this.props.maxLength}
           minLength={this.props.minLength}
