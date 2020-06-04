@@ -101,7 +101,7 @@ class Checkbox extends PureComponent {
               elem && (this.myCheckbox = elem)
               if (typeof forwardedRef === 'function') {
                 forwardedRef(elem)
-              } else if (forwardedRef) {
+              } else if (forwardedRef && typeof forwardedRef === 'object') {
                 forwardedRef.current = elem
               }
             }}
