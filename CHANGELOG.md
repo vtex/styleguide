@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - `forwardedRef` prop to `Textarea`.
+- Add transition to table v2 cells width.
 
 ### Fixed
 
@@ -17,10 +18,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Border color of the Dropdown component not changing on focus.
 - `AutocompleteInput` disabled style.
 - `forwardedRef` of `Checkbox` not accepting function refs.
+- Padding when table v2 cell has 0 width.
 
 ## [9.119.1] - 2020-06-02
 
 ### Fixed
+
 - Remove trailing space from `numericStepper` when there isn't a suffix
 
 ## [9.119.0] - 2020-05-21
