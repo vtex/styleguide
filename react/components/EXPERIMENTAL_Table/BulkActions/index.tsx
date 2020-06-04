@@ -48,7 +48,7 @@ const BulkActions: FC<BulkActionsProps> & Composites = ({
       )}
       style={{
         height: active ? BULK_ACTIONS_HEIGHT : 0,
-        overflow: active ? 'auto' : 'hidden',
+        overflow: 'hidden',
         ...motion,
       }}
       noMargin>
