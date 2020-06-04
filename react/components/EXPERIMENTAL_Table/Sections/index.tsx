@@ -1,16 +1,11 @@
-import React, { forwardRef, Ref, PropsWithChildren } from 'react'
+import React, { forwardRef, Ref, PropsWithChildren, FC } from 'react'
 import classNames from 'classnames'
 
 import EmptyState from '../../EmptyState/index.js'
 import { ORDER_CLASSNAMES } from '../constants'
 import { TABLE_HEADER_HEIGHT } from '../hooks/useTableMeasures'
 import Loading from './Loading'
-import {
-  E2ETestable,
-  ComposableWithRef,
-  HasMotion,
-  NativeTable,
-} from '../types'
+import { E2ETestable, HasMotion, NativeTable } from '../types'
 import { useMeasuresContext } from '../context/measures'
 import { useTestingContext } from '../context/testing'
 import { useLoadingContext } from '../context/loading'
@@ -64,17 +59,13 @@ function Sections(
 }
 
 interface Composites {
-  Head?: ComposableThead
-  Body?: ComposableTbody
+  Head: ComposableThead
+  Body: ComposableTbody
 }
 
-export type ComposableSections = ComposableWithRef<
-  HTMLTableElement,
-  Props,
-  Composites
->
+export type ComposableSections = FC<Props> & Composites
 
-const FowardedSections: ComposableSections = forwardRef(Sections)
+const FowardedSections = (forwardRef(Sections) as unknown) as ComposableSections
 
 FowardedSections.Head = Thead
 FowardedSections.Body = Tbody

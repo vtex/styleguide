@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, PropsWithChildren } from 'react'
 import classNames from 'classnames'
 
 import { ORDER_CLASSNAMES, NAMESPACES } from '../constants'
@@ -27,10 +27,11 @@ const TRANSITIONS = [
   },
 ]
 
-const BulkActions: FC<BulkActionsProps> & Composites = ({
-  active = false,
-  children,
-}) => {
+type Props = PropsWithChildren<{
+  active: boolean
+}>
+
+function BulkActions({ active = false, children }: Props) {
   const motion = useTableMotion(TRANSITIONS)
   const positionFixer =
     React.Children.count(children) > 1 ? null : (
@@ -59,14 +60,12 @@ const BulkActions: FC<BulkActionsProps> & Composites = ({
   )
 }
 
-export type BulkActionsProps = {
-  active: boolean
-}
-
-type Composites = {
+interface Composites {
   Actions: FC
   Tail: FC
 }
+
+export type ComposableBulkActions = FC<Props> & Composites
 
 BulkActions.Actions = Actions
 BulkActions.Tail = Tail

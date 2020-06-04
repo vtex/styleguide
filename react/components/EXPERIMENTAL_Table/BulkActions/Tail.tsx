@@ -26,14 +26,22 @@ function Info({ children }: PropsWithChildren<{}>) {
   return <span className="mr4 c-muted-4">{children}</span>
 }
 
-function Toggle({ children, button, active }) {
+type ToggleProps = PropsWithChildren<{
+  button: {
+    onClick: () => void
+    text: string
+  }
+  active: boolean
+}>
+
+function Toggle({ children, button, active }: ToggleProps) {
   const { onClick, text } = button
   return (
     <span className="mr2">
       {active ? (
         children
       ) : (
-        <Button onClick={onClick}>
+        <Button type="button" onClick={onClick}>
           <span className="ttu">{text}</span>
         </Button>
       )}

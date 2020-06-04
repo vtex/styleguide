@@ -14,7 +14,6 @@ import classNames from 'classnames'
 
 import CaretDown from '../../icon/CaretDown/index.js'
 import CaretUp from '../../icon/CaretUp/index.js'
-import { ComposableWithRef } from '../types'
 
 const HoverContext = createContext<boolean>(false)
 
@@ -131,15 +130,15 @@ function Eyesight({
 }
 
 interface SuffixProps {
-  sorting: boolean
-  ascending: boolean
+  sorting?: boolean
+  ascending?: boolean
 }
 
 function Suffix({ sorting, ascending }: SuffixProps) {
   const Caret = ascending ? CaretDown : CaretUp
   const hover = useContext(HoverContext)
   return (
-    <Eyesight visible={sorting || hover}>
+    <Eyesight visible={sorting ?? hover}>
       <Caret className="ml2" size={10} />
     </Eyesight>
   )
@@ -159,13 +158,9 @@ interface SpecificProps {
   header?: boolean
 }
 
-export type ComposableCell = ComposableWithRef<
-  HTMLTableCellElement,
-  Props,
-  Composites
->
+export type ComposableCell = FC<Props> & Composites
 
-const ForwardedCell: ComposableCell = forwardRef(Cell)
+const ForwardedCell = (forwardRef(Cell) as unknown) as ComposableCell
 
 ForwardedCell.Suffix = Suffix
 
