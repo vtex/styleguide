@@ -103,6 +103,7 @@ class FilterBar extends PureComponent {
       newFilterLabel,
       testIds,
       noOptionsMessage,
+      disabled,
     } = this.props
     const { visibleExtraOptions } = this.state
     const optionsKeys = Object.keys(options)
@@ -140,6 +141,7 @@ class FilterBar extends PureComponent {
                     statements={statements}
                     onClickClear={() => this.handleFilterClear(subject)}
                     onSubmitFilterStatement={this.handleSubmitFilter}
+                    disabled={disabled}
                   />
                 </div>
               )
@@ -164,6 +166,7 @@ class FilterBar extends PureComponent {
                 }}
                 statements={[]}
                 onSubmitFilterStatement={this.handleMoreOptionsSelected}
+                disabled={disabled}
               />
             </div>
           )}
@@ -203,6 +206,7 @@ FilterBar.defaultProps = {
   newFilterLabel: 'New Filter',
   statements: [],
   testIds: {},
+  disabled: false,
 }
 
 export const filterBarPropTypes = {
@@ -226,6 +230,8 @@ export const filterBarPropTypes = {
   newFilterLabel: PropTypes.string,
   /** Function to render the 'No options' when user input match no options in 'More options select'*/
   noOptionsMessage: PropTypes.func,
+  /** Disable all filters */
+  disabled: PropTypes.boolean,
   testIds: PropTypes.shape({
     moreOptionsButton: PropTypes.string,
     submitFiltersButton: PropTypes.string,

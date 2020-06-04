@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - `forwardedRef` prop to `Textarea`.
 - Add transition to table v2 cells width.
+- `disabled` prop to FilterBar component.
 
 ### Fixed
 

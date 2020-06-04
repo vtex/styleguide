@@ -617,3 +617,86 @@ class MyOrdersFilter extends React.Component {
 }
 ;<MyOrdersFilter />
 ```
+
+FilterBar disabled example
+
+```js
+const Input = require('../Input').default
+
+function SimpleInputObject({ value, onChange }) {
+  return <Input value={value || ''} onChange={e => onChange(e.target.value)} />
+}
+
+class FilterBarDisabled extends React.Component {
+  constructor() {
+    super()
+    this.state = { statements: [] }
+    this.getSimpleVerbs = this.getSimpleVerbs.bind(this)
+    this.renderSimpleFilterLabel = this.renderSimpleFilterLabel.bind(this)
+  }
+
+  getSimpleVerbs() {
+    return [
+      {
+        label: 'is',
+        value: '=',
+        object: props => <SimpleInputObject {...props} />,
+      },
+      {
+        label: 'is not',
+        value: '!=',
+        object: props => <SimpleInputObject {...props} />,
+      },
+      {
+        label: 'contains',
+        value: 'contains',
+        object: props => <SimpleInputObject {...props} />,
+      },
+    ]
+  }
+
+  renderSimpleFilterLabel(statement) {
+    if (!statement || !statement.object) {
+      // you should treat empty object cases only for alwaysVisibleFilters
+      return 'Any'
+    }
+    return `${
+      statement.verb === '='
+        ? 'is'
+        : statement.verb === '!='
+        ? 'is not'
+        : 'contains'
+    } ${statement.object}`
+  }
+
+  render() {
+    return (
+      <FilterBar
+        alwaysVisibleFilters={['id', 'category', 'brand']}
+        statements={this.state.statements}
+        onChangeStatements={statements => this.setState({ statements })}
+        clearAllFiltersButtonLabel="Clear Filters"
+        disabled
+        options={{
+          id: {
+            label: 'ID',
+            renderFilterLabel: this.renderSimpleFilterLabel,
+            verbs: this.getSimpleVerbs(),
+          },
+          category: {
+            label: 'Category',
+            renderFilterLabel: this.renderSimpleFilterLabel,
+            verbs: this.getSimpleVerbs(),
+          },
+          brand: {
+            label: 'Brand',
+            renderFilterLabel: this.renderSimpleFilterLabel,
+            verbs: this.getSimpleVerbs(),
+          },
+        }}
+      />
+    )
+  }
+}
+;<FilterBarDisabled />
+```
