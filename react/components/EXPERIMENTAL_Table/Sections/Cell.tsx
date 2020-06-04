@@ -79,7 +79,7 @@ function Cell(
     onClick,
     tag: header ? CellTag.Th : CellTag.Td,
     className: classNames('v-mid pv0 tl bb b--muted-4', classNameProp, {
-      ph3: width !== "0%",
+      ph3: width !== '0%',
       pointer: onClick,
       'c-on-base': sorting,
       'bg-base bt': header,
