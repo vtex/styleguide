@@ -1,6 +1,10 @@
+/* eslint-disable @typescript-eslint/ban-ts-ignore */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable max-params */
+/* eslint-disable @typescript-eslint/no-use-before-define */
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
-import React, { FC, useEffect, useRef, useState } from 'react'
+import React, { FC, useEffect, useRef, useState, ReactElement } from 'react'
 
 import Portal from './Portal'
 import { useRect } from './hooks'
@@ -11,7 +15,10 @@ export type Position = 'top' | 'right' | 'bottom' | 'left'
 export type Size = 'mini' | 'small'
 
 const OFFSET = 8
-const hasComputedDimensions = rect => rect?.width && rect.height
+
+const hasComputedDimensions = (
+  rect: { width: number; height: number } | null
+) => rect?.width && rect.height
 
 function getChildRefPropType() {
   if (typeof HTMLElement !== 'undefined') {
@@ -20,49 +27,26 @@ function getChildRefPropType() {
   return PropTypes.shape({ current: PropTypes.elementType })
 }
 
-const propTypes = {
-  /** Tooltip content */
-  label: PropTypes.node.isRequired,
-  /** Tooltip position */
-  position: PropTypes.oneOf<Position>(['top', 'bottom', 'left', 'right']),
-  /** Tooltip font size */
-  size: PropTypes.oneOf<Size>(['mini', 'small']),
-  /** Fallback position (when the tooltip cannot appear in the original position) */
-  fallbackPosition: PropTypes.oneOf<Position>([
-    'top',
-    'bottom',
-    'left',
-    'right',
-  ]),
-  /** Boolean to see if the popup should appear */
-  visible: PropTypes.bool,
-  /** Delay to show the tooltip */
-  delay: PropTypes.number,
-  /** Tooltip animation duration */
-  duration: PropTypes.number,
-  /** Tooltip timming function used to animate the tooltip */
-  timmingFn: PropTypes.string,
-  /** Child ref. Used to correctly position the tooltip */
-  childRef: getChildRefPropType(),
-  /** Element that inserts line break style in the word. Used to prevent width overflow */
-  wordBreak: PropTypes.oneOf<string>([
-    'normal',
-    'break-all',
-    'keep-all',
-    'break-word',
-  ]),
+interface Props {
+  children?: ReactElement
+  label?: ReactElement | string
+  position?: Position
+  size?: Size
+  fallbackPosition?: Position
+  visible?: boolean
+  delay?: number
+  duration?: number
+  timmingFn?: string
+  childRef?: any
+  wordBreak?: 'normal' | 'break-all' | 'keep-all' | 'break-word'
 }
 
-const defaultProps = {
-  visible: false,
-}
-
-const TooltipPopup: FC<PropTypes.InferProps<typeof propTypes>> = ({
+const TooltipPopup: FC<Props> = ({
   position,
   size,
   fallbackPosition,
   label,
-  visible,
+  visible = false,
   delay,
   duration,
   timmingFn,
@@ -70,7 +54,7 @@ const TooltipPopup: FC<PropTypes.InferProps<typeof propTypes>> = ({
   wordBreak,
 }) => {
   const [showPopup, setShowPopup] = useState(visible)
-  const popupRef = useRef<HTMLDivElement>()
+  const popupRef = useRef<any>()
   const childRect = useRect(childRef, visible)
   const popupRect = useRect(popupRef, visible)
 
@@ -119,7 +103,12 @@ const TooltipPopup: FC<PropTypes.InferProps<typeof propTypes>> = ({
   )
 }
 
-const getStyles = (childRect, popupRect, position, fallbackPosition) => {
+const getStyles = (
+  childRect: null,
+  popupRect: null,
+  position: string | null | undefined,
+  fallbackPosition: string | null | undefined
+) => {
   return childRect && popupRect && window && hasComputedDimensions(popupRect)
     ? getPopupPosition(childRect, popupRect, position, fallbackPosition)
     : { top: 0, left: 0 }
@@ -132,10 +121,16 @@ const FALLBACK_POSITION = {
   left: 'top',
 }
 
-const getFallbackPosition = (position, fallback) =>
+const getFallbackPosition = (position: React.ReactText, fallback: any) =>
+  // @ts-ignore
   fallback || FALLBACK_POSITION[position]
 
-const getPopupPosition = (childRect, popupRect, position, fallbackPosition) =>
+const getPopupPosition = (
+  childRect: any,
+  popupRect: any,
+  position: any,
+  fallbackPosition: any
+) =>
   getPopupPositionRecursively(
     childRect,
     popupRect,
@@ -144,11 +139,11 @@ const getPopupPosition = (childRect, popupRect, position, fallbackPosition) =>
     position
   )
 const getPopupPositionRecursively = (
-  childRect,
-  popupRect,
-  position,
-  fallbackPosition,
-  originalPosition
+  childRect: { left: number; width: number; top: number; height: number },
+  popupRect: { width: number; height: number },
+  position: string,
+  fallbackPosition: null,
+  originalPosition: any
 ) => {
   const horizontalMax = window.innerWidth + window.pageXOffset
   const verticalMax = window.innerHeight + window.pageYOffset
@@ -180,6 +175,7 @@ const getPopupPositionRecursively = (
     left: styles.left < window.pageXOffset,
   }
 
+  // @ts-ignore
   if (collisions[position]) {
     fallbackPosition = getFallbackPosition(position, fallbackPosition)
     // If there is no place without collisions, it will not be shown
@@ -188,6 +184,7 @@ const getPopupPositionRecursively = (
       : getPopupPositionRecursively(
           childRect,
           popupRect,
+          // @ts-ignore
           fallbackPosition,
           null,
           originalPosition
@@ -213,7 +210,32 @@ const getPopupPositionRecursively = (
   }
 }
 
-TooltipPopup.propTypes = propTypes
-TooltipPopup.defaultProps = defaultProps
+TooltipPopup.propTypes = {
+  /** Tooltip content */
+  label: PropTypes.any.isRequired,
+  /** Tooltip position */
+  position: PropTypes.oneOf<Position>(['top', 'bottom', 'left', 'right']),
+  /** Tooltip font size */
+  size: PropTypes.oneOf<Size>(['mini', 'small']),
+  /** Fallback position (when the tooltip cannot appear in the original position) */
+  fallbackPosition: PropTypes.oneOf<Position>([
+    'top',
+    'bottom',
+    'left',
+    'right',
+  ]),
+  /** Boolean to see if the popup should appear */
+  visible: PropTypes.bool,
+  /** Delay to show the tooltip */
+  delay: PropTypes.number,
+  /** Tooltip animation duration */
+  duration: PropTypes.number,
+  /** Tooltip timming function used to animate the tooltip */
+  timmingFn: PropTypes.string,
+  /** Child ref. Used to correctly position the tooltip */
+  childRef: getChildRefPropType(),
+  /** Element that inserts line break style in the word. Used to prevent width overflow */
+  wordBreak: PropTypes.oneOf(['normal', 'break-all', 'keep-all', 'break-word']),
+}
 
 export default TooltipPopup

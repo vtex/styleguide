@@ -13,7 +13,7 @@ export default {
 
 const positions: Position[] = ['top', 'left', 'right', 'bottom']
 
-export const Default = () => (
+export const defaultExample = () => (
   <Tooltip
     label={text('Label', 'Tooltip Label')}
     trigger={select('Trigger', ['click', 'hover', 'focus'], 'hover')}

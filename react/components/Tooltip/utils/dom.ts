@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // From @reach-ui
 const props = ['width', 'height', 'top', 'right', 'bottom', 'left']
 
