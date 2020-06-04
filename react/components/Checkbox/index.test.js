@@ -34,4 +34,11 @@ describe('Checkbox', () => {
 
     expect(refSpy).toBeCalledWith(inputElement)
   })
+
+  it('should accept not passing a ref', () => {
+    render(<Checkbox name="checkme" id="my-checkbox" onChange={() => {}} />)
+    const inputElement = document.querySelector('input')
+
+    expect(inputElement).toBeTruthy()
+  })
 })
