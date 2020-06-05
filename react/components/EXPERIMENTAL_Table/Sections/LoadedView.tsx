@@ -1,4 +1,4 @@
-import React, { FC, PropsWithChildren, Fragment } from 'react'
+import React, { PropsWithChildren, Fragment } from 'react'
 
 import { useLoadingContext } from '../context/loading'
 
