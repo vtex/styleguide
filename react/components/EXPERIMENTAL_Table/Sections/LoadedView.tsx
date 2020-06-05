@@ -1,12 +1,10 @@
-import React, { FC, PropsWithChildren } from 'react'
+import React, { FC, PropsWithChildren, Fragment } from 'react'
 
 import { useLoadingContext } from '../context/loading'
 
 function LoadedView({ children }: PropsWithChildren<{}>) {
   const { empty, loading } = useLoadingContext()
-  return !empty && !loading ? <>{children}</> : null
+  return !empty && !loading ? <Fragment>{children}</Fragment> : null
 }
-
-export type LoadedViewSection = FC
 
 export default LoadedView

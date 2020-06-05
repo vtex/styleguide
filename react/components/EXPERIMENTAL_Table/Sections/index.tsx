@@ -1,4 +1,4 @@
-import React, { forwardRef, Ref, PropsWithChildren } from 'react'
+import React, { forwardRef, Ref, PropsWithChildren, FC } from 'react'
 import classNames from 'classnames'
 
 import EmptyState from '../../EmptyState/index.js'
@@ -16,7 +16,7 @@ import { useTestingContext } from '../context/testing'
 import { useLoadingContext } from '../context/loading'
 import Tbody, { ComposableTbody } from './Tbody'
 import Thead, { ComposableThead } from './Thead'
-import LoadedView, { LoadedViewSection } from './LoadedView'
+import LoadedView from './LoadedView'
 
 type Props = PropsWithChildren<
   E2ETestable & HasMotion & NativeTable & { disableScroll?: boolean }
@@ -65,7 +65,7 @@ function Sections(
 interface Composites {
   Head?: ComposableThead
   Body?: ComposableTbody
-  LoadedView?: LoadedViewSection
+  LoadedView?: FC
 }
 
 export type ComposableSections = ComposableWithRef<
