@@ -110,7 +110,7 @@ export const ModalOverlay: FC<OverlayProps> = ({
         // eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
         <div
           className={classNames(
-            'flex fixed z-max overflow-hidden bg-black-70 absolute--fill',
+            'flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0',
             isOpen ? styles.openAnimation : styles.closeAnimation,
             {
               'items-start': !centered,
