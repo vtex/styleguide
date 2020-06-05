@@ -12,9 +12,9 @@
 
 ### Anatomy
 
-<div>
- ![](./modal_anatomy.png)
-</div>
+The anatomy consists of an overlay to block user interaction below the Modal and the content which the user must interact with.
+
+<img src="./modal_anatomy.png" alt="Modal component anatomty">
 
 ### Props
 
