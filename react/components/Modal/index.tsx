@@ -110,7 +110,7 @@ export const ModalOverlay: FC<OverlayProps> = ({
         // eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
         <div
           className={classNames(
-            'flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0',
+            'vtex-modal__overlay flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0',
             isOpen ? styles.openAnimation : styles.closeAnimation,
             {
               'items-start': !centered,
@@ -158,7 +158,7 @@ const ModalContent = forwardRef<HTMLDivElement, ContentProps>(
       // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
       <div
         className={classNames(
-          'flex flex-column relative bg-white shadow-5 center mv9 br2',
+          'vtex-modal__modal flex flex-column relative bg-white shadow-5 center mv9 br2',
           `${size === 'small' ? styles.smallContent : ''}`,
           `${size === 'medium' ? styles.mediumContent : ''}`,
           `${size === 'large' ? styles.largeContent : ''}`,

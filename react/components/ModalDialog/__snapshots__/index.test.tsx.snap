@@ -3,7 +3,7 @@
 exports[`ModalDialog cancelation should render label 1`] = `
 <div>
   <div
-    class="flex fixed z-max overflow-hidden bg-black-70 absolute--fill items-center"
+    class="vtex.modal__overlay flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0 items-center"
     data-testid="modal__overlay"
     role="presentation"
     tabindex="-1"
@@ -11,7 +11,7 @@ exports[`ModalDialog cancelation should render label 1`] = `
     <div
       aria-labelledby="vtex-modal__title"
       aria-modal="true"
-      class="flex flex-column relative bg-white shadow-5 center mv9 br2 undefined vw-90"
+      class="vtex-modal__modal flex flex-column relative bg-white shadow-5 center mv9 br2 undefined vw-90"
       data-testid="modal__modal"
       role="dialog"
     >
@@ -98,7 +98,7 @@ exports[`ModalDialog cancelation should render label 1`] = `
 exports[`ModalDialog confirmation isDangerous CSS 1`] = `
 <div>
   <div
-    class="flex fixed z-max overflow-hidden bg-black-70 absolute--fill items-center"
+    class="vtex.modal__overlay flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0 items-center"
     data-testid="modal__overlay"
     role="presentation"
     tabindex="-1"
@@ -106,7 +106,7 @@ exports[`ModalDialog confirmation isDangerous CSS 1`] = `
     <div
       aria-labelledby="vtex-modal__title"
       aria-modal="true"
-      class="flex flex-column relative bg-white shadow-5 center mv9 br2 undefined vw-90"
+      class="vtex-modal__modal flex flex-column relative bg-white shadow-5 center mv9 br2 undefined vw-90"
       data-testid="modal__modal"
       role="dialog"
     >
@@ -193,7 +193,7 @@ exports[`ModalDialog confirmation isDangerous CSS 1`] = `
 exports[`ModalDialog confirmation should render label 1`] = `
 <div>
   <div
-    class="flex fixed z-max overflow-hidden bg-black-70 absolute--fill items-center"
+    class="vtex.modal__overlay flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0 items-center"
     data-testid="modal__overlay"
     role="presentation"
     tabindex="-1"
@@ -201,7 +201,7 @@ exports[`ModalDialog confirmation should render label 1`] = `
     <div
       aria-labelledby="vtex-modal__title"
       aria-modal="true"
-      class="flex flex-column relative bg-white shadow-5 center mv9 br2 undefined vw-90"
+      class="vtex-modal__modal flex flex-column relative bg-white shadow-5 center mv9 br2 undefined vw-90"
       data-testid="modal__modal"
       role="dialog"
     >
@@ -288,7 +288,7 @@ exports[`ModalDialog confirmation should render label 1`] = `
 exports[`ModalDialog loading CSS 1`] = `
 <div>
   <div
-    class="flex fixed z-max overflow-hidden bg-black-70 absolute--fill items-center"
+    class="vtex.modal__overlay flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0 items-center"
     data-testid="modal__overlay"
     role="presentation"
     tabindex="-1"
@@ -296,7 +296,7 @@ exports[`ModalDialog loading CSS 1`] = `
     <div
       aria-labelledby="vtex-modal__title"
       aria-modal="true"
-      class="flex flex-column relative bg-white shadow-5 center mv9 br2 undefined vw-90"
+      class="vtex-modal__modal flex flex-column relative bg-white shadow-5 center mv9 br2 undefined vw-90"
       data-testid="modal__modal"
       role="dialog"
     >

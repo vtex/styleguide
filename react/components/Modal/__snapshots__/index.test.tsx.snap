@@ -3,7 +3,7 @@
 exports[`Modal CSS API centered 1`] = `
 <div>
   <div
-    class="flex fixed z-max overflow-hidden bg-black-70 absolute--fill items-center"
+    class="vtex.modal__overlay flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0 items-center"
     data-testid="modal__overlay"
     role="presentation"
     tabindex="-1"
@@ -11,7 +11,7 @@ exports[`Modal CSS API centered 1`] = `
     <div
       aria-labelledby="vtex-modal__title"
       aria-modal="true"
-      class="flex flex-column relative bg-white shadow-5 center mv9 br2 undefined vw-90"
+      class="vtex-modal__modal flex flex-column relative bg-white shadow-5 center mv9 br2 undefined vw-90"
       data-testid="modal__modal"
       role="dialog"
     >
@@ -62,7 +62,7 @@ exports[`Modal CSS API centered 1`] = `
 exports[`Modal CSS API default 1`] = `
 <div>
   <div
-    class="flex fixed z-max overflow-hidden bg-black-70 absolute--fill items-center"
+    class="vtex.modal__overlay flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0 items-center"
     data-testid="modal__overlay"
     role="presentation"
     tabindex="-1"
@@ -70,7 +70,7 @@ exports[`Modal CSS API default 1`] = `
     <div
       aria-labelledby="vtex-modal__title"
       aria-modal="true"
-      class="flex flex-column relative bg-white shadow-5 center mv9 br2 undefined vw-90"
+      class="vtex-modal__modal flex flex-column relative bg-white shadow-5 center mv9 br2 undefined vw-90"
       data-testid="modal__modal"
       role="dialog"
     >
@@ -121,7 +121,7 @@ exports[`Modal CSS API default 1`] = `
 exports[`Modal CSS API responsiveFullScreen true 1`] = `
 <div>
   <div
-    class="flex fixed z-max overflow-hidden bg-black-70 absolute--fill items-center"
+    class="vtex.modal__overlay flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0 items-center"
     data-testid="modal__overlay"
     role="presentation"
     tabindex="-1"
@@ -129,7 +129,7 @@ exports[`Modal CSS API responsiveFullScreen true 1`] = `
     <div
       aria-labelledby="vtex-modal__title"
       aria-modal="true"
-      class="flex flex-column relative bg-white shadow-5 center mv9 br2 undefined h-100 h-auto-ns vw-100"
+      class="vtex-modal__modal flex flex-column relative bg-white shadow-5 center mv9 br2 undefined h-100 h-auto-ns vw-100"
       data-testid="modal__modal"
       role="dialog"
     >
@@ -180,7 +180,7 @@ exports[`Modal CSS API responsiveFullScreen true 1`] = `
 exports[`Modal CSS API showBottomBarBorder false 1`] = `
 <div>
   <div
-    class="flex fixed z-max overflow-hidden bg-black-70 absolute--fill items-center"
+    class="vtex.modal__overlay flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0 items-center"
     data-testid="modal__overlay"
     role="presentation"
     tabindex="-1"
@@ -188,7 +188,7 @@ exports[`Modal CSS API showBottomBarBorder false 1`] = `
     <div
       aria-labelledby="vtex-modal__title"
       aria-modal="true"
-      class="flex flex-column relative bg-white shadow-5 center mv9 br2 undefined vw-90"
+      class="vtex-modal__modal flex flex-column relative bg-white shadow-5 center mv9 br2 undefined vw-90"
       data-testid="modal__modal"
       role="dialog"
     >
@@ -239,7 +239,7 @@ exports[`Modal CSS API showBottomBarBorder false 1`] = `
 exports[`Modal CSS API showTopBar false 1`] = `
 <div>
   <div
-    class="flex fixed z-max overflow-hidden bg-black-70 absolute--fill items-center"
+    class="vtex.modal__overlay flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0 items-center"
     data-testid="modal__overlay"
     role="presentation"
     tabindex="-1"
@@ -247,7 +247,7 @@ exports[`Modal CSS API showTopBar false 1`] = `
     <div
       aria-labelledby="vtex-modal__title"
       aria-modal="true"
-      class="flex flex-column relative bg-white shadow-5 center mv9 br2 undefined vw-90"
+      class="vtex-modal__modal flex flex-column relative bg-white shadow-5 center mv9 br2 undefined vw-90"
       data-testid="modal__modal"
       role="dialog"
     >
@@ -298,7 +298,7 @@ exports[`Modal CSS API showTopBar false 1`] = `
 exports[`Modal bottomBar should render bottomBar 1`] = `
 <div>
   <div
-    class="flex fixed z-max overflow-hidden bg-black-70 absolute--fill items-center"
+    class="vtex.modal__overlay flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0 items-center"
     data-testid="modal__overlay"
     role="presentation"
     tabindex="-1"
@@ -306,7 +306,7 @@ exports[`Modal bottomBar should render bottomBar 1`] = `
     <div
       aria-labelledby="vtex-modal__title"
       aria-modal="true"
-      class="flex flex-column relative bg-white shadow-5 center mv9 br2 undefined vw-90"
+      class="vtex-modal__modal flex flex-column relative bg-white shadow-5 center mv9 br2 undefined vw-90"
       data-testid="modal__modal"
       role="dialog"
     >
@@ -366,7 +366,7 @@ exports[`Modal bottomBar should render bottomBar 1`] = `
 exports[`Modal container should render modal inside it 1`] = `
 <div>
   <div
-    class="flex fixed z-max overflow-hidden bg-black-70 absolute--fill items-center"
+    class="vtex.modal__overlay flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0 items-center"
     data-testid="modal__overlay"
     role="presentation"
     tabindex="-1"
@@ -374,7 +374,7 @@ exports[`Modal container should render modal inside it 1`] = `
     <div
       aria-labelledby="vtex-modal__title"
       aria-modal="true"
-      class="flex flex-column relative bg-white shadow-5 center mv9 br2 undefined vw-90"
+      class="vtex-modal__modal flex flex-column relative bg-white shadow-5 center mv9 br2 undefined vw-90"
       data-testid="modal__modal"
       role="dialog"
     >
@@ -425,7 +425,7 @@ exports[`Modal container should render modal inside it 1`] = `
 exports[`Modal isOpen Should show modal when isOpen is true and hide when is false 1`] = `
 <div>
   <div
-    class="flex fixed z-max overflow-hidden bg-black-70 absolute--fill items-center"
+    class="vtex.modal__overlay flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0 items-center"
     data-testid="modal__overlay"
     role="presentation"
     tabindex="-1"
@@ -433,7 +433,7 @@ exports[`Modal isOpen Should show modal when isOpen is true and hide when is fal
     <div
       aria-labelledby="vtex-modal__title"
       aria-modal="true"
-      class="flex flex-column relative bg-white shadow-5 center mv9 br2 undefined vw-90"
+      class="vtex-modal__modal flex flex-column relative bg-white shadow-5 center mv9 br2 undefined vw-90"
       data-testid="modal__modal"
       role="dialog"
     >
@@ -484,7 +484,7 @@ exports[`Modal isOpen Should show modal when isOpen is true and hide when is fal
 exports[`Modal isOpen Should show modal when isOpen is true and hide when is false 2`] = `
 <div>
   <div
-    class="flex fixed z-max overflow-hidden bg-black-70 absolute--fill items-center"
+    class="vtex.modal__overlay flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0 items-center"
     data-testid="modal__overlay"
     role="presentation"
     tabindex="-1"
@@ -492,7 +492,7 @@ exports[`Modal isOpen Should show modal when isOpen is true and hide when is fal
     <div
       aria-labelledby="vtex-modal__title"
       aria-modal="true"
-      class="flex flex-column relative bg-white shadow-5 center mv9 br2 undefined vw-90"
+      class="vtex-modal__modal flex flex-column relative bg-white shadow-5 center mv9 br2 undefined vw-90"
       data-testid="modal__modal"
       role="dialog"
     >
@@ -543,7 +543,7 @@ exports[`Modal isOpen Should show modal when isOpen is true and hide when is fal
 exports[`Modal title should render title prop 1`] = `
 <DocumentFragment>
   <div
-    class="flex fixed z-max overflow-hidden bg-black-70 absolute--fill items-center"
+    class="vtex.modal__overlay flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0 items-center"
     data-testid="modal__overlay"
     role="presentation"
     tabindex="-1"
@@ -551,7 +551,7 @@ exports[`Modal title should render title prop 1`] = `
     <div
       aria-labelledby="vtex-modal__title"
       aria-modal="true"
-      class="flex flex-column relative bg-white shadow-5 center mv9 br2 undefined vw-90"
+      class="vtex-modal__modal flex flex-column relative bg-white shadow-5 center mv9 br2 undefined vw-90"
       data-testid="modal__modal"
       role="dialog"
     >
