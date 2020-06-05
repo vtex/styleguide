@@ -65,7 +65,7 @@ function Sections(
 interface Composites {
   Head?: ComposableThead
   Body?: ComposableTbody
-  Hideable?: LoadedViewSection
+  LoadedView?: LoadedViewSection
 }
 
 export type ComposableSections = ComposableWithRef<
@@ -78,6 +78,6 @@ const FowardedSections: ComposableSections = forwardRef(Sections)
 
 FowardedSections.Head = Thead
 FowardedSections.Body = Tbody
-FowardedSections.Hideable = LoadedView
+FowardedSections.LoadedView = LoadedView
 
 export default FowardedSections
