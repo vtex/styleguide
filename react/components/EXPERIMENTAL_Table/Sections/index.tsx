@@ -16,6 +16,7 @@ import { useTestingContext } from '../context/testing'
 import { useLoadingContext } from '../context/loading'
 import Tbody, { ComposableTbody } from './Tbody'
 import Thead, { ComposableThead } from './Thead'
+import LoadedView, { LoadedViewSection } from './LoadedView'
 
 type Props = PropsWithChildren<
   E2ETestable & HasMotion & NativeTable & { disableScroll?: boolean }
@@ -64,6 +65,7 @@ function Sections(
 interface Composites {
   Head?: ComposableThead
   Body?: ComposableTbody
+  Hideable?: LoadedViewSection
 }
 
 export type ComposableSections = ComposableWithRef<
@@ -76,5 +78,6 @@ const FowardedSections: ComposableSections = forwardRef(Sections)
 
 FowardedSections.Head = Thead
 FowardedSections.Body = Tbody
+FowardedSections.Hideable = LoadedView
 
 export default FowardedSections
