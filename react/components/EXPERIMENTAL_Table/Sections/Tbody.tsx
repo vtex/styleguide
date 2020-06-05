@@ -7,7 +7,7 @@ import { useTestingContext } from '../context/testing'
 import useTableMotion from '../hooks/useTableMotion'
 import Row, { ROW_TRANSITIONS, ComposableRow } from './Row'
 import { ComposableWithRef, RenderProps, NativeTableSection } from '../types'
-import Hideable from './LoadedView'
+import LoadedView from './LoadedView'
 
 interface BodyRenderProps {
   props: {
@@ -32,7 +32,7 @@ function Tbody(
   const motion = useTableMotion(ROW_TRANSITIONS)
 
   return (
-    <Hideable>
+    <LoadedView>
       <tbody ref={ref} {...rest} data-testid={`${testId}__body`}>
         {items?.map((data, index) => {
           const key = rowKey({ rowData: data })
@@ -53,7 +53,7 @@ function Tbody(
           )
         })}
       </tbody>
-    </Hideable>
+    </LoadedView>
   )
 }
 
