@@ -4,7 +4,7 @@ import React, { useContext, createContext, PropsWithChildren } from 'react'
 export interface BodyProps<T = any> {
   onRowClick?: (data: T) => void
   isRowActive?: (data: T) => boolean
-  rowKey?: (data: T) => string
+  getRowKey?: (data: T) => string
   highlightOnHover?: boolean
 }
 

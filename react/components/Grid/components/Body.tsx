@@ -26,7 +26,12 @@ interface Props<T> {
 function Body<T>({ children }: Props<T>) {
   const { baseHeight } = useMeasuresContext()
   const { items } = useDataContext()
-  const { highlightOnHover, isRowActive, onRowClick, rowKey } = useBodyContext()
+  const {
+    highlightOnHover,
+    isRowActive,
+    onRowClick,
+    getRowKey,
+  } = useBodyContext()
 
   const computedClassName = classNames('w-100 truncate overflow-x-hidden', {
     'pointer hover-c-link': onRowClick,
@@ -34,7 +39,7 @@ function Body<T>({ children }: Props<T>) {
   })
 
   return (
-    <Loop list={items} getKey={rowKey}>
+    <Loop list={items} getKey={getRowKey}>
       {(item, index) => {
         const bg = isRowActive?.(item) ? { backgroundColor: LIGHT_BLUE } : {}
 

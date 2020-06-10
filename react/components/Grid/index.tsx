@@ -8,15 +8,14 @@ import Body from './components/Body'
 import ScrollView from './components/ScrollView'
 import Head from './components/Head'
 import { HeadProvider, HeadProps } from './context/head'
-import Loop from './components/Loop'
 
 interface Props<T> extends BodyProps<T>, HeadProps {
   columns: Column<T>[]
-  items: T[]
   measures: Measures
+  items?: T[]
 }
 
-function AbstractGrid<T>(props: PropsWithChildren<Props<T>>) {
+function Grid<T>(props: PropsWithChildren<Props<T>>) {
   const {
     children,
     measures,
@@ -24,7 +23,7 @@ function AbstractGrid<T>(props: PropsWithChildren<Props<T>>) {
     items,
     onRowClick,
     highlightOnHover,
-    rowKey,
+    getRowKey,
     isRowActive,
     stickyHeader,
   } = props
@@ -35,7 +34,7 @@ function AbstractGrid<T>(props: PropsWithChildren<Props<T>>) {
           <BodyProvider
             onRowClick={onRowClick}
             highlightOnHover={highlightOnHover}
-            rowKey={rowKey}
+            getRowKey={getRowKey}
             isRowActive={isRowActive}>
             {children}
           </BodyProvider>
@@ -45,9 +44,17 @@ function AbstractGrid<T>(props: PropsWithChildren<Props<T>>) {
   )
 }
 
-AbstractGrid.Head = Head
-AbstractGrid.Body = Body
-AbstractGrid.ScrollView = ScrollView
-AbstractGrid.Loop = Loop
+Grid.defaultProps = {
+  items: [],
+  onRowClick: () => null,
+  highlightOnHover: false,
+  getRowKey: (item: { id: 'string ' }) => item.id,
+  isRowActive: () => false,
+  stickyHeader: false,
+}
 
-export default AbstractGrid
+Grid.Head = Head
+Grid.Body = Body
+Grid.ScrollView = ScrollView
+
+export default Grid

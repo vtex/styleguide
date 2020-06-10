@@ -2,7 +2,26 @@
 
 # Props
 
-# Composition
+| name | type | required | default  | description |
+| --- | --- | --- | --- | --- | 
+| columns | Column<T>[] | ✅ | 🚫 | Grid columns definition |
+| measures | Measures | ✅ | 🚫| Grid sizes |
+| items | T[] | 🚫 | [] | Data to display |
+| stickyHeader | boolean | 🚫 | false | If the header is sticky or not |
+| onRowClick | (data: T) => void | 🚫 | () => null | Action to dispatch on a row click |
+| isRowActive | (data: T) => boolean | 🚫 | () => false | Whenever the row is active |
+| getRowKey | (data: T) => string | 🚫 | (data) => data.id  | Get a key for the items |
+| highlightOnHover | boolean | 🚫 | false  | If the row body should highlight onHover |
+
+```ts
+type Measures = {
+  density: string;
+  headerHeight: number;
+  setDensity: React.Dispatch<React.SetStateAction<string>>;
+  baseHeight: number;
+  combinedHeight: number;
+}
+```
 
 # Column
 

@@ -53,6 +53,8 @@ interface RenderProps<T> {
     computedClassName: string
     // style for the container
     computedStyle: Record<string, number | string>
+    // call's onRowClick function
+    handleClick: () => void
   }
 }
 ```
