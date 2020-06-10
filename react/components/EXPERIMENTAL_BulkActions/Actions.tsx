@@ -3,27 +3,30 @@ import classNames from 'classnames'
 
 import Button from '../../Button'
 import ActionMenu from '../../ActionMenu'
-import { MenuAction } from '../Toolbar/PopoverMenu'
-import { ORDER_CLASSNAMES } from '../constants'
 
 const ACTION_MARGIN = 'mr4'
 
-export default function Actions({ children }) {
-  const className = classNames(
-    'flex flex-row',
-    ORDER_CLASSNAMES.BULK_CHILD.ACTIONS
-  )
-  return <div className={className}>{children}</div>
+interface MenuAction {
+  label: string
+  onClick: Function
+  toggle?: {
+    checked: boolean
+    semantic: boolean
+  }
+  id?: number | string
 }
 
-Actions.Primary = Primary
-Actions.Secondary = Secondary
+export default function Actions({ children }) {
+  return <div className="flex flex-row order-0">{children}</div>
+}
+
+interface PrimaryProps {
+  label: string
+  onClick: () => void
+}
 
 function Primary({ label, onClick }: PrimaryProps) {
-  const className = classNames(
-    ACTION_MARGIN,
-    ORDER_CLASSNAMES.BULK_CHILD.ACTIONS_CHILD.PRIMARY
-  )
+  const className = classNames(ACTION_MARGIN, 'order-1')
   return (
     <div className={className}>
       <Button variation="secondary" size="small" onClick={onClick}>
@@ -33,11 +36,14 @@ function Primary({ label, onClick }: PrimaryProps) {
   )
 }
 
+interface SecondaryProps {
+  label: string
+  actions: Array<MenuAction>
+  onActionClick: (el: MenuAction) => void
+}
+
 function Secondary({ label, actions, onActionClick }: SecondaryProps) {
-  const className = classNames(
-    ACTION_MARGIN,
-    ORDER_CLASSNAMES.BULK_CHILD.ACTIONS_CHILD.SECONDARY
-  )
+  const className = classNames(ACTION_MARGIN, 'order-2')
   return (
     <div className={className}>
       <ActionMenu
@@ -52,13 +58,5 @@ function Secondary({ label, actions, onActionClick }: SecondaryProps) {
   )
 }
 
-type PrimaryProps = {
-  label: string
-  onClick: () => void
-}
-
-type SecondaryProps = {
-  label: string
-  actions: Array<MenuAction>
-  onActionClick: (el: MenuAction) => void
-}
+Actions.Primary = Primary
+Actions.Secondary = Secondary

@@ -1,8 +1,15 @@
-import React, { FC, Fragment, forwardRef, PropsWithChildren, Ref } from 'react'
+import React, {
+  FC,
+  Fragment,
+  forwardRef,
+  PropsWithChildren,
+  Ref,
+  useEffect,
+} from 'react'
 
 import Toolbar from './Toolbar/index'
 import Pagination, { PaginationProps } from './Pagination'
-import BulkActions from './BulkActions'
+import BulkActions from '../EXPERIMENTAL_BulkActions'
 import FilterBar, { FilterBarProps } from './FilterBar'
 import useTableMeasures from './hooks/useTableMeasures'
 import useTableMotion from './hooks/useTableMotion'
@@ -40,6 +47,14 @@ function Table(
   }: Props,
   ref: Ref<HTMLTableElement>
 ) {
+  useEffect(() => {
+    if (composableSections) {
+      console.warn(
+        '⚠️ [Deprecation Alert] composableSections will be deprecated! To render tabular data in a composable way you must use <Grid>'
+      )
+    }
+  }, [composableSections])
+
   return (
     <TestingProvider testId={testId}>
       <LoadingProvider empty={empty} loading={loading} emptyState={emptyState}>
@@ -117,6 +132,7 @@ interface SpecificProps {
   /** If the header is sticky or not */
   stickyHeader?: boolean
   /** Exposes table sections to be composable */
+  // DEPRECATED
   composableSections?: boolean
 }
 

@@ -1,17 +1,11 @@
 import React from 'react'
-import classNames from 'classnames'
 
 import ButtonWithIcon from '../../ButtonWithIcon'
-import Close from '../../icon/Close'
+import Close from '../icon/Close'
 import Button from '../../Button'
-import { ORDER_CLASSNAMES } from '../constants'
 
 export default function Tail({ children }) {
-  const className = classNames(
-    'tr flex flex-row items-center',
-    ORDER_CLASSNAMES.BULK_CHILD.RIGHT
-  )
-  return <div className={className}>{children}</div>
+  return <div className="tr flex flex-row items-center order-2">{children}</div>
 }
 
 Tail.Info = Info

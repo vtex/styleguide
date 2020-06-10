@@ -197,6 +197,10 @@ module.exports = {
               ],
             },
             {
+              name: 'Bulk Actions',
+              content: './react/components/EXPERIMENTAL_BulkActions/docs.md',
+            },
+            {
               name: 'Table V2',
               content:
                 'react/components/EXPERIMENTAL_Table/docs/Introduction.md',
