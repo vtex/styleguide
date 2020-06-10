@@ -160,6 +160,24 @@ module.exports = {
           ],
         },
         {
+          name: 'Grid',
+          content: 'react/components/Grid/docs/Grid.md',
+          sections: [
+            {
+              name: 'Head',
+              content: 'react/components/Grid/docs/Head.md',
+            },
+            {
+              name: 'Body',
+              content: 'react/components/Grid/docs/Body.md',
+            },
+            {
+              name: 'ScrollView',
+              content: 'react/components/Grid/docs/ScrollView.md',
+            },
+          ],
+        },
+        {
           name: '👻 Experimental',
           content: './docs/components_experimental.md',
           components: [
