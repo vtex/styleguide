@@ -185,18 +185,77 @@ function BodyExample() {
 ;<BodyExample />
 ```
 
+##### Customizing body
+
+If you want to have full control of you `<tbody>` tag, you can do as the example below:
+
+```js
+import Table from '../index'
+import useTableMeasures from '../hooks/useTableMeasures'
+import { customers } from './sampleData'
+
+const items = customers.slice(0, 5)
+
+function CustomBodyExample() {
+  const measures = useTableMeasures({ size: items })
+
+  return (
+    <Table
+      measures={measures}
+      columns={[
+        {
+          id: 'name',
+          title: 'Name',
+        },
+        {
+          id: 'location',
+          title: 'Location',
+        },
+      ]}
+      items={items}
+      composableSections>
+      <Table.Sections>
+        <Table.Sections.Head />
+        <Table.Sections.LoadedView>
+          <tbody>
+            {items.map((data, key) => (
+              <Table.Sections.Body.Row
+                key={key}
+                data={data}
+                height={measures.rowHeight}>
+                {({ key, props, data, column }) => (
+                  <Table.Sections.Body.Row.Cell key={key} {...props}>
+                    {data[column.id]}
+                  </Table.Sections.Body.Row.Cell>
+                )}
+              </Table.Sections.Body.Row>
+            ))}
+          </tbody>
+        </Table.Sections.LoadedView>
+      </Table.Sections>
+    </Table>
+  )
+}
+
+;<CustomBodyExample />
+```
+
+##### Loaded View
+
+As you can see in the "Customizing body" section sample, it's using the `<Table.Sections.LoadedView>` component, this is used there to hide something from your table when its data is not loaded or it's empty, it's highly recommended to use when customizing the default table components to avoid browser compatibility issues.
+
 ##### Sections Props
 
-| Property | Type | Required | Default | Description |
-| --- | --- | --- | --- | --- |
-| disableScroll | boolean | 🚫 | false | Disable scroll overflow of the container |
+| Property      | Type    | Required | Default | Description                              |
+| ------------- | ------- | -------- | ------- | ---------------------------------------- |
+| disableScroll | boolean | 🚫       | false   | Disable scroll overflow of the container |
 
 ##### Cell Props
 
 | Property  | Type             | Required | Default | Description                                    |
 | --------- | ---------------- | -------- | ------- | ---------------------------------------------- |
 | width     | number or string | 🚫       | 🚫      | Cell width (variable by default)               |
-| heigth    | number or string | 🚫       | 🚫     | Cell height (variable by default)               |
+| heigth    | number or string | 🚫       | 🚫      | Cell height (variable by default)              |
 | className | string           | 🚫       | 🚫      | Custom classes                                 |
 | onClick   | `() => void`     | 🚫       | 🚫      | Action to dispatch on click                    |
 | sortable  | boolean          | 🚫       | false   | If is sortable or not                          |
