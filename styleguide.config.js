@@ -201,6 +201,10 @@ module.exports = {
               content: './react/components/EXPERIMENTAL_BulkActions/docs.md',
             },
             {
+              name: 'Toolbar',
+              content: './react/components/EXPERIMENTAL_Toolbar/docs.md',
+            },
+            {
               name: 'Table V2',
               content:
                 'react/components/EXPERIMENTAL_Table/docs/Introduction.md',

@@ -1,12 +1,9 @@
-import React, { FC } from 'react'
+import React from 'react'
 
-import Toggle from '../../Toggle/index'
-import IconColumns from '../../icon/Columns/index'
-import usePopoverMenu, { Item, Box, Alignment } from './PopoverMenu'
+import Toggle from '../Toggle'
+import IconColumns from '../icon/Columns'
+import Box, { usePopoverMenu, Alignment } from './PopoverMenu'
 import Button, { IconSize } from './Button'
-import { NAMESPACES } from '../constants'
-import useTableVisibility from '../hooks/useTableVisibility'
-import { useButtonGroupContext } from './context'
 
 const COLUMNS_BOX = {
   MAX_HEIGHT: 192,
@@ -14,17 +11,27 @@ const COLUMNS_BOX = {
   ITEM_HEIGHT: 36,
 }
 
-const ButtonColumns: FC<ButtonColumnsProps> = ({
+interface Props {
+  label: string
+  showAllLabel: string
+  hideAllLabel: string
+  alignMenu?: Alignment
+  disabled?: boolean
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  visibility: any // useTableVisibility
+  testId?: string
+}
+
+function ButtonColumns({
   label,
   showAllLabel,
   hideAllLabel,
   alignMenu,
   disabled,
   visibility,
-}) => {
+  testId,
+}: Props) {
   const { buttonRef, boxVisible, toggleBox } = usePopoverMenu()
-  const { testId } = useButtonGroupContext()
-  const columnsTestId = `${testId}__columns`
 
   const {
     hiddenColumns,
@@ -51,39 +58,29 @@ const ButtonColumns: FC<ButtonColumnsProps> = ({
 
   return (
     <Button
-      id={NAMESPACES.TOOLBAR.BUTTON_COLUMNS}
-      testId={columnsTestId}
       title={label}
       ref={buttonRef}
+      testId={testId}
       onClick={toggleBox}
       icon={<IconColumns size={IconSize.Medium} />}
       disabled={disabled}>
       {boxVisible && (
-        <Box {...boxProps} testId={columnsTestId}>
+        <Box {...boxProps} testId={testId}>
           {columns.map((column, index) => {
             const { id, title } = column
             const togglerFn = () => toggleColumn(id)
             const isVisible = !hiddenColumns.includes(id)
             return (
-              <Item key={index} onClick={togglerFn}>
+              <Box.Item key={index} onClick={togglerFn}>
                 {title}
                 <Toggle checked={isVisible} onChange={togglerFn} />
-              </Item>
+              </Box.Item>
             )
           })}
         </Box>
       )}
     </Button>
   )
-}
-
-export type ButtonColumnsProps = {
-  label: string
-  showAllLabel: string
-  hideAllLabel: string
-  alignMenu: Alignment
-  disabled: boolean
-  visibility: ReturnType<typeof useTableVisibility>
 }
 
 export default ButtonColumns

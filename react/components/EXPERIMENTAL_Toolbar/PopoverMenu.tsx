@@ -1,16 +1,15 @@
 import React, {
   useRef,
   useState,
-  FC,
   useLayoutEffect,
   useCallback,
+  PropsWithChildren,
 } from 'react'
 import classnames from 'classnames'
 
-import Button from '../../Button/index.js'
-import { E2ETestable } from '../types'
+import Button from '../Button/index.js'
 
-export default function usePopoverMenu() {
+export function usePopoverMenu() {
   const [boxVisible, setBoxVisible] = useState(false)
   const buttonRef = useRef(null)
 
@@ -35,7 +34,17 @@ export default function usePopoverMenu() {
   return { boxVisible, setBoxVisible, buttonRef, toggleBox }
 }
 
-export const Box: FC<BoxProps> = ({
+interface BoxProps {
+  height?: string | number
+  width?: string | number
+  alignMenu?: Alignment
+  noMargin?: boolean
+  borderClasses?: string
+  groupActions?: Array<MenuAction>
+  testId?: string
+}
+
+export default function Box({
   alignMenu,
   height,
   width,
@@ -44,7 +53,7 @@ export const Box: FC<BoxProps> = ({
   groupActions,
   testId,
   children,
-}) => {
+}: PropsWithChildren<BoxProps>) {
   const isAlignRight = alignMenu === Alignment.Right
   const className = classnames(
     `absolute z-999 shadow-4 ${borderClasses || 'b--muted-4 br2 ba'}`,
@@ -93,7 +102,12 @@ export const Box: FC<BoxProps> = ({
   )
 }
 
-export const Item: FC<ItemProps> = ({ isSelected, onClick, children }) => {
+interface ItemProps {
+  onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
+  isSelected?: boolean
+}
+
+function Item({ isSelected, onClick, children }: PropsWithChildren<ItemProps>) {
   const containerClassName = classnames(
     'flex justify-between ph6 pv3 pointer hover-bg-muted-5 bl bw1',
     {
@@ -111,21 +125,9 @@ export const Item: FC<ItemProps> = ({ isSelected, onClick, children }) => {
   )
 }
 
-type BoxProps = E2ETestable & {
-  height?: string | number
-  width?: string | number
-  alignMenu?: Alignment
-  noMargin?: boolean
-  borderClasses?: string
-  groupActions?: Array<MenuAction>
-}
+Box.Item = Item
 
-type ItemProps = {
-  onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
-  isSelected?: boolean
-}
-
-export type MenuAction = {
+export interface MenuAction {
   label: string
   onClick: Function
   toggle?: {

@@ -4,140 +4,8 @@
 
 ### Toolbar
 
-The toolbar is a bundle of features, including search input, autocomplete, columns visibility toggle, density controls, import and export buttons, extra actions menu using ActionMenu component and a newLine button to help with entry creation (you can see the illustrative diagram in the beginning of the page for a better visualization of this structure)
+The toolbar is a bundle of features, including search input, autocomplete, columns visibility toggle, density controls, import and export buttons, extra actions menu using ActionMenu component and a newLine button to help with entry creation (you can see the illustrative diagram in the beginning of the page for a better visualization of this structure). You can find the full specs on the [Toolbar specific docs](https://styleguide.vtex.com/#/Components/👻%20Experimental/Toolbar).
 
-#### InputSearch
-
-- A wrapper around `InputSearch` component. The props are the same.
-
-#### InputAutocomplete
-
-- A wrapper around `AutocompleteInput` component. The props are the same.
-
-#### Button Group
-
-Represents the group of buttons located at the right. It has other composites that are described down below.
-
-##### Columns
-
-- A button that toggles columns visibility.
-- It is recommended to combine it with the `useTableVisibility` hook.
-
-```ts
-enum Alignment {
-  Left = 'left',
-  Right = 'right',
-}
-```
-
-| Property     | Type                         | Required | Default | Description                      |
-| ------------ | ---------------------------- | -------- | ------- | -------------------------------- |
-| label        | string                       | ✅       | 🚫      | General label                    |
-| showAllLabel | string                       | ✅       | 🚫      | Label for the show all button    |
-| hideAllLabel | string                       | ✅       | 🚫      | Label for the hide all button    |
-| visibility   | Return of useTableVisibility | ✅       | 🚫      | Visibility of the columns        |
-| alignMenu    | Alignment                    | 🚫       | 🚫      | Menu alignment                   |
-| disabled     | boolean                      | 🚫       | false   | If the button is disabled or not |
-
-##### Density
-
-- A button that changes the row's density.
-- It is recommended to combine it with the `useTableMeasures` hook.
-
-```ts
-enum Alignment {
-  Left = 'left',
-  Right = 'right',
-}
-
-enum Density {
-  Compact = 'compact',
-  Regular = 'regular',
-  Comfortable = 'comfortable',
-}
-```
-
-| Property         | Type                       | Required | Default | Description                      |
-| ---------------- | -------------------------- | -------- | ------- | -------------------------------- |
-| compactLabel     | string                     | ✅       | 🚫      | Label of the compact option      |
-| regularLabel     | string                     | ✅       | 🚫      | Label of the regular option      |
-| comfortableLabel | string                     | ✅       | 🚫      | Label of the comfortable option  |
-| alignMenu        | Alignment                  | 🚫       | 🚫      | Menu alignment                   |
-| handleCallback   | (density: Density) => void | 🚫       | 🚫      | Triggered on change density      |
-| disabled         | boolean                    | 🚫       | false   | If the button is disabled or not |
-
-##### Download
-
-- Button to handle download or export actions.
-
-| Property | Type       | Required | Default | Description                      |
-| -------- | ---------- | -------- | ------- | -------------------------------- |
-| onClick  | () => void | ✅       | 🚫      | Action on click button           |
-| label    | string     | 🚫       | ""      | Button text                      |
-| disabled | boolean    | 🚫       | false   | If the button is disabled or not |
-
-##### Upload
-
-- Button to handle upload or import actions.
-
-| Property | Type       | Required | Default | Description                      |
-| -------- | ---------- | -------- | ------- | -------------------------------- |
-| onClick  | () => void | ✅       | 🚫      | Action on click button           |
-| label    | string     | 🚫       | 🚫      | Button text                      |
-| disabled | boolean    | 🚫       | false   | If the button is disabled or not |
-
-##### ExtraActions
-
-- Button to perform extra actions.
-
-```ts
-enum Alignment {
-  Left = 'left',
-  Right = 'right',
-}
-
-type MenuAction = {
-  label: string
-  onClick: Function
-  toggle?: {
-    checked: boolean
-    semantic: boolean
-  }
-  id?: number | string
-}
-```
-
-| Property  | Type         | Required | Default | Description                      |
-| --------- | ------------ | -------- | ------- | -------------------------------- |
-| actions   | MenuAction[] | ✅       | 🚫      | Action on click button           |
-| label     | string       | 🚫       | 🚫      | Button label                     |
-| isLoading | boolean      | 🚫       | false   | If the button is loading or not  |
-| disabled  | boolean      | 🚫       | false   | If the button is disabled or not |
-| alignMenu | Alignment    | 🚫       | 🚫      | Menu alignment                   |
-
-##### NewLine
-
-- A button that represents creational purposes.
-
-```ts
-type MenuAction = {
-  label: string
-  onClick: Function
-  toggle?: {
-    checked: boolean
-    semantic: boolean
-  }
-  id?: number | string
-}
-```
-
-| Property  | Type         | Required | Default | Description                      |
-| --------- | ------------ | -------- | ------- | -------------------------------- |
-| onClick   | () => void   | ✅       | 🚫      | Action on click button           |
-| label     | string       | 🚫       | 🚫      | Button text                      |
-| actions   | MenuAction[] | 🚫       | 🚫      | Action on click button           |
-| isLoading | boolean      | 🚫       | false   | If the button is loading or not  |
-| disabled  | boolean      | 🚫       | false   | If the button is disabled or not |
 
 ##### Working example
 
@@ -255,6 +123,8 @@ function ToolbarExample() {
     compactLabel: 'Compact',
     regularLabel: 'Regular',
     comfortableLabel: 'Comfortable',
+    density: measures.density,
+    setDensity: measures.setDensity
   }
 
   const download = {
@@ -442,64 +312,8 @@ function TotalizerExample() {
 - Bulk actions allow the user to select some or all the rows to apply an action.
 - It is recommended the usage along with the `EXPERIMENTAL_useCheckboxTree` hook which [has its docs](https://styleguide.vtex.com/#/Components/%F0%9F%91%BB%20Experimental/EXPERIMENTALUseCheckboxTree).
 - Like the `Toolbar`, `BulkActions` is a compound component.
+- You can find the full specs on the [BulkActions specific docs](https://styleguide.vtex.com/#/Components/👻%20Experimental/Bulk%20Actions).
 
-#### Actions
-
-##### Primary
-
-- Button to handle primary.
-
-| Property | Type       | Required | Default | Description            |
-| -------- | ---------- | -------- | ------- | ---------------------- |
-| label    | string     | ✅       | 🚫      | Button text            |
-| onClick  | () => void | ✅       | 🚫      | Action on click button |
-
-##### Secondary
-
-- Button to handle secondary actions.
-
-| Property      | Type                    | Required | Default | Description             |
-| ------------- | ----------------------- | -------- | ------- | ----------------------- |
-| label         | string                  | ✅       | 🚫      | Button text             |
-| onClick       | () => void              | ✅       | 🚫      | Action on click button  |
-| onActionClick | (e: MenuAction) => void | 🚫       | 🚫      | Action on click actions |
-
-#### Tail
-
-##### Info
-
-- Displays information of any kind.
-- Often used to display selected rows count.
-
-| Property | Type           | Required | Default | Description     |
-| -------- | -------------- | -------- | ------- | --------------- |
-| children | React.ReacNode | 🚫       | 🚫      | Info to display |
-
-##### Toggle
-
-- Action that hidden when active, showing it's children.
-- It is inactive, shows a Button.
-
-```ts
-type Button = {
-  text: string
-  onClick: () => void
-}
-```
-
-| Property | Type           | Required | Default | Description                   |
-| -------- | -------------- | -------- | ------- | ----------------------------- |
-| button   | Button         | ✅       | 🚫      | Button props                  |
-| active   | boolean        | 🚫       | false   | Action on click button        |
-| children | React.ReacNode | 🚫       | 🚫      | Item to show when is inactive |
-
-##### Dismiss
-
-- Button to handle download or export actions.
-
-| Property | Type       | Required | Default | Description            |
-| -------- | ---------- | -------- | ------- | ---------------------- |
-| onClick  | () => void | ✅       | 🚫      | Action on click button |
 
 ##### Working Example
 

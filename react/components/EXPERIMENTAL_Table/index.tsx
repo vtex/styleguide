@@ -7,7 +7,7 @@ import React, {
   useEffect,
 } from 'react'
 
-import Toolbar from './Toolbar/index'
+import Toolbar from '../EXPERIMENTAL_Toolbar'
 import Pagination, { PaginationProps } from './Pagination'
 import BulkActions from '../EXPERIMENTAL_BulkActions'
 import FilterBar, { FilterBarProps } from './FilterBar'
