@@ -187,7 +187,7 @@ function BodyExample() {
 
 ##### Customizing body
 
-If you want to have full control of you `<tbody>` tag, you can do as the example below:
+If you want to have full control of your `<tbody>` tag, you can do as the example below:
 
 ```js
 import Table from '../index'
