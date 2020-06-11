@@ -242,7 +242,7 @@ function CustomBodyExample() {
 
 ##### Loaded View
 
-As you can see in the "Customizing body" section sample, it's using the `<Table.Sections.LoadedView>` component, this is used there to hide something from your table when its data is not loaded or it's empty, it's highly recommended to use when customizing the default table components to avoid browser compatibility issues.
+As you can see in the "Customizing body" section sample, it's using the `<Table.Sections.LoadedView>` component, which serves there to hide something from your table when its data is not loaded or is empty. It's highly recommended to use it when customizing the default table components to avoid browser compatibility issues.
 
 ##### Sections Props
 
