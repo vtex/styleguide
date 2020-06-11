@@ -255,7 +255,7 @@ As you can see in the "Customizing body" section sample, it's using the `<Table.
 | Property  | Type             | Required | Default | Description                                    |
 | --------- | ---------------- | -------- | ------- | ---------------------------------------------- |
 | width     | number or string | 🚫       | 🚫      | Cell width (variable by default)               |
-| heigth    | number or string | 🚫       | 🚫      | Cell height (variable by default)              |
+| height    | number or string | 🚫       | 🚫      | Cell height (variable by default)              |
 | className | string           | 🚫       | 🚫      | Custom classes                                 |
 | onClick   | `() => void`     | 🚫       | 🚫      | Action to dispatch on click                    |
 | sortable  | boolean          | 🚫       | false   | If is sortable or not                          |
