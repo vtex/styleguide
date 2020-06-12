@@ -1,6 +1,5 @@
 import React, { PropsWithChildren } from 'react'
 
-import { Column } from './types'
 import { Measures, MeasuresProvider } from './context/measures'
 import { DataProvider } from './context/data'
 import { BodyProvider, BodyProps } from './context/body'

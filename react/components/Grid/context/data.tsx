@@ -1,7 +1,5 @@
 import React, { useContext, createContext, PropsWithChildren } from 'react'
 
-import { Column } from '../types'
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 interface Data<T = any> {
   columns: Column<T>[]
@@ -13,7 +11,7 @@ const DataContext = createContext<Data>(null)
 export function useDataContext() {
   const context = useContext(DataContext)
   if (!context) {
-    throw new Error('Do not use columns or items outside of Context')
+    throw new Error('Do not use columns or items outside of context')
   }
   return context
 }

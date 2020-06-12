@@ -1,7 +1,6 @@
 import React, { ReactNode } from 'react'
 import pick from 'lodash/pick'
 
-import { Column } from '../types'
 import { useDataContext } from '../context/data'
 import { useMeasuresContext } from '../context/measures'
 import Loop from './Loop'

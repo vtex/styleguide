@@ -13,7 +13,7 @@ const BodyContext = createContext<BodyProps>(null)
 export function useBodyContext() {
   const context = useContext(BodyContext)
   if (!context) {
-    throw new Error('Do not use body components outside of the BodyContext')
+    throw new Error('Do not use body components outside of context')
   }
   return context
 }

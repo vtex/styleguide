@@ -17,7 +17,9 @@ export function LoadingEmptyProvider({
 export function useLoadingEmptyContext() {
   const context = useContext(Context)
   if (!context) {
-    throw new Error('Do not use loading/emptyState components outside context')
+    throw new Error(
+      'Do not use loading/emptyState components outside of context'
+    )
   }
   return context
 }

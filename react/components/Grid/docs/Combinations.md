@@ -14,7 +14,7 @@ import Button from '../../Button'
 import EmptyState from '../../EmptyState'
 import Toolbar from '../../EXPERIMENTAL_Toolbar'
 import useGridMeasures from '../hooks/useGridMeasures'
-import useTableVisibility from '../../EXPERIMENTAL_Table/hooks/useTableVisibility'
+import useGridVisibility from '../hooks/useGridVisibility'
 import items from './data'
 
 const columns = [
@@ -104,7 +104,7 @@ function ToolbarExample() {
     displayItems: items,
   })
 
-  const visibility = useTableVisibility({
+  const visibility = useGridVisibility({
     columns,
     items,
     hiddenColumns: ['description'],

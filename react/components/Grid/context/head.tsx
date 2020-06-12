@@ -12,7 +12,7 @@ const HeadContext = createContext<HeadProps>(null)
 export function useHeadContext() {
   const context = useContext(HeadContext)
   if (!context) {
-    throw new Error('Do not use head components outside of the HeadContext')
+    throw new Error('Do not use head components outside of context')
   }
   return context
 }

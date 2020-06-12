@@ -5,7 +5,7 @@ interface CellRenderer<T = any> {
   density: string
 }
 
-export interface Column<T = any> {
+interface Column<T = any> {
   id: string
   title?: string | Element | Function
   width?: number | string
