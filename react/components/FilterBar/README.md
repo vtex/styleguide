@@ -630,7 +630,11 @@ function SimpleInputObject({ value, onChange }) {
 class FilterBarDisabled extends React.Component {
   constructor() {
     super()
-    this.state = { statements: [] }
+    this.state = {
+      statements: [
+        { object: 'category 1', subject: 'category', verb: '=', error: null },
+      ],
+    }
     this.getSimpleVerbs = this.getSimpleVerbs.bind(this)
     this.renderSimpleFilterLabel = this.renderSimpleFilterLabel.bind(this)
   }
