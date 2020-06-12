@@ -188,6 +188,10 @@ module.exports = {
               content: 'react/components/Grid/docs/useGridMeasures.md',
             },
             {
+              name: 'Combinations',
+              content: 'react/components/Grid/docs/Combinations.md',
+            },
+            {
               name: 'FAQ',
               content: 'react/components/Grid/docs/FAQ.md',
             },

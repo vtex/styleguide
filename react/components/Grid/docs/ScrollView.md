@@ -3,6 +3,7 @@ A desirable feature on tabular data is the horizontal/vertical scroll. It suppor
 ```js
 import Grid from '../index'
 import useGridMeasures from '../hooks/useGridMeasures'
+import items from './data'
 
 const columns = [
   {
@@ -12,7 +13,9 @@ const columns = [
   {
     id: 'price',
     title: 'Price',
-    
+    cellRenderer: function Price({ data }) {
+      return <Currency value={data} />
+    },
   },
   {
     id: 'description',
@@ -20,26 +23,10 @@ const columns = [
   },
 ]
 
-const items = [
-  {
-    id: 1,
-    name: "Cappuccino",
-    description: 'Cappuccino is a latte made with more foam than steamed milk, often with a sprinkle of cocoa powder or cinnamon on top',
-    price: 'USD 9.80 ',
-  },
-  {
-    id: 2,
-    name: 'Irish Coffee',
-    description: 'Irish coffee consists of black coffee, whiskey and sugar, topped with whipped cream',
-    price: 'USD 12.99',
-  },
-  {
-    id: 3,
-    name: 'Expresso',
-    description: 'An espresso shot can be served solo or used as the foundation of most coffee drinks',
-    price: 'USD 7.00',
-  },
-]
+function Currency({ value }) {
+  const formatCurrency = value => parseFloat(value).toFixed(2)
+  return <span>$ {formatCurrency(value)}</span>
+}
 
 function Showcase() {
   const measures = useGridMeasures({ size: items.length })

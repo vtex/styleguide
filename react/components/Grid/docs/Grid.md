@@ -102,42 +102,45 @@ interface CellRenderer<T> {
 ```js
 import Grid from '../index'
 import useGridMeasures from '../hooks/useGridMeasures'
+import items from './data'
 
 const columns = [
+  {
+    id: 'id',
+    title: 'ID'
+  },
   {
     id: 'name',
     title: 'Name',
   },
   {
-    id: 'email',
-    title: 'Email',
+    id: 'costPrice',
+    title: 'Cost',
+    cellRenderer: function Cost({ data }) {
+      return <Currency value={data} />
+    },
   },
   {
-    id: 'location',
-    title: 'Location',
+    id: 'price',
+    title: 'Price',
+    cellRenderer: function Price({ data }) {
+      return <Currency value={data} />
+    },
   },
+  {
+    id: 'profit',
+    title: 'Profit',
+    cellRenderer: function Profit({ data }) {
+      return <Currency value={data.price - data.costPrice} />
+    },
+    condensed: ['price', 'costPrice']
+  }
 ]
 
-const items = [
-  {
-    id: 1,
-    name: "T'Chala",
-    email: 'black.panther@gmail.com',
-    location: '🇰🇪Wakanda',
-  },
-  {
-    id: 2,
-    name: 'Peter Parker',
-    email: 'spider.man@gmail.com',
-    location: '🇺🇸USA',
-  },
-  {
-    id: 3,
-    name: 'Shang-Chi',
-    email: 'kung.fu@gmail.com',
-    location: '🇨🇳China',
-  },
-]
+function Currency({ value }) {
+  const formatCurrency = value => parseFloat(value).toFixed(2)
+  return <span>$ {formatCurrency(value)}</span>
+}
 
 function Showcase() {
   const measures = useGridMeasures({ size: items.length })

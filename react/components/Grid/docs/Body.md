@@ -153,54 +153,38 @@ interface RenderProps<T> {
 import Grid from '../index'
 import ButtonPlain from '../../ButtonPlain'
 import useGridMeasures from '../hooks/useGridMeasures'
-
-const items = [
-  {
-    id: 1,
-    name: "T'Chala",
-    email: 'black.panther@gmail.com',
-    location: '🇰🇪Wakanda',
-    credit: 3990,
-    debit: 10,
-  },
-  {
-    id: 2,
-    name: 'Peter Parker',
-    email: 'spider.man@gmail.com',
-    location: '🇺🇸USA',
-    credit: 391,
-    debit: 919,
-  },
-  {
-    id: 3,
-    name: 'Shang-Chi',
-    email: 'kung.fu@gmail.com',
-    location: '🇨🇳China',
-    credit: 100,
-    debit: 200,
-  },
-]
+import items from './data'
 
 const columns = [
+  {
+    id: 'id',
+    title: 'ID'
+  },
   {
     id: 'name',
     title: 'Name',
   },
   {
-    id: 'email',
-    title: 'Email',
-  },
-  {
-    id: 'location',
-    title: 'Location',
-  },
-  {
-    id: 'bonus',
-    title: 'Bonus',
-    cellRenderer: function Bonus({ data }) {
-      return <React.Fragment>{data.credit - data.debit}</React.Fragment>
+    id: 'costPrice',
+    title: 'Cost',
+    cellRenderer: function Cost({ data }) {
+      return <Currency value={data} />
     },
-    condensed: ['credit', 'debit']
+  },
+  {
+    id: 'price',
+    title: 'Price',
+    cellRenderer: function Price({ data }) {
+      return <Currency value={data} />
+    },
+  },
+  {
+    id: 'profit',
+    title: 'Profit',
+    cellRenderer: function Profit({ data }) {
+      return <Currency value={data.price - data.costPrice} />
+    },
+    condensed: ['price', 'costPrice']
   },
   {
     id: 'actions',
@@ -208,13 +192,18 @@ const columns = [
     cellRenderer: function RowActions({ data }) {
       return (
         <ButtonPlain onClick={() => alert(JSON.stringify(data))}>
-          Action for {data.name}
+          Sell {data.name}
         </ButtonPlain>
       )
     },
     extended: true,
   }
 ]
+
+function Currency({ value }) {
+  const formatCurrency = value => parseFloat(value).toFixed(2)
+  return <span>$ {formatCurrency(value)}</span>
+}
 
 function BodyExample() {
   const measures = useGridMeasures({ size: items.length })
@@ -254,54 +243,38 @@ function BodyExample() {
 import Grid from '../index'
 import ButtonPlain from '../../ButtonPlain'
 import useGridMeasures from '../hooks/useGridMeasures'
-
-const items = [
-  {
-    id: 1,
-    name: "T'Chala",
-    email: 'black.panther@gmail.com',
-    location: '🇰🇪Wakanda',
-    credit: 3990,
-    debit: 10,
-  },
-  {
-    id: 2,
-    name: 'Peter Parker',
-    email: 'spider.man@gmail.com',
-    location: '🇺🇸USA',
-    credit: 391,
-    debit: 919,
-  },
-  {
-    id: 3,
-    name: 'Shang-Chi',
-    email: 'kung.fu@gmail.com',
-    location: '🇨🇳China',
-    credit: 100,
-    debit: 200,
-  },
-]
+import items from './data'
 
 const columns = [
+  {
+    id: 'id',
+    title: 'ID'
+  },
   {
     id: 'name',
     title: 'Name',
   },
   {
-    id: 'email',
-    title: 'Email',
-  },
-  {
-    id: 'location',
-    title: 'Location',
-  },
-  {
-    id: 'bonus',
-    title: 'Bonus',
-    cellRenderer: function Bonus({ data }) {
-      return <React.Fragment>{data.credit - data.debit}</React.Fragment>
+    id: 'costPrice',
+    title: 'Cost',
+    cellRenderer: function Cost({ data }) {
+      return <Currency value={data} />
     },
-    condensed: ['credit', 'debit']
+  },
+  {
+    id: 'price',
+    title: 'Price',
+    cellRenderer: function Price({ data }) {
+      return <Currency value={data} />
+    },
+  },
+  {
+    id: 'profit',
+    title: 'Profit',
+    cellRenderer: function Profit({ data }) {
+      return <Currency value={data.price - data.costPrice} />
+    },
+    condensed: ['price', 'costPrice']
   },
   {
     id: 'actions',
@@ -309,13 +282,18 @@ const columns = [
     cellRenderer: function RowActions({ data }) {
       return (
         <ButtonPlain onClick={() => alert(JSON.stringify(data))}>
-          Action for {data.name}
+          Sell {data.name}
         </ButtonPlain>
       )
     },
     extended: true,
   }
 ]
+
+function Currency({ value }) {
+  const formatCurrency = value => parseFloat(value).toFixed(2)
+  return <span>$ {formatCurrency(value)}</span>
+}
 
 function BodyExample() {
   const measures = useGridMeasures({ size: items.length })

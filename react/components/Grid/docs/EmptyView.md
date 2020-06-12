@@ -7,6 +7,7 @@ import Grid from '../index'
 import Button from '../../Button'
 import EmptyState from '../../EmptyState'
 import useGridMeasures from '../hooks/useGridMeasures'
+import items from './data'
 
 const columns = [
   {
@@ -18,41 +19,11 @@ const columns = [
     title: 'Name',
   },
   {
-    id: 'price',
-    title: 'Price',
-  },
-]
-
-const items = [
-  {
-    id: 1,
-    name: "Cappuccino",
-    price: 'USD 9.80 ',
-  },
-  {
-    id: 2,
-    name: 'Irish Coffee',
-    price: 'USD 12.99',
-  },
-  {
-    id: 3,
-    name: 'Expresso',
-    price: 'USD 7.00',
-  },
-  {
-    id: 4,
-    name: 'Macchiato',
-    price: 'USD 9.00',
-  },
-  {
-    id: 5,
-    name: 'Americano',
-    price: 'USD 5.00',
-  },
-  {
-    id: 6,
-    name: 'Red Eye',
-    price: 'USD 11.00',
+    id: 'description',
+    title: 'Description',
+    cellRenderer: function Description({ data }) {
+      return <div style={{ maxWidth: 400 }} className="truncate">{data}</div>
+    }
   },
 ]
 

@@ -108,12 +108,16 @@ const columns =[
     title: 'Name',
   },
   {
-    id: 'email',
-    title: 'Email',
+    id: 'description',
+    title: 'Description',
   },
   {
-    id: 'location',
-    title: 'Location',
+    id: 'price',
+    title: 'Price',
+  },
+  {
+    id: 'cost',
+    title: 'Cost',
   },
 ]
 
