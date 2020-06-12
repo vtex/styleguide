@@ -9,9 +9,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
+<<<<<<< HEAD
 - `vtex-slider__base-internal` CSS handle.
 - `Table.Sections.LoadedView` to export functionality of hiding the table's body when content is not loaded or is empty.
-- `EXPERIMENTAL_Table/Cell` style.
+- `EXPERIMENTAL_Table/Cell` style prop.
+- `content` render prop on `EXPERIMENTAL_Table/Row`.
 
 ### Fixed
 
