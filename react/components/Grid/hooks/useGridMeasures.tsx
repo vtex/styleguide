@@ -1,11 +1,16 @@
 import { useMemo, useState } from 'react'
 
-import {
-  DEFAULT_SIZE,
-  DEFAULT_DENSITY_MAP,
-  DEFAULT_BASE_DENSITY,
-  DEFAULT_HEADER_HEIGHT,
-} from './constants'
+export const DEFAULT_SIZE = 5
+export const DEFAULT_BASE_DENSITY = 'regular'
+export const DEFAULT_DENSITY_MAP = { compact: 32, regular: 48, comfortable: 76 }
+export const DEFAULT_HEADER_HEIGHT = 36
+
+interface HookInput {
+  size?: number
+  baseDensity?: string
+  headerHeight?: number
+  densityMap?: Record<string, number>
+}
 
 export default function useStackSize({
   size = DEFAULT_SIZE,

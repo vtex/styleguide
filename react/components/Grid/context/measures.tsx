@@ -1,15 +1,15 @@
 import React, { createContext, useContext, PropsWithChildren } from 'react'
 
-import useListMeasures from '../../../utilities/useListMeasures'
+import useGridMeasures from '../hooks/useGridMeasures'
 
-export type Measures = ReturnType<typeof useListMeasures>
+export type Measures = ReturnType<typeof useGridMeasures>
 
 const Context = createContext<Measures>(null)
 
 export function useMeasuresContext() {
   const context = useContext(Context)
   if (!context) {
-    throw new Error('Type a great message for this')
+    throw new Error('Do not use measures outside of context')
   }
   return context
 }

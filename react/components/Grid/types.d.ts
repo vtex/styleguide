@@ -14,3 +14,8 @@ export interface Column<T = any> {
   extended?: boolean
   condensed?: string[]
 }
+
+type NativeDiv = React.DetailedHTMLProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  HTMLDivElement
+>

@@ -100,7 +100,7 @@ interface RenderProps {
 
 ```js
 import Grid from '../index'
-import useListMeasures from '../../../utilities/useListMeasures'
+import useGridMeasures from '../hooks/useGridMeasures'
 
 const columns =[
   {
@@ -118,7 +118,7 @@ const columns =[
 ]
 
 function HeadExample() {
-  const measures = useListMeasures({ size: 1 })
+  const measures = useGridMeasures({ size: 1 })
   return (
     <Grid 
       measures={measures}

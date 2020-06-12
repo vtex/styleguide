@@ -3,11 +3,6 @@ import classNames from 'classnames'
 
 import { useMeasuresContext } from '../context/measures'
 
-type NativeDiv = React.DetailedHTMLProps<
-  React.HTMLAttributes<HTMLDivElement>,
-  HTMLDivElement
->
-
 function ScrollView(props: NativeDiv, ref: Ref<HTMLDivElement>) {
   const { combinedHeight } = useMeasuresContext()
   const { children, style, className, ...rest } = props

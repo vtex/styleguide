@@ -1,10 +1,18 @@
-A desirable feature on tabular data is the horizontal/vertical scroll. It supports displaying the data in the cell without corrupting it, and keep a small size factor in the container.
+View that is displayed when the Grid is empty. You can pass any prop of a div, and forward a ref.
 
 ```js
+import { useState, Fragment } from 'react'
+
 import Grid from '../index'
+import Button from '../../Button'
+import EmptyState from '../../EmptyState'
 import useGridMeasures from '../hooks/useGridMeasures'
 
 const columns = [
+  {
+    id: 'id',
+    title: 'ID'
+  },
   {
     id: 'name',
     title: 'Name',
@@ -12,11 +20,6 @@ const columns = [
   {
     id: 'price',
     title: 'Price',
-    
-  },
-  {
-    id: 'description',
-    title: 'Description',
   },
 ]
 
@@ -24,32 +27,52 @@ const items = [
   {
     id: 1,
     name: "Cappuccino",
-    description: 'Cappuccino is a latte made with more foam than steamed milk, often with a sprinkle of cocoa powder or cinnamon on top',
     price: 'USD 9.80 ',
   },
   {
     id: 2,
     name: 'Irish Coffee',
-    description: 'Irish coffee consists of black coffee, whiskey and sugar, topped with whipped cream',
     price: 'USD 12.99',
   },
   {
     id: 3,
     name: 'Expresso',
-    description: 'An espresso shot can be served solo or used as the foundation of most coffee drinks',
     price: 'USD 7.00',
+  },
+  {
+    id: 4,
+    name: 'Macchiato',
+    price: 'USD 9.00',
+  },
+  {
+    id: 5,
+    name: 'Americano',
+    price: 'USD 5.00',
+  },
+  {
+    id: 6,
+    name: 'Red Eye',
+    price: 'USD 11.00',
   },
 ]
 
 function Showcase() {
   const measures = useGridMeasures({ size: items.length })
+  const [empty, setEmpty] = useState(false)
+  
   return (
-    <Grid 
-      measures={measures}
-      columns={columns}
-      items={items}
-    >
-      <Grid.ScrollView>
+    <Fragment>
+      <div className="mb5">
+        <Button variation="secondary" onClick={() => setEmpty(prev => !prev)}>
+          {empty ? 'Populate Items' : 'Remove all items' }
+        </Button>
+      </div>
+      <Grid 
+        measures={measures}
+        columns={columns}
+        items={items}
+        empty={empty}
+      >
         <table className="w-100" style={{ borderSpacing: 0 }}>
           <thead>
             <Grid.Head>
@@ -82,8 +105,20 @@ function Showcase() {
             </Grid.Body>
           </tbody>
         </table>
-      </Grid.ScrollView>
-    </Grid>
+        <Grid.EmptyView>
+          <EmptyState title="Ops! Your list is empty">
+            <p>
+              You did not registered any coffee in the system!
+            </p>
+            <div className="pt5">
+              <Button variation="secondary" size="small">
+                <span className="flex align-baseline">Register Coffee</span>
+              </Button>
+            </div>
+          </EmptyState>
+        </Grid.EmptyView>
+      </Grid>
+    </Fragment>
   )
 }
 

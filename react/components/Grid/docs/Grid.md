@@ -1,17 +1,22 @@
 #### Grid is a flexible and composable rendering logic of tabular data. You can use it display lists and tables.
+#### ⚠️ This is not a replacement neither for Table V1 or v2! They're have different use cases. Check the FAQ's section for more info.
 
 # Props
 
-| name | type | required | default  | description |
-| --- | --- | --- | --- | --- | 
-| columns | Column<T>[] | ✅ | 🚫 | Grid columns definition |
-| measures | Measures | ✅ | 🚫| Grid sizes |
-| items | T[] | 🚫 | [] | Data to display |
-| stickyHeader | boolean | 🚫 | false | If the header is sticky or not |
-| onRowClick | (data: T) => void | 🚫 | () => null | Action to dispatch on a row click |
-| isRowActive | (data: T) => boolean | 🚫 | () => false | Whenever the row is active |
-| getRowKey | (data: T) => string | 🚫 | (data) => data.id  | Get a key for the items |
-| highlightOnHover | boolean | 🚫 | false  | If the row body should highlight onHover |
+| name             | type                 | required | default           | description                              |
+|------------------|----------------------|----------|-------------------|------------------------------------------|
+| columns          | Column<T>[]          | ✅        | 🚫                | Grid columns definition                  |
+| measures         | Measures             | ✅        | 🚫                | Grid sizes                               |
+| items            | T[]                  | 🚫       | []                | Data to display                          |
+| stickyHeader     | boolean              | 🚫       | false             | If the header is sticky or not           |
+| onRowClick       | (data: T) => void    | 🚫       | () => null        | Action to dispatch on a row click        |
+| isRowActive      | (data: T) => boolean | 🚫       | () => false       | Whenever the row is active               |
+| getRowKey        | (data: T) => string  | 🚫       | (data) => data.id | Get a key for the items                  |
+| highlightOnHover | boolean              | 🚫       | false             | If the row body should highlight onHover |
+| loading          | boolean              | 🚫       | false             | If is loading or not                     |
+| empty            | boolean              | 🚫       | false             | If is empty or not                       |
+
+
 
 ```ts
 type Measures = {
@@ -96,7 +101,7 @@ interface CellRenderer<T> {
 
 ```js
 import Grid from '../index'
-import useListMeasures from '../../../utilities/useListMeasures'
+import useGridMeasures from '../hooks/useGridMeasures'
 
 const columns = [
   {
@@ -135,7 +140,7 @@ const items = [
 ]
 
 function Showcase() {
-  const measures = useListMeasures({ size: items.length })
+  const measures = useGridMeasures({ size: items.length })
   return (
     <Grid 
       measures={measures}

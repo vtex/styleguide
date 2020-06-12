@@ -1,8 +1,8 @@
 import { renderHook, act } from '@testing-library/react-hooks'
 
-import useListMeasures from './index'
+import useListMeasures from '../useGridMeasures'
 
-describe('useListMeasures', () => {
+describe('useGridMeasures', () => {
   it('should change density', () => {
     const { result } = renderHook(() =>
       useListMeasures({

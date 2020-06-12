@@ -175,6 +175,22 @@ module.exports = {
               name: 'ScrollView',
               content: 'react/components/Grid/docs/ScrollView.md',
             },
+            {
+              name: 'LoadingView',
+              content: 'react/components/Grid/docs/LoadingView.md',
+            },
+            {
+              name: 'EmptyView',
+              content: 'react/components/Grid/docs/EmptyView.md',
+            },
+            {
+              name: 'useGridMeasures',
+              content: 'react/components/Grid/docs/useGridMeasures.md',
+            },
+            {
+              name: 'FAQ',
+              content: 'react/components/Grid/docs/FAQ.md',
+            },
           ],
         },
         {
@@ -183,7 +199,6 @@ module.exports = {
           components: [
             'react/components/EXPERIMENTAL_Conditions/index.js',
             'react/components/EXPERIMENTAL_Select/index.js',
-            'react/components/EXPERIMENTAL_useCheckboxTree/index.tsx',
           ],
           sections: [
             {
@@ -235,6 +250,11 @@ module.exports = {
                     'react/components/EXPERIMENTAL_Table/docs/MigrationGuide.md',
                 },
               ],
+            },
+            {
+              name: 'useCheckboxTree',
+              content:
+                './react/components/EXPERIMENTAL_useCheckboxTree/README.md',
             },
           ],
         },

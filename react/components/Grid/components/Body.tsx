@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode, Fragment } from 'react'
 import classNames from 'classnames'
 
 import Loop from './Loop'
@@ -6,10 +6,11 @@ import { useMeasuresContext } from '../context/measures'
 import { useDataContext } from '../context/data'
 import { useBodyContext } from '../context/body'
 import Row from './Row'
+import { useLoadingEmptyContext } from '../context/loadingEmpty'
 
 const LIGHT_BLUE = '#DBE9FD'
 
-interface RenderProps<T> {
+interface DynamicRenderProps<T> {
   data: T
   index: number
   ctx: {
@@ -19,11 +20,24 @@ interface RenderProps<T> {
   }
 }
 
-interface Props<T> {
-  children: (props: RenderProps<T>) => ReactNode
+interface StaticRenderProps<T> {
+  data: T[]
+  ctx: {
+    getComputedStyle: (item: T) => Record<string, number | string>
+    computedClassName: string
+    handleClick?: (data: T) => void
+  }
 }
 
-function Body<T>({ children }: Props<T>) {
+type StaticChildren<T> = (props: StaticRenderProps<T>) => ReactNode
+type DynamicChildren<T> = (props: DynamicRenderProps<T>) => ReactNode
+
+interface Props<T> {
+  children: DynamicChildren<T> | StaticChildren<T>
+  dynamic: boolean
+}
+
+function Body<T>({ dynamic = true, children }: Props<T>) {
   const { baseHeight } = useMeasuresContext()
   const { items } = useDataContext()
   const {
@@ -32,28 +46,56 @@ function Body<T>({ children }: Props<T>) {
     onRowClick,
     getRowKey,
   } = useBodyContext()
+  const { empty, loading } = useLoadingEmptyContext()
+
+  const showBody = !empty && !loading
 
   const computedClassName = classNames('w-100 truncate overflow-x-hidden', {
     'pointer hover-c-link': onRowClick,
     'hover-bg-muted-5': highlightOnHover || !!onRowClick,
   })
 
+  const getComputedStyle = (item: T): Record<string, number | string> => {
+    const bg = isRowActive?.(item) ? { backgroundColor: LIGHT_BLUE } : {}
+    return {
+      height: baseHeight,
+      ...bg,
+    }
+  }
+
+  if (!showBody) {
+    return null
+  }
+
+  if (!dynamic) {
+    const staticChildren = children as StaticChildren<T>
+    return (
+      <Fragment>
+        {staticChildren({
+          data: items,
+          ctx: {
+            handleClick: onRowClick,
+            computedClassName,
+            getComputedStyle,
+          },
+        })}
+      </Fragment>
+    )
+  }
+
   return (
     <Loop list={items} getKey={getRowKey}>
       {(item, index) => {
-        const bg = isRowActive?.(item) ? { backgroundColor: LIGHT_BLUE } : {}
-
-        const computedStyle = {
-          height: baseHeight,
-          ...bg,
-        }
-
         const handleClick = onRowClick ? () => onRowClick(item) : () => null
-
-        return children({
+        const dynamicChildren = children as DynamicChildren<T>
+        return dynamicChildren({
           data: item,
           index,
-          ctx: { computedStyle, computedClassName, handleClick },
+          ctx: {
+            computedStyle: getComputedStyle(item),
+            computedClassName,
+            handleClick,
+          },
         })
       }}
     </Loop>
