@@ -10,7 +10,11 @@ import DropdownIndicatorComponent from './DropdownIndicator'
 import MultiValueRemove from './MultiValueRemove'
 import Placeholder from './Placeholder'
 import ControlComponent from './Control'
-import { getFontClassNameFromSize, getTagPaddingFromSize } from './styles'
+import {
+  getFontClassNameFromSize,
+  getTagPaddingFromSize,
+  getControlHeightFromSize,
+} from './styles'
 import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
 
 const getOptionValue = option => {
@@ -123,6 +127,8 @@ class Select extends Component {
           return {
             ...style,
             ...errorStyle,
+            borderColor: COLORS['muted-4'],
+            minHeight: getControlHeightFromSize(size),
             borderWidth: '.125rem',
           }
         },
@@ -139,6 +145,7 @@ class Select extends Component {
         }),
         multiValueLabel: (style, state) => ({
           ...style,
+          padding: '0.125rem',
           paddingRight: 0,
           fontWeight: 500,
           color: state.isDisabled ? COLORS.gray : COLORS.blue,
@@ -152,7 +159,6 @@ class Select extends Component {
           },
         }),
         option: style => ({ ...style, cursor: 'pointer' }),
-        placeholder: style => ({ ...style, padding: 10 }),
         valueContainer: (style, state) => ({
           ...style,
           cursor: 'pointer',
