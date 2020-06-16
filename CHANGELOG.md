@@ -14,6 +14,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - `FilterTag` disabled style.
+- Filter bar button font
+
 
 ## [9.120.1] - 2020-06-05
 
