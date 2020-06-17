@@ -71,6 +71,11 @@ const propTypes = {
       /** Last Searched options's title */
       label: PropTypes.node.isRequired,
     }),
+    /**
+     * Selects a size of the input bar, could be set to `small`, `regular` or `large`.
+     * `regular` is the default value.
+     */
+    display: PropTypes.string,
   }).isRequired,
 }
 
@@ -87,6 +92,7 @@ const AutocompleteInput: React.FunctionComponent<PropTypes.InferProps<
     loading,
     lastSearched = {},
     icon,
+    display,
   },
 }) => {
   const [term, setTerm] = useState(value || '')
@@ -210,6 +216,7 @@ const AutocompleteInput: React.FunctionComponent<PropTypes.InferProps<
         onSearch={() => onSearch(term)}
         onClear={handleClear}
         onChange={handleTermChange}
+        display={display}
       />
       {popoverOpened ? (
         <div className="relative">
