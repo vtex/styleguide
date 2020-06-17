@@ -39,7 +39,7 @@ const UsersAutocomplete = () => {
             ? user.toLowerCase().includes(term.toLowerCase())
             : user.label.toLowerCase().includes(term.toLowerCase())
         ),
-    display: 'small',
+    size: 'small',
   }
 
   const input = {
@@ -107,7 +107,7 @@ const UsersAutocomplete = () => {
       onChange: option =>
         option && setLastSearched(uniq([...lastSearched, option])),
     },
-    display: 'regular',
+    size: 'regular',
   }
 
   const input = {
@@ -227,7 +227,7 @@ const UsersAutocomplete = () => {
     },
     // --- This is what makes the custom option work!
     renderOption: props => <CustomOption {...props} />,
-    display: 'large',
+    size: 'large',
   }
 
   const input = {
