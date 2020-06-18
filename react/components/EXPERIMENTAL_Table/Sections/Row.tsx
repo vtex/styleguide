@@ -1,4 +1,4 @@
-import React, { forwardRef, Ref } from 'react'
+import React, { forwardRef, Ref, ReactNode } from 'react'
 import classNames from 'classnames'
 import pick from 'lodash/pick'
 
@@ -8,27 +8,62 @@ import { useDataContext } from '../context/data'
 import { useBodyContext } from '../context/body'
 import { useMeasuresContext } from '../context/measures'
 import Cell, { ComposableCell } from './Cell'
+import { Density } from '../hooks/useTableMeasures'
 
 interface RowRenderProps {
   props: {
     width: number | string
   }
   key: string
+  // TODO Deprecate
   data: unknown
+  // TODO Deprecate
   column: Column
   motion: ReturnType<typeof useTableMotion>
   index: number
   header: boolean
+  content: ReactNode
 }
 
 interface SpecificProps extends NativeTr {
   height: number
   motion?: ReturnType<typeof useTableMotion>
-  data?: unknown
+  data?: object
   header?: boolean
 }
 
 type Props = RenderProps<SpecificProps, RowRenderProps>
+
+interface DraftContent {
+  column: Column
+  data: object
+  renderInfo: {
+    rowHeight: number
+    density: Density
+    motion: object
+  }
+}
+
+function getContent({ column, data, renderInfo }: DraftContent): ReactNode {
+  const { id, cellRenderer, condensed, extended } = column
+
+  if (!data) return
+
+  const cellData = condensed
+    ? pick(data, condensed)
+    : extended
+    ? data
+    : data[id]
+
+  const content = cellRenderer
+    ? cellRenderer({
+        data: cellData,
+        ...renderInfo,
+      })
+    : cellData
+
+  return content
+}
 
 function Row(
   { children, motion, data, height, header = false, ...props }: Props,
@@ -68,6 +103,16 @@ function Row(
       {columns.map((column: Column, index: number) => {
         const { id, width } = column
 
+        const content = getContent({
+          column,
+          data,
+          renderInfo: {
+            rowHeight: height,
+            motion,
+            density,
+          },
+        })
+
         if (children) {
           return children({
             props: {
@@ -76,27 +121,13 @@ function Row(
             key: id,
             data,
             column,
+            content,
             motion,
             index,
             header,
           })
         }
 
-        const { cellRenderer, condensed, extended } = column
-        const cellData = condensed
-          ? pick(data, condensed)
-          : extended
-          ? data
-          : data[id]
-
-        const content = cellRenderer
-          ? cellRenderer({
-              data: cellData,
-              rowHeight: height,
-              density,
-              motion,
-            })
-          : cellData
         return (
           <Cell key={id} width={width} height={height}>
             {content}

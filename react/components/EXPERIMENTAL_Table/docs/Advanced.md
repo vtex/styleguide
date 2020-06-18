@@ -169,9 +169,9 @@ function BodyExample() {
         <Table.Sections.Body>
           {({ key, props }) => (
             <Table.Sections.Body.Row key={key} {...props}>
-              {({ key, props, data, column }) => (
+              {({ key, props, content }) => (
                 <Table.Sections.Body.Row.Cell key={key} {...props}>
-                  {data[column.id]}
+                  {content}
                 </Table.Sections.Body.Row.Cell>
               )}
             </Table.Sections.Body.Row>
@@ -247,13 +247,17 @@ As you can see in the "Customizing body" section sample, it's using the `<Table.
 ##### Sections Props
 
 | Property      | Type    | Required | Default | Description                              |
+<<<<<<< HEAD
 | ------------- | ------- | -------- | ------- | ---------------------------------------- |
+=======
+|---------------|---------|----------|---------|------------------------------------------|
+>>>>>>> Added cell content
 | disableScroll | boolean | 🚫       | false   | Disable scroll overflow of the container |
 
 ##### Cell Props
 
 | Property  | Type             | Required | Default | Description                                    |
-| --------- | ---------------- | -------- | ------- | ---------------------------------------------- |
+|-----------|------------------|----------|---------|------------------------------------------------|
 | width     | number or string | 🚫       | 🚫      | Cell width (variable by default)               |
 | height    | number or string | 🚫       | 🚫      | Cell height (variable by default)              |
 | className | string           | 🚫       | 🚫      | Custom classes                                 |
@@ -266,18 +270,19 @@ As you can see in the "Customizing body" section sample, it's using the `<Table.
 ##### Row Props
 
 | Property | Type                       | Required | Default | Description                |
-| -------- | -------------------------- | -------- | ------- | -------------------------- |
-| height   | number                     | ✅       | 🚫      | Row's height               |
+|----------|----------------------------|----------|---------|----------------------------|
+| height   | number                     | ✅        | 🚫      | Row's height               |
 | data     | unknown                    | 🚫       | 🚫      | Item that will be rendered |
 | motion   | return of `useTableMotion` | 🚫       | 🚫      | Current motion             |
 
 ##### Row Render Props (with composable render)
 
-| Property | Type                        | Required | Default | Description           |
-| -------- | --------------------------- | -------- | ------- | --------------------- |
-| props    | { width: number or string } | ✅       | 🚫      | Width of current cell |
-| key      | string                      | ✅       | 🚫      | Key of current cell   |
-| index    | number                      | ✅       | 🚫      | Index of current cell |
-| data     | unknown                     | ✅       | 🚫      | Data current cell     |
-| column   | Column                      | ✅       | 🚫      | current column        |
-| motion   | return of `useTableMotion`  | 🚫       | 🚫      | Current motion        |
+| Property            | Type                        | Required | Default | Description           |
+|---------------------|-----------------------------|----------|---------|-----------------------|
+| props               | { width: number or string } | ✅        | 🚫      | Width of current cell |
+| key                 | string                      | ✅        | 🚫      | Key of current cell   |
+| index               | number                      | ✅        | 🚫      | Index of current cell |
+| content             | unknown                     | ✅        | 🚫      | Current cell content  |
+| motion              | return of `useTableMotion`  | 🚫       | 🚫      | Current motion        |
+| [DEPRECATED] data   | unknown                     | ✅        | 🚫      | Data current cell     |
+| [DEPRECATED] column | Column                      | ✅        | 🚫      | current column        |
