@@ -65,17 +65,16 @@ export const ModalOverlay: FC<OverlayProps> = ({
   useEnhancedEffect(() => {
     if (isOpen) {
       setFocusReturnNode(document.activeElement)
+      return
     }
 
-    return () => {
-      if (
-        focusReturnNode instanceof HTMLElement &&
-        document.contains(focusReturnNode)
-      ) {
-        focusReturnNode?.focus()
-      }
+    if (
+      focusReturnNode instanceof HTMLElement &&
+      document.contains(focusReturnNode)
+    ) {
+      focusReturnNode?.focus()
     }
-  })
+  }, [isOpen])
 
   useEnhancedEffect(() => {
     if (!isOpen) {
