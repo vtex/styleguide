@@ -216,7 +216,7 @@ const AutocompleteInput: React.FunctionComponent<PropTypes.InferProps<
         onSearch={() => onSearch(term)}
         onClear={handleClear}
         onChange={handleTermChange}
-        barSize={size}
+        size={size}
       />
       {popoverOpened ? (
         <div className="relative">
