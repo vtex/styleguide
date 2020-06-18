@@ -5,7 +5,7 @@ import classNames from 'classnames'
 import TopBar from './TopBar'
 import BottomBar from './BottomBar'
 import styles from './modal.css'
-import { useEnhancedEffect, canUseDOM } from './utils'
+import { useEnhancedEffect, canUseDOM, Key } from './utils'
 import FocusTrap from './FocusTrap'
 
 export interface Props
@@ -148,7 +148,7 @@ const ModalContent = forwardRef<HTMLDivElement, ContentProps>(
     forwardedRef
   ) {
     const handleKeyDown = (event: React.KeyboardEvent) => {
-      if (!closeOnEsc || event.key !== 'Escape') {
+      if (!closeOnEsc || (event.key !== Key.ESCAPE && event.key !== Key.ESC)) {
         return
       }
       event.stopPropagation()

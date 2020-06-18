@@ -3,7 +3,7 @@
 exports[`ModalDialog cancelation should render label 1`] = `
 <div>
   <div
-    class="vtex.modal__overlay flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0 items-center"
+    class="vtex-modal__overlay flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0 items-center"
     data-testid="modal__overlay"
     role="presentation"
     tabindex="-1"
@@ -98,7 +98,7 @@ exports[`ModalDialog cancelation should render label 1`] = `
 exports[`ModalDialog confirmation isDangerous CSS 1`] = `
 <div>
   <div
-    class="vtex.modal__overlay flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0 items-center"
+    class="vtex-modal__overlay flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0 items-center"
     data-testid="modal__overlay"
     role="presentation"
     tabindex="-1"
@@ -193,7 +193,7 @@ exports[`ModalDialog confirmation isDangerous CSS 1`] = `
 exports[`ModalDialog confirmation should render label 1`] = `
 <div>
   <div
-    class="vtex.modal__overlay flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0 items-center"
+    class="vtex-modal__overlay flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0 items-center"
     data-testid="modal__overlay"
     role="presentation"
     tabindex="-1"
@@ -288,7 +288,7 @@ exports[`ModalDialog confirmation should render label 1`] = `
 exports[`ModalDialog loading CSS 1`] = `
 <div>
   <div
-    class="vtex.modal__overlay flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0 items-center"
+    class="vtex-modal__overlay flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0 items-center"
     data-testid="modal__overlay"
     role="presentation"
     tabindex="-1"

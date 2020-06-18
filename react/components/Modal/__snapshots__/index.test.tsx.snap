@@ -3,7 +3,7 @@
 exports[`Modal CSS API centered 1`] = `
 <div>
   <div
-    class="vtex.modal__overlay flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0 items-center"
+    class="vtex-modal__overlay flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0 items-center"
     data-testid="modal__overlay"
     role="presentation"
     tabindex="-1"
@@ -62,7 +62,7 @@ exports[`Modal CSS API centered 1`] = `
 exports[`Modal CSS API default 1`] = `
 <div>
   <div
-    class="vtex.modal__overlay flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0 items-center"
+    class="vtex-modal__overlay flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0 items-center"
     data-testid="modal__overlay"
     role="presentation"
     tabindex="-1"
@@ -121,7 +121,7 @@ exports[`Modal CSS API default 1`] = `
 exports[`Modal CSS API responsiveFullScreen true 1`] = `
 <div>
   <div
-    class="vtex.modal__overlay flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0 items-center"
+    class="vtex-modal__overlay flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0 items-center"
     data-testid="modal__overlay"
     role="presentation"
     tabindex="-1"
@@ -180,7 +180,7 @@ exports[`Modal CSS API responsiveFullScreen true 1`] = `
 exports[`Modal CSS API showBottomBarBorder false 1`] = `
 <div>
   <div
-    class="vtex.modal__overlay flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0 items-center"
+    class="vtex-modal__overlay flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0 items-center"
     data-testid="modal__overlay"
     role="presentation"
     tabindex="-1"
@@ -239,7 +239,7 @@ exports[`Modal CSS API showBottomBarBorder false 1`] = `
 exports[`Modal CSS API showTopBar false 1`] = `
 <div>
   <div
-    class="vtex.modal__overlay flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0 items-center"
+    class="vtex-modal__overlay flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0 items-center"
     data-testid="modal__overlay"
     role="presentation"
     tabindex="-1"
@@ -298,7 +298,7 @@ exports[`Modal CSS API showTopBar false 1`] = `
 exports[`Modal bottomBar should render bottomBar 1`] = `
 <div>
   <div
-    class="vtex.modal__overlay flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0 items-center"
+    class="vtex-modal__overlay flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0 items-center"
     data-testid="modal__overlay"
     role="presentation"
     tabindex="-1"
@@ -366,7 +366,7 @@ exports[`Modal bottomBar should render bottomBar 1`] = `
 exports[`Modal container should render modal inside it 1`] = `
 <div>
   <div
-    class="vtex.modal__overlay flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0 items-center"
+    class="vtex-modal__overlay flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0 items-center"
     data-testid="modal__overlay"
     role="presentation"
     tabindex="-1"
@@ -425,7 +425,7 @@ exports[`Modal container should render modal inside it 1`] = `
 exports[`Modal isOpen Should show modal when isOpen is true and hide when is false 1`] = `
 <div>
   <div
-    class="vtex.modal__overlay flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0 items-center"
+    class="vtex-modal__overlay flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0 items-center"
     data-testid="modal__overlay"
     role="presentation"
     tabindex="-1"
@@ -484,7 +484,7 @@ exports[`Modal isOpen Should show modal when isOpen is true and hide when is fal
 exports[`Modal isOpen Should show modal when isOpen is true and hide when is false 2`] = `
 <div>
   <div
-    class="vtex.modal__overlay flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0 items-center"
+    class="vtex-modal__overlay flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0 items-center"
     data-testid="modal__overlay"
     role="presentation"
     tabindex="-1"
@@ -543,7 +543,7 @@ exports[`Modal isOpen Should show modal when isOpen is true and hide when is fal
 exports[`Modal title should render title prop 1`] = `
 <DocumentFragment>
   <div
-    class="vtex.modal__overlay flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0 items-center"
+    class="vtex-modal__overlay flex fixed z-max overflow-hidden bg-black-70 absolute--fill outline-0 items-center"
     data-testid="modal__overlay"
     role="presentation"
     tabindex="-1"

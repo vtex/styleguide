@@ -1,11 +1,6 @@
 import React, { FC, useEffect, useRef } from 'react'
 
-import { canUseDOM } from './utils'
-
-enum Key {
-  TAB = 9,
-  SHIFT = 16,
-}
+import { canUseDOM, Key } from './utils'
 
 const FOCUSABLE_SELECTOR =
   'a,frame,iframe,input:not([type=hidden]):not(:disabled),select:not(:disabled),textarea:not(:disabled),button:not(:disabled),*[tabindex]:not([tabindex="-1"])'
@@ -56,7 +51,7 @@ const FocusTrap: FC<Props> = ({ children }) => {
   }
 
   const handleKeyEvent = (event: KeyboardEvent) => {
-    if (event.keyCode === Key.TAB) {
+    if (event.key === Key.TAB) {
       handleTab(event)
     }
   }

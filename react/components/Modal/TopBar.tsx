@@ -1,9 +1,10 @@
-import React, { forwardRef, ReactNode } from 'react'
+import React, { forwardRef, ForwardRefRenderFunction, ReactNode } from 'react'
 import classNames from 'classnames'
 
 import IconClose from '../icon/Close'
+import { Key } from './utils'
 
-export interface Props {
+export interface ModalTopBarProps {
   showCloseIcon?: boolean
   showTopBar: boolean
   children: ReactNode
@@ -12,14 +13,11 @@ export interface Props {
 }
 
 function TopBar(
-  { showCloseIcon, children, onClose, showTopBar }: Props,
-  forwardedRef: React.Ref<HTMLDivElement>
-) {
+  { showCloseIcon, children, onClose, showTopBar },
+  forwardedRef
+): ForwardRefRenderFunction<HTMLDivElement, ModalTopBarProps> {
   const handleKeyDown = ({ key }: React.KeyboardEvent) => {
-    const SPACE = ' '
-    const ENTER = 'Enter'
-
-    if (key === SPACE || key === ENTER) {
+    if (key === Key.SPACE || key === Key.ENTER) {
       onClose()
     }
   }
@@ -52,4 +50,4 @@ function TopBar(
   )
 }
 
-export default forwardRef<HTMLDivElement, Props>(TopBar)
+export default forwardRef<HTMLDivElement, ModalTopBarProps>(TopBar)

@@ -1,17 +1,17 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, ForwardRefRenderFunction } from 'react'
 import classNames from 'classnames'
 
-export interface Props {
+export interface ModalBottomBarProps {
   showBorder?: boolean
   responsiveFullScreen?: boolean
   children?: React.ReactNode
 }
 
 function BottomBar(
-  { showBorder = true, responsiveFullScreen = false, children }: Props,
-  forwardedRef: React.Ref<HTMLDivElement>
-) {
-  if (!children) return <></>
+  { showBorder = true, responsiveFullScreen = false, children },
+  forwardedRef
+): ForwardRefRenderFunction<HTMLDivElement, ModalBottomBarProps> {
+  if (!children) return null
   return (
     <div
       className={classNames(
@@ -29,4 +29,4 @@ function BottomBar(
   )
 }
 
-export default forwardRef<HTMLDivElement, Props>(BottomBar)
+export default forwardRef<HTMLDivElement, ModalBottomBarProps>(BottomBar)
