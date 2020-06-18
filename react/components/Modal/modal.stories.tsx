@@ -29,7 +29,6 @@ export const Default = () => {
       <Modal
         isOpen={isOpen}
         onClose={onClose}
-        container={window.top.document}
         title={text('Title', 'Tell me your name')}
         responsiveFullScreen={boolean('Responsive Full Screen', false)}
         onCloseTransitionFinish={() => {

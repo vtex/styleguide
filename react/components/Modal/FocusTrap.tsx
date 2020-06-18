@@ -66,7 +66,7 @@ const FocusTrap: FC<Props> = ({ children }) => {
     return () => {
       if (canUseDOM) document.removeEventListener('keydown', handleKeyEvent)
     }
-  })
+  }, [])
 
   useEffect(() => {
     if (!focusContainer.current) {
@@ -79,15 +79,11 @@ const FocusTrap: FC<Props> = ({ children }) => {
     if (!alreadyHasFocus) focusFirstElement(focusContainer.current)
   }, [focusContainer])
 
-  return (
-    <>
-      {children
-        ? React.cloneElement(children as React.ReactElement, {
-            ref: focusContainer,
-          })
-        : children}
-    </>
-  )
+  return children
+    ? React.cloneElement(children as React.ReactElement, {
+        ref: focusContainer,
+      })
+    : children
 }
 
 export default FocusTrap
