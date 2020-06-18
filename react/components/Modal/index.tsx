@@ -103,7 +103,7 @@ export const ModalOverlay: FC<OverlayProps> = ({
     }
   }, [])
 
-  return showPortal
+  return showPortal && canUseDOM
     ? createPortal(
         /** This rule can be disabled because we are not using the onClick property to click
          * the element itself but to capture outside clicks */
