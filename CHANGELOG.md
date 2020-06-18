@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Table.Sections.LoadedView` to export functionality of hiding the table's body when content is not loaded or is empty.
 - `EXPERIMENTAL_Table/Cell` style prop.
 - `content` render prop on `EXPERIMENTAL_Table/Row`.
+- `isMobile` and `device` properties in the `FilterBar` component for device verification in the `withDeviceHoc` HOC.
 
 ### Fixed
 
