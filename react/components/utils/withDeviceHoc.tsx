@@ -8,18 +8,23 @@ export enum Device {
 }
 
 const withDevice = Component => {
-  function WithDevice(props) {
+  function WithDevice({
+    device: defaultIsDevice,
+    isMobile: defaultIsMobile,
+    ...props
+  }) {
     // Taken at https://github.com/vtex-apps/device-detector/blob/master/react/useDevice.tsx#L22
     const isScreenMedium = useMedia({ minWidth: '40rem' })
     const isScreenLarge = useMedia({ minWidth: '64.1rem' })
 
-    const device = isScreenLarge
-      ? Device.desktop
-      : isScreenMedium
-      ? Device.tablet
-      : Device.phone
+    const device =
+      defaultIsDevice ?? isScreenLarge
+        ? Device.desktop
+        : isScreenMedium
+        ? Device.tablet
+        : Device.phone
 
-    const isMobile = device.toLowerCase() === 'phone'
+    const isMobile = defaultIsMobile ?? device.toLowerCase() === 'phone'
 
     return <Component device={device} isMobile={isMobile} {...props} />
   }
