@@ -29,6 +29,7 @@ class FilterColapsible extends PureComponent {
           isOpen={isCollapsibleOpen}
           align="left"
           caretColor="base"
+          isOverflowHidden={false}
           header={
             <div className="flex items-center h-100 ph4 pv5">
               <span className="flex nl3 ">
