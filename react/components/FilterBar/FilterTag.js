@@ -229,7 +229,7 @@ class FilterTag extends PureComponent {
                   'bw1 ba br2 v-mid relative b--transparent w-100 t-body outline-0',
                   {
                     'bg-transparent c-action-primary pointer': !disabled,
-                    'bg-disabled': disabled,
+                    'bg-disabled c-on-disabled': disabled,
                   }
                 )}
                 onClick={isMenuOpen ? this.handleCloseMenu : this.openMenu}
@@ -322,7 +322,7 @@ class FilterTag extends PureComponent {
             <div
               className={classNames('flex items-center', {
                 'c-link hover-c-link pointer': !disabled,
-                'bg-disabled': disabled,
+                'bg-disabled c-disabled ': disabled,
               })}
               onClick={() => {
                 if (disabled) {
