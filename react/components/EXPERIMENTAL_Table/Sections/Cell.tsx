@@ -11,6 +11,7 @@ import React, {
   FC,
 } from 'react'
 import classNames from 'classnames'
+import omit from 'lodash/omit'
 
 import CaretDown from '../../icon/CaretDown/index.js'
 import CaretUp from '../../icon/CaretUp/index.js'
@@ -28,7 +29,7 @@ interface CellContainer
     HTMLAttributes<HTMLTableCellElement>,
     HTMLTableCellElement
   > {
-  tag: CellTag
+  tag?: CellTag
 }
 
 const HoverableCell = forwardRef<
@@ -58,7 +59,7 @@ const DefaultCell = forwardRef<
 
 DefaultCell.displayName = 'DefaultCell'
 
-type Props = PropsWithChildren<SpecificProps>
+type Props = PropsWithChildren<SpecificProps & CellContainer>
 
 function Cell(
   {
@@ -71,6 +72,8 @@ function Cell(
     sortable = false,
     sticky = false,
     header = false,
+    style = {},
+    ...props
   }: Props,
   ref: Ref<HTMLTableCellElement>
 ) {
@@ -91,7 +94,9 @@ function Cell(
       width,
       height,
       transition: 'width 500ms',
+      ...style,
     } as CSSProperties,
+    ...omit(props, ['ref']),
   }
 
   return (
