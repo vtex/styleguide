@@ -25,7 +25,7 @@ const propTypes = {
   /** Determine if the input and the button should be disabled */
   disabled: PropTypes.bool,
   /** Determine the search bar size */
-  size: PropTypes.string,
+  size: PropTypes.oneOf(['small', 'regular', 'large']),
 }
 
 const defaultProps = {

@@ -75,7 +75,7 @@ const propTypes = {
      * Selects a size of the input bar, could be set to `small`, `regular` or `large`.
      * `regular` is the default value.
      */
-    size: PropTypes.string,
+    size: PropTypes.oneOf(['small', 'regular', 'large']),
   }).isRequired,
 }
 
