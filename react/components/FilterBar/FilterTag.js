@@ -203,12 +203,14 @@ class FilterTag extends PureComponent {
           pr4: !isEmpty && !isMoreOptions,
           'hover-bg-muted-5 b--muted-4':
             (alwaysVisible && isEmpty) || isMoreOptions,
-          'bg-action-secondary hover-bg-action-secondary b--action-secondary': !(
+          'bg-action-secondary b--action-secondary': !(
             (alwaysVisible && isEmpty) ||
             isMoreOptions
           ),
+          'hover-bg-action-secondary':
+            (alwaysVisible && isEmpty) || (isMoreOptions && !disabled),
           'bg-transparent': !disabled && alwaysVisible && isEmpty,
-          'bg-disabled': disabled,
+          'bg-disabled hover-bg-disabled': disabled,
         })}>
         <div className="flex items-stretch">
           <Menu
@@ -315,8 +317,14 @@ class FilterTag extends PureComponent {
           </Menu>
           {!isEmpty && !isMoreOptions && (
             <div
-              className="flex items-center c-link hover-c-link pointer"
+              className={classNames('flex items-center', {
+                'c-link hover-c-link pointer': !disabled,
+                'bg-disabled': disabled,
+              })}
               onClick={() => {
+                if (disabled) {
+                  return
+                }
                 this.resetVirtualStatement()
                 onClickClear()
                 this.handleCloseMenu()
