@@ -104,6 +104,8 @@ class FilterBar extends PureComponent {
       testIds,
       noOptionsMessage,
       disabled,
+      isMobile,
+      device,
     } = this.props
     const { visibleExtraOptions } = this.state
     const optionsKeys = Object.keys(options)
@@ -142,6 +144,8 @@ class FilterBar extends PureComponent {
                     onClickClear={() => this.handleFilterClear(subject)}
                     onSubmitFilterStatement={this.handleSubmitFilter}
                     disabled={disabled}
+                    isMobile={isMobile}
+                    device={device}
                   />
                 </div>
               )
@@ -167,6 +171,8 @@ class FilterBar extends PureComponent {
                 statements={[]}
                 onSubmitFilterStatement={this.handleMoreOptionsSelected}
                 disabled={disabled}
+                isMobile={isMobile}
+                device={device}
               />
             </div>
           )}
@@ -232,6 +238,10 @@ export const filterBarPropTypes = {
   noOptionsMessage: PropTypes.func,
   /** Disable all filters */
   disabled: PropTypes.boolean,
+  /** If the application is running in a mobile device (it is necessary in SSR applications) */
+  isMobile: PropTypes.boolean,
+  /** device type */
+  device: PropTypes.oneOf(['phone', 'desktop', 'tablet']),
   testIds: PropTypes.shape({
     moreOptionsButton: PropTypes.string,
     submitFiltersButton: PropTypes.string,

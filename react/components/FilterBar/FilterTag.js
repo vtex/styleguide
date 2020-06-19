@@ -143,6 +143,7 @@ class FilterTag extends PureComponent {
       submitFilterLabel,
       newFilterLabel,
       isMobile,
+      device,
       testIds,
       noOptionsMessage,
       disabled,
@@ -218,6 +219,8 @@ class FilterTag extends PureComponent {
             onBackgroundClick={this.handleCloseMenu}
             align="left"
             options={options[subject]}
+            isMobile={isMobile}
+            device={device}
             button={
               <button
                 data-testid={options[subject] && options[subject].testId}
