@@ -103,7 +103,7 @@ describe('AutocompleteInput', () => {
     expect(result).toMatchSnapshot()
   })
 
-  it('shouldnt render if size prop isnt small, regular or large', () => {
+  it('should render a smaller version of search bar if size prop isnt small, regular or large', () => {
     const options = {
       onSelect: () => `''`,
       loading: false,
