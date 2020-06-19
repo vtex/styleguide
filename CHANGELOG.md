@@ -10,12 +10,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - `vtex-slider__base-internal` CSS handle.
+- `Table.Sections.LoadedView` to export functionality of hiding the table's body when content is not loaded or is empty.
 
 ### Fixed
 
 - `FilterTag` disabled style.
 - Filter bar button font
-
 
 ## [9.120.1] - 2020-06-05
 
