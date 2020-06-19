@@ -14,7 +14,7 @@ class Textarea extends Component {
 
   componentDidMount() {
     if (this.props.autoFocus && this.innerRef.current) {
-      this.innerRef.current.setFocus()
+      this.innerRef.current.focus()
     }
   }
 
