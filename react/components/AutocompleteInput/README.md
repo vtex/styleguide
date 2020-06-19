@@ -39,7 +39,6 @@ const UsersAutocomplete = () => {
             ? user.toLowerCase().includes(term.toLowerCase())
             : user.label.toLowerCase().includes(term.toLowerCase())
         ),
-    size: 'small',
   }
 
   const input = {
@@ -107,7 +106,6 @@ const UsersAutocomplete = () => {
       onChange: option =>
         option && setLastSearched(uniq([...lastSearched, option])),
     },
-    size: 'regular',
   }
 
   const input = {
@@ -227,7 +225,6 @@ const UsersAutocomplete = () => {
     },
     // --- This is what makes the custom option work!
     renderOption: props => <CustomOption {...props} />,
-    size: 'large',
   }
 
   const input = {
@@ -275,4 +272,177 @@ const DisabledAutocompleteInput = () => (
 )
 
 ;<DisabledAutocompleteInput />
+```
+#### Size
+
+### small size bar
+```jsx
+import { uniq } from 'lodash'
+import { useState, useRef } from 'react'
+
+const allUsers = [
+  'Ana Clara',
+  'Ana Luiza',
+  { value: 1, label: 'Bruno' },
+  'Carlos',
+  'Daniela',
+]
+
+const UsersAutocomplete = () => {
+  const [term, setTerm] = useState('')
+  const [loading, setLoading] = useState(false)
+  const timeoutRef = useRef(null)
+
+  const options = {
+    onSelect: (...args) => console.log('onSelect: ', ...args),
+    loading,
+    value: !term.length
+      ? []
+      : allUsers.filter(user =>
+          typeof user === 'string'
+            ? user.toLowerCase().includes(term.toLowerCase())
+            : user.label.toLowerCase().includes(term.toLowerCase())
+        ),
+    size: 'small',
+  }
+
+  const input = {
+    onChange: term => {
+      if (term) {
+        setLoading(true)
+        if (timeoutRef.current) {
+          clearTimeout(timeoutRef.current)
+        }
+        timeoutRef.current = setTimeout(() => {
+          setLoading(false)
+          setTerm(term)
+          timeoutRef.current = null
+        }, 1000)
+      } else {
+        setTerm(term)
+      }
+    },
+    onSearch: (...args) => console.log('onSearch:', ...args),
+    onClear: () => setTerm(''),
+    placeholder: 'Search user... (e.g.: Ana)',
+    value: term,
+  }
+  return <AutocompleteInput input={input} options={options} />
+}
+
+;<UsersAutocomplete />
+```
+### regular size bar
+```jsx
+import { uniq } from 'lodash'
+import { useState, useRef } from 'react'
+
+const allUsers = [
+  'Ana Clara',
+  'Ana Luiza',
+  { value: 1, label: 'Bruno' },
+  'Carlos',
+  'Daniela',
+]
+
+const UsersAutocomplete = () => {
+  const [term, setTerm] = useState('')
+  const [loading, setLoading] = useState(false)
+  const timeoutRef = useRef(null)
+
+  const options = {
+    onSelect: (...args) => console.log('onSelect: ', ...args),
+    loading,
+    value: !term.length
+      ? []
+      : allUsers.filter(user =>
+          typeof user === 'string'
+            ? user.toLowerCase().includes(term.toLowerCase())
+            : user.label.toLowerCase().includes(term.toLowerCase())
+        ),
+    size: 'regular',
+  }
+
+  const input = {
+    onChange: term => {
+      if (term) {
+        setLoading(true)
+        if (timeoutRef.current) {
+          clearTimeout(timeoutRef.current)
+        }
+        timeoutRef.current = setTimeout(() => {
+          setLoading(false)
+          setTerm(term)
+          timeoutRef.current = null
+        }, 1000)
+      } else {
+        setTerm(term)
+      }
+    },
+    onSearch: (...args) => console.log('onSearch:', ...args),
+    onClear: () => setTerm(''),
+    placeholder: 'Search user... (e.g.: Ana)',
+    value: term,
+  }
+  return <AutocompleteInput input={input} options={options} />
+}
+
+;<UsersAutocomplete />
+```
+### large size bar
+```jsx
+import { uniq } from 'lodash'
+import { useState, useRef } from 'react'
+
+const allUsers = [
+  'Ana Clara',
+  'Ana Luiza',
+  { value: 1, label: 'Bruno' },
+  'Carlos',
+  'Daniela',
+]
+
+const UsersAutocomplete = () => {
+  const [term, setTerm] = useState('')
+  const [loading, setLoading] = useState(false)
+  const timeoutRef = useRef(null)
+
+  const options = {
+    onSelect: (...args) => console.log('onSelect: ', ...args),
+    loading,
+    value: !term.length
+      ? []
+      : allUsers.filter(user =>
+          typeof user === 'string'
+            ? user.toLowerCase().includes(term.toLowerCase())
+            : user.label.toLowerCase().includes(term.toLowerCase())
+        ),
+    size: 'large',
+  }
+
+  const input = {
+    onChange: term => {
+      if (term) {
+        setLoading(true)
+        if (timeoutRef.current) {
+          clearTimeout(timeoutRef.current)
+        }
+        timeoutRef.current = setTimeout(() => {
+          setLoading(false)
+          setTerm(term)
+          timeoutRef.current = null
+        }, 1000)
+      } else {
+        setTerm(term)
+      }
+    },
+    onSearch: (...args) => console.log('onSearch:', ...args),
+    onClear: () => setTerm(''),
+    placeholder: 'Search user... (e.g.: Ana)',
+    value: term,
+  }
+  return <AutocompleteInput input={input} options={options} />
+}
+
+;<UsersAutocomplete />
 ```
