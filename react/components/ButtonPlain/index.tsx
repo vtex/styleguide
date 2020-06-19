@@ -6,6 +6,8 @@ import React, {
   ReactNode,
   FC,
   useRef,
+  MouseEventHandler,
+  FocusEventHandler,
 } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
@@ -13,9 +15,6 @@ import classNames from 'classnames'
 import Spinner from '../Spinner'
 import { withForwardedRef } from '../../modules/withForwardedRef'
 import mergeRef from '../../utilities/mergeRef'
-
-type MouseEventHandler = (e: React.MouseEvent<HTMLElement>) => void
-type FocusEventHandler = (e: React.FocusEvent<HTMLElement>) => void
 
 interface Props {
   children: ReactNode
