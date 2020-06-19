@@ -325,10 +325,13 @@ export default class Slider extends Component {
               top: '0.7rem',
             }}>
             <div
-              className={classNames('vtex-slider__base-internal absolute h-100', {
-                'bg-action-primary': !disabled,
-                'bg-muted-4': disabled,
-              })}
+              className={classNames(
+                'vtex-slider__base-internal absolute h-100',
+                {
+                  'bg-action-primary': !disabled,
+                  'bg-muted-4': disabled,
+                }
+              )}
               style={sliderSelectionStyle}
             />
           </div>
