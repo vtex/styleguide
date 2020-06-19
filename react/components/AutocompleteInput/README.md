@@ -179,7 +179,8 @@ const CustomOption = props => {
     roundedBottom ? 'br2 br--bottom' : ''
   } ${highlightOption || selected ? 'bg-muted-5' : 'bg-base'}`
 
-  const icon = typeof value === 'string' ? <Search size={14} /> : <User size={14} />
+  const icon =
+    typeof value === 'string' ? <Search size={14} /> : <User size={14} />
 
   // --- This is a good practice. Use <button />.
   return (
@@ -251,4 +252,24 @@ const UsersAutocomplete = () => {
 }
 
 ;<UsersAutocomplete />
+```
+
+#### Disabled AutocompleteInput
+
+```jsx
+import { useState, useRef } from 'react'
+
+const DisabledAutocompleteInput = () => (
+  <AutocompleteInput
+    input={{
+      value: 'Ana Luiza',
+      disabled: true,
+    }}
+    options={{
+      value: [],
+    }}
+  />
+)
+
+;<DisabledAutocompleteInput />
 ```
