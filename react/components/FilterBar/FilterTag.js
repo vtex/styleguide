@@ -223,7 +223,7 @@ class FilterTag extends PureComponent {
                 data-testid={options[subject] && options[subject].testId}
                 type="button"
                 className={classNames(
-                  'bw1 ba br2 v-mid relative b--transparent w-100 outline-0',
+                  'bw1 ba br2 v-mid relative b--transparent w-100 t-body outline-0',
                   {
                     'bg-transparent c-action-primary pointer': !disabled,
                     'bg-disabled': disabled,
