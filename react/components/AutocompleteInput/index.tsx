@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-ignore */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import PropTypes from 'prop-types'
 import React, { useState, useRef, FC, ReactNode } from 'react'
@@ -16,7 +17,7 @@ export type AutocompleteInputProps = {
   options: {
     onSelect: (option: AutocompleteOption) => void
     value: any
-    renderOption?: (renderer: any, index: number) => any
+    renderOption?: (renderer: any, index: number) => ReactNode
     loading?: boolean
     lastSearched?: any
     icon?: ReactNode
@@ -119,7 +120,7 @@ const AutocompleteInput: FC<AutocompleteInputProps> = ({
     },
   })
 
-  const renderOptions = (): React.ReactElement | React.ReactElement[] => (
+  const renderOptions = (): ReactNode => (
     <div className="flex flex-column">
       {showLastSearched ? (
         <div className="pa4 b f6">
@@ -172,6 +173,7 @@ const AutocompleteInput: FC<AutocompleteInputProps> = ({
 
 AutocompleteInput.propTypes = {
   /** Input props. All HTMLInput props can be added too */
+  // @ts-ignore
   input: PropTypes.shape({
     /** Clear input handler */
     onClear: PropTypes.func.isRequired,
@@ -185,6 +187,7 @@ AutocompleteInput.propTypes = {
     disabled: PropTypes.bool,
   }).isRequired,
   /** Options props. More details in the examples */
+  // @ts-ignore
   options: PropTypes.shape({
     /**
      * Determine if a spinner will be shown below the given options
