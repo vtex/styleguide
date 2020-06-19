@@ -57,7 +57,8 @@ const ButtonColumns: FC<ButtonColumnsProps> = ({
       ref={buttonRef}
       onClick={toggleBox}
       icon={<IconColumns size={IconSize.Medium} />}
-      disabled={disabled}>
+      disabled={disabled}
+    >
       {boxVisible && (
         <Box {...boxProps} testId={columnsTestId}>
           {columns.map((column, index) => {

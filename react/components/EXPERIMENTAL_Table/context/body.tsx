@@ -3,7 +3,7 @@ import React, { useContext, createContext, PropsWithChildren } from 'react'
 interface BodyProps {
   onRowClick?: (data: { rowData: unknown }) => void
   isRowActive?: (data: unknown) => boolean
-  rowKey?: (data: { rowData: unknown }) => string
+  rowKey: (data: { rowData: unknown }) => string
   highlightOnHover?: boolean
 }
 

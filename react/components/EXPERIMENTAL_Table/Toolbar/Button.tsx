@@ -6,9 +6,7 @@ import { E2ETestable } from '../types'
 
 const ICON_OPTICAL_COMPENSATION = { marginTop: 1.5 }
 
-type Ref = HTMLDivElement
-
-const Button = forwardRef<Ref, ButtonProps>(
+const Button = forwardRef<HTMLDivElement, ButtonProps>(
   (
     {
       id,
@@ -45,8 +43,9 @@ const Button = forwardRef<Ref, ButtonProps>(
         id={`${id}__container`}
         data-testid={`${testId}__container`}
         title={title}
+        className={classNames('relative', { mh2: isTertiary })}
         ref={ref}
-        className={classNames('relative', { mh2: isTertiary })}>
+      >
         <ButtonWithIcon
           icon={
             <span className={iconClass} style={ICON_OPTICAL_COMPENSATION}>
@@ -61,7 +60,8 @@ const Button = forwardRef<Ref, ButtonProps>(
           isLoading={isLoading}
           variation={variation}
           size={size}
-          onClick={onClick}>
+          onClick={onClick}
+        >
           {label && <span className={labelClass}>{label}</span>}
         </ButtonWithIcon>
         {children}
@@ -95,7 +95,7 @@ export type ButtonProps = E2ETestable & {
   isLoading?: boolean
   disabled?: boolean
   size?: ButtonSize
-  icon?: unknown
+  icon?: ReactNode
   title?: string
   variation?: ButtonVariation
   isActiveOfGroup?: boolean

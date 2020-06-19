@@ -26,7 +26,12 @@ function Primary({ label, onClick }: PrimaryProps) {
   )
   return (
     <div className={className}>
-      <Button variation="secondary" size="small" onClick={onClick}>
+      <Button
+        type="button"
+        variation="secondary"
+        size="small"
+        onClick={onClick}
+      >
         {label}
       </Button>
     </div>

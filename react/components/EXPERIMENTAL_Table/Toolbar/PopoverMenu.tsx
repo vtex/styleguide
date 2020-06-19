@@ -12,12 +12,11 @@ import { E2ETestable } from '../types'
 
 export default function usePopoverMenu() {
   const [boxVisible, setBoxVisible] = useState(false)
-  const buttonRef = useRef(null)
+  const buttonRef = useRef<HTMLDivElement>(null)
 
   const handleOutsideClick = (e: Event) =>
-    buttonRef?.current &&
     e.target instanceof Node &&
-    !buttonRef.current.contains(e.target) &&
+    !buttonRef?.current?.contains(e.target) &&
     setBoxVisible(false)
 
   useLayoutEffect(() => {
@@ -67,19 +66,19 @@ export const Box: FC<BoxProps> = ({
             data-testid={`${testId}__box__group-actions`}
             className="flex inline-flex bb b--muted-4 w-100 justify-center pv4"
           >
-            {groupActions.map(action => (
+            {groupActions.map(({ onClick: handleClick, id, label }) => (
               <div
                 className="mh2"
-                key={action.id}
-                data-testid={`${testId}__group-actions--${action.id}`}
+                key={id}
+                data-testid={`${testId}__group-actions--${id}`}
               >
                 <Button
+                  type="button"
                   variation="secondary"
                   size="small"
-                  // eslint-disable-next-line react/jsx-handler-names
-                  onClick={action.onClick}
+                  onClick={handleClick}
                 >
-                  {action.label}
+                  {label}
                 </Button>
               </div>
             ))}
@@ -97,7 +96,11 @@ export const Box: FC<BoxProps> = ({
   )
 }
 
-export const Item: FC<ItemProps> = ({ isSelected, onClick, children }) => {
+export const Item: FC<ItemProps> = ({
+  isSelected,
+  onClick: handleClick,
+  children,
+}) => {
   const containerClassName = classnames(
     'flex justify-between ph6 pv3 pointer hover-bg-muted-5 bl bw1',
     {
@@ -109,7 +112,13 @@ export const Item: FC<ItemProps> = ({ isSelected, onClick, children }) => {
     fw5: isSelected,
   })
   return (
-    <div className={containerClassName} onClick={onClick}>
+    <div
+      className={containerClassName}
+      onClick={handleClick}
+      onKeyPress={() => null}
+      tabIndex={0}
+      role="button"
+    >
       <span className={className}>{children}</span>
     </div>
   )
@@ -131,7 +140,7 @@ type ItemProps = {
 
 export type MenuAction = {
   label: string
-  onClick: Function
+  onClick: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
   toggle?: {
     checked: boolean
     semantic: boolean

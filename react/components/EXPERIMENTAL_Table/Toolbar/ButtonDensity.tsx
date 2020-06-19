@@ -31,21 +31,27 @@ const ButtonDensity: FC<ButtonDensityProps> = ({
       ref={buttonRef}
       onClick={toggleBox}
       icon={<IconDensity size={IconSize.Medium} />}
-      disabled={disabled}>
+      disabled={disabled}
+    >
       {boxVisible && (
         <Box testId={densityTestId} height={BOX_HEIGHT} alignMenu={alignMenu}>
           {DENSITY_OPTIONS.map((key: Density, index) => {
             const isKeySelected = density === key
+            const option = `${key}Label` as
+              | 'compactLabel'
+              | 'comfortableLabel'
+              | 'regularLabel'
             return (
               <Item
                 key={index}
                 isSelected={isKeySelected}
                 onClick={() => {
-                  setDensity(key)
+                  setDensity?.(key)
                   setBoxVisible(false)
-                  handleCallback && handleCallback(key)
-                }}>
-                {options[`${key}Label`]}
+                  handleCallback?.(key)
+                }}
+              >
+                {options[option]}
               </Item>
             )
           })}

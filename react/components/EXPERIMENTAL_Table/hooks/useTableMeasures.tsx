@@ -66,5 +66,7 @@ export function getRowHeight(density: Density): number {
       return DesitySizes.Regular
     case Density.Comfortable:
       return DesitySizes.Comfortable
+    default:
+      return DesitySizes.Regular
   }
 }

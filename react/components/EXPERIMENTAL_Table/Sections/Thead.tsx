@@ -1,4 +1,4 @@
-import React, { forwardRef, ReactElement, Ref } from 'react'
+import React, { forwardRef, Ref, ReactNode, FC } from 'react'
 import classNames from 'classnames'
 
 import { useTestingContext } from '../context/testing'
@@ -6,26 +6,21 @@ import { useHeadContext } from '../context/head'
 import { TABLE_HEADER_HEIGHT } from '../hooks/useTableMeasures'
 import Row from './Row'
 import Cell, { ComposableCell } from './Cell'
-import {
-  ComposableWithRef,
-  Column,
-  NativeTableSection,
-  RenderProps,
-} from '../types'
+import { Column, NativeTableSection, RenderProps } from '../types'
 
 interface HeadRenderProps {
   props: {
-    width: number | string
-    className: string
-    sorting: boolean
-    sortable: boolean
-    sticky: boolean
-    header: boolean
+    width?: number | string
+    className?: string
+    sorting?: boolean
+    sortable?: boolean
+    sticky?: boolean
+    header?: boolean
     onClick?: () => void
   }
   column: Column
   key: string
-  suffix: ReactElement
+  suffix: ReactNode
 }
 
 type Props = RenderProps<NativeTableSection, HeadRenderProps>
@@ -78,16 +73,12 @@ function Thead(
 }
 
 interface Composites {
-  Cell?: ComposableCell
+  Cell: ComposableCell
 }
 
-export type ComposableThead = ComposableWithRef<
-  HTMLTableSectionElement,
-  Props,
-  Composites
->
+export type ComposableThead = FC<Props> & Composites
 
-const ForwardedThead: ComposableThead = forwardRef(Thead)
+const ForwardedThead = (forwardRef(Thead) as unknown) as ComposableThead
 
 ForwardedThead.Cell = Row.Cell
 

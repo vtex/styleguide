@@ -1,15 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { FC, Fragment, forwardRef, PropsWithChildren, Ref } from 'react'
 
 import Toolbar from './Toolbar/index'
 import Pagination, { PaginationProps } from './Pagination'
-import BulkActions from './BulkActions'
+import BulkActions, { ComposableBulkActions } from './BulkActions'
 import FilterBar, { FilterBarProps } from './FilterBar'
 import useTableMeasures from './hooks/useTableMeasures'
 import useTableMotion from './hooks/useTableMotion'
 import Totalizer, { TotalizerProps } from './Totalizer'
 import ActionBar, { ActionBarProps } from './ActionBar'
 import Sections, { ComposableSections } from './Sections'
-import { Column, Items, RFC, ComposableWithRef } from './types'
+import { Column, Items } from './types'
 import useTableSort from './hooks/useTableSort'
 import { MeasuresProvider, useMeasuresContext } from './context/measures'
 import { TestingProvider, useTestingContext } from './context/testing'
@@ -25,17 +26,17 @@ function Table(
     children,
     measures,
     isRowActive,
-    loading,
+    loading = false,
     emptyState,
     onRowClick,
     items,
-    empty,
-    rowKey,
-    highlightOnHover,
+    empty = false,
+    rowKey = ({ rowData }: { rowData: { id: string } }) => `row-${rowData.id}`,
+    highlightOnHover = false,
     columns,
     sorting,
-    testId,
-    stickyHeader,
+    testId = 'vtex-table-v2',
+    stickyHeader = false,
     composableSections,
   }: Props,
   ref: Ref<HTMLTableElement>
@@ -97,7 +98,7 @@ interface SpecificProps {
   /** Array of items */
   items: Items
   /** Function that generates row keys */
-  rowKey?: (data: { rowData: unknown }) => string
+  rowKey?: (data: { rowData: any }) => string
   /** If the table is empty or not */
   empty?: boolean
   /** If the Table is loading or not */
@@ -123,22 +124,18 @@ interface SpecificProps {
 }
 
 interface Composites {
-  Toolbar?: FC
-  FilterBar?: RFC<HTMLElement, FilterBarProps>
-  Pagination?: RFC<HTMLElement, PaginationProps>
-  Bulk?: FC
-  Totalizer?: RFC<HTMLElement, TotalizerProps>
-  ActionBar?: RFC<HTMLElement, ActionBarProps>
-  Sections?: ComposableSections
+  Toolbar: FC
+  FilterBar: FC<FilterBarProps>
+  Pagination: FC<PaginationProps>
+  Bulk: ComposableBulkActions
+  Totalizer: FC<TotalizerProps>
+  ActionBar: FC<ActionBarProps>
+  Sections: ComposableSections
 }
 
-export type ComposableTable = ComposableWithRef<
-  HTMLTableElement,
-  Props,
-  Composites
->
+export type ComposableTable = FC<Props> & Composites
 
-const FowardedTable: ComposableTable = forwardRef(Table)
+const FowardedTable = (forwardRef(Table) as unknown) as ComposableTable
 
 FowardedTable.Toolbar = Toolbar
 FowardedTable.FilterBar = FilterBar
@@ -147,14 +144,5 @@ FowardedTable.Pagination = Pagination
 FowardedTable.Bulk = BulkActions
 FowardedTable.ActionBar = ActionBar
 FowardedTable.Sections = Sections
-
-FowardedTable.defaultProps = {
-  rowKey: ({ rowData }: { rowData: { id: string } }) => `row-${rowData.id}`,
-  loading: false,
-  empty: false,
-  highlightOnHover: false,
-  testId: 'vtex-table-v2',
-  stickyHeader: false,
-}
 
 export default FowardedTable

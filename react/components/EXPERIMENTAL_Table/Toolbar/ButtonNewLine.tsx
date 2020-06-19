@@ -57,7 +57,7 @@ ButtonNewLine.defaultProps = {
 }
 
 export type ButtonNewLineProps = ButtonProps & {
-  actions: Array<MenuAction>
+  actions: MenuAction[]
 }
 
 export default ButtonNewLine

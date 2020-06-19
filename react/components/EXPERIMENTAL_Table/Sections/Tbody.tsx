@@ -1,4 +1,4 @@
-import React, { forwardRef, Ref } from 'react'
+import React, { forwardRef, Ref, FC } from 'react'
 
 import { useBodyContext } from '../context/body'
 import { useDataContext } from '../context/data'
@@ -7,11 +7,11 @@ import { useTestingContext } from '../context/testing'
 import { useLoadingContext } from '../context/loading'
 import useTableMotion from '../hooks/useTableMotion'
 import Row, { ROW_TRANSITIONS, ComposableRow } from './Row'
-import { ComposableWithRef, RenderProps, NativeTableSection } from '../types'
+import { RenderProps, NativeTableSection } from '../types'
 
 interface BodyRenderProps {
   props: {
-    data: unknown
+    data: object
     motion: ReturnType<typeof useTableMotion>
     height: number
   }
@@ -60,13 +60,9 @@ interface Composites {
   Row: ComposableRow
 }
 
-export type ComposableTbody = ComposableWithRef<
-  HTMLTableSectionElement,
-  Props,
-  Composites
->
+export type ComposableTbody = FC<Props> & Composites
 
-const FowardedTbody: ComposableTbody = forwardRef(Tbody)
+const FowardedTbody = (forwardRef(Tbody) as unknown) as ComposableTbody
 
 FowardedTbody.Row = Row
 

@@ -2,7 +2,7 @@ import React, { useContext, createContext, PropsWithChildren } from 'react'
 
 import useTableMeasures from '../hooks/useTableMeasures'
 
-type Measures = Partial<ReturnType<typeof useTableMeasures>>
+type Measures = ReturnType<typeof useTableMeasures>
 
 const MeasuresContext = createContext<Measures | null>(null)
 

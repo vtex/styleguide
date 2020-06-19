@@ -1,9 +1,10 @@
-import React, { forwardRef, Ref } from 'react'
+import React, { forwardRef, Ref, FC } from 'react'
 import classNames from 'classnames'
 import pick from 'lodash/pick'
+import get from 'lodash/get'
 
 import useTableMotion from '../hooks/useTableMotion'
-import { ComposableWithRef, Column, RenderProps, NativeTr } from '../types'
+import { Column, RenderProps, NativeTr } from '../types'
 import { useDataContext } from '../context/data'
 import { useBodyContext } from '../context/body'
 import { useMeasuresContext } from '../context/measures'
@@ -11,19 +12,19 @@ import Cell, { ComposableCell } from './Cell'
 
 interface RowRenderProps {
   props: {
-    width: number | string
+    width?: number | string
   }
   key: string
-  data: unknown
+  data?: object
   column: Column
-  motion: ReturnType<typeof useTableMotion>
+  motion?: ReturnType<typeof useTableMotion>
   index: number
 }
 
 interface SpecificProps extends NativeTr {
   height: number
   motion?: ReturnType<typeof useTableMotion>
-  data?: unknown
+  data?: object
 }
 
 type Props = RenderProps<SpecificProps, RowRenderProps>
@@ -79,12 +80,12 @@ function Row(
           ? pick(data, condensed)
           : extended
           ? data
-          : data[id]
+          : get(data, id)
 
         const content = cellRenderer
           ? cellRenderer({
               data: cellData,
-              rowHeight,
+              rowHeight: rowHeight ?? 0,
               density,
               motion,
             })
@@ -110,16 +111,12 @@ export const ROW_TRANSITIONS = [
 ]
 
 interface Composites {
-  Cell?: ComposableCell
+  Cell: ComposableCell
 }
 
-export type ComposableRow = ComposableWithRef<
-  HTMLTableRowElement,
-  Props,
-  Composites
->
+export type ComposableRow = FC<Props> & Composites
 
-const FowardedRow: ComposableRow = forwardRef(Row)
+const FowardedRow = (forwardRef(Row) as unknown) as ComposableRow
 
 FowardedRow.Cell = Cell
 

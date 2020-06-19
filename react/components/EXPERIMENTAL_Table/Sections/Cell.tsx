@@ -14,7 +14,6 @@ import classNames from 'classnames'
 
 import CaretDown from '../../icon/CaretDown/index.js'
 import CaretUp from '../../icon/CaretUp/index.js'
-import { ComposableWithRef } from '../types'
 
 const HoverContext = createContext<boolean>(false)
 
@@ -97,7 +96,10 @@ function Cell(
   )
 }
 
-function HoverProvider({ children, value }) {
+function HoverProvider({
+  children,
+  value,
+}: PropsWithChildren<{ value: boolean }>) {
   return <HoverContext.Provider value={value}>{children}</HoverContext.Provider>
 }
 
@@ -114,7 +116,10 @@ function useHover(init = false) {
   }
 }
 
-function Eyesight({ children, visible }) {
+function Eyesight({
+  children,
+  visible,
+}: PropsWithChildren<{ visible: boolean }>) {
   const SUFIX_GAP = 0.5
   const className = classNames({ dn: !visible, inline: visible }, 'absolute')
   return (
@@ -125,15 +130,15 @@ function Eyesight({ children, visible }) {
 }
 
 interface SuffixProps {
-  sorting: boolean
-  ascending: boolean
+  sorting?: boolean
+  ascending?: boolean
 }
 
 function Suffix({ sorting, ascending }: SuffixProps) {
   const Caret = ascending ? CaretDown : CaretUp
   const hover = useContext(HoverContext)
   return (
-    <Eyesight visible={sorting || hover}>
+    <Eyesight visible={sorting ?? hover}>
       <Caret className="ml2" size={10} />
     </Eyesight>
   )
@@ -153,13 +158,9 @@ interface SpecificProps {
   header?: boolean
 }
 
-export type ComposableCell = ComposableWithRef<
-  HTMLTableCellElement,
-  Props,
-  Composites
->
+export type ComposableCell = FC<Props> & Composites
 
-const ForwardedCell: ComposableCell = forwardRef(Cell)
+const ForwardedCell = (forwardRef(Cell) as unknown) as ComposableCell
 
 ForwardedCell.Suffix = Suffix
 
