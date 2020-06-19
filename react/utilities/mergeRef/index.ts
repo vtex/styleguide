@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { MutableRefObject } from 'react'
 import memoize from 'memoize-one'
 
 export function setRef(
-  ref: MutableRefObject<unknown> | Function,
-  value: unknown = null
+  ref: MutableRefObject<any> | Function | undefined,
+  value: any = null
 ) {
   if (!ref) return
 
@@ -17,14 +18,11 @@ export function setRef(
 /**
  * Merges/Aligns the values of two refs
  */
-function mergeRef(
-  refA: MutableRefObject<unknown>,
-  refB: MutableRefObject<unknown>
-) {
+function mergeRef(refA?: MutableRefObject<any>, refB?: MutableRefObject<any>) {
   if (refA == null && refB == null) {
     return null
   }
-  return (value: unknown) => {
+  return (value: any) => {
     setRef(refA, value)
     setRef(refB, value)
   }

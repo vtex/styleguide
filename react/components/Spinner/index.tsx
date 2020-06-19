@@ -7,18 +7,13 @@ import { baseClassname } from '../icon/utils'
 const radius = 40
 const circ = 2 * radius * Math.PI
 
-const propTypes = {
-  /** Color of the spinner */
-  color: PropTypes.string,
-  /** Size (diameter) of the spinner */
-  size: PropTypes.number,
-  /** Sets the display to block */
-  block: PropTypes.bool,
+interface Props {
+  color?: string
+  size?: number
+  block?: boolean
 }
 
-type Props = PropTypes.InferProps<typeof propTypes>
-
-const Spinner: FC<Props> = ({ color, size, block }) => (
+const Spinner: FC<Props> = ({ color, size = 40, block = false }) => (
   <svg
     className={classNames(baseClassname('spinner'), {
       'c-action-primary': !color,
@@ -60,7 +55,6 @@ const Spinner: FC<Props> = ({ color, size, block }) => (
             }
           `}
     </style>
-
     <circle
       className="vtex-spinner_circle"
       cx="50"
@@ -76,11 +70,13 @@ const Spinner: FC<Props> = ({ color, size, block }) => (
   </svg>
 )
 
-Spinner.propTypes = propTypes
-
-Spinner.defaultProps = {
-  block: false,
-  size: 40,
+Spinner.propTypes = {
+  /** Color of the spinner */
+  color: PropTypes.string,
+  /** Size (diameter) of the spinner */
+  size: PropTypes.number,
+  /** Sets the display to block */
+  block: PropTypes.bool,
 }
 
 export default Spinner
