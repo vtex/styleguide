@@ -93,12 +93,13 @@ class Collapsible extends Component {
       onClick: callback,
       isOpen,
       arrowAlign,
+      isOverflowHidden,
     } = this.props
     let { caretColor } = this.props
     const { height } = this.state
     const childrenContainerStyle = {
       height,
-      overflow: 'hidden',
+      overflow: isOverflowHidden ? 'hidden' : 'none',
       transition: 'height 250ms ease-in-out',
     }
     if (muted) {
@@ -152,6 +153,7 @@ Collapsible.defaultProps = {
   isOpen: false,
   muted: false,
   arrowAlign: 'center',
+  isOverflowHidden: true,
 }
 
 Collapsible.propTypes = {
@@ -180,6 +182,8 @@ Collapsible.propTypes = {
     'baseline',
     'stretch',
   ]),
+  /** Controls whether the collapsible should hide overflowing components.*/
+  isOverflowHidden: PropTypes.bool,
 }
 
 export default Collapsible
