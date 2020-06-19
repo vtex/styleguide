@@ -1,6 +1,12 @@
 /* eslint-disable @typescript-eslint/ban-ts-ignore */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { PropsWithChildren, ReactNode, forwardRef, Ref } from 'react'
+import React, {
+  PropsWithChildren,
+  ReactNode,
+  forwardRef,
+  Ref,
+  ReactElement,
+} from 'react'
 import ReactDOM from 'react-dom'
 
 import { setRef } from '../utils/react'
@@ -34,7 +40,7 @@ type Props = PropsWithChildren<{
  */
 function Portal(props: Props, ref: Ref<HTMLElement>) {
   const { children, container, onRendered } = props
-  const [mountNode, setMountNode] = React.useState(null)
+  const [mountNode, setMountNode] = React.useState<ReactElement | null>(null)
 
   useEnhancedEffect(() => {
     // @ts-ignore
@@ -58,8 +64,9 @@ function Portal(props: Props, ref: Ref<HTMLElement>) {
     }
   }, [onRendered, mountNode])
 
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  return mountNode ? ReactDOM.createPortal(children, mountNode!) : mountNode
+  return mountNode && mountNode instanceof HTMLElement
+    ? ReactDOM.createPortal(children, mountNode)
+    : mountNode
 }
 
 export default forwardRef<HTMLElement, Props>(Portal)

@@ -144,7 +144,7 @@ const getPopupPositionRecursively = (
   position: string,
   fallbackPosition: null,
   originalPosition: any
-) => {
+): any => {
   const horizontalMax = window.innerWidth + window.pageXOffset
   const verticalMax = window.innerHeight + window.pageYOffset
   const styles = {
