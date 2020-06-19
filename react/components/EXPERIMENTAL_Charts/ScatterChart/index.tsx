@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/ban-ts-ignore */
 import React, { FC } from 'react'
 import {
   ScatterChart as ScatterChartBase,
@@ -10,6 +12,7 @@ import {
   ZAxis,
 } from 'recharts'
 import PropTypes from 'prop-types'
+// @ts-ignore
 import uuid from 'uuid'
 
 import { commonDefaultProps } from './constants'
@@ -17,8 +20,8 @@ import { getChartDefaultProps, getRangeOfZAxis } from '../helpers'
 import { colors } from '../commonProps'
 import { BaseChartProps } from '../types'
 
-const CustomTooltip = props => {
-  return props.payload.map(item => (
+const CustomTooltip = (props: any) => {
+  return props.payload.map((item: any) => (
     <p key={uuid()}>{`${item.dataKey}: ${item.value}`}</p>
   ))
 }
@@ -50,9 +53,11 @@ const ScatterChart: FC<BaseChartProps> = ({
 
 ScatterChart.propTypes = {
   /** The source data, in which each element is an object. */
+  // @ts-ignore
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
 
   /** The config prop changes some styles of the chart. This prop should be given as an object. */
+  // @ts-ignore
   config: PropTypes.shape({
     xAxis: PropTypes.shape({
       axisLine: PropTypes.bool,
@@ -83,6 +88,7 @@ ScatterChart.propTypes = {
   yAxisKey: PropTypes.string.isRequired,
 
   /** The keys or getter of a group of data which should be unique in a ScatterChart. */
+  // @ts-ignore
   dataKeys: PropTypes.arrayOf(PropTypes.string).isRequired,
 
   /** The key of y-axis which is corresponding to the data, it measures size of dot. */

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-ignore */
 import React, { FC } from 'react'
 import PropTypes from 'prop-types'
 
@@ -8,9 +9,11 @@ const BubbleChart: FC<BaseChartProps> = props => <ScatterChart {...props} />
 
 BubbleChart.propTypes = {
   /** The source data, in which each element is an object. */
+  // @ts-ignore
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
 
   /** The config prop changes some styles of the chart. This prop should be given as an object. */
+  // @ts-ignore
   config: PropTypes.shape({
     xAxis: PropTypes.shape({
       axisLine: PropTypes.bool,

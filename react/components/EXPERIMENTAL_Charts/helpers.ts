@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-ignore */
 import mergeBase from 'lodash/merge'
 
 import { ChartConfig, LineProps, BarProps } from './types'
@@ -9,12 +10,14 @@ const merge = (defaultProps: ChartConfig, userProps: ChartConfig) => {
   const props = defaultProps
   userProps &&
     Object.keys(userProps).forEach(
+      // @ts-ignore
       key => (props[key] = mergeBase(props[key], userProps[key]))
     )
   return props
 }
 
 const getRangeOfZAxis = (key: string | number, data: object[]) => {
+  // @ts-ignore
   const values = data.map(item => item[key])
   const min = Math.min(...values)
   const max = Math.max(...values)
