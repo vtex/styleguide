@@ -275,7 +275,6 @@ const DisabledAutocompleteInput = () => (
 ```
 #### Size
 
-### small size bar
 ```jsx
 import { uniq } from 'lodash'
 import { useState, useRef } from 'react'
@@ -293,7 +292,7 @@ const UsersAutocomplete = () => {
   const [loading, setLoading] = useState(false)
   const timeoutRef = useRef(null)
 
-  const options = {
+  const optionsSmall = {
     onSelect: (...args) => console.log('onSelect: ', ...args),
     loading,
     value: !term.length
@@ -306,51 +305,7 @@ const UsersAutocomplete = () => {
     size: 'small',
   }
 
-  const input = {
-    onChange: term => {
-      if (term) {
-        setLoading(true)
-        if (timeoutRef.current) {
-          clearTimeout(timeoutRef.current)
-        }
-        timeoutRef.current = setTimeout(() => {
-          setLoading(false)
-          setTerm(term)
-          timeoutRef.current = null
-        }, 1000)
-      } else {
-        setTerm(term)
-      }
-    },
-    onSearch: (...args) => console.log('onSearch:', ...args),
-    onClear: () => setTerm(''),
-    placeholder: 'Search user... (e.g.: Ana)',
-    value: term,
-  }
-  return <AutocompleteInput input={input} options={options} />
-}
-
-;<UsersAutocomplete />
-```
-### regular size bar
-```jsx
-import { uniq } from 'lodash'
-import { useState, useRef } from 'react'
-
-const allUsers = [
-  'Ana Clara',
-  'Ana Luiza',
-  { value: 1, label: 'Bruno' },
-  'Carlos',
-  'Daniela',
-]
-
-const UsersAutocomplete = () => {
-  const [term, setTerm] = useState('')
-  const [loading, setLoading] = useState(false)
-  const timeoutRef = useRef(null)
-
-  const options = {
+    const optionsRegular = {
     onSelect: (...args) => console.log('onSelect: ', ...args),
     loading,
     value: !term.length
@@ -363,51 +318,7 @@ const UsersAutocomplete = () => {
     size: 'regular',
   }
 
-  const input = {
-    onChange: term => {
-      if (term) {
-        setLoading(true)
-        if (timeoutRef.current) {
-          clearTimeout(timeoutRef.current)
-        }
-        timeoutRef.current = setTimeout(() => {
-          setLoading(false)
-          setTerm(term)
-          timeoutRef.current = null
-        }, 1000)
-      } else {
-        setTerm(term)
-      }
-    },
-    onSearch: (...args) => console.log('onSearch:', ...args),
-    onClear: () => setTerm(''),
-    placeholder: 'Search user... (e.g.: Ana)',
-    value: term,
-  }
-  return <AutocompleteInput input={input} options={options} />
-}
-
-;<UsersAutocomplete />
-```
-### large size bar
-```jsx
-import { uniq } from 'lodash'
-import { useState, useRef } from 'react'
-
-const allUsers = [
-  'Ana Clara',
-  'Ana Luiza',
-  { value: 1, label: 'Bruno' },
-  'Carlos',
-  'Daniela',
-]
-
-const UsersAutocomplete = () => {
-  const [term, setTerm] = useState('')
-  const [loading, setLoading] = useState(false)
-  const timeoutRef = useRef(null)
-
-  const options = {
+    const optionsLarge = {
     onSelect: (...args) => console.log('onSelect: ', ...args),
     loading,
     value: !term.length
@@ -441,8 +352,17 @@ const UsersAutocomplete = () => {
     placeholder: 'Search user... (e.g.: Ana)',
     value: term,
   }
-  return <AutocompleteInput input={input} options={options} />
+  return (<div>
+            <span className="mr4">
+              <AutocompleteInput input={input} options={optionsSmall} />
+            </span>
+            <span className="mr4">
+              <AutocompleteInput input={input} options={optionsRegular} />
+            </span>
+            <span className="mr4">
+              <AutocompleteInput input={input} options={optionsLarge} />
+            </span>
+          </div>)
 }
 
 ;<UsersAutocomplete />
-```
