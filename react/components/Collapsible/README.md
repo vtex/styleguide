@@ -31,8 +31,7 @@ initialState = { isOpen: false }
         </span>
       }
       onClick={e => setState({ isOpen: e.target.isOpen })}
-      isOpen={state.isOpen}
-    >
+      isOpen={state.isOpen}>
       <div className="mt4">
         <div className="mb3">
           <Input label="Surname" />
@@ -56,8 +55,7 @@ initialState = { isOpen1: false, isOpen2: false, isOpen3: false }
       header={<span>Here goes your base header</span>}
       onClick={e => setState({ isOpen1: e.target.isOpen })}
       isOpen={state.isOpen1}
-      caretColor="base"
-    >
+      caretColor="base">
       <div className="mt4">Here goes your content</div>
     </Collapsible>
   </div>
@@ -97,8 +95,7 @@ initialState = { isOpen1: false, isOpen2: false, isOpen3: false }
                 height="16"
                 viewBox="0 0 16 16"
                 fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+                xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M7 8H1C0.4 8 0 8.4 0 9V15C0 15.6 0.4 16 1 16H7C7.6 16 8 15.6 8 15V9C8 8.4 7.6 8 7 8Z"
                   fill="currentColor"
@@ -119,8 +116,7 @@ initialState = { isOpen1: false, isOpen2: false, isOpen3: false }
         align="right"
         onClick={e => setState({ isOpen1: e.target.isOpen })}
         isOpen={state.isOpen1}
-        caretColor="muted"
-      >
+        caretColor="muted">
         <div className="ml6 mt4">
           <a href="#" className="mt3 c-muted-1 link db hover-c-link">
             Products and SKUs
@@ -151,8 +147,7 @@ initialState = { isOpen1: false, isOpen2: false, isOpen3: false }
                 height="16"
                 viewBox="0 0 16 16"
                 fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+                xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M16 5V3C16 2.4 15.6 2 15 2H1C0.4 2 0 2.4 0 3V5H16Z"
                   fill="currentColor"
@@ -171,8 +166,7 @@ initialState = { isOpen1: false, isOpen2: false, isOpen3: false }
         align="right"
         onClick={e => setState({ isOpen2: e.target.isOpen })}
         isOpen={state.isOpen2}
-        caretColor="muted"
-      >
+        caretColor="muted">
         <div className="ml6 mt4">
           <a href="#" className="mt3 c-muted-1 link db hover-c-link">
             Transactions
@@ -200,8 +194,7 @@ initialState = { isOpen1: false, isOpen2: false, isOpen3: false }
                 height="16"
                 viewBox="0 0 16 16"
                 fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+                xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M16 12H5.8C5.5 11.2 4.8 10.5 4 10.2V1C4 0.4 3.6 0 3 0H0V2H2V10.2C0.8 10.6 0 11.7 0 13C0 14.7 1.3 16 3 16C4.3 16 5.4 15.2 5.8 14H16V12Z"
                   fill="currentColor"
@@ -218,8 +211,7 @@ initialState = { isOpen1: false, isOpen2: false, isOpen3: false }
         align="right"
         onClick={e => setState({ isOpen3: e.target.isOpen })}
         isOpen={state.isOpen3}
-        caretColor="muted"
-      >
+        caretColor="muted">
         <div className="ml6 mt4">
           <a href="#" className="mt3 c-muted-1 link db hover-c-link">
             Dashboard
@@ -269,8 +261,7 @@ function toggleAccordion(questionNbr) {
             </div>
           }
           onClick={toggleAccordion(1)}
-          isOpen={state.openQuestion === 1}
-        >
+          isOpen={state.openQuestion === 1}>
           <div className="bg-muted-5 pa6">
             <p className="ma0">
               A <strong>sub-acquirer</strong> is a company that processes
@@ -292,8 +283,7 @@ function toggleAccordion(questionNbr) {
             </div>
           }
           onClick={toggleAccordion(2)}
-          isOpen={state.openQuestion === 2}
-        >
+          isOpen={state.openQuestion === 2}>
           <div className="bg-muted-5 pa6">
             <p className="ma0">
               Connectors are communication protocols that your store needs to
@@ -317,8 +307,7 @@ function toggleAccordion(questionNbr) {
             </div>
           }
           onClick={toggleAccordion(3)}
-          isOpen={state.openQuestion === 3}
-        >
+          isOpen={state.openQuestion === 3}>
           <div className="bg-muted-5 pa6">
             <p>
               PCI Security Standards Council is a global forum open to
@@ -341,8 +330,7 @@ function toggleAccordion(questionNbr) {
             </div>
           }
           onClick={toggleAccordion(4)}
-          isOpen={state.openQuestion === 4}
-        >
+          isOpen={state.openQuestion === 4}>
           <div className="bg-muted-5 pa6">
             <p>
               The movement that money makes when exchanged for a product or
@@ -364,5 +352,72 @@ function toggleAccordion(questionNbr) {
       </Box>
     </div>
   </div>
+</div>
+```
+
+Example dealing with popup menus inside the Collapsible
+
+```js
+const Select = require('../EXPERIMENTAL_Select/index.js').default
+initialState = { isOpenNotHidden: false, isOpenHidden: false }
+const options = [
+  {
+    value: 'first-option',
+    label: 'First Option',
+  },
+  {
+    value: 'second-option',
+    label: 'Second Option',
+  },
+]
+;<div className="w-50">
+  <div className="pb3">
+    <Collapsible
+      header={
+        <span className="c-action-primary hover-c-action-primary fw5">
+          Collapsible with overflow hidden enabled
+        </span>
+      }
+      onClick={e => setState({ isOpenHidden: e.target.isOpen })}
+      isOpen={state.isOpenHidden}>
+      <div className="mt4">
+        <div className="mb3">
+          <Select
+            label="Label"
+            options={options}
+            multi={false}
+            onChange={values => {
+              console.log(
+                `[Select] Selected: ${JSON.stringify(values, null, 2)}`
+              )
+            }}
+          />
+        </div>
+      </div>
+    </Collapsible>
+  </div>
+
+  <Collapsible
+    header={
+      <span className="c-action-primary hover-c-action-primary fw5">
+        Collapsible with overflow hidden disabled
+      </span>
+    }
+    isOverflowHidden={false}
+    onClick={e => setState({ isOpenNotHidden: e.target.isOpen })}
+    isOpen={state.isOpenNotHidden}>
+    <div className="mt4">
+      <div className="mb3">
+        <Select
+          label="Label"
+          options={options}
+          multi={false}
+          onChange={values => {
+            console.log(`[Select] Selected: ${JSON.stringify(values, null, 2)}`)
+          }}
+        />
+      </div>
+    </div>
+  </Collapsible>
 </div>
 ```
