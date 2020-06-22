@@ -36,9 +36,13 @@ class Collapsible extends Component {
   }
 
   handleTransitionEnd = () => {
+    const { isOpen, isOverflowHidden } = this.props
     this.setState({
-      height: this.props.isOpen ? 'auto' : 0,
+      height: isOpen ? 'auto' : 0,
     })
+    if (isOpen && !isOverflowHidden) {
+      this.childrenRef.current.style.removeProperty('overflow')
+    }
   }
 
   openCard = () => {
@@ -58,6 +62,7 @@ class Collapsible extends Component {
 
   closeCard = () => {
     const childrenHeight = this.childrenRef.current.offsetHeight
+    this.childrenRef.current.style.setProperty('overflow', 'hidden')
     this.setState(
       {
         height: childrenHeight,
@@ -99,7 +104,7 @@ class Collapsible extends Component {
     const { height } = this.state
     const childrenContainerStyle = {
       height,
-      overflow: isOverflowHidden ? 'hidden' : 'none',
+      overflow: !isOverflowHidden && isOpen ? 'none' : 'hidden',
       transition: 'height 250ms ease-in-out',
     }
     if (muted) {
