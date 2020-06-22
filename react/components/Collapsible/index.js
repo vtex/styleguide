@@ -182,7 +182,7 @@ Collapsible.propTypes = {
     'baseline',
     'stretch',
   ]),
-  /** Controls whether the collapsible should hide overflowing components.*/
+  /** Controls whether the collapsible should hide overflowing components. (e.g. Turn the overflow off to avoid popup menus in the childen component to be cropped.)*/
   isOverflowHidden: PropTypes.bool,
 }
 
