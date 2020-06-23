@@ -30,7 +30,6 @@ const propTypes = {
 
 const defaultProps = {
   roundedBottom: true,
-  size: 'regular',
 }
 
 const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
@@ -71,7 +70,7 @@ const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
     onBlur && onBlur(e)
   }
 
-  const activeClass = classNames({
+  let activeClass = classNames({
     'b--muted-3': focused,
     'b--muted-4': !focused,
     'br--top': !roundedBottom,
@@ -79,9 +78,20 @@ const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
     'bg-base c-on-base': !disabled,
   })
 
+  switch (size) {
+    case 'small':
+      activeClass += ` h-${size}`
+      break
+    case 'large':
+      activeClass += ` h-${size}`
+      break
+    default:
+      activeClass += ' h-regular'
+  }
+
   const buttonClasses = classNames(
     activeClass,
-    `bg-base br2 br--right w3 bw1 ba pa0 bl-0' h-${size}`,
+    'bg-base br2 br--right w3 bw1 ba pa0 bl-0',
     {
       'c-link pointer': !disabled,
       'c-disabled': disabled,
@@ -92,7 +102,7 @@ const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
     <div className="flex flex-row">
       <div className="relative w-100">
         <input
-          className={`${activeClass} w-100 ma0 border-box bw1 br2 ba outline-0 c-on-base t-body ph5 pr8 br--left h-${size}`}
+          className={`${activeClass} w-100 ma0 border-box bw1 br2 ba outline-0 c-on-base t-body ph5 pr8 br--left`}
           value={value}
           onFocus={handleFocus}
           onBlur={handleBlur}
