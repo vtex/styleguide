@@ -158,6 +158,7 @@ class Select extends Component {
           padding: '0.125rem',
           paddingRight: 0,
           fontWeight: 500,
+          fontSize: size === 'large' ? '100%' : style.fontSize,
           color: state.isDisabled ? COLORS.gray : COLORS.blue,
         }),
         multiValueRemove: style => ({
