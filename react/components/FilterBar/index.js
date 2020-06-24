@@ -37,6 +37,18 @@ class FilterBar extends PureComponent {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    const { statements, alwaysVisibleFilters } = this.props
+
+    if (statements !== prevProps.statements) {
+      this.setState({
+        visibleExtraOptions: statements
+          .filter(st => !alwaysVisibleFilters.includes(st.subject))
+          .map(st => st.subject),
+      })
+    }
+  }
+
   toggleExtraFilterOption = key => {
     const { visibleExtraOptions } = this.state
     const newVisibleExtraOptions = [
