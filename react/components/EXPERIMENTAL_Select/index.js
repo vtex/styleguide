@@ -121,14 +121,24 @@ class Select extends Component {
       options,
       placeholder,
       styles: {
-        control: style => {
-          const errorStyle = errorMessage ? { borderColor: COLORS.red } : {}
+        control: (style, state) => {
+          const { isFocused } = state
 
           return {
             ...style,
-            ...errorStyle,
-            borderColor: COLORS['muted-4'],
-            minHeight: getControlHeightFromSize(size),
+            '&:hover': {
+              borderColor: errorMessage
+                ? COLORS.red
+                : isFocused
+                ? COLORS['muted-2']
+                : COLORS['muted-3'],
+            },
+            boxShadow: 'none',
+            borderColor: errorMessage
+              ? COLORS.red
+              : isFocused
+              ? COLORS['muted-2']
+              : COLORS['muted-4'],
             borderWidth: '.125rem',
           }
         },
