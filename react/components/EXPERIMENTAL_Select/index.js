@@ -75,9 +75,7 @@ class Select extends Component {
       defaultMenuIsOpen,
       ref: forwardedRef,
       autoFocus,
-      className: `pointer b--danger bw1 ${getFontClassNameFromSize(size)} ${
-        errorMessage ? 'b--danger bw1' : ''
-      }`,
+      className: `pointer bw1 ${getFontClassNameFromSize(size)}`,
       components: {
         ClearIndicator,
         Control: function Control(props) {
@@ -181,15 +179,14 @@ class Select extends Component {
           maxHeight: `${valuesMaxHeight}px`,
           overflowY: 'auto',
         }),
-        theme: theme => ({
-          ...theme,
-          colors: {
-            ...theme.colors,
-            primary: COLORS.gray,
-            primary25: COLORS.lightGray,
-          },
-        }),
       },
+      theme: theme => ({
+        ...theme,
+        spacing: {
+          ...theme.spacing,
+          controlHeight: getControlHeightFromSize(size),
+        },
+      }),
       value,
     }
 
