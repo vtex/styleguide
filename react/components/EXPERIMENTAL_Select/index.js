@@ -173,7 +173,8 @@ class Select extends Component {
         valueContainer: (style, state) => ({
           ...style,
           cursor: 'pointer',
-          paddingLeft: '1rem',
+          paddingLeft: state.isMulti && state.hasValue ? '.25rem' : '1rem',
+          paddingRight: '.25rem',
           backgroundColor: state.isDisabled
             ? COLORS.lightGray
             : style.backgroundColor,
