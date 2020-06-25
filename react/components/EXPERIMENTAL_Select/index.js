@@ -10,7 +10,11 @@ import DropdownIndicatorComponent from './DropdownIndicator'
 import MultiValueRemove from './MultiValueRemove'
 import Placeholder from './Placeholder'
 import ControlComponent from './Control'
-import { getFontClassNameFromSize, getTagPaddingFromSize } from './styles'
+import {
+  getFontClassNameFromSize,
+  getTagPaddingFromSize,
+  getControlHeightFromSize,
+} from './styles'
 import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
 
 const getOptionValue = option => {
@@ -71,9 +75,7 @@ class Select extends Component {
       defaultMenuIsOpen,
       ref: forwardedRef,
       autoFocus,
-      className: `pointer b--danger bw1 ${getFontClassNameFromSize(size)} ${
-        errorMessage ? 'b--danger bw1' : ''
-      }`,
+      className: `pointer bw1 ${getFontClassNameFromSize(size)}`,
       components: {
         ClearIndicator,
         Control: function Control(props) {
@@ -117,12 +119,24 @@ class Select extends Component {
       options,
       placeholder,
       styles: {
-        control: style => {
-          const errorStyle = errorMessage ? { borderColor: COLORS.red } : {}
+        control: (style, state) => {
+          const { isFocused } = state
 
           return {
             ...style,
-            ...errorStyle,
+            '&:hover': {
+              borderColor: errorMessage
+                ? COLORS.red
+                : isFocused
+                ? COLORS['muted-2']
+                : COLORS['muted-3'],
+            },
+            boxShadow: 'none',
+            borderColor: errorMessage
+              ? COLORS.red
+              : isFocused
+              ? COLORS['muted-2']
+              : COLORS['muted-4'],
             borderWidth: '.125rem',
           }
         },
@@ -134,44 +148,44 @@ class Select extends Component {
             : COLORS.aliceBlue,
           borderRadius: 100,
           padding: getTagPaddingFromSize(size),
-          color: state.isDisabled ? COLORS.gray : COLORS.blue,
           position: 'relative',
         }),
         multiValueLabel: (style, state) => ({
           ...style,
+          padding: '0.125rem',
           paddingRight: 0,
           fontWeight: 500,
-          color: state.isDisabled ? COLORS.gray : COLORS.blue,
+          fontSize: size === 'large' ? '100%' : style.fontSize,
+          color: state.isDisabled ? COLORS.gray : COLORS['c-on-base'],
         }),
-        multiValueRemove: style => ({
+        multiValueRemove: (style, state) => ({
           ...style,
-          colors: 'inherit',
+          color: state.isDisabled ? COLORS.gray : COLORS['muted-1'],
           ':hover': {
             backgroundColor: 'transparent',
-            color: COLORS.red,
+            color: COLORS.blue,
           },
         }),
         option: style => ({ ...style, cursor: 'pointer' }),
-        placeholder: style => ({ ...style, padding: 10 }),
         valueContainer: (style, state) => ({
           ...style,
           cursor: 'pointer',
-          paddingLeft: '1rem',
+          paddingLeft: state.isMulti && state.hasValue ? '.25rem' : '1rem',
+          paddingRight: '.25rem',
           backgroundColor: state.isDisabled
             ? COLORS.lightGray
             : style.backgroundColor,
           maxHeight: `${valuesMaxHeight}px`,
           overflowY: 'auto',
         }),
-        theme: theme => ({
-          ...theme,
-          colors: {
-            ...theme.colors,
-            primary: COLORS.gray,
-            primary25: COLORS.lightGray,
-          },
-        }),
       },
+      theme: theme => ({
+        ...theme,
+        spacing: {
+          ...theme.spacing,
+          controlHeight: getControlHeightFromSize(size),
+        },
+      }),
       value,
     }
 
