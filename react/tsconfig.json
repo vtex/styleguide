@@ -2,7 +2,7 @@
   "extends": "@vtex/tsconfig",
   "compilerOptions": {
     "allowJs": true,
-    "declaration": true,
+    "declaration": false,
     "typeRoots": ["node_modules/@types"],
     "types": ["node", "jest"]
   },

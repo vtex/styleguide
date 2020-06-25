@@ -1,12 +1,42 @@
 import PropTypes from 'prop-types'
-import React, { FC, cloneElement, Children } from 'react'
+import React, {
+  FC,
+  cloneElement,
+  Children,
+  ReactElement,
+  ReactNode,
+} from 'react'
 
 import TooltipPopup, { Position, Size } from './TooltipPopup'
 import { useTooltip, Trigger } from './hooks'
 
-const propTypes = {
+interface Props {
+  children: ReactNode
+  label: ReactElement | string
+  position?: Position
+  size?: Size
+  fallbackPosition?: Position
+  trigger?: Trigger
+  delay?: number
+  duration?: number
+  timmingFn?: string
+  wordBreak?: 'normal' | 'break-all' | 'keep-all' | 'break-word'
+}
+
+const Tooltip: FC<Props> = ({ trigger, children, ...popupProps }) => {
+  const [handleTooltip, tooltip] = useTooltip({ trigger })
+  const child = Children.only(children) as ReactElement
+  return (
+    <>
+      <TooltipPopup {...tooltip} {...popupProps} />
+      {cloneElement(child, handleTooltip(child))}
+    </>
+  )
+}
+
+Tooltip.propTypes = {
   /** Label to be shown. As element, can be a string, number... */
-  label: PropTypes.node.isRequired,
+  label: PropTypes.element.isRequired,
   /** Tooltip position */
   position: PropTypes.oneOf<Position>(['top', 'right', 'bottom', 'left']),
   /** Tooltip font size */
@@ -29,17 +59,10 @@ const propTypes = {
   /** Tooltip timming function used to animate the tooltip */
   timmingFn: PropTypes.string,
   /** Element that inserts line break style in the word. Used to prevent width overflow */
-  wordBreak: PropTypes.oneOf<string>([
-    'normal',
-    'break-all',
-    'keep-all',
-    'break-word',
-  ]),
+  wordBreak: PropTypes.oneOf(['normal', 'break-all', 'keep-all', 'break-word']),
 }
 
-type Props = PropTypes.InferProps<typeof propTypes>
-
-const defaultProps: Props = {
+Tooltip.defaultProps = {
   trigger: 'hover',
   position: 'top',
   size: 'small',
@@ -48,19 +71,5 @@ const defaultProps: Props = {
   timmingFn: 'ease-in-out',
   wordBreak: 'normal',
 }
-
-const Tooltip: FC<Props> = ({ trigger, children, ...popupProps }) => {
-  const [handleTooltip, tooltip] = useTooltip({ trigger })
-  const child = Children.only(children)
-  return (
-    <>
-      <TooltipPopup {...tooltip} {...popupProps} />
-      {cloneElement(child, handleTooltip(child))}
-    </>
-  )
-}
-
-Tooltip.propTypes = propTypes
-Tooltip.defaultProps = defaultProps
 
 export default Tooltip

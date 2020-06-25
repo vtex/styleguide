@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import get from 'lodash/get'
 import { RefObject, useState, useRef, useLayoutEffect } from 'react'
 
@@ -27,7 +28,7 @@ export function useTooltip({
   trigger?: Trigger
 } = {}): [
   (c: React.ReactElement) => object,
-  { childRef: RefObject<HTMLElement>; visible: boolean }
+  { childRef: RefObject<any>; visible: boolean }
 ] {
   const childRef = useRef<HTMLElement>()
   const [visible, setVisible] = useState(false)
