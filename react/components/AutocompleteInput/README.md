@@ -273,6 +273,7 @@ const DisabledAutocompleteInput = () => (
 
 ;<DisabledAutocompleteInput />
 ```
+
 #### Size
 
 ```jsx
@@ -305,7 +306,7 @@ const UsersAutocomplete = () => {
     size: 'small',
   }
 
-    const optionsRegular = {
+  const optionsRegular = {
     onSelect: (...args) => console.log('onSelect: ', ...args),
     loading,
     value: !term.length
@@ -318,7 +319,7 @@ const UsersAutocomplete = () => {
     size: 'regular',
   }
 
-    const optionsLarge = {
+  const optionsLarge = {
     onSelect: (...args) => console.log('onSelect: ', ...args),
     loading,
     value: !term.length
@@ -352,17 +353,20 @@ const UsersAutocomplete = () => {
     placeholder: 'Search user... (e.g.: Ana)',
     value: term,
   }
-  return (<div>
-            <span className="mr4">
-              <AutocompleteInput input={input} options={optionsSmall} />
-            </span>
-            <span className="mr4">
-              <AutocompleteInput input={input} options={optionsRegular} />
-            </span>
-            <span className="mr4">
-              <AutocompleteInput input={input} options={optionsLarge} />
-            </span>
-          </div>)
+  return (
+    <div>
+      <span className="mr4">
+        <AutocompleteInput input={input} options={optionsSmall} />
+      </span>
+      <span className="mr4">
+        <AutocompleteInput input={input} options={optionsRegular} />
+      </span>
+      <span className="mr4">
+        <AutocompleteInput input={input} options={optionsLarge} />
+      </span>
+    </div>
+  )
 }
 
 ;<UsersAutocomplete />
+```
