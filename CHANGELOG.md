@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - `FilterBar` clear icon disabled style.
+- `AutocompleteInput` disabled style.
 
 ## [9.121.0] - 2020-06-19
 
@@ -24,7 +25,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - `FilterTag` disabled style.
-- Filter bar button font
+- Filter bar button font.
 
 ## [9.120.1] - 2020-06-05
 

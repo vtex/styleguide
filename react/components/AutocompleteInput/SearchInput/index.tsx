@@ -68,8 +68,8 @@ const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
     'b--muted-3': focused,
     'b--muted-4': !focused,
     'br--top': !roundedBottom,
-    'bg-disabled': disabled,
-    'bg-base': !disabled,
+    'bg-disabled c-disabled': disabled,
+    'bg-base c-on-base': !disabled,
   })
 
   const buttonClasses = classNames(
@@ -85,7 +85,7 @@ const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
     <div className="flex flex-row">
       <div className="relative w-100">
         <input
-          className={`${activeClass} w-100 ma0 border-box bw1 br2 ba outline-0 c-on-base t-body h-regular ph5 pr8 br--left`}
+          className={`${activeClass} w-100 ma0 border-box bw1 br2 ba outline-0 t-body h-regular ph5 pr8 br--left`}
           value={value}
           onFocus={handleFocus}
           onBlur={handleBlur}
