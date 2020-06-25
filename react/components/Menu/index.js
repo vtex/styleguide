@@ -5,6 +5,8 @@ import { Overlay } from 'react-overlays'
 import Toggle from '../Toggle'
 import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
 
+const MAX_Z_INDEX = 2147483647
+const DEFAULT_Z_INDEX = 999
 const CONTAINER_MARGIN = 6
 const WINDOW_MARGIN = 10
 const DEFAULT_DOCUMENT_ELEMENT = {
@@ -112,7 +114,7 @@ class Menu extends Component {
   }
 
   render() {
-    const { options, align, open, onClose, children, width } = this.props
+    const { options, align, open, onClose, children, width, zIndex } = this.props
     const { hasCalculatedSize, isUpwards, isVisible, menuHeight } = this.state
 
     const isRight = align === 'right'
@@ -152,8 +154,9 @@ class Menu extends Component {
                     ? clientWidth - right
                     : left + scrollLeft,
                   width,
+                  zIndex: zIndex === 'max' ? MAX_Z_INDEX : zIndex,
                 }}
-                className={`absolute z-999 ba b--muted-4 br2 shadow-5 ${
+                className={`absolute ba b--muted-4 br2 shadow-5 ${
                   isRight ? 'right-0' : 'left-0'
                 }
               ${isVisible ? 'o-100' : 'o-0'}`}>
@@ -203,6 +206,7 @@ Menu.defaultProps = {
   options: [],
   align: 'right',
   open: false,
+  zIndex: DEFAULT_Z_INDEX,
 }
 
 Menu.propTypes = {
@@ -231,6 +235,8 @@ Menu.propTypes = {
   onClose: PropTypes.func,
   /** Menu Box align (default is right) */
   align: PropTypes.oneOf(['right', 'left']),
+  /** Default z-index to Menu view, default is 999 */
+  zIndex: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }
 
 export default withForwardedRef(Menu)

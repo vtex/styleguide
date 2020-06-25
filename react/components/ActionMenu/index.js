@@ -74,6 +74,7 @@ class ActionMenu extends Component {
       isFirstOfGroup,
       isLastOfGroup,
       isActiveOfGroup,
+      zIndex,
     } = this.props
 
     const { isMenuOpen } = this.state
@@ -88,7 +89,8 @@ class ActionMenu extends Component {
           align={align}
           width={menuWidth}
           options={options}
-          onClose={shouldCloseOnClick ? this.closeMenu : null}>
+          onClose={shouldCloseOnClick ? this.closeMenu : null}
+          zIndex={zIndex}>
           <ButtonWithIcon
             {...{
               icon:
@@ -163,6 +165,8 @@ ActionMenu.propTypes = {
   isLastOfGroup: PropTypes.bool,
   /** */
   isActiveOfGroup: PropTypes.bool,
+  /** Default z-index to Menu view, default is 999 */
+  zIndex: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }
 
 export default ActionMenu
