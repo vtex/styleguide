@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `AutocompleteInput` disabled style.
 - Filters hidden for existing statements.
 
+### Added
+
+- testId props in `ModalDialog` confirmation and cancelation buttons.
+
 ## [9.121.0] - 2020-06-19
 
 ### Added

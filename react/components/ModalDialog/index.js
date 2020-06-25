@@ -35,6 +35,7 @@ class ModalDialog extends Component {
         <div className="vtex-modal__confirmation flex justify-end mt8">
           <span className="mr4">
             <Button
+              testId={cancelation.testId}
               size="small"
               variation="tertiary"
               disabled={loading}
@@ -44,6 +45,7 @@ class ModalDialog extends Component {
           </span>
 
           <Button
+            testId={confirmation.testId}
             size="small"
             variation={confirmation.isDangerous ? 'danger' : 'primary'}
             isLoading={loading}
@@ -62,10 +64,12 @@ ModalDialog.propTypes = {
     label: PropTypes.string.isRequired,
     onClick: PropTypes.func.isRequired,
     isDangerous: PropTypes.bool,
+    testId: PropTypes.string,
   }).isRequired,
   cancelation: PropTypes.shape({
     label: PropTypes.string.isRequired,
     onClick: PropTypes.func.isRequired,
+    testId: PropTypes.string,
   }).isRequired,
   onClose: PropTypes.func,
   loading: PropTypes.bool,
