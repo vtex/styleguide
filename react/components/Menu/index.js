@@ -114,7 +114,15 @@ class Menu extends Component {
   }
 
   render() {
-    const { options, align, open, onClose, children, width, zIndex } = this.props
+    const {
+      options,
+      align,
+      open,
+      onClose,
+      children,
+      width,
+      zIndex,
+    } = this.props
     const { hasCalculatedSize, isUpwards, isVisible, menuHeight } = this.state
 
     const isRight = align === 'right'
