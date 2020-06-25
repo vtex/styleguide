@@ -104,10 +104,10 @@ const TooltipPopup: FC<Props> = ({
 }
 
 const getStyles = (
-  childRect: null,
-  popupRect: null,
-  position: string | null | undefined,
-  fallbackPosition: string | null | undefined
+  childRect: any,
+  popupRect: any,
+  position?: string | null,
+  fallbackPosition?: string | null
 ) => {
   return childRect && popupRect && window && hasComputedDimensions(popupRect)
     ? getPopupPosition(childRect, popupRect, position, fallbackPosition)

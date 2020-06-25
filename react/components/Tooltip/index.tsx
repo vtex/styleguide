@@ -1,11 +1,17 @@
 import PropTypes from 'prop-types'
-import React, { FC, cloneElement, Children, ReactElement } from 'react'
+import React, {
+  FC,
+  cloneElement,
+  Children,
+  ReactElement,
+  ReactNode,
+} from 'react'
 
 import TooltipPopup, { Position, Size } from './TooltipPopup'
 import { useTooltip, Trigger } from './hooks'
 
 interface Props {
-  children: ReactElement
+  children: ReactNode
   label: ReactElement | string
   position?: Position
   size?: Size
@@ -19,7 +25,7 @@ interface Props {
 
 const Tooltip: FC<Props> = ({ trigger, children, ...popupProps }) => {
   const [handleTooltip, tooltip] = useTooltip({ trigger })
-  const child = Children.only(children)
+  const child = Children.only(children) as ReactElement
   return (
     <>
       <TooltipPopup {...tooltip} {...popupProps} />
