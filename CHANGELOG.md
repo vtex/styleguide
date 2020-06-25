@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - `FilterBar` clear icon disabled style.
 - `AutocompleteInput` disabled style.
+- Filters hidden for existing statements.
 
 ## [9.121.0] - 2020-06-19
 
