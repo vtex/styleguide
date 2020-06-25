@@ -148,7 +148,6 @@ class Select extends Component {
             : COLORS.aliceBlue,
           borderRadius: 100,
           padding: getTagPaddingFromSize(size),
-          color: state.isDisabled ? COLORS.gray : COLORS.blue,
           position: 'relative',
         }),
         multiValueLabel: (style, state) => ({
@@ -157,14 +156,14 @@ class Select extends Component {
           paddingRight: 0,
           fontWeight: 500,
           fontSize: size === 'large' ? '100%' : style.fontSize,
-          color: state.isDisabled ? COLORS.gray : COLORS.blue,
+          color: state.isDisabled ? COLORS.gray : COLORS['c-on-base'],
         }),
-        multiValueRemove: style => ({
+        multiValueRemove: (style, state) => ({
           ...style,
-          colors: 'inherit',
+          color: state.isDisabled ? COLORS.gray : COLORS['muted-1'],
           ':hover': {
             backgroundColor: 'transparent',
-            color: COLORS.red,
+            color: COLORS.blue,
           },
         }),
         option: style => ({ ...style, cursor: 'pointer' }),
