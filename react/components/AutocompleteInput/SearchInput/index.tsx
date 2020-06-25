@@ -5,38 +5,26 @@ import React, { useState } from 'react'
 import IconSearch from '../../icon/Search'
 import ClearInputIcon from '../../icon/Clear'
 
-const propTypes = {
-  /** Determine if the input's bottom corners should be rounded or not */
-  roundedBottom: PropTypes.bool,
+type NativeInput = React.DetailedHTMLProps<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  HTMLInputElement
+>
 
-  /* Input props */
-  /** Input value */
-  value: PropTypes.string,
-  /** Clear event handler */
-  onClear: PropTypes.func,
-  /** Change event handler */
-  onChange: PropTypes.func,
-  /** Search event handler. Called on enter or when clicking the search button */
-  onSearch: PropTypes.func,
-  /** Focus event handler */
-  onFocus: PropTypes.func,
-  /** Blur event handler */
-  onBlur: PropTypes.func,
-  /** Determine if the input and the button should be disabled */
-  disabled: PropTypes.bool,
+export interface SearchInputProps extends Omit<NativeInput, 'onChange'> {
+  value?: string
+  roundedBottom?: boolean
+  onClear?: () => void
+  onSearch?: (value: string) => void
+  onChange?: (value: string) => void
+  disabled?: boolean
 }
 
-const defaultProps = {
-  roundedBottom: true,
-}
-
-const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
-  Omit<React.HTMLProps<HTMLInputElement>, 'onChange' | 'value'>> = props => {
+const SearchInput: React.FC<SearchInputProps> = props => {
   const {
     onClear,
     onSearch,
-    roundedBottom,
-    value,
+    roundedBottom = true,
+    value = '',
     onChange,
     onFocus,
     onBlur,
@@ -95,6 +83,9 @@ const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
           <span
             className="absolute c-muted-3 fw5 flex items-center ph3 t-body top-0 right-0 h-100 pointer"
             onClick={handleClear}
+            role="button"
+            tabIndex={0}
+            onKeyDown={() => null}
           >
             <ClearInputIcon />
           </span>
@@ -103,7 +94,7 @@ const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
       <button
         className={buttonClasses}
         disabled={disabled}
-        onClick={() => onSearch(value)}
+        onClick={() => onSearch?.(value)}
       >
         <IconSearch size={16} />
       </button>
@@ -111,7 +102,23 @@ const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
   )
 }
 
-SearchInput.propTypes = propTypes
-SearchInput.defaultProps = defaultProps
+SearchInput.propTypes = {
+  /** Determine if the input's bottom corners should be rounded or not */
+  roundedBottom: PropTypes.bool,
+  /** Input value */
+  value: PropTypes.string,
+  /** Clear event handler */
+  onClear: PropTypes.func,
+  /** Change event handler */
+  onChange: PropTypes.func,
+  /** Search event handler. Called on enter or when clicking the search button */
+  onSearch: PropTypes.any,
+  /** Focus event handler */
+  onFocus: PropTypes.func,
+  /** Blur event handler */
+  onBlur: PropTypes.func,
+  /** Determine if the input and the button should be disabled */
+  disabled: PropTypes.bool,
+}
 
 export default SearchInput

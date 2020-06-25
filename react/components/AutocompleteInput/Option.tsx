@@ -21,7 +21,7 @@ export const autocompleteOptionShape = PropTypes.oneOfType([
 ])
 
 export const getTermFromOption = (option: AutocompleteOption): string =>
-  typeof option === 'string' ? option : option.label
+  typeof option === 'string' ? option : option?.label ?? ''
 
 const propTypes = {
   /** Determine if the option should have a rounded bottom */
