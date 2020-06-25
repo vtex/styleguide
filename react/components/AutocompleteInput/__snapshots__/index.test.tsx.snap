@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AutocompleteInput should render a smaller version of search bar if size prop isnt small, regular or large 1`] = `
+exports[`AutocompleteInput should render a regular version of search bar if size prop isnt small, regular or large 1`] = `
 <DocumentFragment>
   <div
     class="flex flex-column w-100"
@@ -12,13 +12,13 @@ exports[`AutocompleteInput should render a smaller version of search bar if size
         class="relative w-100"
       >
         <input
-          class="b--muted-4 bg-base w-100 ma0 border-box bw1 br2 ba outline-0 c-on-base t-body ph5 pr8 br--left h-medium"
+          class="b--muted-4 bg-base h-regular w-100 ma0 border-box bw1 br2 ba outline-0 c-on-base t-body ph5 pr8 br--left"
           placeholder=""
           value=""
         />
       </div>
       <button
-        class="b--muted-4 bg-base bg-base br2 br--right w3 bw1 ba pa0 bl-0' h-medium c-link pointer"
+        class="b--muted-4 bg-base h-regular bg-base br2 br--right w3 bw1 ba pa0 bl-0 c-link pointer"
       >
         <svg
           class="vtex__icon-search  "
@@ -52,13 +52,13 @@ exports[`AutocompleteInput should render with a large size bar 1`] = `
         class="relative w-100"
       >
         <input
-          class="b--muted-4 bg-base w-100 ma0 border-box bw1 br2 ba outline-0 c-on-base t-body ph5 pr8 br--left h-large"
+          class="b--muted-4 bg-base h-large w-100 ma0 border-box bw1 br2 ba outline-0 c-on-base t-body ph5 pr8 br--left"
           placeholder=""
           value=""
         />
       </div>
       <button
-        class="b--muted-4 bg-base bg-base br2 br--right w3 bw1 ba pa0 bl-0' h-large c-link pointer"
+        class="b--muted-4 bg-base h-large bg-base br2 br--right w3 bw1 ba pa0 bl-0 c-link pointer"
       >
         <svg
           class="vtex__icon-search  "
@@ -92,13 +92,13 @@ exports[`AutocompleteInput should render with a regular size bar 1`] = `
         class="relative w-100"
       >
         <input
-          class="b--muted-4 bg-base w-100 ma0 border-box bw1 br2 ba outline-0 c-on-base t-body ph5 pr8 br--left h-regular"
+          class="b--muted-4 bg-base h-regular w-100 ma0 border-box bw1 br2 ba outline-0 c-on-base t-body ph5 pr8 br--left"
           placeholder=""
           value=""
         />
       </div>
       <button
-        class="b--muted-4 bg-base bg-base br2 br--right w3 bw1 ba pa0 bl-0' h-regular c-link pointer"
+        class="b--muted-4 bg-base h-regular bg-base br2 br--right w3 bw1 ba pa0 bl-0 c-link pointer"
       >
         <svg
           class="vtex__icon-search  "
@@ -132,13 +132,13 @@ exports[`AutocompleteInput should render with a regular size bar when prop is ab
         class="relative w-100"
       >
         <input
-          class="b--muted-4 bg-base w-100 ma0 border-box bw1 br2 ba outline-0 c-on-base t-body ph5 pr8 br--left h-regular"
+          class="b--muted-4 bg-base h-regular w-100 ma0 border-box bw1 br2 ba outline-0 c-on-base t-body ph5 pr8 br--left"
           placeholder=""
           value=""
         />
       </div>
       <button
-        class="b--muted-4 bg-base bg-base br2 br--right w3 bw1 ba pa0 bl-0' h-regular c-link pointer"
+        class="b--muted-4 bg-base h-regular bg-base br2 br--right w3 bw1 ba pa0 bl-0 c-link pointer"
       >
         <svg
           class="vtex__icon-search  "
@@ -172,13 +172,13 @@ exports[`AutocompleteInput should render with a small size bar 1`] = `
         class="relative w-100"
       >
         <input
-          class="b--muted-4 bg-base w-100 ma0 border-box bw1 br2 ba outline-0 c-on-base t-body ph5 pr8 br--left h-small"
+          class="b--muted-4 bg-base h-small w-100 ma0 border-box bw1 br2 ba outline-0 c-on-base t-body ph5 pr8 br--left"
           placeholder=""
           value=""
         />
       </div>
       <button
-        class="b--muted-4 bg-base bg-base br2 br--right w3 bw1 ba pa0 bl-0' h-small c-link pointer"
+        class="b--muted-4 bg-base h-small bg-base br2 br--right w3 bw1 ba pa0 bl-0 c-link pointer"
       >
         <svg
           class="vtex__icon-search  "
