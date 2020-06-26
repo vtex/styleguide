@@ -16,7 +16,7 @@ const Option = (props: OptionProps) => {
     <div style={getStyles('option', props)} ref={innerRef} {...innerProps}>
       <div className="flex">
         {isMulti ? null : (
-          <span className="flex self-center pr3" style={{ width: '1rem' }}>
+          <span className="flex self-center pr3 w1">
             {isSelected ? <IconCheck /> : null}
           </span>
         )}
