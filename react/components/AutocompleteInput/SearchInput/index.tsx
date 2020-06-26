@@ -53,39 +53,49 @@ const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
   const [focused, setFocused] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onChange && onChange(e.target.value)
+    onChange?.(e.target.value)
   }
 
   const handleClear = () => {
-    onClear && onClear()
+    if (!disabled) {
+      onClear?.()
+    }
   }
 
   const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
     setFocused(true)
-    onFocus && onFocus(e)
+    onFocus?.(e)
   }
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     setFocused(false)
-    onBlur && onBlur(e)
+    onBlur?.(e)
   }
   const regularSize = size !== 'small' && size !== 'large'
-  const activeClass = classNames({
+
+  const activeClasses = classNames({
     'b--muted-3': focused,
     'b--muted-4': !focused,
     'br--top': !roundedBottom,
     'bg-disabled c-disabled': disabled,
-    'bg-base c-on-base': !disabled,
+    'bg-base': !disabled,
     [`h-${size}`]: !regularSize,
     'h-regular': regularSize,
   })
 
+  const inputClasses = classNames(
+    activeClasses,
+    'w-100 ma0 border-box bw1 br2 ba outline-0 t-body ph5 pr8 br--left',
+    {
+      'c-on-base': !disabled,
+    }
+  )
+
   const buttonClasses = classNames(
-    activeClass,
+    activeClasses,
     'bg-base br2 br--right w3 bw1 ba pa0 bl-0',
     {
       'c-link pointer': !disabled,
-      'c-disabled': disabled,
     }
   )
 
@@ -93,7 +103,7 @@ const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
     <div className="flex flex-row">
       <div className="relative w-100">
         <input
-          className={`${activeClass} w-100 ma0 border-box bw1 br2 ba outline-0 t-body ph5 pr8 br--left`}
+          className={inputClasses}
           value={value}
           onFocus={handleFocus}
           onBlur={handleBlur}
@@ -103,7 +113,10 @@ const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
         />
         {onClear && value && (
           <span
-            className="absolute c-muted-3 fw5 flex items-center ph3 t-body top-0 right-0 h-100 pointer"
+            className={classNames(
+              'absolute c-muted-3 fw5 flex items-center ph3 t-body top-0 right-0 h-100',
+              { pointer: !disabled }
+            )}
             onClick={handleClear}>
             <ClearInputIcon />
           </span>
