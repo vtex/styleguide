@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.123.0] - 2020-06-26
+
+### Added
+
+- `size` prop to AutocompleteInput
+
 ## [9.122.0] - 2020-06-25
 
 ### Fixed

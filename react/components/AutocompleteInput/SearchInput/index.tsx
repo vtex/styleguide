@@ -24,6 +24,8 @@ const propTypes = {
   onBlur: PropTypes.func,
   /** Determine if the input and the button should be disabled */
   disabled: PropTypes.bool,
+  /** Determine the search bar size */
+  size: PropTypes.oneOf(['small', 'regular', 'large']),
 }
 
 const defaultProps = {
@@ -31,7 +33,10 @@ const defaultProps = {
 }
 
 const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
-  Omit<React.HTMLProps<HTMLInputElement>, 'onChange' | 'value'>> = props => {
+  Omit<
+    React.HTMLProps<HTMLInputElement>,
+    'onChange' | 'value' | 'size'
+  >> = props => {
   const {
     onClear,
     onSearch,
@@ -41,6 +46,7 @@ const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
     onFocus,
     onBlur,
     disabled,
+    size,
     ...inputProps
   } = props
 
@@ -63,18 +69,20 @@ const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
     setFocused(false)
     onBlur && onBlur(e)
   }
-
+  const regularSize = size !== 'small' && size !== 'large'
   const activeClass = classNames({
     'b--muted-3': focused,
     'b--muted-4': !focused,
     'br--top': !roundedBottom,
     'bg-disabled c-disabled': disabled,
     'bg-base c-on-base': !disabled,
+    [`h-${size}`]: !regularSize,
+    'h-regular': regularSize,
   })
 
   const buttonClasses = classNames(
     activeClass,
-    'bg-base br2 br--right h-regular w3 bw1 ba pa0 bl-0',
+    'bg-base br2 br--right w3 bw1 ba pa0 bl-0',
     {
       'c-link pointer': !disabled,
       'c-disabled': disabled,
@@ -85,7 +93,7 @@ const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
     <div className="flex flex-row">
       <div className="relative w-100">
         <input
-          className={`${activeClass} w-100 ma0 border-box bw1 br2 ba outline-0 t-body h-regular ph5 pr8 br--left`}
+          className={`${activeClass} w-100 ma0 border-box bw1 br2 ba outline-0 t-body ph5 pr8 br--left`}
           value={value}
           onFocus={handleFocus}
           onBlur={handleBlur}
