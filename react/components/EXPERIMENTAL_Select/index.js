@@ -4,12 +4,13 @@ import uuid from 'uuid/v4'
 import ReactSelect from 'react-select'
 import CreatableSelect from 'react-select/lib/Creatable'
 
-import COLORS from './colors'
 import ClearIndicator from './ClearIndicator'
+import COLORS from './colors'
+import ControlComponent from './Control'
 import DropdownIndicatorComponent from './DropdownIndicator'
 import MultiValueRemove from './MultiValueRemove'
 import Placeholder from './Placeholder'
-import ControlComponent from './Control'
+import Option from './Option'
 import {
   getFontClassNameFromSize,
   getTagPaddingFromSize,
@@ -93,6 +94,7 @@ class Select extends Component {
         IndicatorSeparator: () => null,
         MultiValueRemove,
         Placeholder,
+        Option,
         ...components,
       },
       defaultValue,
@@ -166,7 +168,14 @@ class Select extends Component {
             color: COLORS.blue,
           },
         }),
-        option: style => ({ ...style, cursor: 'pointer' }),
+        option: (style, state) => ({
+          ...style,
+          cursor: 'pointer',
+          backgroundColor: state.isFocused
+            ? COLORS['hover-action-secondary']
+            : 'transparent',
+          color: COLORS['c-muted-1'],
+        }),
         valueContainer: (style, state) => ({
           ...style,
           cursor: 'pointer',
