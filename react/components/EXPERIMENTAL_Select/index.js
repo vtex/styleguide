@@ -149,6 +149,7 @@ class Select extends Component {
             ? COLORS['muted-4']
             : COLORS.aliceBlue,
           ':hover': {
+            transition: '.15s ease-in-out',
             backgroundColor: COLORS['hover-action-secondary'],
           },
           borderRadius: 100,
