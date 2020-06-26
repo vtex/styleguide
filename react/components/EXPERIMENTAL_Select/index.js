@@ -148,6 +148,9 @@ class Select extends Component {
           backgroundColor: state.isDisabled
             ? COLORS['muted-4']
             : COLORS.aliceBlue,
+          ':hover': {
+            backgroundColor: COLORS['hover-action-secondary'],
+          },
           borderRadius: 100,
           padding: getTagPaddingFromSize(size),
           position: 'relative',
