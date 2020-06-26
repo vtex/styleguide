@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- `Experimental_Select` dropdown style
+
 ## [9.123.0] - 2020-06-26
 
 ### Added
