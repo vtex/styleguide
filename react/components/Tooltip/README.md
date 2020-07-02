@@ -36,8 +36,8 @@ const Button = require('../Button').default
 #### Label and Informative text
 
 ```jsx
-const Edit = require('../icon/Edit').default
-const Info = require('../icon/Info').default
+const IconEdit = require('../icon/Edit').default
+const IconInfo = require('../icon/Info').default
 
 ;<div className="flex w-100 justify-center items-center">
   <div className="ph9">
