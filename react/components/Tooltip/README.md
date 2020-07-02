@@ -39,18 +39,29 @@ const Button = require('../Button').default
 const Edit = require('../icon/Edit').default
 const Info = require('../icon/Info').default
 
+/*
+  The following code is just for the table above to be rendered.
+  To use the Icon components one need only to import and instanciate it.
+
+  Usage:
+    * VTEX IO: import <IconName> from 'vtex.styleguide'
+    * npm: import <IconName> from '@vtex/styleguide/lib/icon/<IconName>'
+
+  !!!!!! DO NOT IMPORT LIKE BELOW !!!!!!
+*/
+
 ;<div className="flex w-100 justify-center items-center">
   <div className="ph9">
     <Tooltip label="Edit this order">
       <span className="c-on-base pointer">
-        <Edit />
+        <IconEdit />
       </span>
     </Tooltip>
   </div>
   <div className="ph9">
     <Tooltip label="This order was invoiced">
       <span className="c-on-base pointer">
-        <Info />
+        <IconInfo />
       </span>
     </Tooltip>
   </div>
