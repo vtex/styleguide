@@ -96,6 +96,7 @@ const TooltipPopup: FC<PropTypes.InferProps<typeof propTypes>> = ({
   )
 
   const positionStyle = getStyles(
+    container ?? document.body,
     childRect,
     popupRect,
     position,
@@ -121,9 +122,21 @@ const TooltipPopup: FC<PropTypes.InferProps<typeof propTypes>> = ({
   )
 }
 
-const getStyles = (childRect, popupRect, position, fallbackPosition) => {
+const getStyles = (
+  container,
+  childRect,
+  popupRect,
+  position,
+  fallbackPosition
+) => {
   return childRect && popupRect && window && hasComputedDimensions(popupRect)
-    ? getPopupPosition(childRect, popupRect, position, fallbackPosition)
+    ? getPopupPosition(
+        container,
+        childRect,
+        popupRect,
+        position,
+        fallbackPosition
+      )
     : { top: 0, left: 0 }
 }
 
@@ -135,10 +148,17 @@ const FALLBACK_POSITION = {
 }
 
 const getFallbackPosition = (position, fallback) =>
-  fallback || FALLBACK_POSITION[position]
+  fallback ?? FALLBACK_POSITION[position]
 
-const getPopupPosition = (childRect, popupRect, position, fallbackPosition) =>
+const getPopupPosition = (
+  container,
+  childRect,
+  popupRect,
+  position,
+  fallbackPosition
+) =>
   getPopupPositionRecursively(
+    container,
     childRect,
     popupRect,
     position,
@@ -146,14 +166,15 @@ const getPopupPosition = (childRect, popupRect, position, fallbackPosition) =>
     position
   )
 const getPopupPositionRecursively = (
+  container,
   childRect,
   popupRect,
   position,
   fallbackPosition,
   originalPosition
 ) => {
-  const horizontalMax = window.innerWidth + window.pageXOffset
-  const verticalMax = window.innerHeight + window.pageYOffset
+  const horizontalMax = container.clientWidth + window.pageXOffset - OFFSET
+  const verticalMax = container.clientWidth + window.pageYOffset - OFFSET
   const styles = {
     left:
       childRect.left +
@@ -188,6 +209,7 @@ const getPopupPositionRecursively = (
     return fallbackPosition === originalPosition
       ? null
       : getPopupPositionRecursively(
+          container,
           childRect,
           popupRect,
           fallbackPosition,
