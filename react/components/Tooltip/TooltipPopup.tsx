@@ -173,8 +173,14 @@ const getPopupPositionRecursively = (
   fallbackPosition,
   originalPosition
 ) => {
-  const horizontalMax = container.clientWidth + window.pageXOffset - OFFSET
-  const verticalMax = container.clientWidth + window.pageYOffset - OFFSET
+  const horizontalMax =
+    Math.min(window.innerWidth, container.clientWidth) +
+    window.pageXOffset -
+    OFFSET
+  const verticalMax =
+    Math.min(window.innerHeight, container.clientHeight) +
+    window.pageYOffset -
+    OFFSET
   const styles = {
     left:
       childRect.left +
@@ -202,6 +208,8 @@ const getPopupPositionRecursively = (
     bottom: styles.top + popupRect.height > verticalMax,
     left: styles.left < window.pageXOffset,
   }
+
+  console.log(`Collisions ${position}`, collisions)
 
   if (collisions[position]) {
     fallbackPosition = getFallbackPosition(position, fallbackPosition)
