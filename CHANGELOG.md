@@ -10,8 +10,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - Select menu overflow
+- `Tooltip` position calculation. Use container instead of window to calculate collisions.
 
 ## [9.124.0] - 2020-07-02
+
 ### Added
 - prop `zIndex` on `Menu` and `ActionMenu` components, to better control the z-index level of these components.
 
