@@ -209,8 +209,6 @@ const getPopupPositionRecursively = (
     left: styles.left < window.pageXOffset,
   }
 
-  console.log(`Collisions ${position}`, collisions)
-
   if (collisions[position]) {
     fallbackPosition = getFallbackPosition(position, fallbackPosition)
     // If there is no place without collisions, it will not be shown
