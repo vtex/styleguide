@@ -4,7 +4,7 @@ Sizes
 
 ```js
 initialState = { value1: '', value2: '', value3: '' }
-;<div>
+<div>
   <div className="mb5">
     <InputCurrency
       label="Small"

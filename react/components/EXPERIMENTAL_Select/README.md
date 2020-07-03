@@ -38,7 +38,7 @@ const options = [
   },
 ]
 
-;<div>
+<div>
   <div className="mb5">
     <Select
       defaultValue={options[0]}
@@ -94,7 +94,7 @@ const options = [
   },
 ]
 
-;<div>
+<div>
   <Select
     label="Label"
     options={options}
@@ -138,7 +138,7 @@ const options = [
   },
 ]
 
-;<div>
+<div>
   <Select
     label="Label"
     options={options}
@@ -164,7 +164,7 @@ const options = [
   },
 ]
 
-;<div>
+<div>
   <Select
     options={options}
     multi={true}
@@ -189,7 +189,7 @@ const options = [
   },
 ]
 
-;<div>
+<div>
   <Select
     label="Label"
     options={options}
@@ -215,7 +215,7 @@ const options = [
     label: 'Second Option',
   },
 ]
-;<div>
+<div>
   <Select
     label="Label"
     options={options}
@@ -242,7 +242,7 @@ const options = [
   },
 ]
 
-;<div>
+<div>
   <Select
     disabled={true}
     label="Label"
@@ -286,7 +286,7 @@ const options = [
   },
 ]
 
-;<div>
+<div>
   <Select
     loading={true}
     label="Label"
@@ -317,7 +317,7 @@ const options = [
 
 const ref = React.createRef()
 
-;<div>
+<div>
   <Select
     ref={ref}
     label="Click in the button below to focus on this Select"

@@ -22,7 +22,7 @@ In addition to the props above, InputButton accepts all the props the Input comp
 With submit button
 
 ```js
-;<div>
+<div>
   <div className="mb5">
     <InputButton placeholder="Placeholder" size="regular" label="Regular" button="Submit" />
   </div>
@@ -58,7 +58,7 @@ initialState = { isLoading: false };
 Disabled
 
 ```js
-;<div>
+<div>
   <div className="mb5">
     <InputButton placeholder="Placeholder" size="regular" label="Regular disabled" button="Submit" disabled />
   </div>

@@ -42,7 +42,7 @@ options = [
   { label: 'Dark-red', value: 'dark-red' },
   { label: 'Light-blue', value: 'light-blue' },
 ]
-;<div>
+<div>
   <MultiSelect
     label="Colors"
     options={options}

@@ -9,7 +9,7 @@ Default
 ```js
 const Button = require('../Button').default
 initialState = { active: 1 }
-;<div>
+<div>
   <ButtonGroup
     buttons={[
       <Button
@@ -37,7 +37,7 @@ Sizes
 ```js
 const Button = require('../Button').default
 initialState = { active: 1 }
-;<div>
+<div>
   <ButtonGroup
     buttons={[
       <Button
@@ -87,7 +87,7 @@ Misc
 ```js
 const Button = require('../Button').default
 initialState = { active: 1 }
-;<div>
+<div>
   <ButtonGroup
     buttons={[
       <Button
@@ -140,7 +140,7 @@ const edit = <Edit />
 const plus = <PlusLines />
 
 initialState = { active: 1 }
-;<div>
+<div>
   <ButtonGroup
     buttons={[
       <ButtonWithIcon
@@ -189,7 +189,7 @@ const options = [
 }))
 
 initialState = { active: 1 }
-;<div>
+<div>
   <ButtonGroup
     buttons={[
       <Button isActiveOfGroup>new</Button>,

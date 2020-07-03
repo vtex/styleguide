@@ -12,7 +12,7 @@ Simple _TimePicker_
 
 ```js
 initialState = { date1: undefined, date2: undefined, date3: undefined }
-;<div>
+<div>
   <div className="mb5">
     <TimePicker
       label="Small"
@@ -50,7 +50,7 @@ Locale
 ```js
 const RadioGroup = require('../RadioGroup').default
 initialState = { locale: 'pt-BR', date: undefined }
-;<div>
+<div>
   <div className="mb5">
     <RadioGroup
       name="locale"
@@ -82,7 +82,7 @@ Using ref
 const Button = require('../Button').default
 initialState = { date: undefined }
 const ref = React.createRef()
-;<div>
+<div>
   <div className="mb5">
     <TimePicker
       ref={ref}

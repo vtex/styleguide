@@ -2,7 +2,7 @@ Sizes
 
 ```js
 initialState = { value1: '', value2: '', value3: '' }
-;<div>
+<div>
   <InputSearch
     placeholder="Search..."
     value={state.value1}

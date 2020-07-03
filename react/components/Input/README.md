@@ -18,7 +18,7 @@
 Sizes
 
 ```js
-;<div>
+<div>
   <div className="mb5">
     <Input placeholder="Placeholder" size="small" label="Small" />
   </div>
@@ -136,7 +136,7 @@ const handleFocusClick = () => {
   this.input.current.focus()
 }
 
-;<div>
+<div>
   <Input
     ref={this.input}
     placeholder="Placeholder"

@@ -2,7 +2,7 @@
 initialState = {
   value: '',
 }
-;<div>
+<div>
   <div className="mb6">
     <Textarea label="Default state">Please enter your feedbacks here…</Textarea>
   </div>

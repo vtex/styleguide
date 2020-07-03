@@ -75,7 +75,7 @@ You can associate an action to an Alert.
 const Button = require('../Button').default
 const alertRef = React.createRef()
 
-;<div>
+<div>
   <Alert ref={alertRef} type="warning" onClose={() => console.log('Closed!')}>
     Click on the button below to focus on (scroll to) the alert
   </Alert>

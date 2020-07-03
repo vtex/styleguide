@@ -34,7 +34,7 @@ const defaultSchema = {
   },
 }
 
-;<div>
+<div>
   <div className="mb5">
     <Table
       fullWidth
@@ -411,7 +411,7 @@ const defaultSchema = {
   },
 }
 
-;<div>
+<div>
   <div>
     <Table
       fullWidth
@@ -598,7 +598,7 @@ const lineActions = [
   },
 ]
 
-;<div>
+<div>
   <div className="mb5">
     <Table
       fullWidth

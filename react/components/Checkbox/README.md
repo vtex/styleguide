@@ -19,7 +19,7 @@ Default
 
 ```js
 initialState = { check1: true, check2: false, check3: false }
-;<div>
+<div>
   <div className="mb3">
     <Checkbox
       checked={state.check1}
@@ -95,7 +95,7 @@ Without label
 
 ```js
 initialState = { check1: true, check2: false, check3: false }
-;<div>
+<div>
   <div className="mb3">
     <Checkbox
       checked={state.check1}

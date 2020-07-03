@@ -1,6 +1,6 @@
 ```js
 initialState = { value1: 'Passw0rd', value2: 'Passw0rd', value3: 'Passw0rd' }
-;<div>
+<div>
   <form
     className="mb5"
     onSubmit={e => {

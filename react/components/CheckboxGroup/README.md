@@ -24,7 +24,7 @@ initialState = { checkedMap: {
     check3: {label: "Filter 3", checked: false}
    }
 }
-;<div>
+<div>
   <CheckboxGroup
     name="simpleCheckboxGroup"
     label="All Filters"
@@ -47,7 +47,7 @@ initialState = { checkedMap: {
     check3: {label: "Filter 3", checked: false}
    }
 }
-;<div>
+<div>
   <CheckboxGroup
     name="disabledCheckboxGroup"
     disabled
@@ -72,7 +72,7 @@ initialState = { checkedMap: {
     check3: {label: "Filter 3", checked: false}
    }
 }
-;<div>
+<div>
   <CheckboxGroup
     padded={false}
     name="withoutPaddingCheckboxGroup"

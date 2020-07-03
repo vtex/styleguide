@@ -22,7 +22,7 @@ initialState = {
   startDate2: new Date(),
   startDate3: new Date(),
 }
-;<div>
+<div>
   <div className="mb5">
     <DatePicker
       label="Small"

@@ -30,7 +30,7 @@ Default
 ```js
 const Tab = require('./Tab').default
 initialState = { currentTab: 1 }
-;<div>
+<div>
   <Tabs>
     <Tab
       label="Today"
@@ -71,7 +71,7 @@ Full width tabs
 ```js
 const Tab = require('./Tab').default
 initialState = { currentTab: 1 }
-;<div>
+<div>
   <Tabs fullWidth>
     <Tab
       label="Accounts"
@@ -99,7 +99,7 @@ Disabled tabs
 
 ```js
 const Tab = require('./Tab').default
-;<div>
+<div>
   <Tabs>
     <Tab label="Active and disabled tab" active disabled onClick={() => {}} />
     <Tab label="Disabled tab" disabled onClick={() => {}} />

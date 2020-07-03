@@ -50,7 +50,7 @@ Custom Caret Color Example
 
 ```js
 initialState = { isOpen1: false, isOpen2: false, isOpen3: false }
-;<div>
+<div>
   <div className="mb5">
     <Collapsible
       header={<span>Here goes your base header</span>}
@@ -85,7 +85,7 @@ Navigation bar example
 ```js
 const PageBlock = require('../PageBlock').default
 initialState = { isOpen1: false, isOpen2: false, isOpen3: false }
-;<div>
+<div>
   <div className="w5">
     <div className="mt5">
       <Collapsible
@@ -258,7 +258,7 @@ function toggleAccordion(questionNbr) {
     })
 }
 
-;<div>
+<div>
   <div className="bg-muted-5 pa8">
     <div className="w-100">
       <Box>
