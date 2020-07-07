@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - Table's empty state style
+- Page header button hover
 
 ## [9.124.2] - 2020-07-09
 

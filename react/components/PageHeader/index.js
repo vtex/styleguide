@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
 import ArrowBack from '../icon/ArrowBack'
-import Button from '../Button'
+import ButtonPlain from '../ButtonPlain'
 
 class PageHeader extends PureComponent {
   handleClick = e => {
@@ -15,21 +15,11 @@ class PageHeader extends PureComponent {
     return (
       <div className="vtex-pageHeader__container pa5 pa7-ns">
         {linkLabel && (
-          <div className="vtex-pageHeader-link__container">
-            <Button
-              size="small"
-              variation="tertiary"
-              neutral
-              onClick={this.handleClick}>
-              <span
-                className="flex align-baseline relative"
-                style={{ marginLeft: '-16px' }}>
-                <span className="mr3">
-                  <ArrowBack color="currentColor" />
-                </span>
-                {linkLabel}
-              </span>
-            </Button>
+          <div className="vtex-pageHeader-link__container mb3">
+            <ButtonPlain onClick={this.handleClick}>
+              <ArrowBack color="currentColor" />
+              <span className="ml3 ttu t-action--small">{linkLabel}</span>
+            </ButtonPlain>
           </div>
         )}
 
