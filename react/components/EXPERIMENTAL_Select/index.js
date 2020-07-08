@@ -73,6 +73,7 @@ class Select extends Component {
     } = this.props
 
     const reactSelectComponentProps = {
+      menuPosition: 'fixed',
       defaultMenuIsOpen,
       ref: forwardedRef,
       autoFocus,

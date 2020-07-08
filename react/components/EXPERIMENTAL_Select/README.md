@@ -330,3 +330,67 @@ const ref = React.createRef()
   </div>
 </div>
 ```
+
+With Modal
+
+```js
+const Button = require('../Button').default
+const Modal = require('../Modal').default
+
+const options = [
+  {
+    value: 'first-option',
+    label: 'First option',
+  },
+  {
+    value: 'second-option',
+    label: 'Second option',
+  },
+]
+
+class SelectWithModalExample extends React.Component {
+  constructor() {
+    super()
+    this.state = { isModalOpen: false }
+    this.ref = React.createRef()
+    this.handleModalToggle = this.handleModalToggle.bind(this)
+  }
+
+  handleModalToggle() {
+    this.setState({ isModalOpen: !this.state.isModalOpen })
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+        <Button onClick={this.handleModalToggle}>Open</Button>
+        <Modal
+          centered
+          title="Select in Modal"
+          isOpen={this.state.isModalOpen}
+          onClose={this.handleModalToggle}
+          bottomBar={
+            <div className="nowrap">
+              <span className="mr4">
+                <Button variation="tertiary" onClick={this.handleModalToggle}>
+                  Cancel
+                </Button>
+              </span>
+              <span>
+                <Button variation="primary" onClick={this.handleModalToggle}>
+                  Send
+                </Button>
+              </span>
+            </div>
+          }>
+          <div className="mb3">
+            <Select options={options} />
+          </div>
+        </Modal>
+      </React.Fragment>
+    )
+  }
+}
+
+;<SelectWithModalExample />
+```
