@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Select menu overflow
+
 ## [9.124.0] - 2020-07-02
 ### Added
 - prop `zIndex` on `Menu` and `ActionMenu` components, to better control the z-index level of these components.
