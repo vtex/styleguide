@@ -6,11 +6,9 @@ class EmptyState extends PureComponent {
     const { title, children, testId } = this.props
 
     return (
-      <div
-        className="MAIN br3 flex c-muted-2 justify-center pv9 ph6 ph9-l tc"
-        data-testid={testId}>
-        <div className="w-80 w-50-l">
-          {title && <span className="t-heading-3 mt0 mt0">{title}</span>}
+      <div className="flex items-center h-100 c-muted-2" data-testid={testId}>
+        <div className="w-80 w-60-l center tc">
+          {title && <span className="t-heading-3 mt0">{title}</span>}
           {children && <div className="t-body lh-copy">{children}</div>}
         </div>
       </div>
