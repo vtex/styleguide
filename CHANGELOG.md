@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Table's empty state style
+
 ## [9.124.2] - 2020-07-09
 
 ### Fixed
@@ -23,6 +27,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [9.124.0] - 2020-07-02
 
 ### Added
+
 - prop `zIndex` on `Menu` and `ActionMenu` components, to better control the z-index level of these components.
 
 ### Fixed
