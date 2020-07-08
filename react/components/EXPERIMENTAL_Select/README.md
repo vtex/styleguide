@@ -352,7 +352,6 @@ class SelectWithModalExample extends React.Component {
   constructor() {
     super()
     this.state = { isModalOpen: false }
-    this.ref = React.createRef()
     this.handleModalToggle = this.handleModalToggle.bind(this)
   }
 
