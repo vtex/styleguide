@@ -7,11 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Select menu position as a prop.
+
 ## [9.124.1] - 2020-07-09
 
 ### Fixed
 
-- Select menu overflow
+- Select menu overflow.
 - `Tooltip` position calculation. Use container and window to calculate collisions.
 
 ## [9.124.0] - 2020-07-02
