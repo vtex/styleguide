@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.124.1] - 2020-07-09
+
 ### Fixed
 
 - Select menu overflow
