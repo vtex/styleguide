@@ -383,7 +383,7 @@ class SelectWithModalExample extends React.Component {
             </div>
           }>
           <div className="mb3">
-            <Select options={options} />
+            <Select options={options} menuPosition="fixed" />
           </div>
         </Modal>
       </React.Fragment>

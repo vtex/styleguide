@@ -70,10 +70,11 @@ class Select extends Component {
       clearable,
       defaultMenuIsOpen,
       components,
+      menuPosition,
     } = this.props
 
     const reactSelectComponentProps = {
-      menuPosition: 'fixed',
+      menuPosition,
       defaultMenuIsOpen,
       ref: forwardedRef,
       autoFocus,
@@ -252,6 +253,8 @@ const GroupedOptionsShape = PropTypes.arrayOf(
 Select.propTypes = {
   /** @ignore Forwarded Ref */
   forwardedRef: refShape,
+  /** The CSS position value of the menu */
+  menuPosition: PropTypes.oneOf(['absolute', 'fixed']),
   /** Select auto focus */
   autoFocus: PropTypes.bool,
   /** Should clear button appear */
