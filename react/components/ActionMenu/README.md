@@ -21,8 +21,8 @@ const options = [
     onClick: () => alert('sure, everybody knows that the bird is the word...'),
   },
   {
-    label: 'Hey look',
-    onClick: () => alert('Listen!'),
+    label: 'I\'m a poor disabled option',
+    disabled: true,
   },
   {
     label: 'Quit now and cake will be served',
