@@ -61,7 +61,7 @@ class InputSearch extends Component {
 
   render() {
     const { hover, focus } = this.state
-    const { size } = this.props
+    const { disabled, size, value } = this.props
     const iconSize =
       InputSearch.iconSizes[size] || InputSearch.iconSizes.regular
 
@@ -76,12 +76,12 @@ class InputSearch extends Component {
         type="search"
         suffix={
           <div className="flex flex-row items-center">
-            {this.props.value && (
+            {value && (
               <span
                 tabIndex={0}
                 onClick={this.handleClickClear}
                 className="pointer mr4 c-muted-3">
-                <ClearIcon size={iconSize} />
+                {!disabled && <ClearIcon size={iconSize} />}
               </span>
             )}
             <div
@@ -105,6 +105,7 @@ class InputSearch extends Component {
 }
 
 InputSearch.propTypes = {
+  disabled: PropTypes.bool,
   /** @ignore Forwarded Ref */
   forwardedRef: refShape,
   onChange: PropTypes.func,
