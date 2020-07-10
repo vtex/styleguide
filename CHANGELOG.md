@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Table's empty state style
 - Page header button hover
+- `Tab` active color being set as `outset`.
 
 ### Added
 
