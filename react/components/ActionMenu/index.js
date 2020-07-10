@@ -150,6 +150,7 @@ ActionMenu.propTypes = {
     PropTypes.shape({
       label: PropTypes.node,
       onClick: PropTypes.func,
+      disabled: PropTypes.bool,
       /** whether option has inline toggle */
       toggle: PropTypes.shape({
         checked: PropTypes.bool,

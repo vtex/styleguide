@@ -174,6 +174,7 @@ class Menu extends Component {
                     className={menuHeight ? 'overflow-auto' : ''}>
                     {options.map((option, index) => (
                       <button
+                        disabled={option.disabled}
                         key={index}
                         className="flex justify-between items-center t-body ph6 h-regular pointer hover-bg-muted-5 ma0 bg-transparent bn w-100 tl"
                         onClick={() => {
@@ -185,7 +186,13 @@ class Menu extends Component {
                         <span
                           className={`${
                             option.toggle ? 'w-70 truncate' : 'w-100 truncate'
-                          } ${option.isDangerous ? 'c-danger' : ''}`}>
+                          } ${
+                            option.disabled
+                              ? 'c-disabled'
+                              : option.isDangerous
+                              ? 'c-danger'
+                              : ''
+                          }`}>
                           {option.label}
                         </span>
                         {option.toggle && (
@@ -232,6 +239,7 @@ Menu.propTypes = {
     PropTypes.shape({
       label: PropTypes.node,
       onClick: PropTypes.func,
+      disabled: PropTypes.bool,
       /** whether option has inline toggle */
       toggle: PropTypes.shape({
         checked: PropTypes.bool,
