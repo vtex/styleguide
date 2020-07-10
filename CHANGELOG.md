@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Table's empty state style
 - Page header button hover
 
+### Added
+
+- `disabled` prop for ActionMenu items
+
 ## [9.124.2] - 2020-07-09
 
 ### Fixed
