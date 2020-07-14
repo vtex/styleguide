@@ -207,7 +207,10 @@ class Select extends Component {
     return (
       <div className="flex flex-column">
         {label && (
-          <label className={`dib mb3 w-100 ${getFontClassNameFromSize(size)}`}>
+          <label
+            className={`dib mb3 w-100 c-on-base ${getFontClassNameFromSize(
+              size
+            )}`}>
             {label}
           </label>
         )}
