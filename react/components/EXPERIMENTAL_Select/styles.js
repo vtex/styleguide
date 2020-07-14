@@ -1,9 +1,9 @@
 export const getFontClassNameFromSize = size => {
   switch (size) {
-    case 'large':
-      return 't-body'
-    default:
+    case 'small':
       return 't-small'
+    default:
+      return 't-body'
   }
 }
 
