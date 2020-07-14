@@ -176,7 +176,9 @@ class Menu extends Component {
                       <button
                         disabled={option.disabled}
                         key={index}
-                        className="flex justify-between items-center t-body ph6 h-regular pointer hover-bg-muted-5 ma0 bg-transparent bn w-100 tl"
+                        className={`flex justify-between items-center t-body ph6 h-regular ma0 bg-transparent bn w-100 tl ${
+                          option.disabled ? '' : 'hover-bg-muted-5 pointer'
+                        }`}
                         onClick={() => {
                           option.onClick(option)
                           if (onClose) {
