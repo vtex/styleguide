@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Page header button hover
 - `Tab` active color being set as `outset`.
 - Select's label size on regular variation.
+- Accent on `Select` input change.
 
 ### Added
 

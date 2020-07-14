@@ -11,7 +11,7 @@ function paddingRightClassFromSize(size) {
   }[size]
 }
 
-const DropdownIndicator = ({ innerProps, selectProps, size }) => {
+const DropdownIndicator = ({ innerProps, selectProps }) => {
   const arrowColorClassName = selectProps.isDisabled
     ? 'c-disabled'
     : 'c-action-primary'
@@ -19,7 +19,7 @@ const DropdownIndicator = ({ innerProps, selectProps, size }) => {
   return (
     <div
       className={`flex items-center h-100 ${paddingRightClassFromSize(
-        size
+        selectProps.size
       )} pointer ${arrowColorClassName}`}
       {...innerProps}>
       <ArrowDownIcon size={18} />
