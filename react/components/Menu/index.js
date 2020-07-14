@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Overlay } from 'react-overlays'
+import classNames from 'classnames'
 
 import Toggle from '../Toggle'
 import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
@@ -176,9 +177,12 @@ class Menu extends Component {
                       <button
                         disabled={option.disabled}
                         key={index}
-                        className={`flex justify-between items-center t-body ph6 h-regular ma0 bg-transparent bn w-100 tl ${
-                          option.disabled ? '' : 'hover-bg-muted-5 pointer'
-                        }`}
+                        className={classNames(
+                          'flex justify-between items-center t-body ph6 h-regular ma0 bg-transparent bn w-100 tl',
+                          {
+                            'hover-bg-muted-5 pointer': !option.disabled,
+                          }
+                        )}
                         onClick={() => {
                           option.onClick(option)
                           if (onClose) {
@@ -186,15 +190,12 @@ class Menu extends Component {
                           }
                         }}>
                         <span
-                          className={`${
-                            option.toggle ? 'w-70 truncate' : 'w-100 truncate'
-                          } ${
-                            option.disabled
-                              ? 'c-disabled'
-                              : option.isDangerous
-                              ? 'c-danger'
-                              : ''
-                          }`}>
+                          className={classNames({
+                            'w-70 truncate': option.toggle,
+                            'w-100 truncate': !option.toggle,
+                            'c-disabled': option.disabled,
+                            'c-danger': option.isDangerous,
+                          })}>
                           {option.label}
                         </span>
                         {option.toggle && (
