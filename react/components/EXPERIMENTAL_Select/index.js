@@ -210,8 +210,8 @@ class Select extends Component {
         {label && (
           <label
             className={classNames('dib mb3 w-100 c-on-base', {
-              't-small': size === 'small',
-              't-body': size !== 'small',
+              't-small': size !== 'large',
+              't-body': size === 'large',
             })}>
             {label}
           </label>
