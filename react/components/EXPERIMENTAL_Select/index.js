@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import uuid from 'uuid/v4'
@@ -208,9 +209,10 @@ class Select extends Component {
       <div className="flex flex-column">
         {label && (
           <label
-            className={`dib mb3 w-100 c-on-base ${getFontClassNameFromSize(
-              size
-            )}`}>
+            className={classNames('dib mb3 w-100 c-on-base', {
+              't-small': size === 'small',
+              't-body': size !== 'small',
+            })}>
             {label}
           </label>
         )}
