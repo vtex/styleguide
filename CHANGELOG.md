@@ -20,6 +20,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `disabled` prop for ActionMenu items
 - Hide clear button on `InputSearch` when disabled
 
+### Changed
+
+- `AutocompleteInput` search icon is now optional.
+
 ## [9.124.2] - 2020-07-09
 
 ### Fixed
