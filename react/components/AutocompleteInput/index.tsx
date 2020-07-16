@@ -15,8 +15,11 @@ const propTypes = {
   input: PropTypes.shape({
     /** Clear input handler */
     onClear: PropTypes.func.isRequired,
-    /** Search by term handler (fired on enter or when clicking the search button) */
-    onSearch: PropTypes.func.isRequired,
+    /**
+     * Shows the search button and it's a search by term handler
+     * (fired on enter or when clicking the search button)
+     */
+    onSearch: PropTypes.func,
     /** Change term handler */
     onChange: PropTypes.func.isRequired,
     /** Term to be searched */
@@ -79,11 +82,15 @@ const propTypes = {
   }).isRequired,
 }
 
-export type AutocompleteInputProps = PropTypes.InferProps<typeof propTypes>
+export type AutocompleteInputProps = Omit<
+  PropTypes.InferProps<typeof propTypes>,
+  'input'
+> & {
+  input: PropTypes.InferProps<typeof propTypes>['input'] &
+    React.HTMLProps<HTMLInputElement>
+}
 
-const AutocompleteInput: React.FunctionComponent<PropTypes.InferProps<
-  typeof propTypes
->> = ({
+const AutocompleteInput: React.FunctionComponent<AutocompleteInputProps> = ({
   input: { value, onClear, onSearch, onChange, ...inputProps },
   options: {
     onSelect,
@@ -129,6 +136,7 @@ const AutocompleteInput: React.FunctionComponent<PropTypes.InferProps<
   }
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    inputProps.onKeyDown?.(e)
     if (e.key === 'Enter') {
       const selectedOption =
         selectedOptionIndex !== -1 ? showedOptions[selectedOptionIndex] : term
@@ -137,7 +145,7 @@ const AutocompleteInput: React.FunctionComponent<PropTypes.InferProps<
       if (selectedOptionIndex !== -1) {
         onSelect(selectedOption)
       } else {
-        onSearch(getTermFromOption(selectedOption))
+        onSearch?.(getTermFromOption(selectedOption))
       }
       setSelectedOptionIndex(-1)
       setShowPopover(false)
@@ -213,7 +221,7 @@ const AutocompleteInput: React.FunctionComponent<PropTypes.InferProps<
         roundedBottom={!popoverOpened}
         onKeyDown={handleKeyDown}
         onFocus={() => setShowPopover(true)}
-        onSearch={() => onSearch(term)}
+        onSearch={onSearch && (() => onSearch(term))}
         onClear={handleClear}
         onChange={handleTermChange}
         size={size}
