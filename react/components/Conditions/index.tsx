@@ -89,7 +89,7 @@ const Conditions: React.FC<Props> = ({
   }
 
   return (
-    <div>
+    <div className="t-body c-on-base">
       {!hideOperator && (
         <div className={`mh6 ${isRtl ? 'flex justify-end' : ''}`}>
           <StrategySelector
@@ -101,7 +101,7 @@ const Conditions: React.FC<Props> = ({
         </div>
       )}
 
-      <div className="t-body c-on-base ph5 pt3 mt4 br3 b--muted-4 ba">
+      <div className="ph5 pt3 mt4 br3 b--muted-4 ba">
         {statements.length === 0 ? (
           <div className="flex-grow-1 mv6">
             <Statement
