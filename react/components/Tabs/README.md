@@ -17,7 +17,7 @@ To import Tabs children (Tab) when using in `npm` you can either
 ### 👎 Don'ts
 
 - Don't use too many tabs. More than 5 starts looking weird.
-- Don't use dropdown menus with these tabs (althought we might one day support that).
+- Don't use dropdown menus with these tabs (although we might one day support that).
 - Don't nest tabs directly inside tabs, it will be very confusing. (@todo we might need an alternative visual for tabs when used inside other tabs)
 - Avoid forcing the user to alternate back-and-forth between tabs to execute an important task.
 

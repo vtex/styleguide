@@ -19,7 +19,7 @@ As a rule of thumb of user interfaces, the visual weight and color contrast of a
   ![](./prominences.png)
 </div>
 
-Several of our components offer flexibility in the form of variations of prominency. Some will have predetermined variations, like Buttons, others will give you full freedom of color combinations, like Tags.
+Several of our components offer flexibility in the form of variations of prominence. Some will have predetermined variations, like Buttons, others will give you full freedom of color combinations, like Tags.
 
 To choose the right prominence it's important to understand how important the information or action that component represents is to the context it's in, as well as the overall balance of your design.
 

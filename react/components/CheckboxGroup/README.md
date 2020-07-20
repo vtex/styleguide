@@ -3,7 +3,7 @@
 ### 👍 Dos
 
 - Initialize it with a default value that makes sense to your needs.
-- Use a text label for the checkbox groups, which should clearly inform that this checkbox checks or uncheks all the other checkboxes.
+- Use a text label for the checkbox groups, which should clearly inform that this checkbox checks or unchecks all the other checkboxes.
 - Use a text label for each of the inner checkboxes, which should be intuitive and provide sufficient context for the user take that decision.
 
 ### 👎 Don'ts

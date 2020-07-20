@@ -6,7 +6,7 @@ In addition to the props above, InputButton accepts all the props the Input comp
 
 - Use it when more fields will be loaded below after submission, or when what was typed will be applied.
 - Use it when you have an input and a button in-line and the button is directly related to the input.
-- Use it in its large size when it's you might need to call attention to the input's existance or it carries importance in the context.
+- Use it in its large size when it's you might need to call attention to the input's existence or it carries importance in the context.
 
 ### 👎 Don'ts
 
@@ -16,7 +16,7 @@ In addition to the props above, InputButton accepts all the props the Input comp
 
 ### Related components
 
-- Consider using a <a href="#/Components/Forms/Input">default input</a> with a sufix if you need to display information (e.g. tooltip) that doesn't qualify as a action.
+- Consider using a <a href="#/Components/Forms/Input">default input</a> with a suffix if you need to display information (e.g. tooltip) that doesn't qualify as a action.
 - Use a <a href="#/Components/Forms/InputSearch">InputSearch</a> for search purposes or a <a href="#/Components/Forms/InputPassword">InputPassword</a> for password purposes.
 
 With submit button

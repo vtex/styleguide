@@ -1,7 +1,7 @@
 #### Buttons are independent interactive elements used to trigger actions or to perform navigation.
 
-### Chosing a variation
-Our Styleguide defines 3 main variations based on the button visual proeminence. As with any UI element, the proeminence should be proportional to the importance of that element.
+### Choosing a variation
+Our Styleguide defines 3 main variations based on the button visual prominence. As with any UI element, the prominence should be proportional to the importance of that element.
 - Do mix variations as needed.
 - Avoid having more than one Primary button, save this kind for the most important or most recommended action in a given screen.
 - Use the Danger variation for destructive actions that delete data or lead to a state that is hard to recover. Danger buttons should _always_ have a confirmation dialog.

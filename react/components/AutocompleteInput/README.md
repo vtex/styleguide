@@ -3,7 +3,7 @@
 ### 👍 Dos
 
 - Help the user avoid errors.
-- Semantically similar phrases or words but grammarly different should appear once. E.g.: "Dress" and "Dresses".
+- Semantically similar phrases or words but grammatically different should appear once. E.g.: "Dress" and "Dresses".
 - Highlight the suggestions.
 
 ### 👎 Don'ts

@@ -69,11 +69,11 @@ As we know, a Pull Request let you tell to others about changes you have pushed 
 
 As in many project the `master` branch must reflect what is running in production. All the development branches must be synchronized with the master through `git rebase` command.
 
-Theses development branches, also called feature branches, has the aim to add a new funcionality or do a fix. The name convention must follow the pattern: `<type>/<some-description>`
+Theses development branches, also called feature branches, has the aim to add a new functionality or do a fix. The name convention must follow the pattern: `<type>/<some-description>`
 
 The allowed types are:
 
-- **feature**: Add a new funcionality or behavoir
+- **feature**: Add a new functionality or behavior
 - **fix**: Bug correction
 - **update**: Dependency update
 - **chore**: Tech debt improvement

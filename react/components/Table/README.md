@@ -101,7 +101,7 @@ Example with simple structure:
 
 - Use this boolean property to align right the text of a header. Useful for monetary values.
 - Usage: `headerRight: true`.
-- You will have to use the `cellRenderer` proerty to also align right the content of the column.
+- You will have to use the `cellRenderer` property to also align right the content of the column.
 
 ```jsx noeditor static
 {
@@ -530,7 +530,7 @@ class ResourceListExample extends React.Component {
         currentItemTo: parseInt(value),
       },
       () => {
-        // this callback garantees new sliced items respect filters and tableLength
+        // this callback guarantees new sliced items respect filters and tableLength
         const { filterStatements } = this.state
         this.handleFiltersChange(filterStatements)
       }
@@ -612,7 +612,7 @@ const lineActions = [
 
 ##### Fixed first column
 
-This case is recomended if you have lots of columns, so the most important information could be fixed
+This case is recommended if you have lots of columns, so the most important information could be fixed
 
 ```js
 const sampleData = require('./sampleData').default
@@ -687,7 +687,7 @@ class ResourceListExample extends React.Component {
 
 ##### Toolbar
 
-The toolbar is a bundle of features, including search input, columns visibility toggler, density controls, import and export buttons, extra actions menu using ActionMenu component and a newLine button to help with entry creation (you can see the illustrative diagram in the begining of the page for a better visualization of this structure)
+The toolbar is a bundle of features, including search input, columns visibility toggler, density controls, import and export buttons, extra actions menu using ActionMenu component and a newLine button to help with entry creation (you can see the illustrative diagram in the beginning of the page for a better visualization of this structure)
 
 ```js
 const ArrowDown = require('../icon/ArrowDown').default

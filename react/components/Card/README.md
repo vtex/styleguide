@@ -1,4 +1,4 @@
-#### A Card like any container improves scannability of a design when well used. What sets the Card apart is that it has higher visual prominence and invites interactivity with its fancy drop shadow.
+#### A Card like any container improves scan ability of a design when well used. What sets the Card apart is that it has higher visual prominence and invites interactivity with its fancy drop shadow.
 
 ### 👍 Dos
 

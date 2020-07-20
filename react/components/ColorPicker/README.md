@@ -1,13 +1,13 @@
-Color Picker lets users select a color value using three differenets way: RGBA (Red, green, blue and alpha properties), [HSVA](https://en.wikipedia.org/wiki/HSL_and_HSV) (Hue, saturation, value and alpha properties) or hexadecimal (color code abstraction to rgb values).
+Color Picker lets users select a color value using three differents way: RGBA (Red, green, blue and alpha properties), [HSVA](https://en.wikipedia.org/wiki/HSL_and_HSV) (Hue, saturation, value and alpha properties) or hexadecimal (color code abstraction to rgb values).
 
 ### 👍 Dos
 
-- Use color picker in cenarios that user needs to choose an specific color value.
+- Use color picker in scenarios that user needs to choose an specific color value.
 - You can use multiples color picker components, if you need more than one color to be setted.
 
 ### 👎 Don'ts
 
-- Don’t use color picker in cenarios that users must only reference a color name.
+- Don’t use color picker in scenarios that users must only reference a color name.
 
 #### Default ColorPicker with title
 

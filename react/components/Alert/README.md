@@ -8,7 +8,7 @@ Alerts are notifications of **mild to high priority**. They may inform the user 
 
 ### 👎 Don'ts
 
-- Never dismiss automatically an Alert. If dismissable, a user action is required.
+- Never dismiss automatically an Alert. If dismissible, a user action is required.
 
 ### Related components
 

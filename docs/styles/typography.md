@@ -1,4 +1,4 @@
-Typography is used to communicate informations the most efficient way possible through legibility and visual hierarchy. It's a crucial tool to guide users on their tasks. It should be used on clear and delightful way. 
+Typography is used to communicate information the most efficient way possible through legibility and visual hierarchy. It's a crucial tool to guide users on their tasks. It should be used on clear and delightful way. 
 
 For that, it's important to define different typography styles for an app by setting a combination of different typography attributes: **Typeface, weight, size, capitalization and letter spacing.**
 
@@ -66,7 +66,7 @@ Action is the text style used on the main action and interactive elements of the
 ```
 
 #### Code
-Code is the text style used to indicate techinical terms, such as programming language and product specifications. Code should be applied to:
+Code is the text style used to indicate technical terms, such as programming language and product specifications. Code should be applied to:
 
 <div class="pa3 br2 bg-muted-5 c-on-muted-5 mb5 dib mr5">Specification tables</div>
 <div class="pa3 br2 bg-muted-5 c-on-muted-5 mb5 dib mr5">Shipping estimate</div>

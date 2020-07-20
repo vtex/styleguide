@@ -9,7 +9,7 @@
 ### 👎 Don'ts
 
 - Never replace the number with text
-- Avoid using seccondary information
+- Avoid using secondary information
 - Avoid using on the bottom of the page
 
 ### Related components
