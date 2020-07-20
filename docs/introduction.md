@@ -113,7 +113,7 @@ In the future we expect each system will have their own website with their own g
 
       <div>
         <div className="f5 dark-gray lh-copy">
-          This is the actual ecommerce, the website where people buy stuff. For most of VTEX history we didn't get into this, but with the new CMS system we're starting to provide out-of-the-box <a href="https://butik.vtex.com/">Store Components</a> that clients can customize with their own visual identities.
+          This is the actual e-commerce, the website where people buy stuff. For most of VTEX history we didn't get into this, but with the new CMS system we're starting to provide out-of-the-box <a href="https://butik.vtex.com/">Store Components</a> that clients can customize with their own visual identities.
         </div>
       </div>
     </div>

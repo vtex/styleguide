@@ -14,7 +14,7 @@ These are the elements that are expected to be designed for a component before i
 - **Interactions**: what are all possible interactions with this component? Every click, hover and focus state should be intentional.
 - **Variations and states**: which alternative states this component may reach? What are possible configurations one can do to change a little bit how it looks and behaves to better fit specific scenarios?
 - **Props design**: in the React jargon, props are parameters you pass to
-- **Documentation**: write a quick summary of what the component does, a lista of Do's and Don'ts, and optionally a list of related existing components.
+- **Documentation**: write a quick summary of what the component does, a list of Do's and Don'ts, and optionally a list of related existing components.
 - **Implementations**: the actual code that implements all of that. In our case it's all React, but in the future there might be other platforms to support.
 
 #### Benchmarking
@@ -99,7 +99,7 @@ const Card = require('../react/components/Card').default
 
 #### Design tokens
 
-Tokens are like code variables, but for design. Making sure you understand the system will enable you to create components that are automatically themable and can be used in the most diverse applications.
+Tokens are like code variables, but for design. Making sure you understand the system will enable you to create components that are automatically themeable and can be used in the most diverse applications.
 
 <div className="center pv6">
   ![](./tokens.png)

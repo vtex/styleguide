@@ -162,7 +162,7 @@ The column's visibility can be toggled using `useTableVisibility`. This is usefu
 | Property      | Type     | Required | Default | Description                      |
 | ------------- | -------- | -------- | ------- | -------------------------------- |
 | columns       | Column[] | ✅       | 🚫      | Columns of the table             |
-| hiddenColumns | string[] | 🚫       | []      | Columns that are initally hidden |
+| hiddenColumns | string[] | 🚫       | []      | Columns that are initially hidden |
 
 ##### useTableVisibility Outputs
 
@@ -261,7 +261,7 @@ type Sorted = {
 
 | Property | Type                 | Description                             |
 | -------- | -------------------- | --------------------------------------- |
-| sorted   | Sorted               | Order and referecen prop of the sorting |
+| sorted   | Sorted               | Order and reference prop of the sorting |
 | clear    | () => void           | Clears sorting                          |
 | sort     | (id: string) => void | Toggle sorting by some prop             |
 

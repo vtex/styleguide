@@ -6,7 +6,7 @@
 
 ### 👎 Don'ts
 - Do not present critical or high priority actions on a Toast. If that's the case, you might consider using [Alerts](#alert) instead.
-- Due to its low to mild priority usage and dismissability, warning and error semantic styles do not apply to Toasts.
+- Due to its low to mild priority usage and dismiss ability, warning and error semantic styles do not apply to Toasts.
 
 
 ```js

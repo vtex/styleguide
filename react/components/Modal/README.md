@@ -129,7 +129,7 @@ class ModalExample extends React.Component {
               items, add and remove products, and even pay for the order.
             </p>
             <p>
-              However, for users already registered in the plataform (whose data
+              However, for users already registered in the platform (whose data
               is filled automatically in the checkout), all personal
               informations are secure: only the informations' owner has access
               to them, after he is authenticated in the store.

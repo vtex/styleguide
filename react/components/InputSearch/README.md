@@ -11,7 +11,7 @@ initialState = { value1: '', value2: '', value3: '' }
     onChange={e => setState({ value1: e.target.value })}
     onSubmit={e => {
       e.preventDefault()
-      console.log('submited! search this: ', e.target.value)
+      console.log('submitted! search this: ', e.target.value)
     }}
   />
   <br />
@@ -23,7 +23,7 @@ initialState = { value1: '', value2: '', value3: '' }
     onChange={e => setState({ value2: e.target.value })}
     onSubmit={e => {
       e.preventDefault()
-      console.log('submited! search this: ', e.target.value)
+      console.log('submitted! search this: ', e.target.value)
     }}
   />
   <br />
@@ -35,7 +35,7 @@ initialState = { value1: '', value2: '', value3: '' }
     onChange={e => setState({ value3: e.target.value })}
     onSubmit={e => {
       e.preventDefault()
-      console.log('submited! search this: ', e.target.value)
+      console.log('submitted! search this: ', e.target.value)
     }}
   />
 </div>
