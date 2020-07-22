@@ -183,6 +183,7 @@ class Menu extends Component {
                             'hover-bg-muted-5 pointer': !option.disabled,
                           }
                         )}
+                        data-testid={option.testId || `menu-option-${index}`}
                         onClick={() => {
                           option.onClick(option)
                           if (onClose) {
@@ -243,6 +244,8 @@ Menu.propTypes = {
       label: PropTypes.node,
       onClick: PropTypes.func,
       disabled: PropTypes.bool,
+      /** Optional testid property */
+      testId: PropTypes.string,
       /** whether option has inline toggle */
       toggle: PropTypes.shape({
         checked: PropTypes.bool,

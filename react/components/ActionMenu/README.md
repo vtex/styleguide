@@ -264,6 +264,7 @@ const options = [
   },
   {
     label: 'Quit now and cake will be served',
+    testId: 'dangerous-option',
     isDangerous: 'true',
     onClick: () => alert('The cake is a lie'),
   },
