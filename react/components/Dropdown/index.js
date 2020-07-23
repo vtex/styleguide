@@ -146,23 +146,31 @@ class Dropdown extends Component {
       'vtex-dropdown--inline dib': isInline,
     })
 
-    const containerClasses = classNames(styles.container, 'br2 relative', {
-      'bg-base': !isInline,
-      ba: !isInline,
-      bw1: !isInline || disabled,
-      'b--disabled bg-disabled': disabled,
-      'b--danger hover-b--danger': (error || errorMessage) && !disabled,
-      fw5: isInline && !error && !errorMessage && !disabled,
-      'b--muted-2': active && !isInline && !error && !errorMessage && !disabled,
-      'hover-b--muted-3 b--muted-4':
-        !active && !isInline && !error && !errorMessage && !disabled,
-      't-body': size !== 'small' && size !== 'x-large',
-      'h-auto': isInline && size !== 'x-large',
-      'h-small': !isInline && size === 'small',
-      'h-large': !isInline && size === 'large',
-      'h-regular':
-        !isInline && size !== 'small' && size !== 'large' && size !== 'x-large',
-    })
+    const containerClasses = classNames(
+      styles.container,
+      'vtex-dropdown__container br2 relative',
+      {
+        'bg-base': !isInline,
+        ba: !isInline,
+        bw1: !isInline || disabled,
+        'b--disabled bg-disabled': disabled,
+        'b--danger hover-b--danger': (error || errorMessage) && !disabled,
+        fw5: isInline && !error && !errorMessage && !disabled,
+        'b--muted-2':
+          active && !isInline && !error && !errorMessage && !disabled,
+        'hover-b--muted-3 b--muted-4':
+          !active && !isInline && !error && !errorMessage && !disabled,
+        't-body': size !== 'small' && size !== 'x-large',
+        'h-auto': isInline && size !== 'x-large',
+        'h-small': !isInline && size === 'small',
+        'h-large': !isInline && size === 'large',
+        'h-regular':
+          !isInline &&
+          size !== 'small' &&
+          size !== 'large' &&
+          size !== 'x-large',
+      }
+    )
 
     const selectClasses = classNames(
       'o-0 absolute top-0 left-0 h-100 w-100 bottom-0',

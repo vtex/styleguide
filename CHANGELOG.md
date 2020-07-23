@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Select's label size on regular variation.
 - Accent on `Select` input change.
 - Conditions' operator label color
+- `vtex-dropdown__container` CSS handle.
 
 ### Added
 
