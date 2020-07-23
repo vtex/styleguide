@@ -18,11 +18,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Accent on `Select` input change.
 - Conditions' operator label color
 - `vtex-dropdown__container` CSS handle.
+- Hide clear button on `InputSearch` when disabled
 
 ### Added
 
 - `disabled` prop for ActionMenu items
-- Hide clear button on `InputSearch` when disabled
 - `testId` property to option in `ActionMenu`.
 
 ### Changed
