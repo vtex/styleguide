@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- `AutocompleteInput` typing definitions.
+
 ## [9.125.0] - 2020-07-23
 
 ### Fixed
