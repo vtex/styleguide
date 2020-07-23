@@ -91,7 +91,7 @@ export type AutocompleteInputProps = Omit<
   'input'
 > & {
   input: PropTypes.InferProps<typeof propTypes>['input'] &
-    React.HTMLProps<HTMLInputElement>
+    Omit<React.HTMLProps<HTMLInputElement>, 'onChange'>
 }
 
 const AutocompleteInput: React.FunctionComponent<AutocompleteInputProps> = ({
