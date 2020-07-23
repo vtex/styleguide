@@ -82,12 +82,14 @@ const propTypes = {
   }).isRequired,
 }
 
+type CustomInputProps = PropTypes.InferProps<typeof propTypes>['input']
+
 export type AutocompleteInputProps = Omit<
   PropTypes.InferProps<typeof propTypes>,
   'input'
 > & {
-  input: PropTypes.InferProps<typeof propTypes>['input'] &
-    Omit<React.HTMLProps<HTMLInputElement>, 'onChange'>
+  input: CustomInputProps &
+    Omit<React.HTMLProps<HTMLInputElement>, keyof CustomInputProps>
 }
 
 const AutocompleteInput: React.FunctionComponent<AutocompleteInputProps> = ({
