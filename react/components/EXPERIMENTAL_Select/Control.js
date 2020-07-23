@@ -10,7 +10,7 @@ function heightClassFromSize(size) {
   }[size]
 }
 
-const Control = ({ size, ...props }) => {
+const Control = ({ selectProps: { size }, ...props }) => {
   return (
     <div className={`pa0 ${heightClassFromSize(size)}`}>
       <components.Control {...props} />
@@ -19,8 +19,7 @@ const Control = ({ size, ...props }) => {
 }
 
 Control.propTypes = {
-  errorMessage: PropTypes.string,
-  size: PropTypes.oneOf(['large', 'regular', 'small']),
+  selectProps: PropTypes.object.isRequired,
 }
 
 export default Control

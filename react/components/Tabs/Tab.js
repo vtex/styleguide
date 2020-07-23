@@ -15,7 +15,7 @@ class Tab extends Component {
     if (active && disabled) {
       tabStyle = 'fw5 b--muted-1 c-muted-2'
     } else if (active) {
-      tabStyle = 'c-on-muted b--emphasis fw5 vtex-tab__button--active'
+      tabStyle = 'c-on-muted b--emphasis fw5 vtex-tab__button--active b--solid'
     } else if (disabled) {
       tabStyle = 'b--muted-4 c-muted-3'
     }

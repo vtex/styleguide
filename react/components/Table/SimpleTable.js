@@ -215,7 +215,7 @@ class SimpleTable extends Component {
             <Spinner />
           </div>
         ) : (
-          <div>
+          <div className="h-100">
             <AutoSizer key={tableKey}>
               {({ width }) => {
                 const colsWidth = Object.keys(schema.properties).reduce(
@@ -427,7 +427,7 @@ class SimpleTable extends Component {
               }}
             </AutoSizer>
             {items.length === 0 && (
-              <div style={{ marginTop: HEADER_HEIGHT }}>
+              <div className="h-100" style={{ paddingTop: HEADER_HEIGHT }}>
                 <EmptyState title={emptyStateLabel}>
                   {emptyStateChildren}
                 </EmptyState>

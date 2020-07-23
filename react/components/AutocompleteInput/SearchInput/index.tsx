@@ -89,11 +89,19 @@ const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
     }
   )
 
+  const inputClasses = classNames(
+    activeClass,
+    'w-100 ma0 border-box bw1 br2 ba outline-0 t-body ph5 pr8',
+    {
+      'br--left': onSearch,
+    }
+  )
+
   return (
     <div className="flex flex-row">
       <div className="relative w-100">
         <input
-          className={`${activeClass} w-100 ma0 border-box bw1 br2 ba outline-0 t-body ph5 pr8 br--left`}
+          className={inputClasses}
           value={value}
           onFocus={handleFocus}
           onBlur={handleBlur}
@@ -103,18 +111,20 @@ const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
         />
         {onClear && value && (
           <span
-            className="absolute c-muted-3 fw5 flex items-center ph3 t-body top-0 right-0 h-100 pointer"
+            className="absolute c-muted-3 fw5 flex items-center pl3 pr5 t-body top-0 right-0 h-100 pointer"
             onClick={handleClear}>
             <ClearInputIcon />
           </span>
         )}
       </div>
-      <button
-        className={buttonClasses}
-        disabled={disabled}
-        onClick={() => onSearch(value)}>
-        <IconSearch size={16} />
-      </button>
+      {onSearch && (
+        <button
+          className={buttonClasses}
+          disabled={disabled}
+          onClick={() => onSearch(value)}>
+          <IconSearch size={16} />
+        </button>
+      )}
     </div>
   )
 }

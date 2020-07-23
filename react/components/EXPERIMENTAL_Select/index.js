@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import uuid from 'uuid/v4'
@@ -26,25 +27,7 @@ class Select extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-      searchTerm: undefined,
-    }
-
     this.inputId = `react-select-input-${uuid()}`
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    const { searchTerm } = this.state
-    const { searchTerm: prevSearchTerm } = prevState
-    const { loading } = this.props
-    const { loading: prevLoading } = prevProps
-
-    if (
-      searchTerm !== prevSearchTerm ||
-      (searchTerm && loading !== prevLoading)
-    ) {
-      document.getElementById(this.inputId).focus()
-    }
   }
 
   render() {
@@ -79,20 +62,12 @@ class Select extends Component {
       ref: forwardedRef,
       autoFocus,
       className: `pointer bw1 ${getFontClassNameFromSize(size)}`,
+      errorMessage,
+      size,
       components: {
         ClearIndicator,
-        Control: function Control(props) {
-          return (
-            <ControlComponent
-              errorMessage={errorMessage}
-              size={size}
-              {...props}
-            />
-          )
-        },
-        DropdownIndicator: function DropdownIndicator(props) {
-          return <DropdownIndicatorComponent size={size} {...props} />
-        },
+        Control: ControlComponent,
+        DropdownIndicator: DropdownIndicatorComponent,
         IndicatorSeparator: () => null,
         MultiValueRemove,
         Placeholder,
@@ -109,9 +84,6 @@ class Select extends Component {
       noOptionsMessage,
       inputId: this.inputId,
       onInputChange: (value, { action }) => {
-        this.setState({
-          searchTerm: value,
-        })
         if (
           action === 'input-change' &&
           typeof onSearchInputChange === 'function'
@@ -207,7 +179,11 @@ class Select extends Component {
     return (
       <div className="flex flex-column">
         {label && (
-          <label className={`dib mb3 w-100 ${getFontClassNameFromSize(size)}`}>
+          <label
+            className={classNames('dib mb3 w-100 c-on-base', {
+              't-small': size !== 'large',
+              't-body': size === 'large',
+            })}>
             {label}
           </label>
         )}

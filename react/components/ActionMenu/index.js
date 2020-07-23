@@ -149,7 +149,10 @@ ActionMenu.propTypes = {
   options: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.node,
-      handleCallback: PropTypes.func,
+      onClick: PropTypes.func,
+      disabled: PropTypes.bool,
+      /** Optional testid property */
+      testId: PropTypes.string,
       /** whether option has inline toggle */
       toggle: PropTypes.shape({
         checked: PropTypes.bool,

@@ -7,6 +7,25 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Table's empty state style
+- Page header button hover
+- `Tab` active color being set as `outset`.
+- Select's label size on regular variation.
+- Accent on `Select` input change.
+- Conditions' operator label color
+
+### Added
+
+- `disabled` prop for ActionMenu items
+- Hide clear button on `InputSearch` when disabled
+- `testId` property to option in `ActionMenu`.
+
+### Changed
+
+- `AutocompleteInput` search icon is now optional.
+
 ## [9.124.2] - 2020-07-09
 
 ### Fixed
@@ -23,6 +42,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [9.124.0] - 2020-07-02
 
 ### Added
+
 - prop `zIndex` on `Menu` and `ActionMenu` components, to better control the z-index level of these components.
 
 ### Fixed

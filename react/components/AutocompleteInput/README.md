@@ -1,4 +1,4 @@
-#### AutocompleteInput is a search input which, enhanced with a suggestions pop-up, gives the user a more complete search experience when needed.
+#### AutocompleteInput is an input which, enhanced with a suggestions pop-up, gives the user a more complete search experience when needed.
 
 ### 👍 Dos
 
@@ -254,26 +254,6 @@ const UsersAutocomplete = () => {
 ;<UsersAutocomplete />
 ```
 
-#### Disabled AutocompleteInput
-
-```jsx
-import { useState, useRef } from 'react'
-
-const DisabledAutocompleteInput = () => (
-  <AutocompleteInput
-    input={{
-      value: 'Ana Luiza',
-      disabled: true,
-    }}
-    options={{
-      value: [],
-    }}
-  />
-)
-
-;<DisabledAutocompleteInput />
-```
-
 #### Size
 
 ```jsx
@@ -370,3 +350,81 @@ const UsersAutocomplete = () => {
 
 ;<UsersAutocomplete />
 ```
+
+#### Without search button 🔍
+
+```jsx
+import { uniq } from 'lodash'
+import { useState, useRef } from 'react'
+
+const allUsers = [
+  'Ana Clara',
+  'Ana Luiza',
+  { value: 1, label: 'Bruno' },
+  'Carlos',
+  'Daniela',
+]
+
+const UsersAutocomplete = () => {
+  const [term, setTerm] = useState('')
+  const [loading, setLoading] = useState(false)
+  const timeoutRef = useRef(null)
+
+  const options = {
+    onSelect: (...args) => console.log('onSelect: ', ...args),
+    loading,
+    value: !term.length
+      ? []
+      : allUsers.filter(user =>
+          typeof user === 'string'
+            ? user.toLowerCase().includes(term.toLowerCase())
+            : user.label.toLowerCase().includes(term.toLowerCase())
+        ),
+  }
+
+  const input = {
+    onChange: term => {
+      if (term) {
+        setLoading(true)
+        if (timeoutRef.current) {
+          clearTimeout(timeoutRef.current)
+        }
+        timeoutRef.current = setTimeout(() => {
+          setLoading(false)
+          setTerm(term)
+          timeoutRef.current = null
+        }, 1000)
+      } else {
+        setTerm(term)
+      }
+    },
+    onClear: () => setTerm(''),
+    placeholder: 'Search user... (e.g.: Ana)',
+    value: term,
+  }
+  return <AutocompleteInput input={input} options={options} />
+}
+
+;<UsersAutocomplete />
+```
+
+#### Disabled AutocompleteInput
+
+```jsx
+import { useState, useRef } from 'react'
+
+const DisabledAutocompleteInput = () => (
+  <AutocompleteInput
+    input={{
+      value: 'Ana Luiza',
+      disabled: true,
+    }}
+    options={{
+      value: [],
+    }}
+  />
+)
+
+;<DisabledAutocompleteInput />
+```
+
