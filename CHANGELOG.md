@@ -7,7 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-# Fixed
+### Added
+
+- `options.customMessage` prop to `AutocompleteInput`.
+
+### Fixed
 
 - Tooltip `Portal` proptypes.
 - `AutocompleteInput` typing definitions.

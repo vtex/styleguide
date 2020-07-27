@@ -83,6 +83,11 @@ const propTypes = {
      * `regular` is the default value.
      */
     size: PropTypes.oneOf(['small', 'regular', 'large']),
+    /**
+     * A custom message to be displayed inside the options dropdown.
+     * It can be a warning, an error, or a hint about the options.
+     */
+    customMessage: PropTypes.node,
   }).isRequired,
 }
 
@@ -114,6 +119,7 @@ const AutocompleteInput: React.FunctionComponent<AutocompleteInputProps> = ({
     lastSearched = {},
     icon,
     size,
+    customMessage,
   },
 }) => {
   const [term, setTerm] = useState(value || '')
@@ -196,7 +202,8 @@ const AutocompleteInput: React.FunctionComponent<AutocompleteInputProps> = ({
     selected: index === selectedOptionIndex,
     value: option,
     searchTerm: term,
-    roundedBottom: index === showedOptions.length - 1,
+    // customMessage should be the last element on dropdown, so should have rounded bottom.
+    roundedBottom: !customMessage && index === showedOptions.length - 1,
     icon: typeof option !== 'string' && icon ? icon : null,
     onClick: () => {
       addToLastSearched(option)
@@ -246,6 +253,7 @@ const AutocompleteInput: React.FunctionComponent<AutocompleteInputProps> = ({
         {popoverOpened ? (
           <div className="absolute br--bottom br2 bb bl br bw1 b--muted-3 bg-base w-100 z-1 shadow-5">
             {renderOptions()}
+            {customMessage}
             {loading && (
               <div className="flex flex-row justify-center items-center pa4">
                 <Spinner size={20} />

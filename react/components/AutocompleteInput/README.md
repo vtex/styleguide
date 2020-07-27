@@ -486,3 +486,69 @@ const DisabledAutocompleteInput = () => (
 
 ;<DisabledAutocompleteInput />
 ```
+
+#### With a custom message
+
+```jsx
+import { uniq } from 'lodash'
+import { useState, useRef } from 'react'
+import Info from '../icon/Info'
+
+const allUsers = [
+  'Ana Clara',
+  'Ana Luiza',
+  { value: 1, label: 'Bruno' },
+  'Carlos',
+  'Daniela',
+]
+
+const UsersAutocomplete = () => {
+  const [term, setTerm] = useState('')
+  const [loading, setLoading] = useState(false)
+  const timeoutRef = useRef(null)
+
+  const options = {
+    onSelect: (...args) => console.log('onSelect: ', ...args),
+    loading,
+    value: !term.length
+      ? []
+      : allUsers.filter(user =>
+          typeof user === 'string'
+            ? user.toLowerCase().includes(term.toLowerCase())
+            : user.label.toLowerCase().includes(term.toLowerCase())
+        ),
+    customMessage: (
+      <div className="w-100 pa4 f6 br2 br--bottom bg-base flex items-center">
+        <div className="pr3 c-muted-1 flex">
+          <Info />
+        </div>
+        <div className="c-on-base">Some of these users might not be from your organization</div>
+      </div>
+    ),
+  }
+
+  const input = {
+    onChange: term => {
+      if (term) {
+        setLoading(true)
+        if (timeoutRef.current) {
+          clearTimeout(timeoutRef.current)
+        }
+        timeoutRef.current = setTimeout(() => {
+          setLoading(false)
+          setTerm(term)
+          timeoutRef.current = null
+        }, 1000)
+      } else {
+        setTerm(term)
+      }
+    },
+    onClear: () => setTerm(''),
+    placeholder: 'Search user... (e.g.: Ana)',
+    value: term,
+  }
+  return <AutocompleteInput input={input} options={options} />
+}
+
+;<UsersAutocomplete />
+```
