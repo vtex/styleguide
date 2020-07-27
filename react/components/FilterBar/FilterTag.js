@@ -172,7 +172,7 @@ class FilterTag extends PureComponent {
         console.warn(
           '[Deprecation alert]',
           'FilterBar prop "options" will change contract due to Conditions and Statement refactor.',
-          'please if you are using it inform our vtex team...'
+          'If you are using it, please inform our VTEX Styleguide team.'
         )
         return {
           ...verb,
