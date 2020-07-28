@@ -228,6 +228,15 @@ const AutocompleteInput: React.FunctionComponent<AutocompleteInputProps> = ({
     </div>
   )
 
+  const renderCustomMessage = (): React.ReactNode =>
+    typeof customMessage !== 'string' ? (
+      customMessage
+    ) : (
+      <div className="w-100 pa4 f6 br2 br--bottom bg-base">
+        <span className="ml3 c-on-base">{customMessage}</span>
+      </div>
+    )
+
   const popoverOpened = showPopover && (!!showedOptions.length || loading)
   const errorStyle = error || Boolean(errorMessage)
 
@@ -253,12 +262,12 @@ const AutocompleteInput: React.FunctionComponent<AutocompleteInputProps> = ({
         {popoverOpened ? (
           <div className="absolute br--bottom br2 bb bl br bw1 b--muted-3 bg-base w-100 z-1 shadow-5">
             {renderOptions()}
-            {customMessage}
             {loading && (
               <div className="flex flex-row justify-center items-center pa4">
                 <Spinner size={20} />
               </div>
             )}
+            {renderCustomMessage()}
           </div>
         ) : null}
         {errorMessage && (
