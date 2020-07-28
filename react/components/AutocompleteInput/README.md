@@ -460,7 +460,7 @@ const UsersAutocomplete = () => {
         ),
     customMessage: (
       <div className="w-100 pa4 f6 br2 br--bottom bg-base flex items-center">
-        <div className="pr3 c-muted-1 flex">
+        <div className="ph3 c-muted-1 flex">
           <Info />
         </div>
         <div className="c-on-base">Some of these users might not be from your organization</div>
