@@ -28,7 +28,7 @@ const propTypes = {
   size: PropTypes.oneOf(['small', 'regular', 'large']),
   /** Determine if the input and button should be styled with error borders */
   error: PropTypes.bool,
-  /** The error message to be desiplayed below the input field */
+  /** The error message to be displayed below the input field */
   errorMessage: PropTypes.node,
 }
 
