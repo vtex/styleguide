@@ -26,6 +26,10 @@ const propTypes = {
     value: PropTypes.string,
     /** Determine if the input and button should be disabled */
     disabled: PropTypes.bool,
+    /** Determine if the input and button should be styled with error borders */
+    error: PropTypes.bool,
+    /** The error message to be desiplayed below the input field */
+    errorMessage: PropTypes.node,
   }).isRequired,
   /** Options props. More details in the examples */
   options: PropTypes.shape({
