@@ -28,8 +28,6 @@ const propTypes = {
   size: PropTypes.oneOf(['small', 'regular', 'large']),
   /** Determine if the input and button should be styled with error borders */
   error: PropTypes.bool,
-  /** The error message to be displayed below the input field */
-  errorMessage: PropTypes.node,
 }
 
 const defaultProps = {
@@ -52,7 +50,6 @@ const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
     disabled,
     size,
     error,
-    errorMessage,
     ...inputProps
   } = props
 
@@ -75,12 +72,11 @@ const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
     setFocused(false)
     onBlur && onBlur(e)
   }
-  const errorStyle = error || Boolean(errorMessage)
   const regularSize = size !== 'small' && size !== 'large'
   const activeClass = classNames({
-    'b--muted-3': focused && !errorStyle,
-    'b--muted-4': !focused && !errorStyle,
-    'b--danger hover-b--danger': errorStyle,
+    'b--muted-3': focused && !error,
+    'b--muted-4': !focused && !error,
+    'b--danger hover-b--danger': error,
     'br--top': !roundedBottom,
     'bg-disabled c-disabled': disabled,
     'bg-base c-on-base': !disabled,
@@ -106,39 +102,34 @@ const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
   )
 
   return (
-    <>
-      <div className="flex flex-row">
-        <div className="relative w-100">
-          <input
-            className={inputClasses}
-            value={value}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-            onChange={handleChange}
-            disabled={disabled}
-            {...inputProps}
-          />
-          {onClear && value && (
-            <span
-              className="absolute c-muted-3 fw5 flex items-center pl3 pr5 t-body top-0 right-0 h-100 pointer"
-              onClick={handleClear}>
-              <ClearInputIcon />
-            </span>
-          )}
-        </div>
-        {onSearch && (
-          <button
-            className={buttonClasses}
-            disabled={disabled}
-            onClick={() => onSearch(value)}>
-            <IconSearch size={16} />
-          </button>
+    <div className="flex flex-row">
+      <div className="relative w-100">
+        <input
+          className={inputClasses}
+          value={value}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          onChange={handleChange}
+          disabled={disabled}
+          {...inputProps}
+        />
+        {onClear && value && (
+          <span
+            className="absolute c-muted-3 fw5 flex items-center pl3 pr5 t-body top-0 right-0 h-100 pointer"
+            onClick={handleClear}>
+            <ClearInputIcon />
+          </span>
         )}
       </div>
-      {errorMessage && (
-        <div className="c-danger t-small mt3 lh-title">{errorMessage}</div>
+      {onSearch && (
+        <button
+          className={buttonClasses}
+          disabled={disabled}
+          onClick={() => onSearch(value)}>
+          <IconSearch size={16} />
+        </button>
       )}
-    </>
+    </div>
   )
 }
 
