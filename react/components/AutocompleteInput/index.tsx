@@ -26,6 +26,10 @@ const propTypes = {
     value: PropTypes.string,
     /** Determine if the input and button should be disabled */
     disabled: PropTypes.bool,
+    /** Determine if the input and button should be styled with error borders */
+    error: PropTypes.bool,
+    /** The error message to be displayed below the input field */
+    errorMessage: PropTypes.node,
   }).isRequired,
   /** Options props. More details in the examples */
   options: PropTypes.shape({
@@ -91,7 +95,15 @@ export type AutocompleteInputProps = Omit<
 }
 
 const AutocompleteInput: React.FunctionComponent<AutocompleteInputProps> = ({
-  input: { value, onClear, onSearch, onChange, ...inputProps },
+  input: {
+    value,
+    error,
+    errorMessage,
+    onClear,
+    onSearch,
+    onChange,
+    ...inputProps
+  },
   options: {
     onSelect,
     value: options,
@@ -208,6 +220,7 @@ const AutocompleteInput: React.FunctionComponent<AutocompleteInputProps> = ({
   )
 
   const popoverOpened = showPopover && (!!showedOptions.length || loading)
+  const errorStyle = error || Boolean(errorMessage)
 
   return (
     <div ref={containerRef} className="flex flex-column w-100">
@@ -224,10 +237,11 @@ const AutocompleteInput: React.FunctionComponent<AutocompleteInputProps> = ({
         onSearch={onSearch && (() => onSearch(term))}
         onClear={handleClear}
         onChange={handleTermChange}
+        error={errorStyle}
         size={size}
       />
-      {popoverOpened ? (
-        <div className="relative">
+      <div className="relative">
+        {popoverOpened ? (
           <div className="absolute br--bottom br2 bb bl br bw1 b--muted-3 bg-base w-100 z-1 shadow-5">
             {renderOptions()}
             {loading && (
@@ -236,8 +250,11 @@ const AutocompleteInput: React.FunctionComponent<AutocompleteInputProps> = ({
               </div>
             )}
           </div>
-        </div>
-      ) : null}
+        ) : null}
+        {errorMessage && (
+          <div className="c-danger t-small mt3 lh-title">{errorMessage}</div>
+        )}
+      </div>
     </div>
   )
 }

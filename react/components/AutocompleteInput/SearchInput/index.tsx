@@ -26,6 +26,8 @@ const propTypes = {
   disabled: PropTypes.bool,
   /** Determine the search bar size */
   size: PropTypes.oneOf(['small', 'regular', 'large']),
+  /** Determine if the input and button should be styled with error borders */
+  error: PropTypes.bool,
 }
 
 const defaultProps = {
@@ -47,6 +49,7 @@ const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
     onBlur,
     disabled,
     size,
+    error,
     ...inputProps
   } = props
 
@@ -71,8 +74,9 @@ const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
   }
   const regularSize = size !== 'small' && size !== 'large'
   const activeClass = classNames({
-    'b--muted-3': focused,
-    'b--muted-4': !focused,
+    'b--muted-3': focused && !error,
+    'b--muted-4': !focused && !error,
+    'b--danger hover-b--danger': error,
     'br--top': !roundedBottom,
     'bg-disabled c-disabled': disabled,
     'bg-base c-on-base': !disabled,

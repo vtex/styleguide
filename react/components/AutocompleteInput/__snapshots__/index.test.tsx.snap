@@ -36,6 +36,9 @@ exports[`AutocompleteInput should render a regular version of search bar if size
         </svg>
       </button>
     </div>
+    <div
+      class="relative"
+    />
   </div>
 </DocumentFragment>
 `;
@@ -76,6 +79,9 @@ exports[`AutocompleteInput should render with a large size bar 1`] = `
         </svg>
       </button>
     </div>
+    <div
+      class="relative"
+    />
   </div>
 </DocumentFragment>
 `;
@@ -116,6 +122,9 @@ exports[`AutocompleteInput should render with a regular size bar 1`] = `
         </svg>
       </button>
     </div>
+    <div
+      class="relative"
+    />
   </div>
 </DocumentFragment>
 `;
@@ -156,6 +165,9 @@ exports[`AutocompleteInput should render with a regular size bar when prop is ab
         </svg>
       </button>
     </div>
+    <div
+      class="relative"
+    />
   </div>
 </DocumentFragment>
 `;
@@ -196,6 +208,9 @@ exports[`AutocompleteInput should render with a small size bar 1`] = `
         </svg>
       </button>
     </div>
+    <div
+      class="relative"
+    />
   </div>
 </DocumentFragment>
 `;
