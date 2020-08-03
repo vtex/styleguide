@@ -83,15 +83,22 @@ const propTypes = {
      * `regular` is the default value.
      */
     size: PropTypes.oneOf(['small', 'regular', 'large']),
+    /**
+     * A custom message to be displayed inside the options dropdown.
+     * It can be a warning, an error, or a hint about the options.
+     */
+    customMessage: PropTypes.node,
   }).isRequired,
 }
+
+type CustomInputProps = PropTypes.InferProps<typeof propTypes>['input']
 
 export type AutocompleteInputProps = Omit<
   PropTypes.InferProps<typeof propTypes>,
   'input'
 > & {
-  input: PropTypes.InferProps<typeof propTypes>['input'] &
-    React.HTMLProps<HTMLInputElement>
+  input: CustomInputProps &
+    Omit<React.HTMLProps<HTMLInputElement>, keyof CustomInputProps>
 }
 
 const AutocompleteInput: React.FunctionComponent<AutocompleteInputProps> = ({
@@ -112,6 +119,7 @@ const AutocompleteInput: React.FunctionComponent<AutocompleteInputProps> = ({
     lastSearched = {},
     icon,
     size,
+    customMessage,
   },
 }) => {
   const [term, setTerm] = useState(value || '')
@@ -194,7 +202,8 @@ const AutocompleteInput: React.FunctionComponent<AutocompleteInputProps> = ({
     selected: index === selectedOptionIndex,
     value: option,
     searchTerm: term,
-    roundedBottom: index === showedOptions.length - 1,
+    // customMessage should be the last element on dropdown, so should have rounded bottom.
+    roundedBottom: !customMessage && index === showedOptions.length - 1,
     icon: typeof option !== 'string' && icon ? icon : null,
     onClick: () => {
       addToLastSearched(option)
@@ -219,7 +228,17 @@ const AutocompleteInput: React.FunctionComponent<AutocompleteInputProps> = ({
     </div>
   )
 
-  const popoverOpened = showPopover && (!!showedOptions.length || loading)
+  const renderCustomMessage = (): React.ReactNode =>
+    typeof customMessage !== 'string' ? (
+      customMessage
+    ) : (
+      <div className="w-100 pa4 f6 br2 br--bottom bg-base">
+        <span className="ml3 c-on-base">{customMessage}</span>
+      </div>
+    )
+
+  const popoverOpened =
+    showPopover && (!!showedOptions.length || loading || !!customMessage)
   const errorStyle = error || Boolean(errorMessage)
 
   return (
@@ -249,6 +268,7 @@ const AutocompleteInput: React.FunctionComponent<AutocompleteInputProps> = ({
                 <Spinner size={20} />
               </div>
             )}
+            {renderCustomMessage()}
           </div>
         ) : null}
         {errorMessage && (
