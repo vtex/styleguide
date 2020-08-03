@@ -237,7 +237,8 @@ const AutocompleteInput: React.FunctionComponent<AutocompleteInputProps> = ({
       </div>
     )
 
-  const popoverOpened = showPopover && (!!showedOptions.length || loading)
+  const popoverOpened =
+    showPopover && (!!showedOptions.length || loading || !!customMessage)
   const errorStyle = error || Boolean(errorMessage)
 
   return (
