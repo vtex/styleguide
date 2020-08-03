@@ -205,7 +205,6 @@ class Button extends Component {
 
     const linkModeProps = {
       target,
-      rel,
       referrerPolicy,
       download,
     }
@@ -234,6 +233,7 @@ class Button extends Component {
         onBlur={this.props.onBlur}
         ref={this.props.forwardedRef}
         style={style}
+        rel={rel}
         // Button-mode exclusive props
         type={href ? undefined : this.props.type}
         // Link-mode exclusive props
