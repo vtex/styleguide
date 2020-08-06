@@ -53,7 +53,15 @@ class Dropzone extends PureComponent {
   }
 
   render() {
-    const { children, isLoading, icon, multiple } = this.props
+    const {
+      children,
+      isLoading,
+      icon,
+      multiple,
+      accept,
+      maxSize,
+      minSize,
+    } = this.props
     const { isHovering, fileDropped, files } = this.state
     const initialState = !isHovering && !fileDropped
 
@@ -87,6 +95,9 @@ class Dropzone extends PureComponent {
       <ReactDropZone
         ref={dropzoneRef}
         multiple={multiple}
+        accept={accept}
+        maxSize={maxSize}
+        minSize={minSize}
         onDropAccepted={this.handleDropAccepted}
         onDropRejected={this.handleDropRejected}
         onDragEnter={this.handleDragEnter}
@@ -139,6 +150,9 @@ Dropzone.defaultProps = {
   isLoading: false,
   onFileReset: () => {},
   multiple: false,
+  maxSize: Infinity,
+  minSize: 0,
+  accept: null,
 }
 
 Dropzone.propTypes = {
@@ -156,6 +170,12 @@ Dropzone.propTypes = {
   icon: PropTypes.node,
   /** Allow multiple files drop */
   multiple: PropTypes.bool,
+  /** Set accepted file types. See [this MDN article](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#accept) for more information. */
+  accept: PropTypes.string,
+  /** Maximum file size (in bytes) */
+  maxSize: PropTypes.number,
+  /** Minimum file size (in bytes) */
+  minSize: PropTypes.number,
 }
 
 export default Dropzone
