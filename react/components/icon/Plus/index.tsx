@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
+import PropTypes, { InferProps } from 'prop-types'
 
 import { Svg } from '../IconBase'
 import { calcIconSize } from '../utils'
@@ -9,8 +9,26 @@ const iconBase = {
   height: 20,
 }
 
-class Plus extends PureComponent {
-  render() {
+const propTypes = {
+  color: PropTypes.string,
+  size: PropTypes.number,
+  solid: PropTypes.bool,
+  block: PropTypes.bool,
+}
+
+type Props = InferProps<typeof propTypes>
+
+class Plus extends PureComponent<Props> {
+  static defaultProps = {
+    color: 'currentColor',
+    size: 20,
+    solid: false,
+    block: false,
+  }
+
+  static propTypes = propTypes
+
+  public render() {
     const { color, size, solid, block } = this.props
     const newSize = calcIconSize(iconBase, size)
 
@@ -40,20 +58,6 @@ class Plus extends PureComponent {
       </Svg>
     )
   }
-}
-
-Plus.defaultProps = {
-  color: 'currentColor',
-  size: 20,
-  solid: false,
-  block: false,
-}
-
-Plus.propTypes = {
-  color: PropTypes.string,
-  size: PropTypes.number,
-  solid: PropTypes.bool,
-  block: PropTypes.bool,
 }
 
 export default Plus
