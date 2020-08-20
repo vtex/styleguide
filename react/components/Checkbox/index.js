@@ -5,6 +5,7 @@ import classNames from 'classnames'
 import CheckIcon from '../icon/Check'
 import CheckPartial from '../icon/CheckPartial'
 import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
+import Styles from './styles.css'
 
 class Checkbox extends PureComponent {
   constructor(props) {
@@ -52,9 +53,12 @@ class Checkbox extends PureComponent {
           }
         )}>
         <div
-          className={classNames('vtex-checkbox__container relative w1 h1', {
-            mr3: label,
-          })}>
+          className={classNames(
+            `vtex-checkbox__container relative w1 h1 ${Styles.mw1}`,
+            {
+              mr3: label,
+            }
+          )}>
           <div
             className={classNames(
               'vtex-checkbox__inner-container h1 w1 absolute ba bw1 br1 ',
