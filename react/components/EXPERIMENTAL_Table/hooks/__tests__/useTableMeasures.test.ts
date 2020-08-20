@@ -35,24 +35,24 @@ describe('Table V2 @ hooks/useTableMeasures spec', () => {
   it('calculates tableHeight correctly', () => {
     const { result } = renderHook(() => useTableMeasures({ size: TABLE_SIZE }))
 
-    expect(result.current.tableHeight).toBe(276 + TABLE_SIZE)
+    expect(result.current.tableHeight).toBe(276)
 
     act(() => {
       result.current.setDensity(Density.Comfortable)
     })
 
-    expect(result.current.tableHeight).toBe(416 + TABLE_SIZE)
+    expect(result.current.tableHeight).toBe(416)
 
     act(() => {
       result.current.setDensity(Density.Compact)
     })
 
-    expect(result.current.tableHeight).toBe(196 + TABLE_SIZE)
+    expect(result.current.tableHeight).toBe(196)
 
     act(() => {
       result.current.setDensity(Density.Regular)
     })
 
-    expect(result.current.tableHeight).toBe(276 + TABLE_SIZE)
+    expect(result.current.tableHeight).toBe(276)
   })
 })
