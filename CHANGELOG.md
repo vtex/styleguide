@@ -7,9 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [9.128.0] - 2020-08-24
-
-## Fixed
+### Fixed
 
 -  InputSearch component icon unaligned
 
