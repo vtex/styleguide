@@ -34,10 +34,11 @@ const defaultProps = {
   roundedBottom: true,
 }
 
-const SearchInput: React.FC<
-  PropTypes.InferProps<typeof propTypes> &
-    Omit<React.HTMLProps<HTMLInputElement>, 'onChange' | 'value' | 'size'>
-> = (props) => {
+const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
+  Omit<
+    React.HTMLProps<HTMLInputElement>,
+    'onChange' | 'value' | 'size'
+  >> = props => {
   const {
     onClear,
     onSearch,
@@ -98,8 +99,9 @@ const SearchInput: React.FC<
     'w-100 ma0 border-box bw1 br2 ba outline-0 t-body ph5',
     {
       'br--left': onSearch,
-    },
-    `pr${showClearIcon ? 8 : 5}`
+      pr5: !showClearIcon,
+      pr8: showClearIcon,
+    }
   )
 
   return (
@@ -117,7 +119,8 @@ const SearchInput: React.FC<
         {showClearIcon && (
           <span
             className="absolute c-muted-3 fw5 flex items-center pl3 pr5 t-body top-0 right-0 h-100 pointer"
-            onClick={handleClear}>
+            onClick={handleClear}
+          >
             <ClearInputIcon />
           </span>
         )}
@@ -126,7 +129,8 @@ const SearchInput: React.FC<
         <button
           className={buttonClasses}
           disabled={disabled}
-          onClick={() => onSearch(value)}>
+          onClick={() => onSearch(value)}
+        >
           <IconSearch size={16} />
         </button>
       )}
