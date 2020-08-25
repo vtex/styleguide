@@ -29,7 +29,8 @@ class ActionMenu extends Component {
     this.setState({ isMenuOpen: false })
   }
 
-  handleClick = () => {
+  handleClick = event => {
+    this.props.onClick && this.props.onClick(event)
     if (!this.state.isMenuOpen) {
       this.openMenu()
     } else {
@@ -170,6 +171,8 @@ ActionMenu.propTypes = {
   isActiveOfGroup: PropTypes.bool,
   /** Default z-index to Menu view, default is 999 */
   zIndex: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /** _onClick_ event. */
+  onClick: PropTypes.func,
 }
 
 export default ActionMenu
