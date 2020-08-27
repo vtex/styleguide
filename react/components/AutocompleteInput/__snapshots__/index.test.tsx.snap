@@ -12,7 +12,7 @@ exports[`AutocompleteInput should render a regular version of search bar if size
         class="relative w-100"
       >
         <input
-          class="b--muted-4 bg-base c-on-base h-regular w-100 ma0 border-box bw1 br2 ba outline-0 t-body ph5 pr8 br--left"
+          class="b--muted-4 bg-base c-on-base h-regular w-100 ma0 border-box bw1 br2 ba outline-0 t-body ph5 br--left pr5"
           placeholder=""
           value=""
         />
@@ -55,7 +55,7 @@ exports[`AutocompleteInput should render with a large size bar 1`] = `
         class="relative w-100"
       >
         <input
-          class="b--muted-4 bg-base c-on-base h-large w-100 ma0 border-box bw1 br2 ba outline-0 t-body ph5 pr8 br--left"
+          class="b--muted-4 bg-base c-on-base h-large w-100 ma0 border-box bw1 br2 ba outline-0 t-body ph5 br--left pr5"
           placeholder=""
           value=""
         />
@@ -98,7 +98,7 @@ exports[`AutocompleteInput should render with a regular size bar 1`] = `
         class="relative w-100"
       >
         <input
-          class="b--muted-4 bg-base c-on-base h-regular w-100 ma0 border-box bw1 br2 ba outline-0 t-body ph5 pr8 br--left"
+          class="b--muted-4 bg-base c-on-base h-regular w-100 ma0 border-box bw1 br2 ba outline-0 t-body ph5 br--left pr5"
           placeholder=""
           value=""
         />
@@ -141,7 +141,7 @@ exports[`AutocompleteInput should render with a regular size bar when prop is ab
         class="relative w-100"
       >
         <input
-          class="b--muted-4 bg-base c-on-base h-regular w-100 ma0 border-box bw1 br2 ba outline-0 t-body ph5 pr8 br--left"
+          class="b--muted-4 bg-base c-on-base h-regular w-100 ma0 border-box bw1 br2 ba outline-0 t-body ph5 br--left pr5"
           placeholder=""
           value=""
         />
@@ -184,7 +184,7 @@ exports[`AutocompleteInput should render with a small size bar 1`] = `
         class="relative w-100"
       >
         <input
-          class="b--muted-4 bg-base c-on-base h-small w-100 ma0 border-box bw1 br2 ba outline-0 t-body ph5 pr8 br--left"
+          class="b--muted-4 bg-base c-on-base h-small w-100 ma0 border-box bw1 br2 ba outline-0 t-body ph5 br--left pr5"
           placeholder=""
           value=""
         />
