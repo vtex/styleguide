@@ -37,7 +37,8 @@ class Plus extends PureComponent<Props> {
         name="plus"
         variation={solid ? 'solid' : null}
         size={newSize}
-        block={block}>
+        block={block}
+        viewBox="0 0 20 20">
         {solid ? (
           <path
             fillRule="evenodd"
@@ -48,7 +49,7 @@ class Plus extends PureComponent<Props> {
           />
         ) : (
           <>
-            <circle cx="8" cy="8" r="7" stroke={color} strokeWidth="2" />
+            <circle cx="8" cy="8" r="7" stroke="#3F3F40" strokeWidth="2" />
             <path
               d="M4.5 7H7V4.5C7 4.22386 7.22386 4 7.5 4H8.5C8.77614 4 9 4.22386 9 4.5V7H11.5C11.7761 7 12 7.22386 12 7.5V8.5C12 8.77614 11.7761 9 11.5 9H9V11.5C9 11.7761 8.77614 12 8.5 12H7.5C7.22386 12 7 11.7761 7 11.5V9H4.5C4.22386 9 4 8.77614 4 8.5V7.5C4 7.22386 4.22386 7 4.5 7Z"
               fill={color}
