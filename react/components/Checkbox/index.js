@@ -52,12 +52,9 @@ class Checkbox extends PureComponent {
           }
         )}>
         <div
-          className={classNames(
-            `vtex-checkbox__container relative w1 h1`,
-            {
-              mr3: label,
-            }
-          )}>
+          className={classNames(`vtex-checkbox__container relative w1 h1`, {
+            mr3: label,
+          })}>
           <div
             className={classNames(
               'vtex-checkbox__inner-container h1 w1 absolute ba bw1 br1 ',
