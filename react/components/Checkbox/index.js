@@ -5,7 +5,6 @@ import classNames from 'classnames'
 import CheckIcon from '../icon/Check'
 import CheckPartial from '../icon/CheckPartial'
 import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
-import Styles from './styles.css'
 
 class Checkbox extends PureComponent {
   constructor(props) {
@@ -47,14 +46,14 @@ class Checkbox extends PureComponent {
     return (
       <div
         className={classNames(
-          'vtex-checkbox__line-container flex items-center relative',
+          'vtex-checkbox__line-container flex items-start relative',
           {
             pointer: !disabled,
           }
         )}>
         <div
           className={classNames(
-            `vtex-checkbox__container relative w1 h1 ${Styles.checkboxContainer}`,
+            `vtex-checkbox__container relative w1 h1`,
             {
               mr3: label,
             }
@@ -125,7 +124,7 @@ class Checkbox extends PureComponent {
         {label && (
           <label
             className={classNames(
-              'vtex-checkbox__label',
+              'vtex-checkbox__label w-100',
               { 'c-disabled': disabled },
               { 'c-on-base pointer': !disabled }
             )}
