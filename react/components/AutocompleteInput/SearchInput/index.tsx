@@ -119,8 +119,7 @@ const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
         {showClearIcon && (
           <span
             className="absolute c-muted-3 fw5 flex items-center pl3 pr5 t-body top-0 right-0 h-100 pointer"
-            onClick={handleClear}
-          >
+            onClick={handleClear}>
             <ClearInputIcon />
           </span>
         )}
@@ -129,8 +128,7 @@ const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
         <button
           className={buttonClasses}
           disabled={disabled}
-          onClick={() => onSearch(value)}
-        >
+          onClick={() => onSearch(value)}>
           <IconSearch size={16} />
         </button>
       )}
