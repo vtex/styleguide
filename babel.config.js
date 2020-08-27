@@ -6,7 +6,7 @@ module.exports = {
     ['@babel/preset-env', { loose: true }],
   ],
   plugins: [
-    '@babel/plugin-proposal-class-properties',
+    ['@babel/plugin-proposal-class-properties', { loose: true }],
     'transform-es2015-modules-commonjs',
     'dynamic-import-node',
   ],
