@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - **Plus** icon size and color.
 - `AutoCompleteInput` padding-right when `ClearInputIcon` is shown.
+- Checkbox alignment with large texts
 
 ## [9.127.0] - 2020-08-13
 
