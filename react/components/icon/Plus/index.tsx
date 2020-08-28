@@ -37,13 +37,14 @@ class Plus extends PureComponent<Props> {
         name="plus"
         variation={solid ? 'solid' : null}
         size={newSize}
-        block={block}>
+        block={block}
+        viewBox="0 0 16 16">
         {solid ? (
           <path
             fillRule="evenodd"
             clipRule="evenodd"
             d="M13.6569 13.6569C16.7811 10.5326 16.7811 5.46735 13.6569 2.34316C10.5327 -0.781032 5.46739 -0.781075 2.34316 2.34316C-0.781075 5.46739 -0.781032 10.5327 2.34316 13.6569C5.46735 16.7811 10.5326 16.7811 13.6569 13.6569ZM8.00006 6.58567L10.8285 3.75724L12.2427 5.17159L9.41423 8.00001L12.2427 10.8284L10.8285 12.2425L8.00001 9.41423L5.15726 12.257L3.74309 10.8426L6.58576 7.99997L3.74313 5.15734L5.15747 3.74309L8.00006 6.58567Z"
-            transform="translate(10.1006 -1.31372) rotate(45)"
+            transform="rotate(45, 8, 8)"
             fill={color}
           />
         ) : (
