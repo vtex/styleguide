@@ -1,9 +1,10 @@
+import React, { useMemo } from 'react'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
 import uuid from 'uuid/v4'
 import ReactSelect from 'react-select'
 import CreatableSelect from 'react-select/lib/Creatable'
+import { useAsyncPaginate, useComponents } from 'react-select-async-paginate'
 
 import ClearIndicator from './ClearIndicator'
 import COLORS from './colors'
@@ -23,191 +24,190 @@ const getOptionValue = option => {
   return JSON.stringify(option.value)
 }
 
-class Select extends Component {
-  constructor(props) {
-    super(props)
+const Select = ({
+  autoFocus,
+  clearable,
+  components,
+  creatable,
+  defaultMenuIsOpen,
+  defaultValue,
+  disabled,
+  errorMessage,
+  formatCreateLabel,
+  forwardedRef,
+  label,
+  loadOptions,
+  loading,
+  menuPosition,
+  multi,
+  noOptionsMessage,
+  onChange,
+  onSearchInputChange,
+  options,
+  paginated,
+  placeholder,
+  size,
+  value,
+  valuesMaxHeight,
+}) => {
+  const inputId = useMemo(() => `react-select-input-${uuid()}`, [])
 
-    this.inputId = `react-select-input-${uuid()}`
-  }
+  const paginatedProps = useAsyncPaginate({ loadOptions })
+  const paginatedComponents = useComponents(components)
 
-  render() {
-    const {
-      forwardedRef,
-      autoFocus,
-      creatable,
-      defaultValue,
-      disabled,
-      errorMessage,
-      formatCreateLabel,
-      label,
-      loading,
-      multi,
-      noOptionsMessage,
-      onChange,
-      onSearchInputChange,
-      options,
-      placeholder,
-      size,
-      value,
-      valuesMaxHeight,
-      clearable,
-      defaultMenuIsOpen,
-      components,
-      menuPosition,
-    } = this.props
+  const reactSelectComponentProps = {
+    menuPosition,
+    defaultMenuIsOpen,
+    ref: forwardedRef,
+    autoFocus,
+    className: `pointer bw1 ${getFontClassNameFromSize(size)}`,
+    errorMessage,
+    size,
+    components: {
+      ClearIndicator,
+      Control: ControlComponent,
+      DropdownIndicator: DropdownIndicatorComponent,
+      IndicatorSeparator: () => null,
+      MultiValueRemove,
+      Placeholder,
+      Option,
+      ...(paginated ? paginatedComponents : components),
+    },
+    defaultValue,
+    formatCreateLabel,
+    getOptionValue,
+    isClearable: clearable,
+    isDisabled: disabled,
+    isLoading: loading,
+    isMulti: multi,
+    noOptionsMessage,
+    inputId: inputId,
+    onInputChange: (value, { action }) => {
+      if (
+        action === 'input-change' &&
+        typeof onSearchInputChange === 'function'
+      ) {
+        onSearchInputChange(value)
+      }
+    },
+    onChange,
+    options,
+    placeholder,
+    styles: {
+      control: (style, state) => {
+        const { isFocused } = state
 
-    const reactSelectComponentProps = {
-      menuPosition,
-      defaultMenuIsOpen,
-      ref: forwardedRef,
-      autoFocus,
-      className: `pointer bw1 ${getFontClassNameFromSize(size)}`,
-      errorMessage,
-      size,
-      components: {
-        ClearIndicator,
-        Control: ControlComponent,
-        DropdownIndicator: DropdownIndicatorComponent,
-        IndicatorSeparator: () => null,
-        MultiValueRemove,
-        Placeholder,
-        Option,
-        ...components,
-      },
-      defaultValue,
-      formatCreateLabel,
-      getOptionValue,
-      isClearable: clearable,
-      isDisabled: disabled,
-      isLoading: loading,
-      isMulti: multi,
-      noOptionsMessage,
-      inputId: this.inputId,
-      onInputChange: (value, { action }) => {
-        if (
-          action === 'input-change' &&
-          typeof onSearchInputChange === 'function'
-        ) {
-          onSearchInputChange(value)
-        }
-      },
-      onChange,
-      options,
-      placeholder,
-      styles: {
-        control: (style, state) => {
-          const { isFocused } = state
-
-          return {
-            ...style,
-            '&:hover': {
-              borderColor: errorMessage
-                ? COLORS.red
-                : isFocused
-                ? COLORS['muted-2']
-                : COLORS['muted-3'],
-            },
-            boxShadow: 'none',
+        return {
+          ...style,
+          '&:hover': {
             borderColor: errorMessage
               ? COLORS.red
               : isFocused
               ? COLORS['muted-2']
-              : COLORS['muted-4'],
-            borderWidth: '.125rem',
-          }
-        },
-        menu: style => ({ ...style, marginTop: 0 }),
-        multiValue: (style, state) => ({
-          ...style,
-          backgroundColor: state.isDisabled
-            ? COLORS['muted-4']
-            : COLORS.aliceBlue,
-          ':hover': {
-            transition: '.15s ease-in-out',
-            backgroundColor: COLORS['hover-action-secondary'],
+              : COLORS['muted-3'],
           },
-          borderRadius: 100,
-          padding: getTagPaddingFromSize(size),
-          position: 'relative',
-        }),
-        multiValueLabel: (style, state) => ({
-          ...style,
-          padding: '0.125rem',
-          paddingRight: 0,
-          fontWeight: 500,
-          fontSize: size === 'large' ? '100%' : style.fontSize,
-          color: state.isDisabled ? COLORS.gray : COLORS['c-on-base'],
-        }),
-        multiValueRemove: (style, state) => ({
-          ...style,
-          color: state.isDisabled ? COLORS.gray : COLORS['muted-1'],
-          ':hover': {
-            backgroundColor: 'transparent',
-            color: COLORS.blue,
-          },
-        }),
-        option: (style, state) => ({
-          ...style,
-          cursor: 'pointer',
-          backgroundColor: state.isFocused
-            ? COLORS['hover-action-secondary']
-            : 'transparent',
-          color: COLORS['c-muted-1'],
-        }),
-        valueContainer: (style, state) => ({
-          ...style,
-          cursor: 'pointer',
-          paddingLeft: state.isMulti && state.hasValue ? '.25rem' : '1rem',
-          paddingRight: '.25rem',
-          backgroundColor: state.isDisabled
-            ? COLORS.lightGray
-            : style.backgroundColor,
-          maxHeight: `${valuesMaxHeight}px`,
-          overflowY: 'auto',
-        }),
+          boxShadow: 'none',
+          borderColor: errorMessage
+            ? COLORS.red
+            : isFocused
+            ? COLORS['muted-2']
+            : COLORS['muted-4'],
+          borderWidth: '.125rem',
+        }
       },
-      theme: theme => ({
-        ...theme,
-        spacing: {
-          ...theme.spacing,
-          controlHeight: getControlHeightFromSize(size),
+      menu: style => ({ ...style, marginTop: 0 }),
+      multiValue: (style, state) => ({
+        ...style,
+        backgroundColor: state.isDisabled
+          ? COLORS['muted-4']
+          : COLORS.aliceBlue,
+        ':hover': {
+          transition: '.15s ease-in-out',
+          backgroundColor: COLORS['hover-action-secondary'],
+        },
+        borderRadius: 100,
+        padding: getTagPaddingFromSize(size),
+        position: 'relative',
+      }),
+      multiValueLabel: (style, state) => ({
+        ...style,
+        padding: '0.125rem',
+        paddingRight: 0,
+        fontWeight: 500,
+        fontSize: size === 'large' ? '100%' : style.fontSize,
+        color: state.isDisabled ? COLORS.gray : COLORS['c-on-base'],
+      }),
+      multiValueRemove: (style, state) => ({
+        ...style,
+        color: state.isDisabled ? COLORS.gray : COLORS['muted-1'],
+        ':hover': {
+          backgroundColor: 'transparent',
+          color: COLORS.blue,
         },
       }),
-      value,
-    }
-
-    return (
-      <div className="flex flex-column">
-        {label && (
-          <label
-            className={classNames('dib mb3 w-100 c-on-base', {
-              't-small': size !== 'large',
-              't-body': size === 'large',
-            })}>
-            {label}
-          </label>
-        )}
-
-        {creatable ? (
-          <CreatableSelect {...reactSelectComponentProps} />
-        ) : (
-          <ReactSelect {...reactSelectComponentProps} />
-        )}
-
-        {errorMessage && (
-          <span className="c-danger f6 mt3 lh-title">{errorMessage}</span>
-        )}
-      </div>
-    )
+      option: (style, state) => ({
+        ...style,
+        cursor: 'pointer',
+        backgroundColor: state.isFocused
+          ? COLORS['hover-action-secondary']
+          : 'transparent',
+        color: COLORS['c-muted-1'],
+      }),
+      valueContainer: (style, state) => ({
+        ...style,
+        cursor: 'pointer',
+        paddingLeft: state.isMulti && state.hasValue ? '.25rem' : '1rem',
+        paddingRight: '.25rem',
+        backgroundColor: state.isDisabled
+          ? COLORS.lightGray
+          : style.backgroundColor,
+        maxHeight: `${valuesMaxHeight}px`,
+        overflowY: 'auto',
+      }),
+    },
+    theme: theme => ({
+      ...theme,
+      spacing: {
+        ...theme.spacing,
+        controlHeight: getControlHeightFromSize(size),
+      },
+    }),
+    value,
+    ...(paginated ? paginatedProps : {}),
   }
+
+  return (
+    <div className="flex flex-column">
+      {label && (
+        <label
+          className={classNames('dib mb3 w-100 c-on-base', {
+            't-small': size !== 'large',
+            't-body': size === 'large',
+          })}>
+          {label}
+        </label>
+      )}
+
+      {creatable ? (
+        <CreatableSelect {...reactSelectComponentProps} />
+      ) : (
+        <ReactSelect {...reactSelectComponentProps} />
+      )}
+
+      {errorMessage && (
+        <span className="c-danger f6 mt3 lh-title">{errorMessage}</span>
+      )}
+    </div>
+  )
 }
 
 Select.defaultProps = {
-  multi: true,
-  placeholder: 'Select...',
-  size: 'regular',
   clearable: true,
   defaultMenuIsOpen: false,
+  multi: true,
+  paginated: false,
+  placeholder: 'Select...',
+  size: 'regular',
 }
 
 const OptionShape = PropTypes.shape({
@@ -251,6 +251,8 @@ Select.propTypes = {
   formatCreateLabel: PropTypes.func,
   /** Label text. */
   label: PropTypes.string,
+  /** Function that deals with how the options are loaded if using pagination. */
+  loadOptions: PropTypes.func,
   /** Is the select in a state of loading (async). */
   loading: PropTypes.bool,
   /** Text to display when loading options */
@@ -269,6 +271,8 @@ Select.propTypes = {
   placeholder: PropTypes.string,
   /** Select size */
   size: PropTypes.oneOf(['small', 'regular', 'large']),
+  /** Flag for informing wheter pagination should be used or not. */
+  paginated: PropTypes.bool,
   /** Value of the select. */
   value: PropTypes.oneOfType([OptionShape, OptionsShape]),
   /** Max height (in _px_) of the selected values container */
