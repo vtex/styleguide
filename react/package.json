@@ -10,6 +10,7 @@
     "react-overlays": "^1.1.2",
     "react-responsive-modal": "^3.1.0",
     "react-select": "^2.1.2",
+    "react-select-async-paginate": "^0.4.0",
     "react-sticky": "^6.0.3",
     "react-virtualized": "^9.19.1",
     "use-media": "^1.4.0",

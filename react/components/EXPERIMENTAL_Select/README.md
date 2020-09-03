@@ -393,3 +393,49 @@ class SelectWithModalExample extends React.Component {
 
 ;<SelectWithModalExample />
 ```
+
+Paginated
+
+```js
+const options = []
+for (let i = 0; i < 1000; ++i) {
+  options.push({
+    value: i + 1,
+    label: `Option ${i + 1}`,
+  })
+}
+
+const sleep = ms =>
+  new Promise(resolve => {
+    setTimeout(() => {
+      resolve()
+    }, ms)
+  })
+
+;<div>
+  <div className="mb5">
+    <Select
+      label="Paginated select"
+      paginated
+      loadOptions={async (searchTerm, prevOptions, additionalData) => {
+        await sleep(1000)
+
+        const filteredOptions = options.filter(({ label }) =>
+          label.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+
+        return {
+          options: filteredOptions.slice(
+            prevOptions.length,
+            prevOptions.length + 10
+          ),
+          hasMore: filteredOptions.length > prevOptions.length + 10,
+        }
+      }}
+      onChange={values => {
+        console.log(`[Select] Selected: ${JSON.stringify(values, null, 2)}`)
+      }}
+    />
+  </div>
+</div>
+```
