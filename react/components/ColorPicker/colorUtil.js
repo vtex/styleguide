@@ -145,7 +145,7 @@ const hexTohsv = hex => {
 }
 
 const validHex = hex => {
-  return /(^#[0-9A-F]{6}$)/i.test(hex)
+  return /#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/i.test(hex)
 }
 
 /** Get color format */
