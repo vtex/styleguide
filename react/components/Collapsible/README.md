@@ -355,7 +355,7 @@ function toggleAccordion(questionNbr) {
 </div>
 ```
 
-Example dealing with popup menus inside the Collapsible
+Example of popup menus inside the Collapsible
 
 ```js
 const Select = require('../EXPERIMENTAL_Select/index.js').default
