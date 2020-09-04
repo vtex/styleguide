@@ -50,6 +50,10 @@ const rgbTohsv = rgb => {
   }
 }
 
+const areEqualHexColors = (col1, col2) =>
+  col1.toLowerCase() === col2.toLowerCase() ||
+  tryHex6to3(col1).toLowerCase() === tryHex6to3(col2).toLowerCase()
+
 /** Convert RGB to Hex*/
 const rgbTohex = rgb => {
   const { r, g, b } = rgb
@@ -128,16 +132,33 @@ const hsvTohex = hsv => {
 }
 
 const hex3to6 = hex => {
-  let sixCharHex = '#' 
-  for (let char of hex.slice(1)) {
-      sixCharHex += char.repeat(2)
+  let sixCharHex = '#'
+  for (const char of hex.slice(1)) {
+    sixCharHex += char.repeat(2)
   }
   return sixCharHex
-} 
+}
+
+/**
+ * Attempts to convert if a hex with 6 chars to 3, if not possible returns the same hex
+ * @param {*} hex
+ */
+const tryHex6to3 = hex => {
+  if (hex.length === THREE_CHAR_HEX_LENGTH) {
+    return hex
+  }
+
+  let threeCharHex = '#'
+  for (let i = 1; i < hex.length - 1; i += 2) {
+    if (hex[i] !== hex[i + 1]) return hex
+    threeCharHex += hex[i]
+  }
+  return threeCharHex
+}
 
 /** Convert Hex to RGB */
 const hexTorgb = hex => {
-  if (hex.length === THREE_CHAR_HEX_LENGTH) { 
+  if (hex.length === THREE_CHAR_HEX_LENGTH) {
     hex = hex3to6(hex)
   }
 
@@ -240,5 +261,7 @@ export default {
       hex: anyTohex,
     },
   },
+  tryHex6to3: tryHex6to3,
   validateHex: validHex,
+  areEqualHexColors: areEqualHexColors,
 }
