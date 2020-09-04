@@ -1,3 +1,5 @@
+const THREE_CHAR_HEX_LENGTH = 4 //because of the '#'
+
 const COLOR_CONSTS = {
   RGB_MAX_VALUE: 255,
 }
@@ -125,8 +127,20 @@ const hsvTohex = hsv => {
   return rgbTohex(rgb)
 }
 
+const hex3to6 = hex => {
+  let sixCharHex = '#' 
+  for (let char of hex.slice(1)) {
+      sixCharHex += char.repeat(2)
+  }
+  return sixCharHex
+} 
+
 /** Convert Hex to RGB */
 const hexTorgb = hex => {
+  if (hex.length === THREE_CHAR_HEX_LENGTH) { 
+    hex = hex3to6(hex)
+  }
+
   const r = parseInt(hex.substring(1, 3), 16)
   const g = parseInt(hex.substring(3, 5), 16)
   const b = parseInt(hex.substring(5, 7), 16)
