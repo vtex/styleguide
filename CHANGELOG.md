@@ -14,8 +14,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- `FilterOptions` behaviour and example.
-- Bug on color hex validation
+- **FilterOptions** behaviour and example.
+- **ColorPicker** hex validation
 
 ## [9.128.1] - 2020-08-28
 
