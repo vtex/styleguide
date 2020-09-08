@@ -21,29 +21,16 @@ Simple product filter example
 ```js
 const Input = require('../Input').default
 
+function SimpleInputObject({ value, onChange }) {
+  return <Input value={value || ''} onChange={e => onChange(e.target.value)} />
+}
+
 class MySimpleFilter extends React.Component {
   constructor() {
     super()
     this.state = { statements: [] }
-    this.simpleInputObject = this.simpleInputObject.bind(this)
     this.getSimpleVerbs = this.getSimpleVerbs.bind(this)
     this.renderSimpleFilterLabel = this.renderSimpleFilterLabel.bind(this)
-  }
-
-  simpleInputObject({
-    statements,
-    values,
-    statementIndex,
-    error,
-    extraParams,
-    onChangeObjectCallback,
-  }) {
-    return (
-      <Input
-        value={values || ''}
-        onChange={e => onChangeObjectCallback(e.target.value)}
-      />
-    )
   }
 
   getSimpleVerbs() {
@@ -51,26 +38,17 @@ class MySimpleFilter extends React.Component {
       {
         label: 'is',
         value: '=',
-        object: {
-          renderFn: this.simpleInputObject,
-          extraParams: {},
-        },
+        object: props => <SimpleInputObject {...props} />,
       },
       {
         label: 'is not',
         value: '!=',
-        object: {
-          renderFn: this.simpleInputObject,
-          extraParams: {},
-        },
+        object: props => <SimpleInputObject {...props} />,
       },
       {
         label: 'contains',
         value: 'contains',
-        object: {
-          renderFn: this.simpleInputObject,
-          extraParams: {},
-        },
+        object: props => <SimpleInputObject {...props} />,
       },
     ]
   }
@@ -123,159 +101,164 @@ class MySimpleFilter extends React.Component {
 Filter users example
 
 ```js
+const Input = require('../Input').default
+const CheckboxGroup = require('../CheckboxGroup').default
+
+function ClassSelectorObject({
+  statements,
+  value,
+  statementIndex,
+  error,
+  extraParams,
+  onChange,
+}) {
+  const initialValue = {
+    vip: true,
+    gold: true,
+    silver: true,
+    platinum: true,
+  }
+
+  const toCheckedMap = ([key, value]) => [key, { label: key, checked: value }]
+  const toValues = ([key, value]) => [key, value.checked]
+
+  const checkedMap = Object.fromEntries(
+    Object.entries({ ...initialValue, ...(value || {}) }).map(toCheckedMap)
+  )
+  return (
+    <CheckboxGroup
+      id="simpleCheckboxGroup"
+      name="simpleCheckboxGroup"
+      label="All Filters"
+      checkedMap={checkedMap}
+      onGroupChange={checkedMap => {
+        const newValues = Object.fromEntries(
+          Object.entries(checkedMap).map(toValues)
+        )
+        onChange(newValues)
+      }}
+    />
+  )
+}
+
+function CpfInputObject({ value, onChange }, shouldValidate = false) {
+  function validateCPF(cpf) {
+    if (!cpf) {
+      return false
+    }
+
+    let sum = 0
+    let remainder
+
+    if (
+      cpf === '00000000000' ||
+      cpf === '11111111111' ||
+      cpf === '22222222222' ||
+      cpf === '33333333333' ||
+      cpf === '44444444444' ||
+      cpf === '55555555555' ||
+      cpf === '66666666666' ||
+      cpf === '77777777777' ||
+      cpf === '88888888888' ||
+      cpf === '99999999999'
+    ) {
+      return false
+    }
+
+    for (let i = 1; i <= 9; i++) {
+      sum = sum + parseInt(cpf.substring(i - 1, i)) * (11 - i)
+    }
+    remainder = (sum * 10) % 11
+
+    if (remainder === 10 || remainder === 11) remainder = 0
+    if (remainder !== parseInt(cpf.substring(9, 10))) return false
+
+    sum = 0
+    for (let i = 1; i <= 10; i++) {
+      sum = sum + parseInt(cpf.substring(i - 1, i)) * (12 - i)
+    }
+    remainder = (sum * 10) % 11
+
+    if (remainder === 10 || remainder === 11) remainder = 0
+    if (remainder !== parseInt(cpf.substring(10, 11))) return false
+    return true
+  }
+
+  const errorMessage =
+    shouldValidate && value ? (validateCPF(value) ? null : 'Invalid CPF') : null
+  return (
+    <Input
+      placeholder="Insert cpf…"
+      type="number"
+      errorMessage={errorMessage}
+      min={0}
+      maxLength={11}
+      value={value || ''}
+      onChange={e => {
+        onChange(e.target.value.replace(/\D/g, ''))
+      }}
+    />
+  )
+}
+
+function SimpleInputObject({ value, onChange }) {
+  return <Input value={value || ''} onChange={e => onChange(e.target.value)} />
+}
+
+function AgeInputObject({ value, onChange }) {
+  return (
+    <Input
+      placeholder="Insert age…"
+      type="number"
+      min="0"
+      max="180"
+      value={value || ''}
+      onChange={e => {
+        onChange(e.target.value.replace(/\D/g, ''))
+      }}
+    />
+  )
+}
+
+function AgeInputRangeObject({ value, onChange }) {
+  return (
+    <div className="flex">
+      <Input
+        placeholder="Age from…"
+        errorMessage={
+          value && parseInt(value.first) >= parseInt(value.last)
+            ? 'Must be smaller than other input'
+            : ''
+        }
+        value={value && value.first ? value.first : ''}
+        onChange={e => {
+          const currentObject = value || {}
+          currentObject.first = e.target.value.replace(/\D/g, '')
+
+          onChange(currentObject)
+        }}
+      />
+
+      <div className="mv4 mh3 c-muted-2 b">and</div>
+
+      <Input
+        placeholder="Age to…"
+        value={value && value.last ? value.last : ''}
+        onChange={e => {
+          const currentObject = value || {}
+          currentObject.last = e.target.value.replace(/\D/g, '')
+
+          onChange(currentObject)
+        }}
+      />
+    </div>
+  )
+}
+
 class MyUsersFilter extends React.Component {
   constructor() {
     super()
     this.state = { statements: [] }
-    this.simpleInputObject = this.simpleInputObject.bind(this)
-    this.cpfInputObject = this.cpfInputObject.bind(this)
-    this.ageInputObject = this.ageInputObject.bind(this)
-    this.ageInputRangeObject = this.ageInputRangeObject.bind(this)
-    this.classSelectorObject = this.classSelectorObject.bind(this)
-    this.cpfValidationRegex = RegExp(
-      '([0-9]{2}[.]?[0-9]{3}[.]?[0-9]{3}[/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})'
-    )
-  }
-
-  simpleInputObject({
-    statements,
-    values,
-    statementIndex,
-    error,
-    extraParams,
-    onChangeObjectCallback,
-  }) {
-    return (
-      <Input
-        value={values || ''}
-        onChange={e => onChangeObjectCallback(e.target.value)}
-      />
-    )
-  }
-
-  cpfInputObject(
-    { statements, values, statementIndex, error, onChangeObjectCallback },
-    shouldValidate = false
-  ) {
-    const errorMessage =
-      shouldValidate && values
-        ? this.cpfValidationRegex.test(values)
-          ? null
-          : 'Invalid CPF'
-        : null
-    return (
-      <Input
-        placeholder="Insert cpf…"
-        type="number"
-        errorMessage={errorMessage}
-        min={0}
-        value={values || ''}
-        onChange={e => {
-          onChangeObjectCallback(e.target.value.replace(/\D/g, ''))
-        }}
-      />
-    )
-  }
-
-  ageInputObject({
-    statements,
-    values,
-    statementIndex,
-    error,
-    onChangeObjectCallback,
-  }) {
-    return (
-      <Input
-        placeholder="Insert age…"
-        type="number"
-        min="0"
-        max="180"
-        value={values || ''}
-        onChange={e => {
-          onChangeObjectCallback(e.target.value.replace(/\D/g, ''))
-        }}
-      />
-    )
-  }
-
-  ageInputRangeObject({
-    statements,
-    values,
-    statementIndex,
-    error,
-    extraParams,
-    onChangeObjectCallback,
-  }) {
-    return (
-      <div className="flex">
-        <Input
-          placeholder="Age from…"
-          errorMessage={
-            statements[statementIndex].object &&
-            parseInt(statements[statementIndex].object.first) >=
-              parseInt(statements[statementIndex].object.last)
-              ? 'Must be smaller than other input'
-              : ''
-          }
-          value={values && values.first ? values.first : ''}
-          onChange={e => {
-            const currentObject = values || {}
-            currentObject.first = e.target.value.replace(/\D/g, '')
-
-            onChangeObjectCallback(currentObject)
-          }}
-        />
-
-        <div className="mv4 mh3 c-muted-2 b">and</div>
-
-        <Input
-          placeholder="Age to…"
-          value={values && values.last ? values.last : ''}
-          onChange={e => {
-            const currentObject = values || {}
-            currentObject.last = e.target.value.replace(/\D/g, '')
-
-            onChangeObjectCallback(currentObject)
-          }}
-        />
-      </div>
-    )
-  }
-
-  classSelectorObject({
-    statements,
-    values,
-    statementIndex,
-    error,
-    extraParams,
-    onChangeObjectCallback,
-  }) {
-    const initialValue = {
-      vip: true,
-      gold: true,
-      silver: true,
-      platinum: true,
-    }
-
-    const toCheckedMap = ([key, value]) => [key, { label: key, checked: value }]
-    const toValues = ([key, value]) => [key, value.checked]
-
-    const checkedMap = Object.fromEntries(
-      Object.entries({ ...initialValue, ...(values || {}) }).map(toCheckedMap)
-    )
-    return (
-      <CheckboxGroup
-        name="simpleCheckboxGroup"
-        label="All Filters"
-        checkedMap={checkedMap}
-        onGroupChange={checkedMap => {
-          const newValues = Object.fromEntries(
-            Object.entries(checkedMap).map(toValues)
-          )
-          onChangeObjectCallback(newValues)
-        }}
-      />
-    )
   }
 
   render() {
@@ -305,26 +288,17 @@ class MyUsersFilter extends React.Component {
               {
                 label: 'is',
                 value: '=',
-                object: {
-                  renderFn: this.simpleInputObject,
-                  extraParams: {},
-                },
+                object: props => <SimpleInputObject {...props} />,
               },
               {
                 label: 'is not',
                 value: '!=',
-                object: {
-                  renderFn: this.simpleInputObject,
-                  extraParams: {},
-                },
+                object: props => <SimpleInputObject {...props} />,
               },
               {
                 label: 'contains',
                 value: 'contains',
-                object: {
-                  renderFn: this.simpleInputObject,
-                  extraParams: {},
-                },
+                object: props => <SimpleInputObject {...props} />,
               },
             ],
           },
@@ -347,26 +321,17 @@ class MyUsersFilter extends React.Component {
               {
                 label: 'contains',
                 value: 'contains',
-                object: {
-                  renderFn: this.simpleInputObject,
-                  extraParams: {},
-                },
+                object: props => <SimpleInputObject {...props} />,
               },
               {
                 label: 'is',
                 value: '=',
-                object: {
-                  renderFn: this.simpleInputObject,
-                  extraParams: {},
-                },
+                object: props => <SimpleInputObject {...props} />,
               },
               {
                 label: 'is not',
                 value: '!=',
-                object: {
-                  renderFn: this.simpleInputObject,
-                  extraParams: {},
-                },
+                object: props => <SimpleInputObject {...props} />,
               },
             ],
           },
@@ -395,10 +360,7 @@ class MyUsersFilter extends React.Component {
               {
                 label: 'includes',
                 value: 'includes',
-                object: {
-                  renderFn: this.classSelectorObject,
-                  extraParams: {},
-                },
+                object: props => <ClassSelectorObject {...props} />,
               },
             ],
           },
@@ -414,18 +376,12 @@ class MyUsersFilter extends React.Component {
               {
                 label: 'is',
                 value: '=',
-                object: {
-                  renderFn: this.ageInputObject,
-                  extraParams: {},
-                },
+                object: props => <AgeInputObject {...props} />,
               },
               {
                 label: 'is between',
                 value: 'between',
-                object: {
-                  renderFn: this.ageInputRangeObject,
-                  extraParams: {},
-                },
+                object: props => <AgeInputRangeObject {...props} />,
               },
             ],
           },
@@ -437,18 +393,12 @@ class MyUsersFilter extends React.Component {
               {
                 label: 'is',
                 value: '=',
-                object: {
-                  renderFn: obj => this.cpfInputObject(obj, true),
-                  extraParams: {},
-                },
+                object: props => <CpfInputObject {...props} />,
               },
               {
                 label: 'contains',
                 value: 'contains',
-                object: {
-                  renderFn: this.cpfInputObject,
-                  extraParams: {},
-                },
+                object: props => <CpfInputObject {...props} />,
               },
             ],
           },
@@ -463,31 +413,92 @@ class MyUsersFilter extends React.Component {
 Filter orders example
 
 ```js
+const Input = require('../Input').default
+const CheckboxGroup = require('../CheckboxGroup').default
+const DatePicker = require('../DatePicker').default
+
+function SimpleInputObject({ value, onChange }) {
+  return <Input value={value || ''} onChange={e => onChange(e.target.value)} />
+}
+
+function DatePickerObject({ value, onChange }) {
+  return (
+    <div className="w-100">
+      <DatePicker
+        value={value || new Date()}
+        onChange={date => {
+          onChange(date)
+        }}
+        locale="pt-BR"
+      />
+    </div>
+  )
+}
+
+function DatePickerRangeObject({ value, onChange }) {
+  return (
+    <div className="flex flex-column w-100">
+      <br />
+      <DatePicker
+        label="from"
+        value={(value && value.from) || new Date()}
+        onChange={date => {
+          onChange({ ...(value || {}), from: date })
+        }}
+        locale="pt-BR"
+      />
+      <br />
+      <DatePicker
+        label="to"
+        value={(value && value.to) || new Date()}
+        onChange={date => {
+          onChange({ ...(value || {}), to: date })
+        }}
+        locale="pt-BR"
+      />
+    </div>
+  )
+}
+
+function StatusSelectorObject({ value, onChange }) {
+  const initialValue = {
+    'Window to cancelation': true,
+    Canceling: true,
+    Canceled: true,
+    'Payment pending': true,
+    'Payment approved': true,
+    'Ready for handling': true,
+    'Handling shipping': true,
+    'Ready for invoice': true,
+    Invoiced: true,
+    Complete: true,
+  }
+  const toCheckedMap = ([key, value]) => [key, { label: key, checked: value }]
+  const toValues = ([key, value]) => [key, value.checked]
+
+  const checkedMap = Object.fromEntries(
+    Object.entries({ ...initialValue, ...(value || {}) }).map(toCheckedMap)
+  )
+  return (
+    <CheckboxGroup
+      name="simpleCheckboxGroup"
+      label="All Filters"
+      checkedMap={checkedMap}
+      onGroupChange={checkedMap => {
+        const newValues = Object.fromEntries(
+          Object.entries(checkedMap).map(toValues)
+        )
+        onChange(newValues)
+      }}
+    />
+  )
+}
+
 class MyOrdersFilter extends React.Component {
   constructor() {
     super()
     this.state = { statements: [] }
-    this.simpleInputObject = this.simpleInputObject.bind(this)
     this.simpleInputVerbs = this.simpleInputVerbs.bind(this)
-    this.datePickerObject = this.datePickerObject.bind(this)
-    this.datePickerRangeObject = this.datePickerRangeObject.bind(this)
-    this.statusSelectorObject = this.statusSelectorObject.bind(this)
-  }
-
-  simpleInputObject({
-    statements,
-    values,
-    statementIndex,
-    error,
-    extraParams,
-    onChangeObjectCallback,
-  }) {
-    return (
-      <Input
-        value={values || ''}
-        onChange={e => onChangeObjectCallback(e.target.value)}
-      />
-    )
   }
 
   simpleInputVerbs() {
@@ -495,121 +506,19 @@ class MyOrdersFilter extends React.Component {
       {
         label: 'is',
         value: '=',
-        object: {
-          renderFn: this.simpleInputObject,
-          extraParams: {},
-        },
+        object: props => <SimpleInputObject {...props} />,
       },
       {
         label: 'is not',
         value: '!=',
-        object: {
-          renderFn: this.simpleInputObject,
-          extraParams: {},
-        },
+        object: props => <SimpleInputObject {...props} />,
       },
       {
         label: 'contains',
         value: 'contains',
-        object: {
-          renderFn: this.simpleInputObject,
-          extraParams: {},
-        },
+        object: props => <SimpleInputObject {...props} />,
       },
     ]
-  }
-
-  datePickerObject({
-    statements,
-    values,
-    statementIndex,
-    error,
-    onChangeObjectCallback,
-  }) {
-    return (
-      <div className="w-100">
-        <DatePicker
-          value={values || new Date()}
-          onChange={date => {
-            onChangeObjectCallback(date)
-          }}
-          locale="pt-BR"
-        />
-      </div>
-    )
-  }
-
-  datePickerRangeObject({
-    statements,
-    values,
-    statementIndex,
-    error,
-    extraParams,
-    onChangeObjectCallback,
-  }) {
-    return (
-      <div className="flex flex-column w-100">
-        <br />
-        <DatePicker
-          label="from"
-          value={(values && values.from) || new Date()}
-          onChange={date => {
-            onChangeObjectCallback({ ...(values || {}), from: date })
-          }}
-          locale="pt-BR"
-        />
-        <br />
-        <DatePicker
-          label="to"
-          value={(values && values.to) || new Date()}
-          onChange={date => {
-            onChangeObjectCallback({ ...(values || {}), to: date })
-          }}
-          locale="pt-BR"
-        />
-      </div>
-    )
-  }
-
-  statusSelectorObject({
-    statements,
-    values,
-    statementIndex,
-    error,
-    extraParams,
-    onChangeObjectCallback,
-  }) {
-    const initialValue = {
-      'Window to cancelation': true,
-      Canceling: true,
-      Canceled: true,
-      'Payment pending': true,
-      'Payment approved': true,
-      'Ready for handling': true,
-      'Handling shipping': true,
-      'Ready for invoice': true,
-      Invoiced: true,
-      Complete: true,
-    }
-    const toCheckedMap = ([key, value]) => [key, { label: key, checked: value }]
-    const toValues = ([key, value]) => [key, value.checked]
-
-    const checkedMap = Object.fromEntries(
-      Object.entries({ ...initialValue, ...(values || {}) }).map(toCheckedMap)
-    )
-    return (
-      <CheckboxGroup
-        name="simpleCheckboxGroup"
-        label="All Filters"
-        checkedMap={checkedMap}
-        onGroupChange={checkedMap => {
-          const newValues = Object.fromEntries(
-            Object.entries(checkedMap).map(toValues)
-          )
-          onChangeObjectCallback(newValues)
-        }}
-      />
-    )
   }
 
   render() {
@@ -679,10 +588,7 @@ class MyOrdersFilter extends React.Component {
               {
                 label: 'includes',
                 value: 'includes',
-                object: {
-                  renderFn: this.statusSelectorObject,
-                  extraParams: {},
-                },
+                object: props => <StatusSelectorObject {...props} />,
               },
             ],
           },
@@ -700,18 +606,12 @@ class MyOrdersFilter extends React.Component {
               {
                 label: 'is',
                 value: '=',
-                object: {
-                  renderFn: this.datePickerObject,
-                  extraParams: {},
-                },
+                object: props => <DatePickerObject {...props} />,
               },
               {
                 label: 'is between',
                 value: 'between',
-                object: {
-                  renderFn: this.datePickerRangeObject,
-                  extraParams: {},
-                },
+                object: props => <DatePickerRangeObject {...props} />,
               },
             ],
           },
@@ -738,164 +638,166 @@ class MyOrdersFilter extends React.Component {
 Filter Options with Modal Example
 
 ```js
-const Button = require('../Button').default
 const Modal = require('../Modal').default
+const Button = require('../Button').default
 const Input = require('../Input').default
 const CheckboxGroup = require('../CheckboxGroup').default
+
+function ClassSelectorObject({
+  statements,
+  value,
+  statementIndex,
+  error,
+  extraParams,
+  onChange,
+}) {
+  const initialValue = {
+    vip: true,
+    gold: true,
+    silver: true,
+    platinum: true,
+  }
+
+  const toCheckedMap = ([key, value]) => [key, { label: key, checked: value }]
+  const toValues = ([key, value]) => [key, value.checked]
+
+  const checkedMap = Object.fromEntries(
+    Object.entries({ ...initialValue, ...(value || {}) }).map(toCheckedMap)
+  )
+  return (
+    <CheckboxGroup
+      id="simpleCheckboxGroup"
+      name="simpleCheckboxGroup"
+      label="All Filters"
+      checkedMap={checkedMap}
+      onGroupChange={checkedMap => {
+        const newValues = Object.fromEntries(
+          Object.entries(checkedMap).map(toValues)
+        )
+        onChange(newValues)
+      }}
+    />
+  )
+}
+
+function CpfInputObject({ value, onChange }, shouldValidate = false) {
+  function validateCPF(cpf) {
+    if (!cpf) {
+      return false
+    }
+
+    let sum = 0
+    let remainder
+
+    if (
+      cpf === '00000000000' ||
+      cpf === '11111111111' ||
+      cpf === '22222222222' ||
+      cpf === '33333333333' ||
+      cpf === '44444444444' ||
+      cpf === '55555555555' ||
+      cpf === '66666666666' ||
+      cpf === '77777777777' ||
+      cpf === '88888888888' ||
+      cpf === '99999999999'
+    ) {
+      return false
+    }
+
+    for (let i = 1; i <= 9; i++) {
+      sum = sum + parseInt(cpf.substring(i - 1, i)) * (11 - i)
+    }
+    remainder = (sum * 10) % 11
+
+    if (remainder === 10 || remainder === 11) remainder = 0
+    if (remainder !== parseInt(cpf.substring(9, 10))) return false
+
+    sum = 0
+    for (let i = 1; i <= 10; i++) {
+      sum = sum + parseInt(cpf.substring(i - 1, i)) * (12 - i)
+    }
+    remainder = (sum * 10) % 11
+
+    if (remainder === 10 || remainder === 11) remainder = 0
+    if (remainder !== parseInt(cpf.substring(10, 11))) return false
+    return true
+  }
+
+  const errorMessage =
+    shouldValidate && value ? (validateCPF(value) ? null : 'Invalid CPF') : null
+  return (
+    <Input
+      placeholder="Insert cpf…"
+      type="number"
+      errorMessage={errorMessage}
+      min={0}
+      maxLength={11}
+      value={value || ''}
+      onChange={e => {
+        onChange(e.target.value.replace(/\D/g, ''))
+      }}
+    />
+  )
+}
+
+function SimpleInputObject({ value, onChange }) {
+  return <Input value={value || ''} onChange={e => onChange(e.target.value)} />
+}
+
+function AgeInputObject({ value, onChange }) {
+  return (
+    <Input
+      placeholder="Insert age…"
+      type="number"
+      min="0"
+      max="180"
+      value={value || ''}
+      onChange={e => {
+        onChange(e.target.value.replace(/\D/g, ''))
+      }}
+    />
+  )
+}
+
+function AgeInputRangeObject({ value, onChange }) {
+  return (
+    <div className="flex">
+      <Input
+        placeholder="Age from…"
+        errorMessage={
+          value && parseInt(value.first) >= parseInt(value.last)
+            ? 'Must be smaller than other input'
+            : ''
+        }
+        value={value && value.first ? value.first : ''}
+        onChange={e => {
+          const currentObject = value || {}
+          currentObject.first = e.target.value.replace(/\D/g, '')
+
+          onChange(currentObject)
+        }}
+      />
+
+      <div className="mv4 mh3 c-muted-2 b">and</div>
+
+      <Input
+        placeholder="Age to…"
+        value={value && value.last ? value.last : ''}
+        onChange={e => {
+          const currentObject = value || {}
+          currentObject.last = e.target.value.replace(/\D/g, '')
+
+          onChange(currentObject)
+        }}
+      />
+    </div>
+  )
+}
 
 class MyUsersFilter extends React.Component {
   constructor() {
     super()
     this.state = { statements: [] }
-    this.simpleInputObject = this.simpleInputObject.bind(this)
-    this.cpfInputObject = this.cpfInputObject.bind(this)
-    this.ageInputObject = this.ageInputObject.bind(this)
-    this.ageInputRangeObject = this.ageInputRangeObject.bind(this)
-    this.classSelectorObject = this.classSelectorObject.bind(this)
-    this.cpfValidationRegex = RegExp(
-      '([0-9]{2}[.]?[0-9]{3}[.]?[0-9]{3}[/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})'
-    )
-  }
-
-  simpleInputObject({
-    statements,
-    values,
-    statementIndex,
-    error,
-    extraParams,
-    onChangeObjectCallback,
-  }) {
-    return (
-      <Input
-        value={values || ''}
-        onChange={e => onChangeObjectCallback(e.target.value)}
-      />
-    )
-  }
-
-  cpfInputObject(
-    { statements, values, statementIndex, error, onChangeObjectCallback },
-    shouldValidate = false
-  ) {
-    const errorMessage =
-      shouldValidate && values
-        ? this.cpfValidationRegex.test(values)
-          ? null
-          : 'Invalid CPF'
-        : null
-    return (
-      <Input
-        placeholder="Insert cpf…"
-        type="number"
-        errorMessage={errorMessage}
-        min={0}
-        value={values || ''}
-        onChange={e => {
-          onChangeObjectCallback(e.target.value.replace(/\D/g, ''))
-        }}
-      />
-    )
-  }
-
-  ageInputObject({
-    statements,
-    values,
-    statementIndex,
-    error,
-    onChangeObjectCallback,
-  }) {
-    return (
-      <Input
-        placeholder="Insert age…"
-        type="number"
-        min="0"
-        max="180"
-        value={values || ''}
-        onChange={e => {
-          onChangeObjectCallback(e.target.value.replace(/\D/g, ''))
-        }}
-      />
-    )
-  }
-
-  ageInputRangeObject({
-    statements,
-    values,
-    statementIndex,
-    error,
-    extraParams,
-    onChangeObjectCallback,
-  }) {
-    return (
-      <div className="flex">
-        <Input
-          placeholder="Age from…"
-          errorMessage={
-            statements[statementIndex].object &&
-            parseInt(statements[statementIndex].object.first) >=
-              parseInt(statements[statementIndex].object.last)
-              ? 'Must be smaller than other input'
-              : ''
-          }
-          value={values && values.first ? values.first : ''}
-          onChange={e => {
-            const currentObject = values || {}
-            currentObject.first = e.target.value.replace(/\D/g, '')
-
-            onChangeObjectCallback(currentObject)
-          }}
-        />
-
-        <div className="mv4 mh3 c-muted-2 b">and</div>
-
-        <Input
-          placeholder="Age to…"
-          value={values && values.last ? values.last : ''}
-          onChange={e => {
-            const currentObject = values || {}
-            currentObject.last = e.target.value.replace(/\D/g, '')
-
-            onChangeObjectCallback(currentObject)
-          }}
-        />
-      </div>
-    )
-  }
-
-  classSelectorObject({
-    statements,
-    values,
-    statementIndex,
-    error,
-    extraParams,
-    onChangeObjectCallback,
-  }) {
-    const initialValue = {
-      vip: true,
-      gold: true,
-      silver: true,
-      platinum: true,
-    }
-
-    const toCheckedMap = ([key, value]) => [key, { label: key, checked: value }]
-    const toValues = ([key, value]) => [key, value.checked]
-
-    const checkedMap = Object.fromEntries(
-      Object.entries({ ...initialValue, ...(values || {}) }).map(toCheckedMap)
-    )
-    return (
-      <CheckboxGroup
-        name="simpleCheckboxGroup"
-        label="All Filters"
-        checkedMap={checkedMap}
-        onGroupChange={checkedMap => {
-          const newValues = Object.fromEntries(
-            Object.entries(checkedMap).map(toValues)
-          )
-          onChangeObjectCallback(newValues)
-        }}
-      />
-    )
   }
 
   render() {
@@ -925,26 +827,17 @@ class MyUsersFilter extends React.Component {
               {
                 label: 'is',
                 value: '=',
-                object: {
-                  renderFn: this.simpleInputObject,
-                  extraParams: {},
-                },
+                object: props => <SimpleInputObject {...props} />,
               },
               {
                 label: 'is not',
                 value: '!=',
-                object: {
-                  renderFn: this.simpleInputObject,
-                  extraParams: {},
-                },
+                object: props => <SimpleInputObject {...props} />,
               },
               {
                 label: 'contains',
                 value: 'contains',
-                object: {
-                  renderFn: this.simpleInputObject,
-                  extraParams: {},
-                },
+                object: props => <SimpleInputObject {...props} />,
               },
             ],
           },
@@ -967,26 +860,17 @@ class MyUsersFilter extends React.Component {
               {
                 label: 'contains',
                 value: 'contains',
-                object: {
-                  renderFn: this.simpleInputObject,
-                  extraParams: {},
-                },
+                object: props => <SimpleInputObject {...props} />,
               },
               {
                 label: 'is',
                 value: '=',
-                object: {
-                  renderFn: this.simpleInputObject,
-                  extraParams: {},
-                },
+                object: props => <SimpleInputObject {...props} />,
               },
               {
                 label: 'is not',
                 value: '!=',
-                object: {
-                  renderFn: this.simpleInputObject,
-                  extraParams: {},
-                },
+                object: props => <SimpleInputObject {...props} />,
               },
             ],
           },
@@ -1015,10 +899,7 @@ class MyUsersFilter extends React.Component {
               {
                 label: 'includes',
                 value: 'includes',
-                object: {
-                  renderFn: this.classSelectorObject,
-                  extraParams: {},
-                },
+                object: props => <ClassSelectorObject {...props} />,
               },
             ],
           },
@@ -1034,18 +915,12 @@ class MyUsersFilter extends React.Component {
               {
                 label: 'is',
                 value: '=',
-                object: {
-                  renderFn: this.ageInputObject,
-                  extraParams: {},
-                },
+                object: props => <AgeInputObject {...props} />,
               },
               {
                 label: 'is between',
                 value: 'between',
-                object: {
-                  renderFn: this.ageInputRangeObject,
-                  extraParams: {},
-                },
+                object: props => <AgeInputRangeObject {...props} />,
               },
             ],
           },
@@ -1057,18 +932,12 @@ class MyUsersFilter extends React.Component {
               {
                 label: 'is',
                 value: '=',
-                object: {
-                  renderFn: obj => this.cpfInputObject(obj, true),
-                  extraParams: {},
-                },
+                object: props => <CpfInputObject {...props} />,
               },
               {
                 label: 'contains',
                 value: 'contains',
-                object: {
-                  renderFn: this.cpfInputObject,
-                  extraParams: {},
-                },
+                object: props => <CpfInputObject {...props} />,
               },
             ],
           },
@@ -1077,7 +946,6 @@ class MyUsersFilter extends React.Component {
     )
   }
 }
-
 class ModalExample extends React.Component {
   constructor() {
     super()
