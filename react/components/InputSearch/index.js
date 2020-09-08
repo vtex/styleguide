@@ -94,9 +94,8 @@ class InputSearch extends Component {
               }}
             />
             <span
-              className="pointer pl4 c-link"
-              onClick={this.handleSubmit}
-              style={{ height: iconSize }}>
+              className="pointer pl4 c-link flex"
+              onClick={this.handleSubmit}>
               <SearchIcon size={iconSize} />
             </span>
           </div>
