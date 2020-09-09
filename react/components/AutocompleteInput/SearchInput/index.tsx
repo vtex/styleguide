@@ -26,6 +26,8 @@ const propTypes = {
   disabled: PropTypes.bool,
   /** Determine the search bar size */
   size: PropTypes.oneOf(['small', 'regular', 'large']),
+  /** Determine if the input and button should be styled with error borders */
+  error: PropTypes.bool,
 }
 
 const defaultProps = {
@@ -47,6 +49,7 @@ const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
     onBlur,
     disabled,
     size,
+    error,
     ...inputProps
   } = props
 
@@ -71,8 +74,9 @@ const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
   }
   const regularSize = size !== 'small' && size !== 'large'
   const activeClass = classNames({
-    'b--muted-3': focused,
-    'b--muted-4': !focused,
+    'b--muted-3': focused && !error,
+    'b--muted-4': !focused && !error,
+    'b--danger hover-b--danger': error,
     'br--top': !roundedBottom,
     'bg-disabled c-disabled': disabled,
     'bg-base c-on-base': !disabled,
@@ -89,11 +93,14 @@ const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
     }
   )
 
+  const showClearIcon = onClear && value
   const inputClasses = classNames(
     activeClass,
-    'w-100 ma0 border-box bw1 br2 ba outline-0 t-body ph5 pr8',
+    'w-100 ma0 border-box bw1 br2 ba outline-0 t-body ph5',
     {
       'br--left': onSearch,
+      pr5: !showClearIcon,
+      pr8: showClearIcon,
     }
   )
 
@@ -109,7 +116,7 @@ const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
           disabled={disabled}
           {...inputProps}
         />
-        {onClear && value && (
+        {showClearIcon && (
           <span
             className="absolute c-muted-3 fw5 flex items-center pl3 pr5 t-body top-0 right-0 h-100 pointer"
             onClick={handleClear}>

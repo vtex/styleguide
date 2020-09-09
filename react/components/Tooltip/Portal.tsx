@@ -67,9 +67,11 @@ const Portal = (props: PropTypes.InferProps<typeof propTypes>, ref) => {
   return mountNode ? ReactDOM.createPortal(children, mountNode) : mountNode
 }
 
-Portal.propTypes = propTypes
-
-export default React.forwardRef<
+const PortalWithRef = React.forwardRef<
   HTMLElement,
   PropTypes.InferProps<typeof propTypes>
 >(Portal)
+
+PortalWithRef.propTypes = propTypes
+
+export default PortalWithRef

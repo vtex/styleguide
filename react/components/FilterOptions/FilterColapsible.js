@@ -12,9 +12,9 @@ class FilterColapsible extends PureComponent {
     }
   }
 
-  handleChangeStatement = (newValue, structure) => {
+  handleChangeStatement = newValue => {
     const { statement } = this.props
-    return this.props.onChangeStatement({ ...statement, [structure]: newValue })
+    return this.props.onChangeStatement({ ...statement, ...newValue })
   }
 
   render() {
@@ -29,6 +29,7 @@ class FilterColapsible extends PureComponent {
           isOpen={isCollapsibleOpen}
           align="left"
           caretColor="base"
+          isOverflowHidden={false}
           header={
             <div className="flex items-center h-100 ph4 pv5">
               <span className="flex nl3 ">
@@ -45,7 +46,7 @@ class FilterColapsible extends PureComponent {
                 omitVerbs={shouldOmitVerb}
                 options={options}
                 subjectPlaceholder={'…'}
-                statements={[statement]}
+                statement={statement}
                 onChangeStatement={this.handleChangeStatement}
                 onChangeObjectCallback={value =>
                   this.handleChangeStatement(value, 'object')

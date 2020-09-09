@@ -26,6 +26,10 @@ const propTypes = {
     value: PropTypes.string,
     /** Determine if the input and button should be disabled */
     disabled: PropTypes.bool,
+    /** Determine if the input and button should be styled with error borders */
+    error: PropTypes.bool,
+    /** The error message to be displayed below the input field */
+    errorMessage: PropTypes.node,
   }).isRequired,
   /** Options props. More details in the examples */
   options: PropTypes.shape({
@@ -79,19 +83,34 @@ const propTypes = {
      * `regular` is the default value.
      */
     size: PropTypes.oneOf(['small', 'regular', 'large']),
+    /**
+     * A custom message to be displayed inside the options dropdown.
+     * It can be a warning, an error, or a hint about the options.
+     */
+    customMessage: PropTypes.node,
   }).isRequired,
 }
+
+type CustomInputProps = PropTypes.InferProps<typeof propTypes>['input']
 
 export type AutocompleteInputProps = Omit<
   PropTypes.InferProps<typeof propTypes>,
   'input'
 > & {
-  input: PropTypes.InferProps<typeof propTypes>['input'] &
-    React.HTMLProps<HTMLInputElement>
+  input: CustomInputProps &
+    Omit<React.HTMLProps<HTMLInputElement>, keyof CustomInputProps>
 }
 
 const AutocompleteInput: React.FunctionComponent<AutocompleteInputProps> = ({
-  input: { value, onClear, onSearch, onChange, ...inputProps },
+  input: {
+    value,
+    error,
+    errorMessage,
+    onClear,
+    onSearch,
+    onChange,
+    ...inputProps
+  },
   options: {
     onSelect,
     value: options,
@@ -100,6 +119,7 @@ const AutocompleteInput: React.FunctionComponent<AutocompleteInputProps> = ({
     lastSearched = {},
     icon,
     size,
+    customMessage,
   },
 }) => {
   const [term, setTerm] = useState(value || '')
@@ -182,7 +202,8 @@ const AutocompleteInput: React.FunctionComponent<AutocompleteInputProps> = ({
     selected: index === selectedOptionIndex,
     value: option,
     searchTerm: term,
-    roundedBottom: index === showedOptions.length - 1,
+    // customMessage should be the last element on dropdown, so should have rounded bottom.
+    roundedBottom: !customMessage && index === showedOptions.length - 1,
     icon: typeof option !== 'string' && icon ? icon : null,
     onClick: () => {
       addToLastSearched(option)
@@ -207,7 +228,18 @@ const AutocompleteInput: React.FunctionComponent<AutocompleteInputProps> = ({
     </div>
   )
 
-  const popoverOpened = showPopover && (!!showedOptions.length || loading)
+  const renderCustomMessage = (): React.ReactNode =>
+    typeof customMessage !== 'string' ? (
+      customMessage
+    ) : (
+      <div className="w-100 pa4 f6 br2 br--bottom bg-base">
+        <span className="ml3 c-on-base">{customMessage}</span>
+      </div>
+    )
+
+  const popoverOpened =
+    showPopover && (!!showedOptions.length || loading || !!customMessage)
+  const errorStyle = error || Boolean(errorMessage)
 
   return (
     <div ref={containerRef} className="flex flex-column w-100">
@@ -224,10 +256,11 @@ const AutocompleteInput: React.FunctionComponent<AutocompleteInputProps> = ({
         onSearch={onSearch && (() => onSearch(term))}
         onClear={handleClear}
         onChange={handleTermChange}
+        error={errorStyle}
         size={size}
       />
-      {popoverOpened ? (
-        <div className="relative">
+      <div className="relative">
+        {popoverOpened ? (
           <div className="absolute br--bottom br2 bb bl br bw1 b--muted-3 bg-base w-100 z-1 shadow-5">
             {renderOptions()}
             {loading && (
@@ -235,9 +268,13 @@ const AutocompleteInput: React.FunctionComponent<AutocompleteInputProps> = ({
                 <Spinner size={20} />
               </div>
             )}
+            {renderCustomMessage()}
           </div>
-        </div>
-      ) : null}
+        ) : null}
+        {errorMessage && (
+          <div className="c-danger t-small mt3 lh-title">{errorMessage}</div>
+        )}
+      </div>
     </div>
   )
 }

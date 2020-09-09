@@ -7,6 +7,53 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- `isOverflowHidden` prop to the `Collapsible` component.
+- CSS handles to RadioGroup and Radio.
+
+### Fixed
+
+- **FilterOptions** behaviour and example.
+- **ColorPicker** hex validation.
+- **InputSearch** component icon unaligned.
+
+## [9.128.1] - 2020-08-28
+
+### Fixed
+
+- **Plus** icon solid alignment.
+
+## [9.128.0] - 2020-08-27
+
+### Added
+
+- `onClick` prop to `ActionMenu` component.
+
+### Fixed
+
+- **Plus** icon size and color.
+- `AutoCompleteInput` padding-right when `ClearInputIcon` is shown.
+- Checkbox alignment with large texts.
+
+## [9.127.0] - 2020-08-13
+
+### Added
+
+- `accept`, `minSize` and `maxSize` props to `Dropzone` component.
+
+## [9.126.0] - 2020-08-03
+
+### Added
+
+- `options.customMessage` prop to `AutocompleteInput`.
+- `error` and `errorMessage` props to `AutocompleteInput` component.
+
+### Fixed
+
+- Tooltip `Portal` proptypes.
+- `AutocompleteInput` typing definitions.
+
 ## [9.125.0] - 2020-07-23
 
 ### Fixed

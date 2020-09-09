@@ -50,6 +50,60 @@ class MyDropZone extends React.Component {
 ;<MyDropZone />
 ```
 
+Size and file type restriction
+
+```js
+class MyDropZone extends React.Component {
+  constructor() {
+    super()
+    this.state = { files: null, result: null }
+    this.handleFile = this.handleFile.bind(this)
+  }
+
+  handleFile(files) {
+    this.setState({ result: files })
+  }
+
+  handleReset(files) {
+    if (files) {
+      console.log(files)
+    }
+  }
+
+  render() {
+    return (
+      <div>
+        <Dropzone
+          accept=".xml"
+          minSize={2000}
+          maxSize={10000}
+          onDropAccepted={this.handleFile}
+          onFileReset={this.handleReset}>
+          <div className="pt7">
+            <div>
+              <span className="f4">Drop here your XML or </span>
+              <span className="f4 c-link" style={{ cursor: 'pointer' }}>
+                choose a file
+              </span>
+              <p className="f6 c-muted-2 tc">Maximum file size of 10 KB.</p>
+            </div>
+          </div>
+        </Dropzone>
+        {this.state.result && (
+          <div className="mt4">
+            <p className="ttu f6">Result:</p>
+            <pre className="bg-black-025 pa4 f7">
+              {JSON.stringify(this.state.result, null, 2)}
+            </pre>
+          </div>
+        )}
+      </div>
+    )
+  }
+}
+;<MyDropZone />
+```
+
 Custom icon
 
 ```js

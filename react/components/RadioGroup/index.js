@@ -27,13 +27,17 @@ class RadioGroup extends React.Component {
     const errorHighlight = error || errorMessage
 
     return (
-      <div>
-        <fieldset className="vtex-input w-100 bn pa0 m0" data-testid={testId}>
+      <div className="vtex-radioGroup">
+        <fieldset
+          className="vtex-radioGroup__fieldset vtex-input w-100 bn pa0 m0"
+          data-testid={testId}>
           {label && (
-            <legend className="dt" style={{ padding: '0.01em 0 0 0' }}>
+            <legend
+              className="vtex-radioGroup__legend dt"
+              style={{ padding: '0.01em 0 0 0' }}>
               <span
                 className={classNames(
-                  'vtex-input__label db mb3 w-100 c-on-base',
+                  'vtex-radioGroup__label vtex-input__label db mb3 w-100 c-on-base',
                   { 't-body': large, 't-small': !large }
                 )}>
                 {label}
@@ -47,7 +51,7 @@ class RadioGroup extends React.Component {
             const id = `${name}-${i}`
             return (
               <label
-                className={classNames('db br3', {
+                className={classNames('vtex-radioGroup__radioLabel db br3', {
                   'ba pv2 ph4': !hideBorder,
                   'b--danger hover-b--danger': errorHighlight,
                   'b--muted-4': !error && !errorMessage,
@@ -65,7 +69,10 @@ class RadioGroup extends React.Component {
                     borderBottomRightRadius: 0,
                   }),
                 }}>
-                <div className={classNames({ mv3: !hideBorder })}>
+                <div
+                  className={classNames('vtex-radioGroup__radioContainer', {
+                    mv3: !hideBorder,
+                  })}>
                   <Radio
                     id={id}
                     isLast={isLast}
@@ -81,7 +88,9 @@ class RadioGroup extends React.Component {
             )
           })}
           {errorMessage && (
-            <div className="c-danger t-small mt3 lh-title">{errorMessage}</div>
+            <div className="vtex-radioGroup__error c-danger t-small mt3 lh-title">
+              {errorMessage}
+            </div>
           )}
         </fieldset>
       </div>
