@@ -128,7 +128,7 @@ module.exports = {
         // its runtime that would otherwise processed through "file" loader.
         // Also exclude `html` and `json` extensions so they get processed
         // by webpacks internal loaders.
-        exclude: [/\.(js|jsx|mjs|ts|tsx)$/, /\.css$/, /\.html$/, /\.json$/],
+        exclude: [/\.(js|jsx|mjs|ts|tsx|ejs)$/, /\.css$/, /\.html$/, /\.json$/],
         loader: require.resolve('file-loader'),
         options: {
           name: 'static/media/[name].[hash:8].[ext]',

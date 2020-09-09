@@ -22,7 +22,9 @@
     "postreleasy": "vtex publish --public --verbose",
     "lint-fix": "eslint react --ext js,jsx,ts,tsx --fix --max-warnings 0",
     "prettier-conflict-check": "eslint --print-config .eslintrc | eslint-config-prettier-check",
-    "build": "run-s compile styleguide:build"
+    "build": "run-s compile styleguide:build",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "main": "./lib/index.js",
   "files": [
@@ -47,6 +49,14 @@
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",
+    "@storybook/addon-a11y": "^6.0.21",
+    "@storybook/addon-actions": "^6.0.21",
+    "@storybook/addon-console": "^1.2.1",
+    "@storybook/addon-essentials": "^6.0.21",
+    "@storybook/addon-links": "^6.0.21",
+    "@storybook/addon-viewport": "^6.0.21",
+    "@storybook/addons": "^6.0.21",
+    "@storybook/react": "^6.0.21",
     "@testing-library/jest-dom": "^5.1.1",
     "@testing-library/react": "^9.5.0",
     "@testing-library/react-hooks": "^3.2.1",
@@ -84,6 +94,7 @@
     "react-app-polyfill": "^1.0.1",
     "react-dev-utils": "^9.0.1",
     "react-dom": "^16.12.0",
+    "react-is": "^16.13.1",
     "react-styleguidist": "^9.1.12",
     "react-test-renderer": "^16.13.0",
     "style-loader": "^0.23.1",
@@ -118,6 +129,10 @@
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
     "recharts": "^2.0.0-beta.1"
+  },
+  "resolutions": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
   },
   "husky": {
     "hooks": {
