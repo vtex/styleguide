@@ -255,7 +255,7 @@ class Input extends Component {
                 isLoading={isLoadingButton}
                 size={size === 'large' ? 'regular' : 'small'}
                 type="submit"
-                variation="secondary">
+                variation={buttonProps.variation ? buttonProps.variation : 'secondary'}>
                 {button}
               </Button>
             </span>
