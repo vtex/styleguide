@@ -28,6 +28,16 @@ yarn install
 yarn styleguide
 ```
 
+### Storybook
+
+We use [Storybook](https://storybook.js.org/) environment to help us build and test our components in real time. You can edit the Playground file and add the components you are working on, after this run the command below to see your changes in http://localhost:6006/ :
+
+```shell
+yarn storybook
+```
+
+If you want to change or add stories, take a look at this [guide](https://github.com/vtex/styleguide/blob/master/.github/CONTRIBUTING.md#storybook-organization) before.
+
 ## Developing using `npm link`
 
 Run this in this repo:
@@ -120,6 +130,7 @@ yarn deploy
 The `icon` components supports customization through the `<use>` element available in SVG. [Read more](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/use)
 
 **How to use:** In the same page that has a icon, load in any place inside the `<html>` a SVG with the following structure:
+
 ```svg
 <svg class="dn" height="0" version="1.1" width="0" xmlns="http://www.w3.org/2000/svg">
   <defs>
@@ -133,5 +144,6 @@ The `icon` components supports customization through the `<use>` element availab
   </defs>
 </svg>
 ```
+
 - The ID must match the ID of the icon you want to replace. To see all available options, [view icons folder](https://github.com/vtex/styleguide/tree/master/react/components/icon).
 - Inside one SVG you can have more than one `<g id="">`, one for each icon you want to update.
