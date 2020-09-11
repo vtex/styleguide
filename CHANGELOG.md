@@ -14,7 +14,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- `FilterOptions` behaviour and example.
+- **FilterOptions** behaviour and example.
+- **ColorPicker** hex validation.
+- **InputSearch** component icon unaligned.
 
 ## [9.128.1] - 2020-08-28
 
@@ -32,7 +34,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - **Plus** icon size and color.
 - `AutoCompleteInput` padding-right when `ClearInputIcon` is shown.
-- Checkbox alignment with large texts
+- Checkbox alignment with large texts.
 
 ## [9.127.0] - 2020-08-13
 

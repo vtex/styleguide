@@ -64,7 +64,6 @@ class InputSearch extends Component {
     const { disabled, size, value } = this.props
     const iconSize =
       InputSearch.iconSizes[size] || InputSearch.iconSizes.regular
-
     return (
       <Input
         {...this.props}
@@ -94,7 +93,9 @@ class InputSearch extends Component {
                   InputSearch.separatorHeight.regular,
               }}
             />
-            <span className="pointer pl4 c-link" onClick={this.handleSubmit}>
+            <span
+              className="pointer pl4 c-link flex"
+              onClick={this.handleSubmit}>
               <SearchIcon size={iconSize} />
             </span>
           </div>
