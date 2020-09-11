@@ -1,3 +1,5 @@
+const THREE_CHAR_HEX_LENGTH = 4 //because of the '#'
+
 const COLOR_CONSTS = {
   RGB_MAX_VALUE: 255,
 }
@@ -47,6 +49,10 @@ const rgbTohsv = rgb => {
     a,
   }
 }
+
+const areEqualHexColors = (col1, col2) =>
+  col1.toLowerCase() === col2.toLowerCase() ||
+  tryHex6to3(col1).toLowerCase() === tryHex6to3(col2).toLowerCase()
 
 /** Convert RGB to Hex*/
 const rgbTohex = rgb => {
@@ -125,8 +131,37 @@ const hsvTohex = hsv => {
   return rgbTohex(rgb)
 }
 
+const hex3to6 = hex => {
+  let sixCharHex = '#'
+  for (const char of hex.slice(1)) {
+    sixCharHex += char.repeat(2)
+  }
+  return sixCharHex
+}
+
+/**
+ * Attempts to convert if a hex with 6 chars to 3, if not possible returns the same hex
+ * @param {*} hex
+ */
+const tryHex6to3 = hex => {
+  if (hex.length === THREE_CHAR_HEX_LENGTH) {
+    return hex
+  }
+
+  let threeCharHex = '#'
+  for (let i = 1; i < hex.length - 1; i += 2) {
+    if (hex[i] !== hex[i + 1]) return hex
+    threeCharHex += hex[i]
+  }
+  return threeCharHex
+}
+
 /** Convert Hex to RGB */
 const hexTorgb = hex => {
+  if (hex.length === THREE_CHAR_HEX_LENGTH) {
+    hex = hex3to6(hex)
+  }
+
   const r = parseInt(hex.substring(1, 3), 16)
   const g = parseInt(hex.substring(3, 5), 16)
   const b = parseInt(hex.substring(5, 7), 16)
@@ -145,7 +180,7 @@ const hexTohsv = hex => {
 }
 
 const validHex = hex => {
-  return /(^#[0-9A-F]{6}$)/i.test(hex)
+  return /#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/i.test(hex)
 }
 
 /** Get color format */
@@ -226,5 +261,7 @@ export default {
       hex: anyTohex,
     },
   },
+  tryHex6to3: tryHex6to3,
   validateHex: validHex,
+  areEqualHexColors: areEqualHexColors,
 }

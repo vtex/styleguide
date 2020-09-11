@@ -39,7 +39,7 @@ const propTypes = {
   ]),
 }
 
-type Props = PropTypes.InferProps<typeof propTypes>
+export type Props = PropTypes.InferProps<typeof propTypes>
 
 const defaultProps: Props = {
   trigger: 'hover',

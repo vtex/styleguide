@@ -31,7 +31,7 @@ class Radio extends PureComponent {
 
     return (
       <div
-        className={classNames('flex items-start relative', {
+        className={classNames('vtex-radio flex items-start relative', {
           pointer: !disabled,
           mb3: !isLast,
         })}
@@ -40,10 +40,10 @@ class Radio extends PureComponent {
         {/* This empty div is used so that the radio circle is not a direct child of
          * a flex element, and thus can set a fixed width. Otherwise, the width would
          * be used as flex-basis, and would not be set directly */}
-        <div>
+        <div className="vtex-radio__fakeRadioContainer">
           <div
             className={classNames(
-              'fake-radio relative ba br-100 mr3 flex justify-center items-center',
+              'vtex-radio__fakeRadio fake-radio relative ba br-100 mr3 flex justify-center items-center',
               {
                 'b--muted-4 pointer': !disabled && !checked,
                 'b--action-primary pointer': !disabled && checked,
@@ -57,7 +57,7 @@ class Radio extends PureComponent {
               transition: 'border 100ms ease-in-out',
             }}>
             <div
-              className={classNames('br-100', {
+              className={classNames('vtex-radio__fakeRadioInner br-100', {
                 'bg-action-primary': !disabled,
                 'bg-muted-3': disabled,
               })}
@@ -74,7 +74,7 @@ class Radio extends PureComponent {
         </div>
         <input
           checked={checked}
-          className={classNames('absolute o-0', {
+          className={classNames('vtex-radio__input absolute o-0', {
             pointer: !disabled,
           })}
           disabled={disabled}
@@ -93,6 +93,7 @@ class Radio extends PureComponent {
         <label
           style={{ wordBreak: 'break-word' }}
           className={classNames(
+            'vtex-radio__label',
             { 'c-disabled': disabled },
             { 'c-on-base pointer': !disabled },
             'flex flex-auto'
