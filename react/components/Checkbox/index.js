@@ -46,7 +46,7 @@ class Checkbox extends PureComponent {
     return (
       <div
         className={classNames(
-          'vtex-checkbox__line-container flex items-center relative',
+          'vtex-checkbox__line-container flex items-start relative',
           {
             pointer: !disabled,
           }
@@ -121,7 +121,7 @@ class Checkbox extends PureComponent {
         {label && (
           <label
             className={classNames(
-              'vtex-checkbox__label',
+              'vtex-checkbox__label w-100',
               { 'c-disabled': disabled },
               { 'c-on-base pointer': !disabled }
             )}
