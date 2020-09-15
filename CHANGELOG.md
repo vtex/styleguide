@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.129.0] - 2020-09-15
+
 ### Added
 
 - `isOverflowHidden` prop to the `Collapsible` component.
