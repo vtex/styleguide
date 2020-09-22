@@ -125,7 +125,7 @@ function useHover(init = false) {
 
 function Eyesight({ children, visible }) {
   const SUFIX_GAP = 0.5
-  const className = classNames({ dn: !visible, inline: visible }, 'absolute')
+  const className = classNames({ 'o-0': !visible }, 'inline')
   return (
     <span className={className} style={{ marginLeft: `${SUFIX_GAP}rem` }}>
       {children}
