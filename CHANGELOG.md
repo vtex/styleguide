@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.129.1] - 2020-09-24
+
 ### Fixed
 
 - `AutocompleteInput` popup not closing when clicking on search button.
