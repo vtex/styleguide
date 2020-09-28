@@ -7,11 +7,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- **AutocompleteInput** `input.prefix` and `input.suffix` props.
+
+### Fixed
+
+- **AutocompleteInput** without search button logic.
+
 ## [9.129.1] - 2020-09-24
 
 ### Fixed
 
-- `AutocompleteInput` popup not closing when clicking on search button.
+- **AutocompleteInput** popup not closing when clicking on search button.
 - **EXPERIMENTAL_Table** cell suffix classes.
 
 ## [9.129.0] - 2020-09-15
