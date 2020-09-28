@@ -467,7 +467,7 @@ const UsersAutocomplete = () => {
 ;<UsersAutocomplete />
 ```
 
-#### With prefix
+#### With prefix or suffix
 
 ```jsx
 import { uniq } from 'lodash'
@@ -482,7 +482,7 @@ const allUsers = [
   'Daniela',
 ]
 
-const UsersAutocomplete = () => {
+const UsersAutocomplete = ({ suffix, prefix }) => {
   const [term, setTerm] = useState('')
   const [loading, setLoading] = useState(false)
   const timeoutRef = useRef(null)
@@ -515,7 +515,8 @@ const UsersAutocomplete = () => {
         setTerm(term)
       }
     },
-    prefix: <IconUser size={16} />,
+    prefix,
+    suffix,
     onClear: () => setTerm(''),
     placeholder: 'Search user... (e.g.: Ana)',
     value: term,
@@ -523,7 +524,12 @@ const UsersAutocomplete = () => {
   return <AutocompleteInput input={input} options={options} />
 }
 
-;<UsersAutocomplete />
+;<>
+  <div className="mb5">
+    <UsersAutocomplete prefix={<IconUser size={16} />} />
+  </div>
+    <UsersAutocomplete suffix={<IconUser size={16} />} />
+</>
 ```
 
 #### Disabled AutocompleteInput

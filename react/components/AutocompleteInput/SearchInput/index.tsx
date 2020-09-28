@@ -31,6 +31,8 @@ const propTypes = {
   error: PropTypes.bool,
   /** Prefix element */
   prefix: PropTypes.node,
+  /** Suffix element */
+  suffix: PropTypes.node,
 }
 
 const defaultProps = {
@@ -54,6 +56,7 @@ const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
     size = 'regular',
     error,
     prefix,
+    suffix,
     ...inputProps
   } = props
 
@@ -100,6 +103,10 @@ const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
     pr3: size !== 'large',
     pr4: size === 'large',
   })
+  const suffixClasses = classNames('br2 br-0 br--right pr5', {
+    pl3: size !== 'large',
+    pl4: size === 'large',
+  })
 
   const prefixAndSuffixClasses = classNames('c-muted-2 fw5 flex items-center', {
     't-body': size !== 'small',
@@ -111,9 +118,6 @@ const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
     activeClass,
     {
       'br--left': onSearch,
-      pr5: !showClearIcon || prefix,
-      pr8: showClearIcon,
-      pl5: !prefix,
       [`h-${size}`]: !regularSize,
       'h-regular': regularSize,
     }
@@ -121,7 +125,19 @@ const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
   const inputClasses = classNames(
     'ma0 border-box w-100 bn outline-0',
     styles.noAppearance,
-    activeClass
+    activeClass,
+    {
+      pr5: !showClearIcon && !suffix,
+      pl5: !prefix,
+    }
+  )
+
+  const clearIconClasses = classNames(
+    'c-muted-3 fw5 flex items-center pl3 t-body h-100 pointer',
+    {
+      pr5: !suffix,
+      pr3: suffix,
+    }
   )
 
   return (
@@ -143,10 +159,13 @@ const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
             {...inputProps}
           />
           {showClearIcon && (
-            <span
-              className="absolute c-muted-3 fw5 flex items-center pl3 pr5 t-body top-0 right-0 h-100 pointer"
-              onClick={handleClear}>
+            <span className={clearIconClasses} onClick={handleClear}>
               <ClearInputIcon />
+            </span>
+          )}
+          {suffix && (
+            <span className={`${prefixAndSuffixClasses} ${suffixClasses}`}>
+              {suffix}
             </span>
           )}
         </div>
