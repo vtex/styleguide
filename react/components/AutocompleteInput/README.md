@@ -467,6 +467,65 @@ const UsersAutocomplete = () => {
 ;<UsersAutocomplete />
 ```
 
+#### With prefix
+
+```jsx
+import { uniq } from 'lodash'
+import { useState, useRef } from 'react'
+import IconUser from '../icon/User'
+
+const allUsers = [
+  'Ana Clara',
+  'Ana Luiza',
+  { value: 1, label: 'Bruno' },
+  'Carlos',
+  'Daniela',
+]
+
+const UsersAutocomplete = () => {
+  const [term, setTerm] = useState('')
+  const [loading, setLoading] = useState(false)
+  const timeoutRef = useRef(null)
+
+  const options = {
+    onSelect: (...args) => console.log('onSelect: ', ...args),
+    loading,
+    value: !term.length
+      ? []
+      : allUsers.filter(user =>
+          typeof user === 'string'
+            ? user.toLowerCase().includes(term.toLowerCase())
+            : user.label.toLowerCase().includes(term.toLowerCase())
+        ),
+  }
+
+  const input = {
+    onChange: term => {
+      if (term) {
+        setLoading(true)
+        if (timeoutRef.current) {
+          clearTimeout(timeoutRef.current)
+        }
+        timeoutRef.current = setTimeout(() => {
+          setLoading(false)
+          setTerm(term)
+          timeoutRef.current = null
+        }, 1000)
+      } else {
+        setTerm(term)
+      }
+    },
+    prefix: <IconUser size={16} />,
+    onClear: () => setTerm(''),
+    placeholder: 'Search user... (e.g.: Ana)',
+    value: term,
+  }
+  return <AutocompleteInput input={input} options={options} />
+}
+
+;<UsersAutocomplete />
+```
+
 #### Disabled AutocompleteInput
 
 ```jsx
@@ -522,7 +581,9 @@ const UsersAutocomplete = () => {
         <div className="ph3 c-muted-1 flex">
           <Info />
         </div>
-        <div className="c-on-base">Some of these users might not be from your organization</div>
+        <div className="c-on-base">
+          Some of these users might not be from your organization
+        </div>
       </div>
     ),
   }
