@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- **AutocompleteInput** exported types.
+
 ## [9.130.0] - 2020-09-29
 
 ### Added
