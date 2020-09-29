@@ -198,10 +198,7 @@ const AutocompleteInput: React.FunctionComponent<AutocompleteInputProps> = ({
   }
 
   const handleSearch = () => {
-    if (!onSearch) {
-      return
-    }
-    onSearch(term)
+    onSearch?.(term)
     setShowPopover(false)
   }
 
@@ -261,7 +258,7 @@ const AutocompleteInput: React.FunctionComponent<AutocompleteInputProps> = ({
         roundedBottom={!popoverOpened}
         onKeyDown={handleKeyDown}
         onFocus={() => setShowPopover(true)}
-        onSearch={handleSearch}
+        onSearch={onSearch && handleSearch}
         onClear={handleClear}
         onChange={handleTermChange}
         error={errorStyle}
