@@ -30,6 +30,10 @@ const propTypes = {
     error: PropTypes.bool,
     /** The error message to be displayed below the input field */
     errorMessage: PropTypes.node,
+    /** Prefix element */
+    prefix: PropTypes.node,
+    /** Suffix element */
+    suffix: PropTypes.node,
   }).isRequired,
   /** Options props. More details in the examples */
   options: PropTypes.shape({
