@@ -179,6 +179,10 @@ module.exports = {
               ],
             },
             {
+              name: 'Modal V2',
+              content: 'react/components/EXPERIMENTAL_Modal/README.md',
+            },
+            {
               name: 'Table V2',
               content:
                 'react/components/EXPERIMENTAL_Table/docs/Introduction.md',
@@ -211,6 +215,15 @@ module.exports = {
               ],
             },
           ],
+        },
+      ],
+    },
+    {
+      name: 'Utilities',
+      sections: [
+        {
+          name: 'useDisclosure',
+          content: 'react/utilities/useDisclosure/docs.md',
         },
       ],
     },
