@@ -1,0 +1,13 @@
+@keyframes vtex-spinner-rotate {
+  from {
+    transform: translate3d(0,0,0) rotate(0deg);
+  }
+  to {
+    transform: translate3d(0,0,0) rotate(360deg);
+  }
+}
+
+.rotate {
+  transform-origin: 50% 50%;
+  animation: vtex-spinner-rotate 0.5s infinite linear;
+}
