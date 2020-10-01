@@ -15,7 +15,7 @@ class Spinner extends React.Component {
       <svg
         className={`${rotate} ${baseClassname('spinner')} ${
           !color ? 'c-action-primary' : ''
-        } ${block ? 'db' : 'dib'}`}
+        } ${block ? 'db' : ''}`}
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 100 100"
         preserveAspectRatio="xMidYMid"
