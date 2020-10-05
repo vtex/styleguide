@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 
 import Spinner from '../Spinner'
 import { useClickOutside, useArrowNavigation } from './hooks'
@@ -127,6 +127,13 @@ const AutocompleteInput: React.FunctionComponent<AutocompleteInputProps> = ({
   },
 }) => {
   const [term, setTerm] = useState(value || '')
+  useEffect(
+    function updateTermWhenInputValueChanges() {
+      setTerm(value)
+    },
+    [value]
+  )
+
   const [showPopover, setShowPopover] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
   const searching = term.length

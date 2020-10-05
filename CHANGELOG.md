@@ -7,7 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- **AutocompleteInput** term should follow `input.value` changes to allow input control outside the component.
+
 ## [9.130.2] - 2020-10-02
+
 ### Changed
 - **Spinner** Make animation simpler for better performance.
 
