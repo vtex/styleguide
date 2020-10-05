@@ -139,7 +139,8 @@ const AutocompleteInput: React.FunctionComponent<AutocompleteInputProps> = ({
   const searching = term.length
   const showLastSearched =
     !searching && lastSearched.value && lastSearched.value.length > 0
-  const getShowedOptions = (): AutocompleteOption[] => {
+  
+    const getShowedOptions = (): AutocompleteOption[] => {
     if (showLastSearched) {
       return lastSearched.value
     }
