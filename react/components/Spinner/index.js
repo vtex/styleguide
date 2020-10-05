@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { baseClassname } from '../icon/utils'
+import { rotate } from './styles.css'
 
 const radius = 40
 const circ = 2 * radius * Math.PI
@@ -12,7 +13,7 @@ class Spinner extends React.Component {
 
     return (
       <svg
-        className={`${baseClassname('spinner')} ${
+        className={`${rotate} ${baseClassname('spinner')} ${
           !color ? 'c-action-primary' : ''
         } ${block ? 'db' : ''}`}
         xmlns="http://www.w3.org/2000/svg"
@@ -20,37 +21,6 @@ class Spinner extends React.Component {
         preserveAspectRatio="xMidYMid"
         height={size}
         width={size}>
-        <style>
-          {`
-            @keyframes vtex-spinner-rotate {
-              from {
-                transform-origin: 50% 50%;
-                transform: rotate(0deg);
-              }
-              to {
-                transform-origin: 50% 50%;
-                transform: rotate(360deg);
-              }
-            }
-
-            @keyframes vtex-spinner-fill {
-              0% {
-                stroke-dasharray: 0 0 2 ${circ};
-              }
-              50% {
-                stroke-dasharray: 0 0 ${circ * 0.75} ${circ};
-              }
-              100% {
-                stroke-dasharray: 0 ${circ - 2} ${circ * 0.75} ${circ};
-              }
-            }
-
-            .vtex-spinner_circle {
-              animation: vtex-spinner-fill 1.25s infinite cubic-bezier(0.455, 0.030, 0.515, 0.955), vtex-spinner-rotate 0.625s infinite linear;
-            }
-          `}
-        </style>
-
         <circle
           className="vtex-spinner_circle"
           cx="50"
@@ -59,7 +29,7 @@ class Spinner extends React.Component {
           r={radius}
           stroke={color || 'currentColor'}
           strokeWidth="10"
-          strokeDasharray={`0 0 ${circ * 0.75} ${circ}`}
+          strokeDasharray={`0 0 ${circ * 0.65} ${circ}`}
           strokeLinecap="round"
           strokeDashoffset="1"
         />

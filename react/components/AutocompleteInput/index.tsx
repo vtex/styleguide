@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 
 import Spinner from '../Spinner'
 import { useClickOutside, useArrowNavigation } from './hooks'
@@ -30,6 +30,10 @@ const propTypes = {
     error: PropTypes.bool,
     /** The error message to be displayed below the input field */
     errorMessage: PropTypes.node,
+    /** Prefix element */
+    prefix: PropTypes.node,
+    /** Suffix element */
+    suffix: PropTypes.node,
   }).isRequired,
   /** Options props. More details in the examples */
   options: PropTypes.shape({
@@ -123,6 +127,13 @@ const AutocompleteInput: React.FunctionComponent<AutocompleteInputProps> = ({
   },
 }) => {
   const [term, setTerm] = useState(value || '')
+  useEffect(
+    function updateTermWhenInputValueChanges() {
+      setTerm(value)
+    },
+    [value]
+  )
+
   const [showPopover, setShowPopover] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
   const searching = term.length
@@ -197,6 +208,11 @@ const AutocompleteInput: React.FunctionComponent<AutocompleteInputProps> = ({
     setShowPopover(false)
   }
 
+  const handleSearch = () => {
+    onSearch?.(term)
+    setShowPopover(false)
+  }
+
   const getOptionProps = (option, index) => ({
     key: `${getTermFromOption(option)}-${index}`,
     selected: index === selectedOptionIndex,
@@ -253,7 +269,7 @@ const AutocompleteInput: React.FunctionComponent<AutocompleteInputProps> = ({
         roundedBottom={!popoverOpened}
         onKeyDown={handleKeyDown}
         onFocus={() => setShowPopover(true)}
-        onSearch={onSearch && (() => onSearch(term))}
+        onSearch={onSearch && handleSearch}
         onClear={handleClear}
         onChange={handleTermChange}
         error={errorStyle}

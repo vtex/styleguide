@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 
 import IconSearch from '../../icon/Search'
 import ClearInputIcon from '../../icon/Clear'
+import styles from '../../Input/Input.css'
 
 const propTypes = {
   /** Determine if the input's bottom corners should be rounded or not */
@@ -28,6 +29,10 @@ const propTypes = {
   size: PropTypes.oneOf(['small', 'regular', 'large']),
   /** Determine if the input and button should be styled with error borders */
   error: PropTypes.bool,
+  /** Prefix element */
+  prefix: PropTypes.node,
+  /** Suffix element */
+  suffix: PropTypes.node,
 }
 
 const defaultProps = {
@@ -37,7 +42,7 @@ const defaultProps = {
 const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
   Omit<
     React.HTMLProps<HTMLInputElement>,
-    'onChange' | 'value' | 'size'
+    'onChange' | 'value' | 'size' | 'prefix'
   >> = props => {
   const {
     onClear,
@@ -48,8 +53,10 @@ const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
     onFocus,
     onBlur,
     disabled,
-    size,
+    size = 'regular',
     error,
+    prefix,
+    suffix,
     ...inputProps
   } = props
 
@@ -80,8 +87,6 @@ const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
     'br--top': !roundedBottom,
     'bg-disabled c-disabled': disabled,
     'bg-base c-on-base': !disabled,
-    [`h-${size}`]: !regularSize,
-    'h-regular': regularSize,
   })
 
   const buttonClasses = classNames(
@@ -94,36 +99,77 @@ const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
   )
 
   const showClearIcon = onClear && value
-  const inputClasses = classNames(
+  const prefixClasses = classNames('br2 br-0 br--left pl5', {
+    pr3: size !== 'large',
+    pr4: size === 'large',
+  })
+  const suffixClasses = classNames('br2 br-0 br--right pr5', {
+    pl3: size !== 'large',
+    pl4: size === 'large',
+  })
+
+  const prefixAndSuffixClasses = classNames('c-muted-2 fw5 flex items-center', {
+    't-body': size !== 'small',
+    't-small': size === 'small',
+  })
+
+  const inputGroupClasses = classNames(
+    'flex flex-row items-stretch overflow-hidden bw1 br2 b--solid',
     activeClass,
-    'w-100 ma0 border-box bw1 br2 ba outline-0 t-body ph5',
     {
       'br--left': onSearch,
-      pr5: !showClearIcon,
-      pr8: showClearIcon,
+      [`h-${size}`]: !regularSize,
+      'h-regular': regularSize,
+    }
+  )
+  const inputClasses = classNames(
+    'ma0 border-box w-100 bn outline-0',
+    styles.noAppearance,
+    activeClass,
+    {
+      pr5: !showClearIcon && !suffix,
+      pl5: !prefix,
+    }
+  )
+
+  const clearIconClasses = classNames(
+    'c-muted-3 fw5 flex items-center pl3 t-body h-100 pointer',
+    {
+      pr5: !suffix,
+      pr3: suffix,
     }
   )
 
   return (
     <div className="flex flex-row">
-      <div className="relative w-100">
-        <input
-          className={inputClasses}
-          value={value}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          onChange={handleChange}
-          disabled={disabled}
-          {...inputProps}
-        />
-        {showClearIcon && (
-          <span
-            className="absolute c-muted-3 fw5 flex items-center pl3 pr5 t-body top-0 right-0 h-100 pointer"
-            onClick={handleClear}>
-            <ClearInputIcon />
-          </span>
-        )}
-      </div>
+      <label className="relative w-100">
+        <div className={inputGroupClasses}>
+          {prefix && (
+            <span className={`${prefixAndSuffixClasses} ${prefixClasses}`}>
+              {prefix}
+            </span>
+          )}
+          <input
+            className={inputClasses}
+            value={value}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            onChange={handleChange}
+            disabled={disabled}
+            {...inputProps}
+          />
+          {showClearIcon && (
+            <span className={clearIconClasses} onClick={handleClear}>
+              <ClearInputIcon />
+            </span>
+          )}
+          {suffix && (
+            <span className={`${prefixAndSuffixClasses} ${suffixClasses}`}>
+              {suffix}
+            </span>
+          )}
+        </div>
+      </label>
       {onSearch && (
         <button
           className={buttonClasses}

@@ -9,6 +9,46 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
+- `EXPERIMENTAL_Modal`.
+- `useDisclosure` utils.
+
+### Fixed
+
+- **AutocompleteInput** term should follow `input.value` changes to allow input control outside the component.
+
+## [9.130.2] - 2020-10-02
+
+### Changed
+
+- **Spinner** Make animation simpler for better performance.
+
+## [9.130.1] - 2020-09-29
+
+### Fixed
+
+- **AutocompleteInput** exported types.
+
+## [9.130.0] - 2020-09-29
+
+### Added
+
+- **AutocompleteInput** `input.prefix` and `input.suffix` props.
+
+### Fixed
+
+- **AutocompleteInput** without search button logic.
+
+## [9.129.1] - 2020-09-24
+
+### Fixed
+
+- **AutocompleteInput** popup not closing when clicking on search button.
+- **EXPERIMENTAL_Table** cell suffix classes.
+
+## [9.129.0] - 2020-09-15
+
+### Added
+
 - `isOverflowHidden` prop to the `Collapsible` component.
 - CSS handles to RadioGroup and Radio.
 
