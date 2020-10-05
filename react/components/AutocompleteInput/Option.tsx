@@ -71,7 +71,7 @@ const Option: React.FunctionComponent<PropTypes.InferProps<
   return (
     <button
       className={buttonClasses}
-      onFocus={() => setHighlightOption(false)}
+      onFocus={() => setHighlightOption(true)}
       onMouseEnter={() => setHighlightOption(true)}
       onMouseLeave={() => setHighlightOption(false)}
       onClick={onClick}>

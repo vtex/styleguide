@@ -126,7 +126,6 @@ const AutocompleteInput: React.FunctionComponent<AutocompleteInputProps> = ({
     customMessage,
   },
 }) => {
-
   const [term, setTerm] = useState(value || '')
   useEffect(
     function updateTermWhenInputValueChanges() {
@@ -140,9 +139,7 @@ const AutocompleteInput: React.FunctionComponent<AutocompleteInputProps> = ({
   const searching = term.length
   const showLastSearched =
     !searching && lastSearched.value && lastSearched.value.length > 0
-
   const getShowedOptions = (): AutocompleteOption[] => {
-    
     if (showLastSearched) {
       return lastSearched.value
     }
@@ -183,7 +180,6 @@ const AutocompleteInput: React.FunctionComponent<AutocompleteInputProps> = ({
       setSelectedOptionIndex(-1)
       setShowPopover(false)
     }
-
     if(e.key === 'Escape' || e.key === 'Tab') {
       setShowPopover(false)
     }
@@ -244,7 +240,7 @@ const AutocompleteInput: React.FunctionComponent<AutocompleteInputProps> = ({
         renderOption ? (
           renderOption(getOptionProps(option, index), index)
         ) : (
-          <Option {...getOptionProps(option, index)}/>
+          <Option {...getOptionProps(option, index)} />
         )
       )}
     </div>
