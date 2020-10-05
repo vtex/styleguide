@@ -44,13 +44,14 @@ export const useArrowNavigation = (
       let index
       switch (e.key) {
         case 'ArrowUp':
-          e.preventDefault()
-          index = Math.max(selectedOptionIndex - 1, initialSelectedOptionIndex)
-          return setSelectedOptionIndex(index)
+            e.preventDefault()
+            index = Math.max(selectedOptionIndex - 1, initialSelectedOptionIndex) 
+            return setSelectedOptionIndex(index)
+          
         case 'ArrowDown':
-          e.preventDefault()
-          index = Math.min(selectedOptionIndex + 1, optionsLength - 1)
-          return setSelectedOptionIndex(index)
+            e.preventDefault()
+            index = (selectedOptionIndex + 1) % optionsLength
+            return setSelectedOptionIndex(index)
         default:
           return
       }
