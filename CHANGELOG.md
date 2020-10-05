@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- `EXPERIMENTAL_Modal`.
+- `useDisclosure` utils.
+
 ### Fixed
 
 - **AutocompleteInput** term should follow `input.value` changes to allow input control outside the component.
@@ -14,6 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [9.130.2] - 2020-10-02
 
 ### Changed
+
 - **Spinner** Make animation simpler for better performance.
 
 ## [9.130.1] - 2020-09-29

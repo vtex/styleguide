@@ -1,0 +1,83 @@
+.scrollBar::-webkit-scrollbar {
+  background-color: transparent;
+  width: 8px;
+}
+
+/* background of the scrollbar except button or resizer */
+.scrollBar::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+/* scrollbar itself */
+.scrollBar::-webkit-scrollbar-thumb {
+  background-color: #e3e4e6;
+  border-radius: 16px;
+}
+
+/* set button(top and bottom of the scrollbar) */
+.scrollBar::-webkit-scrollbar-button {
+  display: none;
+}
+
+.contents {
+  display: contents;
+}
+
+.hiddenScroll {
+  overflow: hidden;
+  padding-right: 15px;
+}
+
+@media screen and (min-width: 40em) {
+  .maxHeight80Desktop {
+    max-height: 80vh;
+  }
+}
+
+.maxHeight80 {
+  max-height: 80vh;
+}
+
+@media screen and (min-width: 40em) {
+  .smallContent {
+    max-width: 30rem;
+  }
+}
+
+@media screen and (min-width: 40em) {
+  .mediumContent {
+    max-width: 40rem;
+  }
+}
+
+@media screen and (min-width: 40em) {
+  .largeContent {
+    max-width: 50rem;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.openAnimation {
+  animation: fade-in 500ms;
+}
+
+.closeAnimation {
+  animation: fade-out 500ms;
+}
