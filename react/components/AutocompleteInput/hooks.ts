@@ -49,7 +49,7 @@ export const useArrowNavigation = (
           return setSelectedOptionIndex(index)
         case 'ArrowDown':
           e.preventDefault()
-          index = (selectedOptionIndex + 1) % optionsLength
+          index = (optionsLength === 0) ? -1 : (selectedOptionIndex + 1) % optionsLength
           return setSelectedOptionIndex(index)
         default:
           return
