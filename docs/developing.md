@@ -1,11 +1,11 @@
-The VTEX team welcomes and thanks you for developing with us. We are committed in provide the best developer experience through consistency and quality of our guidelines. We are open and appreciate all the feedbacks, tips and ideas to keep this experience the best as possible. Bellow we describe the way we work and the best practices.
+The VTEX team welcomes and thanks you for developing with us. We are committed to provide the best developer experience through consistency and quality of our guidelines. We are open and appreciate all the feedbacks, tips and ideas to keep this experience the best as possible. Bellow we describe the way we work and the best practices.
 
 #### How to run the project
 
-Before start, we must distinguish between our two type of developers who use our styleguide:
+Before start, we must distinguish between our two types of developers who use our styleguide:
 
-- **Those who develop in the VTEX IO**: They need understand how the use our components through our platform. If you are curious and want to know more about our web platform, [see here](https://help.vtex.com/tracks/vtex-io-getting-started--2qYWraccosS2ayg2kusaUo/1LSy4Gkvo4saEQa2OMqC4q).
-- **Other developers**: Those who thoughts that our components incredible and want to use them in their own projects.
+- **Those who develop in the VTEX IO**: They need to understand how to use our components through our platform. If you are curious and want to know more about our web platform, [see here](https://help.vtex.com/tracks/vtex-io-getting-started--2qYWraccosS2ayg2kusaUo/1LSy4Gkvo4saEQa2OMqC4q).
+- **Other developers**: Those who think that our components are incredible and want to use them in their own projects.
 
 ##### VTEX IO apps
 
@@ -63,13 +63,13 @@ npm i vtex-tachyons --save
 
 :loudspeaker: **Disclaimer:** In the course of this document we assume that you know how to use the basics of git as well like do a commit, rebase and merge. Before open a PR, read the [designing section](./designing.md) and take some minutes thinking if your change is appropriate to our styleguide.
 
-As we know, a Pull Request let you tell to others about changes you have pushed to a branch in a GitHub Repo. So, to avoid confusion when we discuss with you your changes, it's convenient to talk how we create our branches and make our commits. We strongly recommend that you follow our standard. Your PR will be accepted if you have two positive signs in the reviews made by VTEX team members.
+As we know, a Pull Request lets you tell to others about changes you have pushed to a branch in a GitHub Repo. So, to avoid confusion when we discuss with you your changes, it's convenient to talk how we create our branches and make our commits. We strongly recommend that you follow our standard. Your PR will be accepted if you have two positive signs in the reviews made by VTEX team members.
 
 ##### Branch
 
-As in many project the `master` branch must reflect what is running in production. All the development branches must be synchronized with the master through `git rebase` command.
+As in many projects the `master` branch must reflect what is running in production. All the development branches must be synchronized with the master through `git rebase` command.
 
-Theses development branches, also called feature branches, has the aim to add a new functionality or do a fix. The name convention must follow the pattern: `<type>/<some-description>`
+These development branches, also called feature branches, has the aim to add a new functionality or do a fix. The name convention must follow the pattern: `<type>/<some-description>`
 
 The allowed types are:
 
@@ -78,11 +78,11 @@ The allowed types are:
 - **update**: Dependency update
 - **chore**: Tech debt improvement
 
-The description needs to be shortly and follow the kebab-case pattern.
+The description needs to be short and follow the kebab-case pattern.
 
 Ex: `git checkout -b feature/nice-new-thing`
 
-Now, that you already open a new branch from `master`, let see how the commits should be.
+Now that you have already opened a new branch from `master`, let's see how the commits should be.
 
 ##### Commits
 
@@ -92,13 +92,13 @@ The commit messages must be written in the English language and follow the follo
 <Imperative verb> <object of action>
 ```
 
-Heres a set of examples:
+Here's a set of examples:
 
 - Add Facebook Plus as a new login method
 - Remove unused dependency
 - Update es.json file
 
-If you are close a issue in the commit you must add the `Fix #<Issue Number>` in commit's body, like:
+If you are closing an issue in the commit you must add the `Fix #<Issue Number>` in commit's body, like:
 
 ```diff
 <Imperative verb> <object of action> <--- Commit's title
@@ -112,7 +112,7 @@ What not to do:
 - Start with lowercase letter
 - Referencing issue number in commit's title
 
-After read theses few lines you are ready to contribute with us through your PR!
+After read these few lines you are ready to contribute with us through your PR!
 
 #### Releases and changelog
 
@@ -155,13 +155,13 @@ HelloWorld.defaultProps = defaultProps
 export default Hello
 ```
 
-After that, **for IO Apps**, you only need your component being imported and exported be at the `/react` folder in a `.ts` file (not `.tsx` yet, because we still have `.js` files) and the Builder Hub will generate the typings.
+After that, **for IO Apps**, you only need your component being imported and exported at the `/react` folder in a `.ts` file (not `.tsx` yet, because we still have `.js` files) and the Builder Hub will generate the typings.
 
 With all this, you are ready to develop TypeScript components into our Styleguide :)
 
 #### Using components in external tests
 
-We use the `data-testid` to identify/retrieve elements needed in tests. Not all components have this prop but feel free to open a PR adding it to the components you need. If you need to test elements inside a compound component you can create an object with the test ids that will be used in each of its internal elements. In [Pagination](https://github.com/vtex/styleguide/tree/master/react/components/Pagination), as example, we have a dropdown, a previous and next button and a page indicator. So the PropTypes of the testIds object would look like:
+We use the `data-testid` to identify/retrieve elements needed in tests. Not all components have this prop but feel free to open a PR adding it to the components you need. If you need to test elements inside a compound component you can create an object with the test ids that will be used in each of its internal elements. In [Pagination](https://github.com/vtex/styleguide/tree/master/react/components/Pagination), for example, we have a dropdown, a previous and next button and a page indicator. So the PropTypes of the testIds object would look like:
 
 ```tsx
     {
