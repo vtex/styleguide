@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - **AutocompleteInput** double focus issue when navigating through the suggested options with tab and arrow keys.
+- **EXPERIMENTAL_useCheckboxTree** root checkbox behavior when all children checkboxes are disabled.
 
 ### Added
 

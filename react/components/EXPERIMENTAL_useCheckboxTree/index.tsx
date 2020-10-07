@@ -56,11 +56,11 @@ export default function useCheckboxTree<T>({
 
       const rootChecked = checkedItems.some(comparator(tree))
 
-      const notDisabledChildNodes = childNodes.filter(
+      const enabledChildNodes = childNodes.filter(
         childNode => !isDisabled(childNode)
       )
 
-      if (notDisabledChildNodes.length === 0) {
+      if (enabledChildNodes.length === 0) {
         if (rootChecked) {
           dispatch({
             type: ActionType.Uncheck,
@@ -70,7 +70,7 @@ export default function useCheckboxTree<T>({
         return
       }
 
-      const childrenChecked = notDisabledChildNodes.every(childNode =>
+      const childrenChecked = enabledChildNodes.every(childNode =>
         checkedItems.some(comparator(childNode))
       )
 
