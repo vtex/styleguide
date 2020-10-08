@@ -1,4 +1,11 @@
-import React, { FC, Fragment, forwardRef, PropsWithChildren, Ref } from 'react'
+import React, {
+  FC,
+  Fragment,
+  forwardRef,
+  PropsWithChildren,
+  Ref,
+  ComponentProps,
+} from 'react'
 
 import Toolbar from './Toolbar/index'
 import Pagination, { PaginationProps } from './Pagination'
@@ -105,9 +112,7 @@ interface SpecificProps {
   /** Function that defines if a row is active or not */
   isRowActive?: (data: unknown) => boolean
   /** Table EmptyState component */
-  emptyState?: PropsWithChildren<{
-    label: string
-  }>
+  emptyState?: ComponentProps<typeof LoadingProvider>['emptyState']
   /** Sorting properties */
   sorting?: ReturnType<typeof useTableSort>
   /** Base testId */

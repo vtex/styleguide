@@ -7,14 +7,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.132.1] - 2020-10-08
+
 ### Fixed
 
-- **AutocompleteInput** double focus issue when navigating through the suggested options with tab and arrow keys.
-- **EXPERIMENTAL_useCheckboxTree** root checkbox behavior when all children checkboxes are disabled.
+- **EXPERIMENTAL_Table** `emptyState` type definitions.
+
+## [9.132.0] - 2020-10-08
 
 ### Added
 
 - **AutocompleteInput** restart navigating from top when reaching the end of the suggested options with the down arrow key.
+
+### Fixed
+
+- **AutocompleteInput** double focus issue when navigating through the suggested options with tab and arrow keys.
+- **EXPERIMENTAL_useCheckboxTree** root checkbox behavior when all children checkboxes are disabled.
 
 ## [9.131.0] - 2020-10-05
 
