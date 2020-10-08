@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- **AutocompleteInput** double focus issue when navigating through the suggested options with tab and arrow keys.
+
+### Added
+
+- **AutocompleteInput** restart navigating from top when reaching the end of the suggested options with the down arrow key.
+
 ## [9.131.0] - 2020-10-05
 
 ### Added

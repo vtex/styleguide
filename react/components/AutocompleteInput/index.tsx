@@ -181,6 +181,9 @@ const AutocompleteInput: React.FunctionComponent<AutocompleteInputProps> = ({
       setSelectedOptionIndex(-1)
       setShowPopover(false)
     }
+    if(e.key === 'Escape' || e.key === 'Tab') {
+      setShowPopover(false)
+    }
   }
 
   const handleTermChange = (newTerm = '') => {
