@@ -135,12 +135,14 @@ class Textarea extends Component {
         <div className="flex justify-between">
           <div>
             {errorMessage && (
-              <div className="c-danger t-small mt2 lh-title">
+              <div className="vtex-textarea__error c-danger t-small mt2 lh-title">
                 {errorMessage}
               </div>
             )}
             {helpText && (
-              <div className="c-muted-1 t-small mt2 lh-title">{helpText}</div>
+              <div className="vtex-textarea__help-text c-muted-1 t-small mt2 lh-title">
+                {helpText}
+              </div>
             )}
           </div>
           {maxLength && (

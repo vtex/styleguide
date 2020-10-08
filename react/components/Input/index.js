@@ -262,10 +262,14 @@ class Input extends Component {
           )}
         </div>
         {errorMessage && (
-          <div className="c-danger t-small mt3 lh-title">{errorMessage}</div>
+          <div className="vtex-input__error c-danger t-small mt3 lh-title">
+            {errorMessage}
+          </div>
         )}
         {helpText && (
-          <div className="c-muted-1 t-small mt3 lh-title">{helpText}</div>
+          <div className="vtex-input__help-text c-muted-1 t-small mt3 lh-title">
+            {helpText}
+          </div>
         )}
       </label>
     )
