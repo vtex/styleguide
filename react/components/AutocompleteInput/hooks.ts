@@ -41,7 +41,7 @@ export const useArrowNavigation = (
       e.target instanceof Node &&
       ref.current.contains(e.target)
     ) {
-      let index
+      let index: number
       switch (e.key) {
         case 'ArrowUp':
           e.preventDefault()
@@ -49,7 +49,8 @@ export const useArrowNavigation = (
           return setSelectedOptionIndex(index)
         case 'ArrowDown':
           e.preventDefault()
-          index = (optionsLength === 0) ? -1 : (selectedOptionIndex + 1) % optionsLength
+          index =
+            optionsLength === 0 ? -1 : (selectedOptionIndex + 1) % optionsLength
           return setSelectedOptionIndex(index)
         default:
           return
