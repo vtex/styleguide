@@ -7,10 +7,9 @@ interface Loading {
     | {
         renderAs?: () => React.ReactNode
       }
-  emptyState?: {
+  emptyState?: PropsWithChildren<{
     label?: string
-    children?: Element
-  }
+  }>
 }
 
 const LoadingContext = createContext<Loading>(null)
