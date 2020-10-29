@@ -238,16 +238,16 @@ export default class Slider extends Component {
     const translatePx = this.getTranslateValueForInputValue(value, position)
 
     requestAnimationFrame(() => {
-      this.setState({
+      this.setState(state => ({
         values: {
-          ...this.state.values,
+          ...state.values,
           [position]: value,
         },
         translate: {
-          ...this.state.translate,
+          ...state.translate,
           [position]: translatePx,
         },
-      })
+      }))
     })
   }
 
