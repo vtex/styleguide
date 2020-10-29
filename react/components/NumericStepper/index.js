@@ -25,6 +25,10 @@ const validateValue = (value, min, max, defaultValue) => {
 }
 
 const formattedDisplayValue = (value, unitMultiplier, suffix) => {
+  if (Number.EPSILON === undefined) {
+    Number.EPSILON = Math.pow(2, -52)
+  }
+
   const parsedSuffix = suffix ? ` ${suffix}` : suffix
   return `${Math.round((value * unitMultiplier + Number.EPSILON) * 100) /
     100}${parsedSuffix}`
