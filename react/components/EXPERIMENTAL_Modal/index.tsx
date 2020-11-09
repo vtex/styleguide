@@ -81,7 +81,7 @@ export const ModalOverlay: FC<OverlayProps> = ({
       return
     }
     setShowPortal(isOpen)
-    if (canUseDOM) document.body.classList.add(styles.hiddenScroll)
+    document.body.classList.add(styles.hiddenScroll)
   }, [isOpen])
 
   const handleClick = () => {
@@ -93,12 +93,12 @@ export const ModalOverlay: FC<OverlayProps> = ({
     if (isOpen) return
     onCloseTransitionFinish?.()
     setShowPortal(false)
-    if (canUseDOM) document.body.classList.remove(styles.hiddenScroll)
+    document.body.classList.remove(styles.hiddenScroll)
   }
 
   useEffect(() => {
     return () => {
-      if (canUseDOM) document.body.classList.remove(styles.hiddenScroll)
+      document.body.classList.remove(styles.hiddenScroll)
     }
   }, [])
 
@@ -152,6 +152,7 @@ const ModalContent = forwardRef<HTMLDivElement, ContentProps>(
       event.stopPropagation()
       onClose()
     }
+
     return (
       // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
       <div
@@ -205,7 +206,7 @@ const ModalContent = forwardRef<HTMLDivElement, ContentProps>(
   }
 )
 
-function Modal(
+const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
   {
     isOpen,
     children,
@@ -250,8 +251,6 @@ function Modal(
       </ModalContent>
     </ModalOverlay>
   )
-}
+})
 
-const FowardedModal = forwardRef<HTMLDivElement, Props>(Modal)
-
-export default FowardedModal
+export default Modal
