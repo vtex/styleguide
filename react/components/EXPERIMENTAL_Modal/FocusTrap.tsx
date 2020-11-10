@@ -8,7 +8,7 @@ import React, {
 } from 'react'
 
 import { canUseDOM, Key } from './utils'
-import useMergeRefs from '../../utilities/useMergeRef'
+import useMergeRefs from '../../utilities/useMergeRefs'
 
 const FOCUSABLE_SELECTOR =
   'a,frame,iframe,input:not([type=hidden]):not(:disabled),select:not(:disabled),textarea:not(:disabled),button:not(:disabled),*[tabindex]:not([tabindex="-1"])'

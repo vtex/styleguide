@@ -1,7 +1,7 @@
 import useDisclosure from './utilities/useDisclosure'
-import useMergeRef from './utilities/useMergeRef'
+import useMergeRefs from './utilities/useMergeRefs'
 
 export default {
-  useMergeRef,
+  useMergeRefs,
   useDisclosure,
 }
