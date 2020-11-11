@@ -28,7 +28,7 @@ function Sections(
 ) {
   const { emptyState, empty, loading } = useLoadingContext()
   const { testId } = useTestingContext()
-  const { tableHeight } = useMeasuresContext()
+  const { tableHeight, bodyHeight } = useMeasuresContext()
 
   return (
     <div
@@ -54,7 +54,10 @@ function Sections(
         </Loading>
       )}
       {empty && emptyState && (
-        <EmptyState testId={`${testId}__empty-state`} title={emptyState.label}>
+        <EmptyState
+          height={bodyHeight}
+          testId={`${testId}__empty-state`}
+          title={emptyState.label}>
           {emptyState.children}
         </EmptyState>
       )}

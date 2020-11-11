@@ -3,10 +3,13 @@ import PropTypes from 'prop-types'
 
 class EmptyState extends PureComponent {
   render() {
-    const { title, children, testId } = this.props
+    const { children, height, testId, title } = this.props
 
     return (
-      <div className="flex items-center h-100 c-muted-2" data-testid={testId}>
+      <div
+        className="flex items-center h-100 c-muted-2"
+        data-testid={testId}
+        style={{ height }}>
         <div className="w-80 w-60-l center tc">
           {title && <span className="t-heading-4 mt0">{title}</span>}
           {children && <div className="t-body lh-copy">{children}</div>}
@@ -35,6 +38,8 @@ EmptyState.propTypes = {
   },
   /** Data attribute */
   testId: PropTypes.string,
+  /** Component's height */
+  height: PropTypes.number,
 }
 
 export default EmptyState
