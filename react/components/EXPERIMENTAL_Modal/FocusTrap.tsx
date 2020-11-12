@@ -1,6 +1,14 @@
-import React, { FC, useEffect, useRef } from 'react'
+import React, {
+  FC,
+  useEffect,
+  useRef,
+  Children,
+  ReactElement,
+  useCallback,
+} from 'react'
 
 import { canUseDOM, Key } from './utils'
+import useMergeRefs from '../../utilities/useMergeRefs'
 
 const FOCUSABLE_SELECTOR =
   'a,frame,iframe,input:not([type=hidden]):not(:disabled),select:not(:disabled),textarea:not(:disabled),button:not(:disabled),*[tabindex]:not([tabindex="-1"])'
@@ -31,9 +39,11 @@ interface Props {
 }
 
 const FocusTrap: FC<Props> = ({ children }) => {
+  const child = Children.only(children)
+
   const focusContainer = useRef<HTMLDivElement>(null)
 
-  const handleTab = (event: KeyboardEvent) => {
+  const handleTab = useCallback((event: KeyboardEvent) => {
     if (!focusContainer.current) {
       return
     }
@@ -48,20 +58,23 @@ const FocusTrap: FC<Props> = ({ children }) => {
       event.preventDefault()
       firstFocusableElement?.focus()
     }
-  }
+  }, [])
 
-  const handleKeyEvent = (event: KeyboardEvent) => {
-    if (event.key === Key.TAB) {
-      handleTab(event)
-    }
-  }
+  const handleKeyEvent = useCallback(
+    (event: KeyboardEvent) => {
+      if (event.key === Key.TAB) {
+        handleTab(event)
+      }
+    },
+    [handleTab]
+  )
 
   useEffect(() => {
     if (canUseDOM) document.addEventListener('keydown', handleKeyEvent)
     return () => {
       if (canUseDOM) document.removeEventListener('keydown', handleKeyEvent)
     }
-  }, [])
+  }, [handleKeyEvent])
 
   useEffect(() => {
     if (!focusContainer.current) {
@@ -74,8 +87,18 @@ const FocusTrap: FC<Props> = ({ children }) => {
     if (!alreadyHasFocus) focusFirstElement(focusContainer.current)
   }, [focusContainer])
 
-  return React.cloneElement(children as React.ReactElement, {
-    ref: focusContainer,
+  const mergedRefs = useMergeRefs(
+    typeof child === 'object'
+      ? // The ref property doesn't exist on ReactElement types, but
+        // it exist in practice and is the only way to get the child
+        // element's ref
+        ((child as any).ref as React.Ref<HTMLElement>)
+      : () => {},
+    focusContainer
+  )
+
+  return React.cloneElement(child as ReactElement, {
+    ref: mergedRefs,
   })
 }
 
