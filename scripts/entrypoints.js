@@ -3,6 +3,7 @@ const fs = require('fs')
 
 const componentsFolder = path.join(__dirname, '../react/components')
 const iconsFolder = path.join(__dirname, '../react/components/icon')
+const utilitiesFolder = path.join(__dirname, '../react/utilities')
 const entrypointsFolder = path.join(__dirname, '../react')
 
 const isComponentFolder = s =>
@@ -34,6 +35,18 @@ fs.readdir(iconsFolder, (err, files) => {
 
   files.filter(isComponentFolder).forEach(file => {
     const entrypointPath = path.join(entrypointsFolder, `Icon${file}.js`)
+    console.log(`Writing ${entrypointPath}`)
+    fs.writeFileSync(entrypointPath, entrypointTemplate(file, true))
+  })
+})
+
+fs.readdir(utilitiesFolder, (err, files) => {
+  if (err) {
+    throw err
+  }
+
+  files.forEach(file => {
+    const entrypointPath = path.join(entrypointsFolder, `utilities/${file}.js`)
     console.log(`Writing ${entrypointPath}`)
     fs.writeFileSync(entrypointPath, entrypointTemplate(file, true))
   })

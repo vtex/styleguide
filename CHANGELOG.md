@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- `utilities` folder not being included in the package entrypoint.
+
 ## [9.133.2] - 2020-11-12
 
 ### Fixed
