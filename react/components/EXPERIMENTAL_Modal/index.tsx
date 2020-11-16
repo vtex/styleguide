@@ -158,6 +158,7 @@ const ModalContent = forwardRef<HTMLDivElement, ContentProps>(
       <div
         className={classNames(
           'vtex-modal__modal flex flex-column relative bg-white shadow-5 center mv9 br2',
+          styles.maxHeight100,
           `${size === 'small' ? styles.smallContent : ''}`,
           `${size === 'medium' ? styles.mediumContent : ''}`,
           `${size === 'large' ? styles.largeContent : ''}`,
