@@ -188,14 +188,18 @@ const ModalContent = forwardRef<HTMLDivElement, ContentProps>(
         </TopBar>
         <div
           className={classNames(
-            `ph7 ph8-ns t-body overflow-auto flex flex-column flex-shrink-1 flex-grow-1 ${
-              styles.maxHeight80Desktop
-            } ${styles.scrollBar} ${
-              !responsiveFullScreen ? styles.maxHeight80 : ''
-            }`,
-            { 'pb7-ns mb5': !bottomBar, mb3: bottomBar }
+            styles.maxHeight80Desktop,
+            't-body flex flex-column flex-shrink-1 flex-grow-1',
+            { [styles.maxHeight80]: !responsiveFullScreen }
           )}>
-          {children}
+          <div
+            className={classNames(
+              'ph7 ph8-ns flex-auto overflow-auto',
+              styles.scrollBar,
+              { 'pb7-ns mb5': !bottomBar, mb3: bottomBar }
+            )}>
+            {children}
+          </div>
         </div>
         <BottomBar
           showBorder={showBottomBarBorder}
