@@ -14,9 +14,10 @@
     "babel:lib": "NODE_ENV=production babel ./react/components --out-dir ./lib --extensions \".js,.jsx,.ts,.tsx\" --ignore '__tests__,*.spec.js' --ignore '*.md' --copy-files",
     "build:types": "tsc --emitDeclarationOnly",
     "babel:modules": "NODE_ENV=production babel ./react/modules --out-dir ./modules --ignore '__tests__,*.spec.js' --ignore '*.md' --copy-files",
+    "babel:utilities": "NODE_ENV=production babel ./react/utilities --out-dir ./utilities --extensions \".js,.jsx,.ts,.tsx\" --ignore '__tests__,*.spec.js' --ignore '*.md' --copy-files",
     "clean:lib": "rm -rf lib",
     "clean:modules": "rm -rf modules",
-    "compile": "run-s clean:lib clean:modules build:types babel:lib babel:modules",
+    "compile": "run-s clean:lib clean:modules build:types babel:lib babel:modules babel:utilities",
     "prepublishOnly": "run-s compile deploy",
     "prepare": "yarn --cwd react --ignore-scripts",
     "postreleasy": "vtex publish --public --verbose",
@@ -30,7 +31,8 @@
   "files": [
     "lib/",
     "modules/",
-    "codemod/"
+    "codemod/",
+    "utilities/"
   ],
   "keywords": [
     "vtex",
