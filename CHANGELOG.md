@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- added `vtex-tag` css in order to use css handles on store-theme.
+
 ## [9.133.2] - 2020-11-12
 
 ### Fixed

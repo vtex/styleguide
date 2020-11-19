@@ -49,7 +49,7 @@ class Tag extends PureComponent {
         break
     }
 
-    const baseClasses = `br-pill dib fw5 ${sizeClasses}`
+    const baseClasses = `vtex-tag br-pill dib fw5 ${sizeClasses}`
 
     let theme = ''
     const variationIsLow = variation === 'low'
