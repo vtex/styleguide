@@ -16,6 +16,7 @@ styleguide-visual/*.diff.png
 /lib
 /modules
 /styleguide
+/utilities
 
 # misc
 .DS_Store

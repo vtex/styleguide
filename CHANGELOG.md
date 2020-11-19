@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - **EXPERIMENTAL_Modal** height on small screens.
 - **EXPERIMENTAL_Modal** overflown content overlapping on iOS Safari.
+- `utilities` folder not being compiled on the package build.
 
 ## [9.133.2] - 2020-11-12
 
