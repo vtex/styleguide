@@ -16,6 +16,7 @@ const mergeRefs = <T>(...refs: Ref<T>[]) => {
       // object types the `current` property
       // as read-only, but we can safely write
       // to it.
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ;(ref as any).current = node
     })
   }

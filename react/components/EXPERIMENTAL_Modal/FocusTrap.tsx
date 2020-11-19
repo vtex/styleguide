@@ -92,6 +92,7 @@ const FocusTrap: FC<Props> = ({ children }) => {
       ? // The ref property doesn't exist on ReactElement types, but
         // it exist in practice and is the only way to get the child
         // element's ref
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ((child as any).ref as React.Ref<HTMLElement>)
       : () => {},
     focusContainer
