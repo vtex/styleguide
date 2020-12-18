@@ -173,11 +173,9 @@ class Dropdown extends Component {
     )
 
     const selectClasses = classNames(
-      'o-0 absolute top-0 left-0 h-100 w-100 bottom-0',
+      'o-0 absolute top-0 left-0 h-100 w-100 bottom-0 t-body',
       {
         pointer: !disabled,
-        't-body': size !== 'small',
-        't-small': size === 'small',
       }
     )
 
