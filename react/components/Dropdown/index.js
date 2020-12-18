@@ -138,6 +138,7 @@ class Dropdown extends Component {
         'c-muted-2': !disabled && valueLabel && isPlaceholder,
         ph2: isInline && size !== 'x-large',
         'pl5 pr3': !isInline && size !== 'x-large',
+        't-small': size === 'small',
         't-body pv5 ph5': size === 'x-large',
       }
     )
