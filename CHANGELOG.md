@@ -6,7 +6,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
 ### Fixed
+
 - Input and dropdown now have font-size of 16px no matter their sizes
 
 ## [9.134.0] - 2020-12-04
