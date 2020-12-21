@@ -18,7 +18,7 @@ class Dropdown extends Component {
     // value would automatically be chosen.
     // However, you can't select a null/undefined option, so nil values
     // are transformed to empty string.
-    this.initialValue = ''
+    this.initialValue = props.defaultValue || ''
 
     this.state = {
       active: false,
@@ -116,6 +116,7 @@ class Dropdown extends Component {
       variation,
       selectTestId,
       isMobile,
+      defaultValue,
     } = this.props
 
     const hasValidInitialValue =
@@ -227,6 +228,7 @@ class Dropdown extends Component {
               autoFocus={autoFocus}
               form={form}
               name={name}
+              defaultValue={defaultValue}
               required={required}
               style={{
                 // safari select height fix
@@ -310,6 +312,8 @@ Dropdown.propTypes = {
   autoFocus: PropTypes.bool,
   /** Spec attribute */
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /** Spec attribute */
+  defaultValue: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /** Spec attribute */
   disabled: PropTypes.bool,
   /** Dropdown variation */
