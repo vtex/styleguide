@@ -154,7 +154,7 @@ class Input extends Component {
     switch (size) {
       case 'small':
         prefixSuffixGroupClasses += 'h-small '
-        classes += `${!token ? 't-small' : ''} `
+        classes += `${!token ? 't-body' : ''} `
         classes += `${
           prefix && suffix ? '' : prefix ? 'pr5 ' : suffix ? 'pl5 ' : 'ph5 '
         }`
