@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.134.1] - 2020-12-22
+
 ### Fixed
 
 - Input and dropdown now have font-size of 16px no matter their sizes
