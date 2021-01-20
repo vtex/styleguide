@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.135.0] - 2021-01-20
+
+### Added
+
+- Class `vtex-textarea__input` on `Textarea` component.
+
 ## [9.134.1] - 2020-12-22
 
 ### Fixed
