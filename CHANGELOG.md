@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Button not being disabled if it is loading.
+
 ## [9.135.0] - 2021-01-20
 
 ### Added
