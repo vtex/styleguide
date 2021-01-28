@@ -4,6 +4,13 @@ import { render } from '@testing-library/react'
 import Button from './index'
 
 describe('Button', () => {
+  it('should disable the button if the button is loading', () => {
+    const { container } = render(<Button isLoading />)
+    const buttonEl = container.querySelector('button')
+
+    expect(buttonEl.disabled).toBe(true)
+  })
+
   describe('CSS API', () => {
     it('primary', () => {
       const { asFragment } = render(<Button variation="primary">Hello</Button>)
