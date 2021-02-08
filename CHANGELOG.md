@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - PageBlock responsiveness issue on aside variation.
+- Render the complete table when scrolling is disabled
 
 ## [9.135.1] - 2021-01-28
 
