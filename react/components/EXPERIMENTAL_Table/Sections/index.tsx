@@ -34,7 +34,8 @@ function Sections(
     <div
       style={{ height: disableScroll ? 'auto' : tableHeight, ...motion }}
       className={classNames('mw-100', ORDER_CLASSNAMES.TABLE, {
-        'overflow-x-auto overflow-y-auto overflow-hidden': !disableScroll,
+        'overflow-x-auto overflow-y-auto': !disableScroll,
+        'overflow-x-auto': disableScroll,
       })}>
       <table
         ref={ref}
