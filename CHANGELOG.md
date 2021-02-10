@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- PageBlock responsiveness issue on aside variation.
+- **PageBlock** responsiveness issue on aside variation.
+- **EXPERIMENTAL_TableV2** rows height when using `disableScroll`.
 
 ## [9.135.1] - 2021-01-28
 
