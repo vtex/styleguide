@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- PageBlock responsiveness issue on aside variation.
+
 ## [9.135.1] - 2021-01-28
 
 ### Fixed
