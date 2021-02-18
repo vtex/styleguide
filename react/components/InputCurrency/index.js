@@ -33,7 +33,7 @@ class InputCurrency extends Component {
       onChange({
         ...event,
         target: {
-          ...event.target,
+          ...(event && event.target),
           value: floatValue,
         },
       })
