@@ -28,3 +28,24 @@ Range slider
   range
 />
 ```
+
+Slider with programmatically controlled values
+
+```jsx
+<Slider
+  onChange={(values: number[]) => {
+    setValues({
+      left: values[0],
+      right: values[1],
+    })
+  }}
+  min={0}
+  max={99}
+  step={1}
+  disabled={false}
+  alwaysShowCurrentValue={false}
+  formatValue={a => a + 1}
+  values={[values.left, values.right]}
+  range
+/>
+```
