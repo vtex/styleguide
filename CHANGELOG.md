@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- Deal with `undefined` event no `InputCurrency`.
+- **InputCurrency** `undefined` event handling.
 
 ## [9.135.2] - 2021-02-10
 
