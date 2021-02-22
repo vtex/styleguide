@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.135.3] - 2021-02-22
+
+### Fixed
+
+- **InputCurrency** `undefined` event handling.
+
 ## [9.135.2] - 2021-02-10
 
 ### Fixed
