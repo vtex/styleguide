@@ -35,14 +35,12 @@ Slider with programmatically controlled values
 const Input = require('../Input').default
 const Button = require('../Button').default
 
-const [inputValues, setInputValues] = React.useState({ left: '0', right: '99' })
+const [inputValues, setInputValues] = React.useState({ left: 0, right: 99 })
 const [values, setValues] = React.useState({ left: 0, right: 99 })
 
 const { left, right } = values
 
 const handleInputChange = event => {
-  event.persist()
-
   if (event.target.name === 'left') {
     setInputValues({ ...inputValues, left: event.target.value })
   } else {
@@ -50,7 +48,9 @@ const handleInputChange = event => {
   }
 }
 
-const handleSubmit = () => {
+const handleSubmit = (e) => {
+  e.preventDefault()
+
   const { left: leftValueInput, right: rightValueInput } = inputValues
 
   const left = Math.max(parseInt(leftValueInput) || 0, 0)
@@ -67,9 +67,10 @@ const handleSubmit = () => {
 }
 
 ;<>
-  <div className="flex items-end mb5">
+  <form className="flex items-end mb5">
     <div className="mr5">
       <Input
+        type="number"
         name="left"
         placeholder="Left"
         size="small"
@@ -85,20 +86,18 @@ const handleSubmit = () => {
         size="small"
         label="Right value"
         onChange={handleInputChange}
-        defaultValue="99"
         value={inputValues.right}
       />
     </div>
-    <Button onClick={handleSubmit} variation="primary" size="small">
+    <Button type="submit" onClick={handleSubmit} variation="primary" size="small">
       Submit
     </Button>
-  </div>
+  </form>
   <Slider
     onChange={values => {
-      setValues({
-        left: values[0],
-        right: values[1],
-      })
+      const [left, right] = values
+      setValues({ left, right })
+      setInputValues({ left, right })
     }}
     min={0}
     max={99}
