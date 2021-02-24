@@ -67,30 +67,32 @@ const handleSubmit = () => {
 }
 
 ;<>
-  <div className="mb5">
-    <Input
-      name="left"
-      placeholder="Left"
-      size="small"
-      label="Small"
-      onChange={handleInputChange}
-      value={inputValues.left}
-    />
+  <div className="flex items-end mb5">
+    <div className="mr5">
+      <Input
+        name="left"
+        placeholder="Left"
+        size="small"
+        label="Left value"
+        onChange={handleInputChange}
+        value={inputValues.left}
+      />
+    </div>
+    <div className="mr5">
+      <Input
+        name="right"
+        placeholder="Right"
+        size="small"
+        label="Right value"
+        onChange={handleInputChange}
+        defaultValue="99"
+        value={inputValues.right}
+      />
+    </div>
+    <Button onClick={handleSubmit} variation="primary" size="small">
+      Submit
+    </Button>
   </div>
-  <div className="mb5">
-    <Input
-      name="right"
-      placeholder="Right"
-      size="small"
-      label="Small"
-      onChange={handleInputChange}
-      defaultValue="99"
-      value={inputValues.right}
-    />
-  </div>
-  <Button onClick={handleSubmit} variation="primary">
-    Submit
-  </Button>
   <Slider
     onChange={values => {
       setValues({
