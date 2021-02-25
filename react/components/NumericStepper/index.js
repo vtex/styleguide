@@ -26,14 +26,7 @@ const validateValue = (
   }
 
   const parsedValue = parseFloat(value, 10)
-
-  let normalizedValue
-
-  if (isTyping) {
-    normalizedValue = Math.round(parsedValue / unitMultiplier)
-  } else {
-    normalizedValue = parsedValue
-  }
+  const normalizedValue = isTyping ? Math.round(parsedValue / unitMultiplier) : parsedValue
 
   if (normalizedValue < min) {
     return min
