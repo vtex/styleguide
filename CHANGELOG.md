@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 # Fixed
 
-- Typing on NumericStepper now works properly with `unitMultiplier` different than 1
+- **NumericStepper** `unitMultiplier` behavior when different from 1.
 
 ## [9.135.3] - 2021-02-22
 
