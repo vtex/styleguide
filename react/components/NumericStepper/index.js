@@ -28,13 +28,7 @@ const validateValue = (
   const parsedValue = parseFloat(value, 10)
   const normalizedValue = isTyping ? Math.round(parsedValue / unitMultiplier) : parsedValue
 
-  if (normalizedValue < min) {
-    return min
-  } else if (normalizedValue > max) {
-    return max
-  }
-
-  return normalizedValue
+  return Math.max(min, Math.min(max, normalizedValue))
 }
 
 const formattedDisplayValue = (value, unitMultiplier, suffix, isTyping) => {
