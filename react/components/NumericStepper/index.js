@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 
 import styles from '../Input/Input.css'
 
-const normalizeMin = (min) => (min == null ? -Infinity : min)
-const normalizeMax = (max) => (max == null ? Infinity : max)
+const normalizeMin = min => (min == null ? -Infinity : min)
+const normalizeMax = max => (max == null ? Infinity : max)
 
 const validateValue = (
   value,
@@ -26,7 +26,9 @@ const validateValue = (
   }
 
   const parsedValue = parseFloat(value, 10)
-  const normalizedValue = isTyping ? Math.round(parsedValue / unitMultiplier) : parsedValue
+  const normalizedValue = isTyping
+    ? Math.round(parsedValue / unitMultiplier)
+    : parsedValue
 
   return Math.max(min, Math.min(max, normalizedValue))
 }
@@ -177,19 +179,19 @@ class NumericStepper extends Component {
     }
   }
 
-  handleTypeQuantity = (event) => {
+  handleTypeQuantity = event => {
     this.changeValue(event.target.value, event, true)
   }
 
-  handleIncreaseValue = (event) => {
+  handleIncreaseValue = event => {
     this.changeValue(this.state.value + 1, event, false)
   }
 
-  handleDecreaseValue = (event) => {
+  handleDecreaseValue = event => {
     this.changeValue(this.state.value - 1, event, false)
   }
 
-  handleFocusInput = (e) => {
+  handleFocusInput = e => {
     e.target.select()
     this.setState({ inputFocused: true })
   }
