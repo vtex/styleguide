@@ -79,6 +79,29 @@ export default class Slider extends Component {
         this.updateLayout
       )
     }
+
+    const [prevLeftValue, prevRightValue] = prevProps.values || []
+    const [leftValue, rightValue] = this.props.values || []
+    const { left: leftState, right: rightState } = this.state.values
+
+    if (
+      (prevLeftValue !== leftValue || prevRightValue !== rightValue) &&
+      (leftValue !== leftState || rightValue !== rightState)
+    ) {
+      this.setState(
+        currentState => ({
+          ...currentState,
+          values: {
+            left: leftValue,
+            right: rightValue,
+          },
+        }),
+        () => {
+          this.updateLayout()
+          this.props.onChange([this.state.values.left, this.state.values.right])
+        }
+      )
+    }
   }
 
   componentDidMount() {
@@ -407,4 +430,6 @@ Slider.propTypes = {
   range: PropTypes.bool,
   /** Optional icon to show inside the slider handle */
   handleIcon: PropTypes.node,
+  /** Current value: [left, right] */
+  values: PropTypes.arrayOf(PropTypes.number),
 }
