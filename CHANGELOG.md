@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.136.0] - 2021-03-09
+
 ### Added
 
 - `values` prop to the `Slider`.
