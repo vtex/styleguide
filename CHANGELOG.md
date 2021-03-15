@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- **Modal** scroll dependency polyfill need.
+
 ## [9.136.0] - 2021-03-09
 
 ### Added
