@@ -6,7 +6,14 @@ import styles from '../Input/Input.css'
 const normalizeMin = min => (min == null ? -Infinity : min)
 const normalizeMax = max => (max == null ? Infinity : max)
 
-const validateValue = (value, min, max, defaultValue) => {
+const validateValue = (
+  value,
+  min,
+  max,
+  defaultValue,
+  unitMultiplier,
+  isTyping
+) => {
   // This function always return a valid numeric value from the current input.
   // Compare with the function validateDisplayValue
   min = normalizeMin(min)
@@ -16,36 +23,50 @@ const validateValue = (value, min, max, defaultValue) => {
     if (defaultValue < min) return min
     if (defaultValue > max) return max
     return defaultValue
-  } else if (value < min) {
-    return min
-  } else if (value > max) {
-    return max
   }
-  return parseInt(value, 10)
+
+  const parsedValue = parseFloat(value, 10)
+  const normalizedValue = isTyping
+    ? Math.round(parsedValue / unitMultiplier)
+    : parsedValue
+
+  return Math.max(min, Math.min(max, normalizedValue))
 }
 
-const formattedDisplayValue = (value, unitMultiplier, suffix) => {
+const formattedDisplayValue = (value, unitMultiplier, suffix, isTyping) => {
   const parsedSuffix = suffix ? ` ${suffix}` : suffix
-  return `${Math.round((value * unitMultiplier + Number.EPSILON) * 100) /
-    100}${parsedSuffix}`
+
+  if (!isTyping) {
+    const multipliedValue = Math.round(value * unitMultiplier * 100) / 100
+    return `${multipliedValue}${parsedSuffix}`
+  }
+
+  return `${value}${parsedSuffix}`
 }
 
-const validateDisplayValue = (value, min, max, suffix, unitMultiplier) => {
+const validateDisplayValue = (
+  value,
+  min,
+  max,
+  suffix,
+  unitMultiplier,
+  isTyping
+) => {
   // This function validates the input as the user types
   // It allows for temporarily invalid values (namely, empty string and minus sign without a number following it)
   // However, it prevents values out of boundaries, and invalid characters, e.g. letters
 
-  min = normalizeMin(min)
-  max = normalizeMax(max)
+  min = normalizeMin(min) * unitMultiplier
+  max = normalizeMax(max) * unitMultiplier
 
   const parsedValue = parseFloat(value)
 
   if (value === '') {
-    return formattedDisplayValue(value, unitMultiplier, suffix)
+    return formattedDisplayValue(value, unitMultiplier, suffix, isTyping)
   }
   // Only allows typing the negative sign if negative values are allowed
-  if (value === '-' && min < 0) {
-    return formattedDisplayValue(value, unitMultiplier, suffix)
+  if (typeof value === 'string' && value.startsWith('-') && min < 0) {
+    return formattedDisplayValue(value, unitMultiplier, suffix, isTyping)
   }
   if (isNaN(parsedValue)) {
     return ''
@@ -53,12 +74,12 @@ const validateDisplayValue = (value, min, max, suffix, unitMultiplier) => {
   // Only limit by lower bounds if the min value is 1
   // Otherwise, it could prevent typing, for example, 10 if the min value is 2
   if (parsedValue < min && min === 1) {
-    return formattedDisplayValue(min, unitMultiplier, suffix)
+    return formattedDisplayValue(min, unitMultiplier, suffix, isTyping)
   }
   if (parsedValue > max) {
-    return formattedDisplayValue(max, unitMultiplier, suffix)
+    return formattedDisplayValue(max, unitMultiplier, suffix, isTyping)
   }
-  return formattedDisplayValue(parsedValue, unitMultiplier, suffix)
+  return formattedDisplayValue(parsedValue, unitMultiplier, suffix, isTyping)
 }
 
 class NumericStepper extends Component {
@@ -92,25 +113,28 @@ class NumericStepper extends Component {
       value,
       minValue,
       maxValue,
-      defaultValue
+      defaultValue,
+      unitMultiplier,
+      false
     )
 
     return {
       value: validatedValue,
       ...(!state.inputFocused && {
         displayValue: validateDisplayValue(
-          value,
+          validatedValue,
           minValue,
           maxValue,
           suffix,
-          unitMultiplier
+          unitMultiplier,
+          false
         ),
       }),
     }
   }
 
-  changeValue = (value, event) => {
-    const parsedValue = parseInt(value, 10)
+  changeValue = (value, event, isTyping) => {
+    const parsedValue = parseFloat(value, 10)
 
     const {
       minValue,
@@ -125,15 +149,18 @@ class NumericStepper extends Component {
       parsedValue,
       minValue,
       maxValue,
-      defaultValue
+      defaultValue,
+      unitMultiplier,
+      isTyping
     )
 
     const displayValue = validateDisplayValue(
-      value,
+      isTyping ? value : validatedValue,
       minValue,
       maxValue,
       suffix,
-      unitMultiplier
+      unitMultiplier,
+      isTyping
     )
 
     this.setState({
@@ -153,15 +180,15 @@ class NumericStepper extends Component {
   }
 
   handleTypeQuantity = event => {
-    this.changeValue(event.target.value, event)
+    this.changeValue(event.target.value, event, true)
   }
 
   handleIncreaseValue = event => {
-    this.changeValue(this.state.value + 1, event)
+    this.changeValue(this.state.value + 1, event, false)
   }
 
   handleDecreaseValue = event => {
-    this.changeValue(this.state.value - 1, event)
+    this.changeValue(this.state.value - 1, event, false)
   }
 
   handleFocusInput = e => {
@@ -170,8 +197,19 @@ class NumericStepper extends Component {
   }
 
   handleBlurInput = () => {
+    const { minValue, maxValue, unitMultiplier, suffix } = this.props
+
+    const displayValue = validateDisplayValue(
+      this.state.value,
+      minValue,
+      maxValue,
+      suffix,
+      unitMultiplier,
+      false
+    )
+
     this.setState({
-      displayValue: this.state.value,
+      displayValue,
       inputFocused: false,
     })
   }

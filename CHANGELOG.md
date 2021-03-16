@@ -7,6 +7,55 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.136.1] - 2021-03-15
+
+### Fixed
+
+- **Modal** scroll dependency polyfill need.
+
+## [9.136.0] - 2021-03-09
+
+### Added
+
+- `values` prop to the `Slider`.
+
+## [9.135.4] - 2021-02-26
+
+# Fixed
+
+- **NumericStepper** `unitMultiplier` behavior when different from 1.
+
+## [9.135.3] - 2021-02-22
+
+### Fixed
+
+- **InputCurrency** `undefined` event handling.
+
+## [9.135.2] - 2021-02-10
+
+### Fixed
+
+- **PageBlock** responsiveness issue on aside variation.
+- **EXPERIMENTAL_TableV2** rows height when using `disableScroll`.
+
+## [9.135.1] - 2021-01-28
+
+### Fixed
+
+- Button not being disabled if it is loading.
+
+## [9.135.0] - 2021-01-20
+
+### Added
+
+- Class `vtex-textarea__input` on `Textarea` component.
+
+## [9.134.1] - 2020-12-22
+
+### Fixed
+
+- Input and dropdown now have font-size of 16px no matter their sizes
+
 ## [9.134.0] - 2020-12-04
 
 ### Added

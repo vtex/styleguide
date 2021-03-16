@@ -65,7 +65,7 @@ class Textarea extends Component {
     const typography = 'c-on-base t-small'
     const padding = 'pv3 ph5'
 
-    let classes = `${widthClass} ${box} ${padding} ${border} ${typography} `
+    let classes = `vtex-textarea__input ${widthClass} ${box} ${padding} ${border} ${typography} `
     let labelClasses = `vtex-textarea__label db mb3 w-100 `
 
     if (active) {

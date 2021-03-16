@@ -218,7 +218,7 @@ class Button extends Component {
         id={this.props.id}
         data-testid={this.props.testId}
         autoFocus={iconOnly ? undefined : this.props.autoFocus}
-        disabled={iconOnly ? undefined : this.props.disabled}
+        disabled={iconOnly ? undefined : disabled}
         name={iconOnly ? undefined : this.props.name}
         value={iconOnly ? undefined : this.props.value}
         tabIndex={tabIndex}

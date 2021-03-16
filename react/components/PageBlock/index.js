@@ -89,12 +89,12 @@ class PageBlock extends Component {
             </Fragment>
           ) : variation === 'aside' ? (
             <Fragment>
-              <div className="w-two-thirds-ns w-100 mr3-ns mb0-ns mb5">
+              <div className="w-two-thirds-ns w-100 pr3-ns mb0-ns mb5">
                 <Box {...boxProps}>
                   {this.props.children && this.props.children[0]}
                 </Box>
               </div>
-              <div className="w-third-ns w-100 ml3-ns mb0-ns mb5">
+              <div className="w-third-ns w-100 pl3-ns mb0-ns mb5">
                 <Box {...boxProps}>
                   {this.props.children && this.props.children[1]}
                 </Box>
