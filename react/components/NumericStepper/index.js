@@ -56,8 +56,9 @@ const validateDisplayValue = (
   // It allows for temporarily invalid values (namely, empty string and minus sign without a number following it)
   // However, it prevents values out of boundaries, and invalid characters, e.g. letters
 
-  min = normalizeMin(min) * unitMultiplier
-  max = normalizeMax(max) * unitMultiplier
+  const boundaryMultiplier = isTyping ? unitMultiplier : 1
+  min = normalizeMin(min) * boundaryMultiplier
+  max = normalizeMax(max) * boundaryMultiplier
 
   const parsedValue = parseFloat(value)
 
