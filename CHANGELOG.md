@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.136.2] - 2021-03-23
+
 ### Fixed
 
 - **NumericStepper** `displayValue` boundary detection when `unitMultiplier` was different from 1
