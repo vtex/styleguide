@@ -128,6 +128,9 @@ The container property is responsible to define the size of the box that will re
 
 - `height`: The percentage value of the chart's width or a fixed width.
 - `width`: The percentage value of the chart's width or a fixed height.
+- `aspect`: Width / height. If specified, the height will be calculated by width / aspect.
+
+⚠️ This wrapper component sets a default value for the `aspect`, which takes priority over the `height` property. To respect the `height` set, you also have to set the `aspect` to `null`. 
 
 ```js
 const sampleData = require('./sampleData').default;
