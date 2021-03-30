@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- Warning about the use of the `container` config in **LineChart** 
+- **LineChart** docs warning about `container` config usage.
 
 ## [9.136.2] - 2021-03-23
 
