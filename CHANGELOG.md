@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- **EXPERIMENTAL_TableV2** accept `isDangerous` attribute for secondary `BulkActions`.
+
 ## [9.137.0] - 2021-03-30
 
 ### Added
