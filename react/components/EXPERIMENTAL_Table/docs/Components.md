@@ -458,11 +458,12 @@ function TotalizerExample() {
 
 - Button to handle secondary actions.
 
-| Property      | Type                    | Required | Default | Description             |
-| ------------- | ----------------------- | -------- | ------- | ----------------------- |
-| label         | string                  | ✅       | 🚫      | Button text             |
-| onClick       | () => void              | ✅       | 🚫      | Action on click button  |
-| onActionClick | (e: MenuAction) => void | 🚫       | 🚫      | Action on click actions |
+| Property      | Type                              | Required | Default | Description             |
+| ------------- | --------------------------------- | -------- | ------- | ----------------------- |
+| label         | string                            | ✅       | 🚫      | Button text             |
+| onClick       | () => void                        | ✅       | 🚫      | Action on click button  |
+| isDangerous   | boolean                           | 🚫       | 🚫      | Mark whether the action performs a dangerous option or not  |
+| onActionClick | (e: SecondaryActionProps) => void | 🚫       | 🚫      | Action on click actions |
 
 #### Tail
 
@@ -562,6 +563,7 @@ function BulkFullExample() {
       {
         label: 'Decrease 50',
         onClick: checked => decreaseQty(checked, 50),
+        isDangerous: true
       },
     ],
     onActionClick: action => action.onClick(checkboxes.checkedItems),
