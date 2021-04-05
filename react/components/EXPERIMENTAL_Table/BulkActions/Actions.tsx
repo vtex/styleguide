@@ -46,7 +46,7 @@ function Secondary({ label, actions, onActionClick }: SecondaryProps) {
         options={actions.map(el => ({
           label: el.label,
           onClick: () => onActionClick(el),
-          isDangerous: el.isDangerous
+          isDangerous: el.isDangerous,
         }))}
       />
     </div>
