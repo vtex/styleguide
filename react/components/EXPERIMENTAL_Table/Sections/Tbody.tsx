@@ -71,4 +71,4 @@ const FowardedTbody: ComposableTbody = forwardRef(Tbody)
 
 FowardedTbody.Row = Row
 
-export default FowardedTbody
+export default React.memo(FowardedTbody)

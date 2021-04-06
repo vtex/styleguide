@@ -17,6 +17,18 @@ export function useDataContext() {
   return context
 }
 
-export function DataProvider({ children, ...value }: PropsWithChildren<Data>) {
+export function DataProvider({
+  children,
+  items,
+  columns,
+}: PropsWithChildren<Data>) {
+  const value = React.useMemo(
+    () => ({
+      columns,
+      items,
+    }),
+    [columns, items]
+  )
+
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>
 }
