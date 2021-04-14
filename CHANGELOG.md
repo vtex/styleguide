@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- **EXPERIMENTAL_TableV2** Sections issue introduced in the previous version.
+
+## [9.138.1] - 2021-04-13
+
 ### Changed
 
 - **EXPERIMENTAL_TableV2** performance enhancement.
