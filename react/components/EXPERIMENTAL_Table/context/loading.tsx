@@ -16,8 +16,19 @@ const LoadingContext = createContext<Loading>(null)
 
 export function LoadingProvider({
   children,
-  ...value
+  empty,
+  loading,
+  emptyState,
 }: PropsWithChildren<Loading>) {
+  const value = React.useMemo(
+    () => ({
+      empty,
+      loading,
+      emptyState,
+    }),
+    [empty, emptyState, loading]
+  )
+
   return (
     <LoadingContext.Provider value={value}>{children}</LoadingContext.Provider>
   )

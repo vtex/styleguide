@@ -19,7 +19,20 @@ export function useBodyContext() {
 
 export function BodyProvider({
   children,
-  ...value
+  onRowClick,
+  isRowActive,
+  rowKey,
+  highlightOnHover,
 }: PropsWithChildren<BodyProps>) {
+  const value = React.useMemo(
+    () => ({
+      onRowClick,
+      isRowActive,
+      rowKey,
+      highlightOnHover,
+    }),
+    [highlightOnHover, isRowActive, onRowClick, rowKey]
+  )
+
   return <BodyContext.Provider value={value}>{children}</BodyContext.Provider>
 }

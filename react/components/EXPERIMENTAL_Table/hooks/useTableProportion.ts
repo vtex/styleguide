@@ -13,9 +13,12 @@ export default function useTableProportion({ columns, ratio }: ProportionData) {
     [calculatedWidths, columns]
   )
 
-  return {
-    sizedColumns,
-  }
+  return useMemo(
+    () => ({
+      sizedColumns,
+    }),
+    [sizedColumns]
+  )
 }
 
 function calculateWidths(columns: Array<Column>, ratio: Array<number>) {
