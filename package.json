@@ -1,6 +1,6 @@
 {
   "name": "@vtex/styleguide",
-  "version": "9.138.2",
+  "version": "9.138.3",
   "scripts": {
     "lint": "eslint react --ext js,jsx,ts,tsx",
     "test": "node config/test.js",
@@ -112,6 +112,7 @@
     "fromentries": "^1.1.0",
     "react-color": "^2.17.0",
     "react-datepicker": "^2.3.0",
+    "date-fns": "^2.0.1",
     "react-docgen-displayname-handler": "^2.1.1",
     "react-dropzone": "^10.2.1",
     "react-icons": "^3.7.0",
