@@ -23,7 +23,7 @@ export interface Props
   showBottomBarBorder?: boolean
   onCloseTransitionFinish?: () => unknown
   centered?: boolean
-  size?: 'small' | 'medium' | 'large'
+  size?: 'small' | 'medium' | 'large' | 'full' | 'auto'
   responsiveFullScreen?: boolean
 }
 
@@ -162,6 +162,7 @@ const ModalContent = forwardRef<HTMLDivElement, ContentProps>(
           `${size === 'small' ? styles.smallContent : ''}`,
           `${size === 'medium' ? styles.mediumContent : ''}`,
           `${size === 'large' ? styles.largeContent : ''}`,
+          `${size === 'auto' ? styles.autoWidthContent : ''}`,
           {
             'h-100 h-auto-ns vw-100': responsiveFullScreen,
             'vw-90': !responsiveFullScreen,
