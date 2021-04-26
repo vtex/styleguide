@@ -34,7 +34,7 @@ The anatomy consists of an overlay to block user interaction below the Modal and
 | responsiveFullScreen    | `boolean` | 🚫       | false               | If true the modal will expand to fullscreen in small view ports                                                                                             |
 | showTopBar              | `boolean` | 🚫       | true                | If true, show top bar with title                                                                                                                            |
 | onCloseTransitionFinish | `func`    | 🚫       |                     | Event fired when the closing transition is finished                                                                                                         |
-| size                    | `enum`    | 🚫       | medium              | Modal Size. One of: "small", "medium", "large", "full" and "auto"                                                                                           |
+| size                    | `enum`    | 🚫       | medium              | Modal Size. One of: "small", "medium", "large", "fit-horizontally" and "auto"                                                                                           |
 | aria-label              | `string`  | 🚫       |                     | Acessible Modal name. If this name is visible on the screen, prefer to use aria-labelledby                                                                  |
 | aria-labelledby         | `string`  | 🚫       | `vtex-modal__title` | ID of the element that provides the Modal an accessible name. If aria-label and aria-albelledby is not defined, the default here will be the title element. |
 | aria-describedby        | `string`  | 🚫       |                     | ID of the element that provides the Modal an accessible description                                                                                         |
@@ -430,7 +430,7 @@ const ModalExample = () => {
 ;<ModalExample />
 ```
 
-##### Full
+##### Fit Horizontally
 
 ```js
 const Button = require('../Button').default
@@ -447,7 +447,7 @@ const ModalExample = () => {
       <Modal
         isOpen={isOpen}
         onClose={onClose}
-        size="full"
+        size="fit-horizontally"
         title="Import products by CSV"
         aria-describedby="modal-description"
         bottomBar={

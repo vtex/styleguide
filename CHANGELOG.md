@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- **EXPERIMENTAL_Modal** `full` and `auto` sizes.
+- **EXPERIMENTAL_Modal** `fit-horizontally` and `auto` sizes.
 
 ## [9.138.3] - 2021-04-20
 

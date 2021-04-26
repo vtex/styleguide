@@ -23,7 +23,7 @@ export interface Props
   showBottomBarBorder?: boolean
   onCloseTransitionFinish?: () => unknown
   centered?: boolean
-  size?: 'small' | 'medium' | 'large' | 'full' | 'auto'
+  size?: 'small' | 'medium' | 'large' | 'fit-horizontally' | 'auto'
   responsiveFullScreen?: boolean
 }
 
