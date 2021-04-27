@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- **EXPERIMENTAL_TableV2** `disableScroll` prop at the root component, to be used without the need of `composableSections`.
+
 ## [9.139.1] - 2021-04-28
 
 ### Fixed
