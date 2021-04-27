@@ -60,6 +60,12 @@
   }
 }
 
+@media screen and (min-width: 40em) {
+  .autoWidthContent {
+    width: auto;
+  }
+}
+
 @keyframes fade-in {
   0% {
     opacity: 0;
