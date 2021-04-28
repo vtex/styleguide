@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.139.1] - 2021-04-28
+
+### Fixed
+
+- **EXPERIMENTAL_Modal** `auto` size should have `max-width` to avoid overflowing the screen.
+
 ## [9.139.0] - 2021-04-27
 
 ### Added

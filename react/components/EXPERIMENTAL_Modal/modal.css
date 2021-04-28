@@ -63,6 +63,7 @@
 @media screen and (min-width: 40em) {
   .autoWidthContent {
     width: auto;
+    max-width: 100%;
   }
 }
 
