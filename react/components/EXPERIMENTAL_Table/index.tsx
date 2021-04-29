@@ -44,6 +44,7 @@ function Table(
     testId,
     stickyHeader,
     composableSections,
+    disableScroll,
   }: Props,
   ref: Ref<HTMLTableElement>
 ) {
@@ -64,7 +65,7 @@ function Table(
                   ) : (
                     <Fragment>
                       {children}
-                      <Sections ref={ref}>
+                      <Sections ref={ref} disableScroll={disableScroll}>
                         <Sections.Head />
                         <Sections.Body />
                       </Sections>
@@ -123,6 +124,8 @@ interface SpecificProps {
   stickyHeader?: boolean
   /** Exposes table sections to be composable */
   composableSections?: boolean
+  /** Disable scroll in table sections when not using composable sections */
+  disableScroll?: boolean
 }
 
 interface Composites {

@@ -246,9 +246,9 @@ As you can see in the "Customizing body" section sample, it's using the `<Table.
 
 ##### Sections Props
 
-| Property      | Type    | Required | Default | Description                              |
-|---------------|---------|----------|---------|------------------------------------------|
-| disableScroll | boolean | 🚫       | false   | Disable scroll overflow of the container |
+| Property      | Type    | Required | Default | Description                                                                                                  |
+|---------------|---------|----------|---------|--------------------------------------------------------------------------------------------------------------|
+| disableScroll | boolean | 🚫       | false   | Disable scroll overflow of the container. When not using composable sections, it can be a Table prop anyway. |
 
 ##### Cell Props
 
