@@ -185,10 +185,12 @@ class NumericStepper extends Component {
   }
 
   handleIncreaseValue = event => {
+    event.preventDefault()
     this.changeValue(this.state.value + 1, event, false)
   }
 
   handleDecreaseValue = event => {
+    event.preventDefault()
     this.changeValue(this.state.value - 1, event, false)
   }
 
@@ -281,6 +283,8 @@ class NumericStepper extends Component {
       lean ? 'outline-0' : ''
     } `
 
+    const touchDevice = 'ontouchstart' in window || navigator.maxTouchPoints || navigator.msMaxTouchPoints
+
     const content = (
       <React.Fragment>
         {label && (
@@ -321,7 +325,8 @@ class NumericStepper extends Component {
               disabled={readOnly || isMax}
               aria-label="+"
               tabIndex={0}
-              onClick={this.handleIncreaseValue}>
+              onClick={touchDevice ? undefined : this.handleIncreaseValue}
+              onTouchEnd={touchDevice ? this.handleIncreaseValue : undefined}>
               <div className="vtex-numeric-stepper__plus-button__text numeric-stepper__plus-button__text b">
                 {/* fullwidth plus sign (U+FF0B) http://graphemica.com/%EF%BC%8B */}
                 ＋
@@ -346,7 +351,8 @@ class NumericStepper extends Component {
               // which is the default keyboard character.
               // Used for screen readers.
               tabIndex={0}
-              onClick={this.handleDecreaseValue}>
+              onClick={touchDevice ? undefined : this.handleDecreaseValue}
+              onTouchEnd={touchDevice ? this.handleDecreaseValue : undefined}>
               <span className="vtex-numeric-stepper__minus-button__text numeric-stepper__minus-button__text b">
                 {/* fullwidth hyphen-minus (U+FF0D) http://graphemica.com/%EF%BC%8D */}
                 －
