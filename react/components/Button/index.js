@@ -343,6 +343,8 @@ Button.propTypes = {
   onFocus: PropTypes.func,
   /** onBlur event */
   onBlur: PropTypes.func,
+  /** onTouchEnd event */
+  onTouchEnd: PropTypes.func,
   /** tabIndex attribute of HTML */
   tabIndex: PropTypes.number,
   /** @ignore deprecated

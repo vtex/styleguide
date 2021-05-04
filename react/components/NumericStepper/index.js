@@ -185,13 +185,13 @@ class NumericStepper extends Component {
   }
 
   handleIncreaseValue = event => {
-    event.preventDefault()
     this.changeValue(this.state.value + 1, event, false)
+    event.preventDefault()
   }
 
   handleDecreaseValue = event => {
-    event.preventDefault()
     this.changeValue(this.state.value - 1, event, false)
+    event.preventDefault()
   }
 
   handleFocusInput = e => {
