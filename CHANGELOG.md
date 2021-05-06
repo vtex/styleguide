@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.140.1] - 2021-05-06
+
 ### Fixed
 
 - **EXPERIMENTAL_TableV2** search button click does not work if the onSubmit prop is not passed.
