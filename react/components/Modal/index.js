@@ -8,6 +8,7 @@ import TopBar from './TopBar'
 import BottomBar from './BottomBar'
 import styles from './modal.css'
 
+import '../../modules/scrollPollyfill'
 import './modal.global.css'
 
 class Modal extends PureComponent {

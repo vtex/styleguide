@@ -7,6 +7,78 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.140.1] - 2021-05-06
+
+### Fixed
+
+- **EXPERIMENTAL_TableV2** search button click does not work if the onSubmit prop is not passed.
+
+## [9.140.0] - 2021-04-29
+
+### Added
+
+- **EXPERIMENTAL_TableV2** `disableScroll` prop at the root component, to be used without the need of `composableSections`.
+
+## [9.139.1] - 2021-04-28
+
+### Fixed
+
+- **EXPERIMENTAL_Modal** `auto` size should have `max-width` to avoid overflowing the screen.
+
+## [9.139.0] - 2021-04-27
+
+### Added
+
+- **EXPERIMENTAL_Modal** `fit-horizontally` and `auto` sizes.
+
+## [9.138.3] - 2021-04-20
+
+### Fixed
+
+- `date-fns` dependency to be explicit so it doesn't conflict when using from npm together with other projects.
+
+## [9.138.2] - 2021-04-14
+
+### Fixed
+
+- **EXPERIMENTAL_TableV2** Sections issue introduced in the previous version.
+
+## [9.138.1] - 2021-04-13
+
+### Changed
+
+- **EXPERIMENTAL_TableV2** performance enhancement.
+
+## [9.138.0] - 2021-04-05
+
+### Changed
+
+- **EXPERIMENTAL_TableV2** accept `isDangerous` attribute for secondary `BulkActions`.
+
+## [9.137.0] - 2021-03-30
+
+### Added
+
+- **LineChart** docs warning about `container` config usage.
+
+## [9.136.2] - 2021-03-23
+
+### Fixed
+
+- **NumericStepper** `displayValue` boundary detection when `unitMultiplier` was different from 1
+
+## [9.136.1] - 2021-03-15
+
+### Fixed
+
+- **Modal** scroll dependency polyfill need.
+
+## [9.136.0] - 2021-03-09
+
+### Added
+
+- `values` prop to the `Slider`.
+
 ## [9.135.4] - 2021-02-26
 
 # Fixed

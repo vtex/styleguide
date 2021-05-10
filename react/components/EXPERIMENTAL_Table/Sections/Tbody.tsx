@@ -67,7 +67,7 @@ export type ComposableTbody = ComposableWithRef<
   Composites
 >
 
-const FowardedTbody: ComposableTbody = forwardRef(Tbody)
+const FowardedTbody: ComposableTbody = React.memo(forwardRef(Tbody))
 
 FowardedTbody.Row = Row
 

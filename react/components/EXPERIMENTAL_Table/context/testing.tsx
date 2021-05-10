@@ -22,9 +22,9 @@ export function TestingProvider({
   testId,
   children,
 }: PropsWithChildren<Props>) {
+  const value = React.useMemo(() => ({ testId }), [testId])
+
   return (
-    <TestingContext.Provider value={{ testId }}>
-      {children}
-    </TestingContext.Provider>
+    <TestingContext.Provider value={value}>{children}</TestingContext.Provider>
   )
 }

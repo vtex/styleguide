@@ -19,7 +19,16 @@ export function useHeadContext() {
 
 export function HeadProvider({
   children,
-  ...value
+  sticky,
+  sorting,
 }: PropsWithChildren<HeadProps>) {
+  const value = React.useMemo(
+    () => ({
+      sticky,
+      sorting,
+    }),
+    [sorting, sticky]
+  )
+
   return <HeadContext.Provider value={value}>{children}</HeadContext.Provider>
 }

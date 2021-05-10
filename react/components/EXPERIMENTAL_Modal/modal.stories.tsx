@@ -7,7 +7,7 @@ import useDisclosure from '../../utilities/useDisclosure'
 import Button from '../Button'
 import Input from '../Input'
 
-const sizes = ['small', 'medium', 'large']
+const sizes = ['small', 'medium', 'large', 'fit-horizontally', 'auto']
 
 export default {
   title: 'Components/Modal V2',

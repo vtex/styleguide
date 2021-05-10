@@ -34,7 +34,7 @@ The anatomy consists of an overlay to block user interaction below the Modal and
 | responsiveFullScreen    | `boolean` | 🚫       | false               | If true the modal will expand to fullscreen in small view ports                                                                                             |
 | showTopBar              | `boolean` | 🚫       | true                | If true, show top bar with title                                                                                                                            |
 | onCloseTransitionFinish | `func`    | 🚫       |                     | Event fired when the closing transition is finished                                                                                                         |
-| size                    | `enum`    | 🚫       | medium              | Modal Size. One of: Small, Medium and Large                                                                                                                 |
+| size                    | `enum`    | 🚫       | medium              | Modal Size. One of: "small", "medium", "large", "fit-horizontally" and "auto"                                                                                           |
 | aria-label              | `string`  | 🚫       |                     | Acessible Modal name. If this name is visible on the screen, prefer to use aria-labelledby                                                                  |
 | aria-labelledby         | `string`  | 🚫       | `vtex-modal__title` | ID of the element that provides the Modal an accessible name. If aria-label and aria-albelledby is not defined, the default here will be the title element. |
 | aria-describedby        | `string`  | 🚫       |                     | ID of the element that provides the Modal an accessible description                                                                                         |
@@ -396,6 +396,110 @@ const ModalExample = () => {
         isOpen={isOpen}
         onClose={onClose}
         size="large"
+        title="Import products by CSV"
+        aria-describedby="modal-description"
+        bottomBar={
+          <div className="nowrap">
+            <span className="mr4">
+              <Button variation="tertiary" onClick={onClose}>
+                Cancel
+              </Button>
+            </span>
+            <span>
+              <Button variation="primary" onClick={onClose}>
+                Upload
+              </Button>
+            </span>
+          </div>
+        }>
+        <Dropzone>
+          <div className="pt7">
+            <div id="modal-description">
+              <span className="f4">Drop here your CSV or </span>
+              <span className="f4 c-link" style={{ cursor: 'pointer' }}>
+                choose a file
+              </span>
+            </div>
+          </div>
+        </Dropzone>
+      </Modal>
+    </>
+  )
+}
+
+;<ModalExample />
+```
+
+##### Fit Horizontally
+
+```js
+const Button = require('../Button').default
+const Dropzone = require('../Dropzone').default
+const Modal = require('.').default
+const useDisclosure = require('../../utilities/useDisclosure').default
+
+const ModalExample = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
+  return (
+    <>
+      <Button onClick={onOpen}>Open modal</Button>
+      <Modal
+        isOpen={isOpen}
+        onClose={onClose}
+        size="fit-horizontally"
+        title="Import products by CSV"
+        aria-describedby="modal-description"
+        bottomBar={
+          <div className="nowrap">
+            <span className="mr4">
+              <Button variation="tertiary" onClick={onClose}>
+                Cancel
+              </Button>
+            </span>
+            <span>
+              <Button variation="primary" onClick={onClose}>
+                Upload
+              </Button>
+            </span>
+          </div>
+        }>
+        <Dropzone>
+          <div className="pt7">
+            <div id="modal-description">
+              <span className="f4">Drop here your CSV or </span>
+              <span className="f4 c-link" style={{ cursor: 'pointer' }}>
+                choose a file
+              </span>
+            </div>
+          </div>
+        </Dropzone>
+      </Modal>
+    </>
+  )
+}
+
+;<ModalExample />
+```
+
+##### Auto
+
+```js
+const Button = require('../Button').default
+const Dropzone = require('../Dropzone').default
+const Modal = require('.').default
+const useDisclosure = require('../../utilities/useDisclosure').default
+
+const ModalExample = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
+  return (
+    <>
+      <Button onClick={onOpen}>Open modal</Button>
+      <Modal
+        isOpen={isOpen}
+        onClose={onClose}
+        size="auto"
         title="Import products by CSV"
         aria-describedby="modal-description"
         bottomBar={

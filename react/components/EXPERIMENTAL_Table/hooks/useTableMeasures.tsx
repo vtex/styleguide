@@ -22,13 +22,16 @@ export default function useTableMeasures({
     [rowHeight, size]
   )
 
-  return {
-    density,
-    rowHeight,
-    tableHeight,
-    bodyHeight,
-    setDensity,
-  }
+  return useMemo(
+    () => ({
+      density,
+      rowHeight,
+      tableHeight,
+      bodyHeight,
+      setDensity,
+    }),
+    [bodyHeight, density, rowHeight, tableHeight]
+  )
 }
 
 export type MeasuresInput = {
