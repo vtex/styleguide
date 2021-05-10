@@ -283,7 +283,10 @@ class NumericStepper extends Component {
       lean ? 'outline-0' : ''
     } `
 
-    const touchDevice = 'ontouchstart' in window || navigator.maxTouchPoints || navigator.msMaxTouchPoints
+    const touchDevice =
+      'ontouchstart' in window ||
+      navigator.maxTouchPoints ||
+      navigator.msMaxTouchPoints
 
     const content = (
       <React.Fragment>
