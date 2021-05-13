@@ -285,8 +285,8 @@ class NumericStepper extends Component {
 
     const touchDevice =
       'ontouchstart' in window ||
-      navigator.maxTouchPoints ||
-      navigator.msMaxTouchPoints
+      (typeof navigator !== 'undefined' &&
+        (navigator?.maxTouchPoints || navigator?.msMaxTouchPoints))
 
     const content = (
       <React.Fragment>
