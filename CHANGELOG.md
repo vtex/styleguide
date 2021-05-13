@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.141.0] - 2021-05-13
+
+### Fixed
+
+- **NumericStepper** closing the autocomplete on touch.
+
+### Added
+
+- **Button** `onTouchEnd` prop.
+
 ## [9.140.1] - 2021-05-06
 
 ### Fixed

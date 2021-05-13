@@ -233,6 +233,7 @@ class Button extends Component {
         onMouseDown={this.props.onMouseDown}
         onFocus={this.props.onFocus}
         onBlur={this.props.onBlur}
+        onTouchEnd={this.props.onTouchEnd}
         ref={this.props.forwardedRef}
         style={style}
         // Button-mode exclusive props
@@ -342,6 +343,8 @@ Button.propTypes = {
   onFocus: PropTypes.func,
   /** onBlur event */
   onBlur: PropTypes.func,
+  /** onTouchEnd event */
+  onTouchEnd: PropTypes.func,
   /** tabIndex attribute of HTML */
   tabIndex: PropTypes.number,
   /** @ignore deprecated
