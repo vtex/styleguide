@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.143.0] - 2021-06-16
+
 ### Fixed
 
 - **Modal** sometimes not loading `window.scroll` polyfill after the browser hard refresh.
