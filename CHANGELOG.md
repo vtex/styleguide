@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - **Modal** sometimes not loading `window.scroll` polyfill after the browser hard refresh.
 
+### Added 
+
+- **Dropdown** `disabled` prop added to options
+
 ## [9.142.0] - 2021-05-19
 
 ### Added
