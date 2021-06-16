@@ -290,6 +290,7 @@ Dropdown.propTypes = {
   /** Dropdown options list */
   options: PropTypes.arrayOf(
     PropTypes.shape({
+      disabled: PropTypes.bool,
       value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
         .isRequired,
       label: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
