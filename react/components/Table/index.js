@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import reduce from 'lodash/reduce'
 import map from 'lodash/map'
 import isEmpty from 'lodash/isEmpty'
+import difference from 'lodash/difference'
 
 import Box from '../Box'
 import EmptyState from '../EmptyState'
@@ -81,14 +82,35 @@ class Table extends PureComponent {
     const index = hiddenFields.indexOf(key)
     index === -1 ? newFieldsArray.push(key) : newFieldsArray.splice(index, 1)
     this.setState({ hiddenFields: newFieldsArray })
+
+    const { toolbar } = this.props
+
+    const activeFields = difference(
+      Object.keys(this.props.schema.properties),
+      newFieldsArray
+    )
+
+    toolbar?.fields?.onToggleColumn &&
+      toolbar.fields.onToggleColumn({ toggledField: key, activeFields })
   }
 
   handleShowAllColumns = () => {
     this.setState({ hiddenFields: [] })
+
+    const { toolbar } = this.props
+
+    toolbar?.fields?.onShowAllColumns &&
+      toolbar.fields.onShowAllColumns(Object.keys(this.props.schema.properties))
   }
 
   handleHideAllColumns = () => {
-    this.setState({ hiddenFields: Object.keys(this.props.schema.properties) })
+    const newFieldsArray = Object.keys(this.props.schema.properties)
+
+    this.setState({ hiddenFields: newFieldsArray })
+
+    const { toolbar } = this.props
+
+    toolbar?.fields?.onHideAllColumns && toolbar.fields.onHideAllColumns([])
   }
 
   handleSelectionChange = () => {
@@ -441,6 +463,9 @@ Table.propTypes = {
       showAllLabel: PropTypes.string,
       hideAllLabel: PropTypes.string,
       alignMenu: PropTypes.oneOf(['right', 'left']),
+      onToggleColumn: PropTypes.func,
+      onHideAllColumns: PropTypes.func,
+      onShowAllColumns: PropTypes.func,
     }),
     download: PropTypes.shape({
       label: PropTypes.string,

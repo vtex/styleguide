@@ -790,6 +790,12 @@ class ResourceListExample extends React.Component {
             label: 'Toggle visible fields',
             showAllLabel: 'Show All',
             hideAllLabel: 'Hide All',
+            onToggleColumn: (params) => {
+              console.log(params.toggledField)
+              console.log(params.activeFields)
+            },
+            onHideAllColumns: (activeFields) => console.log(activeFields),
+            onShowAllColumns: (activeFields) => console.log(activeFields),
           },
           extraActions: {
             label: 'More options',
@@ -1714,6 +1720,12 @@ class ResourceListExample extends React.Component {
             label: 'Toggle visible fields',
             showAllLabel: 'Show All',
             hideAllLabel: 'Hide All',
+            onToggleColumn: (params) => {
+              console.log(params.toggledField)
+              console.log(params.activeFields)
+            },
+            onHideAllColumns: (activeFields) => console.log(activeFields),
+            onShowAllColumns: (activeFields) => console.log(activeFields),
           },
           extraActions: {
             label: 'More options',

@@ -7,13 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Possibility to get callback on toggle fields visibility with `onToggleColumn`, `onHideAllColumns` and `onShowAllColumns`
+
 ## [9.143.0] - 2021-06-16
 
 ### Fixed
 
 - **Modal** sometimes not loading `window.scroll` polyfill after the browser hard refresh.
 
-### Added 
+### Added
 
 - **Dropdown** `disabled` prop added to options
 
