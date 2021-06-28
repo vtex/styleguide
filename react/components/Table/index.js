@@ -100,8 +100,9 @@ class Table extends PureComponent {
 
     const { toolbar } = this.props
 
-    toolbar?.fields?.onShowAllColumns &&
+    if (toolbar?.fields?.onShowAllColumns) {
       toolbar.fields.onShowAllColumns(Object.keys(this.props.schema.properties))
+    }
   }
 
   handleHideAllColumns = () => {
@@ -111,7 +112,9 @@ class Table extends PureComponent {
 
     const { toolbar } = this.props
 
-    toolbar?.fields?.onHideAllColumns && toolbar.fields.onHideAllColumns([])
+    if (toolbar?.fields?.onHideAllColumns) {
+      toolbar.fields.onHideAllColumns([])
+    }
   }
 
   handleSelectionChange = () => {
