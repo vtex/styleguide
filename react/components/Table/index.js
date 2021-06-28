@@ -90,8 +90,9 @@ class Table extends PureComponent {
       newFieldsArray
     )
 
-    toolbar?.fields?.onToggleColumn &&
+    if (toolbar?.fields?.onToggleColumn) {
       toolbar.fields.onToggleColumn({ toggledField: key, activeFields })
+    }
   }
 
   handleShowAllColumns = () => {
