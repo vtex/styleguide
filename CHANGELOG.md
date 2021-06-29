@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.144.0] - 2021-06-29
+
 ### Added
 
 - Possibility to get callback on toggle fields visibility with `onToggleColumn`, `onHideAllColumns` and `onShowAllColumns`
