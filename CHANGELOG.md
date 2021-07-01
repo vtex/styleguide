@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Remove **form** element from **InputSearch** to avoid errors of dom validation. 
+
 ## [9.145.0] - 2021-07-12
 
 ### Added
