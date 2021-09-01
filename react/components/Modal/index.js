@@ -8,8 +8,13 @@ import TopBar from './TopBar'
 import BottomBar from './BottomBar'
 import styles from './modal.css'
 
-import '../../modules/scrollPollyfill'
 import './modal.global.css'
+
+function isFunction(functionToCheck) {
+  return (
+    functionToCheck && {}.toString.call(functionToCheck) === '[object Function]'
+  )
+}
 
 class Modal extends PureComponent {
   constructor(props) {
@@ -23,6 +28,9 @@ class Modal extends PureComponent {
   }
 
   componentDidUpdate(prevProps) {
+    if (!isFunction(window.scroll)) {
+      window.scroll = window.scrollTo
+    }
     const scrollTop = get(this, 'contentContainerReference.current.scrollTop')
     if (
       prevProps.isOpen !== this.props.isOpen ||
