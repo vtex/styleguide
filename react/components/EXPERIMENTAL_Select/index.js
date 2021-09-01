@@ -41,6 +41,7 @@ class Select extends Component {
       formatCreateLabel,
       label,
       loading,
+      searchable,
       multi,
       noOptionsMessage,
       onChange,
@@ -80,6 +81,7 @@ class Select extends Component {
       isClearable: clearable,
       isDisabled: disabled,
       isLoading: loading,
+      isSearchable: searchable,
       isMulti: multi,
       noOptionsMessage,
       inputId: this.inputId,
@@ -204,6 +206,7 @@ class Select extends Component {
 
 Select.defaultProps = {
   multi: true,
+  searchable: true,
   placeholder: 'Select...',
   size: 'regular',
   clearable: true,
@@ -255,6 +258,8 @@ Select.propTypes = {
   loading: PropTypes.bool,
   /** Text to display when loading options */
   loadingMessage: PropTypes.string,
+  /** Support disabling search input and only allow select to change values. */
+  searchable: PropTypes.bool,
   /** Support multiple selected options. */
   multi: PropTypes.bool,
   /** Text to display when there are no options. ({inputValue}) => string | null */

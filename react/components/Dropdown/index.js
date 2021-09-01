@@ -244,7 +244,10 @@ class Dropdown extends Component {
                 </option>
               )}
               {options.map(option => (
-                <option key={option.value} value={option.value}>
+                <option
+                  disabled={option.disabled}
+                  key={option.value}
+                  value={option.value}>
                   {option.label}
                 </option>
               ))}
@@ -290,6 +293,7 @@ Dropdown.propTypes = {
   /** Dropdown options list */
   options: PropTypes.arrayOf(
     PropTypes.shape({
+      disabled: PropTypes.bool,
       value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
         .isRequired,
       label: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
