@@ -12,17 +12,17 @@ exports[`AutocompleteInput should render a regular version of search bar if size
         class="relative w-100"
       >
         <div
-          class="flex flex-row items-stretch overflow-hidden bw1 br2 b--solid b--muted-4 bg-base c-on-base br--left h-regular"
+          class="flex flex-row items-stretch overflow-hidden bw1 br2 b--solid b--muted-4 hover-b--muted-3 bg-base c-on-base br--left h-regular"
         >
           <input
-            class="ma0 border-box w-100 bn outline-0 b--muted-4 bg-base c-on-base pr5 pl5"
+            class="ma0 border-box w-100 bn outline-0 b--muted-4 hover-b--muted-3 bg-base c-on-base pr5 pl5"
             placeholder=""
             value=""
           />
         </div>
       </label>
       <button
-        class="b--muted-4 bg-base c-on-base bg-base br2 br--right w3 bw1 ba pa0 bl-0 c-link pointer"
+        class="b--muted-4 hover-b--muted-3 bg-base c-on-base bg-base br2 br--right w3 bw1 ba pa0 bl-0 c-link pointer"
       >
         <svg
           class="vtex__icon-search  "
@@ -59,17 +59,17 @@ exports[`AutocompleteInput should render with a large size bar 1`] = `
         class="relative w-100"
       >
         <div
-          class="flex flex-row items-stretch overflow-hidden bw1 br2 b--solid b--muted-4 bg-base c-on-base br--left h-large"
+          class="flex flex-row items-stretch overflow-hidden bw1 br2 b--solid b--muted-4 hover-b--muted-3 bg-base c-on-base br--left h-large"
         >
           <input
-            class="ma0 border-box w-100 bn outline-0 b--muted-4 bg-base c-on-base pr5 pl5"
+            class="ma0 border-box w-100 bn outline-0 b--muted-4 hover-b--muted-3 bg-base c-on-base pr5 pl5"
             placeholder=""
             value=""
           />
         </div>
       </label>
       <button
-        class="b--muted-4 bg-base c-on-base bg-base br2 br--right w3 bw1 ba pa0 bl-0 c-link pointer"
+        class="b--muted-4 hover-b--muted-3 bg-base c-on-base bg-base br2 br--right w3 bw1 ba pa0 bl-0 c-link pointer"
       >
         <svg
           class="vtex__icon-search  "
@@ -106,17 +106,17 @@ exports[`AutocompleteInput should render with a regular size bar 1`] = `
         class="relative w-100"
       >
         <div
-          class="flex flex-row items-stretch overflow-hidden bw1 br2 b--solid b--muted-4 bg-base c-on-base br--left h-regular"
+          class="flex flex-row items-stretch overflow-hidden bw1 br2 b--solid b--muted-4 hover-b--muted-3 bg-base c-on-base br--left h-regular"
         >
           <input
-            class="ma0 border-box w-100 bn outline-0 b--muted-4 bg-base c-on-base pr5 pl5"
+            class="ma0 border-box w-100 bn outline-0 b--muted-4 hover-b--muted-3 bg-base c-on-base pr5 pl5"
             placeholder=""
             value=""
           />
         </div>
       </label>
       <button
-        class="b--muted-4 bg-base c-on-base bg-base br2 br--right w3 bw1 ba pa0 bl-0 c-link pointer"
+        class="b--muted-4 hover-b--muted-3 bg-base c-on-base bg-base br2 br--right w3 bw1 ba pa0 bl-0 c-link pointer"
       >
         <svg
           class="vtex__icon-search  "
@@ -153,17 +153,17 @@ exports[`AutocompleteInput should render with a regular size bar when prop is ab
         class="relative w-100"
       >
         <div
-          class="flex flex-row items-stretch overflow-hidden bw1 br2 b--solid b--muted-4 bg-base c-on-base br--left h-regular"
+          class="flex flex-row items-stretch overflow-hidden bw1 br2 b--solid b--muted-4 hover-b--muted-3 bg-base c-on-base br--left h-regular"
         >
           <input
-            class="ma0 border-box w-100 bn outline-0 b--muted-4 bg-base c-on-base pr5 pl5"
+            class="ma0 border-box w-100 bn outline-0 b--muted-4 hover-b--muted-3 bg-base c-on-base pr5 pl5"
             placeholder=""
             value=""
           />
         </div>
       </label>
       <button
-        class="b--muted-4 bg-base c-on-base bg-base br2 br--right w3 bw1 ba pa0 bl-0 c-link pointer"
+        class="b--muted-4 hover-b--muted-3 bg-base c-on-base bg-base br2 br--right w3 bw1 ba pa0 bl-0 c-link pointer"
       >
         <svg
           class="vtex__icon-search  "
@@ -200,17 +200,17 @@ exports[`AutocompleteInput should render with a small size bar 1`] = `
         class="relative w-100"
       >
         <div
-          class="flex flex-row items-stretch overflow-hidden bw1 br2 b--solid b--muted-4 bg-base c-on-base br--left h-small"
+          class="flex flex-row items-stretch overflow-hidden bw1 br2 b--solid b--muted-4 hover-b--muted-3 bg-base c-on-base br--left h-small"
         >
           <input
-            class="ma0 border-box w-100 bn outline-0 b--muted-4 bg-base c-on-base pr5 pl5"
+            class="ma0 border-box w-100 bn outline-0 b--muted-4 hover-b--muted-3 bg-base c-on-base pr5 pl5"
             placeholder=""
             value=""
           />
         </div>
       </label>
       <button
-        class="b--muted-4 bg-base c-on-base bg-base br2 br--right w3 bw1 ba pa0 bl-0 c-link pointer"
+        class="b--muted-4 hover-b--muted-3 bg-base c-on-base bg-base br2 br--right w3 bw1 ba pa0 bl-0 c-link pointer"
       >
         <svg
           class="vtex__icon-search  "
