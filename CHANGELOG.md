@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.145.2] - 2021-10-26
+
 ### Fixed
 
 - **AutocompleteInput** border colors to match **Input** behavior.
