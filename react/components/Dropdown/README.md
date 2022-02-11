@@ -37,6 +37,10 @@ options = [
       options={options}
       value={state.selected1}
       onChange={(_, v) => setState({ selected1: v })}
+      onFocus={() => console.log('onFocus fired!')}
+      onBlur={() => console.log('onBlur fired!')}
+      onMouseEnter={() => console.log('onMouseEnter fired!')}
+      onMouseLeave={() => console.log('onMouseLeave fired!')}
     />
   </div>
 
@@ -46,6 +50,10 @@ options = [
       options={options}
       value={state.selected2}
       onChange={(_, v) => setState({ selected2: v })}
+      onFocus={() => console.log('onFocus fired!')}
+      onBlur={() => console.log('onBlur fired!')}
+      onMouseEnter={() => console.log('onMouseEnter fired!')}
+      onMouseLeave={() => console.log('onMouseLeave fired!')}
     />
   </div>
 
@@ -56,6 +64,10 @@ options = [
       options={options}
       value={state.selected3}
       onChange={(_, v) => setState({ selected3: v })}
+      onFocus={() => console.log('onFocus fired!')}
+      onBlur={() => console.log('onBlur fired!')}
+      onMouseEnter={() => console.log('onMouseEnter fired!')}
+      onMouseLeave={() => console.log('onMouseLeave fired!')}
     />
   </div>
 </div>
