@@ -272,6 +272,33 @@ const options = [
 </div>
 ```
 
+Without search input (good for mobile experience)
+
+```js
+const options = [
+  {
+    value: 'first-option',
+    label: 'First Option',
+  },
+  {
+    value: 'second-option',
+    label: 'Second Option',
+  },
+]
+
+;<div>
+  <Select
+    label="Label"
+    options={options}
+    multi={false}
+    searchable={false}
+    onChange={values => {
+      console.log(`[Select] Selected: ${JSON.stringify(values, null, 2)}`)
+    }}
+  />
+</div>
+```
+
 Loading state
 
 ```js

@@ -75,10 +75,12 @@ class Dropdown extends Component {
 
   handleFocus = () => {
     this.setState({ active: true })
+    this.props.onFocus && this.props.onFocus(event)
   }
 
   handleBlur = () => {
     this.setState({ active: false })
+    this.props.onBlur && this.props.onBlur(event)
   }
 
   getValueLabel() {
@@ -219,6 +221,8 @@ class Dropdown extends Component {
               onChange={this.handleChange}
               onFocus={this.handleFocus}
               onBlur={this.handleBlur}
+              onMouseEnter={this.props.onMouseEnter}
+              onMouseLeave={this.props.onMouseLeave}
               ref={this.props.forwardedRef}
               // Check the comment on the constructor regarding nil values
               value={value == null ? '' : value}
@@ -244,7 +248,10 @@ class Dropdown extends Component {
                 </option>
               )}
               {options.map(option => (
-                <option key={option.value} value={option.value}>
+                <option
+                  disabled={option.disabled}
+                  key={option.value}
+                  value={option.value}>
                   {option.label}
                 </option>
               ))}
@@ -290,6 +297,7 @@ Dropdown.propTypes = {
   /** Dropdown options list */
   options: PropTypes.arrayOf(
     PropTypes.shape({
+      disabled: PropTypes.bool,
       value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
         .isRequired,
       label: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
@@ -320,6 +328,14 @@ Dropdown.propTypes = {
   required: PropTypes.bool,
   /** onChange event */
   onChange: PropTypes.func,
+  /** onFocus event */
+  onFocus: PropTypes.func,
+  /** onBlur event */
+  onBlur: PropTypes.func,
+  /** onMouseEnter event */
+  onMouseEnter: PropTypes.func,
+  /** onMouseLeave event */
+  onMouseLeave: PropTypes.func,
   /** onClose event */
   onClose: PropTypes.func,
   /** onOpen event */

@@ -7,6 +7,46 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.146.0] - 2022-02-15
+
+### Added
+
+- **Dropdown** `onFocus`, `onBlur`, `onMouseEnter` and `onMouseLeave` props.
+
+## [9.145.2] - 2021-10-26
+
+### Fixed
+
+- **AutocompleteInput** border colors to match **Input** behavior.
+
+## [9.145.1] - 2021-07-12
+
+### Removed
+
+- **EXPERIMENTAL_TableV2** `form` element from search input to avoid DOM validation errors. 
+
+## [9.145.0] - 2021-07-12
+
+### Added
+
+- **EXPERIMENTAL_Select** `searchable` option so it can be better used on mobile.
+
+## [9.144.0] - 2021-06-29
+
+### Added
+
+- Possibility to get callback on toggle fields visibility with `onToggleColumn`, `onHideAllColumns` and `onShowAllColumns`
+
+## [9.143.0] - 2021-06-16
+
+### Fixed
+
+- **Modal** sometimes not loading `window.scroll` polyfill after the browser hard refresh.
+
+### Added
+
+- **Dropdown** `disabled` prop added to options
+
 ## [9.142.0] - 2021-05-19
 
 ### Added

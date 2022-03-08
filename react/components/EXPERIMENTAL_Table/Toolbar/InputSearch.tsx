@@ -11,15 +11,12 @@ export type InputSearchProps = InputHTMLAttributes<HTMLInputElement> & {
 const InputSearch: FC<InputSearchProps> = props => {
   const { testId } = useToolbarContext()
   return (
-    <form
+    <div
       id={NAMESPACES.TOOLBAR.INPUT_SEARCH}
       data-testid={`${testId}__search-form`}
-      className={ORDER_CLASSNAMES.TOOLBAR_CHILD.INPUT}
-      onSubmit={e => {
-        e.preventDefault()
-      }}>
+      className={ORDER_CLASSNAMES.TOOLBAR_CHILD.INPUT}>
       <Input testId={`${testId}__search-form__input`} {...props} />
-    </form>
+    </div>
   )
 }
 
