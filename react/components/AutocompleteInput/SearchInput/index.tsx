@@ -81,8 +81,8 @@ const SearchInput: React.FC<PropTypes.InferProps<typeof propTypes> &
   }
   const regularSize = size !== 'small' && size !== 'large'
   const activeClass = classNames({
-    'b--muted-3': focused && !error,
-    'b--muted-4': !focused && !error,
+    'b--muted-2': focused && !error,
+    'b--muted-4 hover-b--muted-3': !focused && !error,
     'b--danger hover-b--danger': error,
     'br--top': !roundedBottom,
     'bg-disabled c-disabled': disabled,
