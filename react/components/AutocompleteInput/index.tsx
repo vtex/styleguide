@@ -280,7 +280,7 @@ const AutocompleteInput: React.FunctionComponent<AutocompleteInputProps> = ({
       />
       <div className="relative">
         {popoverOpened ? (
-          <div className="absolute br--bottom br2 bb bl br bw1 b--muted-3 bg-base w-100 z-1 shadow-5">
+          <div className="absolute br--bottom br2 bb bl br bw1 b--muted-2 bg-base w-100 z-1 shadow-5">
             {renderOptions()}
             {loading && (
               <div className="flex flex-row justify-center items-center pa4">
