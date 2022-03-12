@@ -336,10 +336,6 @@ Dropdown.propTypes = {
   onMouseEnter: PropTypes.func,
   /** onMouseLeave event */
   onMouseLeave: PropTypes.func,
-  /** onClose event */
-  onClose: PropTypes.func,
-  /** onOpen event */
-  onOpen: PropTypes.func,
   /** @ignore */
   isMobile: PropTypes.bool,
 }
