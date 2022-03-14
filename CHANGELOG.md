@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.146.1] - 2022-03-14
+
+### Removed
+
+- **Dropdown** `onOpen` and `onClose` unused props.
+
 ## [9.146.0] - 2022-02-15
 
 ### Added
@@ -4142,3 +4148,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **Modal** props `title` & `style`
 - **Dropdown** and **Input** prop `block`. They are always block.
 - **Dropdown** and **Input** props `short` and `long`. Their widths should be defined by their parents.
+
+
+[Unreleased]: https://github.com/vtex/styleguide/compare/v9.146.1...HEAD
+[9.146.1]: https://github.com/vtex/styleguide/compare/v9.146.0...v9.146.1
