@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Removed
+
+- **Dropdown** `onOpen` and `onClose` unused props.
+
 ## [9.146.0] - 2022-02-15
 
 ### Added
