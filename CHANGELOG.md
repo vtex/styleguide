@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- **NumericStepper** not working after switching from touch devices.
+
 ## [9.146.1] - 2022-03-14
 
 ### Removed
