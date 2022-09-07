@@ -186,11 +186,13 @@ class NumericStepper extends Component {
 
   handleIncreaseValue = event => {
     event.stopPropagation()
+    event.preventDefault()
     this.changeValue(this.state.value + 1, event, false)
   }
 
   handleDecreaseValue = event => {
     event.stopPropagation()
+    event.preventDefault()
     this.changeValue(this.state.value - 1, event, false)
   }
 
