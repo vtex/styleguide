@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fix
+
+- **NumericStepper** redirecting to product page when inside a shelf, added a preventDefault.
+
 ## [9.146.2] - 2022-09-02
 
 ### Fixed
