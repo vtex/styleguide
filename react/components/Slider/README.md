@@ -48,7 +48,7 @@ const handleInputChange = event => {
   }
 }
 
-const handleSubmit = (e) => {
+const handleSubmit = e => {
   e.preventDefault()
 
   const { left: leftValueInput, right: rightValueInput } = inputValues
@@ -89,7 +89,11 @@ const handleSubmit = (e) => {
         value={inputValues.right}
       />
     </div>
-    <Button type="submit" onClick={handleSubmit} variation="primary" size="small">
+    <Button
+      type="submit"
+      onClick={handleSubmit}
+      variation="primary"
+      size="small">
       Submit
     </Button>
   </form>
@@ -108,5 +112,55 @@ const handleSubmit = (e) => {
     values={[left, right]}
     range
   />
+</>
+```
+
+Dynamic min/max value
+
+```js
+const Button = require('../Button').default
+
+const [max, setMax] = React.useState(10)
+const defaultValues = [2, 8]
+
+const handleSubmit = e => {
+  e.preventDefault()
+
+  setMax(value => value + 10)
+}
+
+;<>
+  <form className="flex items-end mb5">
+    <Button
+      type="Increase max value +10"
+      onClick={handleSubmit}
+      variation="primary"
+      size="small">
+      Increase max value +10
+    </Button>
+  </form>
+
+  <div className="mt8">
+    <code>resetOnMinMaxChange: true</code>
+    <Slider
+      min={0}
+      max={max}
+      alwaysShowCurrentValue={false}
+      range
+      defaultValues={defaultValues}
+    />
+  </div>
+
+  <div className="mt8">
+    <code>resetOnMinMaxChange: false</code>
+    <Slider
+      min={0}
+      max={max}
+      alwaysShowCurrentValue={false}
+      range
+      defaultValues={defaultValues}
+      resetOnMinMaxChange={false}
+    />
+  </div>
 </>
 ```

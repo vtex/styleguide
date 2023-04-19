@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- `resetOnMinMaxChange` to the `Slider` component.
+
 ## [9.146.3] - 2022-09-08
 
 ### Fix

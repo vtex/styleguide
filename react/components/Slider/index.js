@@ -64,18 +64,20 @@ export default class Slider extends Component {
   }
 
   componentDidUpdate(prevProps) {
+    const { resetOnMinMaxChange = true } = prevProps
+
     if (prevProps.min !== this.props.min || prevProps.max !== this.props.max) {
       this.setState(
-        {
+        prev => ({
           translate: {
             left: 0,
             right: 0,
           },
           values: {
-            left: this.props.min,
-            right: this.props.max,
+            left: resetOnMinMaxChange ? this.props.min : prev.values.left,
+            right: resetOnMinMaxChange ? this.props.max : prev.values.right,
           },
-        },
+        }),
         this.updateLayout
       )
     }
@@ -407,6 +409,7 @@ Slider.defaultProps = {
   formatValue: a => a,
   range: false,
   handleIcon: null,
+  resetOnMinMaxChange: true,
 }
 
 Slider.propTypes = {
@@ -432,4 +435,6 @@ Slider.propTypes = {
   handleIcon: PropTypes.node,
   /** Current value: [left, right] */
   values: PropTypes.arrayOf(PropTypes.number),
+  /** Whether the slider position should be reset when the min and max props change */
+  resetOnMinMaxChange: PropTypes.bool,
 }
