@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Prevents `Slider` range from resetting when the min/max value changes.
+
 ## [9.146.3] - 2022-09-08
 
 ### Fix

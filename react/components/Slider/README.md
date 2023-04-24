@@ -48,7 +48,7 @@ const handleInputChange = event => {
   }
 }
 
-const handleSubmit = (e) => {
+const handleSubmit = e => {
   e.preventDefault()
 
   const { left: leftValueInput, right: rightValueInput } = inputValues
@@ -89,7 +89,11 @@ const handleSubmit = (e) => {
         value={inputValues.right}
       />
     </div>
-    <Button type="submit" onClick={handleSubmit} variation="primary" size="small">
+    <Button
+      type="submit"
+      onClick={handleSubmit}
+      variation="primary"
+      size="small">
       Submit
     </Button>
   </form>
