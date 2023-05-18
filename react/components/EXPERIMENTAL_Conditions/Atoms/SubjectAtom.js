@@ -17,6 +17,7 @@ class SubjectAtom extends React.Component {
       isFullWidth,
       statementIndex,
       placeholder,
+      noOptionsMessage,
     } = this.props
     const condition = statements[statementIndex]
 
@@ -71,6 +72,9 @@ class SubjectAtom extends React.Component {
             this.handleChangeStatement(subject, 'subject')
           }}
           multi={false}
+          noOptionsMessage={() => {
+            return noOptionsMessage
+          }}
         />
       </div>
     )
@@ -103,6 +107,8 @@ SubjectAtom.propTypes = {
   statementIndex: PropTypes.number,
   /** Value changed callback */
   onChangeStatement: PropTypes.func,
+  /** Value showed when has no options */
+  noOptionsMessage: PropTypes.string,
 }
 
 export default withForwardedRef(SubjectAtom)

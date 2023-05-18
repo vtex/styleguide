@@ -69,6 +69,7 @@ class Statement extends React.Component {
       statementIndex,
       labels,
       onChangeObjectCallback,
+      noOptionsMessage,
     } = this.props
     const condition = statements[statementIndex]
     const atomProps = {
@@ -76,6 +77,7 @@ class Statement extends React.Component {
       options: options,
       isFullWidth: isFullWidth,
       statementIndex: statementIndex,
+      noOptionsMessage,
       onChangeObjectCallback,
     }
 
@@ -161,6 +163,7 @@ Statement.defaultProps = {
   isFullWidth: false,
   statementIndex: 0,
   labels: { delete: 'DELETE' },
+  noOptionsMessage: 'No Options',
 }
 
 Statement.propTypes = {
@@ -197,6 +200,8 @@ Statement.propTypes = {
   }),
   /** Please use the following one with caution, I did not test it, so it can break everything */
   onChangeObjectCallback: PropTypes.func,
+  /** Value showed when has no options in subject, verb and object*/
+  noOptionsMessage: PropTypes.string,
 }
 
 export default Statement
