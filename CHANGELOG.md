@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- Bug where `Slider` uses the previous value instead of the current one.
+
 ## [9.146.4] - 2023-04-25
 
 ### Changed
