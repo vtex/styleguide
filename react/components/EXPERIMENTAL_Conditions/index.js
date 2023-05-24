@@ -18,6 +18,7 @@ class EXPERIMENTAL_Conditions extends React.Component {
     statements: [],
     onChangeOperator: () => {},
     onChangeStatements: () => {},
+    noOptionsMessage: 'No Options',
     labels: {
       operatorAll: 'all',
       operatorAnd: 'and',
@@ -100,6 +101,7 @@ class EXPERIMENTAL_Conditions extends React.Component {
       labels,
       showOperator,
       operator,
+      noOptionsMessage,
     } = this.props
 
     return (
@@ -147,6 +149,7 @@ class EXPERIMENTAL_Conditions extends React.Component {
                       statements={statements}
                       statementIndex={statementIndex}
                       labels={labels}
+                      noOptionsMessage={noOptionsMessage}
                     />
 
                     {statementIndex !== statements.length - 1 && (
@@ -221,6 +224,8 @@ EXPERIMENTAL_Conditions.propTypes = {
   isRtl: PropTypes.bool,
   /** Show or hide the header that selects the operator (any vs all) */
   showOperator: PropTypes.bool,
+  /** Value showed when has no options in subject, verb and object*/
+  noOptionsMessage: PropTypes.string,
   /** Labels for the controls and texts, default is english */
   labels: PropTypes.shape({
     addNewCondition: PropTypes.string,
