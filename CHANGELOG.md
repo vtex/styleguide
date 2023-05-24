@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.146.5] - 2023-05-24
+
 ### Added 
 - **EXPERIMENTAL_Conditions** new prop `noOptionsMessage` to handle custom empty messages for **EXPERIMENTAL_Select**
 
@@ -4171,7 +4173,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **Dropdown** and **Input** props `short` and `long`. Their widths should be defined by their parents.
 
 
-[Unreleased]: https://github.com/vtex/styleguide/compare/v9.146.4...HEAD
+[Unreleased]: https://github.com/vtex/styleguide/compare/v9.146.5...HEAD
 [9.146.1]: https://github.com/vtex/styleguide/compare/v9.146.0...v9.146.1
 
+[9.146.5]: https://github.com/vtex/styleguide/compare/v9.146.4...v9.146.5
 [9.146.4]: https://github.com/vtex/styleguide/compare/v9.146.3...v9.146.4
