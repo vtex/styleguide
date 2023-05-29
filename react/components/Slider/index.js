@@ -64,6 +64,8 @@ export default class Slider extends Component {
   }
 
   componentDidUpdate(prevProps) {
+    const [leftValue, rightValue] = this.props.values || []
+
     if (prevProps.min !== this.props.min || prevProps.max !== this.props.max) {
       this.setState(
         prev => ({
@@ -72,8 +74,8 @@ export default class Slider extends Component {
             right: 0,
           },
           values: {
-            left: prev.values.left ?? this.props.min,
-            right: prev.values.right ?? this.props.max,
+            left: leftValue || prev.values.left || this.props.min,
+            right: rightValue || prev.values.right || this.props.max,
           },
         }),
         this.updateLayout
@@ -81,7 +83,6 @@ export default class Slider extends Component {
     }
 
     const [prevLeftValue, prevRightValue] = prevProps.values || []
-    const [leftValue, rightValue] = this.props.values || []
     const { left: leftState, right: rightState } = this.state.values
 
     if (

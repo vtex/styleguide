@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- Uses the `values` prop when the min/max value changes.
+
 ### Added 
 - **EXPERIMENTAL_Conditions** new prop `noOptionsMessage` to handle custom empty messages for **EXPERIMENTAL_Select**
 
