@@ -55,8 +55,18 @@ class InputSearch extends Component {
     this.setState({ hover })
   }
 
-  handleFocus = focus => {
-    this.setState({ focus })
+  handleFocus = event => {
+    const { onFocus } = this.props
+
+    this.setState({ focus: true })
+
+    if (onFocus && typeof onFocus === 'function') {
+      onFocus(event)
+    }
+  }
+
+  handleBlur = () => {
+    this.setState({ focus: false })
   }
 
   render() {
@@ -67,8 +77,8 @@ class InputSearch extends Component {
     return (
       <Input
         {...this.props}
-        onFocus={() => this.handleFocus(true)}
-        onBlur={() => this.handleFocus(false)}
+        onFocus={this.handleFocus}
+        onBlur={this.handleBlur}
         onMouseEnter={() => this.handleHovering(true)}
         onMouseLeave={() => this.handleHovering(false)}
         onKeyUp={e => e.key === 'Enter' && this.handleSubmit(e)}
@@ -111,6 +121,7 @@ InputSearch.propTypes = {
   forwardedRef: refShape,
   onChange: PropTypes.func,
   onSubmit: PropTypes.func,
+  onFocus: PropTypes.func,
   onClear: PropTypes.func,
   size: PropTypes.string,
   value: PropTypes.string,
