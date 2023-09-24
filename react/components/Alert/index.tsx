@@ -10,21 +10,31 @@ import { withForwardedRef, refShape } from '../../modules/withForwardedRef'
 
 type AlertType = 'success' | 'error' | 'warning'
 
-interface AlertProps {
-  type: AlertType
-  onClose?: () => void
-  action?: {
-    onClick: () => void
-    label: React.ReactNode
-  }
-  forwardedRef: refShape
-  closeIconLabel?: string
-  autoClose?: number
-  focusOnOpen?: boolean
-  children: React.ReactNode
+const propTypes = {
+  /** @ignore Forwarded Ref */
+  forwardedRef: refShape,
+  /** Style of the alert */
+  type: PropTypes.oneOf<AlertType>(['success', 'error', 'warning']).isRequired,
+  /** Content of the alert */
+  children: PropTypes.node.isRequired,
+  /** If this function is defined, a close icon will appear and this function will be called when alert is closed. */
+  onClose: PropTypes.func,
+  /** Time in ms to auto close the alert */
+  autoClose: PropTypes.number,
+  /** Set focus to the first focusable element inside alert, which should be the "action" when available or the "close" button */
+  focusOnOpen: PropTypes.bool,
+  /** If this object is defined, an action button will appear on the right side of the alert. */
+  action: PropTypes.shape({
+    onClick: PropTypes.func.isRequired,
+    label: PropTypes.node.isRequired,
+  }),
+  /** Defines the title used for hover and accessibility feedback **/
+  closeIconLabel: PropTypes.string,
 }
 
-const Alert: React.FC<AlertProps> = ({
+export type AlertProps = PropTypes.InferProps<typeof propTypes>
+
+const Alert: React.FunctionComponent<AlertProps> = ({
   type,
   onClose,
   action,
@@ -136,20 +146,6 @@ const Alert: React.FC<AlertProps> = ({
   )
 }
 
-Alert.propTypes = {
-  forwardedRef: PropTypes.shape({ current: PropTypes.any }),
-  type: PropTypes.oneOf<AlertType>(['success', 'error', 'warning']).isRequired,
-  children: PropTypes.node.isRequired,
-  onClose: PropTypes.func,
-  autoClose: PropTypes.number,
-  focusOnOpen: PropTypes.bool,
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-  // @ts-ignore
-  action: PropTypes.shape({
-    onClick: PropTypes.func.isRequired,
-    label: PropTypes.node.isRequired,
-  }),
-  closeIconLabel: PropTypes.string,
-}
+Alert.propTypes = propTypes
 
-export default withForwardedRef(Alert)
+export default withForwardedRef(Alert) as React.FunctionComponent<AlertProps>
