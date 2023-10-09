@@ -215,6 +215,7 @@ class Button extends Component {
 
     return (
       <Element
+        aria-label={this.props.ariaLabel}
         id={this.props.id}
         data-testid={this.props.testId}
         autoFocus={iconOnly ? undefined : this.props.autoFocus}
@@ -284,6 +285,7 @@ Button.defaultProps = {
 }
 
 Button.propTypes = {
+  ariaLabel: PropTypes.string,
   /** Button size  */
   size: PropTypes.oneOf(['small', 'regular', 'large']),
   /** Button prominence variation */
