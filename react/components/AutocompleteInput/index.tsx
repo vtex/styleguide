@@ -93,7 +93,10 @@ const propTypes = {
      * It can be a warning, an error, or a hint about the options.
      */
     customMessage: PropTypes.node,
-
+    /**
+     * Max height value for options dropdown.
+     * `fit-content` is the default value.
+     */
     maxHeight: PropTypes.number,
   }).isRequired,
 }
