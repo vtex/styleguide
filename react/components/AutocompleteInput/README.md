@@ -135,6 +135,99 @@ const UsersAutocomplete = () => {
 ;<UsersAutocomplete />
 ```
 
+#### Defined height with scroll
+
+```jsx
+import { uniq } from 'lodash'
+import { useState, useRef } from 'react'
+
+const allUsers = [
+  'Ana Clara',
+  'Ana Luiza',
+  'Carlos',
+  'Daniela',
+  'Beatriz',
+  'Bruno',
+  'Camila',
+  'Diego',
+  'Eduardo',
+  'Fernanda',
+  'Gabriel',
+  'Heloisa',
+  'Igor',
+  'Juliana',
+  'Kaique',
+  'Larissa',
+  'Marcos',
+  'Natália',
+  'Otávio',
+  'Patrícia',
+  'Renato',
+  'Sabrina',
+  'Thiago',
+  'Vanessa',
+  'Wagner',
+  'Xavier',
+  'Yasmin',
+  'Zeca',
+  'Adriana',
+  'Bernardo'
+];
+
+const UsersAutocomplete = () => {
+  const [term, setTerm] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [lastSearched, setLastSearched] = useState([])
+  const timeoutRef = useRef(null)
+
+  const options = {
+    onSelect: (...args) => console.log('onSelect: ', ...args),
+    loading,
+    value: !term.length
+      ? []
+      : allUsers.filter(user =>
+          typeof user === 'string'
+            ? user.toLowerCase().includes(term.toLowerCase())
+            : user.label.toLowerCase().includes(term.toLowerCase())
+        ),
+    // --- This is what makes the Last Searched Terms work!
+    // This can be stored anywhere the dev wants. To be persistent, for example.
+    lastSearched: {
+      value: lastSearched,
+      label: 'Last searched users',
+      onChange: option =>
+        option && setLastSearched(uniq([...lastSearched, option])),
+    },
+    maxHeight: 300,
+  }
+
+  const input = {
+    onChange: term => {
+      if (term) {
+        setLoading(true)
+        if (timeoutRef.current) {
+          clearTimeout(timeoutRef.current)
+        }
+        timeoutRef.current = setTimeout(() => {
+          setLoading(false)
+          setTerm(term)
+          timeoutRef.current = null
+        }, 1000)
+      } else {
+        setTerm(term)
+      }
+    },
+    onSearch: (...args) => console.log('onSearch:', ...args),
+    onClear: () => setTerm(''),
+    placeholder: 'Search user... (e.g.: Ana)',
+    value: term,
+  }
+  return <AutocompleteInput input={input} options={options} />
+}
+
+;<UsersAutocomplete />
+```
+
 #### Custom option rendering
 
 ```jsx
