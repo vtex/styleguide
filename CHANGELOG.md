@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added 
+- Add scroll on Autocompleteinput
+
 ## [9.146.9] - 2023-06-07
 
 ## [9.146.8] - 2023-06-01
