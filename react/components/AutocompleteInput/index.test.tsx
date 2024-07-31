@@ -29,6 +29,31 @@ describe('AutocompleteInput', () => {
     expect(result).toMatchSnapshot()
   })
 
+  it('should render with a 300px max height', () => {
+    const options = {
+      onSelect: () => `''`,
+      loading: false,
+      value: [],
+      maxHeight: 300,
+    }
+
+    const input = {
+      onChange: () => `''`,
+      onSearch: () => `''`,
+      onClear: () => `''`,
+      placeholder: '',
+      value: '',
+    }
+
+    const { asFragment } = render(
+      <AutocompleteInput input={input} options={options} />
+    )
+
+    const result = asFragment()
+
+    expect(result).toMatchSnapshot()
+  })
+
   it('should render with a regular size bar', () => {
     const options = {
       onSelect: () => `''`,
@@ -108,7 +133,7 @@ describe('AutocompleteInput', () => {
       onSelect: () => `''`,
       loading: false,
       value: [],
-      size: 'medium',
+      size: 'regular',
     }
 
     const input = {
