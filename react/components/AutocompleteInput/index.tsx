@@ -9,6 +9,7 @@ import Option, {
   getTermFromOption,
 } from './Option'
 import SearchInput from './SearchInput'
+import styles from './autocomplete.css'
 
 const propTypes = {
   /** Input props. All HTMLInput props can be added too */
@@ -92,6 +93,11 @@ const propTypes = {
      * It can be a warning, an error, or a hint about the options.
      */
     customMessage: PropTypes.node,
+    /**
+     * Max height value for options dropdown.
+     * `fit-content` is the default value.
+     */
+    maxHeight: PropTypes.number,
   }).isRequired,
 }
 
@@ -124,6 +130,7 @@ const AutocompleteInput: React.FunctionComponent<AutocompleteInputProps> = ({
     icon,
     size,
     customMessage,
+    maxHeight = 'fit-content',
   },
 }) => {
   const [term, setTerm] = useState(value || '')
@@ -261,7 +268,7 @@ const AutocompleteInput: React.FunctionComponent<AutocompleteInputProps> = ({
   const errorStyle = error || Boolean(errorMessage)
 
   return (
-    <div ref={containerRef} className="flex flex-column w-100">
+    <div ref={containerRef} className={`flex flex-column w-100`}>
       <SearchInput
         {...inputProps}
         value={
@@ -280,7 +287,9 @@ const AutocompleteInput: React.FunctionComponent<AutocompleteInputProps> = ({
       />
       <div className="relative">
         {popoverOpened ? (
-          <div className="absolute br--bottom br2 bb bl br bw1 b--muted-2 bg-base w-100 z-1 shadow-5">
+          <div
+            style={{ maxHeight }}
+            className={`absolute br--bottom br2 bb bl br bw1 b--muted-2 bg-base w-100 z-1 shadow-5 ${styles.scroll}`}>
             {renderOptions()}
             {loading && (
               <div className="flex flex-row justify-center items-center pa4">
