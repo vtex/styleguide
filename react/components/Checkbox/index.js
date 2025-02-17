@@ -41,6 +41,7 @@ class Checkbox extends PureComponent {
       value,
       partial,
       forwardedRef,
+      query
     } = this.props
 
     return (
@@ -115,6 +116,7 @@ class Checkbox extends PureComponent {
             onChange={this.handleChange}
             type="checkbox"
             value={value}
+            query={query}
             tabIndex={0}
           />
         </div>
@@ -162,6 +164,8 @@ Checkbox.propTypes = {
   value: PropTypes.string,
   /** Partial state */
   partial: PropTypes.bool,
+  /** (Input spec attribute) */
+  query: PropTypes.string
 }
 
 export default withForwardedRef(Checkbox)
