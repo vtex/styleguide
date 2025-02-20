@@ -13,6 +13,8 @@ describe('Checkbox', () => {
         name="checkme"
         id="my-checkbox"
         onChange={() => {}}
+        isClicked="false"
+        facetKey="Mykey"
       />
     )
 
@@ -41,4 +43,5 @@ describe('Checkbox', () => {
 
     expect(inputElement).toBeTruthy()
   })
+
 })
