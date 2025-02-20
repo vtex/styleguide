@@ -14,7 +14,7 @@ describe('Checkbox', () => {
         id="my-checkbox"
         onChange={() => {}}
         isClicked="false"
-        facetKey="Mykey"
+        facetKey="my-key"
       />
     )
 
@@ -30,6 +30,7 @@ describe('Checkbox', () => {
         name="checkme"
         id="my-checkbox"
         onChange={() => {}}
+        queryText="my-query"
       />
     )
     const inputElement = document.querySelector('input')
@@ -38,7 +39,7 @@ describe('Checkbox', () => {
   })
 
   it('should accept not passing a ref', () => {
-    render(<Checkbox name="checkme" id="my-checkbox" onChange={() => {}} />)
+    render(<Checkbox name="checkme" id="my-checkbox" onChange={() => {}} queryCategory="my-query"/>)
     const inputElement = document.querySelector('input')
 
     expect(inputElement).toBeTruthy()
