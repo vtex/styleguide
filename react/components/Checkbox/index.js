@@ -41,10 +41,11 @@ class Checkbox extends PureComponent {
       value,
       partial,
       forwardedRef,
-      queryText,
+      fullText,
       isClicked,
-      queryCategory,
-      facetKey
+      facetKey,
+      initialQuery,
+      initialMap
     } = this.props
 
     return (
@@ -119,8 +120,9 @@ class Checkbox extends PureComponent {
             onChange={this.handleChange}
             type="checkbox"
             value={value}
-            data-query-text={queryText}
-            data-query-category={queryCategory}
+            data-full-text={fullText}
+            data-initial-query={initialQuery}
+            data-initial-map={initialMap}
             data-is-clicked={isClicked}
             data-facet-key={facetKey}
             tabIndex={0}
@@ -172,9 +174,10 @@ Checkbox.propTypes = {
   partial: PropTypes.bool,
 
   /** (Input spec attributes) */
-  queryText: PropTypes.string,
+  initialQuery: PropTypes.string,
+  initialMap: PropTypes.string,
+  fullText: PropTypes.string,
   facetKey: PropTypes.string,
-  queryCategory: PropTypes.string,
   isClicked: PropTypes.string
 
 }
