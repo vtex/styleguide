@@ -44,6 +44,7 @@ class Checkbox extends PureComponent {
       fullText,
       isClicked,
       facetKey,
+      facetValue,
       initialQuery,
       initialMap
     } = this.props
@@ -125,6 +126,7 @@ class Checkbox extends PureComponent {
             data-initial-map={initialMap}
             data-is-clicked={isClicked}
             data-facet-key={facetKey}
+            data-facet-value={facetValue}
             tabIndex={0}
           />
         </div>
@@ -178,8 +180,8 @@ Checkbox.propTypes = {
   initialMap: PropTypes.string,
   fullText: PropTypes.string,
   facetKey: PropTypes.string,
+  facetValue: PropTypes.string,
   isClicked: PropTypes.string
-
 }
 
 export default withForwardedRef(Checkbox)
