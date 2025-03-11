@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- acessibility props in button
+
 ## [9.146.13] - 2024-08-20
 
 ## [9.146.12] - 2024-08-20
@@ -15,7 +19,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [9.146.10] - 2024-08-09
 
-### Added 
+### Added
+
 - Add scroll on Autocompleteinput
 
 ## [9.146.9] - 2023-06-07
@@ -28,7 +33,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [9.146.5] - 2023-05-24
 
-### Added 
+### Added
+
 - **EXPERIMENTAL_Conditions** new prop `noOptionsMessage` to handle custom empty messages for **EXPERIMENTAL_Select**
 
 ## [9.146.4] - 2023-04-25
@@ -71,7 +77,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Removed
 
-- **EXPERIMENTAL_TableV2** `form` element from search input to avoid DOM validation errors. 
+- **EXPERIMENTAL_TableV2** `form` element from search input to avoid DOM validation errors.
 
 ## [9.145.0] - 2021-07-12
 
@@ -4191,10 +4197,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **Dropdown** and **Input** prop `block`. They are always block.
 - **Dropdown** and **Input** props `short` and `long`. Their widths should be defined by their parents.
 
-
-[Unreleased]: https://github.com/vtex/styleguide/compare/v9.146.13...HEAD
+[unreleased]: https://github.com/vtex/styleguide/compare/v9.146.13...HEAD
 [9.146.1]: https://github.com/vtex/styleguide/compare/v9.146.0...v9.146.1
-
 [9.146.13]: https://github.com/vtex/styleguide/compare/v9.146.12...v9.146.13
 [9.146.12]: https://github.com/vtex/styleguide/compare/v9.146.11...v9.146.12
 [9.146.11]: https://github.com/vtex/styleguide/compare/v9.146.10...v9.146.11
