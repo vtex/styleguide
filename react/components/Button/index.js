@@ -216,6 +216,7 @@ class Button extends Component {
     return (
       <Element
         role="button"
+        aria-label="button"
         id={this.props.id}
         data-testid={this.props.testId}
         autoFocus={iconOnly ? undefined : this.props.autoFocus}
