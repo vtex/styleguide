@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- The option to place data attributes in the `Checkbox` component.
+
 ## [9.146.13] - 2024-08-20
 
 ## [9.146.12] - 2024-08-20

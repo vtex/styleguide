@@ -41,7 +41,15 @@ class Checkbox extends PureComponent {
       value,
       partial,
       forwardedRef,
+      ...remainingProps
     } = this.props
+
+    const dataAttributes = Object.keys(remainingProps)
+      .filter(key => key.startsWith('data-'))
+      .reduce((obj, key) => {
+        obj[key] = remainingProps[key]
+        return obj
+      }, {})
 
     return (
       <div
@@ -115,6 +123,7 @@ class Checkbox extends PureComponent {
             onChange={this.handleChange}
             type="checkbox"
             value={value}
+            {...dataAttributes}
             tabIndex={0}
           />
         </div>
@@ -162,6 +171,14 @@ Checkbox.propTypes = {
   value: PropTypes.string,
   /** Partial state */
   partial: PropTypes.bool,
+
+  /** (Input spec attributes) */
+  initialQuery: PropTypes.string,
+  initialMap: PropTypes.string,
+  fullText: PropTypes.string,
+  facetKey: PropTypes.string,
+  facetValue: PropTypes.string,
+  isClicked: PropTypes.string,
 }
 
 export default withForwardedRef(Checkbox)
