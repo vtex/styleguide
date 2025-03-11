@@ -215,8 +215,8 @@ class Button extends Component {
 
     return (
       <Element
-        role="button"
-        aria-label="button"
+        role={this.props.role}
+        aria-label={this.props.ariaLabel}
         id={this.props.id}
         data-testid={this.props.testId}
         autoFocus={iconOnly ? undefined : this.props.autoFocus}
@@ -285,6 +285,8 @@ Button.defaultProps = {
   isLastOfGroup: false,
   isActiveOfGroup: false,
   tabIndex: 0,
+  ariaLabel: 'button',
+  role: 'button',
 }
 
 Button.propTypes = {
@@ -383,6 +385,10 @@ Button.propTypes = {
   noUpperCase: PropTypes.bool,
   /** Disables label wrapping */
   noWrap: PropTypes.bool,
+  /** Aria label description */
+  ariaLabel: PropTypes.string,
+  /** Role definition*/
+  role: PropTypes.string,
 }
 
 export default withForwardedRef(Button)
