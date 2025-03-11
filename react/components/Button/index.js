@@ -215,6 +215,8 @@ class Button extends Component {
 
     return (
       <Element
+        role={this.props.role}
+        aria-label={this.props.ariaLabel}
         id={this.props.id}
         data-testid={this.props.testId}
         autoFocus={iconOnly ? undefined : this.props.autoFocus}
@@ -241,7 +243,8 @@ class Button extends Component {
         // Button-mode exclusive props
         type={href ? undefined : this.props.type}
         // Link-mode exclusive props
-        {...(href && linkModeProps)}>
+        {...(href && linkModeProps)}
+      >
         {isLoading ? (
           <Fragment>
             <span className="vtex-button__spinner-container top-0 left-0 w-100 h-100 absolute flex justify-center items-center">
@@ -258,7 +261,8 @@ class Button extends Component {
             style={{
               paddingTop: '.25em',
               paddingBottom: '.32em',
-            }}>
+            }}
+          >
             {children}
           </div>
         )}
@@ -281,6 +285,8 @@ Button.defaultProps = {
   isLastOfGroup: false,
   isActiveOfGroup: false,
   tabIndex: 0,
+  ariaLabel: 'button',
+  role: 'button',
 }
 
 Button.propTypes = {
@@ -379,6 +385,10 @@ Button.propTypes = {
   noUpperCase: PropTypes.bool,
   /** Disables label wrapping */
   noWrap: PropTypes.bool,
+  /** Aria label description */
+  ariaLabel: PropTypes.string,
+  /** Role definition*/
+  role: PropTypes.string,
 }
 
 export default withForwardedRef(Button)
