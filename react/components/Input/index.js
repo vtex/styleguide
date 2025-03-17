@@ -195,7 +195,7 @@ class Input extends Component {
     }
 
     return (
-      <label className="vtex-input w-100" data-testid={testId}>
+      <label for={this.props.id} className="vtex-input w-100" data-testid={testId}>
         {label && <span className={labelClasses}>{label}</span>}
         <div className={prefixSuffixGroupClasses}>
           {prefix && (
