@@ -295,6 +295,7 @@ class NumericStepper extends Component {
         )}
         <div className="vtex-numeric-stepper-container numeric-stepper-container flex self-start">
           <input
+            id="vtex-product-quantity-input"
             type="tel"
             readOnly={readOnly}
             className={`vtex-numeric-stepper__input numeric-stepper__input z-1 order-1 tc bw1 ${borderClasses} br0 ${inputClasses} ${styles.hideDecorators}`}
