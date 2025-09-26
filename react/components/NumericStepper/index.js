@@ -230,6 +230,7 @@ class NumericStepper extends Component {
       label,
       lean,
       readOnly,
+      useSemanticHtml,
     } = this.props
 
     const isMin = value <= normalizeMin(minValue)
@@ -285,6 +286,8 @@ class NumericStepper extends Component {
       lean ? 'outline-0' : ''
     } `
 
+    const semanticHtml = useSemanticHtml ? { id: 'vtex-product-quantity-input' } : {}
+
     const content = (
       <React.Fragment>
         {label && (
@@ -295,7 +298,7 @@ class NumericStepper extends Component {
         )}
         <div className="vtex-numeric-stepper-container numeric-stepper-container flex self-start">
           <input
-            id="vtex-product-quantity-input"
+            {...semanticHtml}
             type="tel"
             readOnly={readOnly}
             className={`vtex-numeric-stepper__input numeric-stepper__input z-1 order-1 tc bw1 ${borderClasses} br0 ${inputClasses} ${styles.hideDecorators}`}
