@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- **Button** new props `role` and `ariaLabel` for improved accessibility support
+
 ## [9.146.14] - 2025-10-01
 
 -  Add id to numberic stepper input for accessibility purposes
