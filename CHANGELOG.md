@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.146.15] - 2025-10-30
+
 ### Added
 
 - **Button** new props `role` and `ariaLabel` for improved accessibility support
@@ -4200,9 +4202,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **Dropdown** and **Input** props `short` and `long`. Their widths should be defined by their parents.
 
 
-[Unreleased]: https://github.com/vtex/styleguide/compare/v9.146.14...HEAD
+[Unreleased]: https://github.com/vtex/styleguide/compare/v9.146.15...HEAD
 [9.146.1]: https://github.com/vtex/styleguide/compare/v9.146.0...v9.146.1
 
+[9.146.15]: https://github.com/vtex/styleguide/compare/v9.146.14...v9.146.15
 [9.146.14]: https://github.com/vtex/styleguide/compare/v9.146.13...v9.146.14
 [9.146.13]: https://github.com/vtex/styleguide/compare/v9.146.12...v9.146.13
 [9.146.12]: https://github.com/vtex/styleguide/compare/v9.146.11...v9.146.12
