@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- **Input** adds aria-invalid="true" when element is in error to improve accessibility
+
 ## [9.146.15] - 2025-10-30
 
 ### Added

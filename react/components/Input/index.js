@@ -94,6 +94,8 @@ class Input extends Component {
     } = this.props
     const { active } = this.state
 
+    const inputAriaInvalid = error || errorMessage ? true : undefined
+
     const suffix = suffixProp || suffixIcon
 
     const dataAttrs = {}
@@ -221,6 +223,7 @@ class Input extends Component {
             autoCorrect={this.props.autoCorrect}
             autoFocus={this.props.autoFocus}
             autoSave={this.props.autoSave}
+            aria-invalid={inputAriaInvalid}
             defaultValue={this.props.defaultValue}
             inputMode={this.props.inputMode}
             list={this.props.list}
