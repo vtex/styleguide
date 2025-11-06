@@ -94,7 +94,7 @@ class Input extends Component {
     } = this.props
     const { active } = this.state
 
-    const inputAriaInvalid = error || errorMessage ? true : undefined
+    const inputAriaInvalid = error || errorMessage ? 'true' : undefined
 
     const suffix = suffixProp || suffixIcon
 
