@@ -52,6 +52,8 @@ class Input extends Component {
     } = this.props
     const { active } = this.state
 
+    const inputAriaInvalid = error || errorMessage ? 'true' : undefined
+
     const dataAttrs = {}
     for (const key of Object.keys(dataAttributes)) {
       dataAttrs[`data-${key}`] = dataAttributes[key]
@@ -152,6 +154,7 @@ class Input extends Component {
             autoCorrect={this.props.autoCorrect}
             autoFocus={this.props.autoFocus}
             autoSave={this.props.autoSave}
+            aria-invalid={inputAriaInvalid}
             defaultValue={this.props.defaultValue}
             inputMode={this.props.inputMode}
             list={this.props.list}
