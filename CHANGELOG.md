@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [9.146.16] - 2025-11-10
+
 ## [9.146.16-beta] - 2025-11-07
 
 ### Added
@@ -4208,9 +4210,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **Dropdown** and **Input** props `short` and `long`. Their widths should be defined by their parents.
 
 
-[Unreleased]: https://github.com/vtex/styleguide/compare/v9.146.16-beta...HEAD
+[Unreleased]: https://github.com/vtex/styleguide/compare/v9.146.16...HEAD
 [9.146.1]: https://github.com/vtex/styleguide/compare/v9.146.0...v9.146.1
 
+[9.146.16]: https://github.com/vtex/styleguide/compare/v9.146.16-beta...v9.146.16
 [9.146.16-beta]: https://github.com/vtex/styleguide/compare/v9.146.15...v9.146.16-beta
 [9.146.15]: https://github.com/vtex/styleguide/compare/v9.146.14...v9.146.15
 [9.146.14]: https://github.com/vtex/styleguide/compare/v9.146.13...v9.146.14
