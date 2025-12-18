@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [5.6.3] - 2025-12-18
+
 ### Added
 
 - **Input** adds aria-invalid="true" when element is in error to improve accessibility
@@ -410,3 +412,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **Modal** props `title` & `style`
 - **Dropdown** and **Input** prop `block`. They are always block.
 - **Dropdown** and **Input** props `short` and `long`. Their widths should be defined by their parents.
+
+
+[Unreleased]: https://github.com/vtex/styleguide/compare/v5.6.3...HEAD
+[5.6.3]: https://github.com/vtex/styleguide/compare/v5.6.2...v5.6.3
