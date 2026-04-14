@@ -10,7 +10,7 @@ metadata:
     vtex.com/o11y-os-index: ""
     grafana/dashboard-selector: ""
     github.com/project-slug: vtex/styleguide
-    vtex.com/platform-flow-id: ""
+    vtex.com/platform-flow-id: CommDev#2,Merch#3
     backstage.io/techdocs-ref: dir:../
     vtex.com/application-id: T0WTW0H3
 spec:
