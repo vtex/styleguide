@@ -13,6 +13,8 @@ metadata:
     vtex.com/platform-flow-id: CommDev#2,Merch#3
     backstage.io/techdocs-ref: dir:../
     vtex.com/application-id: T0WTW0H3
+    vtex.com/sdd-check-skip: 'true'
+    vtex.com/sdd-check-skip-reason: The styleguide is a shared UI component library and doesn't require a Service Design Document. This component is deprecated and no longer under active development.
 spec:
   lifecycle: stable
   owner: te-0013
